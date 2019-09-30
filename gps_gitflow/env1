@@ -1,0 +1,14 @@
+. fns_EDIT
+. fns_DIRS
+
+# branch 1
+B1=g_1
+B1=g1
+# branch some_bug_fix
+B2=g_some_bug_fix
+B2=reorganise-after-removing-react
+B2=g2
+URL1=https://github.com/gps67/YEAR_src_PLAY
+
+pass_time=36000
+export pass_time

@@ -1,0 +1,3 @@
+. ./.env
+pwd
+ask_do git clone $URL1

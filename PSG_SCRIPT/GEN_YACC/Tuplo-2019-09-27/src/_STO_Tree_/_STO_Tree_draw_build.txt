@@ -1,0 +1,97 @@
+
+	_STO_Tree_draw_build.txt
+
+		Cairo Diag
+		   |		cairo_draw
+		  API				diag_edit
+		   |		diag_draw
+		SCRIPT
+
+	
+	SCRIPT = MODULE {
+	 BENCH {
+	  OBJ {
+	   STO { // A Loadable MMAP_FILE SPEC NAME DATA
+
+	   	MMAP_FILE = P0P2_ZONE
+
+			LOAD_FILE_API {
+			 load_file( filename, seek, nbytes );
+			 load_dir( filename, seek, nbytes, obj_expr );
+
+			  ea_Locn = VFS_inode_of_dir_from_near( "ea_Locn" );
+			  load_P0P2_ZOME( ea_Locn ); // CTXT adds thread_var_s
+			  // u32_Decoder_ea_expr // u16_u8_u8 // shift top down
+
+			  // u32_hilo // u16_u8_u8 //
+			  // u32_hilo // u16_u16 // FLAT + SIMPLE 
+
+			    u3_Layer
+			    u5_POOL
+
+			    u8_HEAP
+
+			    u16_ITEM
+
+			}
+			ZONE_four is 4 pre-allocated Object * Obj's
+			 OK_NULL means unused feature
+			 SPEC should be a BUFFER P0P2 containing _UDEF_
+			  class of container is derived to add SCRIPTING
+			  class of contained is also in DATA
+			   ZONE_one	SELF at ZERO BASE OFFS
+			   ZONE_two	LIBR LIBS SPEC ROMS STO
+			   ZONE_three	EXEC possibly untrusted ROM
+			   ZONE_four	MMAP my_file
+
+			   ZONE_five	NULL and only four in mini_heap
+			   ZONE_six	NULL when used in u3
+			   ZONE_seven	NULL when used in u3
+			   ZONE_eight	NULL when used in u3
+
+			   Can extract u2 from main TOKEN += u2 // [ u2 ] 
+			   So get u16 ITEM_idx = u16_from_u32 EA
+			   	That is a UNARY expr( EA )
+				STO.tuplo.UNARY{ SCRIPTED_CLASS } { EA }
+
+				.. gettit .. says UNARY but it never is
+
+					u32_type = TOKEN( SELF ) {
+					 IN_SEQ_OBJ_tuplo_root ... more ...
+					}
+
+					u16_u8_u8 {{
+					 u8 Layer // and
+					 u8 ZONE_idx
+					 i16 ITEM_idx
+					}
+
+					You can have more than 64K items
+					simply claim chain += ZONE
+
+			ZONE_four is an option that can be given
+			SCRIPT = MODULE = BENCH_STO = {
+				// obviously MODULE = 64K SCRIPT bits
+				// SCRIPT as MODULE might use OBJ.tuplo_root
+				// ZONE_ITEM[ ZONE.tuplo_root ]
+			
+				Object * _STO_ = CTXT._STO_[ u8_u8 ]
+				STO[4] // Module built from 4 segments + OBJ
+
+			}
+
+
+	   	
+	   }
+	  }
+	  STO {
+
+	   _Merger_SCRIPTS_Tree_ TREE STO TOP.tuplo_root EXPR
+
+	   _layer_one_		IMPORT ROMS VFS STO UDEF
+	   _Layer_two_		IMPORT ROMS VFS STO UDEF
+	   _Layer_three_	IMPORT ROMS VFS STO UDEF
+	   _Layer_four_		IMPORT ROMS VFS STO UDEF
+	  }
+	 }
+	}

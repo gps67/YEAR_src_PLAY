@@ -1,0 +1,96 @@
+
+
+	_STO_ZONE_u8	META + BUFFER + ea_expr_tuplo_root from META
+
+		u8_idx		 u8_ITEM
+		u16_offs	u16_OFFS
+
+		We could use u32_OFFS but we stay under 64K per ZONE
+		If we outgrow that, upgrade this PAGE256 to LARGE_PAGE_256
+		And it uses a template layer, same code but u32_OFFS
+
+		This also bunches adjacent IDX objects to same MEM PAGES
+		so hoop to predict optimisations, shuffle objs to PAGE256
+
+##########################################################
+	
+	ZONE_64K_items		may be TOKEN TOKEN("value") // TYPE
+	ZONE_64K_bytes		exact_full or shared_overshoot or partial_alloc
+
+		64K items, might occupy 2MB space
+		each item header + body  or embedded 
+
+		ZONE += TABLE[ u16 ] of u8_u24_OFFS_EXPR
+
+			u8 ignored always zero
+			u24 OFFS within 16MB of data per 64K items
+			256 bytes per item // AVERAGE
+
+			u8 ignored always zero
+
+		ZONE += TABLE[ u16 ] of u32_OFFS_EXPR
+
+			u32 OFFS within 4G of data per 64K items
+			64K bytes per MAX item // AVERAGE
+			4G bytes per item // still not ISO_FS_STORE
+
+				SIMPLER - but that u8 is tempting :-)
+		We have ZONE_four because
+
+			CACHE L1 l2 l3 l4 // and locks for all in zone
+			MERGE Z1 Z2 Z3 Z4 
+
+	eg ENUM ITEM in GROUP
+
+		ITEM_idx = enum_item_TOKEN
+		obj[ idx ] ->  DECL_INFO(ea) {
+
+			DECL_INFO_scripted_subtype {
+				VTBL = BASE_DECL // C++ of BASE_LIBR
+				VTBL = BASE_DECL + SCRIPT_VTBL // C++ of UDEF_DECL
+			}
+		}
+	
+	occasionally
+
+	COMPILED RUNTIME C++ VTBL
+	SCRIPTED RUNTIME C++ VTBL // because SCRIPT transpiled EXEC
+	SCRIPTED RUNTIME SCRIPTED VTBL
+
+ OK need to figure out
+
+ 	SCRIPTED VTBL
+ 	compiled SCRIPTED VTBL
+
+	COMPILED/
+	 Derived/
+	  Derived/
+	   Delivered
+	   		ITEM.DATA
+			ITEM.SPEC -deref-> -load-> SPEC.DATA SPEC.SPEC
+
+	   	SCRIPTED EXPR 
+
+		 finds SCRIPT_TYPE_NODE
+		 is_scripted_not_compiled
+
+			SELF_DATA/
+			SELF_CLASS
+
+		 	SELF_CLASS = SCRIPTED_CLASS ( EA )
+
+			direct_PTR_to_LOCN
+	
+	NB converting SCRIPT OBJ to C++ OBJ
+	The STO Object is held in a relocatable MMAP_FILE
+	C++ VTBL Objects CANNOT be directly in the file
+
+	We could create temporary C++ Manager objects
+	Object // C++ MGR
+	 .vtbl // C++ hidden // .function( args )
+	 OBJ_IN_STO * registered pointer to item via relocate lock
+
+	GIVE VTBL like behaviour to REF Decoder types
+
+
+

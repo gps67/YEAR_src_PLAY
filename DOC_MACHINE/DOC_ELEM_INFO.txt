@@ -1,0 +1,113 @@
+
+	DOC_ELEM_INFO/
+	#
+	 DOC/
+	 ELEM/
+	 INFO/
+	#
+
+	ELEM_BLOCK
+
+	 Heading
+	 Paragraph
+	 List
+	 PRE
+	 INDENTED
+	 Layout TEXT from CODE
+	 HPOS -aligned-with-
+
+	ELEM_TEXT_PART_FLOW
+
+	 URL
+	 BOLD WORDS // Extra Trigger on BOLD WORD // singular ITEM = Object
+	 BOLD SUBLEX
+	 BOLD DAFT // halfword words halfword
+	 Phrases with a bit of bold
+
+	SUBLEX is_a_complete_word( fragment )
+	SUBLEM_edge _EDGE_LHS_WORD_RHS_EDGE 
+	 ea_tuplo SUBLEM_edge = SPEC_of_DOT {
+	 _EDGE_LHS_
+	 _WORD_
+	 _RHS_EDGE 
+	 }
+
+	 PARSE GAPS around WORDS
+	  a bit of INDENT help
+	  cset can attempt align to TTY fixed width glyphs TAB_8
+	  INDENT might detect _PREFIX_LEFT_
+	  SUBLEX PREFIX must parse itself MATCH found // FILTER = ... //
+	  MATCH pattern ACT action
+	  MATCH tuplo machine
+
+	 DECLARATION
+	  DEF
+	  IN
+	  ITION
+	 // try not to run any EXPR twice 
+	 // use as STREAM of items
+	 // LINK
+	 // // REPLACEMENT SCRIPT PREBUILT
+ CSET 
+ 	ASCII_PLUS
+ 	ASCII_CTRL // and rarely used formatting markers
+ 	ASCII_PLUS_UDEF // my rare use of formatting markers // ESC CSI
+	ASCII_8859
+	ASCII_8859_1_15
+	ASCII_8859_2_ish
+ 	ASCII_UTF8
+	UTF8_Fragment
+	UTF8_Strict
+	UTF8_R2L // my default is L2R
+
+ CSET sdata &amp;
+
+ 	where is this list ...
+	 HTML
+	 XML
+	 SGML
+	 ...
+
+ CSET sdata sublex macros
+
+ 	entire word &ATnT;
+
+ PI sdata
+
+ 	IN/OUT shift DATA CTRL
+	PSG_TeX will share fundamental vocab, as specialised tuplo's BOTH
+	Only difference being the REQUOTE rules 
+
+ ELEM -> INFO
+
+ 	ELEM might have IMPLICIT info or actual INFO
+
+	ELEM
+	 type_type = WORDS subtype ELEM_INST
+	  elem_info = pointer to ELEM_INFO
+	  opts_list = pointer to LIST of ( an_opt name value ) // few vary
+	  data_list = pointer to DATA as standalone list
+
+	   or INLINE SEQUENCE OF data_item then </ELEM>
+
+A TREE by a STREAM
+	
+	TREE pointers to floating independent tuplo's
+	STREAM series of contiguous (vary size head vary size data) tuplos
+
+	ITEM = ITEM
+	ITEM = LOCN
+
+	Indexed Layout, threaded from stream, woven Layout
+
+		has fast jump
+		 pointer to POS in stream
+		 pointer to LOCN in Tree
+
+		Maybe preparation makes it fragile
+		then
+			PREBUILT
+
+
+
+

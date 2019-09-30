@@ -1,0 +1,13 @@
+
+	STO_MACHINE_bench_VAR.txt
+
+	? a single VAR is a PAGE256 range of FRAME
+	? a single VAR is a ZONE_u16 range of FRAME
+
+
+	SEGMENT
+	 where VAR is kept, loaded STO
+	
+	VIEW_in_LIST
+	
+

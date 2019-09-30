@@ -1,0 +1,80 @@
+
+	DOC_MACHINE/
+	DOC_MACHINE.txt
+
+	TWIG = mini dumb LOCN { PAGE_u8  DATA STO[u8] of { ITEM }
+	TWIG = mini dumb LOCN { PAGE_u8  DATA STO[u8] of { ITEM }
+	TWIG = mini dumb_brains LOCN { prolog tuplo_self TRIP MARKER LHS RHS }
+	TWIG = mini intelligent LOCN { structural MATCH Tree Tree // SPEC + DATA
+	TWIG = mini intelligent LOCN { PSG_detect MATCH LHS RHS }
+	TWIG = mini intelligent LOCN { SYNTAX SWITCH ADJUST VIEW }
+	TWIG = mini intelligent LOCN { TWIG -> SEQ of TWIG } // apply BENCH to { ... } // SUBLEX FINDS { WORD Tree } // PSG finds RULE_name -> R U L E  // LEXICON finds BENCH //
+	TWIG = mini intelligent LOCN { TWIG -> SEQ of TWIG } // {
+	
+		apply BENCH to { ... } //
+		SUBLEX FINDS { WORD_Tree } //
+		PSG finds RULE_name -> R U L E  //
+		LEXICON finds BENCH //
+
+	 TWIG('can be composed of "Tree of LOCN_item"') {
+	  // SYNTAX Q1 gets TOKENISED Q2 is part of the name # SUBLEX MATCH lookup("anystr") #
+	  // SYNTAB SUBLEX LOCN_item
+	  // SYNTAB SUBLEX LOCN_item/ anystr must make sense as ASCII_Filename
+	  // SYNTAB SUBLEX LOCN_item/ anystr must make sense as ASCII_Cident99 // Name
+	  // SYNTAB SUBLEX LOCN_item/ anystr must make sense as ASCII_Name
+	  // SYNTAB SUBLEX LOCN_item/ anystr must make sense as ASCII_EXPR
+	  // SYNTAB SUBLEX LOCN_item/ anystr must make sense as ASCII_TYPE
+	  // SYNTAB SUBLEX SWITCH ASCII_PLUS_ ASCII_
+	  // SYNTAB SUBLEX SWITCH ASCII_PLUS_ BYTE_
+	  // SYNTAB SUBLEX SWITCH ASCII_PLUS_ UTF8_
+	  // SYNTAB SUBLEX SWITCH ASCII_PLUS_ _8859_ // needs variant decoder table, every TTY needs a CT translater
+	 }
+
+	}
+
+ DOC uses DTD /
+  they all do / 
+
+	DOC uses DTD // they all do // builtin to base class
+	ELEM_INST = ONE_OF pointer_to_ELEM pointer_to_TOKEN /* absent type */ pointer_is_NULL pointer_to_EXPR_or_SOMETHING // Tree_component
+ELEM_INFO
+
+
+FILTER ASCII
+
+	all the function names have ASCII which looks worrying why not 8859 or UTF8 or BYTE
+	so the name <--> so_the_name
+	so_the_name <--> so the name
+	so_the_name is the name of a minimal MAPPED working MACHINE
+	so_the_name charset ASCII <--> UTF8 // encoding = LIBR("charset ASCII") <--> LIBR("charset TTY_8859") <--> CONV( LHS RHS )
+	so_the_name charset ASCII <--> UTF8 // immediately CAN_CARRY_UTF8 CARRYING_UTF8 UTF8
+	so_the_name charset ASCII <--> UTF8 // because basic (not reference) implementation is well aware of UTF8 even has some helpers
+	so_the_name charset ASCII <--> UTF8 // 
+	so_the_name charset TTY_ASCII // += GLASS_TTY // TODO the ONE_PIXEL_DIAG // where glyph height = 1 pixel; glyph width = 1 pixel ; actual width = glyph TTY (8x16)
+	so_Layout glyph {w h} == {8 16) // { baseline adv) == { up1 adv1 } // adv = */ advance */ 1 pixel step into glyph where most of the left margin kerns against
+	so_MATCH { glyph {w h} == {8 16) } {
+	 TUPLE { w h }
+	 TUPLE { LHS == RHS } // "==" is a placeholder marker printed alias for "{ MATCH LHS RHS }"
+	 // DTP MATCH PUNCT_seq Q1 L_BRACE SP
+	 // DTP MATCH STR0 "'{ " // STR0 defaults to C backquoting of a readable literal value
+	 // DTP MATCH STR0 "'{ " // STR0 used in BYTE_STREAM
+	 // DTP MATCH MATH SPRINGS the cluster of PUNCT_fiddly encourages SP in Layout (actual " " in " ident99 ")
+	 // DTP MATCH MATH SPRINGS SWITCHES " ident99 " <--> _ident_99
+	 // DTP LANG MATCH CodingStyle // SPLIT PAIR joiner LHS RHS // PAIR GENRE ITEM eg ident 99 
+	 MATH SPRINGS SWITCHES " ident99 " <--> _ident_99 // VIEW OLD NEW // SUBLEX_formatter(" _%s%s",  UNDERSCORE SWITCH_name("OLD") SWITCH_name("NEW") ) // SWITCH OLD NEW //
+	 // DTP MATH // '"{ '
+	}
+
+	// { baseline adv) == { up1 adv1 } // adv = */ advance */ 1 pixel step into glyph where most of the left margin kerns against
+
+PHRASE BOOK
+ DATA {PhraseBook}
+ CODE {PhraseBook}
+ TREE {PhraseBook}
+ TEST {PhraseBook}
+ VIEW {PhraseBook}
+ DIAG {PhraseBook}
+ 
+
+ A VIEW is an active DIAG with state = init = DOC x DATA
+ A TEXT is a STO of TEXT or SCRIPT or SEGMENT // for now in ASCII_PLUS

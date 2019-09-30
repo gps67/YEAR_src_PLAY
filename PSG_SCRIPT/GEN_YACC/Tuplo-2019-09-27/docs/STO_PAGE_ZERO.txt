@@ -1,0 +1,146 @@
+
+	STO
+	 MMAP
+	  PAGE_0 mapped but unused
+	 META in BENCH
+	  Object = STO_P0P2_at_ADDR
+	   
+
+Shared writers is possible
+ SHARED MMAP FILE 
+
+	each PID on own CPU own MMU Table
+
+		same as everyone, api might provide safe patch
+		mask to only relevent tables visible
+		no shuffle required - sweeping linear zones
+
+		occasional api edits remotes variable efficiently
+		would then mover to running known script on request
+
+		SHARED MMAP FILE 
+		each module has it's own area, which it manages itself
+		self thread has it's own fd_files, tmp, STO, CTXT
+
+		REMOTE_pretending_MMAP
+		increases round trip optimism # prep_patch prep_undo #
+		SYNC ROUND_TRIP means can throw away undo's lurching
+		SYNC ROUND_TRIP means can write RESULT // the new CONST Value
+		SYNC ROUND_TRIP means threads_on_the_old_clock_tick_are_late
+
+		So thats enough to do this over SQL + SIGNAL Trigger + Locks
+		The basic verbs work, you can edit a tree, and not lose cvs
+		// obvs you can lose, but the optimist usually wins
+	
+	SO it may not be possible to limit EA_mis_computations
+	ALL in the same GROUP are at risk of eachother, and self
+	GET benefits of shared resources
+
+	THEN it may be possible to flip each page
+
+		limit view to module scope // save PRE
+		run scripts
+		return view to PRE module scope
+	
+	THIS takes time, so we allow all OUR scripts into ONE
+
+		shared u32_DEcoder SPACE
+
+		read_only
+			IDX_of_Name( "%s" ) // Q2 TOKEN "_" Name Q2 //
+
+			ROM_ONE		= MMAP_FILE
+			ROM_TW		= MMAP_FILEO
+			ROM_TRI		= MMAP_BUFFER + MMAP_RESPONSE
+			ROM_FOU		= MMAP_FILER
+
+		So we can create SOME objects in a special MMAP
+		(well assuming you can, one big file works too)
+
+		EACH ROM is a ROM_Tree of any variety
+		ROM_Tree_u16_idx : public ROM_TREE { public: 
+			u32_ADDR BASE;
+			u32_OFFS BASE;
+			u32_OFFS OFFS;
+			u32_OFFS ADDR;
+
+		AXIOM
+			u32_ADDR {
+			 u32_ADDR BASE
+			 u32_OFFS OFFS
+			 u32_ADDR ADDR = BASE + OFFS
+			};
+		EXPR
+			BASE = ZERO = P0P2_P0 // = HOTSPOT
+			ADDR + BASE + OFFS
+
+		DERIVED
+			u32_ADDR {
+			 u32_ADDR BASE
+			 u32_OFFS OFFS
+			 u32_ADDR ADDR = BASE + OFFS
+			};
+
+		MANGLED
+			u32_ADDR {
+		//	 u32_ADDR BASE = ZERO
+			 u32_OFFS OFFS
+			 u32_ADDR ADDR = ZERO + OFFS
+			};
+
+-OR-
+		EXPR 
+		 ADDR = ZERO + OFFS
+		 ADDR = ADDR + OFFS
+
+		 ZERO = ZERO
+		 ADDR = /* ZERO + */ OFFS
+
+		EXPR lexicon view SWAP terms SWAP emphasi LAYER B_over_A
+		 ZERO = BASE
+		 BASE = ZERO
+		}
+
+STREAM MODE
+	STREAM MODE is done by BATCH, but with pause points, buffering
+	STREAM MODE can merge all EDITS into one BUFFER transfer + GO
+	STREAM MODE preferes objects of various types
+	STREAM MODE preferes CONTIG_ula then add INDEXED_buffer or build
+	STREAM MODE allows PREBUILT
+
+PREBUILT MODE
+	STREAM ARRIVES as one big mega block with a trailing NUL :-)
+	STREAM ARRIVES as one BUFFER with a root_tupluo START
+	STREAM ARRIVES as one BUFFER START at ATST
+	STREAM ARRIVES as FOUR ZONES plus TOP_OBJECT_SPEC_n_DATA
+	STREAM OBJECT {
+		u32_Object_Type Onject_Type
+		u32_offs_ZONE_ONE
+		u32_offs_ZONE_* N_bytes = P2_NEXT - P0_HERE;
+		u32_OFFS ZONE_TWO;
+		u32_OFFS ZONE_TRIP;
+		u32_OFFS ZONE_FOUR;
+		u32_OFFS ZONE_NEXT;
+	}
+
+	Now the data could be arriving in a parallel stream
+	Or same stream earlier, later, cahche nearer , further
+	Or ROM - already loaded
+	Or STO - already up-to-date
+
+	Our processing mode is to transit container blocks of mem data
+	MEMORY = CODE + DATA + BufferOutput_quota + 
+
+
+	
+
+
+
+We have to have the front layer of compiler, from STO_ASCII_PLUS_SCRIPT
+
+	STO_P0P2_at_ADDR
+
+	STO
+	P0P2
+	at		lex recognised { in at of }
+	ADDR

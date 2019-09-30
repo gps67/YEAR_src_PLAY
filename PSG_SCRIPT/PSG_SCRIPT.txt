@@ -1,0 +1,36 @@
+/home/gps/YEAR/src/PLAY
+
+	PSG_SCRIPT/PSG_SCRIPT.txt
+
+	Every SCRIPT is itself a Module // SCRIPT_TOP anyway //
+	Every MODULE is itself a Module // has name.{CONST,TYPE,VAR,...}
+	Every NAMESPACE
+	Every DIR is a NameSpace
+	Most FILE are sum of FEATURE probably relates to somename.ext
+
+PSG_SCRIPT_makefile
+
+	We generate makefiles
+	(we might parse existing makefiles to find edits)
+
+	SCRIPT_FRAGMENT " { VPATH += DIR // CMNT } "
+
+	.obj depend on .src
+	.obj output from PROCESS {.src BUILD_FLAGS imported_FEATURES}
+	TAB STEP_IN_RECIPE
+	TAB CMNT_IN_RECIPE
+	TAB STEP_IN_RECIPE // Parameters used
+
+	Limit STEP to ...
+	 # '@' = TARGET .obj = @
+	 # CFLAGS = -hidden-but-are-in-logfile-Bench
+	 g++ -o @ CFLAGS -I ${include_dir} -D DECL=value  <
+
+	 SCRIPT_Makefile has an implicit
+	  #import SCRIPT_is_Makefile // SCRIPT Dialect = USED in GEN Makefile
+	  #import BUILD_with_FEATURE // SCRIPT Local = USED as ./DIR/SCRIPT
+
+	 SCRIPT Library for ALL Project
+
+	  # Obj = FEATURE as a TOKEN // OOM_Feature_of_module
+

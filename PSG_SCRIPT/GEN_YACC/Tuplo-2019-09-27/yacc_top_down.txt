@@ -1,0 +1,49 @@
+
+	STR0 Dialect = "Make_List"
+
+	Build up the spray of files on the VFS
+
+	leaf.type = locn_of_leaf/name_of_file.mime_type
+	leaf.data = locn_of_leaf/data_of_file
+
+	Build up the Layers of Dialect: VOCAB from HERE = {...}
+
+	Tree_building locn=new addr=lookup("{ SCRIPT_NAME SCRIPT Name }");
+	Tree_building Layer=Dialect expecting("ALIAS '(null)' ' (null) ')
+	# MATCH # SP ( [GAP] null [GAP] ) SP #
+	# MATCH # SP EXPR SP # EXPR #
+
+	Tree_building locn=new addr=lookup("{ SCRIPT_NAME SCRIPT Name }");
+
+		addr = lookup("%s");
+		addr = lookup(" %s ");
+		addr = lookup( " { SCRIPT_NAME SCRIPT Name } " );
+		addr = lookup {
+			LOCN {
+			 Tuplo_duo {
+			  SCRIPT_NAME {
+
+			  	The SPEC of this PAIR adds ID and STO
+				The Runtime (if any) adds CTXT // Stack
+
+				SPEC explained in { NEXT DIAG }
+			  
+			   // NEXT // SCRIPT_NAME 
+			  }
+			  SCRIPT_NAME {
+			   SCRIPT {
+			    Script
+			   }
+			   NAME {
+			    Name
+			   }
+			 }
+			}
+		}
+
+		{ SPEC LHS RHS }
+		{ Left_Right LHS RHS }
+		{ SCRIPT_NAME SCRIPT Name }
+		}
+
+		locn = new LOCN()	# SCRIPT can add parameters

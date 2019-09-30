@@ -1,0 +1,7 @@
+[ -d obj ] || mkdir obj
+cd obj
+
+make -f ../Makefile "$@" 2>&1 
+# 
+# bison -L c++ e1.y
+# g++ -g -C e1.tab.cc

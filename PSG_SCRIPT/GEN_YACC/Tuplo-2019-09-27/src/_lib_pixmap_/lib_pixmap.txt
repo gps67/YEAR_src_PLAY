@@ -1,0 +1,27 @@
+2019-09-22 Sep Sun 21:25 lib_pixmap/lib_pixmap.txt
+
+	lib_pixmap/lib_pixmap.txt
+
+	obtain shared portion of larger pixmap
+	required to clip properly // request on in graphics context
+
+	obtain own pixmap
+	required to clip properly
+	lib_pixmap only writes on panel
+	clip_zone = pixmap frame
+
+
+		NOTE memory clip_zone permits direct access (via mmap)
+		NOTE memory clip_zone pixmap clip_zone
+	
+	RAW Reachable is
+
+		SAMPLE - in ES4
+		SAMPLE - in C sample prog of freetype
+		SAMPLE - in graphics context 2D JAVA
+		SAMPLE - in pascal
+		SAMPLE - in mupdf
+		SAMPLE - in X11
+
+	RAW Reachable 
+

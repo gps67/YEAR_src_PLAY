@@ -1,0 +1,34 @@
+
+	STO_bench_VAR_MACHINE.txt
+
+	Bench Module Machine
+	Module is implemented by a SCRIPT
+	SCRIPT gets all the fields of a MODULE
+
+		MACRO // LIST
+		EXPR  // LIST
+		CONST // LIST
+		TYPE  // LIST
+		VAR   // LIST
+		FUNC  // LIST
+
+		IMPORT // LIST Tree
+		EXPORT // LIST Tree MAINTAINING idx
+
+		TEST   // LIST
+
+	Bench Var Machine
+
+		FILTER // LIST MAP
+		FILTER_SUBLEX // 
+		FILTER_VAR_IS_FUNC
+		FILTER_FUNC_IS_VAR
+		FILTER_REMOTE
+		IMPORT
+		EXPORT
+		SOURCE_TOKEN
+
+	 Maintain TREE
+		Tree_SOURCE
+		Tree_MODULE_Layout
+		Tree_TOKEN

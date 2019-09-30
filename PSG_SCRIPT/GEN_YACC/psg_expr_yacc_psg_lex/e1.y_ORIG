@@ -1,0 +1,122 @@
+
+%{
+
+	#include <cstddef>
+	#include <stdio.h>
+//	#include <string>
+	extern const char * str_of_token( int tok );
+	#include "EXPRS.h"
+	using namespace EXPRS;
+	#include "e1.tab.hh" // TOK_PLUS as int
+	#include "str1.h"
+#if 0
+	struct YYSTYPE;
+	struct YYLTYPE;
+	int  yylex (YYSTYPE*, YYLTYPE*);
+#else
+	int yylex(void);
+#endif
+	extern int yylineno;
+	extern char * yytext;
+	// extern "C" int yyparse ();
+	extern int yyparse (void);
+	void yyerror(const char * msg) {
+		printf("# ERR # line %d # %s\n", yylineno, msg );
+	// no	printf("# ERR # col %d # %s\n", @$.first_column, msg );
+	}
+
+	const char * str_of_token( int tok ) {
+	 switch( tok ) {
+	  case TOK_PLUS: return "+";
+	  case TOK_MINUS: return "-";
+	  case TOK_ASTERISK: return "*";
+	  case TOK_SLASH: return "/";
+	  case TOK_CARET: return "^";
+	  default:
+	  	static char as_hex[20];
+		snprintf( as_hex, sizeof(as_hex), "x%2X", tok );
+	  	return as_hex;
+	 }
+	}
+
+
+
+%}
+
+%union {
+	// namespace required // no .h included into e1.tab.hh
+	// EXPRS::EXPR * expr;
+	// but IS included before that is (with this union)
+	EXPR * expr;
+	int token;
+	// std::string * string;
+	const char * lex_buff;
+}
+// precedence comes from line number of declaration, loosest first
+// no it doesnt - thats the RULES and hiding it behind BOP_expr mashes that
+// need to generate L '+' R (maybe even LR GLR rail trax)
+
+%token <token> TOK_IDENTIFIER TOK_DOUBLE TOK_INTEGER
+%token <token> TOK_EXTERN  TOK_RETURN
+%token <token> TOK_EOLN  TOK_WS
+%token <token> TOK_PIPE TOK_EQUAL 
+%token <token> TOK_PLUS TOK_MINUS 
+%token <token> TOK_ASTERISK TOK_SLASH
+%token <token> TOK_AMPERSAND TOK_CARET TOK_COMMA TOK_PERCENT 
+%token <token> TOK_CEQ TOK_CNE  TOK_LBRACE TOK_RBRACE TOK_DOTOK_ TOK_CLT TOK_CLE TOK_CGT TOK_LPAREN TOK_RPAREN TOK_CGE TOK_MUL TOK_DIV 
+%type <expr> expr_ident
+%type <expr> expr
+%type <token> BOP
+
+%left  TOK_PLUS TOK_MINUS
+%left  TOK_ASTERISK TOK_SLASH
+%right TOK_CARET
+
+%start top
+
+%%
+
+// expr_ident : TOK_IDENTIFIER { $$ = E1( $1 ); }
+
+// expr_ident : TOK_IDENTIFIER { $$ = E1( "TOK_IDENTIFIER" ); }
+expr_ident : TOK_WS expr_ident { $$ = $2; }
+expr_ident : expr_ident TOK_WS { $$ = $1; }
+expr_ident : TOK_IDENTIFIER { $$ = E1( yylval.lex_buff ); }
+
+BOP	: TOK_PLUS
+	| TOK_MINUS
+	| TOK_ASTERISK
+	| TOK_SLASH
+	| TOK_PERCENT
+	| TOK_CARET
+	| TOK_PIPE
+	| TOK_AMPERSAND
+	| TOK_COMMA
+	;
+
+// // this is re-branding expr sp as an expr of priority 123
+// expr : TOK_WS expr { $$ = $2; }
+// expr : expr TOK_WS { $$ = $1; }
+
+expr : expr TOK_PLUS expr { $$ = E_plus_E( $1, $3 ); }
+expr : expr TOK_ASTERISK expr { $$ = E_times_E( $1, $3 ); }
+expr : expr TOK_CARET expr { $$ = E_power_E( $1, $3 ); }
+
+expr    :       TOK_WS expr TOK_WS { $$ = $2; }
+	|	expr  BOP  expr { $$ = E2( $1, $2, $3 ); }
+	|       TOK_MINUS  expr  { $$ = E1( $1, $2 ); }   
+//	|       '-'  expr      %prec  '*'
+	|	expr_ident { $$ = $1; }
+	|	TOK_LPAREN expr TOK_RPAREN { $$ = $2; } // keep not of () ?
+	;
+
+// no match on eoln ?
+// example Left Recursive list (without the list builder)
+lines
+: %empty
+| lines line
+
+line : expr TOK_EOLN { EXPR * E = $1; E->printer(0); }
+
+top: lines
+

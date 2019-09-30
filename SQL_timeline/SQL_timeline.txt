@@ -1,0 +1,12 @@
+
+
+	SQL_timeline/
+	SQL_timeline.txt
+
+	 113 years {
+	          1883 - 1996
+	 	150,000 total population
+		  2,800 honoured confirmed
+		  1,600 unnamed unconfirmed
+		  N 100's vanished
+	 }

@@ -1,0 +1,142 @@
+# regen
+
+namespace eval regen {
+
+  # module object variables
+
+	variable text_yacc_top_code {}
+	variable text_lex_top_code {}
+	variable PUNCT_list {}
+	variable RW_list {}
+	# what is initialiser of array ?
+	variable PUNCT_token_of_punct
+	variable PUNCT_punct_of_token
+	variable RW_token_of_word
+	variable RW_word_of_token
+
+  proc init {} {
+	# set ::regen::text_yacc_top_code {}
+	# set ::regen::PUNCT_list {}
+	# set ::regen::RW_list {}
+  }
+
+  proc TEXT {outvarname text} {
+	upvar $outvarname out
+	# remove leading EOLN from text - one only # todo
+	# add trailing LF - if missing # todo
+	append out $text
+  }
+
+  proc PUNCT {punct token} {
+	variable PUNCT_list
+	variable PUNCT_token_of_punct
+	variable PUNCT_punct_of_token
+	lappend PUNCT_list $punct
+	set PUNCT_token_of_punct($punct) $token
+	set PUNCT_punct_of_token($token) $punct
+  }
+
+  proc RW {rw {alias {}}} {
+	variable RW_list
+	variable RW_token_of_word
+	variable RW_word_of_token
+	if {$alias=={}} {
+		  set alias $rw
+	}
+	set token RW_$alias
+
+	lappend RW_list $rw
+	set RW_word_of_token($token) $rw
+	set RW_token_of_word($rw) $token
+  }
+
+  # HOWTO multiple tail args
+  proc RWS {args} {
+	  foreach arg $args { 
+		  RW $arg
+	  }
+  }
+
+  proc lex_RW_list {} {
+	variable RW_list
+	variable RW_token_of_word
+
+	foreach rw $RW_list {
+		  set token $RW_token_of_word($rw)
+		  puts "\"$rw\"	return $token;"
+	}
+  }
+
+  proc lex_PUNCT_list {} {
+	variable PUNCT_list
+	variable PUNCT_token_of_punct
+	# puts "## PUNCT_list $PUNCT_list"
+	# puts "## ::regen::PUNCT_list $::regen::PUNCT_list"
+	foreach rw $PUNCT_list {
+		  set token $PUNCT_token_of_punct($rw)
+		  set token LOOKUP
+	}
+
+  }
+}
+
+
+namespace eval regen {
+
+  proc gen_yacc_top_code {outvarname} {
+    upvar $outvarname out
+    TEXT $out {
+	  #include <cstddef>
+	  #include <stdio.h>
+  //      #include <string>
+	  extern const char * str_of_token( int token );
+	  #include "EXPRS.h"
+	  using namespace EXPRS;
+	  #include "e1.tab.hh" // bison lists TOK_PLUS as int
+	  #include "str1.h"
+  #if 0
+	  struct YYSTYPE;
+	  struct YYLTYPE;
+	  int  yylex (YYSTYPE*, YYLTYPE*);
+  #else
+	  int yylex(void);
+  #endif
+	  extern int yylineno;
+	  extern char * yytext;
+	  // extern "C" int yyparse ();
+	  extern int yyparse (void);
+	  void yyerror(const char * msg) {
+		  printf("# ERR # line %d # %s\n", yylineno, msg );
+	  // no   printf("# ERR # col %d # %s\n", @$.first_column, msg );
+	  }
+    }
+  }
+
+  proc gen_str_of_token {outvarname} {
+	upvar $outvarname out
+	variable RW_token_of_word
+	variable RW_list
+	variable PUNCT_list
+	variable PUNCT_token_of_punct
+	TEXT $out "\n const char * str_of_token( int tok ) \{\n"
+	TEXT $out "\n  switch( tok ) \{"
+	foreach rw $RW_list {
+		set tok $RW_token_of_word($rw)
+		TEXT $out "\n   case $tok:\treturn \"$rw\";"
+	}
+	foreach rw $PUNCT_list {
+		set tok $PUNCT_token_of_punct($rw)
+		TEXT $out "\n   case $tok:\treturn \"$rw\";"
+	}
+	TEXT $out "\n   default:" ;# \n from next
+	TEXT $out {
+    static char as_hex[20];
+    snprintf( as_hex, sizeof(as_hex), "x%2X", tok );
+    return as_hex;
+}
+	TEXT $out "  \}\n"
+	TEXT $out " \}\n"
+
+  }
+
+}

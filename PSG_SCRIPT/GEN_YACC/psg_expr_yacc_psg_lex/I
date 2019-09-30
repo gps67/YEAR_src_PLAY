@@ -1,0 +1,2 @@
+cd obj
+insight --cd="$PWD" --args test2.exec < ../test1.test

@@ -1,0 +1,92 @@
+
+	STO_MACHINE/
+	STO_MACHINE.txt
+
+	TOKEN SP_TOKEN_SP = _TOKEN_ = PREBUILT_idx
+	MATCH SP_TOKEN_SP = _TOKEN_ = /* const */ PREBUILT_idx
+	MATCH SP_TOKEN_SP = SPECIAL_BINDING_TO_BUILTIN
+
+		BUILTIN = PREBUILT += {
+			EA_EXPR = EA_LOCN = {
+			}
+		}
+	
+ OPERATOR PREBUILT += ITEM // ITEM_to_track
+
+ OPERATOR LIST += ITEM // CURENT_Module += Import MODULE code + data {
+
+ 	HERE += Module 
+
+ }
+
+
+ OPERATOR STRUCT += FIELD // Object & SELF;
+
+ 	TYPE HERE += FieldName {
+	 TYPE of FIELD {
+	 	str1 field_type = "u32_hilo";
+	 }
+	 NAME of FIELD {
+	 	str1 field_name = "u32_hilo"; // SAME_NAME_Resolver
+	 }
+	 CMNT of FIELD {
+	 	/*
+			SCRIPT that SAFE_MODE can trace out
+		*/
+	 }
+	}
+
+ OPERATOR STRUCT += FIELD // Object & SELF; {
+
+	STRUCT = "EXPR_relative_to_DOT /* is_a(" STRUCT ");
+
+		the SP_TOKEN_SP fast-tracks to BUILTIN
+		BUILTIN.name == TOKENISE(" SP Name SP ")
+		BUILTIN.name == TOKENISE(" SP STRUCT SP ")
+		BUILTIN.name == TOKENISE(" STRUCT ")
+		BUILTIN.name == TOKENISE("_STRUCT_") // SP enough
+		BUILTIN.name == TOKENISE("' STRUCT '") // SP enough
+
+		PICK_ONE = pick_from_DIALECT
+
+		 TOKEN = BUNCH of ALIASES PICK = u8 sel;
+		  LIST = LIST
+		  _IDX = IDX_
+		  PICK = idx; // IN RANGE OF _IDX_
+		  _LHS = RHS_ // moves right to left
+
+		SPEC PICK SUBTYPE FROM LIST ONE_OF {
+			"anystr"
+			"ident99"
+			"ident"
+			"IDENT" // rule fragment comes from ... route ...
+			"IDENT" // ITEM_elsewhere -> ITEM_here // == ish //
+			// accumulated // add retro-link to dest
+			// tell KDB too, or store that here
+		}
+		LIST = new LIST of items like: TOKENISE("anystr")
+		LIST += TOKENISE(" SP STRUCT SP ")
+		LIST += TOKENISE(" STRUCT ")
+		LIST += TOKENISE("_STRUCT_") // SP enough
+		LIST += TOKENISE("' STRUCT '") // SP enough
+
+ }
+
+
+###################################
+
+ OPERATOR _LHS = RHS_ // CMNT SPEC can hold nnn attrs of locn cost = EA
+ OPERATOR _LHS = RHS_ // SPEC = EA.SPEC
+ OPERATOR _LHS = RHS_ // /* SPEC */ ATTR VAL
+ OPERATOR _LHS = RHS_ // ATTR VAL
+ OPERATOR _LHS = RHS_ // /*SPEC */ VAL // magic find correct one
+
+ OPERATOR FlexiVar = BINDING_to_ PREBUILT.Tree_Locn LOCN {
+ 	?? compiler maybe adds a VAR to VAR_FRAME
+	adds VAR = "FlexiVar" {
+	 sets TYPE of VAR to "EA_LOCN"
+	 uses SUB_MACHINE EA_EXPR_u32_hilo /* u8_u8_u8_u8 */ {
+...
+	 }
+	}
+ }

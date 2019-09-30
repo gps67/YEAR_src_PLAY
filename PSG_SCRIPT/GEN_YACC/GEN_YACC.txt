@@ -1,0 +1,142 @@
+2019-09-19 Sep Thu 14:27 GEN_YACC/GEN_YACC.txt
+
+	GEN_YACC/
+	 GEN_YACC.txt
+
+	use libs_apps.gen_yacc 
+	as import gen_yacc as gen from libs_apps.edit_build_config_install
+
+	# libs_apps.edit_rebuild # SCRIPT to PSG to YACC
+
+/home/gps/YEAR/src/PLAY/yaccs/GEN_YACC/psg_expr_yacc_psg_lex
+
+	LEX/YACC is an old route that not everyone uses
+	LEXPR/PSG start as wrapper over LEX/YACC
+
+	 edit SCRIPT
+	 gen obj/temp_SCRIPT_compiled
+	 gen obj/temp_psg_file(s)
+
+	 find DATA
+	 edit SESSION script fragment expressions DIALECT
+	 run SCRIPT via DEBUG 
+	 run foreach in batch of waiting requests { Prefetch_something }
+	 temp session PREV/CURR of Preview_DATA
+
+	 edit BENCH SESSION SCRIPT {
+
+	 	add options to GUI {
+
+			BUTTON PANEL { SCRIPT } // edit run debug data etc
+
+		}
+
+	 }
+
+	 preview results
+
+	DOCU PAGE log test_results RELAY_BENCH { scripts exprs batches data }
+
+LEXPR/PSG start as wrapper over LEX/YACC - Makefile fragments
+
+# # all: test
+# #         
+# # .SUFFIXES: .cxx .tab.c .tab.cc .cc .c .y .o
+# # 
+# # $S/e1_lex.lex $S/e1.y: regen_main.tcl regen_psg.tcl
+# #         $S/regen_main.tcl
+# # 
+# # e1.tab.hh: e1.y
+# # 
+# # # stupid .tab. part makes this less default
+# # # -d outputs headers n defines
+# # e1.tab.cc: e1.y
+# #         # bison -o $@ -L c++ $<
+# #         bison -d -o $@ $<
+# #         
+# # e1_lex.cc: e1_lex.lex e1.tab.hh
+# #         flex -o $@ $^
+# # 
+# # .cc.o:
+# #         $(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
+# # all: test
+# #         
+# # .SUFFIXES: .cxx .tab.c .tab.cc .cc .c .y .o
+# # 
+# # $S/e1_lex.lex $S/e1.y: regen_main.tcl regen_psg.tcl
+# #         $S/regen_main.tcl
+# # 
+# # e1.tab.hh: e1.y
+# # 
+# # # stupid .tab. part makes this less default
+# # # -d outputs headers n defines
+# # e1.tab.cc: e1.y
+# #         # bison -o $@ -L c++ $<
+# #         bison -d -o $@ $<
+# #         
+# # e1_lex.cc: e1_lex.lex e1.tab.hh
+# #         flex -o $@ $^
+# # 
+# # .cc.o:
+# #         $(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
+# # 
+LEXPR/PSG start as wrapper over LEX/YACC - Makefile fragments
+
+LEXPR/PSG start as wrapper over LEX/YACC - OLD TCL printer
+
+	LEXPR/PSG LEX/YACC Makefile fragments
+
+	... GEN{ Script } GEN ...
+
+                 lex_GAP_list out
+                 lex_EXPR_list out
+                 lex_RW_list out
+                 lex_PUNCT_list out
+
+                 gen_str_of_token  out
+                 gen_union out
+                 gen_tokens out
+                 gen_types out
+                 gen_left_right out
+
+
+	TABLE PUNCT
+
+		LEX_Token LHS RHS
+		LEX_Token Type Var 
+		LEX_Token Var Val
+		LEX_Token Name Value
+		 Name
+		 	ASTERISK
+		 Value
+		 	"*"
+
+		VAR_POOL 
+		VAR_POOL PUNCT.var_pool_4.
+			KEY = Value // Search by val
+		 lookup_by_val( "*" ) // KEY = "*"
+		 lookup_by_Name( "*" ) // KEY = "*"
+			VAL = PUNCT.var_pool_4.index( KEY )
+			NAME = VAL.LSH
+
+		LEX_named_list "PUNCT"
+		 
+		 const u8 * lex_Name = "PUNCT_ASTERISK"
+		 const u8 * lex_Value = CT_STR_OF_CHAR( ASCII_ASTERISK )
+		 const u8 * lex_Value = STR0( "*" )
+
+# STR0( "*" ) #
+# via SPELLING_POOL tokenise "*"
+# expect widespread matches
+# connect locally # list for link loader = already_in_table #
+# #define STR0( X )  (const char *) X
+# #define STR0( X )  X
+
+	LEX_named_list RW PUNCT SPACERS EXTRA_TOKEN Patch_SCRIPT
+
+
+
+LEXPR/PSG start as wrapper over LEX/YACC 
+
+	
+	

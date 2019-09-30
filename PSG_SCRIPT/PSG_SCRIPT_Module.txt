@@ -1,0 +1,12 @@
+/home/gps/YEAR/src/PLAY/PSG_SCRIPT
+
+	PSG_SCRIPT_Module
+
+	Module acting as NameSPace
+	Module acting as NameSPace_SUBDIR
+
+	Module acting as Group of FEATURE within Module
+
+	  strange Layering DIR = DIR + DIR + DIR
+	
+

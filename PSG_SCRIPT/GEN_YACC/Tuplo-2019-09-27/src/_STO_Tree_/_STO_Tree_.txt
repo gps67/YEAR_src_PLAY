@@ -1,0 +1,96 @@
+
+	_STO_Tree_/
+	_STO_Tree_.txt
+
+	MODULE IMPORTS META + BLOCK as CODE + DATA
+
+		SELF.CLASS == Module
+		SELF.DATA == Buffer {
+			array [ u16 ] of u32_abcd
+
+				u32_hilo Name[ u16 ]; // load edit save run 
+		}
+	
+	BENCH edits Tree's of STO
+
+		MMAP_FILE into P0P2 memory 
+
+			KNOWN BUFFER SIZE
+
+				[ u4 ]
+				[ u8 ]
+				[ u16 ]
+				[ u24 ]
+				[ u32 ]
+
+			RANGE of ITEM_TYPE
+
+				u32_OFFS // hilo when in STO
+				u64_WORD // Decoder might know further ...
+
+			CURRENT BUFFER LAYOUT
+
+				SPACE_management_for_MMAP
+
+				ZERO = /* page_aligned_4k */ BASE_ADDR = .P0;
+
+				OFFS = (u32_OFFS)(u32) WORD;
+
+				ADDR = ZERO + OFFS;
+
+			CONTAINED OVERFLOW 
+
+				P0P2	outer - clip by testing " <0 N> "
+
+				POP2	inner // u8 inner[ N ] // P0P2 //
+
+				AGREE to clip to within P0P2
+
+					FILTER sees no overlaps
+					FILTER sees PREBUILT
+
+				REQUEST extra clip to within P0P2_outer
+
+					FILTER that happens ANYWAY
+					SO has requested NOTHING EXTRA
+
+				REQUEST clip subzone_of_zone P0P2_outer
+
+					   zone == ZERO
+					subzone += POP2_outer
+					subzone == POP2_outer
+					subzone -= excl_list
+
+
+				RULE calculating clip subzone_of_zone
+
+					P0P2_outer WILL be enforced
+					P0P2_any CAN BE MASKED IN OUT
+					P0P2_any whatever because then ...
+					P0P2_outer WILL be enforced
+
+					P0P2 Buffer Named "_STO_of_ITEM_"
+					 load
+					 edit
+					 save
+
+					export ZERO = P0P2.P0; // u8 rw [u16]
+					export N = P0P2.P2 - P0P2.P0; //
+
+AMBIGUOUS DUALITY
+
+	P0P2 of u8 * P1;
+	P0P2 of N bytes;
+	P0P2 of N Indexes;
+	P0P2 of N Objects via lookup("IDX");
+
+	NB BENCH sets up lists.lookup("item") with you
+	NB SCRIPT setsup LOCAL = NEAR HERE LEX = "Token"
+	NB SCRIPT setsup DIALECT = NEAR HERE LEX = "Token"
+	NB SCRIPT setsup LEXICON = NEAR HERE LEX = "Token"
+	NB SCRIPT setsup SUBLEX : USAGE += "Token"
+	NB SCRIPT setsup SUBLEX : USAGE += "item"
+	lists.lookup("item") with you
+
+
+

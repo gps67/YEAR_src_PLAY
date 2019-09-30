@@ -1,0 +1,34 @@
+#ifndef STR1_H
+#define STR1_H
+#include <string.h>
+#include <stdlib.h>
+
+typedef const char * STR0;
+
+struct str1 {
+	char * s;
+	str1() {
+		s = NULL;
+	}
+	void free_s() {
+		if(s) {
+			free(s);
+			s = NULL;
+		}
+	}
+	str1 & operator=( const char * s_in ) {
+		free_s();
+		s = strdup( s_in );
+		return *this;
+	}
+	operator bool() {
+		return s;
+	}
+	operator STR0() {
+		return s;
+	}
+
+};
+
+#endif
+

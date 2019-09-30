@@ -1,0 +1,108 @@
+
+	Name_Type Name_Data the same Name
+
+		u32_OFFS = PUN { Name_Type Name_Data }
+		u32_OFFS = PUN { _TypeName_ _DataName_ }
+		u32_OFFS = PUN { u32 OFFS } // PUN = EA_Tuplo
+		u32_OFFS = get_from_TABLE( u16 idx );
+
+	Name Type Data SUBLEX
+
+		u32_OFFS OFFS = 
+		u32_OFFS = get_from_TABLE( u16 idx );
+
+	OFFS_from_ZERO.txt
+
+	Count from ZERO in ARRAYS
+
+		always
+	
+	Count from ONE in STRUCTS 
+
+		first field
+
+		field 2
+	
+	Count from P0P2 in BUFFER
+
+		LOCAL_ZERO = P0
+
+		// BENCH HIDES THIS LINE // 
+		// P0 = P0P2.P0
+		// LOCAL ZERO = KNOWN_EXPR = { ZERO } == {
+		//  u32_OFFS = 
+		// }
+	
+	INDEX LOCALLY 
+
+		SCRIPT is running a STACK
+
+			not for every sub-task
+
+			CTXT is close by
+			SCRIPT + CTXT 
+
+		READONLY OBJECTS = MIXTURE
+
+			Particularly using PRE-BUILT steps
+			SCRIPT can be PRE_COMPILED
+			LIBR can be PRE_COMPILED _from_ GIT_VERSION
+			{ LIBR SOURCE= }
+
+			Tuplo can do a lot with { LHS RHS }
+			Tuplo offers freeform SCRIPT dialects, using VIEW
+			VIEW applies CSS_Tuplo to each node on Tree
+			VIEW switches FOCUS to SUMMARY // AMBIGUOUS
+			ALERT on non ident99 // but ALLOW 'anystr' via TOKEN
+
+				so client VIEW reuses client 'anystr'
+				so client runs SCRIPT incl PREBUILT
+
+			Tuplo is the grain of sand, that Bench stores
+
+				in the construction of 
+				 PREBUILLT
+				  SOURCE	- LGPL and dgb_able
+				   _user_of_STO_
+				    STO
+				     BUFFER = KB256 // or less
+				    STO
+				     INDEX 
+				      u32 OFFS;
+				      OFFS_from_IDX( u16 idx )
+				    STO
+				     BUFFER = sizeof( u32_hilo ) * N
+				     INDEX = u32_hilo INDEX[ u8 idx ];
+				     INDEX = u32_hilo INDEX[ u16 idx ];
+				     INDEX = u32_hilo INDEX[ u24 idx ];
+				     INDEX = u32_hilo INDEX[ u32 idx ];
+				      u32 OFFS;
+				      OFFS_from_IDX( u16 idx )
+
+
+		READONLY OBJECTS and SWITCHED_MODULES and CURRENT_VARIATION
+
+			The ROM objects are PREBUILT and loaded in MMAP file
+			The ROM Modules do change every week
+			The STO Modules get checked every minute by themselves
+
+		OBJECT TYPES
+
+			STRUCT
+			VECT
+			BUFFER
+			OBJECT
+
+		OBJECT TYPES
+
+			DIAG_Fragment
+			MATCH { LHS RHS } // { TYPE TYPE } // { NAME NAME } //
+			TREE_LOCN { LOCN LOCN }
+			TREE_ITEM { LOCN ITEM }
+			# AND  #  { LHS  RHS  }
+			# locn #  { LOCN LOCN } # 1 1 # 0 0
+			# item #  { LOCN ITEM } # 1 0 # 0 1
+
+
+
+

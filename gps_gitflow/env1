@@ -9,6 +9,11 @@ B2=g_some_bug_fix
 B2=reorganise-after-removing-react
 B2=g2
 URL1=https://github.com/gps67/YEAR_src_PLAY
+# URL1=https://gps67@github.com/gps67/YEAR_src_PLAY
+# .git/config/ url=https://gps67@github.com/gps67/YEAR_src_PLAY
+
+# this works # not sure if it a good idea tho
+export GIT_ASKPASS=GIT_ASKPASS
 
 pass_time=36000
 export pass_time

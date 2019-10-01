@@ -1,4 +1,13 @@
 . ./.env
 pwd
 ask_do git config credential.https://github.com.username gps67
+
 ask_do git config credential.helper "GIT_ASKPASS_2 me@git"
+ask_do git config credential.helper ""
+# git: 'credential-GIT_ASKPASS_2' is not a git command. See 'git --help'.
+
+
+ask_do vi .git/config
+
+ask_do git config --global --edit
+

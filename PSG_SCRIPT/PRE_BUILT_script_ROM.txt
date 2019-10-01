@@ -1,0 +1,138 @@
+
+ YEAR/src/PLAY/PSG_SCRIPT
+
+	PRE_BUILT_script_ROM		.txt
+
+	SCRIPT gets tokenised in 2 worlds
+	 LOCAL
+	 REMOTE
+	
+	BOTH are PREBUILT from same version = NOW || SUPPORTED // NOW only
+
+	 Previous compile was for source identical with this source
+
+	 shared OLD file, TREE held in ROM with CVS external
+
+	  { SHARED }
+
+	 Previous compile was for source EDITED from that source
+
+	 MATCH LOCN = SAMEID__DIFFERENT_VERSION
+
+	 	EA_LOCN = SAME = 
+		EA_DATA = WHEN = CVS_PICKER
+		 STO_LHS // LOCAL
+		 STR_RHS // REMOTE
+
+// { USAGE LHS RHS } // { LOCN.STO LOCAL REMOTE }
+
+	POSSIBLE SITUATION
+	 I am REMOTE
+	 
+	 LHS RHS <--> LOCAL REMOTE // as seen by TCP_Client
+	 LHS RHS <--> LOCAL REMOTE // as seen by TCP_Client then by TCP_Server
+	 LHS RHS <--> CLIENT SERVER // as seen be each over duplicated Tree
+
+	 POSSIBLE SITUATION
+	  I am Server
+
+	  I am offering the one and only version of the software ROM
+	  I can generate the new ROM (and often do)
+	  I can patch OLD --patch--> NEW
+	  NO-NEED tho because BOTH running on latest SCRIPTS from SERVER
+	  So it keep being an exact match
+
+	  Client can only call scripts that the server chooses to provide
+	  Client can only EDIT data on the Server, which it has present
+
+	   ROM_Tree that means that the OBJECT must be duplicated
+	   ROM_Tree that means that every OBJECT ON STACK (already is)
+
+	   EDIT = 
+	   	START with ROM Object COPY to STO_RW add indexes maybe
+
+		STEP down into OBJECT (Tree) 
+
+			REQUIRE HERE on STACK
+			REQUIRE HERE on STO_RW
+			FLAG Modified since ROM
+
+		HERE with ROM  Object COPY to STO_RW add indexes maybe
+
+			EDIT LIST SEQUENCE
+
+			sel bubbles up one
+			sel bubbles down one
+
+			LIST sorts by K1 K2 K3 ...
+			LIST sorts by mtime
+			LIST sorts with subgrouping chapters apart
+			LIST can be displayed using VIEW data + code
+			LIST add column RANK
+			LIST via VIEW with RANK.from.RAND
+
+			LIST LAYOUT = extra column on LIST Ranking Position
+
+	Client
+		runs the servers script,
+		to simulate what the server will be doing
+		gets the same results, predicts, reacts
+		gets the same questions, prepares, waits
+
+		runs the servers script by RPC
+
+			can only call predefined code
+			can write SCRIPTS over that
+
+		doesnt run many scripts, unless server does RPC
+// LATE EOT // 
+
+	all SCRIPTS get screened
+	all SCRIPTS get tokenised
+	all SCRIPTS get imports 
+
+		limit SCRIPT to unsafe_coda_can_call_this
+
+			eg VFS can provide VFS services
+			to VFS area FOUR // VFS_USER
+
+		permit SCRIPT with CAN_DO_Permit
+
+			QUOTA $TMP/private/data  using 20 MB
+			QUOTA $STO/here/data     using 2 MB
+			QUOTA MMAP_DATA		using MMAP_FILE_40G
+			QUOTA MMAP_AREA		using MMAP_FILE_1G
+
+		permit SCRIPT to 4 x fd = MMAP_FILE SUB_ZONE
+
+			fd = MMAP_FILE SUB_ZONE
+
+			fd_0 = MMAP_FILE ROM_0
+			fd_1 = MMAP_FILE_STO_RW_1
+			fd_2 = -1
+			fd_3 = -1
+
+	Many scripts will be identical - run the PREBUILT
+
+	PATCHED / EDITED scripts, will be above to call
+
+		call original CODE EXPR
+		call SCRIPTED code EXPR
+
+			script has been screened
+			script has been tokenised
+			EDIT even gets the SMAE ID for SAME SUB EXPR
+			recompiled against regenerated symbol tables
+			(the ones already in the ROM, clever distance parallel)
+
+		call LIST_of_STEPS
+		call FUNCTION = lookup attach parameters call eval return
+		call FUNCTION = lookup BUILTIN parameters call eval return
+
+		call LOCN = if, while, case, yadda, yadda, variation of STEP
+
+		CALL STEP
+
+
+
+

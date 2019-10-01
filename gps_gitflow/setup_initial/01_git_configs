@@ -1,0 +1,4 @@
+. ./.env
+pwd
+ask_do git config credential.https://github.com.username gps67
+ask_do git config credential.helper "GIT_ASKPASS_2 me@git"

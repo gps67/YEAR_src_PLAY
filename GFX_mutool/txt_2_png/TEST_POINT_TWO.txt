@@ -1,0 +1,46 @@
+2019-09-07 Sep Sat 01:31 TEST_POINT_TWO.txt
+
+    TEST_POINT_TWO  { // actually 4 might be the new threshold point
+
+        pix_per_pt = dpi / 72.0 = pixels per pt (parity is OK)
+
+        { pix_per_pt < 0.1 }
+
+                HEURISTIC - this data is in MODE ZOOM OUT
+                HEURISTIC - try generate Pixmap Thumbnail with anialias u4
+                HEURISTIC - this data is in UNIT em
+                HEURISTIC - try multiply by 14 pt font readable
+                HEURISTIC - or XPOS is simply close to zero edge
+                HEURISTIC - XPOS always < 1 DOT - UNIT ZOOM OUT MODE
+
+        { pix_per_pt > 0.1 }
+
+                DEVICE is Thumbnail
+
+        { pix_per_pt > 0.5 }
+
+                DEVICE is ZOOMABLE TTY
+
+        { pix_per_pt > 1.0 }
+
+                TTY VGA SVGA
+
+                screen dpi 100 = 1.3
+              { pix_per_pt ~ 2.0 }
+                screen dpi 150 = 2.1
+
+                worth having half point anitaliasing
+
+        { pix_per_pt > 3.0 }
+
+                Printer 
+                Till Roll Print 216 dpi = 72 = 3.0
+                dot_matrix 300 dpi / 72 = 4.16
+                printer  600 dpi / 72 = 8.3
+                printer 1200 dpi / 72 = 16.7
+
+        { pix_per_pt > 20.0 }
+                seriously fine device
+                HEURISTIC - detect new group or misuse
+    }
+

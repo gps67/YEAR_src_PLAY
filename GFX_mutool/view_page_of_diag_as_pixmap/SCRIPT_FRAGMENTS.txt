@@ -1,0 +1,59 @@
+
+	
+        u32 Decoder {
+
+	namespace WORD { ... } // to eof or marker 
+
+		operator (u32) {
+
+			// optimiser can short circuit this copy
+			// but SWAPB wants you to allocate a register
+			// and its [CONST] scope starts here
+			// SCOPE // SUBTREE // TEMP_VAR( anystr ) 
+			// MATCH operator (u32)
+
+			static WORD:: u32_hilo WORD; // REGISTER( EAX )
+
+			u32_hilo   WORD_get_hilo_VAL() { ... }
+			u32_hilo & WORD_get_hilo_VAR() { ... }
+
+			u32_lohi   WORD_get_hilo_VAL() { ... }
+			u32_lohi & WORD_get_hilo_VAR() { ... }
+
+			// ON i386 { ... }
+			// ON ARM { ... }
+
+		}
+	 } // namespace
+	} // Decoder
+
+
+			/* ON i386 
+				where calling code DEMANDS own var
+				// with or without CTOR LOCK RO -etc-
+				or shared RO get_EA_R()
+				so create + initialise static var for EA(X)
+				so add this extra step
+
+
+				tempvar V = SWAPB( init_val_hilo ) // u32
+
+				tempvar u32 
+				u32 = eval( EXPR )
+				u32 = swapb( u32 )
+				return VAR & u32
+				return VAR u32
+				return EA VAR u32
+				return u32
+
+				// NOW u32 CTOR done so unlock static const
+
+				// NKOW u32 "VAR" = "... init_expr ...
+				// NKOW LOCK OUT access above this line
+				// NKOW LOCK IN access below this line
+
+			static u32_hilo & WORD_hilo_get_var()
+			static u32_lohi & WORD_lohi_get_var()
+			*/
+
+	}

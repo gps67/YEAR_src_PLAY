@@ -1,0 +1,11 @@
+
+        
+        u32 Decoder {
+
+                u32   get_VAL();
+                u32 & get_VAR();
+
+        } CMNT
+
+
+.                                         .

@@ -132,9 +132,37 @@
 		call LOCN = if, while, case, yadda, yadda, variation of STEP
 
 		CALL STEP
+
  TRUST -> PERMIT
 
  	It's your data, you can edit your data,
+
+ SCRIPT tokenised
+
+ 	so CAN EXPECT / DEMAND / FILTER PROVIDE
+
+	that tuplo stream can be N_LIST of trustable N
+
+	 tuplo.N_LIST.N=5
+
+	  tuplo.ITEM_todo_str = cairo
+	  tuplo.ITEM_todo_str = yacc gen
+	  tuplo.ITEM_todo_str = yacc use
+	  tuplo.ITEM_todo_str = mmap_file
+	  tuplo.ITEM_todo_str = EDIT_Tree
+
+	  tuplo.NEXT // ok require NULL at/after end
+
+	 tuplo.LIST.N = unknown - look for NULL
+
+	  tuplo.ITEM_todo_str = cairo
+	  tuplo.ITEM_todo_str = yacc gen
+	  tuplo.ITEM_todo_str = yacc use
+	  tuplo.ITEM_todo_str = mmap_file
+	  tuplo.ITEM_todo_str = EDIT_Tree
+
+	  tuplo.NULL
+	  tuplo.NEXT // untouched // unread
 
 
 

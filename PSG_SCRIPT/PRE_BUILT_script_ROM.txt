@@ -132,6 +132,9 @@
 		call LOCN = if, while, case, yadda, yadda, variation of STEP
 
 		CALL STEP
+ TRUST -> PERMIT
+
+ 	It's your data, you can edit your data,
 
 
 

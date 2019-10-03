@@ -164,6 +164,109 @@
 	  tuplo.NULL
 	  tuplo.NEXT // untouched // unread
 
+EDIT
+	  tuplo += EDIT_Tree
+	  tuplo += dset_api // TCP_SQL_T0T2_Time_Value_Stream_buffers
+
+	  VAR CHUNK_IN = VAR_Type("{ ... Time Value ... }"
+
+	  YEAR/src/libs_apps/src/sar_data/dset/dset_api.h
+	  YEAR/
+	   src/
+	    libs_apps/
+	     src/
+	      sar_data/
+	       dset/
+	        dset_api.h
+
+EDIT      += PSG_SCRIPT
+
+	  tuplo += EDIT_Tree PSG_SCRIPT
+	  // EDIT_request is a part of SCRIPT
+	  // EG OLD <--> NEW // NEW from BULK_patch
+	  // DECL <tree_locn> // auto_import twig from graft
+
+	  tuplo += RPC_EDIT // PKT_IN == EDIT_step
+
+	  VAR CHUNK_IN = VAR_Type("{ ... Time Value ... }"
+
+	  YEAR/src/libs_apps/src/sar_data/dset/dset_api.h
+	  YEAR/
+	   src/
+	    libs_apps/
+	     src/
+	     # VIEW LIST #
+	     src/sar_parse/sar_hpux
+	     src/sar_data/dset/dset_api.h
+	     src/sar_parse/tbl_collect/tbl_col_floats_wrap.h
+	     src/sar_parse/tbl_collect/tbl_collect.h
+	     # VIEW TREE #
+	      sar_parse/
+	       sar_hpux/	// example UDEF user of data
+	       sar_data/	// 
+
+	      sar_parse/
+	       sar_hpux/
+
+	      sar_parse/
+	       sar_data/
+
+	       tbl_col_floats_sar.h
+
+	       tbl_col_floats_sar
+	       tbl_col_floats_wrap
+
+	      sar_data/
+	       dset/
+
+	        dset_api.h
+
+(( UNJUMBLE )) 
+	NAMESPACE
+	 TBA
+	  MODULE
+	   sql_BLOB_type // Tree += SPEC += STO += PKT_IO
+	   sar_plot // here PROVIDING a MODULE that should match SQL_BLOB_TYPE
+	   DIR
+	    tbl_collect
+	     tbl_col_floats_base.cxx .h
+             tbl_col_floats_wrap.h
+             tbl_collect.cxx .h
+	    
+
+ class tbl_collect	// editable data, time-series-chunks, QIO, actions
+
+ 	mem_line_spec spec1; // default values host=box5 cmd=sar
+	time_t time0; // TODO ADD time2_clipping_line
+
+	dyn_array<tbl_col_floats_base *> data;
+
+	 dyn_array<float> ary; // VECTOR of float32 // plenty of accuracy
+         mem_line_spec spec; // the line of data
+         time_t t0; // CHUNK.t0 // dt_N = dt * N // t2 = t0 + dt_N
+
+	 This VECTOR of data is compattible with dset_api
+	 dset_api (base class) CHUNKS to/from SQL TimeSeries_CHUNKS
+	 
+	 sar_data /  mem / mem_line_type .h
+
+	   enum Point_or_Series { M1=-1, // AUTOCODE adds UNSET markers M1 -1
+                series,
+                point_date,
+                point_time,
+		// CHUNK of // your line type here
+		// FINDABLE via SQL search for mem_line_spec // NEEDS * EXACT
+		// MIME // will probably have Tree of item type, 
+		// MIME // meet TimeSeries_DATA_in_a_Tree_by_a_Stream
+		// SQL // QUERY // EXACT EA // KEY // IN_LIST // a_bit_like
+		// 
+           };
+
+        Point_or_Series val;
+
+
+
+
 
 
 

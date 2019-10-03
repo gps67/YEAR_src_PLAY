@@ -30,6 +30,13 @@
 *.lib
 
 # Executables
+*.exec
 *.exe
 *.out
 *.app
+
+# Archive tarballs
+*.zip
+*.tgz
+*.tar.bz
+*.iso

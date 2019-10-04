@@ -21,8 +21,140 @@
 
 	 	EA_LOCN = SAME = 
 		EA_DATA = WHEN = CVS_PICKER
-		 STO_LHS // LOCAL
-		 STR_RHS // REMOTE
+
+		 STO_LHS // LOCAL // Client
+		 STR_RHS // REMOTE // Server
+	
+	MATCH EA_DATA { OLD NEW } // CMNT
+
+		 STO LHS // LOCAL // Client 
+		 STR RHS // REMOTE // Server
+	
+	MATCH CACHE ea_locn_expr lhs rhs cmnt
+
+		STO STO = STO(); // INIT from 
+
+		 STO.EA_expr = EA_locn_item_expr("EA_locn_item_expr()")
+
+		  TYPE EA_EXPR(" SomeType "); // STO.tuple {
+		  	Token EA_SomeType = EA_STR0(" %s ", "EA_SomeType"); //
+		  }
+		  LOCN lhs
+		  ITEM rhs
+		  CMNT cmnt
+
+	MACHINE OPCODE Name {
+	 # EXPR_ITEM {
+	   EA_EXPR {
+	    OFFS = BASE + OFFS // ABS_OFFS_zero_plus_offs // EA_EXPR
+	    OFFS = BASE + OFFS // DIALEXT LEXICON ITEM // EA_EXPR
+	    OFFS = WIDE * IDX // VECTOR get_cached_N() get_cached_item[ i<N ]
+	    ADDR = BASE + OFFS
+	    OFFS = EXPR offs + offs // for REASON
+	    OFFS = EXPR offs + offs // for REASON
+	   }
+	 }
+	}
+
+	MACHINE OPCODE EA_EXPR {
+	 # EXPR_ITEM {
+	   EA_EXPR {
+	    OFFS = BASE + OFFS // ABS_OFFS_zero_plus_offs // EA_EXPR
+	    OFFS = BASE + OFFS // DIALEXT LEXICON ITEM // EA_EXPR
+	    OFFS = WIDE * IDX // VECTOR get_cached_N() get_cached_item[ i<N ]
+	    ADDR = BASE + OFFS
+	    OFFS = EXPR offs + offs // for REASON
+	    OFFS = EXPR offs + offs // for REASON
+	   }
+	 }
+	}
+
+	MACHINE OPCODE EA_DATA {
+
+	   OPCODE &= EA_expr_locn_item
+	    OPCODE_FIELD expr _STO
+	    OPCODE_FIELD locn _STO
+	    OPCODE_FIELD item _STO
+
+	    OPCODE_FIELD_locn_STO {
+	     // this field is (via) the type of this
+	     // DECL STO_Tree = { SCRIPT } //
+	     // ROOT EXPR STO = nbytes_buffer // INTERP = script_in_ROM ...
+	    }
+
+	   EA_EXPR {
+	    EA = ADDR = BASE + OFFS ==
+	    EA = ADDR = ZERO + OFFS ==
+
+	    EA_EXPR = EA_ADDR ONE_FROM PICK_LIST " EA = BASE + OFFS "
+	    EA_EXPR_VECTOR {
+	    	ITEM & LIST[ i<N ] " OFFS = OFFS + OFFS // EXPLAIN "
+
+		// above is BASE_CLASS_builtins
+		// here add BASE_CLASS_api
+		// api ... 
+		
+		CONST N = 
+	    }
+	    EA_EXPR_VECTOR_api {
+	    	// TBS = EA_expr EA_OuterFrame = STO_is_AREA_of_CONTAINER
+		// TBS = OuterFrame = STO_is_AREA_of_shared_CONTAINER
+	    	// LEX TBS 
+		// LEX EA_expr
+		// LEX EA_OuterFrame =
+		// LEX STO_is_AREA_of_CONTAINER
+		// LEX STO
+		// LEX CONTAINER // ROM PROVIDES trustable shared CONTAINER
+		// LEX  AREA
+		// LEX STO_is_AREA_of_shared_CONTAINER
+
+		// EXPR VECTOR[ idx ]
+		// EXPR STRUCT ... FIELD ... OFFS_EXPR
+		//  OFFS_EXPR { EA = BASE + OFFS }
+		//  OFFS_EXPR { EA = BASE }
+		//  OFFS_EXPR { EA = ZERO + OFFS }
+		//  OFFS_EXPR { EA = OFFS = ZERO = BASE }
+
+		/*
+			OK, EA EXPR has a few AXIOM EXPR = [ u8 ]
+			components and multiple next items
+			  EA = u32_hilo OBJV[ u8 idx ] // u8 u16 or u32
+
+			  EA = { // SCRIPT
+			   OBJ_SPEC = Tree_HERE_CLASS_SCRIPT_MODULE_SRC
+			   OBJ_SPEC = Tree_HERE_CLASS_VAR
+			   OBJ_SPEC = Tree_HERE_INST_VAR
+			   OBJ_SPEC = Tree_HERE_STO_VAR_api // = EA_EXPR
+			  }
+			   Tree_HERE_STO_VAR_api // = EA_EXPR
+			    get_struct_field( expr_data ) {
+			     api = VTBL {
+			     	get_EA_of_ITEM_in_TREE_from_EXPR_ARGS
+			     	get_EA_of_ITEM_in_LIST_from_EXPR_ARGS
+			     	get_EA_of_FIELD_in_STREAM_from_EXPR_ARGS
+			     	get_EA_of_FIELD_in_VECTOR_from_EXPR_ARGS
+			     	get_EA_of_FIELD_in_SCRIPT_from_EXPR_ARGS {
+				}
+
+	// NEAR //		 OFFSET of ITEM at IDX in some_vector // 
+	// NEAR //		 OFFSET of FIELD in some_struct // _t
+	// NEAR //		 OFFSET from SCRIPT // ---- ---- //
+	// NEAR //		 OFFSET from SCRIPT // CODE DATA //
+	// NEAR //		 OFFSET from SCRIPT // EXPR ARGS //
+	// NEAR //		 OFFSET from SCRIPT // ---- ---- //
+			     }
+			    }
+		*/
+
+	    OFFS = BASE + OFFS // ABS_OFFS_zero_plus_offs // EA_EXPR
+	    OFFS = BASE + OFFS // DIALEXT LEXICON ITEM // EA_EXPR
+	    OFFS = WIDE * IDX // VECTOR get_cached_N() get_cached_item[ i<N ]
+	    OFFS = EXPR offs + offs // for REASON
+	    OFFS = EXPR offs + offs // for REASON
+	   }
+	 }
+	}
+
 
 // { USAGE LHS RHS } // { LOCN.STO LOCAL REMOTE }
 

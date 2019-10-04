@@ -1,0 +1,20 @@
+
+	PER USER VFS over LAN using LAN_cache
+
+		REGIONAL CACHE 
+		 user edits own data
+		 server stores that data
+		 maybe vectors calls through
+		  FILTER pick one of LIST_KNOWN_PHRASES_EXPR_LIST
+	
+	New/Few areas get /ROOT/ -> SUBDIR_ROOT_Tree
+
+
+	VFS RPC lan
+
+	PKT_in
+	PKT_out
+	PKT_IO
+	PKT_out_queue_GEN
+	PKT_in_parser_PSG
+	PKT_IOQ

@@ -34,11 +34,13 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	~Tree_PSG();
 	Tree_PSG();
 
-	LEX_TOKEN_GROUP POOL_[ u8_idx ] // PARTIAL u8 N = 3; // UDEF_ = N++
+#if 0
+	LEX_TOKEN_GROUP POOL_[ u8_idx ]; // PARTIAL u8 N = 3; // UDEF_ = N++
 	 LEX_TOKEN_GROUP POOL_PUNCT	= POOL_[0];
 	 LEX_TOKEN_GROUP POOL_RW	= POOL_[1];
 	 LEX_TOKEN_GROUP POOL_LEX	= POOL_[2];
 	 LEX_TOKEN_GROUP POOL_UDEF	= POOL_[N++];
+#endif
 	// fixup 0 means full is_empty knows not empty // -1 clip +1
 
 	// u8_idx GRP = N++; /* know is_not_empty */

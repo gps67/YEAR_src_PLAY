@@ -40,9 +40,46 @@
 
 			CONTAINED OVERFLOW 
 
-				P0P2	outer - clip by testing " <0 N> "
+				P0P2	outer - clip by testing " <0 <N "
+				P0P2	outer - clip by testing " [0 [N "
 
+				// stream of upto 256 chunks each upto 256 steps
 				POP2	inner // u8 inner[ N ] // P0P2 //
+			-or-
+				// stream of upto 256 chunks each upto u32_hilo steps
+				POP2	inner // u32_hilo P2_of_field_[ N ] //
+			-or-
+				// stream of upto 256 chunks each obj_head obj_body = STO.BUFFER[ u32_hilo ] EA_OFFS||IDX_steps
+				// stream fragment FORWARD REFERENCE: locn = name /* + */ decl = @next_in_frame
+				// stream fragment SUGGEST SCRIPT create soft_clip_edge_clip_mixer edge_clip;
+				// stream fragment SUGGEST SCRIPT edge_clip = stack of frames; // (not SP tho);
+				// stream fragment SUGGEST SCRIPT edge_clip = P0P2 // my local limits 
+				// stream fragment SUGGEST KNOW P2_of_field_N_is_P0_of_next
+
+				POP2	inner // u32_hilo P2_of_field_[ N ] //
+
+					//
+					// CMNT
+					//
+
+					u32_hilo  P2_of_field_[ N ] 
+
+					//
+					// DIAG of VECTOR[ N ] 
+					// DIAG of u32_OFFS = u32_hilo EA_item_u8 VECTOR[ N ] 
+					// DIAG of BYTE_SIZE = u32_OFFS of NEXT
+					// DIAG of BYTE_SIZE = u32_hilo EA_of_item_u8_VECTOR[ u8 idx ] 
+					// DIAG of BYTE_SIZE = u32_hilo NEXT = ITEM[ N ] // outside of P0P2 at P2
+					// DIAG of BYTE_SIZE = CODE ECHO my P0  is PREV P0P2.P2
+					// DIAG of BYTE_SIZE = CODE ECHO my P0  is  my P0P2.P0
+					// DIAG of BYTE_SIZE = CODE ECHO my  P2 is  my P0P2.P2
+					// DIAG of BYTE_SIZE = CODE ECHO my  P2 is NEXT P0P2.P0
+					// DIAG of EDGE_CLIP = P0P2 
+					// DIAG of EDGE_CLIP = P0P2 ... P0P2 ...
+					// DIAG of EDGE_CLIP = NESTED /* usually within bounds */ CLIP PANEL Layout
+					// DIAG of BYTE_SIZE = u32_hilo EA_of_item_u8_VECTOR[ N ] 
+					// DIAG of BYTE_SIZE = u32_hilo ITEM[ N ] // decisive rename // keep original phrase_is_name_t SUBLEX item
+					//
 
 				AGREE to clip to within P0P2
 

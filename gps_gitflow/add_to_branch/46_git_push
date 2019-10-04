@@ -1,3 +1,14 @@
 . ./.env
 
+echo "#
+# TODO # RPC call 
+# TODO # RPC call machine that has the pass to do it (vs need that pass)
+# TODO # RPC call 
+#
+# call machine login have permits get_SESSION = { SCRIPT } // CTXT
+#
+# that machine has OPERATOR to get_pass // automated //
+# that machine needs us to provide SOMETHING of a PASS GUEST_PASS
+#"
+
 ask_do git push

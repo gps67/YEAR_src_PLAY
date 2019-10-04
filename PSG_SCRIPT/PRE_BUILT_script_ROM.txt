@@ -145,7 +145,44 @@
 			     }
 			    }
 		*/
+/*
+	... EA_OFFS _EXPR ...
+	MODULE OFFS EXPR MATH
+	... DIAG ...
+	... ASCII DIAG ...
 
+		  +---+--+-===-+--+---+---
+		 / 0 / 1/  2  /3 / 4 /
+		+---+--++===++--+---+---
+		| a | b | c | d |   |   |  
+		+---+---+===+---+---+---
+
+	RESEARCH for most TTYS, you can redefine glyphs esp BYTE 
+
+		  PTR...........offs............. PTR
+		  /                               /
+		 +  L_PAR Q2 SP Name SP Q2 PAR_R +
+	
+	So 4 EXTRA Glyphs // can remap CSET_BYTE_TTY2
+
+		WORKS in XTERM
+		WORKS in TCL_TTY
+		WORKS in SCRIPT_GLASS_TTY
+		WORKS in SCRIPT_Linux_TTY_Console 
+
+		NEEDS dx dy = 8 x 16 = 1 x x
+		NEEDS mouse at events
+	
+		SO document it all with ASCII DIAG Components
+
+	 GLYPH / arrow down_left
+	
+		WHEN not available
+		 USE /
+		 USE PTR label to push out linking arrow
+		 USE + as arrow head, or at least connector
+
+*/
 	    OFFS = BASE + OFFS // ABS_OFFS_zero_plus_offs // EA_EXPR
 	    OFFS = BASE + OFFS // DIALEXT LEXICON ITEM // EA_EXPR
 	    OFFS = WIDE * IDX // VECTOR get_cached_N() get_cached_item[ i<N ]
@@ -154,6 +191,17 @@
 	   }
 	 }
 	}
+
+/*
+	CONSTRAINTS
+
+		All Tuplo types are sufficient = bootstrapped
+		All DIAG axioms come from ASCII_PLUS
+		All GUI DIAG figures out ALIGNMENTS and TABS
+		ALL PSG rules have PARSE andd GEN frameworks incl DIAGS
+
+
+*/
 
 
 // { USAGE LHS RHS } // { LOCN.STO LOCAL REMOTE }

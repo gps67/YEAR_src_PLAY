@@ -19,6 +19,8 @@
 
 	Bench Var Machine
 
+		EDIT Tree
+		EDIT EXPR pool / item /diag
 		FILTER // LIST MAP
 		FILTER_SUBLEX // 
 		FILTER_VAR_IS_FUNC

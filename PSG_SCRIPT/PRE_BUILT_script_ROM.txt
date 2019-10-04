@@ -27,8 +27,12 @@
 	
 	MATCH EA_DATA { OLD NEW } // CMNT
 
-		 STO LHS // LOCAL // Client 
-		 STR RHS // REMOTE // Server
+		 STO LHS // OLD // LOCAL // Client 
+		 STR RHS // NEW // REMOTE // Server
+
+		 eg apply EDIT to OLD, get NEW
+
+		 extra_payload EDIT_data
 	
 	MATCH CACHE ea_locn_expr lhs rhs cmnt
 

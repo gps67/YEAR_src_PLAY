@@ -1,0 +1,90 @@
+	Tuplo_Stream_Tree/
+	Tuplo_Stream_Tree.txt
+
+ DONT write TUPLO_TREE until we have TUPLO_STREAM
+
+ 	all objects must work with GEN and PSG and PRE_KNOW
+
+		serialise objects to and from IO
+
+		can have a 2-pass efficient clone-re-pack (seems done in 1)
+
+		STREAM of variable sized ITEM PAIR TRIP QUAD _with_added_EXTRA
+
+ losing word alignment
+ convert stream to tree ?
+
+ Tuplo_type u3
+ 	0 1 2 3 4 5 6 7 
+
+ Tuplo_type u3 = 0x7 N=u5 
+	VECTOR[ u5 ] of TreeSegment // any single streamable chunkable blob
+	 TOP[ i ] == TreeSegment[ 1 ] 
+	 TOP[ N ] == UNTOUCHED_NEXT_in_STREAM
+
+ Tuplo_type u3 = 0x2 PLAIN_PAIR N= 2
+ 	LHS = SPEC or DATA_with_SPEC
+	RHS = ITEM
+
+ Limit u16 types of SCRIPTED LOCAL tuplo_type in heap or imported
+
+ 	find SPEC same HEAP as STREAM
+
+		STREAM.SPEC_from_u16
+		 uses pages of [u8] imported from ROM 
+		 uses pages of [u8] imported from STO 
+
+		 loader = MAP_Object_Layout
+
+
+ Tuplo_Vector_few
+
+ 	u8_ _Object_Header
+	 u3 tuplo_bitfield_type_u3 // tuplo_type_u3 VECTOR[u5] of ANY
+	 u5 tuplo_bitfield_u5 // N= PAYLOAD // OK0
+
+ 	u16_ _Object_Header
+	 u3 tuplo_bitfield_type_u3 // tuplo_type_u3 VECTOR[u5] of ANY
+	 u5 tuplo_bitfield_u5
+	 u8 tuplo_bitfield_u8
+
+ 	u32_ _Object_Header
+	 u3 tuplo_bitfield_type_u3 // tuplo_type_u3 VECTOR[u5] 
+	 u3 tuplo_bitfield_u5
+	 u3 tuplo_bitfield_u8
+	 u3 tuplo_bitfield_u16_hilo
+
+	u8 N = u8_from_class // const
+
+	ITEM	ARY[ i ] = ITEM
+	ITEM	ARY[ i ] = ITEM
+	VOID	ARY[ N ] = unused
+	NEXT	ARY[ N ] = unused
+	NEXT ea ARY[ N ] = unused
+
+	0  <= N <= 255
+	 1 <= N <= 255	// see no point in N==0 //
+	 1 <= N  <= 256
+
+	 option N = (0 means 0) || (0 means -1+1 means MAX_u8+1 == 256)
+	 because N comes from class, know N < 12
+
+ Tuplo_Vector_few
+
+	u8 N = u8_from_inst // u5 bitfield in opcode // packed data
+
+	ITEM	ARY[ i ] = ITEM
+	ITEM	ARY[ i ] = ITEM
+	VOID	ARY[ N ] = unused
+	NEXT	ARY[ N ] = unused
+	NEXT ea ARY[ N ] = unused
+
+	0  <= N <= 255
+	 1 <= N <= 255	// see no point in N==0 //
+	 1 <= N  <= 256
+
+	 option N = (0 means 0) || (0 means -1+1 means MAX_u8+1 == 256)
+	 because N comes from class, know N < 12
+
+
+

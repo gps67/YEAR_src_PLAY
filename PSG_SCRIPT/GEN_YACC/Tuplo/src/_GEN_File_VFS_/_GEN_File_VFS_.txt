@@ -1,0 +1,45 @@
+
+	_GEN_File_VFS_/
+	_GEN_File_VFS_.txt
+
+		VFS += ~/.my_config_script
+		VFS += ~/.my_compat_script_data
+
+		RPC from server to client
+		TO PROVIDE _ ~/.Xauthority
+
+	VFS += CACHED_ROM // PREBUILT
+	VFS += GEN_ONCE_FILE
+	VFS += GEN_machine_opcodes
+	GEN += OWN_META_guessed_from_name_like_anystr
+	GEN += machine_opcodes
+	GEN += EDIT opcodes
+	EDIT += KNOW SPEC of FILE // PSG_of_config_ini
+	GEN_from_PSG { // SUPPLIED SAMPLE text_fragment
+	GEN += CSS_Layout_VIEW_macros // inline scripted functions
+	GEN_PSG += only_tuplos_that_stay_within_limits // is_own_PREBUILT
+	GEN_PSG += more_tuplos_that_stay_within_limits // is_user_SCRIPT 
+	// is_user_editing_own_data is_user_IO_and_CTRL
+
+	TUPLO_gen_regen
+
+	 WHEN generating META.filename
+	 CAN USE base_class tuplo
+	 ITS PREBUILT VTBL knows PARSE knows VIEWS knows GEN
+
+	 tuplo_LIST_N_of_ITEM // occasionally N = N_scan_strlen( STR )
+	  GEN 
+----	   view_stype[0] ----
+		PRINT ITEM = BLOCK_of_LINES indentedIbeyih? 
+----	   view_stype[1] ----
+----	   view_stype[2] ----
+----	   view_stype[N] ----
+
+	UNREAD
+	UNWRITTEN
+	PRELOADED ROM has guardrail at zone_edge edge_world
+	PRELOADED ROM has guardrail at zone_edge edge_next
+	PRELOADED ROM has guardrail at zone_edge edge_open " { "
+	PRELOADED ROM has guardrail at zone_edge edge_shut " } "
+
+

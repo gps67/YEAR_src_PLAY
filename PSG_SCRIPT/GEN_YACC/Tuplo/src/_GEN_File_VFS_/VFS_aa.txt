@@ -1,0 +1,43 @@
+
+
+	$HOME/YEAR/ -> /nfs/BOX5/YEAR/ -> 2019/
+
+	2019/ -> BOX5/sdb2/$ABBR
+	 ABBR == USER NAME gps67 ALIAS 
+
+
+
+DIALECT /
+VIEW_OPT Name Name/
+ ON SYMB_LINK
+	 Name -> DIR/
+ show as
+	 Name/ -> DIR/
+
+// BOTH add it to DIR/ // _if_was_absent
+
+-------
+So solve above options
+ VIEW_OPT Name Name/
+
+PUZZLE
+	$HOME/YEAR/ -> /nfs/NAS2/2019/
+	$HOME/YEAR/YT -> /nfs/NAS3/YT/
+
+		/nfs/NAS3/YT/ -> SUBDIR/YT/
+
+	SUBDIR = "G"	// VFS STO gives QUOTA in DISK EA_in_Object
+	G/
+	 	G/ -> nas3_sdb2_ // NAS DISK PARTITON // ZONE
+	 	G/ -> nas3_sdb2_ _G/ // TREETOP // ZONE
+	
+	G/
+	 AUDIO_2018
+	 AUDIO_2019
+	 YT/
+	 	YT = Tree { Layout }
+
+	
+
+
+

@@ -6,6 +6,10 @@
 #include "obj_list.h"
 #include "buffer2.h"
 
+// for building PUNCT_PLUS_EQUAL = "+="
+#include "Tree_PSG_LEX_PUNCT_NAME.h"
+
+
 class LEX_TOKEN_DECL : obj_ref0 { public:
 	str1 Name;
 	str1 Value;
@@ -20,6 +24,9 @@ class LEX_TOKEN_GROUP { public: // NOT AN OBJ_REF ???
 
 	LEX_TOKEN_GROUP();
 	~LEX_TOKEN_GROUP();
+
+	bool
+ 	 add_PUNCT( STR0 punct ); // "==" ); // STR0 tail,  // "_EQUAL_EQUAL"  
 
 	bool
  	 add_PUNCT(    // PFX_

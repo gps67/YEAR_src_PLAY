@@ -54,6 +54,7 @@
 	OBJS2 += $(from_lex_o)
 	OBJS2 += $(from_yacc_o)
 
+	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
 	OBJS1 += Tree_PSG.o
 	OBJS1 += Tree_PSG_UDEF.o

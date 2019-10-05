@@ -1,5 +1,7 @@
 
 #include "Tree_PSG_UDEF.h"
+#include "Tree_PSG_LEX_PUNCT_NAME.h"
+
 
 bool Tree_PSG_UDEF::print_list(
 	LEX_TOKEN_GROUP &  POOL,
@@ -21,6 +23,9 @@ bool Tree_PSG_UDEF::print_list(
 }
 
 bool Tree_PSG_UDEF:: build_tree() {
+	POOL_PUNCT.add_PUNCT( "==" );
+	POOL_PUNCT.add_PUNCT( "!=" ); // alias NOT SHRIEK BANG EXCLAIM
+	POOL_PUNCT.add_PUNCT( "++" ); // alias NOT SHRIEK BANG EXCLAIM
 	POOL_PUNCT.add_PUNCT( "_EQUAL_EQUAL", "==" );
 	POOL_PUNCT.add_PUNCT( "_NOT_EQUAL",   "!=" );
 	POOL_PUNCT.add_PUNCT( "_CARET",       "^" );

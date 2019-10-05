@@ -1,0 +1,26 @@
+
+	UDEF_tree_printing.txt
+
+	UDEF_tree_building
+
+	UDEF { the PSG being built here }
+
+	 tree { tuplo_technology_here }
+	 tree { tuplo_architecture }
+	 tree { visitor }
+	 tree { flex_n_bison_tree_module }
+	 tree { MODULE } // this is SCRIPT world, each SCRIPT ISA_Module
+	 tree printing { flex_n_bison_tree_module }
+	 tree printing { SCRIPTED_MODULE } // this is SCRIPTED world
+
+	UDEF_tree_building
+	 PSG = 
+	 
+	// DIR.ls = 
+test1_gen_yacc.cxx
+Tree_PSG.cxx .h
+Tree_PSG_LEX_PUNCT_NAME.cxx .h
+Tree_PSG_LEX_TOKEN.cxx .h
+Tree_PSG_UDEF.cxx .h
+Tree_Tuplo_VECT.h // no cxx
+

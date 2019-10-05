@@ -40,3 +40,6 @@
 *.tgz
 *.tar.bz
 *.iso
+
+#noise
+.nfsi000*

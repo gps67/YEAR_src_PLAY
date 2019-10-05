@@ -27,19 +27,77 @@ bool bool_main( int argc, char ** argv ) {
 		 see PSG_UDEF.cxx
 	*/
 
+	// PSG = Bench.the_thing_we_are_building();
 	Tree_PSG_UDEF PSG;
- 	PSG.lex_name_lex = argv[1]; // LHS
- 	PSG.yacc_name_yacc = argv[2]; // RHS
+	// PSG = the_thing_we_are_building();
+	// PSG is held on STACK for duration, then END_SCOPE_DTOR();
+	// PSG is coded and loaded PREBUILT
+	// PSG.build_tree() ) { ... }
+	// PSG.build_tree_code() ) { ... }
+	// PSG.build_tree_data() ) { ... }
+	// PSG.print_tree_as_files() ) { ... } // for FLEX + BISON
+	// PSG.print_tree_as_files() ) { ... } // for V8 // for API
+	// PSG.print_code_as_files() ) { ... } // for API
+	// PSG.print_data_as_files() ) { ... } // for API
+	// PSG.print_api_as_module() ) { ... } // for API
+	// PSG.print_api_as_module_component() ) { ... } // INA_POOL
+	/* TODO
+
+		RUN filter OVER tree
+
+		ITERATE wave OVER tree
+
+		PREBUILT result = CHUNKS of STO in ROM + DEX
+
+		CALLER might_provide OFFERS api_stack
+
+		 CACHE the remote Behaviour locally
+		  let it run a careful subset of builtins 
+		  let it EDIT an objects data and VERSION
+		  let it respond to EVENT -> SCRIPT // global thread_var_X 
+		 RUN dgb the_code 
+		  FILTER use test_data to activate DETECTOR_SENSOR
+		   OPTION COMPILE FOR THIS CASE
+		    transpile the script to C++
+		    transpile the script to ES6
+		    transpile the script to wasm
+		    transpile the script to SCRIPT
+		    link_load_ELF_ROM_SEGMENTS
+		    link_load_ELF_JIT_SCRIPTS // prepared earlier
+		    MMAP_FILE_script_and_STO // SCRIPT_to_ASM_ELF
+		    MMAP_FILE_script_and_STO // SCRIPT_to_CPU_x86_64
+		    MMAP_FILE_script_and_STO // SCRIPT_to_CPU_arm_64
+		    MMAP_FILE_script_and_STO // SCRIPT_to_C_own_vtbl
+		    MMAP_FILE_script_and_STO // SCRIPT_to_Py_own_vtbl
+
+		   FILTER clone FROM / INTO clone2
+		    ACTIOIN ONEACH {
+		     CLONE item into
+		    }
+
+	// OK // some math on CLONE src dst
+	// Another pass Tree_Broadcast( "FINALISE" ); // DRAIN before close()
+	// OK // that may involve one more WRITE_FILE.so and dl_open()
+	// dl_open might find a SEGMENT by name // laters maybe //
+	// dl_open might find a SYMBOL by name // init_Module_init(something);
+	// dl_open might EDIT a SYMBOL=writable_data by name // get_EA_global()
+	*/
+
+
+ 	PSG.lex_name_lex = argv[1]; // LHS gen_e1_lex.lex
+ 	PSG.yacc_name_yacc = argv[2]; // RHS gen_e1_yacc.y
 
  if(0) {
 	e_print(" PSG.lex_name_lex %s\n", PSG.lex_name_lex );
 	e_print(" PSG.yacc_name_yacc %s\n", PSG.yacc_name_yacc );
  }
 
+	// build the PSG into ROM_CACHE // clone able MEM buffers
 	if(! PSG.build_tree() ) {
 		return FAIL_FAILED();
 	}
 
+	// build the PSG into YACC_RULES_PSG
 	if(! PSG.print_tree_as_files() ) {
 		return FAIL_FAILED();
 	}

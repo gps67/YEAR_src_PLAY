@@ -49,5 +49,34 @@
  }
 
 
+ bool
+ LEX_TOKEN_GROUP::
+ add_PUNCT(
+   STR0 punct  // "==" ); // STR0 tail,  // "_EQUAL_EQUAL", // 
+ ) {
+  // buff .put( PFX ); // PRF_PUNCT is added later
+
+  buffer1 buff; // TAIL = _PLUS_PLUS
+  buffer1 NAME_of_char; // PLUS
+  
+  STR0 Z1 = "OK";
+  const char * p = punct;
+  while( char c = *(char *)p ) {
+	p++; // but leave at NUL
+	NAME_of_char.clear();
+	if( !print_LEX_punct_name( NAME_of_char, c ) ) {
+		// not all defined :-)
+		return FAIL_FAILED();
+	}
+	// add it to tail
+	buff .put_byte( '*' ); // PUNCT_
+	buff .put_byte( '_' ); // PUNCT_
+	buff .put( NAME_of_char ); // PUNCT_PLUS
+  }
+  STR0 _PLUS_PLUS = buff; 
+  return add_PUNCT( _PLUS_PLUS, punct );
+
+ }
+
 
 

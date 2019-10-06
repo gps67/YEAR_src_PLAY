@@ -37,16 +37,18 @@ class LEX_TOKEN_GROUP { public: // NOT AN OBJ_REF ???
 		this->LIST_Token.append( token );
 		token -> Name = tail;
 		token -> Value = punct;
+		return true;
 	}
 
 	bool
  	 add_RW(    // PFX_
-	   STR0 rw  // "==" );
+	   STR0 rw  // "while" );
 	) {
 		LEX_TOKEN_DECL * token = new LEX_TOKEN_DECL();
 		this->LIST_Token.append( token );
 		token -> Name = rw;
 		token -> Value = rw;
+		return true;
 	}
 
 	bool lookup_by_Name( LEX_TOKEN_DECL * TOK, STR0 Name );

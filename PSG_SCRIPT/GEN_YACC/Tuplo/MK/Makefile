@@ -54,7 +54,8 @@
 	OBJS2 += $(from_lex_o)
 	OBJS2 += $(from_yacc_o)
 
-	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o
+	# order matters - maybe put into .a to mix it up
+	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o 
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
 	OBJS1 += Tree_PSG.o
 	OBJS1 += Tree_PSG_UDEF.o
@@ -138,7 +139,13 @@ $(OBJS2): $(HDRS)
 #	./$(PROG1_exec) gen
 
 test2: $(PROG2_exec)
+	# test2
 	./$(PROG2_exec) < $S/test2.test
+
+dgb: $(PROG1_exec)
+	# debug
+	gdb --args ./$(PROG1_exec) $(e1_lex).lex $(e1_yacc).y
+#	gdb --args ./$(PROG2_exec) < $S/test2.test
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
 	# g++ $< $(LINKS) -o $@

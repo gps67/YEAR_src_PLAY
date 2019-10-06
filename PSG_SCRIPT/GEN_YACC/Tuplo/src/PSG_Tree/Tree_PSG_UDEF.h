@@ -16,9 +16,19 @@
 
 class Tree_PSG_UDEF : public Tree_PSG { public:
 
+	// maybe make TOKEN have EA_double_step_expr_u32
+	// maybe make TOKEN hold all links around
+	// tok.print_TOKEN_name2( out, TOKEN )
+	// maybe stuck here
+	bool print_TOKEN_name_2(
+		buffer2 & out,
+		LEX_TOKEN_GROUP &  POOL,
+		LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
+	);
+
 	bool print_list(
-	 LEX_TOKEN_GROUP &  POOL,
-	 buffer2 & out
+	 buffer2 & out,
+	 LEX_TOKEN_GROUP &  POOL
 	);
 
 	bool build_tree();

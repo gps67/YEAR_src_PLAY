@@ -1,0 +1,70 @@
+
+	lib_png_jpeg_lib_DIAG.txt
+
+	 _png _jpeg
+
+	 	WxH Width Height { dpi pallette = RGBA }
+		_load _save filename
+		_send pixels_as_CHUNK_of_BUFFER // to fd = rpc link to peer
+		_set_pixel_ XYWH_expr FGBG_expr FONT_etc
+
+		MINI_machine
+
+		 MINI_machine
+		  Draw onto PIXMAP
+		   Save as PNG
+		    OPTS
+		     // pallette [ u4 ] // too many fonts //
+		     // pallette [ u16_expr ] // u16_tuplo_type_count
+		     // pallette [ u32_expr ] // u32_tuplo_type_expr
+		     // pallette [ u48_expr ] // u16_something_ROM_u32_expr
+
+		     //  UNFOLD
+		     //   ITEM = ROM[ item ] 
+		     //   ITEM = ALIAS "-anystr-"
+		     //   ITEM = pallette_item //
+		     //   ITEM = pallette_expr_item //
+		     //   ITEM = pallette [ u4 ] // too many fonts //
+
+		     // so we usually squeeze in at u4 items in pallette
+		     // optimiser will find a dense packing / addressing mode
+		     // optimiser numbers-of_pixels_on_graph
+		     // optimiser numbers-of_fgbg_on_graph
+		     // optimiser numbers-of_pallette_on_graph
+		     // se we are using 32 bit EA EXPR
+		     // to find that leaf on its tree
+		     // heres their cache locn copy data
+		     // along with PREBUILT indexes
+
+		     //		Object * obj = TABLE [ u4 ] ;
+		     // SCRIPT brings its own PREBUILT tables for own use
+		     //  /* SUMMARY */ 
+		     //   VECTOR[ N ] of ITEM_type // u4 N = from OPCODE
+		     //   TABLE = VECTOR // N // ITEM_type_is_u32_expr
+		     //   TABLE = VECTOR // N // ITEM_type_is_u64_void_star
+		     //   TABLE = VECTOR // N // ITEM_type_is_u64_decode
+
+		    OPTS PICK sto = selector; // u4_sel = ... //
+		    OPTS PICK sto = selector; // u4_sel = DECODE( u32 ) // u32 = ... //
+		    OPTS PICK sto = selector; // u8 = ... //
+		    OPTS PICK sto = selector; // u16 = ... //
+		    OPTS PICK sto = selector; // u32 = ... //
+		    OPTS PICK sto = selector; // u64 = ... //
+
+		    // tuplo is u8[ N ] // ByteArray // n_bytes // buffer
+		    // tuplo is at unaligned byte start // CPU copes somehow
+		    // 4G BUFFER_FULL is one single outer tuplo end to end
+		    // PLUS one outside the DATA, guessed from CODE
+		    // PLUS one tuplo = outside_handler_of_CHUNK
+		    //  SETS LIMITS or EXACT u16 = ADDR_SPACE //
+
+	
+	
+	 lib_DIAG
+
+	 	XY_WH FGBG FONT 
+		probably fit within FGBG = u4
+
+		some_wrap_over_cairo
+	
+	.txt

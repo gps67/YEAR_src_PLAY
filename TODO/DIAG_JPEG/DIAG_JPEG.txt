@@ -1,0 +1,81 @@
+
+	DIAG_JPEG/
+	DIAG_JPEG.txt
+
+	Image Viewer
+	 Photo Gallery
+	  MIME_ZONE
+	   media gallery script
+	   media lib_png_pixmap_mp3
+	   media .mp4 META INFO DATA filename.ext
+	   media Bench
+	   media in edit out
+	   media META LIBR DATA
+
+	   ZONE_Permit
+	    is edge of 2 worlds ROM to UDEF
+	    is sample test data DEMO USAGE
+	    is DIR_of_origin = $HOME/something $prefix/something
+	    so_DATA_not_avail_direct_use_rpc_CACHED
+	    so_PERSONAL_DATA_not_avail_XPLAIN
+	    so_PERSONAL_DATA_avail_HERE ... indented ...
+
+	   ZONE_Permit = TEST DATA example whenever // OK TO PUB
+
+	   	/home/gps/YEAR/PHOTOS_2019/2019_Emma/
+		
+			2019-09-14_Emma/
+				200 files ,jpg .3pg
+
+		/home/gps/YEAR/PHOTOS_2019/2019_Emma/
+		
+			record20190914135741.ogg
+
+			needs to be clipped to mp3
+
+	   media Bench
+
+	   	PYTHON SCRIPT to RENAME files like this
+		CXX API SCRIPT
+		 DIR vfs = ACTUAL_DIR = DCIM / oldform.jpg
+		 DIR vfs = SECOND_DIR = NAME / olfdorm.jpg
+
+		  SECOND_DIR is also ACTUAL_DIR the new one
+		  NAME = Name = ...
+		  .jpg .png .mp4 // hmmm  twisted usage of a pixmap // .mp3 
+
+ media Bench
+  media Bench
+
+  	DIR = CAMERA_FILM_ROLL
+	DIR = DCIM // Camera Output Stream as snapshot Files
+	FILE =NAME = year_mm_dd_tue_hhmm_ss_1,ext
+
+		// allows for 1 frame per second
+		// better code runs counter N++
+
+ media Bench
+  media Bench
+   TASK = rotate horizontal // by tweaking flag // by re-crunched data
+   TASK = grade focus = yuk // camera shake but file retained
+   TASK = grade sneeze = ooo heres one // covers
+   TASK = grade sneeze = not // OMIT dont EMIT //  // filters
+   TASK = label attribute = desc_text_data_tags // filters
+   TASK = filing system
+   	find OUTPUT TRAY
+   	find KEEP TRAY // it finds the BACK TRAY as any do_backup()
+	hold camera over USB or LAN or OVERNIGHT
+	move all files from camera to STO_save_filter_drop
+	vfs file mtime ctime device_time
+	clear camera
+
+	# GOTO STO_save_filter_drop input_copy // safe for 1-4 weeks
+	# GOTO DATA = DCIM_of_camera()
+	# KNOW NAME # MATCH LEXP PHOTO%3.3d.jpg" 
+	# LEXPR u32 count_from_cameraa = %3.3d
+
+   	find that DAY
+
+		stretch day edge 
+
+ 

@@ -28,6 +28,7 @@
 	}
 	return FAIL("GROUP('%s')ITEM('%s')", (STR0) PFX, (STR0) Name );
    }
+   return true;
  }
 
  bool
@@ -61,6 +62,7 @@
   
   STR0 Z1 = "OK";
   const char * p = punct;
+  char sep = 0;
   while( char c = *(char *)p ) {
 	p++; // but leave at NUL
 	NAME_of_char.clear();
@@ -69,11 +71,14 @@
 		return FAIL_FAILED();
 	}
 	// add it to tail
-	buff .put_byte( '*' ); // PUNCT_
-	buff .put_byte( '_' ); // PUNCT_
+ //	buff .put_byte( '*' ); // PUNCT_
+ //	buff .put_byte( '_' ); // PUNCT_
+	if(sep) buff .put_byte( sep ); // PUNCT_
+	sep = '_';
 	buff .put( NAME_of_char ); // PUNCT_PLUS
   }
   STR0 _PLUS_PLUS = buff; 
+  // INFO( "PLUS_PLUS == '%s'", _PLUS_PLUS );
   return add_PUNCT( _PLUS_PLUS, punct );
 
  }

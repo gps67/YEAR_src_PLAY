@@ -1,0 +1,31 @@
+prep_layout.txt
+
+	prepare a tree of widget components
+	layout each
+	create X11 windows of the tree
+
+	before the first create of actual X11 windows, each only exists as
+	a callers data struct (or could mess about with not calling map())
+
+	when each window is created, its (parent, XY, WH) is known
+
+jiggle layout
+
+	when some component changes, eg a scroll-bar appears,
+	the surrounding layout pressures change
+	and a new layout is computed
+
+	then the actual changes are propagated
+	possibly using BLIT to reduce redraws
+
+X11 - WIN32 - SDL - FB
+
+	common ground ?
+
+light weight interior panels
+
+	widget is outer frame
+	all sub rectanges are (not) widgets
+	single (toplevel) does it all!
+
+	scrolled internal, can have BLIT fron backing store

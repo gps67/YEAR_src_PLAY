@@ -1,0 +1,7 @@
+gcj
+	follow jni, but direct access to DISPLAY window gc
+
+jni
+	unchangable DISPLAY WINDOW GC -- get_DISPLAY_as_int()
+	base type D_W_GC
+

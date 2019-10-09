@@ -1,0 +1,7 @@
+<H>	Select - not available
+
+WIN32 libW11 doesnt use a socket to get events, but I want to use it
+(or poll).
+
+Is there a way I can call WIN32::select and have it return when
+a GUI event happens (as if socket readable)

@@ -1,0 +1,95 @@
+
+	lib_pixmap_cairo/
+	lib_pixmap_cairo.txt
+
+	Scrolled_Window_over_LIST
+
+		main backing pixmap // re-gen from PREV + STEPS // SCRIPT
+
+		W=500
+		H=5000
+		dpi=screen_dpi=150 // 22" at 3ft
+
+		pixel_t = u32_hilo RGBA // TODO lookup ARGB near RedGreenBlue
+		// RGB_bit_layout typedef SVGA_RGB_PIXEL_TYPE pixel_t;
+
+GEN_SCRIPT_PSG_SCRIPT
+GEN_SCRIPT_API_Cairo
+
+	hand written API subset near DRAW_MACHINE
+
+	  lib_cairo module const type var func tests
+
+	    path builder
+
+	      var path = new Path() // list of XYZ or points or exprs
+	      connect_path_to_dpi_surface // RGBA screen_dpi DIAG_fgbg_font_etc
+	      var matrix = new Matrix_for_device add EFFECT is_XYWH_si
+	      
+	      local var // block local var 
+
+	       X X_POS[ N++ ] = & VarName_X_pos
+	       Y Y_POS[ N++ ] = & VarName_Y_pos
+	       XY XY_POS[ N++ ] = & VarName_XY_pos
+	        XY = XY_POS( X[ idx_lhs ] , Y[ idx_rhs ] );
+		// now redirecting u8 to X[ u8 ] f32_preset X_OFF[ u8 ] 
+		// u8 to X_varname[ u8 ] f32_variable & X_OFF[ u8 ] 
+		// SPEC_OF( varname ) ... var_0x0F.name() = f32_Variable &= V[i]
+		// BIND & VAR = var; // &= var // explain to ASM, semantic polo
+		// vacuum sealed - was not obvious - fixed approximation
+		// that is both ends 
+		// XY is the end customer
+		// XY_POS( X[ idx_x ], Y[ idx_y ] ); // CTOR // is the CTOR
+		
+		STRONG TYPE 
+		 XPOS += dx * factor 
+		 STRONG TYPE X_POS_DX dx
+		 STRONG TYPE X_POS_OFFS xpos
+		 STRONG TYPE X_POS_locn  = u32_Offs xpos;
+		STRONG TYPE dont mix X Y // X_POS_dx X_POS_OFFS X
+		STRONG TYPE dont mix X Y // Y_POS_dy Y_POS_OFFS Y
+		STRONG TYPE do mix { X or Y } // offs[N++] = dx *= factor
+		MANUAL si scan for X Y Z mismatch
+		MANUAL si scan for pixel point mm pt // pick nearest == cache
+
+
+		PATH += POINT = XY( XPOS, YPOS )
+		MATH XPOS += step_dx_3;
+		MATH XPOS += step_dx_DIGIT * ndigit ; // EXPR OFFS = dx * nn
+
+
+
+Module is_XYWH_si // si units points  mm  dpi
+	is_XYWH_si += lib_pixmap // import .. // also a module // reachable
+	is_XYWH_si += si units points  mm  dpi
+	is_XYWH_si += si 
+	is_XYWH_si += XY_WH
+	is_XYWH_si += FPU_MMX
+	is_XYWH_si += FPU_ARM_64
+	is_XYWH_si += FPU_ARM_32
+	is_XYWH_si += FPU_MMX_686 // AMD_32
+	is_XYWH_si += FPU_MMX_64 // some work required // SIMUL C++ MMX[16]
+	is_XYWH_si += MATRIX_for_Device_ DPI_ZOOM anti-aliasing fractions
+	is_XYWH_si += FONT Layout functions
+	// layers scatter // layers converge //
+	is_XYWH_si += CLIP fast // focus on style backing pixmap
+	is_XYWH_si += FGBG Pixel transparent lib_pixmap
+
+
+SCRIPT to ASM C++ STRUCTS thread_var // compelling alternative
+SCRIPT to ASM arm_64 // lots of int regs // lots of floaty regs
+SCRIPT to ASM x86_64 // lots of floaty regs
+SCRIPT to ASM x86_32 // lots of floaty regs // CHUNK_PART FS GS thread_var
+
+
+
+
+
+
+
+
+
+ is_XYWH_si
+	 add EFFECT
+		    is_XYWH_si
+

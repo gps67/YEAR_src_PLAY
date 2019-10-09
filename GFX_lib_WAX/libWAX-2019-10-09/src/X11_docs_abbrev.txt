@@ -1,0 +1,63 @@
+
+	BDF		Bitmap Distribution Format
+	CTEXT		Compound Text 
+	FSProtocol	Font Service Protocol
+	ICCCM		Inter-Client Comms Manual
+	ICE		Inter-Client Exchange
+	PEX5		ProgExtn 3D
+	RX		Remote Execution (HTML embedded CLI)
+	SM		Session Management
+	X11		XLib
+	XDMCP		X Display Manager Control Protocol (login connect)
+	XIE		Image Extension
+	XIM		Input Method
+	XKB		Keyboard extension
+	XLFD		Logical Font Description
+	XPRINT		Printing
+	XProtocol	X11 Protocol
+	Xaw		Athena Widgets
+	Xext/
+
+	 AppGroup
+	 DPMS
+	 DPMSLib
+	 bigreq
+	 buffer
+	 dbe
+	 dbelib
+	 evi
+	 lbx		 low bandwidth extension
+	 lbx.html
+	 lbxTOC.html
+	 lbxalg
+	 mit-shm
+	 record
+	 recordlib
+	 security
+	 shape
+	 shapelib
+	 sync
+	 synclib
+	 tog-cup
+	 xc-misc
+	 xtest
+	 xtestlib
+
+	Xi		Input device
+	Xmu		misc utilities (atoms etc)
+	Xserver		...list...
+	Xt		intrinsics
+	Xv		Video extensions
+	i18n		... xim 
+	man		man pages (as PS)
+	rstart		rsh extension wrapper
+	test		test suite docs
+	xfs		font server design
+	xterm		control sequences
+	xtrans		transport interface
+
+
+	GL		OpenGL (maybe)
+	PM		Prozy Management Protocol
+	Render		Surface rendering
+	XvMC		Xv Motion Compensation

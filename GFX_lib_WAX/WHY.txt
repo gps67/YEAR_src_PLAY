@@ -1,0 +1,112 @@
+
+	DATA VIEW - is diag
+	CODE VIEW - is data
+
+	DIAG 
+	 EXPR POOL
+	 // some artwork here
+
+
+So Why cairo ?
+	lib_pixmap needs draw_path onto pixmap
+	eg path = list of points most adjacent some jump
+	eg path step = ONE_LINE_MACRO 
+		DRAW_TO XY += ( dx, dy ) // relative addressing OFFS
+		JUMP_TO XY += ( dx, dy ) // relative addressing OFFS
+		CLOSE_PATH // form of END_PATH
+		 joins last point to next = first point
+		 path_opts += SOME_WINDING_RULE_default
+		 draw_command is line and fill
+		 line_width is ZOOM_FIVE
+		SET_OPT Option Value
+		 line_width is 3px // reverse dpi antialias_fraction==1
+		 // 3px on screen at 150 DPI -approx- 6pt
+		 // 3px on screen at 75 DPI -approx- 3pt
+
+	GEN PATH LIST 
+		# whatever CURVE_MACHINE matches
+		ellipse
+		circles
+		rectangles
+		zoom-cross-hair-diagonals
+		zoom_glyph_proportionally
+		jump_dpi_is_not_EM_square
+		pass_external MATRIX into FreeType
+		send_stream_opcodes_data_into_lib_pixel
+		 lib_pixel calls lib_freetype
+		 lib_pixel draws lib_pixmap_frame
+		 lib_pixel draws lib_pixmap_shapes
+		send_stream_opcodes_data_into_lib_pixel
+		 send_now {
+		 	finish_trays_of_data()
+		 	send_trays_of_data()
+			goto_sync_point
+		  :sync_point:
+		 	flush_streamed_trays // waited to be finished
+			release_local_cache // after tick-tock here-next
+			delete_local_cache // after tick-tock here-next
+		 	flush_stream_now // now // non_blocking_code_here
+		 }
+
+	RAW Reachable
+
+		things that work in DIAG
+			VIEW
+
+		Generic Hardware
+
+			graphics context
+			 PIMAP 200x500 RGBA
+
+			graphics context
+			 A4 150 dpi 
+			 A4 150 dpi 2ft animated via GL
+			 A4 150 dpi 
+			  ZERO is TOP or NOT
+			 A4 150 dpi 
+			  Scrolling View Panel
+			   know: it's not paper
+			   know: it's not multipage
+			   know: optimist
+			   know: VIEW makes it a summary
+
+			 graphics context
+			  CHOICE pixmap svg or html4
+			  CHOICE svg in html4 // anim
+			  BUTHOW detect mouse pressed near line
+
+		Generic Software
+
+			graphics context
+			 lib_pixmap
+			 lib_freetype
+			 lib_pallette
+			 lib_layout
+			 lib_interact
+			 lib_recognise_users_Bench_usage
+
+	WAX Dialect
+		SOME gtk
+		SOME SPOUT
+		SOME libpng
+		SOME lib_pixmap
+
+WAX last seen at
+./SCRATCH_SCRIPTS-2019-05-20/in_C++/libWAX-2015-12-14
+./_FOUND_/libWAX-2015-12-14
+./_FOUND_/libWAX-2015-12-14/MK
+./_FOUND_/libWAX-2015-12-14/NOTES
+./_FOUND_/libWAX-2015-12-14/src
+./_FOUND_/libWAX-2015-12-14/src/buffer
+./_FOUND_/libWAX-2015-12-14/obj
+./SCRATCH_SCRIPTS-2019-05-20/in_C++/libWAX-2015-12-14 
+./PLAY/libWAX-2019-07-17 + connected to libs_apps vs buffer ?
+
+GdkPixmap 
+gtk_1/w_ctree.h
+gtk_1/w_drawing_area.cxx:
+gtk_1/w_drawing_area.h:
+gtk_1/w_widget0.cxx:
+gtk_2/w_graph1.cxx:
+
+

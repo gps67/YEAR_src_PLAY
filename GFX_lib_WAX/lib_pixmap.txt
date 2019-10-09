@@ -1,0 +1,94 @@
+
+ X11 screens are remote, a pixmap over there is not over here
+
+ 	WriteCache = immediate with delayed tell
+ 	ReadCache = immediate blocking with delayed tell signal
+
+		ON_event
+
+		 on_ DATA available // it has arrived // PKT_IN
+	
+	SO REDEFINE WR_Cache as STO_Local act as origin STO for ITEM
+
+		ITEM {
+		}
+
+-origami fold-
+
+		{ Tree }
+
+[99]-origami fold-
+
+	ITEM { MORE }
+ becomes:
+ 	{ Tree }
+ STO
+ 	{ More }
+	{ Tree }
+	{ Item } // Locn_item // EA_EXPR_of_("EA_EXPR")
+-origami fold : { SCRIPT }
+	{ Item } // Locn_item // EA_EXPR_of_("EA_EXPR")
+
+	{ Locn_item EA_EXPR_of_("EA_EXPR"); // CTXT // ... }
+	{ Locn_item EA_EXPR_of_EA_EXPR(); // CTXT // }
+	{ SCRIPT
+	  +CTXT // CTXT //
+	  
+	  Locn_item EA_EXPR_of_EA_EXPR; // CTXT //
+	}
+
+# lib_graphics_2D # WAX
+# lib_pixmap #
+
+# lib_pixmap # outer container, and load copy edit save
+# lib_pixmap # bounced X11 pixmap as drawing surface
+# lib_pixmap # ploughed GFX drawing routines
+# lib_pixmap # skim DIAG axioms, almost all of lib_2D_graphics
+
+	outer container, and load copy edit save
+	bounced X11 pixmap as drawing surface
+	ploughed GFX drawing routines
+	skim DIAG axioms, almost all of lib_2D_graphics
+
+# lib_pixmap # outer container, and load copy edit save
+
+	Pixmap 
+	 load
+	 copy
+	 edit
+	 save
+	
+	Pixel { RGBA } // _32 bits // Transparency Rules // Converters
+	
+	This is the basic get.width get.nbytes_to_next_line get_ea_pixel()
+
+	No plans to draw onto a pixmap, but maybe a libr that did
+
+# lib_pixmap # bounced X11 pixmap as drawing surface
+
+	This is the applications drawing routines, with added pixmap.
+
+	X11 does all the work, but there is an added edge, when local and
+	remote pixmaps are used.
+
+	Remote drawing on remote pixmaps,
+	Local drawing on memory pixmaps.
+	Transfer SEND by drawing local onto remote
+	Transfer FETCH by drawing onto local from remote
+
+		SEND local -> remote
+		FETCH local <- remote
+
+	#	# PAIR LHS RHS # PAIR { Local Remote } #
+# lib_pixmap # ploughed GFX drawing routines
+
+	This is too heavyweight, it includes freetype onto pixmap meme
+	But that can be provided by lib_2D_graphs
+
+	For those who want to rewrite cairo,
+	first write a new api for cairo (WAX might have one)
+	then write an api for { SCRIPT } // ie one it enjoys calling
+	then connect up your graphics card pixmap byte_plane_segment tree
+	then pre-draw glyph dxy_1_0 // subalignment as feature of sub-pixmap ?
+
+# lib_pixmap # skim DIAG axioms, almost all of lib_2D_graphics

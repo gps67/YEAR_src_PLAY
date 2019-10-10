@@ -1,0 +1,112 @@
+
+	PSG_SCRIPT_func_args_as_struct_plus_locals.txt
+	PSG_SCRIPT
+	_func_args
+	_as_struct
+	_plus_locals
+	.txt
+
+EG {
+
+import SomeStruct
+static SomeStruct {
+ _INIT_VAL_
+ 	field = DEFAULT NULL
+ 	field = DEFAULT Value 
+	expr field.type == SPEC_ITEM_0xFFFF
+	expr (field) .type MATCH SPEC_0x0104
+
+static retval_placed_in_var_list
+	retval EA_XPOS
+	retval DECODER_STATE = DECODER_99.state-vars
+	retval errno // RO unchanged // tested behaved errno_from_syscall
+	retval errno // RO unchanged // tested behaved errno_from_libc
+	retval errno // RO unchanged // tested behaved errno_from_libc
+
+/* static */
+bool function_name(
+
+	// struct SP _in
+
+	Specifically convert the function parameters to a struct
+	name_of_struct_0xFF exported_local
+	DIAG of that struct {
+
+		fieldtype [opts] fieldname
+		OPT * SYNTAX type * var
+		OPT pointer to VECTOR of ITEMTYPE // parameters in there somehow
+		
+	 SYNTAX of
+	 IDIOM of fieldname {
+	  // MATCH {
+	  }
+	 DIALECT of fieldname {
+	  // MATCH {
+	  }
+	 LEXICON fieldname {
+	  // MATCH {
+	  }			// default search tree starts off with an NULL 
+	  // MATCH {		// actual structure follws LINES_OF_TEXT
+	  	ROM
+	  }			// MATCH { LEX } MATCH { EXPR } MATCH { LIST }
+	  // MATCH {}		// NO_LINES_IN_TEXT match one_line_macro {}
+	  // MATCH { ROM }	// MATCH any readonly prebuilt page
+	  // MATCH { STO }	// FLASH_STO ROM + RAM + STO // FLASH_cache
+	  // MATCH { RAM }	// PROB local mini heap
+	  // MATCH { CPU }	// Registers, FPU, MMU, iterate_over_cach
+	  // MATCH { ELF }	// scripts compressed in lib_sto_1234.a
+	  // MATCH { PSG }	// scripts tokenised in lib_sto_1234.a
+	  // sort of like // BINARY BLOB TREE // PREBUILT_tree
+	  // sort of like // BINARY BLOB tuplo // everything is a file
+	  // MATCH { MMAP_FILE }	// 
+	 }
+
+static void
+function_eval_zone_with_inner_scope_per_thread (
+ # eval zone # { SCRIPT }
+ # eval zone # C_fn(args) {CONST_TYPE_VAR_FUNC_MODULE} with {CTXT}
+ # eval zone # actually in the C function, with those reachables
+ # eval zone # C_fn as SCRIPT_INTERPRETER_C_fn_compiled
+ # eval zone # C_fn as SCRIPT_INTERPRETER_C_fn_scripted
+ # (args) # COMPLETE DECL_0x1234 # BEGIN_DECL # DECL_SCOPE_OPEN
+ # or probably not, find the driftwood
+ #
+	# this function parameter list
+	# Layout Iterators and DATA
+	# NOTE how # comment then { ... ITEM LINE ... }
+	# NOTE needs no left comment, just watch {matching}
+	# struct_splitter eg {
+		struct doubles_point_xy
+		double x%s, double y%s ( 99 from x99 or y99 or xy99 or xy_99 )
+		double x, double y, # hide 99 behind 01 disappear
+		double x0, double y0 # etc
+	}
+
+	double x0, double y0,
+	double x1, double y1,
+	double x2, double y2,
+	double x3, double y3,
+
+	double px0, double py0,
+	double px1, double py1,
+	double px2, double py2,
+	double px3, double py3,
+
+ # (args) # COMPLETE DECL_0x1234 # END_DECL # DECL_SCOPE_SHUT
+
+ # (funcs) # DECL_LIST_OPEN funcs # ITEM_0x2345 # START_LIST # DECL_LISTE_OPEN
+ # PSG says list of func func = { ... }
+ #
+
+	struct pixman_f_transform *trans)
+	{
+		IMPORTED SCRIPT TEXT
+	}
+
+  MODULE/
+   LOCAL VAR POOL
+    local_to_this_function
+     # GEN_CAPI 
+      VAR varname; // and tokenised SCRIPT.SPEC
+       four points xy[4]
+       four points point_xy[4]

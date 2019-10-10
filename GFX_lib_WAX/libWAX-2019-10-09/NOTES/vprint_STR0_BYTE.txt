@@ -1,0 +1,34 @@
+
+u5 CSET = BYTE_CHAR_plus = 0x3;
+
+// enum BYTE_CHAR_plus {
+//  BYTE_CHAR_ASCII
+//  BYTE_CHAR_8859_1_15
+//  BYTE_CHAR_8859_2
+//  BYTE_CHAR_PRINTER_RTFM
+//  BYTE_CHAR_clean_carry_utf8
+//  BYTE_CHAR
+
+	I am intentionally deriving UTF8 out of BYTE when that is wrong
+
+	UTF8 chars can be  1 2 3  ... bytes long
+
+	But that is only 1 char needing multiple bytes, each gets through
+
+		UTF8 is itself well designed as a transport format
+			
+			heuristic - broken byte sequence
+			heuristic - double encoding UK £
+			heuristic - Layout XPOS != byte_pos * dx
+
+			bit-encode {
+
+			}
+
+	I am intentionally deriving UTF8 out of BYTE when that is wrong
+
+		class BYTE_CHAR
+		class BYTE_ASCII : public BYTE_CHAR
+		class BYTE_UTF8 : public BYTE_CHAR // so not a monospace font
+
+		obtain CSET from DISK, USER, VANILLA_SYSTEM C_LANG

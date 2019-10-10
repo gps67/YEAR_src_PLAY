@@ -1,0 +1,33 @@
+
+	PSG_SCRIPT_func_args_as_struct_interpreter.txt
+
+	PSG_SCRIPT
+	_func_args
+	_as_struct
+	_interpreter
+	.txt
+
+	PREBUILT builtin 
+	 GENERATE C code
+	 COMPILE .so .exe .cfg
+	 INSTALL edited
+
+	 builtin CALLS builtin
+	 SCRIPT CALLS builtin 
+
+	  builtin.func_args_must_match_SPEC
+	  # that may give flexibility
+	  # ROOT_n_BRANCH # claims there is a path # believe it #
+	  # INHERIT may permit PAIRING of ClientData_SPEC UDEF_DATA_SPEC
+	  # INHERIT may autofill bunch of functions, gets, puts, binds, connects
+	  # IMPORT_EXPORT # RULES DATA
+
+	  SCRIPT API
+
+	  when matching specific CPU
+
+	  CPU x86 // has swapb (so not 386 actual)
+	  CPU x86 // ALL on stack A=retval=A
+	  CPU x64 // SOME in regs DIAG of floats
+	  CPU ARM_32
+	  CPU ARM_64

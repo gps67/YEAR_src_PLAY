@@ -14,6 +14,8 @@
 	VPATH +=$S
 	VPATH +=$S/buffer
 
+	include ../MK/Makefile_libs_apps
+
 	HDRS += $S/A_point_plus.h
 	HDRS += $S/X_Colours.h
 	HDRS += $S/X_Display.h
@@ -26,12 +28,12 @@
 	OBJS += X_Window.o
 	OBJS += X_Display.o
 
-	OBJS += gdb_invoke.o
-	OBJS += str0.o
-	OBJS += str1.o
-	OBJS += blk1.o
-	OBJS += buffer1.o
-	OBJS += e_print.o
+#	OBJS += gdb_invoke.o
+#	OBJS += str0.o
+#	OBJS += str1.o
+#	OBJS += blk1.o
+#	OBJS += buffer1.o
+#	OBJS += e_print.o
 
 	PROG2=test2
 

@@ -1,0 +1,63 @@
+
+	bool vprint ( const char * fmt; va_list args );
+
+		"#8X" fmt
+		printf does all the fancy formatting
+		var_args delivers the payload args
+
+			X11_RGB = "#00FF00" 		//  "TTY_green"
+
+	bool vprint_8859_to_utf8( fmt, args );
+
+		need to sweep filter args tree
+
+			convert "%s" somestr from 8859 to UTF8
+
+	--- buffer1 recognises usage of print_8859_to_utf8
+
+		has byte converter "%c%s" byte UTF8_of_8859(byte)
+		or turning dialect inside out to get
+
+			LIST_of BYTE UTF8_STR0 // has own NUL
+			 search for first BYTE = byte // parameter
+			 utf8_str0 = UTF8_STR0 // no need for RW_var 
+			 bailing_out_on_first_MATCH {
+			 	MATCH BYTE == byte // parameter
+			 	output.put_STR0( utf8_str0 );
+				return true; // SUBST DONE
+			 }
+			 bailing_out_on_first_MATCH {
+			 	MATCH BYTE EVAL
+				 lo <= byte <= hi
+				 lo = RANGE.lo
+				 hi = RANGE.hi
+				 POS_in_RANGE = byte - lo; // unused code?
+				 /*
+				 	ACTION for RANGE
+					eg glyph so print it
+					eg GAP so step it (further decode)
+				 */
+
+			 }
+
+			attempt to unwrap nested encoding
+			add CSET tag to all strings
+
+				u5 CSET = BYTE_CHAR_plus = 0x3;
+				// enum BYTE_CHAR_plus {
+				//  BYTE_CHAR_ASCII
+				//   BYTE_CHAR_ASCII_ _CTRL _GLYPH _GAP
+				//  BYTE_CHAR_8859_1_15
+				//  BYTE_CHAR_8859_2
+				//  BYTE_CHAR_PRINTER_RTFM
+				//  BYTE_CHAR_clean_carry_utf8
+
+				// STR0 ASCII
+				// STR0 8859
+				// STR0 UTF8
+				// STR0 BYTE
+
+				// UTF8_STR0
+				// ASCII_STR0
+
+	

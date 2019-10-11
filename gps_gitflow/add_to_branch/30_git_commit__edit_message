@@ -1,3 +1,4 @@
 . ./.env
 pwd
-ask_do git commit
+# ask_do \
+git commit

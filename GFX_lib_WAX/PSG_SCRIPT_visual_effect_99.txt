@@ -1,0 +1,80 @@
+
+	PSG_SCRIPT_visual_effect_99.txt
+
+	butterfly code fragments
+	LHS = NEAR class_SPEC_code 	// centralised
+	RHS = NEAR class_SCRIPT_code	// scattered
+
+	butterfly code fragments
+	LARGE close LHS >> rhs distant hazy // LOGIC knows CHANGE before after
+
+	butterfly code fragments
+	LHS = NEAR class_SPEC_code 	// centralised
+	RHS = NEAR class_SCRIPT_code	// scattered
+
+		So as you add code to ypur app
+		you add it to your library
+
+		Remote code in imported functions 
+		CAN BE SEEN around your CALL to it
+		DATA bound in both frames is here DIAG
+
+		So FILTER=SCAN_OVER_ENTIRE_SURFACE
+		SURFACE = CODE in SCRIPTS of this MODULE // and DATA
+		DETECT Phrase AS_IF_IN SCRIPT with inter_weave
+
+	LHS = NEAR class_SPEC_code 
+		PARAGRAPH = {
+		// C++ SCRIPT exported function
+			well known name
+			well known header
+			eg { pick_some_from_test_range }
+			eg view file A_point_plus.h
+ Clearly XRectangle will use it's own DIALECT = LEXICON + MODULE CODE
+ Another LIBR will use DIALECT = mmx_float32
+ Another LIBR will use DIALECT = thread_var_EA_already_in_cpu
+ Another LIBR will use DIALECT = thread_var_EA_as_cpu_EXPR
+ Another LIBR will use EXPR = ... // minimalism selects VIEW at RES
+ PSG_HERE {
+  LINE = Another LIBR %s will use ITEM %s
+  ITEM = ABBR || ITEM_C99 || DOC_item || ...
+  // actually use ... is a token, avoid fully NULL until code knows
+  // NULL means absent
+  // NULL means option { heuristic in CODE over RECENT STREAM DATA }
+  // CACHE can afford to INIT var_field NOW_SCRIPT and keep settings local
+  // CACHE might detect changes on items tree sometime [T0[T2
+  // CACHE keeps track of changes found as EDIT local copy SCRIPTS
+  // CACHE keeps track of changes found as EDIT local copy SCRIPTS arrive NOW
+  // EDIT local copy SCRIPTS // Bench Tree buiilding SCRIPTS_n_STO_Module
+  // EDIT filter  SCRIPTS // Bench Module Tree buiilding machines that ...
+  // LEXICON ... "SPEC CODE usable_EXPR"
+  // LEXICON ... GENTRE KEYWORD connected to ASPECTS { NULL ABBR VIEW NOW }
+  // LEXICON ... GENTRE KEYWORD connected to ASPECTS { NULL }
+  // eg when VECTOR uses ALLOC_{ IDX i = n++ }
+  // so NULL ends list when N is unknown
+  // NO NULL ends list within own module // so always have one // 
+  // NO NULL ends list within own module // so always get i<N right // 
+  // VECTOR[ i ] // i < N // HOPEFULLY // Bench collects this HOPEFULLY // Turbo Later
+  //
+ }
+ PSG_HERE {
+ 	Phrase BOOK
+ }
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	(car ad)

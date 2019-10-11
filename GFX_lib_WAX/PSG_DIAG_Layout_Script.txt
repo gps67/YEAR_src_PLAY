@@ -1,0 +1,133 @@
+
+	PSG_DIAG_Layout_Script.txt
+
+	Layout ASCII curses xterm // += mouse_event_too_on_TTY_MUX
+
+		inter_weave
+
+		TTY kbd
+		TTY mouse
+		SCN_TTY
+	
+	Layout Tree 
+
+		INDENT_by_one_SP_
+		 GENERIC INDENT DETECT
+		  call_INDENT_MORE
+		  call_INDENT_SAME
+		  call_INDENT_LESS
+		  lines_of_lines
+
+		 EMIT lookup(" INDENT_MORE ") // START SUB_BLOCK list_of_lines
+		 EMIT lookup(" OPCODE "); // CMD = OPCODE ARGS
+		 EMIT lookup(" PSG SEQ "); // CMD = OPCODE ARGS  = PARSED
+		 EMIT lookup(" import PSG_Tree_as_ASCII ")
+
+		 TEXT PARSE TREE + OK
+		 TREE PRINT TEXT + TEST-LOAD-SAYS_REGEN_OK
+	
+	Layout Tree 
+
+		 GENERIC INDENT DETECT
+		  TAB_EIGHT
+		  SP TAB CR LF FF // FF does CR 
+		  LF {
+		  	YPOS ++
+		  }
+		  CR {
+		  	XPOS = 0
+		  }
+		  CSI_Phrase_CMD_args { Module = collection in a LIST }
+		   GO_X {
+		   	XPOS = X
+		   }
+		   GO_Y {
+		   	YPOS = Y
+		   }
+		   GO_XY {
+		   	XPOS = X
+			YPOS = Y
+		   }
+		   /* VECTORED */ CSR.GO_XY {
+		    # define data_direct_or_vectored_VAR_LINK VAR_LINK
+		    #ifdef  data_direct_or_vectored_VAR_LINK
+		    // DATA_DIRECT
+		   	VAR_SET(" XPOS = X ") // i32_xpos_t XPOS_i32
+		   	VAR_SET(" YPOS = Y ") // i32_ypos_t YPOS_i32
+		    #else // EXPECT vectored_MACROS EXPR over VAR XY
+		    // MACROS_EXPRS_CALLABLES
+		    // mostly upto EOF or END_SCOPE
+		    // Bench CHECK GETTERS for VARS 
+
+		    // Bench CHECK GETTERS of EXPR // GET
+		    // Bench CHECK SETTERS of EXPR // SET
+		    // Bench CHECK CALLERS of EXPR // CALL
+		   	CALL(" GO_X(X) ")
+		   	CALL(" GO_Y(Y) ")
+		   	CALL(" CSR.GO_XY(xy) ")
+		   	CALL(" CSR.GO_X(x) ")
+		   	CALL(" CSR.GO_Y(y) ")
+
+			CALL(" CSR.CR /* 0x0D */ /* stdin */ { ... } ");
+			BIND(" CSR.CR /* 0x0D */ /* stdin */ { BIND } ");
+			on_CR_do { XPOS = 0 }
+			on_LF_do { YPOS ++ }
+			on_FF_do {
+			 XPOS = 0;
+			 YPOS = 0;
+			 PAGE_FEED(); /* PAGE ++ */
+			 }
+
+			 BENCH has been given task 
+			 STEP(" CR ")
+			  ALIAS ASCII_CR_0D
+
+			  search for " CR " in nearby SCRIPTS + DATA
+			  ask_user ? MATCH CR ?
+			  so then add BG_FG
+			  so then add FG_BG
+			  ask_user ? MATCH ESC ?
+			   ...
+			  ...
+
+			  Highlight the code lines that match expr
+			  Enact their actions (often ROM EA_exprs)
+
+			  Switch in code lines (? use Butterfly effect ?)
+
+			 AUTOGEN UNGEN 
+			  do_CR() => CALL on_CR_do
+			  do_LF() => CALL on_LF_do
+			  do_FF() => CALL on_FF_do
+			  # CURR
+			  do_CR() => CALL on_CR_do
+			  # CODE REQUOTE FROM -ditto-
+			  # on_CR_do { XPOS = 0 } 
+		    #endif
+		   }
+ LAYOUT SCRIPT
+
+ %s gets widest aligning field_width
+ %s gets connected to FIELD.expr
+ // ABSENT ALIGNMENT TAB, POSSIBLE PRINTER_TO_ASCII
+ TAB8 CR LF FF ESC_csr_goto_xy ESC_xterm_mouse_args 
+ TRANSPARENT FILTER {
+ 	IN += ESC_xterm_command
+	 // CHECK_WORLD // resize_tty_or_other
+
+	 // REPEAT DATA // RELAY DATA // FILTER DATA THRU //
+	 OUT += ESC_xterm_command // _validated via regenerate
+
+	 /* SWITCH filter.PASS_DATA_THRU to FILTER_validator
+	 ESC_xterm_command = ESC_xterm_command_generated
+	 ESC_xterm_command_generated = ... OPTS ...
+
+	 ESC_xterm_command_generated += ESC_glass_tty_commands;
+	 /* POOL RANGE of cmds found */ 
+	 /* CORE POOL cmds in prebuilt glass_tty */ 
+
+	 /*
+ NEED glass_tty ESC [ ... ;
+ ALSO long line glass tty, for fully_parsed_tree_with_inter_weave
+	 */
+ }

@@ -31,3 +31,27 @@
 	  CPU x64 // SOME in regs DIAG of floats
 	  CPU ARM_32
 	  CPU ARM_64
+
+	  SIGNAL API
+
+	  man sigreturn
+	  man sigaction
+	   SIG STOP CONT 
+	   SIG_IGN - ignore
+	   ____CORE - dump core and exit
+	   ____CORE - dump core and exit
+	   int sigaction( signum, tbl_sigaction, old_sigaction )
+	   #
+	   struct sigaction {
+               void     (*sa_handler)(int);
+               void     (*sa_sigaction)(int, siginfo_t *, void *);
+               sigset_t   sa_mask;
+               int        sa_flags;
+               void     (*sa_restorer)(void);
+           };
+	   # RTFM # 
+	   # RTFM # xterm resize + SHELL
+	   # RTFM # gdb single step signal /* handler */
+	   # RTFM # RPC call /* handler */ /* data */
+	   # RTFM # 
+

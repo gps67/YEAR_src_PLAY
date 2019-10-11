@@ -1,0 +1,36 @@
+
+	inter_weave
+
+	BG FG inter_weave
+
+	PSG_SCRIPT accumulates TREE_MATCH ability
+	PSG Phrase // found ... Phrase ... // PSG_Background = KNOWN
+	PSG_Phrase // ... here ... FOREGROUND ... here ... // CMNT
+	PSG_Phrase // ... FOREGROUND ... // CMNT
+	PSG_Phrase // FOREGROUND // CMNT
+
+	PSG_Phrase // ... here ... BACKGROUND ... here ... // CMNT
+	PSG_Phrase // ... BACKGROUND ... // CMNT
+	PSG_Phrase // BACKGROUND // CMNT
+
+	BGFG{ bg fg }
+	FG_BG{ fg bg }
+	... {
+		ellipses
+		 maybe empty list
+		 maybe placeholder for unmarked
+		 THEN that might get decoded or PRE-coded
+	}
+	... { // RULE_ID used as narrator annotated
+	 FG {
+	 	/* const */
+	 }
+	 BG {
+	 	   const    // ANIM keep SP Layout or DEFLATE Layout SWITCH
+	  //	/* const */
+	  //       static   // thread_var prebuilt // STO
+	  //       
+	 }
+	} // ...
+
+	BG FG inter_weave

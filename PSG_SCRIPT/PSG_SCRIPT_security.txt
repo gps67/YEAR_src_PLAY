@@ -1,0 +1,14 @@
+
+
+	OK SCRIPT ... CALL yourself!!
+
+
+	ACTION requires PERMIT
+	 ACTION sees sense in queueing up for later APPROACH +- PERMIT
+	 ACTION sees OK FAIL in PERMIT eg timeout expired retry with new token
+	
+	- NO PERMIT REQUIRED -
+	QUOTA 200K data 2MB code 200k MMAP_FILE_fast MMAP_FILE_slow
+
+
+

@@ -9,4 +9,31 @@
 
 	  strange Layering DIR = DIR + DIR + DIR
 	
+SCRIPT
+ Module ident_C99
+ // expect near START_TOP of file
+ // expect upto EOF // ... Module ...
+ // Bench gives step up to ... INDENT_LESS NEXT_KEYWORD_LINES ...
+ // eg the next Module streamed down the same file stops the previous one
+ // eg the next KEYWORD streamed down the same file stops the previous one
+ // Parser likes reassurance of keyword near start of file "Module %s"
+ Import Module
+ Import ITEM_by_NAME
+ Import LIST_HERE or SCATTERED in CODE
+ USES{ expr_pool }
+ Const Values
+ Const_DECL Name Value
+ Const_DECL Name Value TYPE=BENCH_adds.Name.TYPE = enum_group_item
+  K1 = 1024
+ Type SPEC
+  
 
+
+ Name SCHEME
+ TYPE enum_group_item
+ TYPE enum_group_item {
+ // an ITEM of an enum group LIST // LIST = UDEF[N] // N = N
+ // ALLOC i=N++; // VALID_ZONE i<N // -ve means not in VALID_ZONE
+      }
+
+ Const_DECL Name Value TYPE=BENCH_adds.Name.TYPE = enum_group_item

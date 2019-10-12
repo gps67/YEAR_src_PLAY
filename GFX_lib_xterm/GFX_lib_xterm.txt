@@ -1,0 +1,213 @@
+
+	GFX_lib_xterm/
+	GFX_lib_xterm.txt
+
+	DIAG layout XPOS[u5] YPOS[u5] <--> XY[ u3 ] // XY[ u8 ] // TOKEN_ISE
+
+	# xterm -fn 10x20 -fg black -bg white -geometry 80x44 -e mc $D1 $D2
+	# xterm -fn 10x20 -fg black -bg white -geometry 80x44 -e CMD ARGS ...
+	# xterm \
+	# -fn 10x20 \
+	# -fg black -bg white \
+	# -geometry 80x44 \
+	# -e CMD ARGS ...
+	# # 80x44 chars W_H # an OK choice
+	# # BG_FG # -bg white -fg black #
+	# # FG_BG # -fg black -bg white #
+	# # --_-- # Bench offers pair switching BG_FG with BOTH
+	# # -fn 10x20
+	# # forgotten font selector something
+
+HERE COMES NOTES ON xterm
+
+https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+
+ XTerm Control Sequences
+ updated for XTerm Patch #348 (2019/07/11)
+
+  [ NUL C0 SP [
+  	# thats an optimisation
+	# must compare to SOMEVALUE
+	# SP or LESS # C0
+
+	# BEL BS CR ENQ ...
+
+	# SI may require VT220 not relic
+	# nothing supported if not xterm like
+	# TTY FILTER VDU # Limit_to_UDEF_ZONE # single mode
+	# FILTER OUTPUT # interweave SCRIPTED_FILTER_out
+	# VFS layer // very parallel ideas
+
+  [ 128 + NULL C1 128 + SP [
+
+  	# double check UTF8 overlapping zones
+
+	ECMA-48 == ISO_6429 
+	 c1 [ 128 .. 159 ]
+	 C0 [   0 ..  31 ]
+	 //     128 + 31 == 159
+
+ xterm single byte controls // big guess here
+
+ 	CR LF FF SI SO // not ESC but only double booked
+
+	ESC [ ... letter
+
+	ST = string terminator 
+
+	ESC M // Tab Set HTS
+	ESC Z // CSI c 
+	ESC [ // CSI Control Sequence Introducer
+	ESC \ // ST String Terminator 0x9C
+	ESC ] // OSC really ?
+	ESC ^ // PM Privacy Message
+	ESC _ // APC Application Program Control 0x9F
+
+	ECMA-48 == VT220 for example
+
+ ESC SP ...
+ ESC SP F // tell terminal to reply with ESC C0_char sequence
+ ESC SP G // tell terminal to reply with C1_char sequence
+ ESC SP ...
+  F // ESC C0 sequence
+  G //     C1 sequence
+  L || M || N // ANSI level 1 2 3
+ ESC HASH
+  3 // double TOP
+  4 // souble BOTTOM
+ ...
+ ESC PERCENT AT
+ ESC % @ // select LATIN default char set // ISO 8859-1
+ ESC % G // select UTF8  char set // ISO_2022
+
+ ESC ( A // UK // Designate G0 Character Set VT300
+ ESC - A // UK // Designate G1 Character Set VT300
+ ESC . A // UK // Designate G2 Character Set VT300
+ ESC / A // UK // Designate G3 Character Set VT300
+ ESC ( A // UK
+ ESC ( B // US ASCII == ASCII ??
+ ESC ( C // Finnish
+ ESC ( 5 // Finnish
+ // avoid freaky stuff, none of this is needed in ESC sequeces
+ // FILTER = TODO
+ //  LOG and DROP
+ //  LOG and SEND
+ //  LOG edit(somehow) SEND
+
+ ESC 7 // Save Cursor // VT100+
+ ESC 8 // Restore Cursor // VT100+
+
+#####
+
+NO APC App Program Command function
+
+DCS // DCS What is it KEYS SETTINGS
+DCS + p Pt ST // SET terminfo "Pt"
+DCS + q Pt ST // GET terminfo "Pt"
+# GET Co // colours
+# GET TN // termcap name
+DCS + r Pt ST // GOT Pt = terminfo_VAL_str ST
+
+# LOOKS great - but needs a corporate to wire it all up for non xterm
+# LOOKS dangerous - storing data behind the visor - local keys
+
+CSI Ps ... //
+ @ // insert default=1 blank
+ SP @ // shift left Ps columns default=1 char
+ SP A //  shiftright Ps columns
+ A // CSR UP times Ps // 1
+ B // CSR DOWN // times Ps
+ C // CSR FORWARD // _RIGHT
+ D // CSR_BACKWARD // _LEFT
+ E // CSR NEXTLINE // _IS_NOT_DOWN_??
+ F // CSR PRECEDING LINE
+ b // repeat prev glyph Ps times
+ c // Send decive attributes
+ c // Ps==0 VT100 not so much use
+ c // Ps=1 // 132 columns
+            Ps = 1  -> 132-columns.
+            Ps = 2  -> Printer.
+            Ps = 3  -> ReGIS graphics.
+            Ps = 4  -> Sixel graphics.
+            Ps = 6  -> Selective erase.
+            Ps = 8  -> User-defined keys.
+            Ps = 9  -> National Replacement Character sets.
+            Ps = 1 5  -> Technical characters.
+            Ps = 1 6  -> Locator port.
+            Ps = 1 7  -> Terminal state interrogation.
+            Ps = 1 8  -> User windows.
+            Ps = 2 1  -> Horizontal scrolling.
+            Ps = 2 2  -> ANSI color, e.g., VT525.
+            Ps = 2 8  -> Rectangular editing.
+            Ps = 2 9  -> ANSI text locator (i.e., DEC Locator mode).
+ then next paragraph says ... resize
+	 DECSNLS DECSCPP DECSLPP
+ m // Ps == Attrib
+  0 Normal
+  1 Bold
+  2 faint
+  3 italic
+  4 underlined
+  5 blink // bold in X11R6
+  6 ----- // bold in X11R6
+  7 Inverse
+  8 Invisible
+  9 crossed-out chars
+  2 1 Double underline
+  2 2 Normal (drop bold or faint)
+  2 3 End Italic
+  2 4 End underline
+  ...
+  3 0 FG = Black
+   Black Red Green Yellow Blue Magenta Cyan White 
+   default
+  4 0 BG = Black
+   Black Red Green Yellow Blue Magenta Cyan White 
+   default
+
+Above colours
+8 bit colours
+16 bit colours
+
+  3 8 ; 2 ; Pi ; Pr ; Pg ; Pb
+  Pi = colourspace = IGNORED
+
+EXTRAS
+
+CSI Ps ; Ps ; Ps t // EHMH Enhanced WM Hints
+## WANING on fvwm flwm quartz-wm ## does MAXIMISE
+
+ 1 - deiconify window
+ 2 - iconify window
+ 3 ; X ; Y - move X Y // pixels on ROOT // omited == CURR, 0 == FULL
+ 4 ; H ; W - resize WH // pixels
+ 4 ; H ; W - resize WH // pixels
+ 5 // raise to top
+ 6 // lower to bottom
+ 7 // refreash window
+ 8 ; H ; W - reseize HxW WxH chars
+ 9 ; 0 // list goes on ...
+ 1 1 .. report window state
+ ? iconified window size pixels chars ## of ROOT 
+ 1 5 // GET screen size pixel
+ 1 6 // GET char size pixel
+ 1 8 // GET main_TEXT_area size chars
+
+ CSI > Ps ; Ps t
+  Ps=0 SET window icon labels using HEX
+  Ps=1 GET window icon labels using HEX
+  Ps=2 SET window icon labels using UTF8
+  Ps=3 GET window icon labels using UTF8
+
+ 2 1 // GET TITLE
+
+ OSC Ps ; Pt ST
+  2 set window title
+  3 set X property on top level
+   prop=value
+
+
+
+SUBLEX sees _LEFT
+SUBLEX sees connect_point_bottom_left_under_score_SUBLEX_JOIN
+

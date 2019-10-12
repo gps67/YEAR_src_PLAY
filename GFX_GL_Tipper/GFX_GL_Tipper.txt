@@ -1,0 +1,88 @@
+	GFX_GL_Tipper/
+	GFX_GL_Tipper.txt
+
+	DIAG = ANIM_ZONE // + start_script start_data STO_data
+
+	 3D shape = Tipper
+	 	     at each vertex
+	              with f32 factor[ list ]
+		      with u32_hilo [ idx_sto_expr ] // strong type says SUBLEX
+
+		      	idx_sto_expr = _EA_EXPR_ { // SCRIPT
+
+				N = DATA_nbytes // static_STO u32_hilo
+				STREAM IN DATA u8 [ N ] 
+
+				expr = BASE + DATA_nbytes 
+				DATA == * BASE
+			}
+
+				// each EA_ITEM or EA_EXPR_EA_ITEM or ...
+				expr = BASE + DATA_nbytes 
+				DATA == * BASE
+				STREAM IN DATA u8 [ N ] 
+			}
+
+				// GAP OFFS 
+				// GAP DATA_nbytes_OFFS
+				// DATA_nbytes N = 
+
+	 3D shape = Tipper_Flight_Path
+	 3D shape = Tipper_Flight_Path_Bounce
+
+	 	// pending HAND match
+
+		....................
+		.                  .
+		.       M2         .
+		.   M1  UP           .
+		.  DOWN            .
+		.                  .
+		.            3     .
+		.       1     up     .
+		.      down        .
+		.                  .
+		....................
+
+
+		 1 M1 3// AXIOM // LEXICON  
+		 1 M1 3 1
+		 1 M1 3 1 ML 3 ... 2
+
+		 1 M1 3// AXIOM // LEXICON  
+		 1 M1 3 M2 // AXIOM // LEXICON 
+		 1 M1 3 M2 1
+		 1 M1 3 N2 ...
+		 1 M1 M2
+
+	SLOW fractal pattern
+
+		1 -expands-> HIT intensity angle simplicity
+		M1 -expands-> HIT intensity angle simplicity = the new ONE
+		// so end on ONE, end on M1 the new ONE // alias hotspot
+		// so iterate over above list 
+		// so iterate over over NEARBY 
+		// so iterate over // complete sweep //
+		   Layout {
+		    LIST of STEP
+		     STEP
+		      HIT POS using ANIM ROM + SPEED ANGLE INTENT
+		       LOUD
+		      HIT POS using ANIM ROM + SPEED ANGLE INTENT
+		       BANG
+		      HIT POS using ANIM ROM + SPEED ANGLE INTENT
+		       TAP
+		      GESTURE
+		       SWOOSH = BANG_or_TAP
+		       SWOOSH += BANG_STOP // incl BANG_STOP_PUSH
+		}
+		// FOREACH Layout
+
+	SLOW pattern BASE DRUM
+
+		STOP on M1 with ATTITUDE
+
+		SAME as FAST pattern 
+
+		WITH fast patterns in tessalating nested style
+

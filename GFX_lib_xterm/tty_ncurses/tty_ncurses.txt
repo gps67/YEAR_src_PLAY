@@ -1,0 +1,43 @@
+
+	tty_ncurses/
+	tty_ncurses.txt
+
+ xterm mostly
+ console linux
+ my_TTY
+
+ 	terminfo
+	trace XTERM_TTY { commands used }
+	bench
+
+ 
+ /dev/tty
+ /proc/fd/0 # 1 # 2 #
+
+ fflush(NULL)
+
+ SIG USR1 
+
+ SIG ... resize ...
+
+ STTY
+  XON XOFF INTR SUSPEND rename pid 
+ EDITLINE
+
+
+ PID
+ PWD
+ ENV
+ $0 might be symb_link # see symblink_name
+
+
+	xterm things
+
+		TTY size
+		window resixe move
+		Colours
+		Keys
+		// curses has it // Mouse
+		ATTR crossout // FILTER from specific colour // TO
+
+

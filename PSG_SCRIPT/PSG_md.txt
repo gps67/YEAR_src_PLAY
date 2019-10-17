@@ -1,0 +1,104 @@
+
+	PSG_md.txt
+
+ NEED DOUBLE CSR
+	Two panels, blink pause zoom button,
+
+	 md raw  	DOC_preview
+
+	  edit here	    _here 
+
+	Even a primative editor might be OK
+	NEED a fundamental SWEEP TEXT <--> TREE
+	DIAG has seperate PANEL of Options to edit DIAG within DIAG
+	NEED quick slide navigation NEXT MORE
+	NEED slide from PSG_branch_to_bramch
+	NEED slide from PSG_page_to_title_to_article_next_page // default first
+	NEED slide from PSG_page_to_paragraph_plus // 
+	NEED slide from PSG_page_to_metadata // 
+	NEED slide from PSG_page_to_dot_dot // 
+	// dot_dot // mount_point of ARTICLE in LIBR with INDEX_CARD( meta )
+	// dot_dot // mount_point of dot_dot in LIBR with GROUP_CARD( meta )
+
+ NEED DOUBLE CSR STATE
+
+	POS = EA_this_tuplo
+ 	LHS = ASCII_in_md
+	RHS = LOCN_in_Tree
+	CMNT {
+		LINES_of_structured_DATA // BASE64 if necessary
+		// BEST Tokenised ASCII_PLUS matching PSG_RULE_1234
+
+		So these lines link to PREBUILT Tree
+		of STUFF from MODULE (editable)
+	}
+ DOC LEXICON of MD
+ 	should mirror DTP_sort_of // with added tuplo_x_link
+	// UPPER
+ 	DTP_sort_of // man info TeX DTP APP
+ 	DTP_sort_of += DTP_md
+	// here DTP_ is a genre AND ALSO a LIST of items // ? of genre ?
+	// they all have BOLD_ITALIC_UNDERLINE
+	// they all have H1_H2_BPL_Layout
+	// they all have Layout
+	// they all have VTBL with supporting handwritten functions
+	// maybe default code works
+	// bench can pivot PICK // highlight_else // of KDB_KNOWS
+
+	// UNDER = LI_and_friends
+	   LI UL OL TABLE TR TD 
+	   H9 // head_line_nine // expect body
+	   P_Intro // Can actually be a P_LIST
+	   P_BODY = P+
+	   P_BODY = LIST_of_sub_SECTION
+	   P_BODY = TREE_of_sub_SECTION // with export TOKENISED LIBR
+
+	// LAYOUT = DTP_from_here
+
+	S1 H1 P_INTRO list_of S2 
+	S1
+ 	   H1
+	      P_INTRO 
+	              list_of S2 
+	S2 H2 P_INTRO list_of S3_OR_of_P_BLOCKS_S2
+	S2
+		H2
+		P_INTRO
+		
+		list_of
+			S3_OR_of_P_BLOCKS_S2
+	S1 H1 P_INTRO list_of S2 
+	S1 H1 P_INTRO list_of S2 
+	S1 H1 P_INTRO list_of S2 
+	S1 H1 P_INTRO list_of S2 
+
+
+
+###
+
+	PSG_md.parse( stream ) // downstream from connected
+
+	So sooner or later, write PSG_md
+	VARIABLE checking
+	Some sites are really strictly formatted
+	Some sites are slightly_off
+	DIALECT checking
+
+	Parse P0P2 for INNER_LINES + OUTER_FRAME_SETTINGS
+
+		INNER_FRAME
+		 well formatted DATA
+		 PSH_MATCH exact // PREBUILT
+		OUTER FRAME SETTINGS
+		 less_INDENT_more
+		  level_shift_at_CTOR_DTOR
+		 PRESET STYLES
+		  add { BRACES } and combi rules of this SEQ_view_print
+
+	ON FAIL 
+	 WARN BROKEN TEXT TWIGS
+	ON PASS
+	 TREE = Stack ROOT after SUB_STACK expr
+	
+	SO to do that, RTFM subset, novel
+	Then reveal.js likes MD - can I feed it ? 

@@ -60,7 +60,7 @@
 	var line
 	for( var i = 0; i < n_lines; i++ ) { // es5 not es6 ?
 		line = text_lines[i]
-		var l = line.length;
+		var l = line.length;		// bytes not tab not utf8
 		if( n_cols < l ) n_cols = l;
 	}
 	dbg_print_2( "n_cols", n_cols);
@@ -119,6 +119,7 @@
 		// daft font scale AND post-scale X,Y
 		var mat = [pt_sz,0,0,pt_sz,X,Y]
 		line = text_lines[i]
+		// fails with TAB
 		text.showString(font, mat, line );
 		// dbg_print_2( "mat", mat )
 		Y -= glyph_dy // moving down decreases Y

@@ -1,0 +1,74 @@
+
+
+ Draw This
+
+	A_is_for_ARCHIVE
+         FILE_archive/
+         TAPE_archive/
+
+	  YEAR-MM-DD_ARCHIVES/
+	   project_YEAR-MM-DD.a
+	   .a
+
+	    project
+	    YEAR-MM-DD
+
+
+        FILE_archive/
+        TAPE_archive/
+
+
+        TAPE_archive/
+         old_sources/
+          tars/
+
+		ARCHIVE_one .tgz
+		ARCHIVE_two .tar.bz2
+
+			// SUBLEX specific to FILENAME_ext
+			// GRAPH of interconnected LEXICON items
+			// ".tar."
+			// ".gz."
+			// ".zip"
+			// ".ar" // for INDEXED ELF
+			// ".ar" // for SCRIPTS
+			// man ar
+			// retains file.stat
+			// name = anylen (GNU)
+			// name = len 15 (a.out)
+			// name = len 16 (coff)
+
+		ARCHIVE_src .ar 
+		SOURCE_tokenised .ar
+
+			ar t ./filename.a # list files
+""" man ar
+       ar creates an index to the symbols defined in relocatable object
+       modules in the archive when you specify the modifier s.  Once created,
+       this index is updated in the archive whenever ar makes a change to its
+       contents (save for the q update operation).  An archive with such an
+       index speeds up linking to the library, and allows routines in the
+       library to call each other without regard to their placement in the
+       archive.
+
+	... without regard to their placement ...
+	... whereas not using ar, you have to deal with -lsecond -lfirst
+	or where to place feature.o in the OBJS_LIST
+
+	ar sequence is still sensitive, multiple providers of VAR, of FN,
+
+	2-WAY-Surface = Tree_from_PSG_to_LEX
+	2-WAY-Surface = GRAPH_of_LEX _in_ PSG with test exprs and scripts
+
+		Decide that the semantic value of LEX has changed somehow
+		
+		SIGNAL out SWEEP everywhere LEX_CHANGED
+
+			if LEX is not exported
+			there is no need to propagate signal
+
+			export LEX # import LEX # 2-way-search_for_key2="str"
+
+	static linking will extract the routines used, from a .a
+
+

@@ -1,0 +1,77 @@
+
+PAPER SURFACE // not bounded by SCREEN
+
+	BLOCK on SURFACE
+
+	 XY P0
+	 XY P2	// not clip but used .. maybe slit P2_X alias X2 
+
+	 BLOCK_ZERO = SURFACE_ZERO_TOP_LEFT // 0 menas SURFACE_ZERO
+	 BLOCK_ZERO = SURFACE_ZERO_plus_P0 // 0 means BLOCK_ZERO
+
+	 VIEW AREA on SUFACE
+
+	 	0 means SURFACE ZERO TOP LEFT
+	
+	VIEW AREA on SCREEN
+
+		0 means SCREEN ZERO TOP LEFT
+	
+
+	FILTER
+	 from BLOCK
+	 to SURFACE
+	 to SCREEN
+
+	 inner_clip = AND all clips
+	 go_XY( xy_surface )
+	 go_XY( xy_screen )
+
+	int line_number = line_number_of_y_surface( int y ) { return y+1; }
+	int col_number = line_number_of_x_surface( int x ) { return x+1; }
+
+	// line_col is yet another coordinate system
+
+	// i16 is plenty for char
+	// 128 dpi = +- 256 inches
+	// 
+	// i32 is 2^31 +- 2G x dot
+	// 1024 dpi is 2^21 += 2M inches = 16.7 000 ft (32)
+
+
+
+
+	 xy_screen_from_xy_surface = xy 
+
+
+
+
+class CSR_buff : public obj_ref
+{
+ //	PARENT_SURFACE is entire screen
+ //	 A_XYWH is a SOFT_CLIP PANEL (?popup?)
+ //	  PANEL is a framed AREA incl BORDER
+ //	  PANEL reduces to CLIP actual
+ //	   PAPER FABRIC SURFACE
+ //         might be SCROLL of Module script;
+ //          Layout 2-pass has already laid out sub-sections 
+ //	PARENT_SURFACE is itself a PANEL
+ //	A_XYWH
+ //
+ //	bouncing nested XYWH offs 
+ //	transparent adds up, limit is X2 wrt parent
+ //	
+ //	deflecting adds ZERO_X _Y // SURFACE VIEW AREA 
+
+};
+
+class  tty_curses_CSR : obj_ref
+: public
+{
+}
+
+class CSR
+: public tty_curses_CSR
+{
+	// behave
+}

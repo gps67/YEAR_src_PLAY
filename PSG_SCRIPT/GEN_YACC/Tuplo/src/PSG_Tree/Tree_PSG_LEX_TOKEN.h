@@ -51,6 +51,17 @@ class LEX_TOKEN_GROUP { public: // NOT AN OBJ_REF ???
 		return true;
 	}
 
+	bool
+ 	 add_LEX(    // PFX_
+	   STR0 rw  // "EOLN" );
+	) {
+		LEX_TOKEN_DECL * token = new LEX_TOKEN_DECL();
+		this->LIST_Token.append( token );
+		token -> Name = rw;
+		// NULL // token -> Value = rw;
+		return true;
+	}
+
 	bool lookup_by_Name( LEX_TOKEN_DECL * TOK, STR0 Name );
 	bool lookup_by_Value( LEX_TOKEN_DECL * TOK, STR0 Value );
 };

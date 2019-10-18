@@ -51,8 +51,41 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 		STR0 ReservedWord
 	);
 
+	// maybe make TOKEN have EA_double_step_expr_u32
+	// maybe make TOKEN hold all links around
+	// tok.print_TOKEN_name2( out, TOKEN )
+	// maybe stuck here
+	bool print_TOKEN_name_2(
+		buffer2 & out,
+		LEX_TOKEN_GROUP &  POOL,
+		LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
+	);
 
+	bool print_list(
+	 buffer2 & out,
+	 LEX_TOKEN_GROUP &  POOL
+	);
 
+	bool print_tree_as_files( );
+
+	//
+	// find app_lib / LEX_lex_return
+	//
+	// find app_lib / LEX_lex_return
+	//
+
+	bool gen_LEX( buffer2 & out );
+	bool gen_LEX_lex_return( buffer2 & out );
+
+	bool gen_YACC( buffer2 & out );
+	bool gen_YACC_top_code( buffer2 & out );
+	bool gen_YACC_str_of_token( buffer2 & out );
+	bool gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & list );
+	bool gen_YACC_union( buffer2 & out );
+	bool gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & list );
+	bool gen_YACC_token_list( buffer2 & out );
+	bool gen_YACC_type_list( buffer2 & out );
+	bool gen_YACC_rules( buffer2 & out );
 };
 
 #endif

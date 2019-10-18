@@ -1,0 +1,139 @@
+
+	XK_event.txt
+
+	X11.api_open_sess
+	X11.api_already_connected_sess
+
+	X_Display X11 ctor(${DISPLAY:-NULL})
+	X11.X_Display_One( display_name )
+
+		HOLDS connection to X11
+		HOLDS font_pools and local files
+		api_libX11_with_some_extralibs
+
+		display = ::XOpenDisplay( display_name );
+
+	X11.X_Display( displayname )
+
+		process_event( XEvent & report );
+		switch report.type
+		 case Expose:
+		 case KeyRelease
+		 case KeyPress
+		  var symb = report.xkey.keycode
+		  switch symb
+		   case XK_BackSpace
+		   case XK_SOMETHING
+
+		     dont forget MODIFIERS
+
+			SHIFT
+			CTRL
+			ALT
+			MSW
+
+		Configure
+		 Start
+		  Run
+		  	MOUSE_CARRYING
+			   PAYLOAD
+
+		Press and hold KEY whilst moving mouse searches area
+		Press and hold KEY whilst moving mouse resizes panel area
+		Press and hold KEY whilst moving mouse repositions panel area
+		Sweep To Navigate
+		Sweep To Find
+
+		SO: PRESS ... move_mouse ... RELEASE 
+		OR: PRESS ... RELEASE = PLAIN_KEY // unless cancelled REP2
+		OR: PRESS ... accidental move_mouse ... RELEASE = PLAIN_KEY
+		This is a different key handler
+		maybe make a FSM with STEPS like
+
+		 -init->
+		 _SPECIAL_SHIFTY_KEY_PRESS
+		 _SPECIAL_SHIFTY_KEY_RELEASE
+		 _PLAIN_LETTER_KEY_PRESS
+		 _PLAIN_LETTER_KEY_RELEASE
+		 MOUSE_CLICK
+		 MOUSE_MOVES_OUT_OF_WINDOW_OR_OTHER_LOSE_FOCUS
+		 FUMBLED_KEYBOARD_DROPPED_KEYS
+
+		 FUMBLED_KEYBOARD_DROPPED_KEYS {
+		 	Increase notice of fumbles, name here ?
+			too many keys pressed at once
+			ESC being pecked frantically
+			CTRL-C lookalke
+
+			 collect the keys into a fumbled_list
+			 send it downstream to debugger
+		 }
+
+	// X11 & x11 = display = X_Display_ _One _PLUS _HERE
+
+	X_KBD
+
+		MODIFIERS
+
+		 /**/   case XK_space:
+                 break; case XK_Up:
+                 break; case XK_Down:
+                 break; case XK_Left:
+                 break; case XK_Right:
+                 break; case XK_Prior:
+                 break; case XK_Next:
+                 break; case XK_Home:
+                 break; case XK_End:
+                 break; case XK_Return:
+                 break; case XK_BackSpace:
+                 break; case XK_Delete:
+                 break; case XK_Escape:
+                 break; case XK_F1:
+                 break; case XK_F2:
+                 break; case XK_Menu:
+                 break; case XK_Print:
+                 break; case XK_Scroll_Lock:
+                 break; case XK_Pause:
+                 break; case XK_Break:
+	
+
+	OPTION:
+		VTBL on_event_VTBL 
+
+		BIND MY_Page_Up
+
+	TO FOCUS = panel under mouse
+	TO FOCUS = panel_belongs_to
+	TO FOCUS = parent of panel_belongs_to
+	TO FOCUS = app_owns_panel_groups_via_handlers
+
+
+		SO I wanted (at least to consider) 
+
+			on_XK_Up()
+
+		Or the faster SWITCH MATCHER
+
+			case XK_Up:
+				{ HERE }
+			break;
+
+
+		or the generic BIND KEY ACTION LIST
+
+			LIST += EXPR
+			BIND = BINDINGS PAIR lhs=KEY rhs=ACTION extra=meta_plus_tracers
+			BIND KEY ACTIOC // line_number EA_in_ROM
+
+			 KEY = KEY
+			 ACTION = ACTION
+			 EA( BINDING ) ==> EA_in_ROM ==> version/file/line
+
+		or generic MAP of LIST // order on dupes from original playlist
+
+			HASH of key base over [ u5 ] // 32 sublists of 0 1 ...
+
+
+		BUT then there is no binding for this PANEL
+		and need to move back up tree to find consumer of EVENT
+

@@ -19,6 +19,8 @@
 #include "X11/XKBlib.h"
 
 // #include "X_Display.h"
+#include "e_print.h"
+
 using namespace WAX;
 
 void X_Display::process_event( XEvent & report )
@@ -55,9 +57,12 @@ void X_Display::process_event( XEvent & report )
 			z_level
 		);
 		const char * str = XKeysymToString( symb );
+	//	e_print(" KEY Up = %d \n", Up );
+		e_print(" KEY KEY_Up = %d \n", XK_Up );
+		e_print(" KEY symb = %d \n", symb );
 
 
-		printf("keycode %3d state %2x type %d name %s win.name %s \n",
+		printf("keycode %3d state %2x type %d name %9s win.name %s \n",
 			report.xkey.keycode,
 			report.xkey.state,
 			report.xkey.type,
@@ -66,6 +71,53 @@ void X_Display::process_event( XEvent & report )
 		);
 		/*Close the program if q is pressed.*/
 		if( 24 == report.xkey.keycode ) exit(0);
+
+		switch(symb) {
+		 
+		 /**/   case XK_space:
+		 	e_print("ON XK_ spave()\n");
+		 break; case XK_Up:
+		 	e_print("ON XK_ Up()\n");
+		 break; case XK_Down:
+		 	e_print("ON XK_ Down()\n");
+		 break; case XK_Left:
+		 	e_print("ON XK_ Left()\n");
+		 break; case XK_Right:
+		 	e_print("ON XK_ Right()\n");
+		 break; case XK_Prior:
+		 	e_print("ON XK_ Prior()\n");
+		 break; case XK_Next:
+		 	e_print("ON XK_ Next()\n");
+		 break; case XK_Home:
+		 	e_print("ON XK_ Home()\n");
+		 break; case XK_End:
+		 	e_print("ON XK_ End()\n");
+		 break; case XK_Return:
+		 	e_print("ON XK_ Return()\n");
+		 break; case XK_BackSpace:
+		 	e_print("ON XK_ BackSpace()\n");
+		 break; case XK_Delete:
+		 	e_print("ON XK_ Delete()\n");
+		 break; case XK_Escape:
+		 	e_print("ON XK_ Escape()\n");
+		 break; case XK_F1:
+		 	e_print("ON XK_ F1()\n");
+		 break; case XK_F2:
+		 	e_print("ON XK_ F2()\n");
+
+		 break; case XK_Menu:
+		 	e_print("ON XK_ Menu()\n");
+		 break; case XK_Print:
+		 	e_print("ON XK_ Print()\n");
+		 break; case XK_Scroll_Lock:
+		 	e_print("ON XK_ Scroll_Lock()\n");
+		 break; case XK_Pause:
+		 	e_print("ON XK_ Pause()\n");
+		 break; case XK_Break:
+		 	e_print("ON XK_ Break()\n");
+		 break;
+
+		}
 		// return 0;
 	}
 	default:

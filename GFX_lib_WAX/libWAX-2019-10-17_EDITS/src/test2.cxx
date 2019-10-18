@@ -135,11 +135,23 @@ class X_test_box : public X_Window
 
 */
 
-	void event_expose( A_Rectangle & xywh )
-	{
-		INFO("EA_this = %p", this );
+	void INFO_report( A_Rectangle & xywh ) {
+		e_print("'%s' (%d,%d)+(%d,%d) EA_this = %p\n",
+		 name,
+		 xywh.x,
+		 xywh.y,
+		 xywh.width,
+		 xywh.height,
+		 this
+		);
 		// e_print( -ditto- );
 		// a second rectangle inside the first
+	}
+
+	void event_expose( A_Rectangle & xywh )
+	{
+		INFO_report(xywh);
+
 		A_Rectangle xywh2 = xywh1;
 		xywh2.reduce4( 50 );
 		// a point inside, top left ish
@@ -200,16 +212,22 @@ int main() {
 	// open up a display connection
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
+
 	// pick a rectangle
 	A_Rectangle xywh1( 0, 0, 500, 500 );
 //	A_Rectangle xywh2( 100, 10, 150, 150 );
 	A_Rectangle xywh3( 30, 250, 150, 150 );
+
 	// create a window on the display
 	X_test_box win1( "win1", disp, xywh1, 0 );
+
+//	// create a window within the window
 // 	X_test_box win2( "win2", & win1, xywh2, 0 );
 ///	X_test_box win3( "win3", & win1, xywh3, 0 );
+
 //	// create a window within the window
 	X_test_box win3( "win3", & win1, xywh3, 0 );
+
 	win1.map();
 	win1.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
 //	win2.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );

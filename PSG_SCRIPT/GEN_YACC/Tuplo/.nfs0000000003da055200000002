@@ -1,4 +1,4 @@
 
 search=+/error
-search=+/warning
+search=+/warnng
 ./M "$@" 2>&1 | less $search

@@ -47,7 +47,26 @@ struct A_XY : public A_Point
 /*!
 	A_WH (w,h) holds width and height, cannot be negative
 
-	nb A_WH uses i32 when X11 might use u16
+	nb A_WH uses i32 when X11 uses u16 sometimes signed
+	so should check excess_of_u15 any_signed excess_of_
+
+	WANT A LANG where I can edit the header, setting 
+
+		int & h = y; // CT macro renamer
+		int & w = x; // or actually set x = x_offs =  w_offs = w
+	
+	CHOICE here to change UNITS (eg i16 to i32)
+
+		maybe not here, but just seen,
+		OFFS = i32_value_held_in_ROM
+		OFFS = i32_value_held_in_STO
+		OFFS = i32_value_held_in_FRAME
+		OFFS = i32_value_held_SOMEWHERE
+		OFFS = u16_from_SOMEWHERE // segment is not from middle
+		OFFS = i16_from_SOMEWHERE
+		BASE = ZERO + OFFS
+
+
 */
 struct A_WH
 {

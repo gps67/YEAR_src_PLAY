@@ -7,7 +7,6 @@
           #include "../src/EXPRS.h"
           using namespace EXPRS;
 #warning fixed file name gen_ e1_
-#include "gen_e1_yacc.tab.hh" // bison lists PUNCT_PLUS as int"
           #include "str1.h"
   #if 0
           struct YYSTYPE;

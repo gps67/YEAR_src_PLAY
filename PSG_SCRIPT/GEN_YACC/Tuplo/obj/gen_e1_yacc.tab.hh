@@ -76,7 +76,6 @@
           #include "../src/EXPRS.h"
           using namespace EXPRS;
 #warning fixed file name gen_ e1_
-#include "gen_e1_yacc.tab.hh" // bison lists PUNCT_PLUS as int"
           #include "str1.h"
   #if 0
           struct YYSTYPE;
@@ -134,7 +133,7 @@
  }
 
 
-#line 138 "gen_e1_yacc.tab.hh" /* yacc.c:337  */
+#line 137 "gen_e1_yacc.tab.hh" /* yacc.c:337  */
 # ifndef YY_NULLPTR
 #  if defined __cplusplus
 #   if 201103L <= __cplusplus
@@ -211,13 +210,13 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 68 "gen_e1_yacc.y" /* yacc.c:352  */
+#line 67 "gen_e1_yacc.y" /* yacc.c:352  */
 
  EXPR * expr;
  int token;
  const char * lex_buff;
 
-#line 221 "gen_e1_yacc.tab.hh" /* yacc.c:352  */
+#line 220 "gen_e1_yacc.tab.hh" /* yacc.c:352  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -523,9 +522,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,   119,   119,   120,   121,   125,   126,   127,   128,   129,
-     136,   137,   138,   140,   141,   142,   144,   145,   151,   152,
-     154,   156
+       0,   118,   118,   119,   120,   124,   125,   126,   127,   128,
+     135,   136,   137,   139,   140,   141,   143,   144,   150,   151,
+     153,   155
 };
 #endif
 
@@ -1337,79 +1336,79 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 119 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 118 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = (yyvsp[0].expr); }
-#line 1343 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1342 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 3:
-#line 120 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 119 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = (yyvsp[-1].expr); }
-#line 1349 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1348 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 4:
-#line 121 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 120 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E1( yylval.lex_buff ); }
-#line 1355 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1354 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 10:
-#line 136 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 135 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E_plus_E( (yyvsp[-2].expr), (yyvsp[0].expr) ); }
-#line 1361 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1360 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 11:
-#line 137 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 136 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E_times_E( (yyvsp[-2].expr), (yyvsp[0].expr) ); }
-#line 1367 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1366 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 12:
-#line 138 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 137 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E_power_E( (yyvsp[-2].expr), (yyvsp[0].expr) ); }
-#line 1373 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1372 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 13:
-#line 140 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 139 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = (yyvsp[-1].expr); }
-#line 1379 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1378 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 14:
-#line 141 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 140 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E2( (yyvsp[-2].expr), (yyvsp[-1].token), (yyvsp[0].expr) ); }
-#line 1385 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1384 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 15:
-#line 142 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 141 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = E1( (yyvsp[-1].token), (yyvsp[0].expr) ); }
-#line 1391 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1390 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 16:
-#line 144 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 143 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = (yyvsp[0].expr); }
-#line 1397 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1396 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 17:
-#line 145 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 144 "gen_e1_yacc.y" /* yacc.c:1652  */
     { (yyval.expr) = (yyvsp[-1].expr); }
-#line 1403 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1402 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
   case 20:
-#line 154 "gen_e1_yacc.y" /* yacc.c:1652  */
+#line 153 "gen_e1_yacc.y" /* yacc.c:1652  */
     { EXPR * E = (yyvsp[-1].expr); E->printer(0); }
-#line 1409 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1408 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
     break;
 
 
-#line 1413 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
+#line 1412 "gen_e1_yacc.tab.hh" /* yacc.c:1652  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

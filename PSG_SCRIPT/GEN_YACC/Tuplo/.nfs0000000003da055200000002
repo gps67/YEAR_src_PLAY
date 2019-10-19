@@ -1,4 +1,0 @@
-
-search=+/error
-search=+/warnng
-./M "$@" 2>&1 | less $search

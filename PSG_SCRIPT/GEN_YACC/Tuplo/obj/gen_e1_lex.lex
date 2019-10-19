@@ -4,7 +4,7 @@
 #include <string>
 #include "buffer1.h"
 struct EXPR;
-#include "gen_e1_yacc.tab.hh"
+#include "/nfs/NAS2/mnt/HD/HD_b2/2019/src/PLAY_GITS/YEAR_src_PLAY/PSG_SCRIPT/GEN_YACC/Tuplo/obj/gen_e1_yacc.tab.hh"
 /*
         lookahead may mean any number of tokens, not 1
 
@@ -35,6 +35,13 @@ int lex_return( int tok )
         nlex_pos = (nlex_pos+1) % nlex16;
         int pos = nlex_pos;
         lex_pool[ pos ].set( yytext, yyleng );
+        // TESTED with includes removed FOUND
+        // YYtext and yyleng are available
+        // yylval isnt - it is the union later in the same gen2 file
+        // LATER means LINE 2200
+        // EXCEPT this is LINE 3630
+        // 
+        // 
         yylval.lex_buff = (str0) lex_pool[ pos ];
         return tok;
 }

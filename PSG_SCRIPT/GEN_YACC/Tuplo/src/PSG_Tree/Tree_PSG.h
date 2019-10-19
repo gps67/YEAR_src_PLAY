@@ -13,8 +13,17 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
  // ARGV // track origin of data used in SYSCALLS	
  // ARGV // names of lex and yacc file(s) in working dir
 
- 	const char * lex_name_lex;
- 	const char * yacc_name_yacc;
+	// str1 holds the malloced memory
+
+ 	str1 psg_name_base; // gen_e1 ... FILENAME SUBLEX
+ 	str1 lex_name_base; // gen_e1_lex .lex
+ 	str1 yacc_name_base; // gen_e1_yacc .y
+
+	bool set_PSG_name( STR0 _name_ );
+
+	STR0 yacc_name_y();
+	STR0 lex_name_lex();
+	STR0 yacc_name_tab_hh();
 
  // MOVE // decls used in api // near but not here
  // MOVE // STUBS might carry subset of typedef names;

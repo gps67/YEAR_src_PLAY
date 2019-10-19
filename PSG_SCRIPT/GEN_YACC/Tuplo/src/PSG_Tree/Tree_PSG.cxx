@@ -14,6 +14,142 @@ Tree_PSG::
 {
 }
 
+#include "dir_name_ext.h"
+
+bool Tree_PSG::
+set_PSG_name( STR0 _name_ )
+{
+	INFO("%s", _name_ );
+	// gen_e1
+	// ../obj/gen_e1
+	//
+	// PSG_Name = ../obj/gen_e1
+	// LEX_Name = ../obj/gen_e1_lex	.lex
+	// YACC_Name = ../obj/gen_e1_yacc .y
+
+	// COMMENTED OUT // STRICT PAYLOAD //
+	//
+	// local_var PSG_Name = ...
+	// local_var LEX_Name = LHS _ RHS // LHS="PSG_Name" RHS="_lex" // ,lex
+	// local_var YACC_Name = LHS _ RHS // LHS="YACC_Name" RHS="_yacc" // .y
+	//
+	// SPEC = A grammara called dir/name_something.psg
+	//
+	// OK avoiding SPEC = DATA_IN_FILE( filename.psg )
+	// OK avoiding SPEC = BIND_var_SEGMENT_ITEM_RW
+	// OK avoiding SPEC = CTXT.lookup( anystr ); // TOKENISED PREBUILT
+	//
+	// PSG = LEX + YACC // PSG = FLEX + BISON // 
+	// PSG = SUBLEX + SEQUENCER
+	// SEQ = PSG_ spec=SPEC lhs=LHS rhs=RHS //
+
+/*
+	// PSG = SEQ + LEXICON + SUBLEX_actually_used // WAS
+
+	We now list our requests to the PSG machine
+
+		u32_hilo idx = PSG++ // NEW N++;
+	
+	Maybe a shared scope with rules, but a coded environment
+
+		PSG = idx // then PSG = NEAR.lookup( "PSG=idx;" );
+	
+	It has it's own shelf near BENCH
+
+		BENCH.PSG = { SPEC }
+		BENCH.PSG = { DATA }
+		-----.-------------- // an Essex comma // decimal_point // unit_
+		BENCH.PSG = { INST }
+	
+	INST = SPEC + DATA
+		_ == INST used as JOIN with "_"
+		TYPED_STRUCTS _ Tree_of_DATA
+	
+	MODULE = SOUND_Foundation
+
+		SPEC_Module = well_known.SPEC_Module
+		DATA_Module = STO_fetch_SPEC_Module_DATA_at_EXPR
+
+		SPEC=Module.SPEC_Module // getter function api options
+		EXPR = EA_in_ROM 
+		 ROM_Module = PREBUILT_Module
+		  u32_hilo_DECODER = u32_hilo EA_in_ROM( ROM EA )
+		  // EA is WRT EA_ZERO shared by all of SEGMENT
+		  // EA_ZERO might be SEGMENT_ZERO
+
+		VIEW
+		 STRUCT = BENCH_LOCN
+		  with BENCH_VARS
+		   ROM = ROM_of_Module(Module);
+		   EA = recompute_EA_in_ROM
+		 VIEW
+		  INST = DECODER( u32_hilo )
+		   INST.u32 = u32_hilo; // recompute adjacent changes too
+		   INST.u32 = set_analyse_u32
+		    var DECODER = Module_script.action_point
+		    var DECODER = Module_script.action_point
+
+*/
+
+
+	// 
+	// GUESS SUBLEX LHS JOIN="_" "lex" || "yacc" || "PSG"
+
+
+	// WHERE IS OUTPUT DIRECTORY
+
+	dir_name_ext path_name;
+	path_name.decode_filename( _name_ ); // some/dir/NAME => some/dir/NAME_yacc_y
+
+	path_name.ext.clear(); // sanity test it was, recycle genre from point
+	path_name.mk_full_path_name();
+	psg_name_base = path_name.full_path_name; // NORMALISED left-prefix
+	// path/gen_e1
+if(0)	path_name.test_print();
+	buffer2 tmp_name_keeper = path_name.name; // gen_e1
+
+	path_name.name.put("_lex");
+ 	path_name.ext.clear();
+	path_name.mk_full_path_name();
+	lex_name_base = path_name.full_path_name;
+	// gen_e1_lex.lex
+if(1)	path_name.test_print();
+
+	path_name.name.set( (STR0) tmp_name_keeper );
+
+	path_name.name.put("_yacc");
+ 	path_name.ext.clear();
+	path_name.mk_full_path_name();
+	yacc_name_base = path_name.full_path_name;
+	// gen_e1_yacc.y
+if(0)	path_name.test_print();
+
+}
+
+STR0 Tree_PSG::
+yacc_name_y(){
+	static buffer2 str; // this is not rentrant 
+	str = yacc_name_base;
+	str.put(".y");
+	return str;
+}
+
+STR0 Tree_PSG::
+lex_name_lex(){
+	static buffer2 str; // this is not rentrant 
+	str = lex_name_base;
+	str.put(".lex");
+	return str;
+}
+
+STR0 Tree_PSG::
+yacc_name_tab_hh(){
+	static buffer2 str; // this is not rentrant 
+	str = yacc_name_base;
+	str.put(".tab.hh");
+	return str;
+}
+
 
 bool Tree_PSG::print_list(
 	buffer2 & out,
@@ -79,11 +215,12 @@ gen_LEX_lex_return( buffer2 & out )
  L("#include <string>");
  L("#include \"buffer1.h\"");
  L("struct EXPR;");
- out.put("#include \"");
- out.put( "gen_e1_yacc.tab.hh" );
- // out.put( yacc_name_yacc );
- out.put("\"");
- L("");
+ if(1) {
+  out.put("#include \"");
+  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
+  out.put("\"");
+  L("");
+ }
  L("/*");
  L("        lookahead may mean any number of tokens, not 1");
  L("");
@@ -114,6 +251,13 @@ gen_LEX_lex_return( buffer2 & out )
  L("        nlex_pos = (nlex_pos+1) % nlex16;");
  L("        int pos = nlex_pos;");
  L("        lex_pool[ pos ].set( yytext, yyleng );");
+ L("        // TESTED with includes removed FOUND");
+ L("        // YYtext and yyleng are available");
+ L("        // yylval isnt - it is the union later in the same gen2 file");
+ L("        // LATER means LINE 2200");
+ L("        // EXCEPT this is LINE 3630");
+ L("        // ");
+ L("        // ");
  L("        yylval.lex_buff = (str0) lex_pool[ pos ];");
  L("        return tok;");
  L("}");
@@ -127,6 +271,7 @@ gen_LEX_lex_return( buffer2 & out )
 
 #include "util_buf.h"
 
+
 bool Tree_PSG:: print_tree_as_files( ) {
 	buffer2 out_lex;
 	buffer2 out_y;
@@ -136,8 +281,8 @@ bool Tree_PSG:: print_tree_as_files( ) {
 	if(!gen_LEX( out_lex ))return FAIL_FAILED();
 	if(!gen_YACC( out_y ))return FAIL_FAILED();
 
-	if(!blk_write_to_file( out_lex, lex_name_lex ))return FAIL_FAILED();
-	if(!blk_write_to_file( out_y, yacc_name_yacc ))return FAIL_FAILED();
+	if(!blk_write_to_file( out_lex, lex_name_lex() ))return FAIL_FAILED();
+	if(!blk_write_to_file( out_y, yacc_name_y() ))return FAIL_FAILED();
 
 	if(0) { 
 	 e_print( "%s", (STR0) out_lex );
@@ -220,12 +365,14 @@ gen_YACC_top_code( buffer2 & out )
  L("          #include \"../src/EXPRS.h\"");
  L("          using namespace EXPRS;");
  out.put("#warning fixed file name gen_ e1_\n");
- out.put("#include \"");
- // out.put( yacc_name_yacc );
- // out.put( lex_name_lex );
- out.put( "gen_e1_yacc.tab.hh\" // bison lists PUNCT_PLUS as int");
- out.put("\"");
- L("");
+ if(0) {
+  out.put("#include \"");
+  // out.put( yacc_name_y() );
+  // out.put( lex_name_lex() );
+  out.put( "gen_e1_yacc.tab.hh\" // bison lists PUNCT_PLUS as int");
+  out.put("\"");
+  L("");
+ }
  L("          #include \"str1.h\"");
  L("  #if 0");
  L("          struct YYSTYPE;");

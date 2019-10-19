@@ -13,12 +13,14 @@ bool bool_main( int argc, char ** argv ) {
  if(1) {
  	// looks nice when called properly // announce action
 	INFO("GENERATOR  %s", argv[0]); // PAIR || Tuplo_duo || Derived TYPE Combiner = { ... item LHS item RHS ... }
-	INFO(" LHS  LEX  %s", argv[1]); // LHS
-	INFO(" RHS YACC  %s", argv[2]); // RHS
+	INFO(" PSG name %s", argv[1] );
+
+//	INFO(" LHS  LEX  %s", argv[1]); // LHS
+//	INFO(" RHS YACC  %s", argv[2]); // RHS
 	// TEST //INFO(argv[3]); // NULL // "(null)" //  // " (null) " // 
  }
- if(argc!=3) {
- 	return FAIL("%d of 3 parameters plus ZERO", argc);
+ if(argc!=2) {
+ 	return FAIL("%d of 2 parameters plus ZERO", argc);
  }
 
 	/*	PSG - the SPEC side of the DATA Tree
@@ -84,12 +86,14 @@ bool bool_main( int argc, char ** argv ) {
 	*/
 
 
- 	PSG.lex_name_lex = argv[1]; // LHS gen_e1_lex.lex
- 	PSG.yacc_name_yacc = argv[2]; // RHS gen_e1_yacc.y
+ 	PSG.set_PSG_name( argv[1] ); // PSG_Name // gen_e1 //
+	// yes it was called (nut data didn't stick)
 
- if(0) {
-	e_print(" PSG.lex_name_lex %s\n", PSG.lex_name_lex );
-	e_print(" PSG.yacc_name_yacc %s\n", PSG.yacc_name_yacc );
+	// then it is immediate ACCESS after STORE
+ if(1) {
+	INFO(" PSG.lex_name_lex()     %s\n", PSG.lex_name_lex() );
+	INFO(" PSG.yacc_name_y()      %s\n", PSG.yacc_name_y() );
+	INFO(" PSG.yacc_name_tab_hh() %s\n", PSG.yacc_name_tab_hh() );
  }
 
 	// build the PSG into ROM_CACHE // clone able MEM buffers

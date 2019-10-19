@@ -30,19 +30,24 @@
 	CLEAN1 += $(PROG1_exec)
 	CLEAN2 += $(PROG2_exec)
 
-	e1_lex=gen_e1_lex
-	e1_yacc=gen_e1_yacc
+	# PROG knows to add _yacc _lex
+	# MAKE still needs to know
+	#
+	e1_psg=gen_e1
+	e1_lex=$(e1_psg)_lex
+	e1_yacc=$(e1_psg)_yacc
 
-	gen_lex=$S/$(e1_lex).lex
-	gen_yacc=$S/$(e1_yacc).y
 
 	# keep files that are between 1 and 2
 	# keep files that are between 2 and 3
 
-	CLEAN12 += $(gen_lex)
-	CLEAN12 += $(gen_yacc)
+#	gen_lex=$S/$(e1_lex).lex
+#	gen_yacc=$S/$(e1_yacc).y
+#	CLEAN12 += $(gen_lex)
+#	CLEAN12 += $(gen_yacc)
 
 	# yacc and lex output different names .tab.
+
 	from_lex=$(e1_lex)
 	from_lex_cc=$(e1_lex).cc
 	from_lex_o=$(e1_lex).o
@@ -85,9 +90,12 @@ $S/$(e1_lex).lex $S/$(e1_yacc).y: $(PROG1_exec)
 	#
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
 	#
-	./$(PROG1_exec) $(e1_lex).lex $(e1_yacc).y
+	./$(PROG1_exec) $(e1_psg) # NO MORE # $(e1_lex) .lex $(e1_yacc).y
 	#
-	# BISON .yac script 
+
+#########
+unused:
+	# BISON .yac script # Makeilfe
 	# FLEX .lex script # uses tokens from yac
 	# NEXT GET Name.cc .hh 
 	# NEXT GET Name.o Prog.exec
@@ -108,16 +116,31 @@ $S/$(e1_lex).lex $S/$(e1_yacc).y: $(PROG1_exec)
 # but want to use $@ to tell bison $(from_yacc_cc)
 
 $(from_yacc_cc) $(from_yacc_hh): $(e1_yacc).y 
-	# bison -o $@ -L c++ $<
+	#
+	# BISON
+	# CREATING $@
+	# FROM < $<
 	bison -d -o $@ $<
 
+
+unused:
+	# NOT # bison -o $@ -L c++ $<
 
 # flex uses bisons tab.hh and the TOKEN lists there
 # so make it dependent on the output from BISON from_yacc_hh 
 # from_yacc_hh e1_yacc.tab.hh
 
 $(from_lex_cc): $(e1_lex).lex $(from_yacc_hh)
-	flex -o $@ $^
+	pwd
+	# e1_lex = $(e1_lex) # gen_e1_lex
+	#
+	# FLEX
+	# CREATING $@
+	# FROM < $ <
+	# FROM ^ $ ^
+	# NOT # flex -o $@ $^
+	flex -o $@ $(e1_lex).lex
+	# DONR MENTION $(from_yacc_hh)
 
 # CXX files
 
@@ -144,7 +167,8 @@ test2: $(PROG2_exec)
 
 dgb: $(PROG1_exec)
 	# debug
-	gdb --args ./$(PROG1_exec) $(e1_lex).lex $(e1_yacc).y
+	gdb --args ./$(PROG1_exec) $(e1_psg)
+#	gdb --args ./$(PROG1_exec) $(e1_lex).lex $(e1_yacc).y
 #	gdb --args ./$(PROG2_exec) < $S/test2.test
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 

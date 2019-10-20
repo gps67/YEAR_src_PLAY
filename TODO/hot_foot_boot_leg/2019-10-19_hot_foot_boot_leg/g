@@ -1,0 +1,18 @@
+D()
+{
+	url="$1"
+	shift
+	echo "# $*"
+	ask_do youtube-dl -i "$url"
+}
+
+D https://www.youtube.com/watch?v=GsUUtPo_aJA Billi
+D https://www.youtube.com/watch?v=4ySHLafN9Bw Muchana
+D https://www.youtube.com/watch?v=pmVkVj59HTM Isambe
+D https://www.youtube.com/watch?v=rG0gx1-MRxQ Sweet Elizabeth
+D https://www.youtube.com/watch?v=YNZ4bMZmrHk Wallow 
+D https://www.youtube.com/watch?v=YFIKQ5YnxlU yesu kristi
+D https://www.youtube.com/watch?v=CKKTt-k8T7c Sancho
+D https://www.youtube.com/watch?v=7iHJu3gsXDE Monie
+
+

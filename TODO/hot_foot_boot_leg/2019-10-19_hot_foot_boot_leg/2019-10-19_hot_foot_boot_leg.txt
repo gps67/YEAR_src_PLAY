@@ -1,0 +1,11 @@
+
+2019-10-19_hot_foot_boot_leg/
+2019-10-19_hot_foot_boot_leg.txt
+
+	Kanda Bongo Man performed in Reading.
+	They sold CD's
+	Here is the index file
+	Here is the youtube bootleg list
+	First create and cd into a directory Kanda
+	Then edit and run this script, on a Linux system, or so,
+	And it unravels

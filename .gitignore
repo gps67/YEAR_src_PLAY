@@ -43,3 +43,7 @@
 
 #noise
 .nfs000*
+
+#links to src_build
+
+ncurses-6.1

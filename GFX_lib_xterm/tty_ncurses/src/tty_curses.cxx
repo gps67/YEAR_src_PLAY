@@ -30,9 +30,13 @@ extern "C" void exit(int);
 		move( 6, 4 );
 		printw("k==KEY_RESIZE");
 	  break;
+	  case 'Q':
+	  case 'q':
 	  case 'k':
 	  case KEY_BACKSPACE:
-	  	k+=1000;
+//	  case KEY_ESC:
+	  case 33:
+	  	nk+=1000;
 	  break;
 	 }
 	}
@@ -117,11 +121,14 @@ namespace TTY_CURSES {
 	set_term_global();
 
         // initscr(); // curses
-	// nonl();			// TTY NL -> CR LF // OFF
 	cbreak();		// char break not line buffered
-	// raw();			// TTY line buffering mode
 	noecho();		// TTY echo off
+
+	// // raw();			// TTY line buffering mode
+	nonl();			// TTY NL -> CR LF // OFF
+	intrflush(stdscr, false );
 	keypad(stdscr, true );	// get KEY events
+	// tabs as left by tput init
 
 	if(has_colors()) {
 	 start_color();

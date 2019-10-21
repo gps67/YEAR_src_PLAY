@@ -2,6 +2,11 @@
 	GFX_lib_xterm/
 	GFX_lib_xterm.txt
 
+ # 191x52 = 52 lines 191 cols // WINDOW :-)
+ #  80x44 = OK panel size
+ # ALT HOTKEY interconnections
+ # screensaver DIAG slideshow # gradual 
+
 	DIAG layout XPOS[u5] YPOS[u5] <--> XY[ u3 ] // XY[ u8 ] // TOKEN_ISE
 
 	# xterm -fn 10x20 -fg black -bg white -geometry 80x44 -e mc $D1 $D2
@@ -211,3 +216,34 @@ CSI Ps ; Ps ; Ps t // EHMH Enhanced WM Hints
 SUBLEX sees _LEFT
 SUBLEX sees connect_point_bottom_left_under_score_SUBLEX_JOIN
 
+
+# it's not a pallette
+# it's a filter
+#
+# filter sees EXPR_1234( a, r, g, s ) # pref no semicolon # expr in wider S1
+#  ncurses-6.1 # ABBR_for_PKG_VN # JOIN "-" %d %d #
+# YEAR/src/PLAY/ # WELL KNOWN PHRASE # sub_dir_path # word__edge = "LR"; // both
+# ncurses.3x.html
+# filename = package_name PLUS
+# %s%s%s  "ncurses"  ".3x"  ".html"
+# %s%s%s
+# CONCAT <LIST> # %s%s%s #
+
+
+file:///home/gps/YEAR/src/PLAY/GFX_lib_xterm/ncurses-6.1/doc/html/man/ncurses.3x.html
+file:///home/gps/
+  YEAR/src/PLAY/
+    GFX_lib_xterm/
+     ncurses-6.1/
+      doc/html/man/
+       ncurses.3x.html
+
+      # SUBLEX wants patterns like these 
+       # EDIT adjusts so that 
+        # KNOW doc/html/man = from settings // ie CONST -thru-> filter
+
+ THIS
+       ncurses.3x.html
+       has the module index of the ncurses base platform
+       man panel has it's single page, many functions
+       man panel # cant read it in HTML/Firefox default

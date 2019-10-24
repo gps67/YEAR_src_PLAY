@@ -33,7 +33,7 @@
 	# PROG knows to add _yacc _lex
 	# MAKE still needs to know
 	#
-	e1_psg=gen_e1
+	e1_psg=../obj/gen_e1
 	e1_lex=$(e1_psg)_lex
 	e1_yacc=$(e1_psg)_yacc
 
@@ -41,12 +41,17 @@
 	# keep files that are between 1 and 2
 	# keep files that are between 2 and 3
 
-#	gen_lex=$S/$(e1_lex).lex
-#	gen_yacc=$S/$(e1_yacc).y
-#	CLEAN12 += $(gen_lex)
-#	CLEAN12 += $(gen_yacc)
+ifeq (1,1)
+	# CLEAN1 += INTO_INTO
+	CLEAN1 += $(into_lex)
+	CLEAN1 += $(into_yacc)
+	# CLEAN1 += INTO_DONE
+endif
 
 	# yacc and lex output different names .tab.
+
+	into_lex=$S/obj/$(e1_lex).lex
+	into_yacc=$S/obj/$(e1_yacc).y
 
 	from_lex=$(e1_lex)
 	from_lex_cc=$(e1_lex).cc
@@ -84,63 +89,76 @@ all: test1 test2
 
 # this is test1 - it generates the .lex .y files
 
-test1: $S/$(e1_lex).lex $S/$(e1_yacc).y 
 
-$S/$(e1_lex).lex $S/$(e1_yacc).y: $(PROG1_exec)
+
+test1: $(into_yacc)
+$(into_lex): $(into_yacc)
+$(from_yacc_cc): $(into_yacc)
+$(from_yacc_hh): $(into_yacc)
+
+$(from_lex_cc): $(from_yacc_hh)
+
+$(from_lex_o): $(from_yacc_hh)
+	# DEPENDENCY ... uses ...
+	# $(from_lex_o)
+	# $(from_yacc_hh)
+	ls -lrt $(from_yacc_hh)
 	#
+
+
+$(into_yacc): $(PROG1_exec)
+	#
+	# GEN
+	# RUN $(PROG1_exec)
+	# PSG $(e1_psg)
+	# adds _lex _yacc .lex .y 
+	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
 	#
-	./$(PROG1_exec) $(e1_psg) # NO MORE # $(e1_lex) .lex $(e1_yacc).y
+	./$(PROG1_exec) $(e1_psg) #
 	#
-
-#########
-unused:
-	# BISON .yac script # Makeilfe
-	# FLEX .lex script # uses tokens from yac
-	# NEXT GET Name.cc .hh 
-	# NEXT GET Name.o Prog.exec
-	# NEXT RUN        Prog.exec Data.sample
-	# NEXT FILE LexName.tab.hh
-	# NEXT FILE $(from_yacc_hh)
-	# NEXT FILE $(from_yacc_cc)
-	# NEXT FILE $(from_yacc_o)
-	# NEXT Maybe Deferred
-	# NEXT Option RUN Filter over DATA using SCRIPTING_POOL
+	# Created
+	# $(into_lex)
+	# $(into_yacc)
 	#
-	# #
-
+	@# ls -l1t $(e1_lex).lex $(e1_yacc).y
 
 # YACC OUTPUT files
 
 # both .hh .cc produced at same time by bison
 # but want to use $@ to tell bison $(from_yacc_cc)
 
-$(from_yacc_cc) $(from_yacc_hh): $(e1_yacc).y 
+# $(from_yacc_cc) $(from_yacc_hh): $(e1_yacc).y 
+
+
+$(from_yacc_cc): $(from_yacc_hh)
+
+$(from_yacc_hh): $(e1_yacc).y 
 	#
 	# BISON
-	# CREATING $@
+	# CREATING @ $@
 	# FROM < $<
 	bison -d -o $@ $<
-
-
-unused:
-	# NOT # bison -o $@ -L c++ $<
+	#
+	# CREATED @ $@
+	#
 
 # flex uses bisons tab.hh and the TOKEN lists there
 # so make it dependent on the output from BISON from_yacc_hh 
 # from_yacc_hh e1_yacc.tab.hh
 
-$(from_lex_cc): $(e1_lex).lex $(from_yacc_hh)
-	pwd
-	# e1_lex = $(e1_lex) # gen_e1_lex
+$(from_lex_cc): $(into_lex) $(from_yacc_hh)
+	# e1_lex = $(e1_lex)
+	# expect  "gen_e1_lex"
 	#
 	# FLEX
-	# CREATING $@
-	# FROM < $ <
-	# FROM ^ $ ^
-	# NOT # flex -o $@ $^
+	# FROM     < $<
+	# CREATING @ $@
+	#
 	flex -o $@ $(e1_lex).lex
-	# DONR MENTION $(from_yacc_hh)
+	#
+	# CREATED @ $@
+	#
 
 # CXX files
 
@@ -168,20 +186,15 @@ test2: $(PROG2_exec)
 dgb: $(PROG1_exec)
 	# debug
 	gdb --args ./$(PROG1_exec) $(e1_psg)
-#	gdb --args ./$(PROG1_exec) $(e1_lex).lex $(e1_yacc).y
-#	gdb --args ./$(PROG2_exec) < $S/test2.test
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
-	# g++ $< $(LINKS) -o $@
 	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
 
 $(PROG2_exec): $(PROG2).o $(OBJS2) 
-	# g++ $< $(LINKS) -o $@
 	g++ $(PROG2).o $(OBJS2) $(LINKS) -o $@
 
 clean: 
 	rm -f $(CLEAN1) $(CLEAN2) 
-	# rm -f $(CLEAN12) $(CLEAN23) 
 
 
 

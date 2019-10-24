@@ -24,15 +24,35 @@ set_PSG_name( STR0 _name_ )
 	// ../obj/gen_e1
 	//
 	// PSG_Name = ../obj/gen_e1
-	// LEX_Name = ../obj/gen_e1_lex	.lex
-	// YACC_Name = ../obj/gen_e1_yacc .y
+	// LEX_Name = ../obj/gen_e1_lex	.lex .cc .o _yacc .y .cc .tab.hh .o
+	// YACC_Name = ../obj/gen_e1_yacc .y .cc .tab.hh .o
+	//
+	// HERE_step LIBR_item PSG_udef .o .api
+	// need to call SITE API LIBR/udef.api
+	// EG PSG = "udef" {
+	//  HERE // 
+	//  HERE //  SCRIPT = HERE
+	//  HERE // 
+	// }
 
 	// COMMENTED OUT // STRICT PAYLOAD //
 	//
-	// local_var PSG_Name = ...
+	// local_var PSG_Name = ... SELF ... // ITEM is in a ... Q ...
+	//  DATA lhs_rhs 
 	// local_var LEX_Name = LHS _ RHS // LHS="PSG_Name" RHS="_lex" // ,lex
+	//  DATA lhs_rhs = PSG_lex // _Name // 
 	// local_var YACC_Name = LHS _ RHS // LHS="YACC_Name" RHS="_yacc" // .y
-	//
+	//  DATA lhs_rhs = PSG_yacc // _Name // 
+	//  DATA lhs_rhs = PSG_psg // _Name // _DATA_SEGMENT STO //
+	// // Parser // variations on Tuplo_PAIR_lhs_rhs_cmnt_code_data
+	// // these are variations on Tuplo_PAIR_lhs_rhs_cmnt_code_data
+	// // Relax! dont like it? rename "LHS" "RHS" to "ARGG_1" "ARG_2"
+	// // Bridges from CXX_chaos _bridge_ DIAG_lhs_rhs // CMNT # LISP
+	// // LANG: allow defered CMNT parameter, arriving on well known channel
+	// // LANG: allow defered CMNT parameter, RETRO_placeholder NOW;
+	// // LISP with Tuplo Blobs // and added paremeters in comments | ctxt
+	// // CTXT thread_var PSG = Tuplo_PAIR_lhs_rhs_cmnt_code_data_ psg;
+	// de-lint double mention "PSG" "psg" // MATCH as SAME // GEN as LHS
 	// SPEC = A grammara called dir/name_something.psg
 	//
 	// OK avoiding SPEC = DATA_IN_FILE( filename.psg )
@@ -73,9 +93,71 @@ set_PSG_name( STR0 _name_ )
 		SPEC=Module.SPEC_Module // getter function api options
 		EXPR = EA_in_ROM 
 		 ROM_Module = PREBUILT_Module
+		  // PARSE // name_both_type_var = "TEXT_TO_EOLN"
+		  // TEXT_TO_EOLN = declare FN using C_prototype_fn_decl
+		  // fn_decl markers ret_val ret_type [ret_var] fn_name fn_args
+		  // DIALECT fn_ret_val 
+		  // EXPLAIN ret_val from fn_CPU_CALL_retval_
+		  // BENCH create var_type var = INIT_VAL; // TREE_LOCN
+		  // so BENCH is building a MODULE, adding item to some_shelf
+		  // shelves might be stack_temp or sto_ROM_editable_to_SEGMENT
+		  // shelves might be SEGMENT sub-zone ITEM { ... }
+		  // HERE we are saying that our SEGMENT has EA_EXPR = u32_hilo
+		  // STO uses u32_hilo // every FILE should //
+		  // MEM converts to u32_cpu when accepting value from MEM_hilo
+		  // CPU module has u32_hilo_swapb type // TODO adjust config
+		  // CPU syscall // ASM_OS_SYSCALL_machine machine;
+		  // EA = ...
+		  // EA_EXPR = ...
+		  // EA_in_ROM = ... // u3_u5_u8_u16 // 
+		  // u3 = LAYER [s] // [u3] = LAYER_%d_%s // %s // u3 NAME[u3] CMNT[u3]
+		  // CMNT // HERE // reusing above line as example to rephrase
+		  // u3 = LAYER [s] // HERE // WHERE HERE is { ... }
+		  // HERE # [u3] = LAYER_%d_%s // %s // u3 NAME[u3] CMNT[u3]
+		  //  u3 = u3 // the IDX input value of u3 // also named u3
+		  // Name = NAME[u3]
+		  // CMNT = CMNT[u3] // STO NAME.CMNT PEER_FIELD via [u3]
+		  // Token "Name" adds the selection mechanism
+		  // SPEC "LAYER.idx = u3_from_EA" // hints at the existence of
+		  // SPEC "LAYER.idx = u3" // LAYER_t & LAYER = LAYER_[u3];
+		  // SPEC "u3_from_EA" // u3 = bitfield_u3 = ... local names
+		  // EXPR "LAYER.idx = u3" // obtain idx from somewhere
+		  // EXPR "LAYER.idx = u3++" // allocate idx HERE
+		  // EXPR "LAYER.Name = Name" // probably converts LHS ro local RHS alias
+		  // EXPR "LAYER.CMNT = CMNT"
+		  //  out.printf("LAYER_%d_%s // %s \n", u3, Name, CMNT );
+		  //
+		  // u5 = ITEM
+		  has u32_hilo_swapb type // TODO adjust config
 		  u32_hilo_DECODER = u32_hilo EA_in_ROM( ROM EA )
 		  // EA is WRT EA_ZERO shared by all of SEGMENT
 		  // EA_ZERO might be SEGMENT_ZERO
+
+		  MAYBE u3_u5_u8_u16_hilo // in file
+		  MAYBE u3_u5_u8_u16_cpu // in register
+		  MAYBE u3_u5_u8_u16_swapb // wierd math, simply make it _cpu
+		  MAYBE u16_u8_u3_u5_swapb // u3 in high bits of byte
+		  MAYBE u16_u8_u5_u3_hilo // u3 in low bits of byte
+		  MAYBE u16_u8_u5_u3_cpu // cpu = swapb_asm(u32_hilo) // inline
+
+		  // This works for X86 because of the way registers subdivide
+		  // reax eax ax ah al
+		  // OFFS = u32_hilo TABLE[ al ] // al = u3_u5 
+		  // OFFS = u32_hilo TABLE[ a2 ] // ah = u8 
+		  // IDX u16 ax = eax >> 16; // topfil zeros or ROTATE retain
+		  // u32_hilo & OFFS = TABLE[ u16_AX ] // ITEM is u32_hilo
+		  // u16 IDX = u16_AZ_item_IDX;
+		  // u32_cpu OFFS = ITEM_TABLE[ IDX ] 
+		  // ITEM_TABLE = HEAP_of_u16_ITEMS // upto, check N, or dont
+		  //
+		  // This works on ARM becuase ## IDK maybe similar byte_of_R
+		  // no swap_b neede, always in hilo 
+		  // 32 bit ARM's are still supported ?
+		  // 64 bit ARM required ... for some modules 
+		  // 64 bit ARM required ... for getting benefit of some modules 
+		  // hopefully low cost, Architecture_32
+		  // dont forget low cost, Architecture_16
+		  // unaligned Tuplo might as use ... u8 ...
 
 		VIEW
 		 STRUCT = BENCH_LOCN
@@ -98,8 +180,12 @@ set_PSG_name( STR0 _name_ )
 
 	// WHERE IS OUTPUT DIRECTORY
 
+	// name == "gen_e1" // the generated files of the EXPR_ONE parser
 	dir_name_ext path_name;
-	path_name.decode_filename( _name_ ); // some/dir/NAME => some/dir/NAME_yacc_y
+	path_name.decode_filename( _name_ );  // some/dir/NAME
+	// some/dir/NAME 
+	// BECOMES => some/dir/NAME_yacc.y .cc .o .tab.hh
+	// BECOMES => some/dir/NAME_lex.lex .cc .o
 
 	path_name.ext.clear(); // sanity test it was, recycle genre from point
 	path_name.mk_full_path_name();
@@ -113,14 +199,19 @@ if(0)	path_name.test_print();
 	path_name.mk_full_path_name();
 	lex_name_base = path_name.full_path_name;
 	// gen_e1_lex.lex
-if(1)	path_name.test_print();
+if(0)	path_name.test_print();
 
 	path_name.name.set( (STR0) tmp_name_keeper );
 
 	path_name.name.put("_yacc");
  	path_name.ext.clear();
+ if(1) {
+	path_name.mk_near_path_name();
+	yacc_name_base = path_name.near_path_name;
+ } else {
 	path_name.mk_full_path_name();
 	yacc_name_base = path_name.full_path_name;
+ }
 	// gen_e1_yacc.y
 if(0)	path_name.test_print();
 
@@ -216,10 +307,14 @@ gen_LEX_lex_return( buffer2 & out )
  L("#include \"buffer1.h\"");
  L("struct EXPR;");
  if(1) {
+  L("#ifndef YYBISON");
+  L("#warning yacc_name_tab_hh SOON to lex");
   out.put("#include \"");
   out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
   out.put("\"");
   L("");
+  L("#warning yacc_name_tab_hh IN ");
+  L("#endif");
  }
  L("/*");
  L("        lookahead may mean any number of tokens, not 1");
@@ -365,13 +460,19 @@ gen_YACC_top_code( buffer2 & out )
  L("          #include \"../src/EXPRS.h\"");
  L("          using namespace EXPRS;");
  out.put("#warning fixed file name gen_ e1_\n");
- if(0) {
+ if(1) {
+  L("#ifndef YYBISON");
+  L("#warning yacc_name_tab_hh SOON into .y ");
   out.put("#include \"");
-  // out.put( yacc_name_y() );
+  out.put( yacc_name_y() );
   // out.put( lex_name_lex() );
-  out.put( "gen_e1_yacc.tab.hh\" // bison lists PUNCT_PLUS as int");
+  // out.put( "gen_e1_yacc.tab.hh\" // bison lists PUNCT_PLUS as int");
   out.put("\"");
   L("");
+  L("#warning yacc_name_tab_hh defined ");
+  L("#else");
+  L("#pragma message(\"yacc_name_tab_hh NOT INCLUDED\")");
+  L("#endif");
  }
  L("          #include \"str1.h\"");
  L("  #if 0");

@@ -5,7 +5,11 @@ namespace EXPRS {
  struct EXPR;
 };
 using namespace EXPRS;
+#ifndef YYBISON
+#warning "gen_e1_yacc.tab.hh" ...
 #include "gen_e1_yacc.tab.hh"
+#warning "gen_e1_yacc.tab.hh" DONE
+#endif
 
 namespace EXPRS {
  struct EXPR {

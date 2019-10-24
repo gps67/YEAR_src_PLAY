@@ -37,6 +37,8 @@ bool Tree_PSG_UDEF:: build_tree() {
 	POOL_LEX.add_LEX( "EOLN" );
 	POOL_LEX.add_LEX( "IDENTIFIER" );
 	POOL_LEX.add_LEX( "WS" );
+	POOL_LEX.add_LEX( "DOUBLE" );
+	POOL_LEX.add_LEX( "INTEGER" );
 
 	// SEQ(" if ( EB ) SN1 [ else SN2 ] ")
 

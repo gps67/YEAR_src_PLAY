@@ -70,6 +70,13 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 		LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
 	);
 
+	// PFX_name -becomes- _name_
+	bool print_TOKEN_name_3(
+		buffer2 & out,
+		LEX_TOKEN_GROUP &  POOL,
+		LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
+	);
+
 	bool print_list(
 	 buffer2 & out,
 	 LEX_TOKEN_GROUP &  POOL

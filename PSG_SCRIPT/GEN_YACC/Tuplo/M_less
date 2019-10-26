@@ -1,5 +1,5 @@
 
-search=+/error
 search=+/warning
 search= # stay at top
+search=+/error
 ./M "$@" 2>&1 | less $search

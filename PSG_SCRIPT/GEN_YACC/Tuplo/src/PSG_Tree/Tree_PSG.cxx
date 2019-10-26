@@ -16,6 +16,8 @@ Tree_PSG::
 
 #include "dir_name_ext.h"
 
+#define if_WARN_1 if(0)
+
 bool Tree_PSG::
 set_PSG_name( STR0 _name_ )
 {
@@ -215,6 +217,7 @@ if(0)	path_name.test_print();
 	// gen_e1_yacc.y
 if(0)	path_name.test_print();
 
+	return true; // OK 
 }
 
 STR0 Tree_PSG::
@@ -253,13 +256,18 @@ bool Tree_PSG::print_list(
 	for( int i =0; i<n; i++ ) {
 		LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
 
-		out.put( '"' );
-		out.put( tok-> Value );
-		out.put( '"' );
+		if( tok-> Value ) {
 
-		out.put( " return TOKEN(" );
-		print_TOKEN_name_2( out, POOL, tok );
-		out.put( ");\n" );
+			out.put( '"' );
+			out.put( tok-> Value );
+			out.put( '"' );
+
+			out.put( " return TOKEN(" );
+			print_TOKEN_name_2( out, POOL, tok );
+			out.put( ");\n" );
+		} else {
+			// silent // no rules for edges
+		}
 
 	};
 	// tok out of scape
@@ -271,14 +279,41 @@ bool Tree_PSG::print_list(
 
 /*
 	The TOKEN = POOL_tok
-
+	
 	Because PFX_ comes from pool
 	Because we dont have an uplink
 	Because we didn't take "PFX_"
-
+	
 	On the other hand
 	u4_tok taken from POOL somewhere
+	
+	In a sense, POOL is a list, idx in list ...
+	but we have forgotten that ?
+*/
+bool Tree_PSG::
+print_TOKEN_name_3(
+	buffer2 & out,
+	LEX_TOKEN_GROUP &  POOL,
+	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
+) {
+	//	out.put( "/* LEX_ */ " );
+	//	out.put( POOL.PFX );	// MADNESS HERE
+		out.put( '_' );
+		out.put( tok-> Name );
+		out.put( '_' );
+		return true;
+}
 
+/*
+	The TOKEN = POOL_tok
+	
+	Because PFX_ comes from pool
+	Because we dont have an uplink
+	Because we didn't take "PFX_"
+	
+	On the other hand
+	u4_tok taken from POOL somewhere
+	
 	In a sense, POOL is a list, idx in list ...
 	but we have forgotten that ?
 */
@@ -305,16 +340,13 @@ gen_LEX_lex_return( buffer2 & out )
  L("// GEN");
  L("#include <string>");
  L("#include \"buffer1.h\"");
- L("struct EXPR;");
  if(1) {
-  L("#ifndef YYBISON");
-  L("#warning yacc_name_tab_hh SOON to lex");
+  if_WARN_1 L("#warning yacc_name_tab_hh SOON to lex");
   out.put("#include \"");
   out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
   out.put("\"");
   L("");
-  L("#warning yacc_name_tab_hh IN ");
-  L("#endif");
+  if_WARN_1 L("#warning yacc_name_tab_hh IN ");
  }
  L("/*");
  L("        lookahead may mean any number of tokens, not 1");
@@ -353,6 +385,7 @@ gen_LEX_lex_return( buffer2 & out )
  L("        // EXCEPT this is LINE 3630");
  L("        // ");
  L("        // ");
+// require tab.hh ??  L("        extern YYSTYPE yylval; // forward");
  L("        yylval.lex_buff = (str0) lex_pool[ pos ];");
  L("        return tok;");
  L("}");
@@ -394,6 +427,15 @@ gen_LEX( buffer2 & out )
 
 	gen_LEX_lex_return( out );
 
+ if(1) {
+  if_WARN_1 L("#warning yacc_name_tab_hh include into .lex ");
+  out.put("#include \"");
+  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
+  out.put("\"");
+  L("");
+  if_WARN_1 L("#warning yacc_name_tab_hh included ");
+ }
+
 	L("");
 	L("%}");
 	L("");
@@ -434,6 +476,31 @@ gen_LEX( buffer2 & out )
 bool Tree_PSG::
 gen_YACC( buffer2 & out )
 {
+ // L("%define api.namespace {::EXPRS}");
+ // not in C
+ // %define variable 'api.namespace' is not used
+ // %define api.namespace {::EXPRS}
+ /*
+ 	on_error
+	 if(!gen_()) return FAIL_FAILED;
+ 	on_error
+	 if(!gen_()) goto ret_FAIL_FAILED;
+ 	on_error
+	 if(!gen_()) {
+
+	 	FAIL("on_error ARGS"); // todo FAIL edits ARGS sublex_link 
+	 	WARN("on_error ARGS"); // todo WARN edits ARGS sublex_link 
+		// ARGS == ARG[v] // Layer = SCRIPT EVAL expr_ARGS
+		// SEQ "on_error_CALL" ... ARGV ...
+		// SEQ on_error CALL ...
+		// SEQ "FAIL" CALL ...
+		// SEQ "INFO" CALL ... // tap on/off Bench_dgb
+	 } else {
+		 // OK
+	 }
+	 goto_step_next;	// EDGE //
+ */
+
 	L("%{");
 	L("");
 	gen_YACC_top_code( out );
@@ -453,27 +520,28 @@ bool Tree_PSG::
 gen_YACC_top_code( buffer2 & out )
 {
 
+
  L("          #include <cstddef>");
  L("          #include <stdio.h>");
  L("  //      #include <string>");
  L("          extern const char * str_of_token( int token );");
+
+ // before tab,h so that namespace exists
  L("          #include \"../src/EXPRS.h\"");
- L("          using namespace EXPRS;");
- out.put("#warning fixed file name gen_ e1_\n");
+ // L("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
+ // L("          typedef struct EXPR; // this doesnt work");
+ // also some editing of exprs.h
+ // L("          using namespace EXPRS; // nor this"); // 
+
  if(1) {
-  L("#ifndef YYBISON");
-  L("#warning yacc_name_tab_hh SOON into .y ");
+  if_WARN_1 L("#warning yacc_name_tab_hh include into .y ");
   out.put("#include \"");
-  out.put( yacc_name_y() );
-  // out.put( lex_name_lex() );
-  // out.put( "gen_e1_yacc.tab.hh\" // bison lists PUNCT_PLUS as int");
+  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
   out.put("\"");
   L("");
-  L("#warning yacc_name_tab_hh defined ");
-  L("#else");
-  L("#pragma message(\"yacc_name_tab_hh NOT INCLUDED\")");
-  L("#endif");
+  if_WARN_1 L("#warning yacc_name_tab_hh included ");
  }
+
  L("          #include \"str1.h\"");
  L("  #if 0");
  L("          struct YYSTYPE;");
@@ -490,6 +558,21 @@ gen_YACC_top_code( buffer2 & out )
  L("                  printf(\"# ERR # line %d # %s\\n\", yylineno, msg );");
  L("          // no   printf(\"# ERR # col %d # %s\\n\", @$.first_column, msg );");
  L("          }");
+
+ if(0) {
+ // this is also bad syntax // MUDFIX
+  L("// EG CXX ");
+  L("namespace NS {");
+  L("  struct CLS { int z; }; ");
+  L("};");
+  L(" union MY_UNION {");
+  L("  NS:CLS * PTR; ");
+  L("};");
+  L("using namespace NS;");
+  L(" union MY_UNION_two {");
+  L("  CLS * PTR; ");
+  L("};");
+ }
 
 	return true;
 }
@@ -523,11 +606,34 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
         for( int i =0; i<n; i++ ) {
                 LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
 
+		bool value_present = true;
+		if( !tok->Value ) value_present = false;
+		else 
+		if( tok->Value == "" ) value_present = false;
+		else 
+	/* used in PUNCT
+		if( tok->Value == " " ) value_present = false;
+		else 
+		if( tok->Value == "-" ) value_present = false;
+		else 
+		if( tok->Value == "\n" ) value_present = false;
+		else 
+		if( tok->Value == "{}" ) value_present = false;
+		else 
+		if( tok->Value == "''" ) value_present = false;
+	*/	;
+
 		out.put("   case ");
 		print_TOKEN_name_2( out, POOL, tok );
-		out.put(":\t return \"");
-		out.put( tok-> Value );
-		out.put("\";\n");
+		if(value_present) {
+			out.put(":\t return \"");
+			out.put( tok-> Value );
+			out.put("\";\n");
+		} else {
+			out.put(":\t return \"");
+			print_TOKEN_name_3( out, POOL, tok );
+			out.put("\";\n");
+		}
 	}
 	return true;
 }
@@ -536,7 +642,16 @@ bool Tree_PSG::
 gen_YACC_union( buffer2 & out )
 {
  L("%union {");
- L(" EXPR * expr;");
+  // NS
+// NO L(" EXPR * expr;"); // almost
+// NO  L(" EXPRS:: struct EXPR * expr;");
+// NO L(" struct EXPRS:: EXPR * expr;");
+// L(" struct ::EXPRS:: EXPR * expr;");
+// L(" ::EXPRS:: EXPR * expr;");
+//   L(" EXPR * expr;");
+// L(" EXPR * expr;");
+L(" struct EXPR * expr;"); // almost // incomplete type
+// L(" struct EXPR_t * expr;"); // almost
  L(" int token;");
  L(" const char * lex_buff;");
  L("}");
@@ -568,8 +683,12 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_type_list( buffer2 & out )
 {
+// L("%type <EXPR_t> expr_ident");
+// L("%type <EXPR_t> expr");
  L("%type <expr> expr_ident");
  L("%type <expr> expr");
+// L("%type <EXPRS::EXPR> expr_ident");
+// L("%type <EXPRS::EXPR> expr");
  L("%type <token> BOP");
 	return true;
 }

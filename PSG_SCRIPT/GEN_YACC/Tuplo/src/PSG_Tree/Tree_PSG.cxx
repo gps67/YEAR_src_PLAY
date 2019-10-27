@@ -236,16 +236,48 @@ lex_name_lex(){
 	return str;
 }
 
+/*
+	mildly inefficient, but very convenient
+	maybe recognise usage, code in a service
+*/
 STR0 Tree_PSG::
 yacc_name_tab_hh(){
-	static buffer2 str; // this is not rentrant 
-	str = yacc_name_base;
-	str.put(".tab.hh");
+	static buffer2 str; // this is not multi-user
+	str.clear();
+	put_yacc_name_tab_hh( str );
 	return str;
 }
 
+bool Tree_PSG::
+put_yacc_name_tab_hh( buffer2 & out ){
+	// needs auto add if(!put(...)) return FAIL_FAILED()
+	out.put( yacc_name_base );
+	out.put(".tab.hh");
+	return true;
+}
 
-bool Tree_PSG::print_list(
+bool Tree_PSG::
+put_include_Q2( buffer2 & out, buffer2 & incl_filename )
+{
+	out.put("#include \"");
+	out.put( incl_filename );
+	out.put("\"\n" );
+	return true; // return out.am_ok // clearable error flag
+}
+
+bool Tree_PSG::
+put_include_yacc_tab_hh( buffer2 & out )
+{
+	buffer2 incl_filename; // clear() done obvs
+	put_yacc_name_tab_hh( incl_filename );
+
+	return
+	put_include_Q2( out, incl_filename );
+  	// if_WARN_1 L("#warning yacc_name_tab_hh included ");
+}
+
+bool Tree_PSG::
+print_list(
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL
 ) {
@@ -257,6 +289,8 @@ bool Tree_PSG::print_list(
 		LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
 
 		if( tok-> Value ) {
+
+			// what if Value uses Q2
 
 			out.put( '"' );
 			out.put( tok-> Value );
@@ -341,12 +375,7 @@ gen_LEX_lex_return( buffer2 & out )
  L("#include <string>");
  L("#include \"buffer1.h\"");
  if(1) {
-  if_WARN_1 L("#warning yacc_name_tab_hh SOON to lex");
-  out.put("#include \"");
-  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
-  out.put("\"");
-  L("");
-  if_WARN_1 L("#warning yacc_name_tab_hh IN ");
+	put_include_yacc_tab_hh( out );
  }
  L("/*");
  L("        lookahead may mean any number of tokens, not 1");
@@ -356,9 +385,9 @@ gen_LEX_lex_return( buffer2 & out )
  L("*/");
  L("");
  L("// static const int nlex16 = 64;");
- L("static const int nlex16 = 16;");
+ L("   static const int nlex16 = 16;");
  L("// static const int nlex16 = 1;");
- L("static buffer1 lex_buffer;");
+ // L("static buffer1 lex_buffer;");
  L("static buffer1 lex_pool[nlex16];");
  L("static int nlex_pos = 0;");
  L("");
@@ -422,31 +451,30 @@ bool Tree_PSG:: print_tree_as_files( ) {
 bool Tree_PSG::
 gen_LEX( buffer2 & out )
 {
-	L("%{");
+	L("");
+	L("%{"); // CODE section
 	L("");
 
 	gen_LEX_lex_return( out );
 
  if(1) {
-  if_WARN_1 L("#warning yacc_name_tab_hh include into .lex ");
-  out.put("#include \"");
-  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
-  out.put("\"");
-  L("");
-  if_WARN_1 L("#warning yacc_name_tab_hh included ");
+	put_include_yacc_tab_hh( out );
  }
 
 	L("");
 	L("%}");
+
 	L("");
 	L("%option noyywrap");
 	L("");
+
 	L("%%");
 	L("");
 
 	// these should be in build_tree -> POOL_LEX 
 
 	// GEN from LEXP list 
+	// need to declare "LEX_EOLN" as TOKEN with NULL str rule
 	L("\\r\\n	yylineno++; return TOKEN(LEX_EOLN);");
 	L("\\n	yylineno++; return TOKEN(LEX_EOLN);");
 	L("[ \\t\\r\\n]	return TOKEN(LEX_WS);");
@@ -464,8 +492,10 @@ gen_LEX( buffer2 & out )
 	L("");
 	// out.put("# LIST LEX\n");
 	print_list( out, POOL_LEX );
+	L("");
 	L(". printf(\"Unknown token!\\n\"); yyterminate();");
 	L("");
+
 	L("%%");
 	L("");
 	return true;
@@ -531,15 +561,10 @@ gen_YACC_top_code( buffer2 & out )
  // L("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
  // L("          typedef struct EXPR; // this doesnt work");
  // also some editing of exprs.h
- // L("          using namespace EXPRS; // nor this"); // 
+ L("          using namespace EXPRS; // ... E1 ..."); // 
 
  if(1) {
-  if_WARN_1 L("#warning yacc_name_tab_hh include into .y ");
-  out.put("#include \"");
-  out.put( yacc_name_tab_hh() ); // // out.put( "gen_e1_yacc.tab.hh" );
-  out.put("\"");
-  L("");
-  if_WARN_1 L("#warning yacc_name_tab_hh included ");
+	put_include_yacc_tab_hh( out );
  }
 
  L("          #include \"str1.h\"");
@@ -642,16 +667,14 @@ bool Tree_PSG::
 gen_YACC_union( buffer2 & out )
 {
  L("%union {");
-  // NS
 // NO L(" EXPR * expr;"); // almost
 // NO  L(" EXPRS:: struct EXPR * expr;");
 // NO L(" struct EXPRS:: EXPR * expr;");
 // L(" struct ::EXPRS:: EXPR * expr;");
 // L(" ::EXPRS:: EXPR * expr;");
-//   L(" EXPR * expr;");
 // L(" EXPR * expr;");
-L(" struct EXPR * expr;"); // almost // incomplete type
 // L(" struct EXPR_t * expr;"); // almost
+ L(" struct EXPR * expr;"); // almost // incomplete type?
  L(" int token;");
  L(" const char * lex_buff;");
  L("}");
@@ -683,12 +706,10 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_type_list( buffer2 & out )
 {
-// L("%type <EXPR_t> expr_ident");
-// L("%type <EXPR_t> expr");
+ // <expr> is the fieldname
+ // expr_ident is the rulename
  L("%type <expr> expr_ident");
  L("%type <expr> expr");
-// L("%type <EXPRS::EXPR> expr_ident");
-// L("%type <EXPRS::EXPR> expr");
  L("%type <token> BOP");
 	return true;
 }
@@ -696,10 +717,6 @@ gen_YACC_type_list( buffer2 & out )
 bool Tree_PSG::
 gen_YACC_rules( buffer2 & out )
 {
- L("// RULES ");
- L("// RULES ");
- L("// RULES ");
- L("// RULES ");
  L("// RULES ");
  L("// RULES ");
  buffer2 filed;

@@ -5,15 +5,24 @@
 
 
 bool Tree_PSG_UDEF:: build_tree() {
+
+	// manually SORT longest first
+
+	POOL_PUNCT.add_PUNCT( "<<=" ); 
+	POOL_PUNCT.add_PUNCT( ">>=" ); 
+
 	POOL_PUNCT.add_PUNCT( "==" );
 	POOL_PUNCT.add_PUNCT( "!=" ); 
 	POOL_PUNCT.add_PUNCT( "<=" ); 
 	POOL_PUNCT.add_PUNCT( ">=" ); 
 	POOL_PUNCT.add_PUNCT( "<<" ); 
 	POOL_PUNCT.add_PUNCT( ">>" ); 
-	POOL_PUNCT.add_PUNCT( "<<=" ); 
-	POOL_PUNCT.add_PUNCT( ">>=" ); 
 	POOL_PUNCT.add_PUNCT( "++" ); 
+
+// ASCII order -vs- PRIORITY ? 
+// not obviosly, so ... meh
+
+	/*
 	POOL_PUNCT.add_PUNCT( "<" ); 
 	POOL_PUNCT.add_PUNCT( ">" ); 
 	POOL_PUNCT.add_PUNCT( "=" ); 
@@ -31,6 +40,26 @@ bool Tree_PSG_UDEF:: build_tree() {
 	POOL_PUNCT.add_PUNCT( "%" ); 
 	POOL_PUNCT.add_PUNCT( "|" ); 
 	POOL_PUNCT.add_PUNCT( "~" ); 
+	*/
+
+	POOL_PUNCT.add_PUNCT( "*" ); 
+	POOL_PUNCT.add_PUNCT( "+" ); 
+	POOL_PUNCT.add_PUNCT( "^" ); 
+
+	POOL_PUNCT.add_PUNCT( "<" ); 
+	POOL_PUNCT.add_PUNCT( ">" ); 
+	POOL_PUNCT.add_PUNCT( "=" ); 
+	POOL_PUNCT.add_PUNCT( "(" ); 
+	POOL_PUNCT.add_PUNCT( ")" ); 
+	POOL_PUNCT.add_PUNCT( "{" ); 
+	POOL_PUNCT.add_PUNCT( "}" ); 
+	POOL_PUNCT.add_PUNCT( "." ); 
+	POOL_PUNCT.add_PUNCT( "-" ); 
+	POOL_PUNCT.add_PUNCT( "/" ); 
+	POOL_PUNCT.add_PUNCT( "&" ); 
+	POOL_PUNCT.add_PUNCT( "%" ); 
+	POOL_PUNCT.add_PUNCT( "|" ); 
+	POOL_PUNCT.add_PUNCT( "~" ); 
 
 	POOL_RW.add_RW( "if" );
 
@@ -39,6 +68,11 @@ bool Tree_PSG_UDEF:: build_tree() {
 	POOL_LEX.add_LEX( "WS" );
 	POOL_LEX.add_LEX( "DOUBLE" );
 	POOL_LEX.add_LEX( "INTEGER" );
+
+	// PSG // VALUE Value_type value_as_str value_as_binary // except BLOB
+	// PSG // NAME // portal to DECLARATION 
+	// PSG // NAME // macro over USAGE
+	// PSG // NAME // bound to NAMED_ITEM
 
 	// SEQ(" if ( EB ) SN1 [ else SN2 ] ")
 

@@ -23,7 +23,12 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	STR0 yacc_name_y();
 	STR0 lex_name_lex();
-	STR0 yacc_name_tab_hh();
+	STR0 yacc_name_tab_hh(); // mildly inefficient
+
+	bool put_include_Q2( buffer2 & out, buffer2 & incl_filename );
+
+	bool put_yacc_name_tab_hh( buffer2 & out );
+	bool put_include_yacc_tab_hh( buffer2 & out );
 
  // MOVE // decls used in api // near but not here
  // MOVE // STUBS might carry subset of typedef names;
@@ -76,6 +81,8 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 		LEX_TOKEN_GROUP &  POOL,
 		LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
 	);
+
+	bool print_include_yacc_tab_hh( buffer2 & out );
 
 	bool print_list(
 	 buffer2 & out,

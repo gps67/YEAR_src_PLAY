@@ -1,0 +1,65 @@
+SEGMENT_16M_txt
+
+	u24 = 16M
+	u32 = 16M + u8_INFO // u8_OPCOE 
+
+	So the SEGMENT_16M can bring a reference to it's SPEC
+	SPEC.TABLE_decode_u8_INFO
+	DECODE_u32_hilo
+	DECODE_u8_u24		// 16M OFFS range
+	DECODE_u8_u8_u16	// 64K  IDX range // 256 bytes_per_item in 16M
+
+	So 64K of objects fitting into 16M of data, may fit many tasks
+
+	DECODE_u8_u20_u4
+	// CONTEXT = from outside Exported Far link
+	// CONTEXT = from inside Internal
+
+	  gives 16 fields per object at u20_OFFS // no table required
+	  16 iexprs in HEAP/ITEM/EXPR
+	  ROM decodes ITEM => typeof ITEM
+	  VTBL call or EA_expr into ITEM
+
+	  Can stretch OFFS_u20 = u16 <<4 (cost 0-8-15 bytes per ITEM)
+
+SEGMENT_1M
+	u20 = 1M
+	u20
+
+P0P2
+SEGMENT_M16
+
+	u24 =        16 x 1024 x 1024 = 16 M // 16 megabytes microdrive
+	
+	u30 =  1 x 1024 x 1024 x 1024 = 1G // 1 gigabyte of 4G =32-bit limit
+	u32 =  4 x 1024 x 1024 x 1024 = 1G // 4G is the 32-bit limit // uns
+
+	u24 = 16 x 1024 x 1024 = 16 M // 16 megabytes microdrive // + u8 
+	u20 =  1 x 1024 x 1024 = 1M // 1 megabyte space // 12 bit unused
+
+	u16 =        64 x 1024 = 64 K // lot of people in a mini
+
+P0P2
+
+
+
+
+		The customisable machine, uses some BOOL_NAMES
+		GEN might use them in #ifdef or #other
+		dbg might use them in skimming_tracer // _compiled_in
+		(going for Callable_PTR == NULL || action_enabled_own_code)
+		(going for SCRIPTED_Callable_PTR == NULL || CALL_eval //
+		// CALL_safe_eval = RT_EVAL_safer_mode
+		// dbg uses this hook too, to patch in custom EVAL
+		// after the first NON_NULL hook, the others are expected
+		// each wrapping filter receives SCRIPT ACCESS_ FP_SP CPU
+		// each filter receives ARGV // ARGV[0] == name_of_wider_task/EA
+
+		// SAFE MODE needs a name think
+		// SAFE MODE code rolls out OK
+		// SAFE DATA EMUL = eg FILE * is STDOUT // is buffer2 max_1M
+		// SAFE VFS under_libc under_lib_base_open_filename
+		// SAFE TEMP = a preallocated SEGMENT_16M as VFS STO
+
+
+

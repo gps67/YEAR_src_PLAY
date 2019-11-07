@@ -222,6 +222,21 @@ if(0)	path_name.test_print();
 
 STR0 Tree_PSG::
 yacc_name_y(){
+	// REPLACE THIS WITH // bool gen_STR2_into( obj_hold<str2> & retval )
+	// REPLACE THIS WITH // bool gen_STR2_into( buffer2 & out )
+	// TEMPLATE {
+	//  ... var decls move to STMT_GAP_SCOPE_START
+	//  // TAMPLATE PARAMETER // out // tree_chunked_stream // _ROM
+	//  buffer2 & out; // connected to tree chunked stream to generated file
+	//  ... CODE upto HERE ...
+	//  if(! tree.put_yacc_name_y( out )) return FAIL_FAILED();
+	//  .... CODE_from_HERE ...
+	//  // HINT That function can choose default, call script, FAIL_null()
+	// }
+	// tree_chunked_stream // shared buffer2 out // on_tide_level_high()
+	//  at least LINES // but _lines_in_ can do that anyway
+	// GEN places markers where tree stack completes starts upto_line pause
+	//
 	static buffer2 str; // this is not rentrant 
 	str = yacc_name_base;
 	str.put(".y");
@@ -243,6 +258,9 @@ lex_name_lex(){
 STR0 Tree_PSG::
 yacc_name_tab_hh(){
 	static buffer2 str; // this is not multi-user
+	// LANG // flag on object str // first_set_var_lock_second_waits_for_slip_lock
+	// LANG // slip_lock = spin_lock for N1xN2 then CALL // repeat or break
+	// LANG // scheduler can throw with C++ semantics catch ask/be scheduler
 	str.clear();
 	put_yacc_name_tab_hh( str );
 	return str;

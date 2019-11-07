@@ -1,0 +1,114 @@
+PANELS basc_api for a curses overlapping window manager
+PANELS basc_api for an overlapping window manager
+
+	The stack of PANELS is a Layout thing
+	We can do that, eventually, not yet
+	We have X11 redraw and ITEM * Layout_TILE ; // var is proto is type
+
+	X11 redraw
+		lots of redraw XYWH from on card backing
+	ITEM * Layout_TILE ; // var is proto is type
+
+YES PANELS
+
+	OK so PANELS can be used for ncurses,
+	to do things that X11 usually does,
+	but not so much as doing things X11 cant,
+	until we have a better approach to frame area splitting
+
+
+
+
+
+ASIDE
+
+ P0P2 = one dimentional Tuplo positions OFFS
+ XYWH = two dimentional AREA wrt screen/surface_src_dst_hot
+
+ 	So, I WANT to say P0 P2 and P0P2
+	BUT that is confusing AREA <-> DATA
+	XY0_XY2
+	X0X2
+	Y0Y2
+
+	Not sure about WH vs XY2
+
+
+ surface_src_dst_hot
+
+ 	// += dpi // += view_port // 
+
+ 	a surface is XY WH 
+	ZERO is at TOP LEFT
+	ZERO = HOTSPOT wrt zero
+	HOTSPOT = XY /* wrt XY_00_of_src_surface_00 */
+	HOTSPOT = XY /* wrt XY_00_of_src_viewport_00 */
+
+		you see the problem,
+		lots of ZERO point of origin (eg HOTSPOT)
+
+		so this id(surface_src_dst_hot)
+		has a (TBS) DIAG with well known names for things
+
+			dpi
+			is_pixmap_on_VGA_card
+
+			BOOL [s]
+			compile_with_dgb_tracer_hooks_init_NULL
+			compile_with_safe_mode_limits_init_QUOTA // NULL is ask
+			compile_with_safe_mode_functions_called // IN THE NAME?
+			compile_with_VTBL_four // version loop // V2 clear
+
+			this_EA_exp is u32_hilo_acdb // specifically NOT_abcd
+			// VALUE= lo16_hhLL // AH is lower than AL //
+			// VALUE= ddccbbaa
+			# GEN searches for x86_ah_al_shift16_ah_al
+
+			src = the virtual scroll surface
+			dst = the actual screen surface
+			dst = the actual screen surface via bouncing_view_port
+			via = can be builtin to both
+
+			This is the while point of the class.
+			So that the client drawing code,
+			can pick up similar vars from different surface types
+			or have someone else provide the MATRIX // mostly flat
+			or also have an addition STEP or pushed upstream
+
+
+P0P2
+SEGMENT_M16
+
+	u24 =        16 x 1024 x 1024 = 16 M // 16 megabytes microdrive
+	
+	u30 =  1 x 1024 x 1024 x 1024 = 1G // 1 gigabyte of 4G =32-bit limit
+	u32 =  4 x 1024 x 1024 x 1024 = 1G // 4G is the 32-bit limit // uns
+
+	u24 = 16 x 1024 x 1024 = 16 M // 16 megabytes microdrive // + u8 
+	u20 =  1 x 1024 x 1024 = 1M // 1 megabyte space // 12 bit unused
+
+	u16 =        64 x 1024 = 64 K // lot of people in a mini
+
+P0P2
+
+
+
+
+		The customisable machine, uses some BOOL_NAMES
+		GEN might use them in #ifdef or #other
+		dbg might use them in skimming_tracer // _compiled_in
+		(going for Callable_PTR == NULL || action_enabled_own_code)
+		(going for SCRIPTED_Callable_PTR == NULL || CALL_eval //
+		// CALL_safe_eval = RT_EVAL_safer_mode
+		// dbg uses this hook too, to patch in custom EVAL
+		// after the first NON_NULL hook, the others are expected
+		// each wrapping filter receives SCRIPT ACCESS_ FP_SP CPU
+		// each filter receives ARGV // ARGV[0] == name_of_wider_task/EA
+
+		// SAFE MODE needs a name think
+		// SAFE MODE code rolls out OK
+		// SAFE DATA EMUL = eg FILE * is STDOUT // is buffer2 max_1M
+		// SAFE VFS under_libc under_lib_base_open_filename
+		// SAFE TEMP = a preallocated SEGMENT_16M as VFS STO
+
+

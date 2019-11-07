@@ -13,10 +13,21 @@ extern "C" void exit(int);
 	TTY_CURSES::tty_curses tty;
 	tty.setup();
 
-	move( 2, 4 );
+	int y_line = 2;
+	int x_column = 4;
+
+	int &y = y_line;
+	int &x = x_column;
+
+	move( y++, x );
         printw("Hello World!");
-	move( 4, 4 );
-        printw("------------------Hello World!-------------------------------");
+        printw("TODO GIT Branch 01_Hello_World");
+	move( y++, x );
+        printw("--------------------------------------------------------");
+	move( y++, x );
+        printw("TODO GIT Branch 01_Hello_World");
+        printw("");
+        printw("--------------------------------------------------------");
 	int nk=0;
 	while(nk++<10) {
          refresh();

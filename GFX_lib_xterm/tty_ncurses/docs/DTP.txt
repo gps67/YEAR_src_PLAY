@@ -1,0 +1,21 @@
+
+	HAHA! Curses and DTP
+
+	Set dpi = 72pt/12p2 = 6 dpi vertical
+	Set dpi = 150dpi screen/16pix_per_char = 10 dpi vertical
+
+	Most of the DTP fine adjustments are set to zero
+	DTP moves a CSR from BASELINE to BASELINE (L2R FLAT)
+	PICS are replaced with [ABSENT]
+
+	There is a doubble height font, in xterm 
+
+	After the coarse-grain alignments that TTY offers
+	there is a real DTP layout, same as X11, but with hooks
+	lots of lan_drawing box diagrams from this side
+
+	Can still have TimeLine axis, zoom, scroll, extra maerkers, graphs
+
+	Can reuse mono-font-layout, adding GUI graphs within those cells
+	Treat as click to grid.
+	PROP_FONT_SPACING_OK works (or not, then un-set this)

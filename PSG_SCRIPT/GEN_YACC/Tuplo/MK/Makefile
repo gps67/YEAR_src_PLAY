@@ -76,6 +76,8 @@ endif
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
 	OBJS1 += Tree_PSG.o
 	OBJS1 += Tree_PSG_UDEF.o
+	OBJS1 += Tree_PSG_UDEF_rules.o
+	OBJS2 += EXPRS.o
 
 	# clean between phases # maybe
 
@@ -242,7 +244,13 @@ $(OBJS2): $(HDRS)
 
 test2: $(PROG2_exec)
 	# test2
-	./$(PROG2_exec) < $S/test2.test
+	./$(PROG2_exec) $S/test2.test
+
+dgb_PROG2: $(PROG2_exec)
+	# debug
+	# BUT STDIN < $S/test2.test
+	# errm
+	gdb --args ./$(PROG2_exec) $S/test2.test
 
 dgb: $(PROG1_exec)
 	# debug

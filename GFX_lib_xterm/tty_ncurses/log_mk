@@ -1,0 +1,22 @@
+
+OBJS1 does not include PROG1.o because OBJS_LIST_1 is an api
+PROG1 gets its own rock_pool, itemises its own dir/file items
+PROG1.o gets mentioned on Makefile LINKER_to_exec
+-or-better-
+PROJECT brings a list of SAMPLE utils
+PROJECT builds all SAMPLES with dgb_ON 
+DIALECT Snippets_Makefile_Phrasebook API CheckList STEP
+
+
+
+g++ -g -I./ -I../ -I/home/gps/YEAR/src/libs_apps/include  -c ../src/test1.cxx                                  
+g++ -g -I./ -I../ -I/home/gps/YEAR/src/libs_apps/include  -c ../src/tty_curses.cxx                                  
+# g++ test1.o -lncurses -Wl,--rpath=/home/gps/YEAR/src/libs_apps/build_LGX_M7/lib -L/home/gps/YEAR/src/libs_apps/build_LGX_M7/lib -lbase -o test1.exec
+g++ test1.o tty_curses.o -lncurses -Wl,--rpath=/home/gps/YEAR/src/libs_apps/build_LGX_M7/lib -L/home/gps/YEAR/src/libs_apps/build_LGX_M7/lib -lbase -o test1.exec
+./test1.exec
+# INFO  # bool TTY_CURSES::tty_curses::set_term_global() # TTY global
+# INFO  # bool TTY_CURSES::tty_curses::set_term_global() # LINES = 44 COLS = 80
+# INFO  # virtual TTY_CURSES::tty_curses::~tty_curses() # END TTY // _ncurses
+# WARN  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # 0x55725909cee0  debug_list_root == this
+# WARN  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # setting debug_list_root to NULL
+make: *** No rule to make target 'test2.o', needed by 'test2.exec'. Stop.

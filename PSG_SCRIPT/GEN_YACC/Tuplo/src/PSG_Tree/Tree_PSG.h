@@ -8,6 +8,15 @@
 
 #include "Tree_PSG_LEX_TOKEN.h"
 
+class Tree_PSG_RULE { public:
+	str1 name;
+	enum RULE_TYPE {
+	 rule_ONE_OF,
+	 rule_SEQ,
+	 rule
+	};
+};
+
 class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
  // ARGV // track origin of data used in SYSCALLS	
@@ -15,15 +24,15 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	// str1 holds the malloced memory
 
- 	str1 psg_name_base; // gen_e1 ... FILENAME SUBLEX
- 	str1 lex_name_base; // gen_e1_lex .lex
- 	str1 yacc_name_base; // gen_e1_yacc .y
+ 	str1 psg_name_base; // gen_e1 		... FILENAME SUBLEX
+ 	str1 lex_name_base; // gen_e1_lex 	.lex
+ 	str1 yacc_name_base; // gen_e1_yacc 	.y
 
 	bool set_PSG_name( STR0 _name_ );
 
-	STR0 yacc_name_y();
-	STR0 lex_name_lex();
-	STR0 yacc_name_tab_hh(); // mildly inefficient
+	STR0 yacc_name_y(buffer2 & str);
+	STR0 lex_name_lex(buffer2 & str);
+	STR0 yacc_name_tab_hh(buffer2 & str); // mildly inefficient
 
 	bool put_include_Q2( buffer2 & out, buffer2 & incl_filename );
 
@@ -84,23 +93,39 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	bool print_include_yacc_tab_hh( buffer2 & out );
 
+	/*!
+	*/
+	// print list of each item in LEX_TOKEN_GROUP
+	// THIS is the style guide
 	bool print_list(
 	 buffer2 & out,
 	 LEX_TOKEN_GROUP &  POOL
 	);
 
+	/*!
+		GEN lex and yacc files
+
+		These are NOT virtual, because that is for build_tree()
+		Once the tree is built, how it is printed is fixed.
+
+		You could probably switch to another style of output
+		By deriving from this, and making things virtual
+
+		Also needs a namespace container
+
+
+	*/
 	bool print_tree_as_files( );
 
-	//
-	// find app_lib / LEX_lex_return
-	//
-	// find app_lib / LEX_lex_return
-	//
+	// GEN // sections of LEX file
 
-	bool gen_LEX( buffer2 & out );
-	bool gen_LEX_lex_return( buffer2 & out );
+	bool gen_LEX( buffer2 & out ); // all of it
+	bool gen_LEX_lex_return( buffer2 & out ); // integrate LEX api
 
-	bool gen_YACC( buffer2 & out );
+	// GEN // sections of YACC file
+
+	bool gen_YACC( buffer2 & out ); // all of it
+
 	bool gen_YACC_top_code( buffer2 & out );
 	bool gen_YACC_str_of_token( buffer2 & out );
 	bool gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & list );

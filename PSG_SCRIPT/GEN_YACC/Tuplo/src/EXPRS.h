@@ -1,7 +1,14 @@
-#ifndef EXPR_H
-#define EXPR_H
+#ifndef EXPRS_H
+#define EXPRS_H
 
 #include "obj_ref.h"
+#include "buffer2.h"
+#include <stdarg.h>
+
+// extern "C" { }
+// I created this somewhere, mesh of mish mash
+extern const char * str_of_token( int token );
+
 
 /*
 	The C++ tree of classes for E1 expr types
@@ -185,6 +192,11 @@ using namespace EXPRS;
 	 	
  */
 
+
+namespace EXPRS {
+ struct PRINTER;
+};
+
 /*!
 	EXPR = virtual BASE CLASS 
 
@@ -193,15 +205,71 @@ using namespace EXPRS;
  */
  struct EXPR {
   virtual ~EXPR() {}
-  virtual void printer(int indent) = 0;
+  virtual void print_to( EXPRS::PRINTER * printer) = 0;
+  virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
  };
 
 namespace EXPRS {
+
+
+ struct PRINTER
+ { public:
+  buffer2 out;
+  int indent;
+  virtual ~PRINTER() {
+  }
+  PRINTER() {
+  	indent = 0;
+  }
+
+  buffer2 & buff() { return out; }
+
+  virtual void print_EXPR ( EXPR * expr ) 
+  {
+  	if(!expr) { WARN("NULL expr"); return; }
+	expr -> print_to( this );
+  }
+  void print_EXPR_indented ( EXPR * expr ) {
+  	if(!expr) { WARN("NULL expr"); return; }
+  	indent ++;
+	print_EXPR( expr );
+  	indent --;
+  }
+  void print_STR ( const char * str ) {
+  	out.print("%s", str );
+  }
+
+  void ind_indent()
+  {
+  	int(indent);
+  }
+
+  void ind(int _ind) {
+	for(int i=0; i<_ind; i++ ) {
+		out.print("| ");
+	}
+  }
+ };
+
+
  // everything (mostly) in EXPRS is a subclass of EXPR
  // EXPR base is outside the namespace
 
  // Tuples start here, or stay in PAIR
  // soon SEQ <--> STRUCT
+
+ struct EXPR_name : public EXPR {
+	str1 name;
+
+ 	EXPR_name( const char * _name ) 
+	: name( _name )
+	{
+	}
+	void print_to( PRINTER * printer)
+	{
+		printer -> print_STR( name );
+	}
+ };
 
  struct EXPR_lhs_rhs : public EXPR {
 	EXPR * lhs;
@@ -222,29 +290,28 @@ namespace EXPRS {
 		op = ' ';
 		name = (const char *) NULL;
 	}
-	void ind(int indent) {
-		for(int i=0; i<indent; i++ ) {
-			printf("| ");
-		}
-	}
-	void printer(int indent) {
-		if(!indent)
-			printf("#### line ####\n");
+
+  // virtual
+ 	 void print_to( PRINTER * printer)
+	 {
+		buffer2 & out = printer->buff();
+		if(!printer->indent)
+			out.print("#### line ####\n");
 		if(name) {
-			ind(indent);
-			printf("NAME_%s\n", (STR0)name );
+			printer->ind_indent();
+			out.print("NAME_%s\n", (STR0)name );
 			return;
 		}
 		if(lhs) {
-			lhs->printer(indent+1);
+			printer->print_EXPR_indented( lhs );
 		}
 
 		// print INDENT "+"
-		ind(indent);
-		printf("%s\n", str_of_token(op) );
+		printer->ind_indent();
+		out.print("%s\n", str_of_token(op) );
 
 		if(rhs) {
-			rhs->printer(indent+1);
+			printer->print_EXPR_indented( rhs );
 		}
 	}
 };
@@ -272,38 +339,13 @@ namespace EXPRS {
 
 */
 
-EXPR * E1( const char * name )		// expr == IDEN_anystr
-{
-	// using PAIR to hold nothing, definitely NAME used
-	EXPR_lhs_rhs * E = new EXPR_lhs_rhs();
-	E->name = name;
-	return E;
-}
-EXPR * E2( EXPR * lhs_, int op_, EXPR * rhs_ ) // expr == EXPR op EXPR
-{
-	EXPR_lhs_rhs * E = new EXPR_lhs_rhs();
-	E->lhs = lhs_;
-	E->rhs = rhs_;
-	E->op = op_;
-	return E;
-}
-EXPR * mk_E_id( const char * name_ ) {	// expr == IDEN_anystr // REPEAT ??
-	EXPR_lhs_rhs * E = new EXPR_lhs_rhs();
-	E->name = name_;
-	return E;
-}
-EXPR * E1( int op_, EXPR * rhs_ ) { // expr = TOKEN_unary RHS
-	return E2( NULL, op_, rhs_);
-}
-EXPR * E_plus_E( EXPR * lhs,  EXPR * rhs ) { // EXPR + EXPR
-	return E2( lhs, PUNCT_PLUS, rhs );
-}
-EXPR * E_times_E( EXPR * lhs,  EXPR * rhs ) { // EXPR * EXPR
-	return E2( lhs, PUNCT_STAR, rhs );
-}
-EXPR * E_power_E( EXPR * lhs,  EXPR * rhs ) { // EXPR ^ EXPR
-	return E2( lhs, PUNCT_CARET, rhs );
-}
+extern EXPR * E1( const char * name );		// expr == IDEN_anystr
+extern EXPR * E2( EXPR * lhs_, int op_, EXPR * rhs_ ); // expr == EXPR op EXPR
+extern EXPR * mk_E_id( const char * name_ ); // expr == IDEN_anystr // REPEAT ??
+extern EXPR * E1( int op_, EXPR * rhs_ );  // expr = TOKEN_unary RHS
+extern EXPR * E_plus_E( EXPR * lhs,  EXPR * rhs );  // EXPR + EXPR
+extern EXPR * E_times_E( EXPR * lhs,  EXPR * rhs ); // EXPR * EXPR
+extern EXPR * E_power_E( EXPR * lhs,  EXPR * rhs ); // EXPR ^ EXPR
 
 }; // namespace
 

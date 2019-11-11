@@ -1,0 +1,13 @@
+
+	NUM_UNIT.txt
+
+	typedef int NUM; // i32 
+
+	NUM_2 dpi = 6.2; // 2-20 // float or int.unit_2
+
+	NUM_2 unit = x10pt; .. multiply by 10 used with undo matrix
+	// print x1, effectively a single decimal place, no dot, round to tenth
+
+a	
+	
+

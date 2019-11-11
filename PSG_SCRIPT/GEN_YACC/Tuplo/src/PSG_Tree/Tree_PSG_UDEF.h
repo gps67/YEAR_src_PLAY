@@ -17,6 +17,8 @@
 class Tree_PSG_UDEF : public Tree_PSG { public:
 
 	bool build_tree();
+	bool build_tree_lex();
+	bool build_tree_yacc();
 
 };
 

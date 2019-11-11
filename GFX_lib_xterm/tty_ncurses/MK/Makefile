@@ -24,6 +24,16 @@
 	PROG2=test2
 	PROG2_exec=$(PROG2).exec
 
+# OTHER OPTION: 
+#	OBJS1 += $(PROG1).o
+#	OBJS2 += $(PROG2).o
+#	OBJS2 += $(OBJ1)
+#	OBJS2 = & OBJS1 # HMMM syntax of CT implement B within C bind_var
+#	DIALECT EA_EXPR OBJS_LIST_1 = POOL of filename.o or OTHER
+#	DIALECT EA_EXPR OBJS_LIST_2 = POOL of filename.o or OTHER
+# 	LEXICON EA_EXPR ...
+#	Makefile
+#	LATER CLEAN += OBJS # so dont add here, add there ...
 	CLEAN1 += $(PROG1).o
 	CLEAN2 += $(PROG2).o
 
@@ -31,6 +41,8 @@
 	CLEAN2 += $(PROG2_exec)
 
 	OBJS1 += tty_curses.o
+	OBJS1 += tty_curses_CSR.o
+	OBJS1 += tty_curses_test_1.o
 
 	# order matters - maybe put into .a to mix it up
 
@@ -75,8 +87,17 @@ $(PROG2_exec): $(PROG2).o $(OBJS2)
 	g++ $(PROG2).o $(OBJS2) $(LINKS) -o $@
 
 clean: 
-	rm -f $(CLEAN1) $(CLEAN2) 
 	# rm -f $(CLEAN12) $(CLEAN23) 
+	rm -f $(CLEAN1) $(CLEAN2) 
 
 
+# I need to check those different spellings in the comments
+# But easier to wait until EXPR_Makefile brings its LEXICON $< means ...
 
+# PROG1 generated FILE2
+# FILE2 generated RESULT3
+# now tidy up, each activity by its own list, generated in the way from 1 to 2
+# CLEAN12 
+# now tidy up, each activity by its own list, generated in the way from 2 to 3
+# CLEAN23 
+# Maybe RESULT is still there ?

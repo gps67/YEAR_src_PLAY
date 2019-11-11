@@ -86,14 +86,16 @@ bool bool_main( int argc, char ** argv ) {
 	*/
 
 
- 	PSG.set_PSG_name( argv[1] ); // PSG_Name // gen_e1 //
+ 	// PSG.set_PSG_name( argv[1] ); // PSG_Name // gen_e1 //
+ 	if(!PSG.set_PSG_name( argv[1] )) FAIL_FAILED();
 	// yes it was called (nut data didn't stick)
 
 	// then it is immediate ACCESS after STORE
  if(1) {
-	INFO(" PSG.lex_name_lex()     %s\n", PSG.lex_name_lex() );
-	INFO(" PSG.yacc_name_y()      %s\n", PSG.yacc_name_y() );
-	INFO(" PSG.yacc_name_tab_hh() %s\n", PSG.yacc_name_tab_hh() );
+	buffer2 tmp_str;
+	INFO(" PSG.lex_name_lex()     %s\n", PSG.lex_name_lex(tmp_str) );
+	INFO(" PSG.yacc_name_y()      %s\n", PSG.yacc_name_y(tmp_str) );
+	INFO(" PSG.yacc_name_tab_hh() %s\n", PSG.yacc_name_tab_hh(tmp_str) );
  }
 
 	// build the PSG into ROM_CACHE // clone able MEM buffers

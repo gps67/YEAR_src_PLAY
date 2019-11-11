@@ -69,13 +69,14 @@ ASIDE
 			dst = the actual screen surface via bouncing_view_port
 			via = can be builtin to both
 
-			This is the while point of the class.
+			This is the whole point of the class.
 			So that the client drawing code,
 			can pick up similar vars from different surface types
 			or have someone else provide the MATRIX // mostly flat
 			or also have an addition STEP or pushed upstream
 
 
+DATA MEMORY P0P2 not DIAG P0P2
 P0P2
 SEGMENT_M16
 
@@ -96,7 +97,7 @@ P0P2
 
 		The customisable machine, uses some BOOL_NAMES
 		GEN might use them in #ifdef or #other
-		dbg might use them in skimming_tracer // _compiled_in
+		dgb might use them in skimming_tracer // _compiled_in
 		(going for Callable_PTR == NULL || action_enabled_own_code)
 		(going for SCRIPTED_Callable_PTR == NULL || CALL_eval //
 		// CALL_safe_eval = RT_EVAL_safer_mode
@@ -110,5 +111,21 @@ P0P2
 		// SAFE DATA EMUL = eg FILE * is STDOUT // is buffer2 max_1M
 		// SAFE VFS under_libc under_lib_base_open_filename
 		// SAFE TEMP = a preallocated SEGMENT_16M as VFS STO
+
+OK
+
+	PANEL is a word reserved for curses. we need other names
+		VIEW_AREA
+		FRAME
+		ZONE
+
+	curses/panels may be necessary for a few curses things
+	but curses should not do what X11 does not do
+	eg WMAN ... unless it is because X11 already does it another way
+	so add curses/panel, use it as the base window
+	so try to repeat without panels.h, see how far it goes
+	PLUS it is not clear how curses SHOULD be used
+	we really need a team of improvers + tutorials documentation 
+
 
 

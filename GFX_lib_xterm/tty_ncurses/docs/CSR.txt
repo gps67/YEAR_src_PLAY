@@ -6,8 +6,110 @@ PAPER SURFACE // not bounded by SCREEN
 	 XY P0
 	 XY P2	// not clip but used .. maybe slit P2_X alias X2 
 
+	 // DIALECT XYWH uses XY as DATA_for_EXPR_xywh class
+	 // FEATURE script_var may also be expr_DATA _DATA
+	 // DEFINE get_var_W() = P2 - P0;
+	 // DEPEND P0P2 or _ADAPTER_P0P2_fn( A R G S ) // DATA
+	 // RECALC is_data_SCOPE ... is_expr_SCOPE( ARGS )
+	 // expr is [HEAP] [ITEM] 
+	 //  recalc() {
+	 //   ...
+	 //  }
+	 //  XYWH_as_P0P2 imports {
+	 	NUM & get_var_W() { return P2 - P0.X; } // .X
+	 	NUM & get_var_H() { return P2 - P0.X; } // .Y
+	 	int & get_var_N() { return P2 - P0; } // UNIT_STEP_WORD_PAGE
+
+		NUM & get_var_X() { return P0.X }
+		NUM & get_var_Y() { return P0.Y }
+	 //  }
+	 //   
+	 // recalc expr H is sum of lines and Layout
+	 //
+	 //	VAR_t H_expr = VAR_TYPE::var_is_expr // EXPR[ 0XFFFF ]
+
+
 	 BLOCK_ZERO = SURFACE_ZERO_TOP_LEFT // 0 menas SURFACE_ZERO
 	 BLOCK_ZERO = SURFACE_ZERO_plus_P0 // 0 means BLOCK_ZERO
+	 BLOCK_ZERO = ... // 0 means BLOCK_ZERO
+	 BLOCK_ZERO = "[P0[P2" // TOP_LEFT_to_BOTTOM_RIGHT // P2 OUTSIDE
+	 BLOCK_ZERO = SURFACE_ZERO + offs adj == _ZERO // .STO
+
+	 DTP_AGENT = DTP_that_printed_this { // which exports editable script
+	  DTP_AGENT of_type TTY_Layout_Scrolled_DOCUMENT { // which brings
+	   ...
+	   	PageContainer
+
+			you_are_here
+
+		Layout
+			SURFACE = Tree_of_Paragraphs
+			DATA += SURFACE.DATA
+			DATA += IMPORTS.DATA
+			DATA += SESS.DATA // per user per session per resume
+
+			CODE += FN _Print_Page_( to_SURFACE )
+			CODE += FN _Print_Tree_( to_STORAGE )
+			CODE += FN _Filter_Tree_( to_FILTER )
+
+			CODE += SCRIPT _Draw_Paged_PrePrinted_RePrint_expr {
+			// ITEM = at( X15, Y4 ) draw( loaded_png }
+			// ITEM = at( X4, Y5 ) draw( expr_data )
+			// ~~~~ ~ expr_data = CODE_tree + DATA_sto // its tree
+			// ITEM = at( X16, Y5 ) stamp_this_FreeType_Twig
+			// ITEMS += IMPORT tree drawing Layout_fragments
+			//
+			 _INIT_FROM_ZERO_(); // or as req
+			 //
+			 //	nb accepts already above zero, add to subtype
+			 //
+			 //		NUM PAGE_RIGHT = EXPR ...
+			 //		NUM PAGE_LEFT = EXPR ... 
+			 //		NUM PAGE_WIDTH = AUTO_RECALC PAGE_RIGHT - PAGE_LEFT
+			 //
+			 // AUTO_RECALC {
+			 //  DETECT PAGE_RIGHT changed
+			 //  DETECT PAGE_LEFT changed
+			 //  DETECT VALUE required SOON_ISH
+			 //  DETECT VALUE required DONE_END_SCOPE_ISH
+			 //  GEN might invoke the DTOR // still moved to SWEEP_UP_
+			 //  // after the choice is made, this code is called, or inlined
+
+			 //	/* EVAL_RECALC */
+			 //	//  NUM & PAGE_WIDTH = PAGE_RIGHT - PAGE_LEFT
+			 //	//  NUM & PAGE_HEIGHT = PAGE_BOTTOM - PAGE_TOP
+			 //	//  NUM & PAGE_STEP = PAGE_P2 - PAGE_P0
+/*
+ SCRIPT is transcribing var access into functions often 
+ SCRIPT is transcribing var access into data_field_expr // GEN_COMPILE _jit_the_slow_remembered way
+ SCRIPT is idx_STEP_FROM_ONTO_BACK in idx_TREE as DECODE_u32_EXPR_DATA EVAL( SCRIPT ) // RESULTS
+*/
+			 //
+			 //	//	The STO of the item is provided to the code
+			 //	//	THIS += INST.field // from derived class
+			 //	//	using field("PAGE_WIDTH")
+			 //	//	STO = LAYOUT.
+			 //  
+			 // }
+			//
+			}
+
+			MARGINS {
+			 FGBG {
+			 	PALLETTE = VGA_16_Colours_80x25_screen_8x16_font
+			 }
+			 Layout {
+			 	MainPage_CLIP_EDGE
+			 }
+			}
+
+
+	   	Paragraph
+
+	   ...
+	  }
+	 };
+
 
 	 VIEW AREA on SUFACE
 

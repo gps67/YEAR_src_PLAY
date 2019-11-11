@@ -1,5 +1,7 @@
 
+// expr_ident : LEX_IDENTIFIER { $$ = E1( $1 ); }
 
+// expr_ident : LEX_IDENTIFIER { $$ = E1( "LEX_IDENTIFIER" ); }
 expr_ident : LEX_WS expr_ident { $$ = $2; }
 expr_ident : expr_ident LEX_WS { $$ = $1; }
 expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E1( (STR0) yylval.lex_buff ); }
@@ -23,12 +25,12 @@ expr : expr PUNCT_CARET expr { $$ = E_power_E( $1, $3 ); }
 expr : expr PUNCT_STAR expr { $$ = E_times_E( $1, $3 ); }
 expr : expr PUNCT_PLUS expr { $$ = E_plus_E( $1, $3 ); }
 
-// expr    :       LEX_WS expr LEX_WS { $$ = $2; }
-// //	|	expr  BOP  expr { $$ = E2( $1, $2, $3 ); }
-// 	|       PUNCT_MINUS  expr  { $$ = E1( $1, $2 ); }   
-// //	|       '-'  expr      %prec  '*'
-// 	|	PUNCT_L_PAR expr PUNCT_PAR_R { $$ = $2; } // keep not of () ?
-// 	;
+expr    :       LEX_WS expr LEX_WS { $$ = $2; }
+//	|	expr  BOP  expr { $$ = E2( $1, $2, $3 ); }
+	|       PUNCT_MINUS  expr  { $$ = E1( $1, $2 ); }   
+//	|       '-'  expr      %prec  '*'
+	|	PUNCT_L_PAR expr PUNCT_PAR_R { $$ = $2; } // keep not of () ?
+	;
 
 // no match on eoln ?
 // example Left Recursive list (without the list builder)
@@ -36,9 +38,7 @@ lines
 : %empty
 | lines line
 
-// line : expr LEX_EOLN { EXPR * E = $1; E->printer(0); }
-
-line : expr LEX_EOLN { EXPR * E = $1; E->print_to_NULL(); }
+line : expr LEX_EOLN { EXPR * E = $1; E->printer(0); }
 
 top: lines
 

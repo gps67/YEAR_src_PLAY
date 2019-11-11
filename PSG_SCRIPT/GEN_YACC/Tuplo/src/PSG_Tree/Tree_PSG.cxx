@@ -21,7 +21,11 @@ Tree_PSG::
 bool Tree_PSG::
 set_PSG_name( STR0 _name_ )
 {
-	INFO("%s", _name_ );
+	bool near_not_far = true;
+	if(0) near_not_far = false; // use FULL PATH NAMES
+
+	if(0) INFO("_name_ %s", _name_ ); // ../obj/gen_e1
+
 	// gen_e1
 	// ../obj/gen_e1
 	//
@@ -178,42 +182,60 @@ set_PSG_name( STR0 _name_ )
 
 	// 
 	// GUESS SUBLEX LHS JOIN="_" "lex" || "yacc" || "PSG"
-
-
 	// WHERE IS OUTPUT DIRECTORY
+	//
 
-	// name == "gen_e1" // the generated files of the EXPR_ONE parser
+	// START set_PSG_name( _name_ )
+
+
+	// INFO("_name_ %s", _name_ ); // "../obj/gen_e1"
+
 	dir_name_ext path_name;
 	path_name.decode_filename( _name_ );  // some/dir/NAME
+
 	// some/dir/NAME 
 	// BECOMES => some/dir/NAME_yacc.y .cc .o .tab.hh
 	// BECOMES => some/dir/NAME_lex.lex .cc .o
 
+	// some/dir/NAME - expected, remove any .ext // or BETTER throw 
 	path_name.ext.clear(); // sanity test it was, recycle genre from point
-	path_name.mk_full_path_name();
+
+	// after any change rebuild full_path_name
+	path_name.mk_BOTH_path_name();
+
+	// the filename of the PSG - before adding extra_suffixes
 	psg_name_base = path_name.full_path_name; // NORMALISED left-prefix
-	// path/gen_e1
-if(0)	path_name.test_print();
+	psg_name_base = path_name.near_path_name; // str1 = ... probably STR0
+if(0)	e_print("psg_name_base == '%s'\n", (STR0) psg_name_base );
+if(0)	path_name.test_print(); // path/../obj/gen_e1
+
+
+  // return FAIL("STOP HERE");
+
+  	// PUSH path_name.name // single _path_name_decoder
 	buffer2 tmp_name_keeper = path_name.name; // gen_e1
 
-	path_name.name.put("_lex");
  	path_name.ext.clear();
-	path_name.mk_full_path_name();
-	lex_name_base = path_name.full_path_name;
+	path_name.name.put("_lex");
+	path_name.mk_BOTH_path_name();
+	if(near_not_far) {
+			lex_name_base = path_name.near_path_name;
+	} else {	lex_name_base = path_name.full_path_name;
+	}
+if(0)	e_print("lex_name_base == '%s'\n", (STR0) lex_name_base );
 	// gen_e1_lex.lex
 if(0)	path_name.test_print();
 
+  	// POP path_name.name // single _path_name_decoder
 	path_name.name.set( (STR0) tmp_name_keeper );
 
+ 	path_name.ext.clear(); // really no noeed tho
 	path_name.name.put("_yacc");
- 	path_name.ext.clear();
- if(1) {
-	path_name.mk_near_path_name();
-	yacc_name_base = path_name.near_path_name;
- } else {
-	path_name.mk_full_path_name();
-	yacc_name_base = path_name.full_path_name;
- }
+	path_name.mk_BOTH_path_name();
+	if(near_not_far) {
+			yacc_name_base = path_name.near_path_name;
+	} else {	yacc_name_base = path_name.full_path_name;
+	}
 	// gen_e1_yacc.y
 if(0)	path_name.test_print();
 
@@ -221,7 +243,9 @@ if(0)	path_name.test_print();
 }
 
 STR0 Tree_PSG::
-yacc_name_y(){
+yacc_name_y(
+	buffer2 & str // this is now rentrant 
+){
 	// REPLACE THIS WITH // bool gen_STR2_into( obj_hold<str2> & retval )
 	// REPLACE THIS WITH // bool gen_STR2_into( buffer2 & out )
 	// TEMPLATE {
@@ -237,16 +261,16 @@ yacc_name_y(){
 	//  at least LINES // but _lines_in_ can do that anyway
 	// GEN places markers where tree stack completes starts upto_line pause
 	//
-	static buffer2 str; // this is not rentrant 
 	str = yacc_name_base;
 	str.put(".y");
 	return str;
 }
 
 STR0 Tree_PSG::
-lex_name_lex(){
-	static buffer2 str; // this is not rentrant 
-	str = lex_name_base;
+lex_name_lex(
+	buffer2 & str // this is now rentrant 
+){
+	str = lex_name_base; // assignment copy init 0
 	str.put(".lex");
 	return str;
 }
@@ -256,8 +280,11 @@ lex_name_lex(){
 	maybe recognise usage, code in a service
 */
 STR0 Tree_PSG::
-yacc_name_tab_hh(){
-	static buffer2 str; // this is not multi-user
+yacc_name_tab_hh(
+	buffer2 & str
+	// moving this from static to provided
+	// this is now multi-user
+){
 	// LANG // flag on object str // first_set_var_lock_second_waits_for_slip_lock
 	// LANG // slip_lock = spin_lock for N1xN2 then CALL // repeat or break
 	// LANG // scheduler can throw with C++ semantics catch ask/be scheduler
@@ -447,17 +474,31 @@ gen_LEX_lex_return( buffer2 & out )
 #include "util_buf.h"
 
 
-bool Tree_PSG:: print_tree_as_files( ) {
-	buffer2 out_lex;
-	buffer2 out_y;
+/*!
+	The PSG Tree already exists (with any adaptors for FLEX BISON)
 
-	// return true; PARAMETER out += added_text
+	Print out the .lex and .y files
+	Gererate them from the Tree_PSG
+*/
+bool Tree_PSG:: print_tree_as_files( ) {
+	buffer2 tmp_str;
+
+	buffer2 out_lex; // entire LEX file text
+	buffer2 out_y; // entire YACC file text
+
+	// generate 2 files
 
 	if(!gen_LEX( out_lex ))return FAIL_FAILED();
 	if(!gen_YACC( out_y ))return FAIL_FAILED();
 
-	if(!blk_write_to_file( out_lex, lex_name_lex() ))return FAIL_FAILED();
-	if(!blk_write_to_file( out_y, yacc_name_y() ))return FAIL_FAILED();
+	// write out 2 file buffers
+
+	if(!blk_write_to_file(out_lex, lex_name_lex(tmp_str)))
+		{ return FAIL_FAILED(); }
+	if(!blk_write_to_file( out_y, yacc_name_y(tmp_str) ))
+		return FAIL_FAILED();
+
+	// flood the TTY if debugginh
 
 	if(0) { 
 	 e_print( "%s", (STR0) out_lex );
@@ -467,23 +508,25 @@ bool Tree_PSG:: print_tree_as_files( ) {
 }
 
 bool Tree_PSG::
-gen_LEX( buffer2 & out )
+gen_LEX( buffer2 & out ) // gen the entire files text
 {
 	L("");
 	L("%{"); // CODE section
 	L("");
 
+	// utility functions that carry STR_VALUE return from LEX
 	gen_LEX_lex_return( out );
 
- if(1) {
-	put_include_yacc_tab_hh( out );
- }
+	// our code will need the table of tokens that YACC maintains for us
+	if(1) {
+		put_include_yacc_tab_hh( out );
+	}
 
 	L("");
-	L("%}");
+	L("%}"); // CODE section END
 
 	L("");
-	L("%option noyywrap");
+	L("%option noyywrap"); // forgotten, but it goes here
 	L("");
 
 	L("%%");
@@ -728,7 +771,7 @@ gen_YACC_type_list( buffer2 & out )
  // expr_ident is the rulename
  L("%type <expr> expr_ident");
  L("%type <expr> expr");
- L("%type <token> BOP");
+// L("%type <token> BOP");
 	return true;
 }
 

@@ -3,8 +3,26 @@
 #include "Tree_PSG_LEX_PUNCT_NAME.h"
 
 
+// SEE: RUN_at_CT // to get PREBUILT machine at init_val_one
+// SEE: STO_fold_away // elf_segment expands to .bss or MMAP_fd
+// MMAP_fd (is usually /dev/zero to get it to give up solo-owned clean pages)
+// MMAP_fd = API_LINK VFS simulating ROM_FILE init_1 data then
+// MMAP_fd = API_LINK PKT simulating ROM_FILE_DATA_XFER in API_STREAM
+// SERVER delivers REQ_VER_WHEN DIR/FILE/DATA + META_DATA
+// SERVER filters requests through CHECKER_FILTER
+// RELAY filters are either inside or outside, or vetted
+
 
 bool Tree_PSG_UDEF:: build_tree() {
+	if(! build_tree_lex() ) return FAIL_FAILED(); 
+	if(! build_tree_yacc() ) return FAIL_FAILED(); 
+	return true;
+}
+
+// this will befollowed by EVERY lex used by PSG 
+// we have to define the longest first, so others later
+// maybe automate as PUNCT4 PUNCT3 PUNCT2 PUNCT1
+bool Tree_PSG_UDEF:: build_tree_lex() {
 
 	// manually SORT longest first
 

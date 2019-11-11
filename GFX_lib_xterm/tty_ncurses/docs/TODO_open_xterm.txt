@@ -1,0 +1,44 @@
+
+	TODO_open_xterm.txt
+
+	First xterm opens tty_curses program, with its ENV
+
+	Prog forks + execs xterm which runs SKINNY_CALLBACK TTY_RELAY_
+
+	  OPTION
+
+	      xterm will size as requested // DIMS for WINDOW = a_profile
+	      resize happens, keep notes to go back to
+
+	  OPTION
+
+	      xterm will have created a /dev/pts/7 for ALL that a TTY can be
+	      TTY_emulator_in_xterm_mode
+	      TTY_fd has linux TTY capabilities
+	       BAUD echo raw edit-line
+	       INTR --goes-to->
+
+	  TTY_RELAY
+
+	      PID = TTY_RELAY_pid // The XTERM.TTY_PROG is a leaf PID
+	      // this PID has the TTY (but not the central app)
+
+	      // PPID = XTERM -e cmd
+	      // can lookup /proc/$pid/fd/0 is /dev/pts/7 
+	      // also readlink is "/dev/pts/7" if it will let you in
+
+	      // or other RPC back to SESSION_CORE
+
+	      MUX { 
+	        fd_SCN_CSR
+		fd_TTY_ioctl
+		fd_KEYBOARD
+		fd_OUT
+		fd_ERR
+	      }
+
+	      SCN = WIN = XTERM-connection-how ??
+
+	       ancestor PID // or own :-)
+
+	       /proc/MYPID

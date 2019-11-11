@@ -7,71 +7,47 @@
 
 extern "C" void exit(int);
 
+static WINDOW *
+statusline(void)
+{
+    WINDOW * win = stdscr;
+    wmove(win, LINES - 1, 1);
+    wclrtoeol(win);
+    // CSR at start of last line idx of LINES // counting from ZERO
+    // +1 SP 
+    return win;
+}
 
-  bool main_test1()
-  {       
-	TTY_CURSES::tty_curses tty;
-	tty.setup();
+class tty_curses_CSR {
+};
 
-	int y_line = 2;
-	int x_column = 4;
-
-	int &y = y_line;
-	int &x = x_column;
-
-	move( y++, x );
-        printw("Hello World!");
-        printw("TODO GIT Branch 01_Hello_World");
-	move( y++, x );
-        printw("--------------------------------------------------------");
-	move( y++, x );
-        printw("TODO GIT Branch 01_Hello_World");
-        printw("");
-        printw("--------------------------------------------------------");
-	int nk=0;
-	while(nk++<10) {
-         refresh();
-         int k = getch();
-		move( 5, 4 );
-		char * kstr = keybound( k, 1 );
-		printw("k=='%s' keybound is useless", kstr);
-		free(kstr);
-	 switch( k ) {
-	  case KEY_RESIZE:
-		move( 6, 4 );
-		printw("k==KEY_RESIZE");
-	  break;
-	  case 'Q':
-	  case 'q':
-	  case 'k':
-	  case KEY_BACKSPACE:
-//	  case KEY_ESC:
-	  case 33:
-	  	nk+=1000;
-	  break;
-	 }
-	}
-
-        return true;
-  }
 
 #include <signal.h>
   static void handle_SIGINT(int sig) {
-  	endwin();
-	WARN("CTRL-C INTR");
-	e_print("===============\n");
-	exit(sig);
+  	endwin(); // restart = resume = by next action
+	if( sig != 2 ) {
+		FAIL("SIGNAME expected %d got %d", SIGINT, sig );
+	}
+	/*
+		nb app must handle EINTR in the REPL loop
+		call_again immediately or fail + retry
+	*/
+
+	WARN("CTRL-C INTR exi4(%d)", EINTR);
+	exit(EINTR);
   }
 
-	static
-	void handle_SIGWINCH( int signal ) {
-		// best to not handle it, let curses handle it, get KEY_RESIZE
-		endwin();
-		refresh(); // picks WH from xterm's ENV somehow // LINES COLS
-	        INFO("LINES = %d COLS = %d", LINES, COLS );
-		// now compute new layout and draw it
-		FAIL("unwritten");
-	}
+#if 0
+  static
+  void handle_SIGWINCH( int signal ) {
+	// best to not handle it, let curses handle it, get KEY_RESIZE
+	endwin();
+	refresh(); // picks WH from xterm's ENV somehow // LINES COLS
+        INFO("LINES = %d COLS = %d", LINES, COLS );
+	// now compute new layout and draw it
+	FAIL("unwritten");
+  }
+#endif
 
 namespace TTY_CURSES {
 
@@ -117,9 +93,26 @@ namespace TTY_CURSES {
   }
 */
  
+ // virtual
+  bool tty_curses:: set_handle_SIGINT() 
+  {
+  	(void) signal(SIGINT, handle_SIGINT); // be brief on stack + time
+	 // endwin() and Queue KEY_SIGINT
+	 // can always restart after endin(); by next action
+	return true;
+  }
 
   bool tty_curses:: setup () {
-  	(void) signal(SIGINT, handle_SIGINT); // TTY is bigger than curses
+
+	 // TODO wbkgdset RTFM wresize( win, n_Height, n_Width )
+	 // on resize, new area is painted background-on-background
+	 // so already OK, leave CSR in a decent state
+	 //
+	 // nb invokes as a signal, with brief stack + time
+	 // nb ncurses handles it, converting to KEY_RESIZE
+	 //
+  	if(!set_handle_SIGINT() ) return FAIL_FAILED();
+	//
 // best to not handle it, let curses handle it, get KEY_RESIZE
 //  	(void) signal(SIGWINCH, handle_SIGWINCH ); // TTY is bigger than curses
 
@@ -147,6 +140,7 @@ namespace TTY_CURSES {
 	 init_pair( 1, COLOR_GREEN, COLOR_BLACK );
 	 // app start on default from setup
 	 attrset( COLOR_PAIR(1) );
+
 	}
 	return true;
   }

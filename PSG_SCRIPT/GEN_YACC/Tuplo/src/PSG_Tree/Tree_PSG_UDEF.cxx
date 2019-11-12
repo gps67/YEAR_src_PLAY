@@ -79,6 +79,8 @@ bool Tree_PSG_UDEF:: build_tree_lex() {
 	POOL_PUNCT.add_PUNCT( "|" ); 
 	POOL_PUNCT.add_PUNCT( "~" ); 
 
+// ERROR of DOUBLE add_PUNCT --
+
 	POOL_RW.add_RW( "if" );
 
 	POOL_LEX.add_LEX( "EOLN" );

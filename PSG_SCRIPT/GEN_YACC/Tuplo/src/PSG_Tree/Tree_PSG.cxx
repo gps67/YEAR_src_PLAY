@@ -532,33 +532,63 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L("%%");
 	L("");
 
-	// these should be in build_tree -> POOL_LEX 
+	gen_LEX_RULES_eoln( out ); // must match FLEX / YY line no ++
 
-	// GEN from LEXP list 
-	// need to declare "LEX_EOLN" as TOKEN with NULL str rule
-	L("\\r\\n	yylineno++; return TOKEN(LEX_EOLN);");
-	L("\\n	yylineno++; return TOKEN(LEX_EOLN);");
-	L("[ \\t\\r\\n]	return TOKEN(LEX_WS);");
-
-	L("[a-zA-Z_][a-zA-Z0-9_]*	return lex_return( LEX_IDENTIFIER );");
-	L("-?[0-9]+\\.[0-9]*	return lex_return( LEX_DOUBLE );");
-	L("-?[0-9]+	return lex_return( LEX_INTEGER );");
+	gen_LEX_RULES_ident_values( out ); // VALUE is union .
 
 	L("");
 	// out.put("# LIST RW\n");
 	print_list( out, POOL_RW );
 	L("");
-	// out.put("# LIST PUNCT\n");
-	print_list( out, POOL_PUNCT );
+	// out.put("# LIST PUNCT\n"); // unless FLEX matches longest first ?
+	print_list( out, POOL_PUNCT ); // in LEX longest first order
 	L("");
 	// out.put("# LIST LEX\n");
 	print_list( out, POOL_LEX );
+
 	L("");
 	L(". printf(\"Unknown token!\\n\"); yyterminate();");
 	L("");
 
 	L("%%");
 	L("");
+	return true;
+}
+
+// sort of a macro
+static bool gen_PTN_CODE_TOK(
+	buffer2 & out, 
+	const char * PTN,
+	const char * CODE,
+	const char * TOK
+) {
+	out.print( "%s %s return TOKEN(%s);\n", PTN, CODE, TOK );
+	return true;
+}
+
+bool Tree_PSG:: gen_LEX_RULES_eoln( buffer2 & out )
+{
+ gen_PTN_CODE_TOK( out, "\\r\\n", "yylineno++;",  "LEX_EOLN");
+ gen_PTN_CODE_TOK( out, "\\n",    "yylineno++;",  "LEX_EOLN");
+ gen_PTN_CODE_TOK( out, "[ \\t\\r\\n]", "", 	  "LEX_WS");
+	return true;
+}
+
+// sort of a macro
+static bool gen_PTN_lex_return_TOK(
+	buffer2 & out, 
+	const char * PTN,
+	const char * CODE,
+	const char * TOK
+) {
+	out.print( "%s %s return lex_return(%s);\n", PTN, CODE, TOK );
+	return true;
+}
+bool Tree_PSG:: gen_LEX_RULES_ident_values( buffer2 & out )
+{
+ gen_PTN_lex_return_TOK( out, "[a-zA-Z_][a-zA-Z0-9_]*", "", "LEX_IDENTIFIER");
+ gen_PTN_lex_return_TOK( out, "-?[0-9]+\\.[0-9]*","      ", "LEX_DOUBLE");
+ gen_PTN_lex_return_TOK( out, "-?[0-9]+", "              ", "LEX_INTEGER");
 	return true;
 }
 
@@ -600,9 +630,13 @@ gen_YACC( buffer2 & out )
 	gen_YACC_union( out );
 	gen_YACC_token_list( out );
 	gen_YACC_type_list( out );
- L("%right PUNCT_CARET // dumb");
- L("%start top");
- L("%%");
+	gen_YACC_precedence_list( out );
+	gen_YACC_start_top( out, "top" );
+
+	L("");
+	L("%%");
+	L("");
+
 	gen_YACC_rules( out );
 	return true;
 }
@@ -622,7 +656,7 @@ gen_YACC_top_code( buffer2 & out )
  // L("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
  // L("          typedef struct EXPR; // this doesnt work");
  // also some editing of exprs.h
- L("          using namespace EXPRS; // ... E1 ..."); // 
+ L("          using namespace EXPRS; // ... E0 ..."); // 
 
  if(1) {
 	put_include_yacc_tab_hh( out );
@@ -727,7 +761,8 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_union( buffer2 & out )
 {
- L("%union {");
+	L("");
+ L(" %union {");
 // NO L(" EXPR * expr;"); // almost
 // NO  L(" EXPRS:: struct EXPR * expr;");
 // NO L(" struct EXPRS:: EXPR * expr;");
@@ -735,18 +770,31 @@ gen_YACC_union( buffer2 & out )
 // L(" ::EXPRS:: EXPR * expr;");
 // L(" EXPR * expr;");
 // L(" struct EXPR_t * expr;"); // almost
- L(" struct EXPR * expr;"); // almost // incomplete type?
- L(" int token;");
- L(" const char * lex_buff;");
- L("}");
+
+// this list comes from %left <token> PUNCT_STAR // "token_type token"
+
+ L("  struct EXPR * expr;"); // almost // incomplete type?
+ L("  int token;");
+ L("  const char * lex_buff;"); // via several buffer2 ring of holders
+ L(" }");
 	return true;
 }
 
 bool Tree_PSG::
 gen_YACC_token_list( buffer2 & out )
 {
+	/*
+		RULES section longest first for match priority
+		%left section tightest precedence last
+		rework %token <token> PUNCT_LT_LT_EQUAL
+		as %left <token> PUNCT_LT_LT_EQUAL
+
+	*/
+	L("");
 	gen_YACC_token_list_POOL( out, POOL_PUNCT );
+	L("");
 	gen_YACC_token_list_POOL( out, POOL_RW );
+	L("");
 	gen_YACC_token_list_POOL( out, POOL_LEX );
 	return true;
 }
@@ -769,9 +817,35 @@ gen_YACC_type_list( buffer2 & out )
 {
  // <expr> is the fieldname
  // expr_ident is the rulename
- L("%type <expr> expr_ident");
- L("%type <expr> expr");
-// L("%type <token> BOP");
+	 L("");
+	L("%type <expr> expr_ident");
+	L("%type <expr> expr");
+//	L("%type <token> BOP");
+	return true;
+}
+
+bool Tree_PSG::
+gen_YACC_precedence_list( buffer2 & out )
+{
+	// need to match operator to PUNCT sort by operator precedence
+	// %left <token> PUNCT_PLUS PUNCT_MINUS
+	// loose first, low precedence
+	// tight last, high precedence
+
+// https://www.gnu.org/software/bison/manual/html_node/Precedence-Decl.html
+
+	 L("");
+	 L("%precedence PUNCT_PLUS");
+	 L("%left PUNCT_STAR");
+	 L("%right PUNCT_CARET");
+	return true;
+}
+
+bool Tree_PSG::
+gen_YACC_start_top( buffer2 & out, const char * rule_name ){
+	if(!rule_name) rule_name = "top";
+	out.print("%%start %s\n", rule_name );
+	 // L("%start top");
 	return true;
 }
 

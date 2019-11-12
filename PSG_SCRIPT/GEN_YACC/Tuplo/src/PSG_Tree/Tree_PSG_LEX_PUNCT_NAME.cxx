@@ -58,7 +58,8 @@ bool print_LEX_punct_name( buffer1 & buff, u8 chr )
    PAIR( 0x5B, "L_SQUARE" ) // L_SQUARE_R SQUARE_BRACKET_LEFT BRACKET_LEFT 
    PAIR( 0x5C, "BACKSLASH" ) // 
    PAIR( 0x5D, "SQUARE_R" ) // aliases ...
-   PAIR( 0x5E, "CIRC" ) // aliases CIRCUMFLEX HAT POWER
+// PAIR( 0x5E, "CIRC" ) // aliases CIRCUMFLEX HAT POWER
+   PAIR( 0x5E, "CARET" ) // aliases CIRCUMFLEX HAT POWER CARET
    PAIR( 0x5F, "UNDERLINE" ) // aliases underscore
    PAIR( 0x60, "BACKQUOTE" ) // QB
 

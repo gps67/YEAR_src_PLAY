@@ -121,6 +121,8 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	bool gen_LEX( buffer2 & out ); // all of it
 	bool gen_LEX_lex_return( buffer2 & out ); // integrate LEX api
+	bool gen_LEX_RULES_eoln( buffer2 & out );
+	bool gen_LEX_RULES_ident_values( buffer2 & out );
 
 	// GEN // sections of YACC file
 
@@ -133,7 +135,10 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & list );
 	bool gen_YACC_token_list( buffer2 & out );
 	bool gen_YACC_type_list( buffer2 & out );
+	bool gen_YACC_precedence_list( buffer2 & out );
+	bool gen_YACC_start_top( buffer2 & out, const char * rule_name = NULL );
 	bool gen_YACC_rules( buffer2 & out );
+
 };
 
 #endif

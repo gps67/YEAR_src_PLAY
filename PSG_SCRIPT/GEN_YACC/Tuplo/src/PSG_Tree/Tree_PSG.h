@@ -24,15 +24,16 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	// str1 holds the malloced memory
 
- 	str1 psg_name_base; // gen_e1 		... FILENAME SUBLEX
- 	str1 lex_name_base; // gen_e1_lex 	.lex
- 	str1 yacc_name_base; // gen_e1_yacc 	.y
+ 	str1 psg_name; // gen_e1 		... FILENAME SUBLEX
+ 	str1 lex_name; // gen_e1_lex 	.lex
+ 	str1 yacc_name; // gen_e1_yacc 	.y
+ 	str1 psg_item; // gen_e1_psg // ##_psg##_reappears##_as //
 
 	bool set_PSG_name( STR0 _name_ );
 
 	STR0 yacc_name_y(buffer2 & str);
-	STR0 lex_name_lex(buffer2 & str);
-	STR0 yacc_name_tab_hh(buffer2 & str); // mildly inefficient
+	STR0 lex_name_lex(buffer2 & str);	// flex_machine_for_PSG
+	STR0 yacc_name_tab_hh(buffer2 & str);	// TOKEN_POOL lexicon;
 
 	bool put_include_Q2( buffer2 & out, buffer2 & incl_filename );
 

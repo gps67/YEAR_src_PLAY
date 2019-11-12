@@ -10,6 +10,7 @@
 */obj/*
 *_lex.cc
 *_yacc.tab.hh
+gen_e1_*
 
 # Compiled Object files
 *.slo

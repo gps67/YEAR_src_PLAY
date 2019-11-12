@@ -185,10 +185,20 @@ set_PSG_name( STR0 _name_ )
 	// WHERE IS OUTPUT DIRECTORY
 	//
 
-	// START set_PSG_name( _name_ )
+	// START set_PSG_name( _name_ ) // "e1" -aka- EXPR
+	// THEME C operator precedence PREBUILT Tuplo
+	// template VAL_TYPE_NUM NUM // typedef float NUM;
+	// PIXELS fold into float's u23 or so
+	// PIXELS fold into float's u20 and u3_opcode
+
+	// template VAL_TYPE_NUM NUM // typedef float NUM;
+	// template VAL_TYPE_NUM OBJ // typedef void * OBJ;
+	// template VAL_TYPE_NUM NUM_i20 // i20 XPOS = half_than_million //
+	// template VAL_TYPE_NUM NUM_IDX_u20 // 1K x 1K // HEAP_ITEM
+	// template VAL_TYPE_NUM NUM_u20 // 1K x 1K // ZONE_ITEM
 
 
-	// INFO("_name_ %s", _name_ ); // "../obj/gen_e1"
+	// INFO("_name_ %s", _name_ ); // "../obj/gen_e1" // "EXPR_C"
 
 	dir_name_ext path_name;
 	path_name.decode_filename( _name_ );  // some/dir/NAME
@@ -204,9 +214,9 @@ set_PSG_name( STR0 _name_ )
 	path_name.mk_BOTH_path_name();
 
 	// the filename of the PSG - before adding extra_suffixes
-	psg_name_base = path_name.full_path_name; // NORMALISED left-prefix
-	psg_name_base = path_name.near_path_name; // str1 = ... probably STR0
-if(0)	e_print("psg_name_base == '%s'\n", (STR0) psg_name_base );
+	// psg_name & psg_name = "gen_e1" // C EXPR PSG
+	psg_name = path_name.near_path_name; // str1 = ... probably STR0
+if(0)	e_print("psg_name == '%s'\n", (STR0) psg_name );
 if(0)	path_name.test_print(); // path/../obj/gen_e1
 
 
@@ -219,10 +229,10 @@ if(0)	path_name.test_print(); // path/../obj/gen_e1
 	path_name.name.put("_lex");
 	path_name.mk_BOTH_path_name();
 	if(near_not_far) {
-			lex_name_base = path_name.near_path_name;
-	} else {	lex_name_base = path_name.full_path_name;
+			lex_name = path_name.near_path_name;
+	} else {	lex_name = path_name.full_path_name;
 	}
-if(0)	e_print("lex_name_base == '%s'\n", (STR0) lex_name_base );
+if(0)	e_print("lex_name == '%s'\n", (STR0) lex_name );
 	// gen_e1_lex.lex
 if(0)	path_name.test_print();
 
@@ -233,8 +243,8 @@ if(0)	path_name.test_print();
 	path_name.name.put("_yacc");
 	path_name.mk_BOTH_path_name();
 	if(near_not_far) {
-			yacc_name_base = path_name.near_path_name;
-	} else {	yacc_name_base = path_name.full_path_name;
+			yacc_name = path_name.near_path_name;
+	} else {	yacc_name = path_name.full_path_name;
 	}
 	// gen_e1_yacc.y
 if(0)	path_name.test_print();
@@ -261,7 +271,7 @@ yacc_name_y(
 	//  at least LINES // but _lines_in_ can do that anyway
 	// GEN places markers where tree stack completes starts upto_line pause
 	//
-	str = yacc_name_base;
+	str = yacc_name;
 	str.put(".y");
 	return str;
 }
@@ -270,7 +280,7 @@ STR0 Tree_PSG::
 lex_name_lex(
 	buffer2 & str // this is now rentrant 
 ){
-	str = lex_name_base; // assignment copy init 0
+	str = lex_name; // assignment copy init 0
 	str.put(".lex");
 	return str;
 }
@@ -296,7 +306,7 @@ yacc_name_tab_hh(
 bool Tree_PSG::
 put_yacc_name_tab_hh( buffer2 & out ){
 	// needs auto add if(!put(...)) return FAIL_FAILED()
-	out.put( yacc_name_base );
+	out.put( yacc_name ); // gen_e1_yacc 	// .y // .tab.hh
 	out.put(".tab.hh");
 	return true;
 }

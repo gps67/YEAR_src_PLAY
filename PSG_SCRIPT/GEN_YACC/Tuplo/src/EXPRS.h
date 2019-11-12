@@ -68,13 +68,13 @@ extern const char * str_of_token( int token );
 namespace EXPRS {
  struct EXPR;
 };
-using namespace EXPRS;
+// using namespace EXPRS;
 #endif
 
 /*
 	import + REUSE .y token names in EXPRS
 
-	eg PSG_Token PUNCT_CARET_as_EA_in_ROM_of_OBJECT
+	eg PSG_Token PUNCT_cARET_as_EA_in_ROM_of_OBJECT
 
 	u32_hilo EA_token = EA_in_STO_of_OBJECT = OBJ.EA_in_STO
 		that is a foreign id placed in OBJ
@@ -195,7 +195,30 @@ using namespace EXPRS;
 
 namespace EXPRS {
  struct PRINTER;
+ // struct EXPR;
 };
+
+# if 1
+/*
+	The problem is, YACC is fussy about EXPR _t being not in a namespace
+	%union { ... EXPR * expr; ... }
+
+	The workaround, is put virtual base class EXPR outside namespace
+	That requires defining the virtual functions, though
+	When stuct EXPR; // STUB was plenty
+
+	Once past BISON, the union field, sorted
+	Then EXPR can refer to EXPRS:PRINTER
+	So that can be in the other file (as yet unseen, just STUB)
+*/
+
+ struct EXPR {
+  virtual ~EXPR() {}
+  virtual void print_to( EXPRS::PRINTER * printer) = 0;
+  virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
+ };
+//typedef EXPRS::EXPR EXPR;
+#endif
 
 /*!
 	EXPR = virtual BASE CLASS 
@@ -203,13 +226,17 @@ namespace EXPRS {
 	obj_ref0 = ref counted object, needs attentionm obj_holder<t> or &
  	recompiled fine with // struct EXPR : public obj_ref0 {}
  */
+
+namespace EXPRS {
+
+# if 0
  struct EXPR {
   virtual ~EXPR() {}
   virtual void print_to( EXPRS::PRINTER * printer) = 0;
   virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
  };
-
-namespace EXPRS {
+//typedef EXPRS::EXPR EXPR;
+#endif
 
 
  struct PRINTER
@@ -226,14 +253,25 @@ namespace EXPRS {
 
   virtual void print_EXPR ( EXPR * expr ) 
   {
+  	// undecided if always checking is slower than checking always
+	// maybe silence this auto-path-completion
+	// maybe decide on return true; // from empty branch
+	// maybe decide on return false; // from empty branch
   	if(!expr) { WARN("NULL expr"); return; }
+	// ACTION = 
 	expr -> print_to( this );
   }
   void print_EXPR_indented ( EXPR * expr ) {
   	if(!expr) { WARN("NULL expr"); return; }
+	// modified ACTION // let compiler inline above here ?
   	indent ++;
 	print_EXPR( expr );
   	indent --;
+  }
+  void printf ( const char * fmt, ... ) {
+	va_list args;
+	va_start( args, fmt );
+  	out.vprint(false, fmt, args );
   }
   void print_STR ( const char * str ) {
   	out.print("%s", str );
@@ -241,12 +279,18 @@ namespace EXPRS {
 
   void ind_indent()
   {
-  	int(indent);
+	if(!indent) {
+		if(0) out.print("#### line #### ind_indent detected \n");
+		// return;
+	}
+	// zero can still output
+  	ind(indent);
   }
 
   void ind(int _ind) {
+	/* SELF */ printf("ind(%d)##", indent );
 	for(int i=0; i<_ind; i++ ) {
-		out.print("| ");
+		printf("| ");
 	}
   }
  };
@@ -267,7 +311,56 @@ namespace EXPRS {
 	}
 	void print_to( PRINTER * printer)
 	{
+		// uncalled
+		printer -> ind_indent();
 		printer -> print_STR( name );
+		printer -> out.print( " (EXPR_name) " );
+		printer -> out.print( "\n" );
+	}
+ };
+
+ struct EXPR_rhs : public EXPR {
+	EXPR * rhs;
+	int op;
+ //	str1 name; // NO NAME
+ //	str1 CMNT; // or preparsed ...
+
+	// const char * name;
+	EXPR_rhs( int TOK_OP, EXPR * rhs_ )
+	{
+		init_null();
+		rhs = rhs_;
+		op = TOK_OP;
+	}
+	void init_null()
+	{
+		rhs = NULL;
+		op = ' ';
+		// name = (const char *) NULL;
+	}
+
+	virtual bool detect_at_top(PRINTER*printer)
+	{
+		// detect and act
+		if(!printer->indent) {
+			return true;
+			printf("#### line #### SINGLE TOKEN\n");
+			return true;
+		}
+		return false;
+	}
+
+  // virtual
+ 	 void print_to( PRINTER * printer)
+	 {
+		buffer2 & out = printer->buff();
+		// print INDENT "+"
+		printer->ind_indent();
+		out.print("[1OP] %s\n", str_of_token(op) );
+
+		if(rhs) {
+			printer->print_EXPR_indented( rhs );
+		}
 	}
  };
 
@@ -275,7 +368,7 @@ namespace EXPRS {
 	EXPR * lhs;
 	EXPR * rhs;
 	int op;
-	str1 name;
+//	str1 name;
  //	str1 CMNT; // or preparsed ...
 
 	// const char * name;
@@ -283,35 +376,40 @@ namespace EXPRS {
 	{
 		init_null();
 	}
+	EXPR_lhs_rhs( EXPR * _lhs, int _op, EXPR * _rhs )
+	{
+		lhs = _lhs;
+		rhs = _rhs;
+		op = _op;
+//		name = (const char *) NULL;
+	}
 	void init_null()
 	{
 		lhs = NULL;
 		rhs = NULL;
 		op = ' ';
-		name = (const char *) NULL;
+//		name = (const char *) NULL;
 	}
 
   // virtual
  	 void print_to( PRINTER * printer)
 	 {
 		buffer2 & out = printer->buff();
-		if(!printer->indent)
-			out.print("#### line ####\n");
-		if(name) {
-			printer->ind_indent();
-			out.print("NAME_%s\n", (STR0)name );
-			return;
-		}
+
 		if(lhs) {
 			printer->print_EXPR_indented( lhs );
+		} else {
+			WARN("UNEXPECTED NULL");
 		}
 
 		// print INDENT "+"
 		printer->ind_indent();
-		out.print("%s\n", str_of_token(op) );
+		out.print("%s [OP]\n", str_of_token(op) );
 
 		if(rhs) {
 			printer->print_EXPR_indented( rhs );
+		} else {
+			WARN("UNEXPECTED NULL");
 		}
 	}
 };
@@ -339,7 +437,8 @@ namespace EXPRS {
 
 */
 
-extern EXPR * E1( const char * name );		// expr == IDEN_anystr
+extern EXPR * E0( const char * name );		// expr == IDEN_anystr
+extern EXPR * E1( int op_, EXPR * rhs_ ); // expr == op EXPR
 extern EXPR * E2( EXPR * lhs_, int op_, EXPR * rhs_ ); // expr == EXPR op EXPR
 extern EXPR * mk_E_id( const char * name_ ); // expr == IDEN_anystr // REPEAT ??
 extern EXPR * E1( int op_, EXPR * rhs_ );  // expr = TOKEN_unary RHS

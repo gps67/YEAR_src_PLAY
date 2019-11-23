@@ -1,0 +1,116 @@
+
+	ncurses gives us what xterm and all the other TTYs give us
+
+		a box-line-drawing set.
+	
+	Simple cross-roads
+
+		vertical line straight through
+		horizontal line straight through
+
+		add_connector_Up // _N	// _U
+		add_connector_Down // _S	// _D
+		add_connector_Left // _E	// _R
+		add_connector_Right // _W	// _L
+	
+		lay_tracks
+
+			Layout DIAG + FRAME + BEYOND
+			 box_line_draw_csr window_border_lines
+
+			PREBUILT as list of turtle moves
+			REQUIRES Layout // POS_21() = XY_POS[ 21 ]
+			USES_CODE VOCAB
+
+			 POS_22 = POS_21 + these steps {
+			 }
+
+	
+	
+	There is a double-line system (somewhere PC font turbo ide probably)
+	but thats a tad more than I can remember. Frame lines,
+	and thicker lines, possibly FGBG 
+
+	https://invisible-island.net/ncurses/man/curs_add_wch.3x.html
+
+	 LIGHT HEAVY DOUBLE
+	  WACS_
+	  WACS_T_
+	  WACS_D_
+	  _BTEE _HLINE _LLCORNER ...
+
+byte swap this NSEW NSWE // left to right
+
+	_VLINE      ||ew       vertical line
+	_LTEE       ||-w       tee pointing right
+	_RTEE       ||e-       tee pointing left
+	_PLUS       ||--       large plus
+	_BTEE       |s--       tee pointing up
+	_TTEE       n|--       tee pointing down
+	_HLINE      ns--       horizontal line
+	_LLCORNER   |s-w       lower left corner
+	_LRCORNER   |se-       lower right corner
+	_ULCORNER   n|-w       upper left corner
+	_URCORNER   n|e-       upper right corner
+
+QUOTE
+	_T_BTEE       0x253b    +         V       thick tee pointing up
+	_T_HLINE      0x2501    -         Q       thick horizontal line
+	_T_LLCORNER   0x2517    +         M       thick lower left corner
+	_T_LRCORNER   0x251b    +         J       thick lower right corner
+	_T_LTEE       0x252b    +         T       thick tee pointing right
+	_T_PLUS       0x254b    +         N       thick large plus
+	_T_RTEE       0x2523    +         U       thick tee pointing left
+	_T_TTEE       0x2533    +         W       thick tee pointing down
+	_T_ULCORNER   0x250f    +         L       thick upper left corner
+	_T_URCORNER   0x2513    +         K       thick upper right corner
+	_T_VLINE      0x2503    |         X       thick vertical line
+
+
+	these_steps {
+		allow use of {} as a VALUE
+		obtain value var1 = some_magic(); { SCRIPT }
+		obtain tooklit ( ctxt, var1, mysto )
+		MACRO mysto = ctxt.mysto; // Name is unique within this LOCN
+		LOCN is ctxt, it uses apparent globals, but thread_locals, etc
+		LOCN is struct; // but extra fields being added, upto ROM
+
+		local mysto_t mysto; // a struct that describes a few structs
+		obtain store data2 = obtain_store_from_(ctxt, var1, mysto )
+		link rename data2 = mysto.data2 // second var in POOL
+
+		add markers, label of current block = MACRO_NAME
+		add placebos, MACRO_NAME, for the next { BLOCK }
+		 prev / curr / next / only=this=curr
+		 EA_Name "MACRO_NAME"
+	
+	STEP - CSR2 = new_CSR_from_CURR_POS // SPLIT // PUSH CSR2=CSR0
+	STEP - name "CSR2"
+	SETP - goto ROUTE_OVER_TITLE
+	SETP - goto ROUTE_UNDER_TITLE
+	
+	{ SCRIPT } // ctxt = ctxt_new_ctxt_for_SCRIPT(); // MACRO
+
+	 Loaded_SCRIPT {
+	 	ROM_SEGMENTS // shared with ROM but has inport export list
+		SCRIPT_Tree = module // everything is a module
+		// but only a module is a module
+		RAM_SEGMENTS
+		THREAD_CPU // _STACK _PROCESS _QUOTA _WHO_is_RUN_is_NOW
+		vars on stack, kept there specifically for us
+		CALLER provides USEFUL_BUFFERS as BENCH
+		
+		ROM = LOADED_SCRIPT.ROM
+		// ensure link loaded // LIBRS 
+		ROM.TABLES near HERE
+		RAM.TABLES near HERE // editable CTXT profile
+
+		ROM.STO.TABLES
+
+			BENCH = COMPILER links KeyWords
+			Each VIEW SCRIPT re-uses the compile it did before
+			Maybe even full compile of all scripts, to BATCH
+			Ongoing recompile as we go, occasional glitch
+	 }
+	 
+

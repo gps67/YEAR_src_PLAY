@@ -12,11 +12,13 @@
 	NEED a fundamental SWEEP TEXT <--> TREE
 	DIAG has seperate PANEL of Options to edit DIAG within DIAG
 	NEED quick slide navigation NEXT MORE
-	NEED slide from PSG_branch_to_bramch
+	NEED slide from PSG_branch_to_branch
 	NEED slide from PSG_page_to_title_to_article_next_page // default first
-	NEED slide from PSG_page_to_paragraph_plus // 
+	NEED slide from PSG_page_to_paragraph_plus // HERE // near //
 	NEED slide from PSG_page_to_metadata // 
 	NEED slide from PSG_page_to_dot_dot // 
+	NEED slide from PSG_page_to_code_point // CODE_TWIG //
+	NEED slide to PSG_page from _code_point // CODE_TWIG //
 	// dot_dot // mount_point of ARTICLE in LIBR with INDEX_CARD( meta )
 	// dot_dot // mount_point of dot_dot in LIBR with GROUP_CARD( meta )
 

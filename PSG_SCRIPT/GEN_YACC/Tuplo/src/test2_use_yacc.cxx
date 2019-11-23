@@ -57,6 +57,10 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 	return true;
   }
 
+#include "STO.h"
+#include "STO/mmap_file.h"
+#include "obj_hold.h"
+
 int main( int argc, char ** argv )
 {
 	const char * filename = argv[1];
@@ -64,6 +68,15 @@ int main( int argc, char ** argv )
 		filename = "../test2.test";
 		INFO("Picking %s", filename );
 	}
+
+	// obj_hold<STO::mmap_file> map_file;
+#if 0
+	obj_hold<STO::mmap_file> map_file_a;
+	map_file_a = new STO::mmap_file();
+#endif
+	obj_hold<STO::mmap_file> map_file
+	= new STO::mmap_file();
+	map_file->test1();
 
 	// claim global LOCK here
 	// provide store to the Tree Parser HERE

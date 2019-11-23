@@ -4,6 +4,8 @@
 #include "obj_list.h"
 #include "buffer2.h"
 
+#include "STO.h"
+
 #include "Tree_PSG_UDEF.h"
 
 bool bool_main( int argc, char ** argv ) {

@@ -1,0 +1,141 @@
+
+2019-11-18 Nov Mon 18:03 STO_BYTES/STO_BYTES.txt
+
+	 STO_BYTES/
+	 STO_BYTES.txt		C_TYPE_SPEC api;
+
+	 MMAP_ZONE_api;
+
+	 	ie how PAGES of memory can be obtained INIT_ZERO MMAP
+		nb also how MMAP might be done by ELSEWHERE and MOVES
+
+			PAGE_ZERO [N] // N == N_bytes_into_pages( N_bytes )
+			PAGE_ZERO [N] // N == N_pages_from_N_bytes( N_bytes )
+
+		// DIALECT prefers right-to-left send_(N_bytes) get(N_pages)
+
+		ROM -vs- RAM 
+
+		 POOL_of_PAGE	// MMAP_off // ROM_RAM // RE_MAP_VER
+
+		 ELF_segment
+
+		 	.text	X86 Code // usually ROM
+			.data	STO_segment // ROM loaded pre-inited RO + RW
+			.bss	/dev/zero // INIT_ZERO( segment )
+
+		 MEM_layout
+
+		ROM -vs- RAM 
+
+		 Request SEGMENT loaded to ROM page 
+		 Request SEGMENT loaded to RAM page 
+		 Request SEGMENT loaded to STO page 
+
+		We know that the container imposes MMAP limits
+
+			REDACTED ZONE // LD says do not read 
+
+			UDEF_C_TYPES_in_POOL_of_pages // MMAP or not :-)
+
+
+	 C_TYPE_SPEC api;
+
+		We go for really strict TYPE_CAST limitations
+		OPTION RT check first_use_register_for_speed
+		OPTION RT dont check use PREBUILT 
+
+		We could ADD a second TAG (possibly reusing SPEC_ptr)
+		
+		 LD says PTR is C++ Item in HEAP of at least BASE_CLASS
+		 CT says at_least_base_class( BASE_CLASS )
+		 RT adds LIBR protected tag, 
+
+		We get no real protection from code having the CPU
+		We did (gcc did) compile their code, via rewriter
+
+		All types in the dictionary, have SPEC and maybe CODE
+		ROM tags each SPEC as idx_t & spec_idx = idx;
+
+		LIBR code is given 
+
+		 Type & Obj ; // PARAMETER
+		 Type & Obj  = RETVAL_from_MACRO( args ); // Obj
+		 Type & Obj  = OBJ_in_FILE( args ); // STO.Obj
+		 Type * Obj ; // POINTER to ONE 
+		 Type[N] * Obj ; // POINTER to ARRAY with some sort of LIMIT
+		 // Obj is pointer to ONE_ARRAY_LIMIT_N // from zero
+		 // PASS VECTOR_N type to (LIBR PROVIDED) GET_AT( uns i );
+		 // GET_AT
+		 // SET_AT
+		 // GET_N // maybe CT_N from LIBR_good_source
+		 // so DEREF without check
+		 // HERE you see POROUS safety probabilities
+		 // but if you switch this shield on,
+		 // you can still run your own code
+		 // because it already uses direct access to well known CODE
+		 // multiple projects, second wave happens at same time
+		 // as rewrite CORE from SCRIPTS, from DECLS
+		 // code freeze time, until REGEN is stable + known OK
+
+		 Type * Obj ; // +- const
+		 Type * Obj ; // +- on_delete_MACRO 
+
+		When a POINTER_TO_ONE 	-- NO NEED FOR UPPER_BOUND_CHECK
+		is more convenient to LIBR
+		rather than the C++ Type & Obj;
+		// CHECK C++ calls VTBL  when & as well as * // MUST DO THO ?
+
+		When a POINTER_TO_ONE 	-- NO NEED FOR UPPER_BOUND_CHECK
+
+		 If this PTR is considered valid,
+		 There is no need to check overreach, some trust
+		 PTR is unmovable
+
+		When LIBR_CORE moves AREA_ZONE // relocate
+
+		 FLUSH SIGNAL QUEUE
+
+		 	complete REPL
+			flush all tasks
+			relocate_pages_now
+			reload_TREE_cache_MOVED_PAGE_ZERO
+
+		 This is quite a serious checkpoint action requirement
+		 It can happen, because we rendezvous properly
+		 No change, is still propagated 1 layer
+		 //	PAGE0 == STO_FILE.page0	// DATA can be alias for FUNC
+		 // // use of == // not = here, elsewhere, triggered == then
+
+		 // LOCAL FILTER
+		 // set_SOME_PAGE0_caddr_t NEW_VAL
+		 // if( OLD_VAL == NEW_VAL ) { ... } else { ... }
+
+		 It CLICK_TICKS the LRU counters via counter_gears
+		 EG alert BENCH every size change [u4] [u8] [u12] ...
+		 EG u8_alert_levels { 0, 15, 31, 127, 223, 255, 0x00 }
+		 on_increase_above( int level, kept_var & 
+
+ STO_BYTES
+
+  C_TYPE_SPEC
+
+    WORD	i32_over_u8_char
+    WORDS	{ div rem } from { over under }
+    WORD	POINTER to STRUCT in HEAP // do_not_free // do_ref_count // OR
+    FLOATS	in_mem_on_stack_in_cpu_in_fpu_on_gpu
+    FLOATS	f32 f64
+    FLOATS	f80 f128 f256
+    FLOATS	f16 
+    FIXED_POINT	f16_i12_i4
+    BIGINT	tbs
+    BYTES	utf8_byte // strong type [16]
+    BYTES	u8_char // or utf8_bytes
+
+
+PAGE_M1
+
+ STO_PAGE_4K
+
+  SYSTEM_PAGE_M1 // minus 1
+   STO area for META info // or 4K of free_list_items

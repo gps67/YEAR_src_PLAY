@@ -4,6 +4,7 @@
 	OPTIM += -g
 	INCLS += -I./
 	INCLS += -I../
+	INCLS += -I../STO/
 #	INCLS += -I../buffer # get from libs_apps
 #	INCLS += -I/tools/2000/X11R6/include
 
@@ -15,6 +16,7 @@
 	VPATH +=$S
 	VPATH +=$S/src
 	VPATH +=$S/src/PSG_Tree
+	VPATH +=$S/src/STO
 
 	include ../MK/Makefile_libs_apps
 
@@ -78,6 +80,12 @@ endif
 	OBJS1 += Tree_PSG_UDEF.o
 	OBJS1 += Tree_PSG_UDEF_rules.o
 	OBJS2 += EXPRS.o
+
+
+	# PGS will want STO but it was itself PROG2
+	OBJS2 += sto_4k.o
+	OBJS2 += STO.o
+	OBJS2 += mmap_file.o
 
 	# clean between phases # maybe
 

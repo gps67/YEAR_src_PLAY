@@ -1,0 +1,43 @@
+
+	RUN_BYTES
+
+	utf8_byte u8 in utf8 sequence
+	u8_char 8859 or BYTE_CSET or UDEF_CSET_via_TABLE // u8 = MAP[ u8 ]
+
+		I really like the idx_ = MAP[ _idx ]
+		As it allows subsets of fonts, small tables, skips 32
+		Maybe stop calling them [ ch ] 
+		ITEM[ idx=N++ ] = ITEM_at_idx_ptr 
+
+			u32 idx = N++; // hope for atomic here
+			ITEM[ idx ] = item;
+			_idx_ = idx;
+			// the _idx_ suggests it is a part of a wider struct
+			// the _idx_ is the EA_of_var *EA # idx;
+
+	u32_packed_word
+	i32_packed_word
+
+	// align1_4
+	// align1_8
+	// align1_16
+	// align1_32
+	// align1_256
+	// align_4K
+
+	SIMD_in_fpu
+	SIMD_in_gpu
+
+
+	STRUCT_t * PTR ;
+	ITEM_WORD VECTOR[ N } // N_KNOWN_CONST N_var_from_outside
+
+	un_tagged_union
+	 trust + proper code says SO
+	tagged_union
+	 C++ has it's mechanism
+	 we have a list of different shapes of implementation
+
+
+
+	

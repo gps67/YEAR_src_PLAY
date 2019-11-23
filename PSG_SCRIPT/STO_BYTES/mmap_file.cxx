@@ -3,6 +3,8 @@
 #include <sys/stat.h>
 #include "STO/mmap_file.h"
 
+#include "buffer1.h" // INFO builders
+
 using namespace STO;
 
 mmap_file::mmap_file( void )
@@ -88,6 +90,7 @@ bool mmap_file:: map_in_file( const u8 * ufilename, bool wwritable )
 
 bool mmap_file:: remap( void )	/* eg after grow file */
 {
+	INFO("CALL(...)");
 
 #define SYS_PICK_LOCN 0
 #define OFFSET0 0
@@ -119,7 +122,7 @@ bool mmap_file:: remap( void )	/* eg after grow file */
 	if( st.st.st_size > (63*1024) ) // limited by u16 fd_size // WHY ??
 	{
 		int szk = (int)( st.st.st_size >> 10);
-		return WARN( "max filelength 63 K - %ld too much\n", szk );
+		WARN( "max filelength 63 K - %ld is too much\n", szk );
 	}
 	fd_size=(u32)st.st.st_size;
 
@@ -130,7 +133,7 @@ bool mmap_file:: remap( void )	/* eg after grow file */
 		return FAIL("M1==-1");
 	}
 	page0 = P;
-	return 0; /* PASS_ZER0 */
+	return true; /* PASS_ZER0 */
 }
 /* ---------------- */
 
@@ -154,26 +157,57 @@ bool mmap_file::grow_file_32( u32 new_size )
 	if(!seek_SET_32( new_size - 1 ))
 	 return FAIL_FAILED();
 
-	if(!write( "", 1 )) // includes nul byte
+#if 1
+	const char * LAST_BYTE_STR = "+"; // visible
+#else
+	const char * LAST_BYTE_STR = ""; // a NUL byte
+#endif
+	if(!write( LAST_BYTE_STR, 1 )) // SHOW 
 	 return FAIL_FAILED();
 
 	if(!remap()) return FAIL_FAILED();;
 	return true;
 }
 
+bool system_od_file ( const char * filename )
+{
+	buffer1 out;
+	out.print( "set -x; od -c -t x1 '%s'", filename );
+	INFO( "system(%s)", (STR0) out ); 
+	system( (STR0) out );
+	return true;
+}
+
 extern "C" char * strcpy( char *, const char * );
 bool mmap_file::test1( void )
 {
-	bool t;
-	system( "[ -f /tmp/fh1 ] || date >> /tmp/fh1" );
-	if(!mmap_in_file_RW( "/tmp/fh1" ))
-		return FAIL_FAILED(); // 
-	system( "set -x; od -xc < /tmp/fh1" );
+	bool t = true; // OK
+	const char * filename = "/tmp/fh1";
 
+	buffer1 cmd1;
+	cmd1.clear();
+
+	cmd1.print( "date > '%s'", filename );
+	INFO( (STR0) cmd1 );
+	system( (STR0) cmd1 );
+	cmd1.clear();
+
+// nearest phrase
 //	t=map_in_file( "/tmp/fh1", FALSE );
+//
+	if(!mmap_in_file_RW( filename ))
+		return FAIL_FAILED(); // 
+
+// DATA DUMP
+	system_od_file ( filename );
+
 	if(!remap()) return FAIL_FAILED();;
+	system_od_file ( filename );
+
 	if(!t) return FAIL_FAILED();
 	grow_file_16( 600 );
-	strcpy( page0, "-HELLO-" );
+	if(0) strcpy( page0+30, "-HELLO_VIA_MMAP-" );
+	sync();
+	system_od_file ( filename );
 	return true;
 }

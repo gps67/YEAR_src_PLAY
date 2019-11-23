@@ -6,4 +6,5 @@ search=+/../obj/gen_e1
 search='-L +/#'
 search=+/error
 search= # stay at top
+search=+/FAIL
 ./M "$@" 2>&1 | less $search

@@ -177,7 +177,7 @@ struct A_Rectangle : XRectangle
 	/*!
 		the right most XPOS - inside not out
 	*/
-	int right()
+	int x_last()
 	{
 		return x + width -1;
 	}
@@ -185,7 +185,7 @@ struct A_Rectangle : XRectangle
 	/*!
 		the bottom YPOS - inside not out
 	*/
-	int bottom()
+	int y_last()
 	{
 		return y + height -1;
 	}

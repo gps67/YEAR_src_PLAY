@@ -127,12 +127,22 @@ namespace TTY_CURSES {
         // initscr(); // curses
 	cbreak();		// char break not line buffered
 	noecho();		// TTY echo off
-
+	// halfdelay
 	// // raw();			// TTY line buffering mode
-	nonl();			// TTY NL -> CR LF // OFF
-	intrflush(stdscr, false );
-	keypad(stdscr, true );	// get KEY events
+	intrflush(stdscr, false ); // dont drop screen data on CTRL-C
+	keypad(stdscr, true );	// get KEY events (otherwise get ESC X X)
+	meta(stdscr, true );	// get 8 bits
+//	nodelay(stdscr, true); // nonblocking getch returns ERR
+	nodelay(stdscr, false); // blocking getch waits for key
+	// man curs_inopts says dont mix raw/cbreak ? 
+if(1) {
+	noraw();	// CTRL-C == INTR
+} else {
+	raw(); // dont interpret INTERRUPT QUIT SUSPEND XONN/XOFF
+	// permits their use as commands
+}
 	// tabs as left by tput init
+	nonl();			// TTY NL -> CR LF // OFF // LF does LF
 
 	if(has_colors()) {
 	 start_color();

@@ -163,14 +163,14 @@ class X_test_box : public X_Window
 		draw_green.XDrawLine(
 			xywh1.x,
 			xywh1.y,
-			xywh1.right(),
-			xywh1.bottom()
+			xywh1.x_last(),
+			xywh1.y_last()
 		);
 		draw_green.XDrawLine(
-			xywh1.right(),
+			xywh1.x_last(),
 			xywh1.y,
 			xywh1.x,
-			xywh1.bottom()
+			xywh1.y_last()
 		);
 
 		/*

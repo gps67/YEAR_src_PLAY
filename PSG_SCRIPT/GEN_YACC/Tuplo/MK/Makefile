@@ -80,6 +80,7 @@ endif
 	OBJS1 += Tree_PSG_UDEF.o
 	OBJS1 += Tree_PSG_UDEF_rules.o
 	OBJS2 += EXPRS.o
+# NO	OBJS2 += EXPRS_PRINTER.o
 
 
 	# PGS will want STO but it was itself PROG2

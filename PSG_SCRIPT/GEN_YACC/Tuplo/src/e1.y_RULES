@@ -10,6 +10,7 @@ expr : expr PUNCT_CARET expr { $$ = E_power_E( $1, $3 ); }
 expr : expr PUNCT_STAR  expr { $$ = E_times_E( $1, $3 ); }
 expr : expr PUNCT_PLUS  expr { $$ = E_plus_E( $1, $3 ); }
 expr :      PUNCT_MINUS expr { $$ = E1( $1, $2 ); }   
+expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 // //	...: '-'  expr      %prec  '*'
 
 lines

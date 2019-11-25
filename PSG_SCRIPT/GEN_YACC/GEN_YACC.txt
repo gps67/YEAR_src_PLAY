@@ -5,6 +5,125 @@
 
 	use libs_apps.gen_yacc 
 	as import gen_yacc as gen from libs_apps.edit_build_config_install
+	// _test // _run // _edit // _build // _config // _module // _install
+
+	YACC is a core part of PSG_api_GEN_YACC
+
+	 ./LIBR += gen_psg_*
+
+	 // RE // "*" -vs- ".*" -or- SUBLEX( "%s%s", "RE_DOT" "RE_STAR" )
+	 // RE pick // gen_psg _Name // Name == "EXPR( ARGS )" //
+	 // SUBLEX MATCH gen_psg_EXPR // ( ARGS ) //
+
+	GEN is a core part of PSG
+	GEN is a core part of LIBR
+	PSG is a core part of LIBR
+	PSG required in build of GEN common libr, prepared by both
+	ROM new connect start_learn PLAY_LIST stop_learn pre_start_learn
+	# DIALECT # mention means var Name TRUE # stop_learn pre_start_learn
+	# stop_learn # auto_compile_upto_here # DONE # RE_CLONE # PENDING #
+	# pre_start_learn # redirect_start_learn_ to PROVIDE_CACHE_200K
+	# MATCH both liness combined # STOP new_STO START
+	# STOP #
+	# SCRIPT #
+	{
+		tell_CACHE_COMPILER_ this ON_TASK_EDGE SYNC_POINT
+		tell it {
+		bool /* false means FAIL # OPT unreported_but_prepared */
+		on_ROM_says_DONE_COMPILING() {
+		 on_ROM_says_DONE_COMPILING_pre_call() {
+
+		 /*
+			 send out_of_band_heartbeat
+			 // BEEP  // auto_added // checked for //
+			 // BEEP_DETECTOR_on_EXPR { SCRIPT }
+			 // bool_point_exported from within ROOT of TREE
+			 // tuple current_state = pre_connect_setting_up_CTOR 
+			 // tuple current_state = one of { compiling }
+			 // tuple current_state = one of { linking_or_flushing }
+			 // 
+			 // BEEP wake up ! compiler on process task list sync
+			 // BEEP update VAR = VAL // from LHS=remote
+			 // BEEP update VAR = VAL // from MID=this_code
+			 // BEEP update VAR = VAL // to   RHS=next_locn
+
+		 	flush PLAY_LIST_INTO_ROM
+			// PLAY_LIST_t // a list of TASKS // as used by TESTS
+			// _INTO_ROM // Bench of each TASK and LIBR
+			// _INTO_ROM // PREBUILT runs new code over new data
+			// _INTO_ROM // PREBUILT generates optimised SCRIPT
+			// eg Start Module with STUBS
+			// add lists of script to the next phase
+			// BEEP phase = NOW_RUNNING SCRIPT { SCRIPT }
+			// # on_BEEP_announcement_ERA_tick_tock
+			// # on_BEEP_heartbeat_ANYSTR_heuristics
+			// # ANYSTR == { BEEP_t BEEP = lookup("ANYSTR "); // }
+			// # ANYSTR == "ANYSTR" // but used as LIVE_TOKEN EXPR=
+			// BEEP_reply_wanted // SOON amazing todo list protocol
+			// BEEP_no_reply_wanted // SOON amazing defaults
+			// also remember BEEP extra_attr_expr infers TRUE (?)
+			// ie that level of complexity exists
+			// code should navigate it well,
+			// OPTION NAMED = ON
+			// -- DECODE --
+			// # IDENTITY # ONE #
+			// # ID # ID_t ID = u32_hilo_EA_EXPR_ID( ARGS ) CTXT
+			// # ID # CTXT += ID_of_ITEM_gets_SPEC_as_EA_EXPR_64
+			// could use lower 32 bits in own MMAP space
+			// was writing this for u64
+			// wanted a quite-good 32_bit_version
+			// forgot that we have a MMU that allows
+			// u64 = u32_hi u32_lo
+			u32_half = u32_lo
+			// u32_lo = actual cached offset wrt PAGE0
+			//  if NULL run script via CACHE (which updates log)
+			//   u32_OFFS = EVAL_EA_EXPR( u32_other_half )
+			//  if NULL run script { STO_on_SOURCE_TREE HERE }
+			// OR
+			//  u32_OFFS = EVAL_EA_EXPR( u32_other_half )
+			u32_half = u32_hi // other_half = lo
+			// u32_half = u8_u24_decoder // and global tables
+			//  global_table API_page_offs_
+			// OBJ * TABLE [ u8 ]; // CMNT
+			// This is doing a DOUBLE_STEP decode
+			// u4_u4 or u3_u5 or u8 anyway
+			// OBJECT_t & OBJECT = TABLE_A[ u8 byte ]
+			//
+			// PREBUILD script =
+			// INIT BENCH AREA
+			// iterate u4 x u4 in SCRIPT // may leave NULL
+			//  SCRIPT must set RETVAL = decode_u4_u4_cache ...
+			//  MINI_SCRIPT Nurone has 2 inputs u4_hi u4_lo
+			//  compile_your_self = BEEP_EVENT from anywhere
+			//  so run on_BEEP_compile_your_self( args )
+			//  that iterates over u4 x u4 setting u8 { EACH }
+			//  then BEEP_reply DONE back to BEEP_in_wants_ACK
+			//
+			// TABLE == "EA_EXPR_decoder.byte[4]"
+			// OBJECT1 == " TABLE_u4_A [ BYTE_u4_lo ] "
+			// OBJECT1_TYPE == " EA_EXPR & A_SPEC "
+			// TABLE_1 = "(T&) OBJECT1.table_1(%s);" "TABLE_1"
+			// TABLE_2 == " TABLE_u4_A [ BYTE_u4_lo ] "
+			// abcd efgh
+			// hgfe dcba
+			// 7654 3210 //
+			
+
+			 BEEP_STATE_RUNNING_ITERATORS
+			 start playlist or_as_settings_says
+
+			flush all local queues
+
+		 */
+		}
+		 on_ROM_says_DONE_COMPILING_call() {
+			flush all local queues
+
+			 sent trailing EOF_NUL // auto_added // checked for
+			 BEEP_STATE_done_EOT_NUL // from this sub-item obvs
+		}
+	}
+
 
 	# libs_apps.edit_rebuild # SCRIPT to PSG to YACC
 
@@ -12,6 +131,37 @@
 
 	LEX/YACC is an old route that not everyone uses
 	LEXPR/PSG start as wrapper over LEX/YACC
+	GEN is GEN_CODE_
+	PSG is PSG_TREE_of_SPEC_plus_HEAP // CTXT += SCRIPT_runner
+	STO is STO_DATA_in_MMAP_image // maybe 256 files upto 4G on 64 bit
+
+	// each file has OBJECT_t OBJECT; // which manages ACCESS knows Layout
+	// all thos files must agree OBJECT = TABLE_A[ u8_byte ]
+	// u8_byte == first_byte_for_decoder_to_look_at
+	// using abcd efgh ==> hgfe dcba // a is in AL b is in BH 
+	// using A_u32 = B_u32_ebx // with A_u32_hi scratched, 
+	// scratched
+	// set 0
+	// sign extended 0 or -1
+	// untouched guranteed
+	// whatevs
+
+	ROM is GEN_CODE_ for BASE_CLASSES and SCRIPTS RUN
+
+	 ROM OPTIMISER might want tables built in layers
+	 Put LRU to front of queues
+	 PULSE request_queue_flush
+
+	 ENV RUNTIME might allow fair timeshare
+	 prepare queue of TASK_LIST
+	 preload all LIBRS sed
+	 start_queue
+	 PULSE working // STATS
+	 PULSE more queue items // STATS
+	 PULSE SIG_STOP_is_happening_here
+	 PULSE Q_BUFFER__FULL_is_happening_here
+	 PULSE Q_TIDE_now # OPINION DATA # FULL 84% UNIT_TYPE_of_what_when
+
 
 	 edit SCRIPT
 	 gen obj/temp_SCRIPT_compiled

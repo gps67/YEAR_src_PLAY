@@ -1,6 +1,9 @@
 #ifndef EXPRS_H
 #define EXPRS_H
 
+// EXPRS_STUBS was given to YACC
+#include "EXPRS_STUBS.h"
+
 #include "obj_ref.h"
 #include "buffer2.h"
 #include <stdarg.h>
@@ -9,7 +12,14 @@
 // I created this somewhere, mesh of mish mash
 extern const char * str_of_token( int token );
 
+#include "str1.h"
 
+// WHO USES THIS -- only EXPRS.cxx
+// #warning "gen_e1_yacc.tab.hh" ...
+#include "gen_e1_yacc.tab.hh"
+// #warning "gen_e1_yacc.tab.hh" DONE
+
+#if 0 // to EOF
 /*
 	The C++ tree of classes for E1 expr types
 
@@ -62,7 +72,6 @@ extern const char * str_of_token( int token );
 		TOKEN = PSG.ROM.token
 */
 
-#include "str1.h"
 #if 0
 // still having problems giving NameSpace TypeName via FLEX 
 namespace EXPRS {
@@ -87,10 +96,6 @@ namespace EXPRS {
 	so
 	 rejig my use of EXPR to BASE
 */
-
-// #warning "gen_e1_yacc.tab.hh" ...
-#include "gen_e1_yacc.tab.hh"
-// #warning "gen_e1_yacc.tab.hh" DONE
 
  /*!
  	BISON not playing nice, with namespaces used in UNION
@@ -193,11 +198,6 @@ namespace EXPRS {
  */
 
 
-namespace EXPRS {
- struct PRINTER;
- // struct EXPR;
-};
-
 # if 1
 /*
 	The problem is, YACC is fussy about EXPR _t being not in a namespace
@@ -212,11 +212,6 @@ namespace EXPRS {
 	So that can be in the other file (as yet unseen, just STUB)
 */
 
- struct EXPR {
-  virtual ~EXPR() {}
-  virtual void print_to( EXPRS::PRINTER * printer) = 0;
-  virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
- };
 //typedef EXPRS::EXPR EXPR;
 #endif
 
@@ -226,193 +221,6 @@ namespace EXPRS {
 	obj_ref0 = ref counted object, needs attentionm obj_holder<t> or &
  	recompiled fine with // struct EXPR : public obj_ref0 {}
  */
-
-namespace EXPRS {
-
-# if 0
- struct EXPR {
-  virtual ~EXPR() {}
-  virtual void print_to( EXPRS::PRINTER * printer) = 0;
-  virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
- };
-//typedef EXPRS::EXPR EXPR;
-#endif
-
-
- struct PRINTER
- { public:
-  buffer2 out;
-  int indent;
-  virtual ~PRINTER() {
-  }
-  PRINTER() {
-  	indent = 0;
-  }
-
-  buffer2 & buff() { return out; }
-
-  virtual void print_EXPR ( EXPR * expr ) 
-  {
-  	// undecided if always checking is slower than checking always
-	// maybe silence this auto-path-completion
-	// maybe decide on return true; // from empty branch
-	// maybe decide on return false; // from empty branch
-  	if(!expr) { WARN("NULL expr"); return; }
-	// ACTION = 
-	expr -> print_to( this );
-  }
-  void print_EXPR_indented ( EXPR * expr ) {
-  	if(!expr) { WARN("NULL expr"); return; }
-	// modified ACTION // let compiler inline above here ?
-  	indent ++;
-	print_EXPR( expr );
-  	indent --;
-  }
-  void printf ( const char * fmt, ... ) {
-	va_list args;
-	va_start( args, fmt );
-  	out.vprint(false, fmt, args );
-  }
-  void print_STR ( const char * str ) {
-  	out.print("%s", str );
-  }
-
-  void ind_indent()
-  {
-	if(!indent) {
-		if(0) out.print("#### line #### ind_indent detected \n");
-		// return;
-	}
-	// zero can still output
-  	ind(indent);
-  }
-
-  void ind(int _ind) {
-	/* SELF */ printf("ind(%d)##", indent );
-	for(int i=0; i<_ind; i++ ) {
-		printf("| ");
-	}
-  }
- };
-
-
- // everything (mostly) in EXPRS is a subclass of EXPR
- // EXPR base is outside the namespace
-
- // Tuples start here, or stay in PAIR
- // soon SEQ <--> STRUCT
-
- struct EXPR_name : public EXPR {
-	str1 name;
-
- 	EXPR_name( const char * _name ) 
-	: name( _name )
-	{
-	}
-	void print_to( PRINTER * printer)
-	{
-		// uncalled
-		printer -> ind_indent();
-		printer -> print_STR( name );
-		printer -> out.print( " (EXPR_name) " );
-		printer -> out.print( "\n" );
-	}
- };
-
- struct EXPR_rhs : public EXPR {
-	EXPR * rhs;
-	int op;
- //	str1 name; // NO NAME
- //	str1 CMNT; // or preparsed ...
-
-	// const char * name;
-	EXPR_rhs( int TOK_OP, EXPR * rhs_ )
-	{
-		init_null();
-		rhs = rhs_;
-		op = TOK_OP;
-	}
-	void init_null()
-	{
-		rhs = NULL;
-		op = ' ';
-		// name = (const char *) NULL;
-	}
-
-	virtual bool detect_at_top(PRINTER*printer)
-	{
-		// detect and act
-		if(!printer->indent) {
-			return true;
-			printf("#### line #### SINGLE TOKEN\n");
-			return true;
-		}
-		return false;
-	}
-
-  // virtual
- 	 void print_to( PRINTER * printer)
-	 {
-		buffer2 & out = printer->buff();
-		// print INDENT "+"
-		printer->ind_indent();
-		out.print("[1OP] %s\n", str_of_token(op) );
-
-		if(rhs) {
-			printer->print_EXPR_indented( rhs );
-		}
-	}
- };
-
- struct EXPR_lhs_rhs : public EXPR {
-	EXPR * lhs;
-	EXPR * rhs;
-	int op;
-//	str1 name;
- //	str1 CMNT; // or preparsed ...
-
-	// const char * name;
-	EXPR_lhs_rhs()
-	{
-		init_null();
-	}
-	EXPR_lhs_rhs( EXPR * _lhs, int _op, EXPR * _rhs )
-	{
-		lhs = _lhs;
-		rhs = _rhs;
-		op = _op;
-//		name = (const char *) NULL;
-	}
-	void init_null()
-	{
-		lhs = NULL;
-		rhs = NULL;
-		op = ' ';
-//		name = (const char *) NULL;
-	}
-
-  // virtual
- 	 void print_to( PRINTER * printer)
-	 {
-		buffer2 & out = printer->buff();
-
-		if(lhs) {
-			printer->print_EXPR_indented( lhs );
-		} else {
-			WARN("UNEXPECTED NULL");
-		}
-
-		// print INDENT "+"
-		printer->ind_indent();
-		out.print("%s [OP]\n", str_of_token(op) );
-
-		if(rhs) {
-			printer->print_EXPR_indented( rhs );
-		} else {
-			WARN("UNEXPECTED NULL");
-		}
-	}
-};
 
 /*
 	these are OK in the EXPRS namespace
@@ -437,20 +245,10 @@ namespace EXPRS {
 
 */
 
-extern EXPR * E0( const char * name );		// expr == IDEN_anystr
-extern EXPR * E1( int op_, EXPR * rhs_ ); // expr == op EXPR
-extern EXPR * E2( EXPR * lhs_, int op_, EXPR * rhs_ ); // expr == EXPR op EXPR
-extern EXPR * mk_E_id( const char * name_ ); // expr == IDEN_anystr // REPEAT ??
-extern EXPR * E1( int op_, EXPR * rhs_ );  // expr = TOKEN_unary RHS
-extern EXPR * E_plus_E( EXPR * lhs,  EXPR * rhs );  // EXPR + EXPR
-extern EXPR * E_times_E( EXPR * lhs,  EXPR * rhs ); // EXPR * EXPR
-extern EXPR * E_power_E( EXPR * lhs,  EXPR * rhs ); // EXPR ^ EXPR
-
-}; // namespace
-
 // SYNTAX OK // was union field name not type
 // typedef ::EXPRS::EXPR EXPR_t2;
 //		using namespace EXPRS;
 // SYNTAX OK // was union field name not type
 // typedef EXPR EXPR_t;
+#endif // TOEOF
 #endif

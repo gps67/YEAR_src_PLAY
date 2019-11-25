@@ -662,7 +662,8 @@ gen_YACC_top_code( buffer2 & out )
  L("          extern const char * str_of_token( int token );");
 
  // before tab,h so that namespace exists
- L("          #include \"../src/EXPRS.h\"");
+ // STUBS for all mk_new_EXPR( args ) used in YACC RULE MATCH CODE
+ L("          #include \"../src/EXPRS_STUBS.h\"");
  // L("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
  // L("          typedef struct EXPR; // this doesnt work");
  // also some editing of exprs.h

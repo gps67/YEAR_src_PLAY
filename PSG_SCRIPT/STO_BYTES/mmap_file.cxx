@@ -181,8 +181,10 @@ bool system_od_file ( const char * filename )
 extern "C" char * strcpy( char *, const char * );
 bool mmap_file::test1( void )
 {
-	bool t = true; // OK
 	const char * filename = "/tmp/fh1";
+	// filename = "/home/gps/YEAR/tmp/fh1"; // NFS is OK
+
+	bool t = true; // OK // almost unused
 
 	buffer1 cmd1;
 	cmd1.clear();
@@ -195,6 +197,16 @@ bool mmap_file::test1( void )
 // nearest phrase
 //	t=map_in_file( "/tmp/fh1", FALSE );
 //
+
+#if 0
+	// PARAMETER casts STR0 <--> str0 WHEN cast happens
+	// NOT for INFO ... varags no cast
+	INFO("filename %s", (STR0) filename );
+	str0 filename2 = filename;
+	INFO("filename2a %s", filename2 );
+	INFO("filename2 %s", (STR0) filename2 );
+#endif
+
 	if(!mmap_in_file_RW( filename ))
 		return FAIL_FAILED(); // 
 
@@ -205,8 +217,8 @@ bool mmap_file::test1( void )
 	system_od_file ( filename );
 
 	if(!t) return FAIL_FAILED();
-	grow_file_16( 600 );
-	if(0) strcpy( page0+30, "-HELLO_VIA_MMAP-" );
+	grow_file_16( 256 ); // YEP STOPS exactly on
+	if(1) strcpy( page0+64, "-HELLO_VIA_MMAP-" );
 	sync();
 	system_od_file ( filename );
 	return true;

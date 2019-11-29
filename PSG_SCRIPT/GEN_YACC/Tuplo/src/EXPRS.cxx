@@ -60,8 +60,11 @@ namespace EXPRS {
  struct EXPR_rhs : public EXPR {
 	EXPR * rhs;
 	int op;
+
  //	str1 name; // NO NAME
  //	str1 CMNT; // or preparsed ...
+
+ //	OPERATOR might be !exp exp! or (exp)
 
 	// const char * name;
 	EXPR_rhs( int TOK_OP, EXPR * rhs_ )

@@ -39,9 +39,7 @@ namespace TTY_CURSES {
 	}
 
 	void printf( const char * fmt, ... );
-	void print( const char * str) {
-		printf( "%s", str );
-	}
+	void print( const char * fmt, ... );
 
 	// attr_on is a CURSES MACRO
 	void fgbg_on( int attr ) { attron( attr ); }

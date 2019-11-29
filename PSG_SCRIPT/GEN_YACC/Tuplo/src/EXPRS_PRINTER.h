@@ -1,19 +1,7 @@
 #ifndef EXPR_PRINTER_H
 #define EXPR_PRINTER_H
 
-#include "EXPRS.h"
-
-namespace EXPRS {}
-
-# if 0
- struct EXPR {
-  virtual ~EXPR() {}
-  virtual void print_to( EXPRS::PRINTER * printer) = 0;
-  virtual void print_to_NULL(); // create a dummy printer, use copy out, drop
- };
-//typedef EXPRS::EXPR EXPR;
-#endif
-
+#include "EXPRS_STUBS.h"
 
 namespace EXPRS {
 
@@ -46,31 +34,48 @@ namespace EXPRS {
 	print_EXPR( expr );
   	indent --;
   }
+
+  /*!
+  	pass all printf requests to buffer2 out
+  */
   void printf ( const char * fmt, ... ) {
 	va_list args;
 	va_start( args, fmt );
   	out.vprint(false, fmt, args );
   }
+  /*!
+  	print is like printf - for those who want it
+  */
   void print ( const char * fmt, ... ) {
 	va_list args;
 	va_start( args, fmt );
   	out.vprint(false, fmt, args );
   }
+
+  /*!
+  	puts ... no mention of CHARSET
+  */
   void print_STR ( const char * str ) {
   	out.print("%s", str );
   }
 
+  /*!
+  	output indent worth of indent
+  */
   void ind_indent()
   {
-	if(!indent) {
-		if(0) out.print("#### line #### ind_indent detected \n");
-		// return;
-	}
-	// zero can still output
   	ind(indent);
   }
 
+  /*!
+  	output ind worth of indent
+  */
   void ind(int _ind) {
+	if(!indent) {
+		// zero can still output
+		if(0) out.print("#### line #### ind_indent detected \n");
+	}
+
 	/* SELF */ printf("ind(%d)##", indent );
 	for(int i=0; i<_ind; i++ ) {
 		printf("| ");

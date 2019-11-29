@@ -6,6 +6,33 @@
 	ACTION requires PERMIT
 	 ACTION sees sense in queueing up for later APPROACH +- PERMIT
 	 ACTION sees OK FAIL in PERMIT eg timeout expired retry with new token
+	 ACTION offers to QUEUE REQUEST for PERMIT via FORM_FILLER
+	 ACTION says it wants filter check_field check_form send_REQ
+	 QUEUE frames the request and nudges queue // 
+	 USER checking up_to_date 
+	 USER checking enq_ack comms_check_
+	 AUTO on_PKT_in {
+	  info {
+	  // CT // EA_THIS { NAME1_t * NAME = PARAMETER } // ANYSTR 
+	  THIS_t * this = EA_THIS_PKT_in; // plus extra
+	  SPEC_t * spec = CT_C_struct_PKT_in_SPEC; // SUBLEX routes to ROM_LOCN
+	  // ANYSTR // better when TOKENISED by CHARSET and by ORIGIN
+	  // ORIGIN // REMOTE // SELF // TEMP_n_GONE CTOR
+	  // PSG // making contact within this compund statement detects CTXT
+	  }
+	  data {
+	   N_BYTES {
+	    uns N; // int if you want -1 signals or even -2
+	    RT uns & N = META.N_bytes.N(); // int N = N() returns -ve info
+	    CT create a cache for N init_NULL bind_first_call get_ctor_link
+	    CT putting that cache in the META data zone because per self
+	    CT easier to align DATA to CLICK32 and PAGE_4K_page0
+	    CT optimist that N will be know at CT { N == 3 }
+	    CT optimist that N will be know at CT or put_in_rom
+	    u8 DATA [ N ];
+	   }
+	  }
+	 }
 	
 	- NO PERMIT REQUIRED -
 	QUOTA 200K data 2MB code 200k MMAP_FILE_fast MMAP_FILE_slow

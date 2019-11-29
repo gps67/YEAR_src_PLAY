@@ -1,0 +1,70 @@
+2019-11-25 Nov Mon 15:17 PSG_SCRIPT_DATA_in_MMAP_with_SPEC.txt
+
+	SPEC is known TREE type
+
+	MMAP file is LOADED for DECODED
+	 
+	 // MACRO u4 = u4_hi
+	 // KNOW u4 layer_file_idx = u4_hi
+	 Layer_File_t * Layer_File = VECT_hi[ u4 ];
+
+	 if(!Layer_File)
+	  Layer_File = recompute_Layer_File( extra args );
+	 if(!Layer_File)
+	  return FAIL_FAILED();
+
+	 // MACRO u4 = u4_lo
+	 // KNOW u4 file_zone_idx = u4_lo
+	 ZONE_in_Layer_t * ZONE_in_Layer
+	 = Layer_File -> FILE_ZONE[ u4 ]
+
+	 // SWEEP u8 = u4_u4
+	 ZONE_in_Layer_t * ZONE_in_Layer
+	 = Layer_File__File ZONE -> FILE_ZONE[ u4 ]
+
+	 ZONE_in_SPACE_t * ZONE_in_SPACE;
+	 ZONE_in_FILE_in_SPACE = ZONE_in_Layer;
+
+	 if(!ZONE_in_FILE_in_SPACE)
+	  ZONE_in_FILE_in_SPACE = recompute_Layer_File( extra args );
+	 if(!ZONE_in_FILE_in_SPACE)
+	  return FAIL_FAILED();
+
+	We are compiling in a BASE CLASS LAYER
+	modified for MIX_INS,
+	pre-taught fastest things first
+	key values already in ROM
+	lots of double step values
+	u64 = u32 + u32
+	= u32_EA_SPEC_base
+ 	  u32_EA_EXPR_local_token_expr_for_eval
+	  // maybe even u32_hilo DATA for EXPR
+	  // invoked with additional parameter
+	  // EVAL for VIEW
+	  // EVAL over ITEM run EXPR = *EA_EXP()
+
+ WE CANT USE VTBL within MMAP
+ WE REMAIN DEPENDENT on expernal PAGE0_t * page0;
+ WE can process local offs within frame
+
+ 	frame += frame.page0 == thread_var_layer_3_area_22_page0;
+	// possibly my pointer to where the central copy is
+	// I subscribed to it, but it moves occasionally
+	// BEEP_alert_page0_let_go
+	// REPL exits calls on_idle_update_page0 that completes BEEP
+	// BLOCK POSSIBLE for thread to release page0's
+	// REPL restarts using new page0 values
+
+	// PROTOCOL option, is flush changes, release locks, reload
+	// PROTOCOL option, is delete_without_saving
+	// PROTOCOL option, is pre_call delete_without_saving
+
+	// TOP of TREE is COPIED, has representative objs in C
+	// ROM is good for not needing writable STO locks
+	// STACK_PATH ROOT to LEAF
+
+	create CPP_OBJ = WRAP_FILE_OBJ
+	 OBJ & obj = ... ??? ...
+
+	PSG TREE can be VTBL to GEN_TUPLE_codes
+

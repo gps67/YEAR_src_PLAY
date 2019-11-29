@@ -1,0 +1,153 @@
+PSG_SCRIPT_ARGS_tuple_diag.txt
+
+	ARGS
+	 must be exact { 0, 1, 2, MORE }
+	 MORE means in a VECT
+	 VECT means 
+	  N = u4_or_MORE // compiler prepares runtime counter for MORE
+	  u4_or_MORE u4 == -1 /* TOK MORE */ -
+	  u4_or_MORE u4 == -2 /* TOK more_token_addressing_schemes */ -
+	  u4_or_MORE u4 == -3 /* TOK debugging and the floor is lava */ -
+	  u4_or_MORE u4 == 0 /* 0 is like 1 or 2 or ... */ -
+	  u4_or_MORE u4 == 0 /* 0 is OK else error 1 or 2 or -2 or ... */ -
+	  u4_or_MORE u4 == 0 /* 0 means ABSENT */ -
+	  u4_or_MORE u4 == 0 /* 0 means 0 */ -
+
+	  RUNTIME provide a tray of 16 words as a table field
+
+	   VECT _u4 _u8 _u16 _u24_OFFS_of_u32_hilo
+
+	   DECODE i4
+
+	   	-8
+		-1 -2 -3 -4 -5 -6 -7
+		0
+		1 2 3 4 5 6 7
+	
+	   DECODE i8
+
+	   	-128
+		-127 .. 
+		-8
+
+	# EDIT # 
+	# EDIT # -7 -6 -5 -4 -3 -2 -1
+
+	   DECODE_u4_u4
+
+		u4_hi u4_lo come from u8_PARAMETER ASM faff to CACHE
+		u8 = u4_u4_in_byte_hi_lo
+		u32_hilo = VECT[ hi, lo, ] // double step syntax unused
+		u32_hilo = VECT_u8[ hilo ] // double step PREBUILT avoided
+	   	u32_hilo = VECT_hi[ u4_hi ]
+	   	u32_hilo = VECT_lo[ u4_lo ]
+
+	   	VECT_u8[ u8 ] PREBUILT[ N } N == 256
+
+	   DECODE_u32
+
+	   	 u8 ZONE
+		 u8 LOCN	
+		u16 ITEM
+
+	   DECODE_u64
+
+	   	 u8 ZONE
+		 u8 LOCN	
+		u16 ITEM
+		u32_hilo DATA
+
+	   DECODE_u64
+
+	   	 u8 ZONE
+		 u8 AREA // see organiser that builds idx < N == 400
+		 // shared_VECT[ K65 ] // 64K + 0 + -1 + -16
+		 // 
+
+		 u8 LOCN	
+		u16 ITEM
+		u32_hilo DATA
+
+
+	  	most ARGS lists will be well below 14 ARGS long
+
+			ARGV[ N ] = ARRAY_OF_DATA {
+			 grep_vi
+			 [ -i ]
+			 pattern
+			 * matching FILE_LIST // added FILTER 
+			}
+
+	  	many ARGV * lists fold into * == list found or zone to cross
+
+
+ARGS tuple DIAG
+
+	TOK_5[ 5 ] 
+	{ LHS == RHS }		CTXT
+
+	TOK_3[ 3 ] 
+	  LHS == RHS 		CTXT += "{ ZONE }";
+
+	TOK_2[ 2 ] 
+	  LHS    RHS 
+	That TOK[5]		CTXT += "{ LHS RHS }"
+				CTXT + "LHS OPCODE RHS" 
+				CTXT + "OPCODE =="
+
+				DIALECT pre-learns these pathways
+				builds them into ROM for data view
+
+				IMPROVED OBSERVER rewires things
+				filter in api users (eg via pfx_)
+				allow plain SPELLING use of TOK
+				allow different TOK via different USAGE
+	CHOICE
+
+	 "===" is a parameter
+	 "===" is THIS, incl this_struct_t, search_key=$0, cmd=$0, opcode==cmd
+
+	 TUPLE_PLUS
+
+	  CT N = 0 // probably packed in CTXT get ARGS from ARGV now DONE
+	  CT N = 1 2, 3, MORE // ZERO_MEANS_RE_EVAL u32_cpu N_cached = N();
+	  CT N = 1 .. 7, MORE // ZERO_STILL_RECALC
+	  CT N = 1 .. 15, MORE ZERO M1 M2 MORE
+	  CT N = 1 .. 256, ZERO_means_recalc_is_256 // or FAIL
+	  CT N = 0 .. K64, ZERO means ZERO, M1 is avail as is M8
+	  // M8 == -128 on n=8 m=7
+	  // -(2^m)	// -128
+	  // -(2^m) +1	// -127
+	  // -((2^m) -1)// -127
+	  // -((2^m) -2)// -126
+	  // -((2^m) -((2^m)-1)// -1 // NEGATIVE_FLAG
+	  // -((2^m) -(2^m)// -0 // ZERO
+	  // +(2^m) -1	// +127 // MAX
+	  // +(2^m) -1	// +127
+	  // OK powers of 2 reflecting -ve selves
+	  // M8 == -128 = a remote few, taken from usable value space, to flag
+	  // simply check when PREBUILD assemble values need extre bytes
+
+
+	TUPLE = META_SELF
+
+	 this_t * this;
+	 spec_t * spec; // RT and CT
+
+	 as words in the ARGV get recognised as syntax
+	 as value as named tokens for local vars
+
+	 When the TUPLE is nearby, in place, the DECODER finds fragment fields
+
+	 The DOCODER can require extra DATA as well as the TUPLE
+	 eg page0 = localname = imported_layer[u8].page0_localname
+	 // BENCH weaves DECODER into SPEC
+	 // BENCH writes out loads of REXP for ARGS from ARGV
+	 // use a term you find, and it works
+	 // BENCH will need to ALIAS it, import TERM from LIBR as ALIAS myname
+	 // BENCH local scope SWEEP for name conflicts
+	 // BENCH compromise, agree on AVOID_LIST, get help moving names away
+	 // BENCH compromise, TEST_sweep_data says no conflicts ROM_READY
+	 // BENCH re_clone // repeat // list order = scripted build up
+
+

@@ -48,7 +48,19 @@ namespace TTY_CURSES {
 	{
 		va_list args;
 		va_start( args, fmt ); // fmt is the position on the stack
-		vwprintw( win, fmt, args );
+		vw_printw( win, fmt, args );
+	}
+
+	void tty_curses_CSR:: print( const char * fmt, ... )
+	{
+		va_list args;
+		va_start( args, fmt ); // fmt is the position on the stack
+		vw_printw( win, fmt, args );
+	}
+
+	void tty_curses_CSR:: puts( const char * str ) // not yet utf8
+	{
+		waddstr( win, str );
 	}
 
 	void tty_curses_CSR:: clear_to_eol()

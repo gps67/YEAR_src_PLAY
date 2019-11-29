@@ -54,7 +54,7 @@ void X_Window::set_name( const char * _name )
 X_Window::X_Window(
 	const char * _name,
 	X_Display & disp_,
-	A_Rectangle xywh,
+	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
 	int borderwidth
 )
 : parent(NULL)

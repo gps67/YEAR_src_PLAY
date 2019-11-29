@@ -1,0 +1,43 @@
+
+ u64 is the CPU WORD SIZE 
+ u32 is the CPU WORD SIZE
+
+ 	Decode u32
+	u8 u8 u16 
+
+	u8_file_zone; // 16 files 16 top_zones // PLUS more_zones
+	u8 file_zone; // 256 zones in PAGE // file_zone[ u16 ] // tree
+	u16 item_expr; // item[ u16 ] ; // low_fill 10K align_to_WORD
+
+	// 16 files 16 top_zones // PLUS more_zones
+
+	EACH file_zone_t {
+	 decode_EA_to_PAGE0_OFFS {
+	  EA = u32_hilo
+	  PAGE0 & {
+	   on_MOVE_pause {
+	   	run_loads_now_to complete_stack_leave_entire_tasks_unopened
+		drain_loads_now_and_create_SYNC_CLICK
+		WAIT for SYNC_CLICK
+		enable_cache = false;
+		flush_all_buffers_and_drop_all_page0_users
+		SYNC_CLICK can_move_now
+		// return sort of implied that anyway
+	   }
+	   on_MOVE_resume {
+	    enable_tables {
+	    	debug_check_already_NULL
+		re_open_tables_but_clear_buffers_first
+		re_load_from_ROM
+		re_iterate_over_cache_keys // prefetch
+	    }
+	    request_fresh_copy {
+	    	PAGE0_t PAGE0 = new_page0
+		enable_cache = true;
+	    }
+	   }
+	  }
+	 }
+	}
+	PICK = u8_file_zone;
+

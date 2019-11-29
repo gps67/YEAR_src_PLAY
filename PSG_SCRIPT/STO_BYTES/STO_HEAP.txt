@@ -1,0 +1,22 @@
+2019-11-26 Nov Tue 00:14 STO_HEAP.txt
+
+	an on disk MMAP data_store // NO_EXEC // YES_EXEC
+
+	HEAP is a lot like OFFS addressed malloc/free
+
+	TREE tends to malloc_near( own_heap_pages_near here )
+
+	TREE_BUILDING_stack
+
+	 leaf_to_root
+	 root_to_leaf
+	 list of_root
+	 list_of_twig
+	 locn_in_tree
+	
+	STO_no_VTBL
+	STO_no_VTBL_except_C_handrolled // u32_hilo SPEC_ea_expr;
+
+	 TUPLE is the alternative to LISP PAIR { CAR, CDR }
+	 TUPLE can use a VECT[N] N == 4 // SELF LHS RHS CMNT
+	 SPEC_of_SELF is closely available CT RT usages

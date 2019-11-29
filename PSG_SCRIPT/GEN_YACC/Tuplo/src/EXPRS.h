@@ -4,6 +4,7 @@
 // EXPRS_STUBS was given to YACC
 #include "EXPRS_STUBS.h"
 
+// the rest might go to .cxx
 #include "obj_ref.h"
 #include "buffer2.h"
 #include <stdarg.h>
@@ -19,6 +20,7 @@ extern const char * str_of_token( int token );
 #include "gen_e1_yacc.tab.hh"
 // #warning "gen_e1_yacc.tab.hh" DONE
 
+// EOT HERE ALMOST
 #if 0 // to EOF
 /*
 	The C++ tree of classes for E1 expr types

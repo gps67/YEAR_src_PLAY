@@ -3,8 +3,9 @@
 #include "tty_curses_CSR.h"
 #include "dgb.h"
 #include "e_print.h"
-#include "stdio.h"
+#include <stdio.h>
 #include <locale.h>
+#include "str1.h"
 
 extern "C" void exit(int);
 
@@ -13,10 +14,103 @@ extern "C" void exit(int);
 //	DITTO Makefile can have users invokation + _include _link _load _call
 // }; // namespace
 
+	using namespace TTY_CURSES;
+
+  struct SHAPE_ONE {
+
+	// SURFACE is
+	tty_curses_CSR & CSR; // shared with other users of window
+  	i16 X0; 
+  	i16 Y0; 
+
+	str1 title;
+	i16 glyph_width; // dpi=4
+
+	i16 dx_to_box;
+	i16 dx_of_frame;
+	i16 dy_of_frame;
+
+	SHAPE_ONE( tty_curses_CSR & _CSR )
+	: CSR( _CSR )
+	{
+		title = "Title";
+	}
+
+
+	bool set_X_Y_W_H(
+	 i16 _X, 
+	 i16 _Y, 
+	 i16 _W, 
+	 i16 _H
+	) {
+		X0 = _X;
+		Y0 = _Y;
+		dx_of_frame = _W;
+		dy_of_frame = _H;
+
+		dx_to_box = 2;
+		dx_to_box = 7;
+
+		glyph_width = title.str_len();
+		return true;
+	}
+
+	bool draw()
+	{
+		i16 x0 = X0 + 0; // inside line
+		i16 x1 = X0 + 0; // inside line
+		i16 x2 = x1 + dx_to_box;
+		i16 x3 = x2 + 1 + glyph_width + 1;
+		i16 x4 = X0 + dx_of_frame - 1; // -1 thing
+
+		i16 y0 = Y0;		// GAP TOP LINE 
+		i16 y1 = y0 + 1;	// TEXT line
+		i16 y2 = y1 + 1;	// LINE
+
+		i16 y4 = Y0 + dy_of_frame;
+
+		CSR.move( Y0, X0 );
+		CSR.puts("/");
+
+		CSR.move( y0, x2 );
+		CSR.putc_box( false, true, false, true );
+		CSR.box_h_line( y0, x2+1, x3-1 );		// over
+		CSR.putc_box( false, true, true , false);
+
+		CSR.move( y2, x2 );
+		CSR.putc_box( false, true, true , false);
+		CSR.box_h_line( y2, x2, x3 );			// below
+		CSR.putc_box( false, true, false, true );
+
+		CSR.move( y1, x0 );				// left
+		CSR.putc_box( true, true, true, false );
+		CSR.box_h_line( y1, x1, x2-1 );			// below
+		CSR.puts(" "); // SP before Title
+		CSR.puts( title ); // str1 Title
+		CSR.puts(" "); // SP before Title
+		CSR.putc_box( true, true, false, true );
+
+		CSR.box_h_line( y1, x3, x4 );
+		CSR.putc_box( false, true, true, false );
+	// end title line
+
+		CSR.box_v_line( x0, y2+1, y4 ); // left
+		CSR.box_v_line( x4, y2, y4 ); // right
+		CSR.move( y4, x0 );
+		CSR.putc_box( true, false, true, false );
+		CSR.box_h_line( y4, x1, x4 ); // bottom
+		CSR.putc_box( true, false, false , true);
+
+	}
+
+	// no fg_bg yet
+
+  };
+
 
   bool main_test1()
   {       
-	TTY_CURSES::tty_curses tty;
+	tty_curses tty;
 	tty.setup();
 
 	TTY_CURSES::tty_curses_CSR csr( & tty );
@@ -89,6 +183,10 @@ extern "C" void exit(int);
 	csr.get_yx();
 	int y_2 = csr.y_was;
 	int x_2 = csr.x_was + 1;
+
+	SHAPE_ONE shape(csr) ; // XY not YX 
+	shape.set_X_Y_W_H( 7, 15, 25, 5 );
+	shape.draw();
 
 
 	int nk=0;

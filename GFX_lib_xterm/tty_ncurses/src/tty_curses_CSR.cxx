@@ -68,6 +68,44 @@ namespace TTY_CURSES {
 		wclrtoeol( win );
 	}
 
+	void tty_curses_CSR:: box_mode_start()
+	{
+	}
+
+	void tty_curses_CSR:: box_mode_end()
+	{
+	}
+
+	void tty_curses_CSR:: box_v_line( i16 x, i16 y1, i16 y2 )
+	{
+		int y = y1;
+		int ctr = y2 - y1;
+		while( ctr-- > 0 ) {
+		 move( y++, x );
+		 puts("|");
+		}
+		move( y++, x ); // leave CSR at bottom for next JB
+	}
+
+	void tty_curses_CSR:: box_h_line( i16 y, i16 x1, i16 x2 )
+	{
+		move( y, x1 );
+		int ctr = x2 - x1;
+		while( ctr-- > 0 ) {
+		 puts("-");
+		}
+	}
+
+	void tty_curses_CSR:: putc_box(
+	 bool U,
+	 bool D,
+	 bool L,
+	 bool R
+	) {
+		puts("+");
+	}
+
+
 	void tty_curses_CSR:: move_status_line() // and clear it
 	{
 		wmove( win, LINES - 1, 1 );

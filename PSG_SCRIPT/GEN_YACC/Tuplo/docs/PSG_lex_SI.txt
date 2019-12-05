@@ -1,0 +1,56 @@
+2019-12-05 Dec Thu 01:23 PSG_lex_SI.txt
+
+	NLP 
+	 Parse
+	  lex YEAR {
+	  == "[0-9]+"
+	  == "[12][0-9][0-9][0-9]"
+	  == LIBR_expr_YEAR == lex_NUMBER += WEIGHTINGS {
+	  	CACHE toplist {
+		 EXPR 
+		  SUBLEX digit digit digit digit // fussy 4-digit year
+		 |SUBLEX LIBR_expr_paragraph_and_sublex
+		 |SUBLEX NUMBER_with_sublex_weightings // eg YEAR this_year
+		 |SUBLEX NUMBER_var near_name // eg DIAG_lex_year
+		 |CACHE YEAR_mentioned SUBLEX=NUMBER // TYPE used as VAR name
+		 |CACHE YEAR_mentioned {
+		  	LEXP 
+		  }
+		 |
+		}
+	   }
+	  }
+	  lex NNNppm {
+	  ==  [0-9]+ NOSP ppm // precompiler applies NOSP anyway
+		// DIALECT // 3ppm // 3ppm dx of 275ppm CO2 ppm SI //
+		// DIALECT sublex_NUMBER sublex_unit_ppm ppm // OTHER
+		// NOSP is a reserved word in DIALECT toolkit
+		// it's use creates a local var with some flags
+		// NOSP means there must not be SP
+		// NOSP means inevitably is SP // SUBLEX bridging SP
+		// addvar SP_FOUND_on ROM_table_item
+		// node in tree in PSG "SP_options" // typical values and EXPR
+		// CSV with fussy own-code parsing TAB byte
+
+	  }
+
+ TEST
+ testdata {
+	global emissions are now 65-70% higher than the 1990 level.
+	Today, atmospheric levels are close to 415ppm and rising at 3ppm a year.
+ } // environmental coffee house // NOSP .web //
+
+ find {
+ 	sentence comma_phrases sublex cache
+	ROM cache STO cache USAGE cache
+	
+	 nouns_being NUMB_phrase
+	 NUMB 65 - 70 %
+	 NUMB higher than NUMB
+	 are close to
+	 415 ppm // guess CO2
+	 and rising at NUMB_rate
+	 NUMB_rate 3ppm a year
+
+ }
+

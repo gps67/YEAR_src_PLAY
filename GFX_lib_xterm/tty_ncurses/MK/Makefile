@@ -42,6 +42,7 @@
 
 	OBJS1 += tty_curses.o
 	OBJS1 += tty_curses_CSR.o
+	OBJS1 += tty_curses_UDLR.o
 	OBJS1 += tty_curses_test_1.o
 
 	# order matters - maybe put into .a to mix it up
@@ -50,6 +51,10 @@
 	CLEAN2 += $(OBJS2)
 
 all: test1 test2
+
+build: $(PROG1_exec) 
+# $(PROG2_exec)
+
 
 .SUFFIXES: .cxx .tab.c .tab.cc .cc .c .y .o
 

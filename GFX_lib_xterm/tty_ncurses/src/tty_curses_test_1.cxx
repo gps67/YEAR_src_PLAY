@@ -73,34 +73,35 @@ extern "C" void exit(int);
 		CSR.puts("/");
 
 		CSR.move( y0, x2 );
-		CSR.putc_box( false, true, false, true );
+		CSR.putc_box( UDLR__D_R );
 		CSR.box_h_line( y0, x2+1, x3-1 );		// over
-		CSR.putc_box( false, true, true , false);
+		CSR.putc_box( UDLR__DL_ );
 
 		CSR.move( y2, x2 );
-		CSR.putc_box( false, true, true , false);
+		CSR.putc_box( UDLR__DL_ );
 		CSR.box_h_line( y2, x2, x3 );			// below
-		CSR.putc_box( false, true, false, true );
+		CSR.putc_box( UDLR__D_R );
 
 		CSR.move( y1, x0 );				// left
-		CSR.putc_box( true, true, true, false );
+		CSR.putc_box( UDLR_UDL_ ); // tee
 		CSR.box_h_line( y1, x1, x2-1 );			// below
 		CSR.puts(" "); // SP before Title
 		CSR.puts( title ); // str1 Title
 		CSR.puts(" "); // SP before Title
-		CSR.putc_box( true, true, false, true );
+		CSR.putc_box( UDLR_UD_R ); // tee
 
 		CSR.box_h_line( y1, x3, x4 );
-		CSR.putc_box( false, true, true, false );
+		CSR.putc_box( UDLR__DL_ );
 	// end title line
 
 		CSR.box_v_line( x0, y2+1, y4 ); // left
 		CSR.box_v_line( x4, y2, y4 ); // right
 		CSR.move( y4, x0 );
-		CSR.putc_box( true, false, true, false );
+		CSR.putc_box( UDLR_U_L_ );
 		CSR.box_h_line( y4, x1, x4 ); // bottom
-		CSR.putc_box( true, false, false , true);
+		CSR.putc_box( UDLR_U__R );
 
+		return true;
 	}
 
 	// no fg_bg yet
@@ -208,6 +209,7 @@ extern "C" void exit(int);
 	  case KEY_BACKSPACE:
 //	  case KEY_ESC:
 	  case 33:
+		INFO("1000 steps");
 	  	nk+=1000;
 	  break;
 	 }

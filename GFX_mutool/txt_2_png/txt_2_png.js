@@ -22,6 +22,31 @@
 		print( "# INFO #", key, val )
 	}
 
+	function expand_tabs( str ) {
+	 var dst = ""
+	 dst = "LHS "
+	 var len = str.length
+	 var xpos = 0
+	 for( var pos = 0; pos < len; pos++ ) { // es5 not es6 ?
+	   var ch = str[pos]
+	   if( ch == "\n" ) {
+		 xpos =-1 
+	   }
+	   if( ch == "\t" ) {
+	        // dbg_print_2( "TAB", str )
+		do {
+		 dst = dst + " " // tabby space
+		 xpos ++
+		 // dbg_print_2( "dst", dst ) 
+		} while( xpos % 8 > 0 ) 
+	   } else {
+		 dst = dst + ch
+	   	 xpos++
+	   }
+	  }
+	 return dst
+	}
+
 	var dir_name_txt = scriptArgs[0];
 
 	// strip .txt // or fail
@@ -50,6 +75,7 @@
 	// dbg_print_2("name_png", name_png);
 
 	var text_in = read( dir_name_txt ) // mutool run specific
+	text_in = expand_tabs( text_in )
 	var text_lines = text_in.split("\n")
 	var n_lines = text_lines.length
 	n_lines -- // no line after final \n // hopefully

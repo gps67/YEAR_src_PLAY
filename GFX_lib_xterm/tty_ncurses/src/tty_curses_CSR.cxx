@@ -70,7 +70,7 @@ namespace TTY_CURSES {
 	{
 		waddch( win, (chtype) (char) ch );
 	}
-	void tty_curses_CSR:: putc_acs( const u8 ch )
+	void tty_curses_CSR:: putc_acs( const chtype ch )
 	{
 		if(!ch)
 		 gdb_break_point();
@@ -101,7 +101,7 @@ namespace TTY_CURSES {
 	{
 		 move( y1, x );
 		 wvline( win, 0, (y2-y1) );
-		 move( y2, x );
+		 move( y2+1, x );
 		 return;
 	}
 
@@ -109,8 +109,8 @@ namespace TTY_CURSES {
 	{
 		// man 3 curs_border
 		move( y, x1 );
-		whline( win, 0, (x2-x1) );
-		move( y, x2 );
+		whline( win, 0, (x2-x1)+1 );
+		move( y, x2+1 );
 		return;
 	}
 

@@ -10,7 +10,7 @@ namespace TTY_CURSES {
 	 void init_char_of_udlr()
 	 {
 	 	// was in BYTE_u4 order for ITEM_t item == VECT_DATA[ u4 ]
-		 UDLR_CHAR( UDLR_____, ' ' )
+		 UDLR_CHAR( UDLR_____, 'X' )
 		 UDLR_CHAR( UDLR____R, ACS_HLINE ) // HALF LINE not avail
 		 UDLR_CHAR( UDLR___L_, ACS_HLINE ) // HALF LINE not avail
 		 UDLR_CHAR( UDLR___LR, ACS_HLINE )
@@ -27,6 +27,13 @@ namespace TTY_CURSES {
 		 UDLR_CHAR( UDLR_UDL_, ACS_RTEE )
 		 UDLR_CHAR( UDLR_UDLR, ACS_PLUS )
 	};
+
+	  int UDLR:: get_acs_char() {
+	    // init on first use // use item0 instead of extra bool var;
+	    if(0 == char_of_udlr[ 0 ] )
+	      init_char_of_udlr();
+	    return char_of_udlr[ (int) val ];
+	   }
 
 #if 0
 	 void OR_VAL(enum_UDLR rhs) {

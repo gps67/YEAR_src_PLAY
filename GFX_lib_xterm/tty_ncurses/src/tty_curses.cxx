@@ -18,10 +18,6 @@ statusline(void)
     return win;
 }
 
-class tty_curses_CSR {
-};
-
-
 #include <signal.h>
   static void handle_SIGINT(int sig) {
   	endwin(); // restart = resume = by next action
@@ -51,13 +47,14 @@ class tty_curses_CSR {
 
 namespace TTY_CURSES {
 
- // ncurses is C and used loads of global names
+ // ncurses is C and uses loads of global names
  // but we could pretend that didn't matter
  // and keep ours in a class in a namespace
 
   tty_curses:: ~tty_curses () {
 	INFO("END TTY // _ncurses");
 	def_prog_mode(); // before shell out
+	INFO("END TTY // 2");
 	// def_shell_mode(); also exists
         endwin(); 
 	delscreen( SCREEN_HERE );
@@ -132,7 +129,8 @@ namespace TTY_CURSES {
 	intrflush(stdscr, false ); // dont drop screen data on CTRL-C
 	keypad(stdscr, true );	// get KEY events (otherwise get ESC X X)
 	meta(stdscr, true );	// get 8 bits
-//	nodelay(stdscr, true); // nonblocking getch returns ERR
+	// NO WORKING HERE as expected tho
+	nodelay(stdscr, true); // nonblocking getch returns ERR // zooms to exit
 	nodelay(stdscr, false); // blocking getch waits for key
 	// man curs_inopts says dont mix raw/cbreak ? 
 if(1) {

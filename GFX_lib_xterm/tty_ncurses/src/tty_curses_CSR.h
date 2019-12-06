@@ -45,9 +45,11 @@ namespace TTY_CURSES {
 	void print( const char * fmt, ... );
 	void puts( const char * str );
 	void putc_byte( const u8 ch );
-	void putc_acs( const u8 ch );
+	void putc_acs( const chtype ch );
 //	void put_c( const u8 ch );
 	void add_ch( const chtype ch );
+
+	// chtype comes from ... means ...
 
 	// attr_on is a CURSES MACRO
 	void fgbg_on( int attr ) { attron( attr ); }

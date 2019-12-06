@@ -1,0 +1,45 @@
+
+	RAILROAD_TRACKS.txt
+
+	machine that draws lines with box corner and joins
+
+	machine that records TRACK_LAYING scripts and JIT weights
+
+	machine that keeps track of a rail of XPOS on DIAG
+	machine that keeps track of a rail of YPOS on DIAG
+	machine that keeps track of a rail of XY_POS on DIAG
+	machine that can convert to relative addressing
+	machine that can track every connected_twig from addressing EXPR
+
+	WINDOW = EDIT_SCRIPT _one _two _popup
+	WINDOW = DIAG_VIEW _with_gridlines _with_fader
+	WINDOW = TOOL_BENCH _tree_admin _view_switch
+
+	Right Click on Junction Box // near causes popup balloon
+	_popup {
+	+= rename_XY_POS_Name
+	+= resume_drawing
+	+= bench_actions_on_point
+	}
+
+	WINDOW = TTY_panel_self_dgb_INFO
+	_popup switch logging to file or UDP _ctrl dgb_invoke_for_TTY_shared
+	// dgb must log INFO e_print to internal panel, some buffer upto 8K
+	// LOG SAVE add INFO markers parameters choices edit-comments
+
+	Separate CSR from tty_curses_CSR
+	specific_tool_to_draw_lines_on_DIAG
+	specific_tool_to_draw_panels_on_DIAG
+	specific_tool_to_merge_panel_views_on_DIAG
+
+	NEW_POS // at CSR.XY
+	 Name XY_POS_%s "Name"
+	 JBOX += UDLR__D__ // direction is opposite back towards from
+	 // TRACK_LAYING machine knows it was travelling UP leaving trail _D_
+	 // TOPOLOGY can replace folded node with * or + or focus_fader
+	 // our usage is exactly 3 junction boxes in a row, no other lines
+	 // TTY vs PIXEL means it collapses without need for a threshold
+
+
+
+

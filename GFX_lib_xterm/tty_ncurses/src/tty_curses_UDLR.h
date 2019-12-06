@@ -39,13 +39,15 @@ namespace TTY_CURSES {
 	  // default zer0 UDLR() 
 
 
+	  int get_acs_char();
+#if 0
 	  int get_acs_char() {
 	    // init on first use // use item0 instead of extra bool var;
 	    if(0 == char_of_udlr[ 0 ] )
 	      init_char_of_udlr();
-
 	    return char_of_udlr[ (int) val ];
 	   }
+#endif
 
 	 void OR_VAL(enum_UDLR rhs) {
 		 val = enum_UDLR(((int) val ) | (int) rhs );

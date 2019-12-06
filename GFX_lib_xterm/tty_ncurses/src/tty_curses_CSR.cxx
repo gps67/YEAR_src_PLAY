@@ -3,6 +3,7 @@
 
 #include <ncurses.h>
 #include "gdb_invoke.h"
+#include "dgb.h" // 
 
 /*
 	_CSR is a WINDOW maybe stdsrc
@@ -37,6 +38,12 @@ namespace TTY_CURSES {
 		win = W;
 	}
 
+	bool tty_curses_CSR:: get_W_H( int & _W, int & _H )
+	{
+		_W = COLS;
+		_H = LINES;
+		return true;
+	}
 
 	void tty_curses_CSR:: 
 	get_yx_was() {

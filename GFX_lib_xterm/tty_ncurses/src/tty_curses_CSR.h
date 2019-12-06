@@ -29,6 +29,8 @@ namespace TTY_CURSES {
 	tty_curses_CSR( tty_curses * _TTY_curses ); // PARENT
 	void set_stdscr( WINDOW * W = NULL );
 
+	bool get_W_H( int & _W, int & _H ); // set into vars directly (api_var)
+
 	int y_was;
 	int x_was;
 

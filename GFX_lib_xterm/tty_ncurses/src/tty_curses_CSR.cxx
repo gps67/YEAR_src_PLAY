@@ -70,13 +70,14 @@ namespace TTY_CURSES {
 	{
 		waddch( win, (chtype) (char) ch );
 	}
+
 	void tty_curses_CSR:: putc_acs( const chtype ch )
 	{
 		if(!ch)
 		 gdb_break_point();
 		if(!ch)
 		 puts("0x00");
-		waddch( win, (chtype) (char) ch );
+		waddch( win, (chtype) ch );
 	}
 
 	void tty_curses_CSR:: add_ch( const chtype ch )
@@ -100,7 +101,7 @@ namespace TTY_CURSES {
 	void tty_curses_CSR:: box_v_line( i16 x, i16 y1, i16 y2 )
 	{
 		 move( y1, x );
-		 wvline( win, 0, (y2-y1) );
+		 wvline( win, 0, (y2-y1)+1 );
 		 move( y2+1, x );
 		 return;
 	}

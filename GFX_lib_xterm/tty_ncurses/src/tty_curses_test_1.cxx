@@ -120,6 +120,7 @@ extern "C" void exit(int);
 
 		CSR.box_h_line( y_rule, x0, x_rule );
 		CSR.box_v_line( x_rule, y0, y_rule );
+
 		CSR.move( y_rule, x0 ); CSR.puts("0");
 		CSR.move( y_rule, x2 ); CSR.puts("2");
 		CSR.move( y_rule, x3 ); CSR.puts("3");
@@ -130,6 +131,9 @@ extern "C" void exit(int);
 		CSR.move( y1, x_rule ); CSR.puts("1");
 		CSR.move( y2, x_rule ); CSR.puts("2");
 		CSR.move( y4, x_rule ); CSR.puts("4");
+
+		CSR.move( y_rule, x_rule ); 
+		CSR.putc_box( UDLR_UDLR ); // Top-Left // 
 
 
 		// The DIAG is prefaced with its own Tile Heading intro
@@ -156,9 +160,9 @@ extern "C" void exit(int);
 		CSR.putc_box( UDLR__DL_ ); // top_right j
 
 		CSR.move( y2, x2_title_box_left ); // y2 is title bottom
-		CSR.putc_box( UDLR__D_R );
+		CSR.putc_box( UDLR_U__R );
 		CSR.box_h_line( y2, x2_title_box_left+1, x4_title_box_right-1 );			// below
-		CSR.putc_box( UDLR__DL_ );
+		CSR.putc_box( UDLR_U_L_ );
 
 
 		// from top_left y1 to title // y1 is title line
@@ -171,16 +175,16 @@ extern "C" void exit(int);
 		CSR.puts("}"); // SP before Title
 		CSR.putc_box( UDLR_UD_R ); // tee
 
-		CSR.box_h_line( y1, x4_title_box_right, x5_frame_right );
+		CSR.box_h_line( y1, x4_title_box_right+1, x5_frame_right-1 );
 		CSR.putc_box( UDLR__DL_ );
 	// end title line
 
-		CSR.box_v_line( x0, y2+1, y4 ); // left
-		CSR.box_v_line( x5_frame_right, y2, y4 ); // right
+		CSR.box_v_line( x0, y1+1, y4-1 ); // left
+		CSR.box_v_line( x5_frame_right, y1+1, y4-1 ); // right
 		CSR.move( y4, x0 );
-		CSR.putc_box( UDLR_U_L_ );
-		CSR.box_h_line( y4, x0+1, x5_frame_right ); // bottom
 		CSR.putc_box( UDLR_U__R );
+		CSR.box_h_line( y4, x0+1, x5_frame_right-1 ); // bottom
+		CSR.putc_box( UDLR_U_L_ );
 
 		return true;
 	}

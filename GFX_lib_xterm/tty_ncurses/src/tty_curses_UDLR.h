@@ -36,6 +36,9 @@ namespace TTY_CURSES {
 
 	  enum_UDLR val;
 	  UDLR( enum_UDLR _val = UDLR_____ ) : val( _val) {};
+
+	  void clear() { val = UDLR_____ ; }
+
 	  // default zer0 UDLR() 
 
 
@@ -51,6 +54,9 @@ namespace TTY_CURSES {
 
 	 void OR_VAL(enum_UDLR rhs) {
 		 val = enum_UDLR(((int) val ) | (int) rhs );
+	 }
+	 void OR_VAL(UDLR rhs) {
+	 	OR_VAL( rhs.val );
 	 }
 	 void set_U() { OR_VAL( UDLR_U___); }
 	 void set_D() { OR_VAL( UDLR__D__); }

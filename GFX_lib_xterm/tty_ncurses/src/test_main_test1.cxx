@@ -146,7 +146,7 @@ extern "C" void exit(int);
 	ladder.set_XYWH( XYWH );
 	XY.Y += XYWH.WH.H; // could draw a lot later, after Layout completed, remotely
 
-	shape.draw( csr );
+if(1)	shape.draw( csr );
 	ladder.draw(csr);
 
 

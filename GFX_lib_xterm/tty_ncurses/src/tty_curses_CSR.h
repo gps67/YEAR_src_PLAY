@@ -81,8 +81,25 @@ namespace TTY_CURSES {
 	void box_mode_end();
 	void box_v_line( i16 x, i16 y1, i16 y2 );
 	void box_h_line( i16 y, i16 x1, i16 x2 );
+	bool box_line_start();
+	bool box_line_end();
+	bool box_line_to( XY_t XY_2 );
+	 XY_t JB0_xy;
+	 UDLR JB0_udlr;
+	 XY_t JB1_xy;
+	 UDLR JB1_udlr;
+	bool box_line_by( X_t dx, Y_t dy );
+	bool box_line_left( X_t dx );
+	bool box_line_right( X_t dx );
+	bool box_line_up( Y_t dy );
+	bool box_line_down( Y_t dy );
+	bool box_line_to_X( X_t x );
+	bool box_line_to_Y( Y_t y );
 	void putc_box( enum_UDLR udlr );
 	void putc_box( UDLR UDLR);
+	void box_line_keep_JB( XY_t & JB_XY, UDLR & JB_udlr );
+	void box_line_jump_JB( XY_t & JB_XY, UDLR & JB_udlr );
+	void box_line_amat_JB( XY_t & JB_XY, UDLR & JB_udlr );
 
 
  };

@@ -4,7 +4,7 @@
 
 #include <ncurses.h>
 #include "gdb_invoke.h"
-// #include "dgb.h" // 
+#include "dgb.h" // 
 
 /*
 	_CSR is a WINDOW maybe stdsrc
@@ -129,6 +129,191 @@ namespace TTY_CURSES {
 		move( y, x2+1 );
 		return;
 	}
+
+	bool tty_curses_CSR:: box_line_up( Y_t dy ) {
+		return box_line_by( 0, -dy );
+	}
+
+	bool tty_curses_CSR:: box_line_down( Y_t dy ) {
+		return box_line_by( 0, dy );
+	}
+
+	bool tty_curses_CSR:: box_line_right( X_t dx ) {
+		return box_line_by( dx, 0 );
+	}
+
+	bool tty_curses_CSR:: box_line_left( X_t dx ) {
+		return box_line_by( -dx, 0 );
+	}
+
+	bool tty_curses_CSR:: box_line_to_X( X_t X )
+	{
+		return box_line_right( X - JB1_xy.X );
+	}
+	bool tty_curses_CSR:: box_line_to_Y( Y_t Y )
+	{
+		return box_line_down( Y - JB1_xy.Y );
+	}
+
+	bool tty_curses_CSR:: box_line_by( X_t dx, Y_t dy )
+	{
+		XY_t XY = JB1_xy;
+		XY.X += dx;
+		XY.Y += dy;
+		box_line_to( XY );
+	}
+
+	bool tty_curses_CSR:: box_line_end()
+	{
+		JB0_udlr.OR_VAL( JB1_udlr );
+		move( JB0_xy );
+		putc_box( JB0_udlr );
+	}
+
+	bool tty_curses_CSR:: box_line_start()
+	{
+		JB0_udlr.clear(); // the closing item
+		get_XY( JB0_xy );
+
+		JB1_udlr.clear(); // the recent current JB1
+		get_XY( JB1_xy );
+	}
+
+	bool tty_curses_CSR:: box_line_to( XY_t _JB2_xy )
+	{
+		UDLR JB2_udlr;
+		XY_t JB2_xy = _JB2_xy; // are always going to POS2
+
+		if( JB1_xy.X == JB2_xy.X ) { // HORIZONTAL
+			if( JB1_xy.Y == JB2_xy.Y )
+			{ return FAIL("SAAME POINT");  }
+
+			if( JB1_xy.X < JB2_xy.X ) {
+			// left to right
+				JB1_udlr.set_R();
+				JB2_udlr.set_L();
+
+				move( JB1_xy );
+				putc_box( JB1_udlr );
+
+				int len = JB2_xy.X - JB1_xy.X; 
+				if( len > 0 ) {
+				 whline( win, 0, len ); 
+				}
+				putc_box( JB2_udlr ); // early but OK
+
+				JB1_udlr = JB2_udlr;
+				JB1_xy   = JB2_xy  ;
+
+				return true;
+
+			} else {
+			// right to left
+				JB1_udlr.set_L();
+				JB2_udlr.set_R();
+
+				move( JB1_xy );
+				putc_box( JB1_udlr );
+
+				XY_t POS2 = JB1_xy;
+				XY_t POS1 = JB2_xy;
+				POS2.X ++;
+				POS1.X --;
+
+				int len = POS2.X - POS1.X ; 
+				if( len > 0 ) {
+				 move( POS1 );
+				 whline( win, 0, len ); 
+				}
+				move( JB2_xy );
+				putc_box( JB2_udlr );
+
+				JB1_udlr = JB2_udlr;
+				JB1_xy   = JB2_xy  ;
+
+				return true;
+			}
+			return true;
+		}
+		if( JB1_xy.Y == JB2_xy.Y ) { // VERTICAL
+			if( JB1_xy.Y < JB2_xy.Y ) {
+			// top to bottom
+				JB1_udlr.set_D();
+				JB2_udlr.set_U();
+
+				move( JB1_xy );
+				putc_box( JB2_udlr );
+
+				XY_t POS1 = JB1_xy;
+				POS1.Y ++;
+
+				XY_t POS2 = JB2_xy;
+				POS1.Y --;
+
+				int len = POS2.Y - POS1.Y ; 
+				if( len > 0 ) {
+				 move( POS1 );
+				 wvline( win, 0, len ); 
+				}
+				move( JB2_xy );
+				putc_box( JB2_udlr ); // early but OK
+
+				JB1_udlr = JB2_udlr;
+				JB1_xy   = JB2_xy  ;
+			} else {
+			// bottom to top
+				JB1_udlr.set_U();
+				JB2_udlr.set_D();
+
+				move( JB1_xy );
+				putc_box( JB1_udlr ); // early but OK
+
+				XY_t POS1 = JB1_xy;
+				POS1.Y --;
+
+				XY_t POS2 = JB2_xy;
+				POS2.Y ++;
+
+				int len = POS2.Y - POS1.Y ; 
+				if( len > 0 ) {
+				 move( POS2 );
+				 wvline( win, 0, len ); 
+				}
+
+				move( JB2_xy );
+				putc_box( JB2_udlr );
+
+				JB1_udlr = JB2_udlr;
+				JB1_xy   = JB2_xy  ;
+			}
+			return true;
+		}
+
+		JB1_udlr = JB2_udlr;
+		JB1_xy   = JB2_xy  ;
+		return FAIL("not on same LINE COL ");
+	}
+
+	void tty_curses_CSR:: box_line_keep_JB( XY_t & JB_XY, UDLR & JB_udlr )
+	{
+		JB_XY = JB1_xy;
+		JB_udlr = JB1_udlr;
+	}
+
+	void tty_curses_CSR:: box_line_jump_JB( XY_t & JB_XY, UDLR & JB_udlr )
+	{
+		JB1_xy = JB_XY;
+		JB1_udlr = JB_udlr;
+	}
+
+	void tty_curses_CSR:: box_line_amat_JB( XY_t & JB_XY, UDLR & JB_udlr )
+	{
+		// JB1_xy = JB_XY;
+		JB1_udlr .OR_VAL( JB_udlr );
+		move( JB1_xy );
+		putc_box( JB1_udlr );
+	}
+
 
 	void tty_curses_CSR:: putc_box( enum_UDLR udlr )
 	{

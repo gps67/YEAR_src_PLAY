@@ -74,8 +74,34 @@
 		i16 y2 = y1 + 1;	// LINE
 
 		i16 y4 = y0 + dy_of_frame;
-		i16 y_rule = y4 + 2;
+		i16 y_rule = y4 + 2;	// OUTSIDE frame !!
 
+		XY_t JB_L_xy;
+		UDLR JB_L_udlr;
+		XY_t JB_R_xy;
+		UDLR JB_R_udlr;
+		int dx_title_box = 1 + title_glyph_width + 1 ; // SP==1
+
+		CSR.move( XY_t( x0, y1 ));
+		CSR.box_line_start();
+		CSR.box_line_right( dx_to_box );
+		CSR.box_line_keep_JB( JB_L_xy, JB_L_udlr );
+		CSR.box_line_up( 1 );
+		CSR.box_line_right( dx_title_box );
+		CSR.box_line_down( 1 ); // DOWN 1
+		CSR.box_line_keep_JB( JB_R_xy, JB_R_udlr );
+		CSR.box_line_down( 1 ); // DOWN 1
+		CSR.box_line_left( dx_title_box );
+		CSR.box_line_up( 1 ); 
+		CSR.box_line_amat_JB( JB_L_xy, JB_L_udlr );
+
+		CSR.box_line_jump_JB( JB_R_xy, JB_R_udlr );
+		CSR.box_line_to_X( x5 );
+		CSR.box_line_to_Y( y4 );
+		CSR.box_line_to_X( x0 );
+		CSR.box_line_to_Y( y1 );
+
+		CSR.box_line_end();
 
 		CSR.box_h_line( y_rule, x0, x_rule );
 		CSR.box_v_line( x_rule, y0, y_rule );
@@ -93,6 +119,8 @@
 
 		CSR.move( y_rule, x_rule ); 
 		CSR.putc_box( UDLR_UDLR ); // Top-Left // 
+
+	return true;
 
 
 		// The DIAG is prefaced with its own Tile Heading intro

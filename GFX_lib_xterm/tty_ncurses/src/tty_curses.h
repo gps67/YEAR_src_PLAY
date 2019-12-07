@@ -1,6 +1,8 @@
 #ifndef tty_curses_H
 #define tty_curses_H
 
+#include "tty_curses_STUBS.h" // just in case
+
  struct screen;
  typedef struct screen  SCREEN;
 

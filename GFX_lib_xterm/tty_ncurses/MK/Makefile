@@ -43,7 +43,8 @@
 	OBJS1 += tty_curses.o
 	OBJS1 += tty_curses_CSR.o
 	OBJS1 += tty_curses_UDLR.o
-	OBJS1 += tty_curses_test_1.o
+	OBJS1 += test_main_test1.o
+	OBJS1 += test_SHAPE_BASE.o
 	OBJS1 += test_SHAPE_ONE.o
 	OBJS1 += test_SHAPE_TWO.o
 

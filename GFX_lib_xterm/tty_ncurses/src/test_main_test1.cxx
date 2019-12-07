@@ -1,6 +1,4 @@
 // SHAPE_ // #include <ncurses.h>
-// SHAPE_ // #include "tty_curses.h"
-// SHAPE_ // #include "tty_curses_CSR.h"
 // SHAPE_ // #include "dgb.h"
 // SHAPE_ // #include "e_print.h"
 // SHAPE_ // #include <stdio.h>
@@ -9,6 +7,9 @@
 
 #include "test_SHAPE_ONE.h"
 #include "test_SHAPE_TWO.h" 
+
+#include "tty_curses.h"
+#include "tty_curses_CSR.h"
 
 extern "C" void exit(int);
 
@@ -47,8 +48,10 @@ extern "C" void exit(int);
 	// TTY_CURSES::tty_curses_CSR & csr = *this;
 
 	// _CSR ?
-	int y = 2;
 	int X1 = 4;  // then some INDENT system tables of numbers varnames
+	XY_t XY;
+	XY.Y = 2;
+	XY.X = 4;
 
 	// CSR_t csr // local tool to attach variables to
 	// FIELD csr.FieldName // GEN adds it to the derived-from-CSR_t
@@ -59,7 +62,8 @@ extern "C" void exit(int);
 	int A1 = A_BOLD;
 	int A2 = A_UNDERLINE;
 
-	csr.move( y++, X1 );
+	csr.move( XY );
+	XY.Y++;
 	csr.fgbg_on( A1 );
 	csr.fgbg_on( A2 );
         csr.printf("Hello World!");
@@ -76,40 +80,45 @@ extern "C" void exit(int);
 	// SCRIPT wants to know more about VA_ARGS 
 
 	csr.get_yx();
-	int X2 = csr.x_was;
-	csr.move( y, X1 );
+	int X2 = csr.XY_was.X;
+	csr.move( XY ); 
       //  csr.printf("--------------------------------------------------------");
-	y--;
-	csr.move( y++, X2 );
+	XY.Y--;
+	csr.move( XY ); // X2 tho
+	XY.Y++;
         csr.printf(".. . .  .   .    .     .        .           .             .");
 
-	csr.move( y++, X1 );
+	csr.move( XY );
+	XY.Y++;
         csr.printf("--------------------------------------------------------");
 
 	// 
         csr.move_status_line();
+	csr.move( XY );
 	csr.print( "TODO GIT Branch 01_");
 	csr.fgbg_on( A2 );
 	csr.print( "_Hello_World");
 	csr.fgbg_off( A2 );
 	// NOTE the screen cursor has been all over
-	// but y is where we want it to be
+	// but XY.Y is where we want it to be
 
-	y += 2; // Two Blank Lines // OMITTED_not_EMITTED // XY_JUMP
-	csr.move( y++, X1 );
-        csr.printf("TODO GIT Branch 01_Hello_World");
+	XY.Y += 2; // Two Blank Lines // OMITTED_not_EMITTED // XY_JUMP
+	csr.move( XY );
+	XY.Y++;
+        csr.printf("DODO GIT Branch 01_Hello_World");
         csr.printf("");
-	csr.move( y++, X1 );
+	csr.move( XY );
+	XY.Y++;
         csr.printf("--------------------------------------------------------");
 
-	y += 3; // XY_JUMP
-	int y_0 = y - 1;
+	XY.Y += 3; // XY_JUMP
+	int y_0 = XY.Y - 1;
 	int x_0 = X1 - 1;
-	csr.move( y++, X1 );
+	csr.move( XY );
         csr.printf("Hello World!");
+	XY.Y += 1;
 	csr.get_yx();
-	int y_2 = csr.y_was;
-	int x_2 = csr.x_was + 1;
+	XY_t XY_2 = csr.XY_was;
 
 	// TODO leave blinking CSR at ! 
 	// TODO highlighting CSR
@@ -120,48 +129,42 @@ extern "C" void exit(int);
 	if(!csr.get_W_H( SCN_W, SCN_H )) // assigning into parameter vars
 	 return FAIL_FAILED();
 
-	int _X =  2; // local _X // 0==BORDER 1==SQUEEZED 2=PAGE_MARGIN_1
-	int _Y = y + 3;
-	int _W = 13;
-	int _H =  5;
+	XYWH_t XYWH;
+	XYWH.XY.X = 2;
+	XYWH.XY.Y = XY.Y+3;
+	XYWH.WH.W = 13;
+	XYWH.WH.H = 5;
 	SHAPE_ONE shape(csr) ; // XY not YX 
-	shape.set_X_Y_W_H( _X,_Y,_W,_H );
-	y += _H;
+	shape.set_XYWH( XYWH );
+	XY.Y += XYWH.WH.H;
 
-
-	// X2 == ( _X + _W ) //
-	// _X = X2
-	_X = ( _X + _W ); // the old _X==7 from left
-	_W = SCN_W - _X - 4; // includes MAIN box edge +1
-	_Y = y;
-	_H = SCN_H - _Y - 4; // includes MAIN box edge +1
-	// _X = 20;
-	// _Y = 20;
-	// _W = 40;
-	// _H = 20;
+	XYWH.XY.X = ( XYWH.XY.X + XYWH.WH.W ); // the old _X==7 from left
+	XYWH.WH.W = SCN_W - XYWH.XY.X - 4; // includes MAIN box edge +1
+	XYWH.XY.Y = XY.Y;
+	XYWH.WH.H = SCN_H - XYWH.XY.Y - 4; // includes MAIN box edge +1
 	SHAPE_TWO ladder(csr) ; // XY not YX 
-	ladder.set_X_Y_W_H( _X,_Y,_W,_H );
-	y += _H; // could draw a lot later, after Layout completed, remotely
+	ladder.set_XYWH( XYWH );
+	XY.Y += XYWH.WH.H; // could draw a lot later, after Layout completed, remotely
 
-	shape.draw();
-	ladder.draw();
+	shape.draw( csr );
+	ladder.draw(csr);
 
 
 	int nk=0;
 	while(nk++<10) {
-	 move(y_2, x_2);
+	 csr.move( XY_2 );
 	 // rewrite as follows:
 	 // csr.set_blinking_csr(XY_POS_2, "EXPLAINER"); // when_as_CSR explain
 	 // csr.enable_blinking
          refresh();
          int k = csr.get_ch();
-		csr.move( 5, 4 );
+		csr.move( XY_t( 4,  5 ));
 		char * kstr = keybound( k, 1 );
 		csr.printf("k=='%s' keybound is useless", kstr);
 		free(kstr);
 	 switch( k ) {
 	  case KEY_RESIZE:
-		csr.move( 6, 4 );
+		csr.move( XY_t( 4, 6 ));
 		csr.printf("k==KEY_RESIZE");
 	  break;
 	  case 'Q':

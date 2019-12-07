@@ -1,9 +1,10 @@
+#include "tty_curses_STUBS.h"
 #include "tty_curses_UDLR.h"
 #include "tty_curses_CSR.h"
 
 #include <ncurses.h>
 #include "gdb_invoke.h"
-#include "dgb.h" // 
+// #include "dgb.h" // 
 
 /*
 	_CSR is a WINDOW maybe stdsrc
@@ -38,6 +39,13 @@ namespace TTY_CURSES {
 		win = W;
 	}
 
+	bool tty_curses_CSR:: get_WH( WH_t & _WH )
+	{
+		_WH.W = COLS;
+		_WH.H = LINES;
+		return true;
+	}
+
 	bool tty_curses_CSR:: get_W_H( int & _W, int & _H )
 	{
 		_W = COLS;
@@ -49,8 +57,8 @@ namespace TTY_CURSES {
 	get_yx_was() {
 		getyx(
 			win,
-			y_was,
-			x_was
+			XY_was.Y,
+			XY_was.X
 		);
 	}
 
@@ -137,7 +145,11 @@ namespace TTY_CURSES {
 
 	void tty_curses_CSR:: move_status_line() // and clear it
 	{
-		wmove( win, LINES - 1, 1 );
+		WH_t WH;
+		get_WH( WH );
+
+		XY_t POS( 1, WH.H-1 );
+		move( POS );
 		box( win, 0, 0 );
 		// wclrtoeol( win );
 	}

@@ -1,24 +1,21 @@
 #include "test_SHAPE_TWO.h"
+#include "tty_curses_CSR.h"
 
-	bool SHAPE_TWO:: set_X_Y_W_H(
-	 i16 _X, 
-	 i16 _Y, 
-	 i16 _W, 
-	 i16 _H
-	) {
-		X0 = _X;
-		Y0 = _Y;
-		dx_of_frame = _W;
-		dy_of_frame = _H;
 
-		dx_to_box = 7;
-		dx_to_box = 2;
+	bool SHAPE_TWO:: set_XYWH( XYWH_t & _XYWH ) {
+		XYWH = _XYWH;
 
-		glyph_width = title.str_len();
+		if(!SHAPE_BASE:: set_XYWH( _XYWH ))
+		{ return FAIL_FAILED(); }
+
+		dx_to_box = 1;
+		dx_of_frame = XYWH.WH.W;
+		dy_of_frame = XYWH.WH.H;
+
 		return true;
 	}
 
-	bool SHAPE_TWO:: draw()
+	bool SHAPE_TWO:: draw( tty_curses_CSR & CSR ) // make CSR a parameter
 	{
 /*TODO
 
@@ -60,11 +57,11 @@
 
 */
 
-		i16 x0 = X0 + 0; // AT border line
+		i16 x0 = XYWH.XY.X + 0; // AT border line
 		i16 x2_title_box_left = (x0+1) + dx_to_box;
 		i16 x3_title_text = x2_title_box_left + 1 + 1 ; // SP + STEP
-		i16 x4_title_box_right = x3_title_text + glyph_width + 1; // SP==1
-		i16 x5_frame_right = X0 + dx_of_frame - 1; // -1 thing // LAST
+		i16 x4_title_box_right = x3_title_text + title_glyph_width + 1; // SP==1
+		i16 x5_frame_right = x0 + dx_of_frame - 1; // -1 thing // LAST
 		#define x2 x2_title_box_left
 		#define x3 x3_title_text
 		#define x4 x4_title_box_right
@@ -72,11 +69,11 @@
 		i16 x_rule = x5_frame_right + 3;
 
 
-		i16 y0 = Y0;		// GAP TOP LINE 
+		i16 y0 = XYWH.XY.Y;		// GAP TOP LINE 
 		i16 y1 = y0 + 1;	// TEXT line
 		i16 y2 = y1 + 1;	// LINE
 
-		i16 y4 = Y0 + dy_of_frame;
+		i16 y4 = y0 + dy_of_frame;
 		i16 y_rule = y4 + 2;
 
 
@@ -107,12 +104,12 @@
 		// 
 #if 1
 		// auto_layout required to create this gap to draw into
-		CSR.move( Y0-2, X0 );	// PREFIX -2 adds a layer to grouping
+		CSR.move( y0-2, XYWH.XY.X );	// PREFIX -2 adds a layer to grouping
 		CSR.puts("| / // CRASHING BORDER EXTERNALS // ");
 #endif
 
 		// MARK zero with
-		CSR.move( Y0, X0 );
+		CSR.move( XYWH.XY.Y, XYWH.XY.X );
 		CSR.puts("*");
 
 		CSR.move( y0, x2_title_box_left ); // y0 is title top
@@ -132,9 +129,9 @@
 		CSR.putc_box( UDLR__D_R ); // top left
 		CSR.box_h_line( y1, x0+1, x2_title_box_left-1 );// line hits t
 		CSR.putc_box( UDLR_UDL_ ); // Tee-Left // 
-		CSR.puts("{"); // SP before Title
+		CSR.puts(" "); // SP before Title
 		CSR.puts( title ); // str1 Title
-		CSR.puts("}"); // SP before Title
+		CSR.puts(" "); // SP before Title
 		CSR.putc_box( UDLR_UD_R ); // tee
 
 		CSR.box_h_line( y1, x4_title_box_right+1, x5_frame_right-1 );

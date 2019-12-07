@@ -1,7 +1,7 @@
 #ifndef tty_curses_CSR_H
 #define tty_curses_CSR_H
 
-#include <ncurses.h> // to make inline functions work
+#include "tty_curses_STUBS.h"
 #include <stdarg.h> // 
 #include "tty_curses.h"
 #include "tty_curses_UDLR.h"
@@ -10,13 +10,17 @@
 #define NULL 0L
 #endif
 
+#if 0
  struct screen;
- typedef struct screen  SCREEN;
+ typedef struct screen SCREEN;
+#endif
 
  // NO struct WINDOW; // ncurses stubs
  typedef struct _win_st WINDOW;
  typedef short i16;
  typedef unsigned char u8;
+
+#include <ncurses.h> // chtype !!!
 
 
 namespace TTY_CURSES {
@@ -29,18 +33,29 @@ namespace TTY_CURSES {
 	tty_curses_CSR( tty_curses * _TTY_curses ); // PARENT
 	void set_stdscr( WINDOW * W = NULL );
 
+	bool get_WH( WH_t & _WH );
 	bool get_W_H( int & _W, int & _H ); // set into vars directly (api_var)
 
-	int y_was;
-	int x_was;
+	XY_t XY_was;
+
+	void get_XY( XY_t & XY) {
+		get_yx_was();
+		XY = XY_was;
+	}
 
 	void get_yx() {
 		get_yx_was();
 	}
 	void get_yx_was();
 
+	void move( const XY_t & XY ) {
+		wmove(win,XY.Y, XY.X);
+	}
 	void move( int y, int x ) {
-		wmove(win,y,x);
+		XY_t XY;
+		XY.X = x;
+		XY.Y = y;
+		move(XY);
 	}
 
 	void printf( const char * fmt, ... );
@@ -72,7 +87,7 @@ namespace TTY_CURSES {
 
  };
 
-};
+}; // namespace
 
 #endif
 

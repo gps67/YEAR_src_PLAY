@@ -76,6 +76,9 @@
 		i16 y4 = y0 + dy_of_frame;
 		i16 y_rule = y4 + 2;	// OUTSIDE frame !!
 
+		x_rule = x0-1;
+		y_rule = y0-1;
+
 		XY_t JB_L_xy;
 		UDLR JB_L_udlr;
 		XY_t JB_R_xy;
@@ -105,6 +108,9 @@
 
 		CSR.box_h_line( y_rule, x0, x_rule );
 		CSR.box_v_line( x_rule, y0, y_rule );
+
+		CSR.box_h_line( y_rule, x0, x5 );
+		CSR.box_v_line( x_rule, y0, y4 );
 
 		CSR.move( y_rule, x0 ); CSR.puts("0");
 		CSR.move( y_rule, x2 ); CSR.puts("2");

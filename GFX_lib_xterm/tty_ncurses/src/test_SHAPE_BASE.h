@@ -46,6 +46,7 @@
 	{
 		title = _title;
 		title_glyph_width = title.str_len(); // not without SURFACE
+		return true;
 	}
 
 	virtual

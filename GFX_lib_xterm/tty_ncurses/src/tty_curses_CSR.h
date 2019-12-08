@@ -65,6 +65,7 @@ namespace TTY_CURSES {
 	void putc_acs( const chtype ch );
 //	void put_c( const u8 ch );
 	void add_ch( const chtype ch );
+	void nnpp( u8 lbl);
 
 	// chtype comes from ... means ...
 
@@ -100,6 +101,11 @@ namespace TTY_CURSES {
 	void box_line_keep_JB( XY_t & JB_XY, UDLR & JB_udlr );
 	void box_line_jump_JB( XY_t & JB_XY, UDLR & JB_udlr );
 	void box_line_amat_JB( XY_t & JB_XY, UDLR & JB_udlr );
+
+// OK ERR
+// overshooting end of line by 1
+// overwriting start of line by 1
+// line_between_JB is itself -2 (on top of that)
 
 
  };

@@ -117,7 +117,7 @@ namespace TTY_CURSES {
 	{
 		 move( y1, x );
 		 wvline( win, 0, (y2-y1)+1 );
-		 move( y2+1, x );
+		 move( y2, x );
 		 return;
 	}
 
@@ -126,7 +126,7 @@ namespace TTY_CURSES {
 		// man 3 curs_border
 		move( y, x1 );
 		whline( win, 0, (x2-x1)+1 );
-		move( y, x2+1 );
+		move( y, x2 );
 		return;
 	}
 
@@ -161,6 +161,7 @@ namespace TTY_CURSES {
 		XY.X += dx;
 		XY.Y += dy;
 		box_line_to( XY );
+		return true;
 	}
 
 	bool tty_curses_CSR:: box_line_end()
@@ -168,6 +169,7 @@ namespace TTY_CURSES {
 		JB0_udlr.OR_VAL( JB1_udlr );
 		move( JB0_xy );
 		putc_box( JB0_udlr );
+		return true;
 	}
 
 	bool tty_curses_CSR:: box_line_start()
@@ -177,16 +179,26 @@ namespace TTY_CURSES {
 
 		JB1_udlr.clear(); // the recent current JB1
 		get_XY( JB1_xy );
+		return true;
+	}
+	void tty_curses_CSR:: nnpp(u8 lbl)
+	{
+		return;
+		static int nn = 0;
+		nn++;
+		putc_byte( lbl );
+		putc_byte( '@' + nn );
+		if(nn>26) nn=0;
 	}
 
 	bool tty_curses_CSR:: box_line_to( XY_t _JB2_xy )
 	{
 		UDLR JB2_udlr;
-		XY_t JB2_xy = _JB2_xy; // are always going to POS2
+		XY_t JB2_xy = _JB2_xy; // are always going to JB2
 
-		if( JB1_xy.X == JB2_xy.X ) { // HORIZONTAL
-			if( JB1_xy.Y == JB2_xy.Y )
-			{ return FAIL("SAAME POINT");  }
+		if( JB1_xy.Y == JB2_xy.Y ) { // HORIZONTAL
+			if( JB1_xy.X == JB2_xy.X )
+			{ putc_byte( 'X'); return FAIL("SAAME POINT");  }
 
 			if( JB1_xy.X < JB2_xy.X ) {
 			// left to right
@@ -195,12 +207,16 @@ namespace TTY_CURSES {
 
 				move( JB1_xy );
 				putc_box( JB1_udlr );
+				nnpp( 'a' ); //
 
 				int len = JB2_xy.X - JB1_xy.X; 
 				if( len > 0 ) {
 				 whline( win, 0, len ); 
 				}
+				// XY should be asis
+				move( JB2_xy );
 				putc_box( JB2_udlr ); // early but OK
+				nnpp( 'b' ); //
 
 				JB1_udlr = JB2_udlr;
 				JB1_xy   = JB2_xy  ;
@@ -214,11 +230,12 @@ namespace TTY_CURSES {
 
 				move( JB1_xy );
 				putc_box( JB1_udlr );
+				nnpp( 'c' ); //
 
-				XY_t POS2 = JB1_xy;
-				XY_t POS1 = JB2_xy;
-				POS2.X ++;
-				POS1.X --;
+				XY_t POS1 = JB2_xy; // left
+				XY_t POS2 = JB1_xy; // right
+				POS1.X ++;
+				POS2.X --;
 
 				int len = POS2.X - POS1.X ; 
 				if( len > 0 ) {
@@ -227,6 +244,7 @@ namespace TTY_CURSES {
 				}
 				move( JB2_xy );
 				putc_box( JB2_udlr );
+				nnpp( 'd' ); //
 
 				JB1_udlr = JB2_udlr;
 				JB1_xy   = JB2_xy  ;
@@ -235,14 +253,15 @@ namespace TTY_CURSES {
 			}
 			return true;
 		}
-		if( JB1_xy.Y == JB2_xy.Y ) { // VERTICAL
+		if( JB1_xy.X == JB2_xy.X ) { // VERTICAL same X
 			if( JB1_xy.Y < JB2_xy.Y ) {
 			// top to bottom
 				JB1_udlr.set_D();
 				JB2_udlr.set_U();
 
 				move( JB1_xy );
-				putc_box( JB2_udlr );
+				putc_box( JB1_udlr );
+				nnpp( 'e' ); //
 
 				XY_t POS1 = JB1_xy;
 				POS1.Y ++;
@@ -257,6 +276,7 @@ namespace TTY_CURSES {
 				}
 				move( JB2_xy );
 				putc_box( JB2_udlr ); // early but OK
+				nnpp( 'f' ); //
 
 				JB1_udlr = JB2_udlr;
 				JB1_xy   = JB2_xy  ;
@@ -267,21 +287,23 @@ namespace TTY_CURSES {
 
 				move( JB1_xy );
 				putc_box( JB1_udlr ); // early but OK
+				nnpp( 'g' ); //
 
-				XY_t POS1 = JB1_xy;
-				POS1.Y --;
+				XY_t POS1 = JB2_xy; // top
+				POS1.Y ++;
 
-				XY_t POS2 = JB2_xy;
-				POS2.Y ++;
+				XY_t POS2 = JB1_xy; // bottom
+				POS2.Y --;
 
 				int len = POS2.Y - POS1.Y ; 
 				if( len > 0 ) {
-				 move( POS2 );
+				 move( POS1 );
 				 wvline( win, 0, len ); 
 				}
 
 				move( JB2_xy );
 				putc_box( JB2_udlr );
+				nnpp( 'h' ); //
 
 				JB1_udlr = JB2_udlr;
 				JB1_xy   = JB2_xy  ;

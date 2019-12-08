@@ -139,14 +139,14 @@ extern "C" void exit(int);
 	XY.Y += XYWH.WH.H;
 
 	XYWH.XY.X = ( XYWH.XY.X + XYWH.WH.W ); // the old _X==7 from left
-	XYWH.WH.W = SCN_W - XYWH.XY.X - 4; // includes MAIN box edge +1
+	XYWH.WH.W = SCN_W - XYWH.XY.X - 6; // includes MAIN box edge +1
 	XYWH.XY.Y = XY.Y;
-	XYWH.WH.H = SCN_H - XYWH.XY.Y - 4; // includes MAIN box edge +1
+	XYWH.WH.H = SCN_H - XYWH.XY.Y - 6; // includes MAIN box edge +1
 	SHAPE_TWO ladder(csr) ; // XY not YX 
 	ladder.set_XYWH( XYWH );
 	XY.Y += XYWH.WH.H; // could draw a lot later, after Layout completed, remotely
 
-if(1)	shape.draw( csr );
+if(0)	shape.draw( csr );
 	ladder.draw(csr);
 
 

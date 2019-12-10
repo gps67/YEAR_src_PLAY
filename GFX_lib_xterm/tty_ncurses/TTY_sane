@@ -1,0 +1,4 @@
+
+	set -x
+	tput rmacs # used to happen with some SVR4 curses apps # leave blink
+	stty sane

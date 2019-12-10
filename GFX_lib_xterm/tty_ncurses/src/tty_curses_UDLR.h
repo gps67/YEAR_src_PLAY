@@ -1,5 +1,8 @@
 #ifndef tty_curses_UDLR_H
 #define tty_curses_UDLR_H
+#include "XYWH_16.h" // for XY_t XY; for JB.XY
+using namespace XYWH_16;
+
 namespace TTY_CURSES {
 
 	  static int char_of_udlr[16];
@@ -30,14 +33,15 @@ namespace TTY_CURSES {
 	 };
 
 	/*!
-		UDLR val; // holds Up Down Left Right Flags
+		UDLR udlr; // holds Up Down Left Right Flags
 	*/
 	struct UDLR {
 
-	  enum_UDLR val;
-	  UDLR( enum_UDLR _val = UDLR_____ ) : val( _val) {};
+	  enum_UDLR udlr;
+	  UDLR( enum_UDLR _udlr = UDLR_____ ) : udlr( _udlr) {};
 
-	  void clear() { val = UDLR_____ ; }
+	  void clear() { udlr = UDLR_____ ; }
+	  void udlr_clear() { clear(); } // inherit makes clear() muddy
 
 	  // default zer0 UDLR() 
 
@@ -48,15 +52,15 @@ namespace TTY_CURSES {
 	    // init on first use // use item0 instead of extra bool var;
 	    if(0 == char_of_udlr[ 0 ] )
 	      init_char_of_udlr();
-	    return char_of_udlr[ (int) val ];
+	    return char_of_udlr[ (int) udlr ];
 	   }
 #endif
 
 	 void OR_VAL(enum_UDLR rhs) {
-		 val = enum_UDLR(((int) val ) | (int) rhs );
+		 udlr = enum_UDLR(((int) udlr ) | (int) rhs );
 	 }
 	 void OR_VAL(UDLR rhs) {
-	 	OR_VAL( rhs.val );
+	 	OR_VAL( rhs.udlr );
 	 }
 	 void set_U() { OR_VAL( UDLR_U___); }
 	 void set_D() { OR_VAL( UDLR__D__); }
@@ -79,6 +83,19 @@ namespace TTY_CURSES {
 	 }
 
   }; // class
+
+  /*!
+  	Junction Box
+
+
+  */
+  struct JB_t : public UDLR {
+   XY_t XY;
+
+   JB_t() {} // udlr.clear() XY=00
+   JB_t( XY_t _XY ) : UDLR(), XY(_XY) {}
+   operator XY_t () { return XY;  }
+  };
 
 }; // namespace
 #endif

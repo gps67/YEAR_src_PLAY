@@ -31,7 +31,7 @@ namespace TTY_CURSES {
 	    // init on first use // use item0 instead of extra bool var;
 	    if(0 == char_of_udlr[ 0 ] )
 	      init_char_of_udlr();
-	    return char_of_udlr[ (int) val ];
+	    return char_of_udlr[ (int) udlr ];
 	   }
 
 }; // namespace

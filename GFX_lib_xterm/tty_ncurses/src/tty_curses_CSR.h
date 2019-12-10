@@ -25,6 +25,8 @@
 
 namespace TTY_CURSES {
 
+ /*!
+ */
  class tty_curses_CSR {
  public:
 	tty_curses * TTY_curses; // PARENT
@@ -48,15 +50,21 @@ namespace TTY_CURSES {
 	}
 	void get_yx_was();
 
-	void move( const XY_t & XY ) {
-		wmove(win,XY.Y, XY.X);
-	}
+	void pre_MOVE( XY_t & XY ); // reports bad XY and clips a bit
+
+	void move( const XY_t & XY ) ;
 	void move( int y, int x ) {
 		XY_t XY;
 		XY.X = x;
 		XY.Y = y;
-		move(XY);
+		move(XY); // hello compiler
 	}
+	void move_to_X( X_t X );
+	void move_to_Y( X_t Y );
+	void move_right( X_t X );
+	void move_down( X_t Y );
+	void move_left( X_t X ) { move_right( -X ); }
+	void move_up( X_t Y ) { move_down( -Y ); }
 
 	void printf( const char * fmt, ... );
 	void print( const char * fmt, ... );
@@ -78,34 +86,53 @@ namespace TTY_CURSES {
 
 	int get_ch();
 
-	void box_mode_start();
+	// in box, in general, we are at JB1, soon JB2
+
+	void box_mode_start(); // saves into JB_box_start
 	void box_mode_end();
 	void box_v_line( i16 x, i16 y1, i16 y2 );
 	void box_h_line( i16 y, i16 x1, i16 x2 );
 	bool box_line_start();
 	bool box_line_end();
 	bool box_line_to( XY_t XY_2 );
-	 XY_t JB0_xy;
-	 UDLR JB0_udlr;
-	 XY_t JB1_xy;
-	 UDLR JB1_udlr;
+	 JB_t JB_box_start;
+	 JB_t JB1;
+	 JB_t*JB1_keep;
+	void set_JB1( JB_t & JB_next );
+	void JB1_udlr_changed()
+	{
+		if( JB1_keep )
+		 JB1_keep->udlr = JB1.udlr;
+	}
 	bool box_line_by( X_t dx, Y_t dy );
 	bool box_line_left( X_t dx );
+	bool box_line_left_to( X_t x ) { return box_line_to_X( x ); }
 	bool box_line_right( X_t dx );
 	bool box_line_up( Y_t dy );
 	bool box_line_down( Y_t dy );
 	bool box_line_to_X( X_t x );
+	bool box_line_to_X( const JB_t & JB_layout )
+	{ return box_line_to_X( JB_layout.XY.X ); } // NO JOIN just XPOS
+
 	bool box_line_to_Y( Y_t y );
 	void putc_box( enum_UDLR udlr );
 	void putc_box( UDLR UDLR);
-	void box_line_keep_JB( XY_t & JB_XY, UDLR & JB_udlr );
-	void box_line_jump_JB( XY_t & JB_XY, UDLR & JB_udlr );
-	void box_line_amat_JB( XY_t & JB_XY, UDLR & JB_udlr );
+	void putc_box( JB_t & jb );
+	void box_line_keep_JB(  JB_t & jb );
+	void box_line_jump_JB(  JB_t & jb );
+	void box_line_amat_JB(  JB_t & jb );
 
 // OK ERR
 // overshooting end of line by 1
 // overwriting start of line by 1
 // line_between_JB is itself -2 (on top of that)
+
+// operator (XY_t) typecast => XY ;; permits use as parameter wrap
+// use of C++ cast is worth formalising TYPE_CAST_HERE
+// CAST_into CAST_from
+// operator (&XY_t) use of wrap as var (as well as val)
+// NB JB is by default UDLR, could have made it multi-base
+// DETECT USAGE CAST to XY from JB needing 
 
 
  };

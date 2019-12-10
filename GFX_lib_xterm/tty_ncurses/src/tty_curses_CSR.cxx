@@ -30,6 +30,7 @@ namespace TTY_CURSES {
 	)
 	: TTY_curses(_TTY_curses)
 	, win(NULL)
+	, JB1_keep(NULL)
 	{
 		win = stdscr;
 	}
@@ -53,14 +54,78 @@ namespace TTY_CURSES {
 		return true;
 	}
 
-	void tty_curses_CSR:: 
-	get_yx_was() {
-		getyx(
+	void tty_curses_CSR:: get_yx_was()
+	{
+		getyx( // ncurses macro
 			win,
 			XY_was.Y,
 			XY_was.X
 		);
 	}
+
+	// reports bad XY and clips a bit
+	void tty_curses_CSR:: pre_MOVE( XY_t & XY )
+	{
+	return;
+		WH_t WH;
+		get_WH( WH );
+
+		XY_t XY_bad( 3, 15 );
+			wmove( win, XY_bad.Y, XY_bad.X );
+			printf("(%d,%d) ", XY.X, XY.Y );
+
+		if( XY.Y < 0 ) {
+			wmove( win, XY_bad.Y+1, XY_bad.X );
+			printf("(%d,%d) ", XY.X, XY.Y );
+			XY.Y = 0;
+		}
+		if( XY.Y > WH.H ) {
+			wmove( win, XY_bad.Y, XY_bad.X );
+			printf("(%d,%d) ", XY.X, XY.Y );
+			XY.Y = WH.H;
+		}
+	}
+	
+	void tty_curses_CSR:: move( const XY_t & XY )
+	{
+		XY_t XY_adj = XY;
+		pre_MOVE( XY_adj );
+		wmove( win, XY_adj.Y, XY_adj.X );
+		XY_was = XY; // lost by printf or addch or ...
+	}
+
+	void tty_curses_CSR:: move_to_X( X_t X )
+	{
+		get_yx_was();
+		XY_t XY;
+		XY.Y = XY_was.Y;
+		XY.X = X;
+		move(XY);
+	}
+
+	void tty_curses_CSR:: move_to_Y( Y_t Y )
+	{
+		get_yx_was();
+		XY_t XY;
+		XY.X = XY_was.X;
+		XY.Y = Y;
+		move(XY);
+	}
+
+	void tty_curses_CSR:: move_right( X_t X ) {
+		get_yx_was();
+		XY_t XY = XY_was;
+		XY.X += X;
+		move(XY);
+	}
+
+	void tty_curses_CSR:: move_down( Y_t Y ) {
+		get_yx_was();
+		XY_t XY = XY_was;
+		XY.Y += Y;
+		move(XY);
+	}
+
 
 	void tty_curses_CSR:: printf( const char * fmt, ... )
 	{
@@ -95,6 +160,25 @@ namespace TTY_CURSES {
 		waddch( win, (chtype) ch );
 	}
 
+	void tty_curses_CSR:: putc_box( enum_UDLR udlr )
+	{
+		UDLR UDLR(udlr);
+		putc_acs( UDLR.get_acs_char() );
+		if(udlr == UDLR_____)
+		 puts("0x00");
+	}
+
+	void tty_curses_CSR:: putc_box( UDLR UDLR)
+	{
+		putc_acs( UDLR.get_acs_char() );
+	}
+
+	void tty_curses_CSR:: putc_box( JB_t & jb )
+	{
+		move( jb.XY );
+		putc_box( (UDLR) jb );
+	}
+
 	void tty_curses_CSR:: add_ch( const chtype ch )
 	{
 		waddch( win, ch );
@@ -107,14 +191,17 @@ namespace TTY_CURSES {
 
 	void tty_curses_CSR:: box_mode_start()
 	{
+		// no rmacs required
 	}
 
 	void tty_curses_CSR:: box_mode_end()
 	{
+		// no rmacs required
 	}
 
 	void tty_curses_CSR:: box_v_line( i16 x, i16 y1, i16 y2 )
 	{
+		// wvline dy==1 draws one char, at y1 not y2
 		 move( y1, x );
 		 wvline( win, 0, (y2-y1)+1 );
 		 move( y2, x );
@@ -148,16 +235,16 @@ namespace TTY_CURSES {
 
 	bool tty_curses_CSR:: box_line_to_X( X_t X )
 	{
-		return box_line_right( X - JB1_xy.X );
+		return box_line_right( X - JB1.XY.X );
 	}
 	bool tty_curses_CSR:: box_line_to_Y( Y_t Y )
 	{
-		return box_line_down( Y - JB1_xy.Y );
+		return box_line_down( Y - JB1.XY.Y );
 	}
 
 	bool tty_curses_CSR:: box_line_by( X_t dx, Y_t dy )
 	{
-		XY_t XY = JB1_xy;
+		XY_t XY = JB1.XY;
 		XY.X += dx;
 		XY.Y += dy;
 		box_line_to( XY );
@@ -166,189 +253,206 @@ namespace TTY_CURSES {
 
 	bool tty_curses_CSR:: box_line_end()
 	{
-		JB0_udlr.OR_VAL( JB1_udlr );
-		move( JB0_xy );
-		putc_box( JB0_udlr );
+		JB1_keep = NULL; // maybe
+		// expect curr JB1 .XY == //
+		JB_box_start.OR_VAL( JB1 );
+		putc_box( JB_box_start );
+		JB1 = JB_box_start; // copy udlr as well as copy same XY
 		return true;
 	}
 
 	bool tty_curses_CSR:: box_line_start()
 	{
-		JB0_udlr.clear(); // the closing item
-		get_XY( JB0_xy );
-
-		JB1_udlr.clear(); // the recent current JB1
-		get_XY( JB1_xy );
+		JB1_keep = NULL; 
+		get_yx();
+		JB1.XY = XY_was;
+		JB1.udlr_clear();
+		if(0) JB1.OR_VAL( UDLR_UDLR );
+		box_line_keep_JB( JB_box_start );
+		// JB_box_start = JB1;
 		return true;
 	}
 	void tty_curses_CSR:: nnpp(u8 lbl)
 	{
-		return;
+		return; // silent
 		static int nn = 0;
 		nn++;
-		putc_byte( lbl );
-		putc_byte( '@' + nn );
 		if(nn>26) nn=0;
+		putc_byte( lbl );
+		return; // only show LBL
+		putc_byte( '@' + nn );
+	}
+
+	void tty_curses_CSR:: set_JB1( JB_t & JB_next )
+	{
+		JB1 = JB_next;
+		JB1_keep = NULL; // lose track of previous JB1
 	}
 
 	bool tty_curses_CSR:: box_line_to( XY_t _JB2_xy )
 	{
-		UDLR JB2_udlr;
-		XY_t JB2_xy = _JB2_xy; // are always going to JB2
+		// LINE is from JB1 to JB2
+		// JB2 is INCL
+		// but as a corner it will be updated
+		// JB2 written twice, on way in, on way out
+		JB_t JB2 = _JB2_xy; // from XY to JB
 
-		if( JB1_xy.Y == JB2_xy.Y ) { // HORIZONTAL
-			if( JB1_xy.X == JB2_xy.X )
+		if( JB1.XY.Y == JB2.XY.Y ) { // HORIZONTAL same Y
+			if( JB1.XY.X == JB2.XY.X )
 			{ putc_byte( 'X'); return FAIL("SAAME POINT");  }
 
-			if( JB1_xy.X < JB2_xy.X ) {
+			if( JB1.XY.X < JB2.XY.X ) {
 			// left to right
-				JB1_udlr.set_R();
-				JB2_udlr.set_L();
+				JB1.set_R(); // .udlr
+				JB2.set_L(); // .udlr
+				JB1_udlr_changed();
 
-				move( JB1_xy );
-				putc_box( JB1_udlr );
+				putc_box( JB1 );
 				nnpp( 'a' ); //
 
-				int len = JB2_xy.X - JB1_xy.X; 
+				// -1 because already placed JB1
+				int len = JB2.XY.X - JB1.XY.X - 1 + 1 ; 
 				if( len > 0 ) {
 				 whline( win, 0, len ); 
 				}
 				// XY should be asis
-				move( JB2_xy );
-				putc_box( JB2_udlr ); // early but OK
+				putc_box( JB2 ); // early but OK
 				nnpp( 'b' ); //
 
-				JB1_udlr = JB2_udlr;
-				JB1_xy   = JB2_xy  ;
+				JB1 = JB2;
+				JB1_keep = NULL;
 
 				return true;
 
 			} else {
-			// right to left
-				JB1_udlr.set_L();
-				JB2_udlr.set_R();
+			// JB1 right to left JB2
+				JB1.set_L();
+				JB2.set_R();
+				JB1_udlr_changed();
 
-				move( JB1_xy );
-				putc_box( JB1_udlr );
+				putc_box( JB1 );
 				nnpp( 'c' ); //
 
-				XY_t POS1 = JB2_xy; // left
-				XY_t POS2 = JB1_xy; // right
+				XY_t POS1 = JB2; // left
+				XY_t POS2 = JB1; // right
 				POS1.X ++;
 				POS2.X --;
 
-				int len = POS2.X - POS1.X ; 
+				int len = POS2.X - POS1.X + 1 ; 
 				if( len > 0 ) {
 				 move( POS1 );
 				 whline( win, 0, len ); 
 				}
-				move( JB2_xy );
-				putc_box( JB2_udlr );
+				putc_box( JB2 );
 				nnpp( 'd' ); //
 
-				JB1_udlr = JB2_udlr;
-				JB1_xy   = JB2_xy  ;
+				JB1 = JB2;
+				JB1_keep = NULL;
 
 				return true;
 			}
 			return true;
 		}
-		if( JB1_xy.X == JB2_xy.X ) { // VERTICAL same X
-			if( JB1_xy.Y < JB2_xy.Y ) {
+		if( JB1.XY.X == JB2.XY.X ) { // VERTICAL same X
+			if( JB1.XY.Y < JB2.XY.Y ) {
 			// top to bottom
-				JB1_udlr.set_D();
-				JB2_udlr.set_U();
+				JB1.set_D();
+				JB2.set_U();
+				JB1_udlr_changed();
 
-				move( JB1_xy );
-				putc_box( JB1_udlr );
+				putc_box( JB1 );
 				nnpp( 'e' ); //
 
-				XY_t POS1 = JB1_xy;
+				XY_t POS1 = JB1.XY;
+				XY_t POS2 = JB2.XY;
 				POS1.Y ++;
-
-				XY_t POS2 = JB2_xy;
-				POS1.Y --;
-
-				int len = POS2.Y - POS1.Y ; 
-				if( len > 0 ) {
-				 move( POS1 );
-				 wvline( win, 0, len ); 
-				}
-				move( JB2_xy );
-				putc_box( JB2_udlr ); // early but OK
-				nnpp( 'f' ); //
-
-				JB1_udlr = JB2_udlr;
-				JB1_xy   = JB2_xy  ;
-			} else {
-			// bottom to top
-				JB1_udlr.set_U();
-				JB2_udlr.set_D();
-
-				move( JB1_xy );
-				putc_box( JB1_udlr ); // early but OK
-				nnpp( 'g' ); //
-
-				XY_t POS1 = JB2_xy; // top
-				POS1.Y ++;
-
-				XY_t POS2 = JB1_xy; // bottom
 				POS2.Y --;
 
-				int len = POS2.Y - POS1.Y ; 
+				int len = POS2.Y - POS1.Y + 1 ; 
 				if( len > 0 ) {
 				 move( POS1 );
 				 wvline( win, 0, len ); 
 				}
+				move( JB2 );
+				nnpp( 'f' ); //
 
-				move( JB2_xy );
-				putc_box( JB2_udlr );
+				JB1   = JB2  ;
+				JB1_keep = NULL;
+			} else {
+			// bottom to top
+				JB1.set_U();
+				JB2.set_D();
+				JB1_udlr_changed();
+
+				putc_box( JB1 ); //
+				nnpp( 'g' ); //
+
+				XY_t POS1 = JB2.XY; // top
+				XY_t POS2 = JB1.XY; // bottom
+				POS1.Y ++;
+				POS2.Y --;
+
+				int len = POS2.Y - POS1.Y + 1 ; 
+				if( len > 0 ) {
+				 move( POS1 ); // one more than JB1
+				 wvline( win, 0, len ); 
+				}
+
+				move( JB2 );
 				nnpp( 'h' ); //
 
-				JB1_udlr = JB2_udlr;
-				JB1_xy   = JB2_xy  ;
+				JB1 = JB2;
+				JB1_keep = NULL;
 			}
 			return true;
 		}
 
-		JB1_udlr = JB2_udlr;
-		JB1_xy   = JB2_xy  ;
+		JB1 = JB2;
 		return FAIL("not on same LINE COL ");
 	}
 
-	void tty_curses_CSR:: box_line_keep_JB( XY_t & JB_XY, UDLR & JB_udlr )
+	void tty_curses_CSR:: box_line_keep_JB( JB_t & JB_tee )
 	{
-		JB_XY = JB1_xy;
-		JB_udlr = JB1_udlr;
+		// SAVE corner or TEE
+		JB_tee = JB1;
+		JB1_keep = & JB_tee; // keep for exit route
 	}
 
-	void tty_curses_CSR:: box_line_jump_JB( XY_t & JB_XY, UDLR & JB_udlr )
+	void tty_curses_CSR:: box_line_jump_JB( JB_t & JB_tee )
 	{
-		JB1_xy = JB_XY;
-		JB1_udlr = JB_udlr;
+		// calling code is resuming from jb_tee
+		JB1 = JB_tee;
+		JB1_keep = NULL;
+		JB1_keep = & JB_tee; // keep for exit route
+		// any updated UDLR values get written back to // _STO _CACHE
 	}
 
-	void tty_curses_CSR:: box_line_amat_JB( XY_t & JB_XY, UDLR & JB_udlr )
+extern "C" void exit( int status );
+	void tty_curses_CSR:: box_line_amat_JB( JB_t & jb )
 	{
-		// JB1_xy = JB_XY;
-		JB1_udlr .OR_VAL( JB_udlr );
-		move( JB1_xy );
-		putc_box( JB1_udlr );
+		// claims to have arrived at a JB with state from back then
+		if( jb.XY != JB1.XY ) {
+			if(1) WARN("(%d,%d) !=(%d,%d)",
+			 jb.XY.X,
+			 jb.XY.Y,
+			 JB1.XY.X,
+			 JB1.XY.Y
+			);
+			if(0) printf("(%d,%d %d,%d)",
+			 jb.XY.X,
+			 jb.XY.Y,
+			 JB1.XY.X,
+			 JB1.XY.Y
+			);
+		//	puts("( jb.XY != JB1.XY )");
+		//	exit(1);
+		//	return;
+		}
+		// OK caller wrong math , but trust the approx corner shape
+		JB1.OR_VAL( jb );
+		putc_box( JB1 );
 	}
 
-
-	void tty_curses_CSR:: putc_box( enum_UDLR udlr )
-	{
-		UDLR UDLR(udlr);
-		putc_acs( UDLR.get_acs_char() );
-		if(udlr == UDLR_____)
-		 puts("0x00");
-	}
-
-	void tty_curses_CSR:: putc_box( UDLR UDLR)
-	{
-		putc_acs( UDLR.get_acs_char() );
-	}
 
 	void tty_curses_CSR:: move_status_line() // and clear it
 	{

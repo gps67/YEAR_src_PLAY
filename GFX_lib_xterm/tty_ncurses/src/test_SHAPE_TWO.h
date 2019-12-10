@@ -33,7 +33,10 @@
 	: SHAPE_BASE( title )
 	, CSR( _CSR )
 	{
+		dx_to_box = 14;
 	}
+
+	// needs missing metrics // bool recalc_dx_to_box();
 
 	bool Layout( tty_curses_CSR & _CSR )
 	{

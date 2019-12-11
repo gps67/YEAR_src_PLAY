@@ -53,6 +53,8 @@
 	CLEAN1 += $(OBJS1)
 	CLEAN2 += $(OBJS2)
 
+	OBJS2 += test_main_test_3.o	# why different exe? decode ARGS
+
 all: test1 test2
 
 build: $(PROG1_exec) 
@@ -92,7 +94,7 @@ $(PROG1_exec): $(PROG1).o $(OBJS1)
 
 $(PROG2_exec): $(PROG2).o $(OBJS2) 
 	# g++ $< $(LINKS) -o $@
-	g++ $(PROG2).o $(OBJS2) $(LINKS) -o $@
+	g++ $(PROG2).o $(OBJS1) $(OBJS2) $(LINKS) -o $@
 
 clean: 
 	# rm -f $(CLEAN12) $(CLEAN23) 

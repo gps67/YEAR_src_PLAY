@@ -21,7 +21,7 @@ extern "C" void exit(int);
 	using namespace TTY_CURSES;
 
 
-  bool main_test1()
+  bool main_test_3()
   {       
 	// one per TTY
 	tty_curses tty;
@@ -33,45 +33,16 @@ extern "C" void exit(int);
 	// csr.move( Y X )
 	// csr.printf("fmt", ARGS );
 	// csr.get_panel()
-	//
-	// OPTION move all those ncurses wraps to a WINDOW type
-	// OPTION repeat STDWIN as direct access to STDWIN_or_OTHER
-	// OPTION need to obey chtype utf8 rules used by ncurses
-	// OPTION get rid of ncurses // JIT it to obtain goxy() for xterm linux
-	// OPTION app writes PIXMAP app calls rpc_BLIT rpc_printf rpc_draw
-	// OPTION app builds library of primative DTP elements (lists of lines)
-	// OPTION cli_browser requests library of DTO elements (app data format)
-	// OPTION cli_browser already has it's own copy of the SCRIPTS
-	// OPTION server has own copy of SCRIPTS, and overlays from them
-	// OPTION TOKEN found in PREBUILT on bothsides myref:your_ref
-	//
-	//
-	// object.get_POOL_ITEM( ITEM_t & ITEM, int pool, int item );
-	// caller provides ITEM = * PTR; // KNOWN NOT NULL // KNOWN_WHEN_NULL
-	// caller provides ITEM.STO_bytes as ITEM_t * PTR; ITEM_t & ITEM = *PTR;
-	// nontrivial caller provides STO for ITEM_t but CTXT tells it to do X
-	// pivot on the "&", local is a CACHE_COPY of direct_link_to_original
-	// repeat that out-loud // ITEM_t & ITEM = lookup( idx_pool, idx_item )
-	// keep as setter( ITEM_t * PTR ); // recompute // REDO depends on ITEM
-	// need a lazy, spreadsheet, recalc, with JIT over SCRIPT and PREBUILT
-	// need a loader.so that makes every SCRIPT expression PREBUILT
-	//
-	// CODE_FRAGMENT: "ITEM_t * PTR = PARAMETER; ITEM_t & ITEM = *PTR;"
-	// CODE_FRAGMENT: ITEM_t ITEM_in_STO; // ...
-	// CODE_FRAGMENT: ITEM_t ITEM_in_STO; // ITEM_t & ITEM = *PTR;" //
-	// PTR = EA_of_ITEM_in_STO_as_PTR // auto connect // local cache
-	// MATCH SUBLEX_or_PHRASE_ "ITEM_t * PTR = PARAMETER; ITEM_t & ITEM = *PTR;"
-	// SPLIT ; to index KEYS_FOUND
 
 
 	// WHEN THIS is derived from _CSR
 	// TTY_CURSES::tty_curses_CSR & csr = *this;
 
 	// _CSR ?
-	int X1 = 5;  // then some INDENT system tables of numbers varnames
+	int X1 = 4;  // then some INDENT system tables of numbers varnames
 	XY_t XY;
 	XY.Y = 2;
-	XY.X = 5;
+	XY.X = 4;
 
 	// CSR_t csr // local tool to attach variables to
 	// FIELD csr.FieldName // GEN adds it to the derived-from-CSR_t

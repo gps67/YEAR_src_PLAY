@@ -1,5 +1,11 @@
 #ifndef test_SHAPE_BASE_H
 #define test_SHAPE_BASE_H
+// obviously problematic, as FONT_Layout required with CSS_fonts_to_use
+// typically available via SURFACE = panel + user choice of paper + css==
+//
+// could vector through virtual functions, using them as signal
+// fn_its_time_to_recompute_ABC( /* this, */ SURFACE_t SURFACE, item_on_page_t )
+//
 // too many for TOP API // edit as if for STUBS // TODO
 // #include <ncurses.h>
 // #include "tty_curses_CSR.h"

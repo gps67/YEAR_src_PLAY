@@ -6,8 +6,23 @@
 
 		This is the STUBS of all the modules exports that we use
 		Each importing module, could even create a CT_RT_Obj & obj;
-		// obj = obj( ARGS ) // FN = _CTOR_ pick by fn_args
 		// pick by fn args // C_ANSI_fn_signatures // OTHER
+		// obj = new obj( ARGS ) // DIALECT_SHIFT drop the new keyword
+		// obj = obj( ARGS ) // api CTOR rules apply // morph_transport
+		// obj = obj( ARGS ) // FN = _CTOR_ pick by fn_args
+		// ITEM_t & item = lookup( pool, item ) ; // FRAME_var "item"
+		// some RULES includes use of NAME_t & name = lookup("anystr");
+		// some RULES include use of GCC/ASM/SCRIPT, CT_machine = DIAG
+		// some RULES include use of DIAG + ANIM + LEXICON.script["%s"]
+		// EG2
+		// Parse stuff like { LEXICON.script["%s"] }
+		// Match // LEXICON.script["%s"] } BLOB_QUOTED_anystr
+		// Use of Name <--> IDX <--> USE // _of_SCRIPT
+		// COMPILE_TOKENISE_EXPR ( CTXT, NAME, OPCODE )
+		// OPCODE BIND_EA_EXPR // it doesn't have to run, just use id
+		// BIND LINK, link = //EA// lookup( name )
+		// BIND LINK link = some_other_EA_expr
+
 	*/
 
 	namespace STO {

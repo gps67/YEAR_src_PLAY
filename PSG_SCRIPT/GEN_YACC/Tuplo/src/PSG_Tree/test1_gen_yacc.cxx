@@ -139,7 +139,8 @@ int main( int argc, char ** argv )
 		 //	IT SAYS errno == EACCESS // Permission denied
 		 //	IT SAYS errno == E2BIG // CPU_PAUSED_or_SHUTDOWN
 		 //	IT SAYS errno == EADDRNOTAVAIL // 100_spellings_of_ENO
-		 //	WANT exit_code = E-NO_PERMCCESS
+		 //	WANT exit_code = E-NO_PERM E-ACCESS // nor mullets
+		 //	KNOW prefer cfg use_own_
 		 //
 		 // }
 		 // Report_Any_Residual_Error() // flushing buffers on exit {

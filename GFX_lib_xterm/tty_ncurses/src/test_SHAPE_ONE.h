@@ -25,15 +25,10 @@
 	// SURFACE is CSR
 	tty_curses_CSR & CSR; // shared with other users of window
 
-	i16 dx_to_box;
-	i16 dx_of_frame;
-	i16 dy_of_frame;
-
 	SHAPE_ONE( tty_curses_CSR & _CSR,  STR0 title= "SHAPE_ONE" )
 	: SHAPE_BASE( title )
 	, CSR( _CSR )
 	{
-		dx_to_box = 14;
 	}
 
 	// needs missing metrics // bool recalc_dx_to_box();
@@ -52,6 +47,9 @@
 
 	virtual 
 	bool set_XYWH( XYWH_t & _XYWH );
+
+	i16 frame_W() { return XYWH.WH.W; }
+	i16 frame_H() { return XYWH.WH.H; }
 
 	virtual
 	bool draw( tty_curses_CSR & CSR ); // shared with other users of window

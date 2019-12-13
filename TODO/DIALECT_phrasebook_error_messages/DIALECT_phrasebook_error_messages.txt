@@ -1,0 +1,14 @@
+	DIALECT_phrasebook_error_messages/
+	DIALECT_phrasebook_error_messages.txt
+
+DIALECT_phrasebook_error_message {...}
+
+g++: error: test_main_test_1.o: No such file or directory
+
+	OBJS1 += test_main_test_1.o
+
+	# but   test_main_test1.o # file rename required
+
+DIALECT_phrasebook_error_message {...}
+
+	next item here

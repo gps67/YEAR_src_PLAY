@@ -6,9 +6,11 @@
 // #include "APPS_stubs.h"
 // #include "APPS_Holder.h"
 
+	extern bool main_test_2();
+
 int main()
 {       
-	if(main_test1())
+	if(main_test_2())
 		return 0;
 	if(errno)
 		return errno;

@@ -2,7 +2,7 @@
 #define A_point_plus_H
 #include <X11/Xlib.h>
 
-# include "i16_hilo.h"
+# include "WAX_i16_hilo.h"
 
 namespace WAX {
 

@@ -37,6 +37,8 @@ class mmap_file : public fd_hold_1 // obj_ref_
 	u32 fd_size;	/* file length */
 	char * page0;	/* mmapped */ /* NOT alloc'ed */
 
+	u32 fd_grumble_size; /* file as big as this, have different handler */
+
 	bool mmap_in_file_RW( const char * filename)
 	{ return map_in_file( (const u8*) filename, true ); }
 	bool mmap_in_file_RO( const char * filename)
@@ -51,6 +53,7 @@ class mmap_file : public fd_hold_1 // obj_ref_
 	bool test1(void);
 	bool grow_file_16( u16 new_size );	/* appends to file */
 	bool grow_file_32( u32 new_size );	/* appends to file */
+	bool grow_file_k_u16( u16 new_size_k ); // u16 // u26 //
 
 /* ifdef P0P2_H
 	operator p0p2 ( return p0p2( f.page0, f.fd_size );}

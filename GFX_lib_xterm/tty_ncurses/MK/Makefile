@@ -19,6 +19,10 @@
 	VPATH +=$S/src
 	VPATH +=$S/src/PSG_Tree
 
+# I dont know - this is supposed to be either
+	VPATH +=$S/../../STO_BYTES
+	INCLS +=-I $S/../../STO_BYTES # OK
+
 	include ../MK/Makefile_libs_apps
 
 	PROG1=test_1

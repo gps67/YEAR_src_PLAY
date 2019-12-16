@@ -4,7 +4,8 @@
 	DIR_libs_apps=~/YEAR/src/libs_apps
 	DIR_libs_apps=$(HOME)/YEAR/src/libs_apps
 	LGX=LGX
-	BOXNAME=M7
+	BOXNAME=$(shell uname -n)
+	# BOXNAME=M7
 	# BOXNAME=E6320
 	DIR_libs_apps_build=$(DIR_libs_apps)/build_$(LGX)_$(BOXNAME)
 

@@ -4,6 +4,11 @@
 #include "STO_i16_hilo.h"
 // #include "STO_i32_hilo.h"
 
+/*
+	TUPLE n = SPEC.get_N
+	SPEC = u16_hilo_SPEC dereferenced
+	ARGS[ u4 ] // from SPEC_OPCODE embedded parameter || SPEC.info
+*/
 
 
 

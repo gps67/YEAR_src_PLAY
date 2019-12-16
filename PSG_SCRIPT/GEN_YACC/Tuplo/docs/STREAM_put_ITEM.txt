@@ -1,0 +1,136 @@
+
+
+	STREAM_put_ITEM.txt
+
+	buffer3 should be UTIL not subclass of this, of that
+	put( "};" ); // end of TEXT_ZONE CODE_ZONE _EDGE_ closing_EDGE /*END*/
+
+	put_SCRIPT_send_DIAG_vars // and all that
+	put_BLOB_send_as_STO_labelled_BLOB // BLOG
+	put_RPC_request // an actual one, as well as the proto
+	put_RPC_channel_access // channel_access = SWITCHED via PERMIT
+	put_RPC_rom // SPEC DATA CODE
+	put_RPC_data // SPEC DATA
+	put_RPC_script // SPEC DATA CODE
+	// a SCRIPT is a MODULE // on some level // where is ... other ...
+	put_PERMIT_BANDIDTH_TOKEN_CTRL
+	put_CTRL_on_FILTER_
+	 FILTER was written by us, so BOTH sides have identical SPEC
+	  we send PKTS to FILTER
+	   we ask FILTER for API // load a tree_branch, from SPEC both have
+	    we PREBUILD my_ref_your_ref_TOKEN_ANYSTR = lookup( "ANYSTR" );
+	     so when I later ask for a token for ANYSTR
+	      I get an u32_hilo EA_STO_EXPR; // LOAD BRANCH; PICK EXPR //
+	       I use u8 id; ITEM_t & item = FSM_LOCN_prev; // u8 fast zone
+	       I see u8_u8 id; POOL_t & pool; ITEM_t & item = FSM_LOCN_prev;
+	       // u8 fast zone
+	       //
+	       // POOL = POOL_[ u8_id ] // this folds out // POOL = HERE
+	       //
+	       // decoding is fast, in_code with pre-trained caches PREBUILT
+	       // thinking in low_ceiling few works
+	       // 
+	       // ITEM_t & item;
+	       // item = ITEM_[ u8_id ] // u8 atom_within_pool;
+	       //
+	       // That gives scripts a CODE_POINT, a TREE_LOCN as u32_hilo
+	       // DECODE_u32 u8_layer u8_libr u16_item
+	       //
+	       // From HERE within TREE // branch
+	       // get lots_of_ids // budget fraction of 64K 
+	       // Some EXPR also uses THERE within same frame // branch
+	       // CLONE merged all adjacent steps into vectors // options
+	       // compile get_ITEM(i) => pool_item[ here_zero + i ]
+	       // HMMM here_zero == VECT[ 5 ] encoding
+	       // [0] == ... // [1] == ... // ...
+	       // thats compacted on one line, add a DIAG of TYPE_t & NAME[5]
+	       // [0] == ... // [1] == ... // ...
+	       // STD_LIB
+	       // [0] == ...
+	       // [1] == ...
+	       // [2] == ...
+	       // [3] == ...
+	       // [4] == ...
+	       // ...
+	       //
+
+	       //
+	       // That gives
+	       // LIBR {
+	       //  HERE = POOL_u8_of_ITEM // 256 MAX // _u4_ //
+	       // }
+
+	       // But LIBR is at WORD_ALIGNED OFFS and SHIFTED_IDX
+	       // DIAG ...
+	       //  Compiler wants
+	       //	ITEM_t * ITEM; // It's one way, but "->" and "*"
+	       //	ITEM_t & ITEM; // IT IS THE SAME THING // almost
+	       //  SCRIPT wants
+	       //	int vect_item_N = 5;
+	       //	ITEM_t & item = vect_item[ 5 ];
+	       // only kidding its $vect_item_N == 5 // in CODE form
+	       // switch has to join up these two views. It is not 5
+	       //
+	       // SCRIPT COMPILES TO 
+	       // 	u8 u8_idx = TOKEN_of_VAR_vect // SPEC=SPEC_[u8_spec]
+	       //	u8 _BASE = idx_alloc_N(5); // eg ABCDE
+	       //	u8 get_EA_( 
+	       //	operator []( int ABCDE )
+	       //	== vect_item[ ABCDE ]
+	       //	== _BASE_ + ABCDE
+	       // PREBUILD
+	       //	u8 _BASE = idx_alloc_N(5); // eg ABCDE
+	       // for example
+	       // DIAG for how PSG sees it
+	       // DIAG for how PSG portrays it
+	       //
+
+	       // long story short:
+	       // ABCDE == [ 0 .. 5 ] // alloc SPACE for IDX // bunch for VECT
+	       // ITEM_t & item = item_[ ABCDE ] // with STITCH-INS
+	       //  array_NAME = _BASE_
+	       //  array_WORD = _COMPILER_PICKS_16
+	       //  array_PAGE = ONE_MORE_ADJACENT_PAGES // bunched so opt'd
+	       // LOCN_[ u16_hilo ] // HERE is a leaf in the tree // twig
+	       // So MY_LOCN = { ... } bunch of idx _BASE_IDX_[N]; // 75
+	       // RELOADER does not run yet, it will RELOCATE
+	       // CLONE moves things around, CACHE uses clone api 
+	       // BAX will want updates, maybe SNAPSHOT at APP_CTRL back that
+	       // ROM can reload PREBUILT
+	       // EA_EXPR VECTOR_HEADER_BASE_ // -ve upto -NBYTES HEADER
+	       // DIAG
+	       //	/P0       P2     //P2 // illusion available includes
+	       //       |         |        |
+	       //                 p0       p2
+	       //
+	       // ,,,   | header  | VECTOR | ...
+	       // operator[](int) return VECTOR_ITEM[idx]; // WORD_MATH
+	       // WORD_MATH // T*ITEM; -vs- T&ITEM; // HILO // EA_OFFS
+
+
+	       //  VECTOR.N() // it is inline cached // .N also available as
+	       //  
+	       // SEMANTICS ERROR
+	       //
+	       // .forgot.
+	       //
+	       // when templating <u16> for two reasons <u8_u8>
+	       //
+	       // EA != OFFS
+	       // We want to write
+	       //	Field_t & f = OBJ_1.f;
+	       //	// gifts local Name in current SCOPE
+	       //
+
+	       // comes from gode generator addressing LOCN_ITEM
+	       // luck has it, that sharing IDX space is easy
+	       // So if you node uses 75 out of 256 IDX items
+	       // it will be perfectly happy with a contihuous block of 75
+	       // starting at _BASE_idx_of_array_75_items_Name
+
+
+
+
+ 
+		
+

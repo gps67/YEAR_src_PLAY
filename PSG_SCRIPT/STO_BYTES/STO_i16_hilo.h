@@ -10,6 +10,20 @@
 // wish there was a way to avoid every user needing this
 #include <byteswap.h>
 
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+ // Intel LOHO
+ #define CPU_LOHI 1
+ #define CPU_HILO 0
+ #warning "currently be testing on AMD64 - soon delete this message"
+#elif
+ // ARM Motorola HILO
+ #define CPU_HILO 1
+ #define CPU_LOHI 0
+ #warning "to be tested on ARM - then delete this message"
+#else
+ error "I dont support __ORDER_PDP_ENDIAN__ whatever that is"
+#endif
+
 typedef short i16;
 #include "buffer2.h"
 

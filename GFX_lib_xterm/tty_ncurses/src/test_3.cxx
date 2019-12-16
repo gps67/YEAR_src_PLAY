@@ -2,6 +2,8 @@
 #include <errno.h>
 #include "argv_decoder.h"
 
+#include "STO_i16_hilo.h"
+
 #include <dgb.h>
 
 // PROBS with ncurses not using fd_sel_says

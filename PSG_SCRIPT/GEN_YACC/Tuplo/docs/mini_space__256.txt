@@ -1,0 +1,32 @@
+
+	mini_space_256.txt	VARIES WITH CTXT, then fixed
+
+
+	Already filtered down a bit, using TYPE_SPEC[u8] // domain = type_id
+
+	Use static type checking
+
+	Use a minimalist WRAP_type_id, where ITEM then self identifies further
+	eg
+
+		list_u8_of_u16_hilo	
+		list_u8_of_u32_hilo
+		list_u8_of_PTR_native	// CPU_BYTE_ORDER
+		list_u8_of_ITEM_TYPE	// parallel arrays structs
+	
+	
+	eg
+		blob_u24_of_blob	// blob_body might get relocated
+		blob_u24_header 	// actual type gets extra header
+
+		The VIA_ref_IN_MEM object, might get updated
+		Relocating stuff is tricky, but will happen,
+		probably hibernate, move, thaw
+		So only the VIA obj holds any address, not on SP
+	
+	eg
+		STRUCT [field_id] ==>
+
+		so the CTXT roots [8] at LOCN
+		there may also be EXPR_t expr = LOCN.SCRIPT.EXPR.[u8]
+	

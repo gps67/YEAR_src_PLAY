@@ -127,6 +127,45 @@
 	       // So if you node uses 75 out of 256 IDX items
 	       // it will be perfectly happy with a contihuous block of 75
 	       // starting at _BASE_idx_of_array_75_items_Name
+// AGAIN FAST
+//
+// u24_u8
+//
+// u32_hilo in_mem;
+// u32 word = SWAPB * PTR ++ 
+// u8 FILE_ZONE_id = (u8) word; // take AL from CPU_REGISTER
+// word >>= 8; // can actually provide this in register // PREBUILT
+// OFFS = word;
+// ZONE_t & ZONE = ZONE_[ FILE_ZONE_id ] // setup_on_first_use // cache // fn
+// ZONE was preloaded, it might move, but is as ZONE.ea_zone_BASE _OFFS
+// ZONE has a root object, selected during INVOKE // possible TREE_BRANCH_VALVAE
+// ZONE.root is itself within ZONE, uses own api // setting ROOT was from CTRL
+// ZONE.root is outside ZONE, uses own api but second area // 
+// ZONE provides 16M of low ADDR plus u64 of high addresses // stay in 16M
+// ZONE provides P0P2 p0p2_u24; // u24_OFFS_t // code manipulates * //
+// PTR = zone_BASE_PTR + item_OFFS_in_ZONE; // calc VECTOR STRUCT Layout etc
+
+// u8_u8_hilo
+// u16_hilo
+// CPU_WORD // is u32 ? // state of sign_extend, untouchable beyond i16
+// A PAIR of arrays, one FIRST, 256 SECOND
+// POOL_t & POOL = POOL_[u8_hi]
+// ITEM_t & ITEM = ITEM.VECT[u8_lo]
+
+// CLONE has simply added ITEM + ITEM + ... in bunches ITEM[75]
+// occasionally they cross PAGE_256_idx boundaries, but it doesn't matter
+// _BASE_ = 200 _ITEM_idx=64 IDX = _BASE + ITEM // probably now an i16 or i32 or
+// CT_LD_RT needs to obtain _BASE_ = ... compiler dragons lurk there
+
+// POOL of u8 ITEM
+// can actually be 75 not 256
+// can be in shared space u16 POOL_BASE=40123 ITEM < N == 75
+// can be in shared space u8 POOL0_BASE-40123 ITEM_ZERO==123 ITEM_75=198 or 75?
+//
+// ITEM requires multiple addressable ITEM slots
+// also could have internal route to NNN slots in hidden own_vect
+// curr everything is exported, still squeezes
+
 
 
 

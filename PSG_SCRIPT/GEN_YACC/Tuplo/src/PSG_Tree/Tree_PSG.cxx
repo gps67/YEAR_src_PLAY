@@ -659,6 +659,9 @@ gen_YACC_top_code( buffer2 & out )
  L("          #include <cstddef>");
  L("          #include <stdio.h>");
  L("  //      #include <string>");
+ // NOT WORKING - to create yyparse(void*gps_client_data) //
+ // then it would be local and still available to entire FSM
+ L("  #define YYPARSE_PARAM gps_client_data ");
  L("          extern const char * str_of_token( int token );");
 
  // before tab,h so that namespace exists

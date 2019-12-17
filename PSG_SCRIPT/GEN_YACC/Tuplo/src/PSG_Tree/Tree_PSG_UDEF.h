@@ -14,14 +14,21 @@
  	import base_libr TOKEN_MEANINGS_and_other_LOOKUP
  */
 
+
 class Tree_PSG_UDEF : public Tree_PSG { public:
 
-	bool build_tree();
-	bool build_tree_lex();
-	bool build_tree_yacc();
+	virtual bool build_tree();
+	virtual bool build_tree_lex();
+	virtual bool build_tree_yacc();
+
+	// UDEF gets a head start, hope it sort of works :-)
+	// eg MATRIX works where NUM was
+	// eg STRING likes += rhs
+	// eg LISTS like += item // api_is_with_list_impl_new_item
+	// LIBR could make this a UTIL over PSG_tree, not subclass, OPTS
+	virtual bool add_lex_for_C_EXPR();
+	virtual bool add_yacc_for_C_EXPR();
 
 };
-
- // SCRIPT is a MODULE but mostly SCRIPT
 
 #endif  // PSG_UDEF

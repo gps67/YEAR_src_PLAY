@@ -2,6 +2,7 @@
 #define EXPR_PRINTER_H
 
 #include "EXPRS_STUBS.h"
+#include "buffer2.h"
 
 namespace EXPRS {
 

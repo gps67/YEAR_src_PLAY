@@ -36,6 +36,8 @@ struct array_u8_of_u16
 
 	u16_hilo obj_SPEC;
 	u16 obj_N; // 0 means 0 or 256 or more
+	// ZERO edge between HEAD and TAIL
+	// crossing that LINE
 	u16_hilo obj_DATA[255];
 
 	bool ary_get( u16_hilo & hilo, i16 idx ) 

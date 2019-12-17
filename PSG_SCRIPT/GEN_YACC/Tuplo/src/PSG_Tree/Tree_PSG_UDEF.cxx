@@ -12,6 +12,8 @@
 // SERVER filters requests through CHECKER_FILTER
 // RELAY filters are either inside or outside, or vetted
 
+// Tree_PSG_UDEF is a BASE CLASS with OPTS eg C_EXPR
+
 
 bool Tree_PSG_UDEF:: build_tree() {
 	if(! build_tree_lex() ) return FAIL_FAILED(); 
@@ -19,86 +21,19 @@ bool Tree_PSG_UDEF:: build_tree() {
 	return true;
 }
 
-// this will befollowed by EVERY lex used by PSG 
-// we have to define the longest first, so others later
-// maybe automate as PUNCT4 PUNCT3 PUNCT2 PUNCT1
 bool Tree_PSG_UDEF:: build_tree_lex() {
-
-	// manually SORT longest first
-
-	POOL_PUNCT.add_PUNCT( "<<=" ); 
-	POOL_PUNCT.add_PUNCT( ">>=" ); 
-
-	POOL_PUNCT.add_PUNCT( "==" );
-	POOL_PUNCT.add_PUNCT( "!=" ); 
-	POOL_PUNCT.add_PUNCT( "<=" ); 
-	POOL_PUNCT.add_PUNCT( ">=" ); 
-	POOL_PUNCT.add_PUNCT( "<<" ); 
-	POOL_PUNCT.add_PUNCT( ">>" ); 
-	POOL_PUNCT.add_PUNCT( "++" ); 
-
-// ASCII order -vs- PRIORITY ? 
-// not obviosly, so ... meh
-
-	/*
-	POOL_PUNCT.add_PUNCT( "<" ); 
-	POOL_PUNCT.add_PUNCT( ">" ); 
-	POOL_PUNCT.add_PUNCT( "=" ); 
-	POOL_PUNCT.add_PUNCT( "(" ); 
-	POOL_PUNCT.add_PUNCT( ")" ); 
-	POOL_PUNCT.add_PUNCT( "{" ); 
-	POOL_PUNCT.add_PUNCT( "}" ); 
-	POOL_PUNCT.add_PUNCT( "." ); 
-	POOL_PUNCT.add_PUNCT( "+" ); 
-	POOL_PUNCT.add_PUNCT( "-" ); 
-	POOL_PUNCT.add_PUNCT( "*" ); 
-	POOL_PUNCT.add_PUNCT( "/" ); 
-	POOL_PUNCT.add_PUNCT( "^" ); 
-	POOL_PUNCT.add_PUNCT( "&" ); 
-	POOL_PUNCT.add_PUNCT( "%" ); 
-	POOL_PUNCT.add_PUNCT( "|" ); 
-	POOL_PUNCT.add_PUNCT( "~" ); 
-	*/
-
-	POOL_PUNCT.add_PUNCT( "*" ); 
-	POOL_PUNCT.add_PUNCT( "+" ); 
-	POOL_PUNCT.add_PUNCT( "^" ); 
-
-	POOL_PUNCT.add_PUNCT( "<" ); 
-	POOL_PUNCT.add_PUNCT( ">" ); 
-	POOL_PUNCT.add_PUNCT( "=" ); 
-	POOL_PUNCT.add_PUNCT( "(" ); 
-	POOL_PUNCT.add_PUNCT( ")" ); 
-	POOL_PUNCT.add_PUNCT( "{" ); 
-	POOL_PUNCT.add_PUNCT( "}" ); 
-	POOL_PUNCT.add_PUNCT( "." ); 
-	POOL_PUNCT.add_PUNCT( "-" ); 
-	POOL_PUNCT.add_PUNCT( "/" ); 
-	POOL_PUNCT.add_PUNCT( "&" ); 
-	POOL_PUNCT.add_PUNCT( "%" ); 
-	POOL_PUNCT.add_PUNCT( "|" ); 
-	POOL_PUNCT.add_PUNCT( "~" ); 
-
-// ERROR of DOUBLE add_PUNCT --
-
-	POOL_RW.add_RW( "if" );
-
-	POOL_LEX.add_LEX( "EOLN" );
-	POOL_LEX.add_LEX( "IDENTIFIER" );
-	POOL_LEX.add_LEX( "WS" );
-	POOL_LEX.add_LEX( "DOUBLE" );
-	POOL_LEX.add_LEX( "INTEGER" );
-
-	// PSG // VALUE Value_type value_as_str value_as_binary // except BLOB
-	// PSG // NAME // portal to DECLARATION 
-	// PSG // NAME // macro over USAGE
-	// PSG // NAME // bound to NAMED_ITEM
-
-	// SEQ(" if ( EB ) SN1 [ else SN2 ] ")
-
-	// OR collect TOKENS as they are used
-	// expr brings collection of match like exprs, like C++
-
+	if(!add_lex_for_C_EXPR()) return FAIL_FAILED();
 	return true;
-	// return FAIL("unwritten");
+}
+bool Tree_PSG_UDEF:: build_tree_yacc() {
+	if(!add_yacc_for_C_EXPR()) return FAIL_FAILED();
+#if 0
+	Tree_PSG_RULE_SEQ * SEQ = new Tree_PSG_RULE_SEQ( "expr_ident" );
+	SEQ -> name = "expr_ident";
+	SEQ -> add_step_LEX( "WS" );
+	SEQ -> add_step_RULE( "expr_ident" );
+	SEQ -> set_code(" $$ = $2; ");
+#endif
+	// bool add_yacc_for_C_EXPR();
+	return true;
 }

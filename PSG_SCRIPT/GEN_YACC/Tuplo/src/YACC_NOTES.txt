@@ -1,0 +1,24 @@
+
+FLAX and YACC
+
+	YACC generates lots of TOKEN for lex
+	YACC includes the code that PSG generated
+	YACC defines it's machine, and lots of MACRO's
+
+	YACC generates gen_e1_yacc.tab.cc 
+
+	YACC understands, or NOT "EXPR"
+	I want some way to sneak it past, but it wont ??
+	Hence EXPR is global;
+	But after that, it can do anything
+	It generates code than can use "NAMESPACE::OTHER" 
+	for everything else
+
+	yyparse()
+
+	  {
+	    EXPR * E = (yyvsp[-1].expr);
+	    E->EXPR_branch_result();
+	  }
+
+

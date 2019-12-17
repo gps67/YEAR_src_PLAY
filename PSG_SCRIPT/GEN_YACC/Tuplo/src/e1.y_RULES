@@ -15,9 +15,15 @@ expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 
 lines
 : %empty
-| lines line
+| lines EXPR_line
 
-line : expr LEX_EOLN { EXPR * E = $1; E->print_to_NULL(); }
+//
+// save PSG_line as RETVAL // all wrong
+// PASS back "TOKEN_line" or something
+// USE a global PARAMETER save it
+//
+
+EXPR_line : expr LEX_EOLN { EXPR * E = $1; E->EXPR_branch_result(); }
 
 top: lines
 

@@ -1,20 +1,33 @@
 #include "EXPRS.h"
 #include "EXPRS_PRINTER.h"
+#include "EXPRS_RETVAL.h"
+
+#include "buffer2.h"
 
 // OUTSIDE NAMESPACE
 
 	using namespace EXPRS;
 
-	bool EXPR:: detect_at_top(EXPRS::PRINTER*printer)
-	{
-		// detect and act
-		if(!printer->indent) {
-			return true;
-			printf("#### line #### SINGLE TOKEN\n");
-			return true;
-		}
-		return false;
+  bool EXPR:: detect_at_top(EXPRS::PRINTER*printer)
+  {
+	// detect and act
+	if(!printer->indent) {
+		return true;
+		printf("#### line #### SINGLE TOKEN\n");
+		return true;
 	}
+	return false;
+  }
+
+  // virtual
+  void EXPR:: EXPR_branch_result() // 
+  {
+ 	RETVAL_builder_t & TREE =
+ 	 get_RETVAL_builder();
+	TREE.expr_tree = this;
+	INFO("RETVAL get this to the call of yyparse");
+	print_to_NULL();
+  }
 
   // virtual
   void EXPR:: print_to_NULL() // create a dummy printer, use copy out, drop
@@ -27,11 +40,15 @@
 	e_print("%s\n", (STR0) printer->out );
 	delete printer;
   }
+
 // --------------------------
 // ALL THE EXPR_ classes are part hidden
 // --------------------------
 
 namespace EXPRS {
+
+// struct RETVAL_builder_t;
+//  RETVAL_builder_t & get_RETVAL_builder();
 
 
  // everything (mostly) in EXPRS is a subclass of EXPR
@@ -40,20 +57,39 @@ namespace EXPRS {
  // Tuples start here, or stay in PAIR
  // soon SEQ <--> STRUCT
 
+ #if 0
+ RETVAL_builder 
+ add twig to PSGs perceived input tree
+ ref REF_TWIG_t = EXPR_FOUND( treenode_id ) // CODE_POINT
+ twig OPCODE LHS RHS CMNT //
+  u16_hilo OPCODE = CODE_POINT/ROM4/LOCN_opcode
+  u16_hilo LHS = DATA_STO_idx_expr // u8_pool u8_item // LOCN_t & u16_item //
+  u16_hilo RHS = DATA_STO_idx_expr // u8_pool u8_item // LOCN_t & u16_item //
+  u16_hilo CMNT = DATA_STO_idx_expr // u8_pool u8_item // STR_LOCN_t & u16_item //
+ #endif
+
  struct EXPR_name : public EXPR {
+ // "Name"
 	str1 name;
 
  	EXPR_name( const char * _name ) 
 	: name( _name )
 	{
 	}
+	operator STR0() { return name; }
 	void print_to( PRINTER * printer)
 	{
 		// uncalled
 		printer -> ind_indent();
-		printer -> print_STR( name );
-		printer -> out.print( " (EXPR_name) " );
-		printer -> out.print( "\n" );
+		if(0) {
+		 printer -> print_STR( name );
+		 printer -> out.print( " (EXPR_name) " );
+		 printer -> out.print( "\n" );
+		} else {
+		 printer -> out.print( " EXPR_name( " );
+		 printer -> print_STR( name );
+		 printer -> out.print( " ) // CMNT\n" );
+		}
 	}
  };
 

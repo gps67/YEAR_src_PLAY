@@ -1,0 +1,99 @@
+
+	SPIN_THRU/
+	SPIN_THRU.txt
+
+	How to rename a DIR list of files
+
+	Obtain recent list from FS
+	Label each pos_in_PREV { 0, 1, 2, 3, 4, ... }
+	Label each pos_in_NEXT { 0, 1, 2, 50, 15, 22, 3, 4, }
+
+	Supply sorted list from FILTER of FS_prev in FS_now_filtered
+
+		OMIT actual output list
+		safer if server generates, simply from pairs of numbers
+		and old spelling
+
+		PATCHUP can map WELL_KNOWN_NAME to bind_here
+		FILTER adds 3 items {50, 15, 22} between 2<-HERE->3
+		DIFF_VIEW_EDIT
+		 highlight changes 
+		 learn some diff
+		 tainted data
+		 edit_list_api
+
+	USE
+	 put fastest file first, even preload, so it lands before CTOR
+	 put system reserved {0,1,2,_} first, 3 unfolds to a world
+	 reserve none, SYS is already running [0,1,2,3] is for data
+	 i16 [4] ; // in a single u64 bit word // i64_TOO
+	 // SIMD not here, but it has it's own spelling ways
+	 ITEM_t & item = expr // CMNT
+	 	u8_Tuple_5
+		  CODE_SPOT SELF = TEXTPOS in ROM_CODE_SPOT = (T) {file,seek}
+		  TYPE_LINK "ITEM_t & item ;//= "item" = "ITEM".tolower() // _t
+		  	.is_itself_CODE_SPOT_in_ROM // "ITEM_t & item = expr // CMNT"
+			SPEC = lookup("AUTO_GEN ITEM _t item /*ITEM_t*/");
+			// /*LOOMS IN*/ // -out- // _t //
+		  TYPE_LINK = AUTO /*where*/ {
+		  	ARGS[+] == "item" // GUESS match ITEM_t & item ==
+			// that gets folded by Tuple_5_phrasebook // ROM SPACE
+			// LOADABLE PRECOMPILED, esp with PKT_in cache style
+			// both sides agree ROM index version EXACT
+			// using PORTABLE subset // applying patches // LOCAL orig
+			// test where used, matches secure use permit, typespec
+		  OPTION use_amp "&" encoded into ROM LOCN // adjacent variant
+
+		  CODE_SPOT = SELF.line_in_source_tree // EA_EXPR = avail
+		  .where_is_the_var.var_stack_local // .list_of_EA_tech
+
+	 .list_of_EA_tech
+
+	 	PC+OFFS == LOCN_in_same_code_segment (prog || libr || jit_zone)
+	 	PC+OFFS == CODE_in_same_module // can set the rules for that 
+		PC+OFFS == DATA_in_same_module // 4K_page_away shared .data .exe
+
+		GLOBAL_ADDR // process has a main task purpose, it's STO
+		GLOBAL_ADDR // process has a main librarian, it's STO
+
+		// MATH ABS_ADDR = PC, GLOBAL_ADDR, // FS_FORM_OF_GLOBAL_ADDR
+		// MATH ZERO = PTR _to_zero_of_segment_X_in_file + file_in_mem
+		// MATH PTR = ZERO 
+		// MATH PTR = ZERO + OFFS
+
+		These are then USABLE MACROS for your ASM
+		These are then USABLE LIBRARIES for your SCRIPT
+		EXPR "ITEM_t & item = item_[ idx ]; // CMNT"
+
+			Have reverted from tree to STRING
+			Maybe keep BOTH, C_api uses "anystr" +- TOKEN_99
+			"anystr" is a BENCH.view and often works well
+			"anystr" might need to be c_ident ready or TOKENISED
+			doesn't really matter, because we are compiling to TOK
+			TOK has view_as("anystr"); // +- filters to 8859
+
+		EXPR "STRUCT.offset_of_field_name("fieldname");
+
+		EXPR += align_even
+		EXPR += align_four
+		EXPR += align_u64
+
+
+
+
+
+
+
+		  }
+
+FILTER _t {
+	Converts ITEM to ITEM_t
+	Converts ITEM to item
+	// there is no ITEM // avail on request along with handlers //
+	// there is SPEC_NAME ITEM_t //
+	// there is DATA_NAME item //
+	// There is AVAILABLE ITEM // not yet allocated ? sharable ?
+
+	SUBLEX %s_t "ITEM"
+}
+

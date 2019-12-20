@@ -1,6 +1,9 @@
 #ifndef STO_int16_hilo_H
 #define STO_int16_hilo_H
 
+#include "STO_E32.h"
+
+#if 0
 // FILE BYTE_ORDER HILO // always ? !!
 // TODO CPU_HILO is currently unattached
 
@@ -22,6 +25,8 @@
  #warning "to be tested on ARM - then delete this message"
 #else
  error "I dont support __ORDER_PDP_ENDIAN__ whatever that is"
+#endif
+
 #endif
 
 typedef short i16;

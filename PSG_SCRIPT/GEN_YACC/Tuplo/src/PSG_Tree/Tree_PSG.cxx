@@ -834,6 +834,9 @@ gen_YACC_type_list( buffer2 & out )
 	 L("");
 	L("%type <expr> expr_ident");
 	L("%type <expr> expr");
+	L("%type <expr> EXPR_line");
+	L("%type <expr> lines"); // slight lie to bootstrap
+	L("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
 //	L("%type <token> BOP");
 	return true;
 }

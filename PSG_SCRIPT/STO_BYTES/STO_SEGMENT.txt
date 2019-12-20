@@ -1,0 +1,13 @@
+
+	STO_SEGMENT.txt
+
+	SEGMENT_mgr & mgr = CTXT.SGMT_mgr =  CTXT.SGMT_mgr_from_u8[ u8 ]
+
+	class SEGMENT_mgr {
+	 public:
+	  virtual ~SEGMENT_mgr() {}
+	  SEGMENT_mgr() {} // build incrementally then deploy
+
+	  u8 * segment_page0; // not 4K aligned
+
+	};

@@ -19,14 +19,90 @@
 	return false;
   }
 
+
+ /*!
+ 	When YACC encounters STEP_from_DATA_io( we_feed_lex )
+	it drives its own FSM LOCN-step-LOCN
+	each step calls $$ = CSR.EXPR_branch_result(ARGS)
+
+	This is a VTBL_CALL mostly fixed to TREE_BUILD add_leaf add_twig
+	Those functions, sub-item-sub-type.fns, grow the PSG_SAYS Tree
+	They allocate new tree_twigs_and_leaves in bunched streams // few delete
+	Each when new was added to an index list ITEM_found_at( new_tuplo )
+	That permits a check for unreachable items, from_malloc_to_RETVAL
+
+		RETVAL_builder_t & TREE = get_RETVAL_builder(); // aka CSR
+	
+	That enables local #define CSR TREE; // local dialect over code
+
+		RETVAL_tree_builder_csr CSR = get_RETVAL_builder();
+	
+	CSR provides a MALLOC service, and STO, using SEGMENT [s] and SIGNAL [s]
+	
+		CSR.mk_LHS_OP_RHS_CMNT( LHS, OP, RHS, CMNT ); // SIMPLES
+		CSR_mk_LIST_as_queue( ARGS ); 
+		CSR_un_verse( " MMAP_temp_area_upto_close " ) // plus close()
+		CSR_close( "~ MMAP_temp_area_upto_close " ) // poss refcount
+
+		USED: build tables into MEM2 then copy over to STO as NBYTES
+		FAST: unused_items skipped space_recailable 
+		NOTE: leak central says very low loss anyway ROM lean
+		NOTE: leak central says MEM2 makes it easy in ROM_GEN
+
+		CSR.mk_LHS_OP_RHS_CMNT( LHS, OP, RHS, CMNT ); // SIMPLES
+		CSR.mk_POOL_ITEM_NAME( CSR_POOL, CSR_POOL_ITEM, "Name" );
+		CSR.mk_Name( SPELLING_POOL, "Name" );
+		// OPTION parse "Name" for SUBLEX for "any.str"
+	
+	When YACC is done we have PSG of better labelled TUPLES + texts
+
+		SYMBOL PROCESSING TOKEN FACTORY
+		a_few_types LOOKUP KEY1 // or more ARGS
+		MATCH_TUPLES rules points case bools
+	
+	An alternative EXPR * RETVAL = $$ might be
+
+		u32_hilo ea_expr_as_u32_in_STO = EXPR.EA_EXPR_i32;
+	
+	Some fool wants i32 not u32
+
+		i32_hilo _t // all the same
+
+		TYPE_TRAIT
+		_is_WORD
+		_is_PTR
+		_is_IDX
+		_is_EXPR
+		_is_SIGN
+		_is_EDGE
+		_is_NAME
+		_is_VECT
+	
+	Choice u8_u24 -or- u8_u8 // second uses first ...
+
+		SEGMENT[ 0xFF ]
+
+		CSR accumulates it's SEGMENT
+		Various SUB- SGMT's get SPLICED_MERGED into SEGMENT
+
+		ROM occupies one SEGMENT any number of SGMT
+		TEMP SEGMENT_SGMT_TEMP CT_COPY_of_PREBUILT // _component
+
+		ROM allocates u4 16 Files of u24_16M
+		ROM allocates u4 SGMT
+		ROM allocates u6 64 subzones of 256 (25% of total)
+
+		CTXT decodes the u8, via simple OBJECT * REACHABLE_[u8]
+
+ */
   // virtual
-  void EXPR:: EXPR_branch_result() // 
+  EXPR * EXPR:: EXPR_branch_result() // wierd fold OFFS , EA_EXPR _32 as PTR_64
   {
- 	RETVAL_builder_t & TREE =
- 	 get_RETVAL_builder();
-	TREE.expr_tree = this;
+ 	RETVAL_builder_t & TREE = get_RETVAL_builder(); // aka CSR
+	TREE.expr_tree = this; // already allocated, set "CSR" or other
 	INFO("RETVAL get this to the call of yyparse");
 	print_to_NULL();
+	return TREE.expr_tree;
   }
 
   // virtual

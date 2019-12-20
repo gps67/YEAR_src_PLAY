@@ -83,6 +83,7 @@ endif
 	OBJS2 += EXPRS.o
 	OBJS2 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o
+	OBJS1 += STO_E32.o
 
 
 	# PGS will want STO but it was itself PROG2

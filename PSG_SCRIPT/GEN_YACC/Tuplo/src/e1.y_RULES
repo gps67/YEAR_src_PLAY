@@ -15,7 +15,7 @@ expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 
 lines
 : %empty
-| lines EXPR_line
+| lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
 //
 // save PSG_line as RETVAL // all wrong
@@ -23,7 +23,8 @@ lines
 // USE a global PARAMETER save it
 //
 
-EXPR_line : expr LEX_EOLN { EXPR * E = $1; E->EXPR_branch_result(); }
+EXPR_line : expr LEX_EOLN { $$ = $1; }
+// EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
 
 top: lines
 

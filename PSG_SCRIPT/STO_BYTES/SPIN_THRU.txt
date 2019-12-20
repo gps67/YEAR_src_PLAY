@@ -56,6 +56,9 @@
 		GLOBAL_ADDR // process has a main task purpose, it's STO
 		GLOBAL_ADDR // process has a main librarian, it's STO
 
+		REG = load_ABS_addr_from_some_index // pre_computed PAGE0
+		PTR = libr_load_file_return_OK_PAGE0
+
 		// MATH ABS_ADDR = PC, GLOBAL_ADDR, // FS_FORM_OF_GLOBAL_ADDR
 		// MATH ZERO = PTR _to_zero_of_segment_X_in_file + file_in_mem
 		// MATH PTR = ZERO 

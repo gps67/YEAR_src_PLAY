@@ -6,6 +6,26 @@
 
 	 MMAP_ZONE_api;
 
+	 	PAGE_4K -ish- or with/out MMU
+
+			allow for Z_text in _square_block
+			allow for shrink-wrapped N_ITEMS THING
+			allow for shrink-wrapped N_ITEMS THING_array
+			allow for shrink-wrapped N_ITEMS THING_struct
+			// fine split array_ _vect _list
+			// vect might even differ for each parameter
+	+		_struct style _vect baseclass eg STACK_frame
+			// CT APPLY RULE expand u8 (elsewhere) to u32 (on stack)
+			// CT APPLY RULE u64 == u32 u32 // two stack args used
+			// CT APPLY RULE expand u8+(elsewhere) to u64 (on stack)
+			// CTRT APPLY RULE pack TREE into ARGS 
+			// variety of RULES to MATCH + OPTION // VIEW SELECT
+			// BENCH is navigation around these trees, annotating
+			// PENCH produces PREBUILT and API at VER
+			// BENCH library += ROM 
+
+
+
 	 	ie how PAGES of memory can be obtained INIT_ZERO MMAP
 		nb also how MMAP might be done by ELSEWHERE and MOVES
 

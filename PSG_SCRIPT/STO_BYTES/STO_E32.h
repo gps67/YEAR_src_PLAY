@@ -11,12 +11,19 @@ typedef unsigned char u8;
 namespace STO {
 
  /*
- 	It is all u32 all the way, often stored to u32_hilo _t
+ 	HERE It is all u32 all the way, often stored to u32_hilo _t
+
+	You can tell the difference,
+	u32_hilo uses a struct . method( ARGS )
+	E32 uses INLINE_FUNC( e32 )
+
+	E32 goes to u8_u24
+ 	E32 cant get to u16_u8_u8 // get DH of EDX
  */
 
- // struct E32 { ... } 
+ // struct E32 { ... } // NOT THIS 
 
- typedef u32 E32_t; // WORD
+ typedef u32 E32_t; // WORD // unused though
 
  // union CT tagged
  // u32 -> u8_u24
@@ -65,79 +72,12 @@ namespace STO {
    typedef u8_u24 OFFS_idx; // E32{ u8_idx u24_OFFS }
 
 
-
-	/*
-		TODO find expr that GCC recognises CLANG for BITS_0_7 // (u8)
-		TODO find expr that GCC recognises CLANG for BITS_0_15 // i16
-		TODO find expr that GCC recognises CLANG for BITS_8_15
-
- 		HERE MACRO {
-		 inline
-		 u8 get_u8_hi_from_u32( u32 word )
-		 { return (word>>8) & 0xFF; }
-		}
-
-		DH register u8 from MACRO_EXPR
-		DL register CAST u8
-		DX register CAST u16
-		EDX register CAST u32
-		REDX register CAST u64
-
-		HERE ASM
-
-	*/
-
-   inline u32 ASM_get_u8( u32 val ) {
-   	// return DL from EDX
-	// OK this is C not ASM
-	// to allow code to depend on it
-	// even if not actually ASM
-	return (u8) val;
-   }
-
-   inline u8 ASM_return_DL_from_EDX( u32 & edx ) {
-   	// return DL from EDX
-	u8 dst = edx & 0xFF;
-	// OK this is C not ASM
-	// to allow code to depend on it
-	// even if not actually ASM
-	return dst;
-   }
-
-   inline u8 ASM_return_DH_from_EDX( u32 & edx ) {
-	u8 dst = (edx>>8) & 0xFF;
-	return dst;
-   }
-
-   inline u32 ASM_byte_swap( u32 & var ) {
-   	// in-situ in the register, passing through an inline function
-	// a MACRO would do it in situ notice var is a register
-	// PICK:
- //	__asm__("bswapl %0" : "=r" (var) : "0" (var));
-	__asm__("bswapl %[io32]" : [io32] "+r" (var) );
-	return var;
-   }
-
    /*
    	OK that cheats twice - we dont know this is ASM_INTEL
    	OK that cheats twice - we dont know this is CPU_LOHI
+
+	Here is the E32 component - it only uses GCC CPP vars
    */
-
-
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
- // Intel LOHO
- #define CPU_LOHI 1
- #define CPU_HILO 0
- #warning "currently be testing on AMD64 - soon delete this message"
-#elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
- // ARM Motorola HILO
- #define CPU_HILO 1
- #define CPU_LOHI 0
- #warning "to be tested on ARM - then delete this message"
-#else
- error "I dont support __ORDER_PDP_ENDIAN__ whatever that is"
-#endif
-
 
 }; // namespace
 

@@ -17,6 +17,32 @@ class Tree_PSG_RULE { public:
 	};
 };
 
+/*
+	A Tree is an entire GRAMMAR
+	A second Tree could share the same SEGMENT or INDEX_LAYOUT (api)
+	One day Tree's will call on LIBR for common definitions
+
+	A Tree_PSG is a BUILDER of an entire GRAMMAR Tree
+	It uses a lot of GEN code to print namelex.lex and nameyacc.y
+	Along with requiring EXPRS.cxx // c_api_C_OPERATOR_EXPRS
+	Along with requiring EXPRS.cxx // cpp_api_CPP_OPERATOR_EXPRS // CTOR
+	require Tuplo.h and TreeBuilder_ and _TreePrinter_
+
+	GEN writes PSG and SUBLEX to _tree_ to _printer_
+	PSG has a generic Tree, which can be parametised to printer
+
+	With some RTFM, will be able to export lots of FSM machines
+	and pick TOP = top TEXT = str1 TEXT = buffer2 TEXT = stdin
+	STREAM PRELOAD_text through RM_loader or_follow PREBUILT_table
+	every CODE point is SOURCE_CODE // possibly_alongside_SEGMENT
+
+	TODO REFACTOR group "PSG_name" psg_ lex_ yacc_ psg_ AS Name_t & name;
+	FIND LOCN = ITEM = TOKEN_ID _EXPR SUBLEX_variations_EA_ITEM_EXPR
+	TOKEN NAME = "PSG_name"
+	MATCH set_%s NAME ARGS // as_part_of_C_api_function_declaration
+	GEN CVAR psg_name NAME SUBLEX(NAME) sublex_
+*/
+
 class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
  // ARGV // track origin of data used in SYSCALLS	
@@ -27,23 +53,69 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
  	str1 psg_name; // gen_e1 		... FILENAME SUBLEX
  	str1 lex_name; // gen_e1_lex 	.lex
  	str1 yacc_name; // gen_e1_yacc 	.y
+
  	str1 psg_item; // gen_e1_psg // ##_psg##_reappears##_as //
 
-	bool set_PSG_name( STR0 _name_ );
+	//	CVAR NAME str1 psg_name; // "gen_e1" 
+	//	MATCH %s_png NAME == "gen_e1"
+	//	EXPORT . /*as*/ NAME 
+	//	EXPORT . /*.subfield.*/ NAME /**?
+	//	MATCH . EXPR { SCRIPT }
+
+	// THIS EA_TREE _of_PSG GEN_CODE_ROM_LOCN  
+	// The Name of the grammar "gen_e1" // generated psg for e1 exprs E1
+	// BENCH LOCN 0xFFFF . // EA_HERE is "." ID_t & PSG_name_tok;
+
+
+	bool set_PSG_name( STR0 _name_ ); // anystr == _name_ == "../obj/gen_e1"
 
 	STR0 yacc_name_y(buffer2 & str);
 	STR0 lex_name_lex(buffer2 & str);	// flex_machine_for_PSG
 	STR0 yacc_name_tab_hh(buffer2 & str);	// TOKEN_POOL lexicon;
 
+// NAME = "../obj/gen_e1" // the filename_exts used are FIXED or GLOBAL config
+// TEXT generators:
+//  GEN // uses a lot of buffer2's // refactor buffer2 to accept buf60
+
+	/* PIVOT POINT
+		instead of (as well as) having BASE_TYPE buffer2
+		type_match c_prototype_api SELF in ARGS
+
+		derived class makes things very close-to-hand
+		c_func_ARGS ARGS {
+		 c_func = c_prototype c_name 
+		  prototype
+		   INTRET cident ARGS
+		  ARGS
+		  ARG_i [s]
+		   N_LIST N==0 .is_empty()
+		   ARG_i 
+		    type_lhs
+		    bind_opts // "&" "*" "**" // CT_SPEC_RefCount_responsibility
+		    bind_opts // == = -> ".subfield.%s" 
+		    bind_opts // FILTER_NAME to VAR use TOK // poss const var0
+		}
+
+		BENCH can promote ELF info API_SPEC // ALSO available in ROM
+
+		ARGS now binds to a point in ROM
+
+	*/
+
 	bool put_include_Q2( buffer2 & out, buffer2 & incl_filename );
+	//	#include "incl_filename"; 
 
 	bool put_yacc_name_tab_hh( buffer2 & out );
+	//	../obj/gen_e1_yacc.tab.hh
+
 	bool put_include_yacc_tab_hh( buffer2 & out );
+	//	#include "../obj/gen_e1_yacc.tab.hh"; 
 
  // MOVE // decls used in api // near but not here
  // MOVE // STUBS might carry subset of typedef names;
  //
-	  typedef u8 u8_idx;	// no loud fail at 256 tho
+	  typedef u8 u8_idx_t;	// no loud fail at 256 tho
+	  // NO WANT u8_idx AVAIL // for varname // not typename
 
  // PFX_mylex eg ... RW_while PUNCT_SP LEX_value_str LEX_value_union
  // UDEF_ident_C99 // or simpler subset
@@ -59,7 +131,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	Tree_PSG();
 
 #if 0
-	LEX_TOKEN_GROUP POOL_[ u8_idx ]; // PARTIAL u8 N = 3; // UDEF_ = N++
+	LEX_TOKEN_GROUP POOL_[ u8_idx_t ]; // PARTIAL u8 N = 3; // UDEF_ = N++
 	 LEX_TOKEN_GROUP POOL_PUNCT	= POOL_[0];
 	 LEX_TOKEN_GROUP POOL_RW	= POOL_[1];
 	 LEX_TOKEN_GROUP POOL_LEX	= POOL_[2];
@@ -67,11 +139,11 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 #endif
 	// fixup 0 means full is_empty knows not empty // -1 clip +1
 
-	// u8_idx GRP = N++; /* know is_not_empty */
-	// u8_idx GRP = get_IDX_of_LEX_TOKEN_GROUP("RW_%s") // RW
+	// u8_idx_t GRP = N++; /* know is_not_empty */
+	// u8_idx_t GRP = get_IDX_of_LEX_TOKEN_GROUP("RW_%s") // RW
 
 	bool add_GRP_RW_Name_Str(
-		u8_idx GRP, 	// prefix "RW_%s"
+		u8_idx_t GRP, 	// prefix "RW_%s"
 		STR0 ReservedWord
 	);
 

@@ -9,6 +9,8 @@
 #include "Tree_PSG_UDEF.h"
 #include "Tree_PSG_CALC.h"
 
+#include "Y_PARSE.h" // to provide uncalled thing
+
 bool bool_main( int argc, char ** argv ) {
 	set_prog_alias( argv[0] ); // or other ?
 
@@ -167,3 +169,5 @@ int main( int argc, char ** argv )
 		//
 	}
 } // main
+
+

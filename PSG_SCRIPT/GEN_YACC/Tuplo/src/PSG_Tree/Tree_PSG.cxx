@@ -1,5 +1,6 @@
 
 #include "Tree_PSG.h"
+#include "Y_PARSE.h" // parameter
 
 Tree_PSG::
 Tree_PSG()
@@ -420,6 +421,12 @@ print_TOKEN_name_2(
 }
 
 
+/*	MACRO L("C_CODE_LINE") // MUST BE "const Q2 str to join \n"
+
+	adds "\n" so you dont have to
+	maybe rename out_put_L
+*/
+
 #define L(str) out.put( str "\n")
 // its a function like macro so invoker provides semicolon
 
@@ -429,6 +436,8 @@ gen_LEX_lex_return( buffer2 & out )
  L("// GEN");
  L("#include <string>");
  L("#include \"buffer1.h\"");
+ L("#include \"Y_PARSE.h\""); //
+ L("using namespace YY;"); //
  if(1) {
 	put_include_yacc_tab_hh( out );
  }
@@ -439,18 +448,20 @@ gen_LEX_lex_return( buffer2 & out )
  L("        but maybe");
  L("*/");
  L("");
+ L("// nlex16 = N circular list of vars for single return value");
+ L("// We dont know when each will be dropped just allow 16 as a LEX horizon");
  L("// static const int nlex16 = 64;");
  L("   static const int nlex16 = 16;");
  L("// static const int nlex16 = 1;");
  // L("static buffer1 lex_buffer;");
- L("static buffer1 lex_pool[nlex16];");
+ L("static buffer1 lex_pool[nlex16]; // RETVAL STRVAL // backing store for STR0 ");
  L("static int nlex_pos = 0;");
  L("");
  L("/*");
  L("        lex found, return tok");
  L("");
- L("        lex has found the string at yytext, yyleng");
- L("        use next storage slot (reuse nlex16 items later)");
+ L("        lex found the string at yytext, yyleng");
+ L("        use the next storage slot (reuse nlex16 items later)");
  L("        copy string to buffer, as str0");
  L("        set yylval /union/ .lex_buff as returning string value");
  L("        return tok as lex type");
@@ -524,7 +535,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L("%{"); // CODE section
 	L("");
 
-	// utility functions that carry STR_VALUE return from LEX
+	// utility functions that carry return " RETVAL STRVAL" from LEX
 	gen_LEX_lex_return( out );
 
 	// our code will need the table of tokens that YACC maintains for us
@@ -548,7 +559,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 
 	L("");
 	// out.put("# LIST RW\n");
-	print_list( out, POOL_RW );
+	print_list( out, POOL_RW ); 
 	L("");
 	// out.put("# LIST PUNCT\n"); // unless FLEX matches longest first ?
 	print_list( out, POOL_PUNCT ); // in LEX longest first order
@@ -584,7 +595,7 @@ bool Tree_PSG:: gen_LEX_RULES_eoln( buffer2 & out )
 	return true;
 }
 
-// sort of a macro
+// sort of a macro // LOCAL to this file
 static bool gen_PTN_lex_return_TOK(
 	buffer2 & out, 
 	const char * PTN,
@@ -637,6 +648,8 @@ gen_YACC( buffer2 & out )
 	gen_YACC_top_code( out );
 	gen_YACC_str_of_token( out );
 	L("%}");
+	// declare the parameter to get i// int yyparse( HERE );
+	gen_yyparse_parameter( out ); // see Y_PARSE.h
 	gen_YACC_union( out );
 	gen_YACC_token_list( out );
 	gen_YACC_type_list( out );
@@ -661,7 +674,9 @@ gen_YACC_top_code( buffer2 & out )
  L("  //      #include <string>");
  // NOT WORKING - to create yyparse(void*gps_client_data) //
  // then it would be local and still available to entire FSM
- L("  #define YYPARSE_PARAM gps_client_data ");
+ //L("  #define YYPARSE_PARAM gps_client_data ");
+ L("	#include \"Y_PARSE.h\" ");
+ L("");
  L("          extern const char * str_of_token( int token );");
 
  // before tab,h so that namespace exists
@@ -686,8 +701,7 @@ gen_YACC_top_code( buffer2 & out )
  L("  #endif");
  L("          extern int yylineno;");
  L("          extern char * yytext;");
- L("          // extern \"C\" int yyparse ();");
- L("          extern int yyparse (void);");
+ L("          // extern int yyparse (void);");
  L("          void yyerror(const char * msg) {");
  L("                  printf(\"# ERR # line %d # %s\\n\", yylineno, msg );");
  L("          // no   printf(\"# ERR # col %d # %s\\n\", @$.first_column, msg );");
@@ -775,6 +789,7 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_union( buffer2 & out )
 {
+//	L("%parse-param {SOMETYPE * parser} ");
 	L("");
  L(" %union {");
 // NO L(" EXPR * expr;"); // almost
@@ -849,11 +864,21 @@ gen_YACC_precedence_list( buffer2 & out )
 	// loose first, low precedence
 	// tight last, high precedence
 
+	// DUMP_TABLE requires TABLE_BUILT 
+	// probably OPERATOR_PRECEDENCE (sort)
+
+	// BUILT_TREE_operator_precedence_tree
+	// add_c_api_operators( tree )
+	// gen_YACC_operator_precedence( out, table )
+
 // https://www.gnu.org/software/bison/manual/html_node/Precedence-Decl.html
 
+// TODO convert '<<=' to PUNCT_LT_LT_EQ 
+
 	 L("");
-	 L("%precedence PUNCT_PLUS");
-	 L("%left PUNCT_STAR");
+//	 L("%precedence PUNCT_PLUS");
+	 L("%left PUNCT_PLUS PUNCT_MINUS");
+	 L("%left PUNCT_STAR PUNCT_SLASH");
 	 L("%right PUNCT_CARET");
 	return true;
 }

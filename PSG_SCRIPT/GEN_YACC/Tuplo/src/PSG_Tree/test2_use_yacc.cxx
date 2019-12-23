@@ -5,13 +5,16 @@
 #include "dgb.h"
 #include "buffer2.h" // not neded here, but good for GEN
 #include "util_buf.h" // basetype avoids IO, stat_file, alloc buff, open file,
+#include "Y_PARSE.h" // calls yyparse, move stuff there
 
+#if 0
+struct PARSER_t;
 extern // "C"
-int yyparse();
+int yyparse(PARSER_t);
+#endif
 extern void yyrestart ( FILE *input_file  );
 
 typedef struct yy_buffer_state * YY_BUFFER_STATE;
-extern int yyparse();
 extern YY_BUFFER_STATE yy_scan_string(char * str);
 extern "C" {
 	// LEXERINPUT.cc is G++ compiled so is not extern C
@@ -80,7 +83,13 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 	// yy_ loops over input
 	// using YY input previously setup
 	INFO("yyparse");
+#if 0
 	int t = yyparse();
+#else
+	// YY::
+	Y_Parse_t parser;
+	int t = parser.call_yyparse();
+#endif
 	// cleans up input extras
 	yy_delete_buffer(buffer);
 
@@ -174,6 +183,7 @@ int main_yyrestart( int argc, char ** argv )
 
 	yyrestart ( IN );
 
-	yyparse();
+// UNCALLED
+//	yyparse();
 	return 0;
 }

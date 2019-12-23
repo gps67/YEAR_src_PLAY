@@ -4,6 +4,7 @@
 	OPTIM += -g
 	INCLS += -I./
 	INCLS += -I../
+	INCLS += -I../src/
 	INCLS += -I../STO/
 #	INCLS += -I../buffer # get from libs_apps
 #	INCLS += -I/tools/2000/X11R6/include
@@ -74,8 +75,11 @@ endif
 	# then Module infrastructure code zones
 	# order matters - maybe put into .a to mix it up
 
+	OBJS1 += Y_PARSE_gen.o 
+	OBJS2 += Y_PARSE.o 
 	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o 
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
+	OBJS1 += Tree_PSG_LEX_TOKEN_precedence.o
 	OBJS1 += Tree_PSG.o
 	OBJS1 += Tree_PSG_CALC.o
 	OBJS1 += Tree_PSG_UDEF.o

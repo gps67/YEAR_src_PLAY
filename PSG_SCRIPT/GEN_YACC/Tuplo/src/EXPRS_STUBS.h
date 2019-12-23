@@ -3,6 +3,8 @@
 
 #include "STO_i32_hilo.h"
 
+	struct buffer2; // not in a namespace ?
+
 // EXPRS_STUBS.h
 // EXPR must be in global namespace
 // EXPR is the base class of things in EXPRS namespace

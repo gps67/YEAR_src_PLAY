@@ -181,7 +181,9 @@
  bool
  LEX_TOKEN_GROUP::
  add_PUNCT(
-   STR0 punct  // "==" ); // STR0 tail,  // "_EQUAL_EQUAL", // 
+   STR0 punct,  // "==" ); // STR0 tail,  // "_EQUAL_EQUAL", // 
+   STR0 op_info
+
  ) {
   // buff .put( PFX ); // PRF_PUNCT is added later
 
@@ -207,7 +209,7 @@
   }
   STR0 _PLUS_PLUS = buff; 
   // INFO( "PLUS_PLUS == '%s'", _PLUS_PLUS );
-  return add_PUNCT( _PLUS_PLUS, punct );
+  return add_PUNCT( _PLUS_PLUS, punct, op_info );
 
  }
 

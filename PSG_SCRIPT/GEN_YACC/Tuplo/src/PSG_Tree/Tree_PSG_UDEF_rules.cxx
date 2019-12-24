@@ -18,69 +18,69 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 #define R2L "R"
 
 
-	POOL_PUNCT.add_PUNCT( "++", L2R "1" );  // postfix incremental
-//	POOL_PUNCT.add_PUNCT( "++", L2R "2" );  // prefix incremental
-	POOL_PUNCT.add_PUNCT( "--", L2R "1" );  // postfix decr
-//	POOL_PUNCT.add_PUNCT( "--", L2R "2" );  // prefix decr
+	POOL_PUNCT.add_PUNCT( "++", L2R "1", "arith post_incr"  );  
+//	POOL_PUNCT.add_PUNCT( "++", L2R "2", "arith prefix_incr"  );  
+	POOL_PUNCT.add_PUNCT( "--", L2R "1", "arith postfix_decr"  );  
+//	POOL_PUNCT.add_PUNCT( "--", L2R "2", "arith prefix_decr"  );  
 
-	POOL_PUNCT.add_PUNCT( "()", R2L "1" );  // NOT sure if operator PUNCT
-	POOL_PUNCT.add_PUNCT( "[]", R2L "1" );  // NOT sure if operator PUNCT
-	POOL_PUNCT.add_PUNCT(  ".", R2L "1" );  
-	POOL_PUNCT.add_PUNCT( "->", R2L "1" );  
+	POOL_PUNCT.add_PUNCT( "()", R2L "1", "code PARENTH"  );  
+	POOL_PUNCT.add_PUNCT( "[]", R2L "1", "code ARRAY"  );  
+	POOL_PUNCT.add_PUNCT(  ".", R2L "1", "code dot_field"  );  
+	POOL_PUNCT.add_PUNCT( "->", R2L "1", "code PTR_star_dotFIELD"  );  
 
 	// ABSENT // COMPUND LITERAL
 
-//	POOL_PUNCT.add_PUNCT( "+", L2R "2" ); // AMBIG // UNARY PLUS
-//	POOL_PUNCT.add_PUNCT( "-", L2R "2" ); // AMBIG // UNARY MINUS
-	POOL_PUNCT.add_PUNCT( "!", L2R "2" ); // logical NOT
-	POOL_PUNCT.add_PUNCT( "~", L2R "2" ); // bitwise NOT
+//	POOL_PUNCT.add_PUNCT( "+", L2R "2", "arith unary_plus"  ); 
+//	POOL_PUNCT.add_PUNCT( "-", L2R "2", "arith unary_minus"  ); 
+	POOL_PUNCT.add_PUNCT( "!", L2R "2", "logic NOT"  ); 
+	POOL_PUNCT.add_PUNCT( "~", L2R "2", "bitwise NOT"  ); 
 	// ABSENT // TYPE CAST
 	// ABSENT // AMBIG
-//	POOL_PUNCT.add_PUNCT( "*", L2R "2" ); // AMBIG // DEREF
-//	POOL_PUNCT.add_PUNCT( "&", R2L "2" ); // AMBIG // ADDR_of 
+//	POOL_PUNCT.add_PUNCT( "*", L2R "2, "code STAR_deref_PTR" ); // AMBIG //
+//	POOL_PUNCT.add_PUNCT( "&", R2L "2", "code ADDR_OF"  ); // AMBIG // 
 	// ABSENT // sizeof
 	// ABSENT // _Alignof
 
-	POOL_PUNCT.add_PUNCT( "*", L2R "3" ); // times
-	POOL_PUNCT.add_PUNCT( "/", L2R "3" ); // divide
-	POOL_PUNCT.add_PUNCT( "%", L2R "3" ); // remainder
+	POOL_PUNCT.add_PUNCT( "*", L2R "3", "arith times"  ); 
+	POOL_PUNCT.add_PUNCT( "/", L2R "3", "arith divide"  ); 
+	POOL_PUNCT.add_PUNCT( "%", L2R "3", "arith remainder"  ); 
 
-	POOL_PUNCT.add_PUNCT( "+", L2R "4" ); // PLUS
-	POOL_PUNCT.add_PUNCT( "-", L2R "4" ); // MINUS
+	POOL_PUNCT.add_PUNCT( "+", L2R "4", "arith plus"  ); 
+	POOL_PUNCT.add_PUNCT( "-", L2R "4", "arith minus"  ); 
 
-	POOL_PUNCT.add_PUNCT( "<<", L2R "5" ); 
-	POOL_PUNCT.add_PUNCT( ">>", L2R "5" ); 
+	POOL_PUNCT.add_PUNCT( "<<", L2R "5", "bitwise shift_left"  ); 
+	POOL_PUNCT.add_PUNCT( ">>", L2R "5", "bitwise shift_right"  ); 
 
-	POOL_PUNCT.add_PUNCT( "<=", L2R "6" ); 
-	POOL_PUNCT.add_PUNCT( ">=", L2R "6" ); 
-	POOL_PUNCT.add_PUNCT( "<", L2R "6" ); 
-	POOL_PUNCT.add_PUNCT( ">", L2R "6" ); 
+	POOL_PUNCT.add_PUNCT( "<=", L2R "6", "cmp less_than_or_equal"  ); 
+	POOL_PUNCT.add_PUNCT( ">=", L2R "6", "cmp greater_than_or_equal"  ); 
+	POOL_PUNCT.add_PUNCT( "<", L2R "6", "cmp less_than"  ); 
+	POOL_PUNCT.add_PUNCT( ">", L2R "6", "cmp greather_than"  ); 
 
-	POOL_PUNCT.add_PUNCT( "==", L2R "7" ); 
-	POOL_PUNCT.add_PUNCT( "!=", L2R "7" ); 
+	POOL_PUNCT.add_PUNCT( "==", L2R "7", "cmp EQUAL"  ); 
+	POOL_PUNCT.add_PUNCT( "!=", L2R "7", "cmp NOT_EQUAL"  ); 
 
-	POOL_PUNCT.add_PUNCT( "&", L2R "8" );  // bitwise AND
-	POOL_PUNCT.add_PUNCT( "^", L2R "9" );  // bitwise XOR
-	POOL_PUNCT.add_PUNCT( "|", L2R "10" );  // bitwise OR
+	POOL_PUNCT.add_PUNCT( "&", L2R "8", "bitwise AND"  );  
+	POOL_PUNCT.add_PUNCT( "^", L2R "9", "bitwise XOR"  );  
+	POOL_PUNCT.add_PUNCT( "|", L2R "10", "bitwise OR"  );  
 
-	POOL_PUNCT.add_PUNCT( "&&", L2R "11" );  // logic AND_IF
-	POOL_PUNCT.add_PUNCT( "!|", L2R "12" );  // logic OR_IF
+	POOL_PUNCT.add_PUNCT( "&&", L2R "11", "logic AND_IF" ); 
+	POOL_PUNCT.add_PUNCT( "||", L2R "12", "logic OR_IF"  );
 
-// SYN	POOL_PUNCT.add_PUNCT( "?:", R2L "13" );  // lternary condiftion
+// SYN	POOL_PUNCT.add_PUNCT( "?:", R2L "13", "code TERNARY"  );  // lternary condiftion
 
-	POOL_PUNCT.add_PUNCT( "<<=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( ">>=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "=", R2L "14" ); // Assignment
-	POOL_PUNCT.add_PUNCT( "+=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "-=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "*=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "/=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "%=", R2L "14" ); 
-	POOL_PUNCT.add_PUNCT( "&=", R2L "14" ); // bitwise
-	POOL_PUNCT.add_PUNCT( "^=", R2L "14" ); // bitwise
-	POOL_PUNCT.add_PUNCT( "|=", R2L "14" ); // bitwise
+	POOL_PUNCT.add_PUNCT( "<<=", R2L "14", "bitwise SHIFT"  ); 
+	POOL_PUNCT.add_PUNCT( ">>=", R2L "14", "bitwise SHIFT"  ); 
+	POOL_PUNCT.add_PUNCT( "=", R2L "14", "code ASSIGN"  ); 
+	POOL_PUNCT.add_PUNCT( "+=", R2L "14", "arith plus"  ); 
+	POOL_PUNCT.add_PUNCT( "-=", R2L "14", "arith minus"  ); 
+	POOL_PUNCT.add_PUNCT( "*=", R2L "14", "arith times"  ); 
+	POOL_PUNCT.add_PUNCT( "/=", R2L "14", "arith divide"  ); 
+	POOL_PUNCT.add_PUNCT( "%=", R2L "14", "arith remainder"  ); 
+	POOL_PUNCT.add_PUNCT( "&=", R2L "14", "bitwise AND"  ); // bitwise
+	POOL_PUNCT.add_PUNCT( "^=", R2L "14", "bitwise XOR"  ); // bitwise
+	POOL_PUNCT.add_PUNCT( "|=", R2L "14", "bitwise OR"  ); // bitwise
 
-	POOL_PUNCT.add_PUNCT( ",", R2L "15" ); // comma
+	POOL_PUNCT.add_PUNCT( ",", R2L "15", "code comma"  ); // comma
 
 
 

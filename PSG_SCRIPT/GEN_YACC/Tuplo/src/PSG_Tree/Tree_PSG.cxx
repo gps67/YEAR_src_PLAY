@@ -577,6 +577,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 }
 
 // sort of a macro
+// PTN looks like PIN actually PATTERN
 static bool gen_PTN_CODE_TOK(
 	buffer2 & out, 
 	const char * PTN,
@@ -589,6 +590,7 @@ static bool gen_PTN_CODE_TOK(
 
 bool Tree_PSG:: gen_LEX_RULES_eoln( buffer2 & out )
 {
+// MAYBE move to psg.yylineno // some new %tree.parameter
  gen_PTN_CODE_TOK( out, "\\r\\n", "yylineno++;",  "LEX_EOLN");
  gen_PTN_CODE_TOK( out, "\\n",    "yylineno++;",  "LEX_EOLN");
  gen_PTN_CODE_TOK( out, "[ \\t\\r\\n]", "", 	  "LEX_WS");

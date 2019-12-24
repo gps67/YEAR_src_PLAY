@@ -16,6 +16,7 @@ class LEX_TOKEN_DECL : obj_ref0 { public:
 	str1 Name;
 	str1 Value;
 	operator_precedence_t op_info; // LAZY but adding here is easy, not all USE it
+	str1 Desc; 	// only OPCODES have DESC as Name2
 
 	LEX_TOKEN_DECL();
 	~LEX_TOKEN_DECL();
@@ -30,21 +31,24 @@ class LEX_TOKEN_GROUP { public: // NOT AN OBJ_REF ???
 
 	bool
  	 add_PUNCT(
-	   STR0 punct,
-	   STR0 op_info_str = NULL
+	   STR0 punct,			// "=="
+	   STR0 op_info_str = NULL,	// "L7" // %left pri 7 // 1=tightest
+	   STR0 opcode_desc = NULL	// "cmp IS_EQUAL"
 	 );
 
 	bool
- 	 add_PUNCT(    // PFX_
+ 	 add_PUNCT_4(    // PFX_
 	   STR0 tail,  // "_EQUAL_EQUAL",
 	   STR0 punct,  // "==" );
-	   STR0 op_info_str 
+	   STR0 op_info_str = NULL,	// "L7" // %left pri 7 // 1=tightest
+	   STR0 opcode_desc = NULL	// "cmp IS_EQUAL"
 	) {
 		LEX_TOKEN_DECL * token = new LEX_TOKEN_DECL();
 		this->LIST_Token.append( token );
 		token -> Name = tail;
 		token -> Value = punct;
 		token -> op_info . set_flags_str( op_info_str );
+		token -> Desc = opcode_desc;
 		return true;
 	}
 

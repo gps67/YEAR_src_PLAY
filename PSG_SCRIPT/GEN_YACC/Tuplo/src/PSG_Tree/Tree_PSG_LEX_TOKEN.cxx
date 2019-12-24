@@ -177,13 +177,16 @@
 	return FAIL("GROUP('%s')ITEM('%s')", (STR0) PFX, (STR0) Value );
  }
 
+/*
+	upgrade "++" to _PLUS_PLUS and add_PUNCT that
+*/
 
  bool
  LEX_TOKEN_GROUP::
  add_PUNCT(
    STR0 punct,  // "==" ); // STR0 tail,  // "_EQUAL_EQUAL", // 
-   STR0 op_info
-
+   STR0 op_info,
+   STR0 opcode_desc // == NULL
  ) {
   // buff .put( PFX ); // PRF_PUNCT is added later
 
@@ -209,7 +212,7 @@
   }
   STR0 _PLUS_PLUS = buff; 
   // INFO( "PLUS_PLUS == '%s'", _PLUS_PLUS );
-  return add_PUNCT( _PLUS_PLUS, punct, op_info );
+  return add_PUNCT_4( _PLUS_PLUS, punct, op_info, opcode_desc );
 
  }
 

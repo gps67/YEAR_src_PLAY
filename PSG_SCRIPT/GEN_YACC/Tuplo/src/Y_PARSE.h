@@ -15,17 +15,40 @@ namespace YY {
 	// NOT YET
 }; // namespace
 
+/*	USERS of PARSER
+	run it though this
+*/
  struct Y_Parse_t {
  	str1 Name;
+	Y_Parse_t( str0 _Name )
+	: Name( _Name ) // entire filename or item id or any helpful default
+	{
+		// Now you can access the library of PSG code
+		// You might even login by making the right enquiries
+		// Plus you get plain data parameters ARGV style OBJV
+		// STRING NUMBER OBJECT_with_added_access_filter TUPLO ARGS
+	}
 
 	int call_yyparse();
+	int ret_from_yyparse; // 0==PASS 1==FAIL 2==ENOMEM
+
+
+	bool buf_yy_parse( blk1 & text ); // 
+
+  	bool buf_load_and_parse( // load file into buffer, then call_yyparse()
+	   blk1 & text,			// load text from filename
+	   const char * filename,	// load entire file
+	   int K_max			// RULES is RULES
+	);
  };
 
 using namespace YY;
 
-extern	int yyparse( Y_Parse_t * parser );
-extern	void yyerror( Y_Parse_t * parser, const char * msg );
+extern	int yyparse( Y_Parse_t & parser );
+extern	void yyerror( Y_Parse_t & parser, const char * msg );
 extern	bool gen_yyparse_parameter( buffer2 & out);
+
+
 #endif
 
 

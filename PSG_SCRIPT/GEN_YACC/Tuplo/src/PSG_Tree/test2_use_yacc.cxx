@@ -8,10 +8,6 @@
 #include "Y_PARSE.h" // calls yyparse, move stuff there
 
 #if 0
-struct PARSER_t;
-extern // "C"
-int yyparse(PARSER_t);
-#endif
 extern void yyrestart ( FILE *input_file  );
 
 typedef struct yy_buffer_state * YY_BUFFER_STATE;
@@ -21,6 +17,7 @@ extern "C" {
 }
  YY_BUFFER_STATE yy_scan_bytes( const char * buff, int nbytes ); // api_direct
 extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
+#endif
 
 // int main(){
 //     char string[] = "String to be parsed.";
@@ -65,45 +62,6 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 */
 
 
-  extern bool buf_load_and_parse( blk1 & , const char * , int  );
-  extern bool buf_yy_parse( blk1 & text );
-  extern bool buf_yy_parse( blk1 & text ) // returns when done
-  {
-  	text.trailing_nul(); // noone else can add stuff, please no, NUL needed
-
-	YY_BUFFER_STATE buffer =	// feed YY's LEX buffer with blk1 text
-	  yy_scan_bytes(
-	   (const char *) text.buff,
-	            (int) text.nbytes_used
-	  );
-	  //
-	  // api_direct // loan our buffer to yyin_to_FLEX // single user
-	  // that stays in effect, throughout the parsing, EOF and shutdown
-
-	// yy_ loops over input
-	// using YY input previously setup
-	INFO("yyparse");
-#if 0
-	int t = yyparse();
-#else
-	// YY::
-	Y_Parse_t parser;
-	int t = parser.call_yyparse();
-#endif
-	// cleans up input extras
-	yy_delete_buffer(buffer);
-
-	if(t<=0) {
-		return FAIL("yyparse returned %d", t );	
-	}
-	INFO("yyparse returned %d", t );
-
-	// if FAIL set errno to something
-	// TODO("Review errno set here");
-
-	return true;
-  }
-
 #include "STO.h"
 #include "STO/mmap_file.h"
 #include "obj_hold.h"
@@ -116,57 +74,34 @@ int main( int argc, char ** argv )
 		INFO("Picking %s", filename );
 	}
 
-	// obj_hold<STO::mmap_file> map_file;
-#if 0
-	obj_hold<STO::mmap_file> map_file_a;
-	map_file_a = new STO::mmap_file();
-#endif
-	obj_hold<STO::mmap_file> map_file
-	= new STO::mmap_file();
+	// INFO("load_and_parse(%s)", filename );
+	buffer2 text;
+	int K_max = 64;
 
-// 	INFO("map_file->test1();");
-// 	map_file->test1();
+	Y_Parse_t PSG("e1");
+	// e1 is used in signals to say which PSG says what
+	// Y_Parse_t PSG(filename); // or nick_name_from_filename
+	// Y_Parse_t PSG(name_resource); // or ea_expr_as_name // name_from_
 
-	// WARN("map_file->test_2();");
-	// map_file->test_2();
+	// The PSG is hard coded
+	// There are a load of CACHE KNOWN STATES in the FSM tables
+	// eg START_PARSE_AT_ROM_LOCN // GOTO in need of a TYPE_SPEC
+	// root_pos in rom PREBUILT TOKEN
 
-	INFO("load_and_parse(%s)", filename );
-	buffer2 text; int K_max = 64;
+	// one interesting HACK is to give yy_get_lex() the PERMIT token
+	// As the first thing in the grammar TOP -token-> ROOT_NODE
+	// The RULE CODE is ^TOKEN ACTION { psg.INIT_TOKEN_ARGS
+	//  ARGS = get_ARGS_from_TOKEN // carries PERMIT sess_tags
+	//  ARGS = VECTOR [ N ] of ARG = ANY_OF ... TUPLE( opcode, name, vale 
 
-if(1)
-	if(!buf_load_and_parse( text, filename, K_max  ))
+	if(!PSG.buf_load_and_parse( text, filename, K_max  ))
 	{ FAIL_FAILED(); return errno; }
 
 	return true;
 }
 
-extern bool buf_load_and_parse( // load file then parse it, then return
-   blk1 & text,
-   const char * filename,
-   int K_max
-) {
-
-	// claim global LOCK here
-	// provide store to the Tree Parser HERE
-	// FILE_VER.ITEM_idx
-	// SEGMENT_DECOER = load_file _text DECODE_ACCES
-	// PARSER stopped by a single NUL, so insist, no really
-
-	if(!blk_read_entire_file( text, filename, K_max ))
-	{
-		return FAIL("LOAD file '%s'", filename );
-	}
-
-	// not making it buffer2 code, keeping it UTIL_buffer code
-	if(!buf_yy_parse( text ))
-	{ 
-		FAIL("filename was %s", filename );
-		return false;
-	}
-	PASS("filename was %s", filename );
-	return true;
-}
-
+// FORGOT - an example of (unused)
+extern void yyrestart ( FILE *input_file  );
 int main_yyrestart( int argc, char ** argv )
 {
 	// eg starting lex + yacc over FILE filename
@@ -183,7 +118,8 @@ int main_yyrestart( int argc, char ** argv )
 
 	yyrestart ( IN );
 
-// UNCALLED
+// NB yyrestart above sets the buffer, this rolls over it
+// now needs added parameter
 //	yyparse();
 	return 0;
 }

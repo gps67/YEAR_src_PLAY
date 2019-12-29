@@ -24,6 +24,7 @@ namespace TTY_CURSES {
 	tty_curses ();
 	// setup caries colour, multi tty, fallbacks
 	virtual bool setup();
+	virtual bool setup_mouse(bool on=true);
 	virtual bool set_handle_SIGINT(); // endwin() and Q KEY_SIGINT
 	bool set_term_global(); // this becomes the one
 	

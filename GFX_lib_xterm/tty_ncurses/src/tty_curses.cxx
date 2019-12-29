@@ -53,6 +53,7 @@ namespace TTY_CURSES {
 
   tty_curses:: ~tty_curses () {
 	INFO("END TTY // _ncurses");
+	setup_mouse(false);
 	def_prog_mode(); // before shell out
 	INFO("END TTY // 2");
 	// def_shell_mode(); also exists
@@ -99,6 +100,24 @@ namespace TTY_CURSES {
 	return true;
   }
 
+  bool tty_curses:: setup_mouse (bool on) {
+  	static bool mouse_on = false;
+	if(on) {
+	 if( mouse_on ) {
+	 } else {
+	  mouse_on = true;
+	  mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+	  printf("\033[?1003h\n"); // XTERM - report mouse movements
+	 }
+	} else { // request to switch mouse off
+	 if(mouse_on) {
+	  mouse_on = false;
+	  printf("\033[?1003l\n"); // Disable mouse movement events, as l = low
+	 }
+	 // mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+	}
+  }
+
   bool tty_curses:: setup () {
 
 	 // TODO wbkgdset RTFM wresize( win, n_Height, n_Width )
@@ -130,14 +149,19 @@ namespace TTY_CURSES {
 	keypad(stdscr, true );	// get KEY events (otherwise get ESC X X)
 	meta(stdscr, true );	// get 8 bits
 	// NO WORKING HERE as expected tho
-	nodelay(stdscr, true); // nonblocking getch returns ERR // zooms to exit
-	nodelay(stdscr, false); // blocking getch waits for key
+//	nodelay(stdscr, true); // nonblocking getch returns ERR // zooms to exit
+//	nodelay(stdscr, false); // blocking getch waits for key
 	// man curs_inopts says dont mix raw/cbreak ? 
-if(1) {
+if(0) {
+ if(0) {
 	noraw();	// CTRL-C == INTR
+ }	// noraw() loses BUFFER battle
 } else {
-	raw(); // dont interpret INTERRUPT QUIT SUSPEND XONN/XOFF
+ if(0) {
+	// raw() loses BUFFER battle
+	// raw(); // dont interpret INTERRUPT QUIT SUSPEND XONN/XOFF
 	// permits their use as commands
+ }
 }
 	// tabs as left by tput init
 	nonl();			// TTY NL -> CR LF // OFF // LF does LF

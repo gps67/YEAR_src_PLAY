@@ -2,32 +2,9 @@
 #define STO_int16_hilo_H
 
 #include "STO_E32.h"
+#include "BYTE_ORDER.h" // but still using
+#include <byteswap.h> // bswap_16
 
-#if 0
-// FILE BYTE_ORDER HILO // always ? !!
-// TODO CPU_HILO is currently unattached
-
-// STO_ WAX_ were identical, rejoin under XYWH_16 ?
-// look for i16 to float32 in MMX 
-
-// wish there was a way to avoid every user needing this
-#include <byteswap.h>
-
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
- // Intel LOHO
- #define CPU_LOHI 1
- #define CPU_HILO 0
- #warning "currently be testing on AMD64 - soon delete this message"
-#elif
- // ARM Motorola HILO
- #define CPU_HILO 1
- #define CPU_LOHI 0
- #warning "to be tested on ARM - then delete this message"
-#else
- error "I dont support __ORDER_PDP_ENDIAN__ whatever that is"
-#endif
-
-#endif
 
 typedef short i16;
 #include "buffer2.h"

@@ -1,3 +1,35 @@
+// in CTXT of PAGE_Layout_csr
+
+SURFACE tty_80_scroll // eg H=44
+
+	80 CHAR wide TTY
+	scroll 10,000 lines // PATCH UPGRADE u32_nlines 
+	// SUBLEX TYPE_var_join_point
+	// WAS u16 //
+	// NOT u24_OFFS //
+	// NOW u24_IDX //
+
+	USAGE behaviour ONE_OF
+	(*) Indented SCRIPT via BENCH
+	(*) Indented DOCS via BENCH.DTP.XML
+	(*) Indented DATA via LAYER [s]
+	(*) Indented OPCODE via PSG 
+	(*) Indented DIAG with active STO
+
+	USAGE behaviour ONE_OF
+	(*) VIEW monitor
+	(*) VIEW logic as DIAG
+
+	USAGE code ONE_OF
+	(*) PRELOAD by running self provided SCRIPTS // from ROM to CACHE
+	(*) VIEW logic as DIAG
+
+	USAGE _BENCH_  ONE_OF
+	(*) PRELOAD by running self provided SCRIPTS // from ROM to CACHE
+	(*) VIEW logic as DIAG
+	(*) EDIT logic of DIAG // flip OPT=(a) PRELOAD_TABLE_as_HERE
+	(*) STO DIAG in a VFS // possibly actual FS twig under LINK_DIR_VFS
+
 
 PAPER SURFACE // not bounded by SCREEN
 

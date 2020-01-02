@@ -2,6 +2,7 @@
 #define X_Draw_H
 
 // #include "X_STUBS.h"
+#include "X_ret_err.h"
 
 namespace WAX {
 
@@ -61,7 +62,7 @@ struct X_Draw
 	bool XSetFont( Font font )
 	{
 		int ret = ::XSetFont( display, gc, font );
-		if(ret) return FAIL("ret == %d", ret );
+		if(ret) return FAIL("ret == %d %s (as str)", ret, name_of_X_err(ret) );
 		return true;
 	}
 
@@ -76,7 +77,7 @@ struct X_Draw
 		}
 
 		int ret = ::XSetFont( display, gc, font->fid );
-		if(ret) return FAIL("XSetFont() ret == %d", ret );
+		if(ret) return FAIL("ret == %d %s (as str)", ret, name_of_X_err(ret) );
 		return true;
 	}
 

@@ -6,7 +6,7 @@
 
 namespace WAX {
 
- struct X_FontStruct :
+ struct X_FontStruct {
 
 	Display * display;
 	XFontStruct * font;

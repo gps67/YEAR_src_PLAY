@@ -99,7 +99,7 @@ X_Window::X_Window(
 , window(0)
 , name(0)
 {
-	set_name( _name );
+	set_name( _name ); // _dgb_
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
 	window = ::XCreateSimpleWindow(
@@ -143,7 +143,7 @@ struct X_Window_Root : public X_Window
 /*!
 	create an internal object for the already existing root window
  */
-X_Window * X_Window::register_root(
+X_Window * X_Window:: register_root(
 	X_Display & disp_,
 	const char * name
 )
@@ -152,3 +152,8 @@ X_Window * X_Window::register_root(
 	return w;
 }
 
+
+void X_Window:: set_title( const char * name )
+{
+	::XStoreName( display, window, name );
+}

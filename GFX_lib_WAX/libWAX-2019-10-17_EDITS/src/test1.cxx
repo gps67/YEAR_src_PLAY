@@ -21,25 +21,6 @@
 
 #include "dgb.h"
 
-// tutorials, docs, links
-// https://www.x.org/releases/current/doc/libX11/libX11/libX11.html
-//	https://tronche.com/gui/x/xlib/graphics/font-metrics/
-//
-// X Get Image
-// X Put Image
-// set_pixel( x, y, VAL )
-// set_row_of_pixels( maybe )
-// want a local it to take value from FT_bitmap or grey16 or RGBA ARGB [u8]
-// that gets FreeType to X11's GL or my GL, it might have RGBA definitions
-// shader script BLIT_via_FILTER letter_to_word multi_part_word words block
-// shader script BORDERS TABS ANIMS LAYOUT ladders headers panels
-// tree of data matches tree of panels (line breaks, other new info)
-// SET item == type_set_this_item // notice how "this item" evaporated in ROM
-// layout += GAP + WORD + GAP + ...
-// layout GAP . asked_for_padding_by_text // (x, y) in EM_units _factors
-
-
-
 using namespace WAX;
 
 extern void e_print( const char * fmt, ... );
@@ -59,7 +40,7 @@ const char * colour_spec_blue  = "#0000FF";
 class X_test_box : public X_Window
 {
  public:
-	X_Draw draw_green; // draw_green.fg = green
+	X_Draw draw_green;
 
 	A_Rectangle xywh1;	// the inner frame // eg this is border
 
@@ -225,7 +206,6 @@ int main_loop_once( X_Display & disp, XEvent & report )
 
 /*
 	This is the basis of a C++ wrapper for lib W11 and libX11
-
 */
 
 int main() {
@@ -240,13 +220,6 @@ int main() {
 
 	// create a window on the display
 	X_test_box win1( "win1", disp, xywh1, 0 );
-
-	// TODO near here
-	const char * font_str = "6x10" ;
-	font_str = "8x16" ;
-// NO	font_str = "16x32" ;
-	font_str = "-bitstream-bitstream charter-*-r-*-*-*-*-*-*-p-*-*-*";
-	win1.draw_green.XSetFont( font_str );
 
 //	// create a window within the window
 // 	X_test_box win2( "win2", & win1, xywh2, 0 );

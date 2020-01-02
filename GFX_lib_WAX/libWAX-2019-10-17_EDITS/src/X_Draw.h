@@ -53,7 +53,31 @@ struct X_Draw
 	*/
 	void XSetForeground( XColor colour )
 	{
-		::XSetForeground( display, gc, colour.pixel);
+		::XSetForeground( display, gc, colour.pixel );
+	}
+
+	/*!
+	*/
+	bool XSetFont( Font font )
+	{
+		int ret = ::XSetFont( display, gc, font );
+		if(ret) return FAIL("ret == %d", ret );
+		return true;
+	}
+
+	/*!
+	*/
+	bool XSetFont( const char * str )
+	{
+		XFontStruct * 
+		font = ::XLoadQueryFont( display, str );
+		if(!font) {
+			return FAIL("::XLoadQueryFont( display, '%s'", str );
+		}
+
+		int ret = ::XSetFont( display, gc, font->fid );
+		if(ret) return FAIL("XSetFont() ret == %d", ret );
+		return true;
 	}
 
 	/*!

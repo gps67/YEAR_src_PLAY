@@ -24,12 +24,39 @@ SURFACE tty_80_scroll // eg H=44
 	(*) PRELOAD by running self provided SCRIPTS // from ROM to CACHE
 	(*) VIEW logic as DIAG
 
-	USAGE _BENCH_  ONE_OF
+	USAGE bench  ONE_OF // _BENCH_ == bench // some wird GEN theme
 	(*) PRELOAD by running self provided SCRIPTS // from ROM to CACHE
 	(*) VIEW logic as DIAG
 	(*) EDIT logic of DIAG // flip OPT=(a) PRELOAD_TABLE_as_HERE
 	(*) STO DIAG in a VFS // possibly actual FS twig under LINK_DIR_VFS
 
+	USAGE view _PICK_ {
+		COMMON TABSET
+		 dtp page margins // tex // xml // edit XML edit TREE save_as
+		 TAB=ASCII_TAB_EIGHT // TAB+=array_u8_of_XPOS // XYZ leaf 
+		 TAB=TABSET_LIST // SET="TABS"
+		 TABS += ROW_from_VIEW // or EXPR = BASE + STEP
+		TEXT_2D // it all is // split by PAGE and SCROLL
+		DRAW_2D //
+		FreeType to PIXMAP
+		FreeType via MATRIX
+		FreeType via TRANSFORM_MATRIX to PIXMAP
+		Lots of fragments, scroll around scene, each
+	}
+
+	USAGE scroll_zone {
+		
+		SCREEN_WH
+		SCREEN_XY 
+		 SCREEN_top_left_zero
+		 SCROLL_top_left_zero _pos_of_view_on_scroll
+
+		request TREE to DRAW all in VIEW 
+		 tree itself knows how to zone out lines after VIEW
+		  tree can put margins // but not yet // aside adds up to 
+	}
+
+	first need some FreeType
 
 PAPER SURFACE // not bounded by SCREEN
 

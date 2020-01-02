@@ -125,6 +125,8 @@ struct X_Window
 
 	virtual void event_expose( A_Rectangle & xywh ) = 0;
 
+	void set_title( const char * name );
+
 };
 
 }; // NAMESPACE

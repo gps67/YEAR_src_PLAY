@@ -7,6 +7,8 @@
 #	INCLS = -I/tools/2000/X11R6/include
 #	INCLS = `pkg-config --libs freetype2`
 
+	dot_EXE=.elf
+
 ifeq (0,1)
 	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
 	INCLS = -I $(FT2)/include
@@ -37,6 +39,10 @@ endif
 	OBJS += A_Map_W.o
 	OBJS += X_Window.o
 	OBJS += X_Display.o
+	OBJS += X_FontStr.o
+	OBJS += X_ret_err.o
+	OBJS += WAX_argv_decoder.o
+	OBJS += test_X_two.o
 
 #	OBJS += gdb_invoke.o
 #	OBJS += str0.o
@@ -48,6 +54,9 @@ endif
 	PROG1=test1
 	PROG2=test2
 
+	EXEC1=$(PROG1)$(dot_EXE)
+	EXEC2=$(PROG2)$(dot_EXE)
+
 all: run_test2
 
 .SUFFIXES: .cxx .c .o                                                           
@@ -58,17 +67,17 @@ all: run_test2
 
 $(OBJS): $(HDRS)
 
-run_test1: $(PROG1)
-	./$(PROG1)
+run_test1: $(EXEC1)
+	./$(EXEC1)
 
-run_test2: $(PROG2)
-	./$(PROG2) $(test2_font)  P # "Sample Text"
+run_test2: $(EXEC2)
+	./$(EXEC2) $(test2_font)  P # "Sample Text"
 
-$(PROG1): $(OBJS) $(PROG1).o
-	g++ $(PROG1).o $(OBJS) $(LINKS) -o $(PROG1)
+$(EXEC1): $(OBJS) $(PROG1).o
+	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
 
-$(PROG2): $(OBJS) $(PROG2).o
-	g++ $(PROG2).o $(OBJS) $(LINKS) -o $(PROG2)
+$(EXEC2): $(OBJS) $(PROG2).o
+	g++ $(PROG2).o $(OBJS) $(LINKS) -o $@
 
 clean: 
-	rm -f *.o test1 test2 fa
+	rm -f *.o $(EXEC1)  $(EXEC2)  test2 fa

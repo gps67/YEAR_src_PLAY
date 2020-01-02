@@ -42,6 +42,7 @@ gen_e1_*
 *.exe
 *.out
 *.app
+*.elf
 
 # Archive tarballs
 *.zip

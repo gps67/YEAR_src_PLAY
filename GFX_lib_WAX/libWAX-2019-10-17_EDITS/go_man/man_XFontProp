@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# hardlink this file to "man_WHATEVER"
+# its cheaper than a symb link (1 inode)
+# add any MANPATH you think you might need
+
+# 2020-01-02 Jan Thu 13:10
+
+# set -x
+name=$0
+name=`basename $name`
+name=$(expr match "$name" 'man_\(.*\)')
+exec man $name

@@ -8,6 +8,8 @@
 // stdarg - see e_print.h
 // typedef char * va_list;
 
+struct buffer1;
+
 
 // X11/X.h defines some basis things // ok if duplicated
 typedef long unsigned int XID;

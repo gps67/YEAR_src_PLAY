@@ -1,0 +1,122 @@
+C
+2020-01-22 Jan Wed 23:12 treemove/
+
+		treemove.txt
+
+		   SWITCH VERSION OLD to NEW
+
+			# lucky but will crash at some point
+			# recovery is save DOT settings for EXIT
+			# EXIT
+			# save to and reload from DOT
+
+				umount OLD
+				switch OLD to NEW // git pull
+				mount NEW
+
+			MOVE OLD to ARCHIVE dont_drop
+
+			LOAD TREE from MMAP to MMAP
+
+		   SWITCH VERSION OLD to NEW
+		     LOCK {
+			umount OLD
+			switch OLD to NEW // git pull
+			mount NEW
+		     }
+		     LOCK {
+		      HERE // HERE += GEN SCRIPT STEPS
+		     }
+		     ZONE += { // allow a FEW local : API += local aliases
+		     // can_use ZONE { ... }
+		     // can use ZONE += { ... }
+		      ZONE += TEXT { // as in elf.o.text
+		      TEXT += TEXT // allow idiomatic aliases // here same name
+		      GEN += CMNT = CMNT_paragraph // DTD = doxygen + cover_notes 
+		      DTD += doxygen 
+		      DTD += cover_notes // GEN an initial paragraph CMNT
+		      DTD += MIME_code_tree // SCRIPT for now // 
+		      DTD += VFS // index refers to BLOBS in filename.mime_type
+		      MIME += TREE_in_BLOB_via_filename
+		      MIME += TREE_in_BLOB_via_local_var_name
+		      MIME += CODE_in_TREE_via_csr_expr_eval_SCRIPT
+		      MIME += DATA_in_STO_blobs_words_structs_vectors_IDX_EXPR
+		      MIME += VAR_is_OBJECT // Type_t & item = OBJECT = EXPR
+		      EDIT s/EXPR/{ ... }/
+		      EDIT s/EXPR/{ NL INDENT_MORE ... INDENT_LESS NL }/
+		      EDIT s/EXPR/{ NL INDENT_MORE GEN_HERE INDENT_LESS NL }/
+
+		      CMNT.SPEC += DTD_USED ITEM_1234
+		     }
+			
+				retain OLD tables
+				preload NEW tables
+			PREP	relink TABLE ITEMS
+				reload them as NEW
+
+		mnt {
+		 mnt_point // /mnt/sdc9
+		 mnt_dev // /dev/sdc9
+		 mnt_media // VOLUME_MEDIA_CTRL ROOT CSR["%d"] // %d idx // ZERO
+		 VOLUME_vers_EDIT // each EDIT has a revision id // BLOB=PATCH
+
+		  CACHE {
+
+		   #
+		   # HERE #
+		   #
+
+		  }
+
+		  ITEM {
+
+		  	
+		  }
+		  ITEM_SPEC {
+		   idx = idx_item = module_var heap.idx_nexr
+		   // near == heap
+		   // heap == near
+		   // ALIAS idx_of_item // ALIAS is a SUBLEX.ALIAS trigger
+		   // SCOPE item_var AS_IF_LOCAL
+		   SPEC = Object_t & item.SPEC() // item = item
+		    KNOW {
+		    	item_t & item = get_from_EA_EXPR( u64 ea_item )
+		    	item_t & item = get_from_EA_EXPR( u32 ea_item )
+		    	item_t & item = get_from_EA_EXPR( u8 layer, u24_idx )
+		    	item_t & item = get_from_EA_EXPR( u8 layer, u24_offs )
+		    	item_t & item = get_from_EA_EXPR( u8 layer, u24_offs_shift_3 ) // CT TOKENISED /*here*/ OFFS = /*there*/ OFFS << 3;
+		    }
+		    KNOW {
+		    	EA_EXPR_to_item == idx_t MATCH "anystr" // CT_MATCH
+		    }
+		    KNOW {
+		    	u8 idx_u8 = idx = idx_layer
+			ALIAS layer == idx_layer
+			VAR_STO = SCOPE_AS_IF_LOCAL ( idx_u8_t & idx_u8 );
+			// DUAL ROLE of "&" // tidy * // WORD EA_EXPR_IN_CT_
+
+		    }
+		    CODE {
+		     	DECODE_EA_EXPR { // u32_hilo ea_expr; // SCOPE VAR HERE
+			 u32 u24_u8; // NOTE type_name as var_name
+			 // gets rid of the C++ class_it_up overlad
+			 // its it all u32_WORD 
+			 //  # WORD = u32_hilo_wordtype_but_held_raw_as_u32_lohi
+			 // PLUS CT_SPEC 
+			 // AVAIL RT_SPEC
+			 // elsewhere an actual decode_u24_u8
+			 // u32_hilo u24_u8;
+			 // typedef u32_hilo u24_u8; // alias for WORD
+			 // CT_WORD permits known punning, or switching
+			 // eg pickup_putdown_WORD
+			 // mid_WORD = u32_hilo_t hilo_as_WORD_possibly_switched
+			 // extra code can figure if WORD is BYTE_SWAP_DONE_CURR
+			 // extra code can REPORT UNKNOWN at CT
+			 // extra code can figure from item.spec.THIS_WORD_is_
+			}
+		    }
+		   at_least
+		   spec = spec_from_object( EA_IS( HERE, OFFS, SPEC )
+		  }
+
+		}

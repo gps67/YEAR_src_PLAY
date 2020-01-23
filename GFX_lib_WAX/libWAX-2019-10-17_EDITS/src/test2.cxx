@@ -54,6 +54,7 @@ class X_test_box : public X_Window
 int main_loop_once( X_Display & disp, XEvent & report )
 {
 	disp.process_event( report );
+	return 0;
 }
 
 // there is a main_two

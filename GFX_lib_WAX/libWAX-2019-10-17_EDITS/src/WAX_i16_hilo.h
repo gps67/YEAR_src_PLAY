@@ -59,6 +59,7 @@ namespace WAX {
 	bool print_0xFFFF(buffer2 & out) {
 		i16 val = get_i16_cpu(); // decided there is no ACTUAL type _cpu
 		out.print("0x%4X", val ); // short to int
+		return true;
 	}
 
  // SHIPPING as hilo network byte order 
@@ -127,10 +128,13 @@ namespace WAX {
 		// round returnd double, sure there is an asm to i16
 		i16 _val = (short) round( dbl );
 		set_from_i16( _val );
+		return _val;
 	}
 
-	float set_from_float( double dbl ) {
-		return (float) get_i16(); // (BSWAP2) short to int to float
+	float set_from_float( float dbl ) { // CALL promotes to double
+		i16 _val = (short) round( dbl );
+		set_from_i16( _val );
+		return _val;
 	}
 
 

@@ -1,0 +1,68 @@
+2020-01-23 Jan Thu 00:45 STO_u24_u8/STO_u24_u8.txt
+2020-01-23 Jan Thu 00:45
+
+	STO_u24_u8/
+	STO_u24_u8.txt
+
+		ONE_OUTER_FILE_HEADER # also in MMAP # poss SEGMENT[M1]
+
+			SEGMENT[ M1 ] // USER ACCESS but does not have to be
+
+		256 x LAYER = SEGMENT {
+
+		 # EACH SEGMENT is upto 256MB 
+		 # u32 u24_payload  = WORD >> 8;  // assembly is opposite
+		 # u32 u28_OFFS = u24_payload << 4); 
+
+		 # SEGMENT can have an area OUTSIDE of SEGMENT to describe it
+		 # eg _64b_byte_object_
+		}
+
+		256 x LAYER_HEADER = OBJECT64 { // tray_of_64_byte_objects
+		 # any object can bounce into DATA_SEGMENT use EA_EXPR
+		 # some implicit knowledge of sibling TABLE [s]
+		 # some library might nest remote BLOB by reference to idx
+		}
+
+	SEGMENT = SEGMENT[ u8 ]
+	SEGMENT_TYPE == SEGMENT.EXPR_segment_type_IDX
+	SEGMENT_TYPE == SEGMENT.EXPR_segment_type_OFFS
+	EXPR_VAR = { typedef u32 u32_OFFS_t; }
+	EXPR_VAR = { typedef u32_OFFS_t u24_OFFS_t; }
+	EXPR_VAR = { typedef u32 u24; } // CT KNOW limit is u24
+	EXPR_CODE += { ... u32_idx ... }
+	EXPR_CODE += { ... u32_offs ... }
+	EXPR_VAR_STO += KNOW byte_swap prefers HILO in MMAP of file
+	EXPR_VAR_STO += KNOW AS_IF_LOCAL makes lohi_rw copies of hilo_payload
+
+	 ONE BIG FILE -or- some clever MUX of 256 SEGMENTS of u24_SPACE
+	 # choices
+	 # u32 OFFS = u24_OFFS
+	 # u24_OFFS = WORD >> 8; // WORD is now u32_cpu_lohi_AFTER_byteswap
+	 # u8 u8_idx = WORD.AL; // C++ does the cast (u8) // u8_idx = WORD
+	 # u32 u24_idx; // 16 M item [s] // else like u32_idx
+	 # u32 u24_offs; // 16 M OFFS
+	 # u32 u24_offs; // u32 OFFS = u24_payload << 3; // 128 M OFFS CLICK8
+	 # u32 u24_offs; // u32 OFFS = u24_payload << 4; // 256 M OFFS CLICK_16
+	 # MULTI_WORD = WORD[ u4 ] # u32[ 16 ] # u8[ 64 ] 
+	 # 64_bytes_object_header
+	 # 64_bytes_upto_256_MB
+	 # quite an inefficient minimum
+	 # already a complex data_in_head object_64
+	 # a mini_machine with a VTBL
+	 # a long string of type #
+	 # compressed_dictionary_prefix_ZONE in less than 64
+	 # MINI_MACHINE as SCRIPT or INODE_RELINK_ARGS_EVAL mini_stack_item
+	 # 
+
+	typedef u32_hilo WORD_u24_u8 // POSS unknown but still AS_FOUND
+	typedef u32_hilo WORD_u24_u8 // POSS unknown but still AS_FOUND
+	typedef u32_cpu u32_WORD_AS_FOUND
+	typedef u32_cpu u32_from_WORD
+
+	// OR // use the recent class wrappers inline access is quick
+
+	typedef u32 u24_u8_t;
+	typedef u32 u24_u8; // options switch on + off in source // _t
+
+

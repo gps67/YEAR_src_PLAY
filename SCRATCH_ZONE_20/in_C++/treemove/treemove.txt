@@ -19,14 +19,26 @@ C
 			LOAD TREE from MMAP to MMAP
 
 		   SWITCH VERSION OLD to NEW
+
+		   	relink # described ... somewhere ...
+
+			## DOT_means_DOT # s/ \.\.\. / \\.\\.\\. /
+			## DIALECT s/.../ ... / # IS_A_RESERVED_WORD_TOKEN #
+			## DIALECT WORD_GAP
+			## DIALECT s/.../... somewhere .../ # DOT_means_DOT
+
+		   SWITCH VERSION OLD to NEW
+
 		     LOCK {
 			umount OLD
 			switch OLD to NEW // git pull
 			mount NEW
 		     }
+
 		     LOCK {
 		      HERE // HERE += GEN SCRIPT STEPS
 		     }
+
 		     ZONE += { // allow a FEW local : API += local aliases
 		     // can_use ZONE { ... }
 		     // can use ZONE += { ... }
@@ -115,7 +127,8 @@ C
 			 // extra code can figure from item.spec.THIS_WORD_is_
 			}
 		    }
-		   at_least
+		    KNOW Type_BaseType_t & ITEM = GET_ITEM
+		    KNOW DIALECT args
 		   spec = spec_from_object( EA_IS( HERE, OFFS, SPEC )
 		  }
 

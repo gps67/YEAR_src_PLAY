@@ -1,0 +1,55 @@
+2020-01-25 Jan Sat 20:59 idx_API/idx_API.txt
+
+	HDR
+	 idx_API/
+	 idx_API.txt
+	
+
+API {
+ //
+ // texinfo DTD
+ //
+}
+
+API DTD {
+
+ //
+ // DTD - base class of range of dtd types 
+ //
+
+ //
+ // API parameter DOC = MATCH locn["DTD"] in SPEC.tree["scope_this_script"]
+ // document fragment == well known phrase on tree
+ // in this case, DTD is the ROOT mount node, or ROOT CSR within tree 
+ //
+ //
+ // implementation adds loads of module_global { ... tree_spec_dtd ... }
+ // TOKENISER cross_references those named items via SUBLEX
+ // LOADER can fill in TABLE columns ... your_ref[idx_my_ref] = u32_hilo
+
+ DTD += { tree_spec_dtd }
+ DTD { /* DTD += { SCRIPT } */ 
+  TOKENISER {
+   CT pre_load idx = preset_lexicon { lookup("anystr"); }
+   RT renumber_rebuild_table // load sort commit to idx export archive VCS
+   LD spelling = spelling_of_anystr_of_idx TBL =TABLE[t] ; ITEM = TBL[idx]
+   ET refactor renumber using SAMESTR( old new )
+  }
+  PHRASES { NONE } // YET
+  CSR_LIST {
+   P // paragraph
+   HREF // <A href="http://..."/> // clickable_ui
+  }
+  SEQ {
+  }
+ }
+}
+
+
+
+API {
+}
+API {
+}
+
+

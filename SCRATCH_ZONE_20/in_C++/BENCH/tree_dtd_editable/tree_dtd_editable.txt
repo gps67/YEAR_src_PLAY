@@ -1,0 +1,47 @@
+2020-01-25 Jan Sat 21:16 tree_dtd_editable/tree_dtd_editable.txt
+
+	tree_dtd_editable/
+	tree_dtd_editable.txt
+
+	tree_anything_editable
+
+	generic tree_edit 
+	specific tree_edit_dtd 
+
+	 generic edit_tree_SPEC // DTD is a sort of SPEC
+	 specific tree_edit_dtd // DTD += SEQ ONE LIST EXPR SCRIPT APIS
+
+	 generic_GEN_source += INDENTED
+	 generic_GEN_source += GEN_dtd_of_xml
+	 generic_GEN_source += GEN_dtd_of_sgml
+	 generic_GEN_source += GEN_dtd_of_TeX
+	 generic_GEN_source += GEN_dtd_of_TREE += TeX SPIN INDENTED STR SQL
+
+
+ ELEM -> SEQ { html { head body } } // SELF.idx_anystr == " <html> "
+ // MATCH " <%s> " elem_name
+ // MATCH elem_name == nearby.a_var.type_name_in_dtd
+ // MATCH TYPE("name")
+ // 
+
+ LINK project / README / ../doc/project_readme.html" // 
+ /*
+ 	DROP IN module/project 
+
+	List of VOLUNTEER project_link_in
+	adds standard list of ITEM resources
+
+	 eg .icon for when minimised
+ 	 .icon = NONE | SCRIPT // += HEURISTICS within { SCRIPT }
+	 .readme = NONE | SEARCH_SCRIPT += LINK project 
+	 .readme = NONE | SEARCH_SCRIPT += LINK tree += README INSTALL ...
+	 .git_upstream = | published_meta_info_about_project // by_name _url
+	 .api = get_api_for_project "%s" "PROJECT" // tracer += unicode 
+	 .sublex = BENCH_BUILD_TREE "%s" "PROJECT/SUBLEX" // lookup("anystr")
+	
+	eg BENCH can run FILTER over ../project/
+	eg Layout GNU_ish_dialext README INSTALL Configure automake ...
+
+ LINK project / README / ../doc/project_readme.html" // 
+ */
+

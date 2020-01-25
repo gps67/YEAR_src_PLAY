@@ -16,9 +16,13 @@
 	 generic_GEN_source += GEN_dtd_of_sgml
 	 generic_GEN_source += GEN_dtd_of_TeX
 	 generic_GEN_source += GEN_dtd_of_TREE += TeX SPIN INDENTED STR SQL
+	 generic_GEN_source += GEN_dtd_of_SCRIPT // from upstream SPEC_tree
+	 generic_GEN_source += gen_SPEC_of_SCRIPT // as_script_str _SPEC_TREE_
+	 // this is where CLANG goes OTT
 
 
  ELEM -> SEQ { html { head body } } // SELF.idx_anystr == " <html> "
+ // 
  // MATCH " <%s> " elem_name
  // MATCH elem_name == nearby.a_var.type_name_in_dtd
  // MATCH TYPE("name")

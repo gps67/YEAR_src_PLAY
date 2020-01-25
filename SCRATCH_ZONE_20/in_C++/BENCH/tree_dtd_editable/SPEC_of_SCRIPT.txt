@@ -1,0 +1,84 @@
+TODO u24_u8
+
+	CT KNOW u32_hilo convert to u32_cpu
+	CT KNOW u8 is lo_byte u24_u8 // NBO CPU_register C_byte
+	CT KNOW u8 is lo_byte u16_u8_u8 // NBO CPU_register C_macro
+
+	/*
+		256 SEGMENTS loaded in MEMORY
+
+		void * MEM_EA_SEGMENT [ u8 ] ; // 256 normalised pointers
+		SEGMENT_SPEC_t * EA_SEGMENT_SPEC [ u8 ] ; // get_SPEC =>
+
+		 EG
+		 	CT_KNOWS SEGMENT decodes u8_seg u8_table u16_item
+		 	CT_KNOWS SEGMENT decodes u8_seg u8_zone u16_item
+		 	CT_KNOWS SEGMENT decodes u8_seg u24_item
+		 	CT_KNOWS SEGMENT decodes u8_seg u24_expr
+
+		 	CT_KNOWS EA_OFFS = table_lookup[ u24_idx ]
+		 	CT_KNOWS item_type is at_least OBJECT 
+
+		SEGMENT_t * EA_SEGMENT ( u8 ) ; // inline function
+
+		NB keeping absolute pointers is a reserved activity
+		NB moving things around may require SYNC_LOCK designed_update
+		NB MEMORY is union of SEGMENTS from different sources
+		NB get_MANAGER_of_SEGMENT needs uplink or is GLOBAL TOP
+
+	*/
+	/*
+
+	u32 WORD = (u32) u32_hilo; // CT SWAP_BYTE aware
+
+	u8 u8_idx = WORD_u8_idx
+
+	SEGMENT_t & SEGMENT = SEGMENT_[ u8_idx ] [
+
+		u32 u24_idx = WORD_u24_idx
+
+		void * MEM_SEGMENT_BASE; // EA_ITEM = BASE + OFFS
+
+		ITEM_t & item = _BASE + OFFS_of_ITEM[ u24_idx ];
+	}
+	*/
+
+	SEGMENT_t & SEGMENT = SEGMENT_[ u8_idx ] 
+
+ SPEC_of_SCRIPT.txt
+
+	PSC_of_SPEC_of_SCRIPT
+	 PSG {
+	  gen LEX and YACC 
+	  gen SUBLEX and PSG
+	 }
+
+	PSG {
+	 Module name;
+	 STO == PSG_BASE_CLASS_STO
+	 CONST
+	 TYPE 
+	 VAR
+	 EXPR
+	 FUNC
+	 EXPORTS
+	 IMPORTS
+	}
+
+
+	MODULE NAME {
+
+	 .META {
+	  NAME = NAME
+	  DIR0 = ".."
+	  DIR1 = "../NAME // or expr // or named_inode _mnt_
+	 }
+
+	 BASE_LIBR Tuplo // import tuples tokens strings 
+	 PLUS_LIBR IDX // brings idx_ALLOC table_templates
+	 PLUS_LIBR STO // import Tuplo SPEC ALLOC EDIT VCS
+	 PLUS_LIBR META // brings .META += adaptors
+	 PLUS_LIBR PSG // ONE_t SEQ_t LEX_t CMNT_t
+
+	}
+

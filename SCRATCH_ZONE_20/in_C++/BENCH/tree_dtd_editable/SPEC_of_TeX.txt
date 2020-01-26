@@ -1,0 +1,88 @@
+
+\input texinfo
+@setfilename tlbuild.info
+
+@set version 2019
+@set month-year February 2019
+
+@set mytitle Building @TeX{} Live (@value{version})
+@settitle @value{mytitle}
+
+@macro TL
+@TeX{}@tie{}Live
+@end macro
+
+	... @TL{} ...
+
+@copying
+This file documents the @TL{} build system and more.
+
+@noindent
+...
+
+@ignore 
+...
+
+@ifnottex
+@node Top
+@top @value{mytitle}
+
+	LINE_ONE
+
+@menu
+* LHS::		/*indent align to XPOS */ RHS
+* LHS::		/*indent align to XPOS */ RHS
+@end menu
+@end ifnottex
+
+@node KEYWORD
+@chapter KeyWord
+
+@cindex keyword
+
+
+--------------------------
+Parser immediately wraps
+@zone
+HERE
+@end zone
+
+SPEC of DTD_ELEM says {
+
+	IS_BLOCK
+	IS_BLOCK_RECTANGLE 
+	IS_BLOCK_RECTANGLE_PLUS_SIDEBAR_STUFF
+	IS_CLUTCH_BLOCKS // easy now // overlay
+
+		     X3      X4       X5
+		    /       /        / 
+		---+-------+--------+-----
+		  -+-      +--------+
+		   |       | HERE   | H
+		---+-------+--------+-----
+		   | HERE  |        | H
+		  -+-------+--------+
+		  -+-      +--------+
+
+	CT adding adjacent gap fillers
+	eg 
+	   XPOS = X4
+	   xtep_left_wall_padding
+	   xstep_char_left_edge_to_xpos_within_char
+
+	   xstep_char_width
+
+	   xstep_char_gap_char
+	   xstep_char_width
+
+	   xstep_right_wall_padding
+
+	   SUGGEST X5 == XPOS // extra padding, or clipping, or exact request
+
+
+	INLINE_ELEMENT_IN_PARENT
+	VIEW[ u4 ] // and flags too
+	INDENT_Layout
+
+}
+

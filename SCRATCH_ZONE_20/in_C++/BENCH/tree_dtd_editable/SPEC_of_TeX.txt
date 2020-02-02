@@ -41,6 +41,7 @@ This file documents the @TL{} build system and more.
 @cindex keyword
 
 
+etc
 --------------------------
 Parser immediately wraps
 @zone
@@ -67,10 +68,10 @@ SPEC of DTD_ELEM says {
 	CT adding adjacent gap fillers
 	eg 
 	   XPOS = X4
-	   xtep_left_wall_padding
-	   xstep_char_left_edge_to_xpos_within_char
+	   xstep_wall_to_char_left_edge // gap_between_wall_and_text
+	   xstep_char_left_edge_to_xpos_within_char // varies with char
 
-	   xstep_char_width
+	   xstep_char_width // or did that include above // see diag
 
 	   xstep_char_gap_char
 	   xstep_char_width

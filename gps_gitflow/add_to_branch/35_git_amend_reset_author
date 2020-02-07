@@ -1,0 +1,5 @@
+. ./.env
+pwd
+ask_do \
+ git commit --amend --reset-author
+

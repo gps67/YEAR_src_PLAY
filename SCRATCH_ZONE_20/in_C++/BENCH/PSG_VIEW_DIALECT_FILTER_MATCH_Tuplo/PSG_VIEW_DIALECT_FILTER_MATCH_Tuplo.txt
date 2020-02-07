@@ -50,6 +50,16 @@
 
  DOUBLE PARSE
 
+ 	CT TOKENISER RHS = PARSE expr in FILTER scripts
+	 prepare single TOKEN = locn_of_expr_in_compiled_FILTER
+	 prepare SCOPE full of ITEM [s]
+	 share SCOPE with wider SPACE of [u16_idx]
+	 share SCOPE with wider SPACE of AREA_BASE + u16_offs
+
+	  using OFFS massively reduces reachable range but saves layer
+	  BUT using IDX0 to load a SCOPE that is a machine fsm or ...
+	  CAN have it using u16_offs, u8_idx, no need for u32_EA_global
+
  	SCRIPT = input TEXT from USER edited
 	FILTER = this_MATCH_Tuplo
 	 HERE == EXPR == MATCH <PATTERN> // TRIGGER
@@ -68,6 +78,56 @@
 	TREE_t & lhs = SCRIPT_CSR_POS
 	TREE_t & rhs = CSR_POS_in_SCRIPT
 	TREE_t & rhs = EXPR CSR_POS SCRIPT EA_EXPR // _64 _32 _u16_u8_u8
+
+ the TOKENISER ran PARSE over LIBR_SCRIPT_edited
+
+	# DIALECT sees "SCRIPT" // %s_%s item_SCRIPT item_attr_name // SUBLEX
+ 	SCRIPT_tree = PARSE SCRIPT_text
+ 	SCRIPT_text = REGEN SCRIPT_tree
+
+ 	updated + regenerated
+	TREE_t & SCRIPT = lookup( u32_WORD ); // CT RT // WORLD += MEM_SPACE
+	ITEM_t_u32 & HERE == u32_HERE; // LAYER_OVERLAP
+	ZONE_t & ZONE = lookup( u32_WORD ); // ZONE_t is CACHE u32_decoded
+
+	# SCOPE # 
+	# decode_lookup_cache( u32_WORD )
+	# HERE = shared reference to OBJ held by CACHE 
+	# HERE.u32_WORD == u32_HERE # CT KNOWS
+
+ u16_u8_u8
+ 	u32_WORD
+ 	u32_WORD_in_CPU
+	u16_u16 // union puns available
+	 u8_WORD
+	 u8_BYTE
+	 u8_Lo
+	 u8_Hi
+	 u16_HiLo // u16_WORD u16 u16_
+	 u16_high_shifted
+	 u32_WORD
+
+// next	 u32_high_shifted
+
+	OK ASM has influence on phrasebook of opcodes used / avail
+	EG R2 = (WORD_CAST) R1 
+	EG R2 = (WORD_CAST) R1.fragment
+	EG R3 = clean_up R2 for wider access
+
+ u8_ROM_SEGMENT_in_SPACE
+ u8_PAGE_in_SEGMENT // ZONE_t & area = lookup( SEGMENT, u8_idx
+ u16_ADDR
+
+ SCOPE = ZONE
+  saved as ROM[ zone ] STO[ zone ] STO[ stack ]
+  ZERO == zone_item_zero
+  ITEM == zone_ITEM - ZERO // BASE OFFS // ZERO SLOT
+
+  add ZONE_ITEM[ u12 ] // OPCODE[u4] ITEM[ u12 ]
+  add ZONE_VAR[ u4_idx ] //  
+  add ZONE_FSM[ u5_idx ] // few needed here
+
+
 
 
 

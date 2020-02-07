@@ -9,6 +9,48 @@ API {
  //
  // texinfo DTD
  //
+ //
+ // document editors
+ lyx
+ https://www.lyx.org
+ Texmaker
+  Qt5.7
+  https://www.xm1math.net/texmaker/
+ TeXstudio
+  Qt5
+  https://www.texstudio.org/
+ Gummi
+  gtk 
+  https://github.com/alexandervdm/gummi
+ TeXpen
+  Qt
+  https://sourceforge.net/projects/texpen/
+  (5 years ago)
+
+ ShareLaTeX + Overleaf
+  https://www.overleaf.com/
+  distributed edit £24/pcm?
+
+ Authorea
+  PAID, cloudy
+  https://www.authorea.com/
+ 
+ papeeria
+  https://www.papeeria.com/
+  markdown too
+
+ Kile
+  https://kile.sourceforge.io/
+  KDE
+  -- based on KATE edit
+
+ kate-edit.org
+ up-to-date
+ KDE
+ LSP
+ gdb plugin
+
+ //
 }
 
 API DTD {

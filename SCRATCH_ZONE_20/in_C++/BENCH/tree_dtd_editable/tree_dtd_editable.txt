@@ -46,6 +46,11 @@
 	eg BENCH can run FILTER over ../project/
 	eg Layout GNU_ish_dialext README INSTALL Configure automake ...
 
+	DROP IN applies list of MATCH filters,
+	sum of all filters
+	those filters that better suit group
+	specific MATCH items
+
  LINK project / README / ../doc/project_readme.html" // 
  */
 

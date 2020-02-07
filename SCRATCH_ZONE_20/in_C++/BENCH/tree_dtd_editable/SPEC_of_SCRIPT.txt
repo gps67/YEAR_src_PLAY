@@ -10,9 +10,24 @@ TODO u24_u8
 		void * MEM_EA_SEGMENT [ u8 ] ; // 256 normalised pointers
 		SEGMENT_SPEC_t * EA_SEGMENT_SPEC [ u8 ] ; // get_SPEC =>
 
+		all of SEGMENT might be of specific EA type
+		... range ...
+		eg u8__u8_u16 seg__table_item
+		eg u8__u8_u16 seg__zone_offs {
+			u8_seg  = WORD_bits_7_0 // u8_RL
+			u8_zone = WORD_bits_15_8 // u8_RH
+			u16_high = WORD_bits_31_16 // WORD >> 16
+			zone_t & zone = zone_[u8_zone]
+
+			// DECANTER // extract bits from word via second reg
+			// AVAIL_MASK 0xFF in some register //
+			// possibilities abound
+			// C use bitfields and gcc knows how
+		}
+
 		 EG
 		 	CT_KNOWS SEGMENT decodes u8_seg u8_table u16_item
-		 	CT_KNOWS SEGMENT decodes u8_seg u8_zone u16_item
+		 	CT_KNOWS SEGMENT decodes u8_seg u8_zone u16_offs_click
 		 	CT_KNOWS SEGMENT decodes u8_seg u24_item
 		 	CT_KNOWS SEGMENT decodes u8_seg u24_expr
 
@@ -71,8 +86,10 @@ TODO u24_u8
 	 .META {
 	  NAME = NAME
 	  DIR0 = ".."
-	  DIR1 = "../NAME // or expr // or named_inode _mnt_
+	  DIR1 = "../NAME" // or expr // or named_inode _mnt_
 	 }
+
+	MODULE HERE {
 
 	 BASE_LIBR Tuplo // import tuples tokens strings 
 	 PLUS_LIBR IDX // brings idx_ALLOC table_templates

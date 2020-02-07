@@ -1,0 +1,74 @@
+2020-02-07 Feb Fri 11:03
+
+ Bench
+	PSG_VIEW_DIALECT_FILTER_MATCH_Tuplo/
+	PSG_VIEW_DIALECT_FILTER_MATCH_Tuplo.txt
+
+	SUBLEX is a module of PSG module
+
+	 samp API as PSG and TOKENISER.u24_idx_expr
+
+	   TOKEN[ idx ]
+	   ITEM_t & item = EXPR
+	   ITEM_t & item = EXPR TOKEN[ idx ]
+
+	   SYMBOL_t & SYMBOL = KNOW u24_t idx
+	   # VIEW option
+	   # VIEW_as u24_idx // SYMBOL == "SYMBOL" // or other SUBLEX expr
+	   # VIEW EA %0 as_id_in_zone SPACE // KNOW %0 is u8_u24_in_CPU
+
+	   # VIEW EA %0 
+	   # as_id_in_zone SPACE
+	   // KNOW %0 is u8_u24_in_CPU
+	    WORD  u8_u24_in_CPU
+
+
+ LANG
+ 	WORD == u32_WORD // IDX or OFFS or EXPR
+	SENSE == ROM_SEGMENT.ZONE_SPACE.lookup( u32_WORD )
+	# THIS TOKEN # merges two types into same_id_same_item_TYPE_t
+	# SYNTAX Layout FILTER rewrite # 
+	ROM_SEGMENT.ZONE_SPACE.lookup( u32_WORD );//ea_THIS // EA_EXPR
+	SENSE == ROM_SEGMENT.ZONE_SPACE.lookup( u32_WORD )
+
+ EA_EXPR
+
+ 	u32_WORD // u16_u8_u8_in_CPU
+
+ eval( EA_EXPR )
+
+ 	u32_WORD_t u16_u8_u8_in_CPU = EXPR
+ 	u32_WORD_t u16_u8_u8 == u16_u8_u8_in_CPU
+ 	u32_WORD_t & u16_u8_u8 == u16_u8_u8_in_CPU
+	u64_WORD_t & u32_u16_u8_u8_t 
+
+
+    u64_WORD_t & u32_u16_u8_u8 == u32_u16_u8_u8_in_CPU
+
+	u32_u16_u8_u8_t & u32_u16_u8_u8;
+
+
+ DOUBLE PARSE
+
+ 	SCRIPT = input TEXT from USER edited
+	FILTER = this_MATCH_Tuplo
+	 HERE == EXPR == MATCH <PATTERN> // TRIGGER
+	 HERE == EXPR == <PATTERN> // PATTERN = u32_WORD
+	 // CODE SPLICE // OBJ_t & obj = lookup( u32_WORD ); // CMNT
+	 // Tuplo MATCH // enum subrange for bitpacked_WORDS
+	 RULE == SUBLEX LHS RHS {
+	  LHS == INPUT // ARGS parameter or u32_token_says_BIND_var_INPUT
+	  RHS == MATCH // _EXPR // LIBR.SCRIPT ROM_SEGMENT u24_ADDR_EXPR
+	 }
+
+ 	build the TREE with type_tagged_Tuplo_twigs
+	PARSE { SCRIPT } into TREE_t & LHS;
+	TREE_t & LHS = PARSE ( SCRIPT ); // lhs = SCRIPT
+	TREE_t & lhs = SCRIPT
+	TREE_t & lhs = SCRIPT_CSR_POS
+	TREE_t & rhs = CSR_POS_in_SCRIPT
+	TREE_t & rhs = EXPR CSR_POS SCRIPT EA_EXPR // _64 _32 _u16_u8_u8
+
+
+
+

@@ -2,6 +2,63 @@
 
 	PSG_SCRIPT/PSG_SCRIPT.txt
 
+	PSG_SCRIPT is the scripting EXPR pool // as used in PSG generators and runtime
+
+	GEN = generate PSG from Bench's PSG_TREE
+	RUN = api apply FILTER over TEXT // filter constructs TREE [s]
+	RUN = GEN yacc and other machines (eg STO) for PSG and it's LIBR
+	RUN = PSG outputs STREAM /* csr */ to TREE // indented text
+
+		DATA LOAD from TEXT in SCRIPT // or ASCII_DATA_SINGS // _TEXT
+
+		PSG = _of_ SCRIPT_tuplos_tree
+
+		DATA LOAD from TEXT in STREAM // _STRINGS _TEXT // _MMAP_end_to_end // _except PAGE0 // _MMAP copy_on_write _to_local_STR 
+
+			STO = STO // _t // u8_u24_decoded // IDX= OFFS= EXPR(u32_payload) // WORD rules for when in CPU register or cache
+
+			STO += STO_api_for_an_MMAP_file // includes HEAP.ALLOC.RW_layer_over_DATA_PANEL // eg <your_TABLE_here/>
+
+			STO += STO_api_for_ALLOC_eg_TREE_BUILDER_api
+
+			MATCH condition SCRIPT {
+			 // trigger == condition == item_idx_xFF
+			 // bind script_csr == PARAMETER // or _DATA or _WORD or _in _CPU
+			 
+
+			 MATCH condition { // is_a_SCRIPT // auto add one_of Bench vars that invoke this, see PARAMETER csr=csr
+			  // pos = csr = csr
+			  // MATCH ONE_OF_ list
+			  // DIALACT _sto_item_ API:: _api_ 
+			  // that makes varname _api_ invoke _api_t and so on
+			  // makes it available in these SUB_SCRIPT_TREES // OPTIONS = Bench SCRIPTS 
+			  // no need to mention // maybe in comments //  SCOPE_import API:: _api_  // DECLARE filtered became MATCH_LIBR_ITEM
+			  // IMPORT POOL // POOL += ITEM // ITEM=ITEM; SPEC=ITEM_SPEC
+			  //
+
+			   MATCH CALL API:: _api_ fn_name ARGV // _ETC_ ROM filters kick in providing fast _API_
+			   // _ETC_ means Bench has wardrobe of object SPEC and BIND vars, macros and api
+			   MATCH CALL fn_name ARGV // ... PSG might have SUBLEX import table // or tagged a s global, implemented as _locl_
+			   MATCH CALL TREE_SCOPE_start
+			   MATCH CALL TREE_SCOPE_add_var ... // named var
+			   MATCH CALL TREE_SCOPE_add_func ... // named item
+			   MATCH CALL TREE_PSG_add_twig ... // named item // or [idx] // maybe MATCH "anystr" // _VIA "FILTER"
+			   MATCH CALL TREE_PSG_add_leaf ... // MATCH "leaf_name" // sounds like VAR_NAME // implied ITEM_name
+			   MATCH CALL TREE_SCOPE_here_indented // IMPLICIT implied by TREE // filtered out as NOISE // implied
+			   MATCH CALL TREE_SCOPE_end
+
+			   ... IMPORT TREE_BUILDER_IPA ... // this is PSG_SCRIPT phrasebook // TRICKY ADD += plain lang text // english _ish
+			 }
+			}
+	
+	PSG SCRIPT is the script where the PSG and DTD are defined, Modules provide STO with EXPTR_t & expr = EVAL EXPR { SCRIPT }
+
+
+
+/home/gps/YEAR/src/PLAY
+
+	PSG_SCRIPT/PSG_SCRIPT.txt
+
 	Every SCRIPT is itself a Module // SCRIPT_TOP anyway //
 	Every MODULE is itself a Module // has name.{CONST,TYPE,VAR,...}
 	Every NAMESPACE

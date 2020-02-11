@@ -1,0 +1,8 @@
+
+	u8_u8_hilo
+
+	 enables byte by btye decode of binary input
+
+	  u16_hilo_t
+
+	   ...

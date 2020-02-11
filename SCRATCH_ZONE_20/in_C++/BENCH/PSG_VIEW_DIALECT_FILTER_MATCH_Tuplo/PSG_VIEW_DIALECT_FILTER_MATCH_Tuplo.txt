@@ -133,6 +133,24 @@
  u8_PAGE_in_SEGMENT // ZONE_t & area = lookup( SEGMENT, u8_idx
  u16_ADDR
 
+ 	decoder u16_hilo ... // SCRIPT precipitates // HERE_IS ...
+
+	 SPEC_WORD u8_hi_u8_lo_t 
+	 // SPEC_filter SUBLEX_MATCH u8_u8_hi_lo MATCH _u16_
+	 // _^_ // ^ // alias "_^_"
+	 // _^_ // ^ // alias " _^_ " // as_lex() // with_surrounding_SP()
+	 // _^_ // ^ += lookup(" _^_ ")
+	 // MATCH " SP %s SP " IDENT_STR // ID.str avoids " " within LEX_expr
+	 // MATCH expr // SUGGEST cident_ASCII_8859_UTF8_via_TOKEN eg cident99
+	 // MATCH cset == ASCII DIAG // cset += '_' += '^' // SUGGEST Q2
+	 // SUGGEST Q2 SP TEXT SP Q2 // PSG.TEXT == TEXT // _t
+	 // MATCED _t // Type_t & item = EXPR( OBJV , _ENV ) // _ENV = builtin
+	 // SUBLEX DOX += HERE EG_of "anystr" auto_opt_add("LHS") // " SP "
+	 // SUBLEX DOX += HERE EG_of "anystr" auto_opt_add("RHS") // " SP "
+	 // MATCH EXPR lhs SP1 %s "{}"
+	 // 
+	 u8_hi_u8_lo_t
+
  SCOPE = ZONE
   saved as ROM[ zone ] STO[ zone ] STO[ stack ]
   ZERO == zone_item_zero

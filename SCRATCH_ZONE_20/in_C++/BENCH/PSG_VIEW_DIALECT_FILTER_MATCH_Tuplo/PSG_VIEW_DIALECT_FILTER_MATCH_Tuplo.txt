@@ -31,6 +31,21 @@
 	ROM_SEGMENT.ZONE_SPACE.lookup( u32_WORD );//ea_THIS // EA_EXPR
 	SENSE == ROM_SEGMENT.ZONE_SPACE.lookup( u32_WORD )
 
+	LANG specifies a few hard to parse typedefs
+	LANG notices ambiguous usage, resolves with _t
+	BENCH adds loads of mini notes to tree
+	LANG is those notes, somwhow GEN + PARSE + TREE + EDIT + RUN
+
+ bootstrap dependency
+
+ 	test twin world ... update tests ... update edit both ...
+
+	remain within the capability of old version
+	add extra features
+	fix existing features
+	repair tree data
+	reload tree from edited source // _regenerated_sources_
+
  EA_EXPR
 
  	u32_WORD // u16_u8_u8_in_CPU

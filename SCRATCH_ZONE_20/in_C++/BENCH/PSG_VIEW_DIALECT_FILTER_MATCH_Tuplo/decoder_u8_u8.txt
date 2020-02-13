@@ -1,0 +1,52 @@
+
+	decoder_u8_u8.txt
+
+ u16_hilo as u8_PAGE u8_ITEM
+
+ 	future _all_PAGE_is_of itemtype_t // _vs_ per_page_Layout
+	// itemtype_t // PAGE_t & page = VECTOR[ 256 ] 
+	// itemtype_t // ITEM_t & item = PAGE{ ... VECTOR[ 256 ] ... }
+
+	current // for this_SEGMENT_SPACE using EXPR_avar u16_hilo u16_lohi
+	// SEGMENT {
+	//	WORD & get( u8_IDX ) return %s_VECTOR_[ u8_idx ]
+	//	WORD & get( u8_IDX, callers _VECTOR_[ u8_idx ] ) {
+	//	 WORD & RETVAR = (c_addr_t) _STO_._VECTOR_ /*.BASE_ADDR*/ + idx
+	//	 sizeof VECTOR_unit == _BYTE
+	//	} // caller provides STO for _VECTOR_
+	// }
+	// SEGMENT {
+	// }
+	u16]
+
+ ITEM_TYPE
+
+ 	var may contain one of LIST of var_type_expr
+ 	LIST of var_type_expr
+ 	var_type_expr -eg- type_1234_or_derived
+ 	var_type_expr -eg- type_1234_or_base // extra filter from RT on_load_use
+ 	var_type_expr -eg- type_1234_or_api // SPEC can describe TREE of ATTR
+ 	var_type_expr -eg- SELECTED of LIST // u3_idx LIST_8_of_u32_WORD
+ 	var_type_expr -eg- MERGE of LIST
+
+ LIST_TYPE
+
+ 	WORD_t & item = array_of_word_01[ u3_idx ] 
+ 	WORD_t & item = (cast WORD_t &) array_of_word_01[ u3_idx ] 
+	operator (cast WORD_t &) ( u32_hilo & WORD_32 ) {
+	#ifdef expand word_u32 to object_is_PTR
+
+		LIST_SELF = _SELF_ // triggers %s_main_TABLE = _self_as_table_
+		TABLE = LIST_SELF_main_TABLE
+		= STO_ADDR from OFFS in SEGMENT = still in MMAP
+		= MEM_ADDE from TABLE upgrade from NULL ctor (STO_spec_inst)
+		// N() is table_N // full_u8
+		item = TABLE[ WORD_32 ] // 
+
+	#ifdef bind word_u32 to WORD_32
+		item = WORD_32 // simpler dialect
+	#else
+		item == WORD_32 // dialect that shortcircuits #define one other
+	}
+
+ 

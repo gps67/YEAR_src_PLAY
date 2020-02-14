@@ -1,0 +1,27 @@
+
+	CPU_ABCD_PQ__/
+	CPU_ABCD_PQ__.txt
+
+ Each micro fragment has its own 
+
+	CPU ABCD_PQ
+
+ 	    SP FP
+
+	    MMX // ops_n_splits
+
+	    MORE // local_var thread_var CPU_var // CACHE_of_REMOTE_var
+
+
+ ALLOC to micro fragment 
+
+ 	idx = N++ // A B C D on_FULL // on_callback
+
+	custom C is counter
+	custom A is retvar // along with ... FLAGS ... Type_t & retvar1 ...
+
+ u8_idx xFF_
+
+	 idx = xFF_// space // zone { ITEM[ u8_idx ] }
+	 idx = xFF_// space = zone_at_ITEM[ u8_idx ]
+	 idx = xFF_// place = in_ZONE_at_LOCN[ u8_idx ]

@@ -1,0 +1,124 @@
+
+	u8_u8.txt
+
+	SEGMENT_u8_u8_t
+
+	 u8_hi = idx_of_PAGE // within SEGMENT
+	 u8_lo = idx_of_ITEM // within PAGE
+
+	SEGMENT_u16_t
+
+	
+	 ALLOC = PLOW_THROUGH_PAGES // CLICK JUMP BACKFILL
+	 BASE = SEGMENT_u8_u8 via u16_hilo ALLOC=renumber after sort
+
+	SEGMENT_u8_u8_t
+
+	 PAGE = VECTOR_OF_PAGES[ u8_hi ]
+	 ITEM = VECTOR_OF_ITEMS[ u8_lo ]
+
+
+/////////////////////////
+	 
+	PAGE_t _as_VAR
+
+	 crazy tokenised 'bolic world
+	 might want a var, to "BE" the type_SPEC["PAGE_t"]
+	 _t is misleading, but only because the SYMBOL prefix
+	 #SYMBOL $SYMBOL "SYMBOL" // splice "anystr" CPP_TOKEN
+	 #define TOKEN_name1 PAGE
+	 #define TOKEN_spelling "%s_t" TOKEN_name1
+	 #define TOKEN_declaration LEX_ON_PAGE
+	 // LEX_in_LIST // leave PAGE for DTP // for MMAP segment PAGE0
+	now back to sane world where PAGE_t is a type, Bench has INST_ACCES
+
+	not worried about speed of ALLOC idx = N++;
+
+	know FULL is NULL
+
+	class SEGMENT_t : SPEC_t
+	{
+	
+		WORD_u32 
+	         PAGE = VECTOR_OF_PAGES[ u8_idx ];
+
+		bool decode_u16_ea(
+			// SEGMENT_t & SEGMENT = *this
+			u16_hilo & hilo,
+			PAGE_t & PAGE,
+			ITEM_t & ITEM
+		);
+	}
+
+	class PAGE_t : SPEC_t
+	{
+		WORD_u32 
+	         ITEM = VECTOR_OF_ITEMS[ u8_idx ];
+
+
+		// ALLOC
+		bool EMPTY = true; // N_free == ZERO means EMPTY // else full
+		u8 N_free = 256; // KNOW ZERO on_first_use() on_FULL()
+		u8 idx = u8_idx;
+
+		bool is_FULL() { 
+		 if( N_free ) return false;
+		 // because N 256 free clamped in u8 // zero means ...
+		 if( EMPTY ) return false;
+		 return true; // is full
+		}
+
+		bool is EMPTY() { return EMPTY; }
+
+		u8_idx_t ALLOC() {
+		   if(is_FULL()) {
+		    OVER_FULL_bounds_error();
+		    return 0xFF;
+		   }
+		 }
+
+		 int idx = N_free; // use VAL then decr for next
+		 N_free--; // LOCK get_decr_put_ret_orig if_C_FLAG
+		 if(N_gap == 0)	// FULL or EMPTY clipped
+		 {
+		  if(EMPTY) {
+		   EMPTY = false;
+		  } else {
+		   on_FAIL() = OVER_FULL_bounds_error();
+		  }
+		 }
+		 if(idx == 0)
+		  on_LAST();	// 
+		 if(is_full_flag) on_FULL() 
+	};
+
+///////
+		 LOCK get_decr_put_ret_orig if_C_FLAG
+
+		 int N = N_free--; // LOCK
+		 if_BORROW
+
+		 LOCK get_decr_put_ret_orig if_C_FLAG
+
+		 LOCK get_decr_borrow_bails_put_ret_orig 
+		  calls
+		        ALREADY_EMPTY_bounds_error();
+
+		  // FULL_POS = N_when_FULL = 256
+		  #define FULL_POS 256
+		  SPIN_lock {
+		   int N = N_avail;
+		   if( N == 0 ) {
+		   	release SPIN_lock; // can now call user code
+		        ALREADY_EMPTY_bounds_error();
+			return FAIL( "N_avail == 0" );
+		   }
+		   int idx = FULL_POS - N; 
+		   N_avail --;
+		   release SPIN_lock; // can now call user code
+		  }
+		  on_EACH(); // idx
+		  if( N == 0 ) { 
+		   on_LAST(); // idx
+		  }
+

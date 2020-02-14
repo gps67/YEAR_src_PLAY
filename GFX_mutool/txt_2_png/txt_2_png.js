@@ -24,7 +24,7 @@
 
 	function expand_tabs( str ) {
 	 var dst = ""
-	 dst = "LHS "
+	 // dst = "LHS "
 	 var len = str.length
 	 var xpos = 0
 	 for( var pos = 0; pos < len; pos++ ) { // es5 not es6 ?

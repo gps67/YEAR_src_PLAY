@@ -1,0 +1,111 @@
+/home/gps/YEAR/src/SCRATCH_ZONE/
+	CPU_ABCD_PQ__/
+		PSG_PARSER.txt
+
+	CPU_ABCD_PQ_PLUS_/
+		MORE_registers "varname Type_t 
+
+	Problem with ABCD_PQ is that every fragment of code claims ABCD_PQ
+	AUTO_FIT abcd_register to A then B ... via ALLOC
+	new_idx = N++ // ALLOC_t on_FULL on_LAST on_EACH on_ITEM
+
+ DIAG_CHAR_PARSER
+
+	u8 * P; // P = in.buf
+	u8 * P = in.buf
+ 	P = EA( buffer[0] ) 
+ 	P = EA( buffer ) // buffer & in = read_entire_file(); P = in.buf; // u8 * P ) 
+	// ID LABEL xFF NAME SPEC EXPR_TEXT
+	// const_ROM_SEGMENT__N_bytes // ROM_DATA_P0P2 _zone
+	// also avail as P0P2 [P0...[P...[P2
+
+	/*	SEE mm3_scan/scan_nl/scan_nl.h
+
+		TO  build a flexible library of building blocks
+
+		DIAG {
+
+			EM_Layout_Items
+
+			 VAR_Static_Persistant
+			 	USER_%s
+			 	USER_${USER}
+			 	USER_%s %{DBID}s // DBID = "-anystr-"
+			 	 %{DBID}s // DBID = 0x1234 = lookup "-anystr-"
+
+				 // ID == "DBID" 
+				 // xFF == u8_idx
+				 // NAME == "USER"
+				 // NAME == "anystr" // MATCHES EXPR // -hence-
+				 // $1 == #USER // or DIALECT $VAR_NAME
+				 // flexi_lex MATCH ASCII_HASH Name
+				 // flexi_lex MATCH #Name
+				 // flexi_lex MATCH "VAR" "_" #Name
+				 // #Name == #name1 "_" xFF( u8_idx )
+				 // u8_idx == "0xD4"
+				 // u8_idx == CodePoint_LOCN_idx_t
+			 	
+				RunOnce /* const result */ 
+				"CTXT.doc.stylesheet.P_PRINT_HEAD"
+				"CTXT.doc.stylesheet.P_PARSE_HEAD"
+				"PRINT_HEAD.STYLE[ u8 STYLE_u8_id_STYLE_DEFAULT"
+				"CTXT.doc." -> ".doc."
+				"StyleSheet STYLE = .doc. .styles. .nearby.
+				"StyleSheet STYLE = CTXT.doc.stylesheet['STYLE_default']"
+				stylesheet.EM_layout_Items {
+					dx = EM_pixel_width = CALC CONST
+
+					FONT default = PRINT_HEAD.default.font
+					FONT_default.re_compute_settings {
+					VALUE_TYPE_pt 	FONT_pt	.pt
+					VALUE_TYPE_pix 	FONT_pix .pix
+					}
+
+				CALC CONST {
+
+					default = CTXT.default
+
+					... TODO
+					... SCRIPT
+					... default.font_size
+
+					// USING GLOBAL object as thread_var_X
+					// SWITCHING GLOBAL_OBJ = CALLERS_PLUS_X_
+					// LINK_LOAD
+					//  import
+					//    SCRIPTS = POOLED_ARCHIVE
+					//    EXPRS = SCRIPTS.EXPR
+					//    DATA merge in a ./subdir/names
+					//    DATA merge in a ./names
+					//    DATA in = DATA_BASE.SHEET_%4X_%s
+					//    BASE = DATA_BASE
+					//    BASE -eval- {
+						// BIND CPU = ABCD_PQ.CPU;
+						// MACRO CPU // ABCD_PQ_CPU CPU = ABCD_PQ.CPU;
+						// That creates the TOKEN("CPU") and also imports some of the module that ports it here, maybe even BIND
+						// BIND DBID = lookup("-anystr-")
+						// MATCH_BY("exact phrase")
+						// MATCH_BY("snormalise me phrase")
+						item = ABCD_PQ.EA_EXPR
+						DBID = item.DBID
+					//    }
+
+				} { // RESULTS IN CALL:
+
+					dx = EM_pixel_width = CALC CONST
+				}
+
+				STR0_8859 
+			 CALC
+				dx = dx_left_margin_EM_Layout_VAR.get()
+				MOVE dx = dx_left_margin_EM_Layout_VAR.get()
+
+				CMNT // using FONT = CTXT.DOC_POOL.pallette_style_sheet_FONT[18]
+
+				// doc_layout_
+				// doc_stylesheet_
+				// doc_main_text
+				// doc_INDEX_CARD // exported, re-build on demand
+
+		}
+	*/

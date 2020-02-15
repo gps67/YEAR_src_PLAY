@@ -16,6 +16,82 @@
 
 	 PAGE = VECTOR_OF_PAGES[ u8_hi ]
 	 ITEM = VECTOR_OF_ITEMS[ u8_lo ]
+	
+	u16_hilo as u8_u8
+	// hilo in mem u16 in cpu_var VAR
+	// WORD does some bitfield fast access
+	// u32_abcd // abcd in MMAP ; dcba in VAR ; letter_b in VAR.cpu_var.VH // .VH .VL .VX .reax
+	// .u16_cd // DX_u16
+	// .u16_ab // cpu_var_u32.rotate_16 u16_retval = DX_u16
+	// ,u32_abcd // .reflex field == "ID" == "idx" == 'TABLE.lookup("anystr")' // this is why SCRIPT breaks C 'A' char to 'str'
+	// SHELL use of ' to surround " can be useful, eg 'Obj_t & obj = %s Q1 EXPR_in_not_Q1_dialect Q1 ENDLEX(usually)
+	// .lookup("anystr")
+	// SEGMENT.TABLE.lookup("anystr")
+	// SEQ Q1 not_Q1_str Q1 USUALLY_LEX_END
+	// SUBLEX SEQ ASCII_SINGLE_QUOTE 
+	SEQ reax // r e {a,b,c,d} {h,l,x} // MORE R8, R9, RA, RB, RC, RD, MORE RE RF MORE SP FP IP MMX [s]  }
+
+	// TODO READ UP ON RE { curlies }
+
+u32_OFFS_FILE u32_OFFS_SEGMENT u8_idx_SEGMENT_id u24_idx
+
+	PROFILE_t & PROFILE = _SEGMENT_ // MMAP each FILE into its allocated PAGE0 ... PAGE[N]
+
+	FILE_t & FILE = _SEGMENT_
+	FILE_t & FILE = _SEGMENT_
+
+	Actually you could have 64 bit SEGMENTS with FAST ZONE [ u24_idx ] BUT 32 bit SEGMENT is plenty for DTP APPS
+	With coding, can have BLOB48 u48_idx u64_idx // BLOB32 // u64_idx 
+
+		The FILE uses u32_OFFS // u64 could multiplex u32_file into existenca
+		The FILE exports u24_idx // [u24_idx] of [u32_idx]
+	
+	ALSO I am loading everything into four PROFILE_FILE s ROM3 // each pre-merged
+
+
+	u32_OFFS_FILE
+	u32_OFFS_SEGMENT
+	u32_IDX_SEGMENT
+
+	u8_idx_SEGMENT_id	leaves u24 for use WITHIN this file
+	u8_idx_SEGMENT_id	tells us EXPR to . // presume full ROM MAP loaded // still works when unloaded
+
+	u24_OFFS_FILE		DATA_16MB_PAGE16M
+	u24_OFFS_SEGMENT
+	u8_idx_SEGMENT_id
+
+
+SUBLEX	building runtime trees of data for CACHE filters etc
+
+	u24_u8 SEGMENT_EA_EXPR_32 // ea of ITEM = obj = &*this in SEGMENT_BYTES 
+
+	SEGMENT_EA_EXPR_32
+	SEGMENT_BYTES
+	SEGMENT_N_BYTES // RT data available in VAR = SEGMENT .nbytes _asif_ _P0P2_ _N_BYTES_
+	SEGMENT_SPEC // CT KNOWS (at_least) CODE_POINT=={ cident TYPE_EXPR_name_of }
+
+	OPCODE_NBYTES // opcode is DATA_Layout_opcode {u32_hilo N} {u8[ N ] BYTES; // inline data }
+
+	STRUCT_field
+	STRUCT_expr
+	STRUCT_nearest_copy
+	CPU_VAR = STRUCT_field // WORD_u32 or other
+	CPU_VAR . bits . rotate bit_fields test_for_zero test_bit_flags 
+	CPU_VAR . save_on_stack . save_on_nearby register . load_from_stack load_from_register
+	CPU_VAR the ITEM can move into and out of a CPU_VAR, to a closer CPU_VAR, nearest proper NAME is CPU_VAR
+
+	SEGMENT_OFFS_u24 
+	 SEGMENT_OFFS_u32 // KNOW u24_u8 as u32_abcd // KNOW BITFIELDS_abcd
+
+		SEGMENT_OFFS_u32 // expect aligned to 16 // CPU can return u32 from u12 bitfield 
+		KNOW u24 < u32 so no possible sign consufion
+		KNOW u24 was only a suggestion, for the near-reachable-area
+		KNOW u12 bitfield in EXPR_64 requires OWN_CPU_VAR in CACHE // downgrading CPU_VAR to SCRIPTED_EXPR( ... )
+
+	SEGMENT_u8_u8
+
+		object = OBJECT_[u16_idx]
+		OBJECT[ 64K ]
 
 
 /////////////////////////

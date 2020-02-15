@@ -1,0 +1,47 @@
+
+SEGMENT_u8_u8
+FILE_u8_u8_u8_u8
+ITEM = SEGMENT
+ITEM = u32_ROM_COPDE_POINT // in current CPU stack // in TABLE[ u32_expr ]
+
+CACHE_u8 
+ CACHE_ITEM = {CACHE_ITEM code_point} 
+ EXPR_within_ITEM_t EXPR[ u8_idx ]
+
+ EXPR_t & EXPR = CACHE.EXPR_from_idx( u8_idx )
+
+ cache_item_t * item = (obj_from_WORD_from_idx) ITEM[ u8_idx ]
+
+
+// C syntax ADDED or UNDRAWN
+// CACHE.EXPR_from_idx( u8_idx ) // PSG_EDGE
+// CACHE.EXPR_from_idx u8_idx // PSG ambiguous no end to list of TOKEN // STREAM_PSG_TOKENISER // brings ; back // ;
+
+
+SCRIPT VIEW
+
+	Reading the source
+	It is a TEXT filter, but I cant do curses as well, so X11, W32, GL_oop, SDL_2D
+	VIEW redraw anim using pallette shift and effects
+	VIEW show/hide parenthesese SUBLEX_VIEW_FADE_detail // indent differently
+	FOCUS SHOW fields in panel // zoom font // panel with mouse (on) //
+
+	INDENTED TREE 
+	Layout 
+	...
+
+	Normalise VIEW or VT100 normalise VIEW // cb loop
+
+DIAG Layout
+
+	IND_MORE
+	IND_LESS
+	IND_BBOX // effects slide to FRAME which does multi_pass finds_first
+	BIND_CODE_POINT ROM.SCRIPT.LINE
+
+	TREE_WALK
+	CALC_matching_indent_layout_TAB_RULE
+	PREP_FONTS
+	KEEP_Layout as collection of u32 f32 tokens exprs string, can SAVE LOAD
+
+

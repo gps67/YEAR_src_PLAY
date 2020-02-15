@@ -56,9 +56,23 @@ u32_OFFS_FILE u32_OFFS_SEGMENT u8_idx_SEGMENT_id u24_idx
 	u8_idx_SEGMENT_id	leaves u24 for use WITHIN this file
 	u8_idx_SEGMENT_id	tells us EXPR to . // presume full ROM MAP loaded // still works when unloaded
 
-	u24_OFFS_FILE		DATA_16MB_PAGE16M
-	u24_OFFS_SEGMENT
-	u8_idx_SEGMENT_id
+	u24_payload_to_u28_OFFS // _CLICK_u4
+	u28_OFFS_FILE		DATA_16MB_PAGE16M // convert u24_payload
+	u28_OFFS_SEGMENT
+
+	u8_idx Layer		SYMBOL USAGE SHIFT // magic from idx to Object * // needs ZERO of CURR Layer
+	// u2_idx STO=STO // abcd.a.u2 = u2_idx
+
+	u24_idx u8_u8_u8	This is still one file decode_u32 with 256_Layers
+
+ADDR_PAIR
+	( HEAP ITEM }
+
+	{ FILE SEGMENT }
+
+	{ SEGMENT EXPR } // probably_ITEM_EXPR might be { on_first_use() ; /* retval */ get() }
+
+	{ CTXT EXPR } // PLUS other_parameters_locals_globals_etc // PLUS macro_tree_gen_SCRIPT_EXPR
 
 
 SUBLEX	building runtime trees of data for CACHE filters etc

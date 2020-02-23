@@ -1,0 +1,42 @@
+
+	GEN_tree_view_api/
+	GEN_tree_view_OF_api.txt
+
+	LOCAL DIALECT is importing an API and wrapping it
+	There is a VANILLA interpretation, based on LIBR
+	There is a FLAVOURED interpretation
+	DIALECT adds WRAP(well_known_phrase)
+	DIALECT and ORIGINAL use COMBINED_VOCABULARY
+
+		LUCKY = independent subsets // more for each Layer 2+
+		MERGED = prepared common tree AGREED
+		SWITCHED = conflict // possibly a resolvable one // DONE
+		RESOLVED = importing_code RESOLVES LIBR 
+		PROTECTED = ROM = RAM at your own risk = need PERMIT to call
+		SUPPLIED = PREBUILT BUILTIN TABLES // run own code // cached
+	
+	DIAG API needs TYPE DIAG
+	API DIAG needs TYPE DIAG
+
+	TYPE DIAG ENUM GEN_CODE { ... }
+	TYPE DIAG TOKENS GEN_CODE { ... }
+	TYPE DIAG STRINGS GEN_CODE { ... }
+	TYPE DIAG STRUCT GEN_CODE { ... }
+	TYPE DIAG ARRAY GEN_CODE { ... }
+
+	TYPE DIAG POOL [ idx ] of u32_WORD
+	TYPE DIAG Item_t & item = EXPR // may need CTXT :-)
+	CODE DECL Item_t & item = find_item( CTXT, "lookup('anystr')" )
+
+	/*
+	  CONVERT "string" to SPELLING
+	  CONVERT #SPELLING_TOKEN to { ... }
+	  _to_ BINDING_CT
+	  _or_ BINDING_RT
+	  _or_ _BOTH_
+
+	  // _TOK_ is TOKENISED var is CONST or _PARAMETER_ or _EXPR_
+	  // _CODE_POINT_ as _TOK_ brings all code of that SCRIPT_SCOPE
+	*/
+
+

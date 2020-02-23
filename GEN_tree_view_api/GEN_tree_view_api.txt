@@ -104,8 +104,25 @@
 		when two objects have same SPELLING
 		loss of FOCUS over Name because of import MERGE by [idx]
 		retain TOKEN // idx_ITEM
+		on_DETECT => { SCRIPT_WRAP STO_HEAP_COMPILING_PHRASE }
+		// TEMP_VARS INIT_EXPR SEGMENT STO=SESSION(CODE,DATA)
 
-		when one object in IMPORT_EXPORT_TABLE
+		PUN is the exception to the TOKEN
+
+		here we use definition - if it matches, it is it, ! TOKEN  !
+		elsewhere there might be a system that accepts ALIAS_PUN
+		eg resolve it using HEURISTICS
+		eg resolve it using STO upto WHEN
+		eg resolve it using Bench_LOCN // ? //
+
+		when one object in IMPORT_EXPORT_TABLE 
+
+		 	u32 TOKEN
+			struct TOKEN_t : TOKEN_BASE_t { ... }
+			TOKEN_t & u32_TOKEN = EXPR // already u32_cpu in_reg
+			HERE we dont have enough to return the STRUCT TOKEN_t
+			// old fashioned C used to say "struct typename_t"
+			// STRUCT brings it back, to CTXT, needed in PHRASE
 
 		 OTHER half of this API will have its API
 		 DESIGN says there is an INIT_on_load process
@@ -129,4 +146,49 @@
 			// nb NULL is VIRUS_SCAN_SPEED_UP_use_own_DEFAULTS
 			// _CODE_ACCELERATOR_ _TOKENISER_
 		 }
+
+		 A VALUE PUN is how a soft API talks SIMPLES 
+		 // trigger TRACER on LEX as dgb api 
+
+	GEN_ tree_view API
+
+	 DRAW BOXES
+
+		ACTUAL tree_view is a Bench_LOCN_DIAG and it's main target
+		lots of 2D boxes, with TEXT in it, some TAB_RULERS
+		PIXEL_PERFECT in wasm_to_CANVAS
+		WASM_DIAG coords
+
+		The usual first attempt folding tree
+		except some HEURISTICS about unfurled sails
+
+		As well as TREE there are FLAT LISTS
+
+			DIAG component
+			uses VARS_LIST
+
+			expand VARS_LIST from JSON to DIAG {
+			 VARNAME VARTYPE VARINIT (TREE ITEM )
+			}
+
+			Caller can provide VARS_LIST, INIT'd // MODEL SECURE
+
+		As well as TREE there are GRID LISTS
+
+	 DRAW GL
+
+	 	webGL is WASM optimised (or switched off)
+		needs an API, maybe a few basic verbs, 
+		limit to PDF matrix but GUI_ANIMATED
+		click_to_pt72 has a user profile of pt settings
+		pallette_72 FONT_in_CACHE_t & font = FOUR[ idx_u2 ];
+		// u2 triggers PREBUILD to create a TABLE of ...
+		// TOKEN_SPELLING == " FONT1 " // SP signals is_a_lex
+
+		// 12pt // plain text 
+		// 16pt // heading
+		// 24pt // banner
+		//  8pt // fuzzy
+	
+		click_to_pt72 knows that webGL can zoom and fade
 

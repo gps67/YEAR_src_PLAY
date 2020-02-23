@@ -1,0 +1,40 @@
+
+	STO_u32_abcd
+
+	u32_hilo_abcd
+	u32_lohi_dcba_from_abcd // SWAPB 
+	u32 u8_u8_u8_u8
+
+	u32_OFFS	// saved in STO_DATA_hilo // needs _ZERO_ -aka- _BASE_
+
+	SEGMENT_u8
+	SEGMENT_u8_u8
+	SEGMENT_u8_u8_u8
+	MERGED_u8_SEGMENTS_u8_u8_u8
+	ITEM is SEGMENT
+	EXPR = UDEF( ... BASE + OFFS ... ) // standard fragment expressions
+
+	u32_CODE_POINT	= ROM/LIBR/SCRIPT/LINE/LEX_POS // TREE_POS
+
+	SEGMENT {
+	 u32_OFFS
+	 i32_EXPR
+	}
+
+	MACHINE 
+	 VAR "TREE" = TREE_root TREE_admin TREE_csr[ "lookup('anystr')" ]
+	 VAR "CSR" = {
+	 }
+
+	
+	MERGED_u8_SEGMENTS_u8_u8_u8
+
+	MERGED_u8_MERGED_u8_SEGMENT_u8_u8
+
+	SEGMENT_u8_u8_u8_u8
+
+	SEGMENT_u8_u8 // within larger ZONE and it's ALLOC
+
+	 
+
+

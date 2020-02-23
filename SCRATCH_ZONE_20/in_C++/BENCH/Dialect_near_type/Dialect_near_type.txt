@@ -1,0 +1,63 @@
+
+	Dialect_near_type/
+	Dialect_near_type.txt
+
+	        EL.add_text(name)
+	        EL.add_text(" = ")
+		// " = " matches LEX optional SP view SP
+
+	near EL // output stream // tree builder csr //
+
+		"for use in output display"
+
+		CAST (string) text(name)
+
+		{ desc } might be EXPR CAT list_of_EXPR thru VIEW_as_TEXT
+
+		{ show_var( { fields_used } ) } {
+		 { fields_used } {
+
+			EL
+			name
+			value
+			desc
+		 }
+
+-vs-
+		   KNOW EL is output TREE_ELEM
+		   KNOW cident99 is field_name
+-vs-
+		   KNOW EL is output STREAM_CSR_PRINT_HEAD
+-vs-
+		   KNOW EL is output STRING_CSR_PRINT_HEAD
+		   // TEXT += DTP // EM INDENT B_I_U super_sub_script font pt
+		   // TEXT += DTP // TEXT += DTD // _SPEC_ of _INST_
+		   // TEXT += DTD // 
+		   // _SPEC_ of _INST_ // 
+		   // _SPEC_ with _INST_ // 
+
+-vs-
+	Dialect_near_type/
+
+		type == { EL } // html elem tree building csr
+		dialect ELEM // TREE //
+		dialect IMPORT
+
+		type == { TEXT } // UTF8 incl ASCII_CTRL_PLUS // poss XML
+		dialect GEN
+		dialect PY_SCRIPT
+
+		it is type1 that influences how _fn_ _add_text( view_of( name ))
+		how name gets type_cast via view (data_view_of) of name
+		or clutch of 
+
+	function show_var( EL, name, value, desc ) {
+		EL.add_text(name)
+		EL.add_text(" = ")
+		EL.add_text(value)
+		EL.add_text(" # ")
+		EL.add_text(desc)
+		EL.add_text("\n")
+	}
+
+

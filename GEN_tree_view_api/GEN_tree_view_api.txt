@@ -1,0 +1,132 @@
+
+	GEN_tree_view_api/
+	GEN_tree_view_api.txt
+
+	GEN_
+	 outputs C++ layer_name_t over base_layer_t
+
+	 	layer_name {
+		 tree_view { ... }
+		 .Module.CODE.API.
+		}
+
+		base_layer {
+		 CT {
+		  DECL SPEC TYPE base_layer_t
+		  // TYPE_t is a SPEC_t plus_here DECL_t
+		  // Bench SUBLEX has SYMBOLOGY 
+		  // select all vars that use base_type_group
+		  // DECL_t might be TOKENISED. ITEM or EXPR
+		 }
+		}
+
+	GEN_ tree_view API
+
+		uses coords // as used in DPI and DTP
+		uses DPI and DTP
+		STO LIST[idx] of ITEM(SPEC,INST)
+	
+	PSG of "ITEM(SPEC,INST)" // SUBLEX matches range of import options
+
+		ITEM_t & item = EXPR
+		EXPR => EXPR || ITEM
+		ITEM => EA_ITEM // require STO loaded // eg SEGMENT = RW
+		ITEM => .field ".name" // YES the ".field" also has Q2_STR
+
+	GEN_ tree_view API
+
+		DIAG_ITEM // uses coords // as used in DPI and DTP
+		// uses 2.3 DIM_XYZ 
+		// uses pt72 // api for all things DTP pixels and PDF coords
+
+	GEN_ tree_view API
+
+		coords pt72 dpi150 matrix xyz xy XPOS SEEK FILE_LINE_XPOS
+
+	GEN_ tree_view API
+
+		DTP { ... Layout ... }
+		DTP { ... Coords ... } // accept DPI=100 // coords
+		DPI { ... Pixels ... } // accept DPI=100 // coords
+		DPI { ... lib_DRAW ... } // DRAW // lib_DRAW()
+	
+	VIEW
+
+		DIAG = story board
+		DIAG += CACHED_Layout // PREBUILD
+		DIAG += USER_VARS // PREBUILD // PREPARED to BUILD
+		DIAG += Bench // bunch of tools appear in popups
+		DIAG += Session // create all those USER_VARS then RUN
+
+	BENCH NODE 
+
+		VAR ZERO == 0
+
+		//	OK permit bad syntax, by DIAG that explains
+
+		RUN4 // ENUM RUN4
+
+		 RUN1
+		 RUN2
+		 RUN3
+		 RUN4	// defaults to FOUR[ZERO]
+
+		 class RUN4_t {
+		  ITEM_t & FOUR [ 4 ] ;
+		  EXPR run4 = CT_KMOW {
+		   ALIAS RUN1 FOUR[0]
+		   ALIAS RUN%c FOUR[%d] / %c means RUN4 ceiling u8 // TOKEN
+		   GEN {
+		    ALIAS RUN1 FOUR[0]
+		    ALIAS RUN1 FOUR[1]
+		    ALIAS RUN3 FOUR[2]
+		    ALIAS RUN4 FOUR[3]
+		    {
+		    	CODE that generated above list { ... }
+		    }
+		   }
+		  }
+		  EXPR RUN1 == FOUR[ 3 ]
+		 };
+
+	TOKEN of USER_CODE in IDE
+
+	 RUN4 is the entire ENUM RUN4
+	 RUN4 is an ENUM_ITEM // ! is own ENUM_GROUP RUN4 group
+
+	 ... lots of other SYMBOLOGY and TOKEN ...
+	 // BOTH have local_USER_data and loaded_LIBR_data 
+	 // access SPELLING via CODE_POINT( argv )
+	 // SPELLING("RUN4"); // SPELLING(DRY,"%s"); // VALUE PUN
+
+	VALUE PUN
+
+		when two objects have same SPELLING
+		loss of FOCUS over Name because of import MERGE by [idx]
+		retain TOKEN // idx_ITEM
+
+		when one object in IMPORT_EXPORT_TABLE
+
+		 OTHER half of this API will have its API
+		 DESIGN says there is an INIT_on_load process
+		 IDE says "%s" is '"%s"' is STR_AS_TOKEN
+		 IDE says "%s" is '"RUN4"' // Q2 already in TOKEN + ANGLE
+
+		so when the $NAME matches .field 
+
+		 it is an API CODE_POINT and GEN { ... }
+		 it is an ENUM_ITEM // ...
+		 it is SEQ ...
+		 it is LIST ...
+		 it is Typed_t STO_EXPR_field [s]
+
+		 GEN {
+		 	tell CACHE to backdate to SCOPE
+			// NULL SCOPE means SCRIPTED function + CTXT
+			// default NULL // means use own DEFAULTS
+			tell CACHE to add ITEM to SCOPE
+			tell CACHE to add ITEM // NULL SCOPE gets DEFAULTS
+			// nb NULL is VIRUS_SCAN_SPEED_UP_use_own_DEFAULTS
+			// _CODE_ACCELERATOR_ _TOKENISER_
+		 }
+

@@ -1,0 +1,33 @@
+
+	 u8
+	 u8 = u3_u5 
+	u12 = 4096 = MMAP page // also ARM OFFS
+	u16
+	u19 = u16 << 3 // UNIT_u64_8bytes WORD
+	u20 = u16 << 4 // as x86 segments are (pre 386, which avoids)
+	u24 = u16 << 8 // as segments should have been
+	u24 = u24 bitfield from u32
+	u24 = u8_u8_u8
+	u28 = u24 << 4 // click_u2
+	u32
+	u32 = u8_u8_u8_u8
+	u40 = u32 << 8
+	u48 = u32 << 16
+	u48 = u64 >> 16 
+	u64
+	u128 
+
+ ARM uses lohi !! 
+ ARM has rotate within OPCODE ...
+ ARM does/NOT/? have AH AL AX 
+ ARM2 does not have same u16 support as ARM+
+
+ WORD
+  u8
+  u16
+  u32
+  u64
+  u128
+
+  MMX provides storage for extra registers
+  (but needs lots of checking for corrupt after call)

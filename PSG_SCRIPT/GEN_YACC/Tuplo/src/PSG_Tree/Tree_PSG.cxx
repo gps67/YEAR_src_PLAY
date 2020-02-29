@@ -805,6 +805,7 @@ gen_YACC_union( buffer2 & out )
 // this list comes from %left <token> PUNCT_STAR // "token_type token"
 
  L("  struct EXPR * expr;"); // almost // incomplete type?
+ L("  u32 e32;"); // retval is int
  L("  int token;");
  L("  const char * lex_buff;"); // via several buffer2 ring of holders
  L(" }");
@@ -846,8 +847,7 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_type_list( buffer2 & out )
 {
- // <expr> is the fieldname
- // expr_ident is the rulename
+ // L("%type <unionfieldname> rulename");
 	 L("");
 	L("%type <expr> expr_ident");
 	L("%type <expr> expr");

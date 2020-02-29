@@ -127,6 +127,7 @@ namespace STO {
 	bool print_0xFFFF(buffer2 & out) {
 		i32 val = get_i32_cpu(); // decided there is no ACTUAL type _cpu
 		out.print("0x%4X", val ); // i32 to int
+		return true;
 	}
 
  // SHIPPING as word network byte order 
@@ -177,6 +178,7 @@ namespace STO {
 		// round returnd double, sure there is an asm to i32
 		i32 _val = (i32) round( dbl );
 		set_from_i32( _val );
+		return dbl;
 	}
 
 	float set_from_float( double dbl ) {

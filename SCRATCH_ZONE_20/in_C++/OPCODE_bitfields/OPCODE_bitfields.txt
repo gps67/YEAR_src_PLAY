@@ -1,0 +1,48 @@
+OPCODE_bitfields/
+OPCODE_bitfields.txt
+
+	OPCODE( bitfields )
+
+	bitfields += u4_field
+
+	 BITFIELD name { // all CT // Tokenised_Parameters
+
+	 u32 u32_idx_this = TOKEN_t u32_TOK_in_SUITE // vectored via import tables
+	 u32_hilo * ea_expr_id_in_mem
+
+	  uplink_t uplink; // .. . // bitfield_of_WORD
+
+	  Name_t & name = EXPR("Name");
+
+	  u8 lhs_nbits
+	  u8 mid_nbits
+	  u8 rhs_nbits
+
+	  u32_abcd_t code_point_of_DECL;
+
+	  DOX_ _ZERO _ONE _TWO {
+	   uses DOX_ as this_$0_tuple_type
+	   uses _ZERO as this_$0_tuple_inst
+	   uses _ONE as_VIEW_ONE
+	   uses _TWO as_VIEW_TWO
+	  }
+
+	  // CT caches some attr settings
+	  // bool is_H_L_16_32_64 // ie x86 
+	  // bool is_pre_split // by decoder to clutch of mem || cpu
+
+	  u32_abcd_pre_split {
+	   u8 u8_a;
+	   u8 u8_b;
+	   u8 u8_c;
+	   u8 u8_d;
+	   u16 ab;
+	   u16 cd;
+	   u32 mem_abcd;
+	   u32 mem_dcba;
+	   u8 fields_wanted; // == TOK_0xFF // const CT_TOK
+	  };
+
+	 }
+
+u8 is rounded up from u5 or u3 or TOK

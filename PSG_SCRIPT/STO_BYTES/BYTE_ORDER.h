@@ -7,6 +7,7 @@
  #define CPU_HILO 0
  #warning "currently be testing on AMD64 - soon delete this message"
 #elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+ // except ARM is also LOHI ...
  // ARM Motorola HILO
  #define CPU_HILO 1
  #define CPU_LOHI 0
@@ -35,6 +36,22 @@
 
 		HERE ASM
 
+	*/
+
+	/*
+		u32_abcd
+
+		when loaded into x86 u32 looks like dcba
+		so AH == b AL == a 
+		>>16
+		so AH == d AL == c 
+
+		swapb provides abcd
+		so AX == cd AH == c AL == d
+		>>16 
+		so AX == ab AH == a AL == b
+
+		when ARM maybe shift and move from R99 ro R4
 	*/
 
    inline u32 ASM_get_u8( u32 val ) {

@@ -1,0 +1,44 @@
+shifted_bitfields.txt
+shifted_bitfields _values
+
+	u3_u5
+	u4_u4
+
+	u5_u3
+
+		_u3 = A & 0x07; A >>= 3; // 0x07 == M1 & 0xFF & M1_u3_0x07
+		_u5 = A & 0x1F; A >>= 5; // 0x1f == M1 & _u5_mask_1
+
+		_u4_mask_1 == 0x0F
+		_u4_mask_0 == !_u4_mask_1 // wider M1 zone full of 0
+
+		_u4_nyble_hi == 0xF0 // _mask_1 _mask_0==...
+		_u4_nyble_lo == 0x0F // _mask_1 _mask_0==...
+	
+	u4_u4
+
+		favoured because 0xFF 
+
+		process lo then hi nybbles
+		process hi then lo nybbles
+		process [ u8 ] both hi_lo nybbles in one
+
+		also occurs in 0xFFFF - or does it?
+
+EG
+ u24_u8
+ 	OFFS_t u24_OFFS = u24_payload
+ 	BYTE_t u8_ZONE = u8_payload
+
+	u4_u4_ZONE = u8_ZONE
+
+shifted_bitfields _values _not_masks
+
+	enum 0x0F ...
+	0x0F << 4
+
+ u24_u4_u4
+
+	u4_u4_ZONE = u8_ZONE
+
+

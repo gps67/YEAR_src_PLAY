@@ -1,0 +1,37 @@
+
+	tree_api_edit/
+	tree_api_edit.txt
+
+	IMPORT tree_api
+
+	 PHRASE_BOOK { PSG SUBLEX }
+	 LEXICON data_found that MATCHES(" %s  FILTER ")
+
+	 adding the SP confirms lex edge
+	 detect more than SP
+	 detect "" and marked MATCHED(item) eg " NULL "
+
+	 " %s STR_EXPR "
+	 // MATCH(' PHRASE_BOOK[ "%s" ] ')
+	 // MATCH(' PHRASE_BOOK[ "%s" ] ') // %s == PARAMETER 
+	 // MATCH(' PHRASE_BOOK[ "%s" ] ') // %s == 'anystr' // += idx
+	 // MATCH(' STR_EXPR = as_if_str_EXP_( "%s" ) // %s CMNT //
+	 // MATCH " SP '%s' SP VAR_NAME SP EOL" // += EOL matches STMT_EDGE
+	 // MATCH " SP %s SP EOT" // EOT matches SUBLEX_EDGE PSG_EDGE
+	 // a well known phrase
+	 // DIALECT may split %s away from STR_EXPR // "%s" // " %s " // 
+	 // "%s" // ITEM preferably with unique key name // IDX = idx
+	 // " %s " // ITEM // SP %s SP // PARSER_FINDS_IN_TEXT
+	 // " %s " // TREE_TWIG
+	 // " '%s' " // LEX is the %s required for this ITEM, outputs %s
+	 // "%s%s" // SUBLEX_PAIR lhs rhs
+	 // "%s%s%s" // SUBLEX_TRIP lhs mid rhs // mid = HERE
+	 // plus sublex uses PREBUILT DIALECT to autogen %s_%s " _ = %s '_' %s // LIKELY ...
+	 // LIKELY SUBLEX of a complete LEX or SUBLEX  // hence the SP
+	 // Bench offers 
+	 // plus sublex uses PREBUILT DIALECT to autogen %s_%s " _ = SP %s _ %s SP // lhs rhs
+	 // mad compiler routes via "%s%s%s" /*3-step*/ LHS MID RHS // MID=Tuplo_RULE_OPCODE_ROM_const_STR_EDGE "_" // SUBLEX FLAGS
+	 // MID += copde_point _of_ LEX_JOINERS_underline TABLE ITEM
+	 
+	 sublex uses PREBUILT DIALECT to autogen %s_%s " _ = SP %s _ %s SP // lhs rhs
+	 // as if TREE_TWIG

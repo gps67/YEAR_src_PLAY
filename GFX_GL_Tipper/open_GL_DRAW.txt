@@ -1,0 +1,24 @@
+
+ open_GL brings new concepts like
+ 	3 D == 2.5 D // via MATRIX_3_X3
+	 matrix_3x3
+	 matrix_2x2 // fits in parameter in pkt for api // enough for most
+	 matrix_null // pass_thru(X) // ARGV // CMNT
+	texture
+	 wrap surface with texture
+	 auto_gen_variations_as_texture_machines
+	 brushwork scripted_filter
+	  pass_through // when filter == " NULL "; //
+	  pixelate { SCRIPT } // LHS blit RHS OPCODE { SCRIPT }
+	   OPCODE == " null " // alias of above
+	   OPCODE == " pass_thru " // TOKEN -ISED //
+	   OPCODE == " encrypt( filter_id ARGV ) "
+	   OPCODE == " %s " EXPR // anystr used as parseable PRE-TOKEN-ISED
+	GPU multi-threading micro-tasks one_per_scanline one_per_pixel
+	GPU GPU GPU
+
+ 2x2 -vs- 3x3 // 4x3 1x2 1x3 1x4 1x4n0 // ZERO_t
+
+ 	X11 2D api makes a lot of sense
+	WIN32 2D api looks quite similar
+	2.5D works PLUS MULTIPLE STEPS in { SCRIPT }

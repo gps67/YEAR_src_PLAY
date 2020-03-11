@@ -1,0 +1,57 @@
+
+	u8_POOL_u8_ITEM/
+	u8_POOL_u8_ITEM.txt
+
+	u8_POOL POOL
+	u8_ITEM ITEM
+
+	u16_hilo POOL_ITEM // when u16 // when u8_u8 // when u16_u16
+	// when caddr_t ADDR = LEAF_in_MMAP( POOL, ITEM )
+	// u8_idx POOL //  SCOPE += EA_ITEM += IDX_ITEM
+
+
+
+
+
+
+	// u8_idx POOL //  SCOPE += EA_ITEM += IDX_ITEM
+	// u8_idx POOL
+	//  SCOPE 
+	//  SCOPE // create var by mentioning it // auto_gen IMPORT // token
+	SCOPE // create new var
+	+= SCOPE // one way of implementing self as first field // put CTOR here
+	+= EA_ITEM // entire TUPLE is EA_ITEM or uses it as FIELD
+	+= IDX_ITEM // entire TUPLE is IDX_ITEM or uses it as FIELD
+
+	THIS is like a magnet in a SCOPE field // click to grid ITEM
+
+		ITEM_t & item === CTOR(DEFAULT) // CTXT NEAR ITEM
+	
+	STO_MMAP
+
+		POOL is join POOL_91 POOL_92 // u16_IDX_t tricks module scope
+		POOL_91 is FULL PAGE [256] of ITEM
+		POOL_92 is PART PAGE [u8] of ITEM // extra NODE for AUTO_FULL
+		// so 91 is actually alias for AUTO_FULL PAGE in wider INDEX
+		// HT is a primary type like STRUCT
+
+PRIMARY TYPES
+
+	WORD
+	STRUCT
+	VECTOR // LIST // TREE //
+	TABLE
+	_by_idx
+	_by_str
+	_by_expr
+
+	IDX usually WORD then PAIR then HEAP then EXPR
+	TUPLO inline fragment of MEM_VECTOR 
+	eg u16_OPCODE u16_LHS u16_RHS
+	eg u16_SELF u16_LHS u16_RHS // . is SUBLEX_POS of DECL/TWIG_LEAF
+
+CONSTRUCTED TYPES
+
+	MACHINE // isa STRUCT with RT_var_pool
+		// HT is a primary type like STRUCT
+

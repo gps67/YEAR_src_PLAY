@@ -1,0 +1,119 @@
+CAPS is probably PSG_EXPR PSG_ITEM LEX_ITEM ITEM_ATTR
+
+	the IDEA is to replace CAPS with dialect_item_expr
+	the IDEA is to default CAPS into/from NULL or INIT_VAL
+	the IDEA is to default CAPS builtin_C_code // SCRIPT 
+
+SUBLEX
+	u8
+	u5_u3
+	they avoid _t for DATA_WORD // or_bit_field SPLICE FILTER CODE_POINT " udef ")
+	they accept _t along with profile_peer_group
+
+	all these " u32_hilo_abcd "
+	 WORD_t cpu_var[ idx ] ; // var_ ITEM _name _spec
+
+	 API_DECL
+
+	 u5 u5_idx = u5_from_u5_u3( u8 u5_u3 )
+	 EXPLAINS u5_u3 
+	  it is a VAR_NAME
+	  u8 is the VAR_TYPE
+
+	  there are so many use cases
+	  and templates COULD GEN u6_u2 64_OBJECTS 4 fields 
+	  // option [0] is SELF as HERE // LEAF is TWIG is LEAF
+	  // OPTION ITEM_GETTER( SELF ) // adds fast lookup ATTR for %s ITEM
+	  // bit_field_PAIR [P0[P2 lhs [P0[P2 rhs // parsed_BITS_not_BYTES
+	  // SUBLEX is PSG and LEX and TOKEN // and ENUM // 
+
+	  WORD_t VALUE = cpu_var[ u5_idx ] ; // COMMENT
+	                 cpu_var[ u5_idx ] = (WORD_t) VALUE ; // COMMENT
+	
+	  OPCODE_t ATTR = u3 // VALUE = from u5_idx // PLUS HINT DECODE
+
+	  get ea set 
+	   _d _c _cd _abcd of u32_abcd
+	   _a _b _ab _ba _cd _dc _abcd _dcba _cdab of u32_abcd
+
+	DECODER knows to prepare
+	 _hilo // original 
+	 _abcd // original in _cpu after swapb
+	 _dcba // byte swapped // but not if slow
+	 _cdab // ROT-16
+	 _XXab // ROT-16
+	 _cdXX // ROT-16
+	 _abcd // ASIS
+	 _ab ()
+	 _cd ()
+	 _a ()
+	 _b ()
+	 _c ()
+	 _d ()
+	 SETTERS can be slow = compiled script into ROM
+	 GETTERS can be fast = compiled script into ROM
+	 compiler {
+	  GETTER
+	   can obtain bunch of values from list of exprs
+	   CACHE can hold common exprs
+	   CT can find nearest
+	   TIMER count cycles (weights) for each choice
+	   with prepared item, without
+	   generate each variation, for next step, add vals
+	 }
+
+u8_u8 POOL_ITEM // _t
+// as_WORD // ea_direct // val_copied // swapb
+
+	ARGV within STREAM built of u16_ab pairs // click_u16
+	u16_OPCODE _PAIR_
+	u16_LHS
+	u16_RHS
+// load ODD EVEN // u48 into u64 // extra u16 LOW u8_PAIR
+// load | u8 u8 u8 u8 | u8 u8 u8 u8 | u8 u8 u8 u8 | u8 u8 u8 u8 | u8 u8 u8 u8 |
+// load u16_u32
+// load u32_u16
+// u8 * ADDR // DECODER parses BYTE stream u8 STEP = CODE[P++]
+// ADDR = u48_u16 >> 16 // top fill with 0's
+// u16_HL : stream u8 at [P++] abcd_efgh // click_1 _2 _4a _4b _8
+// ITEM_t & item = lookup( u16_AB ) // CTXT SELF HERE NEAR ROOT PAGE etc
+// ITEM_t & item = ITEM_in_SPACE[ u16_AB ] // CTXT SELF HERE NEAR ROOT PAGE etc
+// ROM imposes limits on u8_hi u8_lo // or u16_N
+
+// u16 idx = N++; // via operator(" N++ "); // on range change add a PAGE
+// on range change // switch u16 to u24 or u32
+// STREAMING_REACHABLE
+// keeps various PAGE_SPACE segments
+// u32_SPACE built of u12_TABLES u16_idx_from_ZERO // u32_ZERO + u16_idx
+// shared space ALLOC zone of u16_N starting at u16_BASE // all u16 from ZERO
+// layers spaces eg OPCODE[ u16 ] // DECODED PAGE[ u8 ] ITEM[ u8 ]
+
+
+
+u16_u16_POOL_ITEM.txt
+
+	u8_u8 POOL_ITEM _t // as_WORD // ea_direct // val_copied // swapb
+	u16_u16 POOL_ITEM _t // as_WORD // ea_direct // val_copied // swapb
+	u8_u24 POOL_ITEM _t // as_WORD // ea_direct // val_copied // swapb
+
+	u5_u3 POOL_ITEM
+	u5_u3 ITEM_ATTR // or _EXPR
+
+		u8_POOL = ALLOC N++ as PAGE_ITEM // via SPELLING
+		u16_PAGE_ITEM = ALLOC N++ 
+		// KNOW PAIRS // within u8 u16 u32 u64 
+		// OPCODE DECODER // CPU_BITFIELDS
+
+	u8_u8 POOL_ITEM
+
+	 u5_u3 POOL = EXPR( u8 ) // shifting levels u8 is SECOND VIEW
+	  u8_idx = u5_u3 
+	   u5 = PAGE /* [0[32 */ // N <= 32 // 0 <= idx < N
+	   u3 = POOL = ITEM[ u3 ] on PAGE // item is a pool // is a dir
+	 u5_u3 ITEM = EXPR( u8 ) // shifting levels u8 is SECOND VIEW
+
+	u5_u3 32_POOLS /* implement ITEM as POOL */ 8_SUBEXPR
+	u5_u3 _EACH_%s "MATCH u5_u3, LOCN
+	 u5 LOCN = picks POOL of AVAIL_32_POOLS /* implement POOL as ITEM */
+	 u3 8_SUBEXPR // expr = MATCH( u5 pool, u3_item )
+

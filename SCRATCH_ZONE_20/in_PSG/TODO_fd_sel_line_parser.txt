@@ -1,0 +1,59 @@
+TODO_fd_sel_line_parser.txt
+
+	fd_select_says_GOT_line [s] 
+	 P0P2 CSR=P0+CSR_POS_in_buffer
+
+	_parser ()
+	 PSG_over_LINES_of_TYPE
+
+	_parser ()
+	 INDENT_Layout
+	  pretty_print_TREE
+	   as INDENTED_CODE
+	   as DOCUMENT_FLOW
+	   as N_LINE_BLOCK
+	   // with P0P2 between PKTS within STREAM
+	   as TOKEN_RULES for TWIG_ZONE
+	   as DATA_Layout for { SCRIPT } // TREE
+
+	 _DATA_node_
+	  leaf_or_node
+	   P0P2 in pre_parsed_stream
+	   DATA already in FILE within P0P2 allocated by ALLOC 
+	   Layout
+	   Layout MMAP 
+	   Layout API
+	   Layout API TYPE Tree
+	   Layout API VAR Name
+	   Layout API FUNC Tree
+	   Layout API EXPR Tree
+	   Layout API EDIT Diary { ... }
+	    DIFF 
+	     _SAME_ 
+	     _MORE_ CTOR ADD mk_ITE
+	     _LESS_ DTOR DELETE
+	     _DIFF_ DIFF "!=" "<>"
+	   }
+
+	  _parser_PSG ()
+	   += INDENT_Layout // goto LINE XPOS CSR remember(EA) STEP
+	   += STACK_Layout // of_PSG // of_parser // of_FSM // 
+	   // CACHE_Local_of_remote_FSM_with_STACK_CORE_HEAP_LIBR
+	   += DE_SERIALISE // += Pretty Print to INDENTED_Layout
+	   += SUBLEX // FUNC_PLUS("FUNC_PLUS") // _SUBLEX
+	   += PSG // DIALEC // [s]
+	   += NOTATION DIAG DTP ... 2D 3D ANIM splat!
+	   += EDIT Phrase_Book (of_DIAG) (+= explains =+)
+	   += Bench // customs for this node PSG
+	   += PSG // 
+	   += PSG TclOO_Tree_Widget { ... }
+	      // DTP annotation, eg_this_line, 
+	   += local_CACHE_of_remote_DATA
+	   += local_BLOB_attempting_to_call_API // { SCRIPT } += CTXT
+
+	   PSG += DATA_used_in_API // Module //
+
+
+
+TclOO
+	tree operations

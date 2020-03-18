@@ -1,0 +1,16 @@
+TODO_PSG_of_API.txt
+
+ API is argv[] of parsable_text // OBJV is parsed_text
+ arg[i] is "Name"; // choosing NOT to use SP1_Name_SP1 here
+ arg[i] is "EXPR"; // parse_mode += well_lexed // no need for SP1 here
+ arg[i] is " func( args ) " // ARG[0] is func(_) as CODE_POINT
+ arg[i] is " _MACRO_Name_ " // parsed SUBLEX component used avail in CTXT
+
+ API CAL = CODE + ARGS + CTXT
+  CODE += CODE_POINT
+  CODE += Module CSR loader
+  ARGS += OBJV // Object_t * OBJV[ N ] = { ... DATA ... }
+  CTXT += { ATTR == VALUE } // tuplo(" lhs == rhs ") // comment
+
+ API of Module Name
+  CONST TYPE VAR FUNC EXPR MACRO SUBLEX SAMPLES TESTS

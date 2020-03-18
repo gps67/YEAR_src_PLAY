@@ -1,0 +1,39 @@
+
+	PTR_u16_u48/
+	PTR_u16_u48.txt
+
+
+	 _u16_u48 // convert via BIT ROTATE 16 LEFT into u16_hilo
+	 _u48_u16 // in FAST_FORM // not SORT_FORM // += FILTER +=
+
+BIT_ROTATE_LEFT_16
+
+	OUT = OPCODE IN // INSITU dst 
+
+	brings two top bytes
+	over PAIR // u8_hi u8_lo // as varnames & ret_val_ITEM from func
+
+	ADDR = CURR >> 16 // sign_filling_ZERO // valid for AMD64_PLUS
+
+ u16_48
+  when_in_cpu_var " HL fe dc ba "
+  ROTATE_LEFT_16 // " fe dc ba HL " 
+  PAIR in CURR is HL " fe dc ba HL "
+  QUAD baHL as u32_ba_HL // stranga ba, too stupid to use
+  SHIFT_RIGHT_16 // topfill nul bits "00 fe dc ba "
+  [option MULT table[u3] or func( u3 ) ]
+  PTR = CURR
+
+  to obtain PTR
+   CURR.rotate_left_16().shift_right_16()
+
+ u48_u16
+  to obtain PTR
+  PTR = CURR >> 16 // one instr not two
+
+RULE the WORD
+ c++ matches { some_func( int ); }
+ PLUS matches { int_var.some_func(); // no named parameter self //
+   CURR.rotate_left_16().shift_right_16() // CT int
+
+

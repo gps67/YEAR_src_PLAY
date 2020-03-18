@@ -1,0 +1,6 @@
+	Tcl_Obj_type_OOP/
+	Tcl_Obj_type_OOP_Name_16bytes.txt
+
+	Tcl_Obj *
+	bool is_Module_Type_Item_type_u2 // 4 TOKEN s all of Module $0
+	// compare obj -> typePtr -> 

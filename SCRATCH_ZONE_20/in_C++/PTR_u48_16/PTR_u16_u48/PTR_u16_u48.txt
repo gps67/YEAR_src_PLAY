@@ -36,4 +36,22 @@ RULE the WORD
  PLUS matches { int_var.some_func(); // no named parameter self //
    CURR.rotate_left_16().shift_right_16() // CT int
 
+ Tcl_Obj
+  name as N_bytes
+  type as Module3.Type7 // u5 idx_type // u0 idx_type == self_identifying
+  u48_u16 PTR1
+  u48_u16 PTR2
+
+  // u8[8] twice
+  // u8_opcode_str7 u8[7]
+
+  // u8[0] u8[8] 
+  // u8[1] u8_opcode_str7 u8[7]
+  // u8[2] u8_u8_opcode_str6 u8[6] // binary u48
+
+  _u64
+  u48_u8_u8 write_lohi abcd_efgh
+  u48_u8_u8 write_lohi LHab_cdef u16_HL u48_abcdef
+  // in MEM abcd
+  // in CPU dcba
 

@@ -1,0 +1,88 @@
+
+	TODO_GEN_Parser_for_sprintf_lines.txt
+	TODO
+	_GEN _Parser
+	 _for_sprintf_lines.txt
+	 _ PSG Sprintf_code"
+
+	trick to MATCH bind and call
+
+	Parser
+	 sprintf( buf, "%s%*.*d", pfx, d_fmt, d_fmt, val );
+	GEN
+	 buffer1 & buf;
+	  // // VAR DECLS and EXPRS go here
+	  // int d_fmt = 2; // %2.2d
+	  // int val = PARAMETER " value " ALIAS " val " 
+	  // buffer1 STR0 %s pfx_ // if( pfx ) { pfx += "_" }
+	  // the "STR0" api of buffer1 // optimiser KNOW if DONE trailing_nul()
+	  // (const char *) PTR = buf.call_GETTER_func()
+	  // (const char *) PTR //
+	  // * PTR = buf.call_GETTER_func()
+	  // bool GETTER( TYPE_t & RETVAL ) {
+	  // // += THIS // Object // this.SPEC( SPEC_t & INST ) // THIS_INST
+	  // // += INST // Object // this.SPEC( SPEC_t & INST ) // INST this
+	  // // += HERE // PC tree_POS // CT_CODE_POS // CT_Module_Item_CODE_POS
+	  // // += CTXT // Thread_var_CTXT // collection of globals for SCOPE
+	  // // CTXT += SPEC_of_THIS // 
+	  // EA_ = SEGMENT.ZONE.XPOS // actually dir/file/line/xpos
+	  // also dir/Module/VAR/SPEC // Module = Name // VAR = Name // SPEC = X
+	  //
+	  // // += THIS 
+	  buf.printf( "%s%*.*d", pfx_, d_fmt, d_fmt, val );
+
+
+ how XPOS got its name 
+
+	  // EA_ = SEGMENT.ZONE.XPOS // actually dir/file/line/xpos
+
+	  EA_ = SEGMENT.ZONE.XPOS // XPOS = OFFS in streamed tree
+	  // actually dir/file/line/xpos
+
+	  // dir/file/line/xpos
+	  dir		/dir/
+	   file/	filename_ext
+	    line/	i32 // int permits -ve as flags and still detect _hi
+	     xpos	u8 xpos; // often i32 // cset_ascii_byte
+	     seek	-1 0 XPOS
+
+
+ cset_ascii_byte
+
+	Without knowing anything of utf8 and whilst knowing to avoid HIGH_32
+	HIGH_32 means u6 where fixed u1 == -1 u5 = 
+	// 0 => -1
+	// 1 => -2
+	// idx => ( -1 - idx ) // u5 idx; // EXPR RETVAL = 0; DECR; SUB idx
+	//
+	// func M1_SUB_idx( idx ) { 
+	// ( -1 - idx ) // u5 idx; // EXPR RETVAL = ZERO; DECR; SUB idx
+	//  RETVAL.ZERO()	// _ = 0
+	//  // RETVAL.INCR()	// _ ++
+	//  RETVAL.DECR()	// _ --
+	//  // RETVAL.ADD( idx ) // += idx
+	//  RETVAL.SUB( idx )	// -= idx
+	//  return RETVAL;	// BUILTIN default
+	// }
+	//
+	// idx => ( -1 - idx ) // u5 idx; // EXPR RETVAL = ZERO; DECR; SUB idx
+	// idx => ( -1 - idx ) // u5 idx; // EXPR RETVAL = ZERO; DECR; SUB idx
+	// -1 // ZERO DECR
+	//
+	// ZERO_is_P2_of_P0P2_of_SEGMENT("HIGH_32"); // segment of _IDX_t
+	//	DIAG of "ZERO is P2 of P0P2"
+	//	// P2 == NEXT and OUTSIDE P0P2
+	//	// *P2 can be pre-cached, but value is ignored
+	//	// *P2 can trigger out_of_bounds_edge_case_detect
+	//	// *P2 triggers edge_detect // right edge // next edge
+	//	// EG MMAP but last page needs NUL just outside, actually USED
+	//	// although most parsers check_EOF_every_EOLN
+	//	// most parsers recombine lines that span PKT_gap_PKT
+	//	// MMAP is easier than 10K buffer
+
+	// [M32 M1] absent("[0]") // because P0P2.P2 == ZERO // ZERO.XPOS
+	//
+	//  floatable ZERO M1 "-1" "u8_idx_ZERO"
+	// 31 => -32
+	// 32+ ==> FAIL out of bounds hope RETVAL is NULL
+	HIGH_32 means [ NUL ... [ SP // += 128 // (u8)(i8)( -1 - u5 )

@@ -1,0 +1,38 @@
+
+	PTR_u48_16/
+	PTR_u48_16.txt
+
+DECISION
+
+	If it is what ARMv8 likes use u64_lohi
+
+	u64_lohi
+	u64_abcdefLH // thats the abcd in memery on disk in MMAP
+	u64_HLfedcba_in_cpu // when in cpu // matches amd64
+	u16_ba is bit_field of u64_cpu_var_decoded // in_situ tho
+
+	class cpu_var_byte_fields B A BA H L HL // LH()
+	// it also has shift_right_16 _rotate_  by_name(...)
+	u16_ba is bit_field of u64_cpu_var_decoded // in_situ tho
+
+ SPEED
+
+ 	  PTR = u48_u16 >> 16	// fill top zero bits
+
+	even though you have to do this every time,
+	it is (probably) the quickest (filtered) way
+
+	a proper CPU would have this or HL byte fields builtin
+	and ignore current values (faulting is a good option)
+ 
+	on a working system, it demonstrates that PTR was filtered
+	so was encoded
+
+		u48_u16 = PTR << 16 // drops hi 16 fills zero
+		u48_u16 = rotate_left( PTR, 16 ) // check AX HL
+		byte_b
+		byte_a
+	
+
+	
+

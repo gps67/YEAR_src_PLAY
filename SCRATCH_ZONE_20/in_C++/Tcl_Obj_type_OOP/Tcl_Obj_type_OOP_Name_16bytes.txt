@@ -1,6 +1,137 @@
+
 	Tcl_Obj_type_OOP/
 	Tcl_Obj_type_OOP_Name_16bytes.txt
 
 	Tcl_Obj *
 	bool is_Module_Type_Item_type_u2 // 4 TOKEN s all of Module $0
 	// compare obj -> typePtr -> 
+
+ Tcl_Obj because { SUBLEX } has common subset of LEX exprs
+
+ 	I thought this through decades ago,
+	mostly because { tcl is an amazing lisp } 
+	but didn't want to swim against Tcl.h clone_on_write value
+	(I see obj ~= variable // editable struct)
+
+	Since then, tcl has added tclOO and plethora // (confusing muddle)
+	so TODO try out tclOO on it's terms, not mine, eg table
+
+	Even so, at risk of duplication,
+	Tcl_Obj * STRUCT {
+	 CODE_POINT ...
+	 OPCODE
+	  LHS = /* if used */ Tcl_Obj // deal with builtin int string list dex
+	  RHS = /* if used */ Tcl_Obj // add more to DIAG DIAG_CODE
+	  CMNT = Tcl_Obj || u32_EXPR // += CTXT += SCOPE_LOCAL_STO += DOX
+
+u64 u16_u48 
+
+	}
+
+DECISION 
+ C++ class u64 u48_u16 u16_u48 // USAGE u64 is sufficient for code data payload
+ C++ class ALIAS u64 u48_u16 u16_u48 // USAGE u64 
+ C++ class u128 as u64 u48_u16 // explains += DIAG
+ C++ class ALIAS u128 u64_u64 PTR1 PTR2 // u48_u16 PTR_u16_HL // heavy ink // AB
+ C++ class u48_PTR_u16_ab u16_ab PTR=WORD>>16 // but with added spaces own diag
+ PSG_sublex_SPACE_detect {
+  FSM {
+  	ATTR MID_GAP SUBLEX.is_mid_gap // as var // as func // peer is_not
+	" any star { SP TAB }" // ambig usage, ok if absent, as_if already seen
+	" any star { SP TAB }" // is_mid_gap // simply mentioning it ... CTOR
+	SUBLEX
+	// PSG within SUBLEX // finds some STEP_double_STEP expansions
+	// sweep over u3 possibilities
+	 CSET via_utf8 // transparent transport
+	 // CODE MUST OUTPUT BASE64 -like- 
+	 // CODE MAY follow these rules, or crypt rules, or
+	 // avoid XOFF 
+	 // avoid C2 C3 // utf8 uses them for 8859 8-bit values
+	 // avoid CTRL ^C ^D all of them
+CSET
+ASCII - PSG_SUBLEX works fine on any 8-bit-clean transport text-medium
+utf8 - as best endeavour
+utf8 - as valid encoding rule, MATCH(single_CSET_unit) // u32 as u8 in u24 pageo
+
+## trick val = 1<<24 ## immed past zero_ _plus_u24 ## MMAP 
+
+	 u7_chr // low 32 + 2 reserved for CTRL_GAP SP DEL
+
+	  
+	" any star { SP TAB }" // is_mid_gap // simply mentioning it ... CTOR
+  }
+ }
+u64 u48_u16
+u64 u16_u48 
+
+## ok ok ##
+
+
+DECISION 
+ tclsh is a very fine vehicle, for nested curlies,
+ obviously ignore usage of [] even $
+ obviously repeat usage of \ and quotes "Q2" 'Q1' Q0_no_quotes _nor_backslash
+
+ add some integration like_for_SWIG code
+ Module LOAD er - of 8 prebuilt modules see load_map
+ Object can be variable
+ Key can be (key,val) Obj is own key
+ CODE is SCRIPT via PSG_SUBLEX via DIAG_explains
+ DATA is MODULE CTXT cpu_var_CTXT
+ CTXT
+  thread_var_POOL_thread_vars
+  "Name" u3_idx // expand u8_idx u16_idx u32_EXPR sparse_usage_N AVAR
+
+  spec_of_local_stack_frame
+  "name" -refers-to-> -is-alias-of-> RHS // optional use of parameters
+  // hidden parameters // link siblings into same space // usage import
+  // declarations MATCH_TOKEN_USED
+  cpu_var_CTXT
+  cpu_var_STACK // 
+  CTXT.SCRIPT_CSR.XPOS // is a lot more than xpos, is xpos line seek or idx exp
+
+
+ OPAQUE pointers to objects within MMAP
+
+ 	u8_idx -expr-> u32_EA_item_in_segment _in_CPU _in_VFS _in_TBL
+
+	obj.get_tcl_str_as_name() // NAME_FFFF _0000
+	this makes _as_name sufficiently unique to avoid WRAP_namespace
+
+	TREE might use a lot of plain tcl str0 
+	TREE might upgrade to TOKEN_SPELLING key_val_is_same_obj_obj
+
+	type morphism of the fixed HEAD object
+
+		+= Name N_BYTES // could be Layout
+		+= Tcl_Type item_of_module_u3 // u3 is ANY payload // idx_module
+		+= PTR1 // u48_i16
+		+= PTR2 // u48_i16
+
+	PTR // u64 only, soz // u32 bus u8_idx often
+
+		PTR = u48_u16 >> 16 // via SCRIPT TOKEN opcode
+
+ DECODE OPAQUE OPCODE
+
+ 	use MMAP // seeing MMAP is the not opaque step // trust own ROM
+
+	 PTR is not PTR it is u48_payload
+	 u16 is always u16_ab except when NULL or FFFF
+	 # I bet FFFF never happens # reuse ensure
+	 # I bet 0000 happens via handler // is u64_NULL // is client_data_ptr
+	 # vanilla ideal for tokenisation ?
+	 # speed for Tcl_Obj_wrapped_with_u16 // global u16 spece in PTR
+
+		u48 _ u16
+
+ explain unreachable MMAP
+
+ 	MMAP is callers untrusted code, but given CPU MEM STO BANDWIDTH
+
+	caller asks us to use out builtin ROM == actually reachable
+
+	callers FSM decodes as ... how_it_lays_out
+
+
+

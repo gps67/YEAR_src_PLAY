@@ -4,6 +4,8 @@
 
 DECISION
 
+	u48_u16 - the u16 is lo not hi, the u48 is shifted
+
 	If it is what ARMv8 likes use u64_lohi
 
 	u64_lohi
@@ -14,6 +16,16 @@ DECISION
 	class cpu_var_byte_fields B A BA H L HL // LH()
 	// it also has shift_right_16 _rotate_  by_name(...)
 	u16_ba is bit_field of u64_cpu_var_decoded // in_situ tho
+
+ SPEED
+ 	u16_HL is already in WORD
+
+	even u64_hi_lo swapped into CPU has HL as low 16 bits
+
+		byte_H
+		byte_L
+
+		u16_HL 
 
  SPEED
 
@@ -33,6 +45,28 @@ DECISION
 		byte_b
 		byte_a
 	
+ VANILLA
+
+ 	All objects must be 0xFFFF or 0x0000 tagged - else TCL bus_faults
+
+	PTR1 and PTR2 can use 0xC0DE // ie all u16
+	TCL can never see other than 0xffff
+
+	Prefer own_obj is 0xffff null is 0x0000 detect scripted NULL
+
+	quarantine = inside outside 
+	 addable payload
+	 masked vanilla
+	
+ OPTION
+
+ 	u3 = func( Tcl_Type_registered )
+
+		8 banks of stuff
+		8 modules loaded
+		ALL use some flag
+
+
 
 	
 

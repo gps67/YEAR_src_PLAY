@@ -134,4 +134,38 @@ DECISION
 	callers FSM decodes as ... how_it_lays_out
 
 
+m ObjectType.3
 
+	Tcl_ObjType
+	 const char * name;
+	 free Internal Rep ( tcl_obj )
+	 dup Internal Rep ( src, dst ) // both tcl_obj
+	 updateString ( tcl_obj )
+	 set From Any ( interp, tcl_obj )
+	TEST but pretty certain can have own DATA added here
+	 free_Internal_actual func
+
+ TEST is_my_module
+
+ 	obj -> typePtr -> free_InternalRep == MY_free_Internal Rep
+
+	// it requires all modules free COMPAT with
+	// free( obj, u3_mod ) // module.free_rerouted( obj ) 
+	// func = table[ u3 ] 
+
+	actually that is inefficient
+	as ALL objs get freed, all from set from Any, 
+	so pick 
+		dup internal rep ## what is that anyway
+	then
+
+		is_loaded_module // all adding at least fields
+
+	no u3 required, simply define 300 types
+	no u3 required, simply get SUITE module ALL_TYPES
+	OPAQUE ALL_TYPES 
+
+	all modules loaded under MODULE_UMBRELLA
+	all object types are ITEM_TYPE("EXTN_Object")
+	all object types then decode(u128)
+	all object name, addr, bindings_rerouted from u128_obj_head + name + addr

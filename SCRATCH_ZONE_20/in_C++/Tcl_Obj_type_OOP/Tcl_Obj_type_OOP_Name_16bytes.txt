@@ -13,6 +13,10 @@
 	but didn't want to swim against Tcl.h clone_on_write value
 	(I see obj ~= variable // editable struct)
 
+	as part of VALUE_is_like_a_VAR _or_heap_allocated_editable_OBJ
+	can put node scope(obj->name) as leaf in tree as node in tree as VALUE
+	and that works 
+
 	Since then, tcl has added tclOO and plethora // (confusing muddle)
 	so TODO try out tclOO on it's terms, not mine, eg table
 
@@ -169,3 +173,15 @@ m ObjectType.3
 	all object types are ITEM_TYPE("EXTN_Object")
 	all object types then decode(u128)
 	all object name, addr, bindings_rerouted from u128_obj_head + name + addr
+
+ SAMPLE API
+
+	SET $obj fieldname $value
+ 	GET $obj fieldname 
+	GET $obj expr ...
+	EVAL $obj expr ... 
+	CALL $obj methodname args
+
+	nb strong use of Xname as token in expr
+
+

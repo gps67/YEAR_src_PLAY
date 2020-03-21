@@ -1,0 +1,5 @@
+. ./.env
+
+set -x
+ping -c 1 github.com
+traceroute -n github.com

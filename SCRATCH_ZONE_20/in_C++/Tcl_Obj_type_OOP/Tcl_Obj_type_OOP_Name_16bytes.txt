@@ -258,3 +258,71 @@ m ObjectType.3
 	// move // centralised layout
 	// move // pre-de-duplicate
 
+ DRAW-2D in GPU
+
+	SCREEN_PIXMAP // optionally x3 stored or AAx3 // u4 shade of grey
+	BLIT 
+	DRAW VLINE HLINE DIAG_LINE MULTI_LINE SOME_CURVE_SPLINE
+	FONT
+
+	DRAW_BOXES
+	// buttons, fields, panels, sliders, 3d_relief // borrow from tcl_80
+	// fmt floats as currency
+	// MATH frame panel view scrolled XPOS and so on
+	// LINE
+	//| +-+     +
+	//|  /-\---/-\-
+	//| /---\-/---\
+	//|+--   +     +
+
+	TRUE_TYPE
+	// BLIT prepared pixmap
+	// probably clicked to pixel edge / core 
+	// so semi pixel kerning craft will be lost
+	// or ZOOM down an x3 pixmap to AA_1p16 pixmaps CACHED
+	//
+	QUEUE of ENQ ACK { OPCODE ... }
+	// signal POINT change, or let CACHE do that itself
+	// send a dozen glyphs at X3
+	// read a dozen glyphs in an X3 pixmap | A - B - C | A B C |
+	// rescan to MID_POINT or to CLICK_TO_EDGE
+	// 3 bits become u4 shade of grey
+	// optinal clever aura shade opacity
+	// optional click to line_pixel YPOS and half_pixel XPOS
+	// CACHE expand to u8 or whatever
+	// GPU and CPU run in parrallel
+	// pipeline queue of glyphs
+	// optionally lots of mem available outside GPU
+	// optionally lots of mem available in-side GPU // massive excess
+	// optimise load sequence
+	// optimise recent ENQ (window depth and sync ripple)
+
+	BOX_not_BOX
+	// eg ITEM on canvas has BBOX or MAIN_ZONE on FRAME_BOX
+	// eg{             }
+	// eg {~~~~~~~~~~~}
+	// eg { +-------+ }
+	// eg { | CLOUD | }
+	// eg { +-------+ }
+	// eg {           }
+	// eg {           }
+	// eg {~~~~~~~~~~~}
+	// eg{             }
+	//
+	// HOTSPOT ( X, Y )
+
+ GROUP PROGRESS
+
+ 	---|>-----
+ 	-----|>---
+ 	----|>----
+
+ BENCH DIAG ITEM
+
+ 	state = ... state
+	view = STATE + anim PREV CURR NEXT
+
+	behaviour of a tangible DIAG VIEW (fade)
+
+	(fade) = EMPH_LEVEL of _BELL_CURVE_ _BRIGHTNESS_
+

@@ -184,4 +184,77 @@ m ObjectType.3
 
 	nb strong use of Xname as token in expr
 
+ Tcl SWIG PLUS
+
+ 	tcl_obj 
+
+		NBYTES => [ S T R 0 ... PLUS ... [ ... OTHER ...
+		obj_type => at_least ENQ_ACK // BASE_CLASS
+		PTR1
+			u48_u16 SPEC // OPCODE // via CODE_point
+		PTR2 
+			u48_u16 DATA // EA includes EA_FRAME ... OFFS_EXPR
+
+		On u32 
+			u16_u16 SPEC // u16_payload _hi u16_HL
+			u24_u8 DATA
+
+ 	tk_client_data - where is it - flattened to bind call // so use EA_EXPR
+
+	 tk_frame_item = ".win1.panel3.item7" // compiler adjusts for predicted
+	 Obj * item7_key = lookup( "item7" ) // as str // as OBJ["str"] // " %s "
+	 Obj * item7 = lookup( "item7" ) // am near panel3 near win1
+
+	 Obj * item7 = TK_WIDGET_client_data // PTR1 == LABEL PTR2 == DATA
+	 // LABEL == "CODE_point" // OPTION gather closure variables
+	 // eg win1 = win1 // comment from 
+	 // use PSG to recognise // within ARGV
+	 // still have to be careful with 'Q1' "$%"
+
+ Bench 
+ 	VFS Tree Prune
+	 copy paste // no_drop == mark for copy-del show faint fade
+
+	Tk provides the canvas
+
+	 standard GDI 2D shapes and shaders
+	 standard GDI 3D shapes and shaders
+	 // matrix == ((C++ inline libr used by geologists))
+
+	 2D Style Settings
+	  FONT [s] POINT=EM_1p0
+	  font_1 point_1 = EMP_1p0 * default_TTY_line_height.as__point _per_EM
+	  // point_per_EM = 10 // EASY_VIEW_16 // + fade
+	  // point_per_EM = 12 // EASY_VIEW_21 // default for TTY
+	  // point_per_EM = 14 // EASY_VIEW_21 // emph // POS on CURVE lanes
+	  // point_per_EM = 18 // EASY_VIEW_30 // 
+	  // point_per_EM = 24 // EASY_VIEW_40
+
+	 DIAG for point_per_EM
+	 //
+	 	|
+		|
+		|          24 ///
+		|       18 ///
+		|    14  ///
+		|   12 ///
+		|  10 ///
+		|
+		|
+		+-------------------
+	
+	TABLE for point_per_EM
+	  // above MULTI-LINE as TABLE
+	  // point_per_EM = 10 // EASY_VIEW_16 // + fade
+
+
+	TWO_PANEL_FILE_MANAGER
+	//
+	// ONE_PANEL_OR_TWO 
+	// TASK Layout pruning central tree
+	// TASK Layout filter pruning tree // categorise patch lines to bug now
+	// TASK Layout move branches // 
+	// move // different disk
+	// move // centralised layout
+	// move // pre-de-duplicate
 

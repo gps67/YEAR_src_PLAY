@@ -1,0 +1,83 @@
+#include <tcl.h>
+#include "tokeniser.h"
+
+/*
+	module_tokeniser
+
+	This is the instance of a module
+	There can be any number of independent "interp" environs
+	For one to acces this module, it must load the module.
+	(Or have safe function do it for it)
+	Tcl allows multiple loads of library.so, (one copy),
+	but calls Module_Init( interp ) 
+
+	This is currently unused.
+
+	There is no use, because you can do all the customisation
+	you want, when the modules Init function is called,
+	so why try to play about when the library is loaded
+	(the library is a module that allows loading of the modules).
+
+	However, there might be cases where the loader of the
+	library, wishes to pre-configure the capabilities of the
+	modules, then allow any interp to load them (indirectely even).
+
+	Conversely, that might lead to BOTH interp pointers being in one
+	place which you might not want.
+
+*/
+
+
+struct module_tokeniser_base
+{
+	Tcl_Interp * interp_controller;
+	char * name;
+	Tcl_PackageInitProc * init_trusted;
+	Tcl_PackageInitProc * init_restricted;
+	Tcl_Obj * library_spare1;
+
+	module_tokeniser_base( Tcl_Interp * interp, char * name1 ) {
+		interp_controller = interp;
+		name = name1;
+		// Tcl_IncrRefCount( name );
+		init_trusted = NULL;
+		init_restricted = NULL;
+	}
+	~module_tokeniser_base( void ) { // never called
+		// Tcl_DecrRefCount( name );
+		name = NULL;
+	}
+	void registration( void )
+	{
+	       Tcl_StaticPackage(
+		       interp_controller,
+		       name,
+		       init_trusted,
+		       init_restricted
+	       );
+	}
+};
+
+/*
+	the functions that get no extra info are ...
+*/
+
+extern "C" int tokeniser_init_trusted( Tcl_Interp * interp_client );
+extern "C" int tokeniser_init_restricted( Tcl_Interp * interp_client );
+
+struct module_tokeniser_loader : public module_tokeniser_base
+{
+//	char * namespace;
+
+	module_tokeniser_loader( Tcl_Interp * interp, char * name1 )
+	: module_tokeniser_base(interp, name1 ) {
+		init_trusted = tokeniser_init_trusted;
+		init_restricted = tokeniser_init_restricted;
+		namespace = "";
+	}
+	~module_tokeniser_loader( void ) {
+	}
+	configure( void ) {
+		namespace = "tokens::"
+	}
+};

@@ -1,0 +1,86 @@
+#!/usr/bin/make -f
+
+# where is tclsh rooted and where are its include files
+# this should be the only thing you need to edit ;-)
+#	Tcl_prefix=/usr/
+#	Tcl_prefix=/usr/local
+#	Tcl_prefix=/opt9906/tcl
+	Tcl_prefix=/tools/CTXT/tcl
+
+# different dialects have different dirs, only one needed
+	Tcl_includes += -I$(Tcl_prefix)/include
+	Tcl_includes += -I$(Tcl_prefix)/include/tcl
+
+# although this is a Tcl Module, it is also a standalone program
+# the common code is "LIB1_" (which uses no Tcl what so ever)
+# the module code is "tcl_" (which passes strings in an argv style)
+# the program code is "prog_" (which needs no Tcl)
+# LIB1_ converts "STRING" to (int) value, and calls syslog
+
+	LIB1_OBJS += lib1_syslog.o
+
+# C_PROG
+# for use in shell scripts, without Tcl
+
+	PROG_OBJS += $(LIB1_OBJS)
+	PROG_OBJS += prog_syslog5.o
+	C_PROG = prog_syslog5
+
+# TCL MOD
+# the Module for use in Tcl scripts
+
+	MOD1_NAME = tcl_syslog
+	MOD1_NAME_so = $(MOD1_NAME).so
+
+	MOD1_OBJS += $(LIB1_OBJS)
+	MOD1_OBJS += tcl_syslog.o
+
+# The library uses C++ comments and C++ linkage
+# The program calls that from C 
+
+	CXX = g++
+	GCC = gcc
+
+# prog_ doesn't need Tcl_includes, but it gets them 
+
+#	ALL_CXXFLAGS = -O2 -g -fPIC $(Tcl_includes)
+	ALL_CXXFLAGS = -O2    -fPIC $(Tcl_includes)
+
+# The first rule in the makefile is what is built 
+
+default: test
+
+# The list of what you want to keep (install manually)
+
+all: $(MOD1_NAME_so) $(C_PROG)
+
+# make test does a make clean!
+
+clean:
+	rm -f $(C_PROG) $(PROG_OBJS) $(MOD1_OBJS) $(MOD1_NAME_so)
+
+test: $(MOD1_NAME_so) $(C_PROG)
+	./test_syslog.tcl
+	./test_syslog5.sh
+	@echo
+	tail -5 /var/log/syslog
+	@echo
+	# NO # make -f Makefile_tcl clean
+
+$(C_PROG): $(C_PROG).o $(PROG_OBJS)
+	$(GCC) -O2 -o $@ $?
+	strip $@
+
+$(MOD1_NAME_so): $(MOD1_OBJS)
+	ld -shared -o $@ $?
+	chmod 644 $@
+
+.SUFFIXES: .cxx .c .o
+
+.c.o:
+	$(GCC) $(ALL_CXXFLAGS) -c $<
+
+.cxx.o:
+	$(CXX) $(ALL_CXXFLAGS) -c $<
+
+ 

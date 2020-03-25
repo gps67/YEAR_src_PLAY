@@ -1,0 +1,6 @@
+#/bin/bash
+
+PATH=.:$PATH
+
+./Makefile_parse "$@" 2>&1 | less
+

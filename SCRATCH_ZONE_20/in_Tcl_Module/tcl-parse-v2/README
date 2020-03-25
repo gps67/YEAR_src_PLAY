@@ -1,0 +1,57 @@
+README
+
+./Makefile_parse clean
+
+	This is how easy it is to make a shared library .so
+
+tcl_parser_library.cxx
+
+	a module that is a library and (doesn't) load other modules
+	you shouldnt do it this way, I wish I hadnt tried
+	Dont be misled, its easier than this.
+
+tokeniser.h
+tokeniser.cxx
+
+	the module, it parses Tcl scripts -> commands -> words -> tokens
+
+test_tcl_parser_library.tcl
+
+	the test script, it prints tokens, words, commands, scripts
+
+test_split_file.tcl
+
+	This takes as parameters, a list of .tcl files, and foreach
+	it produces a subdir, containing one file per proc.
+	You would probably prefer to add .tcl to the filename.
+
+	(edit the source to switch the write files on/off,
+	just make sure that file mkdir $basename wont upset you ).
+	
+	It also produces a list of the procs, and the declared args.
+
+module_tokeniser.h_
+
+	the unused other half of tcl_library_xxx,
+	the ideas was, I forget, and it never worked,
+	but until as I have a place to move it to,
+	ignore it
+
+go1
+
+	mc (midnight commander) is the greatest
+	some people dont like it,
+	probably because theyre using the X11 version
+
+	This script puts a "button" on the ALT-F6 screen
+	so that pressing Return helps debug your script.
+
+	(( HINT: arrange your windows left to right,
+	from the top of the code, chaining through ))
+
+NOTE:
+
+	I'm using an unreliable tcl 8.1b3
+	Thats probably the cause of my bugs,
+	but I'm too lazy to upgrade to 8.05 at home,
+	or 8.2 or whatever.

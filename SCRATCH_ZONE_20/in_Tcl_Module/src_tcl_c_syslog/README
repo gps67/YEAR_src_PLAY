@@ -1,0 +1,45 @@
+tcl_c_syslog
+------------
+
+	This is a Tcl module that writes an error message to syslog
+
+Makefile_tcl		- the makefile
+lib1_syslog.cxx		- the name-to-value lookup and syslog call
+tcl_syslog.cxx		- the Tcl modules use of lib2_syslog
+prog_syslog5.c		- the non-tcl program for use in shell scripts
+test_syslog.tcl		- demo caller
+test_syslog5.sh		- demo caller
+
+#!/usr/bin/env tclsh
+
+  load ./tcl_syslog.so Syslog
+  syslog::syslog TCL_PROG 0 USER INFO "Tcl message without pid"
+
+# there are always  5  parameters
+#	TCL_PROG	- the name of program raising the error
+#	0		- dont/do log the pid
+#	USER		- LOG_USER (option)
+#	INFO		- LOG_INFO (level)
+#	"..."		- the message placed in the logfile
+# see lib1_syslog.cxx (or man 3 syslog) for other LOG_xxx names
+# you can omit or emit the LOG_ prefix as you wish
+
+	This also demonstrates a strange mix of C and C++.
+	prog_syslog.c is compiled entirely in C, not C++
+	(eg you dont have a C++ compiler handy). Hence it cannot
+	easily call C++ (gcc can but just for instance).
+	Hence the  extern "C" syslog_main(argc,argv);  declaration.
+
+	Tcl module loading requires  extern "C" xxx_Init(...),
+	but the rest of the file is C++ (for no particular reason).
+
+	gcc on Linux, HPUX and Solaris, sucessfully initialises
+	statics when C++ modules are loaded. Other compilers/ld might not.
+	Then you initialise inside the xxx_Init() function.
+
+	The filename does not have to match the module name, and one
+	shared library might bring several modules' xxx_Init with it
+	(see the Tcl docs).
+
+	Tcl modules are never unloaded. (But can close down all procs).
+

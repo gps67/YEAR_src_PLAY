@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+# where is tclsh rooted and where are its include files
+
+#	Tcl_prefix=/usr/
+#	Tcl_prefix=/usr/local
+#	Tcl_prefix=/opt9906/tcl
+	Tcl_prefix=/tools/CTXT/tcl
+
+	Tcl_includes += -I$(Tcl_prefix)/include
+	Tcl_includes += -I$(Tcl_prefix)/include/tcl
+
+	Module=tcl_parser_library
+	Module_objs += tcl_parser_library.o 
+# .h	Module_objs += module_tokeniser.o 
+	Module_objs += tokeniser.o
+
+.SUFFIXES: .o .cxx
+
+test: $(Module).so
+	# NO # strace -f tclsh test_split_file.tcl /home/gps/9907/tcl-acct/scripts/base/db.tcl 2>&1 | tee fb 
+	tclsh test_split_file.tcl test_split_file.tcl 2>&1 | tee fb 
+	tclsh test_$(Module).tcl 2>&1 | tee fa 
+	@echo '---'
+
+$(Module).so: $(Module_objs)
+	g++ -shared -o $@ $(Module_objs)
+
+.cxx.o:
+	g++ -g -O2 -fPIC -c $< $(Tcl_includes)
+
+clean:
+	rm -f $(Module).so $(Module_objs) fa fb

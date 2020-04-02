@@ -1,0 +1,132 @@
+2020-01-01 Jan Wed 00:00 2020-01-01_VFS.txt
+
+	VFS
+	 uses STO_load_from_file // 
+	 adds STO_here // by SQL_LINK_ID
+	 adds STO ROOT
+	
+	VFS
+	 layer = RW vfs over ROOT_mnt_root_STO
+	 layer = RW vfs_transparent_actual {
+	  over
+	   ROOT_mnt_root_STO
+	    struct { // OVER_ROOT // AUTO_USE_NULL noname from GEN 
+	     u32_hilo EA_EXPR_here; // HERE id
+	     u32_hilo EA_EXPR_spec; // SPEC link // EA ea_SPEC
+	     u32_hilo EA_ITEM /*str1*/ = lookup( "HERE.name ()" ); // == ".VFS"
+	     u32_hilo EA_ITEM /*str1*/ = lookup( "SELF.name ()" ); // == ".VFS"
+	     {
+	     	SUBLEX HERE.self might not require literal implementation
+
+		VFS_t & OVER = PARAMETER_OVER; // 
+		VFS_r & HERE = new_HERE( ARGS ); // CTXT // a VFS_Layer_Layout
+		// MNT info
+		OVER.LOCN _t == OVER_mount_dir ITS_ROOT_ITS_PATH
+		HERE.LOCN _t == HERE_mount_expr // this ROOT grows from EXPR
+		// EXPR = EA_ VFS_EXPR UNION_OF_LAYERS
+	     }
+	    }
+	 }
+
+	 VFS
+	 UNION_of_LAYERS
+	  list of LAYER [s]
+	  lookup( anystr ) {
+	   attempt to provide feedback to caller
+	   CACHE CHIT_CHAT ENQ_ACK API
+	   please_tokenise_anystr
+	   API passes parameter = { TOK STO }
+	   struct {
+	    TOK_t & TOK;
+	    STO_t & STO;
+	    // AUTO // CTOR // LINT check all init'ed before START_machine
+	  }
+	  // TOK used as PARAMETER_VALUE_IN_ROM
+	  // ROM.parameter_named_value[ tok ] == {
+	   TOK_t & tok; // PARAMETER
+	   tok.EA_tok == "
+	  }
+
+operator ==
+?? can it be (not by_class.method) global.operator==( LHS, RHS ); // 
+MATCH using rules vaguely like C++ type_match overloaded_name
+PARTICULRLY
+	OBJECT == "STRING"
+
+	 class OBJECT {
+	  bool operator == ( RHS ) // LHS == this
+	  bool operator == ( str0 rhs ) // LHS == this
+	  bool operator == ( TOK_t tok ) // 
+
+	  OBJECT & operator = ( RHS ) 
+	 };
+
+	LHS_this operator== TOKEN_t & RHS_OBJECT
+	 call a RHS.VTBL FN rhs.MATCH( /*TYPE CAST*/ lhs )
+	 then convert MATCH_t to bool==
+	
+	MACRO needs to apply MATCH search, resolve to 
+	
+	DIALECT USING == AS = 
+
+	 optimise path from old to new
+
+	 list all changed fields (into LIST)
+
+	 bitmap_of_changed_fields, bit_sweep
+	
+BIT_SWEEP
+
+	search hi_2_lo or lo_2_hi
+	// either ASM has helpers or A = A >> 1; if(A)
+	 calling
+	  NULL bit_is_zero( bit_no ) // usually NULL
+	  CALL bit_is_one( bit_no ) // usually provide HELPERS
+	  NULL_bit_sweep_START() // simply goto START
+	  NULL_bit_sweep_STOP() // simply goto NEXT
+
+	 ASM X86
+	 	BT EAX, 0
+		jump_if_CARRY
+	
+	 OTHER uses as atomic changers, return OLDVAL
+
+	 RTFM says
+	 http://faydoc.tripod.com/cpu/bt.htm
+
+
+	 	BT MEM, n
+
+		[0 n [32
+		[32 
+
+		only sets C flag others PROTECTED flags
+
+		when in mem the bit order is ...
+		when overshoots [32 borrow ASM_OFFS_MEM
+
+array_u16_of_u8_u24
+
+	u16_hilo N ; // except 0 means FULL
+	item[-1] means _SELF_
+	OPTION item[0] ==_SELF_ // possibly too much so // can FILTER safe_mode
+	u32_hilo flags; // is_EMPTY // is_FULL
+
+	VTBL * vtbl;
+
+VTBL {
+	need to use a C++ compiler, it works
+	option of a DATA_IN_FILE that wants a VTBL
+	range or well known variations
+
+	add normalise prototype of C function
+	add list functions, with links to ROM
+	update ROM with loadable TABLE
+
+	maybe leave a while ?
+	everything is VTBL in SCRIPT
+}
+
+
+
+

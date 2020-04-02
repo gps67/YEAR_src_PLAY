@@ -1,0 +1,22 @@
+
+	. ./fns_SESS
+#	fn SESS_set_sdx "$@"
+	fn_SESS VAR USB_sdx "$@"
+	exit $?
+
+# 
+#	fn SESS_set_sdx "$@"
+#	fn_SESS_set_sdx "$@"
+
+#	Option fn does the lookup of "$1" == SESS_set_sdx // as TOKEN
+#	FUNCTION="$1"
+#	FUNCTION="fn_${FUNCTION}" // SUBLEX %s%s fn_ FUNCTION // DECL is_VAR
+#	# DECL CONST_str "fn_"
+#	# DECL VAR_varname "FUNCTION"
+#	# explain # PREFIX with "%s%s%s",lhs,"_",rhs // %s%s PFX_ rhs
+#	# PFX_ = PFX + "_"
+#	#
+#	#	pfx,is_a_func_label,_underscore_
+#	,funcname
+#	shift
+#	

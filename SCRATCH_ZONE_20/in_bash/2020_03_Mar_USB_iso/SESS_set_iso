@@ -1,0 +1,17 @@
+
+	. ./fns_SESS
+	echo
+	echo test no args
+	fn_SESS 
+	echo
+	echo test proper - silent
+	fn_SESS VAR USB_iso "$@" // silent
+	echo
+	echo test abbreviated - noisy
+	fn_SESS USB_iso 
+	echo
+	echo test excess args 
+	fn_SESS VAR USB_iso XS # "$@" # // ... MORE ...
+	echo
+	exit $?
+

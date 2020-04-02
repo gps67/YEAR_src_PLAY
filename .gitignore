@@ -19,6 +19,10 @@ gen_e1_*
 *.o
 *.obj
 
+# Generated .s .dump files
+*.s
+*.dump
+
 # Precompiled Headers
 *.gch
 *.pch

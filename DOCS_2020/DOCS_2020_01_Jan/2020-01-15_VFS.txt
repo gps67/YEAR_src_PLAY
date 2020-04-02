@@ -1,0 +1,7 @@
+2020-01-15 Jan Wed 00:00 2020-01-15_VFS.txt
+
+	VFS
+	 uses STO_load_from_file // 
+	 adds STO_here // by SQL_LINK_ID
+	 adds STO ROOT
+	

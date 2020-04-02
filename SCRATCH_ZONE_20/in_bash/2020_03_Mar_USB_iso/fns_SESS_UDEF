@@ -1,0 +1,186 @@
+
+# fns_SESS_UDEF # bash 
+# fns_SESS # caller # we can overrule LIBR so we are dotted last by libr
+# that is a POSSIBLE route to flexible secure
+#!/bin/bash # SESS caller
+# SESS #
+
+# CODE_PARSE_LOG # echo // $0 // _UDEF //  $@
+
+# . ./fns_SESS_UDEF # { .. HERE ... }
+
+# CODE_PARSE_LOG # echo // DECL // fn_SESS_ABSENT_ARGV
+fn_SESS_ABSENT_ARGV()
+{
+	local cmd="$FUNCNAME"
+	echo >&2 "## $cmd # OK // $*"
+	return 0
+}
+# CODE_PARSE_LOG # echo // DECL // fn_ABSENT_ARGV
+fn_ABSENT_ARGV()
+{
+	fn_SESS_ABSENT_ARGV UDEF_PLUS "$@" // UDEF added PLUS
+}
+
+#
+# PSG not used with BASH # so manually parsed command line PRE_LEX
+#
+
+# CODE_PARSE_LOG # echo // DECL // fn_SESS
+
+fn_SESS()
+{
+#	echo "# LOG # $FUNCNAME $@ // ONE="'$1'"
+#	local cmd="ABSENT_ARGV" # OPCODE provided for default=silent
+	if [ $# == 0 ]
+	then
+		fn_SESS_ABSENT_ARGV "$@" // default set above to local cmd
+		return $? 
+		# in DIALECT special_meaning of no_args_needed() // CTXT used
+		# so fns_SESS_UDEF fn_SESS_ABSENT_ARGV gets called
+		# error if fn_SESS should never be invoked empty
+		# silence by setting to NON_DEFAULT_NULL
+		# fn_SESS_ABSENT_ARGV = NULL # return 0 ASAP // FAST OPTION OFF
+	fi
+
+	if [ $# == 1 ]
+	then
+		# PARSER chips away OPCODE ...
+
+	  local ONE="$1"; shift
+
+		# DECODE "$@" # ONE="$ONE"
+		# well known OPCODES
+		echo ... $FUNCNAME $ONE '(XPOS}' "$@" ... // ONE="$ONE"
+
+	  case "$ONE"
+	  in
+		-|default|ABSENT_ARGV_ABSENT)
+			# also invoke when VAR==NULL always passed
+			fn_SESS_ABSENT_ARGV "$@"
+	  ;;	sdx)
+	  		# recursive is SAFE_ish 
+			# rename TOK TOKEN
+			fn_SESS_VAR USB_sdx "$@"
+			return $?
+	  ;;	iso)
+			# rename TOK TOKEN
+			fn_SESS_VAR USB_iso "$@"
+			return $?
+	  ;;	USB_*)
+	  		echo >&2 "# MATCH PFX_name $ONE // TODO validate _name"
+			fn_SESS_VAR "$ONE" "$@"
+			return $?
+			# each VAR has own defaults and stuff
+			# should be parameters, but GEN can duplicate it
+			# so an EDIT and GET 
+	  ;;	*)
+	  		# OPTIONAL DIALECT
+			# fn_SESS NAME ==> fn_SESS_VAR NAME
+			# which ensures that NAME exists
+			# and saves it in $BASE
+			# and edits it
+			# and sets RETVAR $VARNAME_ONE
+			echo "# DIALECT # ARG_SOLO_IS_VARNAME $ONE"
+			fn_SESS_VAR "$ONE"
+			return
+		#	fn_SESS_"$ONE"
+		#	fn_SESS_VAR "$ONE"
+		#	or_fall_through_to
+		#	return $?
+	  esac
+	
+	fi
+
+	if [ $# -ge 2 ] 
+	then
+	 case "$1"
+	 in
+	  "VAR")
+	  	local VAR_NAME="$2"
+		shift 2
+		echo >&2 "# CALL # fs_SESS_VAR $VAR_NAME // $@ // VAR"
+		fn_SESS_VAR "$VAR_NAME" "$@"
+		return $?
+	 esac
+	fi
+
+}
+# CODE_PARSE_LOG # echo // DECL // fn_TAILINGS
+fn_TAILINGS()
+{
+
+	cmd="$1"
+#	cmd="fn_$1"
+	local ONE="${cmd}" # // cmd = ARGV [ one ] // ZERO
+	shift
+	echo "# TODO # $ONE # " "$@"
+
+	while [ $# != 0 ] 
+	do
+		echo >&2 "# EXCESS ARGV_ITEM # '$1' # // not well known "
+		shift 1
+	done
+
+}
+
+
+fn_SESS_VAR()
+{
+	# local CONSTS
+
+		local BASE="-" # // .varfile // "default" or "-" or ""
+		local DEFAULT=UNSET
+
+	# ALREADY SHIFTED:
+
+		local VAR="$1" # BASH gives us one silent NULL ''
+		[ $# != 0 ] && shift # TEST silent when shift one too many
+		[ $# != 0 ] || shift # 
+
+	# ALREADY VALIDATED:
+
+		# TODO # caller is me, I wront call it bad ly
+		# validate_VAR_is_cident_ish "VAR" "$VAR"
+
+		# // CTXT._SYNTAX_near_BASH hints better
+		# so now can write $VAR not "$VAR"
+		# or let VIEW add the check and remove the Q2
+
+	case "$VAR"
+	in
+	   "")
+		return
+		# OPTION absent ARG is NOOP
+		# OPTION absent ARG is NULL _so_NULL
+		# OPTION absent ARG is NULL_so_CTOR_init
+	;; USB_dev_sdx)
+		fn_SESS_VAR USB_sdx "$@"
+		export USB_dev_sdx="/dev/$USB_sdx"
+		return
+
+	;; USB_sdx)
+		DEFAULT="sdb"
+		echo >&2 ""
+		echo >&2 "# HOW_TO_FIND_OUT USB_sdx=sdb"
+		echo >&2 "# RUN xslog"
+		echo >&2 "# FIND device is sdb"
+		echo >&2 "# VAR USB_sdx - what these scripts use"
+		echo >&2 "#"
+		echo >&2 "# BEWARE it may have changed since then ..."
+		echo >&2 ""
+
+	;; USB_iso)
+		local EG="image.iso"
+	        local EG="ISO/ubuntu-19.10-desktop-amd64.iso"
+		DEFAULT="$EG"
+	;; *)
+		echo "# CASE # UNMATCHED"
+	esac
+
+	# IT ALL BOILS DOWN TO ...
+
+	fn_BASE_edit $BASE "$VAR" "$DEFAULT"
+}
+
+

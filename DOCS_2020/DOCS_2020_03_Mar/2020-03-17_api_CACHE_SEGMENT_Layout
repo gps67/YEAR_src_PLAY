@@ -1,0 +1,63 @@
+2020-03-17_api_CACHE_SEGMENT_Layout
+
+	API += get_EA() EA_t & EA = EXPR // cmnt
+	PSG += SUB_LEX // Item_t & item = EXPR // cmnt
+
+	CACHE += _BASE_ _TREE_ _twig_ _Leaf
+	LEX += POOL_t * GETTER( ARGV ) // CTXT // SESS // Session
+
+	SEGMENT += N_bytes += SEGMENT_Layout
+	P0P2 += explain TREE
+
+	Layout += {
+	}
+	DATA += { .spec == " %s_xFFxFF " // xFF // this_DOC is SPEC
+	DIAG += {
+	
+	.spec == " %s_xFF " // xFF // this_DOC is SPEC
+	.spec == " %s_xFFxFF " // xFF // this_DOC is SPEC
+	// .spec.view -as- "%2X" "_" "%2X"
+	// .spec.view -as- "%2X%2X"
+	// .spec.view -as- "x%2X%2X"
+	// .spec.view -as- "_x%2X%2X"
+	// .spec.view -as- "[ u16 ]"
+	// .spec.view -as- "[ u8_u8 ]"
+	// .spec.view -as- "%s_PAGE_ITEM[ u8_u8 ]" // SEG_locn // code_point
+	// // SUBLEX DIALECT PAGE u8
+	// first byte is relative to surrounding SCOPE
+	// // SUBLEX DIALECT ITEM_of_PAGE u8
+	// second byte is relative to SCOPE created by above PAGE
+	// .spec.view -as- "[ u8_u8 ]"
+	// .spec.view -as- "[ u16_u8 ]"
+	// .spec.view -as- "[ u48_u8_u8 ]"
+
+	BYTE_ORDER {
+		u48_u8_u8_t
+		_u16_u48_t x64_as _u16_u48_t AMD_64
+		64 bit CPUS
+		 x64 bus_specified_as_u16_u48
+		 ARM_64 bus_is_u16_u48_too
+		 CPU_32 bus_is_u32_EXPR // plus macros
+		 CPU_64 bitfield // EXPR // ARGV // TREE // SPEC // Layout
+		 CPU_64 DECODE_u48_addr_u8_hi_u8_lo // addr = u64 >> 16
+		 // not rot, cpu supposed to interrupt per not 0000 or FFFF
+		 // >> 16 expected
+
+		 // intentionally put top bits to byte registers in  
+		 _u16_u48
+		 _u16_u48_u16_u48
+		 _u48_u16
+		 _u48_u16_u48_u16
+
+		 _u16_u48 // convert via BIT ROTATE 16 LEFT into u16_hilo
+		 _u48_u16 // in FAST_FORM // not SORT_FORM // += FILTER +=
+	}
+
+	} // DIAG
+
+BIT_ROTATE_LEFT_16
+
+	brings two top bytes
+	over PAIR // u8_hi u8_lo // as varnames & ret_val_ITEM from func
+
+	ADDR = CURR >> 16 // sign_filling_ZERO // valid for AMD64_PLUS

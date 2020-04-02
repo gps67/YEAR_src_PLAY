@@ -1,0 +1,15 @@
+
+	. ./fns_SESS
+	fn_SESS_USB_sdx # get it as a var $USB_sdx
+	fn_SESS_USB_iso # get it as a var $USB_iso
+
+	sdx="$USB_sdx"
+	du -sh "$USB_iso"
+
+#	USB_iso="$USB_iso" 
+	USB_dev_sdz="/dev/$USB_sdx"
+	ask_do fdisk -l "$USB_dev_sdz"
+	ask_do du -sh "$USB_iso" 
+	ask_do dd if="$USB_iso" of="$USB_dev_sdz" bs=32k status=progress
+	sync
+	ask_do fdisk -l "$USB_dev_sdz"

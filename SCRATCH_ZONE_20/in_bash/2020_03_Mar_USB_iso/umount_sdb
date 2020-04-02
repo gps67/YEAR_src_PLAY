@@ -1,0 +1,11 @@
+
+	. ./fns_SESS
+	fn_SESS_USB_sdx // get it as a var $USB_sdx
+	# local \
+
+	USB_dev_sdx="/dev/$USB_sdx"
+
+	mount | grep "$USB_dev_sdx"
+
+	ask_do umount "$USB_dev_sdx"1
+	ask_do umount "$USB_dev_sdx" 

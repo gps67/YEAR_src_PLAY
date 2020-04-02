@@ -1,0 +1,43 @@
+2020-01-15 Jan Wed 00:00 2020-01-15_STO_u16_OFFS_twig.txt
+
+	Tree streams to twig point
+	Twig brings own structure
+	PLUS SHARED MOUNT POINT OPTION LAYER // name-space 
+
+	u16_OFF
+	 u8_idx
+	u14_idx
+	u16_IDX
+	u24_OFFS
+	u48_OFFS An excellent feature of AMD64 probably ARM u16_field
+
+LANG SWITCH
+
+	.dvi fragments in tree with added _META_ source filters
+
+	TeX generates .dvi, but 
+	has machine in it
+	no fonts in it, loaded u8_font_id // u32_max_4_bytes
+
+	stackable_vars { h v w x y z }
+	(h, v) are updated by putc
+	h horizontal
+	v vertical
+	ZERO_top_left
+	I think these are variables, for any use
+	w, x, horizontal
+	z, y, vertical
+
+	NOT PUSHED
+	f font
+ ?	c char to set ?
+
+CACHE
+	prepare array of items in POOL
+	add dummy mode, to prelearn CHACHE
+	sweep over POOL left to right
+	pause at 3 8 14 21 31
+	switch from HOT_SPOT to CACHE_B to COLD_STORAGE
+	resume above sweep
+	tags all fields, needed before end of ERA[i]
+	multi-merge other uses of CACHE, sort and output ROM PRELOAD BUILD

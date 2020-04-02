@@ -1,0 +1,198 @@
+
+	2020_03_Mar_USB_iso/
+	2020-03-26_USB_iso.txt
+
+Mar 26 23:08:12 M7 kernel: [99317.010039] usb 1-1: New USB device found, idVendor=058f, idProduct=6331
+Mar 26 23:08:12 M7 kernel: [99317.010044] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Mar 26 23:08:12 M7 kernel: [99317.010047] usb 1-1: Product: Mass Storage Device
+Mar 26 23:08:12 M7 kernel: [99317.010050] usb 1-1: Manufacturer: Generic
+Mar 26 23:08:12 M7 kernel: [99317.010052] usb 1-1: SerialNumber: 058F091111B
+Mar 26 23:08:12 M7 kernel: [99317.013968] usb-storage 1-1:1.0: USB Mass Storage device detected
+Mar 26 23:08:12 M7 kernel: [99317.028289] scsi host2: usb-storage 1-1:1.0
+Mar 26 23:08:12 M7 mtp-probe: checking bus 1, device 11: "/sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1"
+Mar 26 23:08:12 M7 mtp-probe: bus: 1, device: 11 was not an MTP device
+Mar 26 23:08:12 M7 upowerd[1453]: unhandled action 'bind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1/1-1:1.0
+Mar 26 23:08:12 M7 upowerd[1453]: unhandled action 'bind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1
+Mar 26 23:08:13 M7 kernel: [99318.044960] scsi 2:0:0:0: Direct-Access     Multi    Flash Reader     1.00 PQ: 0 ANSI: 0
+Mar 26 23:08:13 M7 kernel: [99318.049227] sd 2:0:0:0: Attached scsi generic sg2 type 0
+Mar 26 23:08:13 M7 kernel: [99318.050820] sd 2:0:0:0: [sdb] Attached SCSI removable disk
+
+## example log from disconnect and plug_back_in USB_iso
+
+Mar 26 23:15:38 M7 systemd[1]: Started Load/Save RF Kill Switch Status.
+Mar 26 23:15:51 M7 gps: article
+Mar 26 23:16:02 M7 kernel: [99787.180066] usb 1-1: USB disconnect, device number 11
+Mar 26 23:16:02 M7 upowerd[1453]: unhandled action 'unbind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1/1-1:1.0
+Mar 26 23:16:02 M7 upowerd[1453]: unhandled action 'unbind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1
+Mar 26 23:16:05 M7 kernel: [99790.296067] usb 1-1: new high-speed USB device number 12 using ehci-pci
+Mar 26 23:16:05 M7 kernel: [99790.454231] usb 1-1: New USB device found, idVendor=058f, idProduct=6331
+Mar 26 23:16:05 M7 kernel: [99790.454235] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Mar 26 23:16:05 M7 kernel: [99790.454238] usb 1-1: Product: Mass Storage Device
+Mar 26 23:16:05 M7 kernel: [99790.454241] usb 1-1: Manufacturer: Generic
+Mar 26 23:16:05 M7 kernel: [99790.454243] usb 1-1: SerialNumber: 058F091111B
+Mar 26 23:16:05 M7 kernel: [99790.459436] usb-storage 1-1:1.0: USB Mass Storage device detected
+Mar 26 23:16:05 M7 kernel: [99790.461270] scsi host2: usb-storage 1-1:1.0
+Mar 26 23:16:05 M7 mtp-probe: checking bus 1, device 12: "/sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1"
+Mar 26 23:16:05 M7 mtp-probe: bus: 1, device: 12 was not an MTP device
+Mar 26 23:16:05 M7 upowerd[1453]: unhandled action 'bind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1/1-1:1.0
+Mar 26 23:16:05 M7 upowerd[1453]: unhandled action 'bind' on /sys/devices/pci0000:00/0000:00:1d.7/usb1/1-1
+Mar 26 23:16:06 M7 kernel: [99791.485030] scsi 2:0:0:0: Direct-Access     Multi    Flash Reader     1.00 PQ: 0 ANSI: 0
+Mar 26 23:16:06 M7 kernel: [99791.489253] sd 2:0:0:0: Attached scsi generic sg2 type 0
+Mar 26 23:16:06 M7 kernel: [99791.491395] sd 2:0:0:0: [sdb] Attached SCSI removable disk
+
+root@M7:/nfs/NAS2/mnt/HD/HD_b2/2020/ADMIN_2020/2020_03_Mar_USB_iso# P
+        /usr/local/sbin
+        /usr/local/bin
+        /usr/sbin
+        /usr/bin
+        /sbin
+        /bin
+        /snap/bin
+        /home/gps/bin
+        /home/gps/bin/bin_one
+        /home/gps/bin_LGX
+        /home/gps/bin_NFS
+        /home/gps/.cargo/bin
+Press any key to continue...
+
+Mar 26 23:16:06 M7 kernel: [99791.491395] sd 2:0:0:0:
+
+	[sdb] Attached SCSI removable disk
+
+# SHELL SCRIPT EXPRS for SESS
+
+SESS_VAR_CMD $SESS "varname" { VAR = VAL // VAL == VALUE // }
+CTXT_VAR_OPCODE_ARGS 
+
+	CTXT = pre-defined MACRO for local terrain // DECL DONE SEE xFFFF //
+	LANG += xFFFF means u32 as %4X // auto upgrade "x%4.4X"
+	BIND = lookup(" xFFFF "); // wrapped by GEN, local GEN, UDEF_GEN
+	EXPR += u32_cpu_var_u48_u8_u8_ASIF_EXPR
+	// SUBLEX { lhs } _ASIF_ { rhs }
+	// SUBLEX %s_%s _%s "%s%s%s",lhs,join,rhs
+	// lhs_ASIF_rhs _ASIF_ == join = "_ASIF_" // see also ASIF_
+	// { lhs } _ASIF_ { rhs }
+	// _ASIF_ becomes a _SYNTAX_ _FURNITURE_ITEM_ _PUNCTUATION_WORD_ _PUNCT_
+	// _ASIF_ marks_edge _contains_edge_marking_char_ // _%s_
+
+ SESS prep_VAR_EXPR
+ SESS set_VAR EXPR
+
+
+TODO = ARGV as list of words in pidgeon_math
+
+ // accumulate VOCAB in Module
+ // API_PROVIDER SESS = CTOR()
+ // Module provides SESS // EDIT = CTOR() // EDIT = PARAMETER("objv[idx]")
+ // SESS_t & SESS = EXPR // EXPR = CTOR(" SESS_t ") // SPELLING MATCH
+ // SPELLING MATCH %s_t" SESS " "SESS"
+ // SPELLING MATCH %s_t" SESS " "SESS_remote"
+ // SPELLING MATCH %s_t" SESS " "SESS_t_remote" // AUTO_GEN suggested USE=ON
+ SESS prep_VAR_EXPR
+ SESS set_VAR EXPR
+ SESS_VAR expands to SESS VAR "$@" // in DIALECT == "bash" // "$@" is N_ARGS
+
+ SESS_VAR { // API adds this wrapping layer "SESS VAR ..." over "$@"
+  PSG scans ARGV left to right, optimising lookaheads, pass_too
+ 	VAR = EVAL_EXPR "$@" 
+ 	VAR = EVAL_EXPR "$@" 
+ }
+
+ SESS set_VAR_VAL "$varname" "$value"
+
+ SESS set VAR VAL // varname="$VAR" value="$VAL" // PARAM VAR = ARGV_ITEM "%s"
+
+ SESS add_CTXT_to_bash_ENV {
+ 	CTXT_STR=`func_obtain_CTXT_for_PWD` // DIR="${1:-`pwd`}"
+	// COMPILE THIS // DIR="${1:-`pwd`}" // because comment no quotes needed
+	// DIR="${1:-`pwd`}" // on_MATCH_run_SCRIPT // SCRIPT
+	// SUBLEX attaches echo SPELLING vars and parameters
+	// so " SCRIPT " already exists, mentioned in on_MATCH_run_SCRIPT
+	# DIR="${1:-`pwd`}" # COMPILED {
+	{
+		idx = idx_of("$1") // ARGV_ITEM[ 1 ] // idx == 1 // OFTEN // not
+		if( idx < N ) { // $1 exists // could still be NULL or "-"
+		 DIR="$1"
+		} else { // $1 was not passed // USE_DEFAULT local_code
+
+		 DIR="`pwd`" // squashed to utf8 // ALWAYS // ALMOST //
+
+		}
+
+	}
+	# }
+ }
+
+ # bash
+ sdb="sdb"
+ sdb="sdb"
+ $SUB_SESS set sdb "$sdb"
+
+ fn_SESS_USB_sdx // default sdb works
+
+-----------------------------------------
+TWO sd CARDS
+TWO sd READERS
+
+READER = FLAP, veho, big red light
+READER = FLAP, "FAST", occasional light
+
+
+ SD = 16 GB MyMemory.com STAMP = photo_book
+
+ 	2012 CUBA PHOTOS
+	Works in BOTH
+
+ SD = SD_mini 32 GB mini_SD 
+
+
+ SD_mini on adapter VEHO
+
+ 	1.5 MB/s
+	0.8 MB/s
+
+	2.3G = 2300/1.5 seconds = 4500 / 3 = 1500 seconds = 15 mins
+
+ Mar 27 01:47:34 M7 kernel: [108879.902208] scsi 2:0:0:0: Direct-Access     Generic- SD/MMC           1.00 PQ: 0 ANSI: 0 CCS
+Mar 27 01:47:34 M7 kernel: [108879.902756] sd 2:0:0:0: Attached scsi generic sg2 type 0
+Mar 27 01:47:35 M7 kernel: [108880.677538] sd 2:0:0:0: [sdb] 63246336 512-byte logical blocks: (32.4 GB/30.2 GiB)
+Mar 27 01:47:35 M7 kernel: [108880.678541] sd 2:0:0:0: [sdb] Write Protect is off
+Mar 27 01:47:35 M7 kernel: [108880.678545] sd 2:0:0:0: [sdb] Mode Sense: 03 00 00 00
+Mar 27 01:47:35 M7 kernel: [108880.679538] sd 2:0:0:0: [sdb] No Caching mode page found
+Mar 27 01:47:35 M7 kernel: [108880.679546] sd 2:0:0:0: [sdb] Assuming drive cache: write through
+Mar 27 01:47:35 M7 kernel: [108880.689819]  sdb:
+Mar 27 01:47:35 M7 kernel: [108880.692929] sd 2:0:0:0: [sdb] Attached SCSI removable disk
+Mar 27 01:47:41 M7 kernel: [108886.391007] FAT-fs (sdb): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Mar 27 01:47:41 M7 systemd[1]: Started Clean the /media/gps/SD mount point.
+Mar 27 01:47:41 M7 udisksd[692]: Mounted /dev/sdb at /media/gps/SD on behalf of uid 1016
+
+
+
+ SD_mini on VEHO
+
+YES: ASK_DO: fdisk -l /dev/sdb
+Disk /dev/sdb: 30.2 GiB, 32382124032 bytes, 63246336 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x20ac7dda
+
+Device     Boot      Start        End    Sectors   Size Id Type
+/dev/sdb1       3224498923 3657370039  432871117 206.4G  7 HPFS/NTFS/exFAT
+/dev/sdb2       3272020941 5225480974 1953460034 931.5G 16 Hidden FAT16
+/dev/sdb3                0          0          0     0B 6f unknown
+/dev/sdb4         50200576  974536369  924335794 440.8G  0 Empty
+
+Partition table entries are not in disk order.
+
+
+# corrupt isolinux.exe
+# switching USB
+# simul writing dvd
+
+PURPLE = no media ( no slot )
+BLACK = 16 GB  6/7 MB/s
+WHITE  CM STAMP - RUSTY
+
+

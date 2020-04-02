@@ -1,0 +1,31 @@
+2020-03-13 Mar Fri 19:05 2020-03-13_SYNC_EDGE.txt
+
+	SYNC	TIME	SYNC
+	EDGE	BAND	EDGE
+	 lhs	HERE	rhs
+
+
+	PRE-REQUISITE 
+	REQUIRE
+		lhs | here | rhs // | means SYNC_EDGE 
+	
+	PROVIDES
+		overlays
+		... here ...
+		... here ... // edge_know_detect_modify
+		... here ... // EDGE [s]
+	WORKS_WITH
+		[s] // an overlay of ARRAY[ idx ] of OBJECT // idx == " STR "
+		// EDGES P0P2 lhs rhs
+		// EDGES // ADJUSTED // detected SP_LEX_SP exact
+		// EDGES // ADJUSTED // detected SP_LEX_SP MATCH
+		// EDGES // ADJUSTED // detected SP_LEX_SP APPROX_MATCH
+		// EDGES // ADJUSTED // detected PSG_SUBLEX
+		// EDGES // ADJUSTED // detected SP_EXPR_SP exact tested SP1
+		// EXPR // ... EDGE HERE ... NEXT ... // ie it is PARSABLE SEQ
+		// EXPR [s2] when s2 might have been dropped from CACHE
+		// GEN reserves s2 in SCRIPTS_SEGMENT
+	WORKS_WITH
+		PSG { OBJECT_is_its_own_MODULE } // CODE + DATA + CTRL
+	WORKS_WITH
+		FILTER { OBJECT_is_its_own_MODULE } // { SCRIPT }

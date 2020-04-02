@@ -1,0 +1,8 @@
+
+	. ./fns_SESS
+	fn_SESS_USB_sdx // get it as a var $USB_sdx
+	# local \
+
+	sdx="$USB_sdx"
+
+	ask_do fdisk -l "/dev/$sdx" 

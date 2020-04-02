@@ -1,0 +1,62 @@
+2020-03-25 Mar Wed 11:17 2020-03-25_api_HTTP_python_tcl_obj.txt
+
+	HTTP
+	 port 443 
+	 SESS login 
+	 x509 checking // not at outer SSL layer, internal ENQ_ACK
+	 HEAD_LINE_ATTR
+	  HTTP builtins, expensions, 
+	  STR0 checkers, ascii_name_utf8_data
+	  USER settings, BROWSER used, permit XZ, permit my_mime, plain_cookies
+
+	 SESS
+	  SESS login
+	  SSL multi-link // or not, or add own line_check 
+	  BROWSER is JS CACHE using WASM index of JS_OBJ
+	   JAVA_SCRIPT decodes API output via WASM module
+
+	   u8_page = EA_EXPR_H
+	   u8_item = EA_EXPR_L
+	   u48_PTR_t = EA_EXPR_PTR // u48 shifted // type_match_mapped
+
+	   PAGE2 = INDEX1 [ page ]
+	   js_obj = PAGE2 [ item ]
+
+	  STANDARD PHRASES
+
+	  return unmodified
+	  request if_unmodified
+	  guestimate clock skew
+	  figure UNIQ IDS (or dont)
+	  redirect BROWSER to URL2
+	  return MIME object // CHUNKED //
+	  receive MIME object // EVAL SCRIPT in FSM
+
+	  rewrite URL (why?)
+	  decode URL (eg) A b C d E F ==> A C E F
+
+	DOS
+	  idle connection, save ALLOC
+	  byte_drip_feed_unacceptable
+	  LAN_throughput_MSS_etc // gets it there
+	  quicker CRC passwords before intense RSA computations
+	  use_prepared TOKENS // proof of recent possession of RSA key
+	  recent_as_in_has_temp_pass_secret
+
+	SERVER DECODE URL
+	
+	TCL
+	PYTHON
+
+	OPCODE
+	STR.trim_trailing // filename cant have '/' in CSET ever
+	STR.parse_PSG_SUBLEX_phrase // maybe with a STREAM style P0P2 etc
+	P0P2.parse_LINES_of_TEXT_with_TeX_and_MACROS
+	
+	u8_idx = cpu_L2[u8_idx] of u8_u8 = ALLOC IDX // NEAR
+	u8_u8_t u8_u8 = cpu_L2.micro_cache[u8_idx]
+	ITEM_t & item = SEGMENT_FIND( u8_u8 )
+
+	MIME_TREE
+	MMAP_DATA
+

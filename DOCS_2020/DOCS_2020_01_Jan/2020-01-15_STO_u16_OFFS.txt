@@ -1,0 +1,63 @@
+2020-01-15 Jan Wed 00:00 2020-01-15_STO_u16_OFFS.txt
+
+	I think we should also have u16 << 1 // x2 // u17 _even
+	And that gets added, with ... WORK ...
+	Keep byte access to addresses stored, add to u17_mode_u16_OFFS
+
+	OFFS is -wrt- BASE,ZERO,EA_SEGMENT_START
+	OFFS is u16 // 9 of 10 // 64K of 64K // cant have 0 and N in same zero
+	OFFS_0000 is often used as NULL or UNSET // OFFS used as PTR_offs_in_S
+	u16_IDX_t {
+	 SUBLEX SUGGESTS { u16 idx; }
+	 TEMPLATE SUGGESTS { TYPE_t word_type, u32 IDX_in_a_word, // nbits == u16
+	 DIAG SUGGESTS {
+	 	[0] -> | LINK--> | RHS
+		[i] -> | LINK--> | { OBJECT ... }
+		[n] -> | -V-O-I-D- 
+
+		 N_used = n;
+
+		[n-1]  | LINK--> | { OBJECT ... }
+		[N_ALLOCATED]  | ... // -V-O-I-D- 
+	 }
+	}
+
+	All of ITEM_i can have it's own u16_SPACE SEGMENT [s] and u16_IDX_SPACE
+
+	After CLONE_COPY, ITEM_i has a compacted ROM TABLES
+	After LOCAL_EDIT, ITEM_i has active RAM TABLES n STACKS
+	ITEM_i is held in a u16 space in an u24 space. 16MB is a big page 20K
+	THIS_t is array_u16_of_u16 // U24_ = U16_ * 256; // click table page
+
+	// you you have been allocated 64K DATA limits
+	// you use 64K * 4 for the OFFS_ table // IN STO
+	// you use 100 bytes for the header // IN STO
+	// you use 200 bytes for the header // IN MEM
+
+	// you can request multi-max-paged x_PAGE_4K PAGE_64K
+
+	// many many condensed macro-object-heaps even--in-shared_maybe_RSN
+
+	   item has [u8] items of u16_OFFS // can have more in second_layer
+	   item can reach ...
+	   item can reach [ u16 ] of SAME_SEGMENT_OBJECTS
+	   item can reach _VECTOR_ {
+	   	u8 u8_idx_field = PARAMETER
+		u16_idx VECT_
+
+		FIELD_SPEC_t & FIELD_SPEC // includes FIELD_DATA // PTR nearby
+	   	= OBJECT_FIELD_ITEM[u8_idx_field]
+		
+		[ u8_VECT_u16 ] of SAME_SEGMENT_OBJECTS
+	   }
+	   item has [u16] items of u16_OFFS // can have more in second_layer
+	   item has a few SEGMENTS of 64K, as many as it needs
+	   item has a few SEGMENTS of 64K, but in shared SEG2+OFFS
+	    nb 3 pages and a straggler // clone rewires it, RAM expands it
+	    nb 0 pages and a straggler // its all the straggler
+
+	   items fits in 2K, uses u16_OFFS compiled u8_field.EXPR
+
+
+
+

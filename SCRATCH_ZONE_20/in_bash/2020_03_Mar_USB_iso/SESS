@@ -1,0 +1,9 @@
+#!/bin/bash
+# SESS #
+#	fn_SESS sdb	# creates local sdb="`SESS get_VAR sdb`"
+
+. fns_SESS	# import functions # run init code
+fn_SESS "$@"	# call __main__ with ARGV # SYNTAX bash #
+exit $?
+
+# OPTION # catch trap on_INTR #

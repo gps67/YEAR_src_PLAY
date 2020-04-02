@@ -1,0 +1,39 @@
+# fns_SESS # bash 
+#!/bin/bash
+# SESS #
+# fns_SESS # bash 
+#
+#	. fns_SESS
+#	fn_SESS "$@"
+
+	. fns_BASE
+
+
+
+#	fn_SESS sdb	# creates local sdb="`SESS get_VAR sdb`"
+
+
+# USAGE # fn_SESS "$@"
+fn_SESS_ABSENT_ARGV()
+{
+	echo >&2 "# fn_SESS ABSENT_ARGV # OK // $*"
+	return 0
+}
+
+fn_SESS()
+{
+#	local CMD="ABSENT_ARGV"
+	if [ $# == 0 ]
+	then
+		fn_SESS_ABSENT_ARGV "$CMD"
+		exit $? 
+	fi
+	CMD="$1"
+	shift
+	echo "# TODO # $CMD # " "$@"
+
+}
+
+. ./fns_SESS_UDEF
+
+

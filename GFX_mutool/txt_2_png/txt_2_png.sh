@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+. fns_VARS
+var_add PATH $HOME/YEAR/src_build_2019/JS/mupdf/build/release
+
+# PATH=$PATH:/home/gps/YEAR/src_build_2019/JS/mupdf/build/release
+
 #  mutool run txt_2_png.js "$@"
 
 TXT=2019-01-23_FUNDAMENT_1-2-3-nono.txt

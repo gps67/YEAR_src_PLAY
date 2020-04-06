@@ -2,14 +2,13 @@
 
 
 . fns_VARS
-var_add PATH $HOME/YEAR/src_build_2019/JS/mupdf/build/release
+# var_add PATH $HOME/YEAR/src_build/JS/mupdf/build/release
+var_add PATH $HOME/G//prefix/bin
 
 # PATH=$PATH:/home/gps/YEAR/src_build_2019/JS/mupdf/build/release
 
 #  mutool run txt_2_png.js "$@"
 
-TXT=2019-01-23_FUNDAMENT_1-2-3-nono.txt
-TXT=/home/gps/YEAR/src/libs_apps/docs/2019_ish_TODO/TODO_2018-08_Aug_CURR/DIAG_ZONE/DIAG_Parse/DIAG_Parse.txt
 TXT=test1.txt
 
 # Import

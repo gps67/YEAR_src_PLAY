@@ -1,7 +1,7 @@
 #ifndef A_point_plus_H
 #define A_point_plus_H
-#include <X11/Xlib.h>
 
+#include <X11/Xlib.h>
 # include "WAX_i16_hilo.h"
 
 namespace WAX {
@@ -10,6 +10,19 @@ namespace WAX {
 	There are so many variations on point, rectangle, etc
 	
 	WAX follows X11, mostly
+	X_Item.h X_Obj obj 
+	X_Locn // LOCN TODO
+	X_Item
+	X_Draw GUI_GDI_code _surface _data // GUI_api _sto _filter
+	// EG SAMPLE // NEAR HERE
+	// EG_template // Parameter ARGV ITEM_Type OBJ_V[u8]
+	// typedef u64_WORD ITEM_TYPE_as_WORD;
+	// typedef Word_t   ITEM_TYPE_as_WORD; // SUBLEX TOK WORD_t
+	// typedef u64	WORD_t ; // SUBLEX TOK WORD_t
+	// typedef WORD_t TOK WORD_t; // TOK_as_int WORD
+	// typedef WORD_t TOK API; // CODE_POINT VAR_LIST VARS EXPRS 
+	// typedef u64	WORD_t ; // SUBLEX TOK WORD_t
+	X_STO
 
 	WAX has API with local truetype and svg_type_diag
 */
@@ -32,7 +45,7 @@ namespace WAX {
 		 i16 is plenty for PAGE +- 18 ft
 		 i16 is plenty for PIXMAP 600x800 pos u8_INK
 		 i16_hilo for stored values on UNIT = PIXEL
-
+ 
 			TODO SOON: REWRITE i16_hilo hilo;
 			TODO SOON: hilo.get_i32() { return BSWAP(val); }
 			// (i32) i32_cpu_from_i16_hilo () {

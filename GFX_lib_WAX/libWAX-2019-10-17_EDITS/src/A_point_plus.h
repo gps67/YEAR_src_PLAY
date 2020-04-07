@@ -3,14 +3,41 @@
 
 #include <X11/Xlib.h>
 # include "WAX_i16_hilo.h"
+// #include "A_EXPR.h"
+#include "A_Obj_IDX_OFFS_SPEC.h"
+// #include "WAX/A_Obj_IDX_OFFS_SPEC.h"
+// #include <WAX/A_Obj_IDX_OFFS_SPEC.h>
 
 namespace WAX {
-
 /*
+
+	W_ WIN32 MINX_
+	X_ X11_LIBR
+	A_ TOK_LIBR // WORD_t // A_Vertex // V_Vertex // ALIAS CHAIN
+
+	ALIAS_LINK lhs rhs // what it is // PLUS
+	ALIAS_LEX lhs rhs // what it is // PLUS // ALIAS is RHS // eval rhs
+	// ALIAS_LEX ALIAS LEX // _t from GEN AUTO_GEN_for_CACHE
+	// LEX is_EXPR ("_MINX_") // or ("_PSG_") or ("_LIBR_") or ...
+	// ALIAS is_Name // not_yet_anystr // _C_IDENT_ // SubLex
+
+	// is a PSG_SUBLEX TOKEN_SPELLING
+	// is a TOKEN_SPELLING in PSG_SUBLEX _SEGMENT
+	CTXT_MINX_ // is a thread_gloal_PTR to_API_MINX _EXPR _VARS _ETC
+	CTXT is cpu_var_CTXT // the ONE reserved cpu_var_Name ("CTXT") //
+	// CTXT_t * CTXT = PARAMETER // PRE_SUPPLIED cpu_var_CTXT // u64 //
+	// // CTXT is cpu_var_CTXT // EG AUTO_VAR
+ #	AUTO_VAR appears no import required, was already there # eg CTXT
+ 	Shared CTXT offers one STRUCT_FIELD per API
+	cpu_var_Name -> API_Name -> MINX_ // lots of callable items // A_Module
+	struct MINX_vars : (API_Name == "MINX")
+	MINX_WAX MINX_DRAW _GDI _GUI _GL
+
 	There are so many variations on point, rectangle, etc
 	
-	WAX follows X11, mostly
-	X_Item.h X_Obj obj 
+	WAX follows X11, mostly, add some WINE ?
+	X_X11.h A_Obj obj EA_item EA_EXPR // both under EXPR _t _get_EA_Item()
+	X_Item.h A_Obj obj EA_item EA_DATA // WORD _t // { 
 	X_Locn // LOCN TODO
 	X_Item
 	X_Draw GUI_GDI_code _surface _data // GUI_api _sto _filter
@@ -23,6 +50,10 @@ namespace WAX {
 	// typedef WORD_t TOK API; // CODE_POINT VAR_LIST VARS EXPRS 
 	// typedef u64	WORD_t ; // SUBLEX TOK WORD_t
 	X_STO
+	A_TOK // api gets EXPR WORD CODE SESS TABLES _VARS _TOKENS_ // _NEXT_
+	A_OBJ // api gets sess_data _VARS
+	A_OBJ // api gets sess_type _TYPES_
+	SPEC_WORD // WORD_t // u64 // u3 _3_bit
 
 	WAX has API with local truetype and svg_type_diag
 */

@@ -56,7 +56,7 @@
 		pos2 = pos2_4 // at dot after end of name
 	} else {
 		print("# WARN # filename doesnt end in .txt")
-		quit()
+		// quit()
 	}
 	var dir_filename = dir_name_txt.substring( 0, pos2 )
 

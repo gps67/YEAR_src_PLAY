@@ -1,0 +1,102 @@
+	CPU_RPN_FSM_VAR_POOL/
+	CPU_RPN_FSM_VAR_POOL.txt
+
+RPN = CPU with PUSH POP CALL NARGS leaveing RET_VARS
+// FORTH // POSTSCRIPT // mini_calc_rpn
+
+	N_ARGS = N_VARS		// dictionary lookup at CT idx
+
+	ARG( ... )
+
+VARS = VAR_POOL = CPU_VAR_Name // cpu_var_NAME // cpu_var_CTXT //
+//_SESS = _CTXT._SESS // use CT MACRO [EDIT_TIME] 
+
+	cpu_var_NAME = temp_alloc_local_VAR = cache_VAR 
+	.idx = ALLOC_IDX() // once in CTOR // CT pre-alloc // EDIT renumber
+	.name = "CTXT" // "_SESS" "_TTY" "_USER" "_ITEM"
+	.preferred_alloc = "R9" // edited on CTRL LIST [idx] EDIT_
+	// link edit NAME link // link edit IDX link // both somehow
+
+OPTION
+	cpu_var & GET_idx( u8_cpu_var_idx );
+	cpu_var & VAR_name = EXPR( u8_cpu_var_idx );
+	cpu_var & VAR_name = TABLE[ u8_cpu_var_idx ];
+	u64_hilo VAR_name = TABLE[ u8_cpu_var_idx ];
+	cpu_var & VAR_name = lookup( "VAR_name" ); 
+
+CACHE BIND local VAR
+
+	SCRIPT uses TOKEN
+	TOKEN via FILTER gives MATCH { SCRIPT }
+	input arrived with CTXT // of SCRIPT // CTXT.SCRIPT.ctxt
+	TOKEN has SPELLING // my_ref your_ref // old_ref new_ref // MAP idx
+
+	runtime OBJ can be upgraded // SET OBJ.new_ref new_ref
+	that is a TYPE_MORPH over the runtime OBJ
+	for simplicity one type only, picked from C++ tree of classes
+	one type at a time, can expand + instanciate STEPS on MULTI_STEP
+
+	TOKEN_my_ref = TOKEN_new_ref
+	TOKEN_SPELLING = TOKEN_my_ref + TOKEN.SPEC = my_ref_SPEC
+	TOKEN_BINDING = MODULE . TABLE [ TOKEN_mod_ref ] // DIALECT
+	TOKEN_mod_ref = u64_TOKEN_in_MODULE
+	u8_u8_u16_u32_EA_EXPR_TOKEN {
+		u8_u8_DECODER( u8_u8 )
+		u16_ZONE
+		u32_OFFS
+	}
+
+ cpu_var[ cpu_var_xFF ]
+
+ 	u8_idx = cpu_var_idx;
+
+		TOKEN u8 u8_idx = ALLOC( INST )
+
+ cpu_var[ _xFF _xff ]
+
+ 	_xFF = u8_idx // WORLD // PAGE
+	_xff = u8_idx // ITEM // lo
+
+	ZONE = DECODER.HI_TABLE[ xFF ]
+
+	TABLE = ZONE.TABLE
+	ITEM = TABLE[ _xff ]
+
+	ITEM == cpu_var[ ITEM ]
+
+ cpu_var[ cpu_var_xFF ]
+
+ 	You could have [u16] but [u8] should be plenty
+	but since so much stack_frame_REGEN is required
+	why not switch between [256 ] worlds, each  of [256] registers
+
+ 
+  N_CPU_VARS
+
+  	ABCD_PQ MMX LOCAL CTXT 
+	MEM_VAR == FS:u16_CT_var
+	cpu_var_CTXT.VARS = ALLOC FS:VAR_POOL_AS_STRUCT
+	cpu_var_VARS = CTXT.VARS // good use for a register
+
+	[ 256 ] within first MB of FS:,GS: u16_offs
+
+	[ 256 ] [ 256 ] via DECODER
+
+		u8_ZONE	
+		u8_ITEM
+
+		u8_PAGE
+		u8_ITEM
+
+		u8_POOL
+		u8_ITEM
+	
+	expand u8_u8 to u64 // add PFX,u48_u16
+
+		PFX knows DIALECT of u48_u16
+		OBJ += PFX += DECODER += DIALECT
+
+ cpu_var_CTXT /* pointer to */ {
+
+ 	PAGES of TABLES and STRUCTS and CACHE
+ }

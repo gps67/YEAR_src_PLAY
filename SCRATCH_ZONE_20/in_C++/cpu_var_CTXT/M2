@@ -1,0 +1,6 @@
+. ./.env
+(
+set -x
+./$N.exec
+objdump -dsS $N.o 
+) 2>&1 | less +/cpu_var

@@ -1,0 +1,98 @@
+
+	ARM_QEMU_TOKEN.txt
+
+	CreateThread
+	Call ASM FUNC from C
+	  save all cpu_regs to pre-top
+	  save all cpu_vars to pre-top
+	  import STACK ARGS
+	  alloca STACK VARS
+	  STACK shared_ceiling PREP_CALL to OBJ [s]
+	  setup cpu_vars of STACK_FRAME
+	  // called from somewhere so not zero
+	  CMD = LIST_of_WORD_or_TREE
+	  TUPLO OPCODE 
+	  OPCODE LHS RHS PLUS
+
+	STACK FRAME
+
+	  OPCODE LHS RHS PLUS
+
+	  u64_WORD OPCODE // TOKEN _expr _t // it gives this N_BYTES_Layout
+	   u64_WORD LHS
+	   u64_WORD RHS
+	   u64_WORD PLUS
+	  // SPEC ...
+	  //  N_WORDS == 4 // [s] 0123 
+
+	  cpu_var_CTXT
+
+	   the magic to make gcc reserve a register is
+		register int * foo asm("a5");
+	   to make GCC include that everywhere, tell CPP
+		-include FILENAME # on CPP cmd line
+		# search = . then ... or maybe ...
+		/tools/CTXT/ccs9/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include
+	   to make gcc use a SPEC file ...
+	   	place it ... 
+		/tools/CTXT/ccs9/lib/gcc/x86_64-pc-linux-gnu/9.3.0/specs
+	   	# or invoke with -specs=$SPECS
+	   to get a spec file
+	   	gcc -dumpspec
+	
+	   NOW recompile every libr linked into the binary. dlopen() too
+	   	/tools/CTXT/ with a chroot
+
+
+	  cpu_var_RETVAL
+	  cpu_var_SESS
+	  // struct SESS { ... }
+	   VARS = SESS -> VARS 
+	  cpu_var_SP
+	  // struct STACK_FRAME_AREAS
+	  // C_API_callers_parameters // custom per C_prototype
+	   
+	  cpu_var_SELF
+	  cpu_var_DECODER
+	
+	RUN QEMU on ARM.o
+	 PROCESS has C_API_KERNEL
+	 PROCESS has C_API_embedded
+
+ BUILD qemu from 5.0 ... rc2
+
+ 	fails on capstone-wrapper
+	thats something to do with x86dbg on WIN ?_32 _64?
+	so apt install qemu
+
+		or edit
+		qemu-5.0.0-rc2/include/disas/capstone.h
+ FROM:		#include <capstone.h>
+ INTO:		#include <capstone/capstone.h>
+
+
+
+	ls -CF /usr/bin/qemu*
+
+	qemu-aarch64 -h
+	qemu-aarch64 -cpu help
+	 cortex-a53
+	 cortex-a57
+	 any
+	
+	 qemu-arm -cpu help
+Available CPUs:
+	...
+
+	ls -l /usr/bin/qemu-*64* // then remove mips ppc sparc ...
+-rwxr-xr-x 1 root root  2365200 Feb 12 18:56 /usr/bin/qemu-aarch64
+-rwxr-xr-x 1 root root 12568816 Feb 12 18:56 /usr/bin/qemu-system-aarch64
+-rwxr-xr-x 1 root root 11662592 Feb 12 18:56 /usr/bin/qemu-system-x86_64
+-rwxr-xr-x 1 root root  2014272 Feb 12 18:56 /usr/bin/qemu-x86_64
+
+DEV ENV
+
+	start with a linked hello_word.elf
+	cross compile gcc to ARM 
+	add in an ASM file
+	run under qemu ...

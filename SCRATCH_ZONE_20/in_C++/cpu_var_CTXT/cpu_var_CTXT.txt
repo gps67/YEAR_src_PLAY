@@ -1,0 +1,18 @@
+cpu_var_CTXT
+
+   the magic to make gcc reserve a register is
+	register int * foo asm("a5");
+   to make GCC include that everywhere, tell CPP
+	-include FILENAME # on CPP cmd line
+	# search = . then ... or maybe ...
+	/tools/CTXT/ccs9/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include
+   to make gcc use a SPEC file ...
+	place it ...
+	/tools/CTXT/ccs9/lib/gcc/x86_64-pc-linux-gnu/9.3.0/specs
+	# or invoke with -specs=$SPECS
+   to get a spec file
+	gcc -dumpspec
+
+   NOW recompile every libr linked into the binary. dlopen() too
+	/tools/CTXT/ with a chroot
+

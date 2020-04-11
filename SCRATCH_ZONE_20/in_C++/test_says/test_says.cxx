@@ -28,7 +28,8 @@ int main()
 	float have_virus = 0.03;
 //	float have_virus = 0.70;
 	      have_virus = 0.20; // 20 % coverage
-	      have_virus = 0.05; // 20 % coverage
+	      have_virus = 0.05; // 05 % infected
+	      have_virus = 0.01; //    % infected
 
 	float      have_virus_test_wrong = 1.0 -      have_virus_test_correct;
 	float dont_have_virus_test_wrong = 1.0 - dont_have_virus_test_correct;

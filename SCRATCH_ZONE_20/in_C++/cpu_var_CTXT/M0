@@ -1,0 +1,4 @@
+. ./.env
+
+set -x
+rm $N.exec $N.o 

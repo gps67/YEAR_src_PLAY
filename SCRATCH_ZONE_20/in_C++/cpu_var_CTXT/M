@@ -1,0 +1,10 @@
+. ./.env
+
+# or use the builtin
+# GPP="$GPP -specs=FIX_GCC_specs"
+
+set -x
+./M0
+$GPP -O2 -g -c $N.cxx || exit
+$GPP -O2 -g -o $N.exec $N.o || exit
+./M2

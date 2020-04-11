@@ -71,12 +71,11 @@ int main( int argc, char ** argv )
 	const char * filename = argv[1];
 	if(!filename) {
 		filename = "../test2.test";
-		INFO("Picking %s", filename );
 	}
+	INFO("Parsing %s", filename );
 
-	// INFO("load_and_parse(%s)", filename );
 	buffer2 text;
-	int K_max = 64;
+	int K_max = 300; // 8 is a lot for me
 
 	Y_Parse_t PSG("e1");
 	// e1 is used in signals to say which PSG says what
@@ -95,7 +94,7 @@ int main( int argc, char ** argv )
 	//  ARGS = VECTOR [ N ] of ARG = ANY_OF ... TUPLE( opcode, name, vale 
 
 	if(!PSG.buf_load_and_parse( text, filename, K_max  ))
-	{ FAIL_FAILED(); return errno; }
+	  { FAIL_FAILED(); return errno; }
 
 	return true;
 }

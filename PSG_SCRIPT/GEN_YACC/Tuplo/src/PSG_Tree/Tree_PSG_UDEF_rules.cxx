@@ -68,8 +68,16 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 
 // SYN	POOL_PUNCT.add_PUNCT( "?:",  R2L "13", "code TERNARY"  );  // lternary condiftion
 
+	POOL_PUNCT.add_PUNCT( "<<<", L2R "14", "bitwise ROTATE"  ); 
+	POOL_PUNCT.add_PUNCT( ">>>", L2R "14", "bitwise ROTATE"  ); 
+
+// CHECK: who says these are R2L not L2R // or is it the =
+
 	POOL_PUNCT.add_PUNCT( "<<=", R2L "14", "bitwise SHIFT"  ); 
 	POOL_PUNCT.add_PUNCT( ">>=", R2L "14", "bitwise SHIFT"  ); 
+	POOL_PUNCT.add_PUNCT( "<<<=", R2L "14", "bitwise ROTATE"  ); 
+	POOL_PUNCT.add_PUNCT( ">>>=", R2L "14", "bitwise ROTATE"  ); 
+
 	POOL_PUNCT.add_PUNCT(  "=",  R2L "14", "code ASSIGN"  ); 
 	POOL_PUNCT.add_PUNCT( "+=",  R2L "14", "arith plus"  ); 
 	POOL_PUNCT.add_PUNCT( "-=",  R2L "14", "arith minus"  ); 

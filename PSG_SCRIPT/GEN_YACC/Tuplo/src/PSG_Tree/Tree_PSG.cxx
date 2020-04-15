@@ -8,6 +8,8 @@ Tree_PSG()
 	POOL_PUNCT.PFX = "PUNCT"; // OK omit trailing _
 	POOL_RW   .PFX = "RW";   // OK omit trailing _
 	POOL_LEX  .PFX = "LEX"; // OK omit trailing _
+
+	// CSET 
 }
 
 Tree_PSG::
@@ -20,13 +22,14 @@ Tree_PSG::
 #define if_WARN_1 if(0)
 
 bool Tree_PSG::
-set_PSG_name( STR0 _name_ )
+set_PSG_name( STR0 _name_ ) // "anystr" // "e1" // "gen_e1" // "e1_E1" // EXPR
 {
 	bool near_not_far = true;
 	if(0) near_not_far = false; // use FULL PATH NAMES
 
 	if(0) INFO("_name_ %s", _name_ ); // ../obj/gen_e1
 
+	// e1 exprs E1 // PSG over MMAP 
 	// gen_e1
 	// ../obj/gen_e1
 	//

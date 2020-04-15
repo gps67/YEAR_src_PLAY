@@ -1,7 +1,7 @@
 cpu_var_CTXT
 
    the magic to make gcc reserve a register is
-	register int * foo asm("a5");
+	register int * cpu_var_CTXT asm("a15");
    to make GCC include that everywhere, tell CPP
 	-include FILENAME # on CPP cmd line
 	# search = . then ... or maybe ...
@@ -11,8 +11,12 @@ cpu_var_CTXT
 	/tools/CTXT/ccs9/lib/gcc/x86_64-pc-linux-gnu/9.3.0/specs
 	# or invoke with -specs=$SPECS
    to get a spec file
-	gcc -dumpspec
+	gcc -dumpspecs
 
    NOW recompile every libr linked into the binary. dlopen() too
 	/tools/CTXT/ with a chroot
 
+   HERE /tools/CTXT/ccs9 is a -prexix (like /usr/local)
+   with gcc 9.3.0 built for that, (poss future chroot)
+   theres nothing odd about that gcc, until .../specs added
+   then EVERYTHING it compiles will reserve cpu_var_CTXT

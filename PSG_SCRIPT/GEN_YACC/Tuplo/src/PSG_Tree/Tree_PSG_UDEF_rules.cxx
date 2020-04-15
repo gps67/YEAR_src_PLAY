@@ -101,6 +101,10 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 
 //	POOL_PUNCT.add_PUNCT( "." );
 
+	POOL_PUNCT.add_PUNCT( "//" );
+	POOL_PUNCT.add_PUNCT( "/*" );
+	POOL_PUNCT.add_PUNCT( "*/" );
+
 // ERROR of DOUBLE add_PUNCT --
 
 	POOL_RW.add_RW( "if" );

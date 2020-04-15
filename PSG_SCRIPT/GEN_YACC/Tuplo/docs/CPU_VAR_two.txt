@@ -1,0 +1,32 @@
+
+	CPU_VAR_two.txt
+
+	 cpu_var_ZER0
+	 cpu_var_ONE
+	 cpu_var_TWO [u2] // THIS table of 4 VARS // cpu_var_t
+	 cpu_var_MORE [u8] 
+	
+	 cpu_var_TWO [u3] 
+	 cpu_var_TWO [u5] 
+	 cpu_var_TWO [u8] 
+	 cpu_var_TWO [u32] // filter quota
+	 cpu_var_TWO [u64_DECODED] // it is what it is
+	 cpu_var_TWO [u64_fsm_idx_expr] // DIALECT
+
+	 // ITEM = opcode[u16_lohi_ab] DECODE E(u3_u5_u8) // lo to hi L2R
+	 // CODE lohi_
+	 // u0_u16 // u0 == this
+	 // u1_u15
+	 // u2_u14
+	 // u3_u13 // u3_u5_u8 // u48_payload_available
+	 // u4_u12
+	 // u5_u11
+	 // u6_u10
+	 // u7_u9
+	 // u8_u8 u8_u8_t
+	 cpu_var_ZER0 // ZONE // [u8_u8] // ITEM = * PTR // ptr = E(u16_ab)
+	 cpu_var_ONE // VECT_ITEM_TECH here
+	 cpu_var_CTXT // _TWO[u2_idx] // idx_CTXT = 2
+	 cpu_var_PLUS // compiler lifts memory to register writes back edit list
+
+

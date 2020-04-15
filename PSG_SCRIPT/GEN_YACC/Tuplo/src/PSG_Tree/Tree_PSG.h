@@ -8,12 +8,19 @@
 
 #include "Tree_PSG_LEX_TOKEN.h"
 
-class Tree_PSG_RULE { public:
+oclass Tree_PSG_RULE { public:
+
 	str1 name;
+
 	enum RULE_TYPE {
 	 rule_ONE_OF,
 	 rule_SEQ,
-	 rule
+	 rule_DATA, // PSG_STRUCT _SPEC DECODER( TOKEN ) { DIAG } api
+//	 rule_ _LIST _VECT _ITEM_t api EXPRS("anystr")
+	 rule_TOKEN, // PLUS // alias explains // UDEF
+	 rule_lex_ITEM, // n_bytes probably maybe P0P2
+	 rule_NAMED. // ITEM_NAMED //
+	 rule_all_of_these_are_unwritten // at the mo //
 	};
 };
 
@@ -41,6 +48,15 @@ class Tree_PSG_RULE { public:
 	TOKEN NAME = "PSG_name"
 	MATCH set_%s NAME ARGS // as_part_of_C_api_function_declaration
 	GEN CVAR psg_name NAME SUBLEX(NAME) sublex_
+
+	eg LEX_TOKEN_GROUP POOL_PUNCT; // += "[a-zA-Z0-9_$] // += "[%:;]"
+	 CSET pool_var_subaddr += "CSET_for_("anystr") += "+="
+
+	 Tree is sum of incoming stream of TOKENISED ARGV
+	 DATA = SPEC over INSTREAM // TOKENISED
+
+	 Tree is a GEN of yacc files and some api
+	 hence it is "../obj/gen_e1_lex.lex // EXPR_lex.o _yacc
 */
 
 class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
@@ -50,6 +66,10 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	// str1 holds the malloced memory
 
+	// e1 is ( EXPR ) // ( ARGV ) // api_of_e1
+	// gen_e1 // local_ROOT_e1 // PSG_of_E1
+	// probably GET_EA HEAP ITEM
+
  	str1 psg_name; // gen_e1 		... FILENAME SUBLEX
  	str1 lex_name; // gen_e1_lex 	.lex
  	str1 yacc_name; // gen_e1_yacc 	.y
@@ -57,7 +77,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
  	str1 psg_item; // gen_e1_psg // ##_psg##_reappears##_as //
 
 	//	CVAR NAME str1 psg_name; // "gen_e1" 
-	//	MATCH %s_png NAME == "gen_e1"
+	//	MATCH %s_psg NAME == "gen_e1"
 	//	EXPORT . /*as*/ NAME 
 	//	EXPORT . /*.subfield.*/ NAME /**?
 	//	MATCH . EXPR { SCRIPT }
@@ -68,6 +88,8 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 
 	bool set_PSG_name( STR0 _name_ ); // anystr == _name_ == "../obj/gen_e1"
+	// PSG "name" // e1 exprs E1 
+	// PSG " // e1 exprs E1 // " { SCRIPT } // where SCRIPT is PARSED_TEXT
 
 	STR0 yacc_name_y(buffer2 & str);
 	STR0 lex_name_lex(buffer2 & str);	// flex_machine_for_PSG
@@ -125,6 +147,15 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	LEX_TOKEN_GROUP POOL_RW;
 	LEX_TOKEN_GROUP POOL_LEX;
 
+ // XXXX
+
+ 	// PHRASE_BOOK
+	// lookup("STR") 
+	// TABLE[u8] of ITEM = (TABLE=table_item)[ idx_item ] // each u64_word
+
+	PGG_PHRASE_LIST
+	ZZ
+
  // are we avoiding VTBL or diving right thru
 
 	~Tree_PSG();
@@ -142,9 +173,10 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// u8_idx_t GRP = N++; /* know is_not_empty */
 	// u8_idx_t GRP = get_IDX_of_LEX_TOKEN_GROUP("RW_%s") // RW
 
+	// tok.print_TOKEN_name_1( out, TOKEN ) "%s"
 	bool add_GRP_RW_Name_Str(
 		u8_idx_t GRP, 	// prefix "RW_%s"
-		STR0 ReservedWord
+		STR0 ReservedWord // MATCH // ? //
 	);
 
 	// maybe make TOKEN have EA_double_step_expr_u32

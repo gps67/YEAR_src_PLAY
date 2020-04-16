@@ -84,6 +84,7 @@ endif
 	OBJS1 += Tree_PSG_CALC.o
 	OBJS1 += Tree_PSG_UDEF.o
 	OBJS1 += Tree_PSG_UDEF_rules.o
+	OBJS1 += Tree_PSG_UDEF_rules_yacc.o
 	OBJS2 += EXPRS.o
 	OBJS2 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o

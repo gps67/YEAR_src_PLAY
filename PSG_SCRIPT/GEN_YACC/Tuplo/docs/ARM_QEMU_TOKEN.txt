@@ -130,6 +130,8 @@ crosstool, ... -NG
 	https://crosstool-ng.github.io/docs/introduction/
 gcc
 imcross
+buildroot
+	https://buildroot.org/
 Packages:
  gcc-arm-linux-gnu (32-bit) fedora
  gcc-aarch64-linux-gnu (64-bit) Fedora or RHEL, or

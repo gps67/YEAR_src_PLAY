@@ -6,7 +6,7 @@ DECISION
 
 	u48_u16 - the u16 is lo not hi, the u48 is shifted
 
-	If it is what ARMv8 likes use u64_lohi
+	If it is what ARMv8 likes use u64_lohi == u48_u16_lohi
 
 	u64_lohi
 	u64_abcdefLH // thats the abcd in memery on disk in MMAP

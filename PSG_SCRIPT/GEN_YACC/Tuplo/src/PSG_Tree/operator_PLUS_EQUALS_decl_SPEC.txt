@@ -6,37 +6,4 @@ get_auth()
         # $HOME/VFS/dot_file_ini/.Xauthority
         #
 }
- # GEN # vfs_permit_file // TEXT BLOB
- # GEN # DATA # {
-        #
-        # $HOME/VFS/dot_file_ini/.Xauthority
-        #
-        # pair VFS script_pool // CMNT
-        #  SCRIPT_POOL += xauth_this_and_that // LIBR ./.LIBR/
-        #  SCRIPT_POOL += .libr/xauth_api # _wrap #
-        #  STREAM += FILTER # FILTER= # == #
-        #   FILTER PICK filename FROM_LIST each IS_A_DIR // to VIEW as vfs_dir
-        #   VFS = disk-backed-cache GEN filename VIA SCRIPT_FILTER
-        #   GEN entire_file
-        # -vs-
-        #   GEN paragraph
-        #
-        #   POOL lists of stuff // Object[ idx ]
-        #   stuff += BUFFER_is_ZLIB_something
-        #   stuff += STREAM_of_PKT_IN
-        #   stuff += PKT_IN
-        #   stuff += tuplo_CODE_LHS_RHS_CMNT
-}
 
-# GEN # paragraph
-	# GEN # FILE # {
-		register META in CTXT
-		PAGE_ZERO_FILE_HEAD
-		 PAGE_HEAD
-		STBL_name = SECTION OF FILE
-		 TEXT_at_OPEN = " { "
-		 TEXT_at_SHUT # " } "
-		 VIEW = SEL picked from LIST
-		# TUPLO_is_OPCODE # LIST_%s # 
-		#
-	}

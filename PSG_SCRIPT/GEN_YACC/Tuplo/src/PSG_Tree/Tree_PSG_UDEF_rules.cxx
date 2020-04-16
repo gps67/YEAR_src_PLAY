@@ -3,10 +3,6 @@
 // #include "Tree_PSG_LEX_PUNCT_NAME.h"
 
 
-bool Tree_PSG_UDEF:: add_yacc_for_C_EXPR() {
-	return true;
-}
-
 bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 
 #warning new code here is where you add C priority left right options

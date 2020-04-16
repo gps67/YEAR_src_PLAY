@@ -8,7 +8,7 @@
 
 #include "Tree_PSG_LEX_TOKEN.h"
 
-oclass Tree_PSG_RULE { public:
+class Tree_PSG_RULE { public:
 
 	str1 name;
 
@@ -19,7 +19,7 @@ oclass Tree_PSG_RULE { public:
 //	 rule_ _LIST _VECT _ITEM_t api EXPRS("anystr")
 	 rule_TOKEN, // PLUS // alias explains // UDEF
 	 rule_lex_ITEM, // n_bytes probably maybe P0P2
-	 rule_NAMED. // ITEM_NAMED //
+	 rule_NAMED, // ITEM_NAMED //
 	 rule_all_of_these_are_unwritten // at the mo //
 	};
 };
@@ -153,8 +153,9 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// lookup("STR") 
 	// TABLE[u8] of ITEM = (TABLE=table_item)[ idx_item ] // each u64_word
 
-	PGG_PHRASE_LIST
-	ZZ
+// DOING
+//	PGG_PHRASE_LIST
+//	ZZ
 
  // are we avoiding VTBL or diving right thru
 

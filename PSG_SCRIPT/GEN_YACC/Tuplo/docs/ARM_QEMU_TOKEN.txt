@@ -146,4 +146,35 @@ Packages:
 apt-get install binutils-multiarch
  #
 
+http://www.godevtool.com/
+	x86 asm win32 
 
+
+u64_WORD_lohi_t // lowest x64_lohi _IS_A_WORD_ u64_WORD_t
+u64_WORD_HILO_t // via swap_bytes to u64_cpu
+
+// REQUIRE // CT_ TOKEN _ISER // pre_eval // CACHE // 
+
+
+==VFS== (_API_)
+
+	GEN var = pool[item]; // SPEC == SPEC
+	GEN VAL = const_expr; // PSG_call_expr // well_known_VAL
+	GEN expr = exprs[item]; // SPEC
+	GEN dir = HERE = { SCRIPT }
+	GEN Bench.HERE.SPEC_is_LOCN_Layout.csr("csr") // ea_expr "var" "val"
+	GEN SCRIPT = TREE_loaded_into_MMAP_as_SCRIPT
+	import TREE_loaded_into_MMAP // _as_SCRIPT
+	 SCRIPT {
+	  TABLE u64_WORD_lohi[256]; u8 n_256_nz; // 0 means 256
+	  // style guide WORD avoids _t tail 
+	  // bench setting add_t // already_t
+
+http://www.androwish.org/home/wiki?name=AndroWish+SDK
+
+	API_not_particularly_TCL // not WAX neither
+	.canvas
+	call_expr ARGV = list of ITEM[idx]
+
+	  u64_WORD 
+	 }

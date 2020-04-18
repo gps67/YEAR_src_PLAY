@@ -1,0 +1,8 @@
+
+	ROTATE 32
+	ROTATE 64
+
+	shift bitfield to top bit
+	shift bitfield to zero bit
+
+	rotate word so that bitfield is BH BL or BX or EBX

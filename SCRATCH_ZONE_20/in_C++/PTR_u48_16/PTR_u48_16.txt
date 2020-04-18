@@ -8,6 +8,8 @@ DECISION
 
 	If it is what ARMv8 likes use u64_lohi == u48_u16_lohi
 
+		u48_u16_lohi
+
 	u64_lohi
 	u64_abcdefLH // thats the abcd in memery on disk in MMAP
 	u64_HLfedcba_in_cpu // when in cpu // matches amd64

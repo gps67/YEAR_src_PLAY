@@ -1,0 +1,64 @@
+2020-04-18_STREAM_TEXT_SPEC.txt
+
+ u64_SPEC
+ u64_DATA
+
+ Tcl is the host environment. 
+ TclObject * SPEC;
+ TclObject * DATA;
+ Tcl provides a rich list of data types LIST WORD PHRASE "alias"
+ Tcl converter u48_PTR = u48_16 >> 16
+ u48_u16 = PARSE_P0 // upto P2_MAX // NUL // P2 // we_provide_NUL // BYTE_B //
+ UDEF_TCL_TYPE SPELLING // tokenised STR0 // += FLAG cident_almost_anystr
+  PTR1 = TclObject * PTR1 = PLAIN_STR0_in_tcl_str
+  PTR2 = u64_WORD = u48_u16_lohi // u8_u8_DECODER { ... HERE ... }
+
+  // TOKEN = lookup( "SPELLING" )
+  // TCL_TOKEN = simplify_PTR( TOKEN ) 
+
+ BUT ... SELF MODIFYING CODE ...
+
+ 	receive Tcl_Object * spelling = PARAMETER
+	it was allocated by Tcl, using Tcl_builtins
+	CAN SPLICE in tcl_objext_type = TCL_TOKEN // self modified your data
+	RTFM to check it isnt using PTR1 PTR2, it is all in string
+	call realise_str_of_PARAMETER // let Tcl code allocate it
+
+	CAN ALSO do 
+		OPCODE SPEC DATA
+		OPCODE ITEM // possibly LIST or TREE or ITEM
+		OPCODE // CTXT += CPU_64 // u6 per cluster of CORE[u8]
+		OPCODE SPEC DATA MORE // snake skin to different STO strategy
+		u64_OPCODE u64_WORD
+		u64_OPCODE u64_WORD_lohi
+		u16_OPCODE u48_WORD_lohi
+		u16_OPCODE u48_WORD // BIAS u16_u32_in_u64_lohi over u48
+
+ unaligned u5
+
+ 	A MINI_NODE has TABLE[ u5_idx ]
+
+		[0]	ROW FIELD
+		[1]	ROW FIELD
+		[i]	ROW FIELD
+		[N]	...
+	
+	If only 3 are used, only 3 DATA ITEMS are used "idx=N++"
+	Code can use a BYTE as idx // TABLE[idx]
+	Cade can reuse BYTE for sub_address and key locations
+	Cade can reuse BYTE for IMPORTED_CSR_ITEM[u8]
+
+	if only 31 are used, can fit u5 within u16_OPCODE // u48_PAYLOAD
+	u8_u8 decoder, easliy within reach of ESP32 or ARM32 or QEMU_CPU_64
+
+	If you dont trust the SCRIPT_CODE you can alloc all of [32]
+	and sort of MMAP it over IDX0 IDX2 N=IDX2-IDX0
+	// DIALECT WORD_WITHOUT_SPACE_SUBLLEX_NAME_or_other
+
+	CALL_EXPR CODE ARGV // quarantine ARGV from ARGS // x_update_string_x
+
+	 RETVAL = new_VALUE
+
+	  TOKEN = idx; // idx=N++; // ALLOC_NEW idx = N++ // _or_SCRIPT
+	  // TRACER // TRACK TOKEN == %d // HIGH_NUMBER_IS_A_PTR_low_is_idx
+	  PAYLOAD = PTR = Object_t * obj = EXPR // and other splinters is a row

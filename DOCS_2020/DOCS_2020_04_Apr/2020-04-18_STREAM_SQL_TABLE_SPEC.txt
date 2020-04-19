@@ -1,0 +1,49 @@
+2020-04-18 Apr Sat 23:11 2020-04-18_STREAM_SQL_TABLE_SPEC.txt
+
+ API
+
+	_STREAM
+	_SQL
+	_TABLE
+	_SPEC
+	.txt
+
+ PKT_IN // says EOT // EOT_nested_scope // _DATA_ARRIVED_ as EOT_EDGE
+
+ 	from_db
+	API sqlite_csr
+	select * from TABLE when WHERE
+	filter select * from CACHE (weight likely recent mtime)
+	table_spec = { fields list } group_sort_clutch
+	table_data { (SPEC,DATA) } // nbytes P0P2 _buffer_chunk
+	table_sync // locks joins batch_processing // batch_ctrl
+	edge_scope // sync table ... data ... EOT_IS_COMPLETE
+	row 
+	lhs rows rhs // lhs is one split row_line // rhs row_start
+	// buffer upto 16K SSL packet size, or AUTO_EDGE_MID_WAY
+	// on Transfer_Complete { HERE } {
+	//  INDENTED HERE
+	// }
+	// // SYNC_ALL_TRANSFERS_ARRIVED // 
+	RETVAL_t PKT_in( STO_P0P2, CTXT_SESS )
+	 ALTERNATIVES
+		STO_EA_N // expr_PTR + N // u32_OFFS in SEGM[u8] // P2 = P0 + N
+		// operator == ( u8 * ) { WORD_ROTATE_WORD MATCH LHS RHS }
+		// set RETVAL 
+		// set OK_RETVAL
+	 	STO_P0P2 // u8 * PTR_u48 == P0
+		// P2 becomes P0_next // confirm_alignment // contig // ...
+		STO_NBYTES
+		// P2 = P0 + N
+		// N = P2 - P0
+		STO_N_ITEMS
+		// item is u64_WORD_abcd // load from unaligned // SWAP BYTES
+		// item is u64_u64_PAIR // eg SPEC_DATA
+		// item is u64_u64_LIST //  load from unaligned // SWAP BYTES
+
+ MICRO_CODE // ESP32_crypto_ring_PKT_IN
+
+	A LOCATION has label_ADDR_expr OBJ_t_PTR OBJ_has_CODE_CALLS // API
+
+
+

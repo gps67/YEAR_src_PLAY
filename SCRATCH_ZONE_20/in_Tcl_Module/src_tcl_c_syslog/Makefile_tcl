@@ -24,7 +24,7 @@
 
 	PROG_OBJS += $(LIB1_OBJS)
 	PROG_OBJS += prog_syslog5.o
-	C_PROG = prog_syslog5
+	C_PROG = prog_syslog5.exec
 
 # TCL MOD
 # the Module for use in Tcl scripts
@@ -69,9 +69,8 @@ test: $(MOD1_NAME_so) $(C_PROG)
 	@echo
 	# NO # make -f Makefile_tcl clean
 
-$(C_PROG): $(C_PROG).o $(PROG_OBJS)
+$(C_PROG): $(PROG_OBJS)
 	# make $(C_PROG): 
-	# $(C_PROG): $(C_PROG).o $(PROG_OBJS)
 	$(GCC) -O2 -o $@ $^
 	strip $@
 

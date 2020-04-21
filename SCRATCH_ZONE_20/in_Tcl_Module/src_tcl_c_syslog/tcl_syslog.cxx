@@ -9,6 +9,7 @@
 
 	Note the use of CreateCommand, not CreateObjCommand, which
 	Tcl provides with strings, not objects.
+	that helps Tcl call syslog_main( argc, argv )
 */
 
 #include <tcl.h> /* TCL */

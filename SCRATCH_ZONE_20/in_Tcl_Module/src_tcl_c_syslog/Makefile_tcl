@@ -9,7 +9,7 @@
 
 # different dialects have different dirs, only one needed
 	Tcl_includes += -I$(Tcl_prefix)/include
-	Tcl_includes += -I$(Tcl_prefix)/include/tcl
+#	Tcl_includes += -I$(Tcl_prefix)/include/tcl
 
 # although this is a Tcl Module, it is also a standalone program
 # the common code is "LIB1_" (which uses no Tcl what so ever)
@@ -57,9 +57,11 @@ all: $(MOD1_NAME_so) $(C_PROG)
 # make test does a make clean!
 
 clean:
+	# make clean #
 	rm -f $(C_PROG) $(PROG_OBJS) $(MOD1_OBJS) $(MOD1_NAME_so)
 
 test: $(MOD1_NAME_so) $(C_PROG)
+	# make test #
 	./test_syslog.tcl
 	./test_syslog5.sh
 	@echo
@@ -68,19 +70,22 @@ test: $(MOD1_NAME_so) $(C_PROG)
 	# NO # make -f Makefile_tcl clean
 
 $(C_PROG): $(C_PROG).o $(PROG_OBJS)
-	$(GCC) -O2 -o $@ $?
+	# make $(C_PROG): 
+	# $(C_PROG): $(C_PROG).o $(PROG_OBJS)
+	$(GCC) -O2 -o $@ $^
 	strip $@
 
 $(MOD1_NAME_so): $(MOD1_OBJS)
-	ld -shared -o $@ $?
+	# make $(MOD1_NAME_so): # TCL_MODULE.so
+	ld -shared -o $@ $^
 	chmod 644 $@
 
 .SUFFIXES: .cxx .c .o
 
 .c.o:
-	$(GCC) $(ALL_CXXFLAGS) -c $<
+	$(GCC) $(ALL_CXXFLAGS) -c $+
 
 .cxx.o:
-	$(CXX) $(ALL_CXXFLAGS) -c $<
+	$(CXX) $(ALL_CXXFLAGS) -c $+
 
  

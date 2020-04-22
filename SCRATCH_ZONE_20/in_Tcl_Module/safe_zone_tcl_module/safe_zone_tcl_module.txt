@@ -1,0 +1,47 @@
+
+	safe_zone_tcl_module/
+	safe_zone_tcl_module.txt
+
+
+	feature_api
+	_padded_cell_api
+	_chroot_ed // eg run postgres in own CHROOT // _VFS
+	_trusted_account
+	_limited_account
+
+		nb the folk at tcl.tk have safe_mode_soft_room_api_s
+		which work identically within QUOTA per SESSION
+		VFS looks like VFS ... maybe ?
+
+	C++ API
+
+	ARGV = ... various layouts ...
+	OBJECT OPCODE ARGS
+	OPCODE OBJECT // THIS.EXPR_1234() // may use own local // CPU uCODE
+	OPCODE OBJECT ONE
+	OPCODE OBJECT ONE TWO
+	ARGV = OPCODE OBJECT ...
+	DECODED_n_words_5 // LIST $OPCODE $object $lhs $rhs $plus
+	OPCODE_FIVE OBJECT ONE TWO MORE
+
+	CACHE for RPC_API over shared DATA
+
+	On the server the API's are attached to the SQL QUEUE API
+	On the client the API's are CACHED RPC's
+
+	They share a common BATCH PROCESSING STEPS API
+	That would normally mean LOCKS and ACCESS LINK PERMITS
+	All the requests are queued up.
+	The priority queue stream gets mostly to the fromt
+	The primary queue gets most of the bandwidth
+	The duplicated MMAP zones // HERE -- THERE -- NEAR
+
+	You invent your own API for your FEATURE
+	As long as it looks like Module API_FEATURE_api
+	and fits in an ITEM[u16] world
+	 16 K HEAP_ITEM
+	 48 K OFFS_EXPR // DECODED u14_u16_ // OPCODE opcode u32_PAYLOAD
+	 48 K OFFS_EXPR // DECODED u14_u16_ // OPCODE opcode u32_PAYLOAD
+
+	u64_WORD u8_u8_u16_u32 // _lohi
+

@@ -8,10 +8,15 @@
 #include <stdlib.h> /* perror */
 #include <errno.h> /* errno */
 
+extern 
+       void perror(const char *s);
+
+
 
 extern 
 #ifdef CPP
 "C"
+// this is C not CXX
 #endif
 int syslog_main(int argc, char ** argv);
 

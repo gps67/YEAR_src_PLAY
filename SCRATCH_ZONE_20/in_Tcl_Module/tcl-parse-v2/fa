@@ -1,0 +1,199 @@
+# call:  set ::tcl_patchLevel
+# retval: 8.6.8
+# call:  load ./tcl_parser_library.so Parser_library
+Parser_library advertising: Tokeniser 
+tokeniser_init_trusted() - which calls ... 
+tokeniser_init_restricted - 0
+sizeof int 4 sizeof ClientData 8 
+# module force loaded by Parser_library_Init 
+# retval: Tokeniser initialised
+# call:  load {} Tokeniser
+# retval: 
+# call:  load {} Tokeniser
+# retval: 
+# call:  load {} nonexist
+# error: package "nonexist" isn't loaded statically
+# call:  tokeniser::new tokeniser::parser1
+# retval: 
+closed
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = # simple 3 words
+
+cmd = set a 0
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( a ))
+ |  |   TCL_TOKEN_TEXT a
+ |  TCL_TOKEN_SIMPLE_WORD (( 0 ))
+ |  |   TCL_TOKEN_TEXT 0
+cmnt = # what happens to the quotes?
+
+cmd = set x "some string"
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( x ))
+ |  |   TCL_TOKEN_TEXT x
+ |  TCL_TOKEN_SIMPLE_WORD (( "some string" ))
+ |  |   TCL_TOKEN_TEXT some string
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = # command name is quoted using braces
+
+cmd = {a}
+
+word[0..1] 
+ |  TCL_TOKEN_SIMPLE_WORD (( {a} ))
+ |  |   TCL_TOKEN_TEXT a
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = # surrounding double quotes go
+	# and contents is still a "simple" word
+
+cmd = "{{a}b{c}{d{e}f}}"
+
+word[0..1] 
+ |  TCL_TOKEN_SIMPLE_WORD (( "{{a}b{c}{d{e}f}}" ))
+ |  |   TCL_TOKEN_TEXT {{a}b{c}{d{e}f}}
+cmnt = 
+cmd = "\{a\}b\{c\}\{d\{e\}f\}"
+
+word[0..1] 
+ |  TCL_TOKEN_WORD (( "\{a\}b\{c\}\{d\{e\}f\}" ))
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT a
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_TEXT b
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT c
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT d
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT e
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_TEXT f
+ |  |   TCL_TOKEN_BS \}
+cmnt = 
+cmd = "\{a\}b\{c\}[added $ignored]\{d\{e\}f\}"
+
+word[0..1] 
+ |  TCL_TOKEN_WORD (( "\{a\}b\{c\}[added $ignored]\{d\{e\}f\}" ))
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT a
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_TEXT b
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT c
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_COMMAND [added $ignored]
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT d
+ |  |   TCL_TOKEN_BS \{
+ |  |   TCL_TOKEN_TEXT e
+ |  |   TCL_TOKEN_BS \}
+ |  |   TCL_TOKEN_TEXT f
+ |  |   TCL_TOKEN_BS \}
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set x $a.b.c.d
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( x ))
+ |  |   TCL_TOKEN_TEXT x
+ |  TCL_TOKEN_WORD (( $a.b.c.d ))
+ |  |   TCL_TOKEN_VARIABLE $a
+ |  |   |   TCL_TOKEN_TEXT a
+ |  |   TCL_TOKEN_TEXT .b.c.d
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set x $a
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( x ))
+ |  |   TCL_TOKEN_TEXT x
+ |  TCL_TOKEN_WORD (( $a ))
+ |  |   TCL_TOKEN_VARIABLE $a
+ |  |   |   TCL_TOKEN_TEXT a
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set x "$a"
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( x ))
+ |  |   TCL_TOKEN_TEXT x
+ |  TCL_TOKEN_WORD (( "$a" ))
+ |  |   TCL_TOKEN_VARIABLE $a
+ |  |   |   TCL_TOKEN_TEXT a
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set x "$b(xxx)"
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( x ))
+ |  |   TCL_TOKEN_TEXT x
+ |  TCL_TOKEN_WORD (( "$b(xxx)" ))
+ |  |   TCL_TOKEN_VARIABLE $b(xxx)
+ |  |   |   TCL_TOKEN_TEXT b
+ |  |   |   TCL_TOKEN_TEXT xxx
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set c "{$a} $b $c(xxx) $d($e)"
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( c ))
+ |  |   TCL_TOKEN_TEXT c
+ |  TCL_TOKEN_WORD (( "{$a} $b $c(xxx) $d($e)" ))
+ |  |   TCL_TOKEN_TEXT {
+ |  |   TCL_TOKEN_VARIABLE $a
+ |  |   |   TCL_TOKEN_TEXT a
+ |  |   TCL_TOKEN_TEXT } 
+ |  |   TCL_TOKEN_VARIABLE $b
+ |  |   |   TCL_TOKEN_TEXT b
+ |  |   TCL_TOKEN_TEXT  
+ |  |   TCL_TOKEN_VARIABLE $c(xxx)
+ |  |   |   TCL_TOKEN_TEXT c
+ |  |   |   TCL_TOKEN_TEXT xxx
+ |  |   TCL_TOKEN_TEXT  
+ |  |   TCL_TOKEN_VARIABLE $d($e)
+ |  |   |   TCL_TOKEN_TEXT d
+ |  |   |   TCL_TOKEN_VARIABLE $e
+ |  |   |   |   TCL_TOKEN_TEXT e
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set c [list {$a} $b $c(xxx) $d($e)]
+
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( c ))
+ |  |   TCL_TOKEN_TEXT c
+ |  TCL_TOKEN_WORD (( [list {$a} $b $c(xxx) $d($e)] ))
+ |  |   TCL_TOKEN_COMMAND [list {$a} $b $c(xxx) $d($e)]
+cmnt = # NB first EOLN kept, following dropped
+
+cmd = 
+word[0..0] 
+# check( interp, OPCODE=parse_script, objc=1 ) returned 1 
+cmnt = 
+cmd = set a(b) ${pfx_$c}(xxx) 
+word[0..3] 
+ |  TCL_TOKEN_SIMPLE_WORD (( set ))
+ |  |   TCL_TOKEN_TEXT set
+ |  TCL_TOKEN_SIMPLE_WORD (( a(b) ))
+ |  |   TCL_TOKEN_TEXT a(b)
+ |  TCL_TOKEN_WORD (( ${pfx_$c}(xxx) ))
+ |  |   TCL_TOKEN_VARIABLE ${pfx_$c}
+ |  |   |   TCL_TOKEN_TEXT pfx_$c
+ |  |   TCL_TOKEN_TEXT (xxx)

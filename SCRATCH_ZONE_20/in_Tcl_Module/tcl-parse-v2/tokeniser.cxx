@@ -167,22 +167,109 @@ int tokeniser_new (
 	min is only really usful for objv functions's which really
 	take N + more args, or allow extra -flags. Fixed args
 	have min==max
+
+	VFN is a cast_fn_objv = { argc, argv } of STR0 || TOKEN || OBJECT || API
+	VFN is ARGV of Tcl_Obj *
+	The other forms, are {
+	 += CALLABLE
+	 += TOKEN
+	 += STO
+	 += SCRIPT
+	 += UDEF_PLUS
+	}
+	UDEF_MODULE { SCRIPT } SCRIPT is a MODULE += DIALECT += SESSION 
+
+
+	// ASIDE
+	DECODE streaming_ASM_CPU_64_lohi
+	 EA_ITEM
+	 u64_lohi_WORD_ADDR_EXPR_IDX_OFFS_CSR_TOKEN_SYMBOL_LABEL has_u16_OPCODE
+	 u16_lohi
+	 u48_DATA
+	 u64_lohi
+	  _WORD
+	  _ADDR
+	  _EXPR
+	  _IDX
+	  _OFFS
+	  _CSR
+	  _TOKEN
+	  _SYMBOL
+	  _LABEL 
+
+	   _BITFIELD_ ...
+	   _u16_OPCODE
+	   _u48_PAYLOAD
+
+	   	u16_OPCODE
+		u16_LHS
+		u16_RHS
+		u16_PLUS
+
+		That fits FOUR u16 items per cpu_var_WORD
+		But limits world to u128 _ITEMS[u16]
+		or next level DECODE of u64_WORD_u64_PLUS // _lohi // WORD_PAIR
+		{
+			u64_as_EA_EXPR // in Module
+			u64_as_EA_PLUS // DATA for EA_EXPR
+
+			u64_as_u64_lohi // and NOT as PAIR
+			// ( PAIR is for PARSED_STREAM_OPCODE_ARGV )
+			// ARGV // u64_argc; ITEM_t * item
+			// CLASS // PTR = WORD >> 16 // u64_CAST_USES_PTR
+
+			ask_OPCODE_nbytes_for_csr() { return DECODED_VALUE }
+			// LAZY EVAL CACHES DECODED_VALUE
+			// Bench DECODED += DECODER
+			// P0P2 over u64_WORD and u64_WORDS_PLUS
+		}
+		SESSION = array [ u64 ] of u256 // FOUR x u64_WORD
+
+	   	 u64_OPCODE
+		 u64_LHS
+		 u64_RHS
+		 u64_PLUS
+
+		TUPLO5 OPCODE LHS RHS PLUS
+		 u64_lohi WORD; // EXPR
+		 // OPTION CodePoint == PC == IP _POS_ _CSR_
+		 // ie CTXT_SCRIPT_CODE_POINT sublexes to
+		 // ie cpu_var_CTXT -> CTXT_t 
+		 // #define CTXT cpu_var_CTXT // _t
+		 // _t is an api elf _in_chroot_api_t
+
+		 TUPLOX OPCODE UNARY // UNARY_API_CACHE
+		  u8_u8 OPCODE
+		  u48_u16 PAYLOAD_u64_lohi // ALIAS THIS // 
+
+	//
+
+	// TODO // -1,0,+1 TOKENS used
+	// -1 looks like FAIL
+	// +1 looks like PASS
+	// 0 looks line MATCH_HALF opcode == check( CTXT, 
+
+	// is there a spare WORD in Rcl_Interp *
+
 */
 
-typedef cast_fn_objv VFN;
+typedef cast_fn_objv VFN; // VFN = ARGV = argc, argv, u64_WORD, u256_FOUR_WORD
 
 struct opcode_usage {
-	char * opcode;
-	int min;
-	int max;
-	const char * usage;
+	char * opcode; 		// REPLACE CACHE WITH Tcl_Obj * MY_STR_t
+	int min;		// tcl_obj_type = Module_2_type_4
+	int max;		// which is SYMBOL is TOKEN is STR0
+	const char * usage;	// WHICH IS ALSO pre_looked_up
 	VFN fn;
 
 	int check( Tcl_Interp * interp, char * word, int n ) {
+		// we know caller is sweeping other opcodes
+		// quickly return 0 for NO_MATCH
 		if( 0!=strcmp(opcode,word) )
-			return 0;
-		int max2 = max;
-		if( max2 == -1 ) max2 = n;
+			return 0; // NO_MATCH
+
+		int max2 = max; // locally varied copy
+		if( max2 == -1 ) max2 = n; // -1 axxepts ANY as EXACT
 		if( (n < min) || (n>max2) ) {
 			Tcl_AppendResult(
 				interp,
@@ -191,8 +278,10 @@ struct opcode_usage {
 				" ",
 				usage,
 				NULL );
+			// BAD USAGE
 			return -1;
 		}
+		// MATCHED opcode_str // ALL GOOD 
 		return 1;
 	}
 };
@@ -203,25 +292,36 @@ int tokeniser_call (
 	int objc,
 	Tcl_Obj *CONST objv[]
 ) {
+	// Tcl has evolved some new clutch of interpreter CTXT_t 
+	// RTFM for safe_mode_usages
+	// for now say what is seen // if not same
 	if( t->interp != interp_client ) {
 		Tcl_AppendResult(interp_client,
 			"INTRNAL ERROR: interp mismatch",
 			NULL );
 		return TCL_ERROR;
 	}
+
+	// ARGV  _CSR_ THIS_FUNC opcode ...
+	// slide ARGV past THIS_FUNC // ? //
 	Tcl_Obj * obj_func = objv[0];
 	objc --;
 	objv ++;
 
+	// ARGV  THIS_FUNC _CSR_ opcode ...
 	if( objc == 0 )
 	{
 		Tcl_AppendResult(interp_client,
 			"Usage: $tokeniser opcode ... args ...", NULL );
 		return TCL_ERROR;
 	}
+
+	// ARGV  THIS_FUNC _CSR_ opcode ...
 	Tcl_Obj * obj_opcode = objv[0];
 	objc --;
 	objv ++;
+
+	// ARGV  THIS_FUNC opcode _CSR_ ...
 
 /* only parse_script has any code - at present */
 
@@ -233,17 +333,48 @@ int tokeniser_call (
 { "parse_braces",  1, 1, "braces",  (VFN)(& tokeniser::parse_braces) },
 { "parse_quotes",  1, 1, "quotes",  (VFN)(& tokeniser::parse_quotes) }
 	};
-
 	int n = sizeof( usages ) / sizeof( usages[0] );
+
+	// look for opcode in above table
 	char * opcode = Tcl_GetString( obj_opcode );
 	for( int i = 0; i < n; i++ ) {
 		switch( usages[i].check( t->interp, opcode, objc )) {
 		case -1:
+			// check() is so upset, that we FAIL
+			// eg you passed wrong # of ARGS
+			// there is no clecer PLUS args (yet)
+			// RTFM setting ERROR as AppendResult
 			return TCL_ERROR;
-		case 0: continue; 
+		case 0:
+			// opcode == obj_opcode -> STR_PTR_IS_SET || func
+			// A = PTR ;
+			// if(!A) CALL Tcl_GetString 
+			// we keep a ref, and steal it's internal STR0
+			// we could UPGRADE Tcl's item
+			// we could BOUNCE to Tcl's SPELLING from OURS
+			// we could UPGRADE our item to share Tcl's (keep ref)
+			// opcode == possibly borrowed temp
+			continue; 
+		case 1:
+			
+			// LOG SOMETHING
+			printf("# check( interp, OPCODE=%s, objc=%d )"
+				" returned 1 \n",
+				opcode, objc ) ; 
+			fflush(0);
+			// WARN not FAIL
+
+			// of options { -1 0 1 }
+			// all the others continued to next i
 		}
+
+		// CASE 1 == MATCH FOUND
+
+		// check( argc )
+		// and prepare fast FFI call
 		switch( usages[i].max ) {
 		case -1 : {
+			// ARGV passed straight through
 			cast_fn_objv fn = (cast_fn_objv) usages[i].fn;
 			return (t->*fn)( objc, objv );
 		} case 0: {
@@ -260,6 +391,7 @@ int tokeniser_call (
 			"usages[i].max exceeds 2", NULL );
 		return TCL_ERROR;
 	}
+	// POSS // opcode was never found // i is outside table
 	Tcl_AppendResult(interp_client,
 		"bad opcode: ",
 		opcode,

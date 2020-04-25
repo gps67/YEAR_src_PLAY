@@ -1,0 +1,62 @@
+
+	_PSG_Tree_SUB_LEX/
+	_PSG_Tree_SUB_LEX.txt
+
+	PSG_Tree 
+	 GEN yacc for PARSER_ of_SCRIPT of_DATA
+	  PSG = PHRASE
+	  LEX = LEXER
+	  SUB_LEX = { += LEX += LINKS += } // PSG_COG // PLUES_EQ RHS
+	  LEXER = SUB LEX
+
+	  WKP "hosted by %s"
+	  WKP "Well_Known_Phrase"
+
+ SUBLEX_JOIN
+ 	
+	FILTER("CAP1") { SCRIPT_Module } 
+
+	FILTER("JOIN_%s") { SCRIPT DATA } // CTOR DATA = PRE_LOAD from CACHE // 
+
+		CSET_1 += CSET_cident // which itself has REQUOTE code \s
+		JOINER = "_" // += underscore
+		JOINER = "-" // += dash_used_in_YEAR_MM_DD_sublex
+		JOINER = "%c // += punct_within_word_suble"
+		JOINER = "%s // += "
+		// ETHER += "%s" "%s%s" "%s%s%s" SUBLEX_EXPR
+	
+
+ FOUR_TOPS // [u2] DECODED_u2 == u2_DECODED
+  [0] IDX
+  [1] "%s" // += IDX
+  [2] "%s%s" // += IDX
+  [3] "SUBLEX_EXPR %s%s%s" ... // += IDX
+
+ MORE_ TABLE_u2_of_ARGV_ITEM_TYPE
+  [0] BASE_CLASS and VAR_PICK=u2 // += STR1 %s // Item_t ITEMS[u2] = { ... }
+  [1] derived_UDEF_t SPEC DATA
+  [2] derived_PLUS_t SPEC DATA
+  [3] NESTED_EXPR_COMBINES_WITH_DATA_FROM_PAYLOAD DECODED_payload
+
+ MORE_FOUR += { ARGV_ITEM_TYPE_t NAME("ARGV") }
+ FOUR_WORD += ARGV[u2] // pick ONE of FOUR // for_demos_too
+
+
+ FOUR = ZERO ONE TWO EXPR
+  [0] = P0 == _THIS_ == .
+  [1] = P1 == CSR("csr")  csr_with_P0P2
+  [2] = P2 == _NEXT_ == ...
+  [3] = EXPR ... PAYLOAD from outside PAYLOAD from ADDR_EXPR
+ 
+ FOUR = { 0 +1 M2 -1 } // -1=="-1" -2=="TOKEN_MORE" == "TOKEN_PLUS"  == _PLUS
+ // M2==_PLUS M1=-1
+
+ FOUR { OPCODE LHS RHS PLUS }
+  u16_OPCODE u5_u3_i8	// u16_lohi OPCODE // FADE C++ syntax around that
+  u16_LHS_t u16_LHS;	// lhs  // u16_field[u2] // [1]
+  u16_RHS_t u16_RHS;	// rhs	// u16_field[2]
+  u16_PLUS_t u16_PLUS;	// _PLUS_EXPR_	// u16_field[2] += PLAYLOAD_USED_expr
+
+  u16_u16_u16_u16
+   OPCODE lhs rhs MORE
+ EIGHT = 

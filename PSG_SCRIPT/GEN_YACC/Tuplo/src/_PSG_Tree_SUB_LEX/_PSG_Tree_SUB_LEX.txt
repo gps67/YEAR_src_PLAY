@@ -25,6 +25,175 @@
 		JOINER = "%s // += "
 		// ETHER += "%s" "%s%s" "%s%s%s" SUBLEX_EXPR
 	
+	FILTER( "%s%s%s", "==", " LHS JOIN RHS ") 
+	
+		OPTION ARGV as stack of words will a NULL or END_LIST
+		eg list( "%{LIST}", L, I, S, T, NULL ) // LIST_END
+
+		rescan LEX into SUBLEX_EXPR
+
+			CAP1
+			CAPS
+			UNDERSCORE
+			NAME_NUMB
+			DOLLAR_OTHERS
+			UTF_PLUS
+			illegal_backslash_space // not cident //
+
+		SUBLEX is itself a PSG
+			
+			SPISH in user defined MATCH exact
+			gtk_ as SUBLEX prefix
+
+		SCRIPT explains SPEC {
+		 Module
+		  SPEC { 
+		  .field1 == EXPR // Item_y // Tcl_Obj * //
+		  .field_NAME == { NAME == "item"; // Item_t }
+		  // NAME == "var_name"
+		  // Item_t == "Item_t"; // WKP .
+		  ,field_VECT [ idx_t ] // REFTO_##Item_t ITEMS[u8_idx]
+		  ,field_VECT [ idx_t ] // Item_t * ITEMS[ u8_idx ]
+		  .field_SPEC += pointer_to_Item_t = u16_local_expr
+		  // reference_to_ is pointer_to_ EA_EXPR( PHRASE )
+		 }
+		 SPEC {
+		  Tuplo {
+		  	OPCODE LHS RHS PLUS
+			+= CTXT
+			+= CSR // DATA_csr SCRIPT_csr
+			+= EVAL SCRIPT_csr_STEP // DATA SCRIPT csr OPCODE;
+			// OPCODE == "STEP" // eval csr_step( csr )
+			+= u16_idx 256_pages_of_256_items_PLUS
+			+= u16_idx SEPARATE_CODE_DATA_LAYERS // shared SOME
+			+= u16_idx LHS connects to LHS // shared LHS RHS
+			+= u16_idx RHS connects to RHS // shared LHS RHS
+			+= u16_idx PLUS connects to PLUS // own domain
+			+= u16_idx LHS == RHS DOMAIN_idx_space_shared
+		  }
+		  Tuplo {
+		  	OPCODE ONE TWO PLUS
+		  }
+		  Tuplo {
+			FOUR_WORD {
+			  OPCODE ONE TWO PLUS
+			}
+			FOUR_WORD_u16 { u16[ u2 ] }
+			FOUR_WORD_u64 { u64[ u2 ] } // u64_WORD
+			FOUR_WORD_u16 { // u16_u16_u16_u16 } ...
+			 ARGV_ITEM_TYPE_t * FOUR_WORD[ u2_idx ] 
+			 // ITEMS[ idx ] // idx == u2_idx // _FOUR_
+			 // FOUR[u2_idx] // idx == u2_PICK // STO_u2_t DECL //
+			 // ITEMS[ u2 ] // ITEM // Name
+			 [0] ITEM = eg_OPCODE
+			 [1] ITEM = eg_LHS
+			 [2] ITEM = eg_RHS
+			 [3] ITEM = eg_PLUS
+
+			LAYER = OPCODE_isnt_DATA
+			LAYER = DATA_isnt_OPCODE
+			LAYER = SHARED_LAYER // or lockdown_zone
+			LAYER = SEGMENT_ROM
+			LAYER = SEGMENT_UDEF
+			LAYER = SEGMENT_VIEW
+			LAYER = SEGMENT_EDIT
+			LAYER = SEGMENT_stack_local_SCRIPT_CSR_alloca
+			LAYER = u64_WORD // u16[4]
+			LAYER = u64_WORD // FOUR_WORD_u16 
+			LAYER = u256_FOUR_WORD // FOUR_WORD_u64 // u64[u2]
+
+
+			 ARGV_ITEM_TYPE_idx_u2_t * FOUR_WORD[ u2_idx ] 
+			 ARGV_ITEM_TYPE_idx_u8_t * FOUR_WORD[ u2_idx ] 
+			  OPCODE ONE TWO PLUS
+			}
+		  }
+		  SPACE_idx_u32 {
+		  SPACE_idx_u64 {
+		  SPACE_idx_u64 { u8_u8_u16_u32 ...
+		  SPACE_idx_u16 {
+		  SPACE_idx_u8 { // u8 is plenty for u2 FOUR or u3 EIGHT 
+		  SPACE_idx_u16 { // u16_ITEMS[u2] // lohi in MEM not in cpu_var
+		  	u16_idx_t u16_idx; // idx = PARAMETER = u16;
+			DECODE OPCODE_u8_u8 { // u16_AB // AUTO_NAME VAR_EXPR
+			 BYTE_A = A
+			 BYTE_B = B
+			 MODE_lohi = CT_lohi
+			 LOAD_u64
+			 LOAD_u32
+			 LOAD_WORD_UNALIGNED //
+			 DECODE u2 {
+			  Item_t * item = u16_PRESET
+			 }
+			 ROTATE_to_BYTE_B
+			 CPU_64.cpu_var_CPU_64 = "CPU_64" // KEY
+			 CPU_64.cpu_var_CPU_32 = "CPU_32" // KEY
+			  cpu_var_OPCODE = u64_WORD // lohi
+			  OPCODE.A == u8[ 0 ]
+			  OPCODE.B == u8[ 1 ]
+			  // POSS packed BYTE ALIGN { 1 2 4 8 16 256 BYTES }
+			  // POSS AB of ABCD_EFGH
+			  // POSS_CD_of_ABCD_EFGH
+			  // POSS_EF_of_ABCD_EFGH
+			  // POSS_GH_of_ABCD_EFGH
+			  // POSS H1_A2_over_2_words // or pages_of_words
+			  // transit code byte aligned // random word_edge
+			  // LOAD_u64 // explicit A = * PTR ; PTR += u64_nbytes
+			  // X64 can LOAD over word boundaries, no problem
+			  // Then save own cpu_var_REGISTERS aligned
+			  //
+			  // SECURE_CLICK ...
+			  //  FILTER_CODE_THROUGH_LOADER
+			  //   expand into CPU_64 OPCODES ARGS 
+			  //   
+			}
+		  SPACE_idx_u64 { u8_u8_u16_u32 ...
+
+		   u8_u8_u16_u32 == u32_u16_u8_u8
+		   u8_u8_u16_u32 == \
+		   u8_u8_u48 
+		   u8_u8_u16 == u32
+
+		   // UNION //
+
+		   u64_WORD; // cpu_var_WORD
+
+		  }
+		  SPACE_idx_u16 { u8_u8_or_u16 } // then u32_ABCD _EFGH _CD_EFGH
+
+		    256_pages
+		     256 items
+
+		     64K ITEMS + 256 PAGES_EXTRA_ITEMS
+
+		     256 PAGES_EACH_WITH_OWN_DECL_SEGMENT_
+		     64K ITEMS 
+
+		     64K ITEMS // no EXTRA items u16_idx
+
+		    DECODE u3_u5 // as_u3_u5 // as_u8
+		    DECODE u4_u4 // xFF
+		    // DECODE using >> 5 // 5 = u5_nbits_5
+		    // DECODE using >> MASK
+		    // DECODE using MASK SHIFY ... MASK SHIFT ...
+		    // /*DATA*/ u0 1 u1 2 u2 4 u3 8 u4 16 u8 256
+		    // PAIRS { u2_name nbits } $DATA
+		    // GEN SCRIPT FOR 
+		    // get_nbits_of_u2_name u2_name
+
+# HOT_LEX # 
+# instead of "$DATA" use "u2_name"
+# if ENIRE_SUBLEX is NAME # and NAMEWELL_KNOWN_DATA "u2_name"
+# USAGE # u3 # u3_name # 
+# USAGE u3_u5 # FOLD u3_u5 = TABLE_ONE[ u5_u3 ] TABLE_TWO.gen_inverse
+
+		
+
+
+
+
+		 }
+	
 
  FOUR_TOPS // [u2] DECODED_u2 == u2_DECODED
   [0] IDX

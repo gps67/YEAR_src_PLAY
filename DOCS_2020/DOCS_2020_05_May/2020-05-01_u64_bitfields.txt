@@ -1,0 +1,48 @@
+2020-05-01 May Fri 14:12 2020-05-01_u64_bitfields.txt
+
+	struct u64_bitfields { // _as_ u3_u5_u8_u16_u32 // -OTHERS-
+	 u64 bitfield_DATA_WORD;
+	 // crazy_type // is what it wants to think it is
+	 // it is u64_WORD_from_FUNC_from_hilo
+	 // OPTION // 
+
+	 PACK_n_PARSE // manually edit LIST[ u5 ] // in CODE
+
+	  PACK_slide_towards_zero // u3 first // kebab u5 u8 u16 u32
+	  KNOW_CODE WEIGHTED_OPTION _ALTERNATIVE PICK_u32_WORD
+
+	  CPU_IDX0_id
+	  CPU_BASE
+	  CPU_ZERO
+	  CPU_OFFS
+
+	  EXPR_cpu_var_LHS // = "cpu_var_LHS"
+	  EXPR_cpu_var_RHS // == "_RHS"
+
+	  CTXT += SCOPE _SESS // ... { ... } ... // csr_VARS_Module
+
+	  "_LHS" == "EXPR_cpu_var_LHS" // its parameter comes too // u48
+
+	  ITEM_as_VAR
+	  ITEM_as_FUNC
+	  ITEM_as_EA_EXPR
+	  ...
+	  	ITEM.CODE_HERE_FOR_ITEM_THAW
+
+	  _THAW_
+	  	CACHE will PREFETCH // by running code from GEN_HERE
+		// REMOTE_CACHE pre_arranged_SPECS
+		// PREBUILT = ROM shared both sides of LINK
+		// PRELOAD += PRELOAD_into_CACHE_VAR
+
+## TODO ##
+
+	GEN CODE FOR PREBUILD
+	 PLURALS
+	  PLURAL = PLURALS[ idx ]
+	  everything is in the class ITEM_of_LIST_or_VECT // or_MAP
+	  _var_is_vars_ { item_is_VECT [idx] } // item = ITEMS[idx]
+
+
+
+

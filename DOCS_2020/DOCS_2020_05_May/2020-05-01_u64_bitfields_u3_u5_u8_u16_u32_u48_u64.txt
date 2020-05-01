@@ -1,0 +1,19 @@
+2020-05-01_u64_bitfields_u3_u5_u8_u16_u32_u48_u64.txt
+
+	u64_bitfields
+	u3_u5_u8_u16_u32_u48_u64.txt
+
+		u48_lo
+		u48_shifted
+
+	gen_asm_pockets_of_code // GEN _PLUS_
+
+	 get_%s bitfield.NAME == "u3"
+	 set_%s bitfield.NAME == "u16"
+	 %s_%s ( FUNC_ == "_GETTER_" ) ( bitfield.NAME == "u48" ) 
+	  FUNC get_u3 FROM_MEMORY
+	  FUNC get_u3 FROM_cpu_var_WORD // u64_WORD u32_WORD[2] u8_BYTE[8]
+	  FUNC set_u3 INTO_MEMORY // OPTION BYTE = u3_u5_BYTE
+	  FUNC set_u3 INTO_cpu_var_WORD // let C do it
+	  // cpu_var_WORD.bitfields.SET_ bitfield_field_name // becomes global
+	  // SCOPE += name

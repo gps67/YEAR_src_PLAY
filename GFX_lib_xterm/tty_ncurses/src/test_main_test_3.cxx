@@ -171,6 +171,11 @@ extern "C" void sleep(int);
 		csr.move( XY_t( 4, 6 ));
 		csr.printf("k==KEY_RESIZE");
 	  break;
+	  case 'R':
+	  case 'r':
+		csr.printf("REDRAW");
+		tty.call_endwin();
+	  	break;
 	  case 'Q':
 	  case 'q':
 	  case 'k':

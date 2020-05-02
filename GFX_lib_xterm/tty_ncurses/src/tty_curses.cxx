@@ -20,7 +20,10 @@ statusline(void)
 
 #include <signal.h>
   static void handle_SIGINT(int sig) {
-  	endwin(); // restart = resume = by next action
+
+  	if(TTY_CURSES:: tty_curses:: tty_curses_global)
+		TTY_CURSES:: tty_curses:: tty_curses_global -> call_endwin();
+		// restart = resume = by next action
 	if( sig != 2 ) {
 		FAIL("SIGNAME expected %d got %d", SIGINT, sig );
 	}
@@ -37,7 +40,7 @@ statusline(void)
   static
   void handle_SIGWINCH( int signal ) {
 	// best to not handle it, let curses handle it, get KEY_RESIZE
-	endwin();
+	call_endwin();
 	refresh(); // picks WH from xterm's ENV somehow // LINES COLS
         INFO("LINES = %d COLS = %d", LINES, COLS );
 	// now compute new layout and draw it
@@ -57,16 +60,27 @@ namespace TTY_CURSES {
 	def_prog_mode(); // before shell out
 	INFO("END TTY // 2");
 	// def_shell_mode(); also exists
-        endwin(); 
+        call_endwin(); 
 	delscreen( SCREEN_HERE );
 	SCREEN_HERE = NULL;
 	// hope next refresh sets itself as global ?
 	// hope other fallback is stdscr
   }
 
+
+  // static 
+  tty_curses * tty_curses:: tty_curses_global = NULL;
+
   tty_curses:: tty_curses () {
+   // if(!tty_curses_global) tty_curses_global = this;
    SCREEN_HERE = NULL;
+   endwin_called = false;
   }
+
+  void tty_curses:: call_endwin () {
+  	endwin_called = true;
+  	endwin();
+  };
 
   bool tty_curses:: set_term_global () {
    INFO("TTY global");
@@ -95,30 +109,54 @@ namespace TTY_CURSES {
   bool tty_curses:: set_handle_SIGINT() 
   {
   	(void) signal(SIGINT, handle_SIGINT); // be brief on stack + time
-	 // endwin() and Queue KEY_SIGINT
+	 // call_endwin() and Queue KEY_SIGINT
 	 // can always restart after endin(); by next action
 	return true;
   }
 
-  bool tty_curses:: setup_mouse (bool on) {
-  	static bool mouse_on = false;
-	if(on) {
-	 if( mouse_on ) {
-	 } else {
-	  mouse_on = true;
-	  mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
-	  printf("\033[?1003h\n"); // XTERM - report mouse movements
-	 }
-	} else { // request to switch mouse off
-	 if(mouse_on) {
-	  mouse_on = false;
-	  printf("\033[?1003l\n"); // Disable mouse movement events, as l = low
-	 }
-	 // mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+  bool tty_curses:: endwin_resume()
+  {
+	if(!endwin_called)  return true;
+	if( mouse_on ) {
+		mouse_on = false;
+		setup_mouse( true );
+
 	}
+	return true;
+  }
+
+  bool tty_curses:: setup_mouse_xterm (bool on) 
+  {
+	 if( on )
+	  printf("\033[?1003h\n"); // XTERM - report mouse movements
+	 else
+	  printf("\033[?1003l\n"); // Disable mouse movement events, as l = low
+	  return true;
+  }
+
+  bool tty_curses:: setup_mouse (bool on) {
+
+	if(on == mouse_on) { return true; }
+
+	mouse_on = on;
+	if( mouse_on ) {
+	  mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+	} else {
+	  // switch off
+	}
+	setup_mouse_xterm (mouse_on);
+	 // mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+	return true; // OK
+	/*
+		endwin lost mouseomaybe create a bool endwin_called
+	*/
+	
   }
 
   bool tty_curses:: setup () {
+
+	// mouse_xterm_endwin_recover_bug 2020-05-01 // checked in
+	tty_curses_global = this;
 
 	 // TODO wbkgdset RTFM wresize( win, n_Height, n_Width )
 	 // on resize, new area is painted background-on-background
@@ -174,6 +212,7 @@ if(0) {
 	 attrset( COLOR_PAIR(1) );
 
 	}
+	setup_mouse();
 	return true;
   }
 

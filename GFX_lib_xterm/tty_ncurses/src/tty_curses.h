@@ -25,9 +25,16 @@ namespace TTY_CURSES {
 	// setup caries colour, multi tty, fallbacks
 	virtual bool setup();
 	virtual bool setup_mouse(bool on=true);
+	virtual bool setup_mouse_xterm(bool on);
 	virtual bool set_handle_SIGINT(); // endwin() and Q KEY_SIGINT
 	bool set_term_global(); // this becomes the one
 	
+	static tty_curses * tty_curses_global; // = NULL;
+
+	void call_endwin();
+  	bool mouse_on;
+	bool endwin_called;
+	bool endwin_resume();
  };
 
 };

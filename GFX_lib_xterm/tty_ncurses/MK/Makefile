@@ -71,6 +71,9 @@
 # SO KDB shows two things crossing over into the same implementation crystal
 # below is modules extra library, tests, variations, demo, extras
 
+	GDB_CMD += gdb
+	GDB_CMD += -tui
+
 	OBJS1 += argv_decoder.o
 
 	OBJS1 += test_SHAPE_BASE.o
@@ -137,15 +140,15 @@ dgb: dgb_3
 
 dgb_1: $(PROG1_exec)
 	# debug
-	gdb --args ./$(PROG1_exec) # ARGS # 
-#	gdb --args ./$(PROG2_exec) < $S/test2.test
-#	gdb --args ./$(PROG3_exec) < $S/test3.test
+	$(GDB_CMD) --args ./$(PROG1_exec) # ARGS # 
+#	$(GDB_CMD) --args ./$(PROG2_exec) < $S/test2.test
+#	$(GDB_CMD) --args ./$(PROG3_exec) < $S/test3.test
 
 dgb_3: $(PROG3_exec)
 	# debug
-#	gdb --args ./$(PROG1_exec) # ARGS # 
-#	gdb --args ./$(PROG2_exec) < $S/test2.test
-	gdb --args ./$(PROG3_exec) # < $S/test3.test
+#	$(GDB_CMD) --args ./$(PROG1_exec) # ARGS # 
+#	$(GDB_CMD) --args ./$(PROG2_exec) < $S/test2.test
+	$(GDB_CMD) --command ../.gdbinit_$(PROG3_exec) --args ./$(PROG3_exec) # < $S/test3.test
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
 	# g++ $< $(LINKS) -o $@

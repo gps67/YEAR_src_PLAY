@@ -6,6 +6,37 @@
 		u48_lo
 		u48_shifted
 
+		u4_u4 also available
+		u2 available 
+
+		bitfield. bitpos_hi
+		bitfield. bitpos_lo
+		bitfield. bit_count_n // 
+
+		bitfield. SKIP_TOP = (WORD_WIDTH - bitpos_hi)
+		bitfield. DROP_RHS = bitpos_lo
+
+		DEST << SKIP_TOP // skip if ZERO
+		DEST >> SKIP_TOP + DROP_RHS
+
+		DEST = COPY WORD
+		DEST << WORD_WIDTH - bitpos_hi // check ZERO
+		DEST >> WORD_WIDTH - bit_count_N // check ZERO
+	
+	ROTATE
+		
+		SET u3
+		DEST = TEMP = COPY WORD // future NEWVAL // current TEMP
+		rotate so that u3 is just below edge // ie at TOP
+		shift left dropping u3 // fill zero
+
+		PREP u3 in WORD2 // so that all other bits are zero
+		WORD2 + u3 & MASK1S_u3
+
+		DEST != u3 // += u3 also OK
+		rotate so that u3 is at correct bitpos_lo
+		
+
 	gen_asm_pockets_of_code // GEN _PLUS_
 
 	 get_%s bitfield.NAME == "u3"

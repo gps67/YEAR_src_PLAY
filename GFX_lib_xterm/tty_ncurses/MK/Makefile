@@ -73,6 +73,7 @@
 
 	GDB_CMD += gdb
 	GDB_CMD += -tui
+	GDB_CMD += --command ../.gdbinit_tui 
 
 	OBJS1 += argv_decoder.o
 

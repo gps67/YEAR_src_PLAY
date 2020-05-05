@@ -77,11 +77,6 @@ namespace TTY_CURSES {
    endwin_called = false;
   }
 
-  void tty_curses:: call_endwin () {
-  	endwin_called = true;
-  	endwin();
-  };
-
   bool tty_curses:: set_term_global () {
    INFO("TTY global");
    if( SCREEN_HERE ) {
@@ -113,6 +108,11 @@ namespace TTY_CURSES {
 	 // can always restart after endin(); by next action
 	return true;
   }
+
+  void tty_curses:: call_endwin () {
+  	endwin_called = true;
+  	endwin();
+  };
 
   bool tty_curses:: endwin_resume()
   {

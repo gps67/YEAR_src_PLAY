@@ -11,6 +11,7 @@
 
 		STREAM of variable sized ITEM PAIR TRIP QUAD _with_added_EXTRA
 
+ thinking about single byte data tags (STREAM -vs- TREE)
  losing word alignment
  convert stream to tree ?
 
@@ -26,6 +27,16 @@
  	LHS = SPEC or DATA_with_SPEC
 	RHS = ITEM
 
+ Tuple u3_u5
+ 	32 opcodes -or- N exprs
+
+	tuplo_of_var_N_and_NO_tuplo_base // generic array OPCODES
+	tuplo_of_form32_and_NO_tuplo_base // other than generic struct optcodes
+
+	tuplo_of_var_N_and_tuplo_base_u16
+	tuplo_of_form32_and_tuplo_base_u16
+
+
  Limit u16 types of SCRIPTED LOCAL tuplo_type in heap or imported
 
  	find SPEC same HEAP as STREAM
@@ -35,6 +46,26 @@
 		 uses pages of [u8] imported from STO 
 
 		 loader = MAP_Object_Layout
+
+		 PAGE = PAGES[ u8 ]
+		 PAGE {
+		 	HEADER {
+				u8 N ; // zero means FULL or EMPTY !!
+				u8 flags; // is_empty
+			}
+		 	VECTOR [ u8 ] of ITEM_FULL_ADDR
+		 }
+		 ITEM = PAGE[ u8 ]
+		 ITEM {
+		 	u32_hi_lo EA_32_from_16; // eg to match SAME HEAP TEST
+			void * IN_MEM_Object; // which is a SPEC LOCN
+
+			// possibly two arrays //
+			// one on disk // one in MEM
+			// possibly MMAP_TEMP_FILE to increase SWAP
+			// or at least drive from HOSTED cahce
+			// to HOSTING cache // but everything else with it
+		 }
 
 
  Tuplo_Vector_few

@@ -1,0 +1,44 @@
+2020-05-10 May Sun 22:42 2020-05-10_SUBLEX_PSG_SCRIPT.txt
+
+	SUBLEX_PSG_SCRIPT.txt
+
+SCRIPT PSG SUBLEX { DIALECT }
+
+	TASK edit_tokeised_text { LINKS }
+	 unroll index SQL_TABLE ROW_of_TYPES
+	 report swap edit find
+	 edit phrase expr LIST_of_ITEM { SCOPE union_ITEM_t += Item_t }
+
+	 ITEM // POSS ITEM_is_DTP_PHRASE _t
+	  xFFFF idx_of_item %s_idx ITEM 
+	  // xFF // idx_carrying u4_idx u2_idx // expr = EXPR[ u2 ]
+	  xFFFF_SQL_ARGV_DATA
+	  // reload SQL_ROW_from_TEXT // PARSED // .
+
+	 PHRASE // { DIAG } // SCRIPT // 
+	 // SUBLEX PARSED gives PKT_ITEM // _SEGMENT_ITEMS_[ITEM_idx] // %s.%s
+	 += PARSED_BYTES_utf8 // _MIME // 
+	 += SQL_TYPES // filter_apply_ XML_utf8_PARSED_SQL_DATA
+	  += FILTER NO_SP_IDENTIFIERS // %s.%s ITEM_NAME "idx" // ITEM.NAME //
+	  += FILTER += SUBLEX // %s%s // ITEM "ext" // .%s" // EXT // ITEM.idx 
+	  += FILTER += SUBLEX // %s%s // ITEM "_t"
+	  += MATCH SUBLEX %s%s // ITEM "_t"
+	  += CSV_ROW_t // each VIEW makes sence of PLACED_ITEM 
+	 item_idx = POOL.add_new_ITEM_idx // and all that it uses = side effect
+
+	 STO // ITEM = SEGMENT 
+	 // array [ u24 ] of utf8_byte // of_BYTE // u32 // u64_in_cpu_var_POS
+	 // Layout utf8_stream
+	 // _PARSED // NEAR _%s PARSED // near LAYER_VIEW _PARSED_TEXT // 
+	 // _STREAM // _SEGMENT // STR1 // _N_ALLOC 
+	 // OPCODE { u32 idx_u24; } // DIALECT += GETTERS += OFFS_t += IDX_t
+	 // += VAR_t
+
+	 SPEC ITEM_in_SEGMENT_t 
+	 // ITEM_has_api_interface_t
+	 // ADDR_of_ITEM_in_HEAP_as_EXPR { OPCODE BIT_FIELDS }
+
+
+
+	
+

@@ -1,0 +1,24 @@
+2020-05-10 May Sun 23:49 2020-05-10_SQL_field_parsed_from_stream.txt
+
+	_SQL_field_parsed_from_stream.txt
+
+	_CSV_from_UTF8_
+	_CSV_from_TEXT_
+	_CSV_from_BYTES_
+	_CSV_from_STREAM_ // of_BYTES
+
+	_PARSED_
+	 xFF
+	 xFFFF
+	 u16_idx
+	 TOKEN // as_xFFFF // as_NAME_plus // %s_t // %s.idx // %s_idx //
+	 NAME // as_%s_t // as %s // as %s %s // as LHS RHS // as %s %s // ...
+
+	 PARSED("URL") // STR1 // http://host.dom/dir/file
+
+	 PARSED CSV_FIELD // upto_comma // TRIM_TRAIL // BACK_SLASH_re_QUOTED
+	 PARSED CSV_FIELD_idx_expr
+	 PARSED CSV_FIELD_ident
+	 PARSED CSV_FIELD_ident_SUBLEX_EXPR
+
+

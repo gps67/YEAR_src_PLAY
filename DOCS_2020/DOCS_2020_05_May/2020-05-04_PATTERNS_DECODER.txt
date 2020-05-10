@@ -86,11 +86,15 @@ RUN SIMUL
   LEARN CALLER CODE PATHS over SHARED stepping stones // lit_layers
   FILTER bunch of optimisations 
   SELECT from WEIGHTED CODE PATHS
+  FILTER ALL VIA REGEN or RENUMBER or SORTED_TREE // DENSE_PACKING_OPTIONS
+  // LZO will pack low index's on top of ENCODING // COMPRESS then CRYPT SEG
+  // MMAP hotspots lots of samall arrays close together, task related too
+  // MMAP FOOTPRINT SPEED
   GEN ROM
   PRE LOAD TABLES
 
  SINGLE_STEP_ANALYSE_CODE
-  LAYOUT = u64_cpu_from_u64_ABCD_EFGH
+  LAYOUT = u64_cpu_from_u64_ABCD_EFGH // _hilo _lohi
   LAYOUT = u64_cpu_from_u64_ABCD_BYTES
   LAYOUT = u64_cpu_from_u64_HILO_MEM
   LAYOUT = u64_cpu_as("u16_lohi[u2_idx]");

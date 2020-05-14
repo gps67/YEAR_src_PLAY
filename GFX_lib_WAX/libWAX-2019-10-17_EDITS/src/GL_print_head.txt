@@ -101,6 +101,12 @@
       u64_Item //
      }
 
+     DECODED( u16_t ) shorthand_for_EXPR // _cpu_var_CTXT // load_save on API
+     MODULE_IDX {
+      u64_expr_idx 
+       IDX { PTR_Module PTR_item _CTXT } // SESS // CSR // PARSE //
+     }
+
      struct u16_idx_t : u16_t { ... PLUS ... }
      // PSG of that // from original text // DENSE SUBLEXED
      // ... // PLUS // u16_t u16_WORD; // u16_WORD_t; // "u16_%s_t" // WORD //

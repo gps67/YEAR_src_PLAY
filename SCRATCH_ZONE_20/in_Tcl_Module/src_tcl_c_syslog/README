@@ -1,3 +1,8 @@
+FOUND
+	2000-02-14
+	/home/gps/src/SCRATCH_SCRIPTS/in_TCL/src_tcl_c_syslog/
+	min fix to compile and run
+
 tcl_c_syslog
 ------------
 
@@ -24,6 +29,12 @@ test_syslog5.sh		- demo caller
 # see lib1_syslog.cxx (or man 3 syslog) for other LOG_xxx names
 # you can omit or emit the LOG_ prefix as you wish
 
+	This also demonstrates a strange mix of C and C++.
+	prog_syslog.c is compiled entirely in C, not C++
+	(eg you dont have a C++ compiler handy). Hence it cannot
+	easily call C++ (gcc can but just for instance).
+	Hence the  extern "C" syslog_main(argc,argv);  declaration.
+
 	Tcl module loading requires  extern "C" xxx_Init(...),
 	but the rest of the file is C++ (for no particular reason).
 
@@ -36,4 +47,3 @@ test_syslog5.sh		- demo caller
 	(see the Tcl docs).
 
 	Tcl modules are never unloaded. (But can close down all procs).
-

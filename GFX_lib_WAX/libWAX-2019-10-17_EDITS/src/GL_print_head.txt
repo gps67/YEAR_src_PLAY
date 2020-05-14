@@ -1,0 +1,134 @@
+
+ GL_print_head.txt
+
+ _CURR_
+  _FGFB_
+   GL::Font_t; // AA4_AntiAliased_PIXMAP // Glyph Stamp
+    FONT provides { SCRIPT } { ...
+    }
+ _OBJ_
+  _SPEC_
+   AS_ print_head {
+   	struct %{print_head}s
+   }
+
+   print_head LIBR {
+    proc name ARGS { SCRIPT }
+    argv name ARGS { SCRIPT } // name -s expr _Parsed
+   }
+
+   print_head LIBR TYPE_SET {
+    XY CSR_baseline; // mini_DTP_node = XY_casr_one; // .baseline // obvs
+    mini_DTP_node_t {
+     OPTION_kerning = ITEM , NULL || (INST,SPEC) { SPEC }
+     print_gylph_and advance( gylph , fgbg
+     // device contect == graphics contect == fgbg module
+     // data alias fgbg_inst_sess_ctxt // ctxt.sess.fgbg // u64_obj_EA_EXPR
+     // fgbg = print_head.fgbg = fgbg_t // 
+    }
+    OPTION_spud_head_printing
+    OPTION_glyph_printing as_BITMAP_AA4_xu2 i30_u2_XPOS // _YPOS // _ARGB[u2]
+     
+     // [u2] of LIST_FOUR // u16[4]
+     // [u2] of GLYPH_TRAY // TRAY.GLYPH( utf8_char ) // CSR // u16[4]
+     DXDY dx = 2  dy = 2 AA4_AntiAliased_4_SHIFTS_PIXMAP
+     PIXMAP XYWH CANVAS PIXMAP_t // u32_RGBA_ARGB_ARGV("u8[4]") // CSR_t += ...
+     PRE_PRINT = CACHED PRINT + EDGE_DETECT { PAGE_Layout }
+      PRE_PRINT AA4_of_glyph {
+       += PIXMAP .bytes_per_row // obtained cached
+       += XYWH on PIXMAP is BBOX
+       += GLYPH_INFO += XY_STEP_from_ZERO // to top left of GYHPHS_XYWH 
+       += GLYPH_INFO += XY_STEP_advance // AFTER KERNING 
+       += GLYPH_INFO += XYWH_BBOX // alias near here //
+       += FGBG = PARAMETER = FGBG
+       // TYPE_SYSTEM += GENRE += FIELD_t * PTR; // INST.field // 
+       // TYPE_SYSTEM += AFTER_CLIPPING_u32 // PRE_DONW_on_MINUS // PLUS
+       // TYPE_SYSTEM += ZERO ONE TWO PLUS
+       // TYPE_SYSTEM += ZERO ONE TWO THREE FOUR MORE PLUS MINUS // FULL
+       EDGE_DETCT PAGE_Layout }
+	SURFACE;
+        XYWH_of_SURFACE;
+	FLAG_ZERO_IS_TOP_LEFT("ZERO is TOP_LEFT")
+	// PAGE_ZERO // TOP_LEFT or BOTTOM_LEFT // MATRIX _expr
+	// _expr = DATA + SCRIPT { builtin_script_here }
+	// _expr = DATA + SCRIPT { LIBR_script }
+	// _expr = DATA + SCRIPT { UDEF_script }
+	// _expr = DATA + SCRIPT { _expr ARGS DATA } // SYMBOL Match lookup idx
+       }
+      }
+    proc name ARGS { SCRIPT }
+    argv name ARGS { SCRIPT } // name -s expr _Parsed
+   }
+
+
+   u16_infinite {
+    obvs not infinite but u32 or u16 or u8 is OPTION
+    Module accept PARAMETERS += "VAR_Name" // and so it goes // further
+    intended as ITEMS[u5] // u5 = BITFIELD { ... }
+    CACHE if(idx<16){ DATA_KEPT[idx] } // FILTER RULE REWRITE u48_idx
+    NO_CACHE { OUT_VAL_is_IDX_from_idx } { ITEMS[u16] }
+    NO_CACHE { OUT_VAL_is_IDX_from_idx } { u32_IDX = ITEMS[u16_idx_expr] }
+    MACHINE { u64 = DECODE_as_TABLE_of_ITEMS[ u16_idx ] {
+
+     Module
+     Module_INST_one
+     Module_INST_two
+     Module_INST_more
+
+     SO it might be 
+     IDX {
+      u2_Module
+      u14_Item
+     }
+
+     BE always LIKE 
+     IDX {
+      u16_Module
+      u16_Item
+     }
+
+     BE LIKE TABLE
+     IDX {
+      u32_idx // IDX_t;
+      u32_Module
+      u32_Item
+     }
+
+     BE LIKE THREAD
+     IDX {
+      u64_idx // idx = EXPR run over DATA
+      u64_Module // u64_PAYLOAD = 
+      u64_Item //
+     }
+
+     struct u16_idx_t : u16_t { ... PLUS ... }
+     // PSG of that // from original text // DENSE SUBLEXED
+     // ... // PLUS // u16_t u16_WORD; // u16_WORD_t; // "u16_%s_t" // WORD //
+     // u16_t u16_idx == idx_item; // EXPR ARGV
+     // DECL ARGV // PROC for scripting MATCH keyword
+     // NLP // most of MATCH STR1 += be_case_sensitive += REWRITE
+     // NLP // EXACT( SPELLING ) // FLAGS_AS_FOUND = VARIANT[pick] // 
+     // NLP // NORMALISED( SPELLING ) // FLAGS_AS_FOUND = VARIANT[pick] // 
+     // NLP // idx_TOKEN = u16_idx_NEAR // NEAR = Module_SPACE_u16_item
+     // MODULE = MODULE_DATA[ u2_pick ] // DIRECT as EXPR_BITFIELDS 
+     // DIRECT as EXPR_BITFIELDS 
+     // DIRECT as PTR_EXPR_SPEC // PTR_t * PTR = VIA( u62_ROM_item )
+     // DIRECT as ARGV // _SPEC // _DATA_ //
+     // SUBLEX _%s_ // %s == "x%4.4X" u64_EXPR // u16_u48
+     // SUBLEX %s %s == u16_u48 // that auto extracts u16="u16" u48="u48"
+     // EA u16 = u8_u8 OPCODE
+     // EA u48 = BIT_FIELDS { ... } // common phrases match // share SCOPE //
+     // EA u48 = PTR_t * PTR = u48_PAYLOAD = u64_WORD >> 16; // _PLUS_ZERO
+     // DECODED u48_PTR = _PLUS_ZERO + _PLUS_OFFS // BOUNDS MMAP_ZONE
+     // OPTIMISE // OFFS == 0 // DEFAULT_IMMEDIATE_STATE_CSR_WAS_idx
+     // OPTIMISE else join in case_next flag_ZERO_is_valid_IDX
+     // OPTIMISE // OFFS > 0 // BOUNDS OFFS_MAX_BOUNDS_P2 // OFFS < N // 
+     // EXACT // ADDR = BASE + OFFS
+     // ALIAS // ZERO == BASE
+     // ALIAS // ADDR == OFFS_EXPR // keeping BASE unused
+
+     // MODULE = MODULE_DATA[ u16_pick ] // but VIA lookup DECODER
+    }
+
+
+   }

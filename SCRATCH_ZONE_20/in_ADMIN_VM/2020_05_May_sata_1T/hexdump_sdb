@@ -1,0 +1,50 @@
+#!/bin/bash
+# sudo takes away our PATH
+PATH=$PATH:$HOME/bin:/home/gps/bin:/home/gps/bin_LGX
+
+
+. fns_ROOT
+rerun_as_root
+
+. ./.env
+
+ls -l $SD_dev_sdb
+
+dd_bs=1024 # unit 1KB
+dd_bs=4096 # unit 4KB # default for buffered io
+
+dd_count=16 # 16 * 4K == 64K 
+dd_count=18 # 64K + 1 SIDE + 1 to see EOF
+dd_count=1024 # 1024 * 4K == 4 MB
+dd_count=256 # 256 * 4K == 1 MB
+dd_count=18 # 64K + 1 SIDE + 1 to see K64 extra_page EOF 
+dd_count=1T # 1T * 4K == 4 peta ?
+
+dd if=$SD_dev_sdb bs=4K count=$dd_count \
+| hexdump -C \
+| less
+
+exit
+
+root@E6320:/2020/ADMIN_2020/2020_05_May_sata_1T# ./hexdump_sdb
+# USING SD = /dev/sdb
+brw-rw---- 1 root disk 8, 16 May 16 11:03 /dev/sdb
+00000000  5a 5a 5a 5a 5a 5a 5a 5a  5a 5a 5a 5a 5a 5a 5a 5a  |ZZZZZZZZZZZZZZZZ|
+*
+00000800  00 00 00 00 ff ff ff ff  00 00 00 00 ff ff ff ff  |................|
+*
+00000a00  5a 5a 5a 5a 5a 5a 5a 5a  5a 5a 5a 5a 5a 5a 5a 5a  |ZZZZZZZZZZZZZZZZ|
+*
+00002800  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+*
+^C477373+0 records in
+477372+0 records out
+1955315712 bytes (2.0 GB, 1.8 GiB) copied, 51.7824 s, 37.8 MB/s
+
+Press any key to continue...
+
+
+
+
+
+

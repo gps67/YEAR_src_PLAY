@@ -1,0 +1,27 @@
+set -x
+export A=a:b:c
+PATH=:$PATH
+
+PATH_TOOL add A a
+PATH_TOOL add A b
+PATH_TOOL add A c
+PATH_TOOL add A d
+
+PATH_TOOL pfx A a
+PATH_TOOL pfx A b
+PATH_TOOL pfx A c
+PATH_TOOL pfx A d
+
+PATH_TOOL del A a
+PATH_TOOL del A b
+PATH_TOOL del A c
+PATH_TOOL del A d
+
+PATH_TOOL add B xx
+PATH_TOOL pfx B xx
+PATH_TOOL del B xx
+
+PATH_TOOL dele A a
+PATH_TOOL del A
+
+PATH_TOOL -for_eval pfx A z

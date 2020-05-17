@@ -1,0 +1,4 @@
+
+# EQMU has created a virtual floppy out of files
+
+	DIR1/in_DIR1.txt

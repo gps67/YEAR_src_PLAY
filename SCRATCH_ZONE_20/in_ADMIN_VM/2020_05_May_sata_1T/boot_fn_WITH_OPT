@@ -1,0 +1,41 @@
+
+function WITH_OPT()
+{
+ for cmd in "$@"
+ do
+  case $cmd 
+  in
+     help)
+  ;; fda_freedos)
+	FDA=iso/live/freedos.img
+	OPTS="$OPTS -fda $FDA"
+
+  ;; fdb_DIR1)
+	OPTS="$OPTS -fdb fat:floppy:DIR1"
+
+  ;; lgx)
+	kernel=iso/live/vmlinuz
+	OPTS="$OPTS -kernel $kernel"
+
+	initrd=iso/live/initrd.img
+	OPTS="$OPTS -initrd $initrd"
+
+	echo "# UNSET # CMD == ''"
+
+  ;; iso)
+	OPTS="$OPTS -cdrom $ISO"
+
+  ;; hda_sdb)
+	HDA=$SD_dev_sdb
+	OPTS="$OPTS -hda $HDA"
+
+  ;; hda)
+	HDA=iso/live/filesystem.squashfs
+	OPTS="$OPTS -hda $HDA"
+
+  ;; *)
+  	FAIL "usage # got $cmd # not recognised"
+  esac
+ done
+}
+

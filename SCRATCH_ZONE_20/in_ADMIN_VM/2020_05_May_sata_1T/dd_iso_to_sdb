@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ . ./.env
+
+# boot_zilla # VM += BOOT_iso as DVD=VM.dvd
+
+  ask_do dd if=$ISO of=$SD_dev_sdb  bs=4096 status=progress
+

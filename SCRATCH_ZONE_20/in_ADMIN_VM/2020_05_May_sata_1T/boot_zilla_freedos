@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+. ./.env
+
+  OPTS="$OPTS -snapshot"
+
+# OPTS="$OPTS -fda fat:floppy:DIR1"
+
+  IMG=iso/live/freedos.img
+  OPTS="$OPTS -fda $IMG"
+
+  set -x
+  qemu-system-x86_64 $OPTS
+

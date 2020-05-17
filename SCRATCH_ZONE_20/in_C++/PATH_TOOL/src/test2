@@ -1,0 +1,20 @@
+
+. fns_var_add
+
+PATH=:$PATH
+
+prints()
+{
+	echo "PATH_TOOL list $1:"
+	var_list "$1"
+}
+
+var_add A a
+var_add A b
+var_add A c
+
+var_add A z
+prints A
+
+var_pfx A y
+prints A

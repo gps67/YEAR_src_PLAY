@@ -1,0 +1,22 @@
+
+PATH=:$PATH
+
+. fns_var_add
+
+# dont ever do this for real as CFLAGS can take arg pars
+# and one of them might not be unique !
+# Just a test
+
+CFLAGS_add()
+{
+	args_add CFLAGS "$@"
+}
+
+CFLAGS_add a
+CFLAGS_add b
+CFLAGS_add c
+CFLAGS_add a
+CFLAGS_add b
+CFLAGS_add c
+
+echo "CFLAGS='$CFLAGS'"

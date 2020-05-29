@@ -1,0 +1,18 @@
+#!/bin/bash
+# sudo takes away our PATH
+PATH=$PATH:$HOME/bin:/home/gps/bin:/home/gps/bin_LGX
+
+
+. fns_ROOT
+rerun_as_root
+
+. ./.env
+
+ls -l $SD_dev_sdb
+
+umount $SD_dev_sdb 
+eject $SD_dev_sdb 
+
+
+
+

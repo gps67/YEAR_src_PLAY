@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# obviously this does not work
+# surprisingly it is clonezillas fault
+# it gets from the iso to the boot pxe menu
+# but the initrd is opaque an needs init=cmd line
+#
+# Initramfs unpacking failed: write error
+
 . ./.env
 # see # . boot_fn_WITH_OPT
 
@@ -7,10 +14,13 @@
 
 # OPTS="$OPTS -fda fat:floppy:DIR1"
 
-	OPTS="$OPTS -snapshot"
+#	OPTS="$OPTS -snapshot"
+
 # WITH_OPT hda # -snapshot early
 #  WITH_OPT hda_sdb # SD_dev_sdb == USB # RW
 
+if false
+then
 # put these 2 together
 # run freedos
 # get A>
@@ -19,8 +29,12 @@
 # type in_DIR1.txt
   WITH_OPT fda_freedos
   WITH_OPT fdb_DIR1 # in_DIR1.txt
+fi
 
-# WITH_OPT iso
+  # this is supposed to be all needed
+ #WITH_OPT iso
+
+  WITH_OPT hda_sdb # sdb == iso ## prev
   
   # set -x
   ask_do \

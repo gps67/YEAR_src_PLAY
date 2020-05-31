@@ -32,6 +32,10 @@ gen_e1_*
 *.dylib
 *.dll
 
+# x509 or ssl key
+pki
+*.key
+
 # Fortran module files
 *.mod
 *.smod

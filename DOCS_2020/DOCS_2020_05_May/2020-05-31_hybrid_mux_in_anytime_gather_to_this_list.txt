@@ -1,0 +1,89 @@
+2020-05-31 May Sun 20:56 2020-05-31_hybrid_mux_in_anytime_gather_to_this_list.txt
+
+	_hybrid_mux_in_anytime_gather_to_this_list.txt
+
+filename in db plus csr
+
+	csr += LOCN
+	csr += SESS
+	csr == { SCRIPT }
+	csr == { // SCRIPT 
+	// SCRIPT 
+	}
+	csr == {
+	// SCRIPT // EMPTY LINE DISAPPEARS
+	// array of LINES[ idx_lno ]
+	}
+
+	SPEC SPEC_of_LOCN_and_SESS
+
+
+VAR_OBJS_base2_gtk:     OBJS_base2_gtk += w_alignment.o
+
+	this is the hybrid
+	LOCN_t SCOPED VARNAME_t TOKEN_xFFFF
+	SESS_t SCOPE LD_loaded += elf_segment # of_CODE of_DATA
+	 INST_t 
+	  ITEM_t
+
+		LIST_of_OBJS_into_API
+
+			OPCODE "LIST.add(ITEM);" // COMMENT
+			LIST_NAME == "OBJS_base2_gtk"
+			ITEM_FILENAME == w_alignment.o
+
+		OPCODE "LIST.add(ITEM);" // COMMENT
+
+			LIST_NAME = "LIST"
+			FILE_NAME = "ITEM"
+
+		EXPR_NAME -alias- FILE_NAME
+
+			expands _t from FILE to EXPR
+			retains _NAME -match- PSG_Parsed _TEXT_
+			eg TEXT ITEMS[N] // [idx] // N // get_varname_options
+	
+	DIFF GEN
+
+		TEXT_FOUND
+
+		LIST += ITEM
+
+	TASK SPEC
+
+		MINI MACHINE
+		 device
+		 apparat
+
+		MINI += some NAMED lists of class_name.o
+		GEN one file per class
+		GROUP bunch_ with prefix bunch_ _classname
+		GROUP module_ with _namespace // of Module_ITEM
+		GEN_PYTHON_FROM_REGEN_SCRIPT
+		REGEN { SCRIPT } -as- Python_CORE_API
+		REGEN { Module } -as- Python_CORE_API
+		REGEN { ITEM EXPR Module } -as- Python_CORE_API
+		// item = item_from_u64( u64_EA_from_EVAL_EXPR ) // += CTXT
+		// item = ITEMS[ idx ]
+
+		TASK == add classname to API
+		TASK == implement classname to API elf_filename
+		TASK == compile scripts run parameters GEN_CXX compile link load
+		TASK == TREE_of_CODE declare Module.ClassName
+
+		GREP_EXPR_MATCH "LIST += ITEM"
+
+			TEXT = "..." // might be alias variant
+
+			CACHE fast find
+
+			PSG_PHRASE BOLN_INDENT var_name SP += SP filename TO_EOLN
+			 EXTRA filename.o is a SPECIFIC MATCH "%s.o" 
+			 GENERIC PREFILTER SUBLEX of FILENAME "%s_%s.o"
+
+		PIVOT
+
+			ITEM_t
+			filename.o
+			target_name // make_target_name
+

@@ -1,0 +1,38 @@
+
+
+	u24_u8
+
+	u24 is not enough to make a genuine pointer
+	(u48 is eactly enough) 
+
+	PTR = u24 // RARE
+	PTR = DECODE( u16_u8_u8 ) 
+
+		BASE = SEGMENT_DATA_ADDR
+		OFFS = u16 << 2 ; // MULTIPLE of FOUR // WORD_sz
+	
+	u24 = PTR // this is VERY unlikely, some special LOW_MEM hardware
+
+	u32 = ENCODE( 
+	 u8 OPCODE_A
+	 u8 OPCODE_b
+	 u16 WORD_c_c
+
+	// u8 = cpu_var_byte_A // lo
+	// u8 = cpu_var_byte_B // hi
+	// u8 & cpu_var_byte_B // is REGULAR (when u32/u64 isnt)
+	)
+
+	u32 = ENCODE( 
+	 u8 OPCODE
+	 u24 PAYLOAD
+
+	// OPCODE PAYLOAD
+	// u8 u24
+	u8 = cpu_var_byte_A // lo
+	ARY = OPCODE[ u8 ] .ARY;
+	BASE = ARY.BASE
+	u24 = WORD >> 8;
+	OFFS = u24 << 2; // x4 fill zeros
+	// do not optimise >>8 <<2 // need zeros
+	)

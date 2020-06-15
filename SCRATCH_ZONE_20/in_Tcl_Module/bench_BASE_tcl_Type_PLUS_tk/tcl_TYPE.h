@@ -1,5 +1,6 @@
 #ifndef tcl_TYPE_H
 #define tcl_TYPE_H
+
 # or move this code aboce
 #include "tcl_N_bytes" // AUTO.h tcl has own N_str_
 namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
@@ -86,7 +87,21 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 	char *bytes;
 	int length;
 
+	// int length; // USES 4 GETS 8
+	// means there is an exploitable HOLE_u32
+
 	const Tcl_ObjType *typePtr;
+
+		/*
+		 const Tcl_ObjType *typePtr;
+		 const Tcl_ObjType_UDEF_me *typePtr_CTBL;
+		 // CTBL is VTBL in any dialect of C 
+		 // XTBL is X_any
+		 // STBL is SYMBOL // from_lookup(STR0)
+		 // CAST from Tcl_ObjType // RAW Tcl API into _ENHANCED
+		 // TEST_can_CAST // KNOW_ _ISNT _CANT _INTO _FROM
+		 // BASE_from_import _inherit _derive _refer_
+		*/
 
 	union {
 	  // TWO WORDS PTR1 PTR2 

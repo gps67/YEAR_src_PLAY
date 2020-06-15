@@ -59,6 +59,9 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 	POOL_PUNCT.add_PUNCT(  "^",  L2R "9", "bitwise XOR"  );  
 	POOL_PUNCT.add_PUNCT(  "|",  L2R "10", "bitwise OR"  );  
 
+	POOL_PUNCT.add_PUNCT( "&&=",  L2R "11", "logic AND_IF" ); 
+	POOL_PUNCT.add_PUNCT( "||=",  L2R "12", "logic OR_IF"  );
+
 	POOL_PUNCT.add_PUNCT( "&&",  L2R "11", "logic AND_IF" ); 
 	POOL_PUNCT.add_PUNCT( "||",  L2R "12", "logic OR_IF"  );
 

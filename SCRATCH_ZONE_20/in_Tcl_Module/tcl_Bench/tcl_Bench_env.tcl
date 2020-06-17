@@ -8,3 +8,5 @@
 # it might load MMAP for SESS_DATA
 
 
+	# app_library # man auto_load
+#	set tcl_Bench_library ../tcl_Bench

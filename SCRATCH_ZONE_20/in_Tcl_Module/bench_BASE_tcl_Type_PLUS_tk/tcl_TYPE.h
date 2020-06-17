@@ -9,15 +9,20 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 # or move this code aboce
 
  # FRAG GEN # %s_t # FILTER VIEW REVIEW
- struct UDEF_tcl_TYPE_from_Tcl_Obj_HEAD
+
+ struct UDEF_tcl_TYPE_from_Tcl_Obj_HEAD {
+
  	Tcl_Obj * _Tcl_Obj; // PLUS SELF WORD OBJ2 "Alias"
 	// ASSERT_NO_MORE_DATA // WORD is WORD is_ PTR2
+
+	// CTOR _obj = obj
 	 UDEF_tcl_TYPE_from_Tcl_Obj_HEAD( Tcl_Obj * _Obj )
 	 : _Tcl_Obj( _Obj )
 	 {
-	 	// DO NOTHING oafter that assignment
+	 	// DO NOTHING after that assignment
 	 }
 
+	// CTOR _obj = NULL
 	 UDEF_tcl_TYPE_from_Tcl_Obj_HEAD()
 	 : _Tcl_Obj( NULL )
 	 {
@@ -25,7 +30,8 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 		// pupular inline PREBUILT // switched // fast wrap CALLA CALLB
 	 }
 
-	 /*
+#if 0
+	 /*	DOCUMENT the Tcl_Obj type (_Tcl_Obj)
 
  typedef struct Tcl_Obj
  {
@@ -81,7 +87,7 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 		}
 		keep_list.N_items = 0; // tis now
 
-	*/
+	* /
 	int refCount;
 
 	char *bytes;
@@ -92,7 +98,7 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 
 	const Tcl_ObjType *typePtr;
 
-		/*
+		/ *
 		 const Tcl_ObjType *typePtr;
 		 const Tcl_ObjType_UDEF_me *typePtr_CTBL;
 		 // CTBL is VTBL in any dialect of C 
@@ -151,6 +157,7 @@ namespace tcl_TYPE { # one of 256 UDEF BASE tcl_TYPE_t
 
 	 */
  };
+#endif
 
  struct UDEF_tcl_TYPE_t : UDEF_tcl_TYPE_from_Tcl_Obj_HEAD {
  }

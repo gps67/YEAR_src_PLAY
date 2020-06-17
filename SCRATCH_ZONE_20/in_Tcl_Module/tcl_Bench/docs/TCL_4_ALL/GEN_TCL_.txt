@@ -1,0 +1,56 @@
+#
+# !!% # /bin/bash: GEN_TCL_.txt: command not found
+#
+
+	tcl_Bench is a generated platform using SPEC and GEN and luck
+	 GEN can write TCL with DIALECT_ACCENT # (sub_group_within_dir) #
+	 GEN can write CXX with DIALECT_API
+	 GEN can write ASM with DIALECT_SCRAMBLED_REGISTERS # a few new patterns
+	 CPU can provice API adapters CALL_CXX mangled_name_space_name STACK 
+	 CPU already provides u32_lohi_t # need this for cpu_var_BYTE_B
+	 CACHE VAR CPU STRUCT_mem obj_ptr_1 obj_ptr_2
+
+	we expect to be using our specific vertion of tclsh.exe
+	we expect tclsh.exe to import tcl_Bench.so
+	it uses libs_apps_PLUS // import your UDEF // compile link load // PLUS
+	it provides Tcl_ObjType from tcl_Object_SPEC_t
+	tcl_Object_SPEC_t from tcl_Object_PLUS_t
+
+	namespace == classname
+	MATCH namespace classname { ... }
+
+	our API brings range of TYPE_GROUPS
+
+	 PTR1_PTR2
+	 u32_u32
+	 u64_u64
+	 TCL_name_type_PTR1_PTR2 { 
+	  MACRO Tcl_Obj_HEAD DIALECT { 
+	   MACRO ref_incr Tcl_
+	  u8 BYTES[ 8 ] // must fit within u32
+
+
+	
+
+# other GET SET CALL eg JavaScript
+#
+	https://flaviocopes.com/javascript-access-object-property/
+
+	obj.fieldname == obj[ "fieldname" ]
+
+	obj = { 
+	 'fieldname': VALUE
+	}
+
+	obj._BUILTIN_."Object.entries(%s) obj
+	returns LIST [ key, value ]
+	incl [ "fieldname" value ] as [ LIST ] or [ PAIR ] or LHS_RHS // tuple
+	ARGV WORDS ... k1 v1 ... // know k1 != K2 else REPEAT_DUPLICATE_KEYS
+	ARGV WORDS LIST of PAIRS LHS RHS { 
+	 # INLINE ARG WORDS take as many WORDS as required
+	 # ARGV WORDS N = PARSED_STEP_Nbytes_ARGV_WORDS_SEGMENT
+	 # sub SEGMENT simply means more ARGV WORDS in TREE
+	 # sub PHRASE can be single word SUBLEX multi etc
+	 # HERE LIST OF PAIRS idx_0 idx_2 // _2 is excl NOT incl // _next
+		
+	}

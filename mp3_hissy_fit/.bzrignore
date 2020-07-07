@@ -1,0 +1,10 @@
+*.o
+*~
+*.tmp
+*.pyc
+*.pyo
+*.a
+*.so
+*.exec
+fa
+fb

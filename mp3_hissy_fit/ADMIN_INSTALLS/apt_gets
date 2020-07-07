@@ -1,0 +1,25 @@
+#! /bin/bash
+
+LIST="
+	cddb
+	#cd-diskid
+
+	cdda2wav
+	lame
+
+"
+
+echo "LIST is $LIST"
+
+for pkg_name in $LIST 
+do
+	echo ask_do sudo apt-get install $pkg_name
+done
+
+exit
+# TESTED AS #
+# run script, it prints commandd
+# copy + paste the relevent line
+# .env1 needs on_install_setup_script
+# .env1 runs own env check // maybe
+

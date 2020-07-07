@@ -1,0 +1,2 @@
+set -x
+hdparm -E 8 /dev/cdrom

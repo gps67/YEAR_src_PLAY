@@ -1,0 +1,10 @@
+. ./.env1
+
+
+if id | grep root
+then
+	hissy_fit --rip_here
+else
+	echo "Error you must be root"
+	AS_ROOT hissy_fit --rip_here
+fi

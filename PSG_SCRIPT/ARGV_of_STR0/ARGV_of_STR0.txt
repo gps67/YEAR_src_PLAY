@@ -1,0 +1,100 @@
+
+	ARGV_of_STR0/
+	ARGV_of_STR0.txt
+
+	Makefile prints out the rule source, // so that is what we are //
+	STR0 ARGV_WORD[ N ] ;//
+	STR0 ARGV_WORD[ N+1 ] ;// rewrap with/without N+1 for ALLOC extra NULL
+	STR0 ARGV_WORD[ N+1 ] ;// Extra NULL at end of ARGV // so N=_N_-1
+
+	Linux limits things to beyond filesize 
+	DOS might limit it to 80, so put entire in file
+	We can have SLICE_of_SEGMENT
+
+ SCRIPT eval ABSENT
+
+ 	if within DIALECT_SAYS_OK
+
+		generate default behaviour for remote script item
+		eg based on float_32_t : WORD_32_t 
+		api {
+		   float GET() { return WORD_float; // IEEE }
+		   float SET() { ... }
+		   float RUN() { ... } // EXTRA_ARGS
+
+		   // LIBR and COMPILER can use MMX registers GET SET cpu_var_FRAG
+		   // FRAG_MENT
+		   // f32_as_part_3_of_4_of_u128
+		   // TYPE DESC is SCRIPT LIKE PRE_BUILT
+		}
+		eg based on u64_DECODED
+
+		CONTAINER may impose QUOTA LIMITS u24 u16 u14_16K u12_4K u10_1K
+		 picking the nearest best algorithm + data layout + sceme
+		 INDEX is only part of SEGMENT # ... a SLICE of ... #
+
+	DIALECT
+
+		"*PTR++"
+
+			WORD_TYPE_t WORD_val = * PTR ; PTR ++ ;
+			return WORD_val 
+
+		"*PTR++ = val"
+
+			WORD_TYPE_t val = PARAMETER_val ;
+			* PTR ++ = val;
+
+		GET() { * PTR ++ ; }
+		PUT(C) { *PTR++ = C ; }
+
+		align_needs(alignment) {
+		 alignment.mask_00FF = 0x03; // u32 FOUR bytes
+		 alignment.mask_00FF = 0x07; // u64 EIGHT bytes
+
+		 CASE PTR & alignment.mask 
+		  ZERO goto_already_aligned
+			 over_gap = here + alignment_nbytes
+			 over_gap &= ! alignment_mask_00FF
+			 next = over_gap // trimmed
+
+		 	
+		 # 0 0
+		 # 1 3
+		 # 2 2
+		 # 3 1 
+
+		}
+
+	
+	MATCH put_a_nul_byte
+	MATCH put_n_nul_bytes( u8 n ) { // caller counts align, we count BYTES
+	 FILTER CASE u8
+
+	  0)	return OK; // fast, no count, too bad not optimised out
+
+	  1)	*PTR++ = 0x00;
+
+	  2)	*PTR++ = 0x00;
+	    	*PTR++ = 0x00;
+
+	  3)	*PTR++ = 0x00;
+	    	*PTR++ = 0x00;
+	    	*PTR++ = 0x00;
+
+	  *)	
+	if 1	// METHOD 1
+		P0 = PTR
+		P2 = P0 + n;
+		PTR = P2
+		# MEMORY_WALL PTR must have been written before MEM changes
+		# BECAUSE other (interrupt) might use *PTR++ = SET for itself
+		bzero( PTR, n ) ; // <strings.h>
+	else
+	  	for( int i = 0; i < n; i++ ) { // loop n { would be faster }
+		  *PTR++ = 0x00;
+		}
+	fi
+	}
+
+

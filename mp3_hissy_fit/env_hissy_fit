@@ -1,0 +1,67 @@
+PATH=$PATH:/home/gps/bin
+PATH=$PATH:/home/gps/bin/bin_one
+PATH=$PATH:/home/gps/bin_LGX
+. fns_VARS
+var_add PATH /home/gps/YEAR/src/mp3_hissy_fit
+var_add PATH /opt/schily/bin
+var_add PYTHONPATH /home/gps/YEAR/src/mp3_hissy_fit/_borrowed
+var_add PATH $HOME/bin
+var_add PATH $HOME/bin/bin_one
+var_add PATH $HOME/bin_1
+var_add PATH $HOME/bin_LGX
+check_exe()
+{
+	local cmd="${1:-type}"
+	shift
+	if type -f -p "$cmd" > /dev/null 2>/dev/null
+	then
+		echo >&2 "# PASS # file `type -p $cmd`"
+	else
+		echo >&2 "# FAIL # check_exe # $cmd # # $*"
+		if : false # debugging
+		then
+		 :
+		else
+			echo SHELL is $SHELL
+			set -x
+			type -f -p "$cmd" 
+			type type
+			help type
+			set +x
+		fi
+		exit
+	fi
+	
+}
+
+check_exe PATH_TOOL || exit # actually no need - fns_var_add uses full pathname
+check_exe python || exit
+check_exe cdda2wav || exit
+check_exe lame || exit
+check_exe perror || exit
+(
+check_exe cd-discid || ask_do sudo apt install cd-discid
+)
+## OPTIONAL # check_exe cd-discid optional to make new cddb file
+python --version
+python -c 'import ID3 ; print "PYTHONPATH found ID3"'
+if false
+then
+	P 
+	P PYTHONPATH 
+fi
+check_dir()
+{
+	if [ -d "$1/." ]
+	then
+		echo >&2 "# PASS # dir $1"
+	else
+		echo >&2 "# FAIL # dir $1"
+	fi
+}
+check_dir $HOME
+check_dir $HOME/audio
+check_dir $HOME/audio/.cddb
+check_dir $HOME/audio/.cddb/_regen
+check_dir $HOME/audio/wav
+check_dir $HOME/audio/mp3_V4

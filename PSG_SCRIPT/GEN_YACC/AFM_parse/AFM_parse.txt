@@ -1,0 +1,71 @@
+
+	AFM_parse/
+	AFM_parse.txt
+
+	 /home/gps/2019/src_2019/
+	  SCRATCH_ZONE_19-2020-02-14/
+	   in_JS_node/
+	    pdf/
+	     node_modules/
+	      pdfkit/
+	       js/
+	        data
+
+Courier.afm              Helvetica-Bold.afm         Times-BoldItalic.afm
+Courier-Bold.afm         Helvetica-BoldOblique.afm  Times-Italic.afm
+Courier-BoldOblique.afm  Helvetica-Oblique.afm      Times-Roman.afm
+Courier-Oblique.afm      Symbol.afm                 ZapfDingbats.afm
+Helvetica.afm            Times-Bold.afm
+
+
+
+StartFontMetrics 4.1
+Comment Copyright (c) 1989, 1990, 1991, 1992, 1993, 1997 Adobe Systems Incorpora
+ted.  All Rights Reserved.
+Comment Creation Date: Thu May  1 17:37:52 1997
+Comment UniqueID 43051
+Comment VMusage 16248 75829
+FontName Courier-Oblique
+FullName Courier Oblique
+FamilyName Courier
+Weight Medium
+ItalicAngle -12
+IsFixedPitch true
+CharacterSet ExtendedRoman
+FontBBox -27 -250 849 805
+UnderlinePosition -100
+UnderlineThickness 50
+Version 003.000
+Notice Copyright (c) 1989, 1990, 1991, 1992, 1993, 1997 Adobe Systems Incorporat
+ed.  All Rights Reserved.
+EncodingScheme AdobeStandardEncoding
+CapHeight 562
+XHeight 426
+Ascender 629
+Descender -157
+StdHW 51
+StdVW 51
+StartCharMetrics 315
+C 32 ; WX 600 ; N space ; B 0 0 0 0 ;
+C 33 ; WX 600 ; N exclam ; B 243 -15 464 572 ;
+C 34 ; WX 600 ; N quotedbl ; B 273 328 532 562 ;
+C 35 ; WX 600 ; N numbersign ; B 133 -32 596 639 ;
+C 36 ; WX 600 ; N dollar ; B 108 -126 596 662 ;
+C 37 ; WX 600 ; N percent ; B 134 -15 599 622 ;
+C 38 ; WX 600 ; N ampersand ; B 87 -15 580 543 ;
+C 39 ; WX 600 ; N quoteright ; B 283 328 495 562
+...
+C -1 ; WX 600 ; N Idieresis ; B 96 0 623 753 ;
+C -1 ; WX 600 ; N eacute ; B 106 -15 612 672 ;
+C -1 ; WX 600 ; N abreve ; B 76 -15 576 609 ;
+C -1 ; WX 600 ; N uhungarumlaut ; B 101 -15 723 672 ;
+C -1 ; WX 600 ; N ecaron ; B 106 -15 614 669 ;
+C -1 ; WX 600 ; N Ydieresis ; B 133 0 695 753 ;
+C -1 ; WX 600 ; N divide ; B 136 48 573 467 ;
+C -1 ; WX 600 ; N Yacute ; B 133 0 695 805 ;
+C -1 ; WX 600 ; N Acircumflex ; B 3 0 607 787 ;
+C -1 ; WX 600 ; N aacute ; B 76 -15 612 672 ;
+C -1 ; WX 600 ; N Ucircumflex ; B 125 -18 702 787 ;
+...
+KPM Kering Pairs
+

@@ -1,0 +1,14 @@
+
+echo "## HERE # `id -un` # $0 $*"
+
+if id | grep root
+then
+	. /home/gps/YEAR/src/mp3_hissy_fit/env_hissy_fit
+	"$@"
+else
+	# sudo invokes /bin/sh when SHELL is /bin/bash
+	# that then says type -f -p exec # -f not found -p not found
+
+	sudo -- /bin/bash $0 "$@"
+fi
+

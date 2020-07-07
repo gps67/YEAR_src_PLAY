@@ -1,0 +1,4 @@
+. /media/hdc1/audio/tmp/.env1
+
+hissy_fit --burn_cd "${1:-audio.cddb}"
+

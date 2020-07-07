@@ -1,0 +1,10 @@
+set -x
+cdparanoia \
+-v \
+-w \
+-B \
+28 \
+ \
+ \
+ \
+#

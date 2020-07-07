@@ -1,0 +1,22 @@
+set -x
+
+# ERROUT is very fast - intended for GUI (a fast one!)
+ERROUT="-e"
+ERROUT=""
+
+SPEED="-S 12"
+SPEED="-S 4"
+
+VERBOSE="-v"
+OUT_WAV="-w"
+BATCH="-B"
+TRACKS="6"
+
+cdparanoia \
+$ERROUT \
+$VERBOSE \
+$OUT_WAV \
+$BATCH \
+$SPEED \
+$TRACKS \
+#

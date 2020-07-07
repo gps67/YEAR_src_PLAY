@@ -1,0 +1,11 @@
+
+# .env1 sets ENV for hissy_fit
+# it also check that various commands exist and that dirs exist
+# messages are not fantastic
+# bit it gets the checks done
+
+# simply defer to the installed NFS version
+# probably site edited
+
+. $HOME/YEAR/src/mp3_hissy_fit/env_hissy_fit
+

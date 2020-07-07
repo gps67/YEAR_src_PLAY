@@ -1,0 +1,18 @@
+. ./.env1
+if false
+then
+	# grip uses utf8 with is a better choice (it supports non latin1 songs)
+	# but freedb says it MUST be latin1 - without any tag or option!
+	# so I edit in grip (use an accessory for the X11 keyboard)
+	# then check the file with vi
+	# it says : fileencoding=utf-8 ## or latin1
+	# then tell hissy_fit --utf-8 and let it convert it for me
+	# the converted file will be placed in ~/audio/...
+	# I then overwrite the ~/.cdddb placed by grip
+	# ...
+	hissy_fit --utf8 --process_wav_to_wav audio.cddb
+else
+	# default is latin1
+	hissy_fit --process_wav_to_wav audio.cddb
+fi
+

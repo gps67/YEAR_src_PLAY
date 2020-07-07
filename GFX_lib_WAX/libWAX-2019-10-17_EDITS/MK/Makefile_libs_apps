@@ -9,7 +9,8 @@
 
 	INCLS += -I$(DIR_libs_apps)/include
 	LINKS += -Wl,--rpath=$(DIR_libs_apps_build)/lib
-	LINKS += -L$(DIR_libs_apps_build)/lib
+	LINKS += -Wl,--rpath=$(DIR_libs_apps_build)/
+	LINKS += -L$(DIR_libs_apps_build)
 	LINKS += -lbase
 
 

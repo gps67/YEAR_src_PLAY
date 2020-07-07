@@ -1,0 +1,31 @@
+#
+# rip_here - when offline
+#
+. /tools/2000/fns_var_add
+var_add PATH /tools/2000/media/bin
+
+id | grep root || echo "You are not root"
+
+set -x
+eject -t
+
+cdda2wav \
+	dev=/dev/cdrom \
+	-vall \
+	cddb=0 \
+	-B \
+	-Owav \
+	cddbp-server=freedb.freedb.org
+
+chown gps *.inf *.wav
+
+eject
+exit
+
+default:
+
+cdda2wav: Operation not permitted. Cannot send SCSI cmd via ioctl
+
+thats root permission needed !
+
+# ? # use modprove ide-cd (not ide-scsi)

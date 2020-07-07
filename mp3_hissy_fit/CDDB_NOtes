@@ -1,0 +1,23 @@
+filename.cddb uses latin1 instead of utf8
+It has no way of switching into utf-8, eg for asian script
+grip uses utf8, but that causes double encoding in ID3
+
+BUT protocol version 6 uses UTF8 ....
+
+Of course the real problem lies with MusicBrainz,
+and the need for a common set of tags
+(Why does .cddb put the authors and title in the same line ?)
+
+ID3 uses ...
+
+X11 with a uk keyboard is using american button placements for dead-keys
+eg AltGr # e becomes è because KB-US has a \ there (maybe)
+so use one of the desktop accessories 
+ubuntu / gnome / Applications / accessories / character map
+
+http://en.wikipedia.org/wiki/FreeDB
+http://en.wikipedia.org/wiki/MusicBrainz
+http://www.freedb.org/
+http://www.freedb2.org/
+
+http://gnudb.gnudb.org:80/~cddb/cddb.cgi

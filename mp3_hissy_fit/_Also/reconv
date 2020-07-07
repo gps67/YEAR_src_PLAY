@@ -1,0 +1,5 @@
+set -x
+hissy_fit \
+--process_wav_to_mp3 \
+audio.cddb
+#

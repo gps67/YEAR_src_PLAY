@@ -1,0 +1,20 @@
+
+	ARGV_as_yacc_get_get.txt
+
+
+	TOKENISE STR0 ARGV[ N+1 ]
+	 LEXICON
+	  += CMD_name
+	  += filename.ext
+	  += -flag
+	  += parsed_flag_expr
+
+	 SEQ
+	  -I include
+	  ; 
+	  //
+	  anystr, upgrade to "anystr"
+
+argv[0] "progname"
+
+

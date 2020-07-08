@@ -1,0 +1,36 @@
+# 
+# outputs lines of	YEAR.frac RANGEVAL
+# the input data was prepared by the main script
+# carefully arranged so when sorted MIN MAX are interleaved
+# YEAR.frac is the middle of the two points
+# RANGEVAL is the ABS() of the difference of the two
+# ie the total MELT or the total FREEZE
+# 
+#
+
+t=tmp
+t=.
+sort \
+$t/tmp_plot_data_min.data \
+$t/tmp_plot_data_max.data \
+| awk '
+BEGIN {
+}
+NR==1 {
+	Y_CURR = $1
+	V_CURR = $2
+	next
+}
+{
+	Y_PREV = Y_CURR
+	V_PREV = V_CURR
+	Y_CURR = $1
+	V_CURR = $2
+	Y_mid = (Y_PREV + Y_CURR) / 2.0
+	V_abs = (V_PREV - V_CURR)
+	if( V_abs < 0.0 ) V_abs = 0.0 - V_abs  
+	printf( "%6f %5f \n", Y_mid, V_abs ); # it is ignoring width req (str?)
+	# printf( "%9f %9f \n", Y_mid, V_abs );
+	# # # # # # # # # printf( "%9f %9f \n", $1, $2 );
+}
+'

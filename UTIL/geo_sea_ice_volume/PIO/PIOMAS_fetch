@@ -1,0 +1,100 @@
+# PIOMAS_fetch
+# fetch the data file
+# if it has been modified since previously
+
+# VARIABLE URL - you must edit this every year (soz)
+# this is actually a behind the frontend URL
+# it is cheeky to go directly there, but a lot easier
+# last URL=line wins
+
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz
+
+BASENAME=`basename $URL`
+
+
+# VARIABLE DATED_file_mtime
+#
+# you can use the ACTUAL file
+# you can use your own dated file
+# it is touched for last sucessful download
+# web fetch if modified since ...
+
+# DATED_file_mtime=$BASENAME
+DATED_file_mtime=PIOMAS_dated
+
+
+date_r()
+{
+	echo >&2 "# date -r $* # `date -r $@` " # mtime
+	# atime # unknown -flag || flag( "atimea, "{ ref_time = file.atime.get() }" 
+	# date -r "$@"
+}
+
+
+# date_r $DATED_file_mtime
+ LOG=$0.log
+ # date | tee $LOG 
+ touch $LOG # wake up nfs disk
+
+# the exit code from curl is useless for Not Modified
+# both return OK 0
+# missing file does return non zero
+# so resort to grep
+#
+# nb every year the previous year remains un-modified
+# you would error after 5 weeks
+#
+# maybe libcurl or tcl-php-script node?
+
+if type curl
+then
+	:
+else
+	exit 1
+fi
+
+echo "# URL # $URL"
+date_r $DATED_file_mtime 
+echo
+if curl \
+	--remote-name \
+	--remote-time \
+	--time-cond $DATED_file_mtime \
+	-v \
+	--fail \
+	--fail-early \
+	"$URL" \
+ 2>&1 | tee $LOG | grep Not.Modified
+then
+	:
+	date_r $DATED_file_mtime
+	exit 1
+else
+	touch -r $BASENAME $DATED_file_mtime
+	ls -l $BASENAME $DATED_file_mtime
+	cat $LOG
+	echo Maybe Downloaded
+	date_r $DATED_file_mtime
+	exit 0
+fi
+
+# unreached
+exit
+	
+# set -x
+# echo exit $?
+# OK but # [ -f $BASENAME ] && touch -r $BASENAME $DATED_file_mtime
+# [ -f $BASENAME ] && touch -r $BASENAME $DATED_file_mtime
+# PIOMAS.vol.daily.1979.2018.Current.v2.1.dat.gz
+
+exit
+################
+# ./PIOMAS_fetch
+
+# curl is /usr/bin/curl
+# URL # http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
+# date -r PIOMAS_dated # Sun  4 Aug 18:28:58 BST 2019 
+
+< HTTP/1.1 304 Not Modified
+# date -r PIOMAS_dated # Sun  4 Aug 18:28:58 BST 2019

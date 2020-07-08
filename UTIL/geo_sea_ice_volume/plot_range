@@ -1,0 +1,21 @@
+#! /usr/bin/env gnuplot
+
+# sorry hardcoded FILENAME output
+
+# you must run the main script first
+# otherwise you plot last months data
+
+set terminal png
+set output 'sea_ice_vol_range.png'
+set term png size 640, 480
+set xrange [1980:2090]
+set yrange [0:22]
+set title 'ANNUAL RANGE PIOMAS Arctic Sea Ice Volume min max range'
+set ylabel'+/- 1000 km3'
+set multiplot
+plot '/dev/fd/0' with lines title 'RANGE', \
+'range_guess' with lines title 'GUESS' 
+#plot '/dev/fd/0' with points title 'RANGE', \
+
+
+

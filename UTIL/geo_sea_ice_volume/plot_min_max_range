@@ -1,0 +1,56 @@
+PATH=:$PATH
+t=.
+t=tmp
+data_min=$t/tmp_plot_data_min.data 
+data_max=$t/tmp_plot_data_max.data 
+
+gen_data_1() {
+	cat $data_min 
+	cat $data_max
+}
+
+# these were alternative averaging things
+# you have to average over 365, to make sense
+# but after, or even before, you could average 30 days
+# or 2 days or 4 days with fields repeated
+#
+gen_data_2() {
+	gen_data_1
+#	cat $data_min | awk_avg_2
+#	cat $data_max | awk_avg_2
+}
+
+gen_data_4() {
+	gen_data_1
+#	cat $data_min | awk_avg_2 | awk_avg_2
+#	cat $data_max | awk_avg_2 | awk_avg_2
+}
+
+gen_data_1 | sort \
+| awk '
+BEGIN {
+}
+NR==1 {
+	Y_CURR = $1
+	V_CURR = $2
+	next
+}
+{
+	Y_PREV = Y_CURR
+	V_PREV = V_CURR
+	Y_CURR = $1
+	V_CURR = $2
+	Y_mid = (Y_PREV + Y_CURR) / 2.0
+	V_abs = (V_PREV - V_CURR)
+	if( V_abs < 0.0 ) V_abs = 0.0 - V_abs  
+	printf( "%9f %9f \n", Y_mid, V_abs );
+	# # # # # # # # # printf( "%9f %9f \n", $1, $2 );
+}
+' \
+| gnuplot ./plot_range
+# hardcoded pathname in plot_range too
+F1=sea_ice_vol_range.png
+F2=$HOME/YEAR/FTP_/$F1
+cp -p $F1 $F2
+gm display $F2 &
+

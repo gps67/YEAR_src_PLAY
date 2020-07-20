@@ -1,0 +1,24 @@
+
+	2020_07_Jul_TEXT_to_WEB
+	2020-07-20_TEXT_to_WEB.txt
+
+	TEXT_to_WEB
+
+	 SMS_LISTENER . android 
+	 .caller_number_DB_ITEM // data of Nbytes_t item // Item_t // SSA
+	 ACCOUNT
+	  new_caller
+	  known_caller
+	  line_in // from ADDR = .caller_number_DB_ITEM ; // SESS
+
+	 SESS
+	  line_in // OPTION FLIP TYPE SEQ // MODE = BROADCAST ASIS // lines
+	  line_in DIALECT FILTER MATCH :CTRL: OPCODE ARGS
+
+	  DEFAULT
+	   NBytes of str0_utf8_t "message"; // using "syntax" 
+	   // :LOGIC_STEP: Q2_message == '"message"' // 
+	   // :PSG_SUBLEX: text = 'message' // quoted like shell here
+	   // Q2 message Q2 // message = { message || parsed_word || script || text}
+	   // Q1 message Q1 // message = { -ditto- } // PSG_parsed
+

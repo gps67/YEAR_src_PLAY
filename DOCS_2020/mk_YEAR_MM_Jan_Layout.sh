@@ -104,7 +104,17 @@ ln_s_ask ${TOPIC}_${YYYY}/ $HOME/YEAR/${TOPIC}
 BASE_filename=`fn_BASE_filename ""`
 fn_BASE_edit "$BASE_filename" TASK TaskName
 filename="${DATE_YEAR_MM_DD}_${TASK}.txt"
-[ -f $filename ] || D $filename >> $filename
+function mk_file()
+{
+	local filename="${1:-filename}"
+	[ -f $filename ] && return
+	DIR1=`dirname $filename`
+	DIR1="$TOPIC_YEAR_MM_Jan"
+	FILE1=`basename $filename`
+	echo -e "\t${DATE_YEAR_MM_DD}\n\n\t${DIR1}\n\t${FILE1}\n\n" >> "$filename"
+}
+
+mk_file "$filename"
 vi -c 'set fileformat=dos' ${filename}
 
 
@@ -113,53 +123,3 @@ vi -c 'set fileformat=dos' ${filename}
 
 
 exit
-
-
-# FTP has loads of subdirs
-# YEAR has loads of subdirs
-
-CURR=${YYYY} # not "/YEAR/"
-PREV=2019
-NEXT=2021
-cd_or_FAIL $HOME/2019/
-cd_or_FAIL /tmp
-cd_or_FAIL $HOME
-
-LIST1="
-	ADMIN
-	AUDIO
-	BAX
-	BOUGHT
-	FTP
-	HOME
-	PHOTOS
-	REC
-	SCANS
-	YT
-	src_build
-	src
-"
-for name in $LIST1
-do
-	name_YEAR=${name}_${YYYY}
-	name_PREV=${name}_${PREV}
-	D2=$YYYY/${name_YEAR}/
-	if [ ! -d "$D2" ]
-	then
-		ask_do mkdir "$D2"
-	fi
-	# ~/YEAR/NAME => NAME_2020
-	ln_s_ask "${name_YEAR}/" "${HOME}/YEAR/${name}"
-	# 2019/NAME_2020 => 2020/NAME_2020/
-	ln_s_ask "${CURR}/${name_YEAR}/" "${PREV}/${name_YEAR}"
-	# 2020/NAME_2019 => 2019/NAME_2019/
-	ln_s_ask "${PREV}/${name_PREV}/" "${CURR}/${name_PREV}"
-	# ~/NAME => YEAR/NAME
-	rm_ln_s_ask "YEAR/${name}/" "${HOME}/${name}"
-
-done
-
-	ln_s_ask "${HOME}/${PREV}/" "${HOME}/${CURR}/${PREV}"
-	ln_s_ask "${HOME}/${CURR}/" "${HOME}/${PREV}/${CURR}"
-	
-

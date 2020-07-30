@@ -7,5 +7,5 @@
 # simply defer to the installed NFS version
 # probably site edited
 
-. $HOME/YEAR/src/mp3_hissy_fit/env_hissy_fit
+. $HOME/YEAR/src/PLAY/UTIL/mp3_hissy_fit/env_hissy_fit
 

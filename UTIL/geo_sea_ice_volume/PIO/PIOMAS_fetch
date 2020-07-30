@@ -1,11 +1,17 @@
+#!/bin/bash
+#
 # PIOMAS_fetch
+#
 # fetch the data file
-# if it has been modified since previously
+# if it has been modified
+# since previously # ie fs layout copy kept
 
 # VARIABLE URL - you must edit this every year (soz)
 # this is actually a behind the frontend URL
 # it is cheeky to go directly there, but a lot easier
 # last URL=line wins
+# in turn, we are only get-if-modified # cron days 1-10 # bet its tues 4
+# 
 
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz

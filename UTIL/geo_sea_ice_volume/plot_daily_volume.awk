@@ -63,6 +63,7 @@ BEGIN {
 	A365=365*6 # looks like a step down, then exponential decay to V2
 
 	A365=365*1 # this is PROPER # 365 day average # must be exact multiple
+#	A365=365*2
 
 	F365=1.0*A365 # as a floating point
 

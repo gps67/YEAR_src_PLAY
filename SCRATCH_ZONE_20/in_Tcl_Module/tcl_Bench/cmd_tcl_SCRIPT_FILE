@@ -1,0 +1,2 @@
+set -x
+cmd tcl_SCRIPT_FILE "$@"

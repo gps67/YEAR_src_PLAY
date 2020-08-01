@@ -54,6 +54,7 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 
 	POOL_PUNCT.add_PUNCT( "==",  L2R "7", "cmp EQUAL"  ); 
 	POOL_PUNCT.add_PUNCT( "!=",  L2R "7", "cmp NOT_EQUAL"  ); 
+	POOL_PUNCT.add_PUNCT( "===",  L2R "7", "cmp js triple EQUAL"  ); 
 
 	POOL_PUNCT.add_PUNCT(  "&",  L2R "8", "bitwise AND"  );  
 	POOL_PUNCT.add_PUNCT(  "^",  L2R "9", "bitwise XOR"  );  

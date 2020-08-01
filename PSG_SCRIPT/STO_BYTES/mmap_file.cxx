@@ -16,7 +16,7 @@ mmap_file::mmap_file( void )
 	fd_grumble_size = 1<<31; // 2G // WARN SIGN 
 	//  warning: integer overflow in expression [-Woverflow]
 	// going into unsigned, via CONST in C
-	fd_grumble_size = 1024 * 1024 * 1024 * 2; // 1<<31 // 2G // WARN SIGN 
+	fd_grumble_size = 1024 * 1024 * 1023 * 2; // 1<<31 // 2G // WARN SIGN 
 	fd_grumble_size = 1024 * 200; // a lot for a .ini tree
 	fd_grumble_size = 1024 * 20; // test mini files
 }

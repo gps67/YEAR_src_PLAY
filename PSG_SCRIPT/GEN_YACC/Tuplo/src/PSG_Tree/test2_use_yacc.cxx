@@ -63,7 +63,7 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 
 #include "STO.h"
-#include "STO/mmap_file.h"
+// #include "STO/mmap_file.h"
 #include "obj_hold.h"
 
 int main( int argc, char ** argv )
@@ -74,8 +74,19 @@ int main( int argc, char ** argv )
 	}
 	INFO("Parsing %s", filename );
 
+	INFO("TODO %s", "rename to dgb_radical_prints_VIEW" );
+	//  dgb_ knows STRUCT layout (itself writes out from own src)
+	//  dgb  activated by dbg_PASS_FAIL // location pulse-point
+	//  dgb  MATCH expressions in comments // parts of VIEW
+
+
 	buffer2 text;
 	int K_max = 300; // 8 is a lot for me
+
+	// TODO get K_max from USERS.CONFIG
+	// ~/VFS/.config/appname/user.cfg
+	// QUOTA 300_K expect 8K x 100 _page_pair 
+	// ROM CODE unimited = preloaded or SITE loaded or RISK_CODE
 
 	Y_Parse_t PSG("e1");
 	// e1 is used in signals to say which PSG says what

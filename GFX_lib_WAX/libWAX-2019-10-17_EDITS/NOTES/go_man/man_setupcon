@@ -7,5 +7,10 @@
 # set -x
 name=$0
 name=`basename $name`
+if rhs=$(expr match "$name" 'man_k_\(.*\)')
+then
+	name=$rhs
+	exec man -k $name
+fi
 name=$(expr match "$name" 'man_\(.*\)')
 exec man $name

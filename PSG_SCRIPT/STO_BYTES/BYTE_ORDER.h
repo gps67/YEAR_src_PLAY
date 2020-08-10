@@ -34,6 +34,30 @@
 		EDX register CAST u32
 		REDX register CAST u64
 
+		ABCD_PQ_SRC_DST SP_FP_Stack_Frame _Layout
+
+		 ABCD
+		  FOUR_REGS A B C D // EACH U32_U16_u8_u8_BYTE_B
+		 PQ
+		  SRC DST // ITEM * PTR // ALSO u32_u16_u8 // _no_BYTE_B_no
+
+		 MMX_FPU_REGS
+		  [u4] 
+		  [ N_found ] 
+		  A << drop_left
+		  A >> drop_right
+		  A == (u4) // u6 happens a lot // u3 mini_scope_zone
+		  drop_right_beyond_drop_left_starting_point = drop_right - drop_left
+		  // zero_bits_above above drop_left=DONE
+		  N_found_bits = 32 - drop_right;
+		  N_Found = KNOW_3
+
+		 Stack_Frame
+
+		_Layout is external EXPR that MATCHES along with MATCH ARGS
+		_POOL_ provided by _Layout_of_Module EXPR_NAME("anystr")
+		// REQUIRE NOT ANYSTR // bountiful_TOKEN_POOL //  EACH -> EXPR
+
 		HERE ASM
 
 	*/

@@ -1,0 +1,59 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 57 (0x39)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C = GB, ST = Berks, O = MYSITE VLAN PLUS, OU = Dept that uses CA_ZONE_BOX5, CN = CA_ZONE_BOX5
+        Validity
+            Not Before: Aug 10 23:12:06 2020 GMT
+            Not After : Oct 22 23:12:06 2021 GMT
+        Subject: C = GB, ST = Berks, O = MYSITE VLAN PLUS, OU = DEVELOPMENT, CN = LAPTOP_1012
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:cf:ba:ce:95:94:4a:8b:e3:5f:2c:50:dd:eb:b9:
+                    cc:36:dc:3d:c7:52:eb:d5:30:d9:03:6b:42:7c:c4:
+                    69:55:3a:9f:76:2d:2f:82:47:ca:01:b5:c8:1e:b0:
+                    be:aa:2e:b5:cf:db:a8:71:f0:76:0d:7c:7f:57:31:
+                    c5:8d:cf:3a:d2:a1:83:5c:ac:7d:34:2e:24:47:a7:
+                    d9:fc:85:32:37:29:06:bd:1e:0a:66:0f:7c:66:f5:
+                    56:85:83:ea:7c:56:63:a5:4f:e6:12:87:ea:d9:15:
+                    91:3e:9f:16:30:56:98:e9:54:a0:fb:5d:50:ad:33:
+                    7f:37:bc:87:5c:b3:76:b3:9a:49:6f:c5:30:7c:0f:
+                    ed:9e:92:c0:7f:70:fd:67:72:85:b1:e0:a1:5c:19:
+                    8d:e5:f4:67:23:41:74:20:2d:68:ed:6a:c8:4b:a7:
+                    19:12:dd:04:db:72:27:50:9e:90:04:bd:d9:b6:6f:
+                    87:d0:a4:c0:42:b4:a3:08:23:b6:5a:c8:4c:6e:60:
+                    34:ab:d8:14:bd:14:8a:53:63:6c:a0:ed:0e:ad:9d:
+                    b7:9b:27:6f:8f:0e:db:67:ec:ef:2c:d7:54:b5:d3:
+                    04:d9:91:52:53:bf:3b:bb:89:28:75:8d:bc:35:c1:
+                    17:07:07:88:20:2d:a6:18:17:58:63:d8:4e:da:8c:
+                    17:f7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Alternative Name: 
+                URI:http://www.information-cascade.co.uk/home/LAPTOP_1012/
+            X509v3 Subject Key Identifier: 
+                02:10:62:54:9C:EB:D1:2F:70:1F:16:A1:D3:88:20:28:05:87:D2:38
+            X509v3 Authority Key Identifier: 
+                keyid:B8:33:AE:2B:D3:7B:50:B1:B0:5E:65:8B:64:8C:34:71:99:E2:01:A8
+
+    Signature Algorithm: sha1WithRSAEncryption
+         59:a2:11:d1:d8:fa:b2:42:96:64:3d:09:41:ad:99:70:39:4a:
+         f1:7f:4a:ca:bf:69:4d:d4:3e:67:19:f6:a6:6f:fd:ef:45:8d:
+         98:be:42:a6:1d:2a:dc:44:18:74:c6:14:d2:39:a6:30:67:0e:
+         2e:7f:5b:fe:bb:d6:26:f7:d7:c2:5d:f2:10:cb:73:b8:58:5e:
+         7a:ba:68:43:bf:74:32:a4:4d:03:a0:8d:a9:f9:43:f3:70:28:
+         94:22:e5:cd:0e:ae:94:94:f9:f2:ef:05:99:e0:7b:41:6e:a1:
+         ac:46:55:cc:37:60:f5:5b:54:c8:6c:ce:b3:35:4f:09:92:38:
+         88:74:bd:55:3e:20:3e:d6:cb:06:ba:cf:40:66:85:e5:70:d0:
+         e9:61:25:c3:85:c5:c7:0a:27:b6:ce:63:d5:ee:80:c1:6b:de:
+         d5:0d:3c:d1:d2:de:46:f4:27:68:b2:f0:38:17:d5:78:4c:1b:
+         84:39:55:b4:fd:cf:c9:3f:f5:82:72:2a:8b:31:a3:0c:58:37:
+         d3:37:86:9e:0c:e4:9f:56:7c:84:f1:f3:b9:28:5d:22:5e:40:
+         3f:79:ec:0e:db:90:35:f7:61:35:ef:e5:3e:ef:fd:58:a5:67:
+         01:26:6a:b5:45:d3:1a:95:12:4b:d3:e6:2e:c0:b2:a1:d5:76:
+         dd:f4:3a:b9

@@ -1,0 +1,9 @@
+set -x 
+# exit
+ # its not a cert its a key
+C1=C_server_key.pem
+C2=C_server_key.ws
+set -x
+openssl rsa -in $C1 -out $C2 -outform PEM
+# openssl x509 -in $C1 -out $C2 -outform PEM
+# -nocrypt 

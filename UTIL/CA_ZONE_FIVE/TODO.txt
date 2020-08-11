@@ -1,0 +1,29 @@
+
+	src/libs_apps/samples/CA_ISS_util
+	TODO.txt
+
+	the TAG system is good but needs docs
+
+	the CN = one_word should be in the filename
+
+	the Serial Number needs thought
+
+	SSL/CA uses HASH as filename
+
+	each CA would have unique prefix $O/$OU/$CN
+
+	need to produce multiple examples of C_* 
+
+	SQL ?
+
+	{CN} ${CN}
+		YACC SUBLEX PSG RDP recursive descent parser
+
+	text_to_filename
+
+	%s "symbol"
+	// using VAR_NAME as VAR_VALUE then TOKENISE VAR_ITEM_EXPR
+
+
+
+

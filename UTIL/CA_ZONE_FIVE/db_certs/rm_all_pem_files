@@ -1,0 +1,2 @@
+set -x
+ask_do rm *.pem *.txt

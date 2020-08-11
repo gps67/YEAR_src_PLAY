@@ -1,0 +1,66 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 57 (0x39)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C = GB, ST = Berkshire, O = MYSITE Information Cascade, OU = WeDesignYourCA, CN = CA_ZERO
+        Validity
+            Not Before: Aug 10 23:12:05 2020 GMT
+            Not After : Oct 22 23:12:05 2023 GMT
+        Subject: C = GB, ST = Berkshire, O = Layout MYSITE Information Cascade, OU = WeDesignYourCA, CN = CA_ONE
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:bd:fc:80:7b:58:f6:13:3a:09:85:f1:fb:b1:c6:
+                    e7:59:27:a7:cb:42:12:02:ba:7e:ac:62:09:c1:16:
+                    2b:9f:6c:24:b0:7e:bd:9d:b3:66:33:bd:1c:cb:b0:
+                    8c:8f:0a:85:19:94:4b:1a:f4:62:a5:e4:5a:a3:54:
+                    21:86:b5:29:c0:e6:8a:bc:51:ad:fd:b2:4e:15:64:
+                    57:00:a1:41:7d:72:83:f4:29:07:29:79:94:93:0a:
+                    a6:dd:14:42:5f:de:23:e8:4d:3f:c1:92:37:0d:a5:
+                    82:1d:55:2e:89:e9:a3:1e:4b:70:03:87:62:44:3c:
+                    fe:0d:cc:8b:0a:6a:0f:a3:fa:5c:b0:25:b8:dc:03:
+                    1d:39:6a:5f:2a:33:b2:3a:66:79:4d:04:fc:89:2c:
+                    a0:eb:ac:db:dc:2a:33:43:9b:79:d6:f4:c5:e0:f4:
+                    16:7e:b3:6f:27:67:90:fb:05:95:d2:d0:0b:3a:28:
+                    b4:06:88:3d:57:69:df:9e:a5:57:da:08:cd:c7:25:
+                    5c:25:fc:64:69:de:bc:35:39:01:c8:43:fa:a6:63:
+                    07:99:51:3c:69:92:9a:80:68:96:72:3d:39:53:58:
+                    39:86:f6:c4:de:e4:a8:d4:23:0b:b7:34:ba:b4:d3:
+                    c2:e1:59:0c:d5:b9:55:d6:26:9b:b3:b3:70:00:4a:
+                    6c:b7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:2
+            X509v3 Subject Key Identifier: 
+                B7:60:39:00:41:D6:CB:4A:C6:6B:D3:4B:A8:BF:8D:78:51:7F:68:36
+            X509v3 Key Usage: 
+                Certificate Sign
+            X509v3 Authority Key Identifier: 
+                keyid:4F:5C:6C:07:68:F9:DE:50:B9:5D:D1:87:55:75:B7:01:86:4C:7B:3E
+
+    Signature Algorithm: sha1WithRSAEncryption
+         4b:19:82:0e:5e:aa:db:32:88:0e:a7:7e:ba:12:de:10:9f:fc:
+         7a:78:49:17:31:b8:76:08:77:12:0a:f1:5c:98:0d:9f:dd:d0:
+         a1:2c:b3:19:9f:c1:f4:1a:7a:8f:69:97:7e:eb:37:47:96:04:
+         d6:34:fe:55:d8:c7:0b:7b:12:b9:b4:99:ab:de:f9:0d:29:c1:
+         ac:05:93:30:45:c6:da:80:99:93:36:f7:f9:ad:89:99:33:0a:
+         94:bf:00:ad:ff:5d:13:8b:bb:98:c6:a4:7d:f5:91:72:22:0c:
+         52:99:c9:c6:19:ed:81:2c:7a:7b:25:68:8c:9a:1c:06:c4:54:
+         4a:a7:02:7c:13:67:3c:51:de:56:2a:1e:cd:a7:e9:f1:a2:d8:
+         7f:56:31:be:b0:7c:a2:71:b0:16:8b:d3:c3:1a:af:3d:3b:79:
+         5f:ea:f0:bc:4e:50:8b:d4:0c:99:4c:32:94:71:28:c0:43:fa:
+         f6:4c:cb:25:0d:33:03:ad:09:90:14:62:5f:b3:81:fb:f0:e7:
+         e1:09:05:9c:6e:d5:01:53:8b:82:87:fd:d6:2b:63:7e:ce:d3:
+         82:57:14:91:fe:89:d4:24:4a:12:90:15:34:f2:fb:24:80:17:
+         a4:e4:5a:02:00:34:ed:3c:f1:c0:f1:14:9c:2f:2f:6a:64:c2:
+         ed:36:19:82:86:1c:c6:61:cf:9f:bd:c1:2d:34:37:c8:4b:ce:
+         60:ee:7d:d1:a1:b3:17:ed:cd:3c:d1:aa:44:32:cc:52:6f:e5:
+         68:77:46:4f:e4:ed:55:4e:37:c0:97:e0:88:5f:56:71:c4:13:
+         5e:33:b0:4c:c6:1b:73:85:d6:72:87:05:0c:cb:02:06:7f:85:
+         dd:d3:f7:03:c4:4a:de:4d:c1:5a:9e:20:69:2e:30:65:98:04:
+         ea:bf:d9:44:34:99:3d:2c:70:eb:6f:06:3e:91:b7:cd:d6:3e:
+         cb:b2:6d:5d:bc:f8:8b:38:51:69:0f:f7:84:41:26:71:2e:ce:
+         df:8d:12:de:1e:d5

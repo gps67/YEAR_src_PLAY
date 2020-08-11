@@ -40,6 +40,7 @@ gen_e1_*
 # x509 or ssl key
 pki
 *.key
+*_key.pem
 
 # Fortran module files
 *.mod

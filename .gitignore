@@ -41,6 +41,7 @@ gen_e1_*
 pki
 *.key
 *_key.pem
+*_key.ws
 
 # Fortran module files
 *.mod

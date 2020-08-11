@@ -42,6 +42,8 @@ pki
 *.key
 *_key.pem
 *_key.ws
+*/db_certs/*
+db_certs
 
 # Fortran module files
 *.mod

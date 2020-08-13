@@ -262,6 +262,8 @@ yacc_name_y(
 ){
 	// REPLACE THIS WITH // bool gen_STR2_into( obj_hold<str2> & retval )
 	// REPLACE THIS WITH // bool gen_STR2_into( buffer2 & out )
+	// out is RETVAL
+	// out is print_out via buffering filters // direct 
 	// TEMPLATE {
 	//  ... var decls move to STMT_GAP_SCOPE_START
 	//  // TAMPLATE PARAMETER // out // tree_chunked_stream // _ROM

@@ -1,0 +1,98 @@
+2020-08-13 Aug Thu 15:58 VFS_DIR_Tree.txt
+
+ VFS
+  DIR
+   fmt filter YEAR_MM_DD "%s_%s_%s" YEAR MM DD // vars created
+   fmt emit "vars { YEAR MM DD ... }"
+   fmt emit "code API vars { ... }" 
+
+   filter MATCH LEX "%s" var_name 
+   LEX YEAR MM DD // auto_collect_api // learn fragment
+   LEX Tue Feb Tuesday February AM_PM 
+   LEX BIND VAR BY NAME
+   LEX VAR // VAR__LINK link _link // GEN %s_link GEN %s_%s VAR LINK
+
+     // LEX VAR
+     // VAR_LINK link _link
+     // GEN %s_var
+     // GEN %s_link
+     // GEN %s_%s VAR LINK
+
+   LEX fmt "%s" EXPR
+   LEX fmt " %s %s " LHS RHS
+
+   SYMB_LINK ALIAS fully_defined_item 
+
+   	Name.ext 
+	Name_YEAR-MM-DD.ext
+
+   	Name 
+	Name_YEAR-MM-DD
+
+   PSG_SUBLEX
+
+   	filename
+	 USE FILTER "allow_space_in_dir name"
+	PSG_layer += MATCH SP within filename // complain tho // refuse
+	PSG_layer += MATCH Name.ext // literally ".ext" like here
+	PSG_layer += MATCH "%s" '"%s"' "%s" %s // %s NAME used in VAR_NAME
+	PSG_layer += MATCH %s ACTION %s // pattern action // type_weight
+	PSG_layer += MATCH _t
+	PSG_layer += _t // ITEM_t name // ITEM name // OMIT _t
+	PSG_layer += JS_EXPR
+	PSG_layer += ARGV_PSG ARGV_of_STR0
+
+   GEN PSG
+
+   PSG GEN
+
+	   GEN PSG
+	 
+		   GEN PSG	THRU += PSG // MATCH { action } // 
+		   PSG GEN
+		 
+	   PSG GEN
+
+		   GEN PSG
+		   PSG GEN	LINES + LINE // ARGV += ARGV[i] = INIT_EXPR
+
+	GEN
+
+		streaming to segment
+		bunch_of_POOLS
+
+		expect_to_use POOL[ idx_item ] // [N] // avail utf_STR_utf[N]
+		 
+	PSG
+		ONE_of_LIST E0 E1 E2 ...
+		SEQ_of_LIST E0 E1 E2 ...
+		ITEM is_a RULE
+		RULE
+		PLUS EXPR
+		STAR EXPR 
+		AUTO_ADD_EDGE_DETECT "," <==> ", " // { N } // _Layout_PICK
+		AUTO_ADD_EDGE_DETECT ", " <==> "EOLN_INDENT_SAME" // item[i]
+		COMMA_SEP LHS ITEM COMMA RHS // "{" ITEM "," "}"
+		// Layout add GAP at EDGE //
+		// _Layout "{" to "{ " or _Layout
+		// eg lines_of_lines // indented blocks
+
+	ITEM_TYPE
+		EXPR_bool
+		EXPR_number // floaty fixed_point eg AFM_1000 pt_72_dpi
+		EXPR_block // Module CODE block // lines_of_lines
+		EXPR_token // 
+		EXPR_CALL_ABLE
+	
+
+   DIAG
+    -frame-
+      dir_LHS = "/home/gps/YEAR/DIARY" "/" "YEAR/DIARY/"
+      dir_RHS = "/home/gps/G/YEAR/DIARY" "/" "YEAR/DIARY/"
+      here_expr = "SAME_DATA {
+      	LHS += BASED_on_NFS
+	RHS += BASED_on_hda
+      }"
+
+
+

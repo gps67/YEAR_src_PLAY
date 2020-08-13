@@ -2,6 +2,11 @@
 #define Y_PARSE_H
 
 /*
+	Y_Parse _t
+	 named PSG
+	 mux_in_different_dialects // eg ARGV no comma
+	 currently running over ... TEXT ... lines_of_lines ...
+
 	This is flawed - it should not matter that yyparse does not exist yet
 	in test1 no actual parsing happens, it is all generating
 	Probably switching to not-a-class-stic might fix it
@@ -36,8 +41,8 @@ namespace YY {
 	bool buf_yy_parse( blk1 & text ); // 
 
   	bool buf_load_and_parse( // load file into buffer, then call_yyparse()
-	   blk1 & text,			// load text from filename
-	   const char * filename,	// load entire file
+	   blk1 & text,			// load text keep keep text // not MMAP
+	   const char * filename,	// filename expect to load entire file
 	   int K_max			// RULES is RULES
 	);
  };

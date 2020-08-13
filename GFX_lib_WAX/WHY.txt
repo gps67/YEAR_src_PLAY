@@ -7,8 +7,21 @@
 	 // some artwork here
 
 
-So Why cairo ?
-	lib_pixmap needs draw_path onto pixmap
+So Why draw_path 
+
+	build_path draw_path paint_outlines paint_fill
+	_cairo  can do SPLINE stuff 2D_API_2D
+	D2_API_2D ...
+	 start GOTO LOCN_FFFF IDX_u16 DRAW_TO XYZ CTXT // XYY //
+	 start GOTO LOCN_FFFF IDX_u16 DRAW_TO XYZ CTXT // CTXT //
+	 close_draw_path // ready for draw_shape
+	 DRAW fill = { SCRIPT } // BLENDED_VIEW_from_GPU as_2d_from_3d
+	 DRAW_FILL = VOID ... ITEM ... 
+	 DRAW_LINE = { OPTIONS }
+
+	lib_pixmap needs draw_list onto pixmap // DIALECT
+	lib_pixmap needs draw_path onto pixmap // PLUMBING API
+
 	eg path = list of points most adjacent some jump
 	eg path step = ONE_LINE_MACRO 
 		DRAW_TO XY += ( dx, dy ) // relative addressing OFFS
@@ -51,12 +64,27 @@ So Why cairo ?
 	RAW Reachable
 
 		things that work in DIAG
+
 			VIEW
 
 		Generic Hardware
 
 			graphics context
-			 PIMAP 200x500 RGBA
+			 PIXMAP 200x500 RGBA
+
+			D2_draw_2D fgbg GDI dc PRINT_HEAD
+			 PRINT_HEAD PIXMAP_RGBA
+			  draw_2D_libr // += SEGMENT // API SPEC TREE
+
+			Module
+			 SCRIPTED_API
+			 SESS_DATA
+
+			Module : TYPE_SPLICE Module += ...
+			 API
+			 LIBR
+			 SESS
+			 PSG_TASK_PSG
 
 			graphics context
 			 A4 150 dpi 

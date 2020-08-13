@@ -1,5 +1,5 @@
 
-	PSG_DIAG_Layout_Script.txt
+	PSG_DIAG_Layout_Script.txt // VAR_LINK_t * var_name .init( {SCRIPT} )
 
 	Layout ASCII curses xterm // += mouse_event_too_on_TTY_MUX
 
@@ -8,20 +8,74 @@
 		TTY kbd
 		TTY mouse
 		SCN_TTY
+
+		SPEC
 	
-	Layout Tree 
+	Layout Tree ... COMT "// ITEM is %s" // ITEM_t /* auto_gen */ %s 
+
+		TREE_INDENT
+
+			BRANCH TWIG 
+
+				LEX_LEAF
+
+			PSG _of_ %s	// "%s" means VAR_NAME // AKA ITEM.name
+
+				ITEM_t
+				t_ITEM_t // TYPE built from SPEC 
+				EXPR_t // AUTO_GEN_t // LIBR _t
+				SCRIPT _OF_LINES // N_LINES[ N ] 
+				SCOPE routes get_N( CTXT, EXPR ) // NEAR SCRIPT
 
 		INDENT_by_one_SP_
 		 GENERIC INDENT DETECT
 		  call_INDENT_MORE
 		  call_INDENT_SAME
 		  call_INDENT_LESS
-		  lines_of_lines
+		  lines_of_lines // UDEF line_t LINE [ N_LINE_t N_LINE ] 
+		  block_of_code ... Module ...
+
+	 Module _t
+
+	 	CONST_TYPE_VAR_MACRO_CALL_API
+
+		PARSE C_ DECL_DEF_ Name Value // ARGV // SUBLEX // PSG // API 
+
+		 SPEC ...
+
+		 	u8_t /* VAR_LINK */ u8;
+
+			  DATA u8_t called("u8");
+			  DATA u8_t called("TOKEN_IDX"); // report SAME_STEP
+			  DATA u8_t called(" TOKEN_IDX "); // SAME_STEP
+			  DATA u8_t numbered(TOKEN_IDX); // report SAME_STEP
+
+		 GEN ...
 
 		 EMIT lookup(" INDENT_MORE ") // START SUB_BLOCK list_of_lines
 		 EMIT lookup(" OPCODE "); // CMD = OPCODE ARGS
 		 EMIT lookup(" PSG SEQ "); // CMD = OPCODE ARGS  = PARSED
-		 EMIT lookup(" import PSG_Tree_as_ASCII ")
+		 EMIT lookup(" anystr "); // NOTE MATCH " %s " // DIALECT
+		 EMIT lookup(" import PSG_Tree_as_ASCII ") // SCRIPT
+		 EMIT compile(" import PSG_Tree_as_ASCII "); // AS IS
+		 EMIT compile(" import PSG_Tree_as_ASCII "); // AS_BINARY
+		 EMIT tokenise_compile(" anystr "); // AS_BINARY _AS_TOKEN EXPR
+
+		 EMIT as_code_for_REQ(" WRAP_Module ... "); //
+		 import PSG_Tree // u64_WORD_u64 // or PAIR or ARGV // 
+		 import OPCODE_SCRIPT // lines_of_lines // Module as SCRIPT
+		 // INSTANCE 
+		 EMIT as_code_and_CSR(" import PSG_Tree_as_ASCII "); // AS IS
+		 EMIT as_struct_Module(" module =", PSG_Tree_as_ASCII "); // GEN
+		 TEST is_8_bit_clean _with_filter { avoid list } {FILTER}
+		 SUBLEX name( "Name" )
+		 PSG name(" Name "); // NOTE 
+		 // PLUS //
+		 // HERE // HERE //
+		 // HERE // XPOS // NDIM // XYZ RGB CSR EA
+		 // EA // ea_of_field_in_struct "fieldname" &field_data
+		 // EA // ea_of_field_in_struct_t "field_name" &field_data
+		 // MATCH // { SCRIPT }
 
 		 TEXT PARSE TREE + OK
 		 TREE PRINT TEXT + TEST-LOAD-SAYS_REGEN_OK

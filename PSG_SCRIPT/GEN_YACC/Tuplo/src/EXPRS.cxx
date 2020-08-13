@@ -8,6 +8,12 @@
 // OUTSIDE NAMESPACE
 
 	using namespace EXPRS;
+	// class EXPR :: api_function
+	// ok = BUILD_EXPR_item IDX CTXT 
+	// ok = TREE_ITEM " SCRIPT " IDX_locn CTXT 
+	// ITEM.print_to( PRINT_HEAD )
+	//  sweeps over Tree // clone_sweep_ready // 
+	// into_tree // from_tree // tree_from ... // PSG_ARGV
 
   bool EXPR:: detect_at_top(EXPRS::PRINTER*printer)
   {
@@ -103,6 +109,7 @@
 	TREE.expr_tree = this; // already allocated, set "CSR" or other
 	INFO("RETVAL get this to the call of yyparse");
 	print_to_NULL();
+	INFO("print_to NULL sweep complete ");
 	return TREE.expr_tree;
   }
 
@@ -143,6 +150,7 @@ namespace EXPRS {
   u16_hilo LHS = DATA_STO_idx_expr // u8_pool u8_item // LOCN_t & u16_item //
   u16_hilo RHS = DATA_STO_idx_expr // u8_pool u8_item // LOCN_t & u16_item //
   u16_hilo CMNT = DATA_STO_idx_expr // u8_pool u8_item // STR_LOCN_t & u16_item //
+  // that puts u16_item POOL = CTR_LOCN_t.POOL_for_(" u16_item ") // [256] [256]ZZ
  #endif
 
  struct EXPR_name : public EXPR {

@@ -10,6 +10,23 @@ DECISION
 
 		u48_u16_lohi
 
+		 cpu_VAR_t WORD 
+		 .byte_A
+		 .byte_B
+		 .u8_lo
+		 .u8_hi
+		 .H .L .HL .HL_u16 .HILO_u32 .HIGH_LOW_u48_u8_u8
+		 .bytes_BA_u16_lohi
+		 .u16_BA_from_lohi
+		 .u32_DCBA_from_lohi
+		 .u32_HGFE_from_lohi
+		 .u64_HGFE_DCBA_from_lohi
+
+		 NOT FOR MMX registers - or is it ? count cycles bytes
+		 ABCD_PQ R8-R15 
+		 MEM_WORDS STACK HEAP STATIC
+
+
 	u64_lohi
 	u64_abcdefLH // thats the abcd in memery on disk in MMAP
 	u64_HLfedcba_in_cpu // when in cpu // matches amd64

@@ -34,8 +34,11 @@ int Y_Parse_t::
 call_yyparse()
 {
 	ret_from_yyparse = yyparse( * this ); 
+ if(0)	INFO("ret_from_yyparse = yyparse( * this ) = %d",
+		(int) ret_from_yyparse
+	);
 
- if(0)
+ if(1)
 	switch (ret_from_yyparse) {
 	 case 0: INFO("0 means PASS yyparse"); break;
 	 case 1: FAIL("1 means ERROR yyparse"); break;

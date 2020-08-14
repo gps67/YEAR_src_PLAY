@@ -314,12 +314,41 @@ bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
 {
 	static u32 N_users = 0;
 	static u32 N_items = 0;
+	static u32 N_zones = 2; // P1 == P2 = NEXT == "FIVE"
+	static u32 N_boxes = 3; // 
 	bool ok = true;
+	buffer2 NAME;
+
 	switch(ISS_tag) {
 	 case is_CA_ZERO:  ok = set_HERE_CA_ZERO(); break;
 	 case is_CA_ONE:   ok = set_HERE_CA_ONE(); break;
-	 case is_CA_ZONE:  ok = set_HERE_CA_ZONE(PFX_CA "ZONE_BOX5"); break;
-	 case is_C_server: ok = set_HERE_C_server("BOX5"); break;
+	 case is_CA_ZONE: {
+	 	buffer2 NAME;
+		NAME.print( PFX_CA "ZONE_" ); // "CA_"
+		u32 idx = N_zones ++;
+		switch(idx) {
+		 case 0: NAME += "ZERO_RESERVED"; break;
+		 case 1: NAME += "ONE_RESERVED"; break;
+		 case 2: NAME += "TWO"; break;
+		 case 3: NAME += "THREE"; break;
+		 case 4: NAME += "FOUR"; break;
+		 case 5: NAME += "FIVE"; break;
+		 case 6: NAME += "SIX"; break;
+		 case 7: NAME += "SEVEN"; break;
+		 case 8: NAME += "EIGHT"; break;
+		 case 9: NAME += "NINE"; break;
+		 case 10: NAME += "TEN"; break;
+		 default:
+		 	NAME.print("%d", idx);
+		}
+
+	 	ok = set_HERE_CA_ZONE((STR0)NAME);
+	 } break;
+	 case is_C_server: {
+		u32 idx = N_boxes ++;
+		NAME.print("BOX%d", idx );
+	 	ok = set_HERE_C_server(NAME);
+	 } break;
 	 case is_C_pc: {
 	  static buffer2 cn;
 	  cn.clear();
@@ -348,7 +377,7 @@ bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
 	   default:
 	   		N_users--;
 	  }
-	 }			break;
+	 } break;
 	 case is_C_item: {
 	  static buffer2 cn;
 	  cn.clear();

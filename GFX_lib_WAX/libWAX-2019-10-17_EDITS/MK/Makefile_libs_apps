@@ -2,8 +2,8 @@
 # Makefile_libs_apps
 
 	# seems ~ does not work in Makefiles # $(HOME)
-	DIR_libs_apps=$(HOME)/G/src/libs_apps
-	# DIR_libs_apps=$(HOME)/YEAR/src/libs_apps
+	# DIR_libs_apps=$(HOME)/G/src/libs_apps
+	DIR_libs_apps=$(HOME)/YEAR/src/libs_apps
 	DIR_libs_apps_build=$(DIR_libs_apps)/build_LGX_M7
 	DIR_libs_apps_build=$(DIR_libs_apps)/build_LGX_E6320
 

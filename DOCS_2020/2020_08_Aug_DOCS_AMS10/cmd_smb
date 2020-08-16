@@ -1,0 +1,5 @@
+echo "HINT: CAP1"
+set -x
+smbclient  -U Dell '//AMS10/G/'
+# smbclient  '//Dell@AMS10/G/' # no
+

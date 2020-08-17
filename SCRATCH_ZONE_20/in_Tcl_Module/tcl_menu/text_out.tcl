@@ -17,17 +17,18 @@ proc text_out_ln { text_widget text} {
 }
 
 proc mk_text_out { w1 } {
-     set text_out $w1.text_out
-     text $text_out \
-	-yscrollcommand [list $w1.scroll set] \
+     set w1_text_out $w1.text_out
+     set w1_scroll $w1.scroll
+     text $w1_text_out \
+	-yscrollcommand [list $w1_scroll set] \
 	-setgrid 1 \
 	-height 30 \
 	-undo 1 \
 	-autosep 1
-     ttk::scrollbar $w1.scroll -command [list $text_out yview]
-     h_pack_big $text_out ;# -expand yes -fill both
-     h_pack $w1.scroll ;# -side right -fill y
-     return $text_out
+     ttk::scrollbar $w1_scroll -command [list $w1_text_out yview]
+     h_pack_big $w1_text_out ;# -expand yes -fill both
+     h_pack $w1_scroll ;# -side right -fill y
+     return $w1_text_out
 }
 
 set text_out_global .unset

@@ -25,6 +25,18 @@ proc menu_ITEM_exec { menu ARGV } {
 	menu_id_text_cmd $menu $id $text $ARGV
 }
 
+proc menu_ITEM_edit { menu ARGV } {
+	set gvim gvim
+	set gvim vi
+	set ARGV [linsert $ARGV 0 $gvim]
+	menu_ITEM_exec $menu $ARGV
+}
+
+proc menu_ITEM_wish { menu ARGV } {
+	set ARGV [linsert $ARGV 0 wish]
+	menu_ITEM_exec $menu $ARGV
+}
+
 proc menu_id_text_cmd_Exit { menu_m1 } {
 	menu_id_text_cmd $menu_m1 [mk_id] "Exit" {
 	    puts stdout "Goodbye destroy dot";

@@ -83,12 +83,17 @@ bool DEMO_mk_VPN_PC( str0 ABBR )
 
 bool DEMO_mk_cert_group()
 {
+
+	// ISSUER_CERT = loaded from somewhere (filename?)
+	// ISSUED_CERT = VALS + ROLE in layout + FILENAME
+	// supposedly online signing REQ from 
+
 	// mk_LAPTOP
 	if(!DEMO_mk_VPN_PC("DWS_")) return FAIL_FAILED();
 	if(!DEMO_mk_VPN_PC("AMS_10")) return FAIL_FAILED();
 	if(!DEMO_mk_VPN_PC("GPS_E6320")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_PC("MBS")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_GW("HUB_9")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("MBS_")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_GW("HUB_GW")) return FAIL_FAILED();
 
 	return PASS("OK");
 
@@ -108,6 +113,17 @@ bool DEMO_mk_cert_group()
 		the current basis, is that you set VALS
 		then bounce it through REQ and ISS
 		then save the result
+
+		UPDATE: it was/is flawed
+		there are multiple C_pc in CA_ZONE
+		we need to KNOW the CA_ZONE name
+		we prefer to have the actual CA_ data name.vern
+		we need different filenames for users
+
+		_task is still much the same
+		_layout needs to be thrown out
+		_filename == dir_ZONE/CN # all in that dir
+		_filename == dir_ROOT/CN # for a while 
 	*/
 	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout();
 	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag );

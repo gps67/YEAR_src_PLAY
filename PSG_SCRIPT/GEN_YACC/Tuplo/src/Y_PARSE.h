@@ -35,7 +35,7 @@ namespace YY {
 	}
 
 	int call_yyparse();
-	int ret_from_yyparse; // 0==PASS 1==FAIL 2==ENOMEM
+	int ret_from_yyparse; // 0==PASS 1==FAIL 2==ENOMEM==recursive.loop
 
 
 	bool buf_yy_parse( blk1 & text ); // 

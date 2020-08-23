@@ -28,12 +28,17 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 // YY:: Y_Parse_t CALLS yyparse PROVIDES SELF.TREE // _BUILDER
 
+// https://www.gnu.org/software/bison/manual/html_node/Parser-Function.html
+// says ( this ) would work, but for unknown - need *this
+// 
+
 using namespace YY;
 
 int Y_Parse_t::
 call_yyparse()
 {
-	ret_from_yyparse = yyparse( * this ); 
+	ret_from_yyparse = yyparse( * this ); // matches T & V
+//	ret_from_yyparse = yyparse( this ); 
  if(0)	INFO("ret_from_yyparse = yyparse( * this ) = %d",
 		(int) ret_from_yyparse
 	);
@@ -52,10 +57,12 @@ call_yyparse()
 }
 
 // C called from yyparse(psg)
+// see Y_PARSE_gen.cxx:
+// "%%parse-param {Y_Parse_t & psg} 
 
 void yyerror( Y_Parse_t & psg, const char * msg )
 {
-	FAIL("msg %s", msg );
+	FAIL("msg;Y_PARSE.cxx with psg %s", msg );
 }
 
 

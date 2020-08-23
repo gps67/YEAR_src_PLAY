@@ -71,7 +71,7 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 	POOL_PUNCT.add_PUNCT( "<<<", L2R "14", "bitwise ROTATE"  ); 
 	POOL_PUNCT.add_PUNCT( ">>>", L2R "14", "bitwise ROTATE"  ); 
 
-// CHECK: who says these are R2L not L2R // or is it the =
+	// CHECK: who says these are R2L not L2R // or is it the =
 
 	POOL_PUNCT.add_PUNCT( "<<=", R2L "14", "bitwise SHIFT"  ); 
 	POOL_PUNCT.add_PUNCT( ">>=", R2L "14", "bitwise SHIFT"  ); 
@@ -91,8 +91,8 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 	POOL_PUNCT.add_PUNCT(  ",",  R2L "15", "code comma"  ); // comma
 
 
-// ASCII order -vs- PRIORITY ? 
-// not obviosly, so ... meh
+	// ASCII order -vs- PRIORITY ? 
+	// not obviosly, so ... meh
 
 	POOL_PUNCT.add_PUNCT( "(" );
 	POOL_PUNCT.add_PUNCT( ")" );
@@ -105,9 +105,13 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 	POOL_PUNCT.add_PUNCT( "/*" );
 	POOL_PUNCT.add_PUNCT( "*/" );
 
-// ERROR of DOUBLE add_PUNCT --
+	// ERROR of DOUBLE add_PUNCT --
+
+	// Reserved Words -- value is self
 
 	POOL_RW.add_RW( "if" );
+
+	// Names of LEX exprs that match values
 
 	POOL_LEX.add_LEX( "EOLN" );
 	POOL_LEX.add_LEX( "IDENTIFIER" );
@@ -126,6 +130,5 @@ bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
 	// expr brings collection of match like exprs, like C++
 
 	return true;
-	// return FAIL("unwritten");
 }
 

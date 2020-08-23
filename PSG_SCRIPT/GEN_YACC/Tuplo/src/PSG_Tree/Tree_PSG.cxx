@@ -334,7 +334,7 @@ put_include_yacc_tab_hh( buffer2 & out )
 
 	return
 	put_include_Q2( out, incl_filename );
-  	// if_WARN_1 L("#warning yacc_name_tab_hh included ");
+  	// if_WARN_1 L1("#warning yacc_name_tab_hh included ");
 }
 
 bool Tree_PSG::
@@ -426,73 +426,73 @@ print_TOKEN_name_2(
 }
 
 
-/*	MACRO L("C_CODE_LINE") // MUST BE "const Q2 str to join \n"
+/*	MACRO L1("C_CODE_LINE") // MUST BE "const Q2 str to join \n"
 
 	adds "\n" so you dont have to
 	maybe rename out_put_L
 */
 
-#define L(str) out.put( str "\n")
+#define L1(str) out.put( str "\n")
 // its a function like macro so invoker provides semicolon
 
 bool Tree_PSG::
 gen_LEX_lex_return( buffer2 & out )
 {
- L("// GEN");
- L("#include <string>");
- L("#include \"buffer1.h\"");
- L("#include \"Y_PARSE.h\""); //
- L("using namespace YY;"); //
+ L1("// GEN");
+ L1("#include <string>");
+ L1("#include \"buffer1.h\"");
+ L1("#include \"Y_PARSE.h\""); //
+ L1("using namespace YY;"); //
  if(1) {
 	put_include_yacc_tab_hh( out );
  }
- L("/*");
- L("        lookahead may mean any number of tokens, not 1");
- L("");
- L("        quick test shows actually OK 1 as long as yacc strdup's immediately");
- L("        but maybe");
- L("*/");
- L("");
- L("// nlex16 = N circular list of vars for single return value");
- L("// We dont know when each will be dropped just allow 16 as a LEX horizon");
- L("// static const int nlex16 = 64;");
- L("   static const int nlex16 = 16;");
- L("// static const int nlex16 = 1;");
- // L("static buffer1 lex_buffer;");
- L("static buffer1 lex_pool[nlex16]; // RETVAL STRVAL // backing store for STR0 ");
- L("static int nlex_pos = 0;");
- L("");
- L("/*");
- L("        lex found, return tok");
- L("");
- L("        lex found the string at yytext, yyleng");
- L("        use the next storage slot (reuse nlex16 items later)");
- L("        copy string to buffer, as str0");
- L("        set yylval /union/ .lex_buff as returning string value");
- L("        return tok as lex type");
- L("");
- L(" */");
- L("int lex_return( int tok )");
- L("{");
- L("        // skip first cell once, get it next time, or init -1");
- L("        nlex_pos = (nlex_pos+1) % nlex16;");
- L("        int pos = nlex_pos;");
- L("        lex_pool[ pos ].set( yytext, yyleng );");
- L("        // TESTED with includes removed FOUND");
- L("        // YYtext and yyleng are available");
- L("        // yylval isnt - it is the union later in the same gen2 file");
- L("        // LATER means LINE 2200");
- L("        // EXCEPT this is LINE 3630");
- L("        // ");
- L("        // ");
-// require tab.hh ??  L("        extern YYSTYPE yylval; // forward");
- L("        yylval.lex_buff = (str0) lex_pool[ pos ];");
- L("        return tok;");
- L("}");
- L("");
- L("// define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)");
- L("#define TOKEN(t)    (yylval.token = t)");
- L("");
+ L1("/*");
+ L1("        lookahead may mean any number of tokens, not 1");
+ L1("");
+ L1("        quick test shows actually OK 1 as long as yacc strdup's immediately");
+ L1("        but maybe");
+ L1("*/");
+ L1("");
+ L1("// nlex16 = N circular list of vars for single return value");
+ L1("// We dont know when each will be dropped just allow 16 as a LEX horizon");
+ L1("// static const int nlex16 = 64;");
+ L1("   static const int nlex16 = 16;");
+ L1("// static const int nlex16 = 1;");
+ // L1("static buffer1 lex_buffer;");
+ L1("static buffer1 lex_pool[nlex16]; // RETVAL STRVAL // backing store for STR0 ");
+ L1("static int nlex_pos = 0;");
+ L1("");
+ L1("/*");
+ L1("        lex found, return tok");
+ L1("");
+ L1("        lex found the string at yytext, yyleng");
+ L1("        use the next storage slot (reuse nlex16 items later)");
+ L1("        copy string to buffer, as str0");
+ L1("        set yylval /union/ .lex_buff as returning string value");
+ L1("        return tok as lex type");
+ L1("");
+ L1(" */");
+ L1("int lex_return( int tok )");
+ L1("{");
+ L1("        // skip first cell once, get it next time, or init -1");
+ L1("        nlex_pos = (nlex_pos+1) % nlex16;");
+ L1("        int pos = nlex_pos;");
+ L1("        lex_pool[ pos ].set( yytext, yyleng );");
+ L1("        // TESTED with includes removed FOUND");
+ L1("        // YYtext and yyleng are available");
+ L1("        // yylval isnt - it is the union later in the same gen2 file");
+ L1("        // LATER means LINE 2200");
+ L1("        // EXCEPT this is LINE 3630");
+ L1("        // ");
+ L1("        // ");
+// require tab.hh ??  L1("        extern YYSTYPE yylval; // forward");
+ L1("        yylval.lex_buff = (str0) lex_pool[ pos ];");
+ L1("        return tok;");
+ L1("}");
+ L1("");
+ L1("// define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)");
+ L1("#define TOKEN(t)    (yylval.token = t)");
+ L1("");
 
 	return true;
 }
@@ -536,9 +536,9 @@ bool Tree_PSG:: print_tree_as_files( ) {
 bool Tree_PSG::
 gen_LEX( buffer2 & out ) // gen the entire files text
 {
-	L("");
-	L("%{"); // CODE section
-	L("");
+	L1("");
+	L1("%{"); // CODE section
+	L1("");
 
 	// utility functions that carry return " RETVAL STRVAL" from LEX
 	gen_LEX_lex_return( out );
@@ -548,36 +548,36 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 		put_include_yacc_tab_hh( out );
 	}
 
-	L("");
-	L("%}"); // CODE section END
+	L1("");
+	L1("%}"); // CODE section END
 
-	L("");
-	L("%option noyywrap"); // forgotten, but it goes here
-	L("");
+	L1("");
+	L1("%option noyywrap"); // forgotten, but it goes here
+	L1("");
 
-	L("%%");
-	L("");
+	L1("%%");
+	L1("");
 
 	gen_LEX_RULES_eoln( out ); // must match FLEX / YY line no ++
 
 	gen_LEX_RULES_ident_values( out ); // VALUE is union .
 
-	L("");
+	L1("");
 	// out.put("# LIST RW\n");
 	print_list( out, POOL_RW ); 
-	L("");
+	L1("");
 	// out.put("# LIST PUNCT\n"); // unless FLEX matches longest first ?
 	print_list( out, POOL_PUNCT ); // in LEX longest first order
-	L("");
+	L1("");
 	// out.put("# LIST LEX\n");
 	print_list( out, POOL_LEX );
 
-	L("");
-	L(". printf(\"Unknown token!\\n\"); yyterminate();");
-	L("");
+	L1("");
+	L1(". printf(\"Unknown token!\\n\"); yyterminate();");
+	L1("");
 
-	L("%%");
-	L("");
+	L1("%%");
+	L1("");
 	return true;
 }
 
@@ -625,7 +625,7 @@ bool Tree_PSG:: gen_LEX_RULES_ident_values( buffer2 & out )
 bool Tree_PSG::
 gen_YACC( buffer2 & out )
 {
- // L("%define api.namespace {::EXPRS}");
+ // L1("%define api.namespace {::EXPRS}");
  // not in C
  // %define variable 'api.namespace' is not used
  // %define api.namespace {::EXPRS}
@@ -650,11 +650,12 @@ gen_YACC( buffer2 & out )
 	 goto_step_next;	// EDGE //
  */
 
-	L("%{");
-	L("");
+	gen_YACC_declarations( out );
+	L1("%{");
+	L1("");
 	gen_YACC_top_code( out );
 	gen_YACC_str_of_token( out );
-	L("%}");
+	L1("%}");
 	// declare the parameter to get i// int yyparse( HERE );
 	gen_yyparse_parameter( out ); // see Y_PARSE.h
 	gen_YACC_union( out );
@@ -663,12 +664,22 @@ gen_YACC( buffer2 & out )
 	gen_YACC_precedence_list( out );
 	gen_YACC_start_top( out, "top" );
 
-	L("");
-	L("%%");
-	L("");
+	L1("");
+	L1("%%");
+	L1("");
 
 	gen_YACC_rules( out );
 	return true;
+}
+
+bool Tree_PSG::
+gen_YACC_declarations( buffer2 & out )
+{
+ if(0) {
+  L1("%define parser.error detailed");
+ }
+  L1("%define api.pure full");
+
 }
 
 bool Tree_PSG::
@@ -676,57 +687,59 @@ gen_YACC_top_code( buffer2 & out )
 {
 
 
- L("          #include <cstddef>");
- L("          #include <stdio.h>");
- L("  //      #include <string>");
+ L1("          #include <cstddef>");
+ L1("          #include <stdio.h>");
+ L1("  //      #include <string>");
  // NOT WORKING - to create yyparse(void*gps_client_data) //
  // then it would be local and still available to entire FSM
- //L("  #define YYPARSE_PARAM gps_client_data ");
- L("	#include \"Y_PARSE.h\" ");
- L("");
- L("          extern const char * str_of_token( int token );");
+ //L1("  #define YYPARSE_PARAM gps_client_data ");
+ L1("	#include \"Y_PARSE.h\" ");
+ L1("");
+ L1("          extern const char * str_of_token( int token );");
 
  // before tab,h so that namespace exists
  // STUBS for all mk_new_EXPR( args ) used in YACC RULE MATCH CODE
- L("          #include \"../src/EXPRS_STUBS.h\"");
- // L("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
- // L("          typedef struct EXPR; // this doesnt work");
+ L1("          #include \"../src/EXPRS_STUBS.h\"");
+ // L1("          typedef ::EXPRS::EXPR EXPR; // this doesnt work");
+ // L1("          typedef struct EXPR; // this doesnt work");
  // also some editing of exprs.h
- L("          using namespace EXPRS; // ... E0 ..."); // 
+ L1("          using namespace EXPRS; // ... E0 ..."); // 
 
  if(1) {
 	put_include_yacc_tab_hh( out );
  }
 
- L("          #include \"str1.h\"");
- L("  #if 0");
- L("          struct YYSTYPE;");
- L("          struct YYLTYPE;");
- L("          int  yylex (YYSTYPE*, YYLTYPE*);");
- L("  #else");
- L("          int yylex(void);");
- L("  #endif");
- L("          extern int yylineno;");
- L("          extern char * yytext;");
- L("          // extern int yyparse (void);");
- L("          void yyerror(const char * msg) {");
- L("                  printf(\"# ERR # line %d # %s\\n\", yylineno, msg );");
- L("          // no   printf(\"# ERR # col %d # %s\\n\", @$.first_column, msg );");
- L("          }");
+ L1("          #include \"str1.h\"");
+ L1("  #if 0");
+ L1("          struct YYSTYPE;");
+ L1("          struct YYLTYPE;");
+ L1("          int  yylex (YYSTYPE*, YYLTYPE*);");
+ L1("  #else");
+ L1("          int yylex(void);");
+ L1("  #endif");
+ L1("          extern int yylineno;");
+ L1("          extern char * yytext;");
+ L1("          // extern int yyparse (void);");
+ if(0) {
+ L1("          void yyerror(const char * msg) {");
+ L1("                  printf(\"# ERR # line %d # %s\\n\", yylineno, msg );");
+ L1("          // no   printf(\"# ERR # col %d # %s\\n\", @$.first_column, msg );");
+ L1("          }");
+ }
 
  if(0) {
  // this is also bad syntax // MUDFIX
-  L("// EG CXX ");
-  L("namespace NS {");
-  L("  struct CLS { int z; }; ");
-  L("};");
-  L(" union MY_UNION {");
-  L("  NS:CLS * PTR; ");
-  L("};");
-  L("using namespace NS;");
-  L(" union MY_UNION_two {");
-  L("  CLS * PTR; ");
-  L("};");
+  L1("// EG CXX ");
+  L1("namespace NS {");
+  L1("  struct CLS { int z; }; ");
+  L1("};");
+  L1(" union MY_UNION {");
+  L1("  NS:CLS * PTR; ");
+  L1("};");
+  L1("using namespace NS;");
+  L1(" union MY_UNION_two {");
+  L1("  CLS * PTR; ");
+  L1("};");
  }
 
 	return true;
@@ -736,21 +749,21 @@ gen_YACC_top_code( buffer2 & out )
 bool Tree_PSG::
 gen_YACC_str_of_token( buffer2 & out )
 {
- L("");
- L(" const char * str_of_token( int tok ) {");
- L("  switch( tok ) {");
+ L1("");
+ L1(" const char * str_of_token( int tok ) {");
+ L1("  switch( tok ) {");
 
 	gen_YACC_str_of_token_cases( out, POOL_PUNCT );
 	gen_YACC_str_of_token_cases( out, POOL_RW );
 	gen_YACC_str_of_token_cases( out, POOL_LEX );
 
- L("   default:");
- L("     static char as_hex[20];");
- L("     snprintf( as_hex, sizeof(as_hex), \"x%2X\", tok );");
- L("     return as_hex;");
- L("  }");
- L(" }");
- L("");
+ L1("   default:");
+ L1("     static char as_hex[20];");
+ L1("     snprintf( as_hex, sizeof(as_hex), \"x%2X\", tok );");
+ L1("     return as_hex;");
+ L1("  }");
+ L1(" }");
+ L1("");
 	return true;
 }
 
@@ -796,24 +809,24 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_union( buffer2 & out )
 {
-//	L("%parse-param {SOMETYPE * parser} ");
-	L("");
- L(" %union {");
-// NO L(" EXPR * expr;"); // almost
-// NO  L(" EXPRS:: struct EXPR * expr;");
-// NO L(" struct EXPRS:: EXPR * expr;");
-// L(" struct ::EXPRS:: EXPR * expr;");
-// L(" ::EXPRS:: EXPR * expr;");
-// L(" EXPR * expr;");
-// L(" struct EXPR_t * expr;"); // almost
+//	L1("%parse-param {SOMETYPE * parser} ");
+	L1("");
+ L1(" %union {");
+// NO L1(" EXPR * expr;"); // almost
+// NO  L1(" EXPRS:: struct EXPR * expr;");
+// NO L1(" struct EXPRS:: EXPR * expr;");
+// L1(" struct ::EXPRS:: EXPR * expr;");
+// L1(" ::EXPRS:: EXPR * expr;");
+// L1(" EXPR * expr;");
+// L1(" struct EXPR_t * expr;"); // almost
 
 // this list comes from %left <token> PUNCT_STAR // "token_type token"
 
- L("  struct EXPR * expr;"); // almost // incomplete type?
- L("  u32 e32;"); // retval is int
- L("  int token;");
- L("  const char * lex_buff;"); // via several buffer2 ring of holders
- L(" }");
+ L1("  struct EXPR * expr;"); // almost // incomplete type?
+ L1("  u32 e32;"); // retval is int
+ L1("  int token;");
+ L1("  const char * lex_buff;"); // via several buffer2 ring of holders
+ L1(" }");
 	return true;
 }
 
@@ -827,11 +840,11 @@ gen_YACC_token_list( buffer2 & out )
 		as %left <token> PUNCT_LT_LT_EQUAL
 
 	*/
-	L("");
+	L1("");
 	gen_YACC_token_list_POOL( out, POOL_PUNCT );
-	L("");
+	L1("");
 	gen_YACC_token_list_POOL( out, POOL_RW );
-	L("");
+	L1("");
 	gen_YACC_token_list_POOL( out, POOL_LEX );
 	return true;
 }
@@ -852,14 +865,14 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool Tree_PSG::
 gen_YACC_type_list( buffer2 & out )
 {
- // L("%type <unionfieldname> rulename");
-	 L("");
-	L("%type <expr> expr_ident");
-	L("%type <expr> expr");
-	L("%type <expr> EXPR_line");
-	L("%type <expr> lines"); // slight lie to bootstrap
-	L("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
-//	L("%type <token> BOP");
+ // L1("%type <unionfieldname> rulename");
+	 L1("");
+	L1("%type <expr> expr_ident");
+	L1("%type <expr> expr");
+	L1("%type <expr> EXPR_line");
+	L1("%type <expr> lines"); // slight lie to bootstrap
+	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
+//	L1("%type <token> BOP");
 	return true;
 }
 
@@ -882,11 +895,11 @@ gen_YACC_precedence_list( buffer2 & out )
 
 // TODO convert '<<=' to PUNCT_LT_LT_EQ 
 
-	 L("");
-//	 L("%precedence PUNCT_PLUS");
-	 L("%left PUNCT_PLUS PUNCT_MINUS");
-	 L("%left PUNCT_STAR PUNCT_SLASH");
-	 L("%right PUNCT_CARET");
+	 L1("");
+//	 L1("%precedence PUNCT_PLUS");
+	 L1("%left PUNCT_PLUS PUNCT_MINUS");
+	 L1("%left PUNCT_STAR PUNCT_SLASH");
+	 L1("%right PUNCT_CARET");
 	return true;
 }
 
@@ -894,15 +907,15 @@ bool Tree_PSG::
 gen_YACC_start_top( buffer2 & out, const char * rule_name ){
 	if(!rule_name) rule_name = "top";
 	out.print("%%start %s\n", rule_name );
-	 // L("%start top");
+	 // L1("%start top");
 	return true;
 }
 
 bool Tree_PSG::
 gen_YACC_rules( buffer2 & out )
 {
- L("// RULES ");
- L("// RULES ");
+ L1("// RULES ");
+ L1("// RULES ");
  buffer2 filed;
  // bug // open_RO not reporting filename
  if(!blk_read_entire_file( filed, "../src/e1.y_RULES", 32 )) return FAIL_FAILED();

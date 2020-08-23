@@ -233,6 +233,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// GEN // sections of YACC file
 
 	bool gen_YACC( buffer2 & out ); // all of it
+	bool gen_YACC_declarations( buffer2 & out );
 
 	bool gen_YACC_top_code( buffer2 & out );
 	bool gen_YACC_str_of_token( buffer2 & out );

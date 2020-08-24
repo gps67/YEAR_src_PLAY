@@ -292,31 +292,34 @@ lex_name_lex(
 }
 
 /*
-	mildly inefficient, but very convenient
-	maybe recognise usage, code in a service
+	eg "gen_e1_yacc.tab.hh"
+	obtain yacc_name_tab.hh 
+	via buffer2
 */
 STR0 Tree_PSG::
 yacc_name_tab_hh(
 	buffer2 & str
-	// moving this from static to provided
-	// this is now multi-user
 ){
-	// LANG // flag on object str // first_set_var_lock_second_waits_for_slip_lock
-	// LANG // slip_lock = spin_lock for N1xN2 then CALL // repeat or break
-	// LANG // scheduler can throw with C++ semantics catch ask/be scheduler
 	str.clear();
 	put_yacc_name_tab_hh( str );
 	return str;
 }
 
+/*
+	eg "gen_e1_yacc.tab.hh"
+	append filename
+	into buffer2 -- but dont clear it
+*/
 bool Tree_PSG::
 put_yacc_name_tab_hh( buffer2 & out ){
-	// needs auto add if(!put(...)) return FAIL_FAILED()
 	out.put( yacc_name ); // gen_e1_yacc 	// .y // .tab.hh
 	out.put(".tab.hh");
 	return true;
 }
 
+/*
+	#include "filename" // no comment tho
+*/
 bool Tree_PSG::
 put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 {
@@ -326,6 +329,9 @@ put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 	return true; // return out.am_ok // clearable error flag
 }
 
+/*
+	#include "gen_e1_yacc.tab.hh" 
+*/
 bool Tree_PSG::
 put_include_yacc_tab_hh( buffer2 & out )
 {
@@ -334,7 +340,7 @@ put_include_yacc_tab_hh( buffer2 & out )
 
 	return
 	put_include_Q2( out, incl_filename );
-  	// if_WARN_1 L1("#warning yacc_name_tab_hh included ");
+	// return bool OK // mem didn't fail
 }
 
 bool Tree_PSG::
@@ -364,10 +370,7 @@ print_list(
 			// silent // no rules for edges
 		}
 
-	};
-	// tok out of scape
-	// INFO("is this called. value = '%s'", tok->Value );
-	// INFO("is this called. out = '%s'", (STR0) out );
+	}
 	return true;
 }
 
@@ -677,8 +680,8 @@ gen_YACC_declarations( buffer2 & out )
 {
  if(0) {
   L1("%define parser.error detailed");
- }
   L1("%define api.pure full");
+ }
 
 }
 

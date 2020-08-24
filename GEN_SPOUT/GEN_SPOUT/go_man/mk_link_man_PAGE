@@ -1,0 +1,37 @@
+#!/bin/bash
+
+	. fns_EDIT
+
+    for PAGE in "${@:-PAGE}"
+    do
+
+
+
+	PAGE="${1:-MANPAGE}"
+
+	fn_EDIT_var_prompt PAGE "The manpage that gets invoked."
+
+	echo "# TEST IT #"
+
+	ask_do \
+	man "${PAGE}"
+	#
+
+	echo "
+	If that worked, you now install the man_PAGE command link
+
+	man_ is a script the detects its own name
+	man_PAGE is the name of the link
+	man_ is the seed link, upgrade this script to link_to_nearest_same_vfs
+	// EG // ../../go_man/man_
+	// EG // D0=./same_mounted_fs_mount_point/. or /../.pwd
+	// otherwise create a new one with DATE
+
+# INSTALL IT #
+"
+
+	ask_do \
+	ln man_ "man_${PAGE}"
+	#
+
+    done

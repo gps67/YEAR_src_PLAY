@@ -226,16 +226,13 @@ IF_NOT		hdr_comment("%%DocumentMedia: Default %d %d () ()", w, h );
 
 #if 0
 
-		buf.clear();
-		hdr_comment( buf.print("%%PageSize: [ %d %d ]", w, h );
-		hdr_comment( (STR0) buf );
-
-		buf.clear();
-		hdr_comment( buf.print("/PageSize [ %d %d ]", w, h );
-		cmd_line( (STR0) buf );
+		hdr_comment( "%%PageSize: [ %d %d ]", w, h );
+		cmd_line( "/PageSize [ %d %d ]", w, h );
 #endif
 
+		cmd_blank_line();
 		hdr_comment( "%%Page: %d", pg_no );
+		hdr_blank_line();
 IF_NOT		hdr_comment( "%%PageBoundingBox: 0 0 %d %d", w, h );
 		hdr_comment( "%%BeginPageSetup");
 
@@ -243,11 +240,13 @@ IF_NOT		hdr_comment( "%%PageBoundingBox: 0 0 %d %d", w, h );
 
 		hdr_blank_line();
 		hdr_comment( "%%EndPageSetup");
+		hdr_blank_line();
 IF_NOT		hdr_comment( "%%BoundingBox: %d %d %d %d", 0, 0, w, h );
 IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 
-		hdr_comment( "%EndComments" );
-//		hdr_comment( "%BeginProlog" );
+		hdr_comment( "%%EndComments" );
+		hdr_blank_line();
+//		hdr_comment( "%%BeginProlog" );
 		return true; // or ask out if it has had mem errors
 	}
 
@@ -566,7 +565,7 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 		// newpath(); // somewhere_API PATH_name.CTOR( CTXT, CODE, DATA )
 		// { XY_TREE } // STEP = { XY ID } // ID = idx_of_step_in_list //
 		times_ptsz( 20 );
-		xy_str( 50, 50, "PAGE2 TWO");
+		xy_str( 20, 20, "PAGE2 TWO");
 		showpage();
 
 	//	if(! out.print("THIS IS TEXT\n") ) return FAIL_FAILED();

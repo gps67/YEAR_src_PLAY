@@ -3,6 +3,8 @@
 #include <unistd.h> // write
 // #include <string.h>
 
+#include <stdarg.h> // ...
+
 /*
 	TODO REDO pipes on WIN32, g_spawn, but without glib
 
@@ -21,6 +23,8 @@
 
 #include "SPOUT_STUBS.h"
 #include "SPOUT_argv_decoder.h"
+
+#define IF_NOT if(0) 
 
 using namespace SPOUT;
 
@@ -96,6 +100,10 @@ class test_SPOUT // : public obj_ref
 	// GC PEN
 	
 	int pg_no;
+	int page_w;
+	int page_h;
+	//	if(!page_header( page_w, page_h, pages++ )) return FAIL_FAILED();
+
 
 	ink_rgb rgb;
 
@@ -130,7 +138,7 @@ class test_SPOUT // : public obj_ref
 
 	// NULL => use_default() // this ctxt // ctxt.sess // ctxt.udef 
 	// NAME <= 
-//	bool list_end(); //  /* w, h, pages++ */ )) // return FAIL_FAILED();
+//	bool list_end(); //  /* w, page_h, pages++ */ )) // return FAIL_FAILED();
 //	 return NULL_means_EOT; 
 
 	test_SPOUT()
@@ -138,6 +146,10 @@ class test_SPOUT // : public obj_ref
 		out.get_space( 1024 * 32 );
 		pages = 0;
 		pg_no = 0; // pg_no = idx = ITEM = N++ //
+		page_w = 595;
+		page_h = 842;
+		page_w = 595;
+		page_h = 842;
 		in_path = false;
 		in_page = false;
 	}
@@ -146,41 +158,94 @@ class test_SPOUT // : public obj_ref
 		return out.print("%% %s\n", (STR0) cmnt ); // with leading SP
 	}
 
-	bool hdr_comment( str0 cmnt ) {
-		return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
+	bool hdr_comment( STR0 fmt, ... ) {
+		out.put_byte('%');
+		va_list args;
+		va_start( args, fmt );
+		// false = conv_8859_to_utf8 // upgrade somehow
+		bool ok = out.vprint( false, fmt, args );
+		va_end( args );
+		out.put_LF();
+		return ok;
+	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
 	}
+
+	bool cmd_line( STR0 fmt, ... ) {
+		va_list args;
+		va_start( args, fmt );
+		bool ok = out.vprint( false, fmt, args );
+		va_end( args );
+		out.put_LF();
+		return ok;
+	}
+
+	bool hdr_blank_line() { return hdr_comment(""); }
+	bool cmd_blank_line() { return cmd_line(""); }
 
 	bool file_header( int w, int h, int pages )
 	{
-//		hdr_comment("!PS-Adobe-3.0");
-		hdr_comment("!PS");
+		hdr_comment("!PS-Adobe-3.0");
+//		hdr_comment("!PS");
 		buffer2 buf;
-		buf.print("%BoundingBox: %d %d %d %d",
-		 0, 0, w, h );
-		hdr_comment( (STR0) buf );
-		hdr_comment( "%Creator: SPOUT" );
-//		hdr_comment( "%LanguageLevel: 2" );
-//		hdr_comment( "%CreationDate: 2020-08-24" );
-		buf.clear();
-//		buf.print("%Pages: %d", pages );
-		hdr_comment( (STR0) buf );
-		hdr_comment( "%EndComments" );
-//		hdr_comment( "%BeginProlog" );
+
+
+//		hdr_comment("<</PageSize [ %d %d ]>> setpagedevice", w, h );
+//		hdr_comment("/PageSize [ %d %d ] setpagedevice", w, h );
+
+		// double %% becomes % in vprintf
+		// hdr_comments adds % and /n // and vprint fmt
+IF_NOT		hdr_comment("%%DocumentMedia: Default %d %d () ()", w, h );
+
+		hdr_comment( "%%Creator: SPOUT" );
+//		hdr_comment( "%%LanguageLevel: 2" );
+//		hdr_comment( "%%CreationDate: 2020-08-24" );
+
+		hdr_comment("%%Pages: %d", pages );
+
+		hdr_comment( "%%EndComments" );
+		hdr_comment( "%%BeginProlog" );
+		hdr_comment( "%%EndProlog" );
+		hdr_comment( "%%BeginSetup" );
+	// THIS ONE // set the page size
+		cmd_line("<</PageSize [ %d %d ]>> setpagedevice", w, h );
+		hdr_comment( "%%EndSetup" );
 		return true; // or ask out if it has had mem errors
+	}
+
+	bool hdr_PageSize( int w, int h )
+	{
+		buffer2 buf;
+
+		return true;
 	}
 
 	bool page_header( int w, int h, int pg_no )
 	{
-		hdr_comment("! ");
-		buffer2 buf;
-		buf.print("%BoundingBox: %d %d %d %d",
-		 0, 0, w, h );
-		hdr_comment( (STR0) buf );
+		page_w = w;
+		page_h = h;
+
+#if 0
+
 		buf.clear();
-//		buf.print("%Page: %d", pg_no );
-//		int pg_no = ALIAS FOR idx // u8_idx //
-//		int idx = N++;
+		hdr_comment( buf.print("%%PageSize: [ %d %d ]", w, h );
 		hdr_comment( (STR0) buf );
+
+		buf.clear();
+		hdr_comment( buf.print("/PageSize [ %d %d ]", w, h );
+		cmd_line( (STR0) buf );
+#endif
+
+		hdr_comment( "%%Page: %d", pg_no );
+IF_NOT		hdr_comment( "%%PageBoundingBox: 0 0 %d %d", w, h );
+		hdr_comment( "%%BeginPageSetup");
+
+		// BEGIN PAGE CODE HERE
+
+		hdr_blank_line();
+		hdr_comment( "%%EndPageSetup");
+IF_NOT		hdr_comment( "%%BoundingBox: %d %d %d %d", 0, 0, w, h );
+IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
+
 		hdr_comment( "%EndComments" );
 //		hdr_comment( "%BeginProlog" );
 		return true; // or ask out if it has had mem errors
@@ -277,6 +342,15 @@ class test_SPOUT // : public obj_ref
 		return x_y_cmd( x, y, "moveto" );
 	}
 
+	bool xy_str( int x, int y, STR0 str ) 
+	{
+	//	newpath_by_now(); // AUTO GEN newpath() // call now
+	//	but no need for MOVE ?
+		x_y_cmd( x, y, "moveto" );
+		text_show( str );
+		return true;
+	}
+
 	bool setlinewidth( int lw )
 	{
 		return x_cmd( lw, "setlinewidth" );
@@ -284,7 +358,7 @@ class test_SPOUT // : public obj_ref
 
 	bool setrgbcolor( float r, float g, float b )
 	{
-		return out.printf("%4f %4f %4f setrgbcolor\n", r, g, b ); 
+		return out.printf("%4.2f %4.2f %4.2f setrgbcolor\n", r, g, b ); 
 	}
 	bool setrgbcolor( ink_rgb & rgb )
 	{
@@ -297,6 +371,8 @@ class test_SPOUT // : public obj_ref
 		out.print(" show\n");
 		return true;
 	}
+
+	bool no_showpage_but_begin_first_page() { return showpage(); }
 
 	bool showpage()
 	{
@@ -326,10 +402,12 @@ class test_SPOUT // : public obj_ref
 		// COMPILE // VECTOR_CALLED_on_SIGNAL // ACTION
 		}
 		pages_plus_on_showpage(); // AUTO CONNECT bool plumbing //
+		return true;
 	}
 	bool pages_plus_on_showpage() { return on_showpage(); }
 	bool on_showpage()
 	{
+		if(!page_header( page_w, page_h, pg_no )) return FAIL_FAILED();
 		return true;
 		/*
 			The previous PAGE has finished
@@ -393,12 +471,6 @@ class test_SPOUT // : public obj_ref
 		return true;
 	}
 
-	bool xy_str( int x, int y, STR0 str ) {
-		xy_moveto( x, y ); // step[idx] // NODE_ID // ID // ...
-		text_show(str); // page[1] //
-		return true;
-	}
-
 	
 	bool test1()
 	{
@@ -409,11 +481,11 @@ class test_SPOUT // : public obj_ref
 	//    var_cache_pre_built += ... exprs used ...
 	//	STRUCT { ... } // lucky C++ SCRIPT Name
 	//	 NODE_ID = ITEM_ID = LOCN_ID
-	//     Name
-		int w = 595;
-		int h = 842;
-		w = 200;
-		h = 200;
+	//     Name {
+		page_w = 595;
+		page_h = 842;
+		page_w = 200;
+		page_h = 200;
 		int pages = 2;
 	//	}; // Name
 	//	Export Name to API as struct PTR 
@@ -424,7 +496,7 @@ class test_SPOUT // : public obj_ref
 	// DIVERTS to "callable_get_file_header()"
 	// BECAUSE pages == N_total after last alloc done and dusted
 	//
-		if(!file_header( w, h, pages )) return FAIL_FAILED();
+		if(!file_header( page_w, page_h, pages )) return FAIL_FAILED();
 	// PROVIDE {
 	//   	callable_get_file_header() {
 			// PRESUME INIT DONE and called from MAIN CALL
@@ -441,8 +513,10 @@ class test_SPOUT // : public obj_ref
 //-or-	// VOCABU += PHRASE TOP_OF_NEW_PAGE Layout
 	// }
 
-		if(!page_header( w, h, pages++ )) return FAIL_FAILED();
-		if(!list_end( /* w, h, pages++ */ )) return FAIL_FAILED();
+		if(!no_showpage_but_begin_first_page()) return FAIL_FAILED();
+	//	if(!page_header( page_w, page_h, ++ )) return FAIL_FAILED();
+
+		if(!list_end( /* page_w, page_h, pg_no */ )) return FAIL_FAILED();
 
 		comment("This is a comment");
 		times_ptsz( 20 );
@@ -451,11 +525,19 @@ class test_SPOUT // : public obj_ref
 		setrgbcolor( rgb.set_green() );
 		setrgbcolor( rgb.set_blue() );
 		setrgbcolor( rgb );
+		// want the above 3 cached
+		// list_end() style // 
+		// next command does goto_its mode // clears previous mode
+		// first each setrgbcolour sets mode ACTIVE_BIT_NOW( bitmask )
+		// each leaves reside WANT RGB, it has changed, most recent bit
+		// last knows by something else, dislodging, 
+		// flush now or later
+		// for now avoid repeat calls
+
 		xy_moveto( 0, 0 );
-		xy_lineto( w, h ); // text_show("(w,h)");
-// PARAMETER w h this call_code 
-		xy_lineto( 0, h );
-		xy_lineto( w, 0 );
+		xy_lineto( page_w, page_h ); 
+		xy_lineto( 0, page_h );
+		xy_lineto( page_w, 0 );
 #if 0
 		// last point is the first // becomes closed loop
 		xy_lineto( 0, 0 );
@@ -472,17 +554,18 @@ class test_SPOUT // : public obj_ref
 		newpath();
 
 		xy_str(30, 30, "PAGE ONE"); // page[1] //
-	//	text_show("Twenty Point");
-		text_show("with backslash-ed parenths () ");
+		times_ptsz( 10 );
+		xy_str(30, 15, "with backslash-ed parenths () ");
 
 		showpage();
 
 	//	CHANGE PAPER_WH // rotated_flat WH // rotated_flat HW_as_WH
 	//	SWITCH MEDIA COST += ONE_PAGE_of_
-		if(!page_header( w, h, pages++ )) return FAIL_FAILED();
+	//	if(!page_header( w, page_h, pages++ )) return FAIL_FAILED();
 
 		// newpath(); // somewhere_API PATH_name.CTOR( CTXT, CODE, DATA )
 		// { XY_TREE } // STEP = { XY ID } // ID = idx_of_step_in_list //
+		times_ptsz( 20 );
 		xy_str( 50, 50, "PAGE2 TWO");
 		showpage();
 
@@ -490,7 +573,7 @@ class test_SPOUT // : public obj_ref
 	//	if(! write_to_stdout() ) return FAIL_FAILED();
 		if(! write_normalise_pdf_view() ) return FAIL_FAILED();
 		return true;
-	}
+	} // test1
 };
 
 bool SPOUTER_test1( argv_decoder & ARGS )

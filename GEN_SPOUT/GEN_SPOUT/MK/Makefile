@@ -6,27 +6,23 @@
 	INCLS = -I../buffer
 #	INCLS = -I/tools/2000/X11R6/include
 #	INCLS = `pkg-config --libs freetype2`
+#	INCLS = `pkg-config --libs libs_Apps`
 
 	dot_EXE=.exec
 
-ifeq (0,1)
-	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
-	INCLS = -I $(FT2)/include
-	OBJS += -L $(FT2)/objs/.libs
-	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
-	OBJS += -lfreetype
-endif
-
-
+	# add any -D defines
 	DEFS = 
-	LINKS = -L/usr/X11R6/lib -lX11
+
+#	# uncomment to see used
+#	LINKS = -L/usr/X11R6/lib -lX11
 #	LINKS = -L/tools/2000/X11R6/lib -lX11
 
 	S=../src
 	VPATH +=$S
 	VPATH +=$S/buffer
 
-	include ../MK/Makefile_libs_apps
+# 	include ../MK/Makefile_libs_apps # OK
+	include ../MK/MK_with_libs_apps # OK - ish
 
 #	HDRS += $S/A_point_plus.h
 #	HDRS += $S/X_Colours.h
@@ -34,6 +30,8 @@ endif
 #	HDRS += $S/X_Draw.h
 #	HDRS += $S/X_STUBS.h
 #	HDRS += $S/X_Window.h
+
+#	# LOCAL objs
 
 #	OBJS += A_point_plus.o
 #	OBJS += A_Map_W.o
@@ -59,11 +57,20 @@ endif
 
 all: run_test1
 
+ifeq (0,1)
+# include MK_SUFFIXES from MK_ext_lib
 .SUFFIXES: .cxx .c .o                                                           
-
 .cxx.o:                                                                         
 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
+endif
 
+# this adds OBJS twice via $^
+# so dont use $^ use $(OBJS)
+# see .o.exec in MK_SUFFIXES
+# it should not hijack things but it does
+
+$(EXEC1): $(OBJS)
+$(EXEC2): $(OBJS)
 
 $(OBJS): $(HDRS)
 
@@ -73,11 +80,14 @@ run_test1: $(EXEC1)
 run_test2: $(EXEC2)
 	./$(EXEC2) $(test2_font)  P # "Sample Text"
 
+ifeq (1,0)
+# we no-longer link it - the MK_SUFFIXES .o.exec does
 $(EXEC1): $(OBJS) $(PROG1).o
 	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
 
 $(EXEC2): $(OBJS) $(PROG2).o
 	g++ $(PROG2).o $(OBJS) $(LINKS) -o $@
+endif
 
 clean: 
 	rm -f *.o $(EXEC1)  $(EXEC2)  test2 fa

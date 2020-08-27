@@ -33,6 +33,7 @@ struct ink_rgb
 	float r;
 	float g;
 	float b;
+	// Postscript // rgb_t rgb;
 
 	ink_rgb &  set_white()
 	{
@@ -75,6 +76,73 @@ struct ink_rgb
 
 /*!
 	test_SPOUT is not on the heap
+	so it uses N++ Alloc PRE_ALLOC
+
+	print a document to filename.ps 
+	bounce document to filename.pdf
+	TODO STREAM_FILE_to_PIPELINE ARGV_ENV_CTXT
+
+	needs to overwrite NPAGES in header
+
+	METHOD
+		MMAP -or- PADDING 
+
+		buildup_the output buffer using disk blocks
+		into stream from txt_component
+		-or-
+		fixed size 4M mosaic 
+		-or-
+		===== ZONE ===== MOVES == header rewrites upto 4K
+	
+	METHOD
+		TWO PASS Document Builder
+
+			or as many as required
+			or local rewrite
+			or parametised what until when
+
+		MMAP 4K PAGED HEAP -- as single file with holes
+
+			SEGMENT 
+			_type == ".elf64" #'.elf32' 
+			_type == elf_segments
+			_type == vfs_payloads 
+			_type == PAGE_OF_256_ITEMS + DATA[u24]
+			_type == array [ u8_u8 ] of CODE_POINT in u24_SEGMENT
+
+		PASS 
+			GEN TOC 
+			GEN_Page_No
+
+		PHONE_BOOK
+
+			COLLECT semi-printed pages or scrolls or ...
+			many u24 SEGMENTS eg 3 of 16_M used
+			many u16 SEGMENTS eg OFFS 60 of 64_K used
+			many u24 SEGMENTS eg 300 of u16_idx_item
+			many u32 SEGMENTS CLARIFIES u24 spilling to u32
+
+		CALC_SHEETS
+
+			SCRIPT runs over inter-connected SEGMENTS # api events
+
+			CACHE_DATASET OLD_VALS NEW_VALS rerun_to_update
+
+			api_events
+				SIGNAL UPDATE ITEM # OLD_VAL # GET NEW_VAL
+
+		api_events
+			the_GET_EA_GET_VAL_ script macros
+
+
+ REGEN TREE using SCRIPT LAYER
+
+ 	CODE for get() // into ENQ_ACK
+	WADE CODE PRE_BUILD convert TOKENISE at compile time
+	SCRIPT runs MAKE over each EXPR it uses
+	api_events runs the minimum, snapshot(bit), expands to mostly, excess
+
+
 
 	this will get split and renamed
 	test_SPOUT

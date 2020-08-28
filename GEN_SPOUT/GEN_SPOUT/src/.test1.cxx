@@ -1,3 +1,4 @@
+// EDIT THE OTHER ONE !!
 
 // #include <stdlib.h>
 #include <unistd.h> // write
@@ -24,57 +25,82 @@
 #include "SPOUT_STUBS.h"
 #include "SPOUT_argv_decoder.h"
 
+#include "SPOUT_ink_rgb.h"
+#include "SPOUT_XY.h"
+
 #define IF_NOT if(0) 
 
 using namespace SPOUT;
 
-struct ink_rgb
-{
-	float r;
-	float g;
-	float b;
-
-	ink_rgb &  set_white()
-	{
-		r = 0.0;
-		g = 0.0;
-		b = 0.0;
-		return * this;
-	}
-
-	ink_rgb &  set_blue()
-	{
-		r = 0.0;
-		g = 0.0;
-		b = 1.0;
-		return * this;
-	}
-
-	ink_rgb &  set_green()
-	{
-		r = 0.0;
-		g = 1.0;
-		b = 0.0;
-		return * this;
-	}
-
-	ink_rgb &  set_black()
-	{
-		r = 1.0;
-		g = 1.0;
-		b = 1.0;
-		return * this;
-	}
-
-	ink_rgb()
-	{
-		set_blue();
-	}
-
-};
-
 /*!
 	test_SPOUT is not on the heap
+	so it uses N++ Alloc PRE_ALLOC
+
+	print a document to filename.ps 
+	bounce document to filename.pdf
+	TODO STREAM_FILE_to_PIPELINE ARGV_ENV_CTXT
+
+	needs to overwrite NPAGES in header
+
+	METHOD
+		MMAP -or- PADDING 
+
+		buildup_the output buffer using disk blocks
+		into stream from txt_component
+		-or-
+		fixed size 4M mosaic 
+		-or-
+		===== ZONE ===== MOVES == header rewrites upto 4K
+	
+	METHOD
+		TWO PASS Document Builder
+
+			or as many as required
+			or local rewrite
+			or parametised what until when
+
+		MMAP 4K PAGED HEAP -- as single file with holes
+
+			SEGMENT 
+			_type == ".elf64" #'.elf32' 
+			_type == elf_segments
+			_type == vfs_payloads 
+			_type == PAGE_OF_256_ITEMS + DATA[u24]
+			_type == array [ u8_u8 ] of CODE_POINT in u24_SEGMENT
+
+		PASS 
+			GEN TOC 
+			GEN_Page_No
+
+		PHONE_BOOK
+
+			COLLECT semi-printed pages or scrolls or ...
+			many u24 SEGMENTS eg 3 of 16_M used
+			many u16 SEGMENTS eg OFFS 60 of 64_K used
+			many u24 SEGMENTS eg 300 of u16_idx_item
+			many u32 SEGMENTS CLARIFIES u24 spilling to u32
+
+		CALC_SHEETS
+
+			SCRIPT runs over inter-connected SEGMENTS # api events
+
+			CACHE_DATASET OLD_VALS NEW_VALS rerun_to_update
+
+			api_events
+				SIGNAL UPDATE ITEM # OLD_VAL # GET NEW_VAL
+
+		api_events
+			the_GET_EA_GET_VAL_ script macros
+
+
+ REGEN TREE using SCRIPT LAYER
+
+ 	CODE for get() // into ENQ_ACK
+	WADE CODE PRE_BUILD convert TOKENISE at compile time
+	SCRIPT runs MAKE over each EXPR it uses
+	api_events runs the minimum, snapshot(bit), expands to mostly, excess
+
+
 
 	this will get split and renamed
 	test_SPOUT
@@ -183,39 +209,62 @@ class test_SPOUT // : public obj_ref
 	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
 	}
 
+	bool hdr2_comment( STR0 fmt, ... ) {
+		out.put_byte('%');
+		out.put_byte('%');
+		va_list args;
+		va_start( args, fmt );
+		// false = conv_8859_to_utf8 // upgrade somehow
+		bool ok = out.vprint( false, fmt, args );
+		va_end( args );
+		out.put_LF();
+		return ok;
+	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
+	}
+
 	bool hdr_blank_line() { return hdr_comment(""); }
 	bool cmd_blank_line() { return cmd_line(""); }
+
+	bool hdr_PageSize_device( int w, int h )
+	{
+		cmd_line("<</PageSize [ %d %d ]>> setpagedevice", w, h );
+		return true;
+	}
 
 	bool file_header( int w, int h, int pages )
 	{
 		hdr_comment("!PS-Adobe-3.0");
 
 		if(DOC_Title) {
-			hdr_comment("%%Title: %s", (STR0) DOC_Title );
+			hdr2_comment("Title: %s", (STR0) DOC_Title );
 		}
 
 		if(DOC_Creator) {
-			hdr_comment( "%%Creator: (STR0) DOC_Creator" );
+			hdr2_comment( "Creator: (STR0) DOC_Creator" );
 		}
 
-		// double %% becomes % in vprintf
+		// double %% becomes % in vprintf // or use hdr2_
+		// hdr2_comments adds %% and /n // and vprint fmt
 		// hdr_comments adds % and /n // and vprint fmt
-IF_NOT		hdr_comment("%%DocumentMedia: Default %d %d () ()", w, h );
+IF_NOT		hdr2_comment("DocumentMedia: Default %d %d () ()", w, h );
 
-//		hdr_comment( "%%LanguageLevel: 2" );
-//		hdr_comment( "%%CreationDate: 2020-08-24" );
+//		hdr2_comment( "LanguageLevel: 2" );
+//		hdr2_comment( "CreationDate: 2020-08-24" );
 
-		hdr_comment("%%Pages: %d", pages );
+		hdr2_comment("Pages: %d", pages );
 
-		hdr_comment( "%%EndComments" );
+		hdr2_comment( "EndComments" );
 		cmd_blank_line();
-		hdr_comment( "%%BeginProlog" );
-		hdr_comment( "%%EndProlog" );
+		hdr2_comment( "BeginProlog" );
+		hdr2_comment( "EndProlog" );
 		cmd_blank_line();
-		hdr_comment( "%%BeginSetup" );
+		hdr2_comment( "BeginSetup" );
+
 	// THIS ONE // set the page size
-		cmd_line("<</PageSize [ %d %d ]>> setpagedevice", w, h );
-		hdr_comment( "%%EndSetup" );
+		hdr_PageSize_device( w, h );
+		// cmd_line("<</PageSize [ %d %d ]>> setpagedevice", w, h );
+
+		hdr2_comment( "EndSetup" );
 		cmd_blank_line();
 		return true; // or ask out if it has had mem errors
 	}
@@ -229,27 +278,27 @@ IF_NOT		hdr_comment("%%DocumentMedia: Default %d %d () ()", w, h );
 
 #if 0
 
-		hdr_comment( "%%PageSize: [ %d %d ]", w, h );
+		hdr2_comment( "PageSize: [ %d %d ]", w, h );
 		cmd_line( "/PageSize [ %d %d ]", w, h );
 #endif
 
 		cmd_blank_line();
-		hdr_comment( "%%Page: %d", pg_no );
+		hdr2_comment( "Page: %d", pg_no );
 		hdr_blank_line();
-IF_NOT		hdr_comment( "%%PageBoundingBox: 0 0 %d %d", w, h );
-		hdr_comment( "%%BeginPageSetup");
+IF_NOT		hdr2_comment( "PageBoundingBox: 0 0 %d %d", w, h );
+		hdr2_comment( "BeginPageSetup");
 
 		// BEGIN PAGE CODE HERE
 
 		hdr_blank_line();
-		hdr_comment( "%%EndPageSetup");
+		hdr2_comment( "EndPageSetup");
 		hdr_blank_line();
-IF_NOT		hdr_comment( "%%BoundingBox: %d %d %d %d", 0, 0, w, h );
-IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
+IF_NOT		hdr2_comment( "BoundingBox: %d %d %d %d", 0, 0, w, h );
+IF_NOT		hdr2_comment( "DocumentMedia: %d %d () ()", w, h );
 
-		hdr_comment( "%%EndComments" );
+		hdr2_comment( "EndComments" );
 		cmd_blank_line();
-//		hdr_comment( "%%BeginProlog" );
+//		hdr2_comment( "BeginProlog" );
 		return true; // or ask out if it has had mem errors
 	}
 
@@ -285,9 +334,17 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 		return true;
 	}
 
-	bool x_y_cmd( int x, int y, STR0 cmd ) 
+	bool xy_print_3d( XY_t & xy )
 	{
-		return out.print( "%3d %3d %s\n", x, y, cmd );
+		// NB leading space
+		// NB trailing space
+		return out.print( " %3d %3d ", (int) xy.x, (int) xy.y );
+	}
+
+	bool xy_cmd( XY_t & xy, STR0 cmd ) 
+	{
+		xy_print_3d( xy );
+		return out.print( "%s\n", cmd );
 	}
 
 	bool x_cmd( int x, STR0 cmd ) // x isnt x
@@ -331,24 +388,24 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 		return cmd_word("stroke");
 	}
 
-	bool xy_lineto( int x, int y ) 
+	bool xy_lineto( XY_t & xy ) 
 	{
 		newpath_by_now(); // extra tracer
-		return x_y_cmd( x, y, "lineto" );
+		return xy_cmd( xy, "lineto" );
 	}
 
-	bool xy_moveto( int x, int y ) 
+	bool xy_moveto( XY_t & xy ) 
 	{
 	//	newpath_by_now(); // AUTO GEN newpath() // call now
 	//	but no need for MOVE ?
-		return x_y_cmd( x, y, "moveto" );
+		return xy_cmd( xy, "moveto" );
 	}
 
-	bool xy_str( int x, int y, STR0 str ) 
+	bool xy_str( XY_t & xy, STR0 str ) 
 	{
 	//	newpath_by_now(); // AUTO GEN newpath() // call now
 	//	but no need for MOVE ?
-		x_y_cmd( x, y, "moveto" );
+		xy_cmd( xy, "moveto" );
 		text_show( str );
 		return true;
 	}
@@ -541,18 +598,20 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 		// flush now or later
 		// for now avoid repeat calls
 
-		xy_moveto( 0, 0 );
-		xy_lineto( page_w, page_h ); 
-		xy_lineto( 0, page_h );
-		xy_lineto( page_w, 0 );
+		XY_t BL( 0,      0 );
+		XY_t TR( page_w, page_h ); 
+		XY_t BR( 0,      page_h );
+		XY_t TL( page_w, 0 );
+
+		xy_moveto( BL );
+		xy_lineto( TR );
+		xy_lineto( BR );
+		xy_lineto( TL );
 #if 0
 		// last point is the first // becomes closed loop
-		xy_lineto( 0, 0 );
+		xy_moveto( BL );
 #else
-		// the last step does not need to be repeated if first
-		// VIRTUAL call BUILTIN if NULL // BUILTIN = { ... HERE ... }
-		// eg call this from list_end() signal
-		// upgrade signal to PKT // fragment obvs // N_BYTES
+		// last point is the first // becomes closed loop
 		closepath(); // CALL it NOW
 #endif
 		setlinewidth( 10 );
@@ -560,9 +619,12 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 
 		newpath();
 
-		xy_str(30, 30, "PAGE ONE"); // page[1] //
+		XY_t XY_20_20(30, 30);
+		XY_t XY_30_30(30, 30);
+		XY_t XY_30_15(30, 15);
+		xy_str( XY_30_30, "PAGE ONE"); // page[1] //
 		times_ptsz( 10 );
-		xy_str(30, 15, "with backslash-ed parenths () ");
+		xy_str( XY_30_15, "with backslash-ed parenths () ");
 
 		showpage();
 
@@ -573,7 +635,7 @@ IF_NOT		hdr_comment( "%%DocumentMedia: %d %d () ()", w, h );
 		// newpath(); // somewhere_API PATH_name.CTOR( CTXT, CODE, DATA )
 		// { XY_TREE } // STEP = { XY ID } // ID = idx_of_step_in_list //
 		times_ptsz( 20 );
-		xy_str( 20, 20, "PAGE2 TWO");
+		xy_str( XY_20_20, "PAGE2 TWO");
 		showpage();
 
 	//	if(! out.print("THIS IS TEXT\n") ) return FAIL_FAILED();

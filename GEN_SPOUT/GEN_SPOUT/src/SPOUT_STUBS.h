@@ -4,6 +4,7 @@
 namespace SPOUT {
 
 class spout_t;	
+struct ink_rgb;
 
 }; // namespace
 

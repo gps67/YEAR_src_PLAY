@@ -1,0 +1,49 @@
+make vars
+
+RTFM Makefile $< and the others
+
+RTFM Makefile Builtins CC LD ...
+	CC
+	CFLAGS
+
+
+RTFM Configures likes ...
+
+	prefix
+	exec_prefix
+	 libdir 
+	 bindir
+	 includedir
+	 datarootdir # prefix/share
+	 datadir
+	 mandir
+
+PROJ FreeType2 uses
+ $(TOP_DIR)
+ $(OBJ_DIR)
+
+ PLATFORM { ansi unix 
+ BUILD_DIR
+
+ME ...
+
+	OPTIM
+
+	INCL
+
+	DEFS
+
+	CXX
+
+
+	dot_EXE
+
+	the shadow lists that get converted to PATH:LISTS
+
+	LIST_PKG_CONFIG_PATH 
+	LIST_VPATH
+	LIST_CPLUS_INCLUDE_PATH
+
+	# ... # R PATH
+
+	# ... # path_tool # remove duplicates # 

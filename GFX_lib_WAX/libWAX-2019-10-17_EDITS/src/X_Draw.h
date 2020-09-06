@@ -35,6 +35,8 @@ struct X_Draw
 
 	/*!
 		allocate a new GC for the window
+
+		TODO choose syntax field = value or field(value) PICK VIEW
 	*/
 	X_Draw( X_Window & W )
 	{

@@ -1,0 +1,26 @@
+
+	2020_09_Sep_NOTE
+	2020-09-05_NOTE_CREATE_with_MENTION.txt
+
+	Type name_t
+	Item name_t
+	Init name_t.INIT_ZERO()
+
+		INIT_ZERO()
+		INIT_FROM_PREV() // DTOR required // optimise same type
+		INIT_FROM_DATA() // .bss preset value already in place
+		INIT_FROM_RAND() // no delete required // _PREV needs delete
+		INIT_FROM_ZERO() // memset(0) done
+
+
+	ELF_Item
+
+	usual C++ files
+
+		how to make static work 
+
+			C++ initialises to 0
+			
+		how to make export list work 
+
+

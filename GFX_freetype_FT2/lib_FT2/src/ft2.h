@@ -32,6 +32,13 @@ namespace FT2 {
 	// so move to a static
 	FT_Library library;
 	FT_Face face;
+
+	FT_GlyphSlot  slot; // = face->gylph
+	FT_Matrix     matrix;
+
+	FT_Vector     pen;  
+	FT_Error      error;
+
   public:
 	static bool init_done; // move to private // init how // syntax
 	// static bool init_done = false; // C++ says cant set default init here
@@ -41,6 +48,7 @@ namespace FT2 {
 
   	ft2();
   	~ft2();
+	bool FT2_OK( int err ); // 0 means OK // convert to bool // report
 	bool init();
 	bool done();
 	bool face1_load_font( STR0 filename );

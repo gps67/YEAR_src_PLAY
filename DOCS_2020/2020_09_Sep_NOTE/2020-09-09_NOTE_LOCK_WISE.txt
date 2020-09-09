@@ -1,0 +1,9 @@
+
+	2020_09_Sep_NOTE
+	2020-09-09_NOTE_LOCK_WISE.txt
+
+	Firefox passwords
+
+	https://www.mozilla.org/en-GB/firefox/lockwise/
+	https://github.com/mozilla-lockwise
+

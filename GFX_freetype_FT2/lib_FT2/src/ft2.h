@@ -29,19 +29,19 @@ namespace FT2 {
 
  class ft2 : public obj_ref {
 	// we need this to be a singleton
+	// or do we ? one shared vs a few threaded
 	// so move to a static
+	static bool init_done; // init syntax // bool ft2:: init_done = false;
 	FT_Library library;
 	FT_Face face;
 
 	FT_GlyphSlot  slot; // = face->gylph
-	FT_Matrix     matrix;
+	FT_Matrix     matrix; // fixed_16p16
 
-	FT_Vector     pen;  
-	FT_Error      error;
+	FT_Vector     pen;  // fixed_26p6
+	FT_Error      error; // not cleared ...
 
   public:
-	static bool init_done; // move to private // init how // syntax
-	// static bool init_done = false; // C++ says cant set default init here
 	// PATCH // SEGMENT.ON_INIT.set_ROM_init_done_bool_false // or SIMPLER
 	// OPTION // set_rom_varname_type_initval ARGV //
 	// ARGV // create_on_first_mention

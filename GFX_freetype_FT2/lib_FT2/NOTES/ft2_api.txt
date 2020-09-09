@@ -1,0 +1,164 @@
+/home/gps/YEAR/src/PLAY/GFX_freetype_FT2/lib_FT2/NOTES
+ft2_api.txt
+
+ ~/YEAR/src/PLAY/GFX_freetype_FT2/src_build/FT2/ft2demos-2.10.2./ftstring
+
+ftstring: string viewer -- part of the FreeType project
+-------------------------------------------------------
+
+Usage: ftstring [options] pt font ...
+
+  pt        The point size for the given resolution.
+            If resolution is 72dpi, this directly gives the
+            ppem value (pixels per EM).
+  font      The font file(s) to display.
+            For Type 1 font files, ftstring also tries to attach
+            the corresponding metrics file (with extension
+            `.afm' or `.pfm').
+
+  -d WxHxD  Set the window width, height, and color depth
+            (default: 640x480x24).
+  -k keys   Emulate sequence of keystrokes upon start-up.
+            If the keys contain `q', use batch mode.
+  -r R      Use resolution R dpi (default: 72dpi).
+  -e enc    Specify encoding tag (default: Unicode).
+            Common values: `unic' (Unicode), `symb' (symbol),
+            `ADOB' (Adobe standard), `ADBC' (Adobe custom).
+  -m text   Use `text' for rendering.
+
+  -v        Show version.
+
+Press any key to continue...
+
+ ~/YEAR/src/PLAY/GFX_freetype_FT2/src_build/FT2/ft2demos-2.10.2./ftstring
+ ~/YEAR/src/PLAY/GFX_freetype_FT2/src_build/FT2/ft2demos/ftstring
+ ~/YEAR/
+   src/
+    PLAY/
+     GFX_freetype_FT2/
+      src_build/
+       FT2/
+        ft2demos/ ->
+        ft2demos-2.10.2./
+	 ftstring
+	  bin/
+	  .libs/ # all build systems are mildly absurd mid regen 
+
+ CACHE is PRE_LOAD_PAGES_FROM_ROM PRE_FETCH_PENDING
+
+  we are now allowed C++ powered HTML pages in a sandpit
+  we use WASM_GL because it is MESA_EMUL_OK API == xxx
+  we run the desktop on client and on server
+  we sign permitted on GPU direct else CPU simul (LIBR may use gpu)
+
+  we run outside of browsers, in our own sandpit, app_root, app_user,
+  we accept a SCRIPT from the REMOTE and we compile it
+  we accept TOKENISED_TREE_elf_names _the_mangler
+
+
+FT2_api
+
+ FT2 // Module // within group DTP GFX GUI TTY // more later
+ FT2_path_tech // avoiding any actual tech, let defaults be best
+ FT2_path_builder // Module //
+  build list of points
+  build list of shapes // step advance width height low-medium-high 
+  glyph outlines fills // let X11 draw splines each time ? // pixmap
+
+  ANTI_ALIASING
+
+  	FT2 uses u8 grey; // transparent actually 
+	We can decode this, at very low cost
+	CALL decode IDX ; // shades of ink ~ idx
+
+	u8 grey = [0..[256 // 255
+	// simple linear lumin = sum of lit pixels
+	// simple linear ink = sum of droplets
+	// reinterpret using chain of bytes
+	 u8 * SCRIPT // with utf8 going cleanly through // no split within
+	 TEST VAL < 0 
+	 TEST VAL == 0
+	 TEST VAL == N // past eof
+	 TEST VAL == idx // item
+	 TEST idx < N // test not NULL M1 ESC
+	 TEST RANGES
+	 0 .. A .. B .. C .. 255
+	 CMP V IS_LESS IS_SAME IS_MORE # lhs cmp V #
+
+	 EDIT BYTES VALUES range splitters
+	 Start with diagonal (0,0) (FF,FF)
+	 click_to_blocksize ZONE[5] // SPARE NULL [5]
+
+ BYTE CODE DECODING
+
+ 	CPU uses u8_idx // and othr things
+	MASK u3 u5 u3_shifted u5_shifted u4_lo u4_hi 
+
+	MACRO has own [ 256 ] space // explandable to u16 u24 u32 // items of
+	MINI_Module_Export_TABLE
+
+	CALL add_step_xy XY LIST=LIST_ONE XY=well_known_parameter
+	CALL add_CURVE ARGV // ARGV include OPCODE // can split for box run
+	CALL add_closepath 
+	CALL gdi_stuff // need u16_AB_OPCODE_u48_PAYLOAD
+
+ ARM QEMU ASAP
+
+ 	DEVICE = NAS320 32bit mini_limux
+	DEVICE = K8 64bit_x4_GPU_2
+	DEVICE = u32_abcd // x_D_B_C_A
+	DEVICE += cpu_var_word_BA 
+	DEVICE += cpu_var_CTXT 
+	DEVICE += STACK CALL LAYOUT
+
+		bunch of hooks to GEN code actions
+
+		some named counters curr_stack_depth
+
+		LAYOUT += SP 
+		LAYOUT += SP_MERGED_STEPS
+
+		FP + OFFS -points-to-> STACK_SLOT ARGV[j]
+		FP + OFFS -points-to-> LOCAL_VAR("name") // or OBJ EA
+		FP + OFFS -points-to-> PUSHED(when)
+		when = NOW() == SP after SP += idx++
+
+		ALLOC idx = N++ // upto next limit
+
+		CPU_VAR
+		cpu_var_CTXT
+		cpu_var_FP
+		cpu_var_SP
+		cpu_var_ALIST _CTXT FP SP P Q A B C D MMX[idx]
+		cpu_var_D // general purpose
+		cpu_var_MMX // _vars_ each interesting
+		cpu_var_MMX_SCRIPTED // UDEF alloc not CPP_ABI
+
+		FFI STACK FRAME
+
+			proper + dialect
+			C CPP PAS ASM PARAMETER_SPiLLING
+
+			DEVICE += stack_grows_from_to
+			DEVICE += stack_ranges_commonly_found_at
+
+			u48u16
+ u48_u16
+ 	u16_OPCODE_HL
+	u48_PAYLOAD_options
+
+	Run this process, in a sandpit.
+	Chroot to own storage on VFS
+	QUOTA all these things
+	Give it a LIBC that is OK with VFS
+	Give it a VFS that is within chroot
+
+	Switch off all syscalls
+	Route syscall via FILTER
+	QUOTA MEMORY CPU_CYCLES LOCAL_DISK SESSION_DESK LAN_COST
+	VFS provides /VFS/
+
+
+ So this is the point, u8_abcd_efgh is OPCODE_PAYLOAD
+ Script can have MULTI_WORD 
+ u64 is presumed, u32 is possible as u16_payload or u32 ore u48 OLD_MMX

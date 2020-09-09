@@ -16,7 +16,7 @@
 // #define WIDTH   640
 // #define HEIGHT  480
 
-#define WIDTH   120
+#define WIDTH   110
 #define HEIGHT   80
 
 
@@ -58,16 +58,24 @@ show_image( void )
 {
   INFO("HERE");
   int  i, j;
+  char * hexes = " 123456789ABCDEF";
+//  hexes = "    ----++++****";
 
   for ( i = 0; i < HEIGHT; i++ )
   {
-    for ( j = 0; j < WIDTH; j++ )
-      putchar( image[i][j] == 0
-      ? '.'
-      : image[i][j] < 128
-        ? '+'
-        : '*' );
-     putchar( '\n' );
+    for ( j = 0; j < WIDTH; j++ ) {
+      if(1) {
+        u8 grey = image[i][j];
+        putchar( hexes[ grey >> 4  ] );
+      } else {
+        putchar( image[i][j] == 0
+        ? '.'
+        : image[i][j] < 128
+          ? '+'
+          : '*' );
+     }
+    }
+    putchar( '\n' );
   }
   fflush(0);
 }
@@ -141,8 +149,14 @@ using namespace FT2;
 
 
 #define int_from_fixed_6(x) ((x+32)>>6) // +32 rounds to 64
-#define FT_Fixed_from_float(f)( (FT_Fixed)( (f) * (float) 0x10000L )) // << 16
-// #define FT_Fixed_from_float(f)( (FT_Fixed)( (f) * 0x10000L )) // << 16
+// #define FT_Fixed_from_float(f)( (FT_Fixed)( (f) * (float) 0x10000L )) // << 16
+#define FT_Fixed_from_float(f)( (FT_Fixed)( (f) * 0x10000L )) // << 16
+#define PI 3.1415926
+#define rads_from_degress( degs ) ( 2.0 * PI * degs / 360.0 ) //
+
+  // angle above horizontal, anti-clockwise
+  // -ve below horizontal, clockwise
+  // float angle = rads_from_degress( -23.0 );
 
  bool ft2 :: test1() {
  	STR0 font_file = 
@@ -172,8 +186,18 @@ using namespace FT2;
 	slot = face->glyph;
 
   STR0 text          = "text";
-  float angle         = ( -23.0 / 360.0 ) * 3.14159 * 2; // rads frem degs
+  float angle = rads_from_degress( -23.0 );
 
+
+  // rotatoe counter clockwise by angle around (0,0)
+  // ( cos -sin ) ( v1.x ) = (V2.X)
+  // ( sin  cos ) ( V1.y ) = (V2.y)
+  //
+  // M V1 == V2
+  //
+  // counter clockwise: Y-axis from X-axis rotated 90 left counter-clockwise
+  // "right handed coordinate system"
+  // for moving VECTORS on axes, not moving the AXES themselves ?
 
   matrix.xx = FT_Fixed_from_float( cos( angle ) );
   matrix.xy = FT_Fixed_from_float(-sin( angle ) );

@@ -1,0 +1,56 @@
+
+	2020_09_Sep_NOTE
+	2020-09-09_NOTE_TREE_of_S2.txt
+
+	TREE_of_S2
+
+	S1 SEQ {
+	 # SEQ # // overlap META from ITEM 
+	 OPTIONAL INTRO_P_PLIST {
+	  ABSENT {
+	   # DATA COMES FROM HERE and ROM CODE DATA
+	   # ITEM has no data for HERE, but does have NEAR_HERE
+	   # when absent OPTION:
+	   #  # replace ABSENT with create default for ABSENT
+	   ABSENT_PRESENT_ABSENT_PARAMETERS
+	   # some DATA is available for this phrase, 
+	   # but the fields are empty, some other HEAD INFO iv available
+	   # START SYNTAX no braces required # infer via indented block CMNT
+	    PARAMETERS
+	     PARAMETER
+	      bool GEN_default_header_for S1
+	     PARAMETER
+	      INTRO_P_LIST = DATA_STORED_HERE
+ /* DECL */     INTRO_P_LIST_t {
+
+ 		 STAR_LIST of P // EACH with added comment ref class etc
+		  P ATTRS {
+		  	clazz = lookup_clazz("P_INTRO") // KNOWN not required
+
+		  } BODY {
+		  }
+	       
+		}
+	      LIST_of_S2_t LIST_OF_S2 {
+	       LIST_of_ _S2 {
+	        var S1.LIST_OF_S2.ITEM_get_by_idx[ idx ]
+		// ARY idx not the structured one
+
+		LIST.ITEM_TYPES += ITEM_TYPE("S2") // symbols in source
+		// OPTIMISE // lookup("str") // in a compiled script
+		// create a machine around the call to lookup
+		// same machine that does CACHE on VAR
+		// detect on_first_use
+		// detect on_NULL_use
+		// detect LOCK SCOPE
+		// detect repeated use
+		// detect may_have_changed first_use_since_1_min_ago
+		// soft lock keeps all things open until resolved
+		// manually commit session branch
+		// auto notify active peers // check merge // lock 
+	       }
+	      }
+	  }
+	 }
+	}
+

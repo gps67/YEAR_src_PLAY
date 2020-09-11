@@ -1,0 +1,2 @@
+# mount /root/home_devel/Downloads/ulibc/root_fs_i386/nfs/md7
+mount /gps_chroot_zero/nfs/md7

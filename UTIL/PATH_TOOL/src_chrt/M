@@ -1,0 +1,17 @@
+#!/bin/sh 
+
+# PATH=$PATH:/tools/_build/tools_build/bin
+
+. fns_var_add
+var_pfx PATH /tools/i686/ccs4/bin
+# var_pfx PATH /tools/i686/ccs/bin
+type gcc
+type g++
+gcc -v
+type as
+P
+id
+# ask_do \
+make "$@"
+# bash
+echo M-DONE

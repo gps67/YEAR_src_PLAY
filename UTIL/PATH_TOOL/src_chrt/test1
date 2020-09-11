@@ -1,0 +1,5 @@
+. /tools/_build/profile
+var_list PATH
+./chrt.exec bash
+# rm /tmp/.s.PGSQL.5432
+

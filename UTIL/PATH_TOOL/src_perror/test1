@@ -1,0 +1,9 @@
+PATH=:$PATH
+type perror
+set -x
+perror 0
+perror 0
+perror 1 one
+perror 2
+echo exit code $?
+

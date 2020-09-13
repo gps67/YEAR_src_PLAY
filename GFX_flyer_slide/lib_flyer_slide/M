@@ -1,0 +1,6 @@
+cd obj
+#  make -f ../MK/Makefile "${@:-all}" 
+#  make -f ../MK/Makefile "${@:-run_test1}" 
+   make -f ../MK/Makefile "${@:-run_test3}" 
+# make "${@:-test2}" # MAKE_PATH #  . ../MK/.  ../. # MAKE_PATH_builtin
+

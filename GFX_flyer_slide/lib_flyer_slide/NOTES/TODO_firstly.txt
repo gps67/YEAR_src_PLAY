@@ -1,0 +1,39 @@
+2020-09-13 Sep Sun 23:45 TODO_firstly.txt
+
+	cpu_var_Name
+
+	.byte_B()
+	.byte_A()
+	MACRO move u8 into cpu_var_TEMP_NAME
+
+	u48_u16 _lohi
+	u32_u16_u16 _lohi
+	u32_u32
+	u24_u8 _lohi 	// extra care to preserve un signess
+	i24_u8 _lohi 	// extra care to preserve signess
+	fixed_26_6
+	fixed_16_16
+	fixed_24_8
+	fixed_2_14 // [-1 [0 [+1 // -2
+
+	DECODE( u8 u8 )
+
+	DECODE( u8 )
+	  MOST go it PAGE_idx of 256 ITEM
+	  SOME DONT (using 256 idx for)
+	  u24_u8 uses this,
+	  has access to u4 // 
+	  // cost 4096 of 64K
+	  // COST 16 of 256 PAGES of 
+
+	 DECODE( u8 )
+	  PAGE_idx of 256 ITEM
+	
+	 OPTION fixed_16_16 from u16_u8_junk
+	 slight error ignored
+	 or shifted out + back
+	 or load byte zero
+
+
+	ROTATE u64 so BYTE_G is u8_lo
+

@@ -1,0 +1,65 @@
+2020-09-13 Sep Sun 20:33 GFX_flyer_slide/GFX_flyer_slide.txt
+
+SLIDE {
+ ZONE
+}
+
+SLIDE {
+ ZONE_ZTWO
+}
+
+
+SLIDE {
+ ZONE_%s
+}
+
+INTER_TWINE
+
+	%s_%s _POOL _ITEM 
+
+	ZONE -> text_zone // default = complete lines
+	ZONE -> text_zone_word_list // default = pick_EA_from_HERE
+
+	FLYER_SLIDE LHS RHS {
+	 RHS = EXPR_cached_CODE_DATA
+	 LHS = EXPR
+	 // LHS == "flyer"
+	 // RHS == "slide"
+	 // PAIR == lookup_PAIR(lhs,rhs) // not too much extra CTXT
+
+	 // PAIR PHRASE UTF8_TEXT // decl = FIND DECL_data_u8_u8 // 
+	 // PAIR LHS RHS // RETVAL = DECL = EVAL { available_data }
+	 /* !! // includes above lines too (asif ?)
+	    The data that arrived is now cpu_var_NAME_u16 // was _lohi // to_
+
+	    	eg u8_u8 is a CORE_TYPE # DIALECT = SYSTEM_LOCAL UDEF_LOCAL
+		eg u16 is CORE CODE TEMPLATE { MINI_TYPE VECTOR[u16_idx] }
+		WORD_LAYOUT
+		WORD_PAIR
+		WORD_BITFIELD_LAYOUT
+	    CPU
+	    	VECTOR
+		 BASE
+		 OFFS // _P0
+		 OFFS_P2
+		 CODE P2 = PARSED from P0 // cpu_var_CTXT
+	    ARGV
+	    	VECTOR[ u16 ] of STR0 or u32 or u64 or spills from them
+	    	VECTOR[ u16 ] of 1,2,4,8,16 word_byte_count
+	
+	    STACK_Layout LAYOUT = { BUILDS IT PROVIDES CALL_BACK_API RUNS_IT }
+	        OFFS NAME TYPE
+		ADDR NAME TYPE
+		ITEM NAME TYPE // BASE[u16_idx] // ADDR = ZERO + OFFS
+		ITEM NAME TYPE // BASE[u16_idx] // ADDR = ADDR + OFFS // OFFS =
+		// CT_ array_item_size = { 1 2 4 8 16 } {xN_REG} xn_u8_in_opcode
+		// OFFS = idx * array_item_size
+
+ soy a Bournemouth por la semana
+ olivido mi passaporte en Reading
+ que loco soy
+ (big hug emoji)
+
+	 */
+
+	}

@@ -120,6 +120,7 @@ using namespace WAX;
  {
  	init_all("");
 	foundry = "adobe";
+	foundry = "bitstream";
 	family = "courier";
 	set_weight_medium();
 	set_slant_roman();

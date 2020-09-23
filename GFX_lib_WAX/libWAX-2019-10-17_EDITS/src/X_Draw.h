@@ -65,6 +65,7 @@ struct X_Draw
 	{
 		int ret = ::XSetFont( display, gc, font );
 		if(ret) return FAIL("ret == %d %s (as str)", ret, name_of_X_err(ret) );
+		PASS("ret == %d %s (as str)", ret, name_of_X_err(ret) );
 		return true;
 	}
 
@@ -72,6 +73,7 @@ struct X_Draw
 	*/
 	bool XSetFont( const char * str )
 	{
+		INFO("str %s", str );
 		XFontStruct * 
 		font = ::XLoadQueryFont( display, str );
 		if(!font) {

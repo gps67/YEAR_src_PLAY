@@ -13,6 +13,7 @@ struct argv_decoder
 	argv_decoder( int _argc, char * _argv[], char * _envp[] );
 
 	STR0 get_prog_name( buffer1 & buf ); // helper or entire result or mmore
+	STR0 get_env( STR0 varname );
 
 }; // struct
 

@@ -9,7 +9,6 @@
 // #include "X_Window.h"
 // #include "X_Draw.h"
 // #include "X_Display.h"
-// #include "X_FontStr.h"
 // #include "WAX_argv_decoder.h" // they are all very similar
 
 // #include "dgb.h"

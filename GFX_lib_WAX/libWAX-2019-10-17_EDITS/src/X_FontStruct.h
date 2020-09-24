@@ -42,8 +42,7 @@ namespace WAX {
 	)
 	{
 		font = ::XLoadQueryFont( disp, str );
-		
-		
+		return (font); // ie IS NOT NULL
 	}
 
 	

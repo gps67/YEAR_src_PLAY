@@ -26,8 +26,6 @@
 // code for MAIN, create a LOCAL call its CTOR(ARGV) call its test1()	
 //
 // test1( ARGV ) // CMD_LINE_ONE = ARGV // ARGV_DECODER argc argv envp
-// ARGV.getenv("ENV_VARNAME") 
-// ARGV.secure_getenv("ENV_VARNAME") // libc has it's list
 //
 // 
 
@@ -137,17 +135,19 @@ class test_EV // : public obj_ref
 	{
 		buffer2 buf;
 		STR0 prog_name = ARGS.get_prog_name( buf );
-		INFO("progname %s", prog_name );
-		if(! prog_name ) {
-			return FAIL_FAILED();
-		}
+		if(! prog_name ) { return FAIL_FAILED(); }
+
 		STR0 env_HOME = ARGS.get_env( "HOME" );
-		if(! env_HOME ) {
-			return FAIL_FAILED();
-		}
-	if(0)	INFO("env_HOME %s", env_HOME );
+		if(! env_HOME ) { return FAIL_FAILED(); }
+
+		INFO("progname %s", prog_name );
+	if(1)	INFO("env_HOME %s", env_HOME );
+
+		// decode complex prog_name
+		// compare prog_name with ARGV[0] == ARGV[1]
+		// busybox cp args
+		// cp cp args
 		PASS("BUILT RUN test1_OK_TELL PASS"); // RETVAL = "OK" // .test1
-		// NEAR ADDR .test1 from "test1" %s%d "test" 1 // = N++
 		// OPCODE = LHS opcode RHS //
 		// AUTO LINK LHS LHS_%s "ea_this" "item" "mini_heap_item" "dot" "here" "anystr" // seriouosly
 		return true;
@@ -189,7 +189,7 @@ int main( int argc, char ** argv, char ** envp ) {
 	// This C running ARGV of TEXTS and filenames and values via API
 	// API = EV // built_into_ARGS_DECODER_EVAL _EXEC _ARGV_
 	// ARGV like ARGS
-	if(! EV_test1( ARGS ) ) return main_FAILED();
+	if(! EV_test1( ARGS ) ) return main_FAILED(); // returns errno or other
 	return 0;
 }
 

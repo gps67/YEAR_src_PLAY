@@ -49,6 +49,7 @@ using namespace WAX;
  	printf(" %-12s %s \n", name, (STR0) buf );
  }
 
+// NOTE #name is CPP for "varname"
 #define PRINT_FIELD( name ) print_field( name, #name )
 
  void
@@ -101,7 +102,7 @@ using namespace WAX;
  	if(!parse_upto_dash( &s, weight    ) ) return FAIL_FAILED();
  	if(!parse_upto_dash( &s, slant     ) ) return FAIL_FAILED();
  	if(!parse_upto_dash( &s, set_width ) ) return FAIL_FAILED();
- 	if(!parse_upto_dash( &s, unknown    ) ) return FAIL_FAILED();
+ 	if(!parse_upto_dash( &s, unknown   ) ) return FAIL_FAILED();
  	if(!parse_upto_dash( &s, pixels    ) ) return FAIL_FAILED();
  	if(!parse_upto_dash( &s, point_10  ) ) return FAIL_FAILED();
  	if(!parse_upto_dash( &s, dpi_h     ) ) return FAIL_FAILED();
@@ -122,11 +123,13 @@ using namespace WAX;
 	foundry = "adobe";
 	foundry = "bitstream";
 	family = "courier";
+	family = "courier 10 pitch";
 	set_weight_medium();
 	set_slant_roman();
 	set_width_normal(); // helv + courier need it
 	set_cset_latin1();
-	set_point("18");
+	set_scalable();
+	// set_point("18");
  }
 
  void 
@@ -140,7 +143,18 @@ using namespace WAX;
 	set_slant_roman();
 	set_width_normal(); // helv + courier need it
 	set_cset_latin1();
-	set_point("18");
+	set_scalable();
+	// set_point("18");
+ }
+
+ void 
+ X_FontStr ::
+ set_scalable()
+ {
+ 	// scalable fonts server uses 0 as size
+	pixels = "0";	// pixel_size
+	point_10 = "0";	// point_size
+	width_10 = "0";	// average_width
  }
 
 

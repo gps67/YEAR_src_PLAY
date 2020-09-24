@@ -1,12 +1,12 @@
 #include "EV_argv_decoder.h"
 #include "dgb.h"
+#include <stdlib.h> // getenv
 
 using namespace EV;
 
 	// ARGV.CTOR // EVAL_EXEC_WAIT_API
 	// default is to PROVIDE_NEW_MEM ARGV += argv_decoder_t
 
-	
 	argv_decoder:: 
 	argv_decoder( int _argc, char * _argv[], char * _envp[] )
 	: argc(_argc)
@@ -27,8 +27,28 @@ using namespace EV;
 	};
 
 	
+	bool argv_decoder:: set_env( STR0 varname, STR0 value ) // 
+	{
+		static const int overwrite = 1;
+		if( 0 == setenv( varname, value, overwrite )){
+			return true;
+		};
+		return FAIL("%s %s", varname, value );
+	}
+
 	STR0 argv_decoder:: get_env( STR0 varname ) // 
 	{
+		STR0 VAL = getenv( varname ); // GLOBAL ignoring envp
+		if(!VAL) {
+			FAIL("varname %s", varname );
+			return VAL;
+		}
+	if(1)	INFO("varname %s '%s'", varname, VAL );
+		return VAL;
+
+		// or do own lookup sweep
+		// add #if #else #endif
+
 		int len = strlen( varname );
 		// environ == envp
 		int pos = 0;

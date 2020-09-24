@@ -10,20 +10,20 @@ namespace WAX {
 
  struct X_FontStr 
  {
-	buffer1 full_name;
-	buffer1 foundry;
-	buffer1 family;
-	buffer1 weight; // medium bold ?NORM? [demibold]
-	buffer1 slant; // roman italic oblique
-	buffer1 set_width; // normal
-	buffer1 pixels;
-	buffer1 unknown;
-	buffer1 point_10;
-	buffer1 dpi_h;
-	buffer1 dpi_v;
-	buffer1 spacing;
-	buffer1 width_10;
-	buffer1 cset;
+	buffer1 full_name;	// 1
+	buffer1 foundry;	// 2
+	buffer1 family;		// 3
+	buffer1 weight;		// 4 medium bold ?NORM? [demibold]
+	buffer1 slant;		// 5 roman italic oblique
+	buffer1 set_width;	// 6 normal
+	buffer1 unknown;	// 7
+	buffer1 pixels;		// 8 PIXEL_SIZE
+	buffer1 point_10;	// 9 point_size in tenths
+	buffer1 dpi_h;		// 10 RESOLUTION_X
+	buffer1 dpi_v;		// 11 RESOLUTION_Y
+	buffer1 spacing;	// 12 m==mono p==prop
+	buffer1 width_10;	// 13 AVERAGE_WIDTH
+	buffer1 cset;		// 14 may include - ? iso8859-1
 
 	void init_all( const char * val);
 
@@ -88,7 +88,7 @@ namespace WAX {
 	 point_10.printf("%s0", pt );
 	}
 
-	void set_point(float pt) {
+	void set_point(float pt) { // point_10 = pt * 10 // as_str
 	 point_10.clear();
 	 point_10.printf("%d", (int) (pt*10) );
 	}
@@ -99,6 +99,7 @@ namespace WAX {
 
 	void set_courier();
 	void set_helvetica();
+	void set_scalable(); // put zero as 
 
  };
 

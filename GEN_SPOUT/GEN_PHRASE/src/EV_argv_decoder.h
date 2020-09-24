@@ -14,6 +14,9 @@ struct argv_decoder
 
 	STR0 get_prog_name( buffer1 & buf ); // helper or entire result or mmore
 	STR0 get_env( STR0 varname );
+	bool set_env( STR0 varname, STR0 value );
+
+	// TODO set_env //
 
 }; // struct
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 	. fns_EDIT
+	. fns_BASE
 
     for PAGE in "${@:-PAGE}"
     do
@@ -9,7 +10,9 @@
 
 	PAGE="${1:-MANPAGE}"
 
-	fn_EDIT_var_prompt PAGE "The manpage that gets invoked."
+	Echo "The manpage that gets invoked."
+	fn_BASE_edit - PAGE pagename
+	# fn_EDIT_var_prompt PAGE "The manpage that gets invoked."
 
 	echo "# TEST IT #"
 

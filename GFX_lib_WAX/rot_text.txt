@@ -1,0 +1,12 @@
+ft2 can rotate text
+X11 cant
+
+ write text to offscreen bitmap
+ rotate bitmap 90'
+ blit to surface
+
+ XRenderSetPictureTransform
+ XRenderComposite.
+
+ https://cgit.freedesktop.org/xorg/proto/renderproto/tree/renderproto.txt
+ https://cgit.freedesktop.org/xorg/lib/libXrender/tree/doc/libXrender.txt

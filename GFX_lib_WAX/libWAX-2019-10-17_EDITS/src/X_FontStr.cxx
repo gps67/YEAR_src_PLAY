@@ -123,7 +123,7 @@ using namespace WAX;
 	foundry = "adobe";
 	foundry = "bitstream";
 	family = "courier";
-	family = "courier 10 pitch";
+	family = "courier 10 pitch"; // I think this is an UBUNTU bug
 	set_weight_medium();
 	set_slant_roman();
 	set_width_normal(); // helv + courier need it
@@ -152,9 +152,34 @@ using namespace WAX;
  set_scalable()
  {
  	// scalable fonts server uses 0 as size
+	// set to zero as query
 	pixels = "0";	// pixel_size
 	point_10 = "0";	// point_size
 	width_10 = "0";	// average_width
+ }
+
+ bool 
+ X_FontStr ::
+ is_scalable()
+ {
+ 	// scalable fonts server uses 0 as size
+
+	if(( pixels == "0" )
+	&& ( point_10 == "0") 
+	&& ( width_10 == "0") 
+	) {
+		return true; // is scalable
+	}
+
+	if(( pixels == "0" )
+	|| ( point_10 == "0") 
+	|| ( width_10 == "0") 
+	) {
+		WARN("ALL 3 should be zero");
+		return false; // is not scalable
+	}
+
+	return false; // is not scalable
  }
 
 
@@ -190,7 +215,8 @@ xlsfonts | grep -i courier
 
 		-1	Latin1
 		-2	Latin2
-		-15	Latin9 ?? not -1-15
+		-15	Latin9 ?? not -1-15 USE but ABSENT
+		-16	do not use = Romanian, loses various
 
 *	-bitstream
 *	-courier 10 pitch

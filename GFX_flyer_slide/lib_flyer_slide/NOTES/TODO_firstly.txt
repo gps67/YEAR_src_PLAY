@@ -4,6 +4,51 @@
 
 	.byte_B()
 	.byte_A()
+
+	.u48_shift()	u32
+	.i48_shift()	u16
+
+	.u24_shift()	u32
+	.i24_shift()	i32
+
+	.u16_shift()	u16
+	.i16_shift()	i16	.bytes_DC _BA
+
+	sign_expand_8_to_16	// leave high word // or not // bitfield zap
+	sign_expand_8_to_32	// leave high word // or not
+	sign_expand_8_to_64	// leave high word // or not
+	sign_expand_16_to_32	// leave high word // or not
+	sign_expand_16_to_64	// leave high word // or not
+	sign_expand_32_to_64	// leave high word // or not
+
+	686 does what it does, so use that
+	ARM64 has bitfield opcodes that do that, plus not aligned
+
+	cpu_EA_expr	// will vary between CPU's, but much of a muchness
+	.BASE + 8*idx + u8_OFFS // need u3_x8 from OPCODE
+	BASE_ZERO + OFFS_ADDR + OFFS_field + 8*idx // FETCH WORD_u64 
+	 BASE_ZERO = ZERO of SEGMENT
+	 OFFS_ADDR = ITEM within HEAP 
+	 OFFS_field = field_within_ITEM
+	 8*idx = OPCODE(8x) PTR->ITEM.field[ idx ] // know u3 FULL range
+
+	 cpu_EA_tcl
+	 .u32_ONE	u16_u8_u8
+	 .u32_TWO	u24_u8
+
+	 cpu_BITFIELDS
+	 .all_the_above
+	 .runtime_any_within_word // u48 crosses, but others dont
+	
+	u24_u8 is very limited with the u8 solo not PAIR, get from VAR_TYPE
+	u8 is not a subselector ITEM_TYPE_INFO = lookup( ITEM_field_TYPE, u8 )
+	.BYTE_A() is all there is 
+	i24 can be i24_fixed i16_8 with 8_junk 8_zero or 8_round
+	8_zero { AL = 0 } // -ve rounded down up towards zero
+
+
+
+
 	MACRO move u8 into cpu_var_TEMP_NAME
 
 	u48_u16 _lohi

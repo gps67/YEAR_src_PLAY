@@ -42,14 +42,14 @@ void C_progress_genkey( int a, int b, void * cb_arg )
 using namespace CA1;
 
 
-bool DEMO_mk_VPN_GW( str0 ABBR )
+bool DEMO_mk_VPN_GW( str0 ABBR ) // ABBR = "VPN_97"
 {
 	buffer1 NAME;
 	NAME.print("GW_%s", ABBR );
 	return FAIL("TODO");
 }
 
-bool DEMO_mk_VPN_PC( str0 ABBR )
+bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 {
 	buffer1 NAME;
 	NAME.print("PC_%s", ABBR );
@@ -90,6 +90,7 @@ bool DEMO_mk_cert_group()
 
 	// mk_LAPTOP
 	if(!DEMO_mk_VPN_PC("DWS_")) return FAIL_FAILED();
+	return true;
 	if(!DEMO_mk_VPN_PC("AMS_10")) return FAIL_FAILED();
 	if(!DEMO_mk_VPN_PC("GPS_E6320")) return FAIL_FAILED();
 	if(!DEMO_mk_VPN_PC("MBS_")) return FAIL_FAILED();
@@ -187,7 +188,7 @@ bool_main(int argc, char *argv[])
 
 	const char * progname = *argv++;
 	argc--;
-	char * argv_default[] = { "ALL", NULL }; // const
+	char * argv_default[] = { (char *)"ALL", NULL }; // const
 	if(argc==0) {
 		argv = argv_default;
 		argc= 1;

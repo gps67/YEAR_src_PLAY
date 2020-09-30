@@ -16,10 +16,10 @@ file:///nfs/NAS2/mnt/HD/HD_b2/2020/src_build_2020/DTP/freetype-2.10.2/docs/refer
 	FT_BBOX { xMin yMin xMax yMax }
 	FT_Fixed i32_fixed_p16
 
-	FT_F2Dot14 // i16_p14
-	FT_UnitVector // near 1.x 0.x -1.x -2.x
+	FT_F2Dot14 // i16_p14  -3[-2.9 .. +1.9[2
+	FT_UnitVector // i16_p14 XY  near 1.x 0.x -1.x -2.x 
 
-	FT_F26Dot6 // i32_p6 
+	FT_F26Dot6 // i32_p6 += 32M.1/64
 
 	FT_Matrix { xx xy yx yy }
 #endif
@@ -38,7 +38,7 @@ namespace FT2 {
 	FT_GlyphSlot  slot; // = face->gylph
 	FT_Matrix     matrix; // fixed_16p16
 
-	FT_Vector     pen;  // fixed_26p6
+	FT_Vector     pen;  // pen_pos XY fixed_26p6
 	FT_Error      error; // not cleared ...
 
   public:

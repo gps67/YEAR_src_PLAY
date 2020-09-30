@@ -36,7 +36,7 @@ namespace WAX {
 
 // PRE_PARSED into TOKENIXED usage_here SUBLEX of VAR accessed via FUNC CALL
 
-	void set_bold_on() { set_weight_bold(); }
+	void set_bold_on()  { set_weight_bold(); }
 	void set_bold_off() { set_weight_normal(); }
 
 // Layout gets hinted to one_line these functions to COMPILE_able PRE_PARSED
@@ -45,11 +45,14 @@ namespace WAX {
 	void set_weight( const char * str ) { weight = str; }
 	void set_weight_bold() { set_weight("bold"); }
 	void set_weight_medium() { set_weight("medium"); }
-//	void set_weight_normal() { set_weight("normal"); }
-	void set_weight_normal() { set_weight("medium"); }
+//	void set_weight_normal() { set_weight("medium"); }
+	void set_weight_normal() { set_weight("normal"); }
 
 	void set_slant_italic() { slant = "i"; }
 	void set_slant_roman() { slant = "r"; } // ie normal
+
+	void set_spacing_m() { spacing = "m"; } // monospace
+	void set_spacing_p() { spacing = "p"; } // proportional
 
 	void set_width_normal() { set_width = "normal"; } // helvetica
 
@@ -67,10 +70,12 @@ namespace WAX {
 
 
 //	void set_dpi_150() { dpi_h = "150"; dpi_v = "150"; } // difference ?
+//	75 100 150 // are the only ones // do what with outline scalable ? 
+//	
 
 	void set_dpi_150() { set_dpi("150"); }
 	void set_dpi_100() { set_dpi("100"); }
-	void set_dpi_75() { set_dpi("75"); }
+	void set_dpi_75()  { set_dpi("75"); }
 
 	void set_dpi(const char * dpi) {
 	 dpi_h = dpi;
@@ -94,12 +99,14 @@ namespace WAX {
 	}
 
 	void set_cset_latin1() { cset = "iso8859-1"; }
+	// i8859-1 does not have ... -15 has the euro A4
 
 	void set_usable_defaults();
 
 	void set_courier();
 	void set_helvetica();
 	void set_scalable(); // put zero as 
+	bool  is_scalable(); // has zero as ...
 
  };
 

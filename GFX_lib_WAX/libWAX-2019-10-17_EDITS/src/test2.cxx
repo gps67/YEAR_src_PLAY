@@ -146,9 +146,11 @@ int main_two( argv_decoder & ARGS ) {
 
 
 	X_FontStr font_strs;
-	font_strs.set_helvetica();
 	font_strs.set_courier();
+	font_strs.set_helvetica();
 	font_strs.set_point(72);
+	font_strs.set_point(18);
+	font_strs.set_point(36);
 
 	font_strs.print_fields();
 	win1.draw_green.XSetFont( (STR0) font_strs.join() );

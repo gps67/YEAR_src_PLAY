@@ -16,12 +16,33 @@
 // #define WIDTH   640
 // #define HEIGHT  480
 
-#define WIDTH   110
-#define HEIGHT   80
+#define WIDTH    70
+#define HEIGHT   50
 
 
 /* origin is the upper left corner */
-unsigned char image[HEIGHT][WIDTH];
+
+struct homebrew_pixmap_grey_t
+{
+	unsigned char image_bytes[HEIGHT][WIDTH];
+
+	void set_xy_byte(
+	  FT_Int x,
+	  FT_Int y,
+	  u8 val
+	) {
+	      image_bytes[y][x] |= val;
+	}
+
+	u8 get_xy_byte(
+	  FT_Int x,
+	  FT_Int y
+	) {
+		u8 grey = image_bytes[y][x];
+		return grey;
+	}
+
+} image;
 
 
 /* Replace this function with something useful. */
@@ -47,8 +68,10 @@ draw_bitmap( FT_Bitmap*  bitmap,
            i >= WIDTH || j >= HEIGHT )
         continue;
 
-	// COPYING FT_Bitmap to HOMEBREW_t image
-      image[j][i] |= bitmap->buffer[q * bitmap->width + p];
+	// COPYING FT_Bitmap to HOMEBREW_t image_bytes
+	image.set_xy_byte( i, j, 
+	      bitmap->buffer[q * bitmap->width + p ]
+	);
     }
   }
 }
@@ -58,22 +81,14 @@ show_image( void )
 {
   INFO("HERE");
   int  i, j;
-  char * hexes = " 123456789ABCDEF";
+  const char * hexes = " 123456789ABCDEF";
 //  hexes = "    ----++++****";
 
   for ( i = 0; i < HEIGHT; i++ )
   {
     for ( j = 0; j < WIDTH; j++ ) {
-      if(1) {
-        u8 grey = image[i][j];
-        putchar( hexes[ grey >> 4  ] );
-      } else {
-        putchar( image[i][j] == 0
-        ? '.'
-        : image[i][j] < 128
-          ? '+'
-          : '*' );
-     }
+      u8 grey = image.get_xy_byte( j, i );
+      putchar( hexes[ grey >> 4  ] );
     }
     putchar( '\n' );
   }
@@ -84,9 +99,8 @@ show_image( void )
 
 using namespace FT2;
 
-	// static aim and init
-// OK	bool ft2:: init_done;
-	bool ft2:: init_done = false;
+ // static var and init
+ bool ft2:: init_done = false;
 
  ft2 :: ft2() {
  	if(!init()) throw "FT2_INIT";
@@ -138,13 +152,14 @@ using namespace FT2;
  bool ft2 :: face1_load_font( STR0 filename ) {
 	static const int idx_0 = 0; // first font in file
  	if( !FT2_OK( FT_New_Face( library, filename, idx_0, &face ))) {
+		INFO("file %s", filename );
 		return FAIL("FT_New_Face()");
 	}
 	PASS("FT_new_face(%s)", filename );
 	return true;
   // TODO:
   // load font over network or ...
-  // FT_New_Memory_Face( library, font_file_data, font_file_size, idx, &face )
+  // FT_New_Memory_Face( library, font_file_data, font_file_size, idx_0, &face )
  }
 
 
@@ -173,6 +188,8 @@ using namespace FT2;
 	int h_16x64 = point_size * 64;
 	int dpi_x_300 = 100;
 	int dpi_y_300 = 100;
+	dpi_x_300 = 35;
+	dpi_y_300 = 20;
 	if(!FT2_OK( FT_Set_Char_Size( face, w0, h_16x64, dpi_x_300, dpi_y_300 ))) {
 		return FAIL("FT_set_Char_Size()");
 	}
@@ -187,6 +204,7 @@ using namespace FT2;
 
   STR0 text          = "text";
   float angle = rads_from_degress( -23.0 );
+  angle = rads_from_degress( -3.0 );
 
 
   // rotatoe counter clockwise by angle around (0,0)

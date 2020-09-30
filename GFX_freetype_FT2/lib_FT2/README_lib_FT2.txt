@@ -82,7 +82,10 @@ USE freetype // freetype2 obvs?
 			16 * u8 == u12 // >> 4 into u8 // 
 			shape range xy xy xy xy xy
 
+fonts
+https://github.com/RedHatOfficial/RedHatFont
 
+https://keithp.com/~keithp/talks/xtc2001/xft.pdf
 
 
 

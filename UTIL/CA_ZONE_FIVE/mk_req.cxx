@@ -17,6 +17,8 @@
 #include "MYSITE_X509_layout.h"
 #include "MYSITE_CA_task.h"	// MYSITE is completely user defined demo
 
+#include "cfg_CA_1.h"
+
 // you dont need this, unless you load REQ from buffer, from LAN, or file
 // #include "X509_REQ_hold.h"	// REQ->write_req_to_file()
 
@@ -179,13 +181,16 @@ int
 bool_main(int argc, char *argv[])
 {
 
-
 	//
 	// Before anything seed the prng, and init the library
+	// X509 uses openssl-crype but not SSL
 	// we dont use the instance, just the PRNG to generate RSA
 	//
 	obj_hold<SSL_global_server_eg>  _ssl_serv = new SSL_global_server_eg();
 
+	//
+	// TODO argv_builder
+	//
 	const char * progname = *argv++;
 	argc--;
 	char * argv_default[] = { (char *)"ALL", NULL }; // const
@@ -193,6 +198,26 @@ bool_main(int argc, char *argv[])
 		argv = argv_default;
 		argc= 1;
 	}
+
+	//
+	// cfg_CA_ load keyfile config file "cfg_CA_file.dat"
+	//
+        ::CFG_CA::kf_cfg_CA_1 cfg;
+        // SWITCH TO SESSION
+        cfg.late_init();
+        if(cfg.load_file_()) {
+                INFO("loaded");
+		INFO("unnecessary SAVE might update fields descrs");
+                cfg.save_file_();
+        } else {
+                INFO("defaulted");
+                cfg.set_DEMO_values();
+                cfg.save_file_();
+        }
+
+	//
+	// run ARGV
+	//
 	while(argc>0) {
 		str0 arg = *argv++;
 		argc--;

@@ -1,4 +1,9 @@
 
+#include <X11/Xfuncproto.h>
+#include <X11/extensions/Xrender.h>
+// need both of these early in the list 
+// MACRO _XFUNCPROTOBEGIN
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -39,9 +44,23 @@ int main_three( argv_decoder & ARGS ) {
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
 
-if(0) {
-	FT2::ft2 ft;
+	WAX::cpu_var ft;
 	ft.test1();
+
+
+// #include <X11/extensions/renderproto.h>
+// #include <X11/extensions/Xrender.h>
+// #include "Xrender.h"
+// #include "Xrenderint.h"
+
+if(1) {
+	int major;
+	int minor;
+	if( XRenderQueryVersion( disp.display, & major, & minor ) ) {
+		INFO("XRenderQueryVersion() major %d minor %d", major, minor );
+	} else {
+		FAIL("XRenderQueryVersion() failed");
+	}
 }
 
 	// pick a rectangle

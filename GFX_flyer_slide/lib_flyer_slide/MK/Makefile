@@ -9,9 +9,21 @@
 #	INCL = -I/tools/2000/X11R6/include
 	dot_EXE=.elf
 
-ifeq (1,1)
+ifeq (1,0)
 	INCL += `pkg-config --cflags freetype2`
 	LIBS += `pkg-config --libs freetype2`
+endif
+
+ifeq (1,0)
+	INCL += `pkg-config --cflags xrender`
+	LIBS += `pkg-config --libs xrender`
+endif
+
+ifeq (1,1)
+	INCL += `pkg-config --cflags $(PKGS)`
+	LIBS += `pkg-config --libs $(PKGS)`
+	PKGS += freetype2
+	PKGS += xrender
 endif
 
 ifeq (0,1)
@@ -24,7 +36,8 @@ endif
 
 
 	DEFS += 
-	LIBS += -L/usr/X11R6/lib -lX11
+#	LIBS += -L/usr/X11R6/lib -lX11
+#	LIBS += -lXrender
 #	LIBS += -L/tools/2000/X11R6/lib -lX11
 
 	S=../src
@@ -71,8 +84,10 @@ all: run_test3
 
 .SUFFIXES: .cxx .c .o                                                           
 
-.cxx.o:                                                                         
-	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<                                  
+# TODO move this back to libs_apps
+# THEN use it's VARS + command line format
+# .cxx.o:
+# 	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<                                  
 
 
 $(OBJS): $(HDRS)
@@ -87,11 +102,9 @@ $(EXEC1): $(OBJS) $(PROG1).o
 	g++ $(PROG1).o $(OBJS) $(LIBS) -o $@
 
 $(EXEC2): $(OBJS) $(PROG2).o
-	# INCL = pkg-config --cflags freetype2
-	# INCL = `pkg-config --cflags freetype2`
-	# LIBS = pkg-config --libs freetype2
-	# LIBS = `pkg-config --libs freetype2`
 	g++ $(PROG2).o $(OBJS) $(LIBS) -o $@
 
 clean: 
 	rm -f *.o $(EXEC1)  $(EXEC2)  test3 fa
+
+$(EXEC2) $(EXEC1): ../MK/Makefile

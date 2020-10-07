@@ -1,0 +1,90 @@
+#
+#
+# 
+#CFG_DEMO_ONE
+#CFG_DEMO_ONE The main data store
+#CFG_DEMO_ONE for the time seriesdata
+#CFG_DEMO_ONE
+#
+
+#
+# CA_ZERO
+# CA_ZERO  Parameters for CA_ZERO
+# CA_ZERO
+#
+[CA_ZERO]
+#
+# The C=GB country for the certificate
+#
+C=GB
+
+#
+# DEMO_CONNECT
+# DEMO_CONNECT  Connection parameters for clients to contact
+# DEMO_CONNECT
+#
+[DEMO_CONNECT]
+#
+# Store some randomness for later
+#
+random_str=T+5Ryv1+OEkJp207DOGPnVlFzRPtAtN0ThEF7Qo0sXBcicZg7Gzm6wDpAxwV1k2PQAyTw/Ipf7/wlwO4cv7MHjSqLnBx9pm2YVPlz5oa9v9c9XMmjnB2KiWtoxRbzJawmd4Unzdkfn7gEktsE4/wFsis1z8Qp6Fgt3RjMFNzCrN3mnx8NkqqXaDQoKPdXYIkBP1aPQZ8DLfRc826MPz1ouFHA7WRiTR3sC8M5qolV+O5liNH5APIWPkirwIV4CDs/v+9i/5IrMj8l/iIzQjr4Z20upMmh+/WwifDIBZZ0AjyrLCKv9GH0gKCHGqd+pXE
+#
+# The db_pref for the data
+#
+db_pref=mysql
+#
+# The connection for the server - IP4 addr or DNS
+#
+mysql_addr=x3
+#
+# The connection to the server - IP4 port
+#
+mysql_port=3306
+#
+# The user name
+#
+mysql_user=obj_stat_gather
+#
+# The user pass
+#
+mysql_pass=gather99
+#
+# The database name
+#
+mysql_db=obj_stat_1
+#
+# The rootuser name
+#
+mysql_rootuser=root
+#
+# The user rootpass
+#
+mysql_rootpass=probablyunusedhere
+#
+# The connection for the server - IP4 addr or DNS
+#
+pgsql_addr=x3
+#
+# The connection to the server - IP4 port
+#
+pgsql_port=1212
+#
+# The user name
+#
+pgsql_user=obj_stat_gather
+#
+# The user pass
+#
+pgsql_pass=gather99
+#
+# The database name
+#
+pgsql_db=obj_stat_1
+#
+# The rootuser name
+#
+pgsql_rootuser=postgres
+#
+# The user rootpass
+#
+pgsql_rootpass=probablyunusedhere

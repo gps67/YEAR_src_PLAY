@@ -128,6 +128,11 @@ proc step_all_melts {} {
 		set D_max  [YEAR_FRAC_TO_YEAR_MM_DD $Y_max]
 		set D_min  [YEAR_FRAC_TO_YEAR_MM_DD $Y_min]
 		set V_melt [format {%4.1f} [expr $V_max - $V_min]]
+		set V_MAX [format {%4.1f} $V_max]
+		set V_MIN [format {%4.1f} $V_min]
+		# 0.05  rounds to 0.0 
+		# 0.051 rounds to 0.1 
+		# 0.06  rounds to 0.1 
 		if {[pop_min]} {
 			set V_freeze [format {%4.1f} [expr $V_max - $V_min]]
 			if {![pop_max]} { set looping 0 }
@@ -136,7 +141,7 @@ proc step_all_melts {} {
 			set looping 0
 		}
 
-		puts "$D_max melts $V_melt $D_min freezes $V_freeze"
+		puts "apr $D_max hi $V_MAX melts $V_melt sept $D_min lo $V_MIN freezes $V_freeze"
 	}
 }
 

@@ -76,6 +76,7 @@
 
 	OBJS += MYSITE_X509_layout.o
 	OBJS += MYSITE_CA_task.o
+	OBJS += cfg_CA_1.o
 
 #	OBJS += MYSITE_X509_VALS.o
 #	OBJS += X509_util_CERT.o

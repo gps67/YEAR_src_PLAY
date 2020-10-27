@@ -1,0 +1,100 @@
+
+	2020_10_Oct_DOCS_ASM_CPU
+	2020-10-26_DOCS_ASM_CPU.txt
+
+	There is a portable ASM theme
+	SORT_OF_WORKS x86 x64 ARM_32 ARM_64
+	PROVIDES_API ARM_32
+	 CONTAINS ARM_32_SUBSET_EXPRS
+
+	 u32 REG[ u4 ] // 16 Registers  
+	 u32 REG[ plus ] // plus Registers  // EA_t
+
+	 RESERVE plus == 0x00 // u4_id_t // u4_bitfield_t // uns
+	 // uns is unsigned int
+	 BITFIELD plus_t EA_STEP_as_bitfield // step = bitfield.payload()
+	 // payload_t payload // = & THIS
+	 // COMPILER // lookup type_of_payload // expect type payload_t
+	 // ALIAS NAME for BITFIELD DATA payload // _t 
+
+	 DEST = LHS OPCODE RHS _t // UNION u32_t // COMMON_BASE i32_t
+	 EXPR = LHS SCRIPT RHS // 
+
+	 MACRO = SCRIPT VARS CTXT 
+	  VAR LHS 
+	  VAR RHS
+	  API Macro SCRIPT
+
+	  TOKEN = TOKEN_STEP {
+	  	// u4 idx // u32 idx // u64_idx_t idx // ITEM = TABLE[ idx ]
+	  }
+
+	  BITFIELD_t = "u4_idx_t" // sublex detect "u4" "idx" "_t"
+	  // BITFIELD_t = "u4_idx_t" // sublex detect "u4" "idx" "_t"
+	  // BITFIELD_t = "u32_idx_t" // sublex detect "u32" "idx" "_t"
+	  // BITFIELD_t = "u4_idx_t" // sublex detect "bitfield" "{name}" "_t"
+	  // BITFIELD_t = "u24_idx_t" // sublex detect "bitfield" "{%s}" "_t"
+	  // BITFIELD_t = "u24_name_t" // sublex detect "%s" "{%s}" "_t"
+
+	  BYTE_ORDER LO_HI {
+	  	It should be HILO processing MSB first byte
+		Instead it is LOHI // FIRST of FOUR
+		Which_does_make_sense_when CPU can focus u8 u16 u32 u64 WORDS
+		cpu_var_NAME // u8 & byte_B () // u16_t & opcode "u16_t()" 
+	  }
+
+	  cpu_var_t {
+	   NAME = CT_KNOWN_NAME
+	   WORD_t = WORD_u32 // _t
+	   WORD_t & value // # self = "WORD_64" // u3_BYTES_is_max intel scalar
+	   WORD_t value_GET()
+	   WORD_t value_SET() // by retaining what _SET returns have FILTER
+	   TOKEN_t _SET( TOKEN_t idx ) { 
+	    // idx is relative to VECTOR_NAME [ idx ] of ITEM_t
+	    // intel 586 has CODE { typedef u32_t WORD_t } 
+	    // intel IA-64 has CODE { typedef u64_t WORD_t } 
+	    // lexical payload "typedef" // "symbol" //
+	    VECTOR WORD_t OFFS[ idx ] // ADDR = idx // PGS MATCH
+	    // DECODE // u8_u8_from_u64_lohi // 
+	    // LIMIT WORD_t BITFIELD_t u3_idx
+	    // SYMBOLOGY = BE THE MEMORY BIT
+	    // BYTE = 8 BITS
+	    // MEMORY = LONG LINE OF BYTES
+	    // cpu_var_BYTE_B_WORD // ALIAS for cpu_var_HERE // self // this //
+	    // truncations i64 i32 i16 i8 bitfield_t BYTE_b WORD_t
+	    // WORD_t exported from here as WORD_64 // _t
+	    // WORD_64 is double plenty WORD_32 16_8_8 // EIGHT dq
+	    // WORD_48_16 is the ASM_64 
+	    // CACHE CONSEQUENCE presuming VALUE=V1 lookup_to=V2 else=CALL()
+	    // looked_up_from=V3_ // filter_switch //
+	    // named_expr_in_CTXT
+	    //
+	    // ARM_32
+	    // u32_lohi // MUST be WORD aligned // _A_BAD_CHOICE_SUBSET_
+	    // because INTEL uses u64 VECTOR[ idx ] // _t
+	    // ie has a maximum DECODE( u16_from_u64 )  [u16] page_byte[u8] 
+	    // or ARRAY [ IDX ] of EIGHT //  EIGHT_byte VECTOR pinch_point
+	    // 
+	    // IA_32
+	    // u32_lohi // unaligned
+	    // may meander over word boundries, page boundries even
+	    //
+	    // IA_64
+	    // good use of BITFIELD truncated u24_idx in u32
+	    // GEN_PLUS can put const in all the right places
+	    // so that COMPILER can use inline light functions
+	    // so that COMPILER can TRACK_COPIES via CACHE or OMIT
+	    //
+	    // ASM_32 BITFIELD
+	    // EXPR = ..., CT_EXPR, RT_EXPR, ...,
+	    // switch (sizeof(payload)) {
+	    //  case 8: SELECTS u64
+	    //  case 4: SELECTS u32
+	    //  case 2: SELECTS u16
+	    //  case 1: SELECTS u8
+	    // ... }
+	    //	 
+
+	    // 
+
+	  }

@@ -12,7 +12,7 @@
 //
 // PRINTED
 //
-// # PASS  # bool test_EV::test1() # BUILT RUN test1_OK_TELL PASS
+// # PASS  # bool EVENT_STATION_t::test1() # BUILT RUN test1_OK_TELL PASS
 // # PASS  # bool EV_test1(EV::argv_decoder&) # OK
 
 // ARGV_DECODER
@@ -32,10 +32,10 @@
 // 
 // # DATA # CTOR(" bool EV(ARGV) # OK // %s MESSAGE
 // 
-// That then creates SCOPE EV::test_EV // CTOR and run it's test1()
+// That then creates SCOPE EV::EVENT_STATION_t // CTOR and run it's test1()
 //
 //	instance
-// # DATA # CTOR(" bool test_EV::CTOR() # MESSAGE # INFER_OK_NESS is_OK "PASS"
+// # DATA # CTOR(" bool EVENT_STATION_t::CTOR() # MESSAGE # INFER_OK_NESS is_OK "PASS"
 //
 // we then call it's ARGV_TEST1 function
 //
@@ -47,7 +47,7 @@
 // 
 // 
 // # 
-// # DATA # CTOR(" bool test_EV::test1() # MESSAGE # INFER_OK_NESS is_OK "PASS"
+// # DATA # CTOR(" bool EVENT_STATION_t::test1() # MESSAGE # INFER_OK_NESS is_OK "PASS"
 // #  namespace:: classname
 // #  classname CTOR ARGV // ~= ENV
 // #  
@@ -110,7 +110,7 @@ struct ink_rgb
 
 	A DEMO A TEST A LIVE TEST //
 */
-class test_EV // : public obj_ref
+class EVENT_STATION_t // : public obj_ref
 {
  public:
 	buffer2 out;
@@ -118,7 +118,7 @@ class test_EV // : public obj_ref
 	// UDEF_t item = CTOR uses VARS // add your vars here 
 	// ... // EA_HERE = test1.cxx: Line 48
 
-	test_EV()
+	EVENT_STATION_t()
 	{
 		out.get_space( 1024 * 32 );
 		// CTOR( CTXT ) // CTXT // ...
@@ -147,7 +147,8 @@ class test_EV // : public obj_ref
 		// compare prog_name with ARGV[0] == ARGV[1]
 		// busybox cp args
 		// cp cp args
-		PASS("BUILT RUN test1_OK_TELL PASS"); // RETVAL = "OK" // .test1
+		TODO("TODO RUN( ARGV )"); // RETVAL = "OK" // .test1
+		PASS("RAN"); // RETVAL = "OK" // .test1
 		// OPCODE = LHS opcode RHS //
 		// AUTO LINK LHS LHS_%s "ea_this" "item" "mini_heap_item" "dot" "here" "anystr" // seriouosly
 		return true;
@@ -162,13 +163,16 @@ class test_EV // : public obj_ref
 
 bool EV_test1( argv_decoder & ARGS )
 {
- 	test_EV EVER;
-	if(!EVER.test1(ARGS)) 
+ 	EVENT_STATION_t EVENT_STATION;
+	if(!EVENT_STATION.test1(ARGS)) 
 		return FAIL_FAILED();;
 	return PASS("OK");
 	// KNOW is_OK WITH idx == u8_idx // STEP[u8] from LOCN("LOCN") // DATA
 	// DATA PAYLOAD_N_BYTES_of_UDEF_ // DECL("UDEF") PAYLOAD BIT_FIELDS
 	// PARSE DIALECT 
+	//
+	// OK looks better in logfiles because others need name mangling
+	// OK INFO used in C_function is clearer
 }
 
 int main_FAILED() {

@@ -34,3 +34,6 @@ a1.dump: a1.o Makefile
 
 Xa1.o: a1.asm
 	$(XASM) a1.asm
+
+clean:
+	rm *.o *.exec *.dump

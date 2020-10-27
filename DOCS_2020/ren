@@ -1,0 +1,13 @@
+  for f in DOCS_*
+  do
+  	if f2=`expr match "$f" 'DOCS_\(.*\)' `
+	then
+		ask_do mv $f $f2
+	else
+		echo "#SKIP # $f"
+	fi
+  done
+
+  exit
+  
+ # rename not installed

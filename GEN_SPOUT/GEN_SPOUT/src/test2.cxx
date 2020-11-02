@@ -20,6 +20,7 @@
 
 #include "util_buf.h" // blk_write_to_file( out, filename )
 #include "dir_name_ext.h" // dir_name_ext( filename ) .ext = ; mk_near_path_name
+#include "tm_parts.h" // str_pdf()
 
 #include "SPOUT_STUBS.h"
 #include "SPOUT_argv_decoder.h"
@@ -32,6 +33,44 @@
 using namespace SPOUT;
 
 /*!
+
+	class test_SPOUT_base // : public obj_ref // SPEC_t SPEC; // CTXT //
+
+		
+		a PDF Postscript DOCUMENT from SPOUT
+
+
+	class test_SPOUT_base // : public obj_ref // SPEC_t SPEC; // CTXT //
+
+		a DOCUMENT _t
+
+	class SPOUT : public test_SPOUT_base
+
+		GEN_POSTSCRIPT _FGBG _DRAW
+
+		GEN_PDF // += TABLE of { NAME VALUE } // PAIR[s]
+
+		GEN_SEGMENT // += elf_layout_
+
+		GEN_SEGMENT_DATA_WASM
+
+		a DOCUMENT ( DATA, CODE ) // link %s "LEX_name" // _Layout
+		# beyond SPOUT:: // CODE_LAYER_MACRO base64 within comments
+		# SEGMENT // ELF_FILE :: TABLES SEGMENTS LOADERS SCHEME
+		# UDEF // Item_t ITEM; // CMNT // PSG MATCHED //
+		# CDEF // DECL NEW_VAR ARGV
+		# DATA // VAR_POOL NAME DATA // LINK_LOCN
+		# LOCN // LINK_LOCN_t LINK // LOCN NAME {SCRIPT}
+		# ITEM // NEW_VAR // auto_build CTOR( ARGV )
+		# VAR // TYPE_t NAME // line_tail_is_CTOR
+
+		" %s_t %s " "TYPENAME" "VARNAME" // line_tail
+
+			ITEM.DATA.SCRIPT 
+			field_type //_t STRING_TOKEN // EXPR_near_TOKENS
+			field_name //_t STRING_TOKEN // str1 or buffer or ...
+			field_value //_t DATA
+
 	test_SPOUT is not on the heap
 	so it uses N++ Alloc PRE_ALLOC
 
@@ -122,7 +161,8 @@ class test_SPOUT_base // : public obj_ref
 	buffer2 out;
 
 	buffer2 DOC_Title; // easier than STR1
-	buffer2 DOC_Creator; // easier than STR1
+	buffer2 DOC_Creator; // SPOUT
+	buffer2 DOC_Creator_version; // -1
 	buffer2 DOC_; // easier than STR1
 
 	int pages;
@@ -169,7 +209,7 @@ class test_SPOUT_base // : public obj_ref
 
 	test_SPOUT_base()
 	{
-		out.get_space( 1024 * 32 );
+		out.get_space( 1024 * 32 ); // 32K first malloc // out buffer
 		pages = 0;
 		pg_no = 0; // pg_no = idx = ITEM = N++ //
 		page_wh.set( 595, 842 );
@@ -184,6 +224,7 @@ class test_SPOUT_base // : public obj_ref
 	bool cmd_line( STR0 fmt, ... ) {
 		va_list args;
 		va_start( args, fmt );
+		// into_utf8 = false // from what ? // meaning what ?
 		bool ok = out.vprint( false, fmt, args );
 		va_end( args );
 		out.put_LF();
@@ -202,6 +243,7 @@ class test_SPOUT_base // : public obj_ref
 	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
 	}
 
+	// dsc_
 	bool dsc_comment( STR0 fmt, ... ) {
 		// Document Structure Conventions
 		// % % NOSP Word 
@@ -212,12 +254,21 @@ class test_SPOUT_base // : public obj_ref
 		out.put_byte('%');
 		va_list args;
 		va_start( args, fmt );
+		// it needs a FILTER option to distinguish vprint
 		// false = conv_8859_to_utf8 // upgrade somehow
 		bool ok = out.vprint( false, fmt, args );
 		va_end( args );
 		out.put_LF();
 		return ok;
 	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
+	}
+
+	/*
+		%% name : SP value EOLN
+	*/
+	bool hdr_name_value( STR0 name, STR0 val ) {
+		INFO("%s: %s", name, val );
+		return dsc_comment("%s: %s", name, val );
 	}
 
 	bool hdr_blank_line() { return hdr_comment(""); }
@@ -232,6 +283,30 @@ class test_SPOUT_base // : public obj_ref
 	bool file_header()
 	{
 		// must know Pages == 2 before starting output!!
+		// TEMPLATE POSTSCRIPT suggested by groff template text
+		// example_ps // man -Tps ascii | less
+		// example_test_SPOUT_test1.ps // .pdf // GEN_POSTSCRIPT
+		// src/PLAY/GEN_SPOUT/GEN_SPOUT/eg_less_troff_
+		// viewer_show_example_template // man -Tps ascii | less
+	/* It says
+
+		%!PS-Adobe-3.0
+		%%Creator: groff version 1.22.4
+		%%CreationDate: Sun Nov  1 20:43:07 2020
+		%%DocumentNeededResources: font Times-Roman
+		%%+ font Times-Bold
+		%%+ font Courier
+		%%+ font Times-Italic
+		%%DocumentSuppliedResources: procset grops 1.22 4
+		%%Pages: 3
+		%%PageOrder: Ascend
+		%%DocumentMedia: Default 595 842 0 () ()
+		%%Orientation: Portrait
+		%%EndComments
+		%%BeginDefaults
+		%%PageMedia: Default
+
+	*/
 
 		// see page 617 of PLRM2
 		// Appendix G
@@ -240,24 +315,49 @@ class test_SPOUT_base // : public obj_ref
 		// see 2.4.2.Program Structure
 		// see page 627 of PLRM2
 		hdr_comment("!PS-Adobe-3.0");
+
+		// PUTTING TO FRONT for a while
+		if(DOC_Title) {
+			hdr_name_value("Title", (STR0) DOC_Title );
+		}
+
+////		%%Creator: SPOUT version -1
+		dsc_comment("%s: %s version %s", "Creator", 
+			(STR0) DOC_Creator,
+			(STR0) DOC_Creator_version
+		);
+
+////		%%CreationDate: Sun Nov  1 20:43:07 2020
+		tm_parts tm;
+		hdr_name_value("CreationDate", (STR0)tm.str_pdf_now() );
+
+		// standard list of fonts // expand
+		hdr_name_value("DocumentNeededResources", "font Times-Roman");
+		dsc_comment("+ font Times-Bold");
+		dsc_comment("+ font Courier");
+		dsc_comment("+ font Times-Italic");
+
+		// hdr_name_value but decimal not string
 		dsc_comment("Pages: %d", pages );
 
-		if(DOC_Title) {
-			dsc_comment("Title: %s", (STR0) DOC_Title );
-		}
+//		%%PageOrder: Ascend
+		hdr_name_value("PageOrder", "Ascend" );
 
-		if(DOC_Creator) {
-			dsc_comment( "Creator: %s", (STR0) DOC_Creator );
-		}
+//		what is the extra 0
+//		%%DocumentMedia: Default 595 842 0 () ()
+		dsc_comment("DocumentMedia: Default %.0f %.0f 0 () ()", page_wh.x, page_wh.y );
 
+//		%%Orientation: Portrait
+		hdr_name_value("Orientation", "Portrait" );
+
+
+		// ASIDE dumpted here for vprint users
 		// double %% becomes % in vprintf // or use hdr2_
 		// hdr2_comments adds %% and /n // and vprint fmt
 		// hdr_comments adds % and /n // and vprint fmt
-IF_NOT		dsc_comment("DocumentMedia: Default %f %f () ()", page_wh.x, page_wh.y );
+// IF_NOT
 
-//		dsc_comment( "LanguageLevel: 2" );
-//		dsc_comment( "CreationDate: 2020-08-24" );
-
+		hdr_name_value("LanguageLevel", "2" );
 
 		dsc_comment( "EndComments" );
 
@@ -268,8 +368,8 @@ IF_NOT		dsc_comment("DocumentMedia: Default %f %f () ()", page_wh.x, page_wh.y )
 		dsc_comment( "BeginSetup" );
 
 	// THIS ONE // set the page size
+		// "<</PageSize [ %d %d ]>> setpagedevice", page_wh.x, page_wh.y );
 		hdr_PageSize_device( page_wh );
-		// cmd_line("<</PageSize [ %d %d ]>> setpagedevice", page_wh.x, page_wh.y );
 
 		dsc_comment( "EndSetup" );
 		cmd_blank_line();
@@ -517,6 +617,9 @@ IF_NOT		dsc_comment( "DocumentMedia: %d %d () ()", (int) page_wh.x, (int) page_w
 		return true;
 	}
 
+	/*!
+		strange_name is a test script
+	*/
 	bool write_normalise_pdf_view()
 	{
 		STR0 BASENAME = "/tmp/test1_tmp";
@@ -542,20 +645,30 @@ IF_NOT		dsc_comment( "DocumentMedia: %d %d () ()", (int) page_wh.x, (int) page_w
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
 
 		cmd.clear();
+		cmd.print("cat %s", (STR0) name_1);
+		if(!system_cmd( cmd ) ) return FAIL_FAILED();
+
+	 if(0) {
+		cmd.clear();
 		cmd.print("mupdf %s", (STR0) name_3);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
+	 }
 
 		return true;
 	}
 
 };
 
+/*!
+	test_SPOUT_base 
+*/
 class test_SPOUT :public test_SPOUT_base // : public obj_ref
 {
  public:
 	bool test1()
 	{
 		page_wh.set( 50, 30 ); // set page size before
+		page_wh.set( 594, 841 ); // just shy of ...
 	// do this at END of document first !!
 	// KEEP vars_api of SCRIPT
 	//  vars_api auto_keep scripts varso
@@ -570,6 +683,7 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 
 		DOC_Title = "SET DOC Title";
 		DOC_Creator  = "SPOUT";
+		DOC_Creator_version  = "-1";
 
 	//	}; // Name
 	//	Export Name to API as struct PTR 
@@ -664,6 +778,17 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 
 };
 
+/*!
+	bool SPOUTER_test1( argv_decoder & ARGS )
+
+	 TEXT_BLOCK_HERE CMNT_TEXT
+
+	 // test1 creates an inst of test_SPOUT
+
+	 // SPOUTER // test_SPOUT // _t 
+
+	 // USES API %s.test1() || FAILED // IE OK IFNOT IF_OK()
+*/
 bool SPOUTER_test1( argv_decoder & ARGS )
 {
  	test_SPOUT SPOUTER;

@@ -27,6 +27,7 @@
 
 #include "SPOUT_ink_rgb.h"
 #include "SPOUT_XY.h"
+#include "GEN_PS.h"
 
 #define IF_NOT if(0) 
 
@@ -154,28 +155,20 @@ using namespace SPOUT;
 	ie then use whole decimal numbers ... maybe
 
 	It is also tricky to have { int ptsz; } ?
+
+	GEN_PS
+	GEN_Document // _t _pdf
 */
 class test_SPOUT_base // : public obj_ref
 {
  public:
-	buffer2 out;
+	// GEN_PS_t PS;
+	// NOW IN PS // buffer2 out;
 
-	buffer2 DOC_Title; // easier than STR1
-	buffer2 DOC_Creator; // SPOUT
-	buffer2 DOC_Creator_version; // -1
-	buffer2 DOC_; // easier than STR1
+//		GEN_DOC_ARGS_t DOC_ARGS;
+//		GEN_PAGE_t PAGE;
+		GEN_PS_t PS;
 
-	int pages;
-	int pg_no;
-
-	// GC PEN
-	
-	XY_t page_wh;
-
-	ink_rgb rgb;
-
-	bool in_path;
-	bool in_page;
 
 	bool list_end()
 	{
@@ -209,398 +202,15 @@ class test_SPOUT_base // : public obj_ref
 
 	test_SPOUT_base()
 	{
-		out.get_space( 1024 * 32 ); // 32K first malloc // out buffer
-		pages = 0;
-		pg_no = 0; // pg_no = idx = ITEM = N++ //
-		page_wh.set( 595, 842 );
-		in_path = false;
-		in_page = false;
-	}
-
-	bool comment( str0 cmnt ) {
-		return out.print("%% %s\n", (STR0) cmnt ); // with leading SP
-	}
-
-	bool cmd_line( STR0 fmt, ... ) {
-		va_list args;
-		va_start( args, fmt );
-		// into_utf8 = false // from what ? // meaning what ?
-		bool ok = out.vprint( false, fmt, args );
-		va_end( args );
-		out.put_LF();
-		return ok;
-	}
-
-	bool hdr_comment( STR0 fmt, ... ) {
-		out.put_byte('%');
-		va_list args;
-		va_start( args, fmt );
-		// false = conv_8859_to_utf8 // upgrade somehow
-		bool ok = out.vprint( false, fmt, args );
-		va_end( args );
-		out.put_LF();
-		return ok;
-	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
-	}
-
-	// dsc_
-	bool dsc_comment( STR0 fmt, ... ) {
-		// Document Structure Conventions
-		// % % NOSP Word 
-		// % % NOSP Word COLON SP ...
-		// COLON considered part of keyword
-		// cross refer to PPD PS printer desc
-		out.put_byte('%');
-		out.put_byte('%');
-		va_list args;
-		va_start( args, fmt );
-		// it needs a FILTER option to distinguish vprint
-		// false = conv_8859_to_utf8 // upgrade somehow
-		bool ok = out.vprint( false, fmt, args );
-		va_end( args );
-		out.put_LF();
-		return ok;
-	//	return out.print("%%%s\n", (STR0) cmnt ); // with leading SP
-	}
-
-	/*
-		%% name : SP value EOLN
-	*/
-	bool hdr_name_value( STR0 name, STR0 val ) {
-		INFO("%s: %s", name, val );
-		return dsc_comment("%s: %s", name, val );
-	}
-
-	bool hdr_blank_line() { return hdr_comment(""); }
-	bool cmd_blank_line() { return cmd_line(""); }
-
-	bool hdr_PageSize_device( XY_t & wh )
-	{
-		cmd_line("<</PageSize [ %d %d ]>> setpagedevice", (int) wh.x, (int) wh.y);
-		return true;
-	}
-
-	bool file_header()
-	{
-		// must know Pages == 2 before starting output!!
-		// TEMPLATE POSTSCRIPT suggested by groff template text
-		// example_ps // man -Tps ascii | less
-		// example_test_SPOUT_test1.ps // .pdf // GEN_POSTSCRIPT
-		// src/PLAY/GEN_SPOUT/GEN_SPOUT/eg_less_troff_
-		// viewer_show_example_template // man -Tps ascii | less
-	/* It says
-
-		%!PS-Adobe-3.0
-		%%Creator: groff version 1.22.4
-		%%CreationDate: Sun Nov  1 20:43:07 2020
-		%%DocumentNeededResources: font Times-Roman
-		%%+ font Times-Bold
-		%%+ font Courier
-		%%+ font Times-Italic
-		%%DocumentSuppliedResources: procset grops 1.22 4
-		%%Pages: 3
-		%%PageOrder: Ascend
-		%%DocumentMedia: Default 595 842 0 () ()
-		%%Orientation: Portrait
-		%%EndComments
-		%%BeginDefaults
-		%%PageMedia: Default
-
-	*/
-
-		// see page 617 of PLRM2
-		// Appendix G
-		// Document Structuring and Conventions 
-		// Version 3.0
-		// see 2.4.2.Program Structure
-		// see page 627 of PLRM2
-		hdr_comment("!PS-Adobe-3.0");
-
-		// PUTTING TO FRONT for a while
-		if(DOC_Title) {
-			hdr_name_value("Title", (STR0) DOC_Title );
-		}
-
-////		%%Creator: SPOUT version -1
-		dsc_comment("%s: %s version %s", "Creator", 
-			(STR0) DOC_Creator,
-			(STR0) DOC_Creator_version
-		);
-
-////		%%CreationDate: Sun Nov  1 20:43:07 2020
-		tm_parts tm;
-		hdr_name_value("CreationDate", (STR0)tm.str_pdf_now() );
-
-		// standard list of fonts // expand
-		hdr_name_value("DocumentNeededResources", "font Times-Roman");
-		dsc_comment("+ font Times-Bold");
-		dsc_comment("+ font Courier");
-		dsc_comment("+ font Times-Italic");
-
-		// hdr_name_value but decimal not string
-		dsc_comment("Pages: %d", pages );
-
-//		%%PageOrder: Ascend
-		hdr_name_value("PageOrder", "Ascend" );
-
-//		what is the extra 0
-//		%%DocumentMedia: Default 595 842 0 () ()
-		dsc_comment("DocumentMedia: Default %.0f %.0f 0 () ()", page_wh.x, page_wh.y );
-
-//		%%Orientation: Portrait
-		hdr_name_value("Orientation", "Portrait" );
-
-
-		// ASIDE dumpted here for vprint users
-		// double %% becomes % in vprintf // or use hdr2_
-		// hdr2_comments adds %% and /n // and vprint fmt
-		// hdr_comments adds % and /n // and vprint fmt
-// IF_NOT
-
-		hdr_name_value("LanguageLevel", "2" );
-
-		dsc_comment( "EndComments" );
-
-		cmd_blank_line();
-		dsc_comment( "BeginProlog" );
-		dsc_comment( "EndProlog" );
-		cmd_blank_line();
-		dsc_comment( "BeginSetup" );
-
-	// THIS ONE // set the page size
-		// "<</PageSize [ %d %d ]>> setpagedevice", page_wh.x, page_wh.y );
-		hdr_PageSize_device( page_wh );
-
-		dsc_comment( "EndSetup" );
-		cmd_blank_line();
-		return true; // or ask out if it has had mem errors
-
-		// Page
-		// BeginPageSetup
-		// EndPageSetup
-		// PageTrailer
+	//	PS.out.get_space( 1024 * 32 ); // 32K first malloc // out buffer
+		PS.DOC_ARGS.pages = 0;
+		PS.PAGE.page_no = 0; // page_no = idx = ITEM = N++ //
+		PS.PAGE.page_wh.set( 595, 842 );
+//		PS.PAGE.in_path = false;
+//		PS.PAGE.in_page = false;
 		
-		// Trailer
-		// EOF
+		// CTOR done elsewhere // PS( out );
 	}
-
-// RTFM says Page_begin or something
-
-	bool page_header( XY_t _wh, int pg_no )
-	{
-		page_wh = _wh;
-
-	/*
-		PLRM2 pg 628
-	*/
-
-#if 0
-
-		dsc_comment( "PageSize: [ %f %f ]", page_wh.x, page_wh.y );
-		cmd_line( "/PageSize [ %f %f ]", page_wh.x, page_wh.y );
-#endif
-
-		cmd_blank_line();
-		STR0 label = "PAGE_ONE";
-		if(pg_no == 1)
-			label = "PAGE_TWO";
-		dsc_comment( "Page: (%s), %d", label, pg_no );
-
-		hdr_blank_line();
-IF_NOT		dsc_comment( "PageBoundingBox: 0 0 %d %d",
-			(int) page_wh.x,
-			(int) page_wh.y );
-		dsc_comment( "BeginPageSetup");
-
-		// BEGIN PAGE CODE HERE
-
-		hdr_blank_line();
-		dsc_comment( "EndPageSetup");
-		hdr_blank_line();
-IF_NOT		dsc_comment( "BoundingBox: %d %d %d %d",
-			0, 0, (int) page_wh.x, (int) page_wh.y );
-IF_NOT		dsc_comment( "DocumentMedia: %d %d () ()", (int) page_wh.x, (int) page_wh.y );
-
-		dsc_comment( "EndComments" );
-		cmd_blank_line();
-//		dsc_comment( "BeginProlog" );
-		return true; // or ask out if it has had mem errors
-	}
-
-	bool times_ptsz( int ptsz )
-	{
-		STR0 fontname = "Times-Roman";
-		return
-		 out.print("/%s findfont %d scalefont setfont\n",
-		  fontname,
-		  ptsz
-		 );
-	}
-
-	bool parenth_text( str0 text )
-	{
-		if(!text) return PASS("but empty text");
-		out.print("(");
-		const char * S = (STR0) text;
-		while( char c = *S++ ) {
-		 switch(c) {
-		  case '(' :
-		  case ')' :
-		  	// no need if balanced
-			// \( \) if not
-			// I'm not counting them, zap them all
-		  	out.print("\\%c", c);
-		  break;
-		   default:
-		   	out.put_byte(c);
-		 }
-		}
-		out.print(")");
-		return true;
-	}
-
-	bool xy_cmd( XY_t & xy, STR0 cmd ) 
-	{
-		xy.xy_print_3d( out );
-		return out.print( "%s\n", cmd );
-	}
-
-	bool x_cmd( int x, STR0 cmd ) // x isnt x
-	{
-		return out.print( "%d %s\n", x, cmd );
-	}
-
-	bool cmd_word( STR0 word )
-	{
-		return out.print( "%s\n", word );
-	}
-
-	bool in_PATH() { return in_path; }
-	bool set_in_PATH() { return in_path = true; }
-	bool end_in_PATH() { return in_path = false; }
-	// called by closepath fill // NO auto-closepath.  no taa
-	// intended use WRITE_LIST_PATH _N_ array then call closepath fill
-	bool newpath()
-	{
-		if(!in_PATH()) {
-			set_in_PATH();
-		}
-		return cmd_word("newpath");
-	}
-
-	bool newpath_by_now()
-	{
-		/*
-			xy_moveto does NOT need this
-			xy_lineto does 
-		*/
-		// an AUTO newpath
-		if(!in_PATH()) {
-			return newpath();
-		}
-		return true;
-	}
-
-	bool stroke()
-	{
-		return cmd_word("stroke");
-	}
-
-	bool xy_lineto( XY_t & xy ) 
-	{
-		newpath_by_now(); // extra tracer
-		return xy_cmd( xy, "lineto" );
-	}
-
-	bool xy_moveto( XY_t & xy ) 
-	{
-	//	newpath_by_now(); // AUTO GEN newpath() // call now
-	//	but no need for MOVE ?
-		return xy_cmd( xy, "moveto" );
-	}
-
-	bool xy_str( XY_t & xy, STR0 str ) 
-	{
-	//	newpath_by_now(); // AUTO GEN newpath() // call now
-	//	but no need for MOVE ?
-		xy_cmd( xy, "moveto" );
-		text_show( str );
-		return true;
-	}
-
-	bool setlinewidth( int lw )
-	{
-		return x_cmd( lw, "setlinewidth" );
-	}
-
-	bool setrgbcolor( float r, float g, float b )
-	{
-		return out.printf("%4.2f %4.2f %4.2f setrgbcolor\n", r, g, b ); 
-	}
-	bool setrgbcolor( ink_rgb & rgb )
-	{
-		return setrgbcolor( rgb.r, rgb.g, rgb.b ); 
-	}
-
-	bool text_show( str0 text )
-	{
-		parenth_text( text );
-		out.print(" show\n");
-		return true;
-	}
-
-	bool no_showpage_but_begin_first_page() { return showpage(); }
-
-	bool showpage()
-	{
-		pg_no = pages ++ ; // MATCH idx = N ++ // scope
-		// pg_no == 0 or more u24 or u4 or see item_expr
-		static bool FOUND_FIRST_showpage = false;
-		if( FOUND_FIRST_showpage ) {
-			cmd_word("showpage");
-		} else {
-			FOUND_FIRST_showpage = true; // but dont send it
-		// NO	cmd_word("showpage"); // no previous to send
-		/*
-			The API says to call this for the first page
-			without any showpage actually being emitter
-
-			You could also call 
-			PAGE_PLUS_ON_SHOWPAGE();
-
-			At the end of every page, call showpage()
-			Before the zero_th call pre_call
-
-				ARGV 
-
-				CODE
-			
-		*/
-		// COMPILE // VECTOR_CALLED_on_SIGNAL // ACTION
-		}
-		pages_plus_on_showpage(); // AUTO CONNECT bool plumbing //
-		return true;
-	}
-	bool pages_plus_on_showpage() { return on_showpage(); }
-	bool on_showpage()
-	{
-		if(!page_header( page_wh, pg_no )) return FAIL_FAILED();
-		return true;
-		/*
-			The previous PAGE has finished
-			maybe some cache builders mid flow
-
-		*/
-	}
-
-	bool write_to_stdout()
-	{
-		write(1, out.buff, out.nbytes_used);
-		return true;
-	}
-
-	bool	closepath() { return cmd_word("        closepath"); }
-	bool	fill() { return cmd_word("fill"); }
 
 // --------------------------------------------------------- //
 
@@ -618,9 +228,9 @@ IF_NOT		dsc_comment( "DocumentMedia: %d %d () ()", (int) page_wh.x, (int) page_w
 	}
 
 	/*!
-		strange_name is a test script
+		TEST: write TEXT to file, call pdfview
 	*/
-	bool write_normalise_pdf_view()
+	bool write_normalise_pdf_view() // get .out TEXT
 	{
 		STR0 BASENAME = "/tmp/test1_tmp";
 		dir_name_ext f_name;
@@ -634,21 +244,30 @@ IF_NOT		dsc_comment( "DocumentMedia: %d %d () ()", (int) page_wh.x, (int) page_w
 		name_2.printf("2.ps");
 		name_3.printf("3.pdf");
 
-		blk_write_to_file( out, (STR0) name_1 );
+		// save blk as PS file
+		PS.write_to_file( (STR0) name_1 );
 
+		// shared cmd ARGV as STR0
 		buffer2 cmd;
+
+	 if(0) { // test normalising PS though some
 		cmd.print("ps2ps %s %s", (STR0) name_1, (STR0) name_2);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
+	}
 
+	 if(1) { // gen PDF
 		cmd.clear();
 		cmd.print("ps2pdf %s %s", (STR0) name_1, (STR0) name_3);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
+	}
 
+	 if(0) { // view PS ascii
 		cmd.clear();
 		cmd.print("cat %s", (STR0) name_1);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
+	 }
 
-	 if(0) {
+	 if(1) { // view PDF pages
 		cmd.clear();
 		cmd.print("mupdf %s", (STR0) name_3);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
@@ -667,8 +286,8 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
  public:
 	bool test1()
 	{
-		page_wh.set( 50, 30 ); // set page size before
-		page_wh.set( 594, 841 ); // just shy of ...
+		PS.PAGE.page_wh.set( 50, 30 ); // set page size before
+		PS.PAGE.page_wh.set( 594, 841 ); // just shy of ...
 	// do this at END of document first !!
 	// KEEP vars_api of SCRIPT
 	//  vars_api auto_keep scripts varso
@@ -679,11 +298,11 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 	//     Name {
 
 		// magic opinion Pages == 2
-		pages = 2;
+		PS.DOC_ARGS.pages = 2;
 
-		DOC_Title = "SET DOC Title";
-		DOC_Creator  = "SPOUT";
-		DOC_Creator_version  = "-1";
+		PS.DOC_ARGS.DOC_Title = "SET DOC Title";
+		PS.DOC_ARGS.DOC_Creator  = "SPOUT";
+		PS.DOC_ARGS.DOC_Creator_version  = "-1";
 
 	//	}; // Name
 	//	Export Name to API as struct PTR 
@@ -695,7 +314,7 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 	// BECAUSE pages == N_total after last alloc done and dusted
 	//
 
-		if(!file_header()) return FAIL_FAILED();
+		if(!PS.file_header()) return FAIL_FAILED();
 	// PROVIDE {
 	//   	callable_get_file_header() {
 			// PRESUME INIT DONE and called from MAIN CALL
@@ -712,18 +331,17 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 //-or-	// VOCABU += PHRASE TOP_OF_NEW_PAGE Layout
 	// }
 
-		if(!no_showpage_but_begin_first_page()) return FAIL_FAILED();
-	//	if(!page_header( page_wh, ++ )) return FAIL_FAILED();
+		if(!PS.no_showpage_but_begin_first_page()) return FAIL_FAILED();
+	//	if(!page_header( PAGE.page_wh, ++ )) return FAIL_FAILED();
 
-		if(!list_end( /* page_wh, pg_no */ )) return FAIL_FAILED();
+		if(!list_end( /* PAGE.page_wh, PAGE.page_no */ )) return FAIL_FAILED();
 
-		comment("This is a comment");
-		times_ptsz( 20 );
+		PS.comment("This is a comment");
+		PS.times_ptsz( 20 );
 
-		newpath();
-		setrgbcolor( rgb.set_green() );
-		setrgbcolor( rgb.set_blue() );
-		setrgbcolor( rgb );
+		PS.setrgbcolor( PS.PAGE.rgb.set_green() );
+		PS.setrgbcolor( PS.PAGE.rgb.set_blue() );
+		PS.setrgbcolor( PS.PAGE.rgb );
 		// want the above 3 cached
 		// list_end() style // 
 		// next command does goto_its mode // clears previous mode
@@ -733,42 +351,45 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 		// flush now or later
 		// for now avoid repeat calls
 
-		XY_t BL( 0,         0 );
-		XY_t TR( page_wh.x, page_wh.y ); 
-		XY_t BR( 0,         page_wh.y );
-		XY_t TL( page_wh.x, 0 );
+		PS.setlinewidth( 10 );
 
-		xy_moveto( BL );
-		xy_lineto( TR );
-		xy_lineto( BR );
-		xy_lineto( TL );
+		XY_t BL( 0,         0 );
+		XY_t TR( PS.PAGE.page_wh.x, PS.PAGE.page_wh.y ); 
+		XY_t BR( 0,         PS.PAGE.page_wh.y );
+		XY_t TL( PS.PAGE.page_wh.x, 0 );
+
+		PS.xy_moveto( BL );
+		PS.newpath();
+		PS.xy_lineto( TR );
+		PS.xy_moveto( BR );
+	//	PS.xy_lineto( BR );
+		PS.xy_lineto( TL );
 #if 0
 		// last point is the first // becomes closed loop
-		xy_moveto( BL );
+		PS.xy_moveto( BL );
 #else
 		// last point is the first // becomes closed loop
-		closepath(); // CALL it NOW
+		PS.closepath(); // CALL it NOW
 #endif
-		setlinewidth( 10 );
-		stroke();
+		PS.stroke();
 
-		newpath();
+		PS.newpath();
 
 		XY_t XY_20_20(30, 30);
 		XY_t XY_30_30(30, 30);
 		XY_t XY_30_15(30, 15);
-		xy_str( XY_30_30, "PAGE ONE"); // page[1] //
-		times_ptsz( 10 );
-		xy_str( XY_30_15, "with backslash-ed parenths () ");
+		PS.xy_str( XY_30_30, "PAGE ONE"); // page[1] //
+		PS.times_ptsz( 10 );
+		PS.xy_str( XY_30_15, "with backslash-ed parenths () ");
 
-		showpage();
-		page_wh.set( 30, 50 ); // set page size before
+		PS.showpage();
+		PS.PAGE.page_wh.set( 30, 50 ); // set page size before
 
 		// newpath(); // somewhere_API PATH_name.CTOR( CTXT, CODE, DATA )
 		// { XY_TREE } // STEP = { XY ID } // ID = idx_of_step_in_list //
-		times_ptsz( 20 );
-		xy_str( XY_20_20, "PAGE2 TWO");
-		showpage();
+		PS.times_ptsz( 20 );
+		PS.xy_str( XY_20_20, "PAGE2 TWO");
+		PS.showpage();
 
 	//	if(! out.print("THIS IS TEXT\n") ) return FAIL_FAILED();
 	//	if(! write_to_stdout() ) return FAIL_FAILED();
@@ -776,7 +397,8 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 		return true;
 	}
 
-};
+}; // class
+using namespace SPOUT;
 
 /*!
 	bool SPOUTER_test1( argv_decoder & ARGS )

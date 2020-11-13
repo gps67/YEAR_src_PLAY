@@ -3,6 +3,10 @@
 
 namespace SPOUT {
 
+// light adds up to white
+// ink adds up to black
+// or this is completely wrong ...
+
 struct ink_rgb
 {
 	float r;

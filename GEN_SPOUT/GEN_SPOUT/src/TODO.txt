@@ -1,0 +1,16 @@
+
+	GEN_PS must parse AFM or something (eg use FT2's metrics)
+	so struct FONT_ += name += AFM_metrics
+	maybe use PSG to parse AFM into a loadable binary (segment||struct)
+
+	SPOUT needs to also do
+
+		PS -> pdf
+		SVG
+		HTML_canvas
+		X11_pixmap -> png | jpg | xxx
+		gdk gtk
+		W32_drawable
+		GL_thing
+		SDL2
+		SVGA_framebuffer

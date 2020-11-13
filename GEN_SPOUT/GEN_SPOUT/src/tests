@@ -1,0 +1,2 @@
+set -x
+gs -sDEVICE=nullpage -dNOPAUSE -c save pop -f /tmp/test1_tmp1.ps  -c quit

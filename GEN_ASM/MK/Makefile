@@ -78,11 +78,10 @@ run_test1: $(EXEC1)
 	./$(EXEC1)
 
 run_test2: $(EXEC2)
-	./$(EXEC2) # "GEN_DOC GEN_PS GEN_SVG"
+	./$(EXEC2) $(test2_font)  P # "Sample Text To Parse"
 
 ifeq (1,0)
 # we no-longer link it - the MK_SUFFIXES .o.exec does
-# It uses .. duuno ... vars ...
 $(EXEC1): $(OBJS) $(PROG1).o
 	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
 

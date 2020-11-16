@@ -1,0 +1,4 @@
+
+	line.char // text pos in file
+	@x,y // pixel pos within .text frame
+	end # append to end

@@ -1,0 +1,42 @@
+#!/usr/bin/env tclsh
+
+package require Tk
+
+set font1 {Courier 12 bold}
+set font1 {Courier 12}
+set font1 {Courier 18}
+
+set t .t
+text $t -font $font1
+pack $t -fill both -expand 1
+
+set text [clipboard get]
+
+# TODO FIND OUT WHY every second word kept
+# FILTER REWRITE as "All the words here"
+$t insert end  "\n"
+$t insert end  "\n"
+$t insert end  $text
+# copy input text to output text // widget text panel 
+$t insert end  "\n"
+$t insert end  "\n"
+$t insert end  "\n"
+$t insert end  "\n"
+$t insert end  "# EOF #"
+
+set w 60
+set h 20
+# set h [winfo reqheight $t ]
+puts [$t configure ]
+$t configure -height $h
+
+# char -vs- pixels
+# set w [winfo reqwidth $t ]
+puts "w $w"
+puts "h $h"
+set w 60
+set w [expr $w * 2] ;# why why why
+$t configure -width $w
+# puts [$t configure ]
+
+

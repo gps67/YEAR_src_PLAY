@@ -21,12 +21,21 @@ namespace SPOUT {
 
 	int pages;
 
+	// CTOR //
+    	GEN_DOC_ARGS_t()
+	: pages(0) // page count
+	{
+		pages = 0;
+	}
+
     };
 
     // PAGE variables and FGBG and ...
     //
     struct GEN_PAGE_t {
 
+	// the hidden binary page number, not the displayed page number
+	// eg index i ii iii 
 	int page_no;
 
 	// SURFACE ATTRS xy 
@@ -45,6 +54,11 @@ namespace SPOUT {
 	// COMMON USE path builder // vars
 
 	bool in_page;
+
+	GEN_PAGE_t()
+	: page_no(0)	// maybe move this next to pages _count total ?
+	{
+	}
 
     }; 
 

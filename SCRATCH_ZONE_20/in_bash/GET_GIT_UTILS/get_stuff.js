@@ -6,6 +6,8 @@ PATH=$HOME/bin:$PATH
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
 
 L1="
+https://github.com/libjpeg-turbo/libjpeg-turbo
+https://github.com/Ahiknsr/X11clippy
 https://github.com/AssemblyScript/examples
 https://github.com/AssemblyScript/assemblyscript
 https://github.com/AssemblyScript/website

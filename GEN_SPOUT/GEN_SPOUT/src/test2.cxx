@@ -72,6 +72,47 @@ using namespace SPOUT;
 			field_name //_t STRING_TOKEN // str1 or buffer or ...
 			field_value //_t DATA
 
+		GEN_FONT { glyph_t & glyphs[CSET]; // complex CSET_ARRAY // }
+		// PSG MATCH ...
+		// glyph_t & glyph = glyphs[idx] // idx = TABLE[ BYTE ] 
+		// idx_t idx // auto_t varname // alias LHS RHS {CODEPOINT}
+		// CSET_INFO_t CSET_INFO // ASCII_CTRL _ASCII_GLYPH UTF8_GLYPH
+		// ASCII_CTRL
+		//_ASCII_GLYPH
+		// ASCII_CSET // CSET_t {CSET} // KEY_NAME // sparse_vars 
+		// 8859_CSET // CSET_t {CSET} // KEY_NAME // sparse_vars 
+		// CSET_TABLE // TABLE[idx] => OBJ { ... }
+		// UTF8_GLYPH // draw {SCRIPT} {ARGV} {VARS}
+		// 8859_GLYPH // LEX IDENT STARTES WITH DIGIT // pfx_NNNN_rhs
+		// UTF8_GLYPH_SUBSET // draw {SCRIPT} {ARGV} {VARS} // is_a_font
+		// FONT_GLYPH // FT2_INFO // 
+
+		GEN_DRAW { DIAG_t DIAG } {
+		 // uses VARS // autoimport via here attachment point
+		 // join SCOPE // SELF + CTXT + IMPORT + STO + CONNECT + CALL
+		 // 
+		}
+
+		GEN_SPOUT_Glyph {
+		 # FONT # FONT_METRIC #
+		 # TABLE ASCII_8859_UTF8_CSET_used
+		 # TABLE PARSER_TOKEN MODULE {module}
+		 # TABLE SEGMENT_TOC
+		 # TBL SEGMENT_IDX_DATA_SPEC # DATA = N_BYTES_STO
+		 # LEX OPT # u8 bytes[N] # BIND = by_placement( N_BYTPES_STO { N BYTES }
+		 # API #
+		 # FUNC_is_a_form_of_TABLE
+		 gylph_t & glyph = font.select_glyph(idx) // _alias //
+		 #
+		 # DRAW #
+		 OK == draw at  VARS // 
+		 // VARS += XYZ DRAWABLE FGBG SURFACE SEGMENT SPEC
+		 draw glyph at XYZ on SURFACE -etc- VARS
+		 enq attr of glyph # ascent descent tick baseline_0 ...
+		
+		}
+
+
 	test_SPOUT is not on the heap
 	so it uses N++ Alloc PRE_ALLOC
 

@@ -1,0 +1,485 @@
+tcl_OBJ/tcl_OBJ.txt
+// RUNTIME DATA = Tcl_obj_t = { N_bytes_STR_VAL refcount Tcl_ObjType PTR1 PTR2 ) 
+
+generic/tclInt.h:
+
+	TODO AUTO FOREACH Type "ByteCode"
+
+		CREATE ROM NAME "ByteCode" IDX=NAME += " idx = NAME "
+
+		CREATE DIAG per NAME or VIEW LIST
+
+		C_DECL explain_t DIAG; // ARGV // sweep code foreach //
+
+		DRAW FIELD
+		+=== FIELD =========== // lex label borrows window frame
+		+-----+ // optioins available DRAW options LOGIC options
+		|VALUE|
+		+-----+
+
+		# src/tcl/tools/mkVFS.tcl # TODO
+
+// RUNTIME DATA 
+	Tcl_obj * obj = {
+	 refcount		// REF // ref_Count // REF_INCR REF_DECR ON_ZERO
+	 bytes			// N_bytes_STR_VAL // N_bytes_t N_bytes;
+	 length
+	 Tcl_ObjType * typePtr	// typename = { CODE_POINT LHS RHS } // HERE
+	 PTR1			// "u64_lhs"
+	 PTR2			// "u64_rhs"
+	}
+	 // CODE_POINT		// HERE
+	 ON_ZERO() {
+	 	call DTOR( tcl_obj, CTXT, "dgb_t dgb = HERE(tcl_obj_self)" )
+	 }
+
+// RUNTIME DATA DIAG
+
+	Tcl_obj_t = {
+	 u64 refcount 	"2"	
+
+	 bytes_t
+	  bytes			//
+	 N_bytes_t
+	  N_byte;
+	 bytes = N_bytes_STR_VAL // "u48 xFFFF_FFFF_FFFF u16__FFFF"
+	 // with VALUE = KEY("idx_SELF") VALUE = "u64_as_u48_u16_ROM_DECODER_t"
+
+	 Tcl_ObjType		// typename = { CODE_POINT LHS RHS } // HERE
+	 PTR1			// "u64_lhs"
+	 PTR2			// "u64_rhs"
+
+	}
+	 // CODE_POINT		// HERE
+	 ON_ZERO() {
+	 	call DTOR( tcl_obj, CTXT, "dgb_t dgb = HERE(tcl_obj_self)" )
+	 }
+ 
+ 
+
+MODULE_SCOPE const Tcl_ObjType tclBignumType;
+MODULE_SCOPE const Tcl_ObjType tclBooleanType;
+MODULE_SCOPE const Tcl_ObjType tclByteArrayType;
+MODULE_SCOPE const Tcl_ObjType tclByteCodeType;
+MODULE_SCOPE const Tcl_ObjType tclDoubleType;
+MODULE_SCOPE const Tcl_ObjType tclIntType;	// deprecated V9
+MODULE_SCOPE const Tcl_ObjType tclListType;
+MODULE_SCOPE const Tcl_ObjType tclDictType;
+MODULE_SCOPE const Tcl_ObjType tclProcBodyType;
+MODULE_SCOPE const Tcl_ObjType tclStringType;
+MODULE_SCOPE const Tcl_ObjType tclEnsembleCmdType;
+MODULE_SCOPE const Tcl_ObjType tclRegexpType;
+MODULE_SCOPE       Tcl_ObjType tclCmdNameType;
+
+MODULE_SCOPE const Tcl_ObjType tcl Bignum
+MODULE_SCOPE const Tcl_ObjType tcl Boolean
+MODULE_SCOPE const Tcl_ObjType tcl ByteArray
+MODULE_SCOPE const Tcl_ObjType tcl ByteCode
+MODULE_SCOPE const Tcl_ObjType tcl Double
+MODULE_SCOPE const Tcl_ObjType tcl Int
+MODULE_SCOPE const Tcl_ObjType tcl List
+MODULE_SCOPE const Tcl_ObjType tcl Dict
+MODULE_SCOPE const Tcl_ObjType tcl ProcBody
+MODULE_SCOPE const Tcl_ObjType tcl String
+MODULE_SCOPE const Tcl_ObjType tcl EnsembleCmd
+MODULE_SCOPE const Tcl_ObjType tcl Regexp
+MODULE_SCOPE       Tcl_ObjType tcl CmdName
+
+ N_STR( nn, obj_value_name )
+
+ tcl_obj_type == ext_tcl_obj_type
+
+ PTR1 = u48_u16
+ PTR2 = u48_u16
+
+const Tcl_ObjType ext_tcl_obj_type = {
+    "ext_tcl_obj_type",
+    Free_OBJ_InternalRep,                /* freeIntRepProc */
+    Dup_OBJ_InternalRep,                 /* dupIntRepProc */
+    UpdateStringOf_OBJ_,                 /* updateStringProc */
+    Set_OBJ_FromAny                      /* setFromAnyProc */
+   // <- ADD FIELDS HERE --> // if that is possible
+   // _OBJ_ class fields here //
+   // ie pointer to class_var_pool
+   // u8 idx; // of type in _OBJ_type_list // 8 allowed at toplevel //
+   // then self tagging, eg PSG generates chains of BYTE TAG idx
+   //
+};
+
+	Tcl organisation of type core is awful
+	see src/tcl/generic/tcl.h LINE:751 Tcl_ObjType
+	see src/tcl/generic/tcl.h LINE:751 Tcl_ObjType see below
+
+	Tcl regen of N_str is great
+	_OBJ_ can use fixed function for several classes
+	FAST is_OBJ_ext_type 
+	FAST _OBJ_ext_idx 
+
+RULE every Tcl obj is read only 
+
+	break this with OBJ is field modifyable
+	compromise with OBJ . string value is KEY ID within TABLE
+	thats a bit like an external SQL storage with local keys
+	except the key and data are in the same TCL OBJ
+
+NEED 16 new obj types
+
+	1 might be enough, but loads is also good
+	16 is a reasonable thing
+	nb speed of sweeping array[16] of u64_PTR_to_objType is OK ish
+	nb speed of sweeping array[32] of u64_PTR_to_objType is OK ish
+		ie the list includes NULL and the builtin types
+		0 == NULL
+		1 == builtin
+		14 : ext avail
+	
+	Maybe use first / last range checking
+
+KNOW obj is an extension
+
+	could check single ATTR == func pointer
+	rarely used function, or one that needs VTBL lookup anyway
+
+	shame that obj_type does not have extra field SUITE
+	shame tha python has no space for even 1 extra byte
+
+EXTRA DATA on obj_type
+
+	I dont think obj_type is COPIED (could read the code to check)
+	or will be in the future
+
+	You cant access it BEFORE checking obj is an extension type
+	but after that you can 
+
+	This also releases us from PIC or RIP_relative addressing
+
+	CLASS_VAR 
+	obj->type->EXTRA_DATA_FIELD // require obj_type_SUITE_fact
+
+CTXT is fast var
+
+	CTXT = cpu_var_CTXT
+		// DONE
+
+	CTXT = global_var || PIC var || MODULE var || 
+		mov.u64 EA = 0xFFFF_FFFF_FFFF_FFFF // not too slow elf poked
+
+		using a const u64 in code requires ELF to poke
+		a lot of code pages, scattered everywhere, // ROM + adj load ?
+
+		jsr local_module_copy
+		mov.u64 EA = 0xFFFF_FFFF_FFFF_FFFF // not too slow elf poked
+		ret
+
+		reduces the number of MMAP pages hit, adds , needs SYNTAX not C
+
+
+
+	CTXT -> main_var_name -> STRUCT_FIELD
+
+		S_ADDR = (u64) *((CTXT + offs(main_var_name))
+
+			mov.u64 B = *(A+offs)
+
+		F_VALUE = (u64) *((S_ADDR + offs(_FIELD))
+
+			mov.u64 C = *(B+offs)
+
+		F_ADDR = S_ADDR + offs(_FIELD_in_STRUCT)
+
+			C = B+offs
+
+		CTXT = cpu_var_CTXT
+		add offS(CTXT,main_var_name)
+		(u64) DEREF_PTR_to_u64
+		add offs(STRUCT,_FIELD)
+
+		IS/GOT/HAVE EA_FIELD
+	
+	eg obtain array of 16 pointers, all in CTXT
+
+		mov.u64 B = CTXT + offs_TABLE_1
+		mov C = 16 ; // expect FULL match withlin list
+		mov D = idx = -1
+		LOOP C--
+		 idx ++
+		 cmp OBJ_TYPE *B ++
+		 -or-
+		 cmp OBJ_TYPE CTXT->offs[idx] 
+		 IS_SAME
+		 	need to know INFO[idx] from TABLE_2
+			the idea is to profile, counting most often used
+			maybe TABLE_2 does that
+			goto found
+		 IS_DIFF
+		 IS_MORE
+		 IS_LESS
+		 	next
+		absent:
+			coding error
+			all types are in list
+			presume it's another extension
+			(add it to list)
+
+MINI RANGE of TYPES
+
+ STRUCT of type (PTR1==SPEC)
+ 	name offs type value ;// value is Tcl_Object *
+
+ 	name offs type value ;// value is C 
+
+	type_of_STRUCT is 
+
+		unknown, ...
+
+		list of known fields at [idx]
+		list of pairs (name, value) // extension added b
+
+		name gets normalised, to same obj *
+		on_fail, on_slow_match, on_new_name
+
+
+ 	PTR1 = SPEC || per 
+	PTR2 = STO
+
+ TOKEN // name == "name" or xFFFF or "SPACE:name"
+
+ 	PTR1 = SPACE
+	PTR2 = NAME
+ -or-
+ 	PTR1 = NAME
+	PTR2 = BIND
+ -or-
+ 	PTR1 = NAME // BODY_is_ATTR_IDX // ALIAS "item_id" // ALIAS "id"
+	PTR2 = LINK = u64_
+-or-	PTR2 = LINK = u64_eight_byte_expr_ NEAR CODE_POINT_HERE
+	// CODE_POINT_HERE brings script machines in these texts
+	// SO CAN DECLARE API // DECLARE API.C_function // ansi_prototype
+	// CLAIM NAMESPACE // namespace BLIND_LOGIC // namespace GEN // ASM
+ -or-
+ 	PTR1 = LHS // "lhs" from source
+	PTR2 = RHS // "rhs" from source
+ -or-
+ 	PTR1 = NAME // BODY_is_ATTR_SELF // ALIAS "bytes" // ALIAS "nbytes"
+	PTR2 = DATA
+ -or-
+ 	PTR1 = pointer to STRUCT { SPACE NAME BIND CACHE } // += SPEC(spec_data)
+	// ALIAS // TOKEN HERE __init__ { SPEC_T SPEC; // SPEC_of_bytes _N_avail
+	// AVAIL // ALIAS SPEC_of_N_bytes // via %s_of_%s_%s // %
+	// SPEC = SPEC
+	// N = N
+	// bytes
+	N_bytes_t bytes
+	PHRASE_t PHRASE = COMMENT // SCRIPT gets told CODE_POSN csr_in_ROM
+	// CODE_POINT // SCRIPT_ITEM_in_phrasebook_maybe_with_datapoint
+	// COMPILER can access EXPR POOL
+
+ CODE_POINT = LOCN
+ CODE_POINT = PAIR_SPEC_DATA = DATA_SPEC = DIALECT PWD/filenane/seek_u48
+ CODE_POINT = PAIR_SPEC_DATA = DATA_SPEC = DIALECT PWD/filenane/addr_u48
+ 	// seek == pos in file
+	// addr == pos in SEGMENT // u48_payload // %s_%s // looks_like{type var}
+	// type == u48 before_shift_after // u48_u16 // VAL = WORD.VAL // ALIAS
+	// type == u48 before_shift_after // u48_u16 // VAL = WORD >> 16
+
+		{ VAL = WORD.VAL } bounces SCOPE ITEM
+
+		PAIR { LHS RHS } is really
+		TRIP { HERE LSH RHS } // SCRIPT creates MACHINE_on_DATA
+		// MACHINE // LOCN_t LOCN = HERE // OPTIONALLY MATCH RUN_CODE
+		// EA SCRIPT EXPR
+		// EA bytes EXPR
+		// EA STEP // of SCRIPT // ? merge to here via IMPORT += each
+		// HERE = COPDE_POINT in SCRIPT on STACK with RUNTIME_DATA
+		// RUNTIME DATA = Tcl_obj_t = { NAME 
+		// RUNTIME DATA = Tcl_obj_t = { VALUE_str refcount type PTR1 PTR2 ) 
+
+ 	SCOPE += LOCAL CODE
+
+ LOCN == TOKEN ...
+ // associated DATA to TOKEN // SPEC_t TOKEN DATA_t DATA // register ID new here
+
+	LINKAGE 
+	FACTORY
+	 Tuplo
+	 Storage
+	 Machine
+	 API
+
+	  Tuplo SCRIPT uses LINKAGE TOKEN to CODE + DATA
+	  ARGV is a dialect of { CODE + DATA }
+	  PAIR can be a Tcl_Obj ROM_ADDR_paired_with_RUN_DATA // STO
+	  PAIR name bytes
+	  PAIR name "type_t" // Name_t Name; // 
+
+	  MATCH 
+	  ARGV
+	   ARGC==2 // is_PAIR
+		is a container
+		with
+			TABLE_ONE
+			TABLE_TWO
+			TABLE_ALL
+		// bunch of Tcl_Obj_t
+		// or non_tcl PTR1 PTR2 // ie this is an optimisation
+		// when ARGC == 2 ARGV == { PTR1 PTR2 } += meta_info_on_this
+		// optimisation step = use { PTR1 PTR2 } via rename { SPEC SPEC }
+		// optimisation step = fits in a PAIR = fits in a Tcl_Obj
+
+
+ TOKEN name of STRUCT.name
+
+	CACHE.lookup_field_name
+
+	 on_first_use: GEN PHRASE + DATA_nbytes allon in THIS
+
+	 PTR1 = GEN_PHRASE
+	 PTR2 = DATA_nbytes // SPEC=PTR1.get_SPEC_of_DATA_nbytes
+	 // _as_nbytes
+	 // _as_GEN GEN_of_DATA_N_bytes // ALIAS bytes // STO //
+	 // _as_GEN GEN_of_GEN_t; // local ALIAS SPEC // SPEC //
+
+
+ IDX = TOKEN N++ DATA_ITEM // Tcl_Obj * DATA_ITEM //
+ IDX = TOKEN N++ DATA_ITEM // Tcl_Obj * DATA_ITEM // malloc_Tcl_Obj // NOT
+
+ 	API says it provides the u64 ADDR for Tcl_Obj * // not malloc tho!
+	// we defer to it's malloc story, but add our callbacks in
+	// REF_INCR() REF_DECR() applied to all stored items // &ARGV
+
+	API promises PTR is ROM_STR _which_parses_to_ SIMPLE_TYPE
+
+		OBJ_is_a_VAR name
+		OBJ PAYLOAD // u48 get() set(u48) // proper addresses shifted
+
+	API ALLOC{ idx = N ++ } 
+
+ 	NSTR_t = N_STR0_t "VALUE" // %s // %s_%s expr args //
+
+-or- "VALUE" i; u8 BYTES[16];
+
+	"lookup( '%s' )" // any complexity of NBYTES // early NUL simplifies
+	u8 BYTES[16]; // or PTR1 PTR2 or ... union ...
+
+-or- "key nul VALUE" PTR1PTR2
+
+	OPTION bytes = VALUE = { "xFFFF_tag" nul n_remain_bytes }
+
+		PAYLOAD = n_remain_bytes 
+		PTR1 = OBJ here_or_there
+		PTR2 = SPEC 
+
+		 OBJ can now be Tuplo held in VALUE 
+		 PTR1 Tuplo_DATA
+		 PTR2 SPEC || CODE || POS || CSR || LOST
+
+		Key stays the smae
+		DATA is VOLATILE
+		PTR1 
+		PTR2 also available
+
+		BYTES_16 {
+		 u48_u16 lhs
+		 u48_u16 rhs
+		}
+		// PARSE // u48_u16 _t dropped and still clear no confusion
+		// STYLE // "%s_t %s typename_t( varname )" (%s) // CALL
+
+		DIALECT u48_payload is EA shifted onto u16_OPCODE
+		OPCODE was created with VAR_POOL NAME = VALUE
+		OPCODE gets CLASS_VAR  "var" VAR_POOL // lookup token
+
+		BYTES_16 {
+		 PTR1
+		 PTR2
+		}
+
+MMAP DATA
+
+	refCount
+*	bytes
+		"VALUE" n BLOB
+	length
+		// upto end of BLOB
+	
+* 	typePtr "VALUE_n_BLOB"
+	PTR1PTR2
+
+	typePtr
+		TEXT_OF_VALUE_n_BLOB
+	PTR1PTR2
+		PTR1 -> BLOB
+		PTR2 == CACHE_INFO // unused ATM
+
+ 	
+see src/tcl/generic/tcl.h LINE:751 Tcl_ObjType see below
+
+	# SUBLEX INDENT PRINTER # SP SP # means align_right
+
+typedef struct Tcl_ObjType {
+    const char *name;
+
+    Tcl_ FreeInternalRepProc *   freeIntRepProc;	free
+    Tcl  _DupInternalRepProc *    dupIntRepProc;	dup
+*   Tcl_    UpdateStringProc * updateStringProc;	updateString
+    Tcl_      SetFromAnyProc *   setFromAnyProc;	setFromAnyProc
+
+} Tcl_ObjType;
+
+
+
+		
+
+typedef struct Tcl_ObjType {
+    const char *name;           /* Name of the type, e.g. "int". */
+    Tcl_FreeInternalRepProc *freeIntRepProc;
+                                /* Called to free any storage for the type's
+                                 * internal rep. NULL if the internal rep does
+                                 * not need freeing. */
+    Tcl_DupInternalRepProc *dupIntRepProc;
+                                /* Called to create a new object as a copy of
+                                 * an existing object. */
+	should set obj->typePtr // or NULL for plain string // might compile
+    Tcl_UpdateStringProc *updateStringProc;
+                                /* Called to update the string rep from the
+                                 * type's internal representation. */
+    Tcl_SetFromAnyProc *setFromAnyProc;
+                                /* Called to convert the object's internal rep
+                                 * to this type. Frees the internal rep of the
+                                 * old type. Returns TCL_ERROR on failure. */
+} Tcl_ObjType;
+
+
+		
+
+    Tcl_ FreeInternalRepProc *   free (obj)
+    Tcl  _DupInternalRepProc *   dupIntRepProc;	dup (src,destj)
+e   Tcl_    UpdateStringProc *   updateString (obj)
+    Tcl_      SetFromAnyProc *   setFromAnyProc (interp,obj)
+
+xFFn
+xFFFFFFn
+xFFFF_FFFF_FFFF xFFFFnnn0000nnnn [22] round up to [32]
+
+USAGE
+	GET $obj $fieldname 
+	SET $obj $fieldname $value
+
+	CALL $obj $funcname $ARGV
+	CALL $obj $funcname A R G V
+
+	APPEND $obj $fieldname strings
+	LAPPEND $obj $fieldname ITEMS
+
+	no_coprocess_start_step_stat
+
+EXTRAS
+	_CTOR_
+	_DTOR_
+	_SHUT_ // DTOR but not DTOR // close fd's // free mem // zero out
+	_COPY_
+
+USAGE
+	Some of the data can be in a file as-is
+	Some cannot be, because PTR to mem
+

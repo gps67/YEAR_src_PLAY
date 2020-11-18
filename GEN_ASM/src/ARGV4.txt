@@ -1,0 +1,13 @@
+WIN64 (?) says 4 parameters, like it or not
+So pass the same 4 through the stack, like a snake
+those vars at every shoulder
+
+nb keeping 4 in registers, is different, return side effects, resume aswas
+nb floats messes it up, same idx different column, clash masked
+
+DIAG
+
+LINK
+
+
+

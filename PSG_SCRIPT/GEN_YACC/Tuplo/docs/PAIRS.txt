@@ -1,0 +1,47 @@
+2020-11-18 Nov Wed 19:12 PAIRS_vi
+
+	{ LHS RHS }
+	{ SPEC DATA }
+	{ NAME DATA }
+	{ TOKEN CACHE }
+
+
+PTR1 = DATA
+PTR2 = SPEC { u8 BYTES[8]; }
+
+	u48 P; u16 AB;
+	u48 Q; u16 AB2
+
+typedef TYPE_u128_BYTES_16 u128; // u meaning union
+
+TYPE_u128_BYTES_16 : union {
+
+	PTR1PTR2
+
+	u128[1]
+	u64[2]
+	u32[4]
+	u16[8]
+	i8[16];
+
+	u16 get_AB(); // acting like a linked ITEM id
+	u16 get_u16()
+	u48 get_u48()
+};
+
+PAIRS just happen to click into u128
+TRIPS get moved to within N_BYTES_of_name_value
+TUPLO now a fixed_KEY_STR_nul_pads_TUPLO // saves a malloc
+SOLO 
+ALL Use as many bytes as you need, if it's >16 // or if archicture_PTR32 >8
+
+FIRST_CODE
+
+	forget PTR1PTR2
+	assemble STRUCT of TUPLO
+	decide if it fits in PTR1PTR2 use that // not if unwritten
+
+	PTR1 -> TUPLO_but_not_malloced
+	PTR2 unused -> CACHE
+
+	CACHE(u64_data)

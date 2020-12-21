@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 // #name is name as a string "name"
-#define P( name ) printf( "%7.3f %s\n", name, #name );
+// #define P( name ) printf( "%7.3f %s\n", name, #name );
+#define P( name ) printf( "%7.2f %s\n", name * 100.0, #name );
 #define NL() printf("\n");
 
 int main()

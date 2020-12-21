@@ -1,0 +1,471 @@
+ATabla - 13 century, also found in ...
+
+bayan - metal bass - "Left"
+dayan - wood higher pitch - "Right"
+
+	both lean away, towards eachother
+	turn shie to be under mid hand (L,R) = (ten-past, ten-to)
+
+shie - disc
+madaan - thin
+kinare - edge over the wood rim
+
+ghe
+	left hand curved over shie
+	lh.1 pulls in, taps tip
+	_ghe_ is lh.2
+
+ghin
+	move left hand forward
+	press with wrist
+	lh.2 a bit stronger
+	maybe bend the note early, but dont release it
+
+ta
+	rh.4 - resting in outer roll
+	rh.3 - touching black disk, stays muting sound
+	rh.2 - straight, lifting up in air
+	rh.1 - taps kinare hard 
+
+	na = ta - maybe not so sharp ??
+
+tun
+	rh.3 - not damping
+	rh.2 - taps shie sideways, or rh.1
+	ringing sound, but not too loud
+
+dhun
+	ta + ghin
+
+ti
+	rh.4 }
+	rh.3 } shie
+	rh.2 }
+
+ti
+	rh.2 - shie, esp dha-ti
+
+t
+	rh.1 - shie
+
+ki
+	lh.* - flat hand palm onto shie
+
+ti t ki ti
+	oomph on all 4, esp the last!
+	A.K.A. "titkit"
+
+tra ka
+	like ti t except reversed order
+	rh.1 - first (loud)
+	rh.{2,3,4} - second (loud)
+
+tin
+	mostly like ta but:
+	rh.1 flat mid finger taps madaan, worm motion,
+	moves forward slightly, worm motion
+	almost ring sound
+
+dhin
+	tin + ghin
+
+titt
+	mostly like ta but:
+	rh.1 pad taps madaan and stays down
+
+tak
+	ta + ki - at same time, slight flam
+
+----
+
+tit 	= ti - t but written condensed
+kit 	= ki - t but written condensed
+titkit 	= ti t ki ti
+titkit 	= ti t ki t  - I'm not sure
+
+---------------------------
+KAIDA basic rhythm
+PALTA "variation"
+TEHAI "three"
+KAHERWA rhythm like a chaal
+kali "empty" eg tata titkit titkit titkit ie ta instead of dha
+home-run ie has the dhun
+---------------------------
+
+
+(1)
+	ti 	t 	ki 	ti
+	ti 	t 	ki 	ti
+
+(2)
+	ti 	t 	ki 	ti
+	ki 	ki 	ki 	ki
+
+(3)
+	ghe 	ghe 	ghe 	ghe
+
+(4)
+	ghe 	_ghe_	ghe	_ghe_
+
+(5)
+	ti 	t 	ki 	ti
+	ghe	ghe	ghe 	ghe
+
+(6)
+	ti 	t 	ki 	ti
+	ghe 	_ghe_	ghe	_ghe_
+	ghe 	_ghe_	ghe	_ghe_
+
+(7)
+	ghe	ghin	ghe	ghin
+	ghe	ghe	ghe	ghe
+
+(8)
+	ta 	ta 	ta 	ta
+	ghe	ghe	ghe	ghe
+
+(9)
+	ti	t 	ti	t
+	dha	ta	dha	ta
+	ta 	ta 	ta 	ta
+
+(10)  karherwa-1
+
+	dha	ta 	ta 	ta
+	ta 	ta 	dha 	ta 
+
+(*)
+	dhun 	ta 	ta 	ta
+	ta 	ta 	dhun	ta
+
+(*)	tehai
+
+	ta 	ke 	na 	ta
+	ke 	na 	ta 	--
+
+	ta 	ke 	na 	ta
+	ke 	na 	ta 	--
+
+(12)
+	dha 	dha	tun 	na
+	ta 	ta 	dhun 	na
+
+(13)
+	dha 	dha 	tit	kiti
+	ta 	ta 	tit 	kiti
+
+(14)
+	dha 	dha 	dha 	dha
+	ti 	t 	ki 	ti
+	ta 	ta 	ta 	ta
+	ti 	t 	ki 	ti
+
+(+)
+	dha 	dha 	dha 	dha
+	ta 	--	ta 	--
+	ta 	ta 	ta 	ta
+	dha 	--	dha 	--
+	ti 	te 	ki 	ti
+	ta 	--	ta 	--
+
+(*)	tehai-1
+
+	tak 	ki 	na 	tak
+	ke 	na 	tak 	--
+
+(*)
+	dha 	dha 	tun 	na
+	ghe	ghin	ghe	ghin
+
+	ta 	ta 	tun	na
+	ghe	ghin	ghe	ghin
+
+(17)
+	dha	dha	dha	dha
+	tun	na	tun	na
+
+	dha	dha	dha	dha
+	dhun	na	dhun	na
+
+
+(*)	tehai-one V1
+
+	tak	ke 	ti 
+
+(*)	karherwa-4
+
+	dhitt	ta 	titt 	ta
+	titt	ta 	dhitt 	ta
+
+(*)	kaida-one
+
+	dha 	dha 	tit 	kit
+	dha	dha 	tun	na
+
+	ta 	ta 	tit 	kit
+	dha	dha	dhun 	na
+
+(19)
+	dha	ti 	dha 	ti
+	ta 	ti 	ta 	ti
+
+(20)
+	dha	ti 	dha 	ti
+	dha	dha	tun	na
+
+	ta 	ti 	ta 	ti
+	dha	dha	dhun	na
+
+(21)
+	ghe	ghin	ti 	ta
+	ghe	ghin	na	na
+
+	ki 	ki 	ti 	ta
+	ghe	ghin 	na 	na
+
+(22)
+	tra	ka 	tra	ka
+	tra	ka 	tra	ka
+
+	ta 	ta 	ta 	ta
+	dha	dha	dha	dha
+
+(23)
+	ti 	t 	ti 	t
+	ta 	ta 	ta 	ta
+
+	ti 	t 	ti 	t
+	dha 	dha 	dha 	dha
+
+(24)
+	ta 	ta 	ta 	ta
+	ta 	tin 	ta 	tin
+
+	dha 	dha 	dha 	dha
+	dha	tin 	dha 	tin
+
+(25)	dha-ti-kaida
+
+	dha 	ti 	dha 	ti
+	dha 	ti 	dha 	ti
+	dha 	ti 	dha 	ti
+	dha 	dha 	tun 	na
+
+	ta 	ti 	ta 	ti
+	ta 	ti 	ta 	ti
+	dha 	ti 	dha 	ti
+	dha 	dha 	dhun 	na
+
+(26)	karherwa-2
+
+	dha 	tin 	ta 	tin
+	ta 	tin 	dha 	tin
+
+(*)
+	tit 	tit 	kit 	take
+	dha 	-- 	tit 	tit
+	kit 	take 	dha 	--
+	tit 	tit 	kit 	take
+
+	dha 	<-- next stanza 
+
+(28)	dha-dha-tit-kit kaida (? PALTA-1)
+
+
+	dha 	dha 	tit 	kit 
+	dha 	dha 	tit 	kit 
+	dha 	dha 	tit 	kit 
+	dha 	dha 	tun 	na
+
+	ta 	ta 	tit 	kit
+	ta 	ta 	tit 	kit
+	dha 	dha 	tit 	kit
+	dha 	dha 	dhun 	na
+
+(29)
+	dha 	ghin 	ti 	t
+	ti 	t 	ki 	ti
+
+	ta 	kin 	ti 	t
+	ti 	t 	ki 	ti
+
+(30)
+	tak 	ke 	ti 	tak
+	ke 	ti 	tak 	--
+
+(*)
+	ti 	ta 	ti 	ta
+	ti 	ta 	ki 	ta
+	ghe	ghin	ghe 	ghin
+
+(31)	dha-dha-titkit kaida PALTA-2
+
+	dhadha 	titkit 	titkit 	titkit
+	dhadha 	titkit 	dhadha 	tunna
+
+	tata 	titkit 	titkit 	titkit
+	dhadha 	titkit 	dhadha 	dhunna
+
+(32)	dhadha-titkit kaida PALTA-3
+
+	dhadha 	titkit 	titkit 	titkit
+	dhadha 	titkit 	titkit 	titkit
+	dhadha 	titkit 	titkit 	titkit
+	dhadha 	titkit 	dhadha 	tun-na
+
+	tata 	titkit 	titkit 	titkit
+	tata 	titkit 	titkit 	titkit
+	dhadha 	titkit 	titkit 	titkit
+	dhadha 	titkit 	dhadha 	dhun-na
+
+(33)	dha-ti kaida plalta-2
+
+	dha 	ti 	dha 	dha
+	dha 	ti 	dha 	dha
+	dha 	ti 	dha 	ti
+	dha 	dha 	tun 	na
+
+	ta 	ti 	ta 	ta
+	dha 	ti 	dha 	dha
+	dha 	ti 	dha 	ti
+	dha 	dha 	dhun 	na
+
+(34)
+	dha 	dha 	ti 	t
+	ta 	ta 	ti 	t
+
+	BUT: ti t with rh.3 as a use rh.2, or rh.1
+
+(34+) siin taal (16 bea) (edit)
+
+	X_dha	dhin	dhin	dha
+	X_dha	dhin	dhin	dha
+	0_ta	tin	tin	dha
+	X_dha	dhin	dhin	dha
+-- 
+
+(35)	dha dha ti t   KAIDA
+
+	dha	dha	ti	t
+	dha	dha	tun	na
+	ta	ta	ti	t
+	dha	dha	dhun	na
+
+(36)	dha-ti-dha-dha PALTA-2
+
+	dha	ti	dha	dha
+	dha	ti	dha	dha
+
+	dha	ti	dha	ti
+	dha	dha	tun	na
+
+	ta	ta	dha	dha
+	ta	ti	dha	dha
+
+	dha	ti	dha	ti
+	dha	dha	dhun	na
+
+(37)	dha-ti-dha-ti PALTA-3
+
+	dha	ti	dha	ti
+	dha	dha	ti	dha
+	ti	dha	dha	ti
+	dha	dha	tun	na
+
+	ta	ti	ta	ti
+	ta	ta	ti	dha
+	ti	dha	dha	ti
+	dha	dha	dhun	na
+
+(37-T)	TEHAI
+
+	dha ti	dha ti	dha dha	tun na
+	dha	-S-
+
+	dhati	dhati	dhadha	tunna
+	dha	-S-
+
+(38)	dha dha tit KAIDA
+
+	dha	dha	ti	t
+	dha	dha	tun	na
+	ta	ta	ti	t
+	dha	dha	dhun	na
+
+
+(39)	dha dha tit PALTA-1
+
+	dha	dha	ti	t
+	dha	dha	ti	t
+	dha	dha	ti	t
+	dha	dha	tun	na
+
+	ta	ta	ti	t
+	ta	ta	ti	t
+	dha	dha	ti	t
+	dha	dha	dhun	na
+
+
+
+(44)	dha dha tit PALTA-3
+
+	dhadha	tit	tit	tit
+	dhadha	tit	dhadha	tunna
+
+	tata	tit	tit	tit
+	dhadha	tit	dhadha	dhunna
+
+(41)	karherwa-3
+
+	dha	dhin	ta	tin
+	ta	tin	dha	dhin
+
+	dha	dhin	ta	tin
+	ta	tin	dha	dhin
+
+(42)	K3 TEHAI
+
+	dhadha	tit	dha	-
+
+18	K1
+28	K1 PALTA-1
+31	K1 PALTA-2
+32	K1 PALTA-3
+45	K1 PALTA-4
+46	K1 PALTA-5
+47	K1 PALTA-6
+
+(45)	K1 PALTA-4
+
+	dhadha	dhadha	dhadha	titkit
+	dhadha	titkit	dhadha	tunna
+
+	tata	tata	tata	titkit
+	dhadha	titkit	dhadha	dhunna
+
+(46)	K1 PALTA-5
+
+	dhadha	dhadha	dhadha	titkit
+	dhadha	dhadha	dhadha	titkit
+	dhadha	dhadha	dhadha	titkit
+	dhadha	titkit	dhadha	tunna
+
+	tata	tata	tata	titkit
+	tata	tata	tata	titkit
+	tata	tata	tata	titkit
+	dhadha	titkit	dhadha	dhunna
+
+(47)	K1 PALTA-6
+
+	dha	titkit	dhadhadha	titkit
+	dhadha	titkit	dhadha	tunna
+	ta	titkit	tatata	titkit
+	dhadha	titkit	dhadha	dhunna
+
+(48)	A luggie pending
+
+	dhaghin	tit	tit	kit
+	taki	tit	tit	kit
+
+
+

@@ -483,3 +483,10 @@ USAGE
 	Some of the data can be in a file as-is
 	Some cannot be, because PTR to mem
 
+OOP_ITEM_is_STRUCT
+OOP_ITEM_is_CPP_VTBL_OBJ
+OOP_ITEM_is_Tuplo
+OOP_ITEM_is_Tuplo_PAIR // _fits_in_PTR1PTR2
+!eg { name SPEC DATA } // where SPEC_of_this_says_u48_u16_SPEC_DATA
+
+NEW_ITEM

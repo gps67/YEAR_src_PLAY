@@ -35,6 +35,8 @@ TUPLO now a fixed_KEY_STR_nul_pads_TUPLO // saves a malloc
 SOLO 
 ALL Use as many bytes as you need, if it's >16 // or if archicture_PTR32 >8
 
+IDX is EA of object, NAME = IDX, { IDX SPEC DATA }
+
 FIRST_CODE
 
 	forget PTR1PTR2
@@ -45,3 +47,103 @@ FIRST_CODE
 	PTR2 unused -> CACHE
 
 	CACHE(u64_data)
+
+	{ name SPEC DATA } // where name is IDX_FFFF // or POOL_ITEM_ or ...
+
+
+Tuplo CODE
+
+	{ name SPEC DATA }
+	{ name u128 }
+	{ name u16[8] }
+	{ name u8[16] }
+
+	BYTES8 = union packed array[8] of bytes;
+	BYTES16 = union packed array[16] of bytes;
+
+	other_struct_packed_into_less_than_16_bytes
+
+	if nbytes_needed <= 16 
+	if fits_in_PTR1PTR2:
+		do_so
+	else:
+		name = name + NUL + pad_align + Tuplo
+		PTR1 = & Tuplo
+		PTR2 = NULL // CACHE // _PLUS
+
+	{ name u8[PLUS] }
+
+		PTR1PTR2
+
+		u128[1]
+		u64[2]
+		u32[4]
+		u16[8]
+		i8[16]
+	
+	X86 OPCODE has BASE + OFFS + [ IDX * sz ] + adj
+	 SZ == 8, 4, 2, 1
+	 SIZE_16, other is two step
+
+	  OFFS_IDX = IDX << 4 // or times_16
+	  BASE + OFFS_IDX + const_OFFS_adj
+
+HEAP_DATA
+	u128[obj_idx]
+	PAIRS[u16] // 64K of objects // 16M // 4G
+	PAIRS[u16] // 64K of objects // as [PAGE][ITEM]
+	PAIRS[u24] // 16M of objects // as [ZONE][PAGE][ITEM]
+	PAIRS[u32] //  4G of objects // as [HEAP][ZONE][PAGE][ITEM]
+
+	BUT each node is 16 bytes ONLY, or clicks to 16, use N nodes per ITEM
+
+NOT PAIR but fits in 32bit PTR1PTR2 BYTES8
+
+ N_bytes in BYTES8 == PTR1PTR2_u32 
+
+  u8u8 type_NBYTES_variant
+  u16 N
+  u24 OFFS of bytes in heap
+  u8 HEAP_idx
+
+  TYPE FLAG
+  	above layout
+	N_bytes is ... SPEC ... unknown
+	N_bytes is TEXT_UTF8
+	N_bytes is HEAD_BODY
+
+  TYPE FLAG
+  	more types available to bring a mini-payload, eg UTF8
+
+ SPEC_in_BYTES8
+
+  u8u8 type_SPEC_in_BYTES8
+  u16 SPEC_HEAP
+  u16 SPEC_ITEM
+  u16 PLUS_FLAG
+
+ SPEC_in_BYTES8
+
+  u8u8 type_SPEC_in_BYTES8
+  u16 SUITE
+  u16 LIBR
+  u16 ITEM
+ 
+ SPEC_in_BYTES4
+  u8 type_of_word
+  u8 type_of_SPEC
+  u8 POOL
+  u8 ITEM
+
+Tuplo within NAME_TEXT after nul, allows ANY layout
+
+	u8 type_is_a_tuplo
+	u8 tuplo_type_n_plus
+
+	u8u8 client interp of type, as well as container type // repeat is OK
+
+	KNOW N_in_tuple is N
+	KNOW each is tuple_field_t
+
+
+

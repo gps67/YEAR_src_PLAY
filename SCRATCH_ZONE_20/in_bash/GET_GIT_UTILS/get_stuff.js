@@ -6,6 +6,14 @@ PATH=$HOME/bin:$PATH
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
 
 L1="
+https://github.com/danchitnis/webgl-plot-examples
+https://github.com/MrRio/jsPDF
+https://github.com/danchitnis/webgl-plot
+https://github.com/leeoniya/uPlot
+https://github.com/FreeRDP/FreeRDP
+git://git.code.sf.net/p/flwm/flwm
+https://github.com/fltk/fltk
+https://github.com/fltk/nanosvg
 https://github.com/libjpeg-turbo/libjpeg-turbo
 https://github.com/Ahiknsr/X11clippy
 https://github.com/AssemblyScript/examples
@@ -21,6 +29,7 @@ https://github.com/mozilla-lockwise/lockbox-demo
 https://github.com/mozilla-lockwise/assets
 https://github.com/mozilla-lockwise/mozilla-lockwise.github.io
 https://github.com/libssh2/libssh2.git
+https://github.com/openssh/openssh-portable
 git://git.ghostscript.com/testcluster.git
 git://git.ghostscript.com/mupdf-winrt.git
 git://git.ghostscript.com/mupdf-ios-viewer.git

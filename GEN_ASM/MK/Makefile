@@ -39,7 +39,7 @@
 #	OBJS += X_Display.o
 #	OBJS += X_FontStr.o
 #	OBJS += X_ret_err.o
-	OBJS += SPOUT_argv_decoder.o
+##	OBJS += SPOUT_argv_decoder.o
 #	OBJS += test_X_two.o
 
 ##	OBJS += gdb_invoke.o

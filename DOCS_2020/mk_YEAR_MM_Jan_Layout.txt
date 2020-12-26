@@ -31,6 +31,8 @@ exit
 	    along with other LEXICONS in shared LEX SPACE
 	    FINDS: file field import object for item
 	  }
+	  SUBLEX_ ident_MATCH( "%s lhs" "%s MATCH" "%s rhs" "%s%s%s" )
+	  # MATCH a1_plus_a2_star MATCH LEX_identifier
 	  SUBLEX_JOINS {
 	  	LHS "_" RHS // SEQ or fmt 
 	  	%s_%s LHS RHS

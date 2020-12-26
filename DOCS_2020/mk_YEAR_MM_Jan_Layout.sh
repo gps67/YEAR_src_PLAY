@@ -1,5 +1,10 @@
-#/bin/bash 
+# ! /bin/bash 
 # ${HOME}/YEAR/DOCS/mk_YEAR_MM_Jan_Layout.sh
+
+function T1()
+{
+	ls -ld $HOME/YEAR
+}
 
 
 # expect caller has PATH that works
@@ -42,7 +47,7 @@ var_add PATH \
 	# fn_DATE_show_VARS 2020-01-15 # set date from ARGS
 	# fn_DATE_show_VARS 
 	echo "# DATE # $DATE_year_mm_dd"
-	fn_DATE_show_VARS DATE_year_mm_dd
+	echo "# TODO" fn_DATE_show_VARS DATE_year_mm_dd
 # exit
 
 	# PWD == ~/YEAR/DOCS/
@@ -51,28 +56,30 @@ var_add PATH \
 	TOPIC="DOCS"
 
 # ~/YEAR/ is a convenience for scripts and me
-YYYY=${DATE_YEAR}
 
 # taking this as a common block, of DATE_EXPR [s]
 # set -x
-TOPIC_YEAR_MM_Jan="${TOPIC}_${YYYY}_${DATE_MM}_${DATE_Jan}"
-TOPIC_YYYY="${TOPIC}_${YYYY}"
+TOPIC_YEAR_MM_Jan="${TOPIC}_${DATE_YEAR}_${DATE_MM}_${DATE_Jan}"
+TOPIC_YEAR="${TOPIC}_${DATE_YEAR}"
+# _year is the word "_YEAR", but _YEAR is reserved for _2001
 TOPIC_year_="${TOPIC}_YEAR" 
-HOME_YYYY="${HOME}/${YYYY}"
+HOME_YEAR="${HOME}/${DATE_YEAR}"
 HOME_year_="${HOME}/YEAR"
-HOME_YEAR_TOPIC_YYYY="${HOME}/YEAR/${TOPIC_YYYY}"
+HOME_year_TOPIC_YEAR="${HOME}/YEAR/${TOPIC_YEAR}"
 
-# TREE ROOTED $HOME/YEAR/
-HOME_YEAR="${HOME}/YEAR"
-
+ln_s YEAR_offl/ $HOME_year_
+T1
 
 
 # update link to year change
-cd_mkdir_FAIL ${HOME}/${YYYY} 
+cd_mkdir_FAIL ${HOME}/${DATE_YEAR} 
+T1
 cd
-ln_s_ask "${YYYY}/" "${HOME}/YEAR" # YEAR -> 2020/
+# echo "# or KEEP YEAR => YEAR_offl/"
+# ln_s_ask "${DATE_YEAR}/" "${HOME}/YEAR" # YEAR -> 2020/
+# ln_s_ask "YEAR/" "${HOME}/${DATE_YEAR}/" # 2020 => YEAR -> YEAR_offl
 
-cd_mkdir_FAIL ${HOME_YEAR_TOPIC_YYYY} 
+cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
 
 # ~/201X/ is on NAS2 # some bounces to get to it
 
@@ -82,21 +89,21 @@ cd_or_FAIL $HOME
 cd_or_FAIL ${HOME_YEAR} 
 
 # ~/2018/TOPIC_2018/
-cd_mkdir_FAIL ${HOME_YEAR_TOPIC_YYYY} 
+cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
 
 # ~/2018/TOPIC_2018/TOPIC_2018_01_Jan/
 rmdir $TOPIC_YEAR_MM_Jan 2>/dev/null # if empty allows script debug
 cd_mkdir_FAIL $TOPIC_YEAR_MM_Jan
 
 # ln_s_ask $TOPIC_YEAR_MM_Jan/ TOPIC_ 
-# ln_s_ask $TOPIC_YYYY/TOPIC_ ../TOPIC_
-# ln_s_ask ${TOPIC}_${YYYY}/ $HOME/YEAR/TOPIC_YEAR
-ln_s_ask ${TOPIC}_${YYYY}/ $HOME/YEAR/${TOPIC}
+# ln_s_ask $TOPIC_YEAR/TOPIC_ ../TOPIC_
+# ln_s_ask ${TOPIC}_${DATE_YEAR}/ $HOME/YEAR/TOPIC_YEAR
+ln_s_ask ${TOPIC}_${DATE_YEAR}/ $HOME/YEAR/${TOPIC}
 # ln_s_ask YEAR/TOPIC_/ ${HOME}/TOPIC_
 
 
 # NO # not set there # fn_BASE_filename $TOPIC_YEAR_MM_Jan/.varfile
-# YES $PWD/.varfile # so depends on above cd_mkdir_FAIL ${HOME_YEAR_TOPIC_YYYY}
+# YES $PWD/.varfile # so depends on above cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR}
 
 # BASH you idiot, "bash: local: can only be used in a function"
 # OK it is not effective, but not unusable! So correct, it is wrong!

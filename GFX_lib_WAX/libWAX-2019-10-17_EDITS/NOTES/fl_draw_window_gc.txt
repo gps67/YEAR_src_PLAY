@@ -1,0 +1,14 @@
+
+	fl_draw_window_gc
+	.txt
+
+	fltk calls the user provided function 
+	Fl::flush()
+	virtual void Fl_Window::flush()
+	// set (display,gc) call draw()
+	global var fl_display
+	global var fl_gc
+	draw()
+
+	effectively:
+	X.draw( window, gc )

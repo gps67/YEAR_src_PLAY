@@ -1,0 +1,155 @@
+Build_WIN32.txt
+
+Its very much like the UNIX build.
+Look in the run_win32 directory for old batch scripts
+
+SUMMARY:
+
+	install Gtk - with development headers (.dll must be on $PATH)
+	install MINGW - minimum Gcc for Windows, with make.exe
+	install MSYS - optional, gives you vi.exe, bash.exe, etc
+	fetch + build JavaScript (or switch it off, or link to IE's core)
+	install postgres - or switch off in makefile
+	install mysql - or switch off in makefile
+	install libpdf - need to produce pdf
+	unpack libs_apps
+	cd _run_win32 ; maker all
+	cd MK ; view/edit everything
+	get some data files and test
+
+unpacking:
+
+	tar is UNIX "tape-archive", lots of files in one file
+	tgz is tar compressed with 'gz' gzip
+	zip is like tgz but completely different
+
+	winzip can unpack tgz files, www.winzip.com
+	http://gnuwin32.sourceforge.net/packages/bsdtar.htm
+
+Out of environment space
+------------------------
+	If you get that error message, its because all the ENV vars
+	take more space than DOS allocated, so tell it to allocate more.
+	
+	c:\config.sys
+		shell=c:\command.com /e:4096 /p                                                 
+	(reboot may be required)
+
+_run_win32/
+
+	You issue the build commands from the _run_win32/ directory.
+	Its much like the _run directory, but not for UNIX.
+	It might be less tested, or out of date, but fixing it is simple,
+	because they are 1-liners. I have MSYS installed, but I think
+	that you can run without it! (as long as make calls gcc-mingw)
+	You must tell make WIN32=1 so that it uses the right makefile.
+	Other compilers 'make' might not work, other cc's might not.
+
+	If using MSYS, start a shell window, cd to _run_win32 and
+	call maker.sh. If not using MSYS try maker.bat all
+
+	set_env.bat	- path c:\MinGW\bin - only run this ONCE
+	maker.PIF	- make life easier (delete and recreate)
+	maker.bat	- calls MAKE from COMMAND.com (needs args)
+	mk_clean.bat	- calls maker.bat clean
+	mk_deps.bat	- calls maker.bat deps
+
+	maker.sh	- calls MAKE from MSYS shell (mingw.org)
+
+	make WIN32=1	- sets the var and overrides Makefile's default
+
+MK/
+
+	_run_win32 is trivial, MK is simple.
+	You will probably have to edit Make_WIN32 to tell it
+	where things are on your box. (Simply fix the first
+	missing headers that maker.bat stumbles on)
+
+	The syntax of the make files is GNU, so its easier to use gmake,
+	which you get in MSYS+MINGW, but its not impossible to recreate.
+
+	Makefile
+		WIN32=0
+			this is OVERRIDDEN by invoking make with WIN32=1
+
+		ifeq ($(WIN32),1) 
+			...
+		else
+			...
+		endif
+
+	Make_WIN32
+
+		GTKDIR = c:/gtk2
+		... etc ...
+
+		Having this file separate from Make_UNIX allows
+		you to have two active configurations, possibly shared
+
+MinG - Min GCC for Windows
+
+	you can compile from command.com
+	you can compile from MSYS bash shell
+	I installed both GCC and MSYS (from the MINGW.org suite)
+	CYGWIN is more advanced than MSYS, but not needed (manual configure)
+	you can also try for GDB and IDE
+	some IDE suites come with GCC and MSYS or CYGWIN bundled
+
+	There are a few adjustments for WIN32 DLL building, and
+	the .exe externsion, but gcc is mostly the same on all platforms.
+	Hence options like -I$(INCLDIR) -L$(LIBDIR) -lbase ...
+
+	If you are moving over to a different C++
+	you will rewrite the Makefiles
+
+gcc -mno-cygwin
+
+	-m is for machine options
+	no-cygwin tells the linker to use the NON cygwin set of libraries
+	With cygwin, the binary would link with the GPL cygwin library.dll
+	and that emulates more unix features, than we need.
+	Without cygwin, the license is (Library) L-GPL, and the API
+	is more DOS than UNIX, but most things work fine.
+
+	Plus there are flip-flop styles such as path/name, path\name, //c/, c:
+
+gcc -mms-bitfields
+
+	This is required for GTK linkage, as it was compiled with similar
+
+gcc -DWIN32
+
+	this is used in the source #ifdef WIN32
+	mostly to comment out UNIX only structures
+	in future there should be highest-common-denominators
+
+Gtk Fetch
+
+	Why not use the official zipfiles from
+	ftp://ftp.gtk.org/pub/gtk/v2.6/win32/
+	, or the GTK+ installer from
+	http://gimp-win.sourceforge.net/ ?
+
+	Other places have similar packaging
+
+JS - SpiderMoney JavaScript
+
+	details in adjacent file
+
+libpdf
+
+	this is a non-free library, with a GPL option
+
+postgres
+
+	you will need the compile headers + lib,
+	or you can switch it off in the MK makefiles
+
+mysql
+
+	you will need the compile headers + lib,
+	or you can switch it off in the MK makefiles
+
+POST
+	source is bundled, but it has its own licence
+

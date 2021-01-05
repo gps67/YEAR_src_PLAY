@@ -1,0 +1,13 @@
+
+
+Name: libs_apps_gtk_text
+Description: libs_apps uses gtk_text which uses gtk
+Version: 0.1.2
+
+# Requires: libs_apps_base2 libs_apps_gtk
+# surely base1 includes gtk
+
+Requires: libs_apps_base2_gtk
+
+Libs: -lgtk_text
+Cflags:

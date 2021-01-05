@@ -1,0 +1,6 @@
+ask_do rm \
+	*.pem \
+	*.der \
+	C*_req.txt \
+	C*_cert.txt \
+	*.out_log_

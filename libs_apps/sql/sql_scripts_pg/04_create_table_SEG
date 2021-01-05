@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. ./.env
+pgsql_user <<!EOT
+
+CREATE TABLE seg (
+	line	INTEGER NOT NULL,
+	t0	INTEGER NOT NULL,
+	t2	INTEGER NOT NULL,
+	idx_data	oid,
+	PRIMARY KEY (line,t0)
+);
+

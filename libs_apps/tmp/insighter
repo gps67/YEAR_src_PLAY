@@ -1,0 +1,557 @@
+dd￼
+ 
+ 
+￼
+ 
+D'Alfonso & Co. > Toolbox  > Setting Insight Debugger on Ubuntu 16.04 LTS
+Setting Insight Debugger on Ubuntu 16.04 LTS
+April 23, 2016 	by dalfonso_co  3likes 	49 Comments
+After the removal from Ubuntu, there were attempts to get it back. The best solution comes from Patrick Monnerat, that made a  build that bundles GDB. The result is quite good, and will make happy any person missing insight.
+
+The git repository is now on the sourceware site, as the great job of Patrick was included in the original location of  insight in the sourceware location.
+
+If this guide was used in the past, please be sure to update the repository for future pulls as it is listed in the current version of this post.
+
+￼
+
+It required a little to put together all the dependencies and the following are the steps followed the get that working.
+
+General
+sudo apt-get install autoconf
+sudo apt-get install autogen
+Dependencies for Bfd
+sudo apt-get install texinfo
+sudo apt-get install zlib1g-dev
+Dependencies for libgui
+sudo apt-get install tcl-dev
+sudo apt-get install tk-dev
+sudo apt-get install mesa-common-dev
+sudo apt-get install libjpeg-dev
+sudo apt-get install libtogl-dev
+Dependencies for GDB
+sudo apt-get install python-dev
+sudo apt-get install flex
+sudo apt-get install bison
+sudo apt-get install itcl3
+sudo apt-get install itk3
+sudo apt-get install iwidgets4
+Get the latest version
+git clone --recursive git://sourceware.org/git/insight.git
+Run autoconf
+In the home of the cloned repository run the autoconf command:
+netshark@NAUBVM01:~/insight$ autoconf
+Create a configuration script (here insight.sh)  in the home of the cloned repository containing the following command: ./configure --prefix=/usr/. \
+--libdir=/usr/lib64 \
+--disable-binutils \
+--disable-elfcpp \
+--disable-gas \
+--disable-gold \
+--disable-gprof \
+--disable-ld \
+--disable-rpath \
+--disable-zlib \
+--enable-sim \
+--with-gdb-datadir=/usr/share/insight \
+--with-jit-reader-dir=/usr/lib64/insight \
+--with-separate-debug-dir='/usr/lib/debug' \
+--with-expat \
+--with-python \
+--without-libunwind
+Change the file attributes
+netshark@NAUBVM01:~/insight$ chmod +x insight.sh
+Run the script (here named insight.sh)
+netshark@NAUBVM01:~/insight$ ./insight.sh
+Run make
+netshark@NAUBVM01:~/insight$ make
+Install insight
+netshark@NAUBVM01:~/insight$ sudo make install
+TOOLBOX
+Setting Network Analysis Tools on Ubuntu 16.04 LTS
+Next
+Comments:
+￼
+Sasha April 25, 2016 at 8:07 am
+Simply want to say your article is as astounding.
+The clearness in your post is just nice and i could assume you’re an expert on this subject.
+Well with your permission let me to grab your RSS feed to keep up to date with forthcoming post.
+
+Thanks a million and please keep up the enjoyable work.
+
+Reply
+￼
+Jin May 15, 2016 at 2:09 am
+I’m a total newbie to Linux and recently picked up Jeff Duntemann’s Assembly Language Step-by-Step 3e to self-teach assembler (in hope of better understanding and mastering C++ next). Unfortunately, my computer is x86 64bit based so I had to do extensive search on how to get my Ubuntu 16.04 to acquire the correct softwares to follow Jeff’s instructions. Thank you so much for putting together means to get Insight to work on newer releases of Ubuntu. But for a newbie like me, who’s never learned of Linux terms like “clone”, “repository”, and who’s only heard of github.com for the first time, everything went pretty well ’til step 5 when I copied what I thought was what you meant into my terminal command line: “git clone –recursive https://github.com/monnerat/insight.git” and clicked Enter. What I received in return was an error message “fatal: repository ‘–recursive’ does not exist”. After another hour of desperate search online, I finally came to realize in Linux, hyphen (“-“) and en dash (“–“) make huge difference…
+
+Reply
+￼
+dalfonso_co May 15, 2016 at 2:44 pm
+Hi,
+yes, thanks for pointing that, the --recursive is correct, I made the fix in the article. Thanks.
+There is some issue with formatting, with this font style, and still showed as a single — long one, before setting it as “code” but now it should be clear.
+
+Now it works, with the command set with the “code” format
+
+Thanks
+Did you get the result working, following the guide?
+Fabio
+
+Reply
+￼
+Jin May 17, 2016 at 9:14 am
+Yes! Insight has been installed successfully in my system now, following your instructions. Many thanks! One more questions though, I don’t know if it’s just me but when I try to search/launch Insight (as well as Kate editor required by Jeffs book) from Dash(and software/app center) in my Ubuntu 16.04, nothing shows up…
+The only way it seems I could get Insight launched was through terminal command line..
+(I did lock Insight onto my launchpad now to get around the issue. but I am still curious why it happens to me because it seems like other people don’t really share this problem. Did I miss something here?)
+Thanks again!
+
+Reply
+￼
+Robert Van Housen January 28, 2017 at 12:12 am
+re: Jin
+
+I’m having some difficulty getting programs setup for ALSBS by Duntemann also. Seems a lot of changed have occurred with Ubuntu since the latest release of the book. Wondering if you were able to get sessions working in Kate and how you did it. I’m running Kubuntu 16.10.
+
+Reply
+￼
+dalfonso_co January 29, 2017 at 8:38 pm
+Hi,
+I use vim with the settings described in another post. Unfortunately I never used kate. What other issues are you seeing?
+Thanks
+
+Reply
+￼
+dalfonso_co May 23, 2016 at 3:20 pm
+Hi,
+Sorry for the delay, I never used the pinned version as, usually, the debugger is started with a built executable ready to be analysed. Also, if the current version is a bit more pleasant and can promote the idea to pin to the gui, I think is not in my opinion the production way to get it live. In a simple flow, you edit in a terminal , start nasm compiler in that terminal and then put an $ insight myprog to step in.
+But you have the issue also with kate?
+I will make a check, but I would stick to command line, or probably you will do that by rushing as the frequent use.
+
+Reply
+￼
+Jin May 24, 2016 at 11:46 am
+I decided to get an old 32 bit computer for this book instead, and got myself a Pentium 4 32 bit computer. This computer is probably 14 years old so its specs are really limited (mine has about 2G RAM and 80G hard drive storage, and USB drives don’t appear to work since I had to reset the CMOS on the motherboard, so I’m limited to using DVD drive as my main boot for installing OS). However, when I tried to get an ISO image burned on a dvd disk and to install Ubuntu 8.10 (of which release Jeff uses in his book) on this PC, an error occurred with a message “boot loader: /casper/vmlinuz” then stops going any further into installation. I searched online for answers, apparently some people are saying that the “vmlinuz” file inside casper directory in the ISO image file needs to have an “.efi” extension. I renamed the file as “vmlinuz.efi” using tool WinISO and tried again, still same error message.. then I went to check all the releases of Ubuntu for 32 bit desktop PC, and it appears all of the “vmlinuz” file inside “casper” folder do not have .efi extension; but all the 64 bit releases do. – Does that mean none of the 32 bit Ubuntu releases work?
+Do you have any idea what might be going on there?
+
+Reply
+￼
+dalfonso_co May 25, 2016 at 8:29 am
+Hi,
+As the current version works well, could I ask why did you revert to an older one?
+Anyway, if you decided to move back, I would use a VM, that takes , generally, care of details related to old combinations.
+Also my installs are VMs, with little or no data, and intended to be used and trashed, if the case: the deploy of the 4.5 gb ova file, requires 6 minutes, bye bye bad! And use a new one.
+
+Reply
+￼
+Jin May 28, 2016 at 1:49 am
+your right. im going back to my 64bit computer instead. its easier that way.. thanks!
+
+Reply
+￼
+al_chemia June 27, 2016 at 11:49 pm
+Just a note to express my thanks for this! I had been pulling my hair out with all my failed attempts to get Insight to work, and was beginning to despair of the usefulness of Jeff Duntemann’s book. Now that I’ve got Insight up and running I’m excited to continue learning assembly language. Molte grazie!
+
+Reply
+￼
+neon July 3, 2016 at 4:20 pm
+tried to install after reinstall ubuntu, not working anymore…
+./gdbtk/generic/gdbtk.c:552:1: error: invalid conversion from ÔÇÿvoid (*)(Tcl_Time*)ÔÇÖ to ÔÇÿvoid (*)(const Tcl_Time*)ÔÇÖ [-fpermissive]
+};
+^
+./gdbtk/generic/gdbtk.c:552:1: error: invalid conversion from ÔÇÿint (*)(Tcl_Time*)ÔÇÖ to ÔÇÿint (*)(const Tcl_Time*)ÔÇÖ [-fpermissive]
+Makefile:2096: recipe for target ‘gdbtk.o’ failed
+make[3]: *** [gdbtk.o] Error 1
+make[3]: Leaving directory ‘/root/insight/bundle/gdb’
+Makefile:9006: recipe for target ‘all-gdb’ failed
+make[2]: *** [all-gdb] Error 2
+make[2]: Leaving directory ‘/root/insight/bundle’
+Makefile:847: recipe for target ‘all’ failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory ‘/root/insight/bundle’
+Makefile:4: recipe for target ‘notarget’ failed
+make: *** [notarget] Error 2
+
+what’s wrong?
+
+Reply
+￼
+dalfonso_co July 5, 2016 at 4:12 pm
+Hi,
+Could you let me know if the new setup came back from an updated version of repository, or if there were updates on ubuntu before trying to reproduce or both?
+
+Reply
+￼
+neon July 6, 2016 at 11:07 am
+Yup, I used the latest version from github as instructed, can’t find any older version, the developer just patched the gdbtk.c recently… Last successful installed was 21st may 2016.
+
+Reply
+￼
+dalfonso_co July 8, 2016 at 7:36 am
+Hi, git is there to support the checkout of previous commits. So , if you clone the repo locally you can revert to a previous version, and we know that it was one working.
+As soon as I can I will try to identify a commit that works. The goal is having insight working, not having the latest commit.
+
+Reply
+￼
+neon July 8, 2016 at 11:58 pm
+Right, Thanks!
+
+￼
+neon July 10, 2016 at 12:25 pm
+Still can’t get it, maybe because I applied latest update on ubuntu, tried all 2016 commits…
+
+Reply
+￼
+dalfonso_co July 10, 2016 at 7:19 pm
+So could you make a fresh install from the 16.04 LTS , and install only the dependencies listed? So we could know if the issue is strictly related to what is needed or comes with some corollary package?
+
+Reply
+￼
+neon July 11, 2016 at 9:31 pm
+Yes, I did a fresh install on vbox, this is what I installed:
+Reading package lists…
+Building dependency tree…
+Reading state information…
+autoconf is already the newest version (2.69-9).
+bison is already the newest version (2:3.0.4.dfsg-1).
+flex is already the newest version (2.6.0-11).
+libjpeg-dev is already the newest version (8c-2ubuntu8).
+mesa-common-dev is already the newest version (11.2.0-1ubuntu2).
+python-dev is already the newest version (2.7.11-1).
+tcl-dev is already the newest version (8.6.0+9).
+tk-dev is already the newest version (8.6.0+9).
+zlib1g-dev is already the newest version (1:1.2.8.dfsg-2ubuntu4).
+autogen is already the newest version (1:5.18.7-3).
+itcl3 is already the newest version (3.4.3-1).
+itk3 is already the newest version (3.4.2-1).
+iwidgets4 is already the newest version (4.0.1-6).
+libtogl-dev is already the newest version (1.7-12ubuntu1).
+texinfo is already the newest version (6.1.0.dfsg.1-5).
+0 upgraded, 0 newly installed, 0 to remove and 191 not upgraded.
+
+Still the same errors, so I gave up and use gdb in terminal instead.
+
+Reply
+￼
+neon August 1, 2016 at 6:48 am
+Problem solved after the developer found the bug and patched it, insight is back!
+
+Reply
+￼
+dalfonso_co August 1, 2016 at 8:25 am
+Thank You very much for following up to the solution. So you contacted Patrick Monnerat? Could you you let us know if the bug emerged just in the Ubuntu build, and was not detected in the Fedora build (this repository is used for the native package on Fedora)?
+It should be very useful to know. The reason I did not pointed to the code in itself , is that is used to supply insight for Fedora, so was thinking more to some specific issue in the ubuntu build.
+Thanks a lot!
+
+￼
+Jason September 23, 2016 at 9:47 pm
+Dude you are awesome. I wanted to following along in the but could not. You have give me hope. I really appreciate it.
+
+Reply
+￼
+Claudius November 29, 2016 at 3:28 pm
+Thank you a lot!!!
+
+Reply
+￼
+CJ December 11, 2016 at 12:45 pm
+Hi,
+whenever i try to install insight in my Mint 17 xfce distro using the method described above, at 2nd last step when i run the make command i get error this error :-
+————————————–Terminal Output———————————————
+on -Wmissing-format-attribute -Wcast-qual -pedantic -Wno-long-long -I. -I. -c ./bid/host-ieee32.c
+source=’bid/host-ieee64.c’ object=’host-ieee64.o’ libtool=no gcc -I. -I. -g -O2 -W -Wall -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Wmissing-format-attribute -Wcast-qual -pedantic -Wno-long-long -I. -I. -c ./bid/host-ieee64.c
+source=’bid/host-ieee128.c’ object=’host-ieee128.o’ libtool=no gcc -I. -I. -g -O2 -W -Wall -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Wmissing-format-attribute -Wcast-qual -pedantic -Wno-long-long -I. -I. -c ./bid/host-ieee128.c
+rm -f libdecnumber.a
+ar cru libdecnumber.a decNumber.o decContext.o decimal32.o decimal64.o decimal128.o bid2dpd_dpd2bid.o host-ieee32.o host-ieee64.o host-ieee128.o
+ar: `u’ modifier ignored since `D’ is the default (see `U’)
+ranlib libdecnumber.a
+make[3]: Leaving directory ‘/home/tushar/insight/bundle/libdecnumber’
+Configuring in ./libgui
+configure: creating cache ./config.cache
+/home/tushar/insight/bundle/libgui/configure: line 2182: syntax error near unexpected token `libgui,’
+/home/tushar/insight/bundle/libgui/configure: line 2182: `AM_INIT_AUTOMAKE(libgui, 0.0)’
+Makefile:6773: recipe for target ‘configure-libgui’ failed
+make[2]: *** [configure-libgui] Error 1
+make[2]: Leaving directory ‘/home/tushar/insight/bundle’
+Makefile:847: recipe for target ‘all’ failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory ‘/home/tushar/insight/bundle’
+Makefile:4: recipe for target ‘notarget’ failed
+make: *** [notarget] Error 2
+—————————————————————————————————
+How can i fix this issue ?
+and i have already installed the all dependencies described in this post they are all up to date.
+
+Reply
+￼
+Mahi Hossain March 23, 2017 at 8:22 pm
+I am using mint 18.1 same error here. Did you get any solution?
+
+Reply
+￼
+dalfonso_co March 24, 2017 at 9:17 am
+Hi,
+I made the build on Ubuntu 16.04, and did not try on Mint. I see that other are getting insight working on Ubuntu, and the post is intended to get it on that specific platform. I can suggest to move there for this specific usage.
+
+Reply
+￼
+Mahi Hossain March 24, 2017 at 6:53 pm
+In my kali machine it is working fine!!! But in Mint it is showing same error as CJ posted. Itz kinda shocking! Things do have a tendency to no work on Kali linux but this time it is inverted!!! Thanx anyway for this post. This worked smoothly on my Kali machine.
+
+Reply
+￼
+dalfonso_co April 14, 2017 at 5:45 am
+Hi, I got a kind contact by Patrick Monnerat, that suggested that g++ and liblzma-dev are needed for Mint. It seems that g++ is already there in Ubuntu and liblzma-dev was not needed. So who is using Mint could make a check about these 2 more dependencies and let us know.
+I cannot support other flavors than Ubuntu, but when I get some useful hint, I am happy to make it known.
+As Patrick pointed, now insight is actually built in C++ so g++ is needed as a fundamental part of the environment.
+Thanks
+
+￼
+GK December 15, 2016 at 6:11 am
+Hi
+
+I’m a newbie to Ubuntu / Linux. I was successfully able to install Insight on Ubuntu 16.10 by following this guide. Thank you for sharing.
+
+Reply
+￼
+Arya December 29, 2016 at 11:06 pm
+Thank you for making this page available. It has served as a doorway in my journey in learning assembly.
+
+Reply
+￼
+Brett C Neidecker February 14, 2017 at 7:47 am
+I follow all of the steps and they seem to all work, but afterwards, when I type:
+user@computer:~/$ insight
+at the terminal, it returns an error message of ‘No command ‘insight’ found….
+
+Reply
+￼
+dalfonso_co February 14, 2017 at 2:12 pm
+Hi,
+quite strange. Anyway, to check if there is some issue with x permission, could you check that the insight file is found in the path, with a find /usr -name insight ?
+Hope to get some feedback.
+PS. Sorry for the trivial question: did you issue the last command “sudo make install”?
+
+Reply
+￼
+Brian Tkatch March 4, 2017 at 9:43 pm
+You are awesome! Thank you so much!
+
+And you posted to Jeff’s blog. Wow.
+
+Reply
+￼
+Jorge Amengol March 17, 2017 at 8:59 pm
+Hi Dalfonso,
+
+I just wanted to say thank you for this tutorial. I’m also reading Jeff’s assembly book and this article was pure gold to get insight running. Thanks!!
+
+Reply
+￼
+Indronil Banerjee April 13, 2017 at 8:57 pm
+THANK YOU VERY VERY MUCH.
+You are one of the real developers whose shoulder we people are just standing on.
+If I appreciate what you have donated to us will be redundant.
+I want to say what Sasha, Jorge Amengol, Brian Tkatch, Jason and many other have said.
+You have helped me get back to asm track.
+Thanks again.
+￼
+
+Reply
+￼
+Kevin April 14, 2017 at 9:25 pm
+For me, this worked “right-out-of-the-box”. The procedure was mint.
+
+Linux [Peppermint 7] 4.4.0-24-generic #43-Ubuntu SMP Wed Jun 8 19:27:37 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+Command line and menu icon launch both work well.
+
+Thank you very much.
+
+Reply
+￼
+Bruno April 19, 2017 at 9:50 pm
+Please, I need help. Some error has occurred while trying to change the file attribute to .sh. It reads on Konsole: “chmod: cannot access ‘insight.sh’: No such file or directory”. But I’m under the same directory as the file I’ve created via this tutorial (insight). I have no idea why it’s not working. I’m not as near proficient at Linux. I really need some aid in order to continue. I’m reading Assembly Language step-by-step, and it makes use of insight as a main debugger for the study. I won’t be able to carry on with this book if I don’t get it to work.
+
+Reply
+￼
+David June 27, 2017 at 4:03 pm
+Bruno did you figure it out? I’ve been reading the book and I’m about to install the tool so I’m anticipating any problems.
+
+Reply
+￼
+David June 27, 2017 at 5:50 pm
+First I would like to thank you for the tutorial I can appreciate the time you have spent. I’m have a problem changing the attributes for the script. I tells me “chmod : cannot access ‘insight.sh’: No such file exits. I think I went wrong in step 7, but I’m not sure how.
+
+Thank you again
+
+Reply
+￼
+dalfonso_co June 28, 2017 at 4:49 pm
+Hi,
+did you create the file insight.sh in the home of the clone?
+Fabio
+If you give a remote access to your pc, I would be happy to check. If your Ubuntu is on a VM you could use teamviewer. Let me know.
+
+Reply
+￼
+david nakamoto June 28, 2017 at 9:37 pm
+I went through the whole procedure again and got it going. I think you are right. I made the script in vim, modified the permissions then saved in the same directory as the clone and it worked. Thank you so much!
+
+Reply
+￼
+Sébastien Da Silva July 15, 2017 at 2:05 pm
+I’m trying to compile and install Insight for x64 computer debugging a powerpc target.
+
+So I added –target=powerpc-elf in the configure command.
+Every seems ok until the make install command where it returns
+make[12]: Nothing to be done for ‘install-data-am’
+make[2]: Nothing to be done for ‘install-target’.
+
+and there is no /usr/insight
+
+Reply
+￼
+Sébastien D. July 16, 2017 at 5:33 pm
+Hi,
+I’m trying to compile an insight binary for a cross debug of a powerpc embedded system.
+I’ve put –target=powerpc-elf in the configure command. But it doesn’t work.
+There is no problem if don’t had this option.
+
+Could you help me? Using gdb in command line mode is a nightmare.
+
+Thanks.
+
+Reply
+￼
+Sébastien D. July 22, 2017 at 5:57 pm
+Finally the make process works well, this is just the make install who fails. This is not important as I can start insight in the current folder. But I would like to use an older version of insight as this one uses gdb 8.0 and I need a 7.8.2. Maybe with git I can have older sources?
+
+Reply
+￼
+JP October 2, 2017 at 2:37 am
+Much obliged, this worked perfectly!
+
+Reply
+￼
+Luis Garran October 17, 2017 at 10:41 am
+Hello.
+
+I have tried to install Insight into Ubuntu 17.04 follow your instructions.
+
+Everything works well till point 10 “Make”.
+
+I get this error:
+
+g++ -x c++ -g -O2 -I. -I. -I./common -I./config -DLOCALEDIR=”\”/usr/./share/locale\”” -DHAVE_CONFIG_H -I./../include/opcode -I./../opcodes/.. -I./../readline/.. -I../bfd -I./../bfd -I./../include -I../libdecnumber -I./../libdecnumber -I./gnulib/import -Ibuild-gnulib/import -DGDBTK -DTCL_PLATFORM_UNIX=TCL_PLATFORM_UNIX -DTK_PLATFORM_UNIX=TK_PLATFORM_UNIX -I/usr/include/python2.7 -I/usr/include/python2.7 -Wall -Wpointer-arith -Wno-unused -Wunused-value -Wunused-function -Wno-switch -Wno-char-subscripts -Wempty-body -Wunused-but-set-parameter -Wunused-but-set-variable -Wno-sign-compare -Wno-narrowing -Wno-error=maybe-uninitialized -Wformat-nonliteral -Werror -c -o elfread.o -MT elfread.o -MMD -MP -MF ./.deps/elfread.Tpo elfread.c
+elfread.c: In function ‘void probe_key_free(bfd*, void*)’:
+elfread.c:1343:8: error: types may not be defined in a for-range-declaration [-Werror]
+for (struct probe *probe : *probes)
+^~~~~~
+cc1plus: all warnings being treated as errors
+Makefile:1928: recipe for target ‘elfread.o’ failed
+make[3]: *** [elfread.o] Error 1
+make[3]: Leaving directory ‘/etc/apt/insight/bundle/gdb’
+Makefile:9000: recipe for target ‘install-gdb’ failed
+make[2]: *** [install-gdb] Error 2
+make[2]: Leaving directory ‘/etc/apt/insight/bundle’
+Makefile:2173: recipe for target ‘install’ failed
+make[1]: *** [install] Error 2
+make[1]: Leaving directory ‘/etc/apt/insight/bundle’
+Makefile:7: recipe for target ‘install’ failed
+make: *** [install] Error 2
+
+Can you help me?
+
+Best regards
+
+Reply
+￼
+Peter November 10, 2017 at 8:17 pm
+Thank you very much for this. I am stuck on ‘step 8’ however.
+
+8. Change the file attributes
+netshark@NAUBVM01:~/insight$ chmod +x insight.sh
+
+I have the following from my terminal:
+:~/insight$ chmod +x ./insight.sh
+chmod: cannot access ‘./insight.sh’: No such file or directory
+
+Please could somebody kindly help me out, I would very much appreciate it.
+
+Many Thanks
+Peter
+
+Reply
+￼
+Clif November 27, 2017 at 11:59 pm
+Hello,
+
+I have attempted to install insight on my ubuntu 16.04 virtual machine. However, when i ran the insight script the first time, I received an error. Ran it a second time, no error, but when I ran make, I received the following errors:
+
+gdbtk/generic/gdbtk-varobj.c: In function ‘void variable_delete_tcl(Tcl_Interp*, varobj*, int)’:
+gdbtk/generic/gdbtk-varobj.c:407:26: error: request for member ‘begin’ in ‘var->varobj::children’, which is of pointer type ‘VEC_varobj_p*’ (maybe you meant to use ‘->’ ?)
+for (i = var->children.begin (); i != var->children.end (); i++)
+^
+gdbtk/generic/gdbtk-varobj.c:407:55: error: request for member ‘end’ in ‘var->varobj::children’, which is of pointer type ‘VEC_varobj_p*’ (maybe you meant to use ‘->’ ?)
+for (i = var->children.begin (); i != var->children.end (); i++)
+^
+gdbtk/generic/gdbtk-varobj.c: In function ‘Tcl_Obj* variable_children(Tcl_Interp*, varobj*)’:
+gdbtk/generic/gdbtk-varobj.c:440:62: error: invalid initialization of reference of type ‘const std::vector&’ from expression of type ‘VEC_varobj_p*’
+varobj_list_children (var, &from, &to);
+^
+Makefile:1943: recipe for target ‘gdbtk-varobj.o’ failed
+make[3]: *** [gdbtk-varobj.o] Error 1
+make[3]: Leaving directory ‘/home/clif/insight/bundle/gdb’
+Makefile:8971: recipe for target ‘all-gdb’ failed
+make[2]: *** [all-gdb] Error 2
+make[2]: Leaving directory ‘/home/clif/insight/bundle’
+Makefile:846: recipe for target ‘all’ failed
+make[1]: *** [all] Error 2
+make[1]: Leaving directory ‘/home/clif/insight/bundle’
+Makefile:4: recipe for target ‘notarget’ failed
+make: *** [notarget] Error 2
+
+Any help would be appreciated.
+
+Thanks
+
+Reply
+￼
+F February 28, 2018 at 1:03 am
+nice work . thx
+
+Reply
+Leave a reply
+￼
+Name
+￼
+E-mail
+￼
+Your comment...
+￼Submit
+￼
+Search
+￼
+DOKS (DROPLETS OF KNOWLEDGE) (6)
+EVENTS (1)
+FOUNDATIONS (3)
+SUCCESS STORIES (1)
+SUPPORT & CONSULTING (3)
+TOOLBOX (7)
+Working For Production Not The Latest Version
+I got a comment to my post on building Insight on Ubuntu 16.04 LTS, reporting that a later version, github cloned, seems to have some issue with the GDBTK part of the building. As I commented, I will try to get an idea of the......
+
+July 8, 2016
+Welcome pfSense
+pfSense is a firewall, based on freeBSD 64bit, it is a simple solution for small companies that need a perimeter firewall to get access using VPN and protecting against external attacks. Also it is not comparable with high rate solutions, as Fortinet, proudly supplying the......
+
+January 5, 2017
+Vim Setup
+Vi is the well known editor in Linux, and its Vim (Vi Improved) version is a friend of all professionals using Linux for daily tasks. What makes vi so good is the availability of a large number of plugins that make it incredibly useful, mainly......
+
+April 24, 2016
+Understanding Business Cultures
+Different ways to close business transactions This is something well known to cross countries’ large companies, but it should be known to all people because, sooner or later anyone of us could find that the his or her rules, were not the same in other......
+
+February 23, 2017
+Tags
+humor ideas knowledge scaling team
+By continuing to browse the site you are agreeing to our use of cookies. ￼I Understand

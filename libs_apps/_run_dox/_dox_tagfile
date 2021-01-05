@@ -1,0 +1,15 @@
+TAGFILES = \
+ ../dox/libs_apps/apps.tag=../../dox/libs_apps/apps/ \
+ ../dox/libs_apps/lib_OODB.tag=../../dox/libs_apps/lib_OODB/ \
+ ../dox/libs_apps/lib_accts.tag=../../dox/libs_apps/lib_accts/ \
+ ../dox/libs_apps/lib_base.tag=../../dox/libs_apps/lib_base/ \
+ ../dox/libs_apps/lib_base2.tag=../../dox/libs_apps/lib_base2/ \
+ ../dox/libs_apps/lib_inet.tag=../../dox/libs_apps/lib_inet/ \
+ ../dox/libs_apps/lib_media.tag=../../dox/libs_apps/lib_media/ \
+ ../dox/libs_apps/lib_play.tag=../../dox/libs_apps/lib_play/ \
+ ../dox/libs_apps/lib_win32.tag=../../dox/libs_apps/lib_win32/ \
+ ../dox/libs_apps/sar_data.tag=../../dox/libs_apps/sar_data/ \
+ ../dox/libs_apps/sar_parse.tag=../../dox/libs_apps/sar_parse/ \
+ ../dox/libs_apps/sar_plot.tag=../../dox/libs_apps/sar_plot/ \
+ ../dox/libs_apps/sar_tests.tag=../../dox/libs_apps/sar_tests/ \
+ # 

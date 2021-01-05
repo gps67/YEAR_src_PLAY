@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+# list segs
+
+import sys
+import traceback
+# sys.stderr = sys.stdout
+
+import MySQLdb
+import time
+
+class SQL_link:
+  def __init__( sql ):
+	host="localhost"
+	user="obj_stat_gather"
+	pasw="gather99"
+	sql.base="obj_stat_1"
+	sql.link = MySQLdb.Connection(host=host,user=user,passwd=pasw,db=sql.base)
+	sql.cursor = sql.link.cursor()
+  def close( sql ):
+	sql.link.close()
+
+class Line_list:
+  def __init__( line, sql ):
+	sql.cursor.execute("SELECT id FROM line_id ORDER by id")
+	list = []
+	for row in sql.cursor.fetchall():
+		(id,) = row
+		list.append( id )
+	line.list = list
+
+class Seg0_list:
+  def __init__( segs, sql, line ):
+	sql.cursor.execute("SELECT t0,t2 FROM seg WHERE line=%d ORDER BY t0" % line)
+	segs.line = line
+	segs.list = sql.cursor.fetchall() # (t0,t2)
+  def overlaps( segs ):
+	t2_prev = 0
+	dels = []
+	for seg in segs.list:
+		(t0, t2) = seg
+		if t2_prev <= t0:
+			t2_prev = t2
+			continue
+		else:
+			dels.append( seg )
+	return dels
+
+  def prints( segs ):
+	t2_prev = 0
+	dels = []
+	# for seg in segs.list:
+	for seg in segs.overlaps():
+		(t0, t2) = seg
+		dt1 = t2 - t0
+		dt_sec = dt1 % 60
+		dt1 = dt1 / 60
+		dt_min = dt1 % 60
+		dt1 = dt1 / 60
+		dt_hr = dt1 % 24
+		dt1 = dt1 / 24
+		dt_day = dt1
+		# tpl = time.localtime( t0 )
+		tpl = time.gmtime( t0 )
+		str = time.strftime( "%c", tpl )
+		print segs.line, str, "+", dt_day, "days", dt_hr, dt_min, dt_sec
+
+
+sql = SQL_link()
+lines = Line_list( sql )
+print "# run this to delete unwanted segments"
+print "USE", sql.base
+for line in lines.list:
+	print "# checking line", line
+	segs0 = Seg0_list( sql, line )
+	segs0.prints()
+sql.close()

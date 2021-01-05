@@ -277,9 +277,9 @@ yacc_name_y(
 	//  at least LINES // but _lines_in_ can do that anyway
 	// GEN places markers where tree stack completes starts upto_line pause
 	//
-	str = yacc_name;
-	str.put(".y");
-	return str;
+	str = yacc_name; // init truncate add STR0 yacc_name filename_
+	str.put(".y"); // filename.y
+	return str; // cast to STR0 calls terminating_nul 
 }
 
 STR0 Tree_PSG::
@@ -682,7 +682,7 @@ gen_YACC_declarations( buffer2 & out )
   L1("%define parser.error detailed");
   L1("%define api.pure full");
  }
-
+ return PASS("TODO");
 }
 
 bool Tree_PSG::

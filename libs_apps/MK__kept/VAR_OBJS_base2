@@ -1,0 +1,69 @@
+
+# draw_pdf
+ifeq ($(WITH_PDFLIB),1)
+	OBJS_base2 += pdf_ctxt.o
+	OBJS_base2 += pdf_base.o
+	OBJS_base2 += pdf_pen_base.o
+	OBJS_base2 += pdf_styles.o
+endif
+
+
+# draw_x11
+	OBJS_base2 += d_colour.o
+	OBJS_base2 += d_text.o
+	OBJS_base2 += d_gc.o
+##	OBJS_base2 += surface_base.o
+
+# gtk_1
+	OBJS_base2 += w_ctree.o
+	OBJS_base2 += w_file_sel.o
+	OBJS_base2 += w_menu1.o
+	OBJS_base2 += w_drawing_area.o
+	OBJS_base2 += w_widget0.o	
+#	OBJS_base2 += w_widget1.o	# persitant user_data --> w1_app / UNUSED
+	OBJS_base2 += w_btn_base.o
+	OBJS_base2 += w_btn_plus.o
+	OBJS_base2 += w_scale.o
+	OBJS_base2 += g_adjustment.o
+	OBJS_base2 += g_timer.o	 # microsecond timer (millisec)
+
+	OBJS_base2 += w_container_.o
+	OBJS_base2 += w_win_scrolled.o
+	OBJS_base2 += w_table.o
+
+	OBJS_base2 += GTK_Main_App_Holder.o
+	OBJS_base2 += GTK_Main_App.o
+	OBJS_base2 += w_win_top.o
+	OBJS_base2 += GTK_Main_App_Window_Minor.o
+
+	OBJS_base2 += g_obj.o	 # set_prop(), set_data(), ...
+
+# gtk_2
+	OBJS_base2 += w_note_book_base.o
+	OBJS_base2 += w_note_book_one.o
+	OBJS_base2 += w_graph1.o
+	OBJS_base2 += w_combo_plus.o
+	OBJS_base2 += w_dialog_msg.o
+	#
+	# e_print is not a sub-module it should be lib_base1
+	OBJS_base2 += e_print.o
+
+ifeq ($(WITH_JS),1)
+# js_1
+	OBJS_base2 += js_my_ErrorReporter.o
+	OBJS_base2 += JS1.o # main initialiser + shutdown
+	# js_2 is not js_1
+	OBJS_base2 += j_class_base.o	# vanilla 
+	OBJS_base2 += j_class_plus.o 	# vtbl to self
+	OBJS_base2 += jsc_prop_list.o
+#
+# js_2
+#	OBJS_base2 += js_class_vtbl.o 
+#	OBJS_base2 += js_inst_base.o 
+#	OBJS_base2 += js_row_inst.o 
+#
+	OBJS_base2 += j_args.o 
+	OBJS_base2 += j_cx.o 
+#	OBJS_base2 += j_class_base.o	# vanilla 
+# WITH_JS
+endif

@@ -1,0 +1,42 @@
+PDFLIB is semi-free software from www.pdflib.com
+You can use it in GPL projects (which the top level is, the rest is LGPL)
+
+This directory is how I CALL pdflib, and could easily be converted
+to another PDF generator, (or postscript), if anyone can suggest one.
+
+I compiled with pdflib-4.0.3, but on WIN32 I needed a patch pdflib.h,
+and for convenience it is included here as pdflib_h_PATCHED.gz
+but only until it works out of the box.
+
+CHANGE: I now compile against PDFlib-Lite-6.0.1 TODO: test with WIN32
+That is without any patched inclusion of pdflib.h
+
+A strange but interesting feature in my code, is that each pen is 'readonly'.
+If you want another font or colour, create another pen. There are still
+bugs in the style-selection-switching, but the calling code isnt involved
+in much detail.
+
+axes_calc provides a page of size 1.0 x 1.0
+with Y increasing downwards (through a -1 scale factor)
+You can (almost) create sub-areas, again with a mapped 1.0 x 1.0,
+or whatever you like. FONT dimensions are automatically scaled,
+and this really flushed out my old X11 habit of x_pixel += 1.
+
+	axes_calc.h
+	pdf_base.cxx
+	pdf_base.h
+	pdf_base0.h
+	pdf_ctxt.cxx
+	pdf_ctxt.h
+	pdf_pen_base.cxx
+	pdf_pen_base.h
+	pdf_style_parts.h
+	pdf_styles.cxx
+	pdf_styles.h
+
+BUG: there is a 'one-shot' problem, where the second report font HEIGHT
+metrics are zero, and all output is overlaid on one line.
+This is probably due the destructor/constructor not being correct,
+and pdflib not reloading, cached things, now set to zero (??)
+RESOLV-ING: seems that the SECOND constructor of pdf_rep_0 
+fills in with NAN, so y_pos += anything is still NAN

@@ -1,0 +1,18 @@
+TGT=LGX
+# TGT=WIN32
+
+prefix=../PKGS/PKGS_built/${TGT}/ROOT_pdflib
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_pdflib
+Description: LIBS_APPS uses PDFLIB (which requires GPL)
+Version: 0.1.2
+
+# actually it was downloaded pre-built
+# not yet using for anything much
+
+#Libs:  ${libdir}/pdflib.dll -Wl,--rpath=${libdir}
+Libs:  -L${libdir} -lpdf -Wl,--rpath=${libdir}
+Cflags:  -I${includedir}

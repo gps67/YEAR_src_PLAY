@@ -1,0 +1,30 @@
+COSTS,  key,               amount,  percent
+COSTS,  AXA-Ins,           276.00,      100
+COSTS,  maintenence,       624.00,      100
+COSTS,  MortgagueAssur,    960.00,      100
+COSTS,  MortgagueInt,     3000.00,      100
+COSTS,  MOT.DISC,          500.00,      100
+COSTS,  Car Loan,          260.00,      100
+COSTS,  tpft,              300.00,      100
+COSTS,  Petrol,            780.00,      100
+COSTS,  Food,             1560.00,      100
+COSTS,  counciltax,        600.00,      100
+COSTS,  gas_elec_water,    527.00,      100
+COSTS,  phoneline,         120.00,      100
+COSTS,  TVPlus,            172.00,      100
+COSTS,  Other,             321.00,      100
+COSTS,  total,           10000.00,      100
+
+MAINT,  key,  SO,  Y1,    maint,  year,  total,  Job1,  Job2,  Job3,  Job4,  Job5
+MAINT,  -,    23,  276,   0,      0,     0,      0,     0,     0,     0,     0
+MAINT,  -,    90,  1080,  67,     804,   6432,   3216,  1608,  804,   402,   402
+MAINT,  -,    85,  1020,  62,     744,   5952,   2976,  1488,  744,   372,   372
+MAINT,  -,    80,  960,   57,     684,   5472,   2736,  1368,  684,   342,   342
+MAINT,  -,    75,  900,   52,     624,   4992,   2496,  1248,  624,   312,   312
+MAINT,  -,    70,  840,   47,     564,   4512,   2256,  1128,  564,   282,   282
+MAINT,  -,    65,  780,   42,     504,   4032,   2016,  1008,  504,   252,   252
+MAINT,  -,    60,  720,   37,     444,   3552,   1776,  888,   444,   222,   222
+MAINT,  -,    55,  660,   32,     384,   3072,   1536,  768,   384,   192,   192
+MAINT,  -,    50,  600,   27,     324,   2592,   1296,  648,   324,   162,   162
+MAINT,  -,    45,  540,   22,     264,   2112,   1056,  528,   264,   132,   132
+

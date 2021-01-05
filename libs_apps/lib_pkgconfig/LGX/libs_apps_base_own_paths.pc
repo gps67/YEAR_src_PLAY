@@ -1,0 +1,19 @@
+
+# TGT=WIN32
+TGT=LGX
+# TGT=i586
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_own_paths
+Description: Libraries and Applications - own_rpath and includes
+Version: 0.1.2
+
+Requires: 
+
+# OK ${libdir}/libmedia.dll 
+Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/tools/CTXT/lib/ -Wl,--rpath=${prefix}/lib
+Cflags:  -I${includedir}

@@ -1,0 +1,12 @@
+# these include files are for simplicity of external users of the library
+# -D .. ok some defines mght be needed (todo move to curr_config.h)
+# -I$libs_apps/include
+# -L$libs_apps/lib
+# WIN32 users might not accept symb-links, not over SMB, ...
+
+echo "set -x"
+
+find  ../src -type f -name '*.[Hh]' -exec echo ln -sf {} ';' \
+| sort | sh -x  \
+2>&1 \
+| less

@@ -1,0 +1,23 @@
+str0
+	wrap over uchar *
+	single (32bit register) pointer
+	(STR0) - cast back to char *
+
+str1
+	a SINGLE pointer that HOLDS the malloc'd str0
+	may change, but only occasionally
+
+str2
+	str1 wrapped in an object header, ref_count, hash, vtbl, ...
+	may change, but only occasionally, as in never
+
+buffer2
+	an auto-stretching text buffer,
+	for printf, and manipulations.
+
+str_builder
+	replacing buffer2 ?
+
+-UTF8-
+	Currently all strings are 8-bit 8859 -NOT- utf8
+	but that gets through as a valid sub-set

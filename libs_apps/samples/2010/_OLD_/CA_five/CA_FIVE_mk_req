@@ -1,0 +1,272 @@
+. ask_do_fn
+
+CONF=${CA_NAME}.cnf
+CONF=CA_FIVE_config.cnf
+CA5=/CA5
+
+export CA_PREFIX=$CA5
+
+OPENSSL=/usr/bin/openssl
+OPENSSL=/airbook/bin/openssl
+OPENSSL="LOG_and_RUN /airbook/bin/openssl"
+
+PASSIN="-passin pass:secret"
+PASSOUT="-passout pass:secret"
+PASSCA="-key secret"
+
+LOG_and_RUN()
+{
+	echo "# $*"
+	"$@"
+}
+# export LOG_and_RUN
+
+
+mk_dir()
+{
+	[ -d "$1" ] || mkdir "$1"
+}
+
+mk_CA_db()
+{
+	D1=$CA5/${1}
+	[ -d $D1/keys ] && return
+	mk_dir $CA5/${1}
+	mk_dir $CA5/${1}/newcerts
+	mk_dir $CA5/${1}/keys
+	DX=$CA5/${1}/index.txt
+	SX=$CA5/${1}/serial
+	[ -f $DX ] || touch $DX
+	[ -f $SX ] || echo 33 >> $SX
+}
+
+get_serial()
+{
+	# get serial before it changes
+	SX=$CA5/${1}/serial
+	cat $SX
+	# serial changes
+}
+
+
+create_KEY_2048()
+{
+	mk_CA_db $1 # 
+	export CA_NAME=$1 # used in CFG file, complains if no value
+	export CERT_NAME=$2
+	K=${CERT_NAME}_key.pem 
+	${OPENSSL} genrsa req out $K $PASSOUT -des3 -F4 2048
+}
+
+create_KEY_1024()
+{
+	mk_CA_db $1 # 
+	export CA_NAME=$1 # used in CFG file, complains if no value
+	export CERT_NAME=$2
+	K=${CERT_NAME}_key.pem 
+	${OPENSSL} genrsa req out $K $PASSOUT -des3 -F4 1024
+}
+
+create_REQ()
+{
+	mk_CA_db $1 # 
+	export CA_NAME=$1 # used in CFG file, complains if no value
+	export CERT_NAME=$2
+
+	${OPENSSL} \
+		req \
+		-new \
+		$PASSIN \
+		-config ${CONF} \
+		-key    ${CERT_NAME}_key.pem \
+		-out    ${CERT_NAME}_req.pem \
+	#
+	# 	-newkey rsa:2048 \
+#
+# convert to txt
+# false && \
+	openssl req -in ${CERT_NAME}_req.pem -noout -text \
+	| tee ${CERT_NAME}_req.txt > /dev/null
+
+
+}
+
+create_KEY_and_REQ()
+{
+	mk_CA_db $1 # 
+# echo "## create_KEY_and_REQ ($1) $2"
+ # UNUSED # export CA_NAME=$1
+ export CA_NAME=$1 # used in CFG file, complains if no value
+ export CERT_NAME=$2
+
+
+	#
+	# create the KEY and REQ
+	#
+	${OPENSSL} \
+		req \
+		$PASSOUT \
+		-newkey rsa \
+		-config ${CONF} \
+		-out    ${CERT_NAME}_req.pem \
+		-keyout ${CERT_NAME}_key.pem \
+	#
+	# 	-newkey rsa:2048 \
+#
+	openssl req -in ${CERT_NAME}_req.pem -noout -text \
+	| tee ${CERT_NAME}_req.txt > /dev/null
+
+	mk_CA_db $1 # only for serial
+	SN=`get_serial $1`
+	KEYDIR=$CA5/$1/keys/
+	cp -p ${CERT_NAME}_key.pem $KEYDIR/${SN}_${CERT_NAME}_key.pem
+
+}
+
+sign_REQ_old()
+{
+# echo "## sign_REQ $*"
+ export CA_NAME=$1
+ export CERT_NAME=$2
+	${OPENSSL} \
+		x509 \
+		$PASSIN \
+		-req \
+		-in ${CERT_NAME}_req.pem \
+		-out ${CERT_NAME}_cert.pem \
+		-extensions ${CA_NAME}_extensions \
+		-sha1 \
+		-extfile ${CONF} \
+		-signkey ${CA_NAME}_key.pem \
+		#
+	#
+	#	-extensions ${CA_NAME}_certificate_extensions \
+	#
+	openssl x509 -noout -in ${CERT_NAME}_cert.pem -text | tee ${CERT_NAME}_cert.txt
+}
+
+COPY_KEY()
+{
+	export CA_NAME=$1
+	export CERT_NAME=$2
+# COPY KEY
+	SN=`get_serial $1`
+	KEYDIR=$CA5/$1/keys/
+	cp -p ${CERT_NAME}_key.pem $KEYDIR/${SN}_${CERT_NAME}_key.pem
+#
+}
+
+sign_REQ()
+{
+# echo "## sign_REQ $*"
+ export CA_NAME=$1
+ export CERT_NAME=$2
+
+	COPY_KEY "$@"	# must call before SN changes
+
+	${OPENSSL} \
+		ca \
+		$PASSIN \
+		-config ${CONF} \
+		-in ${CERT_NAME}_req.pem \
+		-out ${CERT_NAME}_cert.pem \
+		\
+		-cert ${CA_NAME}_cert.pem \
+		-keyfile ${CA_NAME}_key.pem \
+		\
+		-extensions ${CA_NAME}_extensions \
+		#
+	#
+	#	-extensions ${CA_NAME}_certificate_extensions \
+
+	# -name default_ca_${CA_NAME} # _section # 
+	# ss_cert $CERTFILE # already self signed ? to be signed by this CA?
+	# -outdir $CA5/${CA_NAME}_db #./FEFF1234.pem
+	# -selfsign # twited option login RTFM
+	#
+	# DONE ?openssl x509 -noout -in ${CERT_NAME}_cert.pem -text | tee ${CERT_NAME}_cert.txt
+
+}
+
+self_sign_REQ()
+{
+# echo "## sign_REQ $*"
+ export CA_NAME=$1
+ export CERT_NAME=$2
+	COPY_KEY "$@"	# must call before SN changes
+	${OPENSSL} \
+		ca \
+		$PASSIN \
+		-config ${CONF} \
+		\
+		-selfsign \
+		\
+		-in ${CERT_NAME}_req.pem \
+		-out ${CERT_NAME}_cert.pem \
+		-keyfile ${CERT_NAME}_key.pem \
+		\
+		-extensions ${CA_NAME}_extensions \
+		#
+	#
+	#	-extensions ${CA_NAME}_certificate_extensions \
+
+	# -name default_ca_${CA_NAME} # _section # 
+	# ss_cert $CERTFILE # already self signed ? to be signed by this CA?
+	# -outdir $CA5/${CA_NAME}_db #./FEFF1234.pem
+	# -selfsign # twited option login RTFM
+	#
+	# DONE ?openssl x509 -noout -in ${CERT_NAME}_cert.pem -text | tee ${CERT_NAME}_cert.txt
+}
+
+create_KEY_and_REQ_and_sign_REQ()
+{
+ # export CA_NAME=$1
+ # export CERT_NAME=$2
+ create_KEY_and_REQ $1 $2
+ sign_REQ $1 $2
+ return
+	# want 2048 bits not 1024 - but later OK
+}
+
+create_KEY_and_REQ_and_sign_ROOT()
+{
+ # export CA_NAME=$1
+ # export CERT_NAME=$2
+ create_KEY_and_REQ $1 $2
+ self_sign_REQ $1 $2
+ return
+ # want 2048 bits not 1024 - but later OK
+}
+
+#
+# use KEY to sign own REQ into CERT
+#
+INSGT="insight --args"
+INSGT=""
+
+(
+# CA_VOID_KEY=CA_VOID_key.pem 
+# CA_ZERO_KEY=CA_ZERO_key.pem 
+# ln -sf $CA_ZERO_KEY $CA_VOID_KEY
+# CA_VOID_CERT=CA_VOID_cert.pem 
+# CA_ZERO_CERT=CA_ZERO_cert.pem 
+# ln -sf $CA_ZERO_CERT $CA_VOID_CERT
+# set -x
+
+if : yes_no create_lots_of_things
+then
+ask_do_fn create_KEY_and_REQ_and_sign_ROOT CA_VOID CA_ZERO
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_ZERO CA_ONE
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_ONE  CA_boxes
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_ONE  CA_users
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_ONE  CA_handsets
+# HMM # create_KEY_and_REQ_and_sign_REQ CA_boxes C_airhub_hub9
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_handsets C_HSID_1234
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_handsets C_HSID_1235
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_boxes C_HUB_hub9
+ask_do_fn create_KEY_and_REQ_and_sign_REQ CA_boxes C_HUB_hub8
+fi
+) 2>&1 | tee $0.out_log_ # | less
+
+
+

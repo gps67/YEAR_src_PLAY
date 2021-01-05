@@ -1,0 +1,22 @@
+
+# TGT=WIN32
+TGT=LGX
+# TGT=i586
+
+# prefix=/home/gps/2000/src/libs_apps
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_own_paths
+Description: Libraries and Applications - own_rpath and includes
+Version: 0.1.2
+
+Requires: 
+
+# Libs: -Wl,--rpath=${libdir} -Wl,--rpath=./lib/ -Wl,--rpath=../lib/ -Wl,--rpath=/airbook/lib/
+# OK ${libdir}/libmedia.dll 
+# OK Libs: -L${libdir} -L ${libdir} -lmedia.dll -L./lib/ -L../lib/ -Wl,--rpath=/airbook/lib/ -L/airbook/lib
+Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/airbook/lib/ -Wl,--rpath=/nfs/md7/GPS/libs_apps/lib
+Cflags:  -I${includedir}

@@ -1,0 +1,31 @@
+#
+# fns_USES
+
+	# compiling this app USES gcc
+	# fns_USES helps you install things
+	# well it doesn't but it could
+	# maybe one day
+
+	# you need the actual compiling PATH already set
+	# you need . fns_FAIL and others
+	# it might NOT be a good idea to be within less or more
+
+	. fns_must_be_tty
+
+	prog_else_pkg() {
+		if F=`type -p "$1"`
+		then
+			echo "# PASS # $1 # $F"
+		else
+			echo "# WARN # $1 # absent"
+			ask_do sudo apt install "$2"
+			if F=`type -p "$1"`
+			then
+				echo "# PASS # $1 # $F"
+			else
+				echo "# FAIL # $1 # $2"
+				fn_FAIL "absent $1"
+			fi
+		fi
+	}
+

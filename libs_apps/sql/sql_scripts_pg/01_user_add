@@ -1,0 +1,9 @@
+. ./.env
+no_db
+pgsql_root <<!EOT
+	CREATE USER $USER_NAME
+	WITH PASSWORD '$USER_PASS'
+	CREATEDB ;
+
+	CREATE DATABASE $USER_NAME ;
+

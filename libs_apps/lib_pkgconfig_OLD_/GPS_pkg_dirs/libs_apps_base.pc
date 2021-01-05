@@ -1,0 +1,16 @@
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_base
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+# unfortunately base build a custom base-class that mentions JS GTK
+# but probably doesnt include base2!
+
+Requires: libs_apps_uses_js2, libs_apps_uses_gtk, libs_apps_uses_ssl, libs_apps_uses_libedit
+Libs:  -L${libdir} -lbase -Wl,--rpath=${prefix}/lib
+
+Cflags:  -I${includedir}

@@ -1,0 +1,129 @@
+# MATCH SCRIPT { ... }
+# MATCH // { SCRIPT } { ... }
+
+    u32_Decoder {
+     WORD_u32 { // Namespace = new Namespace( CTXT ); // GOTO CODE_POINT
+      SPEC { ... } // imports Near exports Near
+
+      CXX { u32_
+
+     // CODE_POINT 0X4.4x 
+     // TREE_DATA_CODE_POINT
+     // CALLABLE( & CTXT ) { SCRIPT }
+     // { SCRIPT } { ... }
+     // TREE_LOCN { NEW CodePoint } { ... DIAG ... }
+     // MATCH " ... "
+     // MATCH { ... }
+     // MATCH { ... SCRIPT ... }
+     // MATCH { EXPR }
+     // MATCH { CMNT EXPR CMNT
+     // FILTER GREP // RE( EXPR }
+     // FILTER GREP // RE( EXPR } // MATCH GEN RE_EXPR
+    }
+   }
+
+
+    u32_Decoder {
+
+        WORD_u32_lohi WORD;
+	u32 operator(" (u32) "); { return (u32) WORD; }
+	u32 u32_cpu(); { return (u32) WORD; }
+	u32 on_386 = u32_lohi
+	u32 on_ARM = u32_hilo # Default via SWAPB
+
+	 { SCRIPT } // ... SCRIPT ...
+
+# ON i386
+	 { RETURN u32_lohi FROM u32_hilo } // SWAPB //
+	 { RETURN u32_lohi FROM u32_lohi } // DATA_DIRECT //
+# ON arm
+	 { RETURN u32_hilo FROM u32_hilo } // DATA_DIRECT //
+	 { RETURN u32_hilo FROM u32_lohi } // SWAPB // MACRO // use NET_hilo
+
+
+	 { SCRIPT } // ... SCRIPT ...
+	 { RETURN u32_lohi FROM u32_hilo }
+	 { RETURN u32_hilo FROM u32_hilo }
+	 { RETURN u32_lohi FROM u32_lihi }
+	 { RETURN u32_hilo FROM u32_lihi }
+
+
+
+	 { RETURN u32_lohi FROM u32_lohi } { ... }
+	 { RETURN u32_lohi FROM u32_lohi {
+	 }
+
+
+    }
+
+# MATCH DATA { ... }
+
+    u32_Decoder {
+
+	# DIALACT # -here-
+	#  CTXT { 
+	#   DATA WORD_u32 value_u32; // WORD
+	#   DATA WORD_u32 value_u32; // WORD
+	#   // VAR 
+	#   # TYPE_SPEC( " u32_lohi on_386; // CMNT " ) # DIAG -Link_id-
+	#   }
+	#   DATA u32_lohi value_u32; // WORD
+	#   }
+	# declaration # looks like default 
+        u32_lohi	u32_cpu(); { return (u32) value_u32; }
+
+	data_direct_expr_u32_lohi.get_as_u32_cpu() {
+        u32_lohi	u32_cpu(); { return (u32) value_u32; }
+	p
+	}
+
+    }
+
+# MATCH SCRIPT { ... }
+
+    u32_Decoder {
+
+        u32_lohi	u32_cpu(); { return (u32) value_u32; }
+
+    }
+
+--- { DIAG } --- { DIAG } --- ... { ... } ... " { ... } "
+                 { DIAG } ---
+		   MATCH Layout_as ( " ... " )
+
+		   -- Default at_view_VIEW
+
+			" { ... } " # Default( CTXT.SELF_SPEC.invoke() # CMNT ) #
+			... { ... } ...
+
+		   MATCH invoked_as ( " ... " ) -- Default at_view_VIEW
+			 " { ... } "
+			 " {...} "
+			 " ... "
+			 "..."
+			 ... { ... } ...
+--- { DIAG } --------------- { DIAG } --- ... { ... } ... " { ... }
+--- { DIAG } --------------- { 
+--- { DIAG } --------------- { DIAG 
+--- { DIAG } ---------------  // TEXT
+--- { DIAG } --------------- } // DIAG 
+
+# moving CMNT into sight # ... # CMNT )
+# SCRIPT EXPR { ... CODE ... # CTXT # CMNT // CMNT }
+# SCRIPT CTXT {
+
+	{ ... CODE ... # CTXT # CMNT // CMNT }
+
+}
+SCRIPT DIAG [diag_id] {
+{ ... CODE ... # CTXT # CMNT // CMNT }
+}
+
+# MATCH SCRIPT { ... }
+# MATCH SCRIPT { ... } # not reflexive # here_is_reflexive # 
+# MATCH	{ ... CODE ... # CTXT # CMNT // CMNT }
+# MATCH# SCRIPT EXPR { retval_obj & invoke(); # CTXT # CMNT }
+# MATCH	" { ... } " # // new( LOCN ) // CTOR { ... CODE ... } //
+# MATCH	" { ... } " # Default( CTXT.SELF_SPEC.invoke() # CMNT ) #
+
+# TODO # view_page PDF GUI

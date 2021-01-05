@@ -5,20 +5,36 @@
 
 namespace EXPRS {
 
-static const int operator_assoc_LEFT = 0x1;
-static const int operator_assoc_RIGHT = 0x2;
-static const int operator_assoc_priority_times = 0x4;
+/*!
+	precedence is the priority. and side-binding left or right
 
+	The lower the number the tighter the binding, and happens first
+
+	Used as part of LEX_TOKEN_DECL, within _GROUP.
+
+	Invoked from LEX_TOKEN_GROUP LEX_POOL. add_PUNCT_4()
+
+	Uses a STR0 prec == "L3"
+
+	TODO: probably not used ATM, using order of source to do that
+
+	ZERO means unset, and various LEX's have no side-bind nor precedence
+
+*/
 struct operator_precedence_t {
-	int info;
 
+	// or make this enum
 	bool assoc_left;
 	bool assoc_right;
-	bool priority;
+
+	int precedence; // 1 = tightest // 0 == unset
+
 	// could be 2-step namespace/item address of a sentient type
 	// could be a looked-up by name NODE or TOK -selects- NODE
 	operator_precedence_t( STR0 flags = NULL )
-	: priority( 0 ) // default 0 // use lowest of 1 otherwise
+	: assoc_left( false )
+	, assoc_right( false )
+	, precedence( 0 ) // default 0 // use lowest of 1 otherwise
 	{
 		set_flags_str( flags );
 	} 
@@ -26,11 +42,10 @@ struct operator_precedence_t {
 	void set_flags_str( str0 flags ); // move to not inline
 
 	void init_unused() {} ; // leave as was, as CTOR left it
-	void set_left() { info |= operator_assoc_LEFT; }
-	void set_right() { info |= operator_assoc_RIGHT; }
+	void set_left() { assoc_left = true; }
+	void set_right() { assoc_right = true; } 
 	void set_precedence(int p) {
-		info &= 0x03 ;
-		info |= (p <<2) ;
+		precedence = p;
 	}
 };
 

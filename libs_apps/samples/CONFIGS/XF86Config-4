@@ -1,0 +1,179 @@
+
+Section "ServerLayout"
+	Identifier     "XFree86 Configured"
+	Screen      0  "Screen0"    0 0
+	InputDevice    "Mouse0"    "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+	InputDevice    "pen1"      "AlwaysCore"
+EndSection
+
+Section "ServerFlags"
+	# minutes
+	Option  "BlankTime"     "30"
+	Option  "StandbyTime"	"40"
+	Option  "SuspendTime"	"50"
+	Option  "OffTime" 	"60"
+	# its not blanking - goes to standby
+EndSection
+
+
+Section "Files"
+	RgbPath      "/tools/2002/X11R6/lib/X11/rgb"
+	ModulePath   "/tools/2002/X11R6/lib/modules"
+
+  # FontPath     "unix/:-1"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/misc/"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/Speedo/"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/Type1/"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/CID/"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/75dpi/"
+	FontPath     "/tools/2002/X11R6/lib/X11/fonts/100dpi/"
+
+###	FontPath	"/tools/1999_src/x11/xc/fonts/scaled/Type1"
+	FontPath	"/tools/2002/X11R6/lib/X11/fonts/Type1"
+	FontPath	"/usr/share/fonts/default/Type1"
+	FontPath	"/usr/X11R6_/lib/X11/fonts/Type1"
+	FontPath	"/tools/1999/X11R6.4/lib/X11/fonts/Type1"
+	FontPath	"/tools/1999_src/x11/xc/lib/font/Type1"
+EndSection
+
+Section "Module"
+	Load  "extmod"
+# NONE #	Load  "xie"
+# NONE #	Load  "pex5"
+	Load  "glx"
+# glxgears - shows out-of-memory in sis_dri.so
+	Load  "dri"		# (modprobe sis)
+	Load  "dbe"
+	Load  "record"
+	Load  "v4l"
+	Load  "type1"
+
+#	XF86 figures this, so you dont have to
+#   Load  "hyperpen"
+
+
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "keyboard"
+	Option      "XkbLayout"       "gb"
+    # FOR "XkbLayout" SEE: xc/programs/xkbcomp/keymap/xfree86
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option      "Protocol" "PS/2"
+	Option      "Device" "/dev/mouse"
+EndSection
+
+# MUST download updated driver from XF86 
+# xc/programs/Xserver/hw/xfree86/input/hyperpen/
+# xf86HyperPen.c (hyperpenModuleData)
+
+Section "InputDevice"
+	Identifier   "pen1"
+	Driver       "hyperpen"
+	Option       "Device"	"/dev/ttyS_"
+#	Option       "Device"	"/dev/ttyS0"
+	Option       "BaudRate"	"19200"
+	Option       "PMin"	"100" # 75 is mild touch
+#	Option "DebugLevel"	"10"       # be very verbose
+Endsection
+
+# in relative mode - drift up left (pen still - tremble only)
+#	Option       "Mode"		"relative"
+#	Option       "Mode"		"absolute"
+#	Option       "Cursor"	"puck"
+#	Option       "Cursor"	"stylus" # reported as cursor
+#	Option "DebugLevel"	"10"       # be very verbose
+
+Section "Monitor"
+	# My monitor is different from yours, which may catch fire ...
+	# These limits are from its manual. THIS IS WHAT YOU EDIT FIRST
+	# ie HorizSync and VertRefresh
+	# The actual timings DEFAULT to the SiS driver, which seems OK
+	# but the "pal" setting is for 768x576 (any name)
+	#
+	# This is a rather old, bulky, but big monitor
+	#
+	Identifier   "Monitor0"
+	VendorName   "Hitachi"
+	ModelName    "CM751ET"
+	HorizSync     30-93
+	VertRefresh   50-150
+	Option       "DPMS" "1"
+
+	# man xawtvrc suggested this line
+	# Modeline  "pal"  50.00  768 832 856 1000  576 590 595 630  -hsync -vsync      
+
+	Modeline  "pal"  50.00  768 832 856 1000  576 590 595 630  -hsync -vsync
+
+EndSection
+
+Section "Device"
+	Identifier  "Card0"
+	Driver      "sis"
+	VendorName  "SiS"
+	BoardName   "530"
+	BusID       "PCI:1:0:0"
+	Option      "power_saver"
+	Option      "HWcursor" "False"
+
+ # this fixed jagged smears, then newer XF86 needed opposite!
+ #  Option     "FastVram"	"False"
+
+        ### Other Options
+        #Option     "SWcursor"           	# [<bool>]
+        #Option     "HWcursor"           	# [<bool>]
+        #Option     "PciRetry"           	# [<bool>]
+        #Option     "rgbbits"            	# <i>
+        #Option     "NoAccel"            	# [<bool>]
+        #Option     "TurboQueue"         	# [<bool>]
+        #Option     "SetMClk"            	# <freq>
+        #Option     "FastVram"           	# [<bool>]
+        #Option     "ForceCRT2Type"      	# [<str>]
+        #Option     "ShadowFB"           	# [<bool>]
+        #Option     "Rotate"             	# [<str>]
+        #Option     "NoXvideo"           	# [<bool>]
+EndSection
+
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+    DefaultColorDepth 16
+    # WEAK# DefaultColorDepth 24
+	SubSection "Display"
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Depth     15
+        Modes       "800x600" "640x480"
+	EndSubSection
+	SubSection "Display"
+		Depth     16
+        Modes       "1280x1024" "1024x768" "800x600" "640x480" "768x576" "pal"
+      # Modes       "1024x768" "800x600" "640x480"
+      # Modes       "800x600" "640x480"
+	EndSubSection
+	SubSection "Display"
+		Depth     24
+        Modes       "800x600" "640x480" 
+	EndSubSection
+EndSection
+
+
+Section "DRI"
+		# allow all users access to /dev/dri/card?
+		Mode 0666
+EndSection
+

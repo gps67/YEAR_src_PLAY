@@ -1,0 +1,39 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=GB, ST=Berks, O=InformationCascade, OU=CA_, CN=HSID_4321
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:ac:d3:c8:d5:32:1f:0b:f8:45:1f:3c:70:5d:81:
+                    85:48:a1:eb:f1:ae:2e:7a:b0:4c:cb:fa:07:4c:94:
+                    4a:77:4d:41:db:50:85:93:e6:48:bd:c0:c7:f4:1a:
+                    3d:92:d0:a2:36:c6:17:6e:21:18:24:55:47:fb:2d:
+                    15:fe:b7:7d:ac:c1:9a:ac:f9:7a:e4:14:20:dd:6a:
+                    2a:50:2e:89:ad:b2:4a:3e:f5:d1:21:fc:cf:17:f4:
+                    bf:4a:8a:f0:9a:78:59:f1:90:69:e0:1f:73:b8:5b:
+                    8f:8a:0b:3f:39:10:f7:b0:cc:16:e7:e6:3a:01:24:
+                    99:9c:fd:ce:4f:76:88:8e:33
+                Exponent: 65537 (0x10001)
+        Attributes:
+        Requested Extensions:
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:3
+            X509v3 Subject Alternative Name: 
+                DNS:vlan.information-cascade.co.uk
+            X509v3 Subject Alternative Name: 
+                DNS:hublan.information-cascade.co.uk
+            X509v3 Subject Alternative Name: 
+                email:lists@information-cascade.co.uk
+            X509v3 Key Usage: 
+                Certificate Sign, CRL Sign
+    Signature Algorithm: sha1WithRSAEncryption
+        35:5c:be:bc:5f:f4:73:d0:87:ae:90:f2:a9:8f:01:24:98:2c:
+        e1:a1:a7:ce:24:42:e2:48:61:ab:b3:39:85:26:ed:58:e7:b5:
+        f9:c2:9f:c8:26:03:6d:11:10:7d:28:ef:e2:29:66:98:eb:91:
+        a5:b0:16:af:be:d2:e8:35:7c:f1:5f:47:bb:49:f3:b2:0c:0c:
+        b1:4c:45:db:56:37:c6:0c:af:e7:14:a6:6c:26:3c:e2:c0:8c:
+        81:20:35:72:b7:99:e7:7f:02:97:2a:a5:fb:e9:3a:50:db:04:
+        a3:d0:38:2f:72:fd:b8:84:b1:8c:6b:27:bf:e2:3a:09:8a:5e:
+        f9:35

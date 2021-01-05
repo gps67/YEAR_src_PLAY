@@ -1,0 +1,20 @@
+#set -x
+cls=obj_list_base
+fn=':N()'
+fn='operator..(int)'
+cls='ACCTS::help_RPT12'
+fn=':init0()'
+d1=../lib/
+PATH=/tools/2003/ccs/bin:$PATH
+cd $d1 || exit
+list()
+{
+		nm -A -C *.o  | grep "$cls" | grep "$fn"
+}
+list ; exit
+L1=`list` 
+L2=`echo "$L1" | sed 's/:.*//'`
+echo "$L1"
+echo "$L2"
+rm -i $L2
+

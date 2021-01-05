@@ -1,0 +1,26 @@
+b main
+b dyn_array_index_error
+# r --run-reports ../samples/0102.csv
+# r --run-reports ../samples/0203.csv
+# r --run-reports ../samples/0304.csv
+# r  ../samples/0102.csv
+# r  ../samples/0203.csv
+# r  --load-save-quit ../samples/0102.csv
+# r  --load-save-quit ../samples/0203.csv
+# r ../samples/rpt1.csv
+# r  --load-save-quit ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
+# r  ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
+r  ~/2000/A_C_C_T_S/PRIV_samples/0910.csv
+
+#
+# easy invoke with:
+#
+#                                                                              
+# INGDB=1 \
+# /tools/2005/gdb/bin/insight \
+# --command .gdbinit_bug5 \
+# accts
+#
+
+
+

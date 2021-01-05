@@ -1,0 +1,16 @@
+
+./IRC lircd_stop
+./IRC mod_stop
+
+./IRC mod_start
+./IRC lircd_start
+./IRC setserial_start
+
+./IRC mod_stat
+./IRC lircd_stat
+
+./IRC send1
+
+./IRC dmesg_c
+./IRC setserial_stat
+

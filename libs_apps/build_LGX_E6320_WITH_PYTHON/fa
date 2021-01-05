@@ -1,0 +1,1502 @@
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base/obj/obj_ref0.cxx # LGX
+make: *** No rule to make target 'JS1.o'. Stop.
+make: *** No rule to make target 'JS1.o'. Stop.
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx # LGX
+In file included from /home/gps/G/mozjs/include/mozjs-63/jstypes.h:33,
+                 from /home/gps/G/mozjs/include/mozjs-63/jspubtd.h:14,
+                 from /home/gps/G/mozjs/include/mozjs-63/jsapi.h:25,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/js-config.h:24:4: error: #error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+ #  error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+    ^~~~~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.h:9,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:5:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/j_cx.h:14:2: warning: #warning new STUBS here [-Wcpp]
+ #warning new STUBS here
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:200:2: warning: #warning single thread because of reinit [-Wcpp]
+ #warning single thread because of reinit
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:222:2: warning: #warning is this cx (aswas) or rt (sample) [-Wcpp]
+ #warning is this cx (aswas) or rt (sample)
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:14:7: error: ‘JS_AddObjectRoot’ was not declared in this scope
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:14:7: note: suggested alternative: ‘JS_AddRoot’
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+       JS_AddRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::GC_drop(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:24:3: error: ‘JS_RemoveObjectRoot’ was not declared in this scope
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:24:3: note: suggested alternative: ‘JS_RemoveRoot’
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+   JS_RemoveRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In function ‘bool Print(JSContext*, uns, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:51:20: error: ‘JS_ARGV’ was not declared in this scope
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:51:20: note: suggested alternative: ‘JS_GC’
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+                    JS_GC
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:60:9: error: ‘JS_ValueToString’ was not declared in this scope
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:60:9: note: suggested alternative: ‘JS_ValueToSource’
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+         JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:41: error: ‘JS_EncodeString’ was not declared in this scope
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:41: note: suggested alternative: ‘JS_ConcatStrings’
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+                                         JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::print_rval()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:75:18: error: ‘JS_ValueToString’ was not declared in this scope
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:75:18: note: suggested alternative: ‘JS_ValueToSource’
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+                  JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:77:24: error: ‘JS_EncodeString’ was not declared in this scope
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:77:24: note: suggested alternative: ‘JS_ConcatStrings’
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+                        JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: At global scope:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:136:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:136:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: error: ‘JS_EnumerateStub’ was not declared in this scope
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: note: suggested alternative: ‘JS_Enumerate’
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+  JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: error: ‘JS_ResolveStub’ was not declared in this scope
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: note: suggested alternative: ‘JSResolveOp’
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+  JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:162:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:162:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:163:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:163:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:164:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:164:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:1: error: ‘JS_EnumerateStub’ was not declared in this scope
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:1: note: suggested alternative: ‘JS_Enumerate’
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+ JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:1: error: ‘JS_ResolveStub’ was not declared in this scope
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:1: note: suggested alternative: ‘JSResolveOp’
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+ JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::Init(int, int)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:201:6: error: ‘JS_Init’ was not declared in this scope
+  if (JS_Init())
+      ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:201:6: note: suggested alternative: ‘Init’
+  if (JS_Init())
+      ^~~~~~~
+      Init
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:7: error: ‘JS_NewRuntime’ was not declared in this scope
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:7: note: suggested alternative: ‘JS_GetRuntime’
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+       JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:208:22: error: invalid conversion from ‘JSRuntime*’ to ‘uint32_t’ {aka ‘unsigned int’} [-fpermissive]
+  cx = JS_NewContext( rt, stacksize );
+                      ^~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:447:24: note:   initializing argument 1 of ‘JSContext* JS_NewContext(uint32_t, uint32_t, JSRuntime*)’
+ JS_NewContext(uint32_t maxbytes,
+               ~~~~~~~~~^~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:223:2: error: ‘JS_SetErrorReporter’ was not declared in this scope
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:223:2: note: suggested alternative: ‘my_ErrorReporter’
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+  my_ErrorReporter
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:20: error: ‘JSVERSION_LATEST’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+                    ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: error: ‘JS_SetVersion’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: note: suggested alternative: ‘JSSetterOp’
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+  JSSetterOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:285:59: error: too few arguments to function ‘JSObject* JS_NewGlobalObject(JSContext*, const JSClass*, JSPrincipals*, JS::OnNewGlobalHookOption, const JS::RealmOptions&)’
+  globalObj = JS_NewGlobalObject(cx, &my_global_class, NULL);
+                                                           ^
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:1787:1: note: declared here
+ JS_NewGlobalObject(JSContext* cx, const JSClass* clasp, JSPrincipals* principals,
+ ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:288:6: error: ‘JS_InitStandardClasses’ was not declared in this scope
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:288:6: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+      JS_EnumerateStandardClasses
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:292:30: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::Handle<JSObject*>’
+  if (!JS_DefineFunctions(cx, globalObj, shell_functions))
+                              ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::shutdown()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:310:2: error: ‘JS_DestroyRuntime’ was not declared in this scope
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:310:2: note: suggested alternative: ‘JS_GetRuntime’
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+  JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:312:2: error: ‘JS_ShutDown’ was not declared in this scope
+  JS_ShutDown();
+  ^~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:312:2: note: suggested alternative: ‘shutdown’
+  JS_ShutDown();
+  ^~~~~~~~~~~
+  shutdown
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::call_func(const char*, int, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:324:3: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::HandleObject’ {aka ‘JS::Handle<JSObject*>’}
+   globalObj,
+   ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::IsCompilable(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:340:9: error: ‘JS_BufferIsCompilableUnit’ was not declared in this scope
+  return JS_BufferIsCompilableUnit(
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:353:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:353:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:371:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:371:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:387:34: error: ‘JS_CompileUTF8File’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:387:34: note: suggested alternative: ‘CompileFile’
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+                                  CompileFile
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile_hash(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:424:3: error: ‘JS_ReportError’ was not declared in this scope
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:424:3: note: suggested alternative: ‘ReportError’
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+   ReportError
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:439:30: error: ‘JS_CompileUTF8FileHandle’ was not declared in this scope
+         script = (JSScript*) JS_CompileUTF8FileHandle( cx, globalObj, filename, file );
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::ExecuteScript(JSScript*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:446:9: error: ‘JS_ExecuteScript’ was not declared in this scope
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:446:9: note: suggested alternative: ‘ExecuteScript’
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+         ExecuteScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:20:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx # LGX
+In file included from /home/gps/G/mozjs/include/mozjs-63/jstypes.h:33,
+                 from /home/gps/G/mozjs/include/mozjs-63/jspubtd.h:14,
+                 from /home/gps/G/mozjs/include/mozjs-63/jsapi.h:25,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/js-config.h:24:4: error: #error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+ #  error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+    ^~~~~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.h:9,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:5:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/j_cx.h:14:2: warning: #warning new STUBS here [-Wcpp]
+ #warning new STUBS here
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:202:2: warning: #warning single thread because of reinit [-Wcpp]
+ #warning single thread because of reinit
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:224:2: warning: #warning is this cx (aswas) or rt (sample) [-Wcpp]
+ #warning is this cx (aswas) or rt (sample)
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:14:7: error: ‘JS_AddObjectRoot’ was not declared in this scope
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:14:7: note: suggested alternative: ‘JS_AddRoot’
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+       JS_AddRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::GC_drop(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:24:3: error: ‘JS_RemoveObjectRoot’ was not declared in this scope
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:24:3: note: suggested alternative: ‘JS_RemoveRoot’
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+   JS_RemoveRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In function ‘bool Print(JSContext*, uns, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:51:20: error: ‘JS_ARGV’ was not declared in this scope
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:51:20: note: suggested alternative: ‘JS_GC’
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+                    JS_GC
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:60:9: error: ‘JS_ValueToString’ was not declared in this scope
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:60:9: note: suggested alternative: ‘JS_ValueToSource’
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+         JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:41: error: ‘JS_EncodeString’ was not declared in this scope
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:41: note: suggested alternative: ‘JS_ConcatStrings’
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+                                         JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::print_rval()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:75:18: error: ‘JS_ValueToString’ was not declared in this scope
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:75:18: note: suggested alternative: ‘JS_ValueToSource’
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+                  JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:77:24: error: ‘JS_EncodeString’ was not declared in this scope
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:77:24: note: suggested alternative: ‘JS_ConcatStrings’
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+                        JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: At global scope:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:136:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:136:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: error: ‘JS_DeletePropertyStub’ was not declared in this scope
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: note: suggested alternative: ‘JS_DeleteProperty’
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_DeleteProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: error: ‘JS_EnumerateStub’ was not declared in this scope
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: note: suggested alternative: ‘JS_Enumerate’
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+  JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: error: ‘JS_ResolveStub’ was not declared in this scope
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: note: suggested alternative: ‘JSResolveOp’
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+  JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:164:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:164:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:1: error: ‘JS_EnumerateStub’ was not declared in this scope
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:1: note: suggested alternative: ‘JS_Enumerate’
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+ JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:1: error: ‘JS_ResolveStub’ was not declared in this scope
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:1: note: suggested alternative: ‘JSResolveOp’
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+ JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:173:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:173:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::Init(int, int)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:203:6: error: ‘JS_Init’ was not declared in this scope
+  if (JS_Init())
+      ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:203:6: note: suggested alternative: ‘Init’
+  if (JS_Init())
+      ^~~~~~~
+      Init
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:206:7: error: ‘JS_NewRuntime’ was not declared in this scope
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:206:7: note: suggested alternative: ‘JS_GetRuntime’
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+       JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:210:22: error: invalid conversion from ‘JSRuntime*’ to ‘uint32_t’ {aka ‘unsigned int’} [-fpermissive]
+  cx = JS_NewContext( rt, stacksize );
+                      ^~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:447:24: note:   initializing argument 1 of ‘JSContext* JS_NewContext(uint32_t, uint32_t, JSRuntime*)’
+ JS_NewContext(uint32_t maxbytes,
+               ~~~~~~~~~^~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: error: ‘JS_SetErrorReporter’ was not declared in this scope
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: note: suggested alternative: ‘my_ErrorReporter’
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+  my_ErrorReporter
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:227:20: error: ‘JSVERSION_LATEST’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+                    ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:227:2: error: ‘JS_SetVersion’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:227:2: note: suggested alternative: ‘JSSetterOp’
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+  JSSetterOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:287:59: error: too few arguments to function ‘JSObject* JS_NewGlobalObject(JSContext*, const JSClass*, JSPrincipals*, JS::OnNewGlobalHookOption, const JS::RealmOptions&)’
+  globalObj = JS_NewGlobalObject(cx, &my_global_class, NULL);
+                                                           ^
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:2:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:1787:1: note: declared here
+ JS_NewGlobalObject(JSContext* cx, const JSClass* clasp, JSPrincipals* principals,
+ ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:290:6: error: ‘JS_InitStandardClasses’ was not declared in this scope
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:290:6: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+      JS_EnumerateStandardClasses
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:294:30: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::Handle<JSObject*>’
+  if (!JS_DefineFunctions(cx, globalObj, shell_functions))
+                              ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::shutdown()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:312:2: error: ‘JS_DestroyRuntime’ was not declared in this scope
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:312:2: note: suggested alternative: ‘JS_GetRuntime’
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+  JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:314:2: error: ‘JS_ShutDown’ was not declared in this scope
+  JS_ShutDown();
+  ^~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:314:2: note: suggested alternative: ‘shutdown’
+  JS_ShutDown();
+  ^~~~~~~~~~~
+  shutdown
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::call_func(const char*, int, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:326:3: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::HandleObject’ {aka ‘JS::Handle<JSObject*>’}
+   globalObj,
+   ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::IsCompilable(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:342:9: error: ‘JS_BufferIsCompilableUnit’ was not declared in this scope
+  return JS_BufferIsCompilableUnit(
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:355:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:355:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:373:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:373:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:389:34: error: ‘JS_CompileUTF8File’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:389:34: note: suggested alternative: ‘CompileFile’
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+                                  CompileFile
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile_hash(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:426:3: error: ‘JS_ReportError’ was not declared in this scope
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:426:3: note: suggested alternative: ‘ReportError’
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+   ReportError
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:441:30: error: ‘JS_CompileUTF8FileHandle’ was not declared in this scope
+         script = (JSScript*) JS_CompileUTF8FileHandle( cx, globalObj, filename, file );
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::ExecuteScript(JSScript*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:448:9: error: ‘JS_ExecuteScript’ was not declared in this scope
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:448:9: note: suggested alternative: ‘ExecuteScript’
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+         ExecuteScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:20:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx # LGX
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.h:9,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:6:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/j_cx.h:14:2: warning: #warning new STUBS here [-Wcpp]
+ #warning new STUBS here
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:203:2: warning: #warning single thread because of reinit [-Wcpp]
+ #warning single thread because of reinit
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: warning: #warning is this cx (aswas) or rt (sample) [-Wcpp]
+ #warning is this cx (aswas) or rt (sample)
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:15:7: error: ‘JS_AddObjectRoot’ was not declared in this scope
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:15:7: note: suggested alternative: ‘JS_AddRoot’
+   if( JS_AddObjectRoot( cx, obj ))
+       ^~~~~~~~~~~~~~~~
+       JS_AddRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::GC_drop(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:25:3: error: ‘JS_RemoveObjectRoot’ was not declared in this scope
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:25:3: note: suggested alternative: ‘JS_RemoveRoot’
+   JS_RemoveObjectRoot( cx, obj );
+   ^~~~~~~~~~~~~~~~~~~
+   JS_RemoveRoot
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In function ‘bool Print(JSContext*, uns, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:52:20: error: ‘JS_ARGV’ was not declared in this scope
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:52:20: note: suggested alternative: ‘JS_GC’
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+                    JS_GC
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:61:9: error: ‘JS_ValueToString’ was not declared in this scope
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:61:9: note: suggested alternative: ‘JS_ValueToSource’
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+         JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:64:41: error: ‘JS_EncodeString’ was not declared in this scope
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:64:41: note: suggested alternative: ‘JS_ConcatStrings’
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+                                         JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::print_rval()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:76:18: error: ‘JS_ValueToString’ was not declared in this scope
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:76:18: note: suggested alternative: ‘JS_ValueToSource’
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+                  JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:24: error: ‘JS_EncodeString’ was not declared in this scope
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:24: note: suggested alternative: ‘JS_ConcatStrings’
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+                        JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: At global scope:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: error: ‘JS_DeletePropertyStub’ was not declared in this scope
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: note: suggested alternative: ‘JS_DeleteProperty’
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_DeleteProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: error: ‘JS_EnumerateStub’ was not declared in this scope
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: note: suggested alternative: ‘JS_Enumerate’
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+  JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: error: ‘JS_ResolveStub’ was not declared in this scope
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: note: suggested alternative: ‘JSResolveOp’
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+  JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:170:1: error: ‘JS_EnumerateStub’ was not declared in this scope
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:170:1: note: suggested alternative: ‘JS_Enumerate’
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+ JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:1: error: ‘JS_ResolveStub’ was not declared in this scope
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:1: note: suggested alternative: ‘JSResolveOp’
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+ JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::Init(int, int)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:6: error: ‘JS_Init’ was not declared in this scope
+  if (JS_Init())
+      ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:6: note: suggested alternative: ‘Init’
+  if (JS_Init())
+      ^~~~~~~
+      Init
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:207:7: error: ‘JS_NewRuntime’ was not declared in this scope
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:207:7: note: suggested alternative: ‘JS_GetRuntime’
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+       JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:211:22: error: invalid conversion from ‘JSRuntime*’ to ‘uint32_t’ {aka ‘unsigned int’} [-fpermissive]
+  cx = JS_NewContext( rt, stacksize );
+                      ^~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:447:24: note:   initializing argument 1 of ‘JSContext* JS_NewContext(uint32_t, uint32_t, JSRuntime*)’
+ JS_NewContext(uint32_t maxbytes,
+               ~~~~~~~~~^~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:2: error: ‘JS_SetErrorReporter’ was not declared in this scope
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:2: note: suggested alternative: ‘my_ErrorReporter’
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+  my_ErrorReporter
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:20: error: ‘JSVERSION_LATEST’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+                    ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:2: error: ‘JS_SetVersion’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:2: note: suggested alternative: ‘JSSetterOp’
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+  JSSetterOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:288:59: error: too few arguments to function ‘JSObject* JS_NewGlobalObject(JSContext*, const JSClass*, JSPrincipals*, JS::OnNewGlobalHookOption, const JS::RealmOptions&)’
+  globalObj = JS_NewGlobalObject(cx, &my_global_class, NULL);
+                                                           ^
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:1787:1: note: declared here
+ JS_NewGlobalObject(JSContext* cx, const JSClass* clasp, JSPrincipals* principals,
+ ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:291:6: error: ‘JS_InitStandardClasses’ was not declared in this scope
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:291:6: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+      JS_EnumerateStandardClasses
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:295:30: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::Handle<JSObject*>’
+  if (!JS_DefineFunctions(cx, globalObj, shell_functions))
+                              ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::shutdown()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:313:2: error: ‘JS_DestroyRuntime’ was not declared in this scope
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:313:2: note: suggested alternative: ‘JS_GetRuntime’
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+  JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:315:2: error: ‘JS_ShutDown’ was not declared in this scope
+  JS_ShutDown();
+  ^~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:315:2: note: suggested alternative: ‘shutdown’
+  JS_ShutDown();
+  ^~~~~~~~~~~
+  shutdown
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::call_func(const char*, int, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:327:3: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::HandleObject’ {aka ‘JS::Handle<JSObject*>’}
+   globalObj,
+   ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::IsCompilable(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:343:9: error: ‘JS_BufferIsCompilableUnit’ was not declared in this scope
+  return JS_BufferIsCompilableUnit(
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:356:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:356:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:374:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:374:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:390:34: error: ‘JS_CompileUTF8File’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:390:34: note: suggested alternative: ‘CompileFile’
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+                                  CompileFile
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile_hash(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:427:3: error: ‘JS_ReportError’ was not declared in this scope
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:427:3: note: suggested alternative: ‘ReportError’
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+   ReportError
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:442:30: error: ‘JS_CompileUTF8FileHandle’ was not declared in this scope
+         script = (JSScript*) JS_CompileUTF8FileHandle( cx, globalObj, filename, file );
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::ExecuteScript(JSScript*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:449:9: error: ‘JS_ExecuteScript’ was not declared in this scope
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:449:9: note: suggested alternative: ‘ExecuteScript’
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+         ExecuteScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::GC_grab(JSObject**)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:21:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx # LGX
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.h:9,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:6:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/j_cx.h:14:2: warning: #warning new STUBS here [-Wcpp]
+ #warning new STUBS here
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:203:2: warning: #warning single thread because of reinit [-Wcpp]
+ #warning single thread because of reinit
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:225:2: warning: #warning is this cx (aswas) or rt (sample) [-Wcpp]
+ #warning is this cx (aswas) or rt (sample)
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In function ‘bool Print(JSContext*, uns, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:52:20: error: ‘JS_ARGV’ was not declared in this scope
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:52:20: note: suggested alternative: ‘JS_GC’
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+                    JS_GC
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:61:9: error: ‘JS_ValueToString’ was not declared in this scope
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:61:9: note: suggested alternative: ‘JS_ValueToSource’
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+         JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:64:41: error: ‘JS_EncodeString’ was not declared in this scope
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:64:41: note: suggested alternative: ‘JS_ConcatStrings’
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+                                         JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::print_rval()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:76:18: error: ‘JS_ValueToString’ was not declared in this scope
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:76:18: note: suggested alternative: ‘JS_ValueToSource’
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+                  JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:24: error: ‘JS_EncodeString’ was not declared in this scope
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:24: note: suggested alternative: ‘JS_ConcatStrings’
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+                        JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: At global scope:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:137:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:138:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: error: ‘JS_DeletePropertyStub’ was not declared in this scope
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: note: suggested alternative: ‘JS_DeleteProperty’
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_DeleteProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: error: ‘JS_EnumerateStub’ was not declared in this scope
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: note: suggested alternative: ‘JS_Enumerate’
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+  JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: error: ‘JS_ResolveStub’ was not declared in this scope
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: note: suggested alternative: ‘JSResolveOp’
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+  JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:165:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:166:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:167:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:168:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:169:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:170:1: error: ‘JS_EnumerateStub’ was not declared in this scope
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:170:1: note: suggested alternative: ‘JS_Enumerate’
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+ JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:1: error: ‘JS_ResolveStub’ was not declared in this scope
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:1: note: suggested alternative: ‘JSResolveOp’
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+ JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::Init(int, int)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:6: error: ‘JS_Init’ was not declared in this scope
+  if (JS_Init())
+      ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:204:6: note: suggested alternative: ‘Init’
+  if (JS_Init())
+      ^~~~~~~
+      Init
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:207:7: error: ‘JS_NewRuntime’ was not declared in this scope
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:207:7: note: suggested alternative: ‘JS_GetRuntime’
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+       JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:211:22: error: invalid conversion from ‘JSRuntime*’ to ‘uint32_t’ {aka ‘unsigned int’} [-fpermissive]
+  cx = JS_NewContext( rt, stacksize );
+                      ^~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:447:24: note:   initializing argument 1 of ‘JSContext* JS_NewContext(uint32_t, uint32_t, JSRuntime*)’
+ JS_NewContext(uint32_t maxbytes,
+               ~~~~~~~~~^~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:2: error: ‘JS_SetErrorReporter’ was not declared in this scope
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:2: note: suggested alternative: ‘my_ErrorReporter’
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+  my_ErrorReporter
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:20: error: ‘JSVERSION_LATEST’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+                    ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:2: error: ‘JS_SetVersion’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:228:2: note: suggested alternative: ‘JSSetterOp’
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+  JSSetterOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:288:59: error: too few arguments to function ‘JSObject* JS_NewGlobalObject(JSContext*, const JSClass*, JSPrincipals*, JS::OnNewGlobalHookOption, const JS::RealmOptions&)’
+  globalObj = JS_NewGlobalObject(cx, &my_global_class, NULL);
+                                                           ^
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:1787:1: note: declared here
+ JS_NewGlobalObject(JSContext* cx, const JSClass* clasp, JSPrincipals* principals,
+ ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:291:6: error: ‘JS_InitStandardClasses’ was not declared in this scope
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:291:6: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+      JS_EnumerateStandardClasses
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:295:30: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::Handle<JSObject*>’
+  if (!JS_DefineFunctions(cx, globalObj, shell_functions))
+                              ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::shutdown()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:313:2: error: ‘JS_DestroyRuntime’ was not declared in this scope
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:313:2: note: suggested alternative: ‘JS_GetRuntime’
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+  JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:315:2: error: ‘JS_ShutDown’ was not declared in this scope
+  JS_ShutDown();
+  ^~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:315:2: note: suggested alternative: ‘shutdown’
+  JS_ShutDown();
+  ^~~~~~~~~~~
+  shutdown
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::call_func(const char*, int, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:327:3: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::HandleObject’ {aka ‘JS::Handle<JSObject*>’}
+   globalObj,
+   ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::IsCompilable(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:343:9: error: ‘JS_BufferIsCompilableUnit’ was not declared in this scope
+  return JS_BufferIsCompilableUnit(
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:356:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:356:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:374:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:374:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:390:34: error: ‘JS_CompileUTF8File’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:390:34: note: suggested alternative: ‘CompileFile’
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+                                  CompileFile
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile_hash(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:427:3: error: ‘JS_ReportError’ was not declared in this scope
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:427:3: note: suggested alternative: ‘ReportError’
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+   ReportError
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:442:30: error: ‘JS_CompileUTF8FileHandle’ was not declared in this scope
+         script = (JSScript*) JS_CompileUTF8FileHandle( cx, globalObj, filename, file );
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::ExecuteScript(JSScript*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:449:9: error: ‘JS_ExecuteScript’ was not declared in this scope
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:449:9: note: suggested alternative: ‘ExecuteScript’
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+         ExecuteScript
+make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1
+g++  -g -Wwrite-strings -Wall -Wno-misleading-indentation -fPIC  `pkg-config --define-variable=TGT=LGX _into_base2_gtk --cflags` -DQUITBTN	 -DGLIB_DISABLE_DEPRECATION_WARNINGS	 -DGDK_PIXBUF_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED -DATK_DISABLE_DEPRECATED -c /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx # LGX
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.h:9,
+                 from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:6:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/j_cx.h:14:2: warning: #warning new STUBS here [-Wcpp]
+ #warning new STUBS here
+  ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In function ‘bool Print(JSContext*, uns, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:54:20: error: ‘JS_ARGV’ was not declared in this scope
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:54:20: note: suggested alternative: ‘JS_GC’
+  JS::Value *argv = JS_ARGV( cx, vp );
+                    ^~~~~~~
+                    JS_GC
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:9: error: ‘JS_ValueToString’ was not declared in this scope
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:63:9: note: suggested alternative: ‘JS_ValueToSource’
+   str = JS_ValueToString(cx, argv[i]);
+         ^~~~~~~~~~~~~~~~
+         JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:66:41: error: ‘JS_EncodeString’ was not declared in this scope
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:66:41: note: suggested alternative: ‘JS_ConcatStrings’
+   fprintf(stdout, "%s%s", i ? " " : "", JS_EncodeString(cx, str));
+                                         ^~~~~~~~~~~~~~~
+                                         JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::print_rval()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:18: error: ‘JS_ValueToString’ was not declared in this scope
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:78:18: note: suggested alternative: ‘JS_ValueToSource’
+  JSString *str = JS_ValueToString(cx, rval );
+                  ^~~~~~~~~~~~~~~~
+                  JS_ValueToSource
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:80:24: error: ‘JS_EncodeString’ was not declared in this scope
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:80:24: note: suggested alternative: ‘JS_ConcatStrings’
+  fprintf(stdout, "%s", JS_EncodeString(cx, str));
+                        ^~~~~~~~~~~~~~~
+                        JS_ConcatStrings
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: At global scope:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:139:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:140:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // addProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: error: ‘JS_DeletePropertyStub’ was not declared in this scope
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:141:2: note: suggested alternative: ‘JS_DeleteProperty’
+  JS_DeletePropertyStub, // delProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_DeleteProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:142:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub, // getProperty
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:143:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub, // setProperty
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: error: ‘JS_EnumerateStub’ was not declared in this scope
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:144:2: note: suggested alternative: ‘JS_Enumerate’
+  JS_EnumerateStub, // enumerate
+  ^~~~~~~~~~~~~~~~
+  JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:145:2: error: ‘JS_ResolveStub’ was not declared in this scope
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:145:2: note: suggested alternative: ‘JSResolveOp’
+  JS_ResolveStub,  // resolve
+  ^~~~~~~~~~~~~~
+  JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:146:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:146:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,  // convert
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:2: error: ‘JSCLASS_NEW_RESOLVE’ was not declared in this scope
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:171:2: note: suggested alternative: ‘JSCLASS_IS_PROXY’
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  ^~~~~~~~~~~~~~~~~~~
+  JSCLASS_IS_PROXY
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:172:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:173:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:173:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: error: ‘JS_PropertyStub’ was not declared in this scope
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:174:2: note: suggested alternative: ‘JSPropertySpec’
+  JS_PropertyStub,
+  ^~~~~~~~~~~~~~~
+  JSPropertySpec
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:175:2: error: ‘JS_StrictPropertyStub’ was not declared in this scope
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:175:2: note: suggested alternative: ‘JS_SetProperty’
+  JS_StrictPropertyStub,
+  ^~~~~~~~~~~~~~~~~~~~~
+  JS_SetProperty
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:176:1: error: ‘JS_EnumerateStub’ was not declared in this scope
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:176:1: note: suggested alternative: ‘JS_Enumerate’
+ JS_EnumerateStub, // enumerate
+ ^~~~~~~~~~~~~~~~
+ JS_Enumerate
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:178:1: error: ‘JS_ResolveStub’ was not declared in this scope
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:178:1: note: suggested alternative: ‘JSResolveOp’
+ JS_ResolveStub,  // resolve
+ ^~~~~~~~~~~~~~
+ JSResolveOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:180:2: error: ‘JS_ConvertStub’ was not declared in this scope
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:180:2: note: suggested alternative: ‘JSContext’
+  JS_ConvertStub,
+  ^~~~~~~~~~~~~~
+  JSContext
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::Init(int, int)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:216:9: error: ‘done_JS_Init’ does not name a type
+  static done_JS_Init = false;
+         ^~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:217:6: error: ‘done_JS_Init’ was not declared in this scope
+  if( done_JS_Init ) {
+      ^~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:221:7: error: ‘JS_Init’ was not declared in this scope
+   if (JS_Init())
+       ^~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:221:7: note: suggested alternative: ‘Init’
+   if (JS_Init())
+       ^~~~~~~
+       Init
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:7: error: ‘JS_NewRuntime’ was not declared in this scope
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:226:7: note: suggested alternative: ‘JS_GetRuntime’
+  rt = JS_NewRuntime( heapsize );
+       ^~~~~~~~~~~~~
+       JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:230:22: error: invalid conversion from ‘JSRuntime*’ to ‘uint32_t’ {aka ‘unsigned int’} [-fpermissive]
+  cx = JS_NewContext( rt, stacksize );
+                      ^~
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:447:24: note:   initializing argument 1 of ‘JSContext* JS_NewContext(uint32_t, uint32_t, JSRuntime*)’
+ JS_NewContext(uint32_t maxbytes,
+               ~~~~~~~~~^~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:243:2: error: ‘JS_SetErrorReporter’ was not declared in this scope
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:243:2: note: suggested alternative: ‘my_ErrorReporter’
+  JS_SetErrorReporter( rt, my_ErrorReporter );
+  ^~~~~~~~~~~~~~~~~~~
+  my_ErrorReporter
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:245:20: error: ‘JSVERSION_LATEST’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+                    ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:245:2: error: ‘JS_SetVersion’ was not declared in this scope
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:245:2: note: suggested alternative: ‘JSSetterOp’
+  JS_SetVersion(cx, JSVERSION_LATEST); // WHY ?
+  ^~~~~~~~~~~~~
+  JSSetterOp
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:305:59: error: too few arguments to function ‘JSObject* JS_NewGlobalObject(JSContext*, const JSClass*, JSPrincipals*, JS::OnNewGlobalHookOption, const JS::RealmOptions&)’
+  globalObj = JS_NewGlobalObject(cx, &my_global_class, NULL);
+                                                           ^
+In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
+/home/gps/G/mozjs/include/mozjs-63/jsapi.h:1787:1: note: declared here
+ JS_NewGlobalObject(JSContext* cx, const JSClass* clasp, JSPrincipals* principals,
+ ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:308:6: error: ‘JS_InitStandardClasses’ was not declared in this scope
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:308:6: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+  if(!JS_InitStandardClasses( cx, globalObj ))
+      ^~~~~~~~~~~~~~~~~~~~~~
+      JS_EnumerateStandardClasses
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:312:30: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::Handle<JSObject*>’
+  if (!JS_DefineFunctions(cx, globalObj, shell_functions))
+                              ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘void JSSM::JS1::shutdown()’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:330:2: error: ‘JS_DestroyRuntime’ was not declared in this scope
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:330:2: note: suggested alternative: ‘JS_GetRuntime’
+  JS_DestroyRuntime(rt);
+  ^~~~~~~~~~~~~~~~~
+  JS_GetRuntime
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:332:2: error: ‘JS_ShutDown’ was not declared in this scope
+  JS_ShutDown();
+  ^~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:332:2: note: suggested alternative: ‘shutdown’
+  JS_ShutDown();
+  ^~~~~~~~~~~
+  shutdown
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::call_func(const char*, int, JS::Value*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:344:3: error: could not convert ‘((JSSM::JS1*)this)->JSSM::JS1::globalObj’ from ‘JSObject*’ to ‘JS::HandleObject’ {aka ‘JS::Handle<JSObject*>’}
+   globalObj,
+   ^~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::IsCompilable(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:360:9: error: ‘JS_BufferIsCompilableUnit’ was not declared in this scope
+  return JS_BufferIsCompilableUnit(
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(buffer1&)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:373:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:373:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileScript(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:391:34: error: ‘JS_CompileScript’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:391:34: note: suggested alternative: ‘CompileScript’
+  JSScript * script = (JSScript*) JS_CompileScript(
+                                  ^~~~~~~~~~~~~~~~
+                                  CompileScript
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:407:34: error: ‘JS_CompileUTF8File’ was not declared in this scope
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:407:34: note: suggested alternative: ‘CompileFile’
+  JSScript * script = (JSScript*) JS_CompileUTF8File(
+                                  ^~~~~~~~~~~~~~~~~~
+                                  CompileFile
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘JSScript* JSSM::JS1::CompileFile_hash(const char*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:444:3: error: ‘JS_ReportError’ was not declared in this scope
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:444:3: note: suggested alternative: ‘ReportError’
+   JS_ReportError( cx,
+   ^~~~~~~~~~~~~~
+   ReportError
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:459:30: error: ‘JS_CompileUTF8FileHandle’ was not declared in this scope
+         script = (JSScript*) JS_CompileUTF8FileHandle( cx, globalObj, filename, file );
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx: In member function ‘bool JSSM::JS1::ExecuteScript(JSScript*)’:
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:466:9: error: ‘JS_ExecuteScript’ was not declared in this scope
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+/home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:466:9: note: suggested alternative: ‘ExecuteScript’
+  return JS_ExecuteScript(
+         ^~~~~~~~~~~~~~~~
+         ExecuteScript
+make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1

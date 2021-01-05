@@ -1,0 +1,46 @@
+2019-09-02 Sep Mon 01:03 DIAG_Parse_ROLE_IO.txt
+
+	DIAG_Parse
+		ROLE
+			IO
+
+		CT GENERATE PARSER
+
+			run GEN() SCRIPT
+			get SEQ_of
+				LIST_of
+				ONE_of
+				LEX_stuff
+				TREE_stuff
+
+			Filter INTO_YACC_FROM	// one
+			Filter INTO_PARSE_FROM	/ other
+			Filter INTO_PSG_FROM // keep to _main()
+
+		CT GENERATE NODE registration code
+
+		CT GENERATE NODE storage CTOR from BLANK code
+		CT GENERATE NODE storage CTOR from DATA code
+
+
+		ROLE RT RUN Parser
+		- as generated above
+		- with local support code
+		- in YACC world
+		- its support code
+
+		ROLE RT RUN Parse
+
+			## MATCH ## JIT_ME_HOW ##
+
+				TOKEN_t & TOKEN = EXPR
+
+				create var in scope ... >>> ... 
+
+			## MATCH ## nested EXPR ## 
+
+				search code or search data
+				maybe from EXPR.SKETCH
+
+	EXPR.SKETCH
+			

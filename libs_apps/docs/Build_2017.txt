@@ -1,0 +1,26 @@
+atp install gtk+2.0-dev
+
+	still on V2 
+	thats not me, thats UNUNTU being crass
+
+PDFlib lite
+
+	configure --prefix=/home/gps/prefix
+	edit pkg config
+
+# NO # apt install libedit-dev
+
+#include <histedit.h>
+
+	apt install libedit-dev
+
+nclude <openssl/evp.h>
+
+	apt install libssl-dev
+
+linked lib/lib/lib to ./.
+
+
+ #include <X11/Xmu/WinUtil.h>    /* for XmuClientWindow() */
+
+	apt install libxmu-dev

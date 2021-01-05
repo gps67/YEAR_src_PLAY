@@ -1,0 +1,176 @@
+###	GENERIC
+
+# amnt
+#	
+#	OBJS_base1_glib += date_glib.o	 # WRAP over glib date, 64bit year-mm-dd
+#	OBJS_base1_glib += date_glib_test.o
+	OBJS_base1 += per_cent.o
+	OBJS_base1 += str0.o		 # utility type
+	OBJS_base1 += str1.o		 # utility type
+	OBJS_base1 += str_builder.o	 # utility type
+	OBJS_base1 += stbl_spelling.o	 # tokeniser
+	OBJS_base1 += word_splitter.o	 # argv # see proto_parse_base
+	OBJS_base1 += align_val.o	 # none left center right
+
+# glib # plus the scattered stuff
+#	OBJS_base1_glib += g_rrr.o		# glib # see also g_rrr_gtk.o
+#	OBJS_base1_glib += key_file.o	# glib init file 'key' # _enc also uses evp
+
+# bits
+	OBJS_base1 += CTXT.o		# close to obj
+	OBJS_base1 += dgb.o		# return FAIL("why"); WARN("something");
+#	OBJS_base1 += dgb.o		# FAIL WARN COMPLAIN TRACE
+	OBJS_base1 += err_int_unix_errno.o # get_name_of_errno(e)
+	OBJS_base1 += err_int.o		# return FAIL("why"); WARN("something");
+	OBJS_base1 += e_print.o		# dgb # APP SPECIFIC SETTINGS
+	OBJS_base1 += e_print_io.o	# dgb # APP SPECIFIC SETTINGS
+	OBJS_base1 += e_print_io_console.o	# dgb # APP SPECIFIC SETTINGS
+	OBJS_base1 += dbg.o		# dgb # APP SPECIFIC SETTINGS
+	OBJS_base1 += bad_mad.o		# dgb # exception throwing
+	OBJS_base1 += zfile_line_in.o	 # fgets from a compressed/plain file
+	OBJS_base1 += bit_flip.o	 # reverse bits in byte
+
+ifeq ($(WIN32),1)
+	OBJS_base1 += win_main.o        # avoid console window
+endif
+	OBJS_base1 += missing_strndup.o # on all platforms, to test for WIN32
+	
+
+# not bits and pieces, but literally bits - cset
+# not used much yet, but age old, and fun
+
+ 	OBJS_base1 += cset_byte_map.o
+ 	OBJS_base1 += cset_bit_map.o
+
+
+
+# buffer
+	OBJS_base1 += blk1.o		 # stretch buffer
+	OBJS_base1 += buffer1.o		 # stretch buffer for text
+	OBJS_base1 += buffer2.o		 # hex_dump (extras)
+	OBJS_base1 += buffer3.o		 # circular buffer (but TODO P0P5)
+	OBJS_base1 += dyn_array.o	 # error print (rest is inline)
+	OBJS_base1 += new_insitu.o	# C++ new placement syntax
+	OBJS_base1 += zblk.o           # compress a buffer/block (buffer1.h)
+	OBJS_base1 += util_buf.o         # queued extensions, C not ++
+
+# buf_P0P4
+	OBJS_base1_NEW += P5.o		# P5_N = 5 allowing P4<P5_N
+	OBJS_base1_NEW += P0P4.o		# array of P0 P1 P2 P3 P4 (not post office)
+
+## HERE ##
+	OBJS_base += $(OBJS_base1_NEW)
+
+# io_csv
+	OBJS_base1 += io_csv_in.o
+	OBJS_base1 += io_csv_out.o
+	OBJS_base1 += io_zlib_out.o
+
+#fd
+	OBJS_base1 += fd_hold.o		#
+	OBJS_base1 += fd_hold_2.o		#
+	OBJS_base1 += fd_win32_WSA.o		# ref DLL 
+#	OBJS_base1 += fd_hold_unix.o		#
+#	OBJS_base1 += fd_hold_win32.o		#
+	OBJS_base1 += fd_selectable.o		#
+	OBJS_base1 += fd_sel_line.o	# line buffered (or data)
+	OBJS_base1 += fd_sel_http.o	# head blankline data
+	OBJS_base2 += fd_sel_buf.o	# actually a base1 concept
+	OBJS_base2 += proto_parse_base.o # lines words  SPLITTER
+	OBJS_base2 += proto_parse_one.o # lines words  SPLITTER
+	OBJS_base1 += sock_server.o	# 
+	OBJS_base1 += sock_addr_ip.o	# 
+	OBJS_base1 += sock_addr_unix.o	# 
+	OBJS_base1 += http_hdrs_enq.o
+	OBJS_base1 += http_hdrs_ack.o
+	OBJS_base1 += http_resp_code.o 	# lots of error codes
+# wclient (7) yahoo history
+	OBJS_base1 += yahoo_history_parse.o
+
+# fd_ftp
+	OBJS_base1 += fd_sel_ftp_ctrl.o	# ftp ctrl channel
+	OBJS_base1 += fd_sel_ftp_data.o	# ftp data channel s
+
+# hash
+#	OBJS_base1_glib += ht1.o		# glib hash table
+#	OBJS_base1 += ht1_iterator_base.o
+#	OBJS_base1 += ht1_iterator_test.o
+
+
+# obj
+	OBJS_base1 += obj_list_base.o
+	OBJS_base1 += obj_list_sorter.o
+	OBJS_base1 += obj_ref0.o
+	OBJS_base1 += obj_ref0_debug_base.o
+	OBJS_base1 += str2.o
+	OBJS_base1 += str_list.o
+
+#app
+	OBJS_base1 += app_top.o
+	OBJS_base1 += TOPAPP_Task.o
+	OBJS_base1 += TOPAPP_Holder.o
+
+	# damn, its just quicker to define var_tree_encrypted
+	# as part of base2 when it should be base1
+	# maybe the answer is some virtual functions (_save_,_load_)
+	# that allows build within base1, use with base2 _encrypt_
+	# TODO put it back later OK
+	OBJS_base2 += var_tree.o # cfg_file_var_tree
+	OBJS_base2 += var_tree2.o # cfg_file_var_tree
+# time
+	OBJS_base1 += time_calc_zone.o
+	OBJS_base1 += time_calc_zone_week.o
+# tz and tm_parts need rework
+	OBJS_base1 += tz.o
+	OBJS_base1 += tm_parts.o
+#misc
+	OBJS_base1 += dir_name_ext.o
+
+# misc
+	OBJS_base1 += sleep_ms.o	## choice of glib, win32, unix,
+	OBJS_base1 += gdb_invoke.o	## fatal handler that invokes gdb
+#win32
+	# none for now
+#misc
+#unix (or misc) (todo: os_util)
+	OBJS_base1 += dir_list.o
+	OBJS_base1 += file_utils_99.o
+	OBJS_base1 += file_stat.o
+	
+	OBJS_base1_unix += fork_exec_parent.o # use this
+	OBJS_base1_unix += fork_exec_setup.o # hidden
+	OBJS_base1_unix += ntping.o # the user of ntping, not ntping itself!
+
+	OBJS_base1 += edit_line.o # edit line from TTY with history
+	LIBS_unix += -ledit -lncurses
+
+# prog_file
+	OBJS_base1 += fork_progs.o
+
+ifeq ($(WIN32),1)
+	OBJS_base1 += $(OBJS_base1_WIN32)
+	LIBS += $(LIBS_WIN32)
+else
+	OBJS_base1 += $(OBJS_base1_unix)
+	LIBS += $(LIBS_unix)
+endif
+
+	# side effect of patsubst (which is word orientated)
+	# is single space reduction
+	# but this line is never run ?
+	OBJ_base1 = $(patsubst WORD_PATTERN,WORD_REPLACEMENT,$(OBJ_base1)) JUNK
+
+# _UNUSED_
+#	OBJS += tz.o		 # timezone
+#	OBJS += tm_parts.o	 # timezone
+#	OBJS += time_calc_week_zone.o      # T0 T2
+#
+#	TODO += encrypt_and_mux	# 1 file 2 encoded keys 2 addresses + Frame
+#	TODO += scan_mm3	# 
+#	TODO += menus.o		# the app
+
+
+
+edit_line.o: edit_line_win32.cxx
+edit_line.o: edit_line_unix.cxx
+#-EOT-#

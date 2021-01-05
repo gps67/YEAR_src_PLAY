@@ -1,0 +1,65 @@
+
+	cd
+	ls
+
+	ln_s
+	ln
+
+	dev
+	fifo (if not netw)
+	dir
+	file
+
+	uid gid rwx suids
+
+	expect ... fixup ...
+
+	mv
+	rm
+	test_exist
+	group_name_exts
+	sort_list
+	SAME_MORE_LESS_DIFF
+
+	mk_temp_file
+
+	lock
+	 lock_file
+		uucp modem O_EXCL
+		owner uid pid data in file perm of file
+		rm if pid gone
+	 lock_byte
+	 lock_spinlock
+	 lock_mmap_val_double_gated
+	 lock_kernel
+	 lock_net
+	 lock_dbms_transaction_rollback_replay
+
+	 EG
+		get_iplayer
+
+		use_modem
+
+	watch file inode
+	watch file rollover! (silent detect) (watch dir)
+
+	mount_check
+
+	fsck_utils
+
+	tunefs_utils
+
+	hdparam
+
+	serial uuid volname
+
+	df
+	df_per_user_quota
+
+	umode maxfile size kernellimits (2G-1)
+
+	mv_same_drive
+
+	win32
+	 get drive letter
+

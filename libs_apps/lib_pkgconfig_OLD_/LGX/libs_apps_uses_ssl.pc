@@ -1,0 +1,29 @@
+TGT=LGX
+# TGT=WIN32
+
+############
+# lstyle
+############
+# lstyle=static
+lstyle=shared
+
+ROOT_over=/nfs/md7/PKGS/PKGS_built/${TGT}
+dirname=ROOT_openssl_${lstyle}
+prefix=${ROOT_over}/${dirname}/airbook
+
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_uses_ssl
+Description: LIBS_APPS uses OPENSSL
+Version: 0.1.2
+
+rpathed=-Wl,--rpath=${libdir}
+
+Requires: libs_apps_uses_sockets
+
+# for DLLś instead use libeay32 and ... see INSTALL.W32
+
+Libs: -L${libdir} -lssl -lcrypto ${rpathed}
+Cflags: -I${includedir}

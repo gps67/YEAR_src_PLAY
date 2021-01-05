@@ -1,0 +1,162 @@
+# mk 
+# call make
+# (all the other scripts go through here)
+
+
+# remember Makefile uses $(VARNAME) shell uses ${VARNAME}
+
+	# clear
+
+	# in a script that finds where we are
+	# the boot strap is a bit lame
+	# $HOME/YEAR/src/libs_apps/run_		<== WE ARE HERE
+
+	PATH=$PATH:$HOME/YEAR/src/libs_apps/MK_bin
+	PATH=$PATH:$HOME/YEAR/src/libs_apps/MK_bin/bin_LGX # PATH_TOOL
+	PATH=$PATH:$HOME/YEAR/src/libs_apps/_run	# HERE
+	PATH=$PATH:	# HERE is ABS_OBJDIR/.
+	# PATH=$PATH: # MK_fns_TGT
+
+	# try to use nearest copies first
+	PATH=$HOME/YEAR/src/libs_apps/MK_bin:$PATH
+
+	. fns_ASKS	# ask_do a r g v
+	. fns_DATE	# ${
+	. fns_DIRS
+	. fns_FAIL
+	. fns_VARS	# needs PATH_TOOL compiled and on path
+
+#	var_add PATH `pwd`
+
+	# TEST # var_add XXX YYY || fn_FAIL must work ok
+
+	. fns_MK_var	# sets vars ABS_OVER ABS_TOP TGT ABS_OBJDIR
+	. fns_USES	# generic package checkers 
+
+
+	fn_MK_var_ABS_OVER
+	fn_MK_var_ABS_TOP
+
+	fn_MK_var_TGT
+	fn_MK_var_ABS_OBJDIR
+
+	# check tha VARS are set 
+	fn_MK_check_vars
+
+	. ./fns_MK_USES
+	fn_MK_check_vars
+	[ ! "${ABS_OBJDIR}"/. ] || fn_MK_mkdir_ABS_OBJDIR
+	dir_must_exist $ABS_OBJDIR
+
+	# NOW ABS_OBJDIR must exist
+	cd_or_FAIL $ABS_OBJDIR
+
+	PATH=$PATH:$ABS_OBJDIR:
+
+	# create ABS_OBJDIR lib_LGX_uname where .o files are built
+	# ABS_OVER
+	# ABS_TOP
+	# TGT
+	# ABS_OBJDIR
+	# todo: some sanity and pkg checks
+
+	# that also loads all the useful bash fn_X from fns_XXXX
+	# you need to make those work before getting past here
+
+
+	# for custom builds, you may need specific tool versions
+	# this would put them FIRST on PATH
+
+if false
+then
+	var_pfx PATH /tools/2000/glibc/bin
+	var_pfx PATH /tools/2000/shell/bin
+	var_pfx PATH /tools/2000/ccs4/bin
+	var_pfx PATH /tools/2000/ccs/bin
+	var_pfx PATH /tools/2000/gtk/bin
+	var_pfx PATH /tools/2000/gdb/bin
+fi
+
+	#
+	# the PATH_TOOL program will eliminate all trailing duplicates
+	# if already present, these remain where they are,
+	# else they get added last, as a catchall failsafe
+	#
+	var_add PATH /bin /usr/bin
+	var_add PATH /sbin /usr/sbin
+	var_add PATH /usr/local/bin /home/gps/prefix/bin
+	P
+
+	var_add PKG_CONFIG_PATH /lib/pkgconfig
+
+if false
+then
+	# some site specific settings for an unusual build
+	# examples of how/what can be done
+
+	# hmm ...
+	var_add PATH /media/hda3/usr/bin
+
+#	var_pfx LD_LIBRARY_PATH /tools/2002/glibc/lib
+#	export SHELL=/tools/2002/shell/bin/bash
+#
+
+#	P LD_LIBRARY_PATH
+	export S=/tools/2000/shell/bin/sh
+	[ -x $S ] && export SHELL=$S
+
+	# cairo needs xrender which is in X11
+	var_pfx PKG_CONFIG_PATH /tools/2000/X11R6/lib/pkgconfig
+	# gtk needs cairo, which is not in gtk
+	var_pfx PKG_CONFIG_PATH /tools/2000/libs/lib/pkgconfig
+	var_pfx PKG_CONFIG_PATH /tools/2000/gtk/lib/pkgconfig
+fi
+
+
+# # # #	DEBUG
+#	P
+#	type ldd
+#	ldd3 `type -p g++`
+#	type g++
+
+	# override Makefile using parameter WITH_GTK=$G
+	# and build either tree on different Gtk days
+	# nb cant move to GTK3 and be WIN32 portable
+	# nb G=1 is so old I need to delete it's ifdef use
+	# nb TODO GTK2 recent features minght be nice?
+	G=1
+	G=2
+
+
+	# type pkg-config
+	# PS1="Sub-Shell $PS1" ${SHELL}
+	# pwd  ; ls -FC ..
+
+	export TGT
+	export ABS_OBJDIR
+
+	# there is a problem with make finding and using incomplete .so files
+	# only when doing multiple jobs in parallel, somehow
+	# but it does run a lot quicker with low CPU usage!!
+	jobs=1
+	jobs=2
+	jobs=4
+	jobs=8
+	jobs=1
+	JOBS=${JOBS:-$jobs}
+
+	# make -j $jobs WITH_GTK=$G -f ../MK/Makefile "$@" 2>&1  \
+	#
+	make -j $jobs WITH_GTK=$G -f $ABS_OVER/libs_apps/MK/Makefile "$@" 2>&1  \
+	| tee -a fa # | less
+	# | tee fa # | less
+	#
+	t=$?
+
+	# the tee causes a loss of exit code 
+
+	# sync
+	# sync
+
+	exit $t
+	exit $?

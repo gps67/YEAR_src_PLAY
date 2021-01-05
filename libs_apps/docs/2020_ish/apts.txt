@@ -1,0 +1,6 @@
+ask_do apt install libxmu-dev
+ask_do apt install libedit-dev
+ask_do apt install libclalsadrv-dev
+ask_do apt install libgtk2.0-dev
+ask_do apt install libgtk-3-dev
+ask_do apt install libmysqlclient-dev

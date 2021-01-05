@@ -1,0 +1,14 @@
+
+# ALSA MIXER
+# apt install libasound2-dev
+
+Name: libs_apps_amix
+Description: libs_apps uses amix 
+Version: 0.1.2
+
+Requires: alsa \
+#	libs_apps_media
+# amix is individual - not in media
+
+# Libs: 
+# Cflags:

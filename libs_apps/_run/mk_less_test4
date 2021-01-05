@@ -1,0 +1,2 @@
+	rm -rf /tmp/dpb_sar_test.log /tmp/dpb_sar_test.odb
+	./mk_less "${@:-test4}" 

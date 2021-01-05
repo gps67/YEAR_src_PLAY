@@ -1,0 +1,22 @@
+Much like EVP MD, Sign and Verify
+
+	Sign writes a sign uses the PRIVATE key
+	Verify uses the PUBLIC key, and copares the sign
+
+	pkey = PRIVATE_KEY_FROM_...
+
+	EVP_SignInit   (&md_ctx, EVP_md5());
+	EVP_SignUpdate (&md_ctx, data, strlen(data));
+
+	sig_len = sizeof(sig_buf);
+	err = EVP_SignFinal (&md_ctx,
+		sig_buf,
+		&sig_len,
+		pkey);
+	if (err != 1) {  ERR_print_errors_fp (stderr);    exit (1);  }
+	EVP_PKEY_free (pkey);
+
+	EVP_Verify{Init,Update,Final} ...
+
+
+

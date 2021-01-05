@@ -1,0 +1,42 @@
+
+ TODO WIN32
+
+	fork / exec
+		alternative to glib
+
+	events
+		alternative to 
+
+	permissions
+		todo
+
+	integrations
+		browser invoke
+		registry usage
+		firewall adjustments
+
+	WinCE = a few subset GUI items, then ME-on-X11 alternatives
+
+ TODO Curlies
+
+	multi-mixed within file { ... }
+	some sense of "..." \' 
+	secure remote call, load file (validate things), usable local
+
+ TODO 7z (if not lzo)
+
+ TODO V8
+
+	as aside,
+	as directed module (events = ?)
+
+ TODO Graphics Magick
+
+	2002-11-19 GraphicsMagick <== ImageMagick-5.5.2
+	2012-10-01 GM-1.3.7 IM-6.7.9
+
+ TODO MUX VPN
+
+	udp as L-II
+
+	

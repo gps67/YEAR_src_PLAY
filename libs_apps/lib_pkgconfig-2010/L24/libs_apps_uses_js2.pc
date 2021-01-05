@@ -1,0 +1,40 @@
+
+# TGT=WIN32
+TGT=L24
+# TGT=i586
+
+# DXP_TGT=-DXP_WIN
+DXP_TGT=-DXP_UNIX
+
+
+# PKGSDIR=../PKGS
+PKGSDIR=/media/md7/GPS/AIR/PKGS
+src_js=${PKGSDIR}/PKGS_build/${TGT}/js
+src_js_src=${src_js}/src
+objdir=Linux_All_DBG.OBJ
+# objdir=WIN32_DBG.OBJ
+
+# includedir=${src_js_src}
+includedir_obj=${src_js_src}/${objdir}
+# libdir_js=${src_js_src}/${objdir}
+includedir=/airbook/${TGT}/include
+libdir_js=/airbook/${TGT}/lib
+# libdir_fdm=${src_js_src}/fdlibm/${objdir}
+# libdir_edit=${src_js_src}/editline/${objdir}
+libeditjs=
+
+Name: libs_apps_js2
+Description: LIBS_APPS uses JavaScript from mozilla
+Version: 0.1.2
+
+# WIN32_
+# WIN32_DLL_LIB= ${libdir_js}/libjs_implib.a 
+# WIN32_DLL_LIB=-ljs_implib 
+## Cflags:  -I${includedir} -I${includedir_obj} ${DXP_TGT} -DWITH_JS # my code
+## Libs:  -L${libdir_js} ${WIN32_DLL_LIB} ${libeditjs} -Wl,--rpath=${libdir_js}
+
+
+Cflags:  -I${includedir} -I${includedir_obj} ${DXP_TGT} -DWITH_JS # my code
+Libs:  -L${libdir_js} -ljs ${libeditjs} 
+# Libs:  -L${libdir_js} ${WIN32_DLL_LIB} ${libeditjs} 
+

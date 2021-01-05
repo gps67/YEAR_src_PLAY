@@ -6,7 +6,7 @@
 
 
 	void EXPRS:: operator_precedence_t::
-	set_flags_str( str0 flags ) // move to not inline
+	set_flags_str( str0 flags ) //! parse flags into self, eg "L3" "L1"
 	{
 		if(!flags) return;
 		char * P = (char *) flags; // unconst

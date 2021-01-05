@@ -1,0 +1,90 @@
+
+RE-FACTOR groups
+
+	STR0.dll
+
+		STR0, str2, HT("str"),
+		fmt_print, e_print,
+		buffer2, fmt_print_into_buffer2(fd,buf,filter,fmt,argv,thread)
+		# P0P4 + buf + io = 
+		buffer2, P0P4, Z4_Layout (fd,buf,filter,fmt),argv,thread
+		RPC_carries_parametised_scripts_with_FSM_state FSM_state_u12
+		# from 4 ZONES P1 P2 P3 P4 %4.4X // u4_u4_u4_u4
+		# from 5 points P1 P2 P3 P4 P5
+		# 1 + 4  points P1 P2 P3 P4 %s %4.4X // u32_EA_EXPR u4_u4_u4_u4
+		# from 4 points P1 P2 P3 %s%X%s%X%s%X%s # "0x" sep1 sep2 "_H" # 
+		# from 5 points P0P4 Z4 u32_%s 
+		# from 5 points EACH u32_expr
+		# from 5 points u32_expr RPC_FUNC[u32]( A, B, C, D )
+		# from 5 points u32_expr THIS[u32] RPC_FUNC[u32](    B, C, D )
+		# from 5 points u32_expr u3_u5_u8_u16
+		# from 5 points u32_expr u16_u3_u5_u8
+		# ie each field like u3 is converted to u8* obj_mgr[u3] 
+		# // u32_hilo * OBJ;
+		# // u32_hilo * SPEC;
+		# // int & u3_idx = get_u3_var_from_u32_decoder( decoder, u32 
+		# // u8 * u3_obj = TABLE[u3]; // cached from EVAL
+		# // u8 * u3_obj = switch u3 { /* u4 N = 5; */
+		# // case 0: { // _CODE_POINT_ // } // R2
+		# // case 1: { // _CODE_POINT_ // } // W2
+		# // case 2: { // _CODE_POINT_ // } // R1
+		# // case 3: { // _CODE_POINT_ // } // W1
+		# // case 4: { // _CODE_POINT_ // } // _admin_ _instance_ _aspect_
+		# // case 5: { // _CODE_POINT_ // } // MUST_BE_NULL // _catch_
+		# // case 6: { // _CODE_POINT_ // } // MUST_BE_NULL // _ditto_
+		# // case 7: { // _CODE_POINT_ // } // MUST_BE_NULL // _ditto_
+		# // u8 * u5_obj = switch u5 { /* u8 N = 24; */
+		# // case 0: { // _CODE_POINT_ // } // R2
+		# // case 1: { // _CODE_POINT_ // } // W2
+		# // case 2: { // _CODE_POINT_ // } // R1
+		# // case 3: { // _CODE_POINT_ // } // W1
+		# // case 4: { // _CODE_POINT_ // } // OBJECT
+		# // case 5: { // _CODE_POINT_ // } // RESERVED_ABSENT
+		# // case 6: { // _CODE_POINT_ // } // RESERVED_ABSENT
+		# // case 7: { // _CODE_POINT_ // } // RESERVED_ABSENT
+		# // u8 * u8_obj = switch u8 { /* u8 N = 256; // exact */
+		# // OBJECT_mgr * TABLE[u8];
+		# // SPEC_mgr * SPEC[u8];1
+		buffer3,
+		buf_16K_4
+		buf_P0P4, P0P4_R2W2_R1_W1, // volatile
+		fd_sel_ssl, fd_buf_P0P4,
+		obj_hold, 
+		msg_signal,
+		X509_permit, access,
+		post_obj_tray,
+		argv_parse, 
+		dll_open("module"),
+
+	fd_sel_ssl
+
+		fd_win32_stream
+		fd_win32_ctrls
+		fd_win32_mmap
+
+		fd_unix_stream
+		fd_vm_dev_eth0
+		fd_vm_dev_VFS
+		fd_mmap_pagemap _post
+
+		fd_dll_bindings
+
+		fd_buffer_pair
+		fd_sel_tcp
+		fd_sel_ssl
+
+			CONNECT( ip_addr ); // ip_port
+			PERMIT( PERMIT_to_use_RSA );
+			SEND_X509( "my_connection_X509" )
+			READ_X509( "X509_server" )
+			DATA_IN( packet_and_a_half )
+			DATA_OUT( queued ) // sent, acked-at-remote-queue,
+			SSL_EVENT {
+
+				do_abc_and_guess_significance()
+				send_some_more() // sucessfully
+				{ queues_flushed_acked_and_idle }
+				idle_and_up_to_date()
+		
+
+	

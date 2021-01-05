@@ -1,0 +1,148 @@
+
+Diag = i32_abcd { // the rest of the page // }
+
+	u4_u4 {
+	u4_hi llll
+	u4_lo rrrr
+	};
+
+	u16_u16 {
+	// these reorder access when used in LIST:  u32_hilo u32_lohi byte_order
+	// upper means hilo aspect
+	u16_upper { }
+		u16_hilo u16_hi;
+		u16_hilo u16_lo;
+ 	u16_lowe { }
+	};
+
+	u16_u16 {
+	// these swich order when used in { u32_cpu }
+	u16_left { }
+	u16_right { }
+	};
+
+	/*
+	 BOTH
+	  u32_hilo{
+		u16_hilo u16_hi; // _hi _upper _left
+		u16_hilo u16_lo; // _lo _lower _right
+	  }
+
+	  u16_hilo_upper { // CPU OPTIMISATION // }
+	  u16_hilo_lower { // CPU OPTIMISATION // }
+	  u16_hilo_bitvar { // this is all BITVAR // }
+
+		we all agree that in u32_hilo
+		{_hi,_lo}
+		{_left,_right}
+		{_upper,_lower}
+		and again in u16_hilo
+
+		u8 * u16_hilo[2]; // aligned
+		u16_16 { // being used to select this split, along with CP_VAR
+		};
+		left means upper means left
+		right means lowera means right
+	*/
+
+{END_PAGE_END}
+
+DIag = a program to print i32_abcd in boxes
+
+	ASCIIART ? - NO -
+
+	llllrrrr
+	_hi _lo
+
+	llllrrrr	   u8   
+	_hi _lo		76543210
+
+
+
+	llllrrrr	   u8   	llllrrrr	   u8   
+	_hi _lo		76543210	_hi _lo		76543210
+
+
+	   u8   	llllrrrr	   u8   	llllrrrr
+	76543210	_hi _lo		76543210	_hi _lo		
+
+	+------+------+
+	| .... | .... |
+	+------+------+
+
+	+------+------+
+	|  u4  |  u4  |
+	+------+------+
+
+	+------+------+
+	|  u8  |  u8  |
+	+------+------+
+
+	+------+------+
+	|u16_hilu16_lo|
+	+------+------+
+
+	+------+------+
+	|  i16 |  i6  |
+	+------+------+
+
+	+------+------+ +------+------+
+	|  u8  |  u8  | |  u8  |  u8  |
+	+------+------+ +------+------+
+
+	+------+------+------+------+
+	|  u8  |  u8  |  u8  |  u8  |
+	+------+------+------+------+
+
+	+------+------+
+	|  u8  |u4_u4 |
+	+------+------+
+
+	+------+------+
+	| u4_u4| u8   |
+	+------+------+
+
+	+---+--+------+
+	| u4|  u12    |
+	+---+--+------+
+
+	+---+--+---+--+
+	| u4|  u8  |u4|
+	+---+--+---+--+
+
+	+------+---+--+
+	| u12      |u4|
+	+------+---+--+
+
+	+------+------+
+	|  u16_hilo   |
+	+------+------+
+
+	llllrrrr	   u8   	llllrrrr	   u8   
+	_hi _lo		76543210	_hi _lo		76543210
+
+
+	  +------+------+------+------+
+	 /  a   /  b   /  c   /  d   /
+	+------+------+------+------+
+	|  u8  |  u8  |  u8  |  u8  |
+	+------+------+------+------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

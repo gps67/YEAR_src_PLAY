@@ -1,0 +1,150 @@
+cat: ../../dist/WIN32_DBG.OBJ/nspr/Version: No such file or directory
+make -f Makefile.ref  WIN32_DBG.OBJ/libjs.a WIN32_DBG.OBJ/libjs.dll WIN32_DBG.OBJ/js.exe 
+cat: ../../dist/WIN32_DBG.OBJ/nspr/Version: No such file or directory
+make[1]: Entering directory `/media/md7/GPS/AIR/PKGS/HANDSET_WIN32/js/src'
+gcc -o WIN32_DBG.OBJ/jsapi.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsapi.c
+jsapi.c: In function `JS_malloc':
+jsapi.c:1787: warning: left-hand operand of comma expression has no effect
+jsapi.c: In function `JS_realloc':
+jsapi.c:1804: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jsarena.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsarena.c
+gcc -o WIN32_DBG.OBJ/jsarray.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsarray.c
+jsarray.c: In function `array_length_setter':
+jsarray.c:593: warning: left-hand operand of comma expression has no effect
+jsarray.c:614: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_join_sub':
+jsarray.c:1296: warning: left-hand operand of comma expression has no effect
+jsarray.c:1349: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `InitArrayElements':
+jsarray.c:1470: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_reverse':
+jsarray.c:1533: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `sort_compare':
+jsarray.c:1718: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `sort_compare_strings':
+jsarray.c:1756: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_sort':
+jsarray.c:1849: warning: left-hand operand of comma expression has no effect
+jsarray.c:1935: warning: left-hand operand of comma expression has no effect
+jsarray.c:2014: warning: left-hand operand of comma expression has no effect
+jsarray.c:2022: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_shift':
+jsarray.c:2146: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_unshift':
+jsarray.c:2184: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_splice':
+jsarray.c:2281: warning: left-hand operand of comma expression has no effect
+jsarray.c:2305: warning: left-hand operand of comma expression has no effect
+jsarray.c:2316: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_concat':
+jsarray.c:2382: warning: left-hand operand of comma expression has no effect
+jsarray.c:2403: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_slice':
+jsarray.c:2507: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_indexOfHelper':
+jsarray.c:2576: warning: left-hand operand of comma expression has no effect
+jsarray.c: In function `array_extra':
+jsarray.c:2721: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jsatom.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsatom.c
+gcc -o WIN32_DBG.OBJ/jsbool.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsbool.c
+gcc -o WIN32_DBG.OBJ/jscntxt.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jscntxt.c
+gcc -o WIN32_DBG.OBJ/jsdate.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsdate.c
+gcc -o WIN32_DBG.OBJ/jsdbgapi.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsdbgapi.c
+gcc -o WIN32_DBG.OBJ/jsdhash.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsdhash.c
+gcc -o WIN32_DBG.OBJ/jsdtoa.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsdtoa.c
+gcc -o WIN32_DBG.OBJ/jsemit.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsemit.c
+gcc -o WIN32_DBG.OBJ/jsexn.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsexn.c
+gcc -o WIN32_DBG.OBJ/jsfun.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsfun.c
+gcc -o WIN32_DBG.OBJ/jsgc.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsgc.c
+jsgc.c: In function `js_NewGCThing':
+jsgc.c:1905: warning: left-hand operand of comma expression has no effect
+jsgc.c: In function `RefillDoubleFreeList':
+jsgc.c:2049: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jshash.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jshash.c
+gcc -o WIN32_DBG.OBJ/jsinterp.o -c -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ   jsinterp.c
+gcc -o WIN32_DBG.OBJ/jsinvoke.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsinvoke.c
+gcc -o WIN32_DBG.OBJ/jsiter.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsiter.c
+gcc -o WIN32_DBG.OBJ/jslock.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jslock.c
+gcc -o WIN32_DBG.OBJ/jslog2.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jslog2.c
+gcc -o WIN32_DBG.OBJ/jslong.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jslong.c
+gcc -o WIN32_DBG.OBJ/jsmath.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsmath.c
+gcc -o WIN32_DBG.OBJ/jsnum.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsnum.c
+gcc -o WIN32_DBG.OBJ/jsobj.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsobj.c
+jsobj.c: In function `js_EnterSharpObject':
+jsobj.c:452: warning: left-hand operand of comma expression has no effect
+jsobj.c: In function `js_LookupPropertyWithFlags':
+jsobj.c:3277: warning: left-hand operand of comma expression has no effect
+jsobj.c: In function `js_GetPropertyHelper':
+jsobj.c:3656: warning: left-hand operand of comma expression has no effect
+jsobj.c: In function `js_SetPropertyHelper':
+jsobj.c:3759: warning: left-hand operand of comma expression has no effect
+jsobj.c: In function `js_DeleteProperty':
+jsobj.c:4027: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jsopcode.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsopcode.c
+gcc -o WIN32_DBG.OBJ/jsparse.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsparse.c
+gcc -o WIN32_DBG.OBJ/jsprf.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsprf.c
+gcc -o WIN32_DBG.OBJ/jsregexp.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsregexp.c
+jsregexp.c: In function `PushBackTrackState':
+jsregexp.c:2107: warning: left-hand operand of comma expression has no effect
+jsregexp.c: In function `ExecuteREBytecode':
+jsregexp.c:3221: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jskwgen.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jskwgen.c
+gcc -o WIN32_DBG.OBJ/jskwgen.exe -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ   -lm WIN32_DBG.OBJ/jskwgen.o
+WIN32_DBG.OBJ/jskwgen.exe WIN32_DBG.OBJ/jsautokw.h
+gcc -o WIN32_DBG.OBJ/jsscan.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsscan.c
+gcc -o WIN32_DBG.OBJ/jsscope.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsscope.c
+jsscope.c: In function `js_AddScopeProperty':
+jsscope.c:1039: warning: left-hand operand of comma expression has no effect
+gcc -o WIN32_DBG.OBJ/jsscript.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsscript.c
+gcc -o WIN32_DBG.OBJ/jsstr.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsstr.c
+gcc -o WIN32_DBG.OBJ/jsutil.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsutil.c
+gcc -o WIN32_DBG.OBJ/jsxdrapi.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsxdrapi.c
+gcc -o WIN32_DBG.OBJ/jsxml.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  jsxml.c
+gcc -o WIN32_DBG.OBJ/prmjtime.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  prmjtime.c
+prmjtime.c: In function `NowCalibrate':
+prmjtime.c:195: warning: unused variable `calibrationDelta'
+ar rv WIN32_DBG.OBJ/libjs.a WIN32_DBG.OBJ/jsapi.o WIN32_DBG.OBJ/jsarena.o WIN32_DBG.OBJ/jsarray.o WIN32_DBG.OBJ/jsatom.o WIN32_DBG.OBJ/jsbool.o WIN32_DBG.OBJ/jscntxt.o WIN32_DBG.OBJ/jsdate.o WIN32_DBG.OBJ/jsdbgapi.o WIN32_DBG.OBJ/jsdhash.o WIN32_DBG.OBJ/jsdtoa.o WIN32_DBG.OBJ/jsemit.o WIN32_DBG.OBJ/jsexn.o WIN32_DBG.OBJ/jsfun.o WIN32_DBG.OBJ/jsgc.o WIN32_DBG.OBJ/jshash.o WIN32_DBG.OBJ/jsinterp.o WIN32_DBG.OBJ/jsinvoke.o WIN32_DBG.OBJ/jsiter.o WIN32_DBG.OBJ/jslock.o WIN32_DBG.OBJ/jslog2.o WIN32_DBG.OBJ/jslong.o WIN32_DBG.OBJ/jsmath.o WIN32_DBG.OBJ/jsnum.o WIN32_DBG.OBJ/jsobj.o WIN32_DBG.OBJ/jsopcode.o WIN32_DBG.OBJ/jsparse.o WIN32_DBG.OBJ/jsprf.o WIN32_DBG.OBJ/jsregexp.o WIN32_DBG.OBJ/jsscan.o WIN32_DBG.OBJ/jsscope.o WIN32_DBG.OBJ/jsscript.o WIN32_DBG.OBJ/jsstr.o WIN32_DBG.OBJ/jsutil.o WIN32_DBG.OBJ/jsxdrapi.o WIN32_DBG.OBJ/jsxml.o WIN32_DBG.OBJ/prmjtime.o
+ar: creating WIN32_DBG.OBJ/libjs.a
+a - WIN32_DBG.OBJ/jsapi.o
+a - WIN32_DBG.OBJ/jsarena.o
+a - WIN32_DBG.OBJ/jsarray.o
+a - WIN32_DBG.OBJ/jsatom.o
+a - WIN32_DBG.OBJ/jsbool.o
+a - WIN32_DBG.OBJ/jscntxt.o
+a - WIN32_DBG.OBJ/jsdate.o
+a - WIN32_DBG.OBJ/jsdbgapi.o
+a - WIN32_DBG.OBJ/jsdhash.o
+a - WIN32_DBG.OBJ/jsdtoa.o
+a - WIN32_DBG.OBJ/jsemit.o
+a - WIN32_DBG.OBJ/jsexn.o
+a - WIN32_DBG.OBJ/jsfun.o
+a - WIN32_DBG.OBJ/jsgc.o
+a - WIN32_DBG.OBJ/jshash.o
+a - WIN32_DBG.OBJ/jsinterp.o
+a - WIN32_DBG.OBJ/jsinvoke.o
+a - WIN32_DBG.OBJ/jsiter.o
+a - WIN32_DBG.OBJ/jslock.o
+a - WIN32_DBG.OBJ/jslog2.o
+a - WIN32_DBG.OBJ/jslong.o
+a - WIN32_DBG.OBJ/jsmath.o
+a - WIN32_DBG.OBJ/jsnum.o
+a - WIN32_DBG.OBJ/jsobj.o
+a - WIN32_DBG.OBJ/jsopcode.o
+a - WIN32_DBG.OBJ/jsparse.o
+a - WIN32_DBG.OBJ/jsprf.o
+a - WIN32_DBG.OBJ/jsregexp.o
+a - WIN32_DBG.OBJ/jsscan.o
+a - WIN32_DBG.OBJ/jsscope.o
+a - WIN32_DBG.OBJ/jsscript.o
+a - WIN32_DBG.OBJ/jsstr.o
+a - WIN32_DBG.OBJ/jsutil.o
+a - WIN32_DBG.OBJ/jsxdrapi.o
+a - WIN32_DBG.OBJ/jsxml.o
+a - WIN32_DBG.OBJ/prmjtime.o
+ranlib WIN32_DBG.OBJ/libjs.a
+g++ -shared -Wl,--output-def=WIN32_DBG.OBJ/libjs.def -Wl,--out-implib=WIN32_DBG.OBJ/libjs_implib.a -o WIN32_DBG.OBJ/libjs.dll WIN32_DBG.OBJ/jsapi.o WIN32_DBG.OBJ/jsarena.o WIN32_DBG.OBJ/jsarray.o WIN32_DBG.OBJ/jsatom.o WIN32_DBG.OBJ/jsbool.o WIN32_DBG.OBJ/jscntxt.o WIN32_DBG.OBJ/jsdate.o WIN32_DBG.OBJ/jsdbgapi.o WIN32_DBG.OBJ/jsdhash.o WIN32_DBG.OBJ/jsdtoa.o WIN32_DBG.OBJ/jsemit.o WIN32_DBG.OBJ/jsexn.o WIN32_DBG.OBJ/jsfun.o WIN32_DBG.OBJ/jsgc.o WIN32_DBG.OBJ/jshash.o WIN32_DBG.OBJ/jsinterp.o WIN32_DBG.OBJ/jsinvoke.o WIN32_DBG.OBJ/jsiter.o WIN32_DBG.OBJ/jslock.o WIN32_DBG.OBJ/jslog2.o WIN32_DBG.OBJ/jslong.o WIN32_DBG.OBJ/jsmath.o WIN32_DBG.OBJ/jsnum.o WIN32_DBG.OBJ/jsobj.o WIN32_DBG.OBJ/jsopcode.o WIN32_DBG.OBJ/jsparse.o WIN32_DBG.OBJ/jsprf.o WIN32_DBG.OBJ/jsregexp.o WIN32_DBG.OBJ/jsscan.o WIN32_DBG.OBJ/jsscope.o WIN32_DBG.OBJ/jsscript.o WIN32_DBG.OBJ/jsstr.o WIN32_DBG.OBJ/jsutil.o WIN32_DBG.OBJ/jsxdrapi.o WIN32_DBG.OBJ/jsxml.o WIN32_DBG.OBJ/prmjtime.o   -lm 
+Creating library file: WIN32_DBG.OBJ/libjs_implib.a
+gcc -o WIN32_DBG.OBJ/js.o -c -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  js.c
+gcc -o WIN32_DBG.OBJ/js.exe -Wall -Wno-format -g3 -D_X86_=1 -DXP_WIN -DXP_WIN32 -DWIN32 -D_WINDOWS -D_WIN32 -DWINVER=0x500 -D_WIN32_WINNT=0x500 -D_MINGW -DEXPORT_JS_API -DHAVE_VA_COPY -DVA_COPY=va_copy  -DDEBUG -DDEBUG_user1 -IWIN32_DBG.OBJ  WIN32_DBG.OBJ/js.o WIN32_DBG.OBJ/libjs.a  -lm  \
+	    
+make[1]: Leaving directory `/media/md7/GPS/AIR/PKGS/HANDSET_WIN32/js/src'

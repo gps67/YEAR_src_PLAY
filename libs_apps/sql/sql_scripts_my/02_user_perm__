@@ -1,0 +1,12 @@
+#!/bin/sh
+. ./.env
+
+# still limited to localhost ?
+
+mysql_root <<!EOT
+	use mysql;
+	UPDATE user
+	SET password=password('$USER_PASS')
+	WHERE user='$USERANME';
+
+	FLUSH PRIVILEGES;

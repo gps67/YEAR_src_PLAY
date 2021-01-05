@@ -1,0 +1,15 @@
+# spidermonkey 
+# need some work
+# /home/gps/G/prefix/lib/pkgconfig
+# /home/gps/G/mozjs/lib/pkgconfig
+# mozjs.pc
+
+Name: libs_apps_mozjs
+Description: libs_apps uses JavaScript from mozilla
+Version: 0.2.67
+
+# Requires: mozjs-67
+Requires: mozjs-78
+Cflags:
+Libs:
+

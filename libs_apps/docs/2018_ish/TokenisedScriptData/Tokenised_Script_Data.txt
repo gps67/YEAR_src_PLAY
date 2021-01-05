@@ -1,0 +1,59 @@
+2018-08-07 Aug Tue 16:17 Tokenised_Script_Data.txt
+
+	Tokenised SCRIPT
+	Tokenised DATA
+
+	SubLex VIEW DTP
+	SubLex VIEW options	// will require gui and choice of tk WAX
+
+	CODE_A_B_C_D_P_Q	// A B C D    P Q
+
+	DRAW_DATA {
+		// WAX now needs WEB_canvas
+		// WAX now needs SVG_blob_viewer
+		// WAX now needs WAX_win32 // X11 // gtk // qt // local
+		// WAX_local might be FB_frame_buffer_with_local
+	}
+
+	ES6_plus_ByteArray :{...} {
+	} ... // HERE // ...
+
+		requires INLINE GETTER get_u64_pair
+
+			u3_u5_u8_u16_DECODER DECODER; // loads .profile
+
+			u32_hilo // some nearby register HALF[ EAX ] // A B C D P Q
+
+	LINK thread_var
+	LINK thread_var.DECODER {
+		${SUITE_DIR} -from- u3_SUITE_u5_DIR
+
+			sibling_SUITES_in_LINKAGE [ 32 ] of union {
+				ROM_LIST_u5 
+				LINK[u5] -each any of {
+					SUIDE_DIR  + HERE
+					thread_vars // of current core task
+					SUITE_ROM_TABLE_u5_OF_LINK -to-
+			}
+
+	SCRIPT	LINKING_SCRIPT( CTXT } {
+			// uses u3 etc
+			MYLIB = the_ususal_lookup_of_u3_u5_within_(CTXT)
+		}
+
+	WAX_web_canvas_connector { ... }
+	WAX_web_canvas_pencils { ... }
+	WAX_canvas_utils { ... } // like PDF path joining lists etc dialects
+	WAX_3D_objects
+
+		XPOS X
+		CSR_POS Y
+		CSR_POS BASE OFFS	// avoiding SubLex well known alias
+		CSR_POS ROOT DXYZ	// 
+
+	}
+
+	... /// ...
+
+	Tokenised Script DATA makes a HEAP out of ES6_style ByteArray
+	It becomes lib_HEAP

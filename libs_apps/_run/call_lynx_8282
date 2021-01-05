@@ -1,0 +1,4 @@
+
+lynx http://localhost:8282/abc "$@"
+# telnet localhost 8282
+# telnet sky 8282

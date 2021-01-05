@@ -1,0 +1,47 @@
+libs_apps/docs/2019_ish_TODO/
+
+	./TODO_2018-08_Aug_TODO
+
+		%s TODO
+		_
+		%s 2018-08-29
+		_
+		TODO
+		_
+		DIALECT_
+		_PRINT
+		_PARSE
+		TODO_2018-08-29_TODO_DIALECT_PRINT_PARSER
+
+
+	This is where we impose a mad hack on ourselves
+	
+		BLK_buffer3 in // load_from_file()
+
+		in. load_from_file() || return FAIL_FAILED();
+
+			// if load_from_file fails
+			// it reports
+			// it retains the report for you to report
+
+			// load_from_file() is one of group
+			// caller has range of useful exprs
+			// PHRASE_BOOK[" BLK in; in.load_from_filename('%s'); //CMNT " ]
+
+		The mad hack is an attempt at optimisation
+		A good one, but has a few USAGE needs 
+		Lucky, here are a few bolierplates
+
+			BIND("u8 * P // CMNT")
+			BIND("u8 * P;") // PSG then adds CMNT // decorating the tree
+			BIND("u8 EXPR = *P++; // %s");
+			BIND("u8 EXPR = *P++; // CMNT_%4X_%s");
+
+		MATCH("-anystr-")
+
+			[Y/N] - add every stray to main POOL
+			[Y/N] - add to main POOL from LIST
+			LIST {
+				Token * token = lookup( CTXT, /*.CODE_POINT,*/
+				Token * token = CTXT.lookup( STR0 );
+			}

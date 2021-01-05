@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_py
+Description: LIBS_APPS uses PYTHON
+Version: 0.1.2
+
+Libs:  -L${libdir} -lpython -Wl,--rpath=${libdir}
+Cflags:  -I${includedir}

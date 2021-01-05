@@ -1,0 +1,49 @@
+# the name of the program we are building
+# it was called helloworld or something
+
+	hello=eg1
+
+# the version of mosjs should not be required - but it is
+
+	V65=65
+
+# it was compiled with -DDEBUG = also required in clients of linr
+# maybe this can be #include js/"config.h" or somthing ?
+
+# when building against the uninstalled build sources
+
+objdir=/home/gps/YEAR/src_build_2019/JS/mozjs-65.0.1/js/src/build_DBG.OBJ/
+
+
+# when built against the installed (and symb-linked?) sources
+
+	INSTDIR=/home/gps/G/mozjs/include/mozjs-$V65
+
+if :
+then
+
+	g++ -std=c++17			\
+	-DDEBUG \
+	-I$objdir/dist/include		\
+	-L$objdir/dist/lib		\
+	$hello.cpp			\
+	-o $hello			\
+	-lmozjs-$V65			\
+	-lz -lpthread -ldl		\
+	2>&1 | tee -a $0.log | less
+	#
+
+else
+
+	g++ -std=c++17			\
+	-DDEBUG \
+	-I$objdir/dist/include		\
+	-L$objdir/dist/lib		\
+	$hello.cpp			\
+	-o $hello			\
+	-lmozjs-$V65			\
+	-lz -lpthread -ldl		\
+	2>&1 | tee -a $0.log | less
+	#
+fi
+

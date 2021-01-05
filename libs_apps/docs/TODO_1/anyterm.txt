@@ -1,0 +1,6 @@
+http://anyterm.org/
+
+	provides a shell tty over XMLHTTP
+	javascript on the client browser picks up keys, + redraws
+	TODO: match it as a server, embed into app
+

@@ -1,0 +1,60 @@
+There are layers:
+
+script:
+	OBJ.field = list4[ cpu.name[4] ]
+	OBJ.field = CTXT.define_sub_field( "field" )
+
+pre-prototype: (forgotten, but unread)
+
+S_Obj {
+	u32_lo_hi libr_class_id;
+	S_SPEC * get_s_spec( CTXT * ctxt );
+};
+
+V_Obj {
+	/* VTBL */
+	V_SPEC * get_v_spec();
+}
+
+CPU {
+	CTXT * ctxt;
+	bool ok_op1;
+	OBJ1 * obj[16]; // names from a table
+	OBJ1 * retval;
+ref_hold<OBJ1> retval_holder;
+
+	CPU.set( type, var, val )
+	CPU.get( type, var ) -> retval ?
+
+	get_type( var ) -> builtin_scalar( X ) builtin_pointer( T2 )
+}
+
+SPEC.set_amnt( obj, amnt_t val )
+SPEC.set_date( obj, date_t val )
+SPEC.get_amnt( obj, ....
+
+SPEC.get_as_SPEC( obj, SPEC * dest, ...intovar... )
+SPEC.set_from_SPEC( obj, SPEC2, val )
+
+SPEC.get_field( obj, "field" )
+
+SPEC.EA_amnt( obj, amnt * val_ptr ) || false || NULL || throw
+
+	SPEC might have to create a temp var ?
+	WHEN can caller write ? LOCK = NONE-or-DONE
+
+-ASIDE-
+	Late Binding
+
+	Exact Binary Spec forces code to be one-step-removed
+	because caller is late-binding
+	unless caller has resolved all details
+
+	EG:
+
+		grid_cell[x,y] . holds_date_in_era4( trans.date_tax )
+
+VAL-or-VAR
+
+	tcl uses VAL (different VAL = malloc new object)
+	

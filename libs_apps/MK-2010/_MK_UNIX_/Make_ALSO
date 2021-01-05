@@ -1,0 +1,17 @@
+# Make_PATHS
+
+	LIBS += -Wl,--rpath=/usr/lib
+
+	# libz is gzip without the header bytes
+#	LIBS += -lz
+#	LIBS += /usr/lib/libz.a
+#	LIBS += /usr/lib/libz.so
+#	# this doesnt make sense - maybe its my GCC3 not searching /usr/lib/ ?
+#	LIBS += -L /usr/lib -lz
+	# -L /usr/lib upsets me beacause of non standard libstdc++
+	LIBS +=-lz
+
+	# the runtime shared-lib search path
+	# LD_RUN_PATH at compile time is the same thing but hidden
+	LIBS += -Wl,--rpath=/tools/2000/ccs4/lib
+

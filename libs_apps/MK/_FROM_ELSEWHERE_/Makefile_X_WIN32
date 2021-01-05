@@ -1,0 +1,131 @@
+#
+# Makefile_X_WIN32
+#
+#	Compile for WIN32 on Linux using a cross compiler
+#
+# caller ...
+#	LINK_WITH_CONSOLE=0
+#	LINK_WITH_CONSOLE=1
+# hint
+#	i686-pc-mingw32
+#	i386-mingw32
+
+
+	WIN32=1
+
+	# pick the compile to use
+	CROSSMETHOD=IMCROSS
+#	CROSSMETHOD=UBUNTU
+
+   ifeq ($(CROSSMETHOD),UBUNTU)		# standard ubuntu mingw
+
+	WIN_CROSS_pfx=i586-mingw32msvc#		GNU target name (RTFM corsstool)
+	WIN_CROSS_root=/usr/$(WIN_CROSS_pfx)
+	WIN_CC=/usr/bin/$(WIN_CROSS_pfx)-gcc
+	WIN_CXX=/usr/bin/$(WIN_CROSS_pfx)-g++
+	WIN_STRIP=/usr/bin/$(WIN_CROSS_pfx)-strip
+	WIN_AR=/usr/bin/$(WIN_CROSS_pfx)-ar
+
+	CC=$(WIN_CC)
+	CXX=$(WIN_CXX)
+	INCLUDE_PATH_LIST += $(WIN_CROSS_root)/include 
+# need png.h and its friends
+	INCLUDE_PATH_LIST += /CROSS_/mingw_cross_env-2.5/usr/i386-mingw32msvc/include/
+	INCLS += -I$(WIN_CROSS_root)/include 
+   endif
+
+   ifeq ($(CROSSMETHOD),IMCROSS)
+	#
+	HOME_IMCROSS=/opt/IMCROSS
+	WIN_CROSS_pfx=i386-mingw32
+	#
+	# another way is to prefix PATH with
+	# $(HOME_IMCROSS)/$(WIN_CROSS_pfx)/bin
+	# where you find g++, ar, with plain names
+	#
+	CC=$(HOME_IMCROSS)/bin/$(WIN_CROSS_pfx)-gcc
+	# CXX=$(HOME_IMCROSS)/bin/$(WIN_CROSS_pfx)-g++
+	CXX=RUN4 $(HOME_IMCROSS)/bin/$(WIN_CROSS_pfx)-g++
+	WIN_STRIP=$(HOME_IMCROSS)/bin/$(WIN_CROSS_pfx)-strip
+	WIN_AR=$(HOME_IMCROSS)/bin/$(WIN_CROSS_pfx)-ar
+	TREE_IMCROSS=$(HOME_IMCROSS)/$(WIN_CROSS_pfx)
+	INCLUDE_PATH_LIST += $(TREE_IMCROSS_root)/include 
+
+	#
+	# you MUST rebuild IMCROSS or install it in the right place
+	# then all of its own pkgconfig files are correct
+	#
+	PKG_CONFIG_LIST += $(HOME_IMCROSS)/$(WIN_CROSS_pfx)/lib/pkgconfig
+
+#	CFLAGS_GTK += `$(PKG_CONFIG) --cflags gtk+-2.0`
+#	LINK_GTK += `$(PKG_CONFIG) --libs gtk+-2.0`
+
+	# kludge for now
+	# CFLAGS += $(CFLAGS_GTK)
+	# LINKS += $(LINK_GTK)
+
+	PATHDLL+=$(HOME_IMCROSS)/$(WIN_CROSS_pfx)/bin
+   endif
+
+#############
+
+
+
+	# not available
+	INSIGHT_EXE=
+# switch off for now ...
+# OK # 	STRIP=true $(WIN_STRIP)
+
+# ... WIN32 ...
+
+	lX11 = -lX11
+	lpthread = -lpthread
+	# ROOT_ccs_link=../ROOT_WIN32
+	ROOT_ccs_link=ROOT_binaries
+	ROOT_handset_link=ROOT_binaries
+	# $(TGT_HANDSET_BUILD_INTO_ROOT)#
+
+	# You have to include <windows.h> to get sockets
+	# You need windows32api which is already a part of mingw32
+	# wget http://ftp.gnu.org/pub/gnu/windows32api/windows32api-0.1.2.tar.gz
+	# last tried with UBUNTU.mingw
+
+	LINKS += -lgdi32
+	LINKS += -lwsock32
+#	LINKS += -l ws2_32.lib
+#	LINKS += $(WIN32_NO_CONSOLE)
+#	LINK_GTK += win_main.o
+	# LINKS += win_main.o
+#	TARGETS += win_main.o
+
+	# avoid spaces
+	EXE=.exe
+	dotEXE=.exe#			# already set
+	DLL=dll
+	RM_rf = del			# too many arguments - do manually
+	AR=$(WIN_AR)
+	STRIP=$(WIN_STRIP)
+
+	# The compiler adds -DWIN32
+	# the gtk include scripts also add -mms-bitfields
+# DEPRECATED # -mno-cygwin # using -mmingw builtin to XGCC
+#	OPTIM += -mno-cygwin #		# no UNIX emulation layer required
+	OPTIM += -mms-bitfields	#	# the new MINGW option
+	OPTIM += -DWIN32 #		# tell source to do any fixups
+
+	# by linking with the mingw gcc architecture -mwindows - presume GUI
+	WIN32_NO_CONSOLE = -mwindows
+
+ifeq ($(LINK_WITH_CONSOLE),1)
+	WIN32_OPT_CONSOLE = 
+else
+	WIN32_OPT_CONSOLE = $(WIN32_NO_CONSOLE)
+endif
+
+ifeq ($(WITH_CONSOLE),1)
+	DEFNS += -DWIN32_CONSOLE
+	# YES THE NAME IS REVERSED
+	# IF YOU WANT IT - YOU WANT NOTHING
+	# rename -DWIN32_USE_CONSOLE # linked or not ...
+endif
+

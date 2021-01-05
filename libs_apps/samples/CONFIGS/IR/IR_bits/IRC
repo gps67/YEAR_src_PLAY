@@ -1,0 +1,49 @@
+. /tools/2002/var_add.sh
+var_add PATH /usr/local/bin
+var_add PATH /usr/local/sbin
+var_add PATH /home/gps/2002_ftp/11_Nov/lirc-0.6.6/tools
+var_add PATH /home/gps/2002_ftp/11_Nov/lirc-0.6.6/daemons
+
+fn_runs()
+{
+	"$@"
+	ex=$?
+	if [ $ex = 0 ]
+	then
+		echo "# OK # $*"
+	else
+		echo "# FAIL # $* "
+		perror $ex
+	fi
+}
+
+op="${1:-xxx}"
+shift
+case $op
+in
+	xxx) exit 2
+;;	mod_stat)
+		lsmod | grep lirc
+;;	mod_stop)
+		fn_runs rmmod lirc_serial
+;;	mod_start)
+		# in setup.sh select  "Software generated carrier"
+		# fn_runs modprobe lirc_serial softcarrier=0 # edge not square
+		  fn_runs modprobe lirc_serial softcarrier=1 # works
+;;	lircd_stop)
+		fn_runs killall  lircd 
+;;	lircd_start)
+		fn_runs lircd
+;;	lircd_stat)
+		ps -leaf | grep lirc | grep -v ' vi ' | grep -v grep
+;;	setserial_start)
+		fn_runs setserial /dev/ttyS0 uart none
+;;	setserial_stat)
+		setserial /dev/ttyS0
+;;	dmesg_c)
+		dmesg -c
+;;	send1)
+		# rc SEND_ONCE DI4001N 1 0 1
+		rc SEND_ONCE ${@:-DI4001N Select}
+;;	*) exit 2
+esac

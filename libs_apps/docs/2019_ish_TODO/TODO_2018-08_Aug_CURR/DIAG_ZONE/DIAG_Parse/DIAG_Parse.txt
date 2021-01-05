@@ -1,0 +1,92 @@
+2019-09-02 Sep Mon 00:15 DIAG_Parse.txt
+
+	DIAG_Parse
+
+		MATCH DIAG_Pixmap
+		MATCH DIAG_Postscript_Page
+		MATCH DIAG_Graph _with_ AXES
+		MATCH DIAG_Layout
+
+		MATCH DIAG_Tree
+		MATCH DIAG_Tree_Node
+		MATCH DIAG_Tree_Leaf
+		MATCH DIAG_Tree_Group
+		MATCH DIAG_Tree_Item
+		MATCH DIAG_SPEC
+		MATCH DIAG_DATA
+
+		MATCH PSG  ITEM = lookup( "item" )
+		MATCH PSG  TOKEN = lookup( "TOKEN" )
+		MATCH PSG  TEXT = "str" // LITERALLY WRAP_Q2( str ) // "str"
+
+		MATCH CODE POINT "get(ITEM) = { EXPR }" on this SHEET
+		MATCH CODE POINT LOCN decode_lookup( "0x%4.4X"( meta.payload )
+
+	DIAG_Parse
+
+			ITEM = lookup( "item" ) 
+
+	DIAG_Parse
+
+		EXPORT LIST
+
+			ITEM
+			item
+			"item"
+			= lookup( EXPR_subtype )
+
+
+		IMPORT LIST
+
+			-
+
+		USAGE EXPR LIST
+
+			- callable -
+
+		TEXT Heuristic
+
+			currently quite strict
+			BENCH show all plausible MATCH points
+			BENCH might even find IMCOMPLETE MATCH
+			and offer  to start an edit to get there
+
+
+
+	DIAG_Parse
+
+		PRELOAD
+		 ITEM = lookup( "item" ) 
+
+			ITEM
+			=
+			lookup(
+				"item"
+			) 
+		## PRELOAD well known PHRASE
+
+			it creates a load of PSG_step_LOCN LOCN
+
+			a highly specialised track
+			that leads to either a CUSTOM DIALECT LOCN
+			or GENERAL DIALECT parser LOCN
+			but with lookup() already done
+			plus either CT or RT lookup_done RESULT = HERE
+
+			Either way, if the input text varies with this
+			it is simply not this but similar or different
+			and the work done in the PSG_graph remains avail
+
+		PRELOAD
+		 ITEM = lookup( "IDX" ) 
+
+		PRELOAD
+		 ITEM = lookup( "VAARNAME" ) 
+
+		PRELOAD
+		 ITEM = lookup( "NAME" ) 
+
+		PRELOAD
+		 ITEM = lookup( "-any-str-" ) 
+
+

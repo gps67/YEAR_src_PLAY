@@ -1,0 +1,39 @@
+
+PSG STO
+
+	u8 idx = HEAP.lookup("-any-str-")
+
+	KEY -attr- KEY_is_normalised_8859
+	KEY -attr- KEY_is_normalised_utf8
+	KEY -attr- KEY_is_normalised_ASCII
+
+	KEY -attr- KEY_is_normalised_IDENT
+	KEY -attr- KEY_is_normalised_PHRASE
+
+	HEAP_ADDR
+
+		-attr- u8 idx 
+		-attr- u16 idx 
+		-attr- 0 <= idx < idx_N
+		-attr- (idx==0) NOT VALID ITEM
+		-attr- (idx==0) PLAIN VALID ITEM IDX0
+	
+	FILE_ITEM_HEAP_1234
+
+		local copy of strings
+		each NUL terminated
+
+		details emerge from handcoded DB_STRUCT
+	
+	CLONE ZONE
+
+		ZONE -attr- ReadOnly
+		ZONE -attr- LowChurn
+		ZONE -attr- LOCK access
+		ZONE -attr- relocateable (but only WHEN0
+
+		Attempt to normalise things
+		eg -attr- keys Sorted
+		eg -attr- keys Sorted idx_new = MAP[ idx_old }
+
+

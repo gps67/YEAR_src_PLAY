@@ -1,0 +1,6 @@
+#!/bin/sh
+. ./.env
+
+#mysql_user <<!EOT
+mysql_root <<!EOT
+	CREATE Database $BASE_NAME;

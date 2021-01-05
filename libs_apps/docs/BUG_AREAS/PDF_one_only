@@ -1,0 +1,31 @@
+PDF run_report seems to crash on the second report
+Something isnt completely released
+Use a forked process, and run two different ones
+
+Symptom:
+	title intro page is flattenned to 1 line
+	as if font height == 0 (never advances)
+	at bottom of page - why not top ?
+	something about reloading fonts
+	probably my code
+
+Symptom:
+	xpdf says:  Error (3704): Too many args in content stream
+
+	commented out second line in JavaScript scipt
+
+CODE: CLASS: pdf_ctxt
+
+	PDF_new2(...)
+	PDF_delete( pdf )
+
+	these ARE being called exactly once (twice)
+	maybe should retain one context
+	maybe should check that PEN's are also deleted
+
+CLASS: pdf_base0:
+
+	holds a pdf pointer, but obtained it from ctxt
+	and is inline for rapid turnover (single ponter ideas)
+
+	... tired ... run twice

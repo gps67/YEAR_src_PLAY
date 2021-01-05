@@ -1,0 +1,1 @@
+./mk -k lots | tee Warns

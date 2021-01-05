@@ -1,0 +1,19 @@
+README			This file
+sql_scripts_my/		Create Tables (etc) MySQL
+sql_scripts_pg/		Create Tables (etc) Postgres
+
+Python/			Python Scripts that access the databases
+Python/data_sql_MySQL/	OLD library
+Python/data_sql_PGSQL/	OLD library
+Python/db_del_site.py*
+Python/db_list_lines.py*
+
+sar_plot no-longer requires Python,BLT,Tk (it now uses Gtk)
+but Python is very useful for DB tasks. Since there are two
+databses (when you have one), you must edit the scripts to
+select which one you want to use, then aim for a common api.
+
+You also need PyGreSQL-3.2 or  MySQL-python-0.9.1
+
+The Python scripts are very out-of-date, and follow some absurd
+design, probably what the old plotter required?

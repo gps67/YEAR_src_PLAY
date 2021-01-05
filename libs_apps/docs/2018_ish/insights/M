@@ -1,0 +1,6 @@
+set -x
+cd insight || exit
+make \
+2>&1 | tee -a $0.log
+ask_do make install \
+# 2>&1 | tee -a $0.log

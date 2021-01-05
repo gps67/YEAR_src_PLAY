@@ -1,0 +1,84 @@
+
+Home Brew Tips
+--------------
+
+I tried the simple circuit shown on the www.lirc.org website,
+and I didn't regret it, but I had a few questions on the way.
+
+Circuit
+-------
+The 1N4148 diode has a black line on the - side (8 pence)
+The LD271 IR_LED has a longer wire on the + side (49 pence)
+A 1.2 K Resistor works with a reasonable but low (1 foot) radius (7 pence)
+The com port plug and wire cost 150 pence !
+
+COM1 DB9 pin-4 is DTR (the + side)
+COM1 DB9 pin-5 is SG (The - side)
+
+COM2 DB25  pin-20 is DTR
+COM2 DB25  pin-7 is SG
+
+Pointing the LED at multiple devices is tricky,
+but a surrounding bit of white plastic bag
+spreads it around a bit (Theres scope for
+a piece of living-room artwork here ... )
+
+This is a really simple circuit, see:
+http://www.turbobit.com/picts/ir-tx.jpeg
+
+Configure and Compile
+---------------------
+setup.sh must have softcarrier set, as must the module
+My production options in configure.sh are:
+
+	./configure \
+	--with-module-dir=/lib/modules/2.4.23/misc \
+	--with-transmitter \
+	--with-x \
+	--with-driver=serial \
+	--with-major=61 \
+	--with-port=0x3f8 \
+	--with-irq=4 \
+	"$@"
+
+You will need a second version of lircd (but not irrecord) with
+debugging compiled in.
+
+To build the debugging version, copy the entire subtree to lirc-0.6_DEBUG,
+edit .setup.config to set DEBUG=on, run setup.sh, select configure, make
+
+Test with xmode2 on a laptop
+----------------------------
+It helps to have a laptop with an IR port to run
+xmode2 to see that signals are emitted, and run irrecord
+to get the signal data, but it is slightly less sensitive
+than domestic devices.
+
+lircd -D with debugging compiled in, and a partial lircd.conf
+shows unrecognised codes, to cut+paste in. (if it doesnt show much,
+run irrecord on a COPY of the file, then edit across).
+
+irrecord with debugging compiled in on an existing file,
+doesnt record extra buttons, it exits immeditately
+(so you need two sets with/out debugging)
+
+irw shows that buttons have been recognised
+(remember to restart lircd -n -D testing.lirc after editing)
+
+Install
+-------
+/etc/rc.d/init.d needs to run  "lircd"
+/etc/lircd.conf holds the specs of the remotes (cat'd together).
+/etc/logrotate.d/lircd will clip the /var/log/lircd logfile
+
+My /etc/modules.conf contains:
+
+# home-brew IR
+alias char-major-61 lirc_serial
+options lirc_serial irq=4 io=0x3f8 softcarrier=1
+pre-install lirc_serial /bin/setserial /dev/ttyS0 uart none
+
+I havent any voltmeter to check the load on the serial port,
+and might be risking the MB circuits, but for me its well worth it.
+
+Graham

@@ -1,0 +1,9 @@
+#!/usr/bin/env js_many
+
+ACCTS = new Accts_Module()
+ACCTS.make( "/home/gps/2000/src/libs_apps/_run", "default" )
+
+SCANS = new Scan_Module()
+SCANS.scan_into_file( "/tmp/_DEL_isa-2008-04-28.xxx", "Actually I want jpeg" )
+
+

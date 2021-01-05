@@ -1,0 +1,82 @@
+
+/*!
+	Run PG request to load DATA.
+
+	Note that PG didnt have BLOBS, but now that TOAST is claimed
+	to work, it should be much like MySQL, and simply need the
+	(binary) data, re-quoting to sit in an indefinite TEXT field.
+
+	LO = Large Object = separate table for PG-blobs, though it
+	still has the disadvantage of many-many small files.
+
+	I wish PG adjusted its create-table syntax to allow BLOBS,
+	with/out additional compression.
+*/
+bool dset_api_postgres::select_segs_to_dset(
+	dset_api * dset,
+	mem_line_spec * spec,
+	time_t t0,
+	time_t t2
+) {
+	long line_id = -1;
+	if( !table.find_line( spec, line_id ))
+	{
+		e_print("Request for absent SPEC\n");
+		return FALSE;
+	}
+
+	enq.clear();
+
+	enq.put( "SELECT t0,t2,idx_data from seg where line=" );
+	enq.put_d( line_id );
+
+ if(0) {
+	time_t t0_edge_lo = t0 - (7*24*60*60);
+	// time_t t0_edge_hi = t2 + (7*24*60*60);
+	// optimise search
+	enq.put(" and t0>=");
+	enq.put_d(  t0_edge_lo );
+ }
+
+	// seg starts before range end
+	enq.put(" and t0<");
+	enq.put_d(  t2 );
+
+	// unoptimised seg ends before range start
+	enq.put(" and t2>");
+	enq.put_d(  t0 );
+
+	enq.put(" ORDER BY t0,t2");
+	enq.put((char)0);
+
+	if( !pgsql->PG_exec_BEGIN_cmd_END( enq.buff )) {
+		return FALSE;
+	}
+	bool ok = TRUE;
+	// retain the malloc on these over the loop
+	zblk zdata;
+	blk1 data;
+	for( int ROW=0; ROW<pgsql->nrows_result; ROW++ ) {
+
+		int seg_t0  =atoi( PQgetvalue( pgsql->results, ROW, 0 ) );
+		int seg_t2  =atoi( PQgetvalue( pgsql->results, ROW, 1 ) );
+		int oid     =atoi( PQgetvalue( pgsql->results, ROW, 2 ) );
+
+		if( ! pgsql->PG_lo_fetch( oid, zdata ) ) {
+			fprintf(stderr,"PG_lo_fetch() failed\n" );
+			continue;
+		}
+		int n_flts = (seg_t2-seg_t0)/spec->dt;
+		uLongf explen = sizeof( float ) * n_flts;
+		if(! zdata.expand( data, explen ) )
+		{
+			return FALSE;
+		}
+		float * flts = (float*) data.buff;
+
+		if(!dset->merge_floats( spec, seg_t0, n_flts, flts ))
+			ok = FALSE;
+	}
+	return ok;
+}
+

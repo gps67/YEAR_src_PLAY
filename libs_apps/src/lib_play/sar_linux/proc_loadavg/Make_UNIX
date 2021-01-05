@@ -1,0 +1,86 @@
+# Make_PATHS
+
+# put gtk before X11 appears
+ifeq ($(WITH_GTK),2)
+	DEFS += -DWITH_GTK2 
+#	LIBS  += -v
+	LIBS  += -L/tools/2003/libs/lib -lfreetype
+	INCLS += `pkg-config --cflags gtk+-2.0`
+	LIBS  += `pkg-config --libs gtk+-2.0`
+	LIBS  += -Wl,--rpath=/tools/2003/libs/lib
+	LIBS  += -Wl,--rpath=/tools/2003/gtk/lib
+	LIBS  += -L/tools/2003/libs/lib -lfreetype
+endif
+
+	LIBS += -Wl,--rpath=/usr/lib
+
+ifeq ($(WITH_JS),1)
+	DEFS += -DWITH_JS # my code
+	DEFS += -DXP_UNIX # js code (jsapi.h)
+#	SRC_JS =  /home/gps/2002_ftp/03_Mar_src/js/src
+	SRC_JS =  /home/gps/2003_ftp/JS/js/src
+	obj_JS = Linux_All_DBG.OBJ
+	INCLS += -I$(SRC_JS)
+	INCLS += -I$(SRC_JS)/$(obj_JS) # jsautocfg.h
+	# LIBS += $(SRC_JS)/$(obj_JS)/libjs.a # static
+
+	LIBS += -L$(SRC_JS)/$(obj_JS) # shared
+	LIBS += -ljs
+	LIBS += -L$(SRC_JS)/fdlibm/$(obj_JS) # shared
+	LIBS += -lfdm
+	LIBS += -L$(SRC_JS)/editline/$(obj_JS) # shared
+	LIBS += -ledit
+	LIBS += -Wl,--rpath=$(SRC_JS)/$(obj_JS) # if not installed
+endif
+
+ifeq ($(WITH_PDFLIB),1)
+	OBJS += $(OBJS_PDFLIB)
+	DEFS += -DWITH_PDFLIB
+	PREFIX_PDFLIB = /tools/2003/xml
+	INCLS += -I $(PREFIX_PDFLIB)/include
+	LIBS += -L $(PREFIX_PDFLIB)/lib
+	LIBS += -lpdf
+	LIBS += -Wl,--rpath=$(PREFIX_PDFLIB)/lib
+endif
+
+ifeq ($(WITH_GTK),1)
+	# glib provides a hash table, date, ...
+	# gtk provides gui, links in gdk
+
+	INCLS += `gtk-config --cflags`
+	LIBS  += `gtk-config --libs`
+	LIBS += -Wl,--rpath=/tools/2001/gtk/lib
+
+	# old gtk is faster for recalc_col_widths in ctree - pango costs XS
+	# code uses ifdef to use/avoid pango calls
+	DEFS += -DWITH_GTK1 
+endif
+
+ifeq ($(WITH_MYSQL),1)
+	OBJS += $(OBJS_MYSQL)
+	DEFS += -DWITH_MYSQL
+	PREFIX_MYSQL = /tools/2003/mysql
+	INCLS += -I $(PREFIX_MYSQL)/include/mysql
+	LIBS += -L $(PREFIX_MYSQL)/lib/mysql
+	LIBS += -lmysqlclient
+	# runtime search path
+	LIBS += -Wl,--rpath=$(PREFIX_MYSQL)/lib/mysql
+endif
+
+ifeq ($(WITH_PGSQL),1)
+	OBJS += $(OBJS_PGSQL)
+	DEFS += -DWITH_PGSQL
+	PREFIX_PGSQL=/tools/2001/sql
+	INCLS += -I $(PREFIX_PGSQL)/include
+	LIBS += -L $(PREFIX_PGSQL)/lib -lpq
+	LIBS += -Wl,--rpath=$(PREFIX_PGSQL)/lib
+endif
+
+	# libz is gzip without the header bytes
+#	LIBS += -lz
+	LIBS += /usr/lib/libz.a
+
+	# the runtime shared-lib search path
+	# LD_RUN_PATH at compile time is the same thing but hidden
+#	LIBS += -Wl,--rpath=/tools/2003/ccs3/lib
+

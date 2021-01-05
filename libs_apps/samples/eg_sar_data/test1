@@ -1,0 +1,25 @@
+Empty list in ../2010/.
+Empty list in ../CONFIGS/.
+Empty list in ../eg_car_bat/.
+Empty list in ../eg_csv_accts6/.
+Empty list in ../eg_csv_calc1/.
+Empty list in ../eg_csv_leak/.
+Empty list in ../eg_csv_SCHEMA/.
+Empty list in ../eg_js_stats/.
+Empty list in ../eg_js_subst/.
+LIST count = 1
+++ /home/gps/G/src_build/libs_apps_obj_LGX_x3/sar_parse --filetype vmstat_hp10 ../eg_sar_data/./sar_vmstat.gz
+# FAIL  # int main(int, char**) # commented out
+# INFO  # void dgb_sleep_calc() # loon/sane/fade/here = 1/0/0/0
+# WARN  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # 0x1ff1010  debug_list_root == this
+# WARN  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # setting debug_list_root to NULL
+++ for d in '$d0/*/.'
+++ PATTERN='vmstat_sitainte_*.gz'
+++ PATTERN='vmstat_*_*.gz'
+++ PATTERN='sar_vmstat*.gz'
++++ sort
++++ find ../eg_scan_jpeg/. -type f -name 'sar_vmstat*.gz'
+++ LIST=
+++ '[' -z '' ']'
+++ echo 'Empty list in ../eg_scan_jpeg/.'
+Empty list in ../eg_scan_jpeg/.

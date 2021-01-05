@@ -1,0 +1,22 @@
+
+Name: libs_apps_uses_editline
+Description: LIBS_APPS uses editline 
+Version: 0.1.2
+
+
+Requires: 
+
+# /media/md7/GPS/AIR/PKGS/PKGS_build/LGX/js/src/editline/Linux_All_DBG.OBJ/libedit.a
+# OBJDIR=/media/md7/GPS/AIR/PKGS/PKGS_build/LGX/js/src/editline/Linux_All_DBG.OBJ
+# OBJDIR=/media/md7/GPS/AIR/PKGS/PKGS_build/LGX/js/src/editline/Linux_All_DBG.OBJ
+OBJDIR=/nfs/md7/PKGS/PKGS_built/LGX/ROOT_editline/airbook/lib
+X=-l/usr/lib/libeditline.so
+
+
+# Libs: -L${OBJDIR} -ledit -llll
+# Libs: ${OBJDIR}/libedit.a
+# Libs: -L${OBJDIR} -ledit 
+Libs: -L${OBJDIR} -leditline -ledit 
+# Libs: -L${OBJDIR} -ledit -lyoucantfindme
+Cflags:
+

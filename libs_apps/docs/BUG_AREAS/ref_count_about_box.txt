@@ -1,0 +1,45 @@
+the error / help-about box does not have a proper owner
+rewrite so that there is ONE owner for it
+rewrite so that the C_dec_ref is as it should be
+
+I think I may have corrupted the C_dec_ref logic
+I know that I forgot to place an obj_ref<w_dialog_box> anywhere
+
+This is a wrinkle from when obj_hold<w_items> was rolled out
+The unknown dialog box didnt get patched
+I then went crazy with c_dec_ref a,d messed that up
+
+There is a point when GLIB / GTK telly you your object
+is about to go out of scope, but exists enough to dismantle DTOR
+
+There is a point after the DTOR when you CANNOT touch that mem,
+but maybe there is a callback for drop-hot-potatoe-pointers
+and I am confusing the two (probably badly nmed IIRC)
+
+------------
+
+A similar issue, is to replace all calls to functions,
+that return a value, to put it into a slot instead
+
+	T * newitem = mk_me_a_thingy(args)
+
+
+	obj_hold<T> my_item; // NULL
+	mk_me_a_thingy(my_item, args) || return FAIL_FAILED();
+	
+	bool mk_me_a_thingy( obj_hold<T> & my_item, ... ) { ... }
+
+Then if it is a plain string you want,
+give it a buffer to use for memory
+
+	buffer1 buf;
+	buf.clear();
+	STR0 day_of_week_name = dow_str( buf, args );
+
+or more specifically
+
+	buffer1 buf;
+	buf.clear();
+	buf.print("left hand text";
+	print_dow_str( buf, args ) || return FAIL_FAILED()
+	buf.print("right hand text";

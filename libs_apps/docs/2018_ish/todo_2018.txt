@@ -1,0 +1,32 @@
+BUG refcount holder for transient popups, fileselectors
+DESIGN DTOR sequence gtk widget holds client data
+BLOCKED POST+ not surviving something
+ALSA not OSS
+ABSENT C++ time-series-segment merge (POST code to non-post)
+PG-SQL - time series data, basic client
+MySQL - ditto
+SpiderMonkey - restart from crap
+V8 - start from N-API
+SPOUT - alternative to libpdf-lite
+Gtk+-2.0 cleanup ifdef, upgrade some bits, 
+SSL - BUG x509 refcount
+SSL - UPGRADE a few items, UPGRADE serious rules, missing kill list
+
+OATH - absent
+MUX-io
+WAX-2D
+PSG-parse-store-tree
+LLVM
+TUN
+JSON-io
+
+GLSL + YACC + ES7 + 
+
+HiLo_bytes_bits
+DECODER_u32_u3_u5_u8_u16_
+DECODER_u32_u16_u8_u5_u3 shift into AL
+DECODER_u64_u16_u48
+DECODER_u64_u48_u16 shift into AL
+
+
+

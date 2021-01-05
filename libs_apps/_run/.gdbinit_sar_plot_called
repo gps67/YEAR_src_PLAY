@@ -1,0 +1,9 @@
+handle SIGSEGV nostop noprint pass
+handle SIGABRT nostop noprint pass
+b main
+r /tmp/dpb_sar_test.odb
+# p xgdb_off=false
+
+#
+# INGDB=1 insight --command /nfs/NAS2/2018/src/libs_apps/_run/.gdbinit_sar_plot sar_plot
+#

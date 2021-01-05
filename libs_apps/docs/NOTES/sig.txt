@@ -1,0 +1,22 @@
+connect needs sorting:
+w_widget0.h:
+
+typedef void (*SignalFunc) (                                                    
+        GtkWidget * w,          // not a pointer to w_widget !                  
+        obj_ref0 * app          // client data - base type                      
+);  
+void connect(
+	const char * sig,
+	SignalFunc func,
+	obj_ref * app
+);
+
+// the standard way 
+gtk_signal_connect(
+	GTK_OBJECT(w),
+	"motion-notify-event",
+	(GtkSignalFunc) C_event_mouse_moved,
+	this
+);
+
+

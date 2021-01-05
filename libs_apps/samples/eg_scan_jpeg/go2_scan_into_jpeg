@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+js_many --Script '
+
+	ACCTS = new Accts_Module()
+	ACCTS.make( "/home/gps/2000/src/libs_apps/_run", "default" )
+
+	SCANS = new Scan_Module()
+	// note lack of .jpeg ext - thats added - even if its already there
+	// or maybe not if exact match - todo
+	SCANS.scan_into_jpeg( "/tmp/_DEL_isa-2008-04-28", "now it is jpeg" )
+
+'
+
+

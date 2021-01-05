@@ -1,0 +1,19 @@
+while :
+do
+
+	echo >&2 -n "$* _"
+	read resp
+	case $resp
+	in
+		y|Y)
+			echo >&2 "YES: $*"
+			exit 0
+	;;
+		n|N)
+			echo >&2 "NO: $*"
+			exit 1
+	;;	*)
+			echo "ERROR - yes no question! Try again ..."
+	esac
+
+done

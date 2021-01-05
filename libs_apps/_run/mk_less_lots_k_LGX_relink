@@ -1,0 +1,1 @@
+./mk_less_lots_k_LGX ${@:-relink}

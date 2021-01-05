@@ -1,0 +1,18 @@
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base2_plus
+Description: libs_apps - with almost everything
+Version: 0.1.2
+
+Requires: \
+	libs_apps_base2 \
+	libs_apps_gtk \
+
+Libs: 
+Cflags:
+
+

@@ -1,0 +1,52 @@
+
+## TGT=WIN32 <<<< added by pkg-config --define-variable=TGT=LGX 
+
+## # TGT=LGX
+## # TGT=i586
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+# libdir=${exec_prefix}/lib
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base2_uses_list
+Description: libs_apps - base uses these things (on TGT == WIN32)
+Version: 0.1.2
+
+# This is what is linked into base
+# users of base also use the same list
+# however they invoke it via libs_apps_base
+# so keep it simple
+#
+#	libs_apps_base
+#	libs_apps_base_uses_list
+#
+# If you add a PKG to base (not base2)
+# you add it here
+#
+# If you dont want to use a sub-pkg, tough, you have no choice!
+# However the lib_base BUILD might use -Iprivate
+# when the lib_BASE user might not
+
+Requires: \
+	libs_apps_base1 \
+	libs_apps_uses_libz \
+	libs_apps_uses_pdflib \
+	libs_apps_uses_ssl \
+ \
+	libs_apps_uses_js2 \
+	libs_apps_uses_gtk \
+#
+
+# Requires: libs_apps_uses_libedit # no it doesnt
+#
+# libedit needed ncurses, when libtermcap is not in WIN32
+# WIN32 now comes with its own readline edit basic
+# which is all we need for now. Reword WIN32_Console and see
+#
+# Maybe eventually handle case where lib_base conditionally adds to $(PKGS)
+
+Libs:  -lbase2
+# Libs:  -L${libdir} -lbase -Wl,--rpath=${libdir}
+Cflags:

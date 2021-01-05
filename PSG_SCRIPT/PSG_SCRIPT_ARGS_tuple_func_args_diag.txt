@@ -1,0 +1,13 @@
+	PSG_SCRIPT_ARGS_tuple_func_args_diag.txt
+	 PSG_SCRIPT
+	  ARGS_tuplo_script_func_args
+	   args_diag
+	    int obj_c;
+	    u64 obj_v[ _N ] // vector auto gets {int _N;} 
+	    u64 obj_v[ _N ] // vector auto gets "{int _N;}" LEX SAYS ...
+	    CODE {
+	    	obj_c == _N // MATCH same_obj // ALIAS "obj_c == _N"
+		// MATCH expr_t expr = get() set(expr) api(ARGV)
+		// ALIAS obj_c _N same_object api_assign_to_ARGV_parameter
+		// { SCRIPT FABRIC SEGMENT STO
+	    }

@@ -1,0 +1,11 @@
+prefix=/tools/2000/pgsql
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_pgsql
+Description: LIBS_APPS uses POSTGRESQL
+Version: 0.1.2
+
+Libs:  -L${libdir} -lpq -Wl,--rpath=${libdir}
+Cflags:  -I${includedir}

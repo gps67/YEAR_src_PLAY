@@ -1,0 +1,83 @@
+[global]
+fullscreen = 768 x 576
+ratio = 4:3
+freqtab = europe-west
+pixsize = 128 x 96
+pixcols = 3
+jpeg-quality = 75
+keypad-ntsc = no
+keypad-partial = yes
+osd = yes
+
+# [Station name]
+# capture = overlay | grabdisplay | on | off
+# input = Television | Composite1 | S-Video | ...
+# norm = PAL | NTSC | SECAM | ... 
+# channel = #
+# fine = # (-128..+127)
+# key = keysym | modifier+keysym
+# color = #
+# bright = #
+# hue = #
+# contrast = #
+
+[defaults]
+norm = pal
+input = television
+capture = over
+color = 51%
+contrast = 50%
+
+[38-One-South]
+channel = 38
+fine = +11
+#color = 54%
+#contrast = 52%
+
+[40-Two]
+channel = 40
+fine = +14
+#color = 50%
+
+[44-ITV-Carlton]
+channel = 44
+fine = +8
+#color = 53%
+#contrast = 53%
+
+[46-Four]
+channel = 46
+fine = +9
+#color = 50%
+#contrast = 53%
+
+[48-Five]
+channel = 48
+fine = +9
+#color = 51%
+
+[DaeWoo]
+channel = 69
+
+[VCR]
+channel = 60
+
+[cable]
+channel = 54
+#contrast = 51%
+
+[24-Rai-Uno1]
+channel = 24
+fine = +12
+
+[28-tv-today]
+channel = 28
+fine = +9
+#contrast = 51%
+
+[50-ITV-Meridian-poor]
+channel = 50
+fine = +8
+#color = 50%
+#contrast = 51%
+

@@ -1,0 +1,13 @@
+prefix=/tools/2000/X11R6
+libdir=${prefix}/lib
+incdir=${prefix}/include
+
+Name: libs_apps_uses_X11
+Description: LIBS_APPS uses X11 
+Version: 0.1.2
+
+# Requires: 
+## Libs:  -Wl,--rpath=${libdir}
+Libs:  -Wl,--rpath=${libdir} -L${libdir}
+Cflags: -I${incdir}
+

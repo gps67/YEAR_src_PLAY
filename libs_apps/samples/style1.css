@@ -1,0 +1,63 @@
+
+/* fonts */
+
+	H1		{ font: bold 18pt/120% helvetica }
+	H2		{ font: bold 18pt/120% helvetica }
+	H3		{ font: bold 14pt/120% helvetica }
+	PRE		{ font:      18pt/120% courier }
+	xP		{ font: bold 16pt/120% helvetica }
+	P		{ font:      18pt/120% helvetica }
+	BODY		{ font: bold 18pt/120% helvetica }
+
+/* colours */
+
+	H1		{ color: green }
+	H2		{ color: blue }
+	H3		{ color: blue }
+	PRE		{ color: blue }
+	P		{ color: black }
+	B,EM		{ color: blue }
+	BODY		{ color: black }
+
+/* glitch with netscape 4.04  only attribute left active  is UL */
+
+	UL		{ color: #E0E0C0 }
+	LI		{ color: black }
+
+	A:link		{ color: red } 
+	A:visited	{ color: blue }
+	A:active	{ color: purple }    /* active links NOOP */
+
+	BODY { 
+/*
+		 	background: url(../misc/glassTTY.png) black; 
+*/
+		 	background: white
+
+	}
+
+	P		{ text-align: justify }
+
+	TH		{ background: yellow }
+	TH.th2		{ background: #E0D0E0 }
+/*
+	TD    		{ background: white }
+*/
+	TD    		{ align: center }
+	TR.show_sums	{ background: #C0F0C0 }
+
+	TABLE		{
+/*
+	This isnt working - using nbsp to force non-empty cells
+			empty-cells: show ;
+			border: solid ;
+			background: yellow ;
+			border: 1;
+*/
+			empty-cells: show ;
+			background: #F0F0E0 ;
+	}
+
+/* indentation */
+
+

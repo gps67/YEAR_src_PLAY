@@ -1,0 +1,72 @@
+# THIS # Name: libs_apps_uses_js2.pc
+# NB this is used by external apps, not the internal build
+# So duplicate this effort in the MK_UNIX dir!
+
+# SpiderMonkey #
+# actually its not js2 its 1.8 or something 
+# To fetch and build JS adjust and try this starter recipe
+# mkdir TOP ; cd TOP # TOP=/home/gps/2000/ftp/CVS/SpiderMonkey/
+# cvs -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot co mozilla/js
+# cd mozilla/js/src
+# make -f Makefile.ref
+# That gives you a lot of .a files and
+# find | grep Linux_All_DBG.OBJ  | grep -v '\.o$' | less
+#	./editline/Linux_All_DBG.OBJ/libedit.a
+#	./Linux_All_DBG.OBJ
+#	./Linux_All_DBG.OBJ/js
+#	./Linux_All_DBG.OBJ/jskwgen
+#	./Linux_All_DBG.OBJ/jscpucfg
+#	./Linux_All_DBG.OBJ/jsautokw.h
+#	./Linux_All_DBG.OBJ/libjs.a
+#	./Linux_All_DBG.OBJ/jsautocfg.h
+#	./Linux_All_DBG.OBJ/libjs.so
+# NB IGNORE js/js2 (for the moment)
+
+# I use the JS build tree, not an installed binary
+# UNUSED # prefix=/tools/2000/libs/
+# UNUSED # exec_prefix=${prefix}
+# NOT USED: installed prefix/lib/libjs.so
+# NOT USED: installed prefix/include/jsapi.h
+
+# src_js where js was built 
+# src_js_src is knowledge of the build tree layout
+# WAS # src_js=/home/gps/2000/src_build/js
+# WAS # src_js=/media/hda7/src_build_2006/js
+src_js=/home/gps/2000/ftp/CVS/SpiderMonkey/mozilla/js
+src_js_src=${src_js}/src
+# JS uses a subdir named after the architecture to place binaries
+objdir=Linux_All_DBG.OBJ
+includedir=${src_js_src}
+includedir_obj=${src_js_src}/${objdir}
+libdir_js=${src_js_src}/${objdir}
+libdir_fdm=${src_js_src}/fdlibm/${objdir}
+libdir_edit=${src_js_src}/editline/${objdir}
+
+# fdm isnt used (or available!)
+
+# Conflicts with libedit from elsewhere
+# recompile JS with JS_READLINE, without, or use this:
+# or skip completely - not using the demo JS top func
+libeditjs=
+# libeditjs=${libdir_edit}/libedit.a
+# WAS # libeditjs=-L${libdir_edit} -ledit
+
+Name: libs_apps_js2
+Description: LIBS_APPS uses JavaScript from mozilla
+Version: 0.1.2
+
+# Libs:  -L${libdir_js} -ljs -L${libdir_fdm} -lfdm ${libeditjs} -Wl,--rpath=${libdir_js}
+Libs:  -L${libdir_js} -ljs ${libeditjs} -Wl,--rpath=${libdir_js}
+#
+# Cflags:  ... -DXP_UNIX # js code (jsapi.h)
+# Cflags:  ... -DWITH_JS # my code
+#
+# Cflags:  -I${includedir}
+# Cflags:  -I${includedir} -DXP_UNIX # js code (jsapi.h)
+# Cflags:  -I${includedir} -DXP_UNIX -DWITH_JS # my code
+
+# WITH_JS: obj_ref_js.h needs to know if JS is really there or dummied out
+# XP_UNIX: # JS's jsapi.h needs to know its own architecture
+# .../DEP_WITH_JS.h # touch this file if its changed
+
+Cflags:  -I${includedir} -I${includedir_obj} -DXP_UNIX -DWITH_JS # my code

@@ -1,0 +1,60 @@
+# http://sourceware.org/insight/index.php
+set -x
+
+
+if ./M exe | cat -
+then
+ :
+else
+	exit
+	# that would be strange as cat is unlikely to fail
+fi
+
+nameone=mk_req
+
+gdbinit=~/.gdbinit_$nameone
+executable=bin/$nameone
+executable=$nameone.exec
+
+echo >&1 creating $gdbinit ...
+
+cat > $gdbinit <<-EOT
+set breakpoint pending on
+b main
+b form_phrase::DO_action()
+b C_verify_callback()
+# b w_win_top::w_win_top(GTK_Main_App*)
+# b w_win_top::event_delete_event()
+# b w_win_top::connect_delete_event()
+# b C_event_delete_event
+# b C_event_destroy
+# b w_win_top::event_destroyed()
+# b gtk_signal_connect_full
+b fd_ssl_client::test1_Main(SSL_global&)
+b print_trace(FILE*,int,int)
+b fd_selectable_base::C_select_says(_GIOChannel *,GIOCondition,void*)
+b fd_selectable_base::C_select_says_fix1_second(_GIOChannel *,GIOCondition,void*)
+b airbook_relay_top_app:use_client_key_cert_files()
+b airbook_relay_top_app::use_enrole_client_key_cert_files()
+b fd_ssl_sel::set_ssl_mode_server()
+b fd_ssl_sel::set_ssl_mode_client()
+# b BIO_set_ssl_mode
+# b g_signal_connect_closure_by_id()
+b SSL_global_base::configure_ssl_global_parameters()
+b calls_SSL_get_error()
+b RELAY1::hs_relay1_t::hs_relay1_t(airbook_relay_top_app *)
+b  err_int_t::INFO_REPORT()
+b  err_int_t::clear()
+b CA1::X509_ISS_util::mk_cert(CA1::X509_REQ_util *)
+# SSL
+b do_pk8pkey()
+b CA1::SITE_X509_tag:: make_file_names()
+info break
+r
+
+EOT
+export INGDB=1
+set -x
+pwd
+# insight -nx -x $gdbinit $executable
+exec insight --se=$executable --command=$gdbinit -nx --args $executable

@@ -1,0 +1,103 @@
+g++ -g -o sock_cli_test1 sock_cli_test1.c `pkg-config --cflags gtk+-2.0` `pkg-config --libs gtk+-2.0`
+./sock_cli_test1
+# PASS # gtk_init() returned ... 
+# UNIX # No such file or directory
+# PASS # socket
+# info # socket fd = 4
+# info # set_non_block(fd = 4)
+# PASS # ioctl F_GETFL
+# info # flags = 0x2
+# PASS # ioctl F_SETFL - with O_NONBLOCK
+# PASS # set_non_block()
+# PASS # getservbyname()
+# PASS # http
+# info # port 80
+# PASS # inet_aton() - UNIX
+# PASS # 127.0.0.1
+# PASS # addr4_set_addr_str()
+# FAIL # connect()
+# UNIX # Operation now in progress
+# PASS # g_io_channel_unix_new()
+# info # MULTIBIT G_IO_PRI
+# info # MULTIBIT G_IO_ERR
+# info # MULTIBIT G_IO_HUP
+# info # MULTIBIT G_IO_NVAL
+# info # add_watch_full ... G_IO_xxx
+# PASS # add_watch ... ALL ONE
+# info # add_watch_full ... G_IO_IN
+# PASS # add_watch ... ALL ONE
+# info # add_watch_full ... G_IO_OUT
+# PASS # add_watch ... ALL ONE
+# info # Setting NULL encoding and no buffering
+# PASS # Starting gtk_main() ... 
+# info # C_select_says G_IO_OUT
+# info # # FD # C_select_says(OUT)
+# info # select_says_first_connect - writing something
+# info # # Status = G_IO_STATUS_NORMAL
+# PASS # # WROTE 35 # ==>>>
+GET / HTTP/1.0
+Host: 127.0.0.1
+
+<<==
+# info # C_select_removal(ObjectPointer)
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_NORMAL
+# info # # READ 2046 # HTTP/1.1 200 OK
+Date: Mon, 14 Dec 2009 18:40:05 GMT
+Server: Apache/2.2.11 (Ubuntu) DAV/2 SVN/1.5.4 PHP/5.2.6-3ubuntu4.4 with Suhosin-Patch mod_python/3.3.1 Python/2.6.2
+X-Powered-By: PHP/5.2.6-3ubuntu4.4
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/html
+
+<html>
+<head>
+<title>cloud147 web server</title>
+</head>
+<body>
+<h1>m200 web server</h1>
+...
+
+# PASS # OK
+# UNIX # Resource temporarily unavailable
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_NORMAL
+# info # # READ 2046 # ...
+...
+you really dont want to read my web page ;-)
+# PASS # OK
+# UNIX # Resource temporarily unavailable
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_NORMAL
+# info # # READ 2046 # ...
+you really dont want to read my web page ;-)
+# PASS # OK
+# UNIX # Resource temporarily unavailable
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_NORMAL
+# info # # READ 2046 # ...
+
+# PASS # OK
+# UNIX # Resource temporarily unavailable
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_NORMAL
+# info # # READ 448 #...
+you really dont want to read my web page ;-)
+</P>
+</body>
+</html>
+
+# PASS # OK
+# UNIX # Resource temporarily unavailable
+# info # C_select_says G_IO_IN
+# info # # FD # C_select_says(IN)
+# info # # Status from read = G_IO_STATUS_EOF
+# UNIX # Resource temporarily unavailable
+# info # C_select_removal(ObjectPointer)
+
+((OK I had to press CTRL-C because the program waits forever ))

@@ -1,0 +1,13 @@
+#!/bin/sh
+. ./.env
+
+no_db
+echo USER_PASS is $USER_PASS
+createdb \
+--username=$USER_NAME \
+--password \
+$BASE_NAME
+exit
+
+pgsql_user <<!EOT
+	CREATE Database $BASE_NAME;

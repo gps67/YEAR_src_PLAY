@@ -1,0 +1,15 @@
+in CA_task.cxx
+in
+	const char * SITE_X509_layout:: print_part_filename_base1b(
+where
+        case is_CA_ZERO:        if(str_CA_ZERO) return str_CA_ZERO;
+and
+	all similar line
+BUG
+	case falls through to next line, break required
+
+BUT/ALSO
+	see print_part_name which allows NULL then searches further
+
+
+

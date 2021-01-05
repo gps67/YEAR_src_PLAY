@@ -1,0 +1,10 @@
+
+# WHERE IS libz
+# I dont know, but you do have to request it
+
+Name: libs_apps_uses_libz
+Description: LIBS_APPS uses libz 
+Version: 0.1.2
+
+Libs:  -lz
+Cflags:

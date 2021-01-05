@@ -1,0 +1,6 @@
+export TGT=WIN32
+export JOBS=4
+echo TGT=$TGT
+ask_do ./mk_less ${@:-clean0}
+./mk_less -k lots | cat - 
+

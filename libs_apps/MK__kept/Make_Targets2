@@ -1,0 +1,312 @@
+# Make_Targets2
+
+#	The first target in the first included makefile is the default
+
+# default: test1
+# default: test2
+default: test3
+RUN_INCL_PATH=$(TOP)/_run_dox/_incl_path
+
+# The DEPS file tells make which changed header effects which object
+# The first time, it will make everything anyway, and make DEPS for you
+
+$(DEPS) deps: 
+	@make $(RUN_INCL_PATH)
+	$(CXX) -MM $(INCLS) $(OPTIM) $(DEFS) $S/*/*/*xx  > $(DEPS)
+	
+
+$(PROG1_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG2_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG3_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG4_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG5_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG6_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG7_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG8_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG9_EXE): $(DEPS) $(makes) $M/Makefile
+
+program1: $(PROG1_EXE)
+program2: $(PROG2_EXE)
+program3: $(PROG3_EXE)
+program4: $(PROG4_EXE)
+program5: $(PROG5_EXE) 
+program6: $(PROG6_EXE)
+program7: $(PROG7_EXE)
+program8: $(PROG8_EXE)
+program9: $(PROG9_EXE)
+
+##	PROG1=accts
+##	PROG1b=accts_nwa
+##	PROG2=sar_plot
+##	PROG3=gtk_text
+##	PROG4=sar_parse
+##	PROG5=tv_rem
+##	PROG6=accts_js
+##	PROG7=wclient
+##	PROG8=tv_vol_80
+
+##	LIB0=base
+##	LIB1=accts_gtk
+##	LIB2=sar_plot_post
+##	LIB3=gtk_text
+##	LIB4=media
+##	LIB5=base2
+
+lib$(LIB0).a: $(OBJS_lib0)
+lib$(LIB1).a: $(OBJS_lib1)
+lib$(LIB2).a: $(OBJS_lib2)
+lib$(LIB3).a: $(OBJS_lib3)
+lib$(LIB4).a: $(OBJS_lib4)
+lib$(LIB5).a: $(OBJS_lib5)
+
+lib$(LIB0).so: lib$(LIB0).a
+lib$(LIB1).so: lib$(LIB1).a
+lib$(LIB2).so: lib$(LIB2).a
+lib$(LIB3).so: lib$(LIB3).a
+lib$(LIB4).so: lib$(LIB4).a
+lib$(LIB5).so: lib$(LIB5).a
+
+ifeq (0,1)
+# advanced libs depend on base libs
+lib$(LIB1).so: lib$(LIB0).so
+lib$(LIB2).so: lib$(LIB0).so
+lib$(LIB3).so: lib$(LIB0).so
+lib$(LIB4).so: lib$(LIB0).so
+lib$(LIB5).so: lib$(LIB0).so
+endif
+
+shared: $(LIST_LIB_SO)
+
+# LIB2 must appear before lib1, before LIBS, 
+# but LIB2 can include OWN ref to lib1 - auto load l1?
+
+# man gcc says :
+# gcc -nostdlib <files>... ‘gcc -print-libgcc-file-name‘
+#
+
+$(PROG1_EXE): $(PROG1).o lib$(LIB1).so lib$(LIB0).so lib$(LIB5).so
+	gcc -print-libgcc-file-name
+	@# needs new() # $(CXX) $(OPTIM) -o $@ -nostdlib $(PROG1).o $(OBJS) -L. -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS)
+	# OK # $(CXX) $(OPTIM) -o $@ $(PROG1).o $(OBJS) -L. -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS)
+	$(CXX) $(OPTIM) -o $@ $(PROG1).o $(OBJS) -L. -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS)
+	@# FAULT # $(CXX) -nostdlib $(OPTIM) -o $@ $(PROG1).o $(OBJS) -L. -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS) `gcc -print-libgcc-file-name`
+	@# FAULT # $(CXX) -nostdlib $(OPTIM) -o $@ $(PROG1).o $(OBJS) -L. -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS) # `gcc -print-libgcc-file-name`
+
+
+$(PROG2_EXE): $(PROG2).o lib$(LIB2).so lib$(LIB5).so 
+	$(CXX) $(OPTIM) -o $@ $(PROG2).o $(OBJS) -L. -l$(LIB2) -l$(LIB5) -l$(LIB0) $(LIBS)
+
+$(PROG3_EXE): $(PROG3).o lib$(LIB3).so lib$(LIB0).so lib$(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG3).o $(OBJS) -L. -l$(LIB3) -l$(LIB5) -l$(LIB0) $(LIBS)
+
+$(PROG4_EXE): $(PROG4).o lib$(LIB2).so lib$(LIB0).so lib$(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG4).o $(OBJS) -L. -l$(LIB2) -l$(LIB5) -l$(LIB0) $(LIBS)
+
+$(PROG5_EXE): $(PROG5).o lib$(LIB4).so lib$(LIB5).so lib$(LIB0).so
+	@# sequence matters, X11R6/lib/freetype is not like libs/lib/libfreetype
+	@# other libs have sequence needs to resolve usages
+	$(CXX) $(OPTIM) -o $@ $(PROG5).o $(OBJS) -L. -l$(LIB4) -l$(LIB5) -l$(LIB0) $(LIBS) $(LX11)
+	@# $(CXX) $(OPTIM) -o $@ $(PROG5).o $(OBJS) -L. -l$(LIB4) $(LX11) -l$(LIB0) $(LIBS)
+	-cp -p $@ /home/gps/bin2/$@_
+	-cp -p $@ /home/gps/bin2/
+
+$(PROG6_EXE): $(PROG6).o lib$(LIB2).so lib$(LIB1).so lib$(LIB0).so lib$(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG6).o $(OBJS) -L. -l$(LIB2) -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS)
+
+# $(PROG7_EXE): $(PROG7).o lib$(LIB0).so
+# 	$(CXX) $(OPTIM) -o $@ $(PROG7).o $(OBJS) -L.           -l$(LIB0) $(LIBS)
+
+$(PROG7_EXE): $(PROG7).o lib$(LIB3).so lib$(LIB0).so lib$(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG7).o $(OBJS) -L. -l$(LIB3) -l$(LIB5) -l$(LIB0) $(LIBS) $(LX11)
+
+$(PROG8_EXE): $(PROG8).o lib$(LIB1).so lib$(LIB3).so lib$(LIB0).so $lib(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG8).o $(OBJS) -L. -l$(LIB3) -l$(LIB1) -l$(LIB5) -l$(LIB0) $(LIBS)
+
+$(PROG9_EXE): $(PROG9).o lib$(LIB1).so lib$(LIB3).so lib$(LIB0).so lib$(LIB5).so
+	$(CXX) $(OPTIM) -o $@ $(PROG9).o $(OBJS) -L. -l$(LIB4) -l$(LIB5) -l$(LIB0) $(LIBS) $(LX11) 
+	@# $(CXX) $(OPTIM) -static -o $@ $(PROG9).o $(OBJS) -L. -l$(LIB4) -l$(LIB0) e_print.o
+	-cp -p $@ $@_
+	-cp -p $@ /home/gps/bin2/$@_
+	-cp -p $@ /home/gps/bin2/
+
+# info make, How to Use Variables, Automatic Variables
+
+# $@ TARGET (not all TARGTS if multiple)
+# $% - bar.o from TARGET: foo.a(bar.o) (See Automatic Variables)
+# $< - first prerequisite
+# $^ - names of all the prerequisites (with repeats removed)
+# $+ - all prerequisites i(in the same order) (with repeats)
+# $? - the prerequisites which are newer (were?)
+# $* - STEM ?? dir/foo from dir/a.foo.b via a.%.b ??
+
+# $(@D) - dir part of $@
+# $(@F) - file part of $@
+
+
+# ar - c - create
+# ar - u - update (timestamp wins)
+# ar - r - replace/insert
+# ar - s - symbols (like ranlib)
+
+lib$(LIB0).a: $(OBJS_lib0)
+	ar -curs $@ $?
+
+lib$(LIB1).a: $(OBJS_lib1)
+	ar -curs $@ $?
+
+lib$(LIB2).a: $(OBJS_lib2)
+	ar -curs $@ $?
+
+lib$(LIB3).a: $(OBJS_lib3)
+	ar -curs $@ $?
+
+lib$(LIB4).a: $(OBJS_lib4)
+	ar -curs $@ $?
+
+lib$(LIB5).a: $(OBJS_lib5)
+	ar -curs $@ $?
+
+# info make # Automatic Variables
+# $? all the prerequisites that are newer than the target
+# $^ all the prerequisites
+
+#lib$(LIB0).so: $(OBJS_lib0)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+#
+#lib$(LIB1).so: $(OBJS_lib1)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+#
+#lib$(LIB2).so: $(OBJS_lib2)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+#
+#lib$(LIB3).so: $(OBJS_lib3)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+#
+#lib$(LIB4).so: $(OBJS_lib4)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+#
+#lib$(LIB5).so: lib$(LIB5).a
+#	ld -shared -o $@ $(LD_RPATHS) --whole-archive lib$(LIB5).a
+#	## ld -shared -o $@ $(LD_RPATHS) $^
+
+#lib$(LIB5).so: $(OBJS_lib5)
+#	ld -shared -o $@ $(LD_RPATHS) $^
+
+# extra bits for UNIX
+#	@# strip $@ # comment out for gdb session
+#	@# strip $@ # comment out for gdb session
+#	ldd $@
+#	ls -l $@
+
+relink: clean_lib clean_exe $(RUN_INCL_PATH)
+
+clean_rpt:
+	$(RM_rf)  $(OBJS_accts_rpt) accts.o
+
+clean_lib:
+	# causes re-link of .a
+	$(RM_rf)  $(LIST_LIB_A) 
+	$(RM_rf)  $(LIST_LIB_SO) 
+
+clean_lib_0:
+	$(RM_rf)  $(OBJS_lib0) 
+	$(RM_rf)  $(LIB0).a 
+	$(RM_rf)  $(LIB0).so 
+
+clean_lib_1:
+	$(RM_rf)  $(OBJS_lib1)
+	$(RM_rf)  $(LIB1).a 
+	$(RM_rf)  $(LIB1).so 
+
+clean_lib_2:
+	$(RM_rf)  $(OBJS_lib2)
+	$(RM_rf)  $(LIB2).a 
+	$(RM_rf)  $(LIB2).so 
+
+clean_lib_3:
+	$(RM_rf)  $(OBJS_lib3)
+	$(RM_rf)  $(LIB3).a 
+	$(RM_rf)  $(LIB3).so 
+
+clean_lib_4:
+	$(RM_rf)  $(OBJS_lib4)
+	$(RM_rf)  $(LIB4).a 
+	$(RM_rf)  $(LIB4).so 
+
+clean_lib_5:
+	$(RM_rf)  $(OBJS_lib5)
+	$(RM_rf)  $(LIB5).a 
+	$(RM_rf)  lib$(LIB5).so 
+
+clean_lib_all: clean_lib_0 clean_lib_1 clean_lib_2 clean_lib_3 clean_lib_4 clean_lib_5
+
+clean_exe: clean_lib 
+	# causes re-link of .a and .exe
+	$(RM_rf)  $(PROG1_EXE)
+	$(RM_rf)  $(PROG2_EXE)
+	$(RM_rf)  $(PROG3_EXE)
+	$(RM_rf)  $(PROG4_EXE)
+	$(RM_rf)  $(PROG5_EXE)
+	$(RM_rf)  $(PROG6_EXE)
+	$(RM_rf)  $(PROG7_EXE)
+	$(RM_rf)  $(PROG8_EXE)
+	$(RM_rf)  $(PROG9_EXE)
+	$(RM_rf)  tv_vol_
+
+clean_o:
+	$(RM_rf)  $(PROG1).o $(PROG1_EXE)
+	$(RM_rf)  $(PROG2).o $(PROG2_EXE)
+	$(RM_rf)  $(PROG3).o $(PROG3_EXE)
+	$(RM_rf)  $(PROG4).o $(PROG4_EXE)
+	$(RM_rf)  $(PROG5).o $(PROG5_EXE)
+	$(RM_rf)  $(PROG6).o $(PROG6_EXE)
+	$(RM_rf)  $(PROG7).o $(PROG7_EXE)
+	$(RM_rf)  $(PROG8).o $(PROG8_EXE)
+	$(RM_rf)  $(PROG9).o $(PROG9_EXE)
+
+clean0: clean_lib clean_exe clean_o clean_lib_all
+	$(RM_rf)  $(OBJS)
+	@# $(RM_rf)  $(DEPS)
+	$(RM_rf)  fa fa1 fb out1 out1.gz
+	@# @# make -f $(TOP)/MK/Makefile deps
+
+
+# this is for doxygen
+# rebuit when .deps is (occasionally)
+
+run_incl_path: $(RUN_INCL_PATH)
+
+# TOO MANY REBUILDS# $(RUN_INCL_PATH): $(makes)
+$(RUN_INCL_PATH):
+	-echo $$CPLUS_INCLUDE_PATH >$@
+	@# Process $(RUN_INCL_PATH) with MK_doxies
+
+.SUFFIXES: .cxx .c .o .a .so
+
+.c.o:
+	gcc $(OPTIM) $(INCLS) $(DEFS) -c $<
+
+#	sh -c 'echo $$CPLUS_INCLUDE_PATH ; echo '$$HOME''
+
+.cxx.o:
+	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
+
+
+.a.so:
+	@# first file or less # gcc -shared -o $@ $<
+	@# /usr/local/bin/ld: progtarget : hidden symbol '__dso_handle' in 
+	@# /usr/lib/gcc-lib/..../crtbegin.o is referenced by DSO
+	@#
+	@# That happenned again with (out) -nostdlib on .so # removed it # rebuilt # happy #
+	@#
+	@#
+	@#
+	@#
+	@# -v prints sub-commands and argv, but thats confusing - collect2
+	@# WAS # g++ -shared -o $@ -Wl,--whole-archive $< # .a.so rule in Make_Targets2
+	g++ -shared -o $@ -Wl,--whole-archive $< # .a.so rule in Make_Targets2
+	@# OK but # g++ -shared -o $@ -nostdlib -Wl,--whole-archive $< # .a.so rule in Make_Targets2
+	@# ld -shared -o $@ $(LD_RPATHS) --whole-archive $<
+	@# now want GTK .so's to be mentioned in created.so
+
+

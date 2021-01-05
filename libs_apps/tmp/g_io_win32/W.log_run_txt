@@ -1,0 +1,1732 @@
+wine sock_cli_test1.exe
+# PASS # WSAStartup( MAKEWORD(2,0), &wsadata );
+Gtk-Message: Failed to load module "canberra-gtk-module": `libcanberra-gtk-module.dll': Module not found
+
+# PASS # gtk_init() returned ... 
+# info # # WIN32 ERROR # 234 # More data available
+
+# PASS # socket
+# info # socket fd = 148
+# info # set_non_block(fd = 148)
+# PASS # ioctlsocket()
+# PASS # set_non_block()
+# PASS # getservbyname()
+# PASS # http
+# info # port 80
+# PASS # inet_addr() - WIN32
+# PASS # gethostbyname()
+# info # '127.0.0.1'
+# PASS # 127.0.0.1
+# PASS # addr4_set_addr_str()
+# FAIL # connect()
+# info # # WIN32 _err # WSAEWOULDBLOCK
+# PASS # g_io_channel_win32_new_socket()
+# info # MULTIBIT G_IO_PRI
+# info # MULTIBIT G_IO_ERR
+# info # MULTIBIT G_IO_HUP
+# info # MULTIBIT G_IO_NVAL
+# info # add_watch_full ... G_IO_xxx
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={PRI|ERR|HUP|NVAL}
+# PASS # add_watch ... ALL ONE
+# info # add_watch_full ... G_IO_IN
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={IN}
+# PASS # add_watch ... ALL ONE
+# info # add_watch_full ... G_IO_OUT
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={OUT}
+# PASS # add_watch ... ALL ONE
+# info # Setting NULL encoding and no buffering
+# PASS # Starting gtk_main() ... 
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D5A0 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{WRITE|CONNECT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={WRITE|CONNECT}
+  revents={OUT} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK sock=148 event=00000098 last_events has FD_WRITE
+  revents={OUT} retval={}
+g_io_win32_check: source=0018D5A0 channel=0018D3C0 SOCK sock=148 event=00000098 last_events has FD_WRITE
+  revents={OUT} retval={OUT}
+g_io_win32_dispatch: pollfd.revents=OUT condition=OUT result=OUT
+# info # C_select_says G_IO_OUT
+# info # # FD # C_select_says(OUT)
+# info # select_says_first_connect - writing something
+g_io_win32_sock_write: channel=0018D3C0 sock=148 count=35 send=35
+# info # # Status = G_IO_STATUS_NORMAL
+# PASS # # WROTE 35 # ==>>>
+GET / HTTP/1.0
+Host: 127.0.0.1
+
+<<==
+# info # C_select_removal(ObjectPointer)
+g_io_win32_finalize: source=0018D5A0 channel=0018D3C0 SOCK sock=148
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={READ}
+  revents={IN} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WS

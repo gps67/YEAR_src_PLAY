@@ -1,0 +1,86 @@
+. fns_EDIT
+
+export BASE_filename_default=.varfile
+
+fn_BASE_filename()
+{
+	local BASE_filename="$1"
+	[ "$BASE_filename" == "''" ] && BASE_filename=''
+	[ "$BASE_filename" == '""' ] && BASE_filename=''
+	[ "$BASE_filename" == '-' ] && BASE_filename=''
+	[ "$BASE_filename" == 'default' ] && BASE_filename=''
+	BASE_filename="${BASE_filename:-$BASE_filename_default}"
+	BASE_filename="${BASE_filename:-.var.file.unset}"
+	echo "$BASE_filename"
+}
+
+fn_BASE_rd()
+{
+	local BASE_filename=`fn_BASE_filename "$1"`
+	local BASE_varname="${2:-VARNAME}"
+	shift 2
+ 	local BASE_default="$*"
+	#
+	[ -f "$BASE_filename" ] || touch "$BASE_filename" 
+ 	local BASE_value=`
+	 grep "^${BASE_varname}[ 	]" "${BASE_filename}" \
+	 | sed "s/^${BASE_varname}[ 	]*//"
+	`
+ 	BASE_value="${BASE_value:-$BASE_default}"
+	[ "$BASE_value" == "''" ] && BASE_value=''
+	eval "${BASE_varname}='${BASE_value}'" # added quotes
+}
+
+fn_BASE_wr()
+{
+	local BASE_filename=`fn_BASE_filename "$1"`
+	local BASE_varname="${2:-VARNAME}"
+	#
+ eval	local BASE_value="\$$BASE_varname"
+	[ "$BASE_value" == '' ] && BASE_value="''"
+
+ 	local BASE_tempfile="/tmp/${USER}_BASE_wr_$$"
+
+	grep -v "^${BASE_varname}[ 	]" "${BASE_filename}" > "${BASE_tempfile}"
+	mv "${BASE_tempfile}" "${BASE_filename}"
+	echo "${BASE_varname} ${BASE_value}" >> "${BASE_filename}"
+}
+
+fn_BASE_edit()
+{
+	local BASE_filename=`fn_BASE_filename "$1"`
+	local BASE_varname="${2:-VARNAME}"
+	shift 2
+ 	local BASE_default="$*"
+	fn_BASE_rd "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
+	fn_EDIT_var "${BASE_varname}"
+	fn_BASE_wr "${BASE_filename}" "${BASE_varname}"
+}
+
+fn_BASE_incr()
+{
+	local BASE_filename=`fn_BASE_filename "$1"`
+	local BASE_varname="${2:-VARNAME}"
+	shift 2
+ 	local BASE_default="${*:-0}"
+	fn_BASE_rd "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
+	((${BASE_varname}++))
+	fn_EDIT_var "${BASE_varname}"
+	fn_BASE_wr "${BASE_filename}" "${BASE_varname}"
+}
+
+fn_BASE_test()
+{
+	local BASE_filename=.my_varfile
+	local BASE_varname=SCAN_PURPOSE
+ 	local BASE_default="document_file"
+ 	# local BASE_desc="description words"
+	fn_BASE_edit "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
+	export SCAN_RES_X=100
+	export SCAN_RES_Y=120
+	fn_BASE_edit "${BASE_filename}" SCAN_RES_X 99
+	fn_BASE_edit "${BASE_filename}" SCAN_RES_Y 97
+	echo "SCAN_PURPOSE IS '$SCAN_PURPOSE'"
+}
+
+# fn_BASE_test

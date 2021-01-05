@@ -1,0 +1,166 @@
+	TODO_MIX_Script
+
+	REXPR 
+		MATCH http[s]://www.domain.dns/service/q=anystr
+		SUBST
+		MATCH http[s]
+			port 80 443 or whatever
+			ssl maybe temp cert
+			httpd // over MUX_Session_RPC
+				GET generated file # MIME
+				PUT request PKT # TO RPC Cache # NODELAY
+
+		://www.domain.dns/service/q=anystr
+
+			eg L = IDIOM = MIX Script
+
+######################################
+# TODO_MIX_Script
+
+https://www.youtube.com/watch?v=ya6YZE91DE8 
+Pamela Anderson Defends Julian Assange On The View
+
+
+	When we could be diving for pearls
+	https://www.youtube.com/watch?v=rlcHnp5FEdc
+	https://www.ecosia.org/search?q=Elvis+Costello+-+Shipbuilding+lyrics
+	￼
+	￼
+AUTOPLAY
+https://www.youtube.com/watch?v=1ST9TZBb9v8
+Joan Baez - Diamonds and Rust (With Lyrics)
+
+https://www.youtube.com/watch?v=vyI9flHHT2Q
+Mark Knopfler & Emmylou Harris - Romeo And Juliet (Real Live Roadrunning | Official Live Video)
+
+https://www.youtube.com/watch?v=Jy3vzdtiXF4
+Mark Knopfler & Emmylou Harris - Our Shangri-La (Real Live Roadrunning | Official Live Video)
+
+https://www.youtube.com/watch?v=jK_9ppta_M0
+Mark Knopfler & Emmylou Harris - If This Is Goodbye (Real Live Roadrunning | Official Live Video)
+
+	L = DIALECT 
+		FILTER AUTODETECT Style For Site
+		FILTER Phrase and SUBLEX 
+
+https://www.ecosia.org/search?q=Pamela+Anderson+On+The+View
+
+	SITE https://www.ecosia.org
+	SERVICE search
+	QUERY q= Pamela+Anderson+On+The+View
+	SEARCH q= Pamela+Anderson+On+The+View
+
+TITLE = SEARCH "%s" 
+	SEARCH q="..."
+
+	Pamela+Anderson+On+The+View
+
+	// DIAG TITLE = service // "%s" // SERVICE = "search"
+	// DIAG TITLE = "SEARCH" // "%s" // SERVICE = toupper service
+	// DIAG ON_1_LINE = YT_Title taken from presious step via FILTER
+	// DIAG // EXPR // HIDDEN // subst SP for PLUS
+	// DIAG // BLEX // HIDDEN // DIALECT get ABBR from lib_ASCII: SP PLUS
+	// DIAG // BLEX // HIDDEN // DIALECT bold without PFX_
+
+SEARCH
+
+	Pamela Anderson On The View
+
+######################################
+# TODO_MIX_Script
+# 
+	LHS COMMENTS OPTIONAL (one for wholepage transport # view frame sans
+
+######################################
+# TODO_MIX_Script
+# 
+	Moving KEYWORDS over { TODO_MIX_Script }
+
+######################################
+# { KEYWORDS fmt  EXPR Layout }
+# 
+	// Name // { Layout } // by now Name is Tokenised // poss needs FILTER
+	DIAG // INDENTED // CMNT
+
+######################################
+# { MIX_SCRIPT KEYWORD fmt EXPR Layout CMNT }
+# 
+	MIC SCRIPT - create a MIX_Tape
+	
+		Track a trail of URLS
+		Times Notes Votes
+	
+	REXP filter = new = apply to YT_Title
+
+		SUBLEX detects dash used as entire word JOINS-PHRASE
+		SUBLEX detects ( Phrase ) // with/without padding SP Q2 INDENT
+		SUBLEX detects ( SUBLEX SEQ /*dont say Phrase*/ ) // {
+			TLA DETECT LEXP =
+				[A-Z]{3,}	// AUTO SUBST [A-Z] with UTF
+			YEAR DETECT LEXP
+				search for longest SEQ
+				{ YEAR } join { MM } join { DD }
+
+					YEAR = YEAR
+
+			well_known_Name
+				trie CAP1 fragments
+			Cap1 DETECT LEXP = 
+				[A-Z][a-z]+
+			A_B DETECT LEXP = {
+				DASH // "-" // 
+				UNDERSCORE //"_"
+			}
+		}
+
+	// Name // { Layout } // by now Name is Tokenised // poss needs FILTER
+	DIAG // INDENTED // CMNT
+
+######################################
+# TODO_MIX_Script
+# 
+	LHS COMMENTS OPTIONAL
+
+######################################
+# TODO_MIX_Script
+# 
+#	COPY_Buffer name = Current_MIME_Player_URL
+#	LIST_Token recently_played = { + }
+#
+#	{ + } is almost meaningless, DIAG ART // Parser Recognises DIAG ART￼
+#
+# ... #
+#	CREATE_Object var_name = screenshot_player_n_stat_data {
+#	#
+#
+#		# YT_URL `NEXT_LINE_HERE` # SUBLEX var gets called "url"
+https://www.youtube.com/watch?v=ya6YZE91DE8
+#		# YT_Title `NEXT_LINE_HERE` # <== example STMT in Script
+Pamela Anderson Defends Julian Assange On The View
+#		# COMMENTED { // `{ MultiLine }` reset left indent 
+#		#
+#	}
+#
+#	add each new var_name { player_headline } to { recently_played }
+#
+#		ADD_TO_LIST
+#		 ITEM = { player_headline }
+#		 LIST = { recently_played }
+#		 FILTER = { eg Parse headline Style for Sitename
+#		 FILTER = { PERSON } { CLICK BAIT SUBPHRASE } On { TV SHOW ABBR }
+#			PSG On { TV_SHOW The View }
+#			ABBR The View
+#			USAGE { On } { The View }
+#			PERSON
+#			 Pamela Anderson
+#			VERB PHRASE LAYER
+#			 Person Defends Person
+#			Defends 
+#				Defends
+#				Opposes
+#				VERB in that form # retro spec
+#				Usage lib_Click_Bait FILTER VIEW
+#
+#			PERSON
+#			 Julian Assange
+# ... #

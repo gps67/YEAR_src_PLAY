@@ -1,0 +1,28 @@
+
+GEN { ES6_plus }
+
+	outputs AST_CODE + DATA as reduced scripts + BA_HEAP_type
+
+GEN { SCRIPT }
+
+	outputs occasional route markers
+
+		matched_RULE_1234_expr_selector_u4
+
+
+GEN { DECODER }
+
+	outputs tables
+	of decision trees
+	finding things on the steps
+	loading objects that handle entire layers
+	loadable modules that then take over script
+	or put the other way
+	this script started as a u3_LAYER choice
+
+GEN{ DATA_FILE } {
+	CTXT_open_new_BASE_file_with_SECMENTS
+	CTXT_mount_SEGMENTS_as_LAYER_SEGMENTS
+
+		LAYER = get_LAYER( u3 ) // uses CTXT // CT_SAYS_already_in_R31
+}

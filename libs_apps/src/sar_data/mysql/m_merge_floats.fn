@@ -1,0 +1,17 @@
+// virtual
+/*!
+	Tells the consumer to add some data to its store.
+*/
+bool dset_api_MySQL::merge_floats(
+	mem_line_spec * spec,
+	time_t t0,
+	int n,
+	float * flts
+){
+/*
+	writing segs requires merging and deleting
+	that requires a cache of segs_map
+*/
+	//return pdb->post_root->dset->merge_floats( spec, t0, n, flts );
+	return false;
+}

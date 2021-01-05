@@ -1,0 +1,20 @@
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base2_gtk
+Description: libs_apps - gtk is a pig when compiling each dependency, dont, do
+Version: 0.1.2
+
+Requires: \
+	libs_apps_base2 \
+	libs_apps_gtk \
+	libs_apps_mozjs \
+	libs_apps_accts_gtk \
+
+Libs: -laccts_gtk
+Cflags:
+
+

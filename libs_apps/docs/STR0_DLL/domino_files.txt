@@ -1,0 +1,23 @@
+domino
+	a fragment of a makefile
+
+		a filename target SEALED || in_construction
+
+		a dir being watched by tree_subscription
+
+		a list of steps (in_construction) such as
+
+			copy file // left to right
+			install uid gid access_mode_macros
+			rendezvous with parallel steps
+			tap next domino
+
+	INFERENCE RULES: import modules # dependency
+
+		.H ==USED-IN==> .C
+		.C -compiles-to- .O
+		.O -links-to .ELF
+
+	'run' the makefile
+		build tree of targets
+		build domino

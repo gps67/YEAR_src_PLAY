@@ -1,0 +1,74 @@
+lib_STR0_what_is_it.txt
+
+	lib_STR0 what_is_it ?
+	.txt
+
+	lib_STR0 is a domain where lib_STR0 exists
+	lib_STR0 is a NUL terminated string of bytes
+	lib_STR0 has PEERS
+	lib_all_of_these
+
+/home/gps/YEAR_offl/src/libs_apps-2019-12-15_EDITS/src/lib_base
+
+lib_STR0_what_is_it.txt
+	It is the sum of its siblings in this region
+	region = domain = realm = HEAP_ONE
+	It provides a relocatable SEGMENT of an addressing system
+	It comes with a handy SPEC system, basically everything is C_struct
+	It provides _api for converting (REF) OFFS_t adding u8 * BASE_PTR_ZERO
+
+PEERS in group("lib_STR0")
+
+	amnt app app_module bits buffer dgb fd fd_api_buf fd_api_psg_sublex
+	glib_1 hash io_csv lib_base_STR0 lib_STR0 misc
+	obj prog_file STR0 STR0_ strings time unix vars win32
+
+lib_STR0_what_is_it.txt 
+
+	It is a platform placebo
+	providing text buffering event IO MMAP sublex_expr filters
+	app_infrastructure tty fd lookup str0 -> Obj_t & obj_one
+	memory alloc = self setbrk alloc_nbytes
+
+	glib_1 hash io_csv 
+	unix win32
+	vars time strings STR0 str1 str2 str0
+	lib_base_STR0
+	lib_STR0 misc
+
+	vars time strings STR0 str1 str2 str0
+	STR0 - nul_terminated_byte_stream_ _probably_8859_in_utf8 _range
+	str0 - same as STR0
+	str1 str2 str0
+	str1 - the owner of the STR0 is this unique VAR ref_counted auto_del
+	str2 - class str2 : public obj_ref, public str1 // is_holder_of_a_ref
+
+		item_name = token->str2.str1.str0
+		ref_hold<str2> token;
+		token = lookup item_name "lookup('token->str2.str1.str0')"
+
+	str0
+
+		alias for STR0 obtained from somewhere, const
+
+01_user_add
+01_user_add_LESS
+01_user_drop
+03_create_db
+04_create_table_LINE
+04_create_table_SEG
+05_update_tables
+05_x1_linetype
+06_update_linetype
+21_list_line_id
+21_list_line_type
+22_list_segs
+22_list_segs_sz
+22_list_segs_where
+23_export_segs
+51_show_pg_procs
+91_user_pass
+99_drop_db
+Help
+p_root
+p_user

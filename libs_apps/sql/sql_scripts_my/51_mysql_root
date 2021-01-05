@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. ./.env
+echo "use $BASE_NAME"
+mysql_root

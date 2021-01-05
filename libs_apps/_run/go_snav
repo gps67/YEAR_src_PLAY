@@ -1,0 +1,7 @@
+	./mk program || exit
+	cd ../_obj_$(uname -n)
+	# cd $HOME ; cd tmp
+	PATH=/tools/1999/ccs/bin:$PATH:                                         
+	PATH=/tools/2001/sn/bin:$PATH:                                          
+	snavigator > .log.snav 2>&1 &
+	sleep 3

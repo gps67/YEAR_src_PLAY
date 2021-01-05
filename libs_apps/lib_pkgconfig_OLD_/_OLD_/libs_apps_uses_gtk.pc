@@ -1,0 +1,25 @@
+prefix=/tools/2000/gtk
+libdir=${prefix}/lib
+# problems picking up X11 fontconfig before one that gtk uses
+libslibdir=/tools/2000/libs/lib
+fix_so=${libslibdir}/libfreetype.so
+
+Name: libs_apps_uses_gtk
+Description: LIBS_APPS uses gtk which is sometime a trick 
+Version: 0.1.2
+
+# base2 uses gtk - circular dep
+# Requires: libs_apps_base2
+
+
+# HERE simply fold down to the systems pkgconfig/gtk+=2.0.pc
+# ALSO add -DWITH_GTK2 though!
+
+Requires: gtk+-2.0
+Libs: 
+# Libs:  -Wl,--rpath=${libdir} -Wl,--rpath=${libslibdir} ${fix_so}
+Cflags:
+# not sure if multiple
+# not sure if headers need this, the library itself does
+# Cflags: 
+Cflags: -DWITH_GTK2 

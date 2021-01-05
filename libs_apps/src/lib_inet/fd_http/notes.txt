@@ -1,0 +1,18 @@
+Server -> Client
+
+	Set-Cookie:
+	   name=value
+	   [;EXPIRES=dateValue]
+	   [;DOMAIN=domainName]
+	   [;PATH=pathName]
+	   [;SECURE]
+
+dateValue
+
+	Wdy, DD-Mon-YY HH:MM:SS GMT
+
+Client -> Server
+
+	Cookie: NAME1=OPAQUE_STRING1; NAME2=OPAQUE_STRING2 ...
+
+	most specific path first

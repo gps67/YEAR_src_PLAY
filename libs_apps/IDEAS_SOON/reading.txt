@@ -1,0 +1,53 @@
+/*GLOBAL STATICS*/
+init_OpenSSL();
+seed_prng(); // somehow
+SSL_load_error_strings()
+OpenSSL_add_ssl_algorithms();
+
+/*DTOR*/
+ssl_shutdown();
+
+
+SSL_CTX * ctx = 
+SSL_CTX_new(SSLv3_method());
+SSL_CTX_use_certificate_chain_file(ctx,"filename");
+SSL_CTX_use_certificate(ctx,x509);
+SSLuse_certificate(ctx,x509);
+SSL_CTX_use_certificate_file_pem(ctx,"filename"); // SSL_FILETYPE_PEM
+SSL_CTX_use_RSAPrivateKey_file_pem(ctx,"filename"); // SSL_FILETYPE_PEM
+SSL_CTX_use_RSAPrivateKey(ctx,RSA*rsa);
+SSL_CTX_set_verify_depth(ctx,8);
+SSL_CTX_add_extra_chain_cert(...)
+
+SSL * ssl =
+SSL_new( ctx );
+SSL_set_connect_state( ssl );
+SSL_is_init_finished( ssl ) ==> so ..
+SSL_get_peer_certificate(ssl) &x509
+
+BOOK-PAGE-135 - dont use CN like the old days
+
+	subjectName.commonName
+	subjectAltName.dNSName ".DNS"
+
+flags = BIO_rety_type(bio)
+if BIO_should_io_special(bio) {
+	// need to process out-of-bound-data
+}
+
+SSL_MODE_ENABLE_PARTIAL_WRITE
+
+premature_close {
+ caused by {
+	client closes fd without SSH_shutdown
+	client exits and unix closes fd without close_notify event
+ }
+}
+
+ssl buffer = 16K
+bio buffer =  1K
+
+SIGPIPE from writing to a clienmt that has closed
+half_close_socket {
+	shutdown(fd,1) // can read not write
+}

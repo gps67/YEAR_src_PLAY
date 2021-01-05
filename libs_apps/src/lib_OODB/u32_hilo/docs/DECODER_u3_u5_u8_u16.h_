@@ -1,0 +1,61 @@
+/*
+	The data bytes are in hilo order
+	The C-CODE declarations are in HILO or LOHI sequence
+	The functions can be inline ASM
+*/
+
+class addr_u3_u5_u8_u16 : u32_hilo
+{
+#ifdef BIT_ORDER_HI_LO
+	unsigned v3:3;
+	unsigned v5:5;
+	unsigned v8:8;
+	unsigned v16:16;
+#else
+	unsigned v16:16;
+	unsigned v8:8;
+	unsigned v5:5;
+	unsigned v3:3;
+#endif
+
+// INLINE:
+	int get_u3();
+	void set_u3( int val );
+	int get_u5();
+	void set_u5( int val );
+	int get_u8();
+	void set_u8( int val );
+	int get_u16();
+	void set_u16( int val );
+
+	int get_u3() {
+		int t = get_u32_cpu();
+		t >>= (32-3);
+		// if( shift_gap_left ) { // OPTIMISE CONST_AT_COMPILE_TIME
+		// 	t &= 0x03;
+		// }
+		return t;
+	}
+
+	void set_u3( int fld ) {
+		const static int shift_gap_right = (32-3);
+		const static int shift_gap_left = 0;
+		const static int mask_aligned_r = 0x03;
+		const static int not_mask_aligned_r = (~mask_aligned_r);
+		const static int not_mask_in_situ = (~mask_aligned_r<<shift_zero_r);
+		fld &= mask_aligned_r;
+		fld <<= (32-3);
+		int t = get_u32_cpu(); // byte swap option
+		t &= not_mask_in_situ;
+		t >>= (32-3);
+		return t;
+	}
+
+	int get_u5() {
+		int t = get_u32_cpu();
+		t >>= (32-3);
+		return t;
+	}
+
+};
+

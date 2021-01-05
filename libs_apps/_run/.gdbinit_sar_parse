@@ -1,0 +1,7 @@
+handle SIGSEGV nostop noprint pass
+handle SIGABRT nostop noprint pass
+b main
+# r --filetype vmstat_hp10 ../samples/sar_vmstat.gz
+r --sitename SiteTest --filetype sar_hp11    ../samples_/eg_sar_data/sar_test_data.gz_2
+
+p gdb_off = true

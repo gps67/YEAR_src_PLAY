@@ -1,0 +1,6 @@
+SpiderMonkey jsutil.cpp :32 uses
+
+	raise(SIGABRT);
+
+	It seems compatible with gdb, RTFM maybe
+	

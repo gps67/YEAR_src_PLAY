@@ -1,0 +1,11 @@
+b main
+set breakpoint pending on
+
+b dyn_array_index_error
+b ACCTS::help_TX_base::fetch_data_both(ACCTS::row_inst*)
+b ACCTS::help_TX_base::get_specs_both()
+
+b run_reports(str0)
+
+r --run-reports ~/2005/src_PRIV/PRIV_samples/0304.csv
+

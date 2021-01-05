@@ -1,0 +1,98 @@
+
+Scripted Lang => C++ API => _X_
+
+	u8
+	i8
+
+	u16_hilo
+	u16_lohi
+	i16_hilo
+	i16_lohi
+
+	u32_hilo
+	u32_lohi
+	i32_hilo
+	i32_lohi
+
+	u64_hilo
+	u64_lohi
+	i64_hilo
+	i64_lohi
+
+	u16_cpu
+	i16_cpu
+	u32_cpu
+	i32_cpu
+	u64_cpu
+	i64_cpu
+
+ASM pairs - 
+
+	( D, E ) = ( DIV, MOD ) = ( A / B, A % B )
+
+8086 SEG pairs
+
+	u16_seg
+	u16_off
+
+	u16_seg
+	u32_off	(unused mostly)
+
+PTR64_48
+
+	u48 pointer (3 unused bits when aligned)
+	u16 = 0 || FFFF || u16_which_prevents_pointer_being_valid
+
+PTR32_30
+
+	u2 low bits 00 01 10 11
+
+PTR64_61
+
+	u3 low bits 000 ... 111
+
+BYTE EXTENSIONS
+
+	u64 = zero_extend u8
+	i64 = sign_extend i8 (from u8)
+
+BYTE SLICE
+BYTE SPLICE
+
+	u8 = byte 0		get / set
+	u8 = byte 1		get / set
+	u16 = u16 low
+	u16 = u16 high
+	u32 = u32 low
+
+BIT FIELDS
+
+	u3 u5 u8 u16 -- when hilo in register
+	u3 u5 u8 u16_hilo -- when hilo
+	u16 u8 u5 u3 -- when from_a in hilo register
+	u16 u8 u5 u3 -- when from_a in hilo register
+	(( ok there is an area to expoud a bit ))
+
+	(( it varies with processing by shift, or by byte, byte[3] ))
+
+	(( ditto for PTR >> 16 ))
+
+BIT MASK
+
+	A &= 0x3	obtain low 3 bits
+
+	fill_low_n(nbits)
+		A = 0
+		A = -1
+		shift left pad with zero ( nbits )
+		A << nbits // fill 0
+		A = NOT A
+
+	bit shifts
+		u2 nbits // for u4
+		u3 nbits // for u8
+
+		u4 nbits // for u16
+		u5 nbits // for u32
+		u6 nbits // for u64
+

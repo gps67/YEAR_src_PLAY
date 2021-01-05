@@ -1,0 +1,51 @@
+
+	_CSR
+	_DOC
+
+	_PEN_n_INK
+	_PAPER
+	_PAGES
+
+	_DVI
+	_SURFACE_csr
+
+	VAPOUR_PAPER
+	_surface is not drawn
+	_get_to_some_func _test_bool_ is_on;
+	_KNOW _OFF = NOT( ON )
+
+spout_	namespace SPOUT_GEN { "%s_%s" spout _name } // var name 
+
+	_base_0.h
+	_base0.h
+	_base.h
+	_ctxt.h
+	_pen_base.h
+	_style_parts.h
+	Part_Style_Colour = { fgbg.spot_name .RGBA red/green/blue/trans }
+	Part_Style_Font_Base = { spout_font_int bbox_typical  bbox_one 
+	Style_Atom
+	 _font_size
+	 _font_face
+	 _fg_stroke_colour
+	Stype_Tray ( want )
+	Stype_Tray_Settings { want, curr ) 
+
+	// ADJ to PALETTE
+
+	_styles.h
+
+JUST NOTICED parallel overlap worlds SPOUT_t spout_PAGE_base
+
+
+	SPOUT_t does it all 
+	SPOUT += PAGE // CURR_PAGE
+	SPOUT += FGBG // bunch of API
+	SPOUT += _Layout // 
+
+	spout_base_0
+
+		SPOUT_t * spout
+
+		This could be a _ctxt that needs _ctxt to dealloc mem
+		This is a cache_line into _CSR_

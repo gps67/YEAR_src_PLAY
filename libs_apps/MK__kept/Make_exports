@@ -1,0 +1,5 @@
+
+	XPORTS += VPATH='$(VPATH)'
+	XPORTS += INCLS='$(INCLS)'
+	XPORTS += LIBS='$(LIBS)'
+	XPORTS += DEFS='$(DEFS)'

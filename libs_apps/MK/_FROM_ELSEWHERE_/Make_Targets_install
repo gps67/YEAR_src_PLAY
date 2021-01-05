@@ -1,0 +1,65 @@
+
+# INSTALL some .so .dll files to _SOMEWHERE_
+#
+# TODO: add PFX_LIB to PREP ...
+#
+# For now, make lots, puts the relevent .dlls on the USB for me
+# which makes debugging easier (for a second project that USES libs_apps)
+#
+# TODO - quite a bit more
+
+
+ifeq ($(WIN32),1)
+	# PFX=/smb/jamespc/USB/airbook
+	# PFX=ROOT_binaries/airbook
+else
+	PFX=.
+endif
+
+#
+# libs_apps - only really interested in _LIB/{a,b,c}.$(DLL)
+#
+
+	## OBJDIR has become . 
+	## OBJDIR needs ./lib/ maybe ./bin/
+
+	PFX_LIB=$(PFX)/lib
+	PFX_BIN=$(PFX)/bin
+
+	INSTALL_dll = install -p 
+
+ 	LIST1 = $(DLL11) $(DLL21) $(DLL23)
+	# $(DLL33) $(DLL34) $(DLL36)
+## 	LIST1 = $(DLL11) $(DLL21) $(DLL33) $(DLL34) $(DLL36)
+# OK butt too many
+#	LIST1 = $(LIST_LIB_SO)
+
+	INSTALLED_DLL_LIST += $(foreach DLL,$(LIST1), $(PFX_LIB)/$(DLL))
+
+
+
+# $< is first prerequisite
+
+define template_copy_to_lib
+$(PFX_LIB)/$(1): $(1)
+	$(INSTALL_dll) $1 $(PFX_LIB)/$(1) # to_lib
+endef
+
+define template_copy_to_dir
+$(PFX_LIB)/$(1): $(1)
+	$(INSTALL_dll) $1 $(2)/$(1) # to_dir
+endef
+
+### (foreach DLL,$(LIST1),$(eval $(call template_copy_to_lib,$(DLL))))
+
+$(foreach DLL,$(LIST1),$(eval $(call template_copy_to_dir,$(DLL),$(PFX_LIB))))
+$(foreach DLL,$(LIST2),$(eval $(call template_copy_to_dir,$(DLL),$(PFX_BIN))))
+
+# to_dir is messing up /home/me/lib/libbase2.so
+# converting link to actual file copy
+# only happens with -k lots # maybe -k libs ??
+
+
+lots: $(INSTALLED_DLL_LIST)
+
+

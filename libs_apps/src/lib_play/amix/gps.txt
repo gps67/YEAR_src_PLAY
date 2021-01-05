@@ -1,0 +1,13 @@
+apt install libasound2-dev
+
+https://packages.ubuntu.com/
+
+	missing include file
+	search filename in package contents
+
+card = "default"
+argv[1] = "Master"
+argv[2] = 77
+
+ HDA Intel PCH                                  F1:  Help               │
+│ Chip: IDT 92HD90BXX

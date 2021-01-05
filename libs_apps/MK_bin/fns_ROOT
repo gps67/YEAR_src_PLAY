@@ -1,0 +1,36 @@
+# bash functions
+
+#	rerun_as_root() "%@"
+#	is_root()
+#	say_do()	"$@"
+
+
+is_root()
+{
+	if [ 0 = `id -u` ]
+	then
+		return 0
+	else
+		return 1
+	fi
+}
+
+rerun_as_root()
+{
+	# id
+	if is_root
+	then
+		:
+	else
+		PATH=$PATH:/home/gps/bin_LGX
+		. /home/gps/.bashrc
+		say_do sudo $0 $@
+		exit
+	fi
+}
+
+say_do()
+{
+	echo "# RUN #" "$@"
+	"$@"
+}

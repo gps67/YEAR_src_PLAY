@@ -1,0 +1,17 @@
+
+
+Name: libs_apps_uses_gtk
+Description: LIBS_APPS uses gtk which is sometime a trick 
+Version: 0.1.2
+
+# the IMCROSS pkgconfig is supposed to provide this
+
+# Requires: gtk+-2.0-airbook
+Requires: gtk+-2.0
+
+# NO # Libs: libbase2_gtk.dll
+
+Libs:
+
+Cflags:
+Cflags: -DWITH_GTK2 

@@ -1,0 +1,3 @@
+
+ask_do sudo \
+	apt install clang llvm

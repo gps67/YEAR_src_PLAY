@@ -1,0 +1,18 @@
+Sun 19 Feb 17:31:53 GMT 2017
+
+	2013 was a long time ago
+	and then probably a recompile check
+
+	apt-get install
+
+		pkg-config
+		gtk+-2.0-dev
+		libxmu-dev
+		libeditline-dev
+
+	?	libssl-dev
+
+	also
+		pdflib
+		js spidermonkey
+

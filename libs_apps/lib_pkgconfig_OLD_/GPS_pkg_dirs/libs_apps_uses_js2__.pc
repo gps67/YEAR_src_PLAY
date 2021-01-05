@@ -1,0 +1,37 @@
+# UNUSED # prefix=/home/gps/2000/src_build/js
+# src_js=/home/gps/2000/src_build/js
+src_js=/media/hda7/src_build_2006/js
+src_js_src=${src_js}/src
+# UNUSED # exec_prefix=${prefix}
+objdir=Linux_All_DBG.OBJ
+libdir_js=${src_js_src}/${objdir}
+libdir_fdm=${src_js_src}/fdlibm/${objdir}
+libdir_edit=${src_js_src}/editline/${objdir}
+includedir=${src_js_src}
+includedir_obj=${src_js_src}/${objdir}
+
+# Conflicts with libedit from elsewhere
+# recompile JS with JS_READLINE, without, or use this:
+# or skip completely - not using the demo JS top func
+libeditjs=
+# libeditjs=${libdir_edit}/libedit.a
+# WAS # libeditjs=-L${libdir_edit} -ledit
+
+Name: libs_apps_js2
+Description: LIBS_APPS uses JavaScript from mozilla
+Version: 0.1.2
+
+Libs:  -L${libdir_js} -ljs -L${libdir_fdm} -lfdm ${libeditjs} -Wl,--rpath=${libdir_js}
+#
+# Cflags:  ... -DXP_UNIX # js code (jsapi.h)
+# Cflags:  ... -DWITH_JS # my code
+#
+# Cflags:  -I${includedir}
+# Cflags:  -I${includedir} -DXP_UNIX # js code (jsapi.h)
+# Cflags:  -I${includedir} -DXP_UNIX -DWITH_JS # my code
+
+# WITH_JS: obj_ref_js.h needs to know if JS is really there or dummied out
+# XP_UNIX: # JS's jsapi.h needs to know its own architecture
+# .../DEP_WITH_JS.h # touch this file if its changed
+
+Cflags:  -I${includedir} -I${includedir_obj} -DXP_UNIX -DWITH_JS # my code

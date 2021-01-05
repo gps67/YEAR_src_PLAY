@@ -1,0 +1,56 @@
+
+# TGT=WIN32
+# TGT=LGX
+# TGT=i586
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: _into_base2
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+# unfortunately base build a custom base-class that mentions JS GTK
+# but probably doesnt include base2!
+
+# this is all wrong
+# because eg libs_apps_pdflib is configuration management
+# it is upto the makefile to decide what goes INTO libbase2
+# and to edit what with base2 needs 
+
+Requires: \
+	libs_apps_libz \
+	libs_apps_ssl \
+	libs_apps_mysqlclient \
+ \
+	libs_apps_gtk \
+	libs_apps_amix \
+	libs_apps_base1 \
+	libs_apps_mozjs \
+#	libs_apps_pdflib \
+
+
+
+# JS2 mozjs
+#	libs_apps_mozjs \
+
+#
+# pdflib is conditional on WITH_PDFLIB
+# not sure how to pick that up here
+# so manually editing
+#	libs_apps_pdflib \
+#
+##	libs_apps_base_editline \
+#
+
+#
+# 	libs_apps_base1 \
+
+# Libs:  -lbase2 
+# Cflags:  -I${includedir}
+
+Libs:
+Cflags:
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+. ./.env
+
+mysql_root <<!EOT
+	use mysql;
+	UPDATE user
+	SET Password=OLD_PASSWORD('$USER_PASS')
+	WHERE user='$USER_NAME';
+
+	FLUSH PRIVILEGES;

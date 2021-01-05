@@ -1,0 +1,4 @@
+# export TGT=LGX
+
+make "${@}" 2>&1 | less
+# make "${@:-P}" 2>&1 | less

@@ -1,0 +1,30 @@
+
+set_drawable( gtk_d ) // width height
+set_pdf_lib( pdflib ) // width height
+
+zero_at_top()
+
+int create_font_base( name );
+int create_font_size( int_fontbase, pointsize, modifiers );
+int create_rgb( r, g, b )
+int create_line_style( dashed ... )
+
+int create_region( x1, y1, w, h, upside_up, dx, dy )
+select_region( r )
+
+int create_style_tray()
+select_style( int )
+
+line( p1, p2 )
+line( x1, y1, x2, y2 )
+hline( x1, y1, x2 )
+vline
+
+poly_line()
+poly_fill()
+
+fill_and_stroke( points_array_default )
+clear_points( n )
+set_point( i, x, y )
+append_point( x, y )
+

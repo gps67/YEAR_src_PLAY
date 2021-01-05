@@ -1,0 +1,68 @@
+destroy()
+
+Tue Nov 24 16:04:58 GMT 2009
+
+	debug_track_pointer() - a bit slower but better
+
+	destroy() is emitted by GTK after widget has been neutralised
+	but not yet deleted, but we also have to be careful of calling
+	the event_destroyed on a obj_ref0 item that odesnt know this
+
+	in particular getting the GTK object name revealed this
+	so: call_destroy() on the top most object (or remove from list)
+
+
+
+--------- OLDER --->
+
+The menu items are held in a ref_counter list
+that keeps the w_widget0 alive, and stops libs_apps from destroying them
+
+The menu items are also held by GTK's associations and ref counts.
+When the parent item is deleted, its children are deleted
+(but remain in the ref_keeper array),
+and pointers to the GTK objects remain (but they have deflated existance).
+
+REVIEW w_container as it probably had the same problem
+REVIEW call_destroy() as it has two sides to its meaning
+FORNOW for all menu items, call connect_destroy_delete_pointer()
+	so that when GTK deletes the object
+	the w is replaced with NULL
+	and or some code is run
+
+http://library.gnome.org/devel/gtk/unstable/GtkObject.html#gtk-object-destroy
+
+gtk_object_destroy () {
+	emit "destroy" signal to all listeners
+}
+
+C_event_destroy( GtkObject * gobj, gpointer data );
+{
+ // ASIS
+	immediately set: w = NULL
+	call self->event_destroyed()
+}
+
+SAMPLE VIRTUAL
+event_destroyed()
+
+	prints w_widget0::event_destroyed() -- CLASS SHOULD REPLACE
+	and sets w = NULL
+
+C_event_destroy_w( GtkObject * gobj, w_widget_0 data )
+{
+}
+
+REVIEW: connect_event_destroyed() 
+
+	connect( widget, "destroy", C_event_destroy, w_widget_self )
+
+connect_destroy_delete_pointer()
+
+REVIEW: call_destroy()
+
+	rename this "call_dismantle()" or something
+
+	It is setting w = NULL;
+	It also does the outer_packable
+	

@@ -1,0 +1,3 @@
+SCRIPT=`pwd`/edit_one_script
+find ../src -type f -exec $SCRIPT {} ';' 
+# find /nfs/md7/AIR/src_relay/src -type f -exec $SCRIPT {} ';' 

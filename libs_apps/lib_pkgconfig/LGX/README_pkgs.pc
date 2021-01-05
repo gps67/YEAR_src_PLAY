@@ -1,0 +1,62 @@
+There are subdirs for each architecture, that override these top dir defaults
+(eg WIN32 uses libname.dll LGX uses -lname)
+Ideally, move all to top shared
+
+We need two files, to define the things that go _into_ base2,
+and then one step further, for those that libs_apps_base2.
+This is because it cannot link with self, OK!
+
+BENCH
+ LIST of _API_
+
+	one of _GTK _PDFLIB _JS _MYSQL _XQL_ 
+	lots of _edit_line _open_ssl 
+
+BENCH
+	wheres editline.pc
+	 libs_apps/MK/VAR_OBJS_base1 :"...": is_a_file
+
+          LIBS_unix += -ledit -lncurses
+
+	  OBJS_base1 += edit_line.o # edit line from TTY with history
+
+	 MAKEFILE TEMPLEATE VARNAME("WITH_GTK") # init with ?:set_if_unset
+	 ifeq ($(VARNAME),1)
+	 ...
+	 endif
+
+
+
+RENAMING THAT TO
+libs_apps_base2_plus	# pulls in the rest # TODO better range
+
+# the list of libs_apps_{glib,gtk,libz,...} that go into _base2
+
+_into_base1.pc
+_into_base2.pc
+_into_base2_gtk.pc
+
+# the above list, and libs_apps_ the item itself, your app uses this
+# if you link with it, you will get the -I to compile against it OK
+# Future paper walls, might stubb out all .h access!! for speed!!
+# For now, see "compile_with_and_libs_apps_" XXX
+
+libs_apps_base1.pc
+libs_apps_base2.pc
+libs_apps_base2_gtk.pc
+libs_apps_gtk_text.pc
+libs_apps_media.pc	# untested
+libs_apps_accts_gtk.pc
+libs_apps_sar_plot_post.pc
+
+# the above "_base2" names are supposed to be unique
+# the below files, are specific to the libs_apps on this box
+# sort of a namespace, you do not use these files,
+# you rely on them being used
+# they probably invoke the default system "gtk+-2.0"
+# or on this box, they set local /prefix/ specific to the app that uses libs_app
+
+libs_apps_uses_glib.ABSENT
+libs_apps_uses_glib.pc_ORIG
+libs_apps_uses_gtk.pc_ORIG
+libs_apps_uses_libz.pc

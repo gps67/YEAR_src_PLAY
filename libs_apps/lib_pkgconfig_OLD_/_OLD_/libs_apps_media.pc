@@ -1,0 +1,12 @@
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_media
+Description: Libraries and Applications - media
+Version: 0.1.2
+
+Requires: libs_apps_base
+Libs:  -L${libdir} -lmedia
+Cflags:  -I${includedir}

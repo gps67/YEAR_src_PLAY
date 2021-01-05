@@ -1,0 +1,11 @@
+#!/bin/sh
+. ./.env
+
+mysql_user -t <<!EOT
+	USE $BASE_NAME;
+#	select line,t0,t2,(60*60*24*7)/(t2-t0) from seg ORDER by line,t0,t2;
+	select
+	line_id.host, line_id.attr,
+	seg.line,seg.t0,seg.t2
+	from seg,line_id 
+	WHERE seg.line=line_id.id ORDER by seg.line,seg.t0,seg.t2;

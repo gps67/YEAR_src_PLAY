@@ -1,0 +1,119 @@
+2018-10-28 Oct Sun 19:44
+
+apt install libgtk2.0-dev
+apt install gtk+-3.0-dev
+	libasound2-dev
+
+	libmysqlclient-dev
+
+alsa
+
+
+2018-10-28 Oct Sun 19:44
+----
+
+# pkg-config
+
+sudo \
+apt install gtk+3.0-dev
+apt install glib-2.0-dev
+	libgtk+3.0-dev ***
+	libgtk+2.0-dev
+	gtk+2.0
+	libglib2.0-dev
+	libglib2.0-dev-bin
+----------
+  ca-certificates-mono cli-common libatk3.0-cil libcairo1.10-cil libgdk3.0-cil
+  libgdk3.0-cil-dev libgio3.0-cil libgio3.0-cil-dev libglib3.0-cil
+  libglib3.0-cil-dev libmono-corlib4.5-cil libmono-i18n-west4.0-cil
+  libmono-i18n4.0-cil libmono-profiler-gui-thread-check
+  libmono-security4.0-cil libmono-system-configuration4.0-cil
+  libmono-system-security4.0-cil libmono-system-xml4.0-cil
+  libmono-system4.0-cil libmonoboehm-2.0-1 libpango3.0-cil mono-4.0-gac
+  mono-gac mono-runtime mono-runtime-common mono-runtime-sgen
+Suggested packages:
+  monodoc-gtk3.0-manual libmono-i18n4.0-all libgamin0
+The following NEW packages will be installed
+-------------------
+
+edit Makefile # no need :-) its all in my pkg config 
+edit Makefile # TODO update from WITH_GTK 3 _...V2 code kludges
+
+crete new
+	libs_apps_uses_glib3
+	libs_apps_uses_gtk3
+
+then libspice
+/usr/lib/x86_64-linux-gnu/pkgconfig/spice-client-glib-2.0.pc
+
+
+NO GTK3 wont run on WIN32 only WIN64 VISTA
+SO back to Gtk2, maybe cleanup before moving to non-gtk
+
+	added all listed in 2017
+
+MOVED 
+	libs_apps_obj_LGX_E6320i3
+	this is mentioned in MakeifleX and in mk script
+	but more than one each
+	some contests between ABS and REL - eg for debugger to find src
+	all one big mess
+	
+
+also
+        apt install libedit-dev
+
+pdflib
+	seems V7 is available GPL, V9 is available to buy
+	also some notes on PDF-2.0 formalised mid 2017
+
+	http://www.pdflib.com/
+	https://www.pdflib.com/download/free-software/pdflib-lite-7/
+	http://www.pdflib.com/download/pdflib-family/pdflib/
+
+	./configure --prefix=/home/gps/prefix # match pkg-config file
+	make
+	make install
+
+	2018 - seems V7 no longer promoted
+	./FTP_2017_02_Feb/PDFlib-Lite-7.0.5p3.tar.gz
+
+
+js spidermonkey
+	mozilla is brain dead
+	it is too much trouble for them to split JS from Mozilla
+	so they dont
+	or they do and dont tell anyone
+
+	they also give grief reshaping the mini-tag access
+	(you could pre-register attributes as a byte and find them quickly)
+	told eachother on the mailing list
+	but not others who visit once a year or so
+	and no guidelines what to do about anything
+
+	currently I am compiling this to make build word
+
+	apt install autoconf-2.13 # but still not the executable available !
+	visit SM site
+	visit crazy grid forum
+	find SM(pkg) in column on it's own 2/3 way across
+	then wait for the site to do it's background thing
+	then download is available, attribute of results from backend
+
+	then ... find a web page
+
+./lib
+	does not exist within lib....uname
+---------
+
+                libedit-dev # YES
+                # NO # libeditline-dev
+		# /usr/bin/ld: cannot find -lXmu
+		 sudo apt-get install libxmu-dev
+
+libasound2-dev
+libmysqlclient-dev
+
+
+https://packages.ubuntu.com
+

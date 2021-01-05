@@ -1,0 +1,44 @@
+//
+// dpi_1152 // 1152 == 72 * 16 // i16 +- 28" // i32 += 15,000 ft
+//
+
+// how can I merge this with :
+// http://www.freetype.org/freetype2/docs/glyphs/glyphs-3.html
+// it uses fxp_26_6.h // u6 == [0[64 // at 72dpi x64 = 4608 dpi, i16 +- 7K"
+// in ems at 12pt = 6 ems per inch. 64 * 6 = 384 dpi, perfect
+// i16 +- 32M * 64 * { pt || pix || em || 1/6400" }
+// t1lib uses 16_16
+
+#include "fxp_12_4.h"
+
+struct dpi_1152 : public fxp_12_4 {
+	// AUTO GEN ALL CTORS // AUTO INFER: _ //
+
+	// actually to excuse the superstitious
+	// this can be compiled with local typedef
+	// typedef i16_hilo dpi_1152;
+	// typedef i32_hilo dpi_1152;
+	// typedef i32_cpu dpi_1152; // not in datastructures
+	// typedef i32 dpi_1152; // not in datastructures
+	//
+	// META: and even:
+	// typedef i32_cpu i32; // click_to_grid type selection
+
+	/*
+		One sixteeth of a point (a pth u4_digit)
+		This is a compromise that addresses better than 1pt
+		(which needs click to row) and still fits in u16_hilo
+		printf( "0x%4.4X fxp4" );
+		DEF fxp4 { return $1 as_int /*known: axis*/ }
+		PS_FUNCTION_DECLARATION {
+			... duuno ... RTFM overload ...
+			... but I do know that the next matrix is t1libs's
+		}
+	*/
+};
+
+
+
+
+
+

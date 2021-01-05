@@ -1,0 +1,11 @@
+The time-series merge-floats (eg dset_api_pdb) DEMANDS properly aligned
+times, otherwise it goes into a spiral crash.
+
+I.E. If the command samples every 5 seconds, but starts 1 second after the
+minute, you must adjust the time (lie) to align on 5 second edges.
+
+This also means that dt makes better sense as a divisor of minutes
+(though it doesnt matter, it just looks odd when zero is 1970).
+
+When writing your data parser, particularly for time-series,
+note the set_t0() and align in tbl_collect;

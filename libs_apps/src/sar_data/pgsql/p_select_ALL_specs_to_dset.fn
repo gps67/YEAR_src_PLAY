@@ -1,0 +1,46 @@
+// virtual
+/*!
+	Run PG request to list all lines available
+*/
+bool dset_api_postgres::select_ALL_specs_to_dset (
+	dset_api * dest
+){
+	bool ok = true;
+	enq.clear();
+	enq.put( "SELECT id,linetype,site,host,cmd,opt,dev,attr,avg,dt from line_id " );
+	enq.put((char )0);
+
+	mem_line_spec * spec1 = table.get_temp_spec();
+
+	if( !pgsql->PG_exec_BEGIN_cmd_END( enq.buff )) {
+		return FALSE;
+	}
+	for( int ROW=0; ROW<pgsql->nrows_result; ROW++ ) {
+
+		int line =atoi(PQgetvalue( pgsql->results, ROW, 0 ) );
+		char *linetype=PQgetvalue( pgsql->results, ROW, 1 ) ;
+		char * site  = PQgetvalue( pgsql->results, ROW, 2 ) ;
+		char * host  = PQgetvalue( pgsql->results, ROW, 3 ) ;
+		char * cmd   = PQgetvalue( pgsql->results, ROW, 4 ) ;
+		char * opt   = PQgetvalue( pgsql->results, ROW, 5 ) ;
+		char * dev   = PQgetvalue( pgsql->results, ROW, 6 ) ;
+		char * attr  = PQgetvalue( pgsql->results, ROW, 7 ) ;
+		char * avg   = PQgetvalue( pgsql->results, ROW, 8 ) ;
+		int dt = atoi( PQgetvalue( pgsql->results, ROW, 9 ) );
+
+		spec1->linetype.set( linetype );
+		spec1->site .set( site );
+		spec1->host .set( host );
+		spec1->cmd  .set( cmd  );
+		spec1->opt  .set( opt  );
+		spec1->dev  .set( dev  );
+		spec1->attr .set( attr );
+		spec1->avg  .set( avg  );
+		spec1->set_dt( dt );
+
+		table.find_set( line );
+
+		if( ! dest -> merge_spec( spec1 )) ok= FALSE;
+	}
+	return ok;
+}

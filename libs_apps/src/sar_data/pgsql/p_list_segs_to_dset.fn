@@ -1,0 +1,64 @@
+
+/*!
+	Runs the PG query to list segment boundries to the dset-consumer
+*/
+bool dset_api_postgres::list_segs_to_dset(
+	dset_api * dset,
+	mem_line_spec * spec,
+	time_t t0,
+	time_t t2
+) {
+	long line_id = -1;
+	if( !table.find_line( spec, line_id ))
+	{
+		e_print("Request for absent SPEC\n");
+		return FALSE;
+	}
+
+	enq.clear();
+
+	enq.put( "SELECT t0,t2 from seg where line=" );
+	enq.put_d( line_id );
+
+ if(0) {
+	time_calc_zone_week W1( t0 );
+	// time_calc_zone_week W2( t2 );
+	time_t t0_edge_lo = W1.T0;
+	// time_t t0_edge_hi = W2.T2;
+	// optimise search
+	enq.put(" and t0>=");
+	enq.put_d(  t0_edge_lo );
+ }
+
+	// seg starts before range end
+	enq.put(" and t0<");
+	enq.put_d(  t2 );
+
+	// unoptimised seg ends before range start
+	enq.put(" and t2>");
+	enq.put_d(  t0 );
+
+	enq.put(" ORDER BY t0,t2");
+	enq.put((char)0);
+
+	// fetch them all now, to avoid nested loops
+	// redo as a list of tuples
+	if( !pgsql->PG_exec_BEGIN_cmd_END( enq.buff )) {
+		return FALSE;
+	}
+	bool ok = TRUE;
+	for( int ROW=0; ROW<pgsql->nrows_result; ROW++ ) {
+		int seg_t0  =atoi( PQgetvalue( pgsql->results, ROW, 0 ) );
+		int seg_t2  =atoi( PQgetvalue( pgsql->results, ROW, 1 ) );
+
+		if(! dset->listed_seg(
+			spec,
+			seg_t0,
+			seg_t2
+		))
+			ok = FALSE;
+	}
+
+	return ok;
+}
+

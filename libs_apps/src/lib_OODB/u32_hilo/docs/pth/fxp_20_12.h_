@@ -1,0 +1,36 @@
+
+ typedef i16_lohi i16_cpu;
+ typedef i16_hilo_ab i16_hilo;
+ typedef i16_hilo_cd i16_hilo;
+ typedef i16_cpu  i16;
+
+ struct fxp_12_4 {
+	i16 fxp;
+  private: // prevent from use // or be undefined, let gcc notice
+	operator + (int type_not_known );
+  public:
+	operator += ( const fxp_12_4 & rhs ) { STO += rhs.STO; }
+	operator = ( const fxp_12_4 & rhs ) { STO = rhs.STO; }
+	int add_fxp( i16 fxp_rhs ) { 
+		fxp += fxp_rhs;
+		return fxp;
+	}
+ };
+
+
+ struct fxp_20_12 {
+  private: // prevent from use
+	operator + (int type_not_known );
+  public:
+	operator + ( const fxp_20_12 & rhs ) { STO += rhs.STO; }
+	operator + ( const fxp_12_4 & rhs ) { STO += rhs.STO<<8; }
+ };
+
+
+ struct fxp_12_4 {
+  private: // prevent from use
+	operator + (int type_not_known );
+  public:
+	operator + ( const fxp_12_4 & rhs ) { STO += rhs.STO; }
+ };
+

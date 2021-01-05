@@ -1,0 +1,54 @@
+# ls138
+# post_README_gps.txt
+# .env1 # VN=49
+# .env1 # VN=52
+# .env1 # tar=post-1.$VN.tar.gz
+# .env1 # post=post-1$VN
+# .env1 # work=work
+# .env1 # # post-1.49.tar.gz
+# .env1 # # post-1.52.tar.gz
+# .env1 # 
+. ./.env1
+
+mkdir $work
+cd $work
+
+tar -zxvf ../$tar
+
+mkdir $post
+
+L1=" 
+	readme.htm
+	array.cxx
+	array.h
+	classinfo.cxx
+	classinfo.h
+	comptime.cxx
+	dnmarr.h
+	file.cxx
+	file.h
+	object.h
+	stdtp.h
+	storage.cxx
+	storage.h
+"
+
+for f in $L1
+do
+	cp -p post/$f $post/post_$f
+done
+exit
+
+post_138_readme.htm
+post_array.cxx
+post_array.h
+post_classinfo.cxx
+post_classinfo.h
+post_comptime.cxx
+post_dnmarr.h
+post_file.cxx
+post_file.h
+post_object.h
+post_stdtp.h
+post_storage.cxx
+post_storage.h

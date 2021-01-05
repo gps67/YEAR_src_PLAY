@@ -1,0 +1,79 @@
+#!/usr/bin/env js_accts
+
+print("This is accts6_CH.js");
+
+/*
+	print_eval( code_str ) runs the code_str, prints it and the result
+*/
+function print_eval( str ) {
+	print( "EVAL: " + str )
+	ret = eval( str )
+	print( "RESP: " + str + " --> " + ret )
+	return ret
+}
+
+/*
+	print every field of r, which is typically a row , table, dset1 or other
+
+	can also be used to print an array, but dont expect [i] to .i work
+*/
+function print_row( name, r ) {
+	print( "--------------------" );
+	print( "print_row( " + name + " ) => {" );
+	for( field in r ) {
+		print( "  " + name + "." + field + ": "  + r[field] );
+	}
+	print( "}" );
+}
+
+function print_tbl( name, t ) {
+	print_row( name, t )
+}
+
+/*
+	To reduce use of the top level name-space, there is a single
+	hook, the "Accts_Module" class name.
+
+	If you run this script on a JavaScript that doesnt have the
+	extra code, it should fail here.
+
+	JavaScript has no concept of "module", but it makes sense to me.
+	If you had lots of modules, you might have them dynamically loaded
+	(like Python does), and this line would be the one to adjust.
+*/
+a1 = new Accts_Module()
+
+// the CH1 dset .csv comes from ... where ... not these ...
+// a1.make( "/home/gps/2000/src/libs_apps/_run", "default" )
+// a1.make( "/home/gps/2000/src/mm3_scan", "all" )
+
+/*
+	the CH1 dset .csv comes from ... where ... not these ...
+
+	its prepared elsewhere
+	maybe run from the tmp_draft - before archiving it
+	maybe run from the archive - only that one will do !
+*/
+dset_CH = a1.load_dset( "/home/gps/2000/src/libs_apps/PRIV_samples/tmp_CH1_archive_draft.csv" );
+// dset_curr = a1.load_dset( "/home/gps/2000/src/PRIV_samples/0203.csv" );
+// dset_prev = a1.load_dset( "/home/gps/2000/src/PRIV_samples/0102.csv" );
+dset_curr = a1.load_dset( "/home/gps/2000/src/PRIV_samples/0304.csv" );
+dset_prev = a1.load_dset( "/home/gps/2000/src/PRIV_samples/0203.csv" );
+
+print("loaded");
+
+// two PDF reports in the same run causes some obscure fault
+
+pdf = "/tmp/t.pdf";
+// year_curr = "Y2001_02";
+// year_prev = "Y2000_01";
+// cmd = "dset_CH.rep_pdf('CH','" +pdf+ "', '" +year_curr+ "', '" +year_prev+ "')" ;
+cmd = "dset_CH.rep_pdf('CH','" +pdf+ "', dset_curr, dset_prev )" ;
+
+// a1.gdb_invoke();
+
+print_eval( cmd );
+print_eval( "a1.view_pdf( '"+pdf+"' )" );
+
+// a1.make( "/home/gps/2000/src/libs_apps/_run", "default" )
+a1.exit(0);

@@ -1,0 +1,80 @@
+without_pdf.cxx
+	blank functions to compile without libpdf
+
+rep_pdf_RUN_C.cxx
+rep_pdf_RUN_C.h
+	run_pdf_VatTrack( dset, "report.pdf" )
+	run_pdf_CashCat( dset, "report.pdf" )
+	run_pdf_CH( dset, "report.pdf", dset_prev, dset_next )
+	run_pdf_Table( dset, "report.pdf" )
+
+	These are very similar and wrap
+
+		new pdf_ctxt()
+		rep_runn = new rep_pdf_CH( ... )
+		ctxt.run_wrapped_report( rep_runn )
+
+	ie (with new/ref_hold)
+
+		pdf_ctxt()
+		.run_wrapped_report( 
+			rep_pdf_CH( ... )
+		)
+
+rep_pdf_Reports.cxx
+rep_pdf_Reports.h
+
+	SIMILAR WITH: base class rep_pdf_0, run_wrapped_report()
+
+	rep_pdf_Cash_Cat { }
+
+		open_up( filename, title, portrait )
+		intro() // title page
+	if(0)	draw_table( /* vat_rep - how */ )
+		draw_table( /* HOW ? CashBook */
+		
+
+rep_pdf_0.cxx
+rep_pdf_0.h
+
+rep_pdf_CH.cxx
+rep_pdf_CH.h
+
+rep_pdf_intro.cxx
+
+---- AT - SOME - STAGE ----
+
+cls_CH1_adjust_cat_grp.js
+CLASS CH1_adjust_cat_grp( CH1 )
+  get_dset_curr()
+  adj_cat_grp() {
+   // re arranges CAT tree 
+   // avoid running twice ... or sun funcs
+   adj_PL2_base() {
+	load_file( ./adj_pl2.csv1 )
+   adj_PL2_wide_key_leaf()
+	CAT.D3.key = "PL2_f1"  
+   adj_PL2_trackers()
+	f1 f2 f3 f4 = names of files
+	..run_reports()	*******
+	add_deprecation_TRANS()
+	rep_pdf( "Cash_Cat" )
+	rep_pdf( "VatTrack" )
+	hie_table( "SUM_cat" )
+	save_file( f2 )
+   adj_PL2_copy_over_attrs( dsetcurr )
+  }
+
+----
+cls_CH1_checker.js
+  check_calc( PFX_c, str_list )
+   // computes PFX_C = eval str_list
+   val = this.CH1.get_curr( "PL2_a" )
+
+SO:
+	modify adj_PL2_f1 to add round_on_read flag
+	or is PL2_ all that is in CH1 ?
+	create pool[ PL2_f1 ] of trimmings
+	on first read, trim into trimmings (zero => check exists)
+	write out table to next year
+	(inport previous years trimmings, before VAT ?)

@@ -1,0 +1,27 @@
+<stdint.h>
+	int8_t
+	uint8_t	// want uns8
+	...
+	uint8_t * || const char *
+<stddef.h>
+	uintptr_t ADDR = (CAST) ptr;
+	ptrdiff_t OFFS = ADDR2 - ADDR1; // signed
+<-->
+	intptr_t is i64 on 64
+	intmax_t 
+	size_t -- largest memory offset
+	uintptr_t =~= size_t == uint64_t || _32_
+	ssize_t -- signed
+
+MACRO PRIdPTR "l"
+
+	PRI d PTR // intptr_t
+	PRI u PTR // uintptr_t
+	PRI d MAX // intmax_t
+	PRI u MAX // uintmax_t
+
+ USAGE:
+
+	printf("C joins %" PRIdPTR "\n", theintptr );
+
+	

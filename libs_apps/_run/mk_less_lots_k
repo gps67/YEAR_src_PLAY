@@ -1,0 +1,3 @@
+# rm /nfs/md7/GPS/AIR/libs_apps/libs_apps_obj_WIN32/libbase2.dll
+# rm /nfs/md7/GPS/AIR/libs_apps/libs_apps_obj_LGX/libbase2.so
+./mk_less -k lots

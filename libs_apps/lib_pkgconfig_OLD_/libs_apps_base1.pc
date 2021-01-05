@@ -1,0 +1,34 @@
+# does the command line override the file ?
+TGT=WIN32
+## # TGT=LGX
+## # TGT=i586
+
+#
+# Your application uses base1
+# PKGS += libs_apps_base1
+# pkg-config $(PKGS) --libs
+#
+
+# This layout shares common code
+# because the linker parts are the same
+# for linking into a DLL and then linking against that DLL
+# ie all the dependencies
+
+# the main difference is that the DLL cannot -lself
+
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+Requires: _into_base1 
+
+Libs: -l base
+Cflags:
+
+

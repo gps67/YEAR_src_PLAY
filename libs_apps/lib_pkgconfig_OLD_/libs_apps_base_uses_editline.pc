@@ -1,0 +1,11 @@
+
+Name: libs_apps_uses_editline
+Description: LIBS_APPS uses editline 
+Version: 0.1.2
+
+Requires: 
+
+Libs: -ledit -lncurses
+Cflags:
+Cflags: -DWITH_EDITLINE
+

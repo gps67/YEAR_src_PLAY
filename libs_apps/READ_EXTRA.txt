@@ -1,0 +1,40 @@
+
+TO BUILD
+	make sure you have the source
+	directly under $HOME/YEAR/
+	the first run will create a build dir lib_LGX_box5
+
+	cd _run
+	./mk_lots
+	./mk_less_test4
+
+NB	This is not a ./Configure project
+	you will have to do all that yourself
+	see ... README ... DOS/* ...
+
+
+# apt-get install libmozjs-dev
+apt-get install libedit-dev
+apt-get install libeditline-dev
+apt-get install xorg-dev # X11/Xmu/WinUtil.h
+
+maybe its time to add the JS source to the tree
+at least until OOPL gets past the theory stage
+
+http://www.unknownroad.com/rtfm/gdbtut/
+
+http://www.pdflib.com/download/pdflib-family/pdflib-lite-7/
+
+http://ftp.mozilla.org/pub/mozilla.org/js/       1.8?
+
+	make -f Makefile.ref
+	cd Linux_All_DBG.OBJ/
+
+	pwd >> pkg_config_libs_apps_uses_js
+
+http://www.openssl.org/source/
+
+	1.0.0d
+	./Configure debug-linux-elf-noefence # NOT 64 bit! -march=486
+	./Configure gps-debug-linux-generic64 --prefix=/usr/local/ssl
+

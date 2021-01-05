@@ -1,0 +1,22 @@
+set -x
+cd insight || exit
+ask_do autoconf
+./configure \
+prefix=/home/gps/prefix/. \
+--libdir=/home/gps/prefix/lib64 \
+--disable-binutils \
+--disable-elfcpp \
+--disable-gas \
+--disable-gold \
+--disable-gprof \
+--disable-ld \
+--disable-rpath \
+--disable-zlib \
+--enable-sim \
+--with-gdb-datadir=/home/gps/prefix/share/insight \
+--with-jit-reader-dir=/home/gps/prefix/lib64/insight \
+--with-separate-debug-dir='/home/gps/prefix/lib/debug' \
+--with-expat \
+--with-python \
+--without-libunwind \
+2>&1 | tee -a $0.log

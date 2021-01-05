@@ -1,0 +1,31 @@
+
+TGT=WIN32
+## # TGT=LGX
+## # TGT=i586
+
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base_into_base1
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+
+# Requires: libs_apps_uses_libedit # no it doesnt
+Requires: \
+	libs_apps_uses_sockets \
+	libs_apps_uses_glib \
+	libs_apps_uses_editline \
+	libs_apps_uses_libz \
+	libs_apps_base_own_paths \
+#
+
+#	libs_apps_absent_into_base1 \
+#
+# obviously -lbase1 does not go into base1
+
+Libs: 
+Cflags: -DTGT_${TGT}

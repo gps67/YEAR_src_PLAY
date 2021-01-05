@@ -1,0 +1,4 @@
+if ./M_exe 
+then
+./mk_req.exec CA_ONE CA_ZONE C_server
+fi

@@ -1,0 +1,29 @@
+https://www.openssl.org/docs/man1.1.1/man3/SSL_get_servername_type.html
+https://www.openssl.org/docs/man1.0.2/man3/SSL_CTX_set_tlsext_servername_callback.html
+
+https://wiki.openssl.org/index.php/SSL/TLS_Client
+	
+	client code
+
+	ctx = SSL_CTX_new(method);
+	...
+	res = SSL_CTX_load_verify_locations(ctx, "random-org-chain.pem", NULL);
+	web = BIO_new_ssl_connect(ctx);
+	res = BIO_set_conn_hostname(web, HOST_NAME ":" HOST_PORT);
+	BIO_get_ssl(web, &ssl);
+
+	res = SSL_set_tlsext_host_name(ssl, HOST_NAME);
+	...
+	res = BIO_do_connect(web);
+	res = BIO_do_handshake(web);
+	X509* cert = SSL_get_peer_certificate(ssl);
+	if(cert) { X509_free(cert); } /* Free immediately */
+	res = SSL_get_verify_result(ssl);
+	BIO_puts(web, "GET " HOST_RESOURCE " HTTP/1.1\r\n"
+
+
+
+SNI Server Name Indication
+ALPN after SNI on server
+
+

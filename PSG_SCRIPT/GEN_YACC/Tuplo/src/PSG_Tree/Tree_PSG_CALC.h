@@ -18,6 +18,7 @@
 
 class Tree_PSG_CALC : public Tree_PSG_UDEF { public:
 
+// VIRTUAL // no C++ need to repeat mention it tho
 //	bool build_tree(); // use default _lex then _yacc
 	bool build_tree_lex();
 	bool build_tree_yacc();

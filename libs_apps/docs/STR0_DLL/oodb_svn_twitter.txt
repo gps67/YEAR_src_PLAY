@@ -1,0 +1,28 @@
+oodb_svn_twitter.txt
+
+	Send SVN adjustments as SVN_TWITTER stream
+	non-sense-filter
+
+	EDITOR MAKES CHANGE
+	 POPUP form CATEGORISES patch at _CODE_PONT_
+	 FSDIFF and SESSION_DEFAULTS creates a patch_fragment
+	 SESSION collects all micro-patches, against current TASK/LIST
+	 POPUP form CATEGORISES patch_list near _CODE_PONT_
+	 SVN_twitter processes micro-patches remotely (ie locally) (NOW)
+
+		svn_twitter {
+		_svn_session_id;
+		_svn_timestamp_edit;
+		_svn_twitter_id;
+		_psg_token_syntax_of_this_twitter;
+		_psg_token_spec_of_frag;
+		}
+	
+	PSG_LAYOUT_TWITTER {
+	_PATTERN_MATCHER {
+	_LINE_PFX ONE_OF_LIST_OF_LINES
+	_}
+	}
+	USE { claim url_bookmark } as it floats by
+	USE { claim svn_micro_patch } as it floats by
+	

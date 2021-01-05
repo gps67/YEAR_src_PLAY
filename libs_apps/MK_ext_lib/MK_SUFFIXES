@@ -1,0 +1,66 @@
+#
+# MK_SUFFIXES - generic support for gmake suffix rules
+#
+
+#
+# you must list all filename extensions used
+#
+.SUFFIXES: .cxx .c .o .exec
+
+#
+# RULE: compile from .c to .o
+# RULE: compile from .cxx to .o
+# 
+.c.o:
+	gcc $(OPTIM) $(INCL) $(DEFS) -c $<
+
+.cxx.o:
+	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<
+
+#
+# DEBUG: show some vars used by compiler
+# 
+# #	sh -c 'echo $$CPLUS_INCLUDE_PATH ; echo '$$HOME''
+
+#
+# RULE: link .o into .exec adding all prerequisites on make list and $LIBS
+# that means that you must build .exec from .o's only (and .a maybe .so)
+# if that doesnt work, you wont be using the .exec rule (convenience mostly)
+#
+
+.o.exec: $(OBJS)
+	#
+	# MK_SUFFIXES RULE # .o.exec
+	#   which seems to ignore its dependency on $(OBJS)
+	#
+	#   OBJS $(OBJS)
+	#   LINKS $(LINKS)
+	#   LIBS $(LIBS)
+	#   -^ $^
+	#   -< $<
+	#   -@ $@
+	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
+	# strip $@
+	ls -l $@
+# 
+#
+# should use
+# CFLAGS LDFLAGS YFLAGS
+
+# cant have targets here - first is default
+# zap:
+	# rm -rf $(EXELIST) *.o
+
+##########################
+
+#
+# NOTES:
+#
+#  info make --index-search="Automatic Variables"
+
+# automatic variables: automatic
+# @ - the target
+# ^ - all prerequisites, incl dirnames
+# ? - OLD prerequisites, incl dirnames
+# + - all like $^ with duplicates
+

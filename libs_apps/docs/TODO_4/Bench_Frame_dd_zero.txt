@@ -1,0 +1,15 @@
+Bench_Frame_dd_zero.txt
+
+	ASK_DO: dd bs=32M status=progress if=/dev/zero of=/dev/sdb y
+
+ add in UDEF estimate of TOTAL will be ...
+ add in after started
+
+ run in TTY
+ record START END times
+ parse output 
+ graph throughput over time
+ mux in dmesg trailings
+ mux in temperature readings
+
+

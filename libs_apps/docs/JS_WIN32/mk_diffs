@@ -1,0 +1,64 @@
+(
+# /nfs/md7/GPS/libs_apps/docs/JS_WIN32
+
+TOP_JS=/nfs/md7/GPS/AIR/PKGS/HANDSET_WIN32/js
+
+THERE=`pwd`
+cd $TOP_JS || exit
+
+L1="############################################################"
+
+LIST1="
+	config.mk
+	js.c
+	prmjtime.c
+	Makefile.ref
+	config/WIN32.mk
+"
+
+LIST2="
+	config/WIN32.mk
+	M
+	M.out_
+"
+
+for f in $LIST1
+do
+	F1=src/${f}_
+	F2=src/${f}
+	F0=src/${f}_absent
+	if [ -f $F1 ]
+	then
+		echo "
+#$L1
+# $f - MODIFIED
+#$L1
+"
+		diff -Naur $F1 $F2
+	else
+	echo "
+#$L1
+# $f - NEW FILE
+#$L1
+
+"
+	cat $F2
+		 
+	fi
+done
+
+echo "
+
+#$L1
+# EOF #
+#$L1
+"
+
+for f in $LIST2
+do
+	F1=src/${f}
+	echo cp -p $F1 ...
+	cp -p $F1 $THERE
+done
+
+) 2>&1 | tee $0.out_

@@ -1,0 +1,9 @@
+SSL has its ref count on x509 certificates
+the problem occurs when copying using deleting
+it is not clear WHEN ssl has created a copy for you and when not
+there is a ref count printer (look for leaks)
+so setup a unit test case, and call before after calls to ____get_cert?___
+
+I think this happens when creating certs for CA,
+which is when most programs simply save and exit
+

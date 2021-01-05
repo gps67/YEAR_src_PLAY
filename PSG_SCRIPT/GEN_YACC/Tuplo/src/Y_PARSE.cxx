@@ -48,6 +48,7 @@ call_yyparse()
 	 case 0: INFO("0 means PASS yyparse"); break;
 	 case 1: FAIL("1 means ERROR yyparse"); break;
 	 case 2: FAIL("2 means MEMORY ERROR yyparse"); break;
+	default: FAIL("%d unknown retval from yyparse", ret_from_yyparse );
 	}
 	return ret_from_yyparse;
 
@@ -62,7 +63,7 @@ call_yyparse()
 
 void yyerror( Y_Parse_t & psg, const char * msg )
 {
-	FAIL("msg;Y_PARSE.cxx with psg %s", msg );
+	FAIL("yyerror( Y_PARSE(%s), msg %s )", (STR0) psg.Name, msg );
 }
 
 

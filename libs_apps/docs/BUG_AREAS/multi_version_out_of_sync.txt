@@ -1,0 +1,15 @@
+mk lots
+
+	calls install _to_dir
+	which calls install -p over (what was) a symb link
+	that leaves you with 2 copies of the file
+	/home/gps/lib/libbase2.so
+	/home/gps/2000/src/libs_apps/lib/libbase2.so
+	-ditto- libbase2_gtk
+	-but- cant see why it doesnt also happen for libbase.so
+
+	This will drive you potty until you see it, or it is fixed
+	it varies on where you run the command
+	changing the source doesnt change the action
+	then at some stage it does ....
+	mental !!!

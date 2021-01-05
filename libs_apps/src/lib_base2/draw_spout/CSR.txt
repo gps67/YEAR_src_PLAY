@@ -1,0 +1,44 @@
+
+	Writing to the CSR is writing to the document
+	They are _ALMOST_ the same thing
+
+	There is only ONE csr, MAYBE
+	There might be a stack of frames
+	There might be a separate OFF_PAGE renderer,
+	then folded back in,
+
+	Like a PRINT_HEAD the csr holds one pen one gc or a selection
+	That is then on the DOC
+
+	CSR_t 
+	+= weak link to DOCUMENT
+	+= link to PAPER 
+
+
+ PEN + INK
+ SURFACE PAPER
+ VAPOUR_PAPER	== like a divert to PREP pixmap, mixed format
+  eg TrueType might write to u4 grey pixmap
+  nb how does that match transparent? opaque FG over clear BG BnW_grey
+
+ SURFACE_DEPTH and other characteristics
+  RGBA
+  RGB
+  RGB = pallette[ u8 ]
+  RGB u5 u6 u5 # probably not supported # u16 # 
+  B/W 
+  u4 antialiased GREY over FG/BG B/W
+  SOMETHING on GPU CARD MEMORY or
+  SOMETHING on CPU MEMORY or
+  PIXMAP WH all of it
+  PIXMAP XYWH on pixmap XY maybe with CLIP maybe we are clip
+
+ SURFACE_API
+  LIBR_PIXMAP
+   PIXMAP SPEC DATA of 
+    // namespace PIXMAP { Module }
+    Component DRAW_api { ... } // 
+    PIXMAP_has_CSR "XY_POS" += DIALECT XYZ_POS // TOKEN "POS" // ATTR_VAL_XYZ_PLUS
+    PIXMAP_has_CSR "var_name" "expr( args ) // GET_SET GET_READONLY_advice
+
+

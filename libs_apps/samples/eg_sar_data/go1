@@ -1,0 +1,31 @@
+
+d0=/hda7/gps_big/vmstat
+
+O=/home/gps/G/src_build/libs_apps_obj_LGX_`uname -n`
+SAMPLES==/home/gps/YEAR/src/libs_apps/samples/eg_sar_data
+sar_parse=$O/sar_parse
+# home/gps/YEAR/src/libs_apps/samples/eg_sar_data
+d0=..
+for d in $d0/*/.
+do
+	PATTERN='vmstat_sitainte_*.gz'
+	PATTERN='vmstat_*_*.gz'
+	PATTERN='sar_vmstat*.gz'
+	LIST=`find $d -type f -name "$PATTERN" | sort `
+	if [ -z "$LIST" ]
+	then
+		echo "Empty list in $d"
+	else
+		echo "LIST count = `echo $LIST | wc -w`"
+		set -x
+		 $O/sar_parse --filetype vmstat_hp10 $LIST 
+	fi
+done \
+2>&1 | tee test1
+
+exit
+
+find /hda7/gps_big/vmstat/ -type f -name 'vmstat_sitainte_*.gz' -exec \
+../_obj_sky_2/sar_parse --filetype vmstat_hp10 {} ';' \
+2>&1 | tee test1
+/home/gps/YEAR/src/libs_apps/samples/eg_sar_data

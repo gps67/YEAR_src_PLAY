@@ -1,0 +1,7 @@
+. ./.env
+unset DBNAME
+unset OPT_BASE_NAME
+pgsql_root <<!EOT
+	DROP USER $USER_NAME ;
+	DROP DATABASE $USER_NAME ;
+

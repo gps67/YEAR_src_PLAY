@@ -1,0 +1,53 @@
+tv_rem
+	need to build IR remote tranmitter, to switch cable box
+	irc client
+	many selectable menus - JavaScript .config ?
+	volume factor per channel (retain channel)
+	VCR/Cable/Local
+
+tv_win
+	want an alternative to xawtv as a sep proc
+
+cd_play
+	TODO
+
+dvd_play
+	Need an MPEG decoder, X11 display, and some learning
+
+inet_radio
+	from where? protocol?
+
+inet_tv
+	probably wont happen
+
+inet_mp3
+	dir() titles()
+
+inet_phone
+	SIP
+
+phone_card
+	...
+
+file_mp3
+	dir listing, track titles,
+
+tv_record
+	disk space
+
+tv_diary
+	reminders
+
+tv_listings
+	xmltv, source?, usage?, alevt
+
+teletext (few pages avail on cable channels)
+	accumulate a cache over days (reread over many errors)
+	detect channel and keep whilst not avail from NTL
+	tv_listings ...
+	clock
+	subtitles - works but how?
+
+midi_play
+	... the list goes over the next horizon ...
+

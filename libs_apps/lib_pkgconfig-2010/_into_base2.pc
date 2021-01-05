@@ -1,0 +1,43 @@
+
+# TGT=WIN32
+# TGT=LGX
+# TGT=i586
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: _into_base2
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+# unfortunately base build a custom base-class that mentions JS GTK
+# but probably doesnt include base2!
+
+
+Requires: \
+	libs_apps_uses_libz \
+	libs_apps_uses_ssl \
+ \
+	libs_apps_uses_js2 \
+	libs_apps_uses_glib \
+	link_with_base1 \
+#
+# pdflib is conditional on WITH_PDFLIB
+# not sure how to pick that up here
+# so manually editing
+#	libs_apps_uses_pdflib \
+#
+##	libs_apps_base_uses_editline \
+#
+
+#
+# 	libs_apps_base1 \
+
+# Libs:  -lbase2 
+# Cflags:  -I${includedir}
+
+Libs:
+Cflags:
+

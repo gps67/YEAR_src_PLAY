@@ -1,0 +1,32 @@
+
+[<--Z0-->[<--Z1-->[<--Z2-->[<--Z3-->[
+[<--R2-->[<--W2-->[<--R1-->[<--W1-->[
+
+	You write to W1 (gap) until it reaches the RHS
+	That converts W1 to R1, gap to data,
+	You (maybe zero) read from R1 (converting it to W2)
+	You have probably emptied out some of R1 (now W2)
+	You then write in W2, until it is full 
+
+	You can offer a write area of W1+W2 (partially filled)
+	You can offer a read area of R1+R2 (user partially empties them)
+
+	You often only have one area
+
+	You occasionally fold down / spring back to init_empty.
+	That is when you need BOTH locks,
+	the rest of the time, you can get away with momentary locks,
+	and buffers that dont change on _ONE_ side.
+
+	The momentary lock, is for byte ordering, atomic write / read value.
+
+
+	There are additional constraints, that you dont notice,
+	because they never get contradicted. eg if writing to W1/W2
+	R2 is almost certainly empty (because W1 has not been exhausted)
+
+
+<--Z0-->
+<--Z1-->
+<--Z2-->
+<--Z3-->

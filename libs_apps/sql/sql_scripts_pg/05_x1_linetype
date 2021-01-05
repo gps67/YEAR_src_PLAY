@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. ./.env
+# why is user not allowed ...
+# alter table requires select, insert, delete, update, create and drop privileges on the table. 
+pgsql_root <<!EOT
+
+ALTER TABLE line_id rename linetype to x2;
+
+
+

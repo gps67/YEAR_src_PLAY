@@ -1,0 +1,37 @@
+
+	## CALLER MUST SET $(TGT)
+	##
+	## TGT=WIN32
+	## TGT=LGX
+	## TGT=ARM# maybe
+
+	## TOP_libs_apps is the libs_apps TOP dir
+	##
+	TOP_libs_apps=/home/gps/YEAR/src/libs_apps
+	##
+	## remember that it uses hardcoded pathnames too
+	## hardcoded into its files .../lib/pkgconfig/XXX.pc 
+
+	## libs_apps provides
+        PKG_CONFIG_dirs += $(TOP_libs_apps)/lib_pkgconfig/$(TGT)
+        PKG_CONFIG_dirs += $(TOP_libs_apps)/lib_pkgconfig
+
+	# mozjs 78 installed on each machine
+        PKG_CONFIG_dirs += /home/gps/G/prefix/lib/pkgconfig/
+
+
+#        PKG_CONFIG_dirs += /usr/lib/pkgconfig
+#        PKG_CONFIG_dirs += /usr/share/pkgconfig
+#        PKG_CONFIG_dirs += /usr/local/lib/pkgconfig
+#        PKG_CONFIG_dirs += /usr/lib32/pkgconfig
+
+        SP=$(empty) $(empty)# SINGLE SPACE
+        COLON=:# no  spaces
+        PKG_CONFIG_PATH=$(subst $(SP),$(COLON),$(PKG_CONFIG_dirs))
+	export PKG_CONFIG_PATH
+
+	## YOUR MAKEFILE THEN STATES THE FOLLOWING
+	##
+	## INCL += `pkg-config libs_apps_base2 --cflags`
+	## LIBS += `pkg-config libs_apps_base2 --libs`
+	##

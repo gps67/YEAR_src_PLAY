@@ -1,0 +1,11 @@
+prefix=/tools/2000/libs
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_pdflib
+Description: LIBS_APPS uses PDFLIB (which requires GPL)
+Version: 0.1.2
+
+Libs:  -L${libdir} -lpdf 
+Cflags:  -I${includedir}

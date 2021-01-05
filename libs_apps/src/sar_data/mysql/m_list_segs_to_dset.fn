@@ -1,0 +1,60 @@
+
+/*!
+	Fetch the list of all data segments that overlap the [t0[t2
+	time range. Listed segment may exceed the time range, but
+	being adjacent is not interesting.
+*/
+bool dset_api_MySQL::list_segs_to_dset(
+	dset_api * dset,
+	mem_line_spec * spec,
+	time_t t0,
+	time_t t2
+) {
+	long line_id = -1;
+	if( !table.find_line( spec, line_id ))
+	{
+		e_print("Request for absent SPEC\n");
+		return FALSE;
+	}
+
+	enq.clear();
+
+	enq.put( "SELECT t0,t2 from seg where line=" );
+	enq.put_d( line_id );
+
+ if(0) {
+	time_t t0_edge_lo = t0 - (7*24*60*60);
+	time_t t0_edge_hi = t2 + (7*24*60*60);
+	// optimise search
+	enq.put(" and t0>=");
+	enq.put_d(  t0_edge_lo );
+ }
+
+	// seg starts before range end
+	enq.put(" and t0<");
+	enq.put_d(  t2 );
+
+	// unoptimised seg ends before range start
+	enq.put(" and t2>");
+	enq.put_d(  t0 );
+
+	enq.put(" ORDER BY t0,t2");
+	enq.trailing_nul();
+
+	// LURK // store_results will overflow!
+	if( !mysql->query_use( enq )) {
+		return FALSE;
+	}
+	bool ok = TRUE;
+	while(1) {
+		MYSQL_ROW row = mysql_fetch_row( mysql->results );
+		if(!row) break;
+		int seg_t0 = atoi( row[0] );
+		int seg_t2 = atoi( row[1] );
+		if(! dset->listed_seg( spec, seg_t0, seg_t2 ))
+			ok = FALSE;
+
+	}
+	return ok;
+}
+

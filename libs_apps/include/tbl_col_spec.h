@@ -1,0 +1,1 @@
+../src/lib_accts/table/tbl_col_spec.h

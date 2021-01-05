@@ -1,0 +1,8 @@
+
+OK name is duplicated (to feel how it sees)
+SO
+	This looks to be the elements of a tree
+	Where the PSG TREE (instance) is stored
+	But there are some parallel versions:
+
+

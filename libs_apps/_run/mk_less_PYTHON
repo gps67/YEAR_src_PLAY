@@ -1,0 +1,12 @@
+
+# BOTH the variable AND the command line var setting for make are required
+# ie shell and make both get told
+# nb g++ is told with -DWITH_PYTHON=anything // or not defined at all
+# this is so that ./mk uses a different DIR!
+# build obj_ref0 - this is experimental
+
+	export WITH_PYTHON=1
+	T=obj_ref0.o
+	T=JS1.o
+	./mk WITH_PYTHON=1 "${@:-$T}" 2>&1 | less
+	# ./mk "$@" 2>&1 | more

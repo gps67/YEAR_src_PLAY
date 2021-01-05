@@ -1,0 +1,11 @@
+
+ifeq ($(WITH_PDFLIB),1)
+	OBJS += $(OBJS_PDFLIB)
+	DEFS += -DWITH_PDFLIB
+	PREFIX_PDFLIB = /tools/2000/libs
+	INCLS += -I $(PREFIX_PDFLIB)/include
+	LIBS += -L $(PREFIX_PDFLIB)/lib
+	LIBS += -lpdf
+	LIBS += -Wl,--rpath=$(PREFIX_PDFLIB)/lib
+endif
+

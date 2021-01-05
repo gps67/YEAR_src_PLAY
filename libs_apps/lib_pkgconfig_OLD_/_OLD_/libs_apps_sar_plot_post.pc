@@ -1,0 +1,12 @@
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_sar_plot_post
+Description: Libraries and Applications - sar_plot_post
+Version: 0.1.2
+
+Requires: libs_apps_base2 
+Libs:  -L${libdir} -lsar_plot_post
+Cflags:  -I${includedir}

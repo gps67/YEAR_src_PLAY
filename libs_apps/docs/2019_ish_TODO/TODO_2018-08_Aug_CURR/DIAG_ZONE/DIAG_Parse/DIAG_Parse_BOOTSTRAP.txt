@@ -1,0 +1,43 @@
+2019-09-02 Sep Mon 00:52 DIAG_Parse_BOOTSTRAP.txt
+
+	There are more than 1 parser
+
+		YACC
+		top-down-parse
+		ABCD_PQ_TREE _ parser
+		REXP based, with generated RE's
+	
+	The bootstrap can be done from any of them
+
+		TEST CODE reports OK
+		If it doesn't exist, who told you it was OK
+	
+	TEST DATA
+
+		Things pre-loaded during TESTS
+		are not learned for CACHE, except FAST PRLOADED
+
+			uses same CT as TESTS, but does learn into CACHE DB
+	
+		OK BOOTSTRAP is done with care
+
+			keep generated C++ code
+			generate from recent / similar / same version
+			run covereage tests // never less
+			BENCH view testset results # 
+			BENCH run testset for BUG_1234
+
+		LOCKED BACKWARDS
+
+			YACC EXPR precedence
+
+		LOCKED FOREWARDS
+
+			ABCD_PQ_PLUS
+			
+				thread_var[ "name" ]
+				thread_var[ TOKEN ]
+				Thread_var & TOKEN_x {
+				...
+				}
+				

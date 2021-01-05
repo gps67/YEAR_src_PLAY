@@ -1,0 +1,10 @@
+
+
+Name: link_with_media
+Description: LIBS_APPS uses ..
+Version: 0.1.2
+
+Requires: link_with_base2 
+
+Libs: libmedia.dll
+Cflags:

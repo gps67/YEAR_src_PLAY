@@ -1,0 +1,8 @@
+. ./.env
+no_db
+pgsql_root <<!EOT
+	ALTER USER $USER_NAME
+	WITH PASSWORD '$USER_PASS'
+	;
+
+

@@ -1,0 +1,22 @@
+#!/usr/bin/env gnuplot
+
+set xdata time
+## set format x "%Y-%m"
+## set timefmt "%Y-%m-%d"
+set format x "%H:%M"
+set timefmt "%H:%M"
+
+plot 'data1.csv' using 3:4 with linespoints
+pause -1
+plot 'data1.csv' using 3:5 with linespoints
+
+# set nomultiplot
+
+
+# percentage tax paid
+# 21K pays 35% 40 K pays 40%, 70K paye 45%
+# plot 'g3' using 5:($15/$5 * 100.0) with lines
+
+# 5K earns 25% tax cred, 8K is zero
+# plot 'gas_elec.csv' using 5:($15/$5 * 100.0) with lines
+pause -1

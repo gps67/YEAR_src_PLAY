@@ -1,0 +1,33 @@
+
+ pipe_to_tar
+
+	cd_to( run_dir ) // unset, same as parent process
+	tar_cd_to( tar_top_dir ) // -C dir // passed to tar
+
+
+        pipe_to_tar tar; //
+	tar.set_C_dir( const char * subdir );
+
+		str1 tar.subdir = subdir; // locally mallocd copy
+
+        tar.set_argv_untar( ); // tar -C subdir -zxvf
+
+		tar.argv_reset();
+		tar.argv_add( "tar" );
+		tar.argv_add( "-C" );
+		tar.argv_add( subdir );
+		tar.argv_add( "-zxvf" );
+		tar.argv_add( "-" );	// stdin
+
+        tar.set_p_standard_input( true ); / win32 strangeness in api
+        tar.run_async(); // start
+
+	fd =  tar.standard_input;
+	fd =  base64_decoder_to_fd decoder( fd );
+	write( fd, buf, nbytes );
+
+        close( tar.standard_input );
+
+
+
+

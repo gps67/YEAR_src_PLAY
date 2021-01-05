@@ -1,0 +1,91 @@
+
+No its not post office protocol,
+put that out of your mind.
+It is named after P0P2 (also not ... ok )
+
+ BUFF:   [P0 ... [P2
+
+It has 4 zones R2 W2 R1 W2 and rhs_nbytes makes 5 points
+
+There is an extra constraint that P0 and P4 cannot be changed (except ...)
+So that leaves P1 P2 P3
+
+The interface usually provides a P0 and P4, but they come from the parent P0P2
+
+VIEW:
+
+	P0            P4
+	    P1 P2 P3
+
+VIEW:
+
+	P0     		// unavailable P4 other than P3.nbytes=P4-P3
+	    P1 P2 P3
+
+VIEW:
+	Z0 Z1 Z2 Z3 
+
+	Z0 Z1 Z2 Z3 # P4 = _admin_ .nbytes
+
+((goes off a bit here, above is much stronger))
+((something about there being 3 VARIABLE pointers, + parents P0P2))
+((other view, is that there are still 4 zones, _IF_ they are subzones))
+((Each subzone can be an object of nbytes, or three u32_exprs with anyvalue))
+
+VIEW:	_CODE_POINT_in_vm( A, B, C )
+VIEW:	_CODE_POINT_in_vm( B, C, D )
+
+VIEW:	_CODE_POINT_in_vm( D, E, F )
+VIEW:	_CODE_POINT_in_vm( u5, u8, F )
+
+	u16 = lookup_u16("u16");
+	u8 = lookup_u8("u8");
+	u5 = lookup_u5("u5");
+
+-or-
+	u5 = lookup_u5("NAME2");
+	u8 = lookup_u8("NAME3");
+	u16 = lookup_u16("NAME4");
+-then-
+
+	TABLE = FIELDNAME_IN_PAGE_TABLE[ u5 ]
+
+VIEW	P0P4
+VIEW	@ABC
+VIEW	u32_EA_EXPR u32_hilo_idx[3] A,B,C // of @ABC
+
+	@ = _code_point_
+		ROM["SPEC"]
+		SCRIPT_LINE["__LINE__"]
+		script_vm_stack["CTXT"]
+		module {list}
+
+	A = u32_idx EA_EXPR_A
+	B = u32_idx EA_EXPR_B
+	C = u32_idx EA_EXPR_C
+
+	code_point controls how EA_EXPR_i is interpreted
+	code_point is probably a script function and internal state(vm_stack)
+
+VIEW	PAIR L2R R2L
+VIEW	R2 W2 R1 W1
+	 --t-e-x-t---> buf_P0P4  --> {RHS}
+	<---stream---< buf_P0P4 <-- -pkt-in- 
+	+= hi_tide 
+
+VIEW	R2 -- R1 --	# Read  (2 zone, then expand or flush)
+VIEW	-- W2 -- W1	# Write (2 zone, then expand or flush)
+VIEW	-- -- R1 --	# simplistic (1 zone, then try again)
+VIEW	-- -- -- W1 	# simplistic (1 zone, then try again)
+VIEW	R2 W2 R1 W1	# generic 4-zone
+VIEW	Z0 Z1 Z2 Z3	# generic 4-zone
+VIEW	Z3 Z4 Z1 Z2	# generic 4-zone # sequence used is confundado
+
+VIEW	R2 -- -- --
+VIEW	-- W2 -- --
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+c-ares is one option
+
+Another (which can do YP) is to fork a blocking process (?thread?)
+and then send it a series of question, processed sequentially.
+
+	REQ:	ID	ghbn( "name" [,flags] )
+	ACK:	ID	ghbn( "name", u32_hi_lo  ipaddr[] )
+

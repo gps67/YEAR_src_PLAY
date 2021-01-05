@@ -1,0 +1,9 @@
+
+# lynx http://localhost:8282/abc
+(
+echo "GET / HTTP/1.0"
+echo "Host: abc"
+echo
+sleep 1
+) | telnet localhost 8282
+# telnet sky 8282

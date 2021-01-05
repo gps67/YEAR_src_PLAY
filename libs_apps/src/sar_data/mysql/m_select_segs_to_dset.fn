@@ -1,0 +1,83 @@
+
+/*!
+	Ask this producer to send data to the dset consumer.
+
+	The MySQL database uses zlib compressed BLOB's to hold segs.
+*/
+bool dset_api_MySQL::select_segs_to_dset(
+	dset_api * dset,
+	mem_line_spec * spec,
+	time_t t0,
+	time_t t2
+) {
+	long line_id = -1;
+	if( !table.find_line( spec, line_id ))
+	{
+		e_print("Request for absent SPEC\n");
+		return FALSE;
+	}
+
+	enq.clear();
+
+	enq.put( "SELECT t0,t2,data from seg where line=" );
+	enq.put_d( line_id );
+
+ if(0) {
+	time_t t0_edge_lo = t0 - (7*24*60*60);
+	// time_t t0_edge_hi = t2 + (7*24*60*60);
+	// optimise search
+	enq.put(" and t0>=");
+	enq.put_d(  t0_edge_lo );
+ }
+
+	// seg starts before range end
+	enq.put(" and t0<");
+	enq.put_d(  t2 );
+
+	// unoptimised seg ends before range start
+	enq.put(" and t2>");
+	enq.put_d(  t0 );
+
+	enq.put(" ORDER BY t0,t2");
+	enq.trailing_nul();
+
+	// LURK // store_results will overflow!
+	if( !mysql->query_use( enq )) {
+		return FALSE;
+	}
+	bool ok = TRUE;
+	while(1) {
+		MYSQL_ROW row = mysql_fetch_row( mysql->results );
+		unsigned long * lens = mysql_fetch_lengths( mysql->results );
+		if(!row) break;
+		int seg_t0 = atoi( row[0] );
+		int seg_t2 = atoi( row[1] );
+
+		int n_flts = ( seg_t2 - seg_t0 ) / spec->dt;
+		float flts[ n_flts ];
+
+		uLongf explen = n_flts * sizeof( float );
+		uLongf explen1 = explen;
+
+		int t = uncompress(
+			(Bytef*) flts,
+			& explen,
+			(Bytef*) row[2],
+			lens[2]
+		);
+		if( t != Z_OK ) {
+			fprintf(stderr, "uncompress fail %d\n", t );
+			return FALSE;
+		}
+		if( explen != explen1 ) {
+			fprintf(stderr, "explen %ld explen1 %ld fail\n",
+				explen, explen1 );
+			return FALSE;
+		}
+
+		if(!dset->merge_floats( spec, seg_t0, n_flts, flts ))
+			ok = FALSE;
+	}
+	return ok;
+}
+

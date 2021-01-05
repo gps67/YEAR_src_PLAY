@@ -1,0 +1,24 @@
+
+	gen_ps {
+		val = fxp_12_4_val_12(); 
+		fmt= "%d";
+		//
+		fmt( fmt, val ); 
+	}
+
+	gen_ps {
+		fmt = "0x%4.4X %s";
+		val = fxp_12_4_val_12(); 
+		str = "xpos4"; // fxp_12_4_ps_loader_cmd
+		//
+		fmt( fmt, val, str ); 
+	}
+
+	ONE_POINT is (not) res enough except for specially prepared aligned layouts
+	PTH is 1152 dpi x16 IS plenty for fine grain points that match spline factors
+	PT1 is 72 dpi
+
+		u12_
+
+	class dpi_72_i32 {
+		

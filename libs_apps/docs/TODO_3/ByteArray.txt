@@ -1,0 +1,10 @@
+ByteArray
+
+	ES5 code
+	u32_lohi u32_hilo
+	u8 decoding
+		prebuild tbl[u8] 
+	u8 stream de-serialiser
+	alloc
+
+

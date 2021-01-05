@@ -1,0 +1,18 @@
+
+
+Name: libs_apps_gtk
+Description: libs_apps uses gtk which is sometime a trick 
+Version: 0.1.2
+
+# the IMCROSS pkgconfig is supposed to provide this
+
+Requires: gtk+-2.0
+
+Libs: 
+
+Cflags: -DWITH_GTK2 
+# this changes w_widget0.h #include <gtk/gtk.h>
+# otherwise it is the STUBS and they may be wrong
+# _into_base2
+
+# NO # caller does own thing

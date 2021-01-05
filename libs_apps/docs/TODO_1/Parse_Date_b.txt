@@ -1,0 +1,35 @@
+The date parser (amoungst other parser things) should
+be able to be programmed, using demo values, and an editor workbench.
+
+The easy way is to require the template date to have a single value 
+
+	1999-12-31 23:59:58 GMT Dec
+
+But the idea of sample date is to take snippets from the users world,
+and progressively upgrade them to tightly bound templates.
+That sounds confusing, so: what about when sample data uses TWO date_times ?
+
+The bench should act like a wave passing forwards and backwards,
+substituting TYPES and demo VALUES for each VARIABLE.
+The special date "two seconds to midnight" is the name of the type.
+The special value is the users sample data, which resolves:
+
+	12:15 Apr 11 2003 
+	23:59 Dec 31 1999  # 58=default(00) 12=from_Dec GMT=default(timezone_ABC_input) 
+	1999-12-31 23:59:58 GMT Dec
+	1993-04-11 12:15:00 GMT Apr
+
+Slight spin-offs for variants, 1pm becmes 12+1, 1am becomes 0+1, Dec=from_12()
+(tree of rules that code might pick from)
+
+** AND THEN ***
+
+	debugging becomes the flip side of designing
+
+	the designer provides sample data, well recognised edge cases
+	the debugger provides current data
+	the unit-test debugging-designer single steps though provided edge cases
+	the diagrams take ages to write, but debugs the code as it grows
+	ACTIVE DIAGNOSTICS
+
+** BUT ** (eof - this will never happen, no funds energy available at current time %)

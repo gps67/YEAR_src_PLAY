@@ -1,0 +1,19 @@
+#
+# fns_must_be_tty
+
+	function must_be_tty()
+	{
+	# if the <&1	
+		# not a tty # amp is within backquotes # if T=`tty <&1`
+		if T=`tty` 
+		then
+			echo "# PASS # is a tty # $T"
+		else
+			fn_FAIL 1 "$0 stdout must be tty - not less or '$T'"
+		fi
+	}
+	function stdout_must_be_tty()
+	{
+		must_be_tty <&1
+	}
+

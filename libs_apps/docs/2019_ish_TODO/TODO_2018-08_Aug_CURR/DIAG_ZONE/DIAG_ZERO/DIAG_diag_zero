@@ -1,0 +1,164 @@
+
+ MATCH diag[ default 0 ] 
+ MATCH diag[ "diag_zero" ] // TOKEN // SPEC_TOKEN uses SPEC_diag
+
+
+ DIAG [ diag_zero ] SCRIPT_ZERO = SHEET = {
+   ## MATCH TYPE == SHEET_CODE_DATA_SPEC
+   ## MATCH TYPE == SHEET_by_type { SPEC_TREE_sto }
+
+	SHEET = ALIAS
+		## STORE { 
+			## these are pivoting in from parallel diag sheets
+			## cache finds links, user weaves them in
+			## default safe_scripts_checker ## TIS SO ## TIS OK 
+			##
+			with SHEET = self ;
+
+			with data = SHEET.data ;
+
+			with STO = data.getval_STO( CTXT ); // CTXT2
+
+			with BYTE[ OFFS_EXPR ]
+
+			## gimme PSG of above line
+			## connect the KNEW items via POOL
+
+			with SPEC = self.SPEC == LIBR[ SPEC_from_DATA("this") ]; // 
+			with CTXT.add_CTXT_for_SPEC[ SPEC ] // DATA
+		}
+		## STORE CTXT {
+			## MATCH compiles to esperanto JIT
+			## MATCH ABCD_PQ
+			## MATCH "diag_zero" // frame adds preload "TOKEN"
+
+			HERE {
+				# OK you write this script
+				# it provides u8 DATA[]
+				# it provides SPEC * CODE_POINT[ "%4X" ] SHEET
+			}
+
+
+			... etc ...
+		}
+			
+		## MATCH TYPE
+		## MATCH TYPE DIAG
+		## MATCH TYPE DATA
+		## MATCH TYPE ABLE
+
+			## MATCH TYPE CALL ABLE
+			## MATCH TYPE ABLE and CALL
+				## MATCH TYPE ABLE { SPEC }
+				## MATCH TYPE ABLE { SPEC: RET CALL call_able() }
+				## MATCH TYPE ABLE { call_able() }
+
+
+   	
+	SHEET.
+
+ }
+
+
+MORE [ TWIN_LAYER } {
+	OVERLAY {
+	 LAYER {
+	 }
+	 LAYER SPEC {
+	  DIAG {
+	  	Everything is on DIAG
+		DIAG = DIAG_old + DIAG_new + DIAG_patch
+		DIAG = DIAG_here + DIAG_there + DIAG_where
+		VIEW = caller calls this parametised list { SCRIPT DATA }
+		VIEW = FG_BG _with_ { CTRLs }
+
+	  }
+	  FG_BG {
+	    FG {
+	    	TEXT THAT MACRO ADDS
+	    }
+	    BG {
+	    	${VARNAME}
+		${VAREXPR}
+		%s
+		"%0x4.4X"
+		"str"
+		TOKEN
+		PHRASE
+	    }
+	    BG {
+		PHRASE is a Z-SHEET or BLOCK-SHEET or OBJ_SHEET {
+			probably contains ${BG = lookup[ "item" ]
+
+			DIAG_ONE -noname- {
+			  ITEM = lookup( "item" )
+			  ##
+			  ## MORE INFO HERE
+			  ## TOKEN "ITEM"
+			  ## TOKEN "\"%s\"" IDENT99( & TOKEN ) "item"
+			  ## META ## add "summut" to LEXV[ current_line_pos_append ]
+			  ## META ## VIEW = Q2_WRAP( IDENT99.spelling )
+			  ## META ## TEST = VALID TOKEN_EXPR( IDENT99.spelling )
+			}
+		}
+	    }
+	    ADJ VIEW {
+	  	+/- SHOW WORKINGS
+	    }
+	    ALIASES { POOL . exported . imported . connected . GRIP
+	  } // </FG_BG>
+	   
+	 }patch
+	 LAYER ctxt.data aka { DATA }
+	 LAYER PEER_GROUP {
+	  ## NO ## local variations
+	  ## YES ## direct read access
+
+		   FG_BG
+		   BG_FG
+		   BG
+		   FG
+		   ADJ
+
+	   # CVS links to ADJ etc and adds NEW DEL and maybe LOCKS for free
+	  }
+
+	 LAYER DATA {
+
+	 	u8 DATA[ u32_addr_offs ] 
+
+			load()
+			lock_code()
+			link_code()
+
+			request_suggest {
+			 	// CT CPU_VAR SPEC * obj_spec; {
+				 SPEC {
+				  NOTE { /*
+				  	CACHE use becomes CODE PRELOAD
+
+					 TRACK detect_first_use_of CACHE ITEM
+					 TRACK detect_last_users 
+					 GENERATE early_pre_close() {
+					 	release_locks_to_GRIP
+					 	flush_to_sync()
+
+					 }
+				  */ }
+				 }
+				}
+				SPEC = lookup( "SPEC" )
+			}
+
+	 }
+
+	 TEMPLATE_SHEET {
+	 		SPEC tree_parent BASE_CLASS[ "root" ]
+			DATA ctxt_data
+	 }
+	}
+}
+
+
+
+

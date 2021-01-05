@@ -1,0 +1,19 @@
+
+Multiple g_io_add_watch_full() on win32, last one wins.
+
+
+I want to create (3) multiple watches for G_IO_IN, G_IO_OUT, G_IO_others,
+so that I can unsubscribe IN and OUT independently. (PRI|ERR|HUP|NVAL).
+
+It appears, that only the last watch created is handled properly.
+If G_IO_OUT is the last watch created, it is called when connect()
+happens. Otherwise it is never called. In that case G_IO_IN's
+watch is never called.
+
+I have a single source file that works fine on UNIX,
+but fails on WIN32, and also varies with the order of watches.
+g_io_channel_win32_set_debug shows a loop without anything matching.
+It comes with a makefile that needs IMCROSS and PKG_CONFIG_PATH.
+It gives similar results on XP-SP2 and on WINE.
+
+	g_io_channel_win32_new_socket()

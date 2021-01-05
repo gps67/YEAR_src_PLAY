@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. ./.env
+# why is user not allowed ...
+# alter table requires select, insert, delete, update, create and drop privileges on the table. 
+pgsql_root <<!EOT
+
+-- USE $BASE_NAME;
+
+-- NO ENUM
+-- ALTER TABLE line_id ADD linetype ENUM( 'series', 'point_time', 'point_date' ) NOT NULL AFTER id;
+
+--ALTER TABLE line_id ADD linetype char(1) NOT NULL DEFAULT 'series' -- AFTER id;
+ALTER TABLE line_id ADD linetype text NOT NULL DEFAULT 'series' -- AFTER id;
+
+-- key does NOT use linetype
+
+-- ALTER TABLE line_id DROP PRIMARY KEY;
+
+-- ALTER TABLE line_id ADD PRIMARY KEY
+-- (site,host,dev,cmd,opt,attr,dt,avg);
+
+

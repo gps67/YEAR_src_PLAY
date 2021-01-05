@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. ./.env
+echo -n "DROP DATABASE? - press CTRL-C"
+read junk
+# mysql_user <<!EOT
+mysql_root <<!EOT
+drop database $BASE_NAME;

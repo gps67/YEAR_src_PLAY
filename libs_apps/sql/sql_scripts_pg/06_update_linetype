@@ -1,0 +1,9 @@
+#!/bin/sh
+. ./.env
+
+pgsql_user <<!EOT
+	update line_id
+	set linetype='series'
+	where cmd='sar'
+	;
+--	select cmd,dev,attr,linetype from line_id;

@@ -1,0 +1,147 @@
+
+bool tm_parts::http_parse( const char * str )
+{
+        // 'Mon, 16 Sep 2002 16:37:14 GMT'
+        char sun[5+10];
+        int _dd;
+        char jan[5+10];
+        int _year;
+        int _h;
+        int _m;
+        int _s;
+        char gmt[5+10];
+        int itemcount = sscanf( "%4s, %d %4s %d %d:%d:%d %4s", str,
+                & sun,
+                & _dd,
+                & jan,
+                & _year,
+                & _h,
+                & _m,
+                & _s,
+                & gmt
+        );
+        if( itemcount != 8 )
+        {
+                fprintf(stderr,"tm_parts::http_parse(%s) failed\n", str );
+                return false;
+        }
+        return true;
+}
+
+-------------------------------------------------------------
+        // 'Mon, 16 Sep 2002 16:37:14 GMT'
+
+Build a sample with unique values
+
+        // 'Tue, 01 Jan 2002 11:50:00 GMT'
+
+List strings used within template, maybe first alias, typecol, speccol
+
+	[0]	Tue	Tue
+	[1]	01	DD
+	[2]	Jan	Jan
+	[3]	2002	Year
+	[4]	11	H_Hour
+	[5]	50	M_Min
+	[6]	00	S_Sec
+	[7]	GMT	DST_STR
+
+Build a compiled template frame using the above info
+Researching into the individual field types produces an FSM much like this scanf
+
+        STRING_SCANF_fmt = "%4s, %d %4s %d %d:%d:%d %4s"
+
+At this stage you can generate a scanf parser much like the top one
+(TODO - write out this phrase_book entry in full)
+
+The actual PSG Parser generator uses the following EXPRS:
+
+Tue.PSG_RULE "ABC" -> ONE_OF "ABC" ... ENUM LIST OF KNOWN NAMES
+	Tue -> ONE_OF "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun"
+
+		"SIMPLE_WORD_LIST = { Mon Tue Wed Thu Fri Sat Sun }"
+
+The PSG Generator will ONE DAY be able to detect common prefix's
+of multiple branches. To keep it simple, for now it receives:
+
+	R = Tue.PSG_RULE = new_RULE RULE_1234
+	R.BASE_TYPE_IS_ONE_OF_LIST
+	R1 = SPELLING("Mon")
+	R2 = SPELLING("Tue")
+	R.add( R1 )
+	R.add( R2 )
+	R.add( R3 )
+}
+
+The the PSG Generator might have a detailed letter by letter scan:
+
+
+	if( c1 == "T" )
+
+		if( c2 == "u" )
+
+
+		if( c2 == "h" )
+
+
+		else NO_MATCH
+
+That is itself built from an FSM rail-track-panels (planes)
+
+
+	+ M
+	+ T
+	+ W
+	+ F
+	+ S
+	X NOMATCH
+
+
+		  / -- u -- + -- e -- MATCH	dow = 2
+		  |         \ -- X -- NOMATCH
+		  |                          
+		T + -- h -- + -- u -- MATCH	dow = 4
+		  |         \ -- X -- NOMATCH
+		  |                          
+		  |         \ -- X -- NOMATCH
+		  \ -- X -- NOMATCH
+
+		  / -- u -- + -- n -- MATCH	dow = 0
+		  |         \ -- X -- NOMATCH
+		  |                          
+		S + -- a -- + -- t -- MATCH	dow = 6
+		  |         \ -- X -- NOMATCH
+		  |                          
+		  |         \ -- X -- NOMATCH
+		  \ -- X -- NOMATCH
+
+
+Back to the overall template
+
+        // 'Mon, 16 Sep 2002 16:37:14 GMT'
+        // 'Tue, 01 Jan 2002 11:50:00 GMT'
+        // '[0], [1] [2] [3] [4]:[5]:[6] [7]'
+        // '%4s, %d %4s %d %d:%d:%d %4s'
+
+	[0]	Tue	Tue		%3s
+	[1]	01	DD		%2.2d
+	[2]	Jan	Jan		%3s
+	[3]	2002	Year		%4d
+	[4]	11	H_Hour		%2.2d
+	[5]	50	M_Min		%2.2d
+	[6]	00	S_Sec		%2.2d
+	[7]	GMT	DST_ST		%s
+
+	The editing view has upgraded the samples values to name_12_desc
+	(You can get the sample values from a well chosen data item,
+	but you still get the field list by simply finding word edges
+	at SP : ,
+
+	Future edits might rearrange the fields (morph over the
+	full list of fields in a date_time_field, then sub-views).
+	This VIEW holds the original data. When it is edited, the
+	desktop cat to take care not to confuse anyone using the
+	EXPORT LIST. From time-to-time gc_clone allows the EXPORT
+	LIST itself to be FORKED, and reworked. Within each (SUBSET FIXED)
+	EXPORT LIST, there can be any number of EDIT-versions or
+	of different phrases/views.

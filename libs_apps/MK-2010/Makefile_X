@@ -1,0 +1,99 @@
+#
+# different ARCHITECTURES compiled on the same machine
+#
+
+# TGT=WIN32
+# TGT=ARM
+# TGT=i586
+# TGT=LGX
+
+#SYNTAX: else ifxxx must be on same line to only have one endif
+
+# not much detail specific to the app
+# but some
+# and its hard to make it all work at the same time
+
+	YEAR=2009
+
+include $M/Makefile_X_$(TGT)
+
+	AR=ar
+
+# quick test incase above failed ############
+ifeq ($(TGT),ARM) ###########################
+	OPTIM += -fPIC
+ else ifeq ($(TGT),WIN32) ####################
+# NO	OPTIM += -fPIC
+	AR=$(WIN_AR)
+ else ifeq ($(TGT),i586) ####################
+	OPTIM += -fPIC
+ else ifeq ($(TGT),L24) ####################
+	OPTIM += -fPIC
+ else ifeq ($(TGT),LGX)	#####################
+	OPTIM += -fPIC
+ else	#####################################
+	error #
+endif
+#############################################
+
+# GCC 
+#
+#	The above Makefile_X_TGT should have selected $CXX which is gcc
+#	Cross compilers use either a PATH, or a $CXX name, but its still g++
+#	If it isnt, you really want a gcc top end that calls your compiler
+#	or to also change these other things
+
+	CFLAGS += $(GCC_M_ARCH)
+	CFLAGS += -g
+# 	CFLAGS += -O1
+#	CFLAGS += -O2
+	CFLAGS += -Wall
+	DEFNS += -DHAVE_STDARG_H # I suspect this is unused by .c and sys.h
+
+	OPTIM += $(CFLAGS_GTK)
+
+### COMMON ###
+
+	#
+	# the i586 handset might not have the same ROOT_here/airbook/gtk/lib
+	# as the WIN32 handset, and so these common settings
+	# might need to be refactored again
+	#
+	# also note that the ROOT_openssl_static dir
+	# is used to compile and link against
+	# but might not be installed on the handset
+	# add a name component 'to_build_against'
+	#
+	# this started out as an image of the ARM handset
+	# which DOES have the .a and .h files available
+	#
+	# see the chroot scripts that also did something similar (merge)
+	# /nfs/md7/AIR/HANDSET/BUILD/HANDSET_i586/chrt_bin_bash
+	#
+
+	# a SYMB link
+	PREP_LIST += ROOT_openssl_static
+
+#	LINKS_SSL += -L ROOT_openssl_shared/airbook/lib
+	LINKS_SSL += -L ROOT_openssl_static/airbook/lib
+	LINKS_SSL += -lcrypto
+	LINKS_SSL += -lssl
+	INCLUDE_SSL_DIR += ROOT_openssl_static/airbook/include/openssl
+#	INCLUDE_SSL_DIR += ROOT_openssl_shared/airbook/include/openssl
+
+	# It is HOPEFULLY quite harmless to pit it on the INCLUDE LIST
+	# It is quite WASTEFUL to put it on the LINK list
+	# Suggest link anywhere gtk is used!
+	# it also uses -lgdi32 and -lws2_32, but who doesnt
+
+	LINK_GTK += $(LINKS_SSL)
+	INCLUDE_PATH_LIST += $(INCLUDE_SSL_DIR)
+
+	# NOW ON COMMAND LINE (albeit unused) #
+	# CFLAGS += $(INCLS)
+
+
+ ifeq ($(WITH_INSIGHT),1)	###################
+	INSIGHT_CMD=$(INSIGHT_EXE)
+ endif
+

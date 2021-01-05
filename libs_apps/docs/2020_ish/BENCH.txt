@@ -1,0 +1,60 @@
+BENCH.txt
+
+	wish_me.tcl
+
+		source site_settings
+		source wish_me_auto_files
+
+		figure_out_how_called _into_action_plan
+		MENU: run_plan
+tcl case # BENCH edits them for you #
+
+	start BENCH browser on VFS += . # ../libs_apps/.
+	set BENCH BENCH ;# varnames are names # TOKEN _PLUS
+
+	# repeat RUN feature (not time travel soz) # 
+	BENCH += 
+
+-----------------
+
+Tcl_Object
+	refcount
+	STR0 Name; // Name as Val
+	objtype TOKEN_as_STR
+
+	 REF1
+	 REF2
+
+	 EXP1 EXPR_
+	 EXP2 EXPR_
+
+	 PTR1
+	 PTR2
+
+	 WORD_1
+	 WORD_2
+
+ u8[u4] on 64_bit machines
+ u8[u3] on 32_bit machines
+
+ 	 REF1 # PTR1 is a packed u32_BITFILED EA_EXPR # CTXT +=
+	 EXP2 # PTR2 is also REF2 item_expr or expr_expr 
+
+ We could easily create 256 class objects
+
+ 	bool is_EXTN_OBJ()
+ 	bool is_PLUS_Tcl_Object() ;# on of the 256 classes # subtypes available
+
+	maybe use classes[u4]
+	or ...
+
+ ITEM_TYPE is TOKEN spelling with VALUES_CACHE_CSR
+
+
+u32_PTR
+	u8_u8_u16 // MINI_machine of u16_u48
+	u8_u24 // MINI_machine has 256 * POOL[u24] + CODE_SPEC of_HERE
+	u32
+
+	multiple pages of 64K unto u24_bytes // u24_items //
+	MINI_machine uses 5 pages of 64K _items 28 pages of 64K bytes

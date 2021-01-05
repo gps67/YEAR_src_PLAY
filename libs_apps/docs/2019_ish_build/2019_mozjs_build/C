@@ -1,0 +1,46 @@
+# cd js/src
+# /home/gps/2018/src_build/mozjs-65.0.1/js/src/ '' Feb 11
+# following hmmm
+
+. fns_DATE
+LOG_FILE=$0.out.$DATE_YEAR_MM_DD.$$
+
+(
+PATH=$PATH:$HOME/.cargo/bin:
+
+# this failed - enoent after sucessful # apt install autoconf-2.13
+# so ignore ?
+# autoconf-2.13
+
+# echo mozjs* 
+# d_mozjs_ver=mozjs-65.0.1
+# d_mozjs_ver=mozjs-66.0.3 
+  d_mozjs_ver=mozjs-67.0.0 
+
+
+cd $d_mozjs_ver
+
+pwd
+cd js/src || exit
+pwd
+
+# This name should end with "_DBG.OBJ" to make the version control system ignore it.
+d1=build_DBG.OBJ
+[ -d $d1 ] || mkdir $d1
+cd $d1
+
+PFX=$HOME/G/mozjs
+[ -d $PFX ] || mkdir -p $PFX 
+
+# ../configure --enable-debug --disable-optimize --prefix=$PFX
+# NO # python ../$d_mozjs_ver/configure.py --enable-debug --prefix=$PFX
+# NO # python ../configure.py --enable-debug --prefix=$PFX
+# python ../moz.configure --enable-debug --prefix=$PFX
+ask_do \
+../configure --enable-debug --prefix=$PFX
+
+# Use "mozmake" on Windows
+make
+make install
+
+) 2>&1 | tee $LOG_FILE

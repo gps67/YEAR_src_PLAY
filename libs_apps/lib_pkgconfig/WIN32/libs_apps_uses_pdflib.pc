@@ -1,0 +1,24 @@
+# pkg-config --define-variable=TGT=WIN32
+TGT=WIN32
+
+# SPECIFIC to WIN32 because it links with a DLL not an so
+
+prefix_over=../PKGS/PKGS_built/${TGT}
+prefix=${prefix_over}/ROOT_pdflib/pdflib
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_pdflib
+Description: LIBS_APPS uses PDFLIB (which requires GPL)
+Version: 0.1.2
+
+# actually it was downloaded pre-built
+# not yet using for anything much
+
+## Libs:  ${libdir}/pdflib.dll -Wl,--rpath=${libdir}
+## #Libs:  -L${libdir} -lpdf -Wl,--rpath=${libdir}
+## Cflags:  -I${includedir}
+
+Libs:  ${libdir}/pdflib.dll 
+Cflags: -DWITH_PDFLIB -I${includedir}

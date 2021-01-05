@@ -1,0 +1,188 @@
+Accts.txt
+
+Suitability
+
+	single directors journal, more would add too many columns
+
+	few items, no till roll - separate module ?
+
+
+		that module could be this software, folded in,
+		but you would have a lot of inputs, and need 
+		categories per row, from a POS till.
+
+	Simple transactions - no part payments, full refunds only, etc
+
+		if you need splits/joins you will have to iterate them
+
+	The GUI is all wrong, the PDF are nice though.
+	I use a plain-text editor, or another mm3 source.
+
+Not Double Entry - but not far off
+
+	each TRANS has a cash amount and a category
+	The category acts as (an alternative to) the doble entry.
+
+CashBook and Categorised Reports
+
+	The cashbook is sorted by date (and uses date_pay),
+	the Categorised is sorted by category (showing date_tax).
+
+Single Category
+
+	My transactions are simple, they are (mostly) one item.
+
+	I dont have to deal with part-payments, or splits/joins.
+
+	VAT calculations apply to the entire row at a single rate.
+
+	If that doesnt match, you will have to split it down to
+	constituent rows where this would work (and maybe add some
+	common group-row-id.
+
+Polarised Hierarchical Categories
+
+	Catagories exist in a tree of categories.
+
+	All transactions in a subtree should be polarised income
+	or outgoings. This is important with turnover.
+
+	Refunds are obviously the negative of the usual polarity.
+	There should be some flag against contra-polarities,
+	and also discrepancies in VAT categories, but visual is OK.
+
+	Its OK to have a sub-sub-brack that is used for specific values.
+
+	At the top is D-T-O-X-I-N
+
+Negative amounts
+
+	a positive amount is good for the company
+	a negative amount is bad for the company
+	the CASH value is counted, (the goods arent)
+
+	Other systems, originating from times when negative numbers
+	were impossible (or the devils work), have plus and minus
+	pages, income and outgoings.
+
+	If you are used to negative liabilities, then it may appear
+	strange, but is the cash value good for the company?
+
+	Other sub-systems, such as payroll, might have its own
+	polarity (good/bad for the employee), but it imports properly.
+
+Ambiguous Polarity
+
+	I've forgotten, but there was some case which I always
+	put in one direction, but could be done alernatively.
+
+	It might have been a TAX throughput. (TBS)
+
+Zero Transfers
+
+	a transfer, is intended for movement of cash between
+	real bank accounts, and also unreal-journals.
+
+	Close scrutiny goes to transfers between internal (bank)
+	accounts, and external (debt) journals. They have zero
+	value to the company, bu might move chunks of cash into
+	or out of the company. In paractice, these are the sum
+	of lots of accumulating bits, settled in big (zero) amounts.
+
+Immediate cost - Not Barter
+
+	In line with UK accounting, most purchases
+	are "immediately" written off as costs/expenses.
+
+Assets transactions
+
+	"hardware" is considered as asset purchases,
+	they have a 2-in-1 bi-directional value, added to
+	the asset account, which devalues by 25% annually
+
+	ie types of transactions are:
+
+	XFER = TRANSFER
+
+	TRANS = Transaction
+
+	TRANS.out.asset = asset purchase (not quite an expense)
+
+	TRANS.in.asset = asset sale (rare event here)
+
+	TRANS.in.asset_depreciation = asset depreciation (sudden expense)
+
+
+Acrued -vs- Cash assets
+
+	Proper assets have special treatment (auto credits into asset account)
+
+	Minor deferments are carried by two-dates
+
+	Accrued - means entire amount costed at date_tax
+
+	Accrued - should mean long-term costs, divided over time.
+	This doesnt happen. Maybe they could be reported on-top-of
+	(not part of) the accounts.
+
+	Things like annual insurance, might have a carried over value,
+	but these are low for me, and cash-accounted. There is
+	always a working envelope, with annual momentum in annual
+	accounts. Monthly sub-totals might differ.
+
+	TODO: add a spread field, with tokens (enum) for
+
+		spread_value_over_the_following_12_months
+		spread_value_over_the_containing_12_months
+		spread_value_over_the_containing_month
+		spread_value_over_one_day_or_so
+		spread_value_over_three_month_or_so
+		spread_value_over_the_following_24_months
+		spread_value_over_the_following_36_months_see_schedule
+		spread_value_over_the_following_5_years - standard office equip
+
+	UK has a "default" office-equipment depreciation of 25%,
+	but does have some extra rules for the first year. This
+	rather stupidly (jobs for the boys) distinguishes BOOK value
+	from TAX value. Whats the point of having special allowances,
+	if they arent actually real?
+
+Double Date
+
+	Every row has both: date_tax, date_pay
+
+	The difference between them, (eg time for a cheque to clear),
+	should be tracked as an amount of money, held by the row itself.
+
+	Mostly, I dont have this as a problem, and only pay attention
+	at the year end, when I bounce them through some i/o journal.
+
+	You caould add extra code.
+
+VAT multiples
+
+	I have used othere schemes where you can type an actual amount
+	paid, but I only have specific percentages, applied to the row.
+
+	If you have a group of rows that need different rates, you will
+	have to split them into individual rows. ((HINT the group and
+	the subs must not be BOTH counted, one must be marked as INTERT.
+	All rows in a group, can be joined with a group-id field.
+
+VAT Journalling
+
+	Each individual row, is added to the running total journal.
+	Every 3 months, that is reported, and a row generated to 
+	XFER the total into a second journal (t=tax) which is then
+	paid 4+1 weeks later. The first running-total-journal is
+	supposed to hit zero every 3 months, unless new rows
+	have been found/lost. its a shame that HMRC dont do a
+	re-declaration after the year end, to make things match up.
+
+	DETAILS: ((codes used ...))
+
+
+
+
+Alternatives:
+	http://www.altoriopreto.com.br/ctb/ctb_self_en.php

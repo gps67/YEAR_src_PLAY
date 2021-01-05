@@ -1,0 +1,21 @@
+
+fn_EDIT_prompt_var()
+{
+ # set -x
+	local EDIT_prompt="${1:-Prompt}"
+	local EDIT_varname="${2:-VARNAME}"
+eval	local EDIT_value="\$$EDIT_varname"
+	read -r -p "EDIT ${EDIT_prompt}: " -e -i "$EDIT_value" $EDIT_varname
+
+	#read -r -p ": ${EDIT_prompt}: " -e -i "$EDIT_value" EDIT_value
+	#eval $EDIT_varname="'$EDIT_value'"
+}
+
+fn_EDIT_var_prompt()
+{
+	fn_EDIT_prompt_var "${2:-VAR: $1 = }" "$1"
+}
+fn_EDIT_var()
+{
+	fn_EDIT_prompt_var "${2:-VAR: $1 = }" "$1"
+}

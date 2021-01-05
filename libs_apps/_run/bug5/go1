@@ -1,0 +1,8 @@
+
+# export INGDB=1 # only when GDB really is running
+
+INGDB=1 \
+/tools/2005/gdb/bin/insight \
+--command .gdbinit_bug5 \
+accts
+

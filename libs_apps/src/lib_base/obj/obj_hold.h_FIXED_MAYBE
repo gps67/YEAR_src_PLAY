@@ -1,0 +1,25 @@
+
+	BIG BUG
+	BIG BUG
+	BIG BUG
+	BIG BUG
+			obj_hold<type1> var1 = val1;
+	BIG BUG
+	BIG BUG
+	BIG BUG
+	BIG BUG
+			obj_hold<type1> var1; var1 = val1;
+
+MAYBE THIS IS NOT FIXED - and I forgot to update the docs
+
+	The archeological view,
+	found in w_container_.cxx
+	is that the copy constructor,
+	was not setting ptr=NULL;
+
+	Since this is now happening,
+	and it is not crashing (or is it?)
+	I should hunt for all double stepped places, and change them back!
+
+	Of course if it isnt fixed ...
+

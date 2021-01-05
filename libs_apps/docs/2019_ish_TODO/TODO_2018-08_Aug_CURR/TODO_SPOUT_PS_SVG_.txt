@@ -1,0 +1,48 @@
+2019-08-31 Aug Sat 03:23 TODO_SPOUT_PS_SVG_.txt
+
+ SPOUT outputs
+
+ 	SVG raw ASCII
+	PS raw ASCII | 8859 | utf8
+
+	C_CODE_
+		WAX Values
+		WAX Parametised
+		    WAX -> Qt
+			Qt Values
+			Qt Parametised
+		SVG edit
+			remove subtree
+			add subtree
+			change X Y W H FG BG etc anim ?
+	
+	
+	ES5_mujs
+		MUX || ORB || RPC data
+		remote renders PDF (and is probably local)
+		Values || Parametised
+		WASM put pdf on cli
+
+	MUX DIAG SCRIPT
+		binary OBJ[ N ]
+
+		BuildPath
+
+			PATH add point (X,Y)
+			dx = EXPR
+			X += dx
+			PATH jump (X,Y)
+			// other SCRIPT lines that include
+			draw_step_gluph
+
+		SplitJoinPath
+			eg switch PATH use FreeType code 
+			eg close path + draw
+			or PIXMAP does that
+	
+	TEST COVERAGE
+
+		need to detect new TOKEN without backend HANDLER
+		eg SPLINE must be implemented in pixmap
+	
+

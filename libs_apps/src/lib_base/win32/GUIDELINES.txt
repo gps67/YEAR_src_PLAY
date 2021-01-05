@@ -1,0 +1,34 @@
+fosdem-2006.pdf
+
+	do not use dirent.h - use GDir instead (but dirent works?)
+
+	_wfopen(...) instead of fopen(...) uses 16 bits
+	wcslen - not strlen
+	wcscpy
+	...
+	_mbslen(..) = multibyte str
+
+	g_win32_getlocale() // not 
+
+	g_fopen(filename,"rb"); // binary mode
+	#ifndef O_BINARY
+	#define O_BINARY 0 // for UNIX // actually defined for WIN32
+	#endif
+	g_open(filename,O_RDONLY|O_BINARY, 0 );
+
+	illegal char in filename <>|*?:
+
+	G_SEARCHPATH_SEPARATOR == ';'
+
+	#include <winsock2.h>
+	// IP6 // #include <ws2tcpip.h>
+	revc()
+	send()
+	closesocket()
+	ioctlsocket()
+	WSAGetLastError()
+
+	g_io_channel_win32_new_socket()
+	g_io_add_watch() - auto makes non-blocking
+
+	always use: libtool -no-undefined 

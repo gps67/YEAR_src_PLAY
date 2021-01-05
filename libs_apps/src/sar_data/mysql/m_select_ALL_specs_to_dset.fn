@@ -1,0 +1,38 @@
+// virtual
+/*!
+	fetch a list of all lines. No wildcards yet.
+*/
+bool dset_api_MySQL::select_ALL_specs_to_dset (
+	dset_api * dest
+){
+	bool ok = true;
+	enq.clear();
+	enq.put( "SELECT id,linetype,site,host,cmd,opt,dev,attr,avg,dt from line_id " );
+	enq.trailing_nul();
+
+	if( !mysql->query_use( enq )) {
+		return FALSE;
+	}
+	mem_line_spec * spec1 = table.get_temp_spec();
+	while( 1 ) {
+		MYSQL_ROW row = mysql_fetch_row( mysql->results );
+		if(!row) break;
+
+		int line=atoi(   row[0] );	// why unused ??
+
+		spec1->linetype.set( (str0) row[1] );
+		spec1->site    .set( (str0) row[2] );
+		spec1->host    .set( (str0) row[3] );
+		spec1->cmd     .set( (str0) row[4] );
+		spec1->opt     .set( (str0) row[5] );
+		spec1->dev     .set( (str0) row[6] );
+		spec1->attr    .set( (str0) row[7] );
+		spec1->avg     .set( (str0) row[8] );
+		spec1->set_dt( atoi( row[9] ));
+
+		table.find_set( line );
+
+		if( ! dest -> merge_spec( spec1 )) ok= FALSE;
+	}
+	return ok;
+}

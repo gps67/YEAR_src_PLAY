@@ -1,0 +1,14 @@
+
+Name: libs_apps_glib
+Description: libs_apps uses glib but maybe not gtk
+Version: 0.1.2
+
+# the IMCROSS pkgconfig is supposed to provide this
+
+Requires: glib-2.0 gobject-2.0
+
+Libs: 
+Cflags:
+Cflags: -DWITH_GLIB -DWITH_GTK2 
+# OK that -Define is wrong WITH_GLIB
+# really I want to get rid of glib, except when with gtk

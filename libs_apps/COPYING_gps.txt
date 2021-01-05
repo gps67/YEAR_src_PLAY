@@ -1,0 +1,28 @@
+This project is copyright, licenced to you under the (Library) LGPL.
+The LGPL is available online and in COPYING.LIB.
+
+Commercial use is encouraged.
+
+Static linking is allowed if you go from published source.
+
+The key idea is a conceptual line, drawn around the code.
+Inside the line, belongs to the project,
+outside the line belongs to (you, maybe),
+along the line is the API interface, which is open.
+
+Self supply is considered (by me) as supply and distribution,
+the programmers who work on it have been 'supplied',
+so there is no loophole excuse for patent avoidence.
+If you sell your company, you probably have no intention
+of stripping all internal use, so that too is supply.
+If you have shareholders, they can sell, and cause 'supply'.
+Other people - dont worry about it - just dont look for the loophole.
+
+REMEMBER: the patent rules apply. If you hold the patent,
+and use this code, you have agreed to make the patent freely usable.
+If not, you may not use this code, and that includes 'internally'.
+Your own due diligence, is to yourself, to not abuse your own patent.
+
+Please check that external components also meet your licence needs.
+This project has options which use GPL'd code, ART'y licences and
+OpenSSL-now-LGPL.

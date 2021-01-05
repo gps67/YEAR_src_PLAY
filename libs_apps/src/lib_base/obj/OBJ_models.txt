@@ -1,0 +1,78 @@
+obj_ref0
+	obj_ref0 * obj; is a (ptr to a) refcounted object
+	obj_ref_js * obj; is usable as a js object in a script (expensive peers)
+	obj_ref_py * obj; is an experiment to fix the cracks
+	typedef obj_ref_XXX obj_ref; // in zone of code
+
+blk1	
+	blk1 expandablechunkofmem;
+	hmmm pointer to pointer - maybe fix code ? usage?
+	hmmm overallocated - maybe trim when flag set in header, and first alloc
+	hmmm callback - please reallocate blk1, trim_to_fit (when convenient)
+
+buffer1
+buffer2
+	blk1 with added printf, probably utf8, maybe ASCII or <TODO>
+	want 64 bytes pre-allocated, then jump to extra u8 * buf_b;
+	want CODE_POINT to hang on to allocated buf_b (via buffer2)
+	want DATA_PREEN_WAVE to detatch from CODE_POINT, maybe stats ?
+		if detected_multi_instances ... start with MSS_guess
+		if detected_solo_instances ...
+		if detected_MSS_page_prealloc ...
+
+	hmmm currently LIST/VECTORS overallocate, OK for temps, bad for tree
+	want allocate near other parts of same task,
+	want manage OFFS_OF_ITEM[i] // PACKED within ZONE, move LAST, PADDING
+
+obj_hold<obj_ref0> obj;
+	auto refcount
+	slack syntax for *P
+	good syntax for T * P;
+
+PyObject_basic
+	FORGET IT
+	this is an experiment
+	good, but clearly in need of more work
+	also needs choice of multiple object models within same frame
+	problem with C++ insisting that VTABLE goes at OFFS=0
+
+obj_ref0_debug_base
+	Fully working
+	ignore this - it counts how many allocs/free you did
+	if you need to add tracers, this might help
+	if you want speed - switch it off somehow (it is otherwise unused)
+	if it is going to be switched on - cant we use those pointers?
+	if it is going to be switched off - we cant use those LL pointers!
+
+RELOCATEABLE_OBJECT
+	needs EA_EXPR_DECODER DECODER(u32)
+	needs type_spec == EA_EXPR via import table (also STRING)
+
+MALLOC/FREE
+ NEW/DELETE
+	obj_hold needs to call delete ptr;
+	however, it is not clear which delete() to call
+	(actually it is - its the free() used by the obj_hold.dll
+	_NOT_ the free that matches the NEW() used in the other DLL)
+
+	SO: any thing derived from obj_ref0 should use a new/alloc from here
+
+	SEE 
+		http://oldwiki.mingw.org/index.php/dlltool
+		http://chadaustin.me/cppinterface.html
+
+MIXED MODELS
+	OODB has tray of objects, (not obj_ref0)
+		PAGE[256] of OODB_instance_ITEM
+		PAGE[256] of OODB_struct_ITEM
+		OODB probably wont be obj_ref - because of ref_count
+		PYTHON base has problems shifting base_addr for C++
+		STRUCT objects will need a second pointer to SPEC || known
+
+	THOUGHT for the day:
+		[u4][u4] - guaranteed to fit in [u8], often sparse
+		[u3][u5] - guaranteed to fit in [u8], maybe sparse
+		[u8] - guaranteed to fit in [u8], maybe n=256 = 8.01 bits! (9)
+		(This is where ASM knew that N!=0, hence 256, tricky)
+		(That links with NULL pointer indicating N==0)
+

@@ -1,0 +1,21 @@
+INCLS="$INCLS -I ../../lib_base/fd"
+INCLS="$INCLS -I ../../lib_base/obj"
+INCLS="$INCLS -I ../../lib_base/buffer"
+INCLS="$INCLS -I ../../lib_base/strings"
+INCLS="$INCLS -I ../../lib_base/bits"
+INCLS="$INCLS -I ../../lib_base2/gtk_text"
+
+LINKS="$LINKS `pkg-config --libs gtk+-2.0`"
+LINKS="$LINKS -L/tools/2005/libs/lib -lfreetype"
+LINKS="$LINKS -L ../../../_obj_sky_2"
+LINKS="$LINKS -L ../../../libs_apps_obj"
+LINKS="$LINKS -lbase"
+LINKS="$LINKS -lmedia"
+set -x
+P=radio_scan
+[ -f $P.o ] || \
+g++ $INCLS -c $P.cxx 
+g++ -o $P $P.o $LINKS 
+# 2>&1 | less
+
+./$P

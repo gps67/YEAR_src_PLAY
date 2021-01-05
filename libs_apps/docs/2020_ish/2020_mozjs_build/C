@@ -1,0 +1,7 @@
+
+(
+date
+set -x
+../configure --prefix=$HOME/G/prefix
+date
+) 2>&1 | tee -a $0.log

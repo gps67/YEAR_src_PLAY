@@ -1,0 +1,49 @@
+## PROJECT_NAME           = accts
+## OUTPUT_DIRECTORY       = /home/gps/2002_gps/src/dox/accts/
+## INPUT                  = ../src/accts/
+
+# INCLUDING ITS OWN TAGS FILE IS A BIG MISTAKE
+# THINGS GET MARKED AS EXTERNAL 
+# INLNE SOURCES DOESNT WORK
+# ...
+
+# without this nothing happens
+RECURSIVE              = YES
+
+# else undocumented classes are dark
+EXTRACT_ALL            = YES
+
+# inline source - NOT WORKING
+# Setting the INLINE_SOURCES tag to YES will include the body 
+# of functions and classes directly in the documentation.
+INLINE_SOURCES         = YES
+
+# Dont use a 'html' sub-sub dir
+# The HTML_OUTPUT tag is used to specify where the HTML docs will be put. 
+# If a relative path is entered the value of OUTPUT_DIRECTORY will be 
+# put in front of it. If left blank `html' will be used as the default path.
+
+HTML_OUTPUT            = .
+
+
+FULL_PATH_NAMES        = NO
+
+# If the SOURCE_BROWSER tag is set to YES then a list of source files will 
+# be generated. Documented entities will be cross-referenced with these sources.
+SOURCE_BROWSER         = YES
+
+# ENUM_VALUES_PER_LINE   = 1
+# SORT_MEMBER_DOCS       = NO
+
+# If the HIDE_SCOPE_NAMES tag is set to NO (the default) then Doxygen 
+# will show members with their full class and namespace scopes in the 
+# documentation. If set to YES the scope will be hidden.
+# HIDE_SCOPE_NAMES       = NO
+# HIDE_SCOPE_NAMES       = YES
+
+# quicker if not
+GENERATE_LATEX         = NO
+
+####### > INCLUDE_PATH           = 
+####### > TAGFILES               = 
+####### GENERATE_TAGFILE       = 

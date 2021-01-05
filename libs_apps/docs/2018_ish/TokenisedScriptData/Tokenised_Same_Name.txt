@@ -1,0 +1,69 @@
+2018-08-09 Aug Thu 20:43 Tokenised_Same_Name.txt
+
+--
+	var_name
+	var_type_name
+
+	eg "LINK"
+
+	Best used as: PARAMETER
+
+	Basically in this dialect, "STR0" becomes a fixed point
+	It channels its type and name all the way
+	Maybe there is a LINK2 which does the same
+	Maybe there is an_ALIAS ...
+
+	All those usages, get folded to their nearest usage
+	All those usages, get VAR = usage_was_MATCHED_PARSER_RULE
+	All those usages, get usage_was variation_obj = variation [variation ]
+	All those usages: have VIEW_AS pretty printer options variations
+
+--
+	var_name = "var_name"
+	var_type = "var_name"
+	var_data = "var_name"
+	var_alias = "varname" // and that via a reductioin rule sublex pattern
+
+	eg "thread_var"
+	eg "var_pool"
+	eg "STR0"
+
+--
+	CT: "STR0" might mean ITEM.as_str0()"
+	CT: "STR0" might mean ITEM.as_LINK_from_key_STR0()"
+
+	SUBLEX RULES:
+
+		A_B
+		AB
+
+	SUBLEX dialext's local LABELS
+
+		STR0 // fast finder
+		STR0_%s // a second STR0
+		STR0_%s // %s = filter( %s ) // user data not sql field name
+
+	SUBLEX knows about arrays in different layers, itself, other GEN langs
+
+		LAYER = CTXT.LAYER[ u3 ] // FAIL if NULL
+		FAIL_if_NULL_LAYER
+	  CTXT: running this script
+		POOL = LAYER.POOL[ u5 ]
+		ITEM = POOL[
+
+	var_type = "var_name"
+	var_data = "var_name"
+	var_alias = "varname" // and that via a reductioin rule sublex pattern
+
+--
+
+	So use the basic VAR_TYPE_NAME as the VAR_NAME
+
+		STR0	// the one and only
+		HEAP	// that one
+		OBJ_2	// SUBLEX agrees with naming scheme
+			// SUBLEX has a rule for it
+		OBJ_1 =:= OBJ // self this that
+
+
+

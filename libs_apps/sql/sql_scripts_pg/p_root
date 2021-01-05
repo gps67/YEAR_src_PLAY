@@ -1,0 +1,4 @@
+. .env 
+unset OPT_BASE_NAME
+pgsql_root
+

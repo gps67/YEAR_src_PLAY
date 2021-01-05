@@ -1,0 +1,38 @@
+There are subdirs for each architecture, that override these top dir defaults
+(eg WIN32 uses libname.dll LGX uses -lname)
+Ideally, move all to top shared
+
+We need two files, to define the things that go _into_ base2,
+and the one step further, for those that link_with_base2.
+This is because it cannot link with self, OK!
+
+# the list of libs_apps_uses_{glib,gtk,libz,...} that go into _base2
+
+_into_base1.pc
+_into_base2.pc
+_into_base2_gtk.pc
+
+# the above list, and link_with_ the item itself, your app uses this
+# if you link with it, you will get the -I to compile against it OK
+# Future paper walls, might stubb out all .h access!! for speed!!
+# For now, see "compile_with_and_link_with_" XXX
+
+link_with_base1.pc
+link_with_base2.pc
+link_with_base2_gtk.pc
+link_with_gtk_text.pc
+link_with_media.pc
+link_with_accts_gtk.pc
+link_with_sar_plot_post.pc
+
+# the above "_base2" names are supposed to be unique
+# the below files, are specific to the libs_apps on this box
+# sort of a namespace, you do not use these files,
+# you rely on them being used
+# they probably invoke the default system "gtk+-2.0"
+# or on this box, they set local /prefix/ specific to the app that uses libs_app
+
+libs_apps_uses_glib.ABSENT
+libs_apps_uses_glib.pc_ORIG
+libs_apps_uses_gtk.pc_ORIG
+libs_apps_uses_libz.pc

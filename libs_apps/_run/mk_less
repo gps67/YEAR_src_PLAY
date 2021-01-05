@@ -1,0 +1,5 @@
+
+	T=obj_ref0.o
+	T=lots
+	./mk "${@:-$T}" 2>&1 | less
+	# ./mk "$@" 2>&1 | less

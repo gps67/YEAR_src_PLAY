@@ -1,0 +1,19 @@
+still need libpdf _lite
+TODO SPOUT then ps2pdf
+"pdflib"
+
+ https://www.pdflib.com/products/pdflib-family/overview/
+
+ free version ended 2011
+
+ hmm cairo ??
+
+ Our use is quite simple (accts report)
+ A4 XY font=builtin no graphics
+
+ Most additional code is to support pdflib's setjmp and so on
+
+ so real soon now ... SPOUT ...
+ for the memoent 
+
+  ./NAS3/mnt/HD/HD_a2/G/src_build/PDFlib-Lite-7.0.5p3/

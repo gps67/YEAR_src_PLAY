@@ -1,0 +1,82 @@
+INFO,  key,         value
+INFO,  title,       Milman Road Residents Association - DIY Work Done
+INFO,  year_start,  2003-07-01
+
+ERA,  dotdot,  key,      desc
+ERA,  -,       2004-01,  Jan
+ERA,  -,       2004-02,  Feb
+ERA,  -,       2004-03,  Mar
+ERA,  -,       2004-04,  Apr
+ERA,  -,       2004-05,  May
+ERA,  -,       2004-06,  Jun
+ERA,  -,       2004-07,  Jul
+ERA,  -,       2004-08,  Aug
+ERA,  -,       2004-09,  Sep
+ERA,  -,       2004-10,  Oct
+ERA,  -,       2004-11,  Nov
+ERA,  -,       2004-12,  Dec
+ERA,  -,       2005-01,  
+
+REF,  dotdot,  key,           desc
+REF,  -,       PLACE-HOLDER,  
+
+CAT,  dotdot,      key,                               desc
+CAT,  -,           N,                                 Notes
+CAT,  -,           X,                                 Transfers
+CAT,  -,           I,                                 Income
+CAT,  -,           O,                                 Outgoings
+CAT,  -,           T,                                 Tax
+CAT,  I,           I360,                              Monthly 45*8=360
+CAT,  N,           N1,                                Meeting
+CAT,  N,           N2,                                Sub Totals
+CAT,  O,           materials,                         Materials
+CAT,  O,           O_Builder,                         Builder
+CAT,  O,           people,                            eg paid by the evening hour
+CAT,  O,           tools-hire-XXX,                    
+CAT,  O,           aggregates,                        Sand Cement
+CAT,  O,           O_Insurance,                         Annual Premium
+CAT,  X,           X1,                                Payment
+CAT,  aggregates,  concrete1,                         concrete general
+CAT,  aggregates,  concrete2,                         concrete mix instant
+CAT,  aggregates,  concrete3,                         concrete paint water proofing
+CAT,  aggregates,  mortar,                            Bricklaying Mortar
+CAT,  materials,   bits-glue-filler-tins,             Bits and bobs
+CAT,  materials,   features,                          gutter bricks things
+CAT,  materials,   paints,                            paint waterproofing
+CAT,  paints,      water-repellant,                   Wall treatment
+CAT,  tools,       handtools,                         Hand Tools
+CAT,  tools,       tools,                             Tools
+CAT,  tools,       tool-hire,                         tool hire
+CAT,  -,           Monthly 45*8=360 - Monthly Maint,  
+
+ACCT,  key,     amount,  desc,                               amnt_closing
+ACCT,  assoc,  1266.00,  Associations money held with bank,          0.00
+
+NOTE,  key,           desc
+NOTE,  PLACE-HOLDER,  
+
+VAT,  key,  rate,  desc
+VAT,  v,       0,  Normal Vat Rate
+VAT,  x,       0,  Exclude from VAT report
+VAT,  z,       0,  Zero Rated
+
+TRANS,  key,  date_tax,    date_pay,    cat,        acct,   img,  ref,  desc,                amnt,  vat
+TRANS,  -,    2004-01-01,  2004-01-01,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+TRANS,  -,    2004-01-15,  2004-01-15,  O_Insurance,  assoc,  ,     ,     New Premium,     -1160.00,  x
+TRANS,  -,    2004-01-20,  2004-01-20,  I360,       assoc,  ,     ,     Monthly Income,    360.00,  x
+TRANS,  -,    2004-01-20,  2004-01-20,  O_Builder,          assoc,  ,     ,     leak-pay-one,    -1500.00,  x
+TRANS,  -,    2004-01-31,  2004-01-31,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+TRANS,  -,    2004-02-01,  2004-02-07,  O_Insurance,  assoc,  ,     ,     Old Refund,       2084.22,  x
+TRANS,  -,    2004-02-28,  2004-02-28,  O_Builder,          assoc,  ,     ,     leak-pay-two,    -1400.00,  x
+TRANS,  -,    2004-02-29,  2004-02-29,  I360,       assoc,  ,     ,     Monthly Income,    360.00,  x
+TRANS,  -,    2004-02-29,  2004-02-29,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+TRANS,  -,    2004-03-31,  2004-03-31,  I360,       assoc,  ,     ,     Monthly Income,    360.00,  x
+TRANS,  -,    2004-03-31,  2004-03-31,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+TRANS,  -,    2004-04-30,  2004-04-30,  I360,       assoc,  ,     ,     Monthly Income,    360.00,  x
+TRANS,  -,    2004-04-30,  2004-04-30,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+TRANS,  -,    2004-05-31,  2004-05-31,  I360,       assoc,  ,     ,     Monthly Income,    360.00,  x
+TRANS,  -,    2004-05-31,  2004-05-31,  N2,         assoc,  ,     ,     Balances,            0.00,  x
+
+XFER,  key,  date,        cat,  acct1,  acct2,  img,  ref,  desc,  amnt
+XFER,  -,    2004-01-31,  X1,    -,      -,      -,    -,    -,     0.00
+

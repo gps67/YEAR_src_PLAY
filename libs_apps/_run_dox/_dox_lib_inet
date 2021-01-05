@@ -1,0 +1,23 @@
+#!/usr/bin/env doxygen
+
+	PROJECT_NAME           = lib_inet
+	INPUT                  = ../src/lib_inet/
+	OUTPUT_DIRECTORY       = ../dox/libs_apps/lib_inet/
+	GENERATE_TAGFILE       = ../dox/libs_apps/lib_inet.tag
+	WARN_LOGFILE           = _dox_WARNINGS_lib_inet.txt
+
+	@INCLUDE = Doxyfile_general
+	@INCLUDE = _dox_Incl_Path
+	TAGFILES += 	../dox/libs_apps/apps.tag=../../dox/libs_apps/apps/
+	TAGFILES += 	../dox/libs_apps/lib_OODB.tag=../../dox/libs_apps/lib_OODB/
+	TAGFILES += 	../dox/libs_apps/lib_accts.tag=../../dox/libs_apps/lib_accts/
+	TAGFILES += 	../dox/libs_apps/lib_base.tag=../../dox/libs_apps/lib_base/
+	TAGFILES += 	../dox/libs_apps/lib_base2.tag=../../dox/libs_apps/lib_base2/
+	TAGFILES += 	../dox/libs_apps/lib_media.tag=../../dox/libs_apps/lib_media/
+	TAGFILES += 	../dox/libs_apps/lib_play.tag=../../dox/libs_apps/lib_play/
+	TAGFILES += 	../dox/libs_apps/lib_win32.tag=../../dox/libs_apps/lib_win32/
+	TAGFILES += 	../dox/libs_apps/sar_data.tag=../../dox/libs_apps/sar_data/
+	TAGFILES += 	../dox/libs_apps/sar_parse.tag=../../dox/libs_apps/sar_parse/
+	TAGFILES += 	../dox/libs_apps/sar_plot.tag=../../dox/libs_apps/sar_plot/
+	TAGFILES += 	../dox/libs_apps/sar_tests.tag=../../dox/libs_apps/sar_tests/
+#

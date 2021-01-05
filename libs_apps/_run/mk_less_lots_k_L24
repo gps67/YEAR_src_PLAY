@@ -1,0 +1,19 @@
+
+R=`uname -r`
+case $R
+in
+	2.4.*) echo "OK R is $R"
+;;	*)
+		echo "FAIL This must be run on a linux 2.4 system not $R"
+		false
+		: exit 1
+		: a script that runs ssh -l remoteuser remotehost 'make "$@"'
+		on_L24_make_libs_apps "${@:--k lots}" 2>&1 | less
+		exit $?
+esac
+
+L24_must_be || exit 1
+
+export TGT=L24
+./mk ${@:-lots}
+# ./mk_less -k ${@:-lots}

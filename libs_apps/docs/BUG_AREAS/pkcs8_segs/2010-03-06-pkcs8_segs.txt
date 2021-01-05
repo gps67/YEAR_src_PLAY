@@ -1,0 +1,48 @@
+pem_lib.c	430	OPENSSL_cleanse(data,(unsigned int)dsize);
+
+	sig seg
+	data: <value optimised out>
+
+
+ 	333	int PEM_ASN1_write_bio(i2d_of_void *i2d, const char *name, BIO *bp,
+ 	334			       void *x, const EVP_CIPHER *enc, unsigned char *kstr,
+ 	335			       int klen, pem_password_cb *callback, void *u)
+-	336		{
+
+called by pem_pk8.c IMPLEMENT_PEM_rw(PKCS8, X509_SIG, PEM_STRING_PKCS8, X509_SIG)
+called by pem_pk8.c 141			else ret = PEM_write_bio_PKCS8(bp, p8);
+called by pem_pk8.c -	95		return do_pk8pkey(bp, x, 0, -1, enc, kstr, klen, cb, u);
+called by ME EVP_P_KEY.cxx 176
+#warning this crashed - maybe look at operatir BIO * - it needs a free	
+-	176			if(!PEM_write_bio_PKCS8PrivateKey(
+ 	177				bio_mem, //operaotor BIO *
+ 	178				pkey,
+ 	179				cb_pass->enc,
+ 	180				NULL,	// kstr phrase is NULL kstr,
+ 	181				0,	// kstr len is 0 klen,
+ 	182				CB_get_phrase_base::C_get_passwd_fn, // callback
+ 	183				cb_pass	// callback parameter (obj)
+ 	184			))
+-	185				
+
+The actual crash occuers within the OPENSSL_clense(data,len) _NOT_ free()
+Maybe the register was corrupted, maybe ...
+
+--
+
+# TRACE # get_phrase() # (null) returning munged phrase with 16 bytes
+47789127099000:error:0607606B:digital envelope routines:PKCS5_v2_PBE_keyivgen:unsupported cipher:p5_crpt2.c:209:
+47789127099000:error:06074078:digital envelope routines:EVP_PBE_CipherInit:keygen failure:evp_pbe.c:186:
+47789127099000:error:23077073:PKCS12 routines:PKCS12_pbe_crypt:pkcs12 algor cipherinit error:p12_decr.c:83:
+47789127099000:error:2306C067:PKCS12 routines:PKCS12_item_i2d_encrypt:encrypt error:p12_decr.c:168:
+47789127099000:error:2307D067:PKCS12 routines:PKCS8_encrypt:encrypt error:p12_p8e.c:88:
+
+
+TRIED: change BF_CBC to AES_256 for PKCS8 
+NOW: # FAIL  # bool evp_cipher_base::init_iv(blk1&)() # Wrong iv len expected 16 got 8
+	which is itself odd - differes against what ??
+	probably default CTOR being too helpful
+ 
+---
+
+	change from BF to AES ... all OK now

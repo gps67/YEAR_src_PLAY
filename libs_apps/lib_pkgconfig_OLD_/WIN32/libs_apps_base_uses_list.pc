@@ -1,0 +1,29 @@
+
+# NB -unused- TGT 
+
+Name: libs_apps_base_uses_list
+Description: libs_apps - base uses these things (on WIN32)
+Version: 0.1.2
+
+# This is what is linked into base
+# users of base also use the same list but via     libs_apps_base
+# so keep it simple
+#	libs_apps_base	# adds libbase.dll itself
+#	libs_apps_base_uses_list
+
+# unfortunately base build a custom base-class that mentions JS GTK
+# but probably doesnt include base2!
+# ie beware of issues of OBJECT base class that caters for feature
+# but cannot reach the full definitions of those features
+# Maybe implemented with copied stub headers
+
+# Requires: libs_apps_uses_libedit # no it doesnt
+Requires: \
+	libs_apps_uses_sockets \
+	libs_apps_uses_libz \
+	libs_apps_uses_glib \
+	libs_apps_base_own_paths \
+#
+
+Libs:
+Cflags:

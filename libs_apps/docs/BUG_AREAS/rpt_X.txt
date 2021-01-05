@@ -1,0 +1,12 @@
+In the reports (pdf, ...)
+when there is a category S0, which is category 'S'
+the sub/totals is all askew
+
+	I think its due to the presumption that there are no TRANS rows
+	in the TOP data level, and all sub S1/S2/S3 categories get summed
+	into it.
+
+	In one of the data files, that isnt the case, and there are X0/X1
+	(in another there is ONLY X0, and that is different)
+
+

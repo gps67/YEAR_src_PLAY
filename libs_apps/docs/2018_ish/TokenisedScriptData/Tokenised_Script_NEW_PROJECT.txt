@@ -1,0 +1,99 @@
+2018-08-07 Aug Tue 16:57 Tokenised_Script_NEW_PROJECT.txt
+
+	I need this to compile to WEBASM
+	I want to retool libs_apps as_if WEBASM
+
+	GEN { SCCRIPTS }
+	GEN { ES6 }
+	GEN { ES_PLUS } // basics with some late_module optimisations
+
+	OK an OBJ_JS cannot exist within our ByteArray // indirections required
+
+	LAYER OBJ_JS
+
+		INLINE EVAL_expr( EXPR, ITEM ) { //------------------
+
+		case CT:	u64_hilo ITEM; // match DECODER_u64
+		CT:		EXPR => (u64_hilo) ITEM;
+		CT:		EXPR => {
+
+			CT: uses CTXT 
+			CT: uses CTXT.LAYER_LINKER_LOADER
+			CT: uses ROM3.EXPR_DECODER[ u32 ]
+
+			EXPR IS {
+				STR0 varname // LINK.as_str0()
+				threadvar_VAR[ uvarname
+			}
+
+		ROM_OBJ + CTXT_DATA + SCRIPT_MACRO_UNFOLDING
+
+		 : label boundries, execute MACRo at/ near matchin label
+		 :
+		 : executing MACRO means expanding MACRO
+		 :
+		 : gen_to_CTXT CTXT // links in CTXT to CT which finds its RT 
+		 :
+		 :	gen GETTER( CT_opcode, u32_hilo hilo )
+		 	case CT_opcode_GET_from_register => hilo
+		 	case CT_opcode_GET_from_expr => EXPR( hilo ) {
+				EXPR => SCRIPT( u32_hilo ) {
+					// decode step by set
+					// LAYER = u3
+					// CODE = ZONE = ... [u5]
+					// CODE is a SEGMENT of type ROM_SCRIPT
+					// CODE.eval(
+			}
+		 	case CT_opcode_GET_from_register => hilo
+		 	case CT_opcode_GET_from_register => hilo
+		 	case CT_opcode_GET_from_register => hilo
+
+
+				clutch of fields all within register words
+
+				GETTERS for dialect (X)
+				ALIAS_POOL used with extr misc setting {
+					GEN goes to u3 // u3 goes to GETTER
+					gen goes to u3_alias
+					gen goes to get_u3(...)
+					gen forget  left names
+					gen forget right names
+				}
+			 */
+				u3_layer == u3
+				u5_zone == u5
+				u8_pool == u8
+				u8_item == u16
+			}
+
+			/*
+				hidden within the u32_item in CTXT
+				ITEM.type which is a fully resolved ITEM
+				ITEM.type is from MODULE
+				ITEM.ref_type is from module
+				ITEM.ref_type is decoded like this
+				// CT so search for generic u32 ACCESS EA_EXPR
+
+				So THAT .type_spec gets us to THIS script
+				other DECODER patterns are available
+
+				Most will have u3_layer link-load-merged
+				MACRO_MERGER
+					seach for var_name == var_type_name
+					find form: ... ...
+					find form: varname == PFX_var_type_SRX
+					find form: varname == "ALIAS99TOKENISED"
+					make form: EXPR => name.obj.name.as_STR0()
+			*/
+
+			LAYER & LAYER = CTXT_get_LAYER( u3_layer )   // u3
+			ZONE & ZONE = LAYER.get_ZONE( u5_zone ) // u5
+			POOL & POOL = LAYER.get_POOL( u8_pool )  // u5
+			ITEM & ITEM = LAYER.get_ITEM( u16_item ) // 16_hilo
+
+			APPLY MACRO {
+			 /*
+			 	names for bitfields
+		}
+
+		} // -------------

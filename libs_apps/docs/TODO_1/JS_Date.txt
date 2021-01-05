@@ -1,0 +1,21 @@
+accts uses date a lot, so would DODO
+
+	export DATE type and objects as JS extensions types
+
+	use common C functions, slide week back to end on a friday
+
+		slide day back to same/previous friday
+
+		build week from first, last, next day
+
+		create a table of days for the year
+
+			with/out extra leap day!
+
+	use projected timetable of events - but not confirmed ones
+
+		funcs to generate every friday of year
+
+		funcs to select every first week of month
+
+		funcs to compare zones, ranges, ...

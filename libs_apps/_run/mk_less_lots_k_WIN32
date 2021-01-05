@@ -1,0 +1,2 @@
+export TGT=WIN32
+./mk_less -k ${@:-lots}

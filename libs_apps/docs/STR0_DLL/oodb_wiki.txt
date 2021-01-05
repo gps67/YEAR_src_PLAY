@@ -1,0 +1,266 @@
+OODB_WIKI {
+	Each SITE claims its own address space, by (STR0), by u32_idx
+	ALL_AGREE_TO_basespec OODB_alloc_idx_spec // etc
+	list of admin users
+	list of member users
+	list of anon users // each can keep own db cache lines
+	list of SITES
+	list of REMOTE_USERS on SITES within/outside
+	tree_of_website {
+		HTML_layout_machinery { /* ZONE=namespace */ }
+		FMT_HTML { tree_code }
+		SITE_Layout
+		PAGE_Layout
+		FRAG_Layout
+		BLOG_Diaries
+		FILE_Diaries
+		SVN_Twitter
+	}
+}
+
+# the rest is brute force attack at making SPEC compile a SCRIPT of itself
+
+
+ WIKI_OODB:OODB_POST:POST_SPEC:SPEC_fmt:fmt_printf
+ WIKI_OODB:OODB_POST:NON_VIRT_STRUCT:
+
+	typedef u32;	// permits later template <u32> mapping to <u64>
+
+	// PTR to HERE in DIALECT // forgotten_item_near_CODE_POINT_
+
+	INST_WORD_ZERO = _CODE_POINT_ = SPEC_BASE_TYPE + RT{ ADDR } + CT{ SPEC }
+	INST_WORD_ADDR_PART_ RT{ ADDR } . u32_ptr_near near_pointer_to EA_SELF
+	INST_WORD_ADDR_PART_ CT{ ADDR } . u32_idx_spec near_expr_to_EA_SPEC_now;
+
+		// u32_hilo & EA_COMPILE_TIME_SPEC
+		// u32_hilo & EA_CT_ITEM_is_SPEC;
+		// u32_hilo & EA_EXPR_near; //
+		// u32_hilo & EA_EXPR; // EA_EXTR("EA_LOCAL('anyname')) {...}
+		// u32_hilo & EA_EXPR; // "STR0" 
+		// u32_hilo & EA_EXPR; // "STR0_base_0" # reserved SYS_vm # OODB_VFS #
+		   u32_hilo & EA_EXPR; // "STR0_base_1" # fd_sel # oodb_base1 # 
+		// u32_hilo & EA_EXPR; // "STR0_base_2" # gtk # oodb #
+
+	} // SPEC_item * SPEC_of_inst = CTXT_DECODE( u32_hilo_expr, _CODE_POINT ));
+	_CODE_POINT_ SCRIPT_LINE HERE {
+	 STORAGE {
+	 _INST {
+		INST_STRUCT {
+			u32_hilo spec;
+		}
+	  }
+	 }
+	}
+
+_CODING_STYLE {
+ _INDENT {
+ }
+_INDENT {
+}
+ _VIEW {
+	# INDENTED #
+	# LAYOUT #
+	# CODE_PRINT {VIEW} {ITEM} # [{EXOR}] #
+ _}
+}
+
+CODING_STYLE {
+_INDENT {
+ }
+_INDENT {
+}
+_VIEW {
+_}
+}
+
+	
+
+	INST_WORD_ADDR_PART_ CT{ ADDR } . u32_idx_spec near_expr_to_EA_SPEC_known;
+	INST_WORD_ONE  = u32_hilo  spec;
+	INST_WORD_TWO  = u32_hilo  flags; // see SPEC.layout.flags 
+	INST_WORD_THREE = OPTIONAL {
+	INST_WORD_THREE = u32_hilo in_mem_refcount; // see SPEC.layout.flags 
+	} note indent didnt, flag ' _' also does vertical alignment layout
+
+###############################
+
+WIKI = ONE_GROUPS_WEBSITE || PEERED_LINKS_PAGES (use same wiki or compat)
+
+ IN_WIKI {
+.
+	.
+.	.
+.	.
+.
+}
+
+
+
+
+
+ IN_WIKI {
+.
+	USER account links
+	DIARY items
+	NEWS and other blogomatics
+	BB items
+	DISCUSSIONS
+	_SUBSCRIPTIONS { ... }
+	_NOTIFICATIONS { ... }
+.
+}
+
+ IN_OODB {
+.
+	ITEM = DIARY_ITEM { ... } 
+	SPEC = EXPR_u32 into CTXT_SPEC[ expr ]
+.
+ }
+
+ IN_WIKI {
+	USER does not have an account here but is registered nearby
+
+	_OPTION {
+	}
+	USER_SPEC {
+		USER has <LOGIN_NEAR> with <ACCESS>
+		USER has <LOGIN_HERE> with <STORAGE>
+		USER has <SESSION> with <LOG>
+		USER has <SESSION_LOG> with <JOURNAL_LOG>
+		SESSION has SUM_OF_SESSION_PARTS
+		SESSION has ALSO_UNKNOWN_PARALLEL_SESSIONS
+		CTXT has EXPLAIN_of("CTXT_tracks_parallel_connections");
+	}
+	USER_SPEC {
+	_namespace LOCAL_CONTACT_LOGIN_SESSION {
+	 _namespace BBS_item {
+	  TWITTERING_ROLL: // this syntax merges in like name { here }
+		url_bookmarks {
+			http://whatever
+		}
+		_CODE_POINT_ = {SCRIPT_LINE} = this message on BBS near LINE
+	  }
+	_}
+	}
+	CODE_PAGE {
+		class OODB_wiki : public OODB_item_in_near_tray {
+		}; // cant this line be simplified in {VIEW} "}" or -blank- or -omit-
+		// view: /*or_list:*/ _str_val _str_val_a  _str_val_b _str_name 
+		// _str _blank _omit _fold  _udef
+	}
+
+	class OODB_item_near_tray {
+		typedef OODB_addr_expr<u32_hilo> u32_ea_expr_near; 
+		// auto register above line in shared code lists
+		// auto connect registered matches
+		// auto events if it changes {SCCS} or changes {USED_BY}
+		INST_layout & get_SPEC_layout(); /* {
+		} */ // -AKA- // <unprintable> ## // PAIR_RHS.curlies &rcub;
+		// &sdata; http://etext.virginia.edu/standards/iso-unicode/isonum.html
+		// &lcub; "{"  
+		// &rcub; "}"
+
+		class OODB_REF_u64 {
+			u54_hilo ref; 	// NEVER USED // 
+		};
+
+		class OODB_REF_u32 {
+			u32_hilo ref; 	// idx_ptr_expr;
+		};
+
+		class OODB_ADDR : public OODB_REF_u32 {
+			// typedef OODB_REF_u32 OODB_ADDR;
+			// UNION
+			// SLIGHTLY_NAFF_BUT_CONVENIENT_USE_OF_AMP
+			//  u32_hilo & expr; expr = ref;
+			// but better derive subclass and use var rename view
+			//
+			#define OODB_ADDR OODB_REF_u32
+		};
+
+		class OODB_INST {
+			u32_hilo spec_expr;
+			u32_hilo flags;
+
+			static // RUNTIME
+			obj_hold<SPEC> * SPEC_cache_global;
+			
+			SPEC * get_spec(CTXT & ctxt);
+			bool get_spec(CTXT & ctxt, SPEC & SPEC); // clash
+			void ref_incr();
+			void ref_decr();
+			virtual void ref_zero_event();
+			struct cb_data {
+				CTXT & ctxt;
+			//	INST & inst;
+				SPEC & spec;
+			} event_data;
+			extern "C" void C_ref_zero_event( 
+			//	PTR_VAR_NULL	// cant locate caller
+			//	INST * * REF_HOLD_INST; 
+			//	u32_expr * REF_HOLDING_VAR
+			//	INST_MGR * inst_mgr;
+			//	SELF_t & SELF; /* 
+				namespace OODB_var_ptr_inst {
+					typedefs { /* section */ }
+				}
+				namespaces OODB_var_ptr_inst {
+				  oodb {
+				   u32_hilo {
+					BIT_VAR_DECODE {
+					// so here we are ... anansie // anint
+					}
+				   }
+				  }
+				  var {
+					in_MEM_stack_temp
+					in_SCRIPT_runtime_area
+					in_POST_page
+				  }
+				  ptr {
+					type_void_star_in_C_runtime
+					type_u32_hilo_in_POST_page
+					type_u32_hilo_in_OODB_file
+					typedef u32_hilo u32_idx_expr;
+					typedef u32_hilo u32_ea_near; /*
+					_RESOLVE_name_clash {
+					 typedef anint samename;
+					 class samename : scripted someclass {
+						CLASS_INHERIT interface iname;
+						CLASS_INHERIT public CT_class_name
+					 }
+					}
+					*/
+				  }
+				  inst {
+					+- has access to VAR{SELF} via {CACHE}
+				  }
+				  int_CACHE { /*
+					access( obj_at_addr );
+					access( ptr_to_var ); // OR NOT
+					access( blk_in_file ); // blk1 or pages or
+					access( mmap_pages_files ); // crypted swap_file !
+					access( _CODE_POINT_, "DECODE('EA_EXPR') );
+				  */ }
+				}
+				class SELF_t : public OODB_var_ptr_inst {
+				}
+			*/
+				INST * inst,	// own address in cache
+			
+				cb_data & event_data;
+				CTXT & ctxt,
+				SPEC & spec,
+			) {
+				
+			}
+
+		};
+		class OODB_location : public OODB_INST {
+			
+		};
+	}
+ }
+
+
+

@@ -1,0 +1,13 @@
+C0_leaves_at_top
+
+	C0 is a node, abbreviated to C
+
+	C0 is often used as a leaf category,
+	(due to lack of 50 category codes, + vague/general)
+
+	So the leaves at the top node (which shouldnt be there)
+	are reported in a block, but there is no sub-total,
+	because that includes sub-nodes.
+
+2004-01-01 - noticed
+2005-25-25 - still there

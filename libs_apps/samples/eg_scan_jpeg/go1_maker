@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+js_many --Script '
+
+	ACCTS = new Accts_Module()
+	ACCTS.make( "/home/gps/2000/src/libs_apps/_run", "lots" )
+
+' 2>&1 | less
+
+

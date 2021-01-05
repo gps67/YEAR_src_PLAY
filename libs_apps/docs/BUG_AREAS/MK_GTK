@@ -1,0 +1,20 @@
+If the app loads with no available fonts (all buttons empty and small)
+and you are getting this message:
+
+** (tv_rem:30707): WARNING **: No builtin or dynamically loaded modules
+were found. Pango will not work correctly. This probably means
+there was an error in the creation of:
+  '/tools/2003/gtk/etc/pango/pango.modules'
+You may be able to recreate this file by running pango-querymodules.
+
+LOOK IN /tools/2003_obj/gtk/pango-1.2.3/examples
+EDIT
+
+If the pixsave fails check  gdk-pixbuf.loaders
+
+/tools/2003_obj/gtk/gtk+-2.2.2/gdk-pixbuf
+/tools/2003/gtk/etc/gtk-2.0
+
+sed -e 's,/tools/2003/gtk/gtk+-2.2.2/gdk-pixbuf,/tools/2003/gtk/lib/gtk-2.0/2.2.0/immodules,'
+
+

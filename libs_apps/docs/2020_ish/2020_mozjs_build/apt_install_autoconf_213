@@ -1,0 +1,5 @@
+
+set -x
+ask_do sudo \
+	apt install autoconf2.13
+

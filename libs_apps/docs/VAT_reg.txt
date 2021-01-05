@@ -1,0 +1,5 @@
+
+2004       VAT registration threshold 58,000
+2005-05-01 VAT registration threshold 60,000
+2005-05-01 VAT de-registration threshold 58,000
+2006-05-01 VAT thresholds change by a few %

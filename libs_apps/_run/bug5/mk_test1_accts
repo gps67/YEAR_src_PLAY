@@ -1,0 +1,3 @@
+
+cd /home/gps/2005/src/libs_apps/_run/
+./mk test1

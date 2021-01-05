@@ -1,0 +1,9 @@
+vi ../js/src/jsodep.h
+vi ../js/src/jstypes.h
+
+# 120a121,125
+# > /* FIX FOR MINGW */
+# > #ifdef _MINGW
+# > #undef JS_HAVE_LONG_LONG
+# > #endif
+# > 

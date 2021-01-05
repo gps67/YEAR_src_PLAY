@@ -1,0 +1,2 @@
+gdb --args \
+/home/gps/G/src_build/libs_apps_obj_LGX_x3/sar_parse --filetype vmstat_hp10 sar_vmstat.gz

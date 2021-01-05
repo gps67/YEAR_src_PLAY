@@ -1,0 +1,13 @@
+
+
+Name: libs_apps_base_uses_list
+Description: libs_apps - base uses these things
+Version: 0.1.2
+
+Requires: \
+	libs_apps_uses_sockets \
+	libs_apps_uses_libz \
+#
+
+Libs:
+Cflags:

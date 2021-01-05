@@ -1,0 +1,40 @@
+2018-08-09 Aug Thu 21:45 Theme_Script.txt
+
+	Use SCRIPT to generate MEME
+
+	ASK VIEW for the options picked
+
+		WH_200x150_100dpi_on_200_dpiscreen_u32_RGNA
+
+			// all this comes from ROM + .profile
+			MEME.scheme = pallette
+			// compute detail resolution into VIEW
+			MEME.dpi = 100
+			// but leave threshods at 100
+			MEME.dpi_device = double_usual_zoom
+
+	ASK VIEW for the ouput medium options
+
+		PDF and SVG have 1200 dpi at 10,000 ft
+
+		WEB.canvas probably has 120dpi, or 250dpi and NOT squinty
+
+
+	DRAW OUTPUT like
+
+		lib_CAIRO
+		lib_X11
+		lib_gdk
+		lib_WIN32
+		lib_WAX
+		lib_PDF
+		lib_SPOUT
+		lib_DRAW
+		lib_qt
+		lib_gtk
+		lib_tk
+
+	SOMEHOW save JS_OBJ as JS_VAR[ int_idx ]
+
+
+

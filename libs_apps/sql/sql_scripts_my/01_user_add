@@ -1,0 +1,12 @@
+. ./.env
+mysql_root <<!EOT
+	USE mysql;
+	# limited to localhost
+	# replace with "%" (incl the quotes)
+	# GRANT USAGE ON *.* TO $USER_NAME@localhost
+	GRANT USAGE ON $BASE_NAME.* TO $USER_NAME@localhost
+	# GRANT ALL ON $BASE_NAME.* TO $USER_NAME@localhost
+	IDENTIFIED BY '$USER_PASS' WITH GRANT OPTION;
+
+# PSQL!#	CREATE USER '$USER_NAME' WITH PASSWORD '$USER_PASS';
+#

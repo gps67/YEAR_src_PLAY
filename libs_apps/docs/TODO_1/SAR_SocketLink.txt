@@ -1,0 +1,118 @@
+SAR data collection currently works by each machine independently
+collecting 'plain' text outputs from 'sar', then manually ftp'ing
+the files and parsing them. This works well, with no added software
+to the servers (except a simple cron script), but you only get
+graphs every month.
+
+on-line data collection will defend against network outages by each machine
+keeping its own spooled archives. Each parses the data (requiring
+stable code) and transfers data (will do so ..) over a socket to
+a centralised collection box. Efficiency says batch up data,
+interactiveness says send it immed.
+
+Security says central box never calls servers, but it would be nice to
+send the signal "operator looking - update immed flush".
+
+Another feature of SocketLink would be to spool into a file for replay,
+but that is a 1-way transmission (no lookup of attribute ids).
+
+Even after received, spool vars to update batched.
+EG 150 attrs * 20 machines * 1 minute = 50 db-updates per second
+
+
+Socket Link
+
+	connect_scratch
+	connect_from ... # set default HOST here?
+	connect_to ...
+	connect_keys ... RSA passwords or md5 proofs or selectors for encoding
+	connect_sync "flush"
+	connect_end # clear all keys in file, socket orderly diconnect (mux)
+
+	line_decl l1 HOST ... SITE ... CMD ...
+	time t1
+	line_data1 t0 l1 val
+	line_data2 t0 l1 v1 l2 v2 ...
+	line_data_seg l1 t0 t2 v v v v v v v v
+
+	line_end l1
+	line_suspend l1
+	line_resume l1
+
+	group_decl gid    l1 l2 l3 l4
+	group_data gid t0 v1 v2 v3 v4
+
+	enq_ack_flush_round_trip enqid
+	enq_start 1234
+	enq_line_list enqid SITE * HOST * 
+	enq_segs enqid lineid 
+	// some thing about idle //
+
+Binary Format
+
+	connect_scratch
+	connect_from ... # set default HOST here?
+	connect_to ...
+	connect_keys ...
+
+	line_decl l1 HOST ... SITE ... CMD ...
+
+// above can be put into a multi-line text segment
+// ie text in a binary packet, low volume
+
+	time t1
+		u8 opcode
+		u24 _padding
+		u32 time
+
+// putting the t0 time variable AFTER the l1-id's confirms correct packing
+// if the date is wildly wrong, you processed the wrong number of prefixes
+
+	line_data1 t0 l1 val
+		u8 opcode
+		u24 _padding
+		u32 id
+		u32 t0
+		f32 val
+
+	line_data2 t0 l1 v1 l2 v2 ...
+		u8 opcode
+		u24 n_vals
+		u32 id
+		u32 t0
+		u32 id[N]
+		f32 val[N]
+
+	line_data_seg l1 t0 t2 v v v v v v v v
+		u8 opcode
+		u24 n_vals
+		u32 id
+		u32 t0
+		u32 t2
+		f32 val[N]
+
+	group_decl gid    l1 l2 l3 l4
+		u8 opcode
+		u24 n_vals
+		u32 id[N]
+
+	group_data gid t0 v1 v2 v3 v4
+		u8 opcode
+		u24 n_vals
+		u32 val[N]
+
+	text
+		u8 opcode
+		u24 nbytes
+		u8 text[N]
+
+Reader
+
+	u8 * csr;
+	u8 * csr_xs;
+	void copy_down_fetch_more();
+	bool eof();	// or at least segment
+	dset_two * acceptor; // if not this
+	parse_text_lines( const char * lines, int nbytes ); // complete ones
+	parse();
+

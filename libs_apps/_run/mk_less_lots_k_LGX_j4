@@ -1,0 +1,3 @@
+export TGT=LGX
+export JOBS=4
+./mk_less -k ${@:-lots}

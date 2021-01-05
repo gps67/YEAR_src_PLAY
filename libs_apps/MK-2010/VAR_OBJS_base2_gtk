@@ -1,0 +1,45 @@
+	# actually base1 bas glib requirement!
+
+
+# gtk_1
+	OBJS_base2_gtk += g_rrr_gtk.o		# glib # see also g_rrr_gtk.o
+	OBJS_base2_gtk += pix_holder.o
+	OBJS_base2_gtk += w_ctree.o
+	OBJS_base2_gtk += w_fixed.o
+	OBJS_base2_gtk += w_file_sel.o
+	OBJS_base2_gtk += w_menu1.o
+	OBJS_base2_gtk += w_drawing_area.o
+	OBJS_base2_gtk += w_widget0.o	
+#	OBJS_base2_gtk += w_widget1.o	# persitant user_data --> w1_app / UNUSED
+	OBJS_base2_gtk += w_btn_base.o
+	OBJS_base2_gtk += w_btn_plus.o
+	OBJS_base2_gtk += w_scale.o
+	OBJS_base2_gtk += w_entry.o
+	OBJS_base2_gtk += g_adjustment.o
+
+	OBJS_base2_gtk += w_container_.o
+	OBJS_base2_gtk += w_event_box.o
+	OBJS_base2_gtk += w_alignment.o
+	OBJS_base2_gtk += w_win_scrolled.o
+	OBJS_base2_gtk += w_table.o
+
+	OBJS_base2_gtk += TOPAPP_Holder_gtk.o
+	OBJS_base2_gtk += TOPAPP_Task_gtk.o
+	OBJS_base2_gtk += w_window.o
+	OBJS_base2_gtk += w_win_top.o
+	OBJS_base2_gtk += TOPAPP_Task_Window_Minor.o
+
+
+# gtk_2
+	OBJS_base2_gtk += w_note_book_base.o
+	OBJS_base2_gtk += w_note_book_one.o
+	OBJS_base2_gtk += w_graph1.o
+	OBJS_base2_gtk += w_combo_plus.o
+	OBJS_base2_gtk += w_dialog_msg.o
+
+
+# draw_x11 - errm uses gdk for interworking with gtk system - FOR NOW
+	OBJS_base2_gtk += d_colour.o
+	OBJS_base2_gtk += d_text.o
+	OBJS_base2_gtk += d_gc.o
+##	OBJS_base2_gtk += surface_base.o

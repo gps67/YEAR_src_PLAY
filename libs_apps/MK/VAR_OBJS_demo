@@ -1,0 +1,20 @@
+
+# cfg_demo
+#
+# only live apps dont use the cfg_demo
+# it could be base but it is a tiny security risk
+#
+
+ifeq (1,1)
+	OBJS_base2_demo += cfg_demo_1.o	# 
+endif
+ifeq ($(WITH_MYSQL),1)
+# this is duplicated
+# maybe should be libbase2
+# maybe should be libbase_mysql
+# nb sar_plot uses its own pdb variants
+# sql
+ 	OBJS_base2_demo += sql_link_MySQL.o
+# 	OBJS_sar_plot += sql_link_MySQL.o
+endif
+

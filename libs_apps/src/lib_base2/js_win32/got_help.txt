@@ -1,0 +1,130 @@
+# got_help.txt #
+# from http://sourceforge.net/docman/display_doc.php?docid=13826&group_id=50913
+# thanks #
+
+	Preparation
+
+	First download the latest version of MingW here. This document uses mingw32-make to build
+	SpiderMonkey. 
+
+	fdlibm.lib
+
+	Before you can compile SpiderMonkey you have to build fdlibm. You can use the following makefile for
+	this: 
+
+	# Project: fdlibm
+
+	CC = mingw32-gcc.exe
+	SRCDIR  = ../../../Development/SpiderMonkey/js/src/fdlibm
+
+	OBJECTS= \
+		$(SRCDIR)/w_sqrt.o \
+		$(SRCDIR)/e_pow.o \
+		$(SRCDIR)/e_sqrt.o \
+		$(SRCDIR)/k_standard.o \
+		$(SRCDIR)/s_atan.o \
+		$(SRCDIR)/s_finite.o \
+		$(SRCDIR)/s_isnan.o \
+		$(SRCDIR)/s_matherr.o \
+		$(SRCDIR)/s_rint.o \
+		$(SRCDIR)/s_scalbn.o \
+		$(SRCDIR)/w_atan2.o \
+		$(SRCDIR)/e_atan2.o \
+		$(SRCDIR)/s_fabs.o \
+		$(SRCDIR)/s_copysign.o \
+		$(SRCDIR)/w_pow.o \
+		$(SRCDIR)/s_lib_version.o
+
+	LIBS =  -llibm
+	BIN  = fdlibm.lib
+	CFLAGS = -D_IEEE_LIBM -DWIN32 -D_WINDOWS -s
+
+	.c.o:
+		$(CC) -c $(CFLAGS) -o $@ $*.c
+
+	$(BIN): $(OBJECTS)
+		ar r $(BIN) $(OBJECTS)
+		ranlib $(BIN)
+
+	Change SRCDIR to the directory where you've put the sourcecode of SpiderMonkey. 
+
+	SpiderMonkey
+
+	Before building SpiderMonkey you have to change jsosdep.h. Change the line containing #define
+	JS_HAVE_LONG_LONG into: 
+
+	#ifdef _MINGW
+	  #undef JS_HAVE_LONG_LONG
+	#else
+	  #define JS_HAVE_LONG_LONG
+	#endif
+
+	You can use the following makefile for building SpiderMonkey: 
+
+	# Project: js32
+
+	CC   = mingw32-gcc.exe
+	WINDRES = windres.exe
+	RES  = js.res
+	SRCDIR  = ../../../Development/SpiderMonkey/js/src
+	OBJECTS = \
+		$(SRCDIR)/jsapi.o \
+		$(SRCDIR)/jsarena.o \
+		$(SRCDIR)/jsarray.o \
+		$(SRCDIR)/jsatom.o \
+		$(SRCDIR)/jsbool.o \
+		$(SRCDIR)/jscntxt.o \
+		$(SRCDIR)/jsdate.o \
+		$(SRCDIR)/jsdbgapi.o \
+		$(SRCDIR)/jsdhash.o \
+		$(SRCDIR)/jsdtoa.o \
+		$(SRCDIR)/jsemit.o \
+		$(SRCDIR)/jsexn.o \
+		$(SRCDIR)/jsfun.o \
+		$(SRCDIR)/jsgc.o \
+		$(SRCDIR)/jshash.o \
+		$(SRCDIR)/jsinterp.o \
+		$(SRCDIR)/jslock.o \
+		$(SRCDIR)/jslog2.o \
+		$(SRCDIR)/jslong.o \
+		$(SRCDIR)/jsmath.o \
+		$(SRCDIR)/jsnum.o \
+		$(SRCDIR)/jsobj.o \
+		$(SRCDIR)/jsopcode.o \
+		$(SRCDIR)/jsparse.o \
+		$(SRCDIR)/jsprf.o \
+		$(SRCDIR)/jsregexp.o \
+		$(SRCDIR)/jsscan.o \
+		$(SRCDIR)/jsscope.o \
+		$(SRCDIR)/jsscript.o \
+		$(SRCDIR)/jsstr.o \
+		$(SRCDIR)/jsutil.o \
+		$(SRCDIR)/jsxdrapi.o \
+		$(SRCDIR)/prmjtime.o \
+		$(RES)
+
+	LIBS =  --add-stdcall-alias -lfdlibm
+	BIN  = js.dll
+	CFLAGS = -DXP_PC -DEXPORT_JS_API -D_WINDOWS -DWIN32 -D_MINGW -s
+
+	DLLWRAP=dllwrap.exe
+	DEFFILE=libjs.def
+	STATICLIB=libjs.a
+
+	.c.o:
+		$(CC) -c $(CFLAGS) -o $@ $*.c
+
+	$(BIN): $(OBJECTS)
+		$(CC) -shared -o $@ \
+		-Wl,--output-def,$(DEFFILE) \
+		-Wl,--out-implib,$(STATICLIB) \
+		$(OBJECTS) \
+		$(LIBS)
+
+	$(RES): 
+		$(WINDRES) -i $(SRCDIR)/js3240.rc -I rc -o $(RES) -O coff 
+
+	Set SRCDIR to the directory where you've put the source of SpiderMonkey. 
+
+	These are the latest versions of the files fdlibm.mak and jsmingw.mak.
+

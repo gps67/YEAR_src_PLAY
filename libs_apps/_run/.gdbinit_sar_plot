@@ -1,0 +1,5 @@
+handle SIGSEGV nostop noprint pass
+handle SIGABRT nostop noprint pass
+b main
+r /tmp/dpb_sar_test.odb
+# p xgdb_off=false

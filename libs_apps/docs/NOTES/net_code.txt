@@ -1,0 +1,137 @@
+Networking Code is scattered - a bit
+
+WIN32 is a bit untested, sock_addr_UNIX - completely blanked
+
+REDO-ADJUST
+
+	Currently avoiding any changes
+	so that the js_many accts pdf CH reports remains stable
+	but these changes are overdue
+
+	New net code is going into an ideas area outside of base classes!
+
+
+src/lib_base/fd/ - its all here
+
+ADDRESS - its less contentious than socket / cli / serv
+
+BSD already is semi-independent, poly morphic
+
+GRP_lib_base
+ sock_addr_base
+  sock_addr_ip
+  sock_addr_UNIX - pathname
+
+sock_addr_base
+	holds a pointer and len
+	they must be allocated somewhere (else) or child
+sock_addr_UNIX
+	holds (above) plus
+	holds struct sockaddr_un sa;
+	gives set_pathname( "/path/name" );
+	// sa.sun_path is 108 pre-allocated buffer
+sock_addr_ip
+	holds (above) plus
+	holds struct sockaddr_in sa;
+	gives set_port_number( 25 )
+	gives set_port_number( "25" )
+	gives set_port_name_proto( "SMTP", "tcp" ) # getservbyname()
+	gives set_port_name_tcp( "SMTP"" )
+	gives set_addr_number( "127.0.0.1" )
+	gives get_addr_number() => str0
+	gives get_addr_name("www.name.dom")
+
+	plus a few bits for ftp server,
+	and server-vs-client
+	eg if( addr.get_socket_name_IP( fd ) { // might not ne IP socket
+
+	Currently IPV4 not IPV6, fixable ?
+
+	DNS is used SYNCRONOUSLY for name to addr,
+	but addr_to_string doesnt use DNS (nor /etc/hosts)
+
+SOCKET - split into several places
+
+fd_hold_1 - holds an open socket's fd
+
+	# FD
+
+	async fcntl set_close_on_exec set_non_block ...
+
+	open_RO( plain_filename ); // sync=false
+
+	# FILE *
+
+	this is depracated code, and should be moved to ... ?
+	In future, another class will do buffer3 operations
+
+	# ALL (socket) types
+
+	int sock_recv( buff, len )
+	int write( buff, len )
+	int read( buff, max )
+	... printf ...
+
+	# You must know the addr type for the OPEN call - currently
+
+	# OPEN client connections
+
+	bool open_TCP( addr, async = false ) 
+	bool open_TCP_async( addr )
+	bool open_AF_UNIX_async( addrname )
+
+	# OPEN server listeners ... bind needed
+
+	bool create_socket_tcp() // bind needed
+	bool create_socket_udp() // bind needed
+	bool create_socket_unix() // bind needed
+	bool create_socket_unix_dgram() // bind needed
+	bool create_socket_ICMP() // TODO // ?? 
+++
+
+TRAIL:
+
+	 fd_hold_1::open_TCP( struct sockaddr_in* sa, bool async )
+		create_socket_tcp()
+		set_non_block()
+		::connect( fd, sa, sizeof sa );
+
+	 sock_server_udp::restart( int port )
+		create_socket_udp()
+		setsockopt_bool( SO_REUSEADDR, true ))
+		bind_any(port)
+		set_non_block()
+		subscribe_each();
+
+	THEN-UDP-INCOMING
+	select_says_read() - can override
+		nbytes = recvfrom( fd, BUF, BUFLENMAX, flags, addrptr, addrlen )
+		TODO: handle udp_packet BUFFER ADDR
+
+	 sock_server_tcp::restart( int port )
+		create_socket_tcp()
+		setsockopt_bool( SO_REUSEADDR, true ))
+		bind_any(port)
+	++	listen()
+		set_non_block()
+		subscribe_each();
+
+	THEN-TCP-CONNECT-
+        bool sock_server_tcp::select_says_read()
+		fd2 = accept( fd, &addr, addrlen )
+		fork_session_ip( addr, fd2 ) -- tricky - starts session
+
+	fd_hold_1::create_socket_udp()
+		// OK // close()
+		fd = socket (AF_INET, SOCK_DGRAM, 0); // IPPROTO_UDP);
+
+SO-TO-ADD-ICMP
+	fd_hold
+		// create_socket_raw( protoname )
+		// create_socket_raw( struct protoent * p )
+		create_socket_icmp()
+
+	sock_server_icmp : public sock_server_clts
+
+
+

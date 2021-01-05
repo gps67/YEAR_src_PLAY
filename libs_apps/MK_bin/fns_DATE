@@ -1,0 +1,125 @@
+#  MMDDhhmm[[CC]YY][.ss]
+#  MMDDhhmmCCYY.ss
+
+# YES but number is unreadable
+#
+# MAYBE if epock is required to be different (absolute / local)
+#
+# DATE_STAMP=`date +%s` # YES # seconds into epoch # needs -d adding
+# DATE_STAMP=`date +--date=@%s` # YES # PREFERRED # seconds into epoch
+
+# NO this nonsense is not perpetuated
+# DATE_STAMP=`date "+-d %m%d%H%M%Y.%S"` # NO set date is not -d format !!! GOOD
+
+# YES 
+# READABLE 2016-05-29T16:59:57
+# TIMEZONE untested will convert to own TZ out and back
+#
+# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
+# DATE_STAMP="-d ${DATE_STAMPVAL}"
+
+# without --date=@SECS it uses NOW and you need all vars at once
+# with --date=@SECS you can convert each when you want
+# I know you dont think this will happen at midnight
+# but cron started your cron-job - when exactly ?
+
+fn_DATE_zap_STAMP()
+{
+	unset DATE_STAMPVAL DATE_STAMP
+}
+
+fn_DATE_get_STAMP_yesterday()
+{
+	fn_DATE_zap_STAMP
+	fn_DATE_get_STAMP -d yesterday
+}
+
+fn_DATE_use_STAMPVAL()
+{
+	# any args forces recompute to those args
+	[ $# == 0 ] || unset DATE_STAMPVAL
+	# args should be nothing or -d yesterday or GNU sensitive
+	[ -z "${DATE_STAMPVAL}" ] && \
+	export DATE_STAMPVAL=`date "$@" "+%Y-%m-%dT%H:%M:%S"` 
+}
+
+fn_DATE_get_STAMP()
+{
+	# GNU-ism date -d probably bbox variations
+	[ $# == 0 ] || [ $1 == "-d" ] || set -- "-d" "$@"
+	fn_DATE_use_STAMPVAL "$@"
+	export DATE_STAMP="-d ${DATE_STAMPVAL}"
+}
+
+fn_DATE_use_STAMP()
+{
+	# allow either VAR to be used to trigger new value
+	# any args force recompute
+	[ $# -gt 0 ] && fn_DATE_get_STAMP "$@"
+	[ -z "${DATE_STAMPVAL}" ] && fn_DATE_get_STAMP
+	[ -z "${DATE_STAMP}" ] && fn_DATE_get_STAMP
+}
+
+fn_DATE_plus_str()
+{
+	# WARN - can only default to NOW
+	fn_DATE_use_STAMP
+	date ${DATE_STAMP} "+$*"
+}
+
+fn_DATE_get_VARS()
+{
+	# args can be yesterday # auto 
+	# [ $# == 0 ] || unset DATE_STAMPVAL
+	fn_DATE_use_STAMP "$@" 
+
+	# DATE_ABC will come back with the terminals TZ NOW
+	# not the DATE_STAMP then
+
+eval `fn_DATE_plus_str "
+	DATE_YEAR=%Y
+	DATE_MM=%m
+	DATE_DD=%d
+	DATE_Jan=%b
+	DATE_Tue=%a
+	TIME_HH=%H
+	TIME_MM=%M
+	TIME_SS=%S
+"`
+eval `fn_DATE_plus_str "
+	TIME_ABC=%Z
+"`
+	export DATE_YEAR DATE_MM DATE_DD DATE_Jan DATE_Tue
+	export TIME_HH TIME_MM TIME_SS TIME_ABC
+
+	export DATE_YEAR_MM_DD="$DATE_YEAR-$DATE_MM-$DATE_DD"
+	export DATE_year_mm_dd="$DATE_YEAR-$DATE_MM-$DATE_DD"
+}
+
+fn_DATE_use_VARS()
+{
+	[ $# == 0 ] || unset DATE_YEAR DATE_STAMPVAL
+	[ -z "${DATE_YEAR}" ] || return
+	fn_DATE_get_VARS "$@"
+}
+
+# debugging # after yesterday is sticky until -d now
+# but want to include harmlessly multiple times - retaining old DATE_STAMPVAL
+#
+# OOPS "$@" is picking up the parent scripts args
+# if you want to specify the date do so with an arg
+# if you do the date WILL be recomputed
+# no args will sort of safetynet into NOW or AW_WAS when previously called
+#
+# fn_DATE_use_VARS "$@"
+#
+fn_DATE_use_VARS 
+
+# fn_DATE_get_VARS yesterday
+# fn_DATE_get_VARS 
+# fn_DATE_get_VARS now
+
+# name=name
+# year_mm_dd="${DATE_YEAR}-${DATE_MM}-${DATE_DD}"
+# year_mm_dd=`fn_DATE_plus_str %Y-%m-%d`
+# echo vi -c 'set fileformat=dos' $year_mm_dd-name.t

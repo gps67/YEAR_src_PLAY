@@ -1,0 +1,159 @@
+.xawtv_NOTES.txt
+
+Find your nearest transmitter (UK)
+
+	http://www.dtg.org.uk/retailer/coverage.html
+	enter your postcode to get your transmitter options
+	If you have several, try the nearest without a hill in the way
+
+	Emley Moor
+	BBC Region: North
+	ITV Region: Yorkshire
+	Switchover: 2011
+	Muxes received: ALL
+	Compass bearing: 302°
+	Distance: 26 kilometres
+	Aerial group: B Horizontal
+	Location: Grid Ref SE222128
+	Aerial elevation: 572 metres
+
+	ALSO: 
+	http://www.wolfbane.com/cgi-bin/tvd.exe
+
+Buy and Fit Your aerial
+
+	Distance (and line of sight)
+	15 miles = loft OK, loft costs 6db!
+	http://www.megalithia.com/elect/terrain.html
+	SU718721
+	http://www.megalithia.com/elect/aerialsite/index.html
+	http://www.megalithia.com/elect/aerialsite/goodbadugly.html
+
+	CABLE: WF100 - inside and outside
+	CABLE: CT100 - inside
+	SOLDER: http://www.megalithia.com/elect/aerialsite/goodbadugly.html
+
+	That tells you to get an aerial that is tuned to group B,
+	but most aerials are wideband (not grouped).
+
+	Horizontal wires is normal, vertical is turned 90'
+
+	The compass angle (magnetic or geographic?) is clockwise
+	so a bearing of 302 means pointing NW
+
+	HINT: use the building wall, and make a piece of paper.
+	The compass will be of no good when the aerial is close by.
+	Or a protractor. (Assuming the building is mostly square).
+
+	The name is a key to other tables of transmitter data
+
+	HINT: Buying Aerials
+		the group is wideband 21-69
+		an end mounted aerial points anywhere, but leverage
+		forward gain 10..15 db
+		MaxView MX30
+		Fracarro Omega 5
+		Fracarro Omega 8
+		Maplin A21GY688
+		Standard 2 = CAI second best
+		http://www.dtg.org.uk/retailer/benchmarking.html
+		http://www.dtg.org.uk/publications/books/cai_dtg_bmrk_aerials.pdf
+		http://www.highdefinitionuk.com - others exist !
+
+	HINT: non directional aerials
+		these dont look like aerials
+		more like aerofoils
+		but need PSU/240
+
+	HINT: Fitting Aerials
+		an end mounted aerial points anywhere, but leverage
+		use better screws or bolts on old walls
+		use a better bracket (multiple points on pole)
+		use a masonry drill bit not a wood bit
+		wet the hole, use some PVA to waterproof + hold
+		cut a piece of paper to the angle
+		use a compass to get the agngle of the building
+		angle your aerial before fitting bracket!
+
+Find that transmitters list of frequencies
+
+	http://www.dtg.org.uk/retailer/tx_n.html
+
+	Emley Moor
+	Table 1 - digital only
+	MUX		FREQ		Carries ... list ...
+	D1 MUX-1	52 - 10		BBC
+	D2 MUX-2	40 - 10		ITV/C4
+	D3 MUX-A	43 - 10		SDN
+	D4 MUX-B	46 - 10		BBC
+	D5 MUX-C	50 - 10		NGW
+	D6 MUX-D	49 - 4.0	NGW
+
+	Table 2 Same again but with analog
+	FREQ	MUX/	Name
+	37	A5	Analogue FIVE
+	40	D2	MUX-2
+	41	A4	Analogue FOUR
+	43	D3	MUX-A
+	44	A1	Analogue BBC1
+	46	D4	MUX-B
+	47	A3	Analogue ITV1
+	49	D6	MUX-D
+	50	D5	MUX-C
+	51	A2	Analogue BBC2
+	52	D1	MUX-1
+
+Add your own devices
+
+	69	Freeview to TV
+	60	VCR to TV
+	...	may be configurable (avoid digitals!)
+
+	Remember - SCART is better, but not to my PC card!
+
+Edit .xawtv
+
+	Put the analogue frequencies (channel numbers 21-69)
+	into xawtv. Then try fine-tuning.
+
+		# eg add this stanza 
+		[44-One]
+		channel = 44
+		fine = +9
+
+	NB The digital muxes are not in xawtv
+	they are in your Freeview box (or RSN card!)
+	but do avoid setting your VCR over them!
+
+Check Your FreeView Box
+
+	Each MUX carries several channels in a group.
+	If you cant get a frequency, or its weak,
+	several channels will be unreliable
+
+	http://www.dtg.org.uk/retailer/dtt_channels.html
+
+	MUX1 = BBC1 BBC2 BBC-Three CBBC BBC-News-24 BBCi Radio-wales
+	MUX2 = ITV1 FOUR ITV2 ITV3 C4+1 ...
+	MUXA = S4/C Five UK-Gold Radio-4
+	MUXB = BBC-Four CBeebies Radio-7
+	MUXC = Sky-Three UKTV-History E4+1 ...
+	MUXD = Hits TMF ITV2+1 Film4 ...
+
+	The same table also gives the LCN that the viewer sees
+
+	Different MUX-frequencies will bounce off walls and through trees
+	differently. The settop box probably shows signal strengths.
+	Hence groups of channels fade off when the leaves grow back.
+	The actual (latest) MUX layout will be on the web.
+
+	You might be the manual tuner of your PC-DVB
+
+Buying PC-DVB
+
+	USB - can be used in laptops
+	PCI - fewer cables
+	Linux - 
+	(I have no cards)
+
+

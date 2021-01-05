@@ -1,0 +1,40 @@
+# BECAUSE: Makefile cannot yet distinguish .c.o for base1 / base2
+# BECAUSE: above needs -DWITH_pdflib for base2 (also used for 1)
+# FIX: compile base1_components.o with base2 CFLAGS - but not linkage!
+# THEN: separate linkage is required for -lbase1 and also -lbase2
+# ALSO: WIN32 needs own syntax
+
+# pkg-config --define-variable=TGT=WIN32
+# TGT=WIN32
+## # TGT=LGX
+## # TGT=i586
+
+# the main difference is that the DLL cannot -lself
+
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_base2
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+#
+# _into_base2 does all the work, except it does NOT provide the -lbase2
+#
+# PKGS += mysqlclient
+# didnt get through ... check laters
+
+Requires: \
+	libs_apps_mysqlclient \
+	libs_apps_base1 \
+	_into_base2
+
+# Requires: _into_base2 libs_apps_base1
+
+Libs: -lbase2 
+Cflags: 
+
+

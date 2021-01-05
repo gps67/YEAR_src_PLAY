@@ -1,0 +1,11 @@
+UTIL_PS
+
+	fast filter subset clone ps tree
+
+	foreach pid
+	 if table1[pid].state
+		pid_is_new
+		pid_absent
+		pid_known
+			fast skip
+			

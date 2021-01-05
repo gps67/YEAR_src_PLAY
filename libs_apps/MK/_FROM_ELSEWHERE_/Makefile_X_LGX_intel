@@ -1,0 +1,32 @@
+# intel
+
+	# GCC_M_ARCH = 
+	CC=I icpc
+	# but where is g++
+	# CXX = g++ #			#
+	# CXX = RUN4 g++ #			#
+	CXX = RUN4 I icpc -g -debug all #			#
+	GCC_M_ARCH = 
+	lX11 = -lX11
+	lpng = -lpng
+	lpthread = -lpthread
+	ROOT_ccs_link=/
+# 	PKG_CONFIG_LIST += /usr/lib/pkgconfig
+#	CFLAGS_GTK += `$(PKG_CONFIG) --cflags gtk+-2.0`
+#	LINK_GTK += `$(PKG_CONFIG) --libs gtk+-2.0`
+	# not available
+#	INSIGHT_EXE=insight
+	INSIGHT_EXE=idb
+
+
+	WITH_MYSQL=1
+	WITH_PGSQL=0
+	# PDFLIB is GPL # not for commercial products # (recompile off)
+# DONE	WITH_PDFLIB=1
+	# there are some missing functions, but it runs
+	WITH_JS_SM=0
+	WITH_JS=0
+	# if you change this - recompile everything
+	# as obj_ref is derived from PyObject
+	# this is not started, yet ...
+	WITH_PYTHON=0

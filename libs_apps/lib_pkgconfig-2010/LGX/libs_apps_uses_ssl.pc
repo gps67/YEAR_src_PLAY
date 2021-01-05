@@ -1,0 +1,30 @@
+TGT=LGX
+
+############
+# lstyle
+############
+# lstyle=static # LGX static is empty # could fix it maybe
+lstyle=shared
+
+ROOT_over=/nfs/md7/PKGS/PKGS_built/${TGT}
+prefix=${ROOT_over}/ROOT_openssl_${lstyle}/airbook
+
+exec_prefix=${prefix}
+libdir=${prefix}/lib64
+includedir=${prefix}/include
+
+Name: libs_apps_uses_ssl
+Description: LIBS_APPS uses OPENSSL
+Version: 0.1.2
+
+# need to split the INSTALL prefix from PREFIX
+#
+# rpathed=-Wl,--rpath=${libdir}
+rpathed=-Wl,--rpath=/airbook/lib64
+
+Requires: libs_apps_uses_sockets
+
+# for DLLś instead use libeay32 and ... see INSTALL.W32
+
+Libs: -L${libdir} -lssl -lcrypto ${rpathed}
+Cflags: -I${includedir}

@@ -1,0 +1,43 @@
+# This is the internal build makefile component
+# for external builds see the libs_pkginfo files
+# maybe the internal could use the them too
+
+ifeq ($(WITH_JS),1)
+	# SpiderMonkey uses a few defines for its headers
+	#
+	DEFS += -DWITH_JS # my code
+	DEFS += -DXP_UNIX # js code (jsapi.h)
+	#
+	# JS is installed here - maybe a local symb link ?
+	#
+	# SRC_JS =  /home/gps/2000/src_build/js/src
+	# SRC_JS =  /media/hda7/src_build_2006/js/src
+	SRC_JS =  /home/gps/2000/ftp/CVS/SpiderMonkey/mozilla/js/src
+	#
+	# within that tree is subdirs and a few libraries
+	# this name is architecture specific (see JS Makefile.ref)
+	obj_JS = Linux_All_DBG.OBJ
+	INCLS += -I$(SRC_JS)
+	INCLS += -I$(SRC_JS)/$(obj_JS) # jsautocfg.h
+
+	# libjs.a can be statically linked (probably faster)
+	# LIBS += $(SRC_JS)/$(obj_JS)/libjs.a # static
+
+	# libjs.so # shared
+	LIBS += -L$(SRC_JS)/$(obj_JS) # shared
+	LIBS += -ljs
+
+	# libfdm.so # not built by default JS here
+	#	LIBS += -L$(SRC_JS)/fdlibm/$(obj_JS) # shared
+	#	LIBS += -lfdm
+
+	# JS provides a readline that conflicts with others, -DJS_READLI ...
+	#	LIBS += -L$(SRC_JS)/editline/$(obj_JS) # shared
+	#	LIBS += -ledit
+	#	actually - I dont use JS readline ... so time to wrap the other
+	#	LIBS += $(SRC_JS)/editline/$(obj_JS)/libedit.a
+
+	# find shared files at runtime
+	LIBS += -Wl,--rpath=$(SRC_JS)/$(obj_JS) # if not installed
+endif
+

@@ -1,0 +1,186 @@
+zlib access via fd_hold fd_zlib
+
+write buffer1 to fd_hold to ...
+
+fd_hold
+	when its readable TRY to call zfgets()
+	and pass it to pipe_downstream.got_line()
+	(or keep as this.got_line())
+
+	This looks a lot like a PIPELINE streams system.
+	That requires a bit of thought (unlike streams)
+
+Q_point
+
+	/*!
+		A proper FIFO queue
+
+			flow control - none
+			lock access - dual access with few locks
+
+		A switch PKT_IN queue
+
+			the incoming source repeatedly puts
+			data into the blk, then calls flush()
+			then RESETS blk becuase flush() should do that
+
+		The generator writes to Q->blk, and calls Q->flush()
+
+		Q->flush() takes as much data as it likes, leaves what
+		it doesnt (yet)
+
+		this->flush() updates offs_first_unread to point (as an
+		offset points) to the first unread Q_POS.
+
+			 update offs_first_unread += nbytes_consumed;
+
+		flush() then calls (some combination)
+
+			copy_down(); (which might not),
+				if(!update offs_first_unread) return; // DONE
+				if(nbytes_used = update offs_first_unread)
+					clear_blk();
+					return; // DONE
+				if( offs_first_unread < 100 ) return;
+				if( (3 * offs_first_unread) < blk.nbytes_used ) return; // 1/% used (factor)
+				
+			clear_blk()
+
+		this->copy_down() copies all the data down so that
+			offs_first_unread = 0
+		but only if it can be bothered, eg 100 : 25K
+		to be certain, simply dont call copy_down() when you dont need it
+
+		*this.clear_blk() is for when you always consume all data.
+
+	*/
+	struct Q_point
+	{
+		int offs_first_unread;
+
+		/*!
+			blk is the dual-ported Q buffer
+			locks implicitly exist as the io scheduler
+			waits for flush()
+			sending a stream of re
+		*/
+		buffer2 blk;
+		/*
+			Q.blk.write( buff, nbytes );
+			Q.blk.buff[ blk.nbytes_used ]
+			Q.blk.printf( "%s%s %s \r\n", tblname, sep1, command );
+			Q.flush();
+			
+
+		*/
+
+		Q_point()
+		: offs_first_unread(0)
+		{
+		}
+
+		virtual ~Q_point()
+		{
+			
+		}
+		
+		/*!
+			If you INSIST that downstream consumes all - call this
+		*/
+		bool flush_and_clear_blk()
+		{
+			bool ok = flush();
+			/*
+				warn if proper Q didnt clear blk itself
+				roll_zero if buffer empty
+				copy_down used by (XXXX) (WHEN)
+			*/
+			clear_blk();
+			return ok;
+		}
+		void clear_blk()
+		{
+			blk.nbytes_used = 0;
+			offs_first_unread = 0;
+			offs_flush_point = 0;
+		}
+
+		void copy_down() // memcpy cant fail - other than memfault
+		{
+			// update offs_first_unread
+			// update offs_flush_point  -= 
+
+			// no copy_down to do or already done
+			if(!offs_first_unread) return; // DONE
+
+			// completely empty buffer
+			if(nbytes_used = update offs_first_unread)
+			{
+				clear_blk();
+				return; // DONE
+			}
+
+			// not enough to be bothered with
+
+			if( offs_first_unread < 100 ) return;
+			if( (3 * offs_first_unread) < blk.nbytes_used ) return; // 1/% used (factor)
+
+
+			// full copy down
+			int len = blk.nbytes_used - offs_first_unread;
+			u8 * src = blk.buff + offs_first_unread;
+			u8 * dst = blk.buff;
+			memmove( dst, sec, len );
+			if( offs_flush_point )
+			{
+				offs_flush_point -= offs_first_unread;
+				if( offs_flush_point < 0 )
+				{
+					e_print("code error ( offs_flush_point < 0 )");
+					offs_flush_point = 0;
+				}
+			}
+			offs_first_unread = 0;
+		}
+
+		inline int flush_point()
+		{
+			offs_flush_point = blk.nbytes_used;
+		}
+
+		/*
+			got_data() which might call got_line()
+		*/
+		virtual bool flush() = 0;
+
+		
+	}
+
+zlib
+
+	dig out zlib block IO filter
+
+	IN: (base class or member z fields)
+
+		buffer2 z; // available for producer to append Q
+
+		ref_hold<buffer_in> Q; // owned by this - usually
+
+	IN: (generic ~= virtual) functions:
+
+		got_data(
+
+
+
+
+
+fd_hold to be split to fd_out[_hold] fd_in[_refhold]
+
+This is particularly useful for stdin/stdout on different fd's!!
+Or is it? Converse is true, can easily convert single fd to in/out
+The opposite (never needed) would be a coordinated pair of endpoints,
+relaying to a third 2-way thing. -BUT-
+Parse and generate are so different, and rarely combined on the
+same file - except buffer1 convertion buffers!.
+It might make it clearer to separate bundles of such functions.
+

@@ -1,0 +1,5 @@
+# uncomment for devel
+# ./mk -k clean_exe
+# ./mk -k clean_exe
+./mk_less dll_5
+

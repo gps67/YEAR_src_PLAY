@@ -1,0 +1,12 @@
+2019-01-23 Jan Wed 23:48
+random_sources.txt
+
+	DWORD w = ::GetCurrentProcessId();
+	DWORD w = ::GetCurrentThreadId();
+
+	LARGE_INTEGER v;
+	if(::QueryPerformanceCounter(&v))
+		RAND_ADD( v.QuadPart);
+
+
+	

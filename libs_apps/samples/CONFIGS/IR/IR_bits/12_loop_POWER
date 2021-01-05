@@ -1,0 +1,4 @@
+CMD=" SV-651B POWER "
+CMD=" SV-651B DISPLAY "
+
+loops /home/gps/2002_ftp/11_Nov/lirc-0.6.6/tools/rc SEND_ONCE $CMD

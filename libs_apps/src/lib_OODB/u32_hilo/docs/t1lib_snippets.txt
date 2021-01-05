@@ -1,0 +1,64 @@
+ALSO AVAILABLE IN truetype format
+
+http://www.freetype.org/
+http://www.t1lib.org/
+http://gnuwin32.sourceforge.net/packages/t1lib.htm
+ftp://sunsite.unc.edu/pub/Linux/libs/graphics/
+http://www.freetype.org/freetype2/docs/glyphs/glyphs-3.html
+
+t1 uses fxp_16_16 x pt = 910 dpi
+truetype uses fxp_26_6 = 4608 dpi
+u16_hilo uses fxp_22_4 = 1152 dpi
+
+t1lib uses fork of X11-ibm-rasteriser AFM etc 2005-08-13
+
+ I am sure it has changed, but ...
+
+#define T1LIB_PATCHLEVEL         0
+#define T1LIB_VERSIONSTRING      "5.1.0"
+
+GLYPH {
+
+/* the data structure which contains the character bitmap description */
+typedef struct
+{
+  char *bits;           /* A pointer to the characters local bitmap */
+  struct                /* A struct containing diverse metric information */
+  {
+    int ascent;
+    int descent;
+    int leftSideBearing;
+    int rightSideBearing;
+    int advanceX;
+    int advanceY;
+  } metrics;
+  void *pFontCacheInfo;
+  unsigned long bpp;
+} GLYPH;
+
+}
+// more ... see t1lib.h from a recent (not 3 years) file
+
+/* A structure representing a matrix */
+typedef struct
+{
+  double cxx;
+  double cyx;
+  double cxy;
+  double cyy;
+} T1_TMATRIX;
+
+	What it does to  points glyph_xpos spline lines,
+	available: same math as postscript matrix
+	# why not use cairo ?
+
+	EXPR = 2-UP A4 scaled down to A5 with extra borders
+	EXPR = 4-UP etc by name
+	EXPR = PAGE[ i ] and nearby objects
+	EXPR = scale DIAG from 100 dpi to 1152 dpi
+	EXPR = MATH =
+	MATH = fxp_12_4 pth; // dpi_1152
+	MATH=
+
+
+

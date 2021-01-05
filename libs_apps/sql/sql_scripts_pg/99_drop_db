@@ -1,0 +1,15 @@
+#!/bin/sh
+PATH=$PATH:/home/gps/bin
+. ./.env
+set -x
+if false
+then
+	echo USER_PASS $USER_PASS
+	ask_do dropdb -W --username $USER_NAME $BASE_NAME
+else
+	no_db
+	pgsql_user <<-!EOT
+		drop database $BASE_NAME
+	!EOT
+fi
+

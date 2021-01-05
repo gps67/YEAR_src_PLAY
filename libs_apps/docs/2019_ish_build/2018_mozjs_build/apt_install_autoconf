@@ -1,0 +1,4 @@
+ask_do sudo apt install autoconf
+ask_do sudo apt install   autoconf-archive gnu-standards autoconf-doc libtool m4-doc
+
+

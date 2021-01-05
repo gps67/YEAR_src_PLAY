@@ -1,0 +1,26 @@
+# cd js/src
+# /home/gps/2018/src_build/mozjs-65.0.1/js/src/ '' Feb 11
+# following hmmm
+
+(
+PATH=$PATH:$HOME/.cargo/bin:
+
+# this failed - enoent after sucessful # apt install autoconf-2.13
+# so ignore ?
+# autoconf-2.13
+
+# This name should end with "_DBG.OBJ" to make the version control system ignore it.
+mkdir build_DBG.OBJ
+cd build_DBG.OBJ
+
+PFX=$HOME/G/mozjs
+[ -d $PFX ] || mkdir -p $PFX 
+
+# ../configure --enable-debug --disable-optimize --prefix=$PFX
+../configure --enable-debug --prefix=$PFX
+
+# Use "mozmake" on Windows
+make
+make install
+
+) 2>&1 | tee $0.out.$$

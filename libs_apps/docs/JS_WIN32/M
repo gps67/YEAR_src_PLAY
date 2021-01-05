@@ -1,0 +1,20 @@
+
+. fns_var_add
+
+export prefix=/airbook/
+ARCH_TARGET=i386-mingw32
+
+HOME_IMCROSS=/home/user1/IMCROSS
+HOME_IMCROSS_ARCH=${HOME_IMCROSS}/${ARCH_TARGET}
+var_pfx PATH \
+	${HOME_IMCROSS_ARCH}/bin \
+	${HOME_IMCROSS}/bin \
+#
+export PKG_CONFIG_LIST=${HOME_IMCROSS_ARCH}/lib/pkgconfig
+
+
+type gcc
+make -f Makefile.ref \
+2>&1 | tee $0.out_
+
+exit

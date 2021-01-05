@@ -1,0 +1,41 @@
+
+to obtain mozjs
+need to ask it's automation
+
+https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonkey-sm-package
+
+	That displays rows of things
+	one or two of these things is a release
+	with "SM(PKG)" 2/3 along screen
+	click on that
+
+(be patient, it is slow, working on server)
+
+	up pops bottom left panel, + next to that
+	Job Details
+	artifact uploaded: live_backing.log
+
+		artifact uploaded: live.log
+ ***==>		artifact uploaded: mozjs-63.0.4.tar.bz2
+		artifact uploaded: libmozjs-63.so
+		artifact uploaded: jsapi-tests
+		artifact uploaded: js-gdb.py
+		artifact uploaded: js
+
+	click on the bz2 tarball to download it
+
+ apt install ...
+
+ 	auto conf -2.13 confused me needed but not needed
+
+	rust .. seemed like a good idea
+
+	debug - -D option must match
+
+	C script installs into $HOME/G/mozjs/*/*
+
+	edit pkg-config script
+
+ 
+
+

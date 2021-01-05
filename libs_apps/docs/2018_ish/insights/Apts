@@ -1,0 +1,43 @@
+ask_do sudo apt install \
+	autoconf	\
+	autogen	\
+	texinfo	\
+	zlib1g-dev	\
+	tcl-dev	\
+	tk-dev	\
+	mesa-common-dev	\
+	libjpeg-dev	\
+	libtogl-dev	\
+	python-dev	\
+	flex	\
+	bison	\
+	itcl3	\
+	itk3	\
+	iwidgets4	\
+#
+
+exit
+General
+sudo apt-get install autoconf
+sudo apt-get install autogen
+Dependencies for Bfd
+sudo apt-get install texinfo
+sudo apt-get install zlib1g-dev
+Dependencies for libgui
+sudo apt-get install tcl-dev
+sudo apt-get install tk-dev
+sudo apt-get install mesa-common-dev
+sudo apt-get install libjpeg-dev
+sudo apt-get install libtogl-dev
+Dependencies for GDB
+sudo apt-get install python-dev
+sudo apt-get install flex
+sudo apt-get install bison
+sudo apt-get install itcl3
+sudo apt-get install itk3
+sudo apt-get install iwidgets4
+
+http://www.dalfonso.co/2016/04/23/setting-insight-debugger-on-ubuntu-16-04-lts/#comment-524
+
+git clone --recursive git://sourceware.org/git/insight.git
+

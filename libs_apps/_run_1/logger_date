@@ -1,0 +1,7 @@
+
+msg="${1:- Test `date`}"
+
+logger \
+-p local3.info \
+-t TAG \
+"$msg"

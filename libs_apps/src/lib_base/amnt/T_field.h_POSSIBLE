@@ -1,0 +1,108 @@
+#ifndef T_field_H
+#define T_field_H
+
+/*
+// see jsc_Row.cxx (new use in JS)
+ switch col_spec_for_field -> get_field_type() {
+ case T_link_grp:
+ case t_link_row:
+ case T_amnt:
+ case T_date:
+ case T_date_rel:
+ case T_percent:
+ case T_str_key:
+ case T_str_desc:
+ case T_expr:
+}
+but see also jsc_Table.h
+for confusingly named but completely different
+FieldTags = name_of_field
+ FT_rowlist "rowlist"
+ FT_name "name" = name of field/column called "name"
+
+ see table.cxx add_col( type, name )
+ which could use a lookup of enumerated field names
+ but in an application specific context
+ and maybe a language context
+*/
+
+typedef enum T_field
+{
+	T_amnt,
+	T_date,
+	T_date_rel,
+	T_percent,
+	T_str_key,		// str used as key
+	T_str_desc,		// str may contain spaces
+
+	T_link_grp,	// dotdot in same table
+	T_link_row,	// row is in another table
+
+	T_expr		// something that eventually returns T_plainer
+};
+
+/*
+	The list of enumerates should be program generated
+	each item having a name, type, etc
+
+	T_ O_ X_
+	There are prefixes to designate primative ints, pointers
+	and objects of type O1, O2, O3, ... 
+
+	suffixes:
+	_bool
+	_int
+	_uint
+	_byte _u8 _i8
+	_u32 _i32 _u16 _i16
+	_float _double _float80 
+	_i64_native _i64_long_long
+	_ptr _cptr _optr _ref _xxx _void_ptr
+	_STR0
+	_u32_time _u64_time /* unix time format */
+	_u32_part _i32_part _int_enum _uns_enum _enum
+	_u32_bits /* packed in a struct format ??? */
+	_int_subrange [A..B] probable less than 32 bits, etc, bit_fields
+
+	PRE_MID
+	Array_
+	Struct_
+	Pointer_ (to pointer?) Var_
+	Union_ // if this isnt a bad thing, Tagged UNION
+	
+
+	class ptr_of_some_type<T>
+	{
+		T * ptr;
+	 public:
+		// standard simulations, check compiler generated asm 
+		T * operator=( const T* ptr2 ) { ptr = ptr2; }
+		T & operator*() { return *ptr; }
+		T * operator T*() { return ptr; }
+		static SPEC * static_get_spec();
+		// ...
+
+	};
+
+	class SPEC_base : obj_ref
+	{
+		str1 name;
+		bool is_primative_or_fits_in_a_register;
+		int fixed_size ; // non-zero is the value
+	};
+
+	class SPEC_of_ptr_of_some_type : public SPEC_base
+	{
+		virtual int get_size_fn( const T * inst ) { return fixed_size; }
+		// bool fixed_size = 4 ; // non-zero
+		/*
+			the point is that the instance field (itself ptr)
+			has no type info, other than this
+		*/
+
+		bool pointer_is_array_not_single;
+		SPEC * item_spec; // possibly Object || X_byte || ...
+	};
+*/
+
+#endif

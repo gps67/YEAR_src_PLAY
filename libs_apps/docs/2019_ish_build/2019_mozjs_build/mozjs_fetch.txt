@@ -1,0 +1,45 @@
+
+to obtain mozjs
+need to ask it's automation
+
+https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonkey-sm-package
+
+	That displays rows of things
+	one or two of these things is a release
+	with "SM(PKG)" 2/3 along screen
+	click on the PKG # and wait 10 seconds
+
+(be patient, it is slow, working on server)
+
+	up pops bottom left panel, + next to that
+	Job Details
+	artifact uploaded: live_backing.log
+
+		artifact uploaded: live.log
+ ***==>		artifact uploaded: mozjs-65.0.1.tar.bz2
+		artifact uploaded: libmozjs-65.so
+		artifact uploaded: jsapi-tests
+		artifact uploaded: js-gdb.py
+		artifact uploaded: js
+
+	click on the bz2 tarball to download it
+
+# extract 
+
+	tar -C /home/gps/YEAR/src_build/JS/ -jxvf mozjs-65.0.1.tar.bz2
+	tar -C /home/gps/G/src_build/ -jxvf mozjs-69.0.0.tar.bz2
+
+# build
+
+	cd TOP
+	cd /home/gps/G/src_build_G/mozjs-69.0.0
+	mkdir js/src/doc
+	cd js/src/doc
+	../configure --prefix=$HOME/G/prefix
+	make 
+
+# error
+
+	#include "js/RequiredDefines.h"
+
+

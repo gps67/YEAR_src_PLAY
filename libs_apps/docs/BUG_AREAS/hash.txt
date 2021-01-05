@@ -1,0 +1,20 @@
+ht1 and reference counting
+
+	There is a major issue with ref counting,
+WANTED:
+	gtk knows to call the delete functions itself
+	which call ref_decr(), as in:
+
+	GHashTable *
+	g_hash_table_new_full(
+		GHashFunc       hash_func,
+		GCompareFunc    key_equal_func,
+		GDestroyNotify  key_destroy_func,	// F_del_key
+		GDestroyNotify  value_destroy_func	// F_del_val
+	);
+
+GTK1:
+	gtk1 seems to lack this function?
+
+GTK2:
+

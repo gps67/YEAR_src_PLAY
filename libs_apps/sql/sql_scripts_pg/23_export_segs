@@ -1,0 +1,24 @@
+#!/bin/sh
+. ./.env
+
+set +x
+[ -d /tmp/segs ] || (
+	mkdir /tmp/segs
+	chmod 777 /tmp/segs	# postgres needs to write to it
+)
+printf "Enter idx_zflt or BLOB ID: "
+read segid
+# /var/lib/pgsql/data/base/obj_stat_1/$segid - '.'  a bad place indeed
+# locate fails to search ROOT directories
+# abosolute dirs but /tmp/segs/ needs posgres access to segs dir ;-)
+outfile=/tmp/segs/$segid
+prefix=""
+# touch $outfile
+
+# pgsql_user <<!EOT
+pgsql_root <<!EOT
+
+select lo_export( $segid, '$outfile' )
+!EOT
+ls -la $prefix/$outfile
+

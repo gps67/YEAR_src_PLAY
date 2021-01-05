@@ -1,0 +1,25 @@
+#!/bin/sh
+
+. ./.env
+
+# "text" has no upper limit (32bit) (8K page)
+# varchar(11) truncates the field!
+# That leads to the LINE not being found - where site="not_truncated" !!!
+
+pgsql_user <<!EOT
+
+CREATE TABLE line_id (
+	id	SERIAL      NOT NULL,
+	linetype text       NOT NULL, // "point_date" "point_time" "series" ...
+	site	text        NOT NULL DEFAULT '-',
+	host	text        NOT NULL,
+	dev	text        NOT NULL DEFAULT '-',
+	cmd	text        NOT NULL,
+	opt	text        NOT NULL DEFAULT '-',
+	attr	text        NOT NULL,
+	dt	int         NOT NULL,
+	avg	text        NOT NULL DEFAULT '1',
+	desc	text,
+
+	PRIMARY KEY (site,host,dev,cmd,opt,attr,dt,avg)
+);

@@ -1,0 +1,45 @@
+
+# fast rework
+
+	PATH_TOOL=${PATH_TOOL:-/home/gps/bin_LGX/PATH_TOOL}
+
+
+	tools_2000=${tools_2000:-/tools/2005}
+
+	# when testing new code # PATH_TOOL=./PATH_TOOL
+	# when in /tools/ maybe was
+	PATH_TOOL=${PATH_TOOL:-$tools_2000/PATH_TOOL}
+
+	[ -x $PATH_TOOL ] || echo "Cannot find $PATH_TOOL" ]
+
+	var_add()
+	{
+		eval `$PATH_TOOL -for_eval add "$@"`
+	}
+
+	var_pfx()
+	{
+		eval `$PATH_TOOL -for_eval pfx "$@"`
+	}
+
+	var_del()
+	{
+		eval `$PATH_TOOL -for_eval del "$@"`
+	}
+
+	var_list()
+	{
+		$PATH_TOOL list "$@"
+	}
+
+	args_add()
+	{
+		eval `$PATH_TOOL -for_eval -sep_space -dupes add "$@"`
+	}
+
+	P()
+	{
+		var_list PATH
+	}
+
+

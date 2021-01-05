@@ -1,0 +1,11 @@
+# sockets on WIN32 need what UNIX gets with libc
+
+
+Name: libs_apps_sockets
+Description: libs_apps uses gtk which is sometime a trick 
+Version: 0.1.2
+
+Requires: 
+
+Libs:
+Cflags:

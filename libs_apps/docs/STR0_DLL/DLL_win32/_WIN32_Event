@@ -1,0 +1,10 @@
+
+	CreateEvent
+	SetEvent
+
+	create an event listener
+	wait for change ... how?
+	send event = Set
+
+
+

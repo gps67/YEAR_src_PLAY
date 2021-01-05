@@ -1,0 +1,17 @@
+The new WIN32 build is not MINGW on WIN32
+It is a cross compile on Linux.
+You might have a choice of IMCROSS or linux-cross-mingw (ubuntu std)
+see MK/Makefile_X_WIN32
+
+The LGX and ARM and WIN32 ports use pkgconfig
+particularly for modules that link against libs_apps/libs/libbase2.so
+
+The multi-way build matrix, and make local install,
+is all a bit convoluted.
+Particularly with non-standard packages (eg openssl) to link with.
+The build system might be ubuntu, but the target might not be.
+
+
+
+
+

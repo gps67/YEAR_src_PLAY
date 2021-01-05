@@ -1,0 +1,6 @@
+
+On WIN32 the default file mode is ASCII with CRLF
+
+	_setmode(fd,_O_TEXT);
+	_setmode(fd,_O_BINARY);
+

@@ -1,0 +1,10 @@
+prefix=/tools/2000/libs
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_uses_ncurses
+Description: LIBS_APPS uses ncurses 
+Version: 0.1.2
+
+Libs:  -lncurses -Wl,--rpath=${libdir}
+Cflags: -I${includedir}

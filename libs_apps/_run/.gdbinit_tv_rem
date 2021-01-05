@@ -1,0 +1,4 @@
+b main
+b C_snooper
+r 
+p gdb_off=false

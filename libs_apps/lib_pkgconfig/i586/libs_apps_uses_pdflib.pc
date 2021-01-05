@@ -1,0 +1,20 @@
+TGT=LGX
+
+
+# prefix_over=../PKGS/PKGS_built/${TGT}
+# prefix=${prefix_over}/ROOT_pdflib
+prefix=/usr/local/
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_pdflib
+Description: LIBS_APPS uses PDFLIB (which requires GPL)
+Version: 0.1.2
+
+## Libs:  ${libdir}/pdflib.dll -Wl,--rpath=${libdir}
+## #Libs:  -L${libdir} -lpdf -Wl,--rpath=${libdir}
+## Cflags:  -I${includedir}
+
+Libs:  -L${libdir} -lpdf 
+Cflags: -DWITH_PDFLIB -I${includedir}

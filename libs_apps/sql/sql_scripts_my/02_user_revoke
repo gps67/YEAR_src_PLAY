@@ -1,0 +1,10 @@
+#!/bin/sh
+. ./.env
+
+# mysql_user <<!EOT
+mysql_root <<!EOT
+	use mysql;
+	# the GRANT OPTION is the ability to grant to others ...
+	REVOKE GRANT OPTION ON *.* FROM $USER_NAME;
+	REVOKE ALL PRIVILEGES ON *.* FROM $USER_NAME;
+	flush privileges;

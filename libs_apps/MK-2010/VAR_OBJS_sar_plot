@@ -1,0 +1,93 @@
+
+#	OBJS_sar_plot += sar_line_spec.o
+
+# post-135
+
+	OBJS_sar_plot += post_classinfo.o
+	OBJS_sar_plot += post_storage.o
+	OBJS_sar_plot += post_file.o
+
+# post_plus
+#
+#	OBJS += avltree.o
+#	OBJS += rtree.o
+#	OBJS += ttree.o
+#	OBJS += hashtab.o
+#	OBJS += textobj.o
+
+# more
+	OBJS_sar_plot += post_array.o
+
+# pdb
+	OBJS_sar_plot += pdb_string_pool.o
+	OBJS_sar_plot += pdb_line_spec.o
+	OBJS_sar_plot += pdb_blob.o
+	OBJS_sar_plot += pdb_line_and_segs.o
+	OBJS_sar_plot += pdb_line_list.o
+	OBJS_sar_plot += pdb_dset.o
+	OBJS_sar_plot += pdb_root_type.o
+ 	OBJS_sar_plot += PDB_app.o
+
+ifeq ($(WITH_MYSQL),1)
+# sql
+ 	OBJS_sar_plot += sql_link_MySQL.o
+ 	OBJS_sar_plot += dset_api_MySQL.o
+endif
+
+ifeq ($(WITH_PGSQL),1)
+# sql
+ 	OBJS_sar_plot += sql_link_postgres.o
+ 	OBJS_sar_plot += dset_api_postgres.o
+ 	OBJS_sar_plot += sql_link_pg_lo.o
+endif
+
+# mem
+	OBJS_sar_plot += mem_line_spec.o
+	OBJS_sar_plot += mem_line_tree.o
+
+# collect
+	OBJS_sar_plot += tbl_col_floats_base.o
+	OBJS_sar_plot += tbl_col_floats_sar.o
+	OBJS_sar_plot += tbl_collect.o
+
+	OBJS_sar_plot += sar_parser_floats.o
+	OBJS_sar_plot += sar_parser_temps.o
+
+# sar_tests/stats_*
+	OBJS_sar_plot += stats_sysinfo.o
+	OBJS_sar_plot += proc_partitions.o
+	OBJS_sar_plot += jsc_Stats_Module.o
+
+# dset
+	OBJS_sar_plot += dset_api.o
+	OBJS_sar_plot += dset_api_pdb.o
+	OBJS_sar_plot += dset_api_line_tree.o
+	OBJS_sar_plot += dset_api_segs_map.o
+
+# parse_sar
+	OBJS_sar_plot += sar_parser.o
+#	OBJS_sar_plot += sar_parse.o	# MAIN
+	OBJS_sar_plot += vmstat_wrap_line1.o
+	OBJS_sar_plot += vmparse_1020.o
+
+# sar_plot
+#	OBJS_sar_plot += sar_plot # MAIN
+	OBJS_sar_plot += sar_top_app.o
+# btn_layout
+	OBJS_sar_plot += btn_col.o
+	OBJS_sar_plot += sar_top_layout.o
+###	OBJS_sar_plot += btn_sar_layout.o
+
+# draw_ps
+
+
+# graph
+	OBJS_sar_plot += w_graph2.o
+	OBJS_sar_plot += w_graph2_axes.o
+	OBJS_sar_plot += w_graph3.o
+	OBJS_sar_plot += axis_scale.o
+	OBJS_sar_plot += axis_draw_y.o
+	OBJS_sar_plot += axis_draw_xtime.o
+	OBJS_sar_plot += flt80_2048.o
+	OBJS_sar_plot += flt80_2048_pair.o
+	OBJS_sar_plot += w_segs_map.o

@@ -1,0 +1,51 @@
+//
+// libs_apps/docs/STR0_DLL
+//
+//	PTR.h.txt
+//
+// CODE_POINT( "__CODEPOINT__::script_line" );
+//
+// NAMESPACE("PTR")
+//
+// PSG_TOKEN "typedef %s ITEMTYPE;" // ${NAME} // CMNT ... etc ...
+//
+// ITEMTYPE * PTR = EXPR;
+//
+
+template<ITEMTYPE>
+struct PTR {
+	u8 * PTR;
+	ITEMTYPE * get_PTR_fn() {
+		return reinterpret_cast(ITEMTYPE *) PTR;
+		// derived class can clone over this, and call
+		// parent_class_samename_same_args_maybe_extra
+		// when virtual is needed, get it from surrounding_CODE
+		// it upgrades PTR to SMART_PTR
+		// struct SURROUND {
+		//	typedef %  ITEMTYPE {
+		//	
+	}
+	operator bool () { return PTR == NULL; }
+	virtual bool is_null_fn() {
+		if(PTR) return true;
+	}
+	inline bool is_null() {
+		if(!PTR) return true;
+		return is_null_fn();
+	}
+	SPEC * get_SPEC() {
+		if(!PTR) {
+			PTR = get_PTR_FROM_NULL(); // static to thread.ctxt
+		}
+		SPEC_a = ITEMTYPE.SPEC
+		SPEC_b = ITEMTYPE_SPEC
+		SPEC_c = PTR.SPEC
+		return SPEC_b;
+	}
+	/* INFERRED RETURN TYPE 
+
+		ITEMTYPE & = get_SPEC
+	*/
+		operator & () { return * this; }
+};
+

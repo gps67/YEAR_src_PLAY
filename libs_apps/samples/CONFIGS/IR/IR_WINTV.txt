@@ -1,0 +1,8 @@
+http://mythtv.org/pipermail/mythtv-users/2004-January/025700.html
+says stereo jack from IR receiver is:
+
+	Base = GND
+	Ring = signal
+	Tip = VCC+
+
+also component might be like radio shack 276-640

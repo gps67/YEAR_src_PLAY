@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. fns_FAIL
+. fns_ASKS
+ask_do_fn "$@"

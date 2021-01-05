@@ -1,0 +1,17 @@
+#
+# SITE: ${ABS_OVER}
+#
+
+#	ABS_OVER=${HOME}/2011/src
+#	ABS_OVER=/media/X3/2011/src
+#	ABS_OVER=/media/X3/2012/src
+#	ABS_OVER=/media/X3/YEAR/src
+#	ABS_OVER=/nfs/NAS320/2015/src
+#	ABS_OVER=/nfs/A_C_C_T_S
+##	ABS_OVER=/home/gps/YEAR/src
+
+
+#
+# OVERRIDE VAR: setenv( ${ABS_OVER} )
+#
+

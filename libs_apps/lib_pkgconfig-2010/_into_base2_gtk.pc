@@ -1,0 +1,25 @@
+
+# TGT=WIN32
+# TGT=LGX
+# TGT=i586
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: _into_base2
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+# unfortunately base build a custom base-class that mentions JS GTK
+# but probably doesnt include base2!
+
+
+Requires: \
+	_into_base2 \
+	libs_apps_uses_gtk \
+
+Libs:
+Cflags:
+

@@ -1,0 +1,85 @@
+# UNTESTED
+# Prepared for if ever needed
+
+[global]
+fullscreen = 768 x 576
+ratio = 4:3
+freqtab = europe-west
+pixsize = 128 x 96
+pixcols = 3
+jpeg-quality = 75
+keypad-ntsc = no
+keypad-partial = yes
+osd = yes
+osd-position = 30 , 20
+use-wm-fullscreen = yes
+
+# with this, +/- changes the sound card
+# witou this, the video card is changed
+# mixer=line
+
+# [Station name]
+# capture = overlay | grabdisplay | on | off
+# input = Television | Composite1 | S-Video | ...
+# norm = PAL | NTSC | SECAM | ... 
+# channel = #
+# fine = # (-128..+127)
+# key = keysym | modifier+keysym
+# color = #
+# bright = #
+# hue = #
+# contrast = #
+
+[defaults]
+group = main
+norm = PAL
+input = television
+capture = over
+# color = 51%
+
+[44-One]
+channel = 44
+fine = +9
+
+[51-Two]
+channel = 51
+fine = +11
+
+[47-ITV-Carlton]
+channel = 47
+fine = +10
+
+[41-Four]
+channel = 41
+fine = +10
+
+[37-Five]
+channel = 37
+fine = +9
+
+[DaeWoo]
+channel = 69
+
+[VCR]
+channel = 60
+
+[cable]
+channel = 54
+
+# RESERVED
+# 40 43 46 49 50 52
+# DO NOT ALLOCATE THESE TO VCR's
+# THEY ARE THE DIGITAL FREQUENCIES
+#	FREQ	MUX/	Name
+#	37	A5	Analogue FIVE
+#	40	D2	MUX-2
+#	41	A4	Analogue FOUR
+#	43	D3	MUX-A
+#	44	A1	Analogue BBC1
+#	46	D4	MUX-B
+#	47	A3	Analogue ITV1
+#	49	D6	MUX-D
+#	50	D5	MUX-C
+#	51	A2	Analogue BBC2
+#	52	D1	MUX-1
+

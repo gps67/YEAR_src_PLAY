@@ -1,0 +1,10 @@
+
+
+Name: link_with_gtk_text
+Description: LIBS_APPS uses gtk_text which uses gtk
+Version: 0.1.2
+
+Requires: link_with_base2_gtk
+
+Libs: libgtk_text.dll
+Cflags:

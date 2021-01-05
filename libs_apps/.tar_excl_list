@@ -1,0 +1,33 @@
+PKGS
+libs_apps_obj
+# libs_apps_obj_WIN32_*
+# libs_apps_obj_i586_*
+# libs_apps_obj_LGX_*
+build_*
+src_build_WIN32
+src_build_i586
+src_build_LGX
+#
+# above line is a minor hassle
+# but its better than the missing dirs
+# which had the same name as sar_executables 
+# sorry
+X_accts
+X_gtk_text
+X_js_many
+X_sar_parse.exec
+X_sar_plot.exec
+X_wclient
+X_tv_rem
+X_tv_vol
+X_tv_vol_
+fa
+fb
+fa1
+.fa1
+fa2
+.fa2
+t
+.deps
+sock_cli_test1
+sock_cli_test1.exe

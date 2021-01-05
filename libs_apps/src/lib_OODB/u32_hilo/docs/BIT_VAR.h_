@@ -1,0 +1,89 @@
+#ifndef BIT_VAR_H
+#define BIT_VAR_H
+
+/*
+	a bit var is several bit-vars in an u32 or other
+
+	maybe only one part of the u32 (but others are there)
+	maybe u64 or something
+	maybe BIT_VAR_group = LIST { BIT_VAR_item }
+
+	ISSUES {
+	 u32 -vs- u64
+	 u32 -vs- u8[]
+	 u32_hilo -vs- u32_hilo_in_reg_unswapped
+	 u32_hilo -vs- u32_hilo_in_reg_swapped_now_int
+	 bother with signed
+	 BIT_VAR doesnt cross byte boundry
+	 BIT_VAR does cross byte boundry
+	 BIT_VAR collapses to int_hilo
+	 BIT_VAR is really BYTEs_VAR
+*/
+
+struct BIT_VAR_SPEC1
+{
+	u32 mask_1s;
+	u32 mask_1s_not;
+	u32 mask_0s;
+	u32 mask_1s_rhj;
+	u32 nbits_right_gap;
+	u32 nbits_var_width;
+//	u32 nbits_left_gap;
+	u32 sign_bit_rhj;
+	u32 sign_bit;
+	bool is_signed;
+	bool bother_masking_off_top_bits;
+	bool crosses_byte_boundry; // problems with hilo
+
+	void set_part( int_hilo & val_im_mem, int v_part ) {
+		int val_in_reg = val_in_mem.get_int();
+		set_part( val_in_reg, v_part );
+		val_in_mem.set_int( val_in_reg );
+	}
+	void set_part( int & val_in_reg, int v_part ) {
+		v_part &= mask_1s_rhj;
+		// COMPILE_TIME_CT_knwon_to_be_ZERO( nbits_right_gap )
+		// COMPILE_TIME_CT_knwon_to_be_MULT8( nbits_right_gap )
+		// let C/ASM optimise for us
+		v_part <<= nbits_right_gap;
+
+		int v_back = val_in_reg; 
+		v_back &= mask_1s_not;
+
+		val_in_reg = v_back | v_part;
+	}
+	bool get_part( const int & val_in_reg, int & v_part )
+	{
+		v_part = get_part( val_in_reg );
+		return true;
+	}
+	int get_part( const int & val_in_reg )
+	{
+	 int
+		v_part = val_in_reg;
+		v_part >> nbits_right_gap;
+		v_part &= mask_1s_rhj;
+		return v_part;
+	}
+
+ static
+	int mask_make( int nbits ) {
+		int mask = -1;
+		mask <<= nbits;
+		return ~mask;
+	}
+
+	BIT_VAR_SPEC1( int _nbits_var_width, int _nbits_right_gap )
+	: nbits_var_width( _nbits_var_width )
+	, nbits_right_gap( _nbits_right_gap )
+	{
+		int m1 = mask_make( nbits_var_width );
+		mask_1s_rhj = m1;
+		mask_0s_rhj = ~m1;
+		is_signed = false;
+		bother_masking_off_top_bits = true; // unless knwon zero
+		crosses_byte_boundry = false; // for u3_u5 u4_u4 and u8 NOT 12
+	}
+}
+
+#endif

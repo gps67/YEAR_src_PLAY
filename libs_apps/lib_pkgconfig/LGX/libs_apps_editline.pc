@@ -1,0 +1,22 @@
+
+Name: libs_apps_editline
+Description: LIBS_APPS uses editline 
+Version: 0.1.2
+
+# apt install libedit-dev
+
+Requires: 
+
+OBJDIR=.
+X=-l/usr/lib/libeditline.so
+
+
+# Libs: -L${OBJDIR} -ledit -llll
+# Libs: ${OBJDIR}/libedit.a
+Libs: -L${OBJDIR} -ledit 
+# Libs: -L${OBJDIR} -leditline -ledit 
+## Libs: -L${OBJDIR} -ledit 
+# Libs: -L${OBJDIR} -ledit -lyoucantfindme
+Cflags:
+
+# -DWITH_EDITLINE

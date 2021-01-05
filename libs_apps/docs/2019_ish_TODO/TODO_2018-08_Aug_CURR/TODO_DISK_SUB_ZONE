@@ -1,0 +1,63 @@
+2019-08-31 Aug Sat 02:33 TODO_DISK_SUB_ZONE
+
+	MULTI_FILE	Cluster
+	MULTI_ZONE	Cluster of Zones
+
+ PAGE_4K - not yet, get benefit of GC Clone bringing mem together
+
+	File_Layout
+
+		some sort of ZIP file, maybe PKT decrypted
+	
+	EDIT_patch
+
+		some commands in MUX format, the patch the image
+
+	ITEM_found
+
+		SPEC -> CODE
+
+	MULTI_FILE	Cluster
+
+		ASWAS	input file ate time T_start
+		PATCH	local pool used to hold patch and cache
+		ASNOW
+
+
+	DATA needs FILE tag, and ALLOC returns PATCHFILE
+
+		not writing into ASWAS is skill, luck, and MMAP_RO
+
+	MULTI_ZONE
+
+		expand ZONE into new ZONES
+
+		CLONE
+
+			new ADDR of each item in one ZONE # or not
+			slows down decode, except where ADDR picks
+
+			probably defer this code ?
+			or find PATCH TRIO
+
+		MOVING pointers // really shouldnt
+		INDEX[ idx ] // holds solo copy
+
+
+2019-08-31 Aug Sat 03:16 SAFE_ZONE
+
+	P0P2 SAFE_ZONE
+
+	 P0P2 SUB_ZONE
+
+	  P0P2 OBJ_ZONE
+
+	   P0P2 sub_zone
+
+	Library passes along restricted zones
+	Need some logic that proves SUB_ZONE not exceeded
+
+
+
+
+

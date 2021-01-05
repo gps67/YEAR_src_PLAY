@@ -1,0 +1,28 @@
+TGT=LGX
+HOME=/home/gps
+
+############
+# lstyle
+############
+# lstyle=static # LGX static is empty # could fix it maybe
+lstyle=shared
+
+# ROOT_over=/nfs/md7/PKGS/PKGS_built/${TGT}
+prefix=${HOME}/prefix
+
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_uses_ssl
+Description: LIBS_APPS uses OPENSSL
+Version: 0.1.2
+
+rpathed=-Wl,--rpath=${libdir}
+
+Requires: libs_apps_sockets
+
+# for DLLś instead use libeay32 and ... see INSTALL.W32
+
+Libs: -L${libdir} -lssl -lcrypto
+Cflags: -I${includedir}

@@ -1,0 +1,18 @@
+Focus requires click
+
+	resize window should TOP
+
+	IE after playing with a sub-windows border,
+	the window is not focussed - you have to click
+	within the text area. Try it with F10 ;-)
+
+Command Line Open Window from mc-text
+
+	like netscape-remote, but not
+
+Absolute source pathnames
+
+	Makefile needs editing to use absolute pathnames,
+	so that gcc error messages can be clicked on.
+	
+

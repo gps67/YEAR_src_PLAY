@@ -1,0 +1,6 @@
+
+set -x
+ask_do sudo \
+	apt install rustc \
+	  cargo-doc gdb-doc rust-doc rust-src
+

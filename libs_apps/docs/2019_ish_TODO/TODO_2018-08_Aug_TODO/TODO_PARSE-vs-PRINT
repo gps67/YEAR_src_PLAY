@@ -1,0 +1,68 @@
+
+	STR0/PSG/PARSE
+	STR0/PSG/PRINT
+	STR0/LEX/PARSE
+	STR0/LEX/PRINT
+	STR0/CSET/PARSE // MERGE . += STR0/{PSG,LEX,CSET}/something.h
+	STR0/CSET/PRINT
+
+		OK the actual PARSER is well away from STR0
+
+		Here is the least VTBL base class (or template) or SCRIPT
+		Caller then builds up PSG layer on layer
+		Near here are a few examples
+		And their LEX / CSET / STR0 matchers
+
+
+	EXAMPLES
+
+		edit_line	// LIST_AVAIL TAB_EXPANDERS
+
+		edit_line.POPUP_LIST
+
+			show tokenised line to MATCH_from_ASCII // ok utf8
+
+		saved_setting { // add this ITEM to SHEET found at DBID
+
+			EM_Layount
+
+			   EXPR
+				CTXT = CTXT // THATS IT ! // HERE IT IS !!
+				default = CTXT.default
+				font = default.font
+				// import font.font_layout_exprs.
+				// import CURR 
+				dx = sz * font.font_layout_exprs.EM_
+				sz = default.font.point_size // font1.
+				sz = default.point_size // -> ALIAS DITTO
+				dx_as_em = dx // must multiply by font_point
+				dx_as_pt4 = 4.0 * dx_as_pt  // round unit
+		const		pt_per_em = default.font.pt_per_em // used often
+				dx_as_pt = dx_as_em * pt_per_em
+
+		 DATA_base_setting
+
+		 	TOKEN pt_per_EM	
+		 	TOKEN pt_per_EM	// SCRIPT_CODE_POINT[ DBID_of_VAR ]
+
+		 	EXPR pt_per_EM	// less syntax, but into C
+		 	EXPR ("pt_per_EM") // EXPR = DO_LOOKUP( ... )
+		 	EXPR(" pt_per_EM ") // PARSER likes word edges
+
+		 	DATA_VAR EM_Latout_item("pt_per_EM")
+
+				CTXT.NEAR(".default.font.")
+
+
+	EXAMPLES
+		edit_line
+		data_store
+		parse_ASCII
+		parse_BINARY 
+		match_BINARY
+		match_LOOKUP
+		cache_match_LOOKUP
+		view_SHEET
+		view_MACRO_Script_Fragments
+
+

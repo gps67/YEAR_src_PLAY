@@ -1,0 +1,4 @@
+
+## K NOT # cd insight || exit
+ask_do \
+git clone --recursive git://sourceware.org/git/insight.git

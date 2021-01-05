@@ -1,0 +1,50 @@
+sample:
+
+[17:17:32] POP3< +OK <27751.1119543410@mail.e7even.com>
+[17:17:32] POP3> USER gps@information-cascade.co.uk
+[17:17:32] POP3< +OK 
+[17:17:32] POP3> PASS ********
+[17:17:32] POP3< +OK 
+[17:17:32] POP3> STAT
+[17:17:32] POP3< +OK 2 14618
+[17:17:32] POP3> UIDL
+[17:17:32] POP3< +OK 
+[17:17:32] POP3> LIST
+[17:17:32] POP3< +OK 
+[17:17:33] POP3> RETR 1
+[17:17:33] POP3< +OK 
+[17:17:33] POP3> DELE 1
+[17:17:33] POP3< +OK 
+[17:17:33] POP3> RETR 2
+[17:17:33] POP3< +OK 
+[17:17:33] POP3> DELE 2
+[17:17:33] POP3< +OK 
+[17:17:33] POP3> QUIT
+[17:17:33] POP3< +OK 
+
+
+* Connecting to SMTP server: smtp.e7even.com ...
+[17:12:20] SMTP< 220 smtp.e7even.com ESMTP
+[17:12:20] SMTP> HELO linux.site
+[17:12:20] SMTP< 250 smtp.e7even.com
+[17:12:20] SMTP> MAIL FROM:<me@here.co.uk>
+[17:12:20] SMTP< 250 ok
+[17:12:20] SMTP> RCPT TO:<someone@somewhere.com>
+[17:12:20] SMTP< 250 ok
+[17:12:20] SMTP> DATA
+[17:12:20] SMTP< 354 go ahead
+[17:12:20] SMTP> . (EOM)
+[17:12:21] SMTP< 250 ok 1119543097 qp 11045
+[17:12:21] SMTP> QUIT
+[17:12:21] SMTP< 221 smtp.e7even.com
+* Connecting to POP3 server: mail.e7even.com...
+
+
+** ALSO **
+
+	NNTP
+	FTP
+	RSH
+	TELNET trimmings
+	? SSH ?
+

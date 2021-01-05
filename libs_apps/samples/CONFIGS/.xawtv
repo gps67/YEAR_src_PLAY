@@ -1,0 +1,88 @@
+[global]
+fullscreen = 768 x 576
+ratio = 4:3
+freqtab = europe-west
+pixsize = 128 x 96
+pixcols = 3
+jpeg-quality = 75
+keypad-ntsc = no
+keypad-partial = yes
+osd = yes
+osd-position = 30 , 20
+use-wm-fullscreen = yes
+
+# with this, +/- changes the sound card
+# witou this, the video card is changed
+# mixer=line
+
+# [Station name]
+# capture = overlay | grabdisplay | on | off
+# input = Television | Composite1 | S-Video | ...
+# norm = PAL | NTSC | SECAM | ... 
+# channel = #
+# fine = # (-128..+127)
+# key = keysym | modifier+keysym
+# color = #
+# bright = #
+# hue = #
+# contrast = #
+
+[defaults]
+group = main
+norm = PAL
+input = television
+capture = over
+# color = 51%
+
+[38-One-South]
+channel = 38
+# seems it overheats and drifts (maybe at NTL end?)
+# fine = +32
+# fine = +11
+fine = +9
+
+[40-Two]
+channel = 40
+# fine = +15
+fine = +11
+
+[44-ITV-Carlton]
+channel = 44
+# fine = +8
+fine = +10
+# color = 58%
+# bright = 58%
+# hue = 58%
+# contrast = 58%
+
+[46-Four]
+channel = 46
+# fine = +9
+fine = +10
+
+[48-Five]
+channel = 48
+# fine = +9
+fine = +9
+
+[DaeWoo]
+channel = 69
+
+[VCR]
+channel = 60
+
+[cable]
+channel = 54
+
+[24-Rai-Uno1]
+channel = 24
+fine = +12
+
+[28-tv-today]
+channel = 28
+fine = +9
+
+[50-ITV-Meridian-poor]
+channel = 50
+fine = +8
+

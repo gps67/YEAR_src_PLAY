@@ -1,0 +1,53 @@
+. fns_FAIL
+
+ask_do_fn()
+{
+	if yes_no "ASK_DO: $*"
+	then
+		"$@"
+		t=$?
+		if [ $t != 0 ]
+		then
+			echo >&2 "# pwd # `pwd`"
+			fn_WARN $t "$@"
+	#		echo >&2 -ne "## FAIL-WARN $t ## "
+	#		PATH=$PATH:/tools/2000/mysql/bin # perror
+	#		perror $t
+	#		return $t
+		fi
+	fi
+}
+
+yes_no_fn()
+{
+	while :
+	do
+
+		echo >&2 -n "$* _"
+		read resp
+		case $resp
+		in
+			y|Y)
+				echo >&2 "YES: $*"
+				return 0
+		;;
+			n|N)
+				echo >&2 "NO: $*"
+				return 1
+		;;	*)
+				echo "ERROR - yes no question! Try again ..."
+				sleep 2
+		esac
+
+	done
+}
+
+yes_no()
+{
+	yes_no_fn "$@"
+}
+
+ask_do()
+{
+	ask_do_fn "$@"
+}

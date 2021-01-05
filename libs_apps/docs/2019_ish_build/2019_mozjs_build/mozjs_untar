@@ -1,0 +1,4 @@
+  d_mozjs_ver=mozjs-67.0.0 
+
+  ask_do \
+  tar -C src_build_G -jxvf ~/FTP_/$d_mozjs_ver.tar.bz2

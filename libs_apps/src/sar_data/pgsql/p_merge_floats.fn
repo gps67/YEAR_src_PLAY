@@ -1,0 +1,18 @@
+// virtual
+/*!
+	this consumer is NOT YET IMPLEMETNED 
+*/
+bool dset_api_postgres::merge_floats(
+	mem_line_spec * spec,
+	time_t t0,
+	int n,
+	float * flts
+){
+#warning "TBS dset_api_postgres::merge_floats"
+/*
+	writing segs requires merging and deleting
+	that requires a cache of segs_map
+*/
+	//return pdb->post_root->dset->merge_floats( spec, t0, n, flts );
+	return false;
+}

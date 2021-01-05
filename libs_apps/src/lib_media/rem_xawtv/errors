@@ -1,0 +1,25 @@
+eg where is opcode_major defined as a string from #defined symbol
+
+$ find_grep GetModifierMapping 
+Binary file ./Xt/libXt.so.6.1 matches
+./Xt/TMkey.c:    modKeymap = XGetModifierMapping(dpy);
+Binary file ./Xt/TMkey.o matches
+./X11/Xlib.h:extern XModifierKeymap     *XGetModifierMapping(
+./X11/jump_funcs:00000000 T _XGetModifierMapping libX11         XModMap
+./X11/KeyBind.c:    if (! (map = XGetModifierMapping(dpy)))
+Binary file ./X11/KeyBind.o matches
+Binary file ./X11/libX11.so.6.2 matches
+./X11/XErrorDB:XRequest.119:X_GetModifierMapping
+./X11/XErrorDB:XRequest.LBX.10: LbxGetModifierMapping
+./X11/X11-def.cpp:      XGetModifierMapping   
+./X11/ModMap.c:XGetModifierMapping(dpy)
+./X11/ModMap.c:    xGetModifierMappingReply rep;
+./X11/ModMap.c:    GetEmptyReq(GetModifierMapping, req);
+Binary file ./X11/ModMap.o matches
+Binary file ./XTrap/libXTrap.so.6.4 matches
+./XTrap/XEStrMap.c:    "X_GetModifierMapping",     "Invalid", 
+Binary file ./XTrap/XEStrMap.o matches
+./lbxutil/lbx_zlib/reqstats.c:    "GetModifierMapping",     /*  119  */
+./lbxutil/lbx_zlib/reqstats.c:    "LbxGetModifierMapping",          /*  10  */
+
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+. ./.env
+
+# This doesnt do what I want - so figure your own perm scripts!
+
+mysql_root <<!EOT
+	use mysql;
+	GRANT ALL PRIVILEGES on $BASE_NAME.* TO $USER_NAME@localhost;
+	# WITH GRANT OPTION; # ability to pass on ability
+	flush privileges;

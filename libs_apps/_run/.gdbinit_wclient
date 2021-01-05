@@ -1,0 +1,7 @@
+# handle SIGSEGV nostop noprint pass
+# handle SIGABRT nostop noprint pass
+b main
+# r http://localhost:8282/abc
+# r ntping
+r server_unix
+p gdb_off=false

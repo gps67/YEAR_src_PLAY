@@ -1,0 +1,18 @@
+#set -x
+cls=obj_list_base
+fn='operator..(int)'
+fn=':N()'
+d1=/tmp/2003_src_libs_apps/_obj_sky_2/
+PATH=/tools/2003/ccs/bin:$PATH
+cd $d1
+list()
+{
+		nm -A -C *.o  | grep "$cls" | grep "$fn"
+}
+list ; exit
+L1=`list` 
+L2=`echo "$L1" | sed 's/:.*//'`
+echo "$L1"
+echo "$L2"
+rm $L2
+

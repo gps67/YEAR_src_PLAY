@@ -1,0 +1,5 @@
+SSL
+	x509 store - over simplified ?
+	x509 v3 ext printer
+	EVP_PKEY - now opaque
+	so in need of tests reading

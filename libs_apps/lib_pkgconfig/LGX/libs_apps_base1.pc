@@ -1,0 +1,20 @@
+# external app uses libs_apps_%s base1
+# LEXER of %s pushes immediate PARAMETER REQUIRED SOMEHOW += WORD "base2"
+
+# COMMENT THESE OUT ?
+# prefix=/home/gps/YEAR/src/libs_apps
+# exec_prefix=${prefix}
+# libdir=${exec_prefix}/libs_apps_obj_${TGT}
+# includedir=${prefix}/include
+
+Name: libs_apps_base1
+Description: Libraries and Applications - base is core object model
+Version: 0.1.2
+
+# invoke the real config setting
+Requires: _into_base1 
+
+Libs: -lbase
+Cflags:
+
+

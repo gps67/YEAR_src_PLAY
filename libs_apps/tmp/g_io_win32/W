@@ -1,0 +1,5 @@
+export PKG_CONFIG_PATH=/opt/IMCROSS/i386-mingw32/lib/pkgconfig
+export PATH=/opt/IMCROSS/i386-mingw32/bin:$PATH
+set -x
+make "${@:-test32}" \
+2>&1 | tee $0.log_run_txt | less

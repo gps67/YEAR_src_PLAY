@@ -1,0 +1,1 @@
+./mk_less_lots_k_WIN32 ${1:-relink}

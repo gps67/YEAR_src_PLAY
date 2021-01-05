@@ -1,0 +1,15 @@
+prefix=/tools/2000/mysql
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_mysql
+Description: LIBS_APPS uses MySQL
+Version: 0.1.2
+
+Libs:  -L${libdir} -lmysqlclient -Wl,--rpath=${libdir}
+# Cflags:  -I${includedir}
+Cflags:  -I${includedir} -DWITH_MYSQL
+
+# this needs to be reworked for POSTGRESQL, MYSQL, ORACLE, DB2 anyway
+# WITH_MYSQL # buffer2.h uses a mysql function

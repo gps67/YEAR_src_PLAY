@@ -1,0 +1,60 @@
+# MK_fns_TGT
+
+	# DIRS
+	# specific to my site and my build
+	# you will have to edit these
+	# you will have to create these locations
+
+##
+
+	fn_MK_var_ABS_OVER() {
+		export ABS_OVER="${ABS_OVER:-$HOME/YEAR/src}"
+	}
+
+	fn_MK_var_ABS_TOP() {
+		fn_MK_var_ABS_OVER
+		export ABS_TOP="${ABS_TOP:-$ABS_OVER/libs_apps}"
+	}
+
+	fn_MK_var_TGT() {
+		# -m32 so that insight works
+		export TGT=${TGT:-LGX}	# 64-bit ubuntu Linux-Gnu-X11
+		export TGT=${TGT:-CENTOS64}	# 64-bit centos
+		export TGT=${TGT:-i586} # no JS headers
+		export TGT=${TGT:-WIN32}
+		export TGT=${TGT:-i586} # no JS headers
+	}
+
+	fn_MK_var_OBJ_dirname() {
+		fn_MK_var_TGT
+
+		local HOST_NAME=`uname -n`
+		export OBJ_dirname="${OBJ_dirname:-build_${TGT}_${HOST_NAME}}"
+
+		# experimental python has own subdir (base obj_ref differs)
+		# the alternative is a pair of objects that refer other
+
+		[ -z "$WITH_PYTHON" ] || OBJ_dirname=${OBJ_dirname}_WITH_PYTHON
+	}
+
+	fn_MK_var_ABS_OBJDIR() {
+
+		fn_MK_var_ABS_TOP
+		fn_MK_var_OBJ_dirname
+
+		export OBJDIR="$ABS_TOP/${OBJ_dirname}"
+		export ABS_OBJDIR="$ABS_TOP/${OBJ_dirname}"
+		export REL_OBJDIR="../${OBJ_dirname}"
+
+		echo "# INFO # OBJ_dirname # $OBJ_dirname"
+		echo "# INFO # ABS_OBJDIR # $ABS_OBJDIR"
+	}
+
+	fn_MK_check_vars() {
+		dir_must_exist $ABS_OVER 
+		dir_must_exist $ABS_TOP 
+
+		[ ! -z "$TGT" ] || fn_FAIL 22 TGT is $TGT unset
+		[ ! -z "$ABS_OBJDIR" ] || fn_FAIL 22 ABS_OBJDIR is $ABS_OBJDIR unset
+	}
+

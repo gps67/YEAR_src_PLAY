@@ -1,0 +1,14 @@
+. ./.env
+mysql_root <<!EOT
+	USE mysql;
+
+	DELETE FROM user
+	WHERE user='$USER_NAME';
+
+	DELETE FROM db
+	WHERE user='$USER_NAME';
+
+	flush privileges;
+
+# http://www.mysql.com/doc/A/d/Adding_users.html
+

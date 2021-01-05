@@ -1,0 +1,32 @@
+
+	# you might be able to paste this code into your makefile
+	#	# include /home/gps/2000/src/libs_apps/MK/MK_LIBSAPPS
+	# for when you want to link against libs_apps
+	# you might need to edit the un-installed files
+	# if they are not in /home/gps/2000/src/libs_apps/ ...
+	# see libs_apps/lib/pkgconfig/XXX.pc files
+	# NB WIN32 - might not work with symb-links from ../include/.
+
+	PKG_USES += libs_apps_base
+	PKG_USES += libs_apps_js2
+
+	INCL += `pkg-config $(PKG_USES) --cflags`
+	LIBS += `pkg-config $(PKG_USES) --libs`
+
+        PKG_CONFIG_dirs += /home/gps/2000/src/libs_apps/lib/pkgconfig
+	#
+	# other things that I use, you might have your own list ...
+        PKG_CONFIG_dirs += /tools/2000/libs/lib/pkgconfig
+        PKG_CONFIG_dirs += /tools/2000/gtk/lib/pkgconfig
+        PKG_CONFIG_dirs += /tools/2000/X11R6/lib/pkgconfig
+	# ... etc ...
+
+	# that list needs to be converted to a COLON list
+	# why these clever tools dont accept SPACE ... ?
+	# why make doesnt 'know' ... ?
+	# heres how
+                                                                                
+        SP=$(empty) $(empty)# SINGLE SPACE
+        COLON=:# no  spaces
+        PKG_CONFIG_PATH=$(subst $(SP),$(COLON),$(PKG_CONFIG_dirs))
+	export PKG_CONFIG_PATH

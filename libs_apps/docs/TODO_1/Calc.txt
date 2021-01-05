@@ -1,0 +1,23 @@
+Calculator
+	// auto create new roll in list of other rolls [name = anon]
+
+	Running Roll With manual edits
+
+
+
+	[123]	   750.00	# Pounds	# per month
+	[124]	*   11		# counter	
+	[125]	= 8250.00	# Pounds	# per year
+
+
+	[126=125]
+		  8250.00	# Pounds	# --copied--
+	[127]	/   52		# counter	# weeks per year
+	[128]	=  158.65(...)	# Pounds	# per week
+
+
+		8250
+
+
+
+

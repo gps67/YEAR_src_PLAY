@@ -1,0 +1,20 @@
+
+prefix=/home/gps/YEAR/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_mysqlclient
+Description: Libraries and Applications - object model
+Version: 0.1.2
+
+#
+# _into_base2 does all the work, except it does NOT provide the -lbase2
+#
+# PKGS += mysqlclient
+Requires: mysqlclient
+
+Libs: 
+Cflags: 
+
+

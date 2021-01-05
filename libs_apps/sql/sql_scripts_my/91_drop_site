@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. ./.env
+site=FIRM_Building
+echo -n "DROP SITE $site? - press CTRL-C"
+read junk
+mysql_user <<!EOT
+	USE $BASE_NAME;
+
+	UPDATE
+		seg
+	SET
+		seg.t0 = 0
+	WHERE
+		seg.line = (
+		SELECT
+			seg.line
+		FROM
+			seg, line_id
+		WHERE
+			line_id.site = "$site"
+		AND
+			seg.line = line_id.id
+		);

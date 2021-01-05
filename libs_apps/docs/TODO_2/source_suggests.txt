@@ -1,0 +1,58 @@
+source_suggests.txt
+
+	bool day_of_week_view3( buffer buf, dow d, lang l = "C"  ) {
+		buf.get_space( 9 );
+		buf.puts("Tuesday");
+		return true;
+	}
+
+
+SUGGEST
+
+	MALLOC for buffer is on_stack_20
+	SCOPE for buffer is upto used for token
+
+SUGGEST
+
+	STREAM buffer for output stream
+	WORD EDGE begin + end (but maybe no space) probably ASCII GLYPH
+
+
+SUGGEST USAGE:
+
+	str1 token = day_of_week_view3( d ) || FAILED
+
+	// input parameter
+	dow d = dow_Tue;
+
+	lang l = "C"; // eng_uk, eng_us, fr, de, from_locale
+	buffer buf( /*
+		get_space( 20 );
+		allocate on stack without any malloc
+		either call clear() or rely on first use CTOR 
+		alternate is output stream buffer style
+		first usage is to obtain a token
+	*/
+
+	buf.clear(); // no need if fresh from CTOR
+	day_of_week_view3( buf, d, l ) || return FAIL_FAILED();
+	
+	str1 d_str = buf;
+
+	FORGET( buf ); // could reuse to obtain same token again
+
+SUGGEST to MAKE
+
+	#include "spidermonkey/jsapi2.h"
+	requires compiler option -DUNIX -DABC
+	or whatever is recommended by:
+	 pkg_config cc_needs_compile_opts_for_JS185
+
+SUGGEST to MAKE
+
+	-I library used
+	-D option must match library compile time
+	-rpath 
+
+	compile_with( JS185_STUBS ) # poss indirect use og libr
+	link_with( JS185 )

@@ -1,0 +1,26 @@
+ASK_DO: create_KEY_and_REQ_and_sign_ROOT CA_VOID CA_ZERO _YES: ASK_DO: create_KEY_and_REQ_and_sign_ROOT CA_VOID CA_ZERO
+# /airbook/bin/openssl req -passout pass:secret -newkey rsa -config CA_FIVE_config.cnf -out CA_ZERO_req.pem -keyout CA_ZERO_key.pem
+Generating a 2048 bit RSA private key
+..........................++++++
+...........++++++
+writing new private key to 'CA_ZERO_key.pem'
+-----
+# /airbook/bin/openssl ca -passin pass:secret -config CA_FIVE_config.cnf -selfsign -in CA_ZERO_req.pem -out CA_ZERO_cert.pem -keyfile CA_ZERO_key.pem -extensions CA_VOID_extensions
+Using configuration from CA_FIVE_config.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 52 (0x34)
+        Validity
+            Not Before: Feb 17 17:16:49 2010 GMT
+            Not After : Feb 17 17:16:49 2011 GMT
+        Subject:
+            stateOrProvinceName       = Bucks
+            organizationName          = EuroTel
+            organizationalUnitName    = CA_VOID
+            commonName                = CA_ZERO
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:2
+Certificate is to be certified until Feb 17 17:16:49 2011 GMT (365 days)
+Sign the certificate? [y/n]:

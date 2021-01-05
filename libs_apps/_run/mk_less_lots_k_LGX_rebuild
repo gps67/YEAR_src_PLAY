@@ -1,0 +1,6 @@
+export TGT=LGX
+export JOBS=4
+export JOBS=6
+echo TGT=$TGT
+ask_do ./mk_less ${@:-clean0}
+./mk_less -k lots | cat - 

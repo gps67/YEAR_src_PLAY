@@ -1,0 +1,7 @@
+N=CA_five
+N=../CA_five
+set -x
+tar -zcvf $N.tgz $N \
+--exclude='*.swp' \
+#
+

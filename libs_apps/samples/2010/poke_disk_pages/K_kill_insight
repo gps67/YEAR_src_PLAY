@@ -1,0 +1,5 @@
+ps -leaf | grep insight
+ps -leaf | grep mk_req.exec
+set -x
+killall insight-bin
+killall mk_req.exec

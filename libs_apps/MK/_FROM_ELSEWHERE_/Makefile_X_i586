@@ -1,0 +1,32 @@
+
+	# It would be easier to chroot into a development environment
+	# instead a cross compile aproach is used
+	# and that fails!
+	#
+	# libX11.so
+
+	#
+	ROOT_ccs_link=ROOT_handset
+
+	CC=gcc
+	# GCC_M_ARCH = -m32
+	GCC_M_ARCH = -march=i586 -m32
+
+	INCLUDE_PATH_LIST += ROOT_handset/usr/include
+	LIBRARY_PATH_LIST += ROOT_handset/usr/lib
+	LIBRARY_PATH_LIST += ROOT_handset/lib
+
+	lX11 = -lX11
+	# MANUALLY CREATED libX11.so -> libX11.so.6
+
+	lpthread = -lpthread
+	lpng = -lpng
+
+	# LURK i586 using the host systems installed products ...
+
+## #  	# CFLAGS_GTK += `$(PKG_CONFIG) --cflags gtk+-2.0`
+#	# LINK_GTK += `$(PKG_CONFIG) --libs gtk+-2.0`
+##  # 	# LINK_GTK += -L $(ACER)/usr/lib -lgtk-x11-2.0 # .so.0
+	# not available
+	INSIGHT_EXE=insight
+

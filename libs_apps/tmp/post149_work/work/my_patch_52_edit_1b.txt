@@ -1,0 +1,208 @@
+diff -ruN post-152/post_array.cxx post-152-edit1/post_array.cxx
+--- post-152/post_array.cxx	2004-06-27 09:19:10.000000000 +0100
++++ post-152-edit1/post_array.cxx	2018-03-08 21:27:00.489128712 +0000
+@@ -10,7 +10,7 @@
+ 
+ #define INSIDE_POST
+ 
+-#include "array.h"
++#include "post_array.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_array.h post-152-edit1/post_array.h
+--- post-152/post_array.h	2010-08-11 09:34:34.000000000 +0100
++++ post-152-edit1/post_array.h	2018-03-08 21:27:41.579153071 +0000
+@@ -13,7 +13,7 @@
+ #ifndef __ARRAY_H__
+ #define __ARRAY_H__
+ 
+-#include "object.h"
++#include "post_object.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_classinfo.cxx post-152-edit1/post_classinfo.cxx
+--- post-152/post_classinfo.cxx	2010-08-11 09:34:34.000000000 +0100
++++ post-152-edit1/post_classinfo.cxx	2018-03-08 21:28:12.749171372 +0000
+@@ -10,7 +10,7 @@
+ 
+ #define INSIDE_POST
+ 
+-#include "classinfo.h"
++#include "post_classinfo.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_classinfo.h post-152-edit1/post_classinfo.h
+--- post-152/post_classinfo.h	2010-08-11 09:34:34.000000000 +0100
++++ post-152-edit1/post_classinfo.h	2018-03-08 21:28:18.469175692 +0000
+@@ -11,7 +11,7 @@
+ #ifndef __CLASSINFO_H__
+ #define __CLASSINFO_H__
+ 
+-#include "storage.h"
++#include "post_storage.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_comptime.cxx post-152-edit1/post_comptime.cxx
+--- post-152/post_comptime.cxx	2010-08-11 09:34:34.000000000 +0100
++++ post-152-edit1/post_comptime.cxx	2018-03-11 22:23:55.011121569 +0000
+@@ -9,7 +9,7 @@
+ // in the list of files in makefile rule for producing executables. 
+ //-------------------------------------------------------------------*--------*
+ 
+-#include "stdtp.h"
++#include "post_stdtp.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_file.cxx post-152-edit1/post_file.cxx
+--- post-152/post_file.cxx	2018-03-11 23:36:23.583731947 +0000
++++ post-152-edit1/post_file.cxx	2018-03-11 23:30:30.773520578 +0000
+@@ -15,7 +15,9 @@
+ #define INSIDE_POST
+ 
+ #include <time.h>
+-#include "storage.h"
++#include "post_storage.h"
++
++#include "gdb_invoke.h" // GPS
+ 
+ BEGIN_POST_NAMESPACE
+ 
+@@ -1211,9 +1213,12 @@
+ 
+ #define WAIT_DEBUGGER_TIMEOUT 10
+ 
++
+ static void fatal_error_handler(int signo) { 
++	gdb_invoke();
++	return;
+     char  buf[64];
+-    char* exe_name = getenv("_"); // defined by BASH
++    const char* exe_name = getenv("_"); // defined by BASH
+     if (exe_name == NULL) { 
+         exe_name = "a.out";
+     }
+diff -ruN post-152/post_file.h post-152-edit1/post_file.h
+--- post-152/post_file.h	2010-08-11 09:34:38.000000000 +0100
++++ post-152-edit1/post_file.h	2018-03-08 21:31:37.669295038 +0000
+@@ -11,7 +11,7 @@
+ #ifndef __FILE_H__
+ #define __FILE_H__
+ 
+-#include "stdtp.h"
++#include "post_stdtp.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_object.h post-152-edit1/post_object.h
+--- post-152/post_object.h	2010-08-11 09:34:44.000000000 +0100
++++ post-152-edit1/post_object.h	2018-03-08 21:31:50.139302459 +0000
+@@ -11,7 +11,7 @@
+ #ifndef __OBJECT_H__
+ #define __OBJECT_H__
+ 
+-#include "classinfo.h"
++#include "post_classinfo.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+diff -ruN post-152/post_stdtp.h post-152-edit1/post_stdtp.h
+--- post-152/post_stdtp.h	2004-06-27 09:36:18.000000000 +0100
++++ post-152-edit1/post_stdtp.h	2018-03-08 22:48:24.132058769 +0000
+@@ -36,11 +36,13 @@
+ #define POST_DLL_ENTRY
+ #endif
+ 
++#define USE_NAMESPACES 
+ #ifdef USE_NAMESPACES
+-#define POST_NAMESPACE post::
+-#define BEGIN_POST_NAMESPACE namespace post {
++#define NS_POST Post
++#define POST_NAMESPACE NS_POST::
++#define BEGIN_POST_NAMESPACE namespace NS_POST {
+ #define END_POST_NAMESPACE }
+-#define USE_POST_NAMESPACE using namespace post;
++#define USE_POST_NAMESPACE using namespace NS_POST;
+ #else
+ #define POST_NAMESPACE
+ #define BEGIN_POST_NAMESPACE
+@@ -122,6 +124,8 @@
+ 
+ END_POST_NAMESPACE
+ 
++USE_POST_NAMESPACE
++
+ #endif
+ 
+ 
+diff -ruN post-152/post_storage.cxx post-152-edit1/post_storage.cxx
+--- post-152/post_storage.cxx	2010-08-11 09:34:54.000000000 +0100
++++ post-152-edit1/post_storage.cxx	2018-03-11 23:25:00.523322716 +0000
+@@ -10,7 +10,7 @@
+ 
+ #define INSIDE_POST
+ 
+-#include "object.h"    
++#include "post_object.h"    
+ 
+ BEGIN_POST_NAMESPACE
+ 
+@@ -111,6 +111,22 @@
+     abort();
+ }
+ 
++simple_mutex::
++simple_mutex() { 
++	static bool inited = false;
++	static pthread_mutexattr_t attr;
++	if(!inited) {
++		int attr_type = PTHREAD_MUTEX_RECURSIVE;
++		if( 0!= pthread_mutexattr_init(&attr)) 
++			fprintf(stderr, "simple_mutex::attr init errno=EDIT \n" );
++		if(0!=pthread_mutexattr_settype(&attr, attr_type ))
++			fprintf(stderr, "simple_mutex::attr init errno=EDIT \n" );
++		inited = true;
++	}
++	pthread_mutex_init(&cs, &attr );
++}
++
++
+ bool storage::open(int flags
+ #ifdef LARGE_OBJECTS
+                    , int // this parameter is added only to ensure that both POST library and user application 
+diff -ruN post-152/post_storage.h post-152-edit1/post_storage.h
+--- post-152/post_storage.h	2010-08-11 09:34:54.000000000 +0100
++++ post-152-edit1/post_storage.h	2018-03-11 23:16:13.853006859 +0000
+@@ -13,7 +13,7 @@
+ 
+ #define POST_VERSION 152 // 1.52
+ 
+-#include "file.h"
++#include "post_file.h"
+ 
+ BEGIN_POST_NAMESPACE
+ 
+@@ -49,9 +49,18 @@
+         void leave() { 
+             pthread_mutex_unlock(&cs);
+         }
++        simple_mutex();
++	/*
+         simple_mutex() { 
+-            pthread_mutex_init(&cs, NULL);
++	    static bool inited = false;
++	    static pthread_mutexattr_t recmutex;
++	    if(!inited) {
++		    PTHREAD_RECURSIVE_MUTEX_INITIALIZER;
++	    }
++            pthread_mutex_init(&cs, &recmutex );
++            // pthread_mutex_init(&cs, NULL);
+         }
++	*/
+         ~simple_mutex() { 
+             pthread_mutex_destroy(&cs);
+         }       

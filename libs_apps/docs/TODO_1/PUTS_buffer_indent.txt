@@ -1,0 +1,43 @@
+Output Buffer
+
+	instead of a function returning a static string,
+	or a malloced string, it should printf() into a buffer.
+
+	If you want a single string, call clear() BEFORE!
+
+	As used develop, the type of output will effect the
+	formatting of the buffer, eg INDENTATION, also:
+
+		indentation according to C, XML, doc_fmt_ascii
+
+		nested encoding, C text uses '<' becomes '&lt;'
+
+		formatted syntax-highlighter (provides its own
+		code, but also uses XML re-encoding-filter, and
+		pulls back relative-link-information)
+
+		UTF8 encoding for vt221 (which requires ... G0 shift?)
+
+		UTF8 encoding for LAND which requires FONT loading
+
+		...
+
+class OutputChannelInformationContext : public obj_ref
+{
+ VIRTUALS
+	int get_indent_chars();
+	void indent_more();
+	void indent_less(); // when not a nested call, throw IMBALANCE
+	void indent_more( STACKER & save_old_stack );
+	void indent_less_one( STACKER & check_old_stack );
+	void indent_less_jump( STACKER & check_old_stack ); // throws if overpopped
+	bool indent_stack_check( STACKER & check_old_stack ); // no throw
+	void indent_stack_bookmark( STACKER & check_old_stack ); // no throw
+};
+
+class buffer2 : public buffer1c
+{
+ public:
+	OutputChannelInformationContext	* out_ctxt;
+
+};

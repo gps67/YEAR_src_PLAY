@@ -1,0 +1,86 @@
+wine sock_cli_test1.exe
+# PASS # WSAStartup( MAKEWORD(2,0), &wsadata );
+Gtk-Message: Failed to load module "canberra-gtk-module": `libcanberra-gtk-module.dll': Module not found
+
+# PASS # gtk_init() returned ... 
+# info # # WIN32 ERROR # 234 # More data available
+
+# PASS # socket
+# info # socket fd = 148
+# info # set_non_block(fd = 148)
+# PASS # ioctlsocket()
+# PASS # set_non_block()
+# PASS # getservbyname()
+# PASS # http
+# info # port 80
+# PASS # inet_addr() - WIN32
+# PASS # gethostbyname()
+# info # '127.0.0.1'
+# PASS # 127.0.0.1
+# PASS # addr4_set_addr_str()
+# FAIL # connect()
+# info # # WIN32 _err # WSAEWOULDBLOCK
+# PASS # g_io_channel_win32_new_socket()
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={PRI|ERR|HUP|NVAL}
+# PASS # add_watch ...
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={OUT}
+# PASS # add_watch OUT
+g_io_win32_sock_create_watch: channel=0018D3C0 sock=148 event=00000098 condition={IN}
+# PASS # add_watch IN
+# info # Setting NULL encoding and no buffering
+# PASS # Starting gtk_main() ... 
+
+	(EDITED)
+	This is with G_IO_OUT's watch NOT being added last, it is never called
+
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{WRITE|CONNECT|CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D5A0 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={OUT} condition={OUT}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_check: source=0018D5A0 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+
+g_io_win32_prepare: source=0018D498 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D520 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{WRITE|CONNECT|CLOSE})
+  setting last_events=0
+g_io_win32_prepare: source=0018D5A0 channel=0018D3C0 SOCK
+  WSAEventSelect(148,00000098,{READ|ACCEPT|CLOSE})
+  setting last_events=0
+g_io_win32_check: source=0018D498 channel=0018D3C0 SOCK
+  revents={PRI} condition={PRI|ERR|HUP|NVAL}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_check: source=0018D520 channel=0018D3C0 SOCK
+  revents={OUT} condition={OUT}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+g_io_win32_check: source=0018D5A0 channel=0018D3C0 SOCK
+  revents={IN} condition={IN}
+  WSAEnumNetworkEvents(148,0) sets events={}
+  WSAEventSelect(148,00000098,{})  ResetEvent(00000098)
+  revents={} retval={}
+
+...etc...

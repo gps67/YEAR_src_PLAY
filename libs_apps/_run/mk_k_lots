@@ -1,0 +1,2 @@
+export JOBS=4
+./mk -k lots

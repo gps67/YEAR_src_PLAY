@@ -1,0 +1,58 @@
+TODO: JS_Module
+
+script.js:
+
+	UTILS = XTEN.load_module( "builtin", "UTILS" ) // file, module
+	/*
+		UTILS = XTEN.load_module( "UTILS" )
+		builtin is searched ANYWAY
+			dlsym( global, init_js_UTILS )
+	*/
+
+	// UTIL = builtin extension module // XTEN
+	Accts = UTILS.load_module( "Accts", ["Accts"] ) // file, module
+	/*
+		check that module is/nt already loaded
+			return shared instance
+		check that file isnt already loaded, or linked in
+		foreach file in possible paths:
+			./Accts.so
+			./js_Accts.so
+			./JS/js_Accts.so
+			PATHITEM/JS/js_Accts.so
+			...
+		dlopen( ~/lib/JS/js_Accts.so )
+		REGISTER:
+			FILE:	"Accts"
+			fd_dl	99
+		dlsym( fd_dl, "init_js_Accts" )
+			creates 
+			sets the return value 
+		REGISTER:
+			MODULE: "Accts"
+			FILE: * Accts
+			FUNCTION: -none-
+			CLASS: -none-
+			MODE: unprotected
+
+
+		ie a second load_module("Accts")
+		will find that it is already loaded
+		and return that shared object
+		(JS_REF that item in HT)
+	*/
+
+	dset1 = Accts.load_file( "../samples/0203.csv" )
+
+js_many.cxx
+
+	create new Module class Module_Base
+
+	create new Module class UTILS
+
+		UTILS.load_module()
+		UTILS.make( dir, target )
+		UTILS.view_pdf( filename )
+		UTILS.view_html( filename )
+
+j_

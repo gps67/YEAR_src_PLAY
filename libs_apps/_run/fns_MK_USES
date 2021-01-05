@@ -1,0 +1,68 @@
+#! /bin/bash
+# mk _lib_dir
+
+	# the first run on a new machine
+	# find $OBJDIR absent
+	# so create it
+	# and some other checks
+
+	# move down a bit
+	fn_MK_USES_check()
+	{
+		# I need to edit these to find which debian package is which
+
+		prog_else_pkg pkg-config pkg-config
+		prog_else_pkg g++ pkg-g++
+		prog_else_pkg make pkg-make
+
+		# I need to edit these to find file_else_pkg
+
+		# file_else_pkg # 
+		#
+		# libgtk+3.0-dev ***
+		# libgtk+2.0-dev
+		# gtk+2.0
+		# libglib2.0-dev
+		# libglib2.0-dev-bin
+	}
+
+
+	# to check that the vars have been set (else FAIL)
+
+	fn_MK_check_vars() {
+		dir_must_exist $ABS_OVER 
+		dir_must_exist $ABS_TOP 
+
+		[ ! -z "$TGT" ] || fn_FAIL 22 TGT is $TGT unset
+		[ ! -z "$ABS_OBJDIR" ] || fn_FAIL 22 ABS_OBJDIR is $ABS_OBJDIR unset
+	}
+
+	# to create the OBJDIR
+	# and then a few extra bits
+	# and then check the packages
+
+	fn_MK_mkdir_ABS_OBJDIR()
+	{
+		if [ ! -d "${ABS_OBJDIR}"/. ]
+		then
+			# actually ask_do works OK but maybe the others ?
+		#	stdout_must_be_tty <&1
+			echo ask_do not tty ... 
+
+			# OK if you type n it does not call fn_FAIL
+			ask_do_fn cd_mkdir_FAIL "${ABS_OBJDIR}"
+			ask_do_fn cd_mkdir_FAIL "${ABS_OBJDIR}"/lib
+
+			DEPS=$ABS_OBJDIR/.deps
+			[ -f $DEPS ] || touch $DEPS
+		fi
+		dir_must_exist $ABS_OBJDIR
+
+		#
+		# caller must have loaded this
+		# it looks for pkg-config and calls apt install pkg-config
+		# but only the once
+		# and not yet written
+		#
+		fn_MK_USES_check
+	}

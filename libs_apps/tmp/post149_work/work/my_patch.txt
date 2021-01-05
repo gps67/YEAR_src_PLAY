@@ -1,0 +1,22 @@
+my_patch.txt
+
+	post-152-edit1 = LIVE directory, linked in ../src/...
+
+	changed the filenames from file.X to post_file.X
+	changed the namespace to whatever NS_POST is
+	switched USE_NAMESPACE rather than adding a parameter on the -D 
+	edited gdb_invoke() 
+	
+	edited mutex - simple_mutex:: CTOR is now a linked function (was inline)
+	edited mutex - it was locking from default of waiting for itself
+	edited mutex - RECURSIVE attr (pthreads is mad)
+	man -k pthread_mut
+	
+
+my_patch_49_.txt
+my_patch_49.txt
+my_patch_52_edit_1b.txt
+post
+post-152
+post-152-edit1
+

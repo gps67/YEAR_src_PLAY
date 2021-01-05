@@ -1,0 +1,33 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=GB, ST=Berks, O=InformationCascade, OU=RND, CN=USER_231
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:d9:26:7b:93:0f:01:86:71:00:ad:88:d8:41:dd:
+                    ab:70:1b:fe:ac:99:dd:ec:3d:e5:07:a1:4a:04:e8:
+                    17:a7:1d:75:52:a7:cb:57:77:01:8f:3d:f8:b0:23:
+                    3d:b6:2f:db:de:77:82:bc:f0:7f:37:ca:c1:4d:0c:
+                    98:ed:b5:40:10:72:ba:6a:36:7a:0e:69:7e:29:23:
+                    f9:b6:2e:a9:62:fc:91:c1:c6:31:f1:32:30:34:ff:
+                    c8:7e:ba:23:55:a0:ea:c5:c6:c8:5e:d5:30:21:d4:
+                    53:0f:a8:b2:43:7b:05:1e:94:c5:10:1a:78:2d:3a:
+                    17:66:12:79:99:7b:d7:d0:2d
+                Exponent: 65537 (0x10001)
+        Attributes:
+        Requested Extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Alternative Name: 
+                email:lists@information-cascade.co.uk
+    Signature Algorithm: sha1WithRSAEncryption
+        0f:a5:0c:6e:87:94:15:fc:03:34:73:0c:5c:49:35:c5:b1:ba:
+        7b:22:3f:a2:25:ba:b0:b9:51:9f:11:b2:de:35:a4:0d:f6:4d:
+        96:30:09:c4:da:25:1e:8d:61:8b:b0:3b:ec:00:0d:e1:c5:89:
+        52:ea:f5:46:e0:67:00:40:eb:c2:05:5c:fb:96:30:58:a0:a9:
+        23:98:ae:b4:23:ee:7d:4d:19:60:6f:ae:29:af:b6:4d:0f:ea:
+        a9:fd:ce:d4:da:b2:dd:56:d0:4b:c9:e5:df:c0:3a:2e:e2:3b:
+        8c:c4:0f:aa:d1:4e:d4:39:ac:d5:9b:0d:47:49:f7:7d:9b:0b:
+        07:d3

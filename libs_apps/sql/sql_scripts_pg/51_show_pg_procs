@@ -1,0 +1,18 @@
+#!/bin/sh
+export LD_LIBRARY_PATH=/tools/2001/sql/lib
+PATH=/tools/2001/sql/bin:$PATH
+
+. ./.env
+
+pgsql_user << !EOT
+
+ select proname, oid from pg_proc    \
+	 where proname = 'lo_open'       \
+	 or proname = 'lo_close'      \
+	 or proname = 'lo_creat'      \
+	 or proname = 'lo_unlink'     \
+	 or proname = 'lo_lseek'      \
+	 or proname = 'lo_tell'       \
+	 or proname = 'loread'        \
+	 or proname = 'lowrite'
+	  

@@ -1,0 +1,303 @@
+2019-08-30 Aug Fri 22:17 TODO_u32_lo_hi_DELAYED.txt
+
+ 
+ CREATE DIAG FOR "PTR"	// USE "defaul()" "Type: PTR; Name: PTR"
+
+ 		[ PTR ]
+		  /
+		 /
+	a b c d e f g h i j k 
+	a b c d e f g h // STOP HERE // i j k 
+	a b c d e f g h // STOP HERE switch to Layout: a2h 
+
+
+ 		[ PTR ]
+		  /
+		 /
+	a   b   c   d   ...
+
+ CREATE DIAG FOR "NAME"	// USE "defaul()" "Type: PTR; Name: Name"
+
+ 		[ Name ]
+		  /
+		 /
+	a   b   c   d   ...
+
+ CREATE DIAG FOR "POS"	// USE "defaul()" "Type: PTR; Name: Name"
+
+ 	// ASIDE [P0[P2
+
+		OFFS P0
+		OFFS P2
+	
+	// ASIDE -means VIEW starts -HERE-
+
+	[ P0	[ P1     [ P2
+	 /	 /       /
+	a   b   c   d   ...
+
+
+ DIAG "P0P2 over cliffedge buffer-bounds"
+
+	[ P0	[ P1     [ P2
+	 /	 /       /
+	a   b   c   d   ...
+
+			[ P0	[ P1     [ P2
+			 /	 /       /
+			.   .   .   .   ...
+	
+	so need ALL DIAG's to OBEY 
+
+		DETECT EMPTY
+			
+			P0 == P2 
+
+			# behave well over empty list
+			# might use ZERO_OFFS _ means _ %s
+
+		REQUIRE P0 <= P1 <= P2
+
+			local var PTR = P0 
+			local var NEXT = P2
+			EXPR var HERE = P0
+			EXPR var POS = HERE
+
+		REQUIRE P0 <= P1 <  P2 // REQUIRE NOT_EQUAL P1!=P2 // WHEN USED
+
+			temp = * P1	# DEREF
+
+		REQUIRE P0 < P2 THEN STOP
+
+			EMPTY P0 == P2 
+
+... drifting ...
+
+		P1 < P0	// NEVER
+		P0 == P1 // INIT( PTR = P0 )
+		// OFTEN // P0 < P1
+		P1 <=
+
+
+ 		[ P1 ]
+		  /
+	[ P0	  /    [ P2
+	 /	 /       /
+	a   b   c   d   ...
+
+ SLIDE TALK
+
+ 	Running unsafe code, means remaining in [P0[P2 bounds
+
+		Our container provider
+		SCRIPT_SHEET of SCRIPTS TABLES CACHE
+		(diag) SCRIPT_SHEET
+		
+		(diag) KeptList of SCRIPTS TABLES CACHE
+		(diag) KeptList of SCRIPTS
+		(diag) KeptList of TABLES 
+		(diag) KeptList of CACHE
+		(diag) KeptList of [other]
+
+			POOL of P0P2 & SUBZONE[POOL_id] 
+
+
+ CREATE DIAG FOR u32_cpu // SWAPB = "swap bytes" // RTFM
+ CREATE DIAG FOR u32_cpu // PICK when SWAPB optimisation is used
+ CREATE DIAG FOR u32_lohi_DATA_DIRECT
+
+	
+ 	u32_lohi * P = ( u32_lohi* ) PTR
+ 	u32_lohi A = *(u32_lohi *) P
+
+
+2019-08-31 Aug Sat 00:33 -restart- :forgot:
+
+ TWO PARALLEL WORLDS
+
+	DATA DIRECT
+
+		u32_cpu * EXPR_DATA_VARS
+		u32_cpu * PTR
+	
+		HINT .SAFE_CODE.SWAPB.SAFE_CODE.SWAPB
+
+	CALL SCRIPT
+
+		u32_cpu * EXPR_CODE
+
+	SOME MACROS -- EG NO_DELAY{ Macros }
+	MORE MACROS -- EG OVER_DELAY{ Macros }
+	MORE MACROS -- EG Module{ Macros }
+	
+
+	HINT universal NAME of TYPE == NAME of ITEM
+	HINT type match u32_*
+
+		u32_DATA_DELAYED
+
+			batch build query list
+			batch build patch of data changes / meta changed
+
+
+2019-08-31 Aug Sat 00:33 -restart-
+
+ CODE disk data zones 
+ CODE disk data DIAG u8 ZONE[ PTR ] // EMPTY || P0 <= PTR < P2
+ CODE disk data DIAG u8 HOST_ZONE[] // SUB_ZONE subset of HOST_ZONE
+ CODE disk data DIAG u8  SUB_ZONE[] // BASE_ZERO = varies OPTIONAL_OFFS
+ CODE disk data DIAG u8 u32_lohi_[4] // WORD CPU
+ CODE disk data DIAG WORD32 u32_cpu // WORD CPU
+ CODE disk data DIAG WORD32 u32_hilo // WORD CPU
+ CODE disk data DIAG u8 DATA[N_bytes] // P0 = BASE_ZERO + DATA + zero_extra
+
+2019-08-31 Aug Sat 01:19 UPPER lower
+
+	alternate register banks odd/even
+	extra register banks ... rainbow ...
+
+	DATA direct
+	CALL script
+
+2019-08-31 Aug Sat 01:22 Plurals
+
+	Plurals		# Class is Container # inteface **
+
+			# every Item in Container is EMPTY (tagged) or ...
+
+	Plural		# bad example, singular of Plurals is Plural
+
+		PAGE & Item = Items[ selector ]
+
+		PAGE & Item = ItemsObj.CALL( Script, ARGS, CTXT )
+
+			function might also like FILE * pkt_in = VALUE
+
+			VALUE parsed as TOKEN lookup allows "value"
+			VALUE parsed as TOKEN lookup allows var
+			VALUE parsed as TOKEN lookup allows var.EXPR
+			VALUE parsed as TOKEN lookup allows EXPR
+			VALUE parsed as TOKEN lookup allows EXPR_multi_line
+			VALUE parsed as TOKEN lookup allows EXPR_code_zone
+			VALUE parsed as TOKEN lookup allows BIND CODE_POINT VAR
+
+2019-08-31 Aug Sat 01:37 BIND CODE_POINT VAR
+
+	Sheet {
+	| ...
+	}
+
+	SOURCE CODE_POINT
+	CODE_POINT TREE_POS
+
+	SO Script contains DECL var Name of TYPE
+
+		CODE_POINT = CODE_POINT_file_line_treepos
+
+		CODE_POINT = CODE_POINT_DATA_DECL("u8 & Byte;")
+		CODE_POINT = CODE_POINT_VAR("u8 & Byte;")
+		CODE_POINT = CODE_POINT_VAR("u32_hilo   stored_word;")
+		CODE_POINT = CODE_POINT_VAR("u32_hilo & stored_word;")
+		CODE_POINT = CODE_POINT_VAR("u32_hilo * stored_word;")
+
+
+** OK maybe class-template processing is still around
+** Plurals # must make Container interface available, RT and CT
+** eg DIAG can add range of Container sketch components
+
+
+2019-08-31 Aug Sat 01:50 BIND AMPERSAND
+
+	u8 & Byte
+
+2019-08-31 Aug Sat 01:52 PARRALEL PATCH
+
+	DB will want transaction logs
+
+		"VALUE1"
+		"VALUE2"
+
+	PATCH
+		every original edit
+		sum of changes # not attributed
+		optimised PATCH
+	
+	PATCH FAIL
+
+		build new patch state
+		RETRO_FAIL
+			undo somehow
+			step from outside
+
+2019-08-31 Aug Sat 01:59 AXIOM
+
+	AXIOMATIC data elements
+
+		on disk
+		in buffer
+
+		with code that tracks rules
+		with scatterings of marks where rules seem unbroken
+
+	RETRO-FIT-AXIOMS
+
+		fake make
+	
+	AXIOM cpu
+
+		ABCD PQ SP/FP PC
+		lots of MMX
+			storage
+			floats
+			SIMD
+
+		A = *P++; // BYTES[4]
+		SWAPB(A)
+
+		P --; // undo
+		P ++; // late move
+		P -= bytes4 // extra tagging // inter val 1 means bytes4
+
+2019-08-31 Aug Sat 02:04 TODO_u32_lo_hi_DELAYED.txt
+
+	TODO_u32_hi_lo_DELAYED.txt
+	TODO_u32_cpu_DELAYED.txt
+	TODO_u32_lo_hi_DELAYED.txt
+
+	REMOTE DATA STRUCTURE
+		u32_hilo hilo_val_in_pkt
+
+	LOCAL var NAME
+		u32_cpu val_in_pkt
+
+	u32_lohi lohi; only used where external file needs it 
+	u32_lohi abcd_lohi; also where I pun WORD type, its code
+
+	Coder requests u32 via u32_cpu
+	Library does SWAPB when required, 
+	Library does u8 BYTE_ABCD
+
+
+	DELAYED
+
+		maybe use returned buffer in original form
+		maybe use converted buffer in local form
+
+	PKT_IN
+
+		via caching layers
+		into local copy
+	
+	Promises
+	Queued Items
+	Lazy EXPRs
+
+
+2019-08-31 Aug Sat 03:48 REGEN C++ data decls
+
+	MUX data => C code that implements it
+
+	MUX data spec => code with breakpoints added # DEBUG DATA
+
+
+	

@@ -1,0 +1,2 @@
+set -x
+grep_vi '%P' *

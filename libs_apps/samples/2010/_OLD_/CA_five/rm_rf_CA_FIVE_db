@@ -1,0 +1,9 @@
+DIRS="
+	CA_boxes
+	CA_handsets
+	CA_ONE
+	CA_VOID
+	CA_ZERO
+"
+PATH=$PATH:/home/user1/bin/
+ask_do rm -rf $DIRS

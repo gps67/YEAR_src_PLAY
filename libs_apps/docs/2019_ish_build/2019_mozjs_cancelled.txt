@@ -1,0 +1,164 @@
+2019-09-17 Sep Tue 23:52 2019_mozjs_cancelled.txt
+
+		2019_mozjs_cancelled.txt
+
+	There is something wrong with the way SpiderMoney is maintained.
+
+	It is the supersonic engine of Firefox WASM, but
+	it is unusable, by ordinary folk.
+
+	Hopefully this is easily fixable:
+
+		The old docs in the old website are old
+
+		The new docs in the new webname are new
+
+			add yours here
+
+			# XREF # LOCN on DOC_Tree
+			# XREF # USER on WEB_Tree
+			# 
+
+		EACH OWN HOME STO via github stream
+
+			add your STO on Laptop -> LAN -> weekly_git_stream
+
+			# XREF # http://
+			# QUOTA # 2MB cache in stream queues # defered #
+			# QUOTA # 100 MB Project # 500 MB Cache # STO #
+			# QUOTA # Poll daily Connect # LINK #
+
+				GIT UPLINK
+
+				 LHS ID uid_is_service
+				 RHS ID uid_is_user_login
+
+				 http://github.com/service/temp_blog
+				 http://github.com/user/temp_blog
+
+			# DOC_Tree #
+			# 
+			#  LOCN
+			#  LEAF
+
+		DOC_Tree
+			
+			/oldsite/
+			/oldsite/export_list
+
+			/newsite/
+			/newsite/export_list
+			/newsite/import_list
+			/newsite/temp_forum_space
+			/newsite/STO/permanent_archive
+			/newsite/STO/recent_updates
+			/newsite/STO/user_tree_sto_100mb
+
+			Download PRE_Release from automation
+			# click on [PKG] # click on Payload Name
+
+			Build Dependencies
+
+			Build Options
+
+				with GDB symbols in extra_file
+				with JSSM - bit rotten module
+				with PDFLite - full support of SPOUT_pdf_pdflib
+				with PDF_ps - SPOUT_pdf_PS # via ps_to_pdf
+				with PDF_mupdf - SPOUT_pdf_mupdf
+				with PDF_latex - support lillypond RSN
+				with PDF_svg - component DIAG 
+				with PDF_svg - collection PAGES
+				with DOC_Tree - wiki style - everybody edits
+				with DOC_Tree_Stream - forum temp_copy (gone)
+				with STO_User_Service_BLOG_with_PSG_api
+				with STO_User_Service_SOME_CPU_500MB_trusted_user_expect_11MB_every_session
+
+			Build Samples
+
+				copy subtree of samples to elsewhere # subdir #
+					uses a mini Makefile etc
+				copy sample to elsewhere # subdir #
+					add newname to Makefile
+					add newname to Bench_GUI
+				edit sample data
+					add a text case
+					tell caller to call it
+					find RUN() of caller of this teXt
+				run samples
+					C++ calls JS
+					JS calls C++
+					JS Class Base # fully usable
+					SWIG API for MyCode.api
+					Debug statement in C++
+					Debug statement in ES6
+					Debug statement in WASM
+					Debug statement in WAN_Connect
+
+				read samples
+
+					JS Class Base # fully usable
+
+					Base has all the functions needed for
+
+						Base_Class
+						 is_an_ES6_Object
+						 is_an_CXX_Object
+						UDEF_Class
+						 adds_names_in_dialect
+						 adds_vars_etc
+						 adds_events_etc
+						 adds_printers
+						 adds_PSG # layer #
+						UDEF_Class
+						 the whole tree of meaning thing
+
+				write scripts
+
+					INPUT is a serialised TREE
+
+						XML or SPIN
+						DATA   TREE
+
+					FOREACH STEP whilst walking TREE
+
+						NODE { ... }
+						LEAF { ... }
+
+					The incoming TREE is interpreted
+					converyed as a stream 
+
+						BUILTIN handler
+						UDEF HOOKS
+
+					Generic things like mkdir tree_branch
+
+						PRE_START Element_Info
+						MID_START Element
+						GOT_START subdir
+
+						GOT_STEP item_of_list
+
+					Generic things like MODE=BUILD_TREE
+
+						500 MB allowance
+							no charge if cached too
+
+						So now the default tree builder
+						completes the sub-branch
+						and passes as a COMPELTE object
+
+						It offers PRE_FILTER or POST
+						Forech Item in Stream
+						 process item
+						 against checklist
+						 flush_for_next_item()
+						 	# if any at all
+
+					Generic things like 
+
+						itemname EA_known_expr
+						itemtype EA_known_expr.typespec
+
+						branch
+

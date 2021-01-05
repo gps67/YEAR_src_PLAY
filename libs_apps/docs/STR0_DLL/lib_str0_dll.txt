@@ -1,0 +1,67 @@
+
+libs_apps/docs/STR0_DLL
+	lib_str0_dll.txt
+
+	};
+
+	Need: if(!PTR)... if (PTR) return PTR; ie: operator bool( SELF )
+
+	inline bool is_null() { return PTR == NULL; }
+	virtual udef * PTR
+	virtual bool is_null_fn()
+
+
+	struct STR0 {
+		u8 * PTR;	// alias S, STR0 
+
+		static CTXT * CTXT = NULL; // CTXT.init_null();
+
+		global_lookup_in_CTXT( STR0 ) {
+			CTXT * ctxt = get_CTXT();
+		}
+		CTXT & get_CTXT() {
+			if( CTXT ) return CTXT;
+			return new_CTXT_setup(); 
+		}
+		CTXT & new_CTXT_setup() {
+			if(CTXT) { return CTXT; } // function fast exit
+			ctxt_lock_create(); // can be a local static spin lock
+			if(!CTXT) { // double check, now with lock!
+				//
+				// any old stuff goes here
+				// with CTXT = go_and_find_CTXT();
+				//
+				STR0 varname = "CTXT";
+				ctxt_new_CTXT();
+				CTXT.connect_static_var__root_var_CTXT();
+				CTXT.connect( STR0 )
+				CTXT.connect( varname )
+				CTXT.connect( STR0 )
+				CTXT.connect( "CTXT" )
+			}
+			ctxt_lock_release();
+		}
+		// ###
+	}
+
+PSG_TOKEN
+
+	spelling = str1, or other held in a POST table of areas
+	token = str2
+
+	derive <TOKEN_PLUS> from STR0,
+	obj_ref is the universal type of ARGV[i]
+
+	When parsing input, from unknown source,
+	convert each argv[i] = STR2_local( STR0 );
+
+RT_DATA
+
+	obj_ref * obj = data_from_string # to the extent your code supports that
+	# no need to be able to regenerate STRING, except VARNAME, or EA_EXPR()
+	# this is not _necessarily_ a reversible operation
+	# but values have been entered into a program 
+	# and can be passed around as OBJV[i] parameters, in scripts
+	# maybe each class has bool can_output_exact_string_representation()
+	# and false is OK, to the extent that it is
+

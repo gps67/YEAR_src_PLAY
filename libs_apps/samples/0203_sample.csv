@@ -1,0 +1,133 @@
+ERA, dotdot, key, desc
+ERA,     year,    2002_Q1, Quarter
+ERA,  2002_Q1,    2002-02, Feb
+ERA,  2002_Q1,    2002-03, Mar
+ERA,  2002_Q1,    2002-04, Apr
+ERA,     year,    2002_Q2, Quarter
+ERA,  2002_Q2,    2002-05, May
+ERA,  2002_Q2,    2002-06, Jun
+ERA,  2002_Q2,    2002-07, Jul
+ERA,     year,    2002_Q3, Quarter
+ERA,  2002_Q3,    2002-08, Aug
+ERA,  2002_Q3,    2002-09, Sep
+ERA,  2002_Q3,    2002-10, Oct
+ERA,     year,    2002_Q4, Quarter
+ERA,  2002_Q4,    2002-11, Nov
+ERA,  2002_Q4,    2002-12, Dec
+ERA,  2002_Q4,    2003-01, Jan
+
+REF, dotdot, key, desc
+
+CAT, dotdot, key, desc
+CAT,  -,  N, Notes
+CAT,  -,  I, Income
+CAT,  -,  X, XFER
+CAT,  -,  O, Outgoings
+CAT,  -,  T, Tax
+CAT,  -,  D, Divi-Drawings
+CAT,  -,  I, INCOME
+CAT,  I, I1, Consultancy
+CAT,  I, I2, travel fee
+CAT,  I, I4, sales
+CAT,  I, I5, Interest
+CAT,  O,  c, COSTS
+CAT,  c, c2, Accountancy
+CAT,  c, c5, travel cost
+CAT,  c, c6, Misc Item
+CAT,  c, c7, Bank Charge
+CAT,  c, c8, Insurance
+CAT,  c, c9, Loan Interest
+CAT,  -,  D, DRAWING
+CAT,  D, D1, Salary:+146
+CAT,  D, D4, SALARY-400
+CAT,  D, D3, Pension-400
+CAT,  D, D5, Dividend
+CAT,  D, D7, SALARY=750
+CAT,  O,  a, AUTO
+CAT,  a, a3, TRAVEL insur
+CAT,  O,  p, PURCHASES
+CAT,  p, p1, Software
+CAT,  p, p2, Books
+CAT,  p, p4, repairs
+CAT,  p, p5, Misc; Cables;
+CAT,  O,  h, HW Hardware
+CAT,  -,  T, TAXES
+CAT,  T, T1, VAT
+CAT,  T, T2, PAYE+NI
+CAT,  T, T3, TAX
+CAT,  T, T4, ACT-DIV
+CAT,  -,  X, TRANSFERS
+CAT,  X, X1, PAID! i -> y
+CAT,  X, X2, XFER -> g
+CAT,  X, X4, VISA  y -> v
+CAT,  X, X5, HARDWARE -> h
+CAT,  X, X6, chq cleared
+CAT,  X, X7, expenses gi
+CAT,  X, X8, PAYE t->g
+CAT,  O,  s, Internet
+CAT,  s, s1, TDC internet
+CAT,  s, s2, BT line
+CAT,  s, s3, BT calls
+CAT,  s, s4, NTL Broadband
+CAT,  -,  N, NOTES
+CAT,  N, N1, 229271 =  000.
+CAT,  N, N2, STMT 100= ?
+CAT,  N, N3, note:
+CAT,  N, N4, PREV YEAR
+CAT,  O,  z, -DUNNO-
+
+ACCT, key, amount, desc, amnt_closing
+ACCT, i,         0.00, invoiced unpai, 0.00
+ACCT, o,         0.00, other owed,     0.00
+ACCT, g,         0.00, Graham,         0.00
+ACCT, a,         0.00, Alliance Leice, 0.00
+ACCT, b,        57.99, Nationwide Bus, 0.00
+ACCT, c,         0.00, Yorks cheque,   0.00
+ACCT, s,        23.99, Standard Life,  0.00
+ACCT, l,         0.00, LOAN,           0.00
+ACCT, h,         0.00, hardware,       0.00
+ACCT, d,         0.00, dividend,       0.00
+ACCT, t,         0.00, tax,             0.00
+
+NOTE, key, desc
+NOTE,  x, VAT=x
+NOTE,  y, VAT=x
+NOTE,  f, follow up
+NOTE,  p, paid
+
+INFO, key, value
+
+VAT, key, rate, desc
+VAT, e, 0.000, euro
+VAT, w, 0.000, non EC
+VAT, v, 17.500, VAT UK
+VAT, h, 0.000, hardware asset
+
+TRANS, key, date_tax, date_pay, cat, acct, img, ref, desc, amnt, vat
+TRANS, +, 2002-02-01, 2002-02-01, c2, g, -,    sjd, Accountancy        ,    -70.50, v
+TRANS, +, 2002-02-22, 2002-02-22, s4, b, 0222S4x, 100041, NTL Broadband Feb  ,    -24.99, v
+TRANS, +, 2002-02-28, 2002-02-28, N3, t, -,    ERA, VAT ERA end 3/3    ,     -0.01,  
+TRANS, +, 2002-03-01, 2002-03-01, N3, t, -,    ERA, VAT ERA Start      ,      0.01,  
+TRANS, +, 2002-03-01, 2002-03-01, c2, g, -,    sjd, Accountancy        ,    -70.50, v
+TRANS, +, 2002-03-20, 2002-03-20, N2, a, -, stmt-0, OPENED             ,      0.00,  
+TRANS, +, 2002-03-22, 2002-03-22, s4, b, -, 100044, NTL Broadband Mar  ,    -24.99, v
+TRANS, +, 2002-04-01, 2002-04-01, D7, g, -, SALARY, SALARY=750         ,   -750.00, x
+TRANS, +, 2002-04-01, 2002-04-01, c2, g, -,    sjd, Accountancy        ,    -70.50, v
+TRANS, +, 2002-04-09, 2002-04-09, s2, b, -, 100050, BT line            ,    -40.53, v
+TRANS, +, 2002-04-10, 2002-04-10, T2, b, -, 100048, PAYE+NI            ,   -227.30, x
+TRANS, +, 2002-04-10, 2002-04-10, T2, b, -, 100047, PAYE+NI            ,  -1506.35, x
+TRANS, +, 2002-04-12, 2002-04-12, T1, b, -, stmt18, VAT                ,    205.56, x
+TRANS, +, 2002-04-17, 2002-04-17, c8, b, -, 100051, Insurance          ,   -304.29, 0
+TRANS, +, 2002-04-22, 2002-05-07, s4, a, -,   0001, NTL Broadband Apr  ,    -24.99, v
+TRANS, +, 2002-04-30, 2002-04-30, N3, t, -,    ERA, VAT ERA END 2/2    ,     -0.01,  
+TRANS, +, 2002-05-01, 2002-05-01, N3, t, -,    ERA, VAT ERA Start      ,      0.01,  
+TRANS, +, 2002-05-01, 2002-05-01, D7, g, -, SALARY, SALARY=750         ,   -750.00, x
+TRANS, +, 2002-05-01, 2002-05-01, c2, g, -,    sjd, Accountancy        ,    -70.50, v
+TRANS, +, 2002-05-01, 2002-05-01, I5, a, -, stmt-2, Interest           ,     -0.03, 0
+TRANS, +, 2002-05-01, 2002-05-01, c7, a, -, stmt-2, Bank Charge        ,    -20.00, 0
+TRANS, +, 2002-05-01, 2002-05-01, I5, a, -, stmt-2, Interest           ,      0.19, 0
+TRANS, +, 2002-05-01, 2002-05-01, c7, a, -, stmt-2, bank charge corr.  ,     25.00, x
+
+XFER, key, date, cat, acct1, acct2, img, ref, desc, amnt
+XFER, +, 2002-08-21,  X, b, a, -,       , Trnsfr to   Ac a   ,    205.79
+

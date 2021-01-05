@@ -1,0 +1,19 @@
+
+
+	always_on_top
+	to_front
+	to_back
+	resize to xywh
+	resize to mouse start
+	move to mouse start
+	panels ?
+	detect resize close 
+	set title
+	list all
+	change transparent
+	min / restore
+
+	x11 atoms and config
+	gtk skinning
+
+

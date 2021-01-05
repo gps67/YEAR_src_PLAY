@@ -1,0 +1,22 @@
+#
+# libs_apps has some rpaths and include dirs that all should know aout
+# but be centralised
+
+#
+# TGT=WIN32
+# TGT=LGX
+# TGT=i586
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_own_paths
+Description: Libraries and Applications - own_rpath and includes
+Version: 0.1.2
+
+Requires: 
+
+Libs: -L${libdir}  -Wl,--rpath=${libdir} -Wl,--rpath=./lib/ -Wl,--rpath=../lib/ -Wl,--rpath=/airbook/lib/
+Cflags:  -I${includedir}

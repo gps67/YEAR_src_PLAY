@@ -1,0 +1,7 @@
+
+ifeq ($(WITH_SSL),1)
+	DIR_SSL = /tools/2000/libs
+	INCL += -I$(DIR_SSL)/include
+	LIBS += -L$(DIR_SSL)/lib -Lopenssl -lssl -lcrypto
+endif
+

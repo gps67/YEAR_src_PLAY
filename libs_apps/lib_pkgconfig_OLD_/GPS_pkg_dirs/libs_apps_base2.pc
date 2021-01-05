@@ -1,0 +1,13 @@
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libs_apps_base2
+Description: Libraries and Applications - base 2 adds pdf and things
+Version: 0.1.2
+
+Requires: libs_apps_base, libs_apps_uses_js2, libs_apps_uses_pdflib, libs_apps_uses_gtk, libs_apps_uses_libz 
+Libs:  -L${libdir} -lbase2 -Wl,--rpath=${prefix}/lib
+
+Cflags:  -I${includedir}

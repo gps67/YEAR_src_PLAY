@@ -1,0 +1,20 @@
+. ./.env
+mysql_root -t <<!EOT | tee fa_
+	USE mysql;
+
+	SELECT * FROM user
+	WHERE user='$USER_NAME';
+
+	SELECT * FROM db
+	WHERE user='$USER_NAME';
+
+#	SELECT * FROM host
+#	WHERE user='$USER_NAME';
+
+	SELECT * FROM columns_priv
+	WHERE user='$USER_NAME';
+
+	flush privileges;
+
+# http://www.mysql.com/doc/A/d/Adding_users.html
+

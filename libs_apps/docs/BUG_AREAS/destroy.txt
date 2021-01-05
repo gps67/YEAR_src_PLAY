@@ -1,0 +1,19 @@
+destroy has changed, it is now necessary to retain a reference to
+an object (otherwise w_widget0 destroys the gtk object).
+
+It is also necessary to react to event_destroyed() (after connect),
+to know when things have disappeared.
+
+Also some redraws happenning during de-construction phases,
+maybe jumping to the top object would make that invisible.
+
+Or as was ...
+
+gtk does ALL the ref-counting from when the widget is packed.
+For some reason it doesnt delete the w_win_top (MainWIndow) object,
+probably because that isnt 'packed' into any container, but gtk_main_exit
+should know better.
+
+
+
+

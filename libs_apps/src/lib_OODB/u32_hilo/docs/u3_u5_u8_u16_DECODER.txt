@@ -1,0 +1,102 @@
+I Posted to http://www.pagetable.com/?p=250&cpage=1#comment-100690
+Tue Jul 28 14:35:45 BST 2009
+
+
+u3_u5_u8_u12_DECODER {
+// see libs_apps/docs/
+}
+
+Supposing you had a C++ class,
+for use at COMPILE_TIME or RUN_TIME
+
+BIT_FIELD { // probably template // probably derived from NAMED_OBJECT
+
+uns nbits_gap_right;
+uns nbits_data;
+bool is_signed;
+
+// thats all you need, maybe expand “is_signed” to TYPE_SPEC_of_enum_bit_field
+// plus NAME + SPEC of this
+// plus WHEN you know this, CT_COMPILE_TIME, RT_RUNTIME, const ?, changed?
+
+enum byte_order_of_memory_and_code_used_to_handle_it
+byte_order = byte_order_hilo_by_definition_probably_on_lohi_cpu;
+
+static enum compiler_bit_order_code_and_metrics
+bit_order = bit_order_gcc_on_AMD64_using_masks_AND_bit_fields_mixed; // !
+
+// starts to get virtual here
+
+u32 GET_mask_1s_rhj();
+u32 GET_mask_1s_in_situ(); // 1 where data is
+
+u32 GET_mask_0s_rhj();
+u32 GET_mask_0s_in_situ(); // 0 where data is
+
+bool GET_is_within_byte_boundry(); // does_not_cross_byte_boundry
+bool know_gap_right_is_zero;
+bool know_no_need_to_mask_off_upper_bits;
+
+};
+
+class LIST_of_BIT_FIELD
+{
+BIT_FIELD & LIST[4]; // however many you want
+bool generate_code( generator & );
+};
+
+and some friends
+u32_hilo
+u32_lohi
+u32_cpu // probably typedef to one or the other, with C++ casting all over the place
+
+and some distant cousins: u32_cpu_lohi_holding_inverted_hilo.
+
+Plus of course some optimising bswap functions (HTON macros evaporate to swapb),
+and some failsafe compile-mode-use-masks-and-shifts,
+plus some unit tests,
+plus a community to maintain it for a range of CPUs, compilers, times-of-day,
+
+Plus, you also can run this data-driven C++ class,
+to prints the correct C/C++ for your machine/compiler/timeofday
+(or falls back on masks and swapb),
+as long as there is a non-cross-compiler available, at compile-time.
+
+Add to that, the attempt to access u32_hilo IN-SITU from a u32_cpu_lohi
+knowing that the sub-byte-values are easier, but the byte-boundry cross isnt,
+but never-the-less attempt to get a good engineering compromise
+
+Then what _YOU_ do with a family of types named
+
+u3_u5_u8_u16 // upper tray is blind to lower tray u16
+u3_u5_u8_u4_u12 // decoder finds common case of 4K pools
+u8_u8_u16 // decode u3_u5 as plain lookup[u8] // sparse: void * lookup[ decode[u8] ]
+u16_u16 // u16_upper_u16_lower
+u32_hilo // as_found_in_file_preferably_aligned
+
+Remember that decoding, will probably extract the values all-in-one-go,
+because you KNOW that you will decode the entire multi-step-address
+(which is an index not an offset, looking up the object in a tray_of_256_of_similar_type)
+
+(Q) If it is to be quick on all architectures, and all compiler-modes,
+what should the bit layout be: ?
+
+u3_u5_u8_u16
+u16_u8_u5_u3
+
+u3_u5_u8_u4_u12
+u12_u4_u8_u5_u3
+
+NB By using different names for each bitfield,
+it remains easier to prototype here, for a larger space,
+otherwise its:
+
+u3_A
+u5_B
+u8_C ….
+u16_Lower
+
+NB My storage layout allocates within the lower 16 bits (object per item)
+with multiple parallel worlds selected in the upper 16 bits.
+That upper layout is implemented as a (hidden) lower_tray_of_items
+to reuse code, but allow mixing trays_of_lower_u16 from different files

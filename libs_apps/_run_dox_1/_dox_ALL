@@ -1,0 +1,12 @@
+#!/usr/bin/env doxygen
+
+	PROJECT_NAME           = ALL
+	INPUT                  = ../src/
+	OUTPUT_DIRECTORY       = ../DOX/libs_apps/ALL/
+	GENERATE_TAGFILE       = ../DOX/libs_apps/ALL.tag
+	WARN_LOGFILE           = _dox_WARNINGS_ALL.txt
+
+	@INCLUDE = Doxyfile_general
+	@INCLUDE = _dox_Incl_Path
+	TAGFILES += 	../DOX/libs_apps/..tag=../../DOX/libs_apps/./
+#

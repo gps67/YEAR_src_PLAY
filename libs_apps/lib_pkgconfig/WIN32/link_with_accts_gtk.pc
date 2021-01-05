@@ -1,0 +1,18 @@
+
+
+Name: link_with_accts_gtk
+Description: LIBS_APPS uses accts_gtk
+Version: 0.1.2
+
+# Requires: libs_apps_base2 libs_apps_uses_gtk
+# surely base1 includes gtk
+# surely gtk includes base2
+
+Requires: \
+	link_with_base2  \
+	link_with_base2_gtk  \
+#
+# Requires: libs_apps_uses_gtk
+
+Libs: -L. libaccts_gtk.dll
+Cflags:

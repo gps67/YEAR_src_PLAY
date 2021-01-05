@@ -1,0 +1,4 @@
+
+export TGT=i586
+echo "# SET # TGT # $TGT"
+./mk_less -k ${@:-lots}

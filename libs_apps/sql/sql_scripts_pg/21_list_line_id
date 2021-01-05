@@ -1,0 +1,5 @@
+#!/bin/sh
+. ./.env
+
+pgsql_user <<!EOT
+	select * from line_id;

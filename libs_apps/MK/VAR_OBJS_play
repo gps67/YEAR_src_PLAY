@@ -1,0 +1,23 @@
+
+# hash #
+
+
+ifeq (1,1)
+	OBJS_base1_play += HT_List_Item.o	# 
+	OBJS_base1_play += HT_table_base.o	# 
+	OBJS_base1_play += HT_table.o	# 
+	OBJS_base1_play += amix.o	# uses snd_
+	OBJS_base1_play += snd_mixer.o	# 
+
+# test code should be in app.exe not lib_play.so
+	OBJS_base1_play += HT_main.o	# 
+
+	OBJS_base1_play += psg_expr.o	# 
+
+endif
+
+
+ifeq ($(WITH_JS),1)
+	#OBJS_base1_play += jsc_scan_Module.o	# 
+	OBJS_accts += jsc_scan_Module.o	# 
+endif

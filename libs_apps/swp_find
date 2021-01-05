@@ -1,0 +1,28 @@
+# set -x
+# find . -type f -name .*.swp 
+# find . -type f -name .*.swp -exec fuser {} ';'
+LIST=`find . -type f -name '.*.swp'`
+IDLE=''
+# echo "LIST is $LIST"
+for f in $LIST
+do
+	echo -n "Checking $f ..."
+	if fuser $f
+	then
+		: busy # see PID output line from fuser
+	else
+		echo " IDLE"
+		IDLE="$IDLE $f"
+	fi
+done
+if [ -z "$IDLE" ]
+then
+	:
+else
+	echo
+	ls -ld $IDLE
+	echo
+	echo "IDLE FILE - maybe run vi -r on it ?"
+	ask_do rm $IDLE
+fi
+

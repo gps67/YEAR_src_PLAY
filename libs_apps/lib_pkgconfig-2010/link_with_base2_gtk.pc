@@ -1,0 +1,18 @@
+
+prefix=/home/gps/2000/src/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: link_with_base2_gtk
+Description: libs_apps - gtk is a pig when compiling each dependency, dont, do
+Version: 0.1.2
+
+Requires: \
+	link_with_base2 \
+	libs_apps_uses_gtk \
+
+Libs: -lbase2_gtk
+Cflags:
+
+

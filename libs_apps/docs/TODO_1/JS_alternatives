@@ -1,0 +1,30 @@
+is this JVM or C or ... ?
+
+
+	[054] - Simple ECMAScript Engine 2.0 
+	  by David Leonard (http://freshmeat.net/users/dleonard/)
+	  Sun, Aug 6th 2006 06:30
+
+	Software Development :: Embedded Systems
+	Software Development :: Interpreters
+	Software Development :: Libraries
+
+	About: SEE is a lightweight ECMAScript (JavaScript) parser and run-time
+	environment. It conforms to ECMAScript Edition 3, JavaScript 1.5, and
+	provides compatibility switches for earlier versions of JavaScript and
+	Microsoft's JScript. 
+
+	Changes: This release presents major API improvements and changes,
+	improved Netscape compatibility, dynamic modules, support for GC
+	finalizers, and many bugfixes.
+
+	License: BSD License (revised)
+
+	URL: http://freshmeat.net/projects/see/
+
+--
+
+	D has ECMAScript plugin
+
+	Qt has ECMAScript plugin - with own API
+

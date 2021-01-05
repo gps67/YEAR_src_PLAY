@@ -1,0 +1,12 @@
+
+Name: libs_apps_uses_editline
+Description: LIBS_APPS uses editline 
+Version: 0.1.2
+
+# on WIN32 uses_editline is not quite true
+
+Requires: 
+
+Libs:
+Cflags:
+

@@ -1,0 +1,15 @@
+RUN ON AS IN 
+
+	...
+
+argv
+syslog
+fifo
+telnet
+rcp/module
+df
+dusk
+chroot
+kernel-module sandpit ?
+
+

@@ -1,0 +1,12 @@
+# THIS IS ABSENT 
+# see subdir pkgconfig/LGX
+# see subdir pkgconfig/WIN32
+# see subdir pkgconfig/i586
+# 
+
+# with WIN32 the MINGW environment does not pick up /usr/include/gtk
+# with LGX it does
+# with i586 is tries to and must be stopped
+
+# see PKGS/PKGS_build/i586 - source + obj + scripts
+# see PKGS/PKGS_built/i586 - binaries ready to install (prefix)

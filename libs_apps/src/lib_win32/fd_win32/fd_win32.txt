@@ -1,0 +1,15 @@
+
+fd -> ../lib_base/fd/
+
+fd_hold_2.cxx
+fd_hold_2.h
+
+	not sure  back track maybe used where?
+
+fd_hold_win32.cxx
+fd_hold_win32.h
+
+	fd_win32.txt
+
+	fd_win32.cxx
+	fd_win32.h

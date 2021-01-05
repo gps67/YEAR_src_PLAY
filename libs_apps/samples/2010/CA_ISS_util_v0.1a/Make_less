@@ -1,0 +1,10 @@
+# export TGT=LGX
+
+SRCH_PATTERN=get_phrase
+SRCH_PATTERN=days
+SRCH_PATTERN=FAIL # run
+SRCH_PATTERN=error # compile
+SRCH="+/${SRCH_PATTERN}"
+# SRCH=''
+make "${@}" 2>&1 | less $SRCH
+# make "${@:-P}" 2>&1 | less

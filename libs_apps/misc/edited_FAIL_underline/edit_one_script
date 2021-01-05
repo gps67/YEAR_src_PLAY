@@ -1,0 +1,24 @@
+# echo $0 "$@" --
+if expr $1 ":" .*/dgb.h > /dev/null
+then
+	echo SKIPPING $1
+	exit
+fi
+
+ed $1 << !EOT
+,s/FAIL_(/FAIL(/g
+,s/PASS_(/PASS(/g
+,s/STEP_(/STEP(/g
+,s/INFO_(/INFO(/g
+,s/TODO_(/TODO(/g
+,s/WARN_(/WARN(/g
+,s/PERROR_(/FAIL(/g
+,s/PERROR(/FAIL(/g
+,s/TRACE_(/STEP(/g
+,s/TRACE(/STEP(/g
+w
+!EOT
+
+# ,s/${WORD}_*(/$WORD(/g
+# ,s/PERROR_*(/FAIL(/g
+# ,s/${WORD}_*(/$WORD(/g

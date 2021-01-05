@@ -1,0 +1,18 @@
+INFO,  key,  value
+
+ERA,  dotdot,  key,  desc
+
+REF,  dotdot,  key,  desc
+
+CAT,  dotdot,  key,  desc
+
+ACCT,  key,  amount,  desc,  amnt_closing
+
+NOTE,  key,  desc
+
+VAT,  key,  rate,  desc
+
+TRANS,  key,  date_tax,  date_pay,  cat,  acct,  img,  ref,  desc,  amnt,  vat_era,  vat
+
+XFER,  key,  date,  cat,  acct1,  acct2,  img,  ref,  desc,  amnt
+

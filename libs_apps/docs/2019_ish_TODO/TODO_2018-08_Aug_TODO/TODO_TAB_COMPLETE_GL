@@ -1,0 +1,110 @@
+
+PARSE {
+	// FROM URL
+	// http://www.codebind.com/linux-tutorials/install-opengl-ubuntu-linux/
+
+	void displayMe(void)
+	{
+	    glClear(GL_COLOR_BUFFER_BIT);
+	    glBegin(GL_POLYGON);
+		glVertex3f(0.5, 0.0, 0.5);
+		glVertex3f(0.5, 0.0, 0.0);
+		glVertex3f(0.0, 0.5, 0.0);
+		glVertex3f(0.0, 0.0, 0.5);
+	    glEnd();
+	    glFlush();
+	}
+
+	int main(int argc, char** argv)
+	{
+	    glutInit(&argc, argv);
+	    glutInitDisplayMode(GLUT_SINGLE);
+	    glutInitWindowSize(400, 300);
+	    glutInitWindowPosition(100, 100);
+	    glutCreateWindow("Hello world!");
+	    glutDisplayFunc(displayMe);
+	    glutMainLoop();
+	    return 0;
+	}
+
+}
+
+	SEQUENCE 
+		COMPILE LINK
+
+		CTOR
+		Setup_Adjust
+		LOOP
+		DTOR
+
+	CONST 
+
+	 DB_Const TOKEN {
+	 	CALC TOKEN = VALUE // or SCRIPT merged into SHEET with CTXT
+	 }
+
+	 DB_Var TOKEN { // SCRIPT merged with SCRIPT_SHEET
+		ITEM_NAME =
+	 	ITEM_TYPE = 
+		ITEM_CALC {
+		}
+	 }
+
+
+		VAR DB_static CONST from CALC
+
+	SHEET FRAGMENTS
+
+		CODE {
+			...
+			CODE_POINT {
+				DB_Const NAME( VALUE ) // CTOR or expand
+			}
+			CODE_POINT_ITEM {
+				CODE.line_number = 
+				CODE.tree_item = 
+				CODE.item_name = 
+				CODE.item_name_with_namespace_options = 
+			}
+			ACCESS_EXPRS {
+				show_code_line_as_CXX_with_CMNT
+				VIEW CODE // 
+			}
+
+		}
+
+	CODE {
+		/*
+			Parse this as C
+			Tokenise argv W H testSTR UDEF name
+			Subst displayMe to caller
+		    	Subst glutMainLoop(); to UDEF that does much the same
+			SEQUENCE LINES
+			SCATTER LINES with interleave
+		*/
+		{
+		    // eg in main()
+		    glutInit(&argc, argv);
+		    glutInitDisplayMode(GLUT_SINGLE);
+		    glutInitWindowSize(400, 300);
+		    glutInitWindowPosition(100, 100);
+		    glutCreateWindow("Hello world!");
+		    glutDisplayFunc(displayMe);
+		    glutMainLoop();
+		    return 0;
+		}
+	}
+
+ WHY GL
+ DO WHAT
+
+ 	bunch of 2D shapes
+	WEB_GL
+
+	TAB_COMPLETIONS
+	PICK POPUP LIST
+
+	SPOUT_svg
+	SPOUT_gl
+	CODE_TREE_CXX
+	CODE_TREE_API_{ mujs,cxx,c,py,tcl,,groff,svg, ... }

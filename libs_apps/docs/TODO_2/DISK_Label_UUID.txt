@@ -1,0 +1,25 @@
+Too many Machines: (Crowd Computing)
+
+moved primary disk from X3 to X2
+where it joined a pair of disks
+(and lost the cdrom?)
+and lost X3B (not plugged in)
+and lost /ROOT6/ (which was reformatted f18)
+
+Want a global (site-wide_ configuration of UUID and LABEL
+Want to configure /etc/fstab
+((want to kill modal gnome update manager stealing focus))
+Want readability, uniqueness, etc, etc
+UUID is a bit rediculous, maybe recode with OWN values
+
+GRUB also uses UUID's
+
+-----------
+
+GRUM merge
+ multiple OS's - a subdir each ?
+ multiple FIRST disks (turned out SAT-3 was X3 disk one)
+ merge-abilty
+OR do via kexec, GUI, mount disks, etc
+SO that makes HW like VM,
+++ manage list of containers, moving around

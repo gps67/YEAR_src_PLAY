@@ -1,0 +1,17 @@
+# set -x
+if [ "$1" == -i ]
+then
+	shift
+	INS=-1
+	# echo INS=$INS
+fi
+pattern="$1"
+shift
+files=`grep $INS -s -d skip --exclude='*.exec' --exclude='*.o' -l "$pattern" "$@" `
+# files=`grep $INS -s -d skip -l "$pattern" "$@" `
+if [ ! -z "$files" ]
+then
+	vi "+/$pattern" $files
+else
+	echo "NOT found"
+fi

@@ -1,0 +1,19 @@
+K1=${1:-CA_ZERO_key.pem}
+K1=`basename $K1 .pem`
+
+set -x
+
+OPENSSL=openssl
+OPENSSL=/airbook/bin/openssl
+PASSIN="-passin pass:secret2"
+PASSIN="-passin pass:secret"
+
+$OPENSSL pkey \
+-inform PEM \
+-in $K1.pem \
+$PASSIN \
+-outform DER \
+-out $K1.der \
+-text \
+#
+

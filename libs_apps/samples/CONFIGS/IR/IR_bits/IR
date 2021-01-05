@@ -1,0 +1,33 @@
+# IR #
+. /tools/2002/var_add.sh                                                        
+var_add PATH /usr/local/bin                                                     
+# var_add PATH /usr/local/sbin                                                    
+var_add PATH /home/gps/2002_ftp/11_Nov/lirc-0.6.6/tools                         
+# var_add PATH /home/gps/2002_ftp/11_Nov/lirc-0.6.6/daemons                       
+
+
+runs_rc()
+{
+ (
+	echo "# RUN # $*"
+	rc "$@"
+	echo "# EXIT # $?"
+ ) 2>&1 | tee /etc/IR/IR.log_one
+}
+
+runs_rem()
+{
+	rsh pad -l gps /usr/local/bin/rc SEND_ONCE $*
+}
+
+	rem="$1"
+	shift
+	case "$rem"
+	in
+		xxx) :
+	;;	CABLE)  runs_rc SEND_ONCE DI4001N $*
+	;;      VCR)    runs_rc SEND_ONCE SV-651B $*
+	;;      RADIO)  runs_rc SEND_ONCE LS      $* 
+	;;	*)	echo "Remote $rem not recognised"
+	esac
+

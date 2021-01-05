@@ -1,0 +1,210 @@
+UTF8 bit encoding (of 8 bits)
+
+	1yxx xxxx	-becomes-	1100 001y   10xx xxxx
+
+	10xx xxxx	-becomes-	1100 0010   10xx xxxx
+	11xx xxxx 	-becomes- 	1100 0011   10xx xxxx
+
+eg A3 becomes C2 A3 # user sees blob then same char
+eg C1 becomes C3 81 # user sees blob2 then not_same char
+eg E3 becomes C3 A3 # E3 also maps to blob2 not_same char
+
+	1010 0011	-becomes-	1100 0010   1010 0011
+	1100 0001	-becomes- 	1100 0011   1000 0001
+	1110 0011	-becomes- 	1100 0011   1010 0011
+
+NB remember to convert 8859_15 to UNICODE before applying utf8
+EG EURO A4 becomes U+20AC becomes 
+
+----------------------
+TODO:
+
+	allow varient types { ASCII 8859_15 BYTE_X UTF8 UNI16 ENC16 BUG5 ENC32 ... }
+
+		virtual get_cset_spec()
+
+			CORE classes would not have this VIRTUAL
+			SOFT classes would have VIRTUAL function that gets MEMBER
+
+	that leads to type for containers 
+
+		array of words containing SET{ SIMPLES }
+
+	CSET_SPEC - intermerged with ENCODING_INFO - optional LANG_HINTS
+
+		bitmap {
+			ASCII_MATCHES	# ebcidic isnt
+			BYTE_CONTAINER	# doesnt extend above 256 // fits_in_byte
+			GLYPH_IS_SINGLE_VALUE # u16+u16 pairs excluded
+
+	non-standard-csets
+
+		postscript fonts are completely arbitrary
+		usually with an ASCII subset
+		usually with an ADOBE subset - remapped
+
+
+----------------------
+
+All 8859 bytes below 128 are plain ASCII, unchanged in utf8
+All 8859 bytes above 128 fall into these two groups:
+
+-from	10xx xxxx	8,9,A,B
+-to-
+	1100 0010 C2
+	10xx xxxx	8,9,A,B
+
+-from	11xx xxxx	C,D,E,F
+-to-
+	1100 0011 C3
+	10xx xxxx	8,9,A,B
+
+IE The upper eighth bit is 1, the upper seventh bit is zero or one
+SO The 2-byte utf8 starts with C2 or C3, followed by a 6-bit carrier
+
+The 6-bit carrier (utf8 continuation byte 10xx xxxx) 'looks like'
+an 8859 char, but in the less commonly used area. Half occupy
+the control-zone (which is almost never used) and half cover
+rarely used glyphs, so there is less confusion, HOWEVER,
+the POUND EURO CENT and NBSP chars are in this range,
+and they are quite common. They would appear amoungst
+ASCII decimals, so you might not notice other accented chars
+being mis-displayed.
+
+Put the other way around, the POUND symbol 0xA3 is mechanically
+converted to utf8: 0xC2 0xA3
+
+MOST accents have the 7'th bit set, only a few dont (NBSP. CENT, POUND, EURO)
+When 
+
+----------------------
+
+
+-from	11xx xxxx	MOST ACCENTS
+-to-  
+	1100 0011 C3
+	10xx xxxx	8,9,A,B
+-to-
+	1100 0011 C3
+	1000 0011 83
+	1100 0010 C2
+	10xx xxxx	8,9,A,B
+
+-from	10xx xxxx	NBSP CENT POUND EURO
+-to-  
+	1100 0010 C2
+	10xx xxxx	8,9,A,B
+-to-
+	1100 0011 C3
+	1000 0010 82
+	1100 0010 C2
+	10xx xxxx	8,9,A,B
+
+----------------------
+
+C2 + C3
+
+	These are the prefix bytes for utf8 -of-bytes
+	(other unicode values will produce 2,3,4 byte utf sequences
+	so it might be worthwhile looking up the unicode for
+
+		euro		U+20AC --> E2 82 AC
+		copyright
+		registered
+		nbsp
+		the-free-zone-for-sdata-extensions
+
+	C2 = A^
+		pound, euro_A4, SP_!, NBSP, .. few chars
+		followed by the char itself (zero bit forced to zero)
+
+	C3 = A~
+		all the chars, few symbs
+		followed by MODIFIED non-sense-char (one bit forced to zero)
+
+	SO If you see either of those two chars, are they really likely?
+	or is this a double encoded byte
+
+	SO If they do occur, why not convert them to sdata (name or value)
+
+	SO if demonstrating actual effect of double encoding, use a SP / gif
+
+	Detect
+	Categorise
+	Cleanup
+
+
+iso_8859_1 
+iso_8859_9
+
+	iso_8859_9 is the new _1, it has:
+
+	http://www.cs.tut.fi/~jkorpela/latin9.html
+
+	_9	OLD		NEW		U+NEW
+	A4	currency	EURO		U+20AC	<<- not u+a4
+	A6	broken bar	S+CARON		U+0160
+	A8	diaeresis	s+caron		U+0161
+	B4	acute		Z+CARON		U+017d
+	B8	cedilla		z+caron		U+017e
+	BC	1/4		OE		U+0152
+	BD	1/2		oe		U+0153
+	BE	3/4		Y+diaeresis	U+0178
+
+iso_8859_9 - python has it wrong - ?? - it says
+
+	D0	CAP ETH		CAP G Breve	U+011e
+	DD	CAP Y acute	CAO I dot above	U+0130
+	DE	CAP THORN	CAP S cedilla	U+015e
+	F0	low eth		low g breve	U+011f
+	FD	low y acute	low i dotless	U+0131
+	FE	low thorn	low s cedilla	U+015f
+
+	/tools/2000/py/_src/Python-2.5b1/Lib/encodings
+	iso8859_9.py 
+
+	But a quick grep suggests _14 _15 are the numbers?
+/tools/2000/py/_src/Python-2.5b1/Lib/encodings
+iso8859_15.py 
+
+	_15	OLD		NEW		U+NEW
+	A4	currency	EURO		U+20AC	<<- not u+a4
+	A6	broken bar	S+CARON		U+0160
+	A8	diaeresis	s+caron		U+0161
+	B4	acute		Z+CARON		U+017d
+	B8	cedilla		z+caron		U+017e
+	BC	1/4		OE		U+0152
+	BD	1/2		oe		U+0153
+	BE	3/4		Y+diaeresis	U+0178
+
+
+EURO
+
+	http://users.pandora.be/sim/euro/112/generic/introduction.html
+
+		colour !
+
+	U+20AC
+	&#8364;
+	&#x20AC;
+	&euro;
+
+		0010 0000  1010 1100	= 20AC
+
+	which converts to utf8 as:
+
+		     0010 0000   1010 1100	# initial bits
+		++++.0010 ++00.0010 ++10.1100	# regroup as 6 bits
+		1110.0010 1000.0010 1010.1100	# 3 utf8 bytes
+		E2 82 AC
+
+
+EURO
+	8859-15 uses 0xA4
+	UNICODE uses U+20AC (UTF8 uses E2 82 1C)
+
+	DOS codepage 858 (replaces 850) uses 0xD5
+
+	WIN32 uses 0x80
+	WIN32.Cyrillic (codepage 1251) uses 0x88
+

@@ -1,0 +1,3 @@
+N=g_io_win32
+set -x
+ask_do tar -cvzf $N.tgz $N

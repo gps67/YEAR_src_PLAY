@@ -1,0 +1,56 @@
+In file included from /home/gps/YEAR/src_build_2019/JS/mozjs-65.0.1/js/src/build_DBG.OBJ//dist/include/jstypes.h:33,
+                 from /home/gps/YEAR/src_build_2019/JS/mozjs-65.0.1/js/src/build_DBG.OBJ//dist/include/jspubtd.h:14,
+                 from /home/gps/YEAR/src_build_2019/JS/mozjs-65.0.1/js/src/build_DBG.OBJ//dist/include/jsapi.h:26,
+                 from eg1.cpp:1:
+/home/gps/YEAR/src_build_2019/JS/mozjs-65.0.1/js/src/build_DBG.OBJ//dist/include/js-config.h:24:4: error: #error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+ #  error "SpiderMonkey was configured with --enable-debug, so DEBUG must be defined when including this header"
+    ^~~~~
+eg1.cpp:19:1: error: too many initializers for ‘JSClassOps’
+ };
+ ^
+eg1.cpp: In function ‘int main(int, const char**)’:
+eg1.cpp:41:7: error: ‘JSAutoRequest’ was not declared in this scope
+       JSAutoRequest ar(cx); // In practice, you would want to exit this any
+       ^~~~~~~~~~~~~
+eg1.cpp:41:7: note: suggested alternative: ‘JSAutoRealm’
+       JSAutoRequest ar(cx); // In practice, you would want to exit this any
+       ^~~~~~~~~~~~~
+       JSAutoRealm
+eg1.cpp:44:11: error: ‘CompartmentOptions’ is not a member of ‘JS’
+       JS::CompartmentOptions options;
+           ^~~~~~~~~~~~~~~~~~
+eg1.cpp:44:11: note: suggested alternative: ‘ContextOptions’
+       JS::CompartmentOptions options;
+           ^~~~~~~~~~~~~~~~~~
+           ContextOptions
+eg1.cpp:45:107: error: ‘options’ was not declared in this scope
+       JS::RootedObject global(cx, JS_NewGlobalObject(cx, &global_class, nullptr, JS::FireOnNewGlobalHook, options));
+                                                                                                           ^~~~~~~
+eg1.cpp:52:9: error: ‘JSAutoCompartment’ was not declared in this scope
+         JSAutoCompartment ac(cx, global);
+         ^~~~~~~~~~~~~~~~~
+eg1.cpp:52:9: note: suggested alternative: ‘JS_IterateCompartments’
+         JSAutoCompartment ac(cx, global);
+         ^~~~~~~~~~~~~~~~~
+         JS_IterateCompartments
+eg1.cpp:53:9: error: ‘JS_InitStandardClasses’ was not declared in this scope
+         JS_InitStandardClasses(cx, global);
+         ^~~~~~~~~~~~~~~~~~~~~~
+eg1.cpp:53:9: note: suggested alternative: ‘JS_EnumerateStandardClasses’
+         JS_InitStandardClasses(cx, global);
+         ^~~~~~~~~~~~~~~~~~~~~~
+         JS_EnumerateStandardClasses
+eg1.cpp:60:23: error: ‘Evaluate’ is not a member of ‘JS’
+         bool ok = JS::Evaluate(cx, opts, script, strlen(script), &rval);
+                       ^~~~~~~~
+eg1.cpp:60:23: note: suggested alternative: ‘Value’
+         bool ok = JS::Evaluate(cx, opts, script, strlen(script), &rval);
+                       ^~~~~~~~
+                       Value
+eg1.cpp:66:22: error: ‘JS_EncodeString’ was not declared in this scope
+       printf("%s\n", JS_EncodeString(cx, str));
+                      ^~~~~~~~~~~~~~~
+eg1.cpp:66:22: note: suggested alternative: ‘JS_ConcatStrings’
+       printf("%s\n", JS_EncodeString(cx, str));
+                      ^~~~~~~~~~~~~~~
+                      JS_ConcatStrings

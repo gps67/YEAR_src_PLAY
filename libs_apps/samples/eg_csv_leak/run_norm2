@@ -1,0 +1,3 @@
+set -x
+cp -pf leak1.csv leak2.csv
+accts  --load-save-quit leak2.csv

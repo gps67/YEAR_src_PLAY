@@ -1,0 +1,27 @@
+2020-08-02 Aug Sun 15:25
+
+	_dgb_ return FAIL_FAILED(); // a dgb subsystem
+
+	 return FAIL( fmt, args )
+	 WARN( fmt, args )
+	 THROW( explains )
+
+	WIN32 sets error code
+	syscall sets errno
+	libc sets errno
+
+	libs_apps nudged to mark errno
+
+
+Tue 18 Oct 12:04:28 BST 2016
+
+	libunwind
+		a way to unwind the stack
+		name functions + offs
+http://eli.thegreenplace.net/2015/programmatic-access-to-the-call-stack-in-c/
+
+	http://eli.thegreenplace.net/tag/debuggers
+	https://github.com/satabdidas/debugger/blob/master/debugger.c
+	http://eli.thegreenplace.net/2011/12/26/the-contents-of-dwarf-sections
+	http://www.dwarfstd.org/
+	

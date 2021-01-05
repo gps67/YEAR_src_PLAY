@@ -1,0 +1,46 @@
+insight
+	a gui over gdb
+	it has been abandonned by cygnus
+	it has not been upgraded to gdb annotations version (latest)
+	it could be fixed to use binutils, but it hasne been
+
+	so use ICC instad og FCC and see things that dont work
+
+	when a fault happens, the stack is three deep 
+	from the sleep interupt handler
+	there is not an answer
+	use gdb text mode (it knows itself, PATH uses latet version)
+
+	use gdb_invoke(true)
+	it LOOKS like the three deep function stack
+	but continue then trips over the subsequent LINE:
+		************
+	where you can then put a breakpoint further up and Continue
+
+WHY IS IT SO GOOD
+
+	eclipse uses tiled sub-windows
+	insight uses overlapping windows
+	so you can arrange an excess of information
+	and still see the left of a covered panel
+	and it still works
+	also insight can remember its window layout which helps
+
+WHY insight is a tad wrong
+
+	not updated (ie it doesnt work)
+
+	C++ structs appear as public+
+	so you have to click to open, click to open, etc
+	that also uses a lot of screen estate
+
+	something to do with array pointers not visible
+
+	something to do with non-standard strings, are hard to view
+	(as are buffers used for text)
+	thats why I have char[30] * sneaky_peek = buffer;
+
+
+
+
+

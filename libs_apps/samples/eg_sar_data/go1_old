@@ -1,0 +1,22 @@
+
+d0=/hda7/gps_big/vmstat
+for d in $d0/*
+do
+	PATTERN='vmstat_sitainte_*.gz'
+	PATTERN='vmstat_*_*.gz'
+	LIST=`find $d -type f -name "$PATTERN" | sort `
+	if [ -z "$LIST" ]
+	then
+		echo "Empty list in $d"
+	else
+		echo "LIST count = `echo $LIST | wc -w`"
+		 ../_obj_sky_2/sar_parse --filetype vmstat_hp10 $LIST 
+	fi
+done \
+2>&1 | tee test1
+
+exit
+
+find /hda7/gps_big/vmstat/ -type f -name 'vmstat_sitainte_*.gz' -exec \
+../_obj_sky_2/sar_parse --filetype vmstat_hp10 {} ';' \
+2>&1 | tee test1

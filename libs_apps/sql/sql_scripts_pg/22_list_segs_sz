@@ -1,0 +1,5 @@
+#!/bin/sh
+. ./.env
+
+pgsql_user <<!EOT
+	select *,(t2-t0)/1440 from seg order by t2-t0,line,t0;

@@ -1,0 +1,155 @@
+## fns_SQL_login ##
+
+	# USAGE
+	# . fns_SQL_login
+	# fn_SQL_
+
+	# INTERACTIVE run sql with USER_PASS vars
+
+	. fns_VARS # PATH_TOOLS binary required
+	. fns_BASE #
+
+	# libs_apps has to be independent and up to date
+	# this called by one_line_script,
+	# 
+	# ABS_PATH_libs_apps # easier than ../../libs_apps/.
+	libs_apps=$HOME/YEAR/src_build/libs_apps
+	# testing is near building # SCRIPTS in bin for MK
+	var_pfx PATH $libs_apps/MK_bin
+	
+	# pick up own pgsql compiled
+	var_pfx PATH /tools/YEAR/sql/bin
+	var_pfx LD_LIBRARY_PATH /tools/YEAR/sql/libvar_pfx LD_LIBRARY_PATH $libs_apps/lib
+
+	# generic HOME onto PATHS last, if missing
+	var_add PATH $HOME/bin/
+	var_add LD_LIBRARY_PATH $HOME/lib
+
+	export LD_LIBRARY_PATH
+
+# PREFER # MERGE TO FORM # _edit FIELD # _name _default
+
+	pgsql_VARS_rd
+	pgsql_VARS_edit
+
+
+#| USER_PASS=gather99 # == gather99_%s tagged_UDEF # == gather99_X4X # alias "%s"
+#| gather99=gather99 # edit HERE "GATHER99" # PICK reason "STR0" # val=get() # STR0
+#| # EVAL WELL KNOWN MACRO LIBR.EXPR # "USER_PASS" // ... # LEX is VAR_name // $var
+#| # SUB_LEX %S # lex_TYPE = EXPR() # expr = EXPR # VAR_name = "%s" CMNT # src_posO# PSG "%s" # "%s" // %s %S LHS_RHS_OPCODE argv // OPTION: OPCODE == "%s"
+#| BASE_NAME=obj_stat_1 // alias "%s" // $data_for_var["%s"] 
+#| # todo GET_VAR_FROM_EXPR # SQL OBJECT_FROM_EVAL db_id item # _DB_ID # -ID
+#| # var_NAME_data N_BYTES_t N_BYTES // name = DATA == "str0" // PSG TOKEN-ISER
+#| # FS # dir == "/home/gps/G/src/libs_apps/_run" # _FILE # dir_file #
+#| # FS # # vfs.dir = dir # 
+#| # FS # # vfs.file = file # "%s" # NAME #
+#| 
+#| # SUB_LEX # SUB_LEX_EXPR expr "%s"
+#| 
+#| # TODO # fns_VARS
+#| # TODO # edit_this_file_as_DATA # KEYSTR "%s" # 
+#| 
+
+# set -x
+
+# export DBNAME=$BASE_NAME
+
+
+no_db()
+{
+	echo "EDIT no_db to psgql_no_db"
+	psql_no_db
+}
+
+psql_no_db()
+{
+	unset DBNAME
+	unset pgsql_OPT_BASE_NAME
+}
+
+pgsql_VARS_rd()
+{
+
+  # These are the defaults, for first edit
+  
+	ROOT_NAME=postgres
+	ROOT_PASS=${ROOT_PASS:-`cat /tools/YEAR/sql/PG_postgres_password`}
+	ROOT_PASS=${ROOT_PASS:-"pg_root_pass"}
+	USER_NAME=obj_stat_gather_user
+	USER_PASS=gather99 
+	BASE_NAME=obj_stat_1 
+
+	fn_BASE_rd - ROOT_NAME "${ROOT_NAME}"
+	fn_BASE_rd - ROOT_PASS "${ROOT_PASS}"
+	fn_BASE_rd - USER_NAME "${USER_NAME}"
+	fn_BASE_rd - USER_PASS "${USER_PASS}"
+	fn_BASE_rd - BASE_NAME "${BASE_NAME}"
+}
+
+pgsql_VARS_edit()
+{
+	pgsql_VARS_rd
+
+	fn_BASE_edit - ROOT_NAME "${ROOT_NAME}"
+	fn_BASE_edit - ROOT_PASS "${ROOT_PASS}"
+	fn_BASE_edit - USER_NAME "${USER_NAME}"
+	fn_BASE_edit - USER_PASS "${USER_PASS}"
+	fn_BASE_edit - BASE_NAME "${BASE_NAME}"
+}
+
+pgsql_OPT_VARS()
+{
+	# how do you spell " -d %s "
+	# using the USER_PASS strings
+
+	pgsql_OPT_USER_NAME="--username $USER_NAME"
+#	pgsql_OPT_USER_PASS="-W $USER_PASS"
+	pgsql_OPT_BASE_NAME="-d $BASE_NAME"
+	pgsql_OPT_ROOT_NAME="-U $ROOT_NAME"
+#	pgsql_OPT_ROOT_PASS="-W $ROOT_PASS"
+}
+
+pgsql_root()
+{
+	pgsql_VARS_rd
+	pgsql_OPT_VARS
+	[ -z "$ROOT_PASS" ] && echo "Running this manually?\nIt asks for the mysql -U root password"
+	if tty -s
+	then
+		psql \
+		 $pgsql_OPT_BASE_NAME \
+		 $pgsql_OPT_ROOT_NAME \
+		 $pgsql_OPT_ROOT_PASS \
+		 "$@"
+	else
+		tee /dev/tty \
+		| psql \
+		 $pgsql_OPT_BASE_NAME \
+		 $pgsql_OPT_ROOT_NAME \
+		 $pgsql_OPT_ROOT_PASS \
+		 "$@"
+	fi
+}
+
+
+pgsql_user()
+{
+	pgsql_VARS_rd
+	pgsql_OPT_VARS
+	[ -z "$USER_PASS" ] && echo "Running this manually? It asks for the mysql -U $USER_NAME password"
+	if tty -s
+	then
+		psql \
+		 $pgsql_OPT_BASE_NAME \
+		 $pgsql_OPT_USER_NAME \
+		 $pgsql_OPT_USER_PASS \
+		 "$@"
+	else
+		tee /dev/tty \
+		| psql \
+		 $pgsql_OPT_BASE_NAME \
+		 $pgsql_OPT_USER_NAME \
+		 $pgsql_OPT_USER_PASS \
+		 "$@"
+	fi
+}

@@ -1,0 +1,65 @@
+
+DIAG_ONE -noname- {
+
+  NAME -is- in the language of DIAG and that will MATCH 
+
+	  ITEM = lookup( "item" )
+
+  ## this then gets repeated a bazillion times as ALIAS in DIALECT 
+  ## now field of var
+  ## this SKETCH helps build a PSG MATCHER via DIALECT
+  ## DIALECT imports this TOKEN
+  ## DIALECT imports this TOKEN's interface API
+  ## DIALECT obtains this TOKEN from LIBR.derived_from_AXIOMS
+
+  	but then based on LIBR . MACRO_BASED_ON_TOKEN B ASE TOKEN
+
+	## FFI ##
+	## put each of the above lines IDENT99's and PHRASE_EXPRs to lists
+	## gen C++ typedef STR0 TOKEN_str = "item";
+	## FFI ## MACRO
+
+		VIEW 0x1234 = "TOKEN"
+		VIEW 0x1234 = "item"
+		VIEW 0x1234 = "\"str\""		// "str" is a TOKEN LEX_EXPR
+  ##
+  ## MORE INFO HERE
+  ## TOKEN "ITEM"
+  ## TOKEN "\"%s\"" IDENT99( & TOKEN ) "item"
+  ## META ## add "summut" to LEXV[ current_line_pos_append ]
+  ## META ## VIEW = Q2_WRAP( IDENT99.spelling )
+  ## META ## TEST = VALID TOKEN_EXPR( IDENT99.spelling )
+
+  ## GEN {
+  	TOKEN LEX_EXPR_looked_up {
+	  SPEC META {
+		Name "TOKEN"
+		Type is STR0 used as TOKEN, probably ASCII maybe CSET7
+	  }
+	  SPEC DATA {
+		VIEW 0x1234 = 0x1234
+
+			my_ref = 0x1234
+			your_ref = LIBR.lookup( my-ref ) ;; NAMES ARE SCRIPTS
+			your_ref = "%0x4.4X"( u32_YOURREF )
+			cache_info = (Cache_Inro &) added by RT
+
+		STR0 spelling = "\"str\""	// LITERALLY "str"
+		STR0 spelling = "TOKEN"
+		STR0 spelling = LIBR.SPELLING_of( spelling )
+		STR0 spelling_str1 = get_from_DB_SELF
+
+			cached_info = 
+				CT avail "TOKEN"
+				CT says TOKEN * TOKEN_self; // in CPU reg
+				RT_says TOKEN SUBSTPE { LEX_EXPR_looked_up }
+				CT says "EDGE of BEFORE lookup AFTER"
+				CT says this is LIBR import
+					SPEC_tree
+					DATA_tree
+	  }
+
+	}
+  ## }
+}
+

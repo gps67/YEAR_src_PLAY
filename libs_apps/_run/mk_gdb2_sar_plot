@@ -1,0 +1,7 @@
+./mk gdb2
+# ask_do	./mk gdb2
+PATH=$PATH:/home/gps/prefix/bin
+cd /home/gps/YEAR/src/libs_apps/libs_apps_obj_LGX_x3
+pwd
+# INGDB=1 ask_do insight --command /nfs/NAS2/2018/src/libs_apps/_run/.gdbinit_sar_plot sar_plot
+

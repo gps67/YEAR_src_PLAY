@@ -1,0 +1,7 @@
+auth_pw.cxx
+in
+ bool PW_UTIL_VNC:: vncpassfile_read(
+        if(blk_read_entire_file( pw_vnc_stored, filename, MAX1K ))
+		return FAIL_FAILED()
+should be ?
+	if(! ...

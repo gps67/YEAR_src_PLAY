@@ -19,6 +19,7 @@
 
 #
 # DEBUG: show some vars used by compiler
+# $$X goes to $X sh -c 'expands $X'
 # 
 # #	sh -c 'echo $$CPLUS_INCLUDE_PATH ; echo '$$HOME''
 
@@ -30,18 +31,26 @@
 
 .o.exec: $(OBJS)
 	#
-	# MK_SUFFIXES RULE # .o.exec
-	#   which seems to ignore its dependency on $(OBJS)
+	# MK_SUFFIXES # .o.exec
+	# $(CXX) OPTIM _.o OBJS LINKS LIBS 
+	# CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
+	# LDFLAGS: $(LDFLAGS)
+	# YFLAGS: $(YFLAGS)
 	#
-	#   OBJS $(OBJS)
-	#   LINKS $(LINKS)
-	#   LIBS $(LIBS)
-	#   -^ $^
-	#   -< $<
+	#   PKGS: $(PKGS)
+	#
+	#   OBJS: $(OBJS)
+	#  LINKS: $(LINKS)
+	#   LIBS: $(LIBS)
+	#
 	#   -@ $@
+	#   -< $<
+	#   -^ $^
+	#
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
-	# strip $@
-	ls -l $@
+	#
+	# NOT # strip $@
+
 # 
 #
 # should use
@@ -49,7 +58,7 @@
 
 # cant have targets here - first is default
 # zap:
-	# rm -rf $(EXELIST) *.o
+#	# rm -rf $(EXELIST) *.o
 
 ##########################
 

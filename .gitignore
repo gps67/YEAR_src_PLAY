@@ -45,6 +45,7 @@ pki
 *_key.ws
 */db_certs/*
 db_certs
+trace_*.pem
 
 # Fortran module files
 *.mod
@@ -76,3 +77,4 @@ db_certs
 #links to src_build
 
 ncurses-6.1
+cfg_CA_file.dat

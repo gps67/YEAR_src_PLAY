@@ -18,10 +18,14 @@
 	SP=$(empty) $(empty)# SINGLE SPACE
 	COLON=:# no  spaces
 
-#	CONVERT
-#	into PKG_CONFIG_PATH
-#	from LIST_PKG_CONFIG_PATH
+# CONVERT make lists into colon lists
+# ALLOW LIST_x += item
+# LATER x=item:item:item
 
+
+	# LIST_PKG_CONFIG_PATH  =>  PKG_CONFIG_PATH
+	# adds in PKG_CONFIG_dirs for no good reason ?
+	# where PKG_CONFIG finds its .pc files
 	PKG_CONFIG_PATH=$(subst $(SP),$(COLON),$(LIST_PKG_CONFIG_PATH):$(PKG_CONFIG_dirs))
 	export PKG_CONFIG_PATH
 
@@ -29,20 +33,19 @@
 ##	#
 ##	LIST_VPATH += $(A_DIR)
 ##	LIST_CPLUS_INCLUDE_PATH += $(LIST_VPATH)
-###	LIST_RPATH
 
-#	CONVERT
-#	into VPATH
-#	from LIST_VPATH
-
-	VPATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_VPATH),$S/$(sub)))
+	# LIST_VPATH  =>  VPATH 
+	# gcc etc look for sources in VPATH
+	# no spaces allowed in dirs in LIST_VPATH
+	# unsure about luck of having 1 SP per list item # TAB # SPSP #
+	VPATH+=$(subst $(SP),$(COLON),$(LIST_VPATH))
+#	VPATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_VPATH),$(sub)))
 	export VPATH
 
-#	CONVERT
-#	into CPLUS_INCLUDE_PATH
-#	from LIST_CPLUS_INCLUDE_PATH
-
+	# LIST_CPLUS_INCLUDE_PATH  => CPLUS_INCLUDE_PATH
+	# where C++ looks for include files
 	CPLUS_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_CPLUS_INCLUDE_PATH),$S/$(sub)))
+	export CPLUS_INCLUDE_PATH
 
 # DEBUG = FOUND #
 	# this seems to be adding a space

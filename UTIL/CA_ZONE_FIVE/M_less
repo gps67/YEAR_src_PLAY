@@ -7,5 +7,5 @@ SRCH_PATTERN=FAIL # run
 SRCH="+/${SRCH_PATTERN}"
 # SRCH=''
 # make "${@}" 2>&1 | less $SRCH
-make "${@}" 2>&1 | less
+./M "${@}" 2>&1 | less
 #make "${@:-P}" 2>&1 | less

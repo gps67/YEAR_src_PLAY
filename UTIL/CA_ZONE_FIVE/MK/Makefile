@@ -1,287 +1,192 @@
-#!/usr/bin/env make
+#!/usr/bin/make -f
+# external users of the libs_apps code can do this:
+# include /home/gps/2004/src/libs_apps/MK_ext_lib/MK_with_libs_apps
+
+	# we are in $T/obj/.
+
+	T=..
+	MK_ext_lib=/home/gps/YEAR/src/libs_apps/MK_ext_lib
 
 	CXX = g++
-	OPTIM += -g
-	INCLS += -I./
-	INCLS += -I../
-	INCLS += -I../src/
-	INCLS += -I../STO/
-#	INCLS += -I../buffer # get from libs_apps
-#	INCLS += -I/tools/2000/X11R6/include
+	OPTIM += -g 
+#	OPTIM += T_IS_$T
+
+# UNUSED see INCL or todo INCL_LIST
+#	INCLS += -I./
+#	INCLS += -I../
+	INCLS += -I$T/src/
+#	INCLS += -I../src/
 
 	DEFS = 
-#	LINKS = -L/usr/X11R6/lib -lX11
 
-	# S=../src
-	S=..
-	VPATH +=$S
-	VPATH +=$S/src
-	VPATH +=$S/src/PSG_Tree
-	VPATH +=$S/src/STO
-
-	include ../MK/Makefile_libs_apps
-
-	PROG1=test1_gen_yacc
-	PROG1_exec=$(PROG1).exec
-
-	PROG2=test2_use_yacc
-	PROG2_exec=$(PROG2).exec
-
-	CLEAN1 += $(PROG1).o
-	CLEAN2 += $(PROG2).o
-
-	CLEAN1 += $(PROG1_exec)
-	CLEAN2 += $(PROG2_exec)
-
-	# PROG knows to add _yacc _lex
-	# MAKE still needs to know
 	#
-	e1_psg=../obj/gen_e1
-	e1_lex=$(e1_psg)_lex
-	e1_yacc=$(e1_psg)_yacc
+	LIST_VPATH +=$T
+	LIST_VPATH +=$T/src
+#	LIST_VPATH +=$T/src/some_sub_dir
+	LIST_VPATH+=:$T/objs
+#	LIST_VPATH+=:.
 
+#	include ../MK/Makefile_libs_apps
+	include $(MK_ext_lib)/MK_with_libs_apps # TODO put back there
+# which includes these
+#	include $(MK_ext_lib)/MK_SUFFIXES
+#	include $(MK_ext_lib)/MK_LISTS_
 
-	# keep files that are between 1 and 2
-	# keep files that are between 2 and 3
+# done in MK_with_libs_apps
+#	TGT=WIN32
+#	TGT=LGX
 
-ifeq (1,1)
-	# CLEAN1 += INTO_INTO
-	CLEAN1 += $(into_lex_lex)
-	CLEAN1 += $(into_yacc_y)
-	# CLEAN1 += INTO_DONE
-endif
+#	INCL += -I ../fd_api
+#	INCL += -I ../fd_sel_ssl
+# NO	LIBS += -L ../fd_api
 
-	# Our CXX code PSG_udef generates PSG = FLEX + BISON
-	# use PSG_to_GEN_filenames_lex_y
+	PKG_CONFIG += pkg-config 
+	PKG_CONFIG += --define-variable=TGT=$(TGT)
 
-	into_lex_lex=$(e1_lex).lex
-	into_yacc_y=$(e1_yacc).y
+	PKGS += libs_apps_base1
+	PKGS += libs_apps_base2
+	PKGS += libs_apps_uses_ssl
+#	PKGS += libs_apps_mozjs
 
-	# then run FLEX and BISON
+	INCL += `$(PKG_CONFIG) $(PKGS) --cflags`
+	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
+       
+# names of the programs (but not with .exec)
 
-#	from_lex=$(e1_lex)
-	from_lex_cc=$(e1_lex).cc
-	from_lex_o=$(e1_lex).o
+	PROG1 =mk_req# NOSP
+	# PROG1 =ssl_bio_test# NOSP
 
-	from_yacc_hh=$(e1_yacc).tab.hh
-	from_yacc_cc=$(e1_yacc).tab.cc
-	from_yacc_o=$(e1_yacc).tab.o
+# .exec files are used to make new makefiles easier ? and WIN32 too
 
-	# then run FLEX and BISON generated code / add to EXE
+	EXE_1 =$(PROG1).exec# NOSP
 
-	OBJS2 += $(from_lex_o)
-	OBJS2 += $(from_yacc_o)
+# one way of making all targets
 
-	# then Module infrastructure code zones
-	# order matters - maybe put into .a to mix it up
+	EXELIST += $(EXE_1)
 
-	OBJS1 += Y_PARSE_gen.o 
-	OBJS2 += Y_PARSE.o 
-	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o 
-	OBJS1 += Tree_PSG_LEX_TOKEN.o
-	OBJS1 += Tree_PSG_LEX_TOKEN_precedence.o
-	OBJS1 += Tree_PSG.o
-	OBJS1 += Tree_PSG_CALC.o
-	OBJS1 += Tree_PSG_UDEF.o
-	OBJS1 += Tree_PSG_UDEF_rules.o
-	OBJS1 += Tree_PSG_UDEF_rules_yacc.o
-	OBJS2 += EXPRS.o
-	OBJS2 += EXPRS_RETVAL.o
-# NO	OBJS2 += EXPRS_PRINTER.o
-	OBJS1 += STO_E32.o
+#	OBJS += SITE_X509_VALS_base.o
+#	OBJS += SITE_X509_layout.o
+#	OBJS += X509_VALS_base.o
+#	OBJS += X509_util_EXT.o
+#	OBJS += X509_util_NAME.o
+#	OBJS += X509_util_NID.o # entirely optional
 
+	# tree layout of CA_ _ZERO _ONE _ZONE [_VPN_level_4] then C_
+	# each CA_ZONE is given to the local admin to look after
+	# you could have a CA_ for each category of C_  but ... too many ?
+	# LAPTOP || USER || SERVER || ITEM
+	# some items use RSA not X509, that comes for ride
+	# some items use RSA elsewhere (not within itself) eg db_of_config
+	
+	# task is the process of issuing one of those X509's
+	# particularly getting VALS into the REQ
+	# signing with the up-tree CA_
+	# and saving in a knowable filename
+	# TODO pass files
+	# TODO pass from ...
+	# TODO multi example C_
+	# TODO stream from SQL
 
-	# PGS will want STO but it was itself PROG2
-	OBJS2 += sto_4k.o
-	OBJS2 += STO.o
-	OBJS2 += mmap_file.o
+	OBJS += MYSITE_X509_layout.o
+	OBJS += MYSITE_CA_task.o
+	OBJS += cfg_CA_1.o
 
-	# clean between phases # maybe
+#	OBJS += MYSITE_X509_VALS.o
+#	OBJS += X509_util_CERT.o
+ ##	OBJS += X509_REQ_util.o
+ ##	OBJS += X509_ISS_util.o
 
-	CLEAN2 += $(from_lex_hh)
-	CLEAN2 += $(from_yacc_hh)
-	CLEAN2 += $(from_lex_cc)
-	CLEAN2 += $(from_yacc_cc)
+#	OBJS += SSL_global.o
+#	OBJS += X509_cert.o
+#	OBJS += fd_ssl_client.o
 
-	CLEAN1 += $(OBJS1)
-	CLEAN2 += $(OBJS2)
+#	OBJS += P5.o		# P5_N = 5 allowing P4<P5_N
+#	OBJS += P0P4.o		# array of P0 P1 P2 P3 P4 (not post office)
+#	OBJS += dgb.o		# FAIL WARN COMPLAIN TRACE
 
-# END of ASSIGNMENT STYLE STATEMENTS
-# START OF Dependency RULES
+#	OBJS += $(PROG1).o	# DONT - its doubled!
 
-all: test1 test2
-
-#	helpful retest dependency
-#	make the linked.exec depend on Makefile
-# $(PROG1_exec): ../MK/Makefile # EG
-#	if Makefile edited, relink
-#	and then rerun tests that depended on .exec
-#	or at least the one you are triggering
-#	depends on .exec and reruns soon as
-
-$(PROG1_exec): ../MK/Makefile
-$(PROG2_exec): ../MK/Makefile
-
-# SUFFIXES must be in TARGETS section
-# you can include it, when you include ../MK/Makefile_SOMETHING
-
-.SUFFIXES: .cxx .tab.c .tab.cc .cc .c .y .o                                                           
-# Generate YACC INPUT files (was from tcl)
-# e1 # adding _psg _lex to see what_comes from where
-#
-#	e1_yacc.y
-#	e1_lex.lex
-
-# this is test1 - it generates the .lex .y files
-
-
-# test1 is to run PSG_udef to produce filename .lex .y
-#  gen_e1 is the name used in all generated files
-#   PSG * e1 = new_PSG_for_math_C_expr(" e1 ");
-#   print_e1_for_flex_bison ...
-
-test1: $(into_yacc_y)
-
-# DEPENDECY TREE should be here
-# everything depends on  $(into_yacc_y)
-# $(into_yacc_y) depends on  PROG1 ; run PROG1 with args
-
-# lex follows yacc, because yacc produces the TABLE and TOKENS
-# 
-#	$(from_yacc_hh): $(into_yacc_y) 	# .y -> tab.hh
-#	$(from_lex_hh): $(into_lex_lex) 	# .lex -> .hh # ??
-#	$(into_lex_lex): $(from_yacc_hh)	# run BISON before FLEX
-
-#	$(from_lex_cc): $(from_lex_hh) 	# edit .h triggers own recompile
-#	$(from_lex_cc): $(into_yacc_y) 	# everything depends on Tree_top
-
-$(from_yacc_hh): $(into_yacc_y)
-
-# TOP does depend on a few things beyond PROG
-
-$(into_yacc_y): ../src/EXPRS.h
-$(into_yacc_y): ../src/e1.y_RULES 
+# OBJS is used in all (possibly via _a)
+# no need for PROG1.o
+# except when deleting *.o
 
 #
-# most nearby code want those tokens
-# $(into_lex_lex): $(from_yacc_hh)
+# DEFAULT COMES FIRST
+#
 
-$(into_lex_lex): $(from_yacc_hh)
-$(from_yacc_cc): $(from_yacc_hh)
+default: default_test
 
-$(from_lex_cc): $(from_yacc_hh)
+defaults2: show_vars
 
-$(from_lex_o): $(from_yacc_hh)
-
-unused34:
-	# DEPENDENCY ... uses ...
-	# $(from_lex_o)
-	# $(from_yacc_hh)
-	ls -lrt $(from_yacc_hh)
+show_vars:
+	# NOWT TO DO HERE
+	#
+	# VPATH
+	# $(VPATH)
+	#
+	# CXX
+	# $(CXX)
+	#
+	# OPTIM
+	# $(OPTIM)
+	#
+	# INCL
+	# $(INCL)
+	#
+	# DEFS
+	# $(DEFS)
 	#
 
+default_test: $(EXE_1)
+	./$<
+	# NO # ./client_req_view.sh
+	# NOW BUILTIN to save files # ./client_iss_view.sh
 
-$(into_yacc_y): $(PROG1_exec)
+CA_ROOT: $(EXE_1)
+	./$(EXE_1) CA_ROOT
+
+test99:
+	sh -c 'echo $$VPATH'
+
+exe1: $(EXE_1)
+
+default1_test: P $(EXE_1)
+	./$<
+
+P5.o:P5.h
+P0P4.o: P0P4.h
+
+exe: $(EXE_1)
+
+P:
 	#
-	# GEN
-	# RUN $(PROG1_exec)
-	# PSG $(e1_psg)
-	# adds _lex _yacc .lex .y 
-	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
-	# Generate .lex .y files # PSG and LEX # Tree C++ components #
+	# PKG_CONFIG_PATH=# dirs used to find pkgconfig files
+	# $(PKG_CONFIG_PATH)
+	var_list PKG_CONFIG_PATH
 	#
-	./$(PROG1_exec) $(e1_psg) #
+	# The INCLUDE settings come from this commands output
 	#
-	# Created
-	# $(into_lex_lex)
-	# $(into_yacc_y)
+	$(PKG_CONFIG) $(PKGS) --cflags
 	#
-	@# ls -l1t $(e1_lex).lex  $(into_yacc_y)
-	@ ls -l1t $(e1_lex).lex  $(into_yacc_y)
-
-# YACC OUTPUT files
-
-# both .hh .cc produced at same time by bison
-# but want to use $@ to tell bison $(from_yacc_cc)
-
-# $(from_yacc_cc) $(from_yacc_hh):  $(into_yacc_y) 
-
-
-$(from_yacc_hh): $(from_yacc_cc)
-
-# $(from_yacc_cc): $(from_yacc_hh)
-# $(from_yacc_hh): $(into_yacc_y 
-
-$(from_yacc_cc): $(into_yacc_y)
+	# LINKING options
 	#
-	# BISON
-	# FROM     < $<
-	# CREATING @ $@
+	$(PKG_CONFIG) $(PKGS) --libs
 	#
-	bison -d -o $@ $<
-	#
-	# CREATED @ $@
 	#
 
-# flex uses bisons tab.hh and the TOKEN lists there
-# so make it dependent on the output from BISON from_yacc_hh 
-# from_yacc_hh e1_yacc.tab.hh
+## $(EXE_1): $(OBJS) # NO - now using explicit $(PROG1).o to be sure
 
-$(from_lex_cc): $(into_lex_lex) $(from_yacc_hh)
-	# e1_lex = $(e1_lex)
-	# expect  "gen_e1_lex"
-	#
-	# FLEX
-	# FROM     < $<
-	# CREATING @ $@
-	#
-	flex -o $@ $(e1_lex).lex
-	#
-	# CREATED @ $@
-	#
+$(EXE_1): $(PROG1).o $(OBJS) # make the main first
 
-# CXX files
+# $(EXE_1): $(OBJS) $(PROG1).o # make the main last!
+# that doesnt work - .exe probably depends on .o so its first!
+# the benefit is sorting out the synax of a (new) basic .h
+# dont believe me ? drop the ';' from a class decl
 
-# all C files get all flags
-# when live both will be same ??
-# whan live may need loadable filter
+zap:
+	rm -rf $(EXELIST) *.o client_key.pem client_req.pem
 
-.cc.o:                                                                         
-	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
-
-.cxx.o:                                                                         
-	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
-
-
-$(OBJS1): $(HDRS)
-$(OBJS2): $(HDRS)
-
-#test1: $(PROG1_exec)
-#	./$(PROG1_exec) gen
-
-test2: $(PROG2_exec)
-	# test2
-	./$(PROG2_exec) $S/test2.test
-
-dgb_PROG2: $(PROG2_exec)
-	# debug
-	# BUT STDIN < $S/test2.test
-	# errm
-	gdb --args ./$(PROG2_exec) $S/test2.test
-
-dgb: $(PROG1_exec)
-	# debug
-	gdb --args ./$(PROG1_exec) $(e1_psg)
-
-$(PROG1_exec): $(PROG1).o $(OBJS1) 
-	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
-
-$(PROG2_exec): $(PROG2).o $(OBJS2) 
-	# PROG2
-	g++ $(PROG2).o $(OBJS2) $(LINKS) -o $@
-
-clean: 
-	rm -f $(CLEAN1) $(CLEAN2) 
-
-
+#
+# DEPENDENCIES
+#
 

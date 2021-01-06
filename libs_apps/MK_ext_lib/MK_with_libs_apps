@@ -8,8 +8,11 @@
 
 	DIR_libs_apps =/home/gps/YEAR/src/libs_apps
 
+# make is clever so including early does not matter much, vars used later
+# how stuff is built, and my LIST_xxx vars
 	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
 	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
+
 ifeq (1,1)
 
 	# genre of architecture # ARM64 u48_u16_lohi TCL_PAIR SPEC DATA
@@ -29,10 +32,11 @@ ifeq (1,1)
 	DIR_LIBS_APPS_LINK2 = $(DIR_libs_apps)/build_$(TGT)_$(BOX)
 
 	# build up like pkg_config LIST += uses_NAME 
-#       PKG_CONFIG_dirs += $(DIR_libs_apps)/lib_pkgconfig/$(TGT)
-#       PKG_CONFIG_dirs += $(DIR_libs_apps)/lib_pkgconfig
+	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig/$(TGT)
+	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig
 
-#       PKG_CONFIG_dirs += /home/gps/G/prefix/lib/pkgconfig/
+	# $HOME/G/prefix is where moz js was placed
+	LIST_PKG_CONFIG_PATH += /home/gps/G/prefix/lib/pkgconfig/
 
 # TODO above # fix $(TGT) $(UNAME_n_rthing) $(build_dir)
 
@@ -42,12 +46,14 @@ ifeq (1,1)
 	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK)
 	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK2)
 
-#	LIBS += -laccts_gtk
-	LIBS += -lbase
-	LIBS += -lbase2
-	LIBS += -lgtk_text
-#	LIBS += -lmedia
-	LIBS += -lsar_plot_post
+#	PKGS += libs_apps_base1
+
+#	#	LIBS += -laccts_gtk
+#		LIBS += -lbase
+#		LIBS += -lbase2
+#		LIBS += -lgtk_text
+#	#	LIBS += -lmedia
+#		LIBS += -lsar_plot_post
 
 
 endif

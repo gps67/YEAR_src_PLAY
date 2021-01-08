@@ -46,6 +46,7 @@ pki
 */db_certs/*
 db_certs
 trace_*.pem
+prng_seed.dat
 
 # Fortran module files
 *.mod

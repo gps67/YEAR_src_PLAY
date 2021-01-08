@@ -40,17 +40,11 @@
 #	INCL += -I ../fd_sel_ssl
 # NO	LIBS += -L ../fd_api
 
-	PKG_CONFIG += pkg-config 
-	PKG_CONFIG += --define-variable=TGT=$(TGT)
-
 	PKGS += libs_apps_base1
 	PKGS += libs_apps_base2
 	PKGS += libs_apps_uses_ssl
 #	PKGS += libs_apps_mozjs
 
-	INCL += `$(PKG_CONFIG) $(PKGS) --cflags`
-	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
-       
 # names of the programs (but not with .exec)
 
 	PROG1 =mk_req# NOSP

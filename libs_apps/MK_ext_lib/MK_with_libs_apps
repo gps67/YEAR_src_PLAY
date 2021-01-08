@@ -20,6 +20,14 @@ ifeq (1,1)
 	TGT=WIN32
 	TGT=LGX
 
+	PKG_CONFIG += pkg-config
+	PKG_CONFIG += --define-variable=TGT=$(TGT)
+
+	INCL += `$(PKG_CONFIG) $(PKGS) --cflags`
+	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
+
+
+
 	# build varies on each box # LINK2 dir
 	BOX=$(shell uname -n)
 

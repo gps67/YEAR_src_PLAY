@@ -149,6 +149,7 @@ function get_filename_data_gz()
 	F="PIOMAS.vol.daily.1979.2018.Current.v2.1.dat"
 	F="PIOMAS.vol.daily.1979.2019.Current.v2.1.dat"
 	F="PIO/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat"
+	F="PIO/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat"
 	return F
 }
 function Q1( str ) {

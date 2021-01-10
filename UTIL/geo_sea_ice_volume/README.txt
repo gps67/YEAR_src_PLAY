@@ -8,7 +8,9 @@ EDIT the DATE YEAR
 	the filename contains the year
 	the script contains the filename
 	every year you must edit it, into the script(s)
+	Decembers data arrives 7'th Jan, so cant easily use date +%Y
 	PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz
+	PIOMAS.vol.daily.1979.2021.Current.v2.1.dat.gz
 
 	vi PIO/PIOMAS_fetch
 	vi plot_daily_volume.awk

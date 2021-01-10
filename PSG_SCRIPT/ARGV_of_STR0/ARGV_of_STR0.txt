@@ -1,8 +1,81 @@
 
+	NAMED_ ARGV_of_STR0/
+
+	 .name
+	 .data // .data follows in SCIPT
+	 .data // .data_t == " ARGV_of_STR0 "; // DIALECT(" SP %s SP ")
+
+	 expect_name_tests
+	  PSG LEX TOKEN USAGE "LIST of ITEM_t" " ITEM == 'ITEM_t' " // SC
+	  // SC means SEMICOLON means SYNTAX_CHARS("; // CMNT EOLN")
+
+	 .data_t_UNION {
+	 .data_t == " ARGV_of_STR0 "; // SUBLEX anystr_which_is_also_a_valid_varname
+	 .data_t == " ARGV_of_STR0 "; // DIALECT(" SP %s SP ")
+	 .data_t == " ARGV_of_ARGC "; // DIALECT(" SP %s SP ")
+
+	 .data_t == " OBJV_of_OBJ_REF "; // PTR = u48_ptr_u16_spec // PTR[n]
+	 // OBJV[ N ] ;; N == "NAME_is_LIST_of_ITEM[ N = %d ]" { 
+	   // LIST = VECTOR_of_OBJREF //
+	   // ALIAS OBJ_REF LEX_SQUEESES LEX_ABBR 
+	   // MATCH "OBJREF" // TOKEN_or_OTHER // WORD
+	   // MATCH OTHER "%s%s from %s %s" // HEURISTIC PSG MATCHING PATTERN 
+	   // MODEL PSG_MATCH("OBJ_REF") // REF is PTR to OBJ // ... 
+	   // MODEL PSG_LEX_TYPE("%s","as_used_in_LIST_idx");
+	   // MODEL PSG_LEX_TYPE("%s","ARGV_of_STR0","DIALECT { ITEM_t };")
+	   // AUTO_ADD ITEM_t == "STR0" // == "STR0_t" // "OBJ_REF_t" //
+	   // STO ARGV_of_OBJV has { .name .N .item[N] ITEM_TYPE == "u64_WORD"
+	   // FILTER MATCH "LIST_of_OBJREF" // VECTOR_of_OBJREF // fuse neurone
+	   // fuse_neuron // Matthew McConaughey // £7.50 delivered // ish
+	   // fuse_neuron just keep livin
+	  }
+	 }
+
 	ARGV_of_STR0/
 	ARGV_of_STR0.txt
 
+	 PLOT_REVEAL_ALERT STR0_t is name of DATA // SUBLEX NAME _as_STRO()
+	 PLOT_ALTERN_SHAPE STR0_t is text of DATA // SGML or other TEXT
+	 PLOT_ALTERN_SHAPE STR0_t is ALIAS for TEXT // CSET == "UTF8" // 
+	 // CSET_VARIANT == "{ VARIANT UTF8 HERE // ( HERE ) == ("self") }" // 
+	 // '{ DATA }' // %s == "NAME(%s,data)" // template text macro
+	 // DATA = data //
+	 // DATA == data // MATCH without changing much
+	 //
+	 of DATA // SGML or other TEXT
+
+	 PLOT_ALTERN_SHAPE STR0_t is ALIAS for ANYTHING // CSET == "UTF8" // ISH
+
+	 PLOT_REVEAL_TUPLO_TYPE // adds var += TUPLO_DIAG( diag )
+
+	 PLOT_REVEAL { (NONAME) {SCRIPT DIAG} }
+	 PLOT_REVEAL { (DIAG) {SCRIPT diag} } // automaton_memory_switch_data
+	 PLOT_REVEAL { (ITEM++,"%s",name) {SCRIPT auto_VAR_varname} } // "diag"
+
 	Makefile prints out the rule source, // so that is what we are //
+
+	 PLOT_REVEAL { SCRIPT }
+	 PLOT_REVEAL { 
+	 	...
+	 }
+	 PLOT_REVEAL { 
+	  THIS_is_objv[%d] argv[%d]
+	  ADD_VAR_when_MATCH .name .list[%d] // KNOW DATA_is_LIST
+	  ALTER_NATE "..." TOKEN TOKEN_DECODER_ENCODER // __SELF__
+	  ALTER_NATE "..." VECT(argc,argv) 
+	  ALTER_NATE "..." VECT(ARGC,ARGV) 
+	  ALTER_NATE "..." VECT(OBJC,OBJV) 
+	  ALTER_NATE {
+		// MATCH ASSIGN
+	  	ITEM_PTR_t == "Object_t * item[ idx == item_idx ]; // CMNT "
+		// MATCH here = VECT_of_ITEM // ARRAY _t
+		// MATCH here = LIST_of_ITEM // ARRAY[N] // _t
+		// MATCH here == "anystr" // DIALECT = "DIALECT('anystr');" // QS
+		// // DIALECT = "DIALECT('anystr');" // QS Q1 Q2 QUOTES //
+
+	  }
+	 }
+
 	STR0 ARGV_WORD[ N ] ;//
 	STR0 ARGV_WORD[ N+1 ] ;// rewrap with/without N+1 for ALLOC extra NULL
 	STR0 ARGV_WORD[ N+1 ] ;// Extra NULL at end of ARGV // so N=_N_-1

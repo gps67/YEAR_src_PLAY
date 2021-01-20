@@ -1,0 +1,71 @@
+
+A MATCH is a spark or a match
+A MATCH is a match
+
+	When there is a MATCH
+	run it, eval it, check it,
+	on_MATCH( MATCH_match )
+
+USAGE
+PATTERN
+
+	MATCH_match
+	NAME_name
+	 %s_%s
+	  self.NAME()
+	  self.name()
+
+	 { ... CTXT can now use imported types ... poss token_for_expr ... }
+
+SUBLEX
+ DECODE
+  %s_%s
+ DECODE
+  _%s_
+ MATCH
+  _%s
+ 
+ HINTS
+  MATCH .*_$ // LEXER has already placed NUL detect _NUL a CSET level
+
+LEXER_DECODER
+ SWEEP a2_star // FAST_FIND_NONE goto no_a2_found
+ SWEEP cset_common_groups // a-z A-Z 0-9 // patters Abc ABC ABCDeeF
+ SWEEP see groups as heights search_depth at change
+ EDGE DETECT
+  LEX_EDGE EDGE_LEX .LHS .RHS
+
+PSG MATCH TOKEN
+ USAGE
+ find_near MARKER_on_DIAG // drift to latest VER
+ find_near TOKEN
+
+ USAGE
+  group POOL of peers
+   
+
+
+ DECODE
+  %s_%s lhs rhs
+  %s%s%s lhss "." rhs // object.field // expr_to_object.field
+  mid "."
+  mid "_"
+  mid "/"
+  mid " -> " // parser folds spaces
+  mid "->" // within {word}
+  mid "::" // namespace join
+  mid ":" // something join
+ 
+MACHINE PARSING
+
+ MATCH patterns build_or_use decoder
+ interpreter and compiled scripts // within bounds TYPE(item) ATLEAST(BASE_OF_TYPE)
+ MACHINE
+  if try[0] ...
+  if try[1] ...
+  ...
+   STOP with first 
+   KEEP all that match
+   DROP TRY NO MATCH
+   HOLD others search for ratings
+   ERROR with LIBR or SYSTEM

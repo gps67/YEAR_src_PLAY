@@ -335,8 +335,9 @@ put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 bool Tree_PSG::
 put_include_yacc_tab_hh( buffer2 & out )
 {
+	out.put("/* yacc generated TOKENs header UNION YYSTYPE */\n");
 	buffer2 incl_filename; // clear() done obvs
-	put_yacc_name_tab_hh( incl_filename );
+	put_yacc_name_tab_hh( incl_filename ); // %s_.tab.hh
 
 	return
 	put_include_Q2( out, incl_filename );
@@ -364,7 +365,7 @@ print_list(
 			out.put( '"' );
 
 			out.put( " return TOKEN(" );
-			print_TOKEN_name_2( out, POOL, tok );
+			print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
 			out.put( ");\n" );
 		} else {
 			// silent // no rules for edges
@@ -389,13 +390,14 @@ print_list(
 	but we have forgotten that ?
 */
 bool Tree_PSG::
-print_TOKEN_name_3(
+print_TOKEN_name_3( // _ Name _ // _LEX_name_
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL,
 	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
 ) {
 	//	out.put( "/* LEX_ */ " );
-	//	out.put( POOL.PFX );	// MADNESS HERE
+		out.put( '_' );
+		out.put( POOL.PFX );	// MADNESS HERE
 		out.put( '_' );
 		out.put( tok-> Name );
 		out.put( '_' );
@@ -416,60 +418,92 @@ print_TOKEN_name_3(
 	but we have forgotten that ?
 */
 bool Tree_PSG::
-print_TOKEN_name_2(
+print_TOKEN_name_2( // PFX _ Name
 	buffer2 & out,
-	LEX_TOKEN_GROUP &  POOL,
-	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
+	LEX_TOKEN_GROUP &  POOL, // PFX = POOL.PFX
+	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ]; Name = tok.Name
 ) {
 	//	out.put( "/* LEX_ */ " );
-		out.put( POOL.PFX );	// MADNESS HERE
+		out.put( POOL.PFX );
 		out.put( '_' );
 		out.put( tok-> Name );
 		return true;
 }
 
 
-/*	MACRO L1("C_CODE_LINE") // MUST BE "const Q2 str to join \n"
+/*
+	MACRO L1("C_CODE_LINE") // MUST BE L1("const Q2 str") to join "\n"
+	// does no interpretation of string
+	// only C interpretation of \r etc in string source
 
 	adds "\n" so you dont have to
-	maybe rename out_put_L
 */
-
 #define L1(str) out.put( str "\n")
-// its a function like macro so invoker provides semicolon
 
 bool Tree_PSG::
-gen_LEX_lex_return( buffer2 & out )
+gen_LEX_code_start( buffer2 & out )
 {
- L1("// GEN");
- L1("#include <string>");
+ L1("// gen_LEX_code_start() // headers ");
+ L1("//somehow before here is stddef stdio - added by flex");
  L1("#include \"buffer1.h\"");
  L1("#include \"Y_PARSE.h\""); //
  L1("using namespace YY;"); //
  if(1) {
 	put_include_yacc_tab_hh( out );
  }
- L1("/*");
- L1("        lookahead may mean any number of tokens, not 1");
  L1("");
- L1("        quick test shows actually OK 1 as long as yacc strdup's immediately");
- L1("        but maybe");
+ return true;
+}
+
+bool Tree_PSG::
+gen_LEX_lex_return( buffer2 & out )
+{
+ L1("/*");
+ L1("	// gen_LEX_lex_return() // gen LEX lex_return()");
+ L1("	usage  lex_return(tok) || FAIL");
+ L1("		int lex_return( int tok ); // STR in yylval.lex_buff ");
+ L1("");
+ L1("");
+ L1("	//	RETURN token as lex retval");
+ L1("	//	RETURN string in UNION.lex_buff field");
+ L1("");
+ L1("	//	We must keep the right string, of several, so we keep 16");
+ L1("	//	with this simple round robin loop of slots");
+ L1("");
+ L1("	//	PROBLEM: lookahead may mean any number of tokens, not 1");
+ L1("	//	QUICK TEST SHOWS actually OK 1");
+ L1("	//	as long as yacc strdup's immediately");
+ L1("	//	Not sure but maybe");
+ L1("");
+ L1("	//	So call return lex_return( TOKEN ); and it obtains lex_buff");
+ L1("	//	for LEX.value for LEX.cident99 for LEX.anystr");
+ L1("	}");
+ L1("");
+ L1("");
  L1("*/");
  L1("");
- L1("// nlex16 = N circular list of vars for single return value");
- L1("// We dont know when each will be dropped just allow 16 as a LEX horizon");
- L1("// static const int nlex16 = 64;");
- L1("   static const int nlex16 = 16;");
- L1("// static const int nlex16 = 1;");
- // L1("static buffer1 lex_buffer;");
- L1("static buffer1 lex_pool[nlex16]; // RETVAL STRVAL // backing store for STR0 ");
- L1("static int nlex_pos = 0;");
+ L1("// nlex16 = N");
+ L1("	// circular list of vars for single return value");
+ L1("	// We dont know when each will be dropped just have plenty");
  L1("");
- L1("/*");
- L1("        lex found, return tok");
+ L1("	// static const int nlex16 = 64;");
+ L1("	   static const int nlex16 = 16;");
+ L1("	// static const int nlex16 = 1;");
+ L1("");
+ L1("	// array [ N ] of buffer1 // copy of LEX str in lex_pool[idx]");
+ L1("	static buffer1 lex_pool[nlex16]; // backing store for LEX STR0 ");
+ L1("");
+ L1("	// _pos in loop");
+ L1("	static int nlex_pos = 0;");
+ L1("");
+ L1("/*!");
+ L1("        int lex found( LEX_ITEM_TOKEN ); // STR0 avail, kept here ");
+ L1("	//	RETURN token as lex retval"); // eg LEX_CIDENT LEX_VALUE_FLOAT
+ L1("	//	RETURN string in UNION.lex_buff field");
  L1("");
  L1("        lex found the string at yytext, yyleng");
- L1("        use the next storage slot (reuse nlex16 items later)");
+ L1("        keep a copy of the parsed str");
+ L1("        keep in the next storage slot (reuse nlex16 items later)");
  L1("        copy string to buffer, as str0");
  L1("        set yylval /union/ .lex_buff as returning string value");
  L1("        return tok as lex type");
@@ -478,25 +512,46 @@ gen_LEX_lex_return( buffer2 & out )
  L1("int lex_return( int tok )");
  L1("{");
  L1("        // skip first cell once, get it next time, or init -1");
+ L1("        // ");
+ L1("        // step to next slot in round_robin loop");
  L1("        nlex_pos = (nlex_pos+1) % nlex16;");
+ L1("        // ");
+ L1("        // pos == nlex_pos");
  L1("        int pos = nlex_pos;");
- L1("        lex_pool[ pos ].set( yytext, yyleng );");
- L1("        // TESTED with includes removed FOUND");
- L1("        // YYtext and yyleng are available");
- L1("        // yylval isnt - it is the union later in the same gen2 file");
- L1("        // LATER means LINE 2200");
- L1("        // EXCEPT this is LINE 3630");
  L1("        // ");
+ L1("        // save the text pos and leng of the lex");
+ L1("        lex_pool[ pos ].set( yytext, yyleng ); // buffer2");
  L1("        // ");
-// require tab.hh ??  L1("        extern YYSTYPE yylval; // forward");
- L1("        yylval.lex_buff = (str0) lex_pool[ pos ];");
+ L1("        // return a STR0 of LEXs text; ");
+ L1("        yylval.lex_buff = (str0) lex_pool[ pos ]; // STR0 from buffer2");
+ L1("        // ");
  L1("        return tok;");
  L1("}");
  L1("");
+ L1("// yylval.fieldname = UNION.fieldname ; // returned extra info for TOKEN");
  L1("// define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)");
- L1("#define TOKEN(t)    (yylval.token = t)");
+ L1("// define XXXX_TOKEN  yylval.lex_buff = NEXT_SLOT(yytext, yyleng)");
+ L1("#define TOKEN(t)    (yylval.token = t)"); // and return RETVAL == t
  L1("");
 
+	return true;
+}
+
+// this is GEN of what will be run after compile
+// it uses FIELD "lex_var_start_symbol";
+// that must be provided by ...
+bool Tree_PSG::
+gen_LEX_start_symbol( buffer2 & out )
+{
+	L1("// lex_start_symbol");
+	return true;
+	L1("extern int lex_start_symbol; // you set this // first added token only");
+	L1("if(lex_start_symbol) {");
+	L1("  int tok = lex_start_symbol;");
+	L1("  lex_start_symbol = 0;");
+	L1("  return lex_return(tok);");
+	L1("}");
+	L1("");
 	return true;
 }
 
@@ -539,40 +594,85 @@ bool Tree_PSG:: print_tree_as_files( ) {
 bool Tree_PSG::
 gen_LEX( buffer2 & out ) // gen the entire files text
 {
+	L1("/*");
+	L1("  LEX file.");
 	L1("");
-	L1("%{"); // CODE section
+	L1("    definitions");
+	L1("   %%");
+	L1("    rules");
+	L1("   %%");
+	L1("    user code");
 	L1("");
+	L1("   non // comments can be at BOLN except in rules section");
+	L1("   // comments can only be in copied C++ or gcc code");
+	L1("   user code goes at end but the definitions at top");
+	L1("   rule code needs includes for them to be legal");
+	L1("   %{ COPIED CODE %} // %top{ COPIED CODE TOP }");
+	L1("   // OWN LINE RULES for '%top{' '}' and '%{' '%}' ");
+	L1("");
+	L1("");
+	L1("   this is in definitions SECTION // see 5.0");
+	L1("*/");
+	L1("");
+
+	L1("%{"); // on line of its own unindented
+	// this comment is in CODE and gcc is OK with C++ // comments
+	L1("// within definitions A CODE SECTION START // like %TOP see 5.1 ");
+	L1("// C++ comments copied through, upto gcc");
+	L1("");
+
+	// include buffer1 Y_PARSE using namespace YY
+	gen_LEX_code_start( out );
 
 	// utility functions that carry return " RETVAL STRVAL" from LEX
 	gen_LEX_lex_return( out );
+
+	// mechanism to insert first token of lex_start_symbol
+	gen_LEX_start_symbol( out );
 
 	// our code will need the table of tokens that YACC maintains for us
 	if(1) {
 		put_include_yacc_tab_hh( out );
 	}
 
+	L1(" // CODE section END");
+	L1("%}"); // on line of its own unindented
+	// outside code // comments dont work
+	// /* */ does not have to indented, in definitions
 	L1("");
-	L1("%}"); // CODE section END
+	L1("/* still in definitions section */");
+	L1("");
+	L1("/* yywrap is a macro called at every end of file */");
+	L1("%option noyywrap"); // called not provided
+	L1("");
 
-	L1("");
-	L1("%option noyywrap"); // forgotten, but it goes here
-	L1("");
 
+	L1("/* definions SECTION END */"); // 
 	L1("%%");
+	L1(" /* RULES SECTION */"); // cannot be at BOLN
 	L1("");
 
+	L1(" /* gen_LEX_RULES _eoln() */");
+	L1("");
 	gen_LEX_RULES_eoln( out ); // must match FLEX / YY line no ++
 
+	L1("");
+	L1(" /* gen_LEX_RULES _ident_values() */");
+	L1("");
 	gen_LEX_RULES_ident_values( out ); // VALUE is union .
 
 	L1("");
-	// out.put("# LIST RW\n");
+	// comments may not be where pattern_RE goes - at start of line
+	L1(" /* LIST RW reserved word */");
+	L1("");
 	print_list( out, POOL_RW ); 
 	L1("");
-	// out.put("# LIST PUNCT\n"); // unless FLEX matches longest first ?
+	L1(" /* LIST PUNCT */"); // unless FLEX matches longest first ?
+	L1("");
 	print_list( out, POOL_PUNCT ); // in LEX longest first order
 	L1("");
-	// out.put("# LIST LEX\n");
+	L1(" /* LIST LEX */");
+	L1("");
 	print_list( out, POOL_LEX );
 
 	L1("");
@@ -580,6 +680,8 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("");
 
 	L1("%%");
+	L1("// CODE SECTION // is copied through");
+	L1("// ");
 	L1("");
 	return true;
 }
@@ -665,7 +767,7 @@ gen_YACC( buffer2 & out )
 	gen_YACC_token_list( out );
 	gen_YACC_type_list( out );
 	gen_YACC_precedence_list( out );
-	gen_YACC_start_top( out, "top" );
+	gen_YACC_start_rule_top( out, "top" );
 
 	L1("");
 	L1("%%");
@@ -756,16 +858,24 @@ gen_YACC_str_of_token( buffer2 & out )
  L1(" const char * str_of_token( int tok ) {");
  L1("  switch( tok ) {");
 
+ L1("  // PUNCT_ any literal strings almost");
 	gen_YACC_str_of_token_cases( out, POOL_PUNCT );
+ L1("");
+ L1("  // RW_ reserved words");
 	gen_YACC_str_of_token_cases( out, POOL_RW );
+ L1("");
+ L1("  // LEX_ items have no value so return SYMBOL");
 	gen_YACC_str_of_token_cases( out, POOL_LEX );
 
+ L1("");
  L1("   default:");
  L1("     static char as_hex[20];");
  L1("     snprintf( as_hex, sizeof(as_hex), \"x%2X\", tok );");
  L1("     return as_hex;");
- L1("  }");
- L1(" }");
+ L1("");
+
+ L1("  } // switch");
+ L1(" } // fn gen_YACC_str_of_token");
  L1("");
 	return true;
 }
@@ -795,15 +905,22 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 	*/	;
 
 		out.put("   case ");
-		print_TOKEN_name_2( out, POOL, tok );
+		print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
 		if(value_present) {
 			out.put(":\t return \"");
 			out.put( tok-> Value );
 			out.put("\";\n");
 		} else {
 			out.put(":\t return \"");
-			print_TOKEN_name_3( out, POOL, tok );
+			print_TOKEN_name_3( out, POOL, tok ); // _ Name _
+		// long tracing print
+		// 	out.put("\"; // print_TOKEN_name_3 //\n");
 			out.put("\";\n");
+			// str_of_token
+			// UNUSED PUNCT_name
+			//   USED LEX_name
+			// we dont have values for LEX_ NAME
+			// eg case LEX_DOUBLE: return "_DOUBLE_"
 		}
 	}
 	return true;
@@ -859,7 +976,7 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
    for( int i =0; i<n; i++ ) {
       LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
       out.put("%token <token> ");
-      print_TOKEN_name_2( out, POOL, tok );
+      print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
       out.put("\n");
    }
 	return true;
@@ -907,9 +1024,9 @@ gen_YACC_precedence_list( buffer2 & out )
 }
 
 bool Tree_PSG::
-gen_YACC_start_top( buffer2 & out, const char * rule_name ){
-	if(!rule_name) rule_name = "top";
-	out.print("%%start %s\n", rule_name );
+gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name ){
+	if(!top_rule_name) top_rule_name = "top";
+	out.print("%%start %s\n", top_rule_name );
 	 // L1("%start top");
 	return true;
 }

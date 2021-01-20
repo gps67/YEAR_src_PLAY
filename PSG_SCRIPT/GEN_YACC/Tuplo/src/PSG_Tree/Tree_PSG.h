@@ -200,6 +200,10 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool print_include_yacc_tab_hh( buffer2 & out );
 
 	/*!
+	   USED:
+		print_list( out, POOL_RW ); 
+		print_list( out, POOL_PUNCT );
+		print_list( out, POOL_LEX );
 	*/
 	// print list of each item in LEX_TOKEN_GROUP
 	// THIS is the style guide
@@ -219,6 +223,9 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 		Also needs a namespace container
 
+		TODO: add lists of things ABOVE then GEN below
+		IE all gen_functions do the text gen_ of the files
+
 
 	*/
 	bool print_tree_as_files( );
@@ -226,7 +233,9 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// GEN // sections of LEX file
 
 	bool gen_LEX( buffer2 & out ); // all of it
+	bool gen_LEX_code_start( buffer2 & out ); // the includes
 	bool gen_LEX_lex_return( buffer2 & out ); // integrate LEX api
+	bool gen_LEX_start_symbol( buffer2 & out ); // integrate LEX api
 	bool gen_LEX_RULES_eoln( buffer2 & out );
 	bool gen_LEX_RULES_ident_values( buffer2 & out );
 
@@ -243,7 +252,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_YACC_token_list( buffer2 & out );
 	bool gen_YACC_type_list( buffer2 & out );
 	bool gen_YACC_precedence_list( buffer2 & out );
-	bool gen_YACC_start_top( buffer2 & out, const char * rule_name = NULL );
+	bool gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name = NULL );
 	bool gen_YACC_rules( buffer2 & out );
 
 };

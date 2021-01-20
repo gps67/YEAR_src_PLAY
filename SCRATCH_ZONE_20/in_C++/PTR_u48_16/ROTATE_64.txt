@@ -5,4 +5,88 @@
 	shift bitfield to top bit
 	shift bitfield to zero bit
 
+		now bitfield is in_situ_in_cpu
+
+			LAYOUT LOHI STREAMABLE // vary opcode
+			// OPCODE opcode layout payload tree
+			// PARSE bounce_var_int_existance at level = VALUE
+			// TYPE_t == OPCODE_t // u_nn // u32_abcd // u64_t WORD_t
+			// STO SEGMENT  P0P2_t belonging_t( VAR P0P2 )
+			// AS_USED_IN "PKT_in.full_frame = P0P2 += PLUS
+			// PLUS = ...
+			// P0P2 = \
+			// AS_USED_IN "PKT_in.full_frame = P0P2 += PLUS
+
+		but VAR_NAME requires PICK{ bitfield P0P2 } {
+			lookup "P0P2" find varname2.fieldname.P0P2 ; detected
+			// detected as "%s.%s"
+			 // knowhow PAIR LHS RHS // by ID
+			 // knowhow P0P2 -alias- p0p2 alias "%s%s%s" lhs op rhs
+			 // knowhow P0P2 -alias- p0p2_in_t _t
+			 // knowhow P0P2 -alias- p0p2_out_t _t
+			 // knowhow P0P2 -alias- p0p2_%s_t _t
+			// detected as ".%s"
+			// detected as "%s"
+		}
+
+		u48_payload = WORD >> 16 // ZERO_FILL // SIGN_FILL // 
+
+			// u16_BYTE_B_BYTE_A // u16_hilo // u16_lohi // u16_cpu
+			// for AMD64 use u64_lohi_t LOHI ;
+			// #ifdef _cpu_AMD64_
+			 // u64_lohi_t LOHI ; // u64_NBO //
+			 // u64_lohi_t LOHI ; // u64_HILO // 
+			 // u64_lohi_t LOHI ; // u64_LOHI //
+			 // u64_lohi_t LOHI ; // u64_cpu //
+			 // u64_lohi_t LOHI ; // u64_%s // ... your code here
+			 // 
+			// #endif
+
+
+// LEX ALLOW use of "%s" in filename // eg { -alias- p0p2_ %s _t}  
+// KNOW GEN SCRIPT USING "%s" in_FILENAMES _OBJECT_NAMES
+// CAN do filenames with % bitfield // by_name( lookup("%s","bitfield") 
+// LEX JOIN SUBST "extra_expr_spelling" "bitfield_stretched_to_WORD64"
+// LEX JOIN "bitfield" "expr_LHS.expr_RHS" // ITEM_t of at least ROOT_t
+// LEX JOIN "bitfield" "expr_LHS.expr_RHS" // "BITFIELD_t" "WHEN_IN_CPU_cpui_%d"
+// 
+
+
 	rotate word so that bitfield is BH BL or BX or EBX
+
+		WORD_rotated 
+		 orig_lohi
+		 word_cpu
+
+		current_rotation
+		 rot_pos	// [0 [64 0_means_at_bit0 // so does 64 // gears
+
+		current layout
+		 rot_pos == rot_pos
+
+		 remaining_fields == ALL_64
+		 remaining_fields == at_least u16_BYTEB_BYTEA remains 
+		 remaining_fields == at_least u48_payload remains 
+		 remaining_fields == at_least u8_BYTEA remains 
+		 remaining_fields == at_least u8_BYTEB remains 
+
+		 remaining_fields += u8_BYTE_B
+		 remaining_fields += u16_BYTE_B_BYTE_A
+
+		 bitfield = u16_BA // split at_least specific items
+
+	usage
+
+		7:55 in
+		8:30 done 180
+	
+	usage
+	
+		rotate as_found into bitfield at word top - 1 ## sign trick
+		rotate as_found into bitfield at word top ## keep all other field
+		copy to WORD_TWO
+		WORD_2 >> SHIFT bitfield to bit0
+		WORD_2 // is now already stretched to u64_WORD or i64_WORD
+		// u48_limit_address_range_in_u64_WORD
+		// SHIFT = 64 - bitfield.nbits // == RHS // LHS == 0
+

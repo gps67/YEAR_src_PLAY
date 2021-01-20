@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wish \
+MENU/regexp_panel.tcl

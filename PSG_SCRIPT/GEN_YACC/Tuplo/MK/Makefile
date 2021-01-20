@@ -81,10 +81,11 @@ endif
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
 	OBJS1 += Tree_PSG_LEX_TOKEN_precedence.o
 	OBJS1 += Tree_PSG.o
-	OBJS1 += Tree_PSG_CALC.o
 	OBJS1 += Tree_PSG_UDEF.o
-	OBJS1 += Tree_PSG_UDEF_rules.o
-	OBJS1 += Tree_PSG_UDEF_rules_yacc.o
+	OBJS1 += Tree_PSG_UDEF_C_EXPR_lex.o
+	OBJS1 += Tree_PSG_UDEF_C_EXPR_yacc.o
+	OBJS1 += Tree_PSG_UDEF_CALC.o
+	OBJS1 += Tree_PSG_UDEF_AFM.o
 	OBJS2 += EXPRS.o
 	OBJS2 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o

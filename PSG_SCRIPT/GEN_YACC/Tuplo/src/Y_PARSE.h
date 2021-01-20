@@ -49,6 +49,11 @@ namespace YY {
 
 using namespace YY;
 
+// because of %parse-param
+// %parse-param {Y_Parse_t & psg} // PARAMETER // NB REF AMP
+// yy..( parser )
+
+
 extern	int yyparse( Y_Parse_t & parser );
 extern	void yyerror( Y_Parse_t & parser, const char * msg );
 extern	bool gen_yyparse_parameter( buffer2 & out);

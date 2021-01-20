@@ -1,0 +1,26 @@
+
+	CHSET
+	8859_to_utf8
+	utf8_to_8859
+	utf8_to_8859_sdata # profile 1
+	8859_cyrillic
+	8859_varient EURO was absent
+	check 
+
+	detect double encoding
+	&amp;NAME; 
+	flag detect triple encoding when double required to document sgml
+	flag detect absent encoding when double required 
+	flag detect absent encoding when single required 
+
+	sdata profile
+	MUST &lt; &amp;
+	OPTIONAL &egrave; 
+
+	edit vi line cset indicator
+
+	src 8859 utf8 sdata 
+	dst 8859 utf8 sdata 
+
+
+

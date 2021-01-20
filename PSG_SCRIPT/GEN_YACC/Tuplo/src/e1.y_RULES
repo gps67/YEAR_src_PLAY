@@ -1,4 +1,6 @@
-
+//
+// THIS IS e1.y_RULES START
+//
 
 expr_ident : LEX_WS expr_ident { $$ = $2; }
 expr_ident : expr_ident LEX_WS { $$ = $1; }
@@ -28,3 +30,6 @@ EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
 
 top: lines
 
+//
+// THIS IS e1.y_RULES END
+//

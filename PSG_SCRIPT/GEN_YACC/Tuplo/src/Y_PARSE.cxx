@@ -63,7 +63,7 @@ call_yyparse()
 
 void yyerror( Y_Parse_t & psg, const char * msg )
 {
-	FAIL("yyerror( Y_PARSE(%s), msg %s )", (STR0) psg.Name, msg );
+	FAIL("Y_Parse.Name \"%s\", msg \"%s\" ", (STR0) psg.Name, msg );
 }
 
 

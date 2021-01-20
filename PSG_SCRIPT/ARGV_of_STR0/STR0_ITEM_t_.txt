@@ -1,0 +1,24 @@
+2021-01-10 Jan Sun 19:54 STR0_ITEM_t_.txt
+
+	STR0 ITEM_t 
+	by_NAME
+	_by_OBJREF
+	_by_TEXT_DECODE 
+	_by_TEXT_PARSE
+	_by_ANYSTR
+
+	_by_FILTER( SCRIPT ) on_STREAM( SCRIPT_TEXT_LINES ) on_TREE( MODULE )
+
+	STR0 NAME = "ITEM_t"
+	STR0 DATA = nbytes
+	STR0 VAR = "varname"		// PSG cident99 // PLUS //
+	obj_ref * obj = lookup_obj_from_STR0(anystr,PARSER) // TOKENISER
+	obj_ref * OBJREF = EXPR; 
+
+	NBYTES obj // OBJREF is u48_u16_ADDR_SPEC // is_WORD // u64_WORD //
+	// N is unknown or from SPEC
+	// CPU PARSER knows OBJREF is_u64_WORD
+	// CPU PARSER knows u64_has_two_low_bytes // DIALECT ABCD PQ STACKS
+	// DIALECT SRC DST ABCD STACKS VAR_POOL_t
+
+	ITEM_T * PTR = get_PTR("NBYTES")

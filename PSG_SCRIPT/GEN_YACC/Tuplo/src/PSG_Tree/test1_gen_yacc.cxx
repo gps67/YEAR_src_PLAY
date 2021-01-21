@@ -14,19 +14,24 @@
 bool bool_main( int argc, char ** argv ) {
 	set_prog_alias( argv[0] ); // or other ?
 
+ if(argc!=4) {
+ 	return FAIL("%d - 1 of 3 parameters plus ZERO", argc);
+ }
 
- if(1) {
+ 	buffer1 PSG_File_left;
+	PSG_File_left.print( "%s%s%s", argv[1], argv[2], argv[3] ); // left gen e1
+
+	str0 PSG_File = PSG_File_left;
+	str0 PSG_Name = argv[2];
+
  	// looks nice when called properly // announce action
 	INFO("GENERATOR  %s", argv[0]); // PAIR || Tuplo_duo || Derived TYPE Combiner = { ... item LHS item RHS ... }
-	INFO(" PSG name %s", argv[1] );
+	INFO(" FILE_ %s", (STR0) PSG_File ); // "../obj/gen_AFM"
+	INFO(" PSG %s", (STR0) PSG_Name ); // "AFM"
 
 //	INFO(" LHS  LEX  %s", argv[1]); // LHS
 //	INFO(" RHS YACC  %s", argv[2]); // RHS
 	// TEST //INFO(argv[3]); // NULL // "(null)" //  // " (null) " // 
- }
- if(argc!=2) {
- 	return FAIL("%d of 2 parameters plus ZERO", argc);
- }
 
 	/*	PSG - the SPEC side of the DATA Tree
 		PSG_UDEF - user defined (here) // for (purpose)
@@ -36,7 +41,10 @@ bool bool_main( int argc, char ** argv ) {
 
 	// PSG = Bench.the_thing_we_are_building();
 	// Tree_PSG_UDEF PSG;
-	Tree_PSG_UDEF_CALC PSG; 
+ //	Tree_PSG_UDEF_CALC PSG; 
+ 	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_CALC();
+ 	Tree_PSG_UDEF & PSG = *_PSG;
+
 	// PSG = the_thing_we_are_building();
 	// PSG is held on STACK for duration, then END_SCOPE_DTOR();
 	// PSG is coded and loaded PREBUILT
@@ -92,8 +100,7 @@ bool bool_main( int argc, char ** argv ) {
 	*/
 
 
- 	// PSG.set_PSG_name( argv[1] ); // PSG_Name // gen_e1 //
- 	if(!PSG.set_PSG_name( argv[1] )) FAIL_FAILED();
+ 	if(!PSG.set_PSG_name( PSG_Name, PSG_File )) FAIL_FAILED(); // ../obj/gen_ATM
 	// yes it was called (nut data didn't stick)
 
 	// then it is immediate ACCESS after STORE

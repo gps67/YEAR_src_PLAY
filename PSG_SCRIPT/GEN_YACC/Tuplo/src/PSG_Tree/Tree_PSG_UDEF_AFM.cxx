@@ -17,8 +17,34 @@ bool Tree_PSG_UDEF_AFM:: build_tree_yacc() {
 
 bool Tree_PSG_UDEF_AFM:: add_lex_for_AFM() {
 
+	/*
+		INVOKE { "e1"
+		 main() uses ARGV to set GEN PSG = PSG_AFM 
+		 main() uses ARGV to set GEN PSG = PSG_CALC
+		 TOKEN PSG_name // VAR = STR0("AFM") // TOKENISED_to_u64_expr
+		 // PSG.name == "AFM" // comment moves inside "TAG // CMNT"
+		 // PSG.name == "TUPLO // binary_text" // binary in text // xFF
+		 // PSG.name == "CALC" // 
+		 // PSG.name == "EXPR" // 
+		 // PSG.name == "SCRIPT" // 
+		}
+
+		so the TECH zone, for everything todo with GEN PSG for SCRIPT
+		so the TECH zone, and for EXPR
+		so the TECH zone, and for AFM
+
+		FONT.AFM { SAYS }
+		 add_DATA_for_AFM
+	int	  glyph_width [ char_glyph_idx ] // ASCII_PLUS
+	obj *	  glyph_info( chr ) // _idx
+		  FILE_LINE_t PHRASE_FOUND = EXPR_FOUND = FACT_FOUND
+		  
+	*/
+
 #warning new code here is where you add C priority left right options
 
+	INFO("STEP");
+	return FAIL("UNWRITTEN");
 
 // https://en.cppreference.com/w/c/language/operator_precedence
 // tightest binding lowest priority

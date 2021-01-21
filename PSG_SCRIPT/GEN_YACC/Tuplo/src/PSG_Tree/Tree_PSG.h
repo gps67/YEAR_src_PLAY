@@ -70,6 +70,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// gen_e1 // local_ROOT_e1 // PSG_of_E1
 	// probably GET_EA HEAP ITEM
 
+ 	str1 psg_abbr; // e1 		... FILENAME SUBLEX
  	str1 psg_name; // gen_e1 		... FILENAME SUBLEX
  	str1 lex_name; // gen_e1_lex 	.lex
  	str1 yacc_name; // gen_e1_yacc 	.y
@@ -87,7 +88,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	// BENCH LOCN 0xFFFF . // EA_HERE is "." ID_t & PSG_name_tok;
 
 
-	bool set_PSG_name( STR0 _name_ ); // anystr == _name_ == "../obj/gen_e1"
+	bool set_PSG_name( STR0 e1, STR0 file_left ); // anystr == _name_ == "../obj/gen_e1"
 	// PSG "name" // e1 exprs E1 
 	// PSG " // e1 exprs E1 // " { SCRIPT } // where SCRIPT is PARSED_TEXT
 

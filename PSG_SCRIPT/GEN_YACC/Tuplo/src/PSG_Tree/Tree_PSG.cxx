@@ -22,13 +22,15 @@ Tree_PSG::
 #define if_WARN_1 if(0)
 
 bool Tree_PSG::
-set_PSG_name( STR0 _name_ ) // "anystr" // "e1" // "gen_e1" // "e1_E1" // EXPR
+set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_e1") //
 {
 	bool near_not_far = true;
 	if(0) near_not_far = false; // use FULL PATH NAMES
 
-	if(0) INFO("_name_ %s", _name_ ); // ../obj/gen_e1
+	if(1) INFO("file_left %s", file_left ); // ../obj/gen_e1
 
+#if 0
+// DELETE THESE OLD COMMENTS or REWRITE THEM
 	// e1 exprs E1 // PSG over MMAP 
 	// gen_e1
 	// ../obj/gen_e1
@@ -182,6 +184,7 @@ set_PSG_name( STR0 _name_ ) // "anystr" // "e1" // "gen_e1" // "e1_E1" // EXPR
 		    var DECODER = Module_script.action_point
 
 */
+#endif
 
 
 	// 
@@ -205,7 +208,7 @@ set_PSG_name( STR0 _name_ ) // "anystr" // "e1" // "gen_e1" // "e1_E1" // EXPR
 	// INFO("_name_ %s", _name_ ); // "../obj/gen_e1" // "EXPR_C"
 
 	dir_name_ext path_name;
-	path_name.decode_filename( _name_ );  // some/dir/NAME
+	path_name.decode_filename( file_left );  // some/dir/NAME
 
 	// some/dir/NAME 
 	// BECOMES => some/dir/NAME_yacc.y .cc .o .tab.hh

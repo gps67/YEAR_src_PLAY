@@ -81,12 +81,23 @@ const char * str_file_type( File_Type file_type )
 	*/
 	bool file_stat::readlink_to_buf( const char * filename, blk1 & buf )
 	{
+		int gap_sz = 0;
+		int gap_max = 1024 * 3;
+		gap_sz = buf.space_avail();
+
+// BUG _alloc == 0 // 
+//		INFO("gap=%d", gap_sz );
+//		INFO("buf.nbytes_alloc =  %d", buf.nbytes_alloc );
+//		INFO("buf.nbytes_used  =  %d", buf.nbytes_used );
 		buf.clear();
+//		INFO("buf.nbytes_alloc =  %d", buf.nbytes_alloc );
+//		INFO("buf.nbytes_used  =  %d", buf.nbytes_used );
+
+		// so that is the usual default half line available
+		// limit get_space( gap_max )
 		if(!filename) return FAIL("NULL filename" );
 		int len=0; // should be size_t but -1 ??
 
-		int gap_sz = 0;
-		int gap_max = 1024 * 3;
 		while( gap_sz < gap_max ) {
 		  gap_sz = buf.space_avail();
 
@@ -95,13 +106,15 @@ const char * str_file_type( File_Type file_type )
 			buf.gap_addr_signed_char(),
 			gap_sz
 		  );
+	//	  INFO("%d from file %s gap=%d", len, filename, gap_sz );
 		  if( -1 == len ) {
-			return WARN("%s", filename );
-		  }
+			WARN("(-1) %s so get_space(more)", filename );
+		  } else
 		  if( len < gap_sz ) {
 			// == might be overflow truncated
 			buf.nbytes_used_add( len );
 			buf.trailing_nul(); // no poss fail
+	//	  	INFO("LINK %s", (STR0) buf );
 			return true;
 		  }
 
@@ -110,7 +123,7 @@ const char * str_file_type( File_Type file_type )
 		  if(!buf.get_space( gap_sz )) return FAIL_FAILED();
 		}
 
-		return FAIL("excessive link %d or system orror", gap_sz);
+		return FAIL("link name size %d or system error", gap_sz);
 	}
 
 	/*!
@@ -194,6 +207,9 @@ const char * str_file_type( File_Type file_type )
 		{
 			if(!readlink_to_buf( filename, readlink_val ))
 				return FAIL_FAILED();
+
+			// hmmm (STR0) necessary on readlink_val TYPE
+			WARN("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
 
 			/*
 				get the stat info of the linked target,

@@ -7,4 +7,5 @@ search='-L +/#'
 search=+/error
 search=+/FAIL
 search= # stay at top
+search=+/FAIL
 ./M "$@" 2>&1 | less $search

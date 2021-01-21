@@ -311,7 +311,7 @@ $(PROG4_EXE): $(PROG4).o $(DLL36)
 	#
 	# there was an error with libbase2.so being moved to ./lib/.
 	# and being used to link against, when make lots fixed
-	eko $(CXX) $(OPTIM) -o $@ $(PROG4).o $(WITHLIB36) 
+	# eko $(CXX) $(OPTIM) -o $@ $(PROG4).o $(WITHLIB36) 
 	#
 	$(CXX) $(OPTIM) -o $@ $(PROG4).o $(WITHLIB36) $(WITHLIB23)
 

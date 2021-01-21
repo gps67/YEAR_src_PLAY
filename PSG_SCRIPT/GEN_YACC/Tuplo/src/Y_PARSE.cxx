@@ -72,7 +72,11 @@ void yyerror( Y_Parse_t & psg, const char * msg )
   bool Y_Parse_t::
   buf_yy_parse( blk1 & text ) // returns when done
   {
+  	// PRE_BOOK FULL LOCK on text holder; // just add this change //
   	text.trailing_nul(); // noone else can add stuff, please no, NUL needed
+	// LOCK text // SNAP nbytes // KEEP lock until DTOR of link to text
+	// KNOW running PARSER over STREAM will cause DELAYS and WAIT_POINTS
+	// KEEP LOCK, KEEP cache_copy_RO LOCK, no edits allowed, catchup
 
 	// WE ARE PROVIDING text buffer. The STATE is a malloced struct
 	// struct yy_buffer_state ... // in gen_e1_lex.cc

@@ -27,7 +27,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 /**/	blk1::blk1( int N )
 {
 //	if(N==0) N = BLK1_N_STATIC;
-	if(N==0) N = 1; // any non zero // use BLK1_N_STATIC
+	if(N==0) N = 1; // any non zero // reset knows logic of BLK1_N_STATIC
 
 	nbytes_alloc = 0;
 	nbytes_used = 0;

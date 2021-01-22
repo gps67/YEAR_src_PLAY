@@ -40,14 +40,17 @@
 	# PROG knows to add _yacc _lex
 	# MAKE still needs to know
 	#
-	e1_psg_2=ATM
+	e1_psg_2=AFM
 	e1_psg_3=e1
 
 	e1_gen=gen_
 	e1_left=../obj/
 	e1_file_2=$(e1_left)$(e1_gen)$(e1_psg_2)# NOSP # same logic in binary
+	e1_file_3=$(e1_left)$(e1_gen)$(e1_psg_3)# NOSP # same logic in binary
 	e1_lex_2=$(e1_file_2)_lex
+	e1_lex_3=$(e1_file_3)_lex
 	e1_yacc_2=$(e1_file_2)_yacc
+	e1_yacc_3=$(e1_file_3)_yacc
 
 
 	# keep files that are between 1 and 2
@@ -64,28 +67,41 @@ endif
 	# use PSG_to_GEN_filenames_lex_y
 
 	into_lex_lex_2=$(e1_lex_2).lex
+	into_lex_lex_3=$(e1_lex_3).lex
 	into_yacc_y_2=$(e1_yacc_2).y
+	into_yacc_y_3=$(e1_yacc_3).y
 
 	# then run FLEX and BISON
 
 #	from_lex=$(e1_lex_2)
-	from_lex_cc=$(e1_lex_2).cc
-	from_lex_o=$(e1_lex_2).o
+	from_lex_cc_2=$(e1_lex_2).cc
+	from_lex_cc_3=$(e1_lex_3).cc
+	from_lex_o_2=$(e1_lex_2).o
+	from_lex_o_3=$(e1_lex_3).o
 
-	from_yacc_hh=$(e1_yacc_2).tab.hh
+	from_yacc_hh_2=$(e1_yacc_2).tab.hh
+	from_yacc_hh_3=$(e1_yacc_3).tab.hh
 	from_yacc_cc_2=$(e1_yacc_2).tab.cc
+	from_yacc_cc_3=$(e1_yacc_3).tab.cc
 	from_yacc_o_2=$(e1_yacc_2).tab.o
+	from_yacc_o_3=$(e1_yacc_3).tab.o
 
 	# then run FLEX and BISON generated code / add to EXE
 
-	OBJS2 += $(from_lex_o)
+	OBJS2 += $(OBJS23)
+	OBJS3 += $(OBJS23)
+
+	OBJS2 += $(from_lex_o_2)
+	OBJS3 += $(from_lex_o_3)
 	OBJS2 += $(from_yacc_o_2)
+	OBJS3 += $(from_yacc_o_3)
 
 	# then Module infrastructure code zones
 	# order matters - maybe put into .a to mix it up
 
+
 	OBJS1 += Y_PARSE_gen.o 
-	OBJS2 += Y_PARSE.o 
+	OBJS23 += Y_PARSE.o 
 	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o 
 	OBJS1 += Tree_PSG_LEX_TOKEN.o
 	OBJS1 += Tree_PSG_LEX_TOKEN_precedence.o
@@ -95,8 +111,8 @@ endif
 	OBJS1 += Tree_PSG_UDEF_C_EXPR_yacc.o
 	OBJS1 += Tree_PSG_UDEF_CALC.o
 	OBJS1 += Tree_PSG_UDEF_AFM.o
-	OBJS2 += EXPRS.o
-	OBJS2 += EXPRS_RETVAL.o
+	OBJS23 += EXPRS.o
+	OBJS23 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o
 	OBJS1 += STO_E32.o
 
@@ -109,12 +125,18 @@ endif
 	# clean between phases # maybe
 
 	CLEAN2 += $(from_lex_hh_2)
-	CLEAN2 += $(from_yacc_hh)
-	CLEAN2 += $(from_lex_cc)
+	CLEAN2 += $(from_yacc_hh_2)
+	CLEAN2 += $(from_lex_cc_2)
 	CLEAN2 += $(from_yacc_cc_2)
+
+	CLEAN3 += $(from_lex_hh_3)
+	CLEAN3 += $(from_yacc_hh_3)
+	CLEAN3 += $(from_lex_cc_3)
+	CLEAN3 += $(from_yacc_cc_3)
 
 	CLEAN1 += $(OBJS1)
 	CLEAN2 += $(OBJS2)
+	CLEAN3 += $(OBJS3)
 
 # END of ASSIGNMENT STYLE STATEMENTS
 # START OF Dependency RULES
@@ -136,7 +158,8 @@ $(PROG3_exec): ../MK/Makefile
 # SUFFIXES must be in TARGETS section
 # you can include it, when you include ../MK/Makefile_SOMETHING
 
-.SUFFIXES: .cxx .tab.c .tab.cc .cc .c .y .o                                                           
+.SUFFIXES: .cxx .tab.c .tab.cc .cc .c .lex .y .o
+
 # Generate YACC INPUT files (was from tcl)
 # e1 # adding _psg _lex to see what_comes from where
 #
@@ -159,37 +182,46 @@ test1: $(into_yacc_y_2)
 
 # lex follows yacc, because yacc produces the TABLE and TOKENS
 # 
-#	$(from_yacc_hh): $(into_yacc_y_2) 	# .y -> tab.hh
+#	$(from_yacc_hh_2): $(into_yacc_y_2) 	# .y -> tab.hh
 #	$(from_lex_hh_2): $(into_lex_lex_2) 	# .lex -> .hh # ??
-#	$(into_lex_lex_2): $(from_yacc_hh)	# run BISON before FLEX
+#	$(into_lex_lex_2): $(from_yacc_hh_2)	# run BISON before FLEX
 
-#	$(from_lex_cc): $(from_lex_hh_2) 	# edit .h triggers own recompile
-#	$(from_lex_cc): $(into_yacc_y_2) 	# everything depends on Tree_top
+#	$(from_lex_cc_2): $(from_lex_hh_2) 	# edit .h triggers own recompile
+#	$(from_lex_cc_2): $(into_yacc_y_2) 	# everything depends on Tree_top
 
-$(from_yacc_hh): $(into_yacc_y_2)
+$(from_yacc_hh_2): $(into_yacc_y_2)
+$(from_yacc_hh_3): $(into_yacc_y_3)
 
 # TOP does depend on a few things beyond PROG
 
 $(into_yacc_y_2): ../src/EXPRS.h
 $(into_yacc_y_2): ../src/e1.y_RULES 
-$(into_yacc_y_3): ../src/ATM.y_RULES 
+$(into_yacc_y_3): ../src/AFM.y_RULES 
 
 #
 # most nearby code want those tokens
-# $(into_lex_lex_2): $(from_yacc_hh)
+# $(into_lex_lex_2): $(from_yacc_hh_2)
 
-$(into_lex_lex_2): $(from_yacc_hh)
-$(from_yacc_cc_2): $(from_yacc_hh)
+$(into_lex_lex_2): $(from_yacc_hh_2)
+$(into_lex_lex_3): $(from_yacc_hh_3)
+$(from_yacc_cc_2): $(from_yacc_hh_2)
+$(from_yacc_cc_3): $(from_yacc_hh_3)
 
-$(from_lex_cc): $(from_yacc_hh)
+$(from_lex_cc_2): $(from_yacc_hh_2)
+$(from_lex_cc_3): $(from_yacc_hh_3)
 
-$(from_lex_o): $(from_yacc_hh)
+$(from_lex_o_2): $(from_yacc_hh_2)
+$(from_lex_o_3): $(from_yacc_hh_3)
+
+
+# fix
+EXPRS.o: $(from_yacc_hh_2)
 
 unused34:
 	# DEPENDENCY ... uses ...
-	# $(from_lex_o)
-	# $(from_yacc_hh)
-	ls -lrt $(from_yacc_hh)
+	# $(from_lex_o_2)
+	# $(from_yacc_hh_2)
+	ls -lrt $(from_yacc_hh_2)
 	#
 
 
@@ -200,12 +232,12 @@ $(into_yacc_y_2): $(PROG1_exec)
 	# PSG $(e1_psg_2)
 	# PSG $(e1_psg_3)
 	# FILE $(e1_file_2)
+	# FILE $(e1_file_2)
 	# adds _lex _yacc .lex .y 
 	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
 	#
 	./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2) #
-	./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_3) #
 	#
 	# Created
 	# $(into_lex_lex_2)
@@ -214,18 +246,40 @@ $(into_yacc_y_2): $(PROG1_exec)
 	@# ls -l1t $(e1_lex_2).lex  $(into_yacc_y_2)
 	@ ls -l1t $(e1_lex_2).lex  $(into_yacc_y_2)
 
+$(into_yacc_y_3): $(PROG1_exec)
+	#
+	# GEN
+	# RUN $(PROG1_exec)
+	# PSG $(e1_psg_2)
+	# PSG $(e1_psg_3)
+	# FILE $(e1_file_2)
+	# FILE $(e1_file_2)
+	# adds _lex _yacc .lex .y 
+	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
+	# Generate .lex .y files # PSG and LEX # Tree C++ components #
+	#
+	./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_3) #
+	#
+	# Created
+	# $(into_lex_lex_3)
+	# $(into_yacc_y_3)
+	#
+	@# ls -l1t $(e1_lex_3).lex  $(into_yacc_y_3)
+	@ ls -l1t $(e1_lex_3).lex  $(into_yacc_y_3)
+
 # YACC OUTPUT files
 
 # both .hh .cc produced at same time by bison
 # but want to use $@ to tell bison $(from_yacc_cc_2)
 
-# $(from_yacc_cc_2) $(from_yacc_hh):  $(into_yacc_y_2) 
+# $(from_yacc_cc_2) $(from_yacc_hh_2):  $(into_yacc_y_2) 
 
 
-$(from_yacc_hh): $(from_yacc_cc_2)
+$(from_yacc_hh_2): $(from_yacc_cc_2)
+$(from_yacc_hh_3): $(from_yacc_cc_3)
 
-# $(from_yacc_cc_2): $(from_yacc_hh)
-# $(from_yacc_hh): $(into_yacc_y_2 
+# $(from_yacc_cc_2): $(from_yacc_hh_2)
+# $(from_yacc_hh_2): $(into_yacc_y_2 
 
 $(from_yacc_cc_2): $(into_yacc_y_2)
 	#
@@ -238,11 +292,22 @@ $(from_yacc_cc_2): $(into_yacc_y_2)
 	# CREATED @ $@
 	#
 
-# flex uses bisons tab.hh and the TOKEN lists there
-# so make it dependent on the output from BISON from_yacc_hh 
-# from_yacc_hh e1_yacc_2.tab.hh
+$(from_yacc_cc_3): $(into_yacc_y_3)
+	#
+	# BISON
+	# FROM     < $<
+	# CREATING @ $@
+	#
+	bison -d -o $@ $<
+	#
+	# CREATED @ $@
+	#
 
-$(from_lex_cc): $(into_lex_lex_2) $(from_yacc_hh)
+# flex uses bisons tab.hh and the TOKEN lists there
+# so make it dependent on the output from BISON from_yacc_hh_2 
+# from_yacc_hh_2 e1_yacc_2.tab.hh
+
+$(from_lex_cc_2): $(into_lex_lex_2) $(from_yacc_hh_2)
 	# e1_lex_2 = $(e1_lex_2)
 	# expect  "gen_e1_lex"
 	#
@@ -251,6 +316,19 @@ $(from_lex_cc): $(into_lex_lex_2) $(from_yacc_hh)
 	# CREATING @ $@
 	#
 	flex -o $@ $(e1_lex_2).lex
+	#
+	# CREATED @ $@
+	#
+
+$(from_lex_cc_3): $(into_lex_lex_3) $(from_yacc_hh_3)
+	# e1_lex_3 = $(e1_lex_3)
+	# expect  "gen_e1_lex"
+	#
+	# FLEX
+	# FROM     < $<
+	# CREATING @ $@
+	#
+	flex -o $@ $(e1_lex_3).lex
 	#
 	# CREATED @ $@
 	#
@@ -292,6 +370,7 @@ dgb: $(PROG1_exec)
 	# debug
 	gdb --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
 	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
+	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
 	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
@@ -300,9 +379,9 @@ $(PROG2_exec): $(PROG2).o $(OBJS2)
 	# PROG2 AFM
 	g++ $(PROG2).o $(OBJS2) $(LINKS) -o $@
 
-$(PROG3_exec): $(PROG3).o $(OBJS2) 
+$(PROG3_exec): $(PROG3).o $(OBJS3) 
 	# PROG3 CALC
-	g++ $(PROG3).o $(OBJS2) $(LINKS) -o $@
+	g++ $(PROG3).o $(OBJS3) $(LINKS) -o $@
 
 clean: 
 	rm -f $(CLEAN1) $(CLEAN2) $(CLEAN3) 

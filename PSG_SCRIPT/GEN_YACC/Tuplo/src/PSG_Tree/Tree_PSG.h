@@ -8,9 +8,30 @@
 
 #include "Tree_PSG_LEX_TOKEN.h"
 
+class union_field_t { public: /* LEX return field YACC return field */
+
+	str1 union_field_name; // expr
+	str1 union_field_line; // EXPR * expr
+
+	// LIST used in rules 
+	union_field_t(
+	 STR0 _union_field_name,
+	 STR0 _union_field_line
+	) 
+	: union_field_name( _union_field_name )
+	, union_field_line( _union_field_line )
+	{ 
+		INFO("%s {%s}", _union_field_name, _union_field_line );
+	}
+
+	void print_with_semicolon( buffer2 & out);
+};
+
 class Tree_PSG_RULE { public:
 
-	str1 name;
+	str1 name;		// "expr_ident" // -> one_of_seq( tbs )
+
+	union_field_t * union_field;
 
 	enum RULE_TYPE {
 	 rule_ONE_OF,
@@ -22,6 +43,27 @@ class Tree_PSG_RULE { public:
 	 rule_NAMED, // ITEM_NAMED //
 	 rule_all_of_these_are_unwritten // at the mo //
 	};
+
+	Tree_PSG_RULE ( STR0 _name, union_field_t * _union_field )
+	: name(_name)
+	, union_field(_union_field)
+	{
+	 if(_union_field) {
+		INFO("%s RET .%s", _name, (STR0) union_field->union_field_name);
+	 } else {
+		INFO("%s RET .NULL", _name);
+	 }
+	}
+
+	bool gen_some()
+	{
+		union_field_t *
+		union_field
+		= new union_field_t( "expr", "EXPR * expr" );
+		Tree_PSG_RULE * R1 = new Tree_PSG_RULE( "E1", union_field );
+
+		return FAIL("TODO");
+	}
 };
 
 /*
@@ -56,7 +98,7 @@ class Tree_PSG_RULE { public:
 	 DATA = SPEC over INSTREAM // TOKENISED
 
 	 Tree is a GEN of yacc files and some api
-	 hence it is "../obj/gen_e1_lex.lex // EXPR_lex.o _yacc
+	 hence it is "../obj/gen_XXX_lex.lex // EXPR_lex.o _yacc
 */
 
 class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
@@ -66,29 +108,29 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	// str1 holds the malloced memory
 
-	// e1 is ( EXPR ) // ( ARGV ) // api_of_e1
-	// gen_e1 // local_ROOT_e1 // PSG_of_E1
+	// e1 is ( EXPR ) // ( ARGV ) // api_of_XXX
+	// gen_XXX // local_ROOT_XXX // PSG_of_E1
 	// probably GET_EA HEAP ITEM
 
  	str1 psg_abbr; // e1 		... FILENAME SUBLEX
- 	str1 psg_name; // gen_e1 		... FILENAME SUBLEX
- 	str1 lex_name; // gen_e1_lex 	.lex
- 	str1 yacc_name; // gen_e1_yacc 	.y
+ 	str1 psg_name; // gen_XXX 		... FILENAME SUBLEX
+ 	str1 lex_name; // gen_XXX_lex 	.lex
+ 	str1 yacc_name; // gen_XXX_yacc 	.y
 
- 	str1 psg_item; // gen_e1_psg // ##_psg##_reappears##_as //
+ 	str1 psg_item; // gen_XXX_psg // ##_psg##_reappears##_as //
 
-	//	CVAR NAME str1 psg_name; // "gen_e1" 
-	//	MATCH %s_psg NAME == "gen_e1"
+	//	CVAR NAME str1 psg_name; // "gen_XXX" 
+	//	MATCH %s_psg NAME == "gen_XXX"
 	//	EXPORT . /*as*/ NAME 
 	//	EXPORT . /*.subfield.*/ NAME /**?
 	//	MATCH . EXPR { SCRIPT }
 
 	// THIS EA_TREE _of_PSG GEN_CODE_ROM_LOCN  
-	// The Name of the grammar "gen_e1" // generated psg for e1 exprs E1
+	// The Name of the grammar "gen_XXX" // generated psg for e1 exprs E1
 	// BENCH LOCN 0xFFFF . // EA_HERE is "." ID_t & PSG_name_tok;
 
 
-	bool set_PSG_name( STR0 e1, STR0 file_left ); // anystr == _name_ == "../obj/gen_e1"
+	bool set_PSG_name( STR0 e1, STR0 file_left ); // anystr == _name_ == "../obj/gen_XXX"
 	// PSG "name" // e1 exprs E1 
 	// PSG " // e1 exprs E1 // " { SCRIPT } // where SCRIPT is PARSED_TEXT
 
@@ -96,7 +138,7 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	STR0 lex_name_lex(buffer2 & str);	// flex_machine_for_PSG
 	STR0 yacc_name_tab_hh(buffer2 & str);	// TOKEN_POOL lexicon;
 
-// NAME = "../obj/gen_e1" // the filename_exts used are FIXED or GLOBAL config
+// NAME = "../obj/gen_XXX" // the filename_exts used are FIXED or GLOBAL config
 // TEXT generators:
 //  GEN // uses a lot of buffer2's // refactor buffer2 to accept buf60
 
@@ -129,10 +171,10 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	//	#include "incl_filename"; 
 
 	bool put_yacc_name_tab_hh( buffer2 & out );
-	//	../obj/gen_e1_yacc.tab.hh
+	//	../obj/gen_XXX_yacc.tab.hh
 
 	bool put_include_yacc_tab_hh( buffer2 & out );
-	//	#include "../obj/gen_e1_yacc.tab.hh"; 
+	//	#include "../obj/gen_XXX_yacc.tab.hh"; 
 
  // MOVE // decls used in api // near but not here
  // MOVE // STUBS might carry subset of typedef names;
@@ -212,6 +254,18 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 	 buffer2 & out,
 	 LEX_TOKEN_GROUP &  POOL
 	);
+
+	void add_rulename_field_type (
+	 STR0 rule_name,	// expr_ident
+	 STR0 field_name,	// expr
+	 STR0 type_line		// EXPR * expr // ;
+	);
+
+	/*!
+		include some fragment file, verbatim
+	*/
+	virtual
+	bool gen_YACC_includes( buffer2 & out, STR0 filename );
 
 	/*!
 		GEN lex and yacc files

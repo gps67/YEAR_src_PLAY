@@ -1,0 +1,62 @@
+//
+// THIS IS AFM.y_RULES START
+//
+ /*
+ 	StartFontMetrics 3.0
+	...
+	StartCharMetrics 855
+	C 42 ; WX 420 ; N asterisk ; B 220 377 512 677 ;
+	C -1 ; ...
+	EndCharMetrics
+	StartKernData
+	StartKernPairs 3782
+	KPX C colon -20
+	EndKernPairs
+	EndKernData
+	EndFontMetrics
+
+ */
+
+HEAD: RW_StartFontMetrics LEX_WORD { }
+HEAD: RW_Comment WORDS
+HEAD: RW_FontName LEX_WORD
+HEAD: RW_FullName WORDS
+HEAD: RW_FamilyName WORDS
+HEAD: RW_Weight LEX_WORD
+HEAD: RW_ItalicAngle LEX_DOUBLE
+HEAD: RW_IsFixedPitch LEX_BOOL
+HEAD: RW_UnderlinePosition LEX_INTEGER
+HEAD: RW_UnderlineThickness LEX_INTEGER
+HEAD: RW_Version LEX_WORD
+HEAD: RW_Notice WORDS
+HEAD: RW_EncodingScheme LEX_WORD
+HEAD: RW_FontBBox LEX_INTEGER LEX_INTEGER LEX_INTEGER LEX_INTEGER
+HEAD: RW_CapHeight LEX_INTEGER
+HEAD: RW_XHeight LEX_INTEGER
+HEAD: RW_Descender LEX_INTEGER
+HEAD: RW_Ascender LEX_INTEGER
+HEAD: RW_StartCharMetrics LEX_INTEGER
+
+HEAD_LINE: HEAD LEX_EOLN { $$ = $1 } // avoid any EXPR created for minor edit
+HEADERS: 
+HEADERS: HEADERS: HEAD_LINE
+
+FILE: HEADERS BODY { }
+
+WORDS : %empty | WORDS LEX_WORD { INFO("WORDS LEX_WORD %s", $2); $$ = $2; }
+
+LINE : WORDS LEX_EOLN
+
+
+
+lines
+: %empty
+| lines LINE { INFO("lines LINE"); }
+
+
+top: HEADERS
+
+//
+// THIS IS AFM.y_RULES END
+//
+

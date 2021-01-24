@@ -141,6 +141,7 @@ endif
 # END of ASSIGNMENT STYLE STATEMENTS
 # START OF Dependency RULES
 
+all: test2
 all: test1 test2 test3
 
 #	helpful retest dependency
@@ -197,6 +198,7 @@ $(from_yacc_hh_3): $(into_yacc_y_3)
 $(into_yacc_y_2): ../src/EXPRS.h
 $(into_yacc_y_2): ../src/e1.y_RULES 
 $(into_yacc_y_3): ../src/AFM.y_RULES 
+$(PROG1_exec): ../src/AFM.y_RULES 
 
 #
 # most nearby code want those tokens
@@ -215,7 +217,7 @@ $(from_lex_o_3): $(from_yacc_hh_3)
 
 
 # fix
-EXPRS.o: $(from_yacc_hh_2)
+EXPRS.o: $(from_yacc_hh_3)
 
 unused34:
 	# DEPENDENCY ... uses ...
@@ -250,7 +252,6 @@ $(into_yacc_y_3): $(PROG1_exec)
 	#
 	# GEN
 	# RUN $(PROG1_exec)
-	# PSG $(e1_psg_2)
 	# PSG $(e1_psg_3)
 	# FILE $(e1_file_2)
 	# FILE $(e1_file_2)
@@ -369,7 +370,6 @@ dgb_PROG2: $(PROG2_exec)
 dgb: $(PROG1_exec)
 	# debug
 	gdb --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
-	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 

@@ -16,6 +16,9 @@ int main( int argc, char ** argv )
 	const char * filename = argv[1];
 	if(!filename) {
 		filename = "../test2.test";
+		filename =
+		"/usr/share/fonts/type1/urw-base35/Z003-MediumItalic.afm";
+		// has lots of KPX and char names
 	}
 	INFO("Parsing %s", filename );
 

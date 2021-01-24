@@ -4,13 +4,13 @@
 
 bool Tree_PSG_UDEF_AFM:: build_tree_lex() {
 	if(!add_lex_for_AFM()) return FAIL_FAILED();
-	INFO("NOT bool add_yacc_for_C_EXPR()");
+	INFO("AFM");
 	return true;
 }
 bool Tree_PSG_UDEF_AFM:: build_tree_yacc() {
 	if(!add_yacc_for_AFM()) return FAIL_FAILED();
 	// bool add_yacc_for_C_EXPR();
-	INFO("NOT bool add_yacc_for_C_EXPR()");
+	INFO("AFM");
 	return true;
 }
 
@@ -43,6 +43,8 @@ bool Tree_PSG_UDEF_AFM:: add_lex_for_AFM() {
 
 #warning new code here is where you add C priority left right options
 
+	POOL_RW.add_RW( "StartFontMetrics" );
+
 	POOL_RW.add_RW( "Comment" );
 	POOL_RW.add_RW( "FontName" );
 	POOL_RW.add_RW( "FullName" );
@@ -71,13 +73,15 @@ bool Tree_PSG_UDEF_AFM:: add_lex_for_AFM() {
 	// Names of LEX exprs that match values
 
 	POOL_LEX.add_LEX( "EOLN" );
-	POOL_LEX.add_LEX( "IDENTIFIER" );
+	POOL_LEX.add_LEX( "WORD" );
 	POOL_LEX.add_LEX( "WS" );
 	POOL_LEX.add_LEX( "DOUBLE" );
 	POOL_LEX.add_LEX( "INTEGER" );
+	POOL_LEX.add_LEX( "BOOL" );
+//	POOL_LEX.add_LEX( "FLOAT" );
 
-	INFO("STEP");
-	return FAIL("UNWRITTEN");
+	WARN("UNWRITTEN");
+	// return FAIL("UNWRITTEN");
 
 	return true;
 }
@@ -86,5 +90,6 @@ bool Tree_PSG_UDEF_AFM:: add_lex_for_AFM() {
 ///////////////////////////////////////////////////////////////////////////
 
 bool Tree_PSG_UDEF_AFM:: add_yacc_for_AFM() {
+	return true;
 	return FAIL("TODO");
 }

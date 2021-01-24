@@ -19,13 +19,13 @@ bool Tree_PSG_UDEF_CALC:: build_tree() {
 
 bool Tree_PSG_UDEF_CALC:: build_tree_lex() {
 	if(!add_lex_for_C_EXPR()) return FAIL_FAILED();
-	INFO("NOT bool add_yacc_for_C_EXPR()");
+	INFO("C_EXPR");
 	return true;
 }
 bool Tree_PSG_UDEF_CALC:: build_tree_yacc() {
 	if(!add_yacc_for_C_EXPR()) return FAIL_FAILED();
+	INFO("C_EXPR");
 	// bool add_yacc_for_C_EXPR();
-	INFO("NOT bool add_yacc_for_C_EXPR()");
 	return true;
 }
 

@@ -22,11 +22,11 @@ bool Tree_PSG_UDEF:: build_tree() {
 }
 
 bool Tree_PSG_UDEF:: build_tree_lex() {
-	if(!add_lex_for_C_EXPR()) return FAIL_FAILED();
+	return FAIL("UNWRITTEN");
 	return true;
 }
 bool Tree_PSG_UDEF:: build_tree_yacc() {
-	if(!add_yacc_for_C_EXPR()) return FAIL_FAILED();
+	return FAIL("UNWRITTEN");
 #if 0
 	Tree_PSG_RULE_SEQ * SEQ = new Tree_PSG_RULE_SEQ( "expr_ident" );
 	SEQ -> name = "expr_ident";

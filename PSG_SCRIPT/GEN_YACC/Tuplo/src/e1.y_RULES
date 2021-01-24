@@ -16,8 +16,10 @@ expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 // //	...: '-'  expr      %prec  '*'
 
 lines
-: %empty
+: %empty {}
 | lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+
+ // lines: lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
 //
 // save PSG_line as RETVAL // all wrong

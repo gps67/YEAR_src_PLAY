@@ -19,25 +19,27 @@ Tree_PSG::
 
 #include "dir_name_ext.h"
 
+#include "util_buf.h"
+
 #define if_WARN_1 if(0)
 
 bool Tree_PSG::
-set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_e1") //
+set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_XXX") //
 {
 	bool near_not_far = true;
 	if(0) near_not_far = false; // use FULL PATH NAMES
 
-	if(1) INFO("file_left %s", file_left ); // ../obj/gen_e1
+	if(1) INFO("file_left %s", file_left ); // ../obj/gen_XXX
 
 #if 0
 // DELETE THESE OLD COMMENTS or REWRITE THEM
 	// e1 exprs E1 // PSG over MMAP 
-	// gen_e1
-	// ../obj/gen_e1
+	// gen_XXX
+	// ../obj/gen_XXX
 	//
-	// PSG_Name = ../obj/gen_e1
-	// LEX_Name = ../obj/gen_e1_lex	.lex .cc .o _yacc .y .cc .tab.hh .o
-	// YACC_Name = ../obj/gen_e1_yacc .y .cc .tab.hh .o
+	// PSG_Name = ../obj/gen_XXX
+	// LEX_Name = ../obj/gen_XXX_lex	.lex .cc .o _yacc .y .cc .tab.hh .o
+	// YACC_Name = ../obj/gen_XXX_yacc .y .cc .tab.hh .o
 	//
 	// HERE_step LIBR_item PSG_udef .o .api
 	// need to call SITE API LIBR/udef.api
@@ -205,7 +207,7 @@ set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_e1") //
 	// template VAL_TYPE_NUM NUM_u20 // 1K x 1K // ZONE_ITEM
 
 
-	// INFO("_name_ %s", _name_ ); // "../obj/gen_e1" // "EXPR_C"
+	// INFO("_name_ %s", _name_ ); // "../obj/gen_XXX" // "EXPR_C"
 
 	dir_name_ext path_name;
 	path_name.decode_filename( file_left );  // some/dir/NAME
@@ -221,16 +223,16 @@ set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_e1") //
 	path_name.mk_BOTH_path_name();
 
 	// the filename of the PSG - before adding extra_suffixes
-	// psg_name & psg_name = "gen_e1" // C EXPR PSG
+	// psg_name & psg_name = "gen_XXX" // C EXPR PSG
 	psg_name = path_name.near_path_name; // str1 = ... probably STR0
 if(0)	e_print("psg_name == '%s'\n", (STR0) psg_name );
-if(0)	path_name.test_print(); // path/../obj/gen_e1
+if(0)	path_name.test_print(); // path/../obj/gen_XXX
 
 
   // return FAIL("STOP HERE");
 
   	// PUSH path_name.name // single _path_name_decoder
-	buffer2 tmp_name_keeper = path_name.name; // gen_e1
+	buffer2 tmp_name_keeper = path_name.name; // gen_XXX
 
  	path_name.ext.clear();
 	path_name.name.put("_lex");
@@ -240,7 +242,7 @@ if(0)	path_name.test_print(); // path/../obj/gen_e1
 	} else {	lex_name = path_name.full_path_name;
 	}
 if(0)	e_print("lex_name == '%s'\n", (STR0) lex_name );
-	// gen_e1_lex.lex
+	// gen_XXX_lex.lex
 if(0)	path_name.test_print();
 
   	// POP path_name.name // single _path_name_decoder
@@ -253,7 +255,6 @@ if(0)	path_name.test_print();
 			yacc_name = path_name.near_path_name;
 	} else {	yacc_name = path_name.full_path_name;
 	}
-	// gen_e1_yacc.y
 if(0)	path_name.test_print();
 
 	return true; // OK 
@@ -295,7 +296,7 @@ lex_name_lex(
 }
 
 /*
-	eg "gen_e1_yacc.tab.hh"
+	eg "gen_XXX_yacc.tab.hh"
 	obtain yacc_name_tab.hh 
 	via buffer2
 */
@@ -309,13 +310,13 @@ yacc_name_tab_hh(
 }
 
 /*
-	eg "gen_e1_yacc.tab.hh"
+	eg "gen_XXX_yacc.tab.hh"
 	append filename
 	into buffer2 -- but dont clear it
 */
 bool Tree_PSG::
 put_yacc_name_tab_hh( buffer2 & out ){
-	out.put( yacc_name ); // gen_e1_yacc 	// .y // .tab.hh
+	out.put( yacc_name ); // gen_XXX_yacc 	// .y // .tab.hh
 	out.put(".tab.hh");
 	return true;
 }
@@ -333,7 +334,7 @@ put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 }
 
 /*
-	#include "gen_e1_yacc.tab.hh" 
+	#include "gen_XXX_yacc.tab.hh" 
 */
 bool Tree_PSG::
 put_include_yacc_tab_hh( buffer2 & out )
@@ -433,6 +434,17 @@ print_TOKEN_name_2( // PFX _ Name
 		return true;
 }
 
+
+bool Tree_PSG::
+gen_YACC_includes( buffer2 & out, STR0 filename )
+{
+	int K_max = 32;
+	buffer2 filed;
+	if(!blk_read_entire_file( filed, filename, K_max ))
+		return FAIL("%s", filename );
+	out.put( filed );
+	return PASS("%s", filename );
+}
 
 /*
 	MACRO L1("C_CODE_LINE") // MUST BE L1("const Q2 str") to join "\n"
@@ -558,8 +570,6 @@ gen_LEX_start_symbol( buffer2 & out )
 	return true;
 }
 
-#include "util_buf.h"
-
 
 /*!
 	The PSG Tree already exists (with any adaptors for FLEX BISON)
@@ -650,40 +660,48 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("");
 
 
-	L1("/* definions SECTION END */"); // 
+	L1(" /* definions section END */"); // 
 	L1("%%");
-	L1(" /* RULES SECTION */"); // cannot be at BOLN
+	L1(" /* rules section START*/"); // cannot be at BOLN
 	L1("");
 
-	L1(" /* gen_LEX_RULES _eoln() */");
-	L1("");
-	gen_LEX_RULES_eoln( out ); // must match FLEX / YY line no ++
-
-	L1("");
-	L1(" /* gen_LEX_RULES _ident_values() */");
-	L1("");
-	gen_LEX_RULES_ident_values( out ); // VALUE is union .
-
-	L1("");
 	// comments may not be where pattern_RE goes - at start of line
 	L1(" /* LIST RW reserved word */");
 	L1("");
 	print_list( out, POOL_RW ); 
 	L1("");
+
+	// reserved words must appear before identifier [A-Za-z_]...
+	// floats which can start with . must be before PUNCT_DOT
+	// 
+
+	L1(" /* gen_LEX_RULES _eoln() AFTER RW_s */");
+	L1("");
+	gen_LEX_RULES_eoln( out ); // must match FLEX / YY line no ++
+	L1("");
+
+	L1(" /* gen_LEX_RULES _ident_values() */");
+	L1("");
+	gen_LEX_RULES_ident_values( out ); // VALUE is union .
+	L1("");
+
 	L1(" /* LIST PUNCT */"); // unless FLEX matches longest first ?
+	L1(" /* beware .123 float seeing PUNCT_DOT */"); 
 	L1("");
 	print_list( out, POOL_PUNCT ); // in LEX longest first order
 	L1("");
+
 	L1(" /* LIST LEX */");
 	L1("");
 	print_list( out, POOL_LEX );
-
 	L1("");
+
 	L1(". printf(\"Unknown token!\\n\"); yyterminate();");
 	L1("");
 
+	L1(" /* rules section END*/"); // cannot be at BOLN
 	L1("%%");
-	L1("// CODE SECTION // is copied through");
+	L1("// code section START // to eof // is copied through");
 	L1("// ");
 	L1("");
 	return true;
@@ -731,7 +749,7 @@ bool Tree_PSG:: gen_LEX_RULES_ident_values( buffer2 & out )
 ////////////////////////////
 
 bool Tree_PSG::
-gen_YACC( buffer2 & out )
+gen_YACC( buffer2 & out ) // all of it
 {
  // L1("%define api.namespace {::EXPRS}");
  // not in C
@@ -777,6 +795,9 @@ gen_YACC( buffer2 & out )
 	L1("");
 
 	gen_YACC_rules( out );
+	L1("");
+	L1(" /* EOF */");
+	L1("");
 	return true;
 }
 
@@ -994,7 +1015,7 @@ gen_YACC_type_list( buffer2 & out )
 	L1("%type <expr> expr");
 	L1("%type <expr> EXPR_line");
 	L1("%type <expr> lines"); // slight lie to bootstrap
-	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
+//	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
 //	L1("%type <token> BOP");
 	return true;
 }
@@ -1038,10 +1059,19 @@ bool Tree_PSG::
 gen_YACC_rules( buffer2 & out )
 {
  L1("// RULES ");
+ L1("// RULES - I thought this was virtual overruled");
  L1("// RULES ");
- buffer2 filed;
- // bug // open_RO not reporting filename
- if(!blk_read_entire_file( filed, "../src/e1.y_RULES", 32 )) return FAIL_FAILED();
- out.put( filed );
+
+	STR0 lhs = "../src/";
+	STR0 psg = "PSG";
+	psg = "AFM";
+	psg = "e1";
+	STR0 rhs = ".y_RULES";
+	INFO("PSG %s", psg );
+	buffer1 filename;
+	filename.print("%s%s%s", lhs, psg, rhs );
+	if(!gen_YACC_includes( out, filename )) {
+		return FAIL("%s", filename );
+	}
 	return true;
 }

@@ -8,6 +8,7 @@
 
 #include "Tree_PSG_UDEF.h"
 #include "Tree_PSG_UDEF_AFM.h"
+#include "Tree_PSG_UDEF_CALC.h"
 
 #include "Y_PARSE.h" // to provide uncalled thing
 
@@ -42,7 +43,8 @@ bool bool_main( int argc, char ** argv ) {
 	// PSG = Bench.the_thing_we_are_building();
 	// Tree_PSG_UDEF PSG;
  //	Tree_PSG_UDEF_CALC PSG; 
- 	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_AFM();
+ //	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_AFM();
+ 	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_CALC();
  	Tree_PSG_UDEF & PSG = *_PSG;
 
 	// PSG = the_thing_we_are_building();

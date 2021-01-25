@@ -1,0 +1,210 @@
+NOTE_HERE_MERGED.txt
+
+	Y_Parse 
+	Y_Parse is the merger of multiple topics in shared space 
+	Y_Parse += Parse_local_scope SCRIPT_DIALECT
+	Y_Parse 
+	Y_Parse += AFM Adobe Font Metrics { ... }
+	Y_Parse += CALC EXPR * e1 = PARSE_AND_RUN { ... }
+	Y_Parse += EVAL EXPR * e1 = PARSE_AND_RUN { ... } // alias deep link adj
+	// alias deep link vary
+
+ MERGED += HERE
+
+ 	/*
+	{ SCRIPT }
+	*/
+
+ MERGED += HERE {
+ 	LHS
++IND-	{ SCRIPT }
+ 	RHS
+	}
+//	^ - INDENT ZERO LINE 
+// OMIT	# DROP all surrounding indent KEEP DEEP indent from HERE_ZERO
+// ZERO_HERE // SIGN +ve // -VE_MEANS { callback } // IMPORT_TABLE[(idx_extern)]
+// HERE_ZERO // ZONE -ve // +VE MEANS { idx_ITEM } // DECODE u64 u48_payload
+//
+// u48_payload u16_payload // u16 provides or uses GET_SET VAR FUNC API
+// DECODE u8_u8_in_u64_cpu_register // rename WORD when you switch to u32
+// TRY u12_u4_OPCODE u16_idx_DATA //
+// EDIT u16_u4_OPCODE u4_u8_DATA // 
+
+ MERGED += HERE
+
+ 	U64 => U48 U16_AB
+	U32 => U16 U16_AB
+	U32 => U20 U12_AB // one extra cycle to shift over u4 boundary line
+	U32 => U12 U20_AB // always _AB so simplify NAME clip tail _AB
+	u32 
+	 U20 U12
+	 U12 U20
+		 // STACK_PLUS += PC in an ELF loaded world // MODULE_DLL
+		 // STACK_PLUS += HEAP_MMAP // files and memory devices
+		 // STACK_PLUS += ROM_IDX // LAYOUT // API
+		 // API_LOAD_DLL_EXEC_DATA_API
+		 // WASM says EXEC = Y // this code also runs on WASM
+		 // ASM_CPU //
+		 // CPU_ASM // 
+	         // REGS = A B C D SRC DST (aka P Q) // REGS += STACK_PLUS
+	     u16 // IDENT = WORD.cpu_var.ax // al ah ax eax // reax // REGS //
+	 u16_pld // VALUE = WORD >> 16 // no other way to top 16 bits // drop
+
+	// HUMAN EYE needed to keep overlapping ZONES merge without conflict
+
+	CPU_VAR_WORD is a C implementation of ASM_CPU_VAR_REGS
+	CPU_VAR_REGS is a C implementation of ASM_CPU_VAR_REGS
+
+	Layout {
+	 LHS RHS bitfields
+	 u48_u16 {
+	 }
+	 u32_u32 {
+	 }
+	 u16_u16 {
+	 }
+	 u16_u8_u8 {
+	 }
+	 u48_u16 {
+	 }
+	 u48_u8_u8 {
+	 // RHS is u8_u8
+	 }
+	 // _RHS_is_reachable_vi_byte_pair_long_WORD byte_B byte_A u16_BA;
+	 // u16_BA is u16 in cpu_var with byte_fields // bitfields ah al
+	 // u8 & byte_B;
+	 // _LHS_is_reachable_vi_shift // 
+	 // _RHS_is_u8u8 
+	 u8_u8 { // alias for u48_lhs u16_AB // alias cpu_var
+	  // IMPORT cpu_var_u8_u8 // alias for cpu_var_
+	  // ALIAS cpu_var => cpu_var_ => u32_cpu_var_t cpu_var
+	  // get_u8_lo
+	  // get u16_lo
+	  // get u32_WORD
+	  // get u64_WORD
+	  // We use the low bytes of CPU_REGISTER because 
+	  // because the CPU grew from u16 {A,B,C,D}{H,L} // {hi,lo}
+	  // get u48_payload
+	  // set u48_payload // gen code that uses KNOWN ROM API
+	  // set u16_payload // in_situ AB on i386_PLUS lo_hi
+	  // api u8_u8_hi_lo // in register in_cpu_register KNOW_FIXED
+	  // api u8_u8_hi_lo // in register access_byte_B_as_CPU_REGS_bitfield_byte_B
+	  // api u8_u8_hi_lo // access_byte_B_as_CPU_REGS_bitfield_byte_B
+	  // api u32_CPU // CPU_REGS_bitfield_byte_B
+	  // api u64_WORD // CPU_REGS_bitfield_byte_B
+	  // ALIAS factory dropped these 2 off, hand picked, gen_code_to_use_them
+	  // DLL that compiles exprs, then loas them
+	  // ON WASM requires full PRE_LOAD so DLL already BUILTIN or LOADED
+	  // WASM permits LOAD_CODE of builtin MODULE // PRECOMPILED WITH dgb
+	  //
+
+
+	 }
+	 u24_u8 {
+	 }
+	 u20_u12 {
+	 // import u8_u8 API // import u16 API # low 16 of WORD_32 WORD_64
+	 }
+	}
+
+ HERE IS: // FOLLOWING_LINE is VALUE of `pwd` // INDENTED
+	# indented and surrounded and cohabit merge
+	# so that allows some PARSED LHS MID RHS // SHAPE TRIO
+	# SHAPE_TRIO is ALLOC_MACHINE with u8++ // u8 idx_alloc_byte_var
+	/home/gps/YEAR/src/PLAY/PSG_SCRIPT/GEN_YACC/Tuplo/src
+-	check_word_pulse() { SCRIPT } // AUTOINDENT
+	# // AUTOINDENT SAME // MORE SAME LESS // LESS SAME MORE // parallel
+	# parallel SUBST "MSL_SAME" "LSM_SAME" { // starts TEXT of SCRIPT }
+	# NOTE: SAME.field == CTXT.SAME.field == SAME.CTXT.field 
+	# HERE: 
+	# SCRIPT # { check_world_SCRIPT
+	# SHAPE_TRIO is ALLOC_MACHINE with u8++ //
+	u8 & idx_alloc_byte_var
+
+ HERE WAS:
+#	/home/gps/YEAR/src/PLAY/PSG_SCRIPT/GEN_YACC/Tuplo/src
+
+	total 128
+	-rw-rw-r-- 1 gps gps 1227 Jan 23 23:04 AFM.y_RULES
+	-rw-rw-r-- 1 gps gps 2103 Nov 24  2019 _DEL_EXPRS_PRINTER.cxx
+	-rw-rw-r-- 1 gps gps 1024 Jan 24 15:35 e1.y_RULES
+	-rw-rw-r-- 1 gps gps 1153 Oct 27  2019 e1.y_RULES_01
+	-rw-rw-r-- 1 gps gps  865 Apr 17  2020 e1.y_RULES_02
+	-rw-rw-r-- 1 gps gps 8203 Jan 22 12:42 EXPRS_AFM.cxx
+	-rw-rw-r-- 1 gps gps  289 Jan 22 12:41 EXPRS_AFM.h
+	-rw-rw-r-- 1 gps gps 8199 Aug 12 22:20 EXPRS.cxx
+	-rw-rw-r-- 1 gps gps  281 Jan 22 12:41 EXPRS.h
+	-rw-rw-r-- 1 gps gps 6833 Dec 16  2019 EXPRS_.h
+	-rw-rw-r-- 1 gps gps 1650 Dec 16  2019 EXPRS_PRINTER.h
+	-rw-rw-r-- 1 gps gps  184 Dec 16  2019 EXPRS_RETVAL.cxx
+	-rw-rw-r-- 1 gps gps  279 Dec 16  2019 EXPRS_RETVAL.h
+	-rw-rw-r-- 1 gps gps 2103 Dec 23  2019 EXPRS_STUBS.h
+	drwxrwxr-x 2 gps gps 4096 Oct  3  2019 _GEN_File_VFS_
+	drwxrwxr-x 2 gps gps 4096 Sep 23  2019 _lib_pixmap_
+	drwxrwxr-x 2 gps gps 4096 Sep 26  2019 _MEM_Tree_
+	-rw-rw-r-- 1 gps gps  658 Jan 25 14:07 NOTE_HERE_MERGED.txt
+	drwxrwxr-x 2 gps gps 4096 Jan 24 22:42 PSG_Tree
+	drwxrwxr-x 2 gps gps 4096 Apr 26  2020 _PSG_Tree_SUB_LEX
+	lrwxrwxrwx 1 gps gps    7 Aug 17 13:23 STO -> ../STO/
+	drwxrwxr-x 2 gps gps 4096 Oct  4  2019 _STO_Tree_
+	drwxrwxr-x 2 gps gps 4096 Aug 13 17:26 _VFS_Tree_
+	-rw-rw-r-- 1 gps gps  487 Dec 16  2019 YACC_NOTES.txt
+	-rw-rw-r-- 1 gps gps 4118 Jan 20 19:19 Y_PARSE.cxx
+	-rw-rw-r-- 1 gps gps 1778 Aug 23 22:37 Y_PARSE_gen.cxx
+	-rw-rw-r-- 1 gps gps 1526 Jan 21 23:28 Y_PARSE.h
+
+#
+	They will go as the PSG breaks from the GEN_YACC_FROM_PSG
+	PSG_Tree/PSG_EXPRS_AFM // OMIT prefix PSG_ // but it is there ;-)
+
+	Y_Parse_MERGE AFM CALC EXPR SCRIPT PHRASE SCOPE MUX
+	Y_Parse_MERGE AFM e1 // gen_%s.%s e1 FILENAME_TAIL
+	// API absorbs exported DEMO USAGE
+	// API subset of shared space MUX // still have private elf info // WASM
+
+	MMAP_not_WASM
+
+	Must work in WASM, OK if preloaded fixed SCRIPT DATA, get SESS CTXT
+
+	MMAP of FILE // PERM // LIST // in own thread or process or shared
+	MMAP in GLOBAL // shared process sub-threads // QUOTA_PLENTY_FILES
+	MMAP in QUOTA // ALLOC permanent SESS growing ROM builtin and SCRIPT
+
+	HEAP ALLOC of memory // obtain by MB16 // byte [u24]
+	HEAP ALLOC of memory // obtain by MB128 // u64_pair [u24] // both u64
+	// u32_u16_u8_u8 // u24_bitfield_DCB # _CBA # _any_lhs_mid_rhs_bits
+
+	// lhs =  8 bits
+	// mid = 24 bits
+	// rhs =  0 bits
+	//
+	// << 8 // lose top bits // fill 0|1|any
+	// >> 8 // align bit0 // clear top bits // perfect int in WORD //
+
+	// lhs =  0 bits
+	// mid = 24 bits
+	// rhs =  8 bits
+	//
+	// >> 8 // align bit0 // clear top bits // perfect int in WORD //
+
+
+
+
+
+
+
+ EG2 
+
+  HILO
+  LOHI
+
+ EG_HERE PSG and call // compile DLL into MODULE UDEF
+
+ # CONTAINER # WASM # MMAP for this PROCESS THREAD # 
+ # LOADER # WASM # MMAP_FILE_3 # MyModule_MMAP_FILE # elf_segment builtin #
+ # BUILDER # gen WASM as unbanked MMAP_FILE # use libc_alloc # load_file #
+ # lib_api # every sub_module has own api within shared api space
+ # MERGE # This PSG + API claims all the above filenames as local_scope
+ # MERGE # local_scope # Y_PARSE
+
+ EG_HERE 

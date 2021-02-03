@@ -51,7 +51,7 @@ bool kf_cfg_CA_1:: late_init()
 		"\n"	// KEYFILE will add one leading space!
 		"CFG_DEMO_ONE\n"
 		"CFG_DEMO_ONE The main data store\n"
-		"CFG_DEMO_ONE for the time seriesdata\n"
+		"CFG_DEMO_ONE for the time series data\n"
 		"CFG_DEMO_ONE"
 	);
 
@@ -109,8 +109,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_db_pref.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"db_pref",		// name_sto
-		"db_pref",		// name_gui
+		"db_pref",			// name_sto
+		"db_pref",			// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The db_pref for the data",
@@ -124,8 +124,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_mysql_host.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"mysql_addr",		// name_sto
-		"MYSQL_addr",		// name_gui
+		"mysql_addr",			// name_sto
+		"MYSQL_addr",			// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The connection for the server - IP4 addr or DNS",
@@ -139,8 +139,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_mysql_port.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"mysql_port",		// name_sto
-		"MYSQL PORT number not NAME",			// name_gui
+		"mysql_port",			// name_sto
+		"MYSQL PORT number not NAME",	// name_gui
 		"0",				// default init val
 						// desc_sto
 		"The connection to the server - IP4 port",
@@ -153,8 +153,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_mysql_user.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"mysql_user",		// name_sto
-		"MYSQL user NAME",			// name_gui
+		"mysql_user",			// name_sto
+		"MYSQL user NAME",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user name",
@@ -167,8 +167,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_mysql_pass.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"mysql_pass",		// name_sto
-		"MYSQL user pass",			// name_gui
+		"mysql_pass",			// name_sto
+		"MYSQL user pass",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user pass",
@@ -181,8 +181,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_mysql_db.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"mysql_db",		// name_sto
-		"MYSQL db NAME",			// name_gui
+		"mysql_db",			// name_sto
+		"MYSQL db NAME",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The database name",
@@ -196,7 +196,7 @@ bool kf_cfg_CA_1:: late_init()
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
 		"mysql_rootuser",		// name_sto
-		"MYSQL rootuser NAME",			// name_gui
+		"MYSQL rootuser NAME",		// name_gui
 		"root",				// default init val
 						// desc_sto
 		"The rootuser name",
@@ -210,7 +210,7 @@ bool kf_cfg_CA_1:: late_init()
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
 		"mysql_rootpass",		// name_sto
-		"MYSQL user rootpass",			// name_gui
+		"MYSQL user rootpass",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user rootpass",
@@ -226,8 +226,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_pgsql_host.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"pgsql_addr",		// name_sto
-		"PGSQL_addr",		// name_gui
+		"pgsql_addr",			// name_sto
+		"PGSQL_addr",			// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The connection for the server - IP4 addr or DNS",
@@ -241,8 +241,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_pgsql_port.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"pgsql_port",		// name_sto
-		"PGSQL PORT NAME",			// name_gui
+		"pgsql_port",			// name_sto
+		"PGSQL PORT NAME",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The connection to the server - IP4 port",
@@ -255,8 +255,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_pgsql_user.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"pgsql_user",		// name_sto
-		"PGSQL user NAME",			// name_gui
+		"pgsql_user",			// name_sto
+		"PGSQL user NAME",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user name",
@@ -269,8 +269,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_pgsql_pass.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"pgsql_pass",		// name_sto
-		"PGSQL user pass",			// name_gui
+		"pgsql_pass",			// name_sto
+		"PGSQL user pass",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user pass",
@@ -283,8 +283,8 @@ bool kf_cfg_CA_1:: late_init()
 	var_pgsql_db.late_init(
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
-		"pgsql_db",		// name_sto
-		"PGSQL db NAME",			// name_gui
+		"pgsql_db",			// name_sto
+		"PGSQL db NAME",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The database name",
@@ -298,7 +298,7 @@ bool kf_cfg_CA_1:: late_init()
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
 		"pgsql_rootuser",		// name_sto
-		"PGSQL rootuser NAME",			// name_gui
+		"PGSQL rootuser NAME",		// name_gui
 		"root",				// default init val
 						// desc_sto
 		"The rootuser name",
@@ -312,7 +312,7 @@ bool kf_cfg_CA_1:: late_init()
 		GRP_DEMO_CONNECT,		// section
 		"STRING",			// vartype
 		"pgsql_rootpass",		// name_sto
-		"PGSQL user rootpass",			// name_gui
+		"PGSQL user rootpass",		// name_gui
 		"-",				// default init val
 						// desc_sto
 		"The user rootpass",

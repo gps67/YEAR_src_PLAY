@@ -1,0 +1,65 @@
+	2021-01-25
+
+	2021_01_Jan
+	2021-01-25_Parse_MATCH.txt
+
+	bool STREAM:: MATCH( ARGS ) {
+	//	// INDENTED
+	}
+
+	enum_states STREAM:: MATCH( ARGS ) {
+		NON_STARTER // silent FAIL ROUTE PATH not taken
+		MID_MATCH // expect xxx // or xx2 xx3 xx4 or ...
+		NON_MATCH // WARN POS expected xxx got yyy
+		YES_MATCH
+	 callers expectation
+	 	
+	 	COMITTED _to_PAGE _to_LINE
+		RESUME AT NEXT LINE
+	}
+
+	PAUSE_POINT during PARSE sweep
+	RESUME LATER but with [0 [i [N i++ // sweep CASES
+
+	PARSE SPLIT PAUSE_POINT RESUME_ZERO _ONE _TWO _MORE
+	require source remains in MMAP, we might overwrite bits of it
+	finite FILES sit in input buffers, no problem, in ROM too
+
+	Start with complete set of paths,
+	PLAY PARSER over test data
+	Upgrade path points to learned usage
+
+	MERGE 2 callers taking common path
+	COUNT n callers taking ROUTE
+	JUMP_to_SPECIFIC // add list of tasks to done, set_var,
+	BACK_to_GENERIC // merged ROUTE_MAP expects VAR_nn==PRE_SET_TO_VAR
+
+	// sort no-jump as most common
+	// sort check list DECODE
+	// sort move code jump
+
+
+	{
+
+		// lhs mid rhs
+		bitwidth_sum = bitwidth_rhs 
+
+		MATCH_PUNC("<<=",bitwidth_lhs) // erases TOP BITS
+		bitwidth_sum += bitwidth_lhs // ROTATE tracks this with you
+
+		MATCH_PUNC(">>=",bitwidth_sum) // erases RHS bits; align bit0
+		// align bit0 perfect // perfect int in WORD // expand
+
+		// search go back to find alternate word widths
+		// promote 8 to 16
+		// promote 16 to 32
+		// etc
+
+
+	};
+
+	MERGE COMMON routes, suggested by sample data, known_good_path
+
+
+
+

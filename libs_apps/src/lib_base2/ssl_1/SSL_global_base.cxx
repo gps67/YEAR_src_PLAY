@@ -10,6 +10,7 @@
 #include "str_base64.h"
 #include "fd_hold.h" // CHECK_can_write_file(name)
 #include "err_int.h" // get_SSL_error() - should be here maybe ?
+#include "util_buf.h" // blk_read_entire_file
 
 #ifndef WIN32
 extern "C" int getpid();
@@ -883,9 +884,10 @@ void SSL_global_base::RAND_on_program_load_0()
 	// gdb_invoke(true);
 	seed_file_read();
 	// put your app specific files here
-	call_RAND_load_file("app_init_file.ini", 32 );
-	call_RAND_load_file("keys/cfg_two.dat", 32 );
-	call_RAND_load_file("cfg_two.dat", 32 );
+	// not random sources but will have some differences
+	call_RAND_load_data_file("app_init_file.ini", 32 );
+	call_RAND_load_data_file("keys/cfg_two.dat", 32 );
+	call_RAND_load_data_file("cfg_two.dat", 32 );
 	errno_zero();
 
 	// contains 20 bytes entropy + 16 bytes allocated random
@@ -1078,14 +1080,14 @@ bool RAND_get_32_base64( buffer2 & RETVAR ) // caller provides BASE64 storage
 // C // not in class //
 bool call_RAND_load_file( const char * filename, int k_max )
 {
-
-	if(k_max < 1 ) k_max = 9999;
+	if(k_max < 1 ) k_max = 999;
 	int bytes = k_max * 1024;
 	bool ok = true;
-	ok = ok && RAND_load_file( filename, bytes ); // load all / NEVER A FIFO
+	int t = RAND_load_file( filename, bytes ); // load all / NEVER A FIFO
+	ok = ok && (t>0);
 	if(ok)  {
 		dgb_sleep_less(); // I am not mad
-		INFO("filename %s k_max %d", filename, k_max );
+		INFO("OK %s k_max %d got %d", filename, k_max, t );
 	} else {
 		// OK // dbg_sleep_more(); // allow optimistic RAND files
 		// /etc/motd ~/.profile  
@@ -1093,3 +1095,21 @@ bool call_RAND_load_file( const char * filename, int k_max )
 	}
 	return true;
 }
+
+// C // not in class //
+bool call_RAND_load_data_file( const char * filename, int k_max )
+{
+	if(k_max < 1 ) k_max = 98; // plenty
+	blk1 rand_buff;
+	rand_buff.get_space(3000);
+
+	if(!blk_read_entire_file( rand_buff, filename, k_max ))
+		return FAIL("%s", filename );
+
+	INFO("got %d bytes from %s", rand_buff.nbytes_used, filename );
+
+	RAND_add_blk( rand_buff );
+
+	return true;
+}
+

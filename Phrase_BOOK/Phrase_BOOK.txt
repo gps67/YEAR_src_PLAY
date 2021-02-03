@@ -1,0 +1,106 @@
+	Phrase_BOOK/
+	Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK_CSET.txt
+
+	CSET bit_map byte_map
+	struct scan_to_NL {
+
+		u8 *    P;      // csr
+		int     Y;      // counting line numbers
+		u8 *    P0;     // eof if P0 == 0 // else first char on line(x)
+		// 
+
+		/*!
+			file_zone is a P0P2 within MMAP_FILE
+
+			it can spontaneously relocate,
+			but somehow switches during on_cache_change_list
+
+			that means CPU isn't holding VARS in thread
+			that means CPU can cache VAR_EXPR if it wants to + can
+			cpu_var = * PTR
+			*PTR = cpu_var 
+			*PTR = cpu_var // via OPCODE u8 = WRITE_BYTE_INTO_WORD
+			
+			Surrounding USAGE enforces ever reducing P0P2
+			MMAP all file (or more) kept in ROM
+			Then earmark P0 at start of lines _auto_
+			ALSO keep BOLN_P0 = P0 for various CSR uses
+			KNOW outer p0p2_file_zone is "guaranteed" // or BOXED
+		*/
+		p0p2    file_zone; 
+	};
+
+	PSG_Tuplo_Structs
+	_auto_gen_
+	 -or- 
+	  DECL this.fieldname
+	  DECL VAR_NAME
+	  DECL FUNC(ARGS) // all these use SPEC
+	  DECL SPEC
+	  SPEC ...
+	-or- EPXR EXPR
+	
+	 NBYTES ITEM
+	  _auto_ VAR // EXPR_for_IDX_GET // import VAR // 
+
+	  SPEC { += ... } with VAR_POOLS
+
+	  SPEC += { SCRIPT }
+	  SPEC += {
+	  ... HERE ... 
+	  }
+
+	   auto_indent FILTER += "OBJ.field" /*
+	   	"MATCH '"%s.%s"' OBJ fieldname // or EXPR_field_data /*
+
+		GET_IDX_as_local_NAME lookup POOL key_expr var_data
+
+		 struct var_data {
+		  ITEM_t
+		   base_class OBJ_idx // ATTR[IDX] is OBJ_t & obj;
+		 };
+
+		 ITEM_t & item = 
+		 = ZONE / ITEM 
+
+		 MATCH "%s.%s" OBJ FIELD //
+		 // if you are an AUTO CTOR
+		 // if you need to invent an OBJ_idx
+		 // put it in a STBL lookup(STR0) { MUX ON_ on_VAR_NAME_EXPR }
+		 // GROUP CATEG "NEAR" {INFO ABOUT 'NEAR'} {SESS STO}
+		 // {SESS STO} {DATA} {FOLLOWS} // DIALECT
+		 
+		 // if in doubt return "OBJ.field" as spelling for self // ID
+
+		 MATCH "some-other-example-here" // add to FILTER MATCH POOL
+		 // MATCH VAR_POOLS EXPRS SCRIPTS
+		 // on MATCH "pattern" 
+		 // { pattern } // rewritten // FILTER += { pattern } { action }
+		 // pattern == SCRIPT.CURR_STEP.cache_var_on_patten_match
+
+		 // pattern == SCRIPT.CURR_STEP.cache_var_on_patten_match
+		 // pattern == pattern_VAR += EXTRAS
+
+		MATCH LEX.is_known_token_spelling // parser says cident99 
+		// parser says usable in SHELL VAR_NAME or OTHER_LANG VAR_NAME
+
+		MATCH LEX.is_VAR_NAME // parser says cident99 += filename
+		// filename_friendly
+
+		MATCH LEX.NAME.cident99_t // VAT SCRIPT EXPR NAME
+		[:ident:]
+		[A-Za-z0-9_\-\ // NOTE RISK - has interpret_as_RANGE_DASH
+		[A-Za-z0-9_]+
+		a1_a2_star( CSET_a1, CSET_a2 ) // CSET = ITEM || EXPR //
+		 a1 += "[A-Z]" // CAP1_CHECK ED // 
+		 a1 += "[a-z]"
+		 a1 += "[0-9]"
+		 a1 += "[0-9]"
+
+
+
+
+	   */
+

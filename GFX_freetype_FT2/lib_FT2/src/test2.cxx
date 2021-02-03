@@ -38,6 +38,8 @@ int main_two( argv_decoder & ARGS ) {
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
 
+	// recently added feature
+
 	FT2::ft2 ft;
 	ft.test1();
 
@@ -55,7 +57,7 @@ int main_two( argv_decoder & ARGS ) {
 	X_FontStr font_strs;
 	font_strs.set_helvetica();
 	font_strs.set_courier();
-	font_strs.set_point(72);
+	font_strs.set_point(72); // this is working
 
 	font_strs.print_fields();
 	win1.draw_green.XSetFont( (STR0) font_strs.join() );
@@ -65,6 +67,7 @@ int main_two( argv_decoder & ARGS ) {
 	win1.map();
 	win1.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
 	
+	INFO("CALLS disp.test1()");
 	// KEY
 	disp.test1();
 

@@ -1,0 +1,110 @@
+
+	Phrase_BOOK/
+	Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK_CSET.txt
+
+	PSG_Tuplo_Structs
+	 NBYTES ITEM
+	  _auto_ VAR // EXPR_for_IDX_GET // import VAR // 
+
+	  SPEC { += ... } with VAR_POOLS
+
+	  SPEC += { SCRIPT }
+	  SPEC += {
+	  ... HERE ... 
+	  }
+
+	   auto_indent FILTER += "OBJ.field" /*
+	   	"MATCH '"%s.%s"' OBJ fieldname // or EXPR_field_data /*
+
+		GET_IDX_as_local_NAME lookup POOL key_expr var_data
+
+		 struct var_data {
+		  ITEM_t
+		   base_class OBJ_idx // ATTR[IDX] is OBJ_t & obj;
+		 };
+
+		 ITEM_t & item = 
+		 = ZONE / ITEM 
+		 // GET SET BIND EXPR item
+
+		 MATCH "%s.%s" OBJ FIELD //
+		 // if you are an AUTO CTOR
+		 // if you need to invent an OBJ_idx
+		 // put it in a STBL lookup(STR0) { MUX ON_ on_VAR_NAME_EXPR }
+		 // GROUP CATEG "NEAR" {INFO ABOUT 'NEAR'} {SESS STO}
+		 // {SESS STO} {DATA} {FOLLOWS} // DIALECT
+		 
+		 // if in doubt return "OBJ.field" as spelling for self // ID
+
+		 MATCH "some-other-example-here" // add to FILTER MATCH POOL
+		 // MATCH VAR_POOLS EXPRS SCRIPTS
+		 // on MATCH "pattern" 
+		 // { pattern } // rewritten // FILTER += { pattern } { action }
+		 // pattern == SCRIPT.CURR_STEP.cache_var_on_patten_match
+
+		 // pattern == SCRIPT.CURR_STEP.cache_var_on_patten_match
+		 // pattern == pattern_VAR += EXTRAS
+
+		MATCH LEX.is_known_token_spelling // parser says cident99 
+		// parser says usable in SHELL VAR_NAME or OTHER_LANG VAR_NAME
+
+		MATCH LEX.is_VAR_NAME // parser says cident99 += filename
+		// filename_friendly
+
+		MATCH LEX.NAME.cident99_t // VAT SCRIPT EXPR NAME
+		[:ident:]
+		[A-Za-z0-9_\-\ // NOTE RISK - has interpret_as_RANGE_DASH
+		[A-Za-z0-9_]+
+		a1_a2_star( CSET_a1, CSET_a2 ) // CSET = ITEM || EXPR //
+		 a1 += "[A-Z]" // CAP1_CHECK ED // 
+		 a1 += "[a-z]"
+		 a1 += "[0-9]"
+		 a1 += "[0-9]"
+
+
+
+
+	   */
+
+	  PSG writes FILTERS each into POOL
+
+	   see
+	   /home/gps/YEAR/src/PLAY/
+	    libs_apps/
+	     src/
+	      mm3_scan-2003-02-23.tgz/
+	       utar://mm3_scan-2003-02-23/mm3_file/mm3_file_scan.h
+
+	   CSET
+	   	UDEF SINGLE_BYTE_LIMIT // but 8 bit clean
+	   	UDEF MULTI_BYTE_SCAN // utf8 of 8859 
+
+		STEP_MATCH
+
+		 BOOL_EXPR("ZONE += {
+		 	cset_bit_map cset_
+
+
+	  	check_cident99 { 
+		 prep_vars_SCRIPT {
+		  CSET_ CSET_A1 += RANGE('A','Z')
+		  CSET_ CSET_A1 += RANGE('a','z')
+		  CSET_ CSET_A1 += RANGE('0','9')
+		  CSET_ CSET_A2 += CSET_A1
+		  CSET_ CSET_A2 += CSET_STEP 
+
+		  if(LEX_BYTE_ZERO in [:UPPER:]) MATCH_SUB_STEP // MATCH_BYTE
+		  if(LEX_BYTE_NEXT in [:UPPER:]) NOT_CAP_ONE
+		 }
+		}
+	  	check_cap_one {
+		 at_LEX_BYTE_CSET("[:ident:]") 
+		 at_LEX_BYTE_CSET("[:UPPER:]") 
+		 at_LEX_BYTE_NEXT("[:ident_a2:]") // UDEF "_a2" RULE "[:%s_a2:]"
+		}
+	  	check_cap_one {
+		 at_LEX_BYTE_CSET("[:ident:]") 
+		 at_LEX_BYTE_CSET("[:UPPER:]") 
+		}

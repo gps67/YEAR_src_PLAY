@@ -1,0 +1,13 @@
+NAME=1986-04-24_Caesium_Scattered_Over_Europe
+PDF=${NAME}.pdf
+PNG=${NAME}_PG_%d.png
+
+D2=./tmp/
+[ -d $D2 ] || mkdir $D2 # bad bash shell quoting, but simple view has proper
+cd $D2 || FAIL cd $D2
+ask_do \
+mutool convert \
+-o "$PNG" \
+../$PDF \
+#
+# mutool -o "$PNG"

@@ -160,6 +160,7 @@ bool RAND_get_nn_into_blk( int nn, blk1 & blk );
 bool RAND_get_nn_bytes_of_random( int nn, blk1 & blk );
 bool RAND_get_32_base64( buffer2 & buf );
 bool call_RAND_load_file( const char * filename, int k_max );
+bool call_RAND_load_data_file( const char * filename, int k_max ); // PLAIN file
 
 // http://www.openssl.org/docs/crypto/X509_STORE_CTX_new.html
 // SSL_global_base * self_from_ctx( 

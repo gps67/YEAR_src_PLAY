@@ -372,6 +372,11 @@ dgb: $(PROG1_exec)
 	gdb --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
 	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 
+dgb_insight: $(PROG1_exec)
+	# debug
+	insight --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
+	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
+
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
 	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
 

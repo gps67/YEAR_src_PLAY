@@ -19,6 +19,13 @@ bool bool_main( int argc, char ** argv ) {
  	return FAIL("%d - 1 of 3 parameters plus ZERO", argc);
  }
 
+	// ../obj/ gen_ %s PSG_name
+	// ../obj/gen_%s
+	// ../obj/gen_%s_lex.lex
+	// ../obj/gen_%s_yacc.y
+	// ../obj/gen_%s_yacc.tab.cc // the PSG code
+	// ../obj/gen_%s_yacc.tab.hh // the PSG token pools and union
+
  	buffer1 PSG_File_left;
 	PSG_File_left.print( "%s%s%s", argv[1], argv[2], argv[3] ); // left gen e1
 

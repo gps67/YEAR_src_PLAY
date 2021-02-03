@@ -55,7 +55,10 @@ using namespace YY;
 
 
 extern	int yyparse( Y_Parse_t & parser );
+// call parser.parse()
 extern	void yyerror( Y_Parse_t & parser, const char * msg );
+// call parser.yy_error( msg )
+
 extern	bool gen_yyparse_parameter( buffer2 & out);
 
 

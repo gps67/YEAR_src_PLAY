@@ -77,18 +77,34 @@ draw_bitmap( FT_Bitmap*  bitmap,
 }
 
 void
-show_image( void )
+show_image( void ) // print image as ASCII 1-9A-F anti-aliases 0 is space
 {
   INFO("HERE");
   int  i, j;
-  const char * hexes = " 123456789ABCDEF";
+  const char * hexes = " 123456789ABCDEF"; // 0 is SPACE
 //  hexes = "    ----++++****";
 
   for ( i = 0; i < HEIGHT; i++ )
   {
+    u8 grey_back = ' ';
+    if(1)
+       grey_back = '.';
+
+    if( (i%10)==0) {
+    	grey_back = '-';
+    }
     for ( j = 0; j < WIDTH; j++ ) {
       u8 grey = image.get_xy_byte( j, i );
-      putchar( hexes[ grey >> 4  ] );
+      u8 grey_1 = grey >> 4;
+      u8 grey_char = hexes[ grey_1 ];
+      // background horizontal bars //
+      if( !grey_1 ) grey_char = grey_back;
+      // background vertical bars //
+      if(( (j+1) % 10 ) == 0 ) {
+	      u8 grey2 = (((j+1) / 10) % 10)*16;
+	      if( !grey_1 ) grey_char = '|';
+      }
+      putchar( grey_char );
     }
     putchar( '\n' );
   }
@@ -176,6 +192,7 @@ using namespace FT2;
  bool ft2 :: test1() {
  	STR0 font_file = 
 	"/usr/share/fonts/truetype/liberation2/LiberationMono-Regular.ttf";
+	INFO("using %s", font_file );
 
  	if (!face1_load_font( font_file )) return FAIL_FAILED();
 	// VALID FT_Face face // face

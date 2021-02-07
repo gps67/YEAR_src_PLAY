@@ -1,15 +1,16 @@
 
-TGT=WIN32
+# TGT=WIN32
 ## # TGT=LGX
 ## # TGT=i586
 
 
 prefix=/home/gps/YEAR/src/libs_apps
 exec_prefix=${prefix}
-libdir=${exec_prefix}/libs_apps_obj_${TGT}
+# libdir=${exec_prefix}/libs_apps_obj_${TGT}
+libdir=${exec_prefix}/build_${TGT}_E6320
 includedir=${prefix}/include
 
-Name: libs_apps_base_into_base1
+Name: _into_base1
 Description: Libraries and Applications - base is core object model
 Version: 0.1.2
 
@@ -31,5 +32,5 @@ Requires: \
 #
 # obviously -lbase1 does not go into base1
 
-Libs: 
+Libs: -L${libdir} -Wl,--rpath=${libdir}
 Cflags: -DTGT_${TGT}

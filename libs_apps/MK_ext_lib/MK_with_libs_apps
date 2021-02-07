@@ -6,7 +6,7 @@
 	#
 
 
-	DIR_libs_apps =/home/gps/YEAR/src/libs_apps
+	DIR_libs_apps =/home/gps/YEAR/src/PLAY/libs_apps
 
 # make is clever so including early does not matter much, vars used later
 # how stuff is built, and my LIST_xxx vars

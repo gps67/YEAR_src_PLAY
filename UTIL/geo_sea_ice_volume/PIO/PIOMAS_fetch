@@ -11,6 +11,7 @@
 # it is cheeky to go directly there, but a lot easier
 # last URL=line wins
 # in turn, we are only get-if-modified # cron days 1-10 # bet its tues 4
+# cant easily automate, as in Jan get Dec file from previous year
 # 
 
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz

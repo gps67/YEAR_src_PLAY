@@ -18,6 +18,7 @@ _DEL_
 *_lex.cc
 *_yacc.tab.hh
 gen_e1_*
+*/build_*
 
 # Compiled Object files
 *.slo

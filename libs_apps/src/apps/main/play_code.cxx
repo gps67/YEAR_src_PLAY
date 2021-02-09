@@ -17,9 +17,11 @@
 #include "amix_main.h"
 #include "dir_name_ext.h"
 
-
 #include "cfg_demo_1.h"
 #include "sql_link_MySQL.h"
+
+#include "str_base64.h"
+#include "blk_base64.h"
 
 struct SPOUT_session {
 	// curr_pen // _inks_from_ _curr_pallete _inks
@@ -59,6 +61,27 @@ bool cmd_SPOUT(int argc, char ** argv )
 		return FAIL_FAILED();
 	}
 
+
+	return PASS("does");
+}
+
+bool cmd_base64_demo(int argc, char ** argv ) 
+{
+	INFO( "0 %s", "CALLED" );
+
+	blk_base64 filter;
+	str_base64 filter_glib;
+
+	blk1 blk_in;
+	blk1 blk_out;
+	blk1 blk_out_glib;
+
+	blk_in = "HELLO";
+	if(!filter.encode( blk_in, blk_out )) return FAIL_FAILED();
+	if(!filter_glib.encode( blk_in, blk_out_glib )) return FAIL_FAILED();
+
+	INFO( "1 %s", (STR0) blk_out );
+	INFO( "2 %s", (STR0) blk_out_glib );
 
 	return PASS("does");
 }
@@ -110,6 +133,7 @@ bool cmd_play_code(int argc, char ** argv )
 
 	INFO("invoking-cmd1 %s", (STR0) cmd1 );
 
+	if( cmd1 == "base64_demo" ) return cmd_base64_demo( argc, argv );
 	if( cmd1 == "cfg_demo" ) return cmd_cfg_demo( argc, argv );
 	if( cmd1 == "SPOUT" ) return cmd_SPOUT( argc, argv );
 	if( cmd1 == "HT_main" ) return 0==HT_main(); // ( argc, argv );

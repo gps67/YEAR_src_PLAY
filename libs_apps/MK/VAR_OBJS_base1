@@ -169,6 +169,12 @@ endif
 #	TODO += scan_mm3	# 
 #	TODO += menus.o		# the app
 
+	# to get rid of glib need own BASE64
+	# rename from str_base64, to glib_base64
+	# TODO remove include glib.h and fix that
+
+	OBJS_base1 += blk_base64.o
+
 
 
 edit_line.o: edit_line_win32.cxx

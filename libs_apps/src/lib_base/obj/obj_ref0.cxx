@@ -44,7 +44,7 @@ void ref_tally_t::print_leaked_report()
 	fprintf(stderr, "\n" );
 	fprintf(stderr, "ref_tally_report\n" );
 	fprintf(stderr, "ref_tally: n_newed   = %4d\n", n_newed );
-	fprintf(stderr, "ref_tally: n_static   = %4d\n", n_static );
+	fprintf(stderr, "ref_tally: n_static  = %4d\n", n_static );
 	fprintf(stderr, "ref_tally: n_fixed   = %4d\n", n_fixed );
 	fprintf(stderr, "ref_tally: n_fixed   = %4d\n", n_fixed );
 	fprintf(stderr, "ref_tally: n_unfixed = %4d\n", n_unfixed );

@@ -1,0 +1,45 @@
+
+	BASE64
+	BASE64( '+', '/' ) // PROPER standard
+	BASE64URL( '-', '_' ) // for URL and filename // - means xxx
+
+	0+	A-Z
+	26+	a-z
+	52+	0-9
+	62	+
+	63	/	- .
+	PAD	=
+
+ 3 bytes become 4 chars
+ 6 data bits, char[data]
+
+ less than 3 becomes less than 4
+ pad output to multiple of 4 with '='
+
+ less than 3, is shifted left, top of 24 bits, fill 0
+ so always 4, and = is illegal, values 000000b
+
+data char
+ 3 -> 4
+ 2 -> 3 + =
+ 1 -> 2 + ==
+
+rfc4648
+
+ BASE32
+ 	A-Z
+	2-7
+	PAD =
+
+ BASE32
+ 	0-9
+	A-V
+
+ BASE16
+ 	0-9
+	A-F
+	
+
+
+
+

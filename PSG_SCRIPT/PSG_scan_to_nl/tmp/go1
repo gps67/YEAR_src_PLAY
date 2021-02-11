@@ -1,0 +1,19 @@
+# dot <<\-  
+ dot -Tps <<\EOT  | gv 
+
+digraph test123 {
+ 	w_if	-> w_eb1	[ label="if" ];
+	w_eb1	-> w_eb2	[ label="(" ];
+	w_eb2	-> w_eb3	[ label="EB" ];
+	w_eb3	-> w_eb4	[ label=")" ];
+	w_eb4	-> w_eb5	[ label="{" ];
+	w_eb5	-> w_eb6	[ label="BLK" ];
+	w_eb6	-> w_eb7	[ label="}" ];
+	w_eb7	-> w_eb8	[ label="else" ];
+	w_eb8	-> w_eb9	[ label="{" ];
+	w_eb9	-> w_ebA	[ label="BLK2" ];
+	w_ebA	-> w_ebB	[ label="}" ];
+	w_eb7	-> w_ebB	;
+	w_eb4	-> w_eb7	[ label="STMT;" ];
+	w_eb8	-> w_ebB	[ label="STMT;" ];
+}

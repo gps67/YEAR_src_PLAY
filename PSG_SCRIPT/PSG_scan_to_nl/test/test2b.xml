@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<gjob:Helping xmlns:gjob="http://www.gnome.org/some-location">
+  <gjob:Jobs>
+
+    <gjob:Job>
+      <gjob:Project ID="3"/>
+      <gjob:Application>GBackup</gjob:Application>
+      <gjob:Category>Development</gjob:Category>
+
+      <gjob:Update>
+        <gjob:Status>Open</gjob:Status>
+        <gjob:Modified>Mon, 07 Jun 1999 20:27:45 -0400 MET DST</gjob:Modified>
+        <gjob:Salary>USD 0.00 &lt; zero &#123; 99 &#x20AC;  </gjob:Salary>
+      </gjob:Update>
+
+      <gjob:Developers>
+        <gjob:Developer>
+        </gjob:Developer>
+      </gjob:Developers>
+
+
+  </gjob:Jobs>
+</gjob:Helping>
+

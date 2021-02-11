@@ -1,0 +1,62 @@
+
+	ASCII
+	8859
+	BYTE
+	utf8
+	u16hilo
+	u16lohi
+	bool needs sgml_amp
+	bool needs troff_backslash
+	bool uses space_or_other_non_word_ness
+	bool decimal_ditits_only {
+		0-9
+		. e -
+		x H
+		A-F a-f UPPER_lower
+		
+	}
+
+	compile_time_cset_type
+	vtbl str subclass for cset and contents
+
+buffer_str_builder
+
+	staircase cset - upgrade buffer from EMPTY to ASCII to 8859 to UTF8
+
+	additional flags - word-edge-left, multi-word-sp, has_ml, is_ml,
+
+	byte_map - action on first use of char_x[x]
+
+	allocate resulting strings in mark-release-zone
+	prefer input text 8859 but recode to utf8 if extra found
+	cset_cheat - another cset_BYTE using utf8_transport
+
+	putc_unicode( int )
+
+		putc_ascii( c )
+
+	put_into_XXX( e_cset from_cset, const char * s )
+	put_from_8859( str0 s )
+	put_from_utf8( str0 s )
+	put_from_same( str0 s )
+	put_from_cset( e_cset cset, str0 s )
+
+struct str0_plain
+{
+	u8 * str_0;
+};
+
+struct str0_ascii : public str0_plain {};
+struct str0_8859 : public str0_plain {};
+struct str0_utf8 : public str0_plain {};
+
+struct p0p2_cset : == form of byte transport
+
+struct str_sto
+{
+	e_cset cset;
+	u8 * str_0;
+};
+
+
+

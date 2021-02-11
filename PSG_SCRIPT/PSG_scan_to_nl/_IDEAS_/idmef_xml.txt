@@ -1,0 +1,17 @@
+
+http://tools.ietf.org/wg/idwg/draft-ietf-idwg-idmef-xml/draft-ietf-idwg-idmef-xml-16.txt
+
+ The Intrusion Detection Message Exchange Format
+                      draft-ietf-idwg-idmef-xml-16
+
+
+describes a load of format
+	YEAR-MM-DD
+	hh:mm:ss
+	hh:mm:ss+00:00
+	hh:mm:ss+01:00
+
+...
+
+Prelude = monitor MGMT system with ant mascot
+https://trac.prelude-ids.org/wiki/PreludeIDMEF 

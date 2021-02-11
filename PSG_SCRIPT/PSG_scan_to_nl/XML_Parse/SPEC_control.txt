@@ -1,0 +1,160 @@
+XML parse is a split-responsibility between the standard functions,
+and specialist fuctions on a per elem_spec basis.
+
+Those "specialist" elements, and attribute parsers, use standard
+building blocks, so its no so bad!
+
+	<window
+		x_pos="11"	$XPOS
+		...
+	>
+
+	this might make XML look a bit like TCL-Configure
+
+	int | float	# default unit = pixels
+	int UNIT	# eg "7 mm"
+	float UNIT	# eg "11.4 pt"
+	keyword		# eg "TOP"
+	key_phrase	# eg "TOP LEFT"
+	expr_1154	# eg "X0 + EM + x_step('-')"
+
+	XML is not supposed to parse a target language,
+	but it might as well try !
+	At least to catch simple lexical things "NAME",
+	and then to call the language expression parser, which
+	picks its text direct from the input buffer, with:
+
+		p0p2 - attribute bounds identified beforehand ?
+		Q1_Q2_used = Q2
+		PARSE_CTXT = XML_ATTR_Q2_lang_expr
+
+Attributes that produce AST nodes, (eg EXPR{ ... }) or even simple fixed
+types FLOAT & x_pos, will need a place to put those values.
+The C++ call stack is an initial place, and then place in ELEMENT 
+
+Specialist ELEMENT parsers will adopt and adapt Stack_Layer obj * parse_obj
+(eg to declare the field where X_pos is), but will also change the parsing
+slightly, EG UL/LI discards gaps between LI elements. It also places
+its results (mid-way) in a list of non-li objects (unless LI is retained).
+
+EG UL parses LI
+
+Initially, the surrounding element is some generic thing that allows UL.
+The parser detects <UL ... > and invokes the elem_spec for UL.
+
+	push stack layer
+	obtain elem_spec for UL
+	obtain its handler for attributes (default retain as XML attr list)
+
+The parser detects some attribute in <UL ... id="1234" ...>
+
+	resolve attr_name "id" from p0p2
+	resolve attr_value "1234" from p0p2 (Q2 used)
+	store result in stack_layer of XML_Parse::Stack
+
+The parser detects '--' in start tag ...
+
+	parse comment within start tag
+
+The parser detects '>' in <UL ... >
+
+	tell stack that there are no more attributes
+
+The parser detects GAP leading upto (wait_and_see)
+
+	elem_spec says IGNORE GAPS between LI
+
+
+The parser detects <!--comment--> leading upto (wait_and_see)
+
+	elem_spec says 
+		+ kill comments
+		+ move_to top
+		+ convert to fake LI which isnt an LI
+		+ ...
+
+The parser detects <LI ...
+
+	obtain elem_spec for LI from UL and p0p2 "LI"
+
+		fast comparison with "LI" --> matches OK (else fallback)
+		return the elem_spec_LI for UL
+
+	push stack frame - as usual
+	handler is more or less plain XML
+	it accepts id="1234" which it adds to XML_ATTR_LIST
+	it starts a TEXT_BLOCK elem_breaks_word wrap_default_off_and_expected?
+	it accepts SPEC->ONE{ long_list } of text || elem_B | U | A | ....
+	at end </LI> it starts with the default elem_inst ((with buffered lists))
+	OPTION:
+		copy to ordinary elem_inst (without buffer excess)
+	OPTION:
+		convert to special node (not used here)
+
+	stack_pop
+	UL then gets control (focus unravels with stack)
+	UL receives ELEM(LI_spec)(LI_data) as {? stack_frame_layer ?}
+
+		convert empty LI to special ? detect for later subst
+
+	UL then adds node to LI_list - a special field that it maintains
+
+		actually, UL uses the usual elem_inst->data_list
+
+The parse detects </UL> { after more LI }
+
+	at_end {
+		compress the collected list buffer to one
+		? check each is OK ?
+		? check for empty list ?
+
+		create return object elem_inst_UL( elem_spec, attr_list, data_list )
+		As it happens, that is derived from a plain elem_inst,
+		but of the known_subclass.
+
+		OPTION: remove all <LI> tags, and their id tags!
+		(( thats why XML data is XML all the way through!
+		this is only an exaple of an app object, but its
+		one that works best untouched! ))
+	}
+
+-----------------
+
+OK - where/how does elem_spec take control
+
+	it provides lookup functions for sub-elem sub-attr
+	it provides some flags
+		is_pre
+		gaps_not_text_between_child_items {
+			this infers that child element_breaks_word as sp
+		}
+		...
+
+	attr_spec - provides
+
+		parse
+			_int
+			_float
+			_name
+			_X_expr
+			_...
+
+	var_expr
+
+		save data field as 
+
+			INST.VAR_POOL [ name ] = value
+			INST.VAR_POOL [ name ] = PAIR( name, value )
+			INST.VAR_POOL [ name ] = XML_ATTR( name, value )
+
+			EXPR.EXPR
+
+			INST.TYPE_OFFS(type_spec, offs)
+
+	elem_spec 
+
+		connect "attrname" with attr_spec and var_expr
+
+	
+
+

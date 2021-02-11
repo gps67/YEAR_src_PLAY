@@ -1,0 +1,85 @@
+XML namespaces are a hassle,
+
+MOST 
+	introduce namespaces at the top element
+
+should each NS have its OWN DTD ?
+
+XML without a DTD means what ??
+
+
+EG:
+: standard intro XML file, no DTD activated
+
+	<?xml version="1.0" encoding="UTF-8"?>
+
+: top element claims use of "rdf:" namespace
+: it also introduces 6 namespaces for general use
+: must detect xmlns:name to see the declarations
+: note that ns has local abbreviation, global identifier URL
+: note that spaces around ' = ' are illegal - misicbrainz
+
+	 <rdf:RDF
+	 	xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 	xmlns:dc  = "http://purl.org/dc/elements/1.1/"
+	 	xmlns:mq  = "http://musicbrainz.org/mm/mq-1.1#"
+	 	xmlns:mm  = "http://musicbrainz.org/mm/mm-2.1#"
+	 	xmlns:ar  = "http://musicbrainz.org/ar/ar-1.0#"
+	 	xmlns:az  = "http://www.amazon.com/gp/aws/landing.html#">
+
+: DEFINITIONS
+: name_uri may not be empty: xmlns:rfd="nonempty" -- xmlns prefix used
+: namespace prefix	rdf
+: namespace name	"http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+: name_uri may not be empty: xmlns:rfd="nonempty" -- xmlns prefix used
+
+: xmlns = "may_be_empty"
+: namespace name	$(default namespace _f_r_o_m_ element)
+
+: <EL xmlns:NS="xxx">
+: NS:EL
+
+: PSG :
+: Attribute Names for Namespace Declaration
+: NSAttName 		::= 	PrefixedAttName		/* xmlns:rdf */ |
+: NSAttName 		::= 	DefaultAttName		/* xmlns */
+: PrefixedAttName 	::= 	'xmlns:' NCName		/* xmlns:rdf */ |
+: DefaultAttName 	::= 	'xmlns'			/* xmlns */ |
+: NCName 		::= 	(Letter | '_') (NCNameChar)*	/* "rfd" */
+: NCNameChar 		::= 	Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
+
+
+: now just use mq: namespace and (no DTD) Result elem from it
+
+	 <mq:Result>
+	  <mq:status>OK</mq:status>
+	  <mm:albumList>
+	   <rdf:Bag>
+	    <rdf:li rdf:res
+
+: namespace remains available until Element_End, or overridden
+
+: DEFAULT namespace makes sense, onece set, all subs are in same NS, but:
+: attributes are not in same ns ??
+
+: STUPID:
+: note the missing namespace in the attribute declaration
+	<EL
+		xmlns = 'something'
+		xmlns:two='URI2'
+
+: remove the default namesapce
+	 <EL 
+		xmlns=""
+
+
+: STUPID:
+: <EL xmlns:NS1 = ""> -- empty URI means this isnt a DEFAULT namespacae
+
+Generating or Recreating Output
+
+	if the logic is available, normalise
+	option: always add prefix
+	option: use default namespace
+	option: 
+

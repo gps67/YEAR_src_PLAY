@@ -1,0 +1,20 @@
+	scan_to_nl_subline
+
+		u8 * P
+
+		no virtual functions
+		no P0, or Y
+		scan_most_things except
+			scan_nl
+			scan_eof
+
+	scan_to_nl_base
+		u8 * P0
+		int Y
+
+		scan_nl
+		scan_eof
+		report_...
+
+		things that cross the end of line ?
+	

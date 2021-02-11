@@ -1,0 +1,1 @@
+rm -f   c1.exec x1.exec scan_proc_partitions .o c1.o x1.o .o  file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_xml_1.o lex_lookup.o scan_to_nl_P.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_xml_lex.o map_file.o scan_file_base.o fa tclIndex rpt1.csv libscan.a

@@ -1,0 +1,158 @@
+From PSG / LEX description,
+generate x86 ASM
+
+PORT:
+	OK - not portable, but might be layerable
+	eg uses 3 regiusters here, 2 there , 3 temps ...
+	so M68K would use A1 A2 ... D1 D2 ...
+	so ARM would use ...
+	so MEM would use a struct of vars
+	so _C_ would use vars called: P1 P2
+
+	Layer on top of ASM,
+	nb limited to the subset of ASM we are using ...
+	phrase book:
+
+		LEX_P0 = SRC	// usually kept in a struct
+		LEX_P2 = SRC
+		STORE_SRC = SRC
+
+		a = *SRC++	//  alpha a letter
+		if_a_IS_NULL {
+			call_check_NULL_bytes # SRC is already ++
+			if_overflow goto got_EOF_from_$HERE
+		}
+
+		COMPARE_a_SPACE { // unsigned a
+		 if_equal {
+			goto got_a_space_from_$HERE
+			/*
+				or here
+					handle the end of the previous LEX
+					handle this whitespace
+					... eg eat WS at EOLN ?
+					find start of next LEX
+					goto its handler, plausible
+			*/
+		 }
+		 if_less {
+			goto got_a_CTRL_from_$HERE
+		 }
+		 if_more goto got_above_SP
+		}
+
+ LABEL: got_above_SP
+
+		COMPARE_a 'A' {
+		 if_same {
+			goto got_UPPER
+		 }
+		 if_less {
+			.. complex binary split of ASCII range
+			.. the sort of thing machines would generate well
+			.. but slightly less readble?
+		 }
+		 if_more {
+			COMPARE_a 'Z' {
+			 if_same -
+			 if_less -
+			 if_less_or_same {
+				goto got_UPPER
+			 }
+			 if_more {
+				// its lower or
+				// or  [ \ ] ^ _ ` 
+				// or  { | } ~ DEL
+				// or its 8859 HIGH
+			}
+		 }
+
+	OR if using the C++ style bit_map or byte_map
+
+		a = *SRC++
+		b = BYTE_MAP[ a ] // global table - 
+		/*
+			is_a1_C
+			is_a2_C
+			is_a1_UDEF	// allow XML to have extra names?
+			is_a2_UDEF
+			is_digit
+			is_digit_hex
+			is_PUNCT
+			is_SPACE_TAB_CR_LF_FF_etc
+			is_HIGHBIT
+			is_SGML_special == IS_PUNCT!
+
+			is_UTF8_prefix // or CALL a = * SRC ++ // with overflow
+			is_CTRL
+			is_NUL_but_not_EOF
+			is_EOF_NUL
+			is_NUL_maybe_EOF
+		*/
+
+ANYHOW - BACK TO ASM:
+
+	a = *SRC ++
+
+		SRC == SI
+		a = AL, probably EAX, a is (probably) unsigned, but EOF?
+
+	CMP A '@'
+		all CPU's have broadly similar flag usage
+		GEN would need to merge less/same/more
+
+	CTXT is a pointer to a struct containing pointers to everything
+
+	CTXT -> THREAD -> id // thread_id
+	CTXT -> THREAD -> error_code
+	CTXT -> THREAD -> thread_locks_held
+	CTXT -> THREAD -> etc
+	CTXT -> PARSER -> LEX_P0
+	CTXT -> PARSER -> LEX_P0
+	CTXT -> PARSER -> STBL_modules
+	CTXT -> PARSER -> STBL_classes
+	CTXT -> PARSER -> STBL_functions
+	CTXT -> PARSER -> STBL_variables
+	CTXT -> PARSER -> curr_module
+	CTXT -> PARSER -> curr_class
+	CTXT -> PARSER -> curr_function
+	CTXT -> PARSER -> PSG_position
+	CTXT -> PARSER -> PSG_stack
+	CTXT -> PARSER -> STORE_SRC
+
+REGISTERS:
+	A
+	B
+	C
+	D
+	SRC
+	DST
+	CTXT	- could steal BP for this, and do the SP math?
+
+CALL - retaining common CTXT
+
+	BP == CTXT not changed by calling function
+	SP = common_SP + known_value - but only if LEVELS known
+	BP_setup - when PSG called
+	BP_adjust - when calling C code
+
+LAYERS
+
+	the LEX parser uses
+
+		SRC	P0	SI
+		MAP	_	?DI? BP[ map ]
+		a	eax
+		CTXT	_	BP (tricky) FG/GS ? BP[ ctxt ] DI?
+
+	
+
+
+86-64-BIT = loads of registers!
+
+	locate optimizing_assembly.pdf
+	shows how many are used to pass parameters between functions
+	shows haw many left to keep them!
+
+
+

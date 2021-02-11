@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<top>
+ <BR/>
+ <!-- comment -->
+ <!--
+	multi
+	line
+	comment
+ -->
+ <![CDATA[ quoted &amp; <x/> ]]>
+ <![cdata[ quoted &amp; <x/> ]]>
+ <?php PI Processing Instruction ?>
+</top>
+

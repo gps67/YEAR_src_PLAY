@@ -1,0 +1,38 @@
+# go_tarball
+
+this_dir=`pwd -P`
+D0=`dirname $this_dir`
+d1=`basename $this_dir`
+
+# it doesnt matter, but it should be dated
+if name=`expr match $d1 '\(.*\)-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]'`
+then
+	: OK
+	: d1="$name"
+else
+	echo "expected name-2000-12-31 got $d1"
+	exit 1
+fi
+
+
+rm -f *.pyc
+
+cd $D0
+pwd
+
+if : false :
+then
+	tar_file=$d1.tgz
+	Z=-z
+else
+	tar_file=$d1.tar.bz2
+	Z=-I
+fi
+
+tmp_file=$d1.tmp
+
+set -x
+if tar $Z --totals -vcf $tmp_file $d1
+then
+	mv -f $tmp_file $tar_file
+fi

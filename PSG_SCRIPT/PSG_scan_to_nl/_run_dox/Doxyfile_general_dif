@@ -1,0 +1,18 @@
+## PROJECT_NAME           = accts
+## OUTPUT_DIRECTORY       = /home/gps/2002_gps/src/dox/accts/
+## INPUT                  = ../src/accts/
+
+WARN_LOGFILE           = _dox_warn_file.txt
+
+INTERNAL_DOCS          = YES
+RECURSIVE              = YES
+ENUM_VALUES_PER_LINE   = 1
+SORT_MEMBER_DOCS       = NO
+HIDE_SCOPE_NAMES       = YES
+SOURCE_BROWSER         = YES
+GENERATE_LATEX         = NO
+INLINE_SOURCES         = YES
+
+####### > INCLUDE_PATH           = 
+####### > TAGFILES               = 
+####### GENERATE_TAGFILE       = 

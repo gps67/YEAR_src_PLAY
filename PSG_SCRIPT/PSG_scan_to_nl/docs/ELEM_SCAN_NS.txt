@@ -1,0 +1,56 @@
+Three+ approaches to scanning elements (parsing the opening tag)
+Maybe the app can choose its method ...
+
+Double layer Parse_Tokenise and Process_Input
+
+	whilst parsing the input tag, at any time,
+	if xmlns: is found on an attribute, (the tag itself is renamed)
+	the current tag-parse is broken, and rolled back to start,
+	then restarted with the correct NS:TAG
+
+	This method is chosen because TAG is unlikely to be recognised,
+	because NS:TAG is rare,
+	because xlmns: _SHOULD_be on the first attr (TODO look),
+	because the default handler can learn to cope with it,
+	because roll-back is quite easy 
+	because it still allows parse first time, with a few double-backs
+
+WHY
+
+	<frame
+		x="57"
+		y="34"
+		w="600"
+		h="400"
+	>
+
+	Tokeniser finds [frame[ and not_xlmns and not '>'
+	Tokeniser looks up frame to find frame_tag_parser
+	Tag_Parser creates a struct frame_tag_parser_struct
+	Tokeniser asks Parser to resolve attr 'x'
+	Parser returns {field_x} #integer_expr_22 into #register_int1
+	Tokeniser parses '57' and quotes and following space into reg1
+	Tokeniser calls set_attr_int( field_x, int_reg1 )
+
+	Tokeniser and Parser are the SAME thing ??
+	so Parser has to be a sub-class, or plug-in-friendly
+	It can use or ignore the extra info such as 'original string format'
+	EG a de-serialiser would build objects and drop transmission format
+
+	lex
+		integer - of any format
+		integer of format FFH 0xFF 256 1,0000,0000b 
+		tcl label 'start' 'end' 
+		tcl val_scale '12 pt'
+		simple_name a1a2star
+		simple_name_but_not_so_simple [list_of_word_parts]
+		float 11.2
+		URL_form_1 <pre-parsed-or-not>
+	psg
+		!javascript_function(a+b*val['a'])
+
+SO
+
+	start with a vanilla tag handler that doesnt do much
+	it like to know what CSET it requires for strings
+		ASCII / utf8 / 8859 / sgml_amp_required

@@ -1,0 +1,17 @@
+
+	# LIBSAPPS =/home/gps/2000/src/libs_apps
+	# hardcoded into its .../lib/pkgconfig/XXX.pc files
+
+	PKGS += libs_apps_base2
+	INCL += `pkg-config $(PKGS) --cflags`
+	LIBS += `pkg-config $(PKGS) --libs`
+
+        PKG_CONFIG_dirs += /home/gps/YEAR/src/libs_apps/lib_pkgconfig/$(TGT)
+        PKG_CONFIG_dirs += /tools/2000/libs/lib/pkgconfig
+        PKG_CONFIG_dirs += /tools/2000/gtk/lib/pkgconfig
+        PKG_CONFIG_dirs += /tools/2000/X11R6/lib/pkgconfig
+
+        SP=$(empty) $(empty)# SINGLE SPACE
+        COLON=:# no  spaces
+        PKG_CONFIG_PATH=$(subst $(SP),$(COLON),$(PKG_CONFIG_dirs))
+	export PKG_CONFIG_PATH

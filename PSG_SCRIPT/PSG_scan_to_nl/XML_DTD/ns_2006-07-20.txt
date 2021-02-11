@@ -1,0 +1,132 @@
+ns
+
+2. Declaring Namespaces
+
+(see 4[11])
+
+Attribue ::= NSAttName=AttValue
+
+	xmlns:pfx="http://www.domain.dom/schema/name"
+
+		this is now available, as abbrev 'pfx'
+
+		can have multiple pfx1, pfx2 introductions
+
+	xmlns="http://www.domain.dom/schema/name"
+
+		this is now the default
+
+!		you cant be clear and use "pfx:elem"
+!		you must recognise "elem"
+
+	xmlns=""
+
+		that cancels the default
+
+		Do I need to cancel it to use an ELEM that isnt in N_S ?
+
+Attribue ::= QName=AttValue
+
+	pfx:width="72pt"
+
+	5.3: pfx2:width conflicts, if (expanded) FullNamespaceName is same
+
+NSAttName ::|= PrefixedAttName | DefaultAttName
+
+	NSAttName introduces a (new) namespace + prefix
+
+PrefixedAttName ::= 'xmlns:' NCName
+DefaultAttName 	::= 	'xmlns'
+
+NCName 	::= 	(Letter | '_') (NCNameChar)*
+NCNameChar 	::= 	Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
+
+
+<ELEM xmlns="FullNamespaceName"> and now its the default </ELEM>
+<ELEM xmlns:pfx="FullNamespaceName"> not default? pfx is defined </ELEM>
+
+	pfx may vary between documents, but FulNamespaceName can match
+
+	Fullname match is case sensitive
+
+	pfx should not start with "xml" except by appointment
+
+	this declaration can happen BY DEFAULT from the DTD !!
+
+		a non-validating XML processor "might" not read the DTD
+		"for correct operation":
+			provide the declaration in the document
+			maybe in the "internal subset of the dtd"
+
+3. Qualified Names
+
+	LocalPart	- where pfx not needed
+	pfx:LocalPart
+
+	can be used as:
+		element name
+		attrute name
+	?	DOCTYPE QNAME	?
+
+4.
+
+	xmlns: as a prefix doesnt have a FullNamespaceName
+	xml: has "http://www.w3.org/XML/1998/namespace" as its FullNamespaceName
+
+	[11] finally - how to define a Namespace - hidden here to test you
+
+5.
+5.1 Namespace Scoping
+
+	this section is poor
+		"is considered to apply"
+	but then the example example fails to show any defaulting
+	it has been typed again. Maybe some words are mis-translated:
+
+	to apply -for- is available
+
+5.2 Namespace Defaulting
+
+	applies to this ELEM (if not already specified)
+
+		so you have to read the atts to see the pfx:ELEM
+
+	applies to ALL elements with no prefix (inside)
+
+	NOT apply DIRECTLY to attributes
+
+		muddy words
+
+6 non-conformance of language
+
+""
+	An XML document conforms to this specification if all other tokens in
+	the document which are required, for XML conformance, to match the XML
+	production for Name, match this specification's production for NCName.
+
+""
+
+((
+	use PRODUCTION QName for element TYPES and attribute names
+	else use PRODUCTION Name, for entity_names, PI_targets, notations
+))
+
+
+A2
+	attribute name
+
+		doesnt have a type or instance
+		because the clever ones didnt need such wrinkles
+		Since then, its remained obvious, but floundered
+		on attribute ctype fixed default value implied nonense
+
+	element type
+
+		really means elem_name or elem_type's name
+		elem->spec->name
+	
+	element
+
+		really means element instance: elem_inst
+
+

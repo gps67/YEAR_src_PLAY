@@ -1,0 +1,3 @@
+gdb -w --args ./scan_mm3 0001.mm3
+
+# gdb --nx -w --args ./scan_mm3 0001.mm3

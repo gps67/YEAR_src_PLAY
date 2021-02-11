@@ -1,0 +1,43 @@
+scan is a generic pool of parsing, with more than one perspective
+
+	single line
+		terminated by \n or \0
+		gather doesnt need to count lines
+		roll-back equally simpler
+		eg syslog line
+
+	multiple line
+		gather needs to count lines
+		roll-back needs to update line-numbers
+
+	NON-REGEX
+		interp or compiled sequences of well known lex bits
+		used for similar purposes (but not compat at all)
+
+COPYING
+
+	Library L-GPL
+
+STBL
+
+	hash tables in use as ...
+
+		string.varname
+
+	? LIST -vs- STBL -vs- HASH -vs- ...
+
+XML
+
+	pass-the parcel
+
+		see http://localhost/HTDOCS/Docs/XML/xml_tutorial.html 5.6.2
+		entities are multi-layer wrapped,
+		and partially unwrapped, according to ... rules
+
+	namespace chaos
+
+		something similar but corresponding
+
+		where is the DTD namespace ...
+
+	

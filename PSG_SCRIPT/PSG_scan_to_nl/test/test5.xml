@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE dtdname [
+ <!ENTITY % top_items 'BR|OTHER'>
+ <!ELEMENT top (%top_items)>
+ <!ATTLIST top name CDATA #required>
+ <!ELEMENT br>
+ <!ATTLIST br indent (more|less|zero|same) "same">
+ <!ELEMENT other (#PCDATA)>
+]>
+
+<top name="id1234">
+ <BR/>
+ <!-- comment -->
+ <!--
+	multi
+	line
+	comment
+ -->
+ <![CDATA[ quoted &amp; <x/> ]]>
+ <![cdata[ quoted &amp; <x/> ]]>
+ <?php PI Processing Instruction ?>
+</top>
+

@@ -1,0 +1,25 @@
+# go_rename_dir
+
+this_dir=`pwd -P`
+D0=`dirname $this_dir`
+d1=`basename $this_dir`
+
+if name=`expr match $d1 '\(.*\)-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]'`
+then
+	: OK
+else
+	echo "expected name-2000-12-31 got $d1"
+	exit 1
+fi
+
+cd $D0
+d2=`date +$name-%Y-%m-%d`
+pwd
+if [ "$d1" = "$d2" ]
+then
+	echo SAME
+else
+	set -x
+	mv $d1 $d2
+	ln -sf $d2 $name
+fi

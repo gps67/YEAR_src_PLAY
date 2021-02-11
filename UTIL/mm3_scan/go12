@@ -1,0 +1,6 @@
+set -x
+for f in 0102 0203
+do
+	cat /home/gps/mydos/drive_d/${f}_mm3/${f}.mm3 > $f.mm3
+done
+ make -k

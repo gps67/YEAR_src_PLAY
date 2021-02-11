@@ -1,0 +1,24 @@
+# go_upload_tarball
+
+D0=`dirname $(pwd -P)`
+d1=`basename $(pwd -P)`
+cd $D0
+pwd
+
+if : false :
+then
+	tar_file=$d1.tgz
+	Z=-z
+else
+	tar_file=$d1.tar.bz2
+	Z=-I
+fi
+
+D2=~/2002_gps_SITE/ntlworld
+D3=$D2/baks
+[ -d $D3 ] || exit 1
+cp -p $tar_file $D3
+cd $D2 || exit1
+PATH=$PATH:
+putter baks/$tar_file
+

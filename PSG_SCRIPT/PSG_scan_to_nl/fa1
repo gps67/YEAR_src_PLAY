@@ -1,1 +1,325 @@
-rm -f   c1.exec x1.exec scan_proc_partitions .o c1.o x1.o .o  file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_xml_1.o lex_lookup.o scan_to_nl_P.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_xml_lex.o map_file.o scan_file_base.o fa tclIndex rpt1.csv libscan.a
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o x1.o -c ../prog_main/x1.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o file_scan_base.o -c ../scan_file/file_scan_base.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_c1.o -c ../scan_file/scan_c1.cxx
+../scan_file/scan_c1.cxx: In member function â€˜bool scan_c1::var_decl()â€™:
+../scan_file/scan_c1.cxx:58:36: warning: â€˜ = â€™ directive writing 3 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   58 |  if( value_set ) sprintf( buff, "%s = %d", buff, value );
+      |                                    ^~~
+In file included from /usr/include/stdio.h:867,
+                 from ../scan_file/file_scan_base.h:8,
+                 from ../scan_file/scan_c1.h:1,
+                 from ../scan_file/scan_c1.cxx:1:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:36:34: note: â€˜__builtin___sprintf_chkâ€™ output between 5 and 214 bytes into a destination of size 200
+   36 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   37 |       __bos (__s), __fmt, __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../scan_file/scan_c1.cxx: In member function â€˜bool scan_c1::scan_typeexpr()â€™:
+../scan_file/scan_c1.cxx:355:36: warning: â€˜ = â€™ directive writing 3 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+  355 |  if( value_set ) sprintf( buff, "%s = %d", buff, value );
+      |                                    ^~~
+In file included from /usr/include/stdio.h:867,
+                 from ../scan_file/file_scan_base.h:8,
+                 from ../scan_file/scan_c1.h:1,
+                 from ../scan_file/scan_c1.cxx:1:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:36:34: note: â€˜__builtin___sprintf_chkâ€™ output between 5 and 214 bytes into a destination of size 200
+   36 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   37 |       __bos (__s), __fmt, __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o XML_Parse.o -c ../XML_Parse/XML_Parse.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o XML_DTD.o -c ../XML_DTD/XML_DTD.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o XML_DOC.o -c ../XML_DOC/XML_DOC.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_to_nl_P.o -c ../scan_base/scan_to_nl_P.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_to_nl_base.o -c ../scan_base/scan_to_nl_base.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_to_nl_plus.o -c ../scan_base/scan_to_nl_plus.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_to_nl.o -c ../scan_base/scan_to_nl.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_nl_c_lex.o -c ../scan_base/scan_nl_c_lex.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_nl_xml_lex.o -c ../scan_base/scan_nl_xml_lex.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o map_file.o -c ../more_bits/map_file.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_file_base.o -c ../scan_file/scan_file_base.cxx
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o scan_xml_1.o -c ../XML_Parse/scan_xml_1.cxx
+In file included from ../XML_Parse/scan_xml_1.cxx:4:
+../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
+   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
+      |  ^~~~~~~
+g++ -O2 -g -I/home/gps/YEAR/src/libs_apps/include	 -o lex_lookup.o -c ../lex_lookup/lex_lookup.cxx
+In file included from ../lex_lookup/lex_lookup.cxx:1:
+../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
+   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
+      |  ^~~~~~~
+../lex_lookup/lex_lookup.h: In member function â€˜bool lex_lookup::look_8859(const p0p2&)â€™:
+../lex_lookup/lex_lookup.h:92:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   92 |   }
+      |   ^
+../lex_lookup/lex_lookup.h: In member function â€˜bool lex_lookup::look_buffer()â€™:
+../lex_lookup/lex_lookup.h:96:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   96 |   }
+      |   ^
+ar -curs libscan.a file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_to_nl_P.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_xml_lex.o map_file.o scan_file_base.o scan_xml_1.o lex_lookup.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+g++ -O2 -g -o x1.exec x1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/libs_apps/lib -L/home/gps/YEAR/src/libs_apps/build_LGX_E6320 -lbase
+./x1.exec ../test/test3.xml 2>&1 | less
+##### C init_csets() ###
+##### XML init_csets() ###
+#   OK  1 20 #	<?xml version="1.0" encoding="UTF-8"?>
+#   OK  1 20 #	-------------------^--OK-- PI:XML:verion=1.0
+#   OK  1 37 #	<?xml version="1.0" encoding="UTF-8"?>
+#   OK  1 37 #	------------------------------------^--OK-- PI:XML:encoding=UTF-8
+:rdf:RDF-----------------------------------------------------{U ... xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+:rdf:RDF-----------------------------------------------------{U ... xmlns:dc="http://purl.org/dc/elements/1.1/"
+:rdf:RDF-----------------------------------------------------{U ... xmlns:mq="http://musicbrainz.org/mm/mq-1.1#"
+:rdf:RDF-----------------------------------------------------{U ... xmlns:mm="http://musicbrainz.org/mm/mm-2.1#"
+:rdf:RDF-----------------------------------------------------{U ... xmlns:ar="http://musicbrainz.org/ar/ar-1.0#"
+:rdf:RDF-----------------------------------------------------{U ... xmlns:az="http://www.amazon.com/gp/aws/landing.html#"
+TEXT: OK
+</mq:status---------------------------------------------------{U>
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:albumList------------------------------------------------ú>
+</mq:Result---------------------------------------------------ý>
+:mm:Album----------------------------------------------------ý ... rdf:about="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+TEXT: Rodrigo y Gabriela
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ý ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ý ... /> - empty (closes in openiong)
+:mm:releaseType---------------------------------------------- ... rdf:resource="http://musicbrainz.org/mm/mm-2.1#TypeAlbum"
+:mm:releaseType---------------------------------------------- ... /> - empty (closes in openiong)
+:mm:releaseStatus-------------------------------------------- ... rdf:resource="http://musicbrainz.org/mm/mm-2.1#StatusOfficial"
+:mm:releaseStatus-------------------------------------------- ... /> - empty (closes in openiong)
+TEXT: 2006-02-17
+</dc:date----------------------------------------------------->
+TEXT: IE
+</mm:country-------------------------------------------------->
+</mm:ReleaseDate----------------------------------------------ý>
+</rdf:li------------------------------------------------------ý>
+TEXT: 2006-03-13
+</dc:date----------------------------------------------------->
+TEXT: GB
+</mm:country-------------------------------------------------->
+</mm:ReleaseDate----------------------------------------------ú>
+</rdf:li------------------------------------------------------ý>
+</rdf:Seq-----------------------------------------------------ú>
+</mm:releaseDateList------------------------------------------ý>
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/3ed0f99b-c333-4e97-a91a-c358cf46e248"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/c53f42b3-e8cf-4cee-8875-1b3f5cfba621"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/813590c8-f508-4f28-ac8a-a1031a8341cb"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/de51ae13-dbb2-46f1-b692-f9186c7d665c"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/d3098892-3ec2-4df3-b278-6221aab25fac"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/92f19bf3-166d-45c2-a40f-dd92541ee374"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/7f7e9697-3201-421b-95fe-48cb437e943e"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/2c8f3a9c-e77b-4c3b-b837-12374b802591"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/track/1f7336a6-1618-4def-9919-7cd88624c981"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Seq----------------------------------------------------->
+</mm:trackList------------------------------------------------ú>
+</mm:Album----------------------------------------------------ý>
+:mm:Artist---------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+TEXT: Rodrigo y Gabriela
+</dc:title---------------------------------------------------->
+TEXT: Rodrigo y Gabriela
+</mm:sortName------------------------------------------------->
+</mm:Artist---------------------------------------------------ý>
+:mm:Track----------------------------------------------------ý ... rdf:about="http://musicbrainz.org/mm-2.1/track/3ed0f99b-c333-4e97-a91a-c358cf46e248"
+TEXT: Tamacun
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 205800
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/92eb2125-5391-41e4-b1ac-6dda621ca334"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/31d9dfea-2b03-47b3-978a-b34eeb117639"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/45a294d7-a613-498e-a1b3-b6b9fcd6346f"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/92c8f5f0-91f0-499d-b077-0591e57264a0"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/78ea3e4a-623d-4c60-bcc7-671359f57cdb"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ý>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/c53f42b3-e8cf-4cee-8875-1b3f5cfba621"
+TEXT: Diablo Rojo
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 296800
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/bf645326-31a6-4db4-8617-af26fb16ac97"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/f726c55a-a7f3-40e8-aee8-b1cd49e8c82e"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/f34fb31f-9dd2-4a90-a156-30012581cd07"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/a99374ae-ca15-4b5e-bad4-a8506ffe5213"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/50915eac-a438-4ca1-9c11-fe89a5d1ea33"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/813590c8-f508-4f28-ac8a-a1031a8341cb"
+TEXT: Vikingman
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 243320
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/bef1ec92-a7e0-40e7-a758-e9ec4966f377"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/f26a5510-b7a7-4130-92b6-c7e110871ff1"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/86ed44b7-ddd9-44c5-aa77-49e09bdae124"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/848c59c1-e9f4-47f0-8bc5-1bbc5246a8c4"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/de51ae13-dbb2-46f1-b692-f9186c7d665c"
+TEXT: Satori
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 304400
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/02f5e407-9eba-4737-a071-ae5f7351161d"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/ef1765f3-547c-4d90-9073-7ae2589913e3"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/95d611c5-9401-45bd-be4e-0614d27e51c7"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/d58fca06-1453-4255-8a31-151b14f035bb"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/b09dc664-23de-48e8-b9fe-bf3f26d89d9f"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/d3098892-3ec2-4df3-b278-6221aab25fac"
+TEXT: Ixtapa
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 313973
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/fc90f405-bc12-432e-8243-a8c1469ed584"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/01d30e2d-4616-475d-ba34-f5759ec6c611"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/88a2dd81-c00f-4881-a94b-3dd15dcbe9ad"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/9f62773a-7ad0-40cc-a98d-e8b555f7fd71"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/92f19bf3-166d-45c2-a40f-dd92541ee374"
+TEXT: Stairway to Heaven
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 284200
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/50138397-7618-433f-9ebb-f6ce6ef0f4e8"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/627926f0-2ed9-495e-aef1-028618049a6e"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/02cd4879-c053-4319-9d41-ad3770635b75"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/49afae71-6f26-4d86-8b07-57dc60d5b203"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/17723610-ca4b-4857-b377-f0e386265dce"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/7f7e9697-3201-421b-95fe-48cb437e943e"
+TEXT: Orion
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 464000
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/7153dd8a-d5e7-4d1f-9c38-6ee47ce92391"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/50af985e-b446-44af-8332-afa9d8e5c956"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/15a75626-a22b-462b-8078-b274eac6be49"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/9b36b811-b97c-481d-8b8b-d3440153b38b"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/eaa4f629-1153-46c1-ac82-75f4c6774b33"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/2c8f3a9c-e77b-4c3b-b837-12374b802591"
+TEXT: Juan Loco
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 207413
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/6d80eab1-8d9f-4755-9d0f-d75d877ec833"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/413db66a-862c-4425-a8c5-4e26dd9cdcdc"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/6491cd87-fb12-4a38-8d46-6ac7cb4581fb"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/3a9342b0-1f60-4789-bfe3-692654b7da35"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+:mm:Track----------------------------------------------------ú ... rdf:about="http://musicbrainz.org/mm-2.1/track/1f7336a6-1618-4def-9919-7cd88624c981"
+TEXT: PPA
+</dc:title---------------------------------------------------->
+:dc:creator--------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/artist/a8ed28e3-5c08-4448-b889-867483e251f5"
+:dc:creator--------------------------------------------------ú ... /> - empty (closes in openiong)
+TEXT: 254346
+</mm:duration------------------------------------------------->
+:mq:album----------------------------------------------------ú ... rdf:resource="http://musicbrainz.org/mm-2.1/album/f6fb8aae-3d0d-482d-8af0-422fd9530733"
+:mq:album----------------------------------------------------ú ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/ee627b44-3fb1-40a4-a75a-9607fd179418"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/40039b9f-bdcc-4002-ba5f-358172e45de9"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li---------------------------------------# INFO  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # --------------- ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/b1ec32f5-2e18-4765-8c8c-7ab147afc63a"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+:rdf:li------------------------------------------------------ ... rdf:resource="http://musicbrainz.org/mm-2.1/trmid/1ec2bccc-aa89-41f0-9ae5-649d1fe819a8"
+:rdf:li------------------------------------------------------ ... /> - empty (closes in openiong)
+</rdf:Bag----------------------------------------------------->
+</mm:trmidList------------------------------------------------ú>
+</mm:Track----------------------------------------------------ú>
+</rdf:RDF-----------------------------------------------------ú>
+setting debug_list_root to next
+# INFO  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # setting debug_list_root to next
+# INFO  # virtual obj_ref0_debug_base::~obj_ref0_debug_base() # setting debug_list_root to next

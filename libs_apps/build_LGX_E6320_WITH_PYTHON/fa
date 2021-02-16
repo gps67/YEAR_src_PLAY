@@ -1500,3 +1500,4 @@ In file included from /home/gps/YEAR/src/libs_apps/src/lib_base2/js_1/JS1.cxx:3:
          ^~~~~~~~~~~~~~~~
          ExecuteScript
 make: *** [/home/gps/YEAR/src/libs_apps/MK/Make_Targets2:591: JS1.o] Error 1
+make: *** No rule to make target 'JS1.o'. Stop.

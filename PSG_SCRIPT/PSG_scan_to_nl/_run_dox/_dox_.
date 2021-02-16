@@ -1,0 +1,11 @@
+#!/usr/bin/env doxygen
+
+	PROJECT_NAME           = .
+	INPUT                  = ../
+	OUTPUT_DIRECTORY       = /home/gps/YEAR_offline/dox/scan/./
+	GENERATE_TAGFILE       = /home/gps/YEAR_offline/dox/scan/..tag
+	WARN_LOGFILE           = _dox_WARNINGS_..txt
+
+	@INCLUDE = Doxyfile_general
+	@INCLUDE = _dox_Incl_Path
+	GENERATE_XML = YES

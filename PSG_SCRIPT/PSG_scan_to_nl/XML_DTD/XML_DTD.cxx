@@ -51,7 +51,7 @@ T_elem_spec * T_DTD::lookup_elem( p0p2 & name )
 	*/
 	spec = new T_elem_spec( this );
 	spec->name = STR2_TOKENISE( name );
-	WARN("WAS MISSING RET_VAL");
+//	WARN("WAS MISSING RET_VAL");
 	return spec;
 }
 

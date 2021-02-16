@@ -474,7 +474,7 @@ bool Tree_PSG::
 gen_LEX_lex_return( buffer2 & out )
 {
  L1("/*");
- L1("	// gen_LEX_lex_return() // gen LEX lex_return()");
+ L1("// GEN	// gen_LEX_lex_return() // gen LEX lex_return() ////////////////");
  L1("	usage  lex_return(tok) || FAIL");
  L1("		int lex_return( int tok ); // STR in yylval.lex_buff ");
  L1("");
@@ -558,7 +558,11 @@ gen_LEX_lex_return( buffer2 & out )
 bool Tree_PSG::
 gen_LEX_start_symbol( buffer2 & out )
 {
-	L1("// lex_start_symbol");
+	L1("// ");
+	L1("// lex_start_symbol - emit as TOKEN once");
+	L1("// ");
+	L1("// TODO rewrite - splice code to top of lexer function XXXX");
+	L1("// ");
 	return true;
 	L1("extern int lex_start_symbol; // you set this // first added token only");
 	L1("if(lex_start_symbol) {");

@@ -1,8 +1,10 @@
 #ifndef Tree_PSG_CALC_H
 #define Tree_PSG_CALC_H
 
+#include "PSG_STUBS.h"
 #include "Tree_PSG.h"
 #include "Tree_PSG_UDEF.h"
+namespace PSG {
 
 class Tree_PSG_UDEF_CALC : public Tree_PSG_UDEF { public:
 
@@ -14,4 +16,5 @@ class Tree_PSG_UDEF_CALC : public Tree_PSG_UDEF { public:
 };
 
 
+}; // namespace
 #endif  // PSG_UDEF

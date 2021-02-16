@@ -1,9 +1,12 @@
 
 #include "Tree_PSG_LEX_PUNCT_NAME.h"
+using namespace PSG;
 
 #define OK( S ) 
 
-bool print_LEX_punct_name( buffer1 & buff, u8 chr )
+// why PSG:: required ?? // extern in .h ??
+
+bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 {
  const char * label = NULL;
 

@@ -1,6 +1,7 @@
 
 #include "Tree_PSG.h"
 #include "Y_PARSE.h" // parameter
+using namespace PSG;
 
 Tree_PSG::
 Tree_PSG()
@@ -613,17 +614,21 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 {
 	L1("/*");
 	L1("  LEX file.");
-	L1("");
-	L1("    definitions");
-	L1("   %%");
-	L1("    rules");
-	L1("   %%");
-	L1("    user code");
+	L1("  +-------------");
+	L1("  |  definitions");
+	L1("  | %%");
+	L1("  |  rules");
+	L1("  | %%");
+	L1("  |  user code");
+	L1("  +-------------");
 	L1("");
 	L1("   non // comments can be at BOLN except in rules section");
+	L1("   / * ... * / at BOLN in rules look like RE rules");
+	L1("   // comments are not comments they are copied through");
 	L1("   // comments can only be in copied C++ or gcc code");
 	L1("   user code goes at end but the definitions at top");
 	L1("   rule code needs includes for them to be legal");
+	L1("   RTFM");
 	L1("   %{ COPIED CODE %} // %top{ COPIED CODE TOP }");
 	L1("   // OWN LINE RULES for '%top{' '}' and '%{' '%}' ");
 	L1("");

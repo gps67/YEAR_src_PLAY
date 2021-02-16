@@ -1,6 +1,7 @@
 
 #include "Tree_PSG_UDEF_AFM.h"
 // #include "Tree_PSG_LEX_PUNCT_NAME.h"
+using namespace PSG;
 
 bool Tree_PSG_UDEF_AFM:: build_tree_lex() {
 	if(!add_lex_for_AFM()) return FAIL_FAILED();

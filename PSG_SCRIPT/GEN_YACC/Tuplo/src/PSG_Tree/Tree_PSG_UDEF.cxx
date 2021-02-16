@@ -1,6 +1,7 @@
 
 #include "Tree_PSG_UDEF.h"
 #include "Tree_PSG_LEX_PUNCT_NAME.h"
+using namespace PSG;
 
 
 // SEE: RUN_at_CT // to get PREBUILT machine at init_val_one

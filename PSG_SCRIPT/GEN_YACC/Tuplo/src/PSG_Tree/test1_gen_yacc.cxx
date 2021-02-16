@@ -10,6 +10,8 @@
 #include "Tree_PSG_UDEF_AFM.h"
 #include "Tree_PSG_UDEF_CALC.h"
 
+using namespace PSG;
+
 #include "Y_PARSE.h" // to provide uncalled thing
 
 bool bool_main( int argc, char ** argv ) {

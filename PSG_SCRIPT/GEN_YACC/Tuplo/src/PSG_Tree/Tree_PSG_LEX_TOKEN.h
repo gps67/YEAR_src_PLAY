@@ -11,6 +11,8 @@
 #include "Tree_PSG_LEX_TOKEN_precedence.h"
 
 using namespace EXPRS;
+using namespace PSG;
+namespace PSG {
 
 class LEX_TOKEN_DECL : obj_ref0 { public:
 	str1 Name;
@@ -82,5 +84,6 @@ class LEX_TOKEN_GROUP { public: // NOT AN OBJ_REF ???
 
 
 
+}; // namespace
 #endif
 

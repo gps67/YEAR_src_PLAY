@@ -6,6 +6,7 @@
 #include "buffer2.h" // not neded here, but good for GEN
 #include "util_buf.h" // basetype avoids IO, stat_file, alloc buff, open file,
 #include "Y_PARSE.h" // calls yyparse, move stuff there
+//using namespace PSG;
 
 #if 0
 extern void yyrestart ( FILE *input_file  );

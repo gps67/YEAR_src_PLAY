@@ -1,16 +1,20 @@
 /*
   LEX file.
-
-    definitions
-   %%
-    rules
-   %%
-    user code
+  +-------------
+  |  definitions
+  | %%
+  |  rules
+  | %%
+  |  user code
+  +-------------
 
    non // comments can be at BOLN except in rules section
+   / * ... * / at BOLN in rules look like RE rules
+   // comments are not comments they are copied through
    // comments can only be in copied C++ or gcc code
    user code goes at end but the definitions at top
    rule code needs includes for them to be legal
+   RTFM
    %{ COPIED CODE %} // %top{ COPIED CODE TOP }
    // OWN LINE RULES for '%top{' '}' and '%{' '%}' 
 

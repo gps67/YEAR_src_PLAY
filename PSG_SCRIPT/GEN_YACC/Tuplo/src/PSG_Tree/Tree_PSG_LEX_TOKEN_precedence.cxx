@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "Tree_PSG_LEX_TOKEN_precedence.h"
 
+using namespace PSG;
 
 // using namespace EXPRS;
 

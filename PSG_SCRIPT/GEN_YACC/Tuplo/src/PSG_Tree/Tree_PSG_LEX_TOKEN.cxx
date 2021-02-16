@@ -4,6 +4,7 @@
 #include "obj_ref.h"
 #include "obj_list.h"
 #include "buffer2.h"
+using namespace PSG;
 
 
  LEX_TOKEN_DECL:: LEX_TOKEN_DECL() {}

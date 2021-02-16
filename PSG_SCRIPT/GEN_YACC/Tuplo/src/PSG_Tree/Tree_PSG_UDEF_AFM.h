@@ -1,8 +1,10 @@
 #ifndef Tree_PSG_UDEF_AFM_H
 #define Tree_PSG_UDEF_AFM_H
 
+#include "PSG_STUBS.h"
 // #include "Tree_PSG.h"
 #include "Tree_PSG_UDEF.h"
+namespace PSG {
 
  /* OR DIFFERENTLY NAMED
  class PSG_UDEF : public PSG_Tree_Module {
@@ -71,4 +73,5 @@ class Tree_PSG_UDEF_AFM : public Tree_PSG_UDEF { public:
 
 };
 
+}; // namespace
 #endif  // PSG_UDEF

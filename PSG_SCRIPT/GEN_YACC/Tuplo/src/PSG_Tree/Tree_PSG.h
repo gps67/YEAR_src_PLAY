@@ -8,6 +8,10 @@
 
 #include "Tree_PSG_LEX_TOKEN.h"
 
+#include "PSG_STUBS.h"
+using namespace PSG;
+
+namespace PSG {
 class union_field_t { public: /* LEX return field YACC return field */
 
 	str1 union_field_name; // expr
@@ -33,6 +37,7 @@ class Tree_PSG_RULE { public:
 
 	union_field_t * union_field;
 
+#if 0
 	enum RULE_TYPE {
 	 rule_ONE_OF,
 	 rule_SEQ,
@@ -43,6 +48,7 @@ class Tree_PSG_RULE { public:
 	 rule_NAMED, // ITEM_NAMED //
 	 rule_all_of_these_are_unwritten // at the mo //
 	};
+#endif
 
 	Tree_PSG_RULE ( STR0 _name, union_field_t * _union_field )
 	: name(_name)
@@ -166,6 +172,8 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 		ARGS now binds to a point in ROM
 
 	*/
+
+	// GEN OUTPUT functions
 
 	bool put_include_Q2( buffer2 & out, buffer2 & incl_filename );
 	//	#include "incl_filename"; 
@@ -312,5 +320,6 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
 };
 
+}; // namespace
 #endif
 

@@ -2,6 +2,8 @@
 #define Tree_PSG_LEX_TOKEN_precedence_H
 
 #include "str0.h"
+#include "PSG_STUBS.h"
+using namespace PSG;
 
 namespace EXPRS {
 

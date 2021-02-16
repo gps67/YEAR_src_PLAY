@@ -10,6 +10,7 @@
 #include "STO.h"
 // #include "STO/mmap_file.h"
 #include "obj_hold.h"
+// using namespace PSG;
 
 int main( int argc, char ** argv )
 {

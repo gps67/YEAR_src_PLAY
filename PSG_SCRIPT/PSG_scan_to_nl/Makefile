@@ -121,6 +121,9 @@ test2: $(PROG2) Makefile
 test3: $(PROG3) Makefile
 	./$(PROG3) ../test/test3.xml 2>&1 | less
  
+ins3: $(PROG3) Makefile
+	insight --args ./$(PROG3) ../test/test3.xml 2>&1 | less
+ 
 test4: $(PROG4) Makefile
 	./$(PROG4) /proc/partitions 2>&1 | less
 

@@ -76,7 +76,7 @@ int map_file::map_in_file( const u8 * ufilename, int wwritable )
 	fd = open( filename, mod );
 	if( fd < 0)
 	{
-		e_print( "## ERROR ## open(%s) %m\n", filename );
+		e_print( "## ERROR ## open(%s) %m (PCT M)\n", filename );
 		return errno;
 	}
 	return remap();
@@ -110,7 +110,7 @@ int map_file::remap( void )
 	struct stat st;
 	if( fstat( fd, &st ) != 0 )
 	{
-		e_print("## ERROR ## fstat() %m\n");
+		e_print("## ERROR ## fstat() %m (PCT M)\n");
 		return errno;
 	}
 	if( st.st_size == 0 )
@@ -130,7 +130,7 @@ int map_file::remap( void )
 	);
 	if( P == (caddr_t) -1 )
 	{
-		e_print("## ERROR ## mmap() %m\n");
+		e_print("## ERROR ## mmap() %m (PCT M)\n");
 		return errno;
 	}
 	page0 = P;
@@ -169,12 +169,12 @@ int map_file::grow_file( int new_size )
 	*/
 	if(-1 == lseek( fd, new_size-1, SEEK_SET ))
 	{
-		e_print("## ERROR ## lseek() %m\n");
+		e_print("## ERROR ## lseek() %m (PCT M)\n");
 		return errno;
 	}
 	if(1!= write( fd, "+", 1 ))
 	{
-		e_print("## ERROR ## write() %m\n");
+		e_print("## ERROR ## write() %m (PCT M)\n");
 		return errno;
 	}
 	remap();

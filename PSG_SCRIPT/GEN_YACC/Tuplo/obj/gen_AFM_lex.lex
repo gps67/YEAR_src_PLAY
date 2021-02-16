@@ -31,7 +31,7 @@ using namespace YY;
 #include "../obj/gen_AFM_yacc.tab.hh"
 
 /*
-	// gen_LEX_lex_return() // gen LEX lex_return()
+// GEN	// gen_LEX_lex_return() // gen LEX lex_return() ////////////////
 	usage  lex_return(tok) || FAIL
 		int lex_return( int tok ); // STR in yylval.lex_buff 
 
@@ -105,7 +105,11 @@ int lex_return( int tok )
 // define XXXX_TOKEN  yylval.lex_buff = NEXT_SLOT(yytext, yyleng)
 #define TOKEN(t)    (yylval.token = t)
 
-// lex_start_symbol
+// 
+// lex_start_symbol - emit as TOKEN once
+// 
+// TODO rewrite - splice code to top of lexer function XXXX
+// 
 /* yacc generated TOKENs header UNION YYSTYPE */
 #include "../obj/gen_AFM_yacc.tab.hh"
  // CODE section END

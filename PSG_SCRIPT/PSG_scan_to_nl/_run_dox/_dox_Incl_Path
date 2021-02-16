@@ -1,0 +1,9 @@
+INCLUDE_PATH = \
+. \
+../prog_main \
+../scan_file \
+../scan_file \
+../scan_base \
+../docs \
+../_run_dox \
+#

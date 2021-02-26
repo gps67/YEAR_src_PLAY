@@ -363,12 +363,24 @@ print_list(
 
 		if( tok-> Value ) {
 
+			static const int left_width = 8; /*
+				"repeat" is 8 wide
+			*/
+
 			// what if Value uses Q2
 
+			int l1 = out.nbytes_used;
+
 			out.put( '"' );
-			out.put( tok-> Value );
+			out.put( tok-> Value ); // "if" ">>>=" 
 			out.put( '"' );
 
+			int l2 = out.nbytes_used;
+			int n_sp = left_width - (l2 - l1); // left_width n_sp
+			while( n_sp-- > 0 )
+			 out.put( ' ' );
+
+			// one extra space, just in case
 			out.put( " return TOKEN(" );
 			print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
 			out.put( ");\n" );
@@ -622,6 +634,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("  |  user code");
 	L1("  +-------------");
 	L1("");
+ # if 0
 	L1("   non // comments can be at BOLN except in rules section");
 	L1("   / * ... * / at BOLN in rules look like RE rules");
 	L1("   // comments are not comments they are copied through");
@@ -631,16 +644,18 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("   RTFM");
 	L1("   %{ COPIED CODE %} // %top{ COPIED CODE TOP }");
 	L1("   // OWN LINE RULES for '%top{' '}' and '%{' '%}' ");
+	L1("   // C++ comments copied through, upto gcc");
 	L1("");
+ # endif
 	L1("");
 	L1("   this is in definitions SECTION // see 5.0");
+	L1("");
 	L1("*/");
 	L1("");
 
 	L1("%{"); // on line of its own unindented
 	// this comment is in CODE and gcc is OK with C++ // comments
-	L1("// within definitions A CODE SECTION START // like %TOP see 5.1 ");
-	L1("// C++ comments copied through, upto gcc");
+	L1("// within definitions %{ is A CODE SECTION START // like %TOP see 5.1 ");
 	L1("");
 
 	// include buffer1 Y_PARSE using namespace YY
@@ -749,6 +764,12 @@ static bool gen_PTN_lex_return_TOK(
 }
 bool Tree_PSG:: gen_LEX_RULES_ident_values( buffer2 & out )
 {
+ //
+ // TODO it is supposed to register LEX_NAME
+ // what is the return type ? <token> ?
+ //
+ // HMM option of indent on following line \n if( n_sp<0 )
+ // 
  gen_PTN_lex_return_TOK( out, "[a-zA-Z_][a-zA-Z0-9_]*", "", "LEX_IDENTIFIER");
  gen_PTN_lex_return_TOK( out, "-?[0-9]+\\.[0-9]*","      ", "LEX_DOUBLE");
  gen_PTN_lex_return_TOK( out, "-?[0-9]+", "              ", "LEX_INTEGER");

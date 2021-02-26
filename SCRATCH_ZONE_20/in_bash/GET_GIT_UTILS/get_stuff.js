@@ -6,6 +6,8 @@ PATH=$HOME/bin:$PATH
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
 
 L1="
+https://gitlab.gnome.org/GNOME/gjs
+https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
 https://github.com/danchitnis/webgl-plot-examples
 https://github.com/MrRio/jsPDF
 https://github.com/danchitnis/webgl-plot
@@ -257,6 +259,7 @@ https://github.com/MidnightCommander/mc.git
 https://github.com/Minds/nomad
 https://github.com/mozilla-spidermonkey/mozilla-spidermonkey.github.io
 https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
+https://github.com/spidermonkey-embedders/spidermonkey-embedding-examples
 https://github.com/mrdoob/three.js
 https://github.com/mxe/mxe.git
 https://github.com/myliang/x-spreadsheet
@@ -324,7 +327,6 @@ https://github.com/skvadrik/re2c
 https://github.com/sp4cerat/Game-GUI
 https://github.com/spbooks/jsninja2
 https://github.com/sphinx-doc/sphinx
-https://github.com/spidermonkey-embedders/spidermonkey-embedding-examples
 https://github.com/StephenGrider/AdvancedReduxCode
 https://github.com/StephenGrider/AdvancedReduxCode/tree/master
 https://github.com/StephenGrider/ReduxSimpleStarter

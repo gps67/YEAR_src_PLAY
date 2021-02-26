@@ -8,23 +8,13 @@
   |  user code
   +-------------
 
-   non // comments can be at BOLN except in rules section
-   / * ... * / at BOLN in rules look like RE rules
-   // comments are not comments they are copied through
-   // comments can only be in copied C++ or gcc code
-   user code goes at end but the definitions at top
-   rule code needs includes for them to be legal
-   RTFM
-   %{ COPIED CODE %} // %top{ COPIED CODE TOP }
-   // OWN LINE RULES for '%top{' '}' and '%{' '%}' 
-
 
    this is in definitions SECTION // see 5.0
+
 */
 
 %{
-// within definitions A CODE SECTION START // like %TOP see 5.1 
-// C++ comments copied through, upto gcc
+// within definitions %{ is A CODE SECTION START // like %TOP see 5.1 
 
 // gen_LEX_code_start() // headers 
 //somehow before here is stddef stdio - added by flex
@@ -130,7 +120,7 @@ int lex_return( int tok )
 
  /* LIST RW reserved word */
 
-"if" return TOKEN(RW_if);
+"if"     return TOKEN(RW_if);
 
  /* gen_LEX_RULES _eoln() AFTER RW_s */
 
@@ -147,58 +137,58 @@ int lex_return( int tok )
  /* LIST PUNCT */
  /* beware .123 float seeing PUNCT_DOT */
 
-"++" return TOKEN(PUNCT_PLUS_PLUS);
-"--" return TOKEN(PUNCT_MINUS_MINUS);
-"()" return TOKEN(PUNCT_L_PAR_PAR_R);
-"[]" return TOKEN(PUNCT_L_SQUARE_SQUARE_R);
-"." return TOKEN(PUNCT_DOT);
-"->" return TOKEN(PUNCT_MINUS_GT);
-"!" return TOKEN(PUNCT_NOT);
-"~" return TOKEN(PUNCT_TILDE);
-"*" return TOKEN(PUNCT_STAR);
-"/" return TOKEN(PUNCT_SLASH);
-"%" return TOKEN(PUNCT_PERCENT);
-"+" return TOKEN(PUNCT_PLUS);
-"-" return TOKEN(PUNCT_MINUS);
-"<<" return TOKEN(PUNCT_LT_LT);
-">>" return TOKEN(PUNCT_GT_GT);
-"<=" return TOKEN(PUNCT_LT_EQUAL);
-">=" return TOKEN(PUNCT_GT_EQUAL);
-"<" return TOKEN(PUNCT_LT);
-">" return TOKEN(PUNCT_GT);
-"==" return TOKEN(PUNCT_EQUAL_EQUAL);
-"!=" return TOKEN(PUNCT_NOT_EQUAL);
-"===" return TOKEN(PUNCT_EQUAL_EQUAL_EQUAL);
-"&" return TOKEN(PUNCT_AMP);
-"^" return TOKEN(PUNCT_CARET);
-"|" return TOKEN(PUNCT_PIPE);
-"&&=" return TOKEN(PUNCT_AMP_AMP_EQUAL);
-"||=" return TOKEN(PUNCT_PIPE_PIPE_EQUAL);
-"&&" return TOKEN(PUNCT_AMP_AMP);
-"||" return TOKEN(PUNCT_PIPE_PIPE);
-"<<<" return TOKEN(PUNCT_LT_LT_LT);
-">>>" return TOKEN(PUNCT_GT_GT_GT);
-"<<=" return TOKEN(PUNCT_LT_LT_EQUAL);
-">>=" return TOKEN(PUNCT_GT_GT_EQUAL);
-"<<<=" return TOKEN(PUNCT_LT_LT_LT_EQUAL);
-">>>=" return TOKEN(PUNCT_GT_GT_GT_EQUAL);
-"=" return TOKEN(PUNCT_EQUAL);
-"+=" return TOKEN(PUNCT_PLUS_EQUAL);
-"-=" return TOKEN(PUNCT_MINUS_EQUAL);
-"*=" return TOKEN(PUNCT_STAR_EQUAL);
-"/=" return TOKEN(PUNCT_SLASH_EQUAL);
-"%=" return TOKEN(PUNCT_PERCENT_EQUAL);
-"&=" return TOKEN(PUNCT_AMP_EQUAL);
-"^=" return TOKEN(PUNCT_CARET_EQUAL);
-"|=" return TOKEN(PUNCT_PIPE_EQUAL);
-"," return TOKEN(PUNCT_COMMA);
-"(" return TOKEN(PUNCT_L_PAR);
-")" return TOKEN(PUNCT_PAR_R);
-"{" return TOKEN(PUNCT_L_CURLY);
-"}" return TOKEN(PUNCT_CURLY_R);
-"//" return TOKEN(PUNCT_SLASH_SLASH);
-"/*" return TOKEN(PUNCT_SLASH_STAR);
-"*/" return TOKEN(PUNCT_STAR_SLASH);
+"++"     return TOKEN(PUNCT_PLUS_PLUS);
+"--"     return TOKEN(PUNCT_MINUS_MINUS);
+"()"     return TOKEN(PUNCT_L_PAR_PAR_R);
+"[]"     return TOKEN(PUNCT_L_SQUARE_SQUARE_R);
+"."      return TOKEN(PUNCT_DOT);
+"->"     return TOKEN(PUNCT_MINUS_GT);
+"!"      return TOKEN(PUNCT_NOT);
+"~"      return TOKEN(PUNCT_TILDE);
+"*"      return TOKEN(PUNCT_STAR);
+"/"      return TOKEN(PUNCT_SLASH);
+"%"      return TOKEN(PUNCT_PERCENT);
+"+"      return TOKEN(PUNCT_PLUS);
+"-"      return TOKEN(PUNCT_MINUS);
+"<<"     return TOKEN(PUNCT_LT_LT);
+">>"     return TOKEN(PUNCT_GT_GT);
+"<="     return TOKEN(PUNCT_LT_EQUAL);
+">="     return TOKEN(PUNCT_GT_EQUAL);
+"<"      return TOKEN(PUNCT_LT);
+">"      return TOKEN(PUNCT_GT);
+"=="     return TOKEN(PUNCT_EQUAL_EQUAL);
+"!="     return TOKEN(PUNCT_NOT_EQUAL);
+"==="    return TOKEN(PUNCT_EQUAL_EQUAL_EQUAL);
+"&"      return TOKEN(PUNCT_AMP);
+"^"      return TOKEN(PUNCT_CARET);
+"|"      return TOKEN(PUNCT_PIPE);
+"&&="    return TOKEN(PUNCT_AMP_AMP_EQUAL);
+"||="    return TOKEN(PUNCT_PIPE_PIPE_EQUAL);
+"&&"     return TOKEN(PUNCT_AMP_AMP);
+"||"     return TOKEN(PUNCT_PIPE_PIPE);
+"<<<"    return TOKEN(PUNCT_LT_LT_LT);
+">>>"    return TOKEN(PUNCT_GT_GT_GT);
+"<<="    return TOKEN(PUNCT_LT_LT_EQUAL);
+">>="    return TOKEN(PUNCT_GT_GT_EQUAL);
+"<<<="   return TOKEN(PUNCT_LT_LT_LT_EQUAL);
+">>>="   return TOKEN(PUNCT_GT_GT_GT_EQUAL);
+"="      return TOKEN(PUNCT_EQUAL);
+"+="     return TOKEN(PUNCT_PLUS_EQUAL);
+"-="     return TOKEN(PUNCT_MINUS_EQUAL);
+"*="     return TOKEN(PUNCT_STAR_EQUAL);
+"/="     return TOKEN(PUNCT_SLASH_EQUAL);
+"%="     return TOKEN(PUNCT_PERCENT_EQUAL);
+"&="     return TOKEN(PUNCT_AMP_EQUAL);
+"^="     return TOKEN(PUNCT_CARET_EQUAL);
+"|="     return TOKEN(PUNCT_PIPE_EQUAL);
+","      return TOKEN(PUNCT_COMMA);
+"("      return TOKEN(PUNCT_L_PAR);
+")"      return TOKEN(PUNCT_PAR_R);
+"{"      return TOKEN(PUNCT_L_CURLY);
+"}"      return TOKEN(PUNCT_CURLY_R);
+"//"     return TOKEN(PUNCT_SLASH_SLASH);
+"/*"     return TOKEN(PUNCT_SLASH_STAR);
+"*/"     return TOKEN(PUNCT_STAR_SLASH);
 
  /* LIST LEX */
 

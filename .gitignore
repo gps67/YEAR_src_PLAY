@@ -20,6 +20,7 @@ _fa
 *_lex.cc
 *_yacc.tab.hh
 gen_e1_*
+gen_AFM_*
 */build_*
 
 # Compiled Object files

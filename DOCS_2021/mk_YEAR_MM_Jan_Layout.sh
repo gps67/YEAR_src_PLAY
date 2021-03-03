@@ -69,7 +69,7 @@ HOME_YEAR="${HOME}/${DATE_YEAR}"
 HOME_year_="${HOME}/${year}"
 HOME_year_TOPIC_YEAR="${HOME}/${year}/${TOPIC_YEAR}"
 
-ln_s YEAR_offl/ $HOME_year_
+ln_s YEAR_offline/ $HOME_year_
 T1
 
 

@@ -1,0 +1,4 @@
+
+[ -d ca ] || exit
+tree ca
+ask_do rm -rf ca

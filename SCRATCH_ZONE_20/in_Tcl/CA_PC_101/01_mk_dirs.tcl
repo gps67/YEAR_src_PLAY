@@ -151,7 +151,7 @@ proc mk_CA_dirs {CA_HERE} {
 
 proc mk_CA_machine CA_ZERO {
 #	mk_CA_dirs ;# CA_LIST_of_ITEM # uses $CA_ZERO # "%s" # LINK #
-	mk_CA_dirs CA_ZERO
+	mk_CA_dirs $CA_ZERO
 }
 
 proc mk_C_Cert CN {
@@ -209,4 +209,4 @@ proc mk_CA_machine_HERE {} {
 # say_do alias ;# OK alias is a /bin/sh builtin # proves exec runs a binary
 
 mk_CA_machine_HERE 
-
+say_do tree

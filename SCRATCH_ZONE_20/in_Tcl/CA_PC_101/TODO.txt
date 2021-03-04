@@ -1,0 +1,14 @@
+
+NOTE linsert -vs- lappend // val ver var
+NOTE package provide name 0.1 ;# fails silently without the 0.1
+
+TODO collect lots of bits of info like these
+
+TODO browse hissy_fit v4 or even wav dirs
+TODO front end on mpg123
+TODO browse PVR files
+TODO browse TCL man pages - with / out tkman
+TODO IDE on tcl_Bench
+TODO grid fo drum notations, warp jazz swing  timing
+TODO IDE on ca ;# view cert ;# view CSR ;# view ca
+

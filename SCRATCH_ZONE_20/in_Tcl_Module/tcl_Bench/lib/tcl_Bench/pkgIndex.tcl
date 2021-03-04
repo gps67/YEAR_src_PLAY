@@ -8,3 +8,4 @@
 # script is sourced, the variable $dir must contain the
 # full path name of this file's directory.
 
+package ifneeded tcl_Bench 0.1 [list source [file join $dir my_pkg_tcl_Bench.tcl]]

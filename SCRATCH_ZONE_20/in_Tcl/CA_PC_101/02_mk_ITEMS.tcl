@@ -14,17 +14,21 @@ proc say_do {cmd} {
 
 ## LIBR above ## LIBR below ##
 
-proc mk_C_RSA {CN} { mk_CN_RSA $CN 2048 {} } 
-proc mk_CA_RSA {CN} { mk_CN_RSA $CN 4096 {} } 
-
+proc DIR_NAME_CN_key {CN} { file join ca $CN private }
 proc FILENAME_CN_key {CN} { file join ca $CN private $CN.key }
 proc FILENAME_CN_crt {CN} { file join ca $CN $CN.csr }
 proc FILENAME_CN_csr {CN} { file join ca $CN $CN.crt }
 
-proc mk_CN_RSA {CA_CN CN RSA_nbits phrase} {
+proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
+
+	if { $CA_CN == $CN } { # self sign # CA == CA_CN
+		puts "SELF SIGN"
+	}
+
+	set dir_priv [DIR_NAME_CN_key $CN]
+	file mkdir $dir_priv
+	file attributes $dir_priv -permissions 0700
 	
-	set RSA_days 365
-	set REQ_cert [file join ca $CN $CN.csr]
 
  if 0 {
 	set cmd {}
@@ -53,15 +57,19 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits phrase} {
 	lappend cmd -out  [FILENAME_CN_csr $CN]
 
 	say_do $cmd
+
+	# apply AES256 PHRASE to .key after all done
+	# chmod 600 .key now
+	file attributes [FILENAME_CN_key $CN] -permissions 0600
  }
 
 }
 
-	mk_CN_RSA CA_ZERO CA_ZERO 4096 {} ;# detect self signed
-	mk_CN_RSA CA_ZERO  CA_ONE 2048 {}
-	mk_CN_RSA CA_ONE   PC_101 2048 {}
-	mk_CN_RSA CA_ONE   PC_102 2048 {}
-	mk_CN_RSA CA_ONE   PC_103 2048 {}
+	mk_CN_RSA CA_ZERO CA_ZERO 4096 1600 {}
+	mk_CN_RSA CA_ZERO  CA_ONE 2048 800 {}
+	mk_CN_RSA CA_ONE   PC_101 2048 365 {}
+	mk_CN_RSA CA_ONE   PC_102 2048 365 {}
+	mk_CN_RSA CA_ONE   PC_103 2048 365 {}
 
 	say_do tree
 

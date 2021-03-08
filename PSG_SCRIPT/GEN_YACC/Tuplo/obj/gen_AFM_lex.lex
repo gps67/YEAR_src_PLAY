@@ -97,7 +97,7 @@ int lex_return( int tok )
 // yylval.fieldname = UNION.fieldname ; // returned extra info for TOKEN
 // define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)
 // define XXXX_TOKEN  yylval.lex_buff = NEXT_SLOT(yytext, yyleng)
-#define TOKEN(t)    (yylval.token = t)
+#define TOKEN(t)    (yylval.tokn = t)
 
 // 
 // lex_start_symbol - emit as TOKEN once

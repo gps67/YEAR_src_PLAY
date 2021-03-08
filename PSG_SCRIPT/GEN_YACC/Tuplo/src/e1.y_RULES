@@ -17,7 +17,8 @@ expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 
 lines
 : %empty {}
-| lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+| lines expr LEX_EOLN { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+// | lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
  // lines: lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
@@ -27,7 +28,7 @@ lines
 // USE a global PARAMETER save it
 //
 
-EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+// EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
 // EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
 
 top: lines

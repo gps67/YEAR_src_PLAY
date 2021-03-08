@@ -17,6 +17,7 @@ _fa
 # gen_e1_
 # not working tho
 */obj/*
+*/ca/*
 *_lex.cc
 *_yacc.tab.hh
 gen_e1_*

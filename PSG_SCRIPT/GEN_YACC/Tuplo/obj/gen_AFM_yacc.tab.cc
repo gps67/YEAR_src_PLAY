@@ -283,7 +283,7 @@ union YYSTYPE
 
   struct EXPR * expr;
   u32 e32;
-  int token;
+  int tokn;
   const char * lex_buff;
  
 
@@ -604,18 +604,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  10
+#define YYFINAL  9
 /* YYLAST -- Last index in YYTABLE.  */
 #define YYLAST   45
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  61
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  6
+#define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  14
+#define YYNRULES  13
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  23
+#define YYNSTATES  22
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   315
@@ -669,7 +669,7 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,   195,   195,   196,   197,   199,   201,   202,   203,   204,
-     205,   209,   210,   220,   223
+     205,   209,   210,   224
 };
 #endif
 
@@ -695,7 +695,7 @@ static const char *const yytname[] =
   "PUNCT_L_CURLY", "PUNCT_CURLY_R", "PUNCT_SLASH_SLASH",
   "PUNCT_SLASH_STAR", "PUNCT_STAR_SLASH", "RW_if", "LEX_EOLN",
   "LEX_IDENTIFIER", "LEX_WS", "LEX_DOUBLE", "LEX_INTEGER", "$accept",
-  "expr_ident", "expr", "lines", "EXPR_line", "top", YY_NULLPTR
+  "expr_ident", "expr", "lines", "top", YY_NULLPTR
 };
 #endif
 
@@ -728,9 +728,9 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -52,   -14,    10,   -14,   -14,   -52,   -51,   -47,   -11,   -52,
-     -52,    -7,    -9,   -47,   -52,   -14,   -14,   -14,   -52,   -52,
-     -13,    -7,   -13
+     -52,   -14,     8,   -14,   -14,   -52,   -51,   -47,   -11,   -52,
+      -7,    -9,   -47,   -52,   -14,   -14,   -14,   -52,   -52,   -13,
+      -7,   -13
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -738,21 +738,21 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-      11,    14,     0,     0,     0,     4,     0,     5,     0,    12,
-       1,     9,     0,     2,     3,     0,     0,     0,    13,    10,
-       7,     8,     6
+      11,    13,     0,     0,     0,     4,     0,     5,     0,     1,
+       9,     0,     2,     3,     0,     0,     0,    12,    10,     7,
+       8,     6
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -52,     6,     5,   -52,   -52,   -52
+     -52,    10,     6,   -52,   -52
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     7,     8,     1,     9,     2
+      -1,     7,     8,     1,     2
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -760,18 +760,18 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      15,     3,    15,    16,    15,    16,     5,     6,    11,    12,
-      10,    14,    13,    17,     0,    17,     0,    17,     0,    17,
-      20,    21,    22,     0,     0,     0,     0,     0,     0,     0,
+      14,     3,    14,    15,    14,    15,     5,     6,     9,    10,
+      11,    13,     0,    16,     0,    16,    12,    16,     0,    16,
+      19,    20,    21,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     4,     0,     0,     0,     0,     0,
-      19,     0,     0,     5,     6,    18
+      18,     0,     0,     5,     6,    17
 };
 
 static const yytype_int8 yycheck[] =
 {
-      11,    15,    11,    14,    11,    14,    57,    58,     3,     4,
-       0,    58,     6,    26,    -1,    26,    -1,    26,    -1,    26,
-      15,    16,    17,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      11,    15,    11,    14,    11,    14,    57,    58,     0,     3,
+       4,    58,    -1,    26,    -1,    26,     6,    26,    -1,    26,
+      14,    15,    16,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    48,    -1,    -1,    -1,    -1,    -1,
       49,    -1,    -1,    57,    58,    56
 };
@@ -780,23 +780,23 @@ static const yytype_int8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    64,    66,    15,    48,    57,    58,    62,    63,    65,
-       0,    63,    63,    62,    58,    11,    14,    26,    56,    49,
-      63,    63,    63
+       0,    64,    65,    15,    48,    57,    58,    62,    63,     0,
+      63,    63,    62,    58,    11,    14,    26,    56,    49,    63,
+      63,    63
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
        0,    61,    62,    62,    62,    63,    63,    63,    63,    63,
-      63,    64,    64,    65,    66
+      63,    64,    64,    65
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     2,     2,     1,     1,     3,     3,     3,     2,
-       3,     0,     2,     2,     1
+       3,     0,     3,     1
 };
 
 
@@ -1537,7 +1537,7 @@ yyreduce:
 
   case 9:
 #line 204 "../obj/gen_AFM_yacc.y"
-                             { (yyval.expr) = E1( (yyvsp[-1].token), (yyvsp[0].expr) ); }
+                             { (yyval.expr) = E1( (yyvsp[-1].tokn), (yyvsp[0].expr) ); }
 #line 1542 "../obj/gen_AFM_yacc.tab.cc"
     break;
 
@@ -1555,18 +1555,12 @@ yyreduce:
 
   case 12:
 #line 210 "../obj/gen_AFM_yacc.y"
-                  { EXPR * E = (yyvsp[0].expr); (yyval.expr) = E->EXPR_branch_result(); }
+                      { EXPR * E = (yyvsp[-1].expr); (yyval.expr) = E->EXPR_branch_result(); }
 #line 1560 "../obj/gen_AFM_yacc.tab.cc"
     break;
 
-  case 13:
-#line 220 "../obj/gen_AFM_yacc.y"
-                          { (yyval.expr) = (yyvsp[-1].expr); INFO("EOLN"); }
-#line 1566 "../obj/gen_AFM_yacc.tab.cc"
-    break;
 
-
-#line 1570 "../obj/gen_AFM_yacc.tab.cc"
+#line 1564 "../obj/gen_AFM_yacc.tab.cc"
 
       default: break;
     }

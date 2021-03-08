@@ -108,70 +108,70 @@
  %union {
   struct EXPR * expr;
   u32 e32;
-  int token;
+  int tokn;
   const char * lex_buff;
  }
 
-%token <token> PUNCT_PLUS_PLUS
-%token <token> PUNCT_MINUS_MINUS
-%token <token> PUNCT_L_PAR_PAR_R
-%token <token> PUNCT_L_SQUARE_SQUARE_R
-%token <token> PUNCT_DOT
-%token <token> PUNCT_MINUS_GT
-%token <token> PUNCT_NOT
-%token <token> PUNCT_TILDE
-%token <token> PUNCT_STAR
-%token <token> PUNCT_SLASH
-%token <token> PUNCT_PERCENT
-%token <token> PUNCT_PLUS
-%token <token> PUNCT_MINUS
-%token <token> PUNCT_LT_LT
-%token <token> PUNCT_GT_GT
-%token <token> PUNCT_LT_EQUAL
-%token <token> PUNCT_GT_EQUAL
-%token <token> PUNCT_LT
-%token <token> PUNCT_GT
-%token <token> PUNCT_EQUAL_EQUAL
-%token <token> PUNCT_NOT_EQUAL
-%token <token> PUNCT_EQUAL_EQUAL_EQUAL
-%token <token> PUNCT_AMP
-%token <token> PUNCT_CARET
-%token <token> PUNCT_PIPE
-%token <token> PUNCT_AMP_AMP_EQUAL
-%token <token> PUNCT_PIPE_PIPE_EQUAL
-%token <token> PUNCT_AMP_AMP
-%token <token> PUNCT_PIPE_PIPE
-%token <token> PUNCT_LT_LT_LT
-%token <token> PUNCT_GT_GT_GT
-%token <token> PUNCT_LT_LT_EQUAL
-%token <token> PUNCT_GT_GT_EQUAL
-%token <token> PUNCT_LT_LT_LT_EQUAL
-%token <token> PUNCT_GT_GT_GT_EQUAL
-%token <token> PUNCT_EQUAL
-%token <token> PUNCT_PLUS_EQUAL
-%token <token> PUNCT_MINUS_EQUAL
-%token <token> PUNCT_STAR_EQUAL
-%token <token> PUNCT_SLASH_EQUAL
-%token <token> PUNCT_PERCENT_EQUAL
-%token <token> PUNCT_AMP_EQUAL
-%token <token> PUNCT_CARET_EQUAL
-%token <token> PUNCT_PIPE_EQUAL
-%token <token> PUNCT_COMMA
-%token <token> PUNCT_L_PAR
-%token <token> PUNCT_PAR_R
-%token <token> PUNCT_L_CURLY
-%token <token> PUNCT_CURLY_R
-%token <token> PUNCT_SLASH_SLASH
-%token <token> PUNCT_SLASH_STAR
-%token <token> PUNCT_STAR_SLASH
+%token <tokn> PUNCT_PLUS_PLUS
+%token <tokn> PUNCT_MINUS_MINUS
+%token <tokn> PUNCT_L_PAR_PAR_R
+%token <tokn> PUNCT_L_SQUARE_SQUARE_R
+%token <tokn> PUNCT_DOT
+%token <tokn> PUNCT_MINUS_GT
+%token <tokn> PUNCT_NOT
+%token <tokn> PUNCT_TILDE
+%token <tokn> PUNCT_STAR
+%token <tokn> PUNCT_SLASH
+%token <tokn> PUNCT_PERCENT
+%token <tokn> PUNCT_PLUS
+%token <tokn> PUNCT_MINUS
+%token <tokn> PUNCT_LT_LT
+%token <tokn> PUNCT_GT_GT
+%token <tokn> PUNCT_LT_EQUAL
+%token <tokn> PUNCT_GT_EQUAL
+%token <tokn> PUNCT_LT
+%token <tokn> PUNCT_GT
+%token <tokn> PUNCT_EQUAL_EQUAL
+%token <tokn> PUNCT_NOT_EQUAL
+%token <tokn> PUNCT_EQUAL_EQUAL_EQUAL
+%token <tokn> PUNCT_AMP
+%token <tokn> PUNCT_CARET
+%token <tokn> PUNCT_PIPE
+%token <tokn> PUNCT_AMP_AMP_EQUAL
+%token <tokn> PUNCT_PIPE_PIPE_EQUAL
+%token <tokn> PUNCT_AMP_AMP
+%token <tokn> PUNCT_PIPE_PIPE
+%token <tokn> PUNCT_LT_LT_LT
+%token <tokn> PUNCT_GT_GT_GT
+%token <tokn> PUNCT_LT_LT_EQUAL
+%token <tokn> PUNCT_GT_GT_EQUAL
+%token <tokn> PUNCT_LT_LT_LT_EQUAL
+%token <tokn> PUNCT_GT_GT_GT_EQUAL
+%token <tokn> PUNCT_EQUAL
+%token <tokn> PUNCT_PLUS_EQUAL
+%token <tokn> PUNCT_MINUS_EQUAL
+%token <tokn> PUNCT_STAR_EQUAL
+%token <tokn> PUNCT_SLASH_EQUAL
+%token <tokn> PUNCT_PERCENT_EQUAL
+%token <tokn> PUNCT_AMP_EQUAL
+%token <tokn> PUNCT_CARET_EQUAL
+%token <tokn> PUNCT_PIPE_EQUAL
+%token <tokn> PUNCT_COMMA
+%token <tokn> PUNCT_L_PAR
+%token <tokn> PUNCT_PAR_R
+%token <tokn> PUNCT_L_CURLY
+%token <tokn> PUNCT_CURLY_R
+%token <tokn> PUNCT_SLASH_SLASH
+%token <tokn> PUNCT_SLASH_STAR
+%token <tokn> PUNCT_STAR_SLASH
 
-%token <token> RW_if
+%token <tokn> RW_if
 
-%token <token> LEX_EOLN
-%token <token> LEX_IDENTIFIER
-%token <token> LEX_WS
-%token <token> LEX_DOUBLE
-%token <token> LEX_INTEGER
+%token <tokn> LEX_EOLN
+%token <tokn> LEX_IDENTIFIER
+%token <tokn> LEX_WS
+%token <tokn> LEX_DOUBLE
+%token <tokn> LEX_INTEGER
 
 %type <expr> expr_ident
 %type <expr> expr
@@ -207,7 +207,8 @@ expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
 
 lines
 : %empty {}
-| lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+| lines expr LEX_EOLN { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+// | lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
  // lines: lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
 
@@ -217,7 +218,7 @@ lines
 // USE a global PARAMETER save it
 //
 
-EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+// EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
 // EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
 
 top: lines

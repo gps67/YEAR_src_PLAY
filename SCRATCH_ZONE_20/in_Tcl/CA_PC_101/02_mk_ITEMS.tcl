@@ -1,23 +1,8 @@
 #!/tools/CTXT/tcl/bin/tclsh
 
-proc say_do {cmd} {
-	# cmd is a list # ARGS
-	# need to add exec as first arg and call eval on that
-	puts "# RUN # $cmd"
-	set cmd2 [linsert $cmd 0 exec] ;# NAFF tcl lxxxx should use varname
-	# TODO catch #
-	set ret noret
-	catch { eval $cmd2 } ret 
-	puts "# RET # $ret"
-	return ret
-}
+lappend auto_path [pwd]/fns_tcl
 
 ## LIBR above ## LIBR below ##
-
-proc DIR_NAME_CN_key {CN} { file join ca $CN private }
-proc FILENAME_CN_key {CN} { file join ca $CN private $CN.key }
-proc FILENAME_CN_crt {CN} { file join ca $CN $CN.csr }
-proc FILENAME_CN_csr {CN} { file join ca $CN $CN.crt }
 
 proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 

@@ -354,7 +354,7 @@ print_list(
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL
 ) {
-	// maybe need longest first
+	// maybe need longest first // dont think so 
 	// maybe need Q2 punct fixing
 
 	int n = POOL.LIST_Token.N();
@@ -380,7 +380,7 @@ print_list(
 			while( n_sp-- > 0 )
 			 out.put( ' ' );
 
-			// one extra space, just in case
+			// one extra space, just in case // at least 1
 			out.put( " return TOKEN(" );
 			print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
 			out.put( ");\n" );
@@ -559,7 +559,7 @@ gen_LEX_lex_return( buffer2 & out )
  L1("// yylval.fieldname = UNION.fieldname ; // returned extra info for TOKEN");
  L1("// define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)");
  L1("// define XXXX_TOKEN  yylval.lex_buff = NEXT_SLOT(yytext, yyleng)");
- L1("#define TOKEN(t)    (yylval.token = t)"); // and return RETVAL == t
+ L1("#define TOKEN(t)    (yylval.tokn = t)"); // and return RETVAL == t
  L1("");
 
 	return true;
@@ -766,7 +766,7 @@ bool Tree_PSG:: gen_LEX_RULES_ident_values( buffer2 & out )
 {
  //
  // TODO it is supposed to register LEX_NAME
- // what is the return type ? <token> ?
+ // what is the return type ? <tokn> ?
  //
  // HMM option of indent on following line \n if( n_sp<0 )
  // 
@@ -994,11 +994,11 @@ gen_YACC_union( buffer2 & out )
 // L1(" EXPR * expr;");
 // L1(" struct EXPR_t * expr;"); // almost
 
-// this list comes from %left <token> PUNCT_STAR // "token_type token"
+// this list comes from %left <tokn> PUNCT_STAR // "token_type token"
 
  L1("  struct EXPR * expr;"); // almost // incomplete type?
  L1("  u32 e32;"); // retval is int
- L1("  int token;");
+ L1("  int tokn;");
  L1("  const char * lex_buff;"); // via several buffer2 ring of holders
  L1(" }");
 	return true;
@@ -1010,8 +1010,8 @@ gen_YACC_token_list( buffer2 & out )
 	/*
 		RULES section longest first for match priority
 		%left section tightest precedence last
-		rework %token <token> PUNCT_LT_LT_EQUAL
-		as %left <token> PUNCT_LT_LT_EQUAL
+		rework %token <tokn> PUNCT_LT_LT_EQUAL
+		as %left <tokn> PUNCT_LT_LT_EQUAL
 
 	*/
 	L1("");
@@ -1029,7 +1029,7 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
    int n = POOL.LIST_Token.N();
    for( int i =0; i<n; i++ ) {
       LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
-      out.put("%token <token> ");
+      out.put("%token <tokn> ");
       print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
       out.put("\n");
    }
@@ -1046,7 +1046,7 @@ gen_YACC_type_list( buffer2 & out )
 	L1("%type <expr> EXPR_line");
 	L1("%type <expr> lines"); // slight lie to bootstrap
 //	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
-//	L1("%type <token> BOP");
+//	L1("%type <tokn> BOP");
 	return true;
 }
 
@@ -1054,7 +1054,7 @@ bool Tree_PSG::
 gen_YACC_precedence_list( buffer2 & out )
 {
 	// need to match operator to PUNCT sort by operator precedence
-	// %left <token> PUNCT_PLUS PUNCT_MINUS
+	// %left <tokn> PUNCT_PLUS PUNCT_MINUS
 	// loose first, low precedence
 	// tight last, high precedence
 

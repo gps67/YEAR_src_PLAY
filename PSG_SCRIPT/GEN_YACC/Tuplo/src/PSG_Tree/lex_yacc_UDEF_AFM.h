@@ -1,9 +1,9 @@
-#ifndef Tree_PSG_UDEF_AFM_H
-#define Tree_PSG_UDEF_AFM_H
+#ifndef yacc_lex_UDEF_AFM_H
+#define yacc_lex_UDEF_AFM_H
 
 #include "PSG_STUBS.h"
-// #include "Tree_PSG.h"
-#include "Tree_PSG_UDEF.h"
+// #include "yacc_lex.h"
+#include "yacc_lex_UDEF.h"
 namespace PSG {
 
  /* OR DIFFERENTLY NAMED
@@ -55,7 +55,7 @@ namespace PSG {
  */
 
 
-class Tree_PSG_UDEF_AFM : public Tree_PSG_UDEF { public:
+class yacc_lex_UDEF_AFM : public yacc_lex_UDEF { public:
 
 // 	virtual bool build_tree();
  	virtual bool build_tree_lex();

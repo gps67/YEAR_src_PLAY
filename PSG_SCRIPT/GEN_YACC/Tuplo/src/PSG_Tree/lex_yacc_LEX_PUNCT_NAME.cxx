@@ -1,5 +1,5 @@
 
-#include "Tree_PSG_LEX_PUNCT_NAME.h"
+#include "yacc_lex_LEX_PUNCT_NAME.h"
 using namespace PSG;
 
 #define OK( S ) 

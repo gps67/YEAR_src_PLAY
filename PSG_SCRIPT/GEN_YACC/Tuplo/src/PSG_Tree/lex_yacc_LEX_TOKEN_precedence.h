@@ -1,5 +1,5 @@
-#ifndef Tree_PSG_LEX_TOKEN_precedence_H
-#define Tree_PSG_LEX_TOKEN_precedence_H
+#ifndef yacc_lex_LEX_TOKEN_precedence_H
+#define yacc_lex_LEX_TOKEN_precedence_H
 
 #include "str0.h"
 #include "PSG_STUBS.h"

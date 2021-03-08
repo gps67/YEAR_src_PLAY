@@ -1,14 +1,14 @@
 
-#include "yacc_lex_UDEF_AFM.h"
-// #include "yacc_lex_LEX_PUNCT_NAME.h"
+#include "lex_yacc_UDEF_AFM.h"
+// #include "lex_yacc_LEX_PUNCT_NAME.h"
 using namespace PSG;
 
-bool yacc_lex_UDEF_AFM:: build_tree_lex() {
+bool lex_yacc_UDEF_AFM:: build_tree_lex() {
 	if(!add_lex_for_AFM()) return FAIL_FAILED();
 	INFO("AFM");
 	return true;
 }
-bool yacc_lex_UDEF_AFM:: build_tree_yacc() {
+bool lex_yacc_UDEF_AFM:: build_tree_yacc() {
 	if(!add_yacc_for_AFM()) return FAIL_FAILED();
 	// bool add_yacc_for_C_EXPR();
 	INFO("AFM");
@@ -16,7 +16,7 @@ bool yacc_lex_UDEF_AFM:: build_tree_yacc() {
 }
 
 
-bool yacc_lex_UDEF_AFM:: add_lex_for_AFM() {
+bool lex_yacc_UDEF_AFM:: add_lex_for_AFM() {
 
 	/*
 		INVOKE { "e1"
@@ -90,7 +90,7 @@ bool yacc_lex_UDEF_AFM:: add_lex_for_AFM() {
 
 ///////////////////////////////////////////////////////////////////////////
 
-bool yacc_lex_UDEF_AFM:: add_yacc_for_AFM() {
+bool lex_yacc_UDEF_AFM:: add_yacc_for_AFM() {
 	return true;
 	return FAIL("TODO");
 }

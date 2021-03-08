@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "yacc_lex_LEX_TOKEN_precedence.h"
+#include "lex_yacc_LEX_TOKEN_precedence.h"
 
 using namespace PSG;
 

@@ -1,10 +1,10 @@
 
-#include "yacc_lex.h"
+#include "lex_yacc.h"
 #include "Y_PARSE.h" // parameter
 using namespace PSG;
 
-yacc_lex::
-yacc_lex()
+lex_yacc::
+lex_yacc()
 {
 	POOL_PUNCT.PFX = "PUNCT"; // OK omit trailing _
 	POOL_RW   .PFX = "RW";   // OK omit trailing _
@@ -13,8 +13,8 @@ yacc_lex()
 	// CSET 
 }
 
-yacc_lex::
-~ yacc_lex()
+lex_yacc::
+~ lex_yacc()
 {
 }
 
@@ -24,7 +24,7 @@ yacc_lex::
 
 #define if_WARN_1 if(0)
 
-bool yacc_lex::
+bool lex_yacc::
 set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_XXX") //
 {
 	bool near_not_far = true;
@@ -261,7 +261,7 @@ if(0)	path_name.test_print();
 	return true; // OK 
 }
 
-STR0 yacc_lex::
+STR0 lex_yacc::
 yacc_name_y(
 	buffer2 & str // this is now rentrant 
 ){
@@ -287,7 +287,7 @@ yacc_name_y(
 	return str; // cast to STR0 calls terminating_nul 
 }
 
-STR0 yacc_lex::
+STR0 lex_yacc::
 lex_name_lex(
 	buffer2 & str // this is now rentrant 
 ){
@@ -301,7 +301,7 @@ lex_name_lex(
 	obtain yacc_name_tab.hh 
 	via buffer2
 */
-STR0 yacc_lex::
+STR0 lex_yacc::
 yacc_name_tab_hh(
 	buffer2 & str
 ){
@@ -315,7 +315,7 @@ yacc_name_tab_hh(
 	append filename
 	into buffer2 -- but dont clear it
 */
-bool yacc_lex::
+bool lex_yacc::
 put_yacc_name_tab_hh( buffer2 & out ){
 	out.put( yacc_name ); // gen_XXX_yacc 	// .y // .tab.hh
 	out.put(".tab.hh");
@@ -325,7 +325,7 @@ put_yacc_name_tab_hh( buffer2 & out ){
 /*
 	#include "filename" // no comment tho
 */
-bool yacc_lex::
+bool lex_yacc::
 put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 {
 	out.put("#include \"");
@@ -337,7 +337,7 @@ put_include_Q2( buffer2 & out, buffer2 & incl_filename )
 /*
 	#include "gen_XXX_yacc.tab.hh" 
 */
-bool yacc_lex::
+bool lex_yacc::
 put_include_yacc_tab_hh( buffer2 & out )
 {
 	out.put("/* yacc generated TOKENs header UNION YYSTYPE */\n");
@@ -349,7 +349,7 @@ put_include_yacc_tab_hh( buffer2 & out )
 	// return bool OK // mem didn't fail
 }
 
-bool yacc_lex::
+bool lex_yacc::
 print_list(
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL
@@ -406,7 +406,7 @@ print_list(
 	In a sense, POOL is a list, idx in list ...
 	but we have forgotten that ?
 */
-bool yacc_lex::
+bool lex_yacc::
 print_TOKEN_name_3( // _ Name _ // _LEX_name_
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL,
@@ -434,7 +434,7 @@ print_TOKEN_name_3( // _ Name _ // _LEX_name_
 	In a sense, POOL is a list, idx in list ...
 	but we have forgotten that ?
 */
-bool yacc_lex::
+bool lex_yacc::
 print_TOKEN_name_2( // PFX _ Name
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL, // PFX = POOL.PFX
@@ -448,7 +448,7 @@ print_TOKEN_name_2( // PFX _ Name
 }
 
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_includes( buffer2 & out, STR0 filename )
 {
 	int K_max = 32;
@@ -468,7 +468,7 @@ gen_YACC_includes( buffer2 & out, STR0 filename )
 */
 #define L1(str) out.put( str "\n")
 
-bool yacc_lex::
+bool lex_yacc::
 gen_LEX_code_start( buffer2 & out )
 {
  L1("// gen_LEX_code_start() // headers ");
@@ -483,7 +483,7 @@ gen_LEX_code_start( buffer2 & out )
  return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_LEX_lex_return( buffer2 & out )
 {
  L1("/*");
@@ -568,7 +568,7 @@ gen_LEX_lex_return( buffer2 & out )
 // this is GEN of what will be run after compile
 // it uses FIELD "lex_var_start_symbol";
 // that must be provided by ...
-bool yacc_lex::
+bool lex_yacc::
 gen_LEX_start_symbol( buffer2 & out )
 {
 	L1("// ");
@@ -592,9 +592,9 @@ gen_LEX_start_symbol( buffer2 & out )
 	The PSG Tree already exists (with any adaptors for FLEX BISON)
 
 	Print out the .lex and .y files
-	Gererate them from the yacc_lex
+	Gererate them from the lex_yacc
 */
-bool yacc_lex:: print_tree_as_files( ) {
+bool lex_yacc:: print_tree_as_files( ) {
 	buffer2 tmp_str;
 
 	buffer2 out_lex; // entire LEX file text
@@ -621,7 +621,7 @@ bool yacc_lex:: print_tree_as_files( ) {
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_LEX( buffer2 & out ) // gen the entire files text
 {
 	L1("/*");
@@ -743,7 +743,7 @@ static bool gen_PTN_CODE_TOK(
 	return true;
 }
 
-bool yacc_lex:: gen_LEX_RULES_eoln( buffer2 & out )
+bool lex_yacc:: gen_LEX_RULES_eoln( buffer2 & out )
 {
 // MAYBE move to psg.yylineno // some new %tree.parameter
  gen_PTN_CODE_TOK( out, "\\r\\n", "yylineno++;",  "LEX_EOLN");
@@ -762,7 +762,7 @@ static bool gen_PTN_lex_return_TOK(
 	out.print( "%s %s return lex_return(%s);\n", PTN, CODE, TOK );
 	return true;
 }
-bool yacc_lex:: gen_LEX_RULES_ident_values( buffer2 & out )
+bool lex_yacc:: gen_LEX_RULES_ident_values( buffer2 & out )
 {
  //
  // TODO it is supposed to register LEX_NAME
@@ -778,7 +778,7 @@ bool yacc_lex:: gen_LEX_RULES_ident_values( buffer2 & out )
 
 ////////////////////////////
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC( buffer2 & out ) // all of it
 {
  // L1("%define api.namespace {::EXPRS}");
@@ -831,7 +831,7 @@ gen_YACC( buffer2 & out ) // all of it
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_declarations( buffer2 & out )
 {
  if(0) {
@@ -841,7 +841,7 @@ gen_YACC_declarations( buffer2 & out )
  return PASS("TODO");
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_top_code( buffer2 & out )
 {
 
@@ -905,7 +905,7 @@ gen_YACC_top_code( buffer2 & out )
 }
 
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_str_of_token( buffer2 & out )
 {
  L1("");
@@ -934,7 +934,7 @@ gen_YACC_str_of_token( buffer2 & out )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 {
         int n = POOL.LIST_Token.N();
@@ -980,7 +980,7 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_union( buffer2 & out )
 {
 //	L1("%parse-param {SOMETYPE * parser} ");
@@ -1004,7 +1004,7 @@ gen_YACC_union( buffer2 & out )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_token_list( buffer2 & out )
 {
 	/*
@@ -1023,7 +1023,7 @@ gen_YACC_token_list( buffer2 & out )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 {
    int n = POOL.LIST_Token.N();
@@ -1036,7 +1036,7 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_type_list( buffer2 & out )
 {
  // L1("%type <unionfieldname> rulename");
@@ -1050,7 +1050,7 @@ gen_YACC_type_list( buffer2 & out )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_precedence_list( buffer2 & out )
 {
 	// need to match operator to PUNCT sort by operator precedence
@@ -1077,7 +1077,7 @@ gen_YACC_precedence_list( buffer2 & out )
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name ){
 	if(!top_rule_name) top_rule_name = "top";
 	out.print("%%start %s\n", top_rule_name );
@@ -1085,7 +1085,7 @@ gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name ){
 	return true;
 }
 
-bool yacc_lex::
+bool lex_yacc::
 gen_YACC_rules( buffer2 & out )
 {
  L1("// RULES ");

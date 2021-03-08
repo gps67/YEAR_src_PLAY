@@ -1,0 +1,30 @@
+list1="
+	Tree_PSG.cxx
+	Tree_PSG.h
+	Tree_PSG_LEX_PUNCT_NAME.cxx
+	Tree_PSG_LEX_PUNCT_NAME.h
+	Tree_PSG_LEX_TOKEN.cxx
+	Tree_PSG_LEX_TOKEN.h
+	Tree_PSG_LEX_TOKEN_precedence.cxx
+	Tree_PSG_LEX_TOKEN_precedence.h
+	Tree_PSG_RULE.h
+	Tree_PSG_UDEF_AFM.cxx
+	Tree_PSG_UDEF_AFM.h
+	Tree_PSG_UDEF_CALC.cxx
+	Tree_PSG_UDEF_CALC.h
+	Tree_PSG_UDEF_C_EXPR_lex.cxx
+	Tree_PSG_UDEF_C_EXPR_yacc.cxx
+	Tree_PSG_UDEF.cxx
+	Tree_PSG_UDEF.h
+"
+for f in $list1
+do
+	if f2=`expr match "$f" 'Tree_PSG\(.*\)$'`
+	then
+		f2="lex_yacc$f2"
+		echo mv $f $f2
+	else
+		echo "# NO MATCH $f"
+	fi
+
+done

@@ -1,12 +1,12 @@
-#ifndef Tree_PSG_H
-#define Tree_PSG_H
+#ifndef yacc_lex_H
+#define yacc_lex_H
 
 #include "dgb.h"
 #include "obj_ref.h"
 #include "obj_list.h"
 #include "buffer2.h"
 
-#include "Tree_PSG_LEX_TOKEN.h"
+#include "yacc_lex_LEX_TOKEN.h"
 
 #include "PSG_STUBS.h"
 using namespace PSG;
@@ -31,7 +31,7 @@ class union_field_t { public: /* LEX return field YACC return field */
 	void print_with_semicolon( buffer2 & out);
 };
 
-class Tree_PSG_RULE { public:
+class yacc_lex_RULE { public:
 
 	str1 name;		// "expr_ident" // -> one_of_seq( tbs )
 
@@ -50,7 +50,7 @@ class Tree_PSG_RULE { public:
 	};
 #endif
 
-	Tree_PSG_RULE ( STR0 _name, union_field_t * _union_field )
+	yacc_lex_RULE ( STR0 _name, union_field_t * _union_field )
 	: name(_name)
 	, union_field(_union_field)
 	{
@@ -66,7 +66,7 @@ class Tree_PSG_RULE { public:
 		union_field_t *
 		union_field
 		= new union_field_t( "expr", "EXPR * expr" );
-		Tree_PSG_RULE * R1 = new Tree_PSG_RULE( "E1", union_field );
+		yacc_lex_RULE * R1 = new yacc_lex_RULE( "E1", union_field );
 
 		return FAIL("TODO");
 	}
@@ -77,7 +77,7 @@ class Tree_PSG_RULE { public:
 	A second Tree could share the same SEGMENT or INDEX_LAYOUT (api)
 	One day Tree's will call on LIBR for common definitions
 
-	A Tree_PSG is a BUILDER of an entire GRAMMAR Tree
+	A yacc_lex is a BUILDER of an entire GRAMMAR Tree
 	It uses a lot of GEN code to print namelex.lex and nameyacc.y
 	Along with requiring EXPRS.cxx // c_api_C_OPERATOR_EXPRS
 	Along with requiring EXPRS.cxx // cpp_api_CPP_OPERATOR_EXPRS // CTOR
@@ -107,7 +107,7 @@ class Tree_PSG_RULE { public:
 	 hence it is "../obj/gen_XXX_lex.lex // EXPR_lex.o _yacc
 */
 
-class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
+class yacc_lex { public: // PSG in MEM STO !MMAP // this is what we are building
 
  // ARGV // track origin of data used in SYSCALLS	
  // ARGV // names of lex and yacc file(s) in working dir
@@ -210,8 +210,8 @@ class Tree_PSG { public: // PSG in MEM STO !MMAP // this is what we are building
 
  // are we avoiding VTBL or diving right thru
 
-	~Tree_PSG();
-	Tree_PSG();
+	~yacc_lex();
+	yacc_lex();
 
 #if 0
 	LEX_TOKEN_GROUP POOL_[ u8_idx_t ]; // PARTIAL u8 N = 3; // UDEF_ = N++

@@ -1,10 +1,10 @@
 
-#include "Tree_PSG_UDEF.h"
-// #include "Tree_PSG_LEX_PUNCT_NAME.h"
+#include "yacc_lex_UDEF.h"
+// #include "yacc_lex_LEX_PUNCT_NAME.h"
 using namespace PSG;
 
 
-bool Tree_PSG_UDEF:: add_lex_for_C_EXPR() {
+bool yacc_lex_UDEF:: add_lex_for_C_EXPR() {
 
 #warning new code here is where you add C priority left right options
 

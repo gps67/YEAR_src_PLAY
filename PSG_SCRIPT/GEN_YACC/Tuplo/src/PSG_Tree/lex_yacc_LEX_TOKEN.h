@@ -1,5 +1,5 @@
-#ifndef Tree_PSG_LEX_TOKEN_H
-#define Tree_PSG_LEX_TOKEN_H
+#ifndef yacc_lex_LEX_TOKEN_H
+#define yacc_lex_LEX_TOKEN_H
 
 #include "dgb.h"
 #include "obj_ref.h"
@@ -7,8 +7,8 @@
 #include "buffer2.h"
 
 // for building PUNCT_PLUS_EQUAL = "+="
-#include "Tree_PSG_LEX_PUNCT_NAME.h"
-#include "Tree_PSG_LEX_TOKEN_precedence.h"
+#include "yacc_lex_LEX_PUNCT_NAME.h"
+#include "yacc_lex_LEX_TOKEN_precedence.h"
 
 using namespace EXPRS;
 using namespace PSG;

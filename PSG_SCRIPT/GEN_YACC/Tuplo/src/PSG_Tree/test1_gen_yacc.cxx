@@ -6,9 +6,9 @@
 
 #include "STO.h"
 
-#include "Tree_PSG_UDEF.h"
-#include "Tree_PSG_UDEF_AFM.h"
-#include "Tree_PSG_UDEF_CALC.h"
+#include "yacc_lex_UDEF.h"
+#include "yacc_lex_UDEF_AFM.h"
+#include "yacc_lex_UDEF_CALC.h"
 
 using namespace PSG;
 
@@ -50,11 +50,11 @@ bool bool_main( int argc, char ** argv ) {
 	*/
 
 	// PSG = Bench.the_thing_we_are_building();
-	// Tree_PSG_UDEF PSG;
- //	Tree_PSG_UDEF_CALC PSG; 
- //	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_AFM();
- 	Tree_PSG_UDEF * _PSG = new  Tree_PSG_UDEF_CALC();
- 	Tree_PSG_UDEF & PSG = *_PSG;
+	// yacc_lex_UDEF PSG;
+ //	yacc_lex_UDEF_CALC PSG; 
+ //	yacc_lex_UDEF * _PSG = new  yacc_lex_UDEF_AFM();
+ 	yacc_lex_UDEF * _PSG = new  yacc_lex_UDEF_CALC();
+ 	yacc_lex_UDEF & PSG = *_PSG;
 
 	// PSG = the_thing_we_are_building();
 	// PSG is held on STACK for duration, then END_SCOPE_DTOR();

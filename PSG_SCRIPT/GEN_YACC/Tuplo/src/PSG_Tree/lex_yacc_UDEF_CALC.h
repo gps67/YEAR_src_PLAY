@@ -1,12 +1,12 @@
-#ifndef Tree_PSG_CALC_H
-#define Tree_PSG_CALC_H
+#ifndef yacc_lex_CALC_H
+#define yacc_lex_CALC_H
 
 #include "PSG_STUBS.h"
-#include "Tree_PSG.h"
-#include "Tree_PSG_UDEF.h"
+#include "yacc_lex.h"
+#include "yacc_lex_UDEF.h"
 namespace PSG {
 
-class Tree_PSG_UDEF_CALC : public Tree_PSG_UDEF { public:
+class yacc_lex_UDEF_CALC : public yacc_lex_UDEF { public:
 
 // VIRTUAL // no C++ need to repeat mention it tho
 //	bool build_tree(); // use default _lex then _yacc

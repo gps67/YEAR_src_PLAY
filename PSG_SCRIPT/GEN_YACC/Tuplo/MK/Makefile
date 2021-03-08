@@ -102,15 +102,15 @@ endif
 
 	OBJS1 += Y_PARSE_gen.o 
 	OBJS23 += Y_PARSE.o 
-	OBJS1 += Tree_PSG_LEX_PUNCT_NAME.o 
-	OBJS1 += Tree_PSG_LEX_TOKEN.o
-	OBJS1 += Tree_PSG_LEX_TOKEN_precedence.o
-	OBJS1 += Tree_PSG.o
-	OBJS1 += Tree_PSG_UDEF.o
-	OBJS1 += Tree_PSG_UDEF_C_EXPR_lex.o
-	OBJS1 += Tree_PSG_UDEF_C_EXPR_yacc.o
-	OBJS1 += Tree_PSG_UDEF_CALC.o
-	OBJS1 += Tree_PSG_UDEF_AFM.o
+	OBJS1 += lex_yacc_LEX_PUNCT_NAME.o 
+	OBJS1 += lex_yacc_LEX_TOKEN.o
+	OBJS1 += lex_yacc_LEX_TOKEN_precedence.o
+	OBJS1 += lex_yacc.o
+	OBJS1 += lex_yacc_UDEF.o
+	OBJS1 += lex_yacc_UDEF_C_EXPR_lex.o
+	OBJS1 += lex_yacc_UDEF_C_EXPR_yacc.o
+	OBJS1 += lex_yacc_UDEF_CALC.o
+	OBJS1 += lex_yacc_UDEF_AFM.o
 	OBJS23 += EXPRS.o
 	OBJS23 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o

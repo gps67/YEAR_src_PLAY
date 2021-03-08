@@ -1,6 +1,6 @@
 
-#include "yacc_lex_UDEF.h"
-#include "yacc_lex_LEX_PUNCT_NAME.h"
+#include "lex_yacc_UDEF.h"
+#include "lex_yacc_LEX_PUNCT_NAME.h"
 using namespace PSG;
 
 
@@ -13,23 +13,23 @@ using namespace PSG;
 // SERVER filters requests through CHECKER_FILTER
 // RELAY filters are either inside or outside, or vetted
 
-// yacc_lex_UDEF is a BASE CLASS with OPTS eg C_EXPR
+// lex_yacc_UDEF is a BASE CLASS with OPTS eg C_EXPR
 
 
-bool yacc_lex_UDEF:: build_tree() {
+bool lex_yacc_UDEF:: build_tree() {
 	if(! build_tree_lex() ) return FAIL_FAILED(); 
 	if(! build_tree_yacc() ) return FAIL_FAILED(); 
 	return true;
 }
 
-bool yacc_lex_UDEF:: build_tree_lex() {
+bool lex_yacc_UDEF:: build_tree_lex() {
 	return FAIL("UNWRITTEN");
 	return true;
 }
-bool yacc_lex_UDEF:: build_tree_yacc() {
+bool lex_yacc_UDEF:: build_tree_yacc() {
 	return FAIL("UNWRITTEN");
 #if 0
-	yacc_lex_RULE_SEQ * SEQ = new yacc_lex_RULE_SEQ( "expr_ident" );
+	lex_yacc_RULE_SEQ * SEQ = new lex_yacc_RULE_SEQ( "expr_ident" );
 	SEQ -> name = "expr_ident";
 	SEQ -> add_step_LEX( "WS" );
 	SEQ -> add_step_RULE( "expr_ident" );

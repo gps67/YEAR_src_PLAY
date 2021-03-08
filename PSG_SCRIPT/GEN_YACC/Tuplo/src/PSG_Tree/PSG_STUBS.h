@@ -7,11 +7,11 @@ namespace PSG {
 	class LEX_TOKEN_GROUP;
 	class PSG_UDEF;
 	class PSG_UDEF;
-	class yacc_lex;
-	class yacc_lex_RULE;
-	class yacc_lex_UDEF;
-	class yacc_lex_UDEF_AFM;
-	class yacc_lex_UDEF_CALC;
+	class lex_yacc;
+	class lex_yacc_RULE;
+	class lex_yacc_UDEF;
+	class lex_yacc_UDEF_AFM;
+	class lex_yacc_UDEF_CALC;
 	class Tuplo_CSR;
 	class union_field_t;
 

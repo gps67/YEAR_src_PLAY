@@ -1,12 +1,12 @@
-#ifndef yacc_lex_LEX_PUNCT_NAME_h
-#define yacc_lex_LEX_PUNCT_NAME_h
+#ifndef lex_yacc_LEX_PUNCT_NAME_h
+#define lex_yacc_LEX_PUNCT_NAME_h
 
 #include "ints.h"
 #include "buffer1.h"
 #include "PSG_STUBS.h"
 namespace PSG {
 
-//	yacc_lex_LEX_PUNCT_NAME.h
+//	lex_yacc_LEX_PUNCT_NAME.h
 
 extern // buff += LEX.punct_name()
 bool print_LEX_punct_name( buffer1 & name, u8 chr );

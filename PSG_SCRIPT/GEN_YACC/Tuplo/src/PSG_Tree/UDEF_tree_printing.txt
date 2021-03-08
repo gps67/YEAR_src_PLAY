@@ -18,9 +18,9 @@
 	 
 	// DIR.ls = 
 test1_gen_yacc.cxx
-yacc_lex.cxx .h
-yacc_lex_LEX_PUNCT_NAME.cxx .h
-yacc_lex_LEX_TOKEN.cxx .h
-yacc_lex_UDEF.cxx .h
+lex_yacc.cxx .h
+lex_yacc_LEX_PUNCT_NAME.cxx .h
+lex_yacc_LEX_TOKEN.cxx .h
+lex_yacc_UDEF.cxx .h
 Tree_Tuplo_VECT.h // no cxx
 

@@ -1,5 +1,5 @@
-#ifndef yacc_lex_LEX_TOKEN_H
-#define yacc_lex_LEX_TOKEN_H
+#ifndef lex_yacc_LEX_TOKEN_H
+#define lex_yacc_LEX_TOKEN_H
 
 #include "dgb.h"
 #include "obj_ref.h"
@@ -7,8 +7,8 @@
 #include "buffer2.h"
 
 // for building PUNCT_PLUS_EQUAL = "+="
-#include "yacc_lex_LEX_PUNCT_NAME.h"
-#include "yacc_lex_LEX_TOKEN_precedence.h"
+#include "lex_yacc_LEX_PUNCT_NAME.h"
+#include "lex_yacc_LEX_TOKEN_precedence.h"
 
 using namespace EXPRS;
 using namespace PSG;

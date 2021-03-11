@@ -1,0 +1,57 @@
+	2021-03-11
+
+	2021_03_Mar
+	2021-03-11_TODO.txt
+
+
+ package require tk_menu 0.1 ;# UDEF pack mk_id etc
+  VIEW FILE
+  PLAY FILE
+  MIME FILE
+  BENCH FILE
+ 
+ package require mpg123_ctrl
+  PLAY FILE
+  TPOS slider
+  PAUSE PLAY GOTO PREV NEXT TITLE
+ 
+ package require tk_browse
+  DIR .
+  VIEW FILE
+ 
+ TYPE_of_DIR
+  AUDIO
+   mp3_V4
+    artist_name
+     album_name
+      01_track_name.mp3
+      %2.2d_%s track_number track_name_for_file
+      other.ext .inf 
+      HASHHASH.cddb
+   wav
+  .cddb
+  PVR
+   ....
+  YT
+   ...
+  YEAR_src_PLAY/name1/.../.../...
+ 
+ --
+
+ mutool
+  example.c
+  text_to_png.js
+  android ?
+
+ X11 image ZOOM
+ PDF layout DRAW // cairo
+
+
+ tk_TODO
+ WAX_TODO
+ w_TODO
+
+ lex_Yacc {SCRIPT}
+
+
+

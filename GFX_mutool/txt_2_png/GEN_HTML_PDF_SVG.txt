@@ -1,1 +1,6 @@
-{ test1.txt }
+
+ 1ena2ena
+ rlr--lr-
+ rlr-Rlr- 
+ 3ena4ena
+

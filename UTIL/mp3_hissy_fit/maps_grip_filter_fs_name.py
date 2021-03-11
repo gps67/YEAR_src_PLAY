@@ -31,6 +31,7 @@ import maps_plausible_list
 
 
 def grip_filter_fs_name_1( str ):
+	# _1 is unused see: grip_filter_fs_name( ustr ):
 	# grip has odd rules
 	# we copy it to get its wav files
 	# and general debugging

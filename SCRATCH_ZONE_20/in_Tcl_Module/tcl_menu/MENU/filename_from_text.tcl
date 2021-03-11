@@ -1,5 +1,9 @@
 
 # convert a naff string to a usable filename namepart
+# src/mp3_hissy_fit
+# maps_plausible_list.py 
+# list of ASCII from accented
+# list of TEXT from PUNCT
 
 proc filename_from_text TEXT {
 	# anything that isnt plain ASCII glyphs # multichar # is a stone

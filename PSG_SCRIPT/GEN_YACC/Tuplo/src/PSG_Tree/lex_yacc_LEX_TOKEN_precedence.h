@@ -27,6 +27,7 @@ struct operator_precedence_t {
 
 	// or make this enum
 	bool assoc_left;
+	bool assoc_none;
 	bool assoc_right;
 
 	int precedence; // 1 = tightest // 0 == unset
@@ -35,6 +36,7 @@ struct operator_precedence_t {
 	// could be a looked-up by name NODE or TOK -selects- NODE
 	operator_precedence_t( STR0 flags = NULL )
 	: assoc_left( false )
+	, assoc_none( false )
 	, assoc_right( false )
 	, precedence( 0 ) // default 0 // use lowest of 1 otherwise
 	{
@@ -45,6 +47,7 @@ struct operator_precedence_t {
 
 	void init_unused() {} ; // leave as was, as CTOR left it
 	void set_left() { assoc_left = true; }
+	void set_none() { assoc_none = true; }
 	void set_right() { assoc_right = true; } 
 	void set_precedence(int p) {
 		precedence = p;

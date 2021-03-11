@@ -407,14 +407,19 @@ print_list(
 	but we have forgotten that ?
 */
 bool lex_yacc::
-print_TOKEN_name_3( // _ Name _ // _LEX_name_
+print_TOKEN_name_3( // "_LEX_name_" / fake printable string
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL,
 	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ];
 ) {
+		out.put( '_' );
+		print_TOKEN_name_2( out, POOL, tok ); // "LEX_NAME"
+		out.put( '_' ); // "_LEX_NAME_"
+		return true;
+
 	//	out.put( "/* LEX_ */ " );
 		out.put( '_' );
-		out.put( POOL.PFX );	// MADNESS HERE
+		out.put( POOL.PFX );	// "PUNCT" "RW" or "LEX"
 		out.put( '_' );
 		out.put( tok-> Name );
 		out.put( '_' );
@@ -435,7 +440,7 @@ print_TOKEN_name_3( // _ Name _ // _LEX_name_
 	but we have forgotten that ?
 */
 bool lex_yacc::
-print_TOKEN_name_2( // PFX _ Name
+print_TOKEN_name_2( // PFX _ Name // "PUNCT_COMMA"
 	buffer2 & out,
 	LEX_TOKEN_GROUP &  POOL, // PFX = POOL.PFX
 	LEX_TOKEN_DECL * tok //  tok = POOL.LIST_Token[ i ]; Name = tok.Name
@@ -937,6 +942,11 @@ gen_YACC_str_of_token( buffer2 & out )
 bool lex_yacc::
 gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 {
+	/*
+		gen_YACC_str_of_token_cases( out, POOL_PUNCT );
+		gen_YACC_str_of_token_cases( out, POOL_RW );
+		gen_YACC_str_of_token_cases( out, POOL_LEX );
+	*/
         int n = POOL.LIST_Token.N();
         for( int i =0; i<n; i++ ) {
                 LEX_TOKEN_DECL * tok = POOL.LIST_Token[ i ];
@@ -965,11 +975,19 @@ gen_YACC_str_of_token_cases( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 			out.put( tok-> Value );
 			out.put("\";\n");
 		} else {
+		/*
+			case LEX_EOLN:        return "_LEX_EOLN_"; // 
+			These are LEX_IDENTIFIER tokens
+			which have no value themselves, 
+			value passed in union "LEX_DOUBLE"
+			value does not exists "LEX_EOLN"
+			create a fake "_LEX_DOUBLE_" printable string
+		*/
 			out.put(":\t return \"");
 			print_TOKEN_name_3( out, POOL, tok ); // _ Name _
 		// long tracing print
-		// 	out.put("\"; // print_TOKEN_name_3 //\n");
-			out.put("\";\n");
+		//	out.put("\";\n");
+			out.put("\"; // print_TOKEN_name_3 //\n");
 			// str_of_token
 			// UNUSED PUNCT_name
 			//   USED LEX_name

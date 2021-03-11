@@ -1,17 +1,7 @@
 
 /home/gps/YEAR/SMB
 /home/gps/YEAR/SMB/MENU/	DEVELOP NEW EDITS HERE - run over smb
-
-	is on NASB2		at home
-	is on AMS10		run over SMB
-	is 777 501.501		
-
-#	on laptop, it is imported NASB, is exported C:\G
-
-smbclient -U Dell \
-	//AMS10/g/
 	is C:\G\ shared as g: (?)
-
 
 #	manually backup into GIT, via "proper" location
 #	but being GIT that can be ~/G/src/...

@@ -19,8 +19,8 @@ class union_field_t { public: /* LEX return field YACC return field */
 
 	// LIST used in rules 
 	union_field_t(
-	 STR0 _union_field_name,
-	 STR0 _union_field_line
+	 STR0 _union_field_name,	//     "int_val"
+	 STR0 _union_field_line		// "int int_val" // no ';'
 	) 
 	: union_field_name( _union_field_name )
 	, union_field_line( _union_field_line )

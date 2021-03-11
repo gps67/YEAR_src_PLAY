@@ -2,6 +2,7 @@
 # GLOBAL - move to namespace X
 
 set G_counter_N 0
+
 proc G_counter {pfx} {
  global G_counter_N
  set G $G_counter_N
@@ -11,3 +12,6 @@ proc G_counter {pfx} {
 
 proc mk_id {} { G_counter id_ } ;# id_99
 proc mk_idx {} { G_counter } ;# it is actually a str %d idx 99
+
+# _old _incr_ _new # G_counter is  SEGMENT_OBJ[ idx=N++ ]
+# idx = OBJ_idx

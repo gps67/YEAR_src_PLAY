@@ -1,6 +1,12 @@
 
+# you can have any number of $w2.text_out (different w2)
+# mk_text_out_global creates one in .
+# text_out - "TEXT" ;# appends to it
+# text_out_ln - "TEXT" ;# with added newline
+# GLOBAL VAR $text_out_global
+
 proc text_out {text_widget text} {
-	# single default output text widget "-" or {} oe "default"
+	# single default output text widget "-" or {} or "default"
 	if {$text_widget == "-" } { set text_widget {}} 
 	if {$text_widget == "default" } { set text_widget {}} 
 	if {$text_widget == {}} {
@@ -16,9 +22,10 @@ proc text_out_ln { text_widget text} {
 	text_out $text_widget "\n"
 }
 
-proc mk_text_out { w1 } {
-     set w1_text_out $w1.text_out
-     set w1_scroll $w1.scroll
+proc mk_text_out { w1 {text_out text_out}} {
+     set w1_text_out $w1.$text_out
+     set w1_scroll $w1_text_out.scroll ;# nested fails zero size
+     set w1_scroll $w1.scroll ;# works, loses scrollbar at 75% width
      text $w1_text_out \
 	-yscrollcommand [list $w1_scroll set] \
 	-setgrid 1 \
@@ -32,7 +39,7 @@ proc mk_text_out { w1 } {
 }
 
 set text_out_global .unset
-proc mk_text_out_global { w1 } {
+proc mk_text_out_global { {w1 {}} } {
 	if { $w1 == "dot" } { set w1 {} }
 	if { $w1 == "-" } { set w1 {} }
 

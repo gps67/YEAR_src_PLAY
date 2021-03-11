@@ -1,0 +1,27 @@
+2021-03-10 Mar Wed 22:56 tk_mime/tk_mime.txt
+
+ tk_mime/
+ tk_mime.txt
+
+	API 
+	 VIEW FILE
+	 EDIT FILE
+	 MIME FILE
+	
+	API
+	 BENCH to browse VFS == FS chrooted
+	 VIEW single file
+	 ZOOM within panel
+	
+	VIEW JPG
+	 load JPG to canvas ?
+	 write on frame
+
+	BROWSER JPG png pdf mupdf
+
+	GEN C++ for mupdf 
+	 that prints a dalek
+	
+
+	
+

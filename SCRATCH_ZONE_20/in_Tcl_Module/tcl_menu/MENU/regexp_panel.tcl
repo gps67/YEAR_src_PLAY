@@ -5,16 +5,6 @@ lappend auto_path [pwd]/MENU
 lappend auto_path [pwd]
 
 
-# filter_window # could also reduce ..W to .W
-
-	proc at_least_dot {w} {
-		if { $w == {} } {
-			return .
-		} else {
-			return $w
-		}
-	}
-
 # create $w0 == pre done by wish as "."
 
 	set w0 {} ;# the default main toplevel

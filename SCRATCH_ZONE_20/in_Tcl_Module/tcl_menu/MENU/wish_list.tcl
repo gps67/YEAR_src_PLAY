@@ -5,6 +5,9 @@ package require Tk
 lappend auto_path [pwd]/MENU
 lappend auto_path [pwd]
 
+namespace import ::MK_ID::mk*
+
+
 set w1 .w1
 toplevel $w1
 wm title $w1 "W1 Text Out"
@@ -38,32 +41,32 @@ if {0} {
 ### filename_from_text_tests
 
 
-menu_id_text_cmd $menu_m1 - "Exit" {
+btns_b_text_cmd $menu_m1 - "Exit" {
     puts stdout "Goodbye destroy dot";
     destroy .
 }
-menu_id_text_cmd $menu_m1 - "Hello World" {
+btns_b_text_cmd $menu_m1 - "Hello World" {
     text_out_ln - "Hello, world";
 }
 
-menu_id_text_cmd $menu_m1 - "RUN wish wish_list.tcl" {
+btns_b_text_cmd $menu_m1 - "RUN wish wish_list.tcl" {
     text_out_ln - [ exec wish wish_list.tcl]
 }
 
-menu_ITEM_exec   $menu_m1 { wish wish_list.tcl }
-menu_ITEM_exec   $menu_m1 { wish MENU/menu_one.tcl }
-menu_ITEM_exec   $menu_m1 { gvim MENU/menu_one.tcl }
-menu_ITEM_exec   $menu_m1 { gvim wish_list.tcl }
-menu_ITEM_script $menu_m1 { puts stdout "hello" }
-menu_ITEM_script $menu_m1 { text_out_ln - "Button Two"; }
-menu_ITEM_script $menu_m1 {
+btns_ITEM_exec   $menu_m1 { wish wish_list.tcl }
+btns_ITEM_exec   $menu_m1 { wish MENU/menu_one.tcl }
+btns_ITEM_exec   $menu_m1 { gvim MENU/menu_one.tcl }
+btns_ITEM_exec   $menu_m1 { gvim wish_list.tcl }
+btns_ITEM_script $menu_m1 { puts stdout "hello" }
+btns_ITEM_script $menu_m1 { text_out_ln - "Button Two"; }
+btns_ITEM_script $menu_m1 {
     puts stdout "Message"
 }
 # HERE #
-menu_ITEM_exec   $menu_dot { wish wish_list.tcl }	;# OK
-menu_ITEM_exec   $menu_dot { wish MENU/menu_one.tcl }	;# conflict "wish"
-menu_ITEM_exec   $menu_dot { EDIT wish_list.tcl }
-menu_ITEM_exec   $menu_dot { EDIT MENU/menu_one.tcl }
+btns_ITEM_exec   $menu_dot { wish wish_list.tcl }	;# OK
+btns_ITEM_exec   $menu_dot { wish MENU/menu_one.tcl }	;# conflict "wish"
+btns_ITEM_exec   $menu_dot { EDIT wish_list.tcl }
+btns_ITEM_exec   $menu_dot { EDIT MENU/menu_one.tcl }
 
 
 # Local Variables:

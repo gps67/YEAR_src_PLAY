@@ -35,6 +35,11 @@
   YT
    ...
   YEAR_src_PLAY/name1/.../.../...
+
+  TYPE_of_DIR accumulates, multiple inherit
+  MIME_of_FILE within_DIR, adds a behaviour, eg is_a_temp
+  NAME of ITEM, is_a_temp, is_created_by_make, is_architecture_specific
+  CHANGE_of_USE imported_from_elsewhere, old_name_scheme,
  
  --
 
@@ -45,13 +50,21 @@
 
  X11 image ZOOM
  PDF layout DRAW // cairo
-
+ FT2 using an cache other than XRender pixmaps over line
 
  tk_TODO
  WAX_TODO
  w_TODO
 
  lex_Yacc {SCRIPT}
+--
+ UDEF => PSG => lex_yacc
 
+ LEX to add all cident99 to POOL_SPELLING
+ LEX to add all STR_USED to POOL_TEMP_KEEP
+ LEX to add all COMMENTS to POOL_TEMP_KEEP
 
+ The POOL is needed to keep str2 alive
+ Recycle the POOLS at file end, or top level backtrack cut point
+ KEEP SPELLING for codepoint lookup
 

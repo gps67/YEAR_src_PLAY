@@ -115,10 +115,15 @@ bool cmd_cfg_demo(int argc, char ** argv )
 	return PASS("does");
 }
 
+bool cmd_HT_demo(int argc, char ** argv ) {
+	return 0==HT_main(); // ( argc, argv );
+}
+
 bool cmd_play_code(int argc, char ** argv )
 {
 
 	const char * default_argv[] = {
+	 "HT_demo",
 	 "cfg_demo",
 	};
 	if( argc == 0 ) {
@@ -136,7 +141,7 @@ bool cmd_play_code(int argc, char ** argv )
 	if( cmd1 == "base64_demo" ) return cmd_base64_demo( argc, argv );
 	if( cmd1 == "cfg_demo" ) return cmd_cfg_demo( argc, argv );
 	if( cmd1 == "SPOUT" ) return cmd_SPOUT( argc, argv );
-	if( cmd1 == "HT_main" ) return 0==HT_main(); // ( argc, argv );
+	if( cmd1 == "HT_demo" ) return cmd_HT_demo( argc, argv );
 	if( cmd1 == "amix" ) return amix_cmd(argc, argv);
 
 	// holder does this // setlocale(LC_ALL,"");
@@ -162,7 +167,8 @@ int main(int argc, char ** argv )
 	pathname.test_print();
 	if( argc == 1 ) {
 		FAIL("Usage %s cmd ...", argv[0] );
-		return 6;
+		// return 6;
+		WARN("so calling to use default" );
 	}
 	str0 cmd0 = (STR0) pathname.name;
 	INFO("Invoked as '%s'", (STR0)cmd0 );

@@ -84,3 +84,10 @@ prng_seed.dat
 
 ncurses-6.1
 cfg_CA_file.dat
+
+# Python3
+
+# dir failed to eliminate
+*/__pycache__/*
+__pycache__
+*.pyc

@@ -6,6 +6,7 @@ PATH=$HOME/bin:$PATH
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
 
 L1="
+https://github.com/NativeScript/NativeScript.git
 git://sourceware.org/git/elfutils.git
 https://github.com/antirez/linenoise
 https://gitlab.gnome.org/GNOME/gjs

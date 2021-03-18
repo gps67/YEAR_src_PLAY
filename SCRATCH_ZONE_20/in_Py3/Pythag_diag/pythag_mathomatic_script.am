@@ -1,0 +1,16 @@
+#!/usr/bin/env am
+# Algebraic Manipulator script
+# http://fuse.superglue.se/aamath
+
+	small_side = B - A
+	small_area = small_side ^ 2
+	triangle_area = A * B / 2
+	large_area = C ^ 2
+	large_area = 4 * triangle_area + small_area
+
+
+	eliminate small_area
+	eliminate small_side using 1
+	eliminate triangle_area
+	eliminate large_area
+	simplify

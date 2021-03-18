@@ -1,0 +1,175 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <title>Pythagorus Shape</title>
+</head>
+<body>
+
+<pre>
+
+The triangle has sides A, B and C
+
+	The middle corner is a right-angle
+	A could be less/same/more than B
+	Presume A &lt;= B
+	C is un-known-yet, but fixed from whatever A and B are
+
+Does A have to be less than B? (or equal)
+
+	Yes!
+	You can repeat this, reflected for the opposite case.
+	No!
+
+	There is a reflection where A &gt; B
+	(The animation that works on UNIX shows the effect)
+
+	The reflection is by drawing it on transparent paper,
+	and flipping it over, and re-labelling A/B.
+
+Is the diagram correct? Does it tesselate? No gaps?
+
+	The proof is the same as the way its drawn!
+	You only use horizontal and vertical motions,
+	of lengths A and B, and you finish where you started.
+	No shortfall (gaps) nor overshoot (overlaps). Its exact.
+
+	From the top:
+
+		down A				y += A
+		right B			x += B
+
+		left A			x -= A
+		down B				y += B
+
+		up A				y -= B
+		left B			x -= B
+
+		right A			x += A
+		up B				y -= B
+
+	The diagonal "C" lines join the dots, and is the first
+	time the horizontal and vertical tracks arent followed.
+
+	(NB Python/Tk has y==0 at the top, so the above does too)
+
+Is the little square a square?
+
+	Its corners are 90' and the sides are the same (B-A)
+
+	The points of the little square are NOT on the 2 points
+	of the triangle, but are where the square corner meets a line.
+
+The side length of the little square is:
+
+	The (longer) B distance you moved to the right,
+	less the (shorter) A distance you moved back to the left
+	(Thats before turning south, to move B down)
+
+	side + A = B
+	side = B-A 
+	(repeat for 4 sides, NB (B-A) &gt; 0 !!!)
+
+	area = (B-A)^2 = B^2 -2AB + A^2
+
+Is the large square a square?
+
+	Each corner is the sum of the two angles (not the 90' one)
+	If all 3 add up to 180, the 2 must be 90
+
+	If the corners are 90, and the sides the same, its a square
+
+	area = C^2
+
+Do the inside angles of a triangle add up to 180?
+
+	That needs a diagram!
+
+	If you "drive around" a triangle, you do a full circle.
+	Thats 360' of right turns (left is reflection)
+
+	At each corner, the right turn, plus the inside angle makes 180
+
+	P Q R are the outside right turns 
+	p q r are the inside right angles
+
+	P+p = 180	P+Q+R = 360 (the full turn)
+	Q+Q = 180	p+q+r = Left-Above = 180+180+180 - 360 = 180
+	R+r = 180
+
+	That holds for any flat triangle, right angle or not.
+
+	((Euclid parallel postulate: draw a second line parallel
+	to the base line, touching the top point. P+Q+R=180.
+	P,Q,R move up to the line. ))
+
+The area of a right angle triangle is:
+
+	rotating the triangle gives the green/white rectangle
+	Its definitely a rectangle (not skewed) because
+	two corners are 90', and the opposing sides are equal A-A B-B
+	and the join is C (no gap)
+
+	This also proves the two corners add up to 90'
+	(for right angle triangles)
+
+	So its half of the rectangle: AB/2
+
+The area of a rectangle is:
+
+	base * height	-- is this definition?
+
+The "big square" is the sum of the area of
+
+	the 4 triangles		 4*AB/2
+	and the little square 	 (B-A)<sup>2</sup>
+	------------------ 	=
+	The big square		 C<sup>2</sup>
+
+	4*AB/2 + (B-A)<sup>2</sup> = C<sup>2</sup>
+
+expand out the terms:
+
+	2AB + B<sup>2</sup> -2AB + A<sup>2</sup> = C<sup>2</sup>
+
+which makes (for A&lt;=B)
+
+	B<sup>2</sup> + A<sup>2</sup> = C<sup>2</sup>
+
+now by symmetry, switching A and B gives the same result, so A&gt;B is OK
+
+	that saves having a negative size square, and philosophy,
+	which is just a step backwards as long as you define forwards!
+
+	It also confirms anti-clockwise left-turns work OK.
+
+You can also  visit 
+	<A HREF="http://www.lightlink.com/computer/math/">http://www.lightlink.com/computer/math/</A>
+ OR	<A HREF="http://www.mathomatic.com/">http://www.mathomatic.com/</A>
+and try this script:
+
+	#!/usr/bin/env am
+	; Algebraic Manipulator script for Pythag
+
+	small_side = B - A
+	small_area = small_side ^ 2
+	triangle_area = A * B / 2
+	large_area = C ^ 2
+	large_area = 4 * triangle_area + small_area
+
+	eliminate small_area
+	eliminate small_side using 1
+	eliminate triangle_area
+	eliminate large_area
+	simplify
+
+</pre>
+
+< pre>
+LINKS:
+<ul>
+<A HREF="http://fuse.superglue.se/aamath/">http://fuse.superglue.se/aamath/</A>
+</ul>
+</pre>
+
+</body>
+</html>

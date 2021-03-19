@@ -22,6 +22,7 @@
 #ifdef _POSIX_C_SOURCE
 #undef _POSIX_C_SOURCE
 #endif
+// #warning INCLUDING <Python.h> 
 #include <Python.h> // which includes "object.h" so avoid that name ...
 #else
 /*

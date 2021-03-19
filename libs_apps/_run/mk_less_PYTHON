@@ -6,7 +6,8 @@
 # build obj_ref0 - this is experimental
 
 	export WITH_PYTHON=1
-	T=obj_ref0.o
 	T=JS1.o
+	T=obj_ref0.o
+	T=test8
 	./mk WITH_PYTHON=1 "${@:-$T}" 2>&1 | less
 	# ./mk "$@" 2>&1 | more

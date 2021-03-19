@@ -128,15 +128,28 @@ endif
 	# these two pairs are the same
 	# note how $TGT overrides the default
 	#
+	export PKG_CONFIG_LIST
 	PKG_CONFIG_LIST += .
+	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)/$(UNAME)
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)
 	PKG_CONFIG_LIST += ../pkgconfig
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)/$(UNAME)
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig
-	PKG_CONFIG_LIST += $(HOME)/G/prefix/lib/pkgconfig # for me
-	PKG_CONFIG_LIST += $(HOME)/G/mozjs/lib/pkgconfig # for me
-	export PKG_CONFIG_LIST
+	PKG_CONFIG_LIST += $(HOME)/G/prefix/lib/pkgconfig
+	PKG_CONFIG_LIST += $(HOME)/G/mozjs/lib/pkgconfig
+#	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig
+#	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig/falsely
+
+# now here
+ifeq ($(WITH_PYTHON),1)
+	# this is being used
+	# DEFS += -DWITH_PYTHON_PLUS
+	# OK PKGS not being used - am using fixed lists
+	DEFS += -DWITH_PYTHON
+	PKGS += python3
+	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig
+endif
 
 	# PKG_CONFIG_LIST += /usr/lib/pkgconfig last
 	#
@@ -265,6 +278,7 @@ endif
 	# as obj_ref is derived from PyObject
 	# this is not started, yet ...
 		WITH_PYTHON=0
+#		WITH_PYTHON=1
 
 #
 # CFLAGS -O2 -g
@@ -469,6 +483,8 @@ endif
 	SubDirs += lib_base/fd_api_buf
 ##	SubDirs += lib_base/fd_sel_ssl ## gone
 	SubDirs += lib_win32/fd_win32
+
+# WITH_PYTHON # was here #
 
 ifeq ($(WITH_GLIB),1)
 	SubDirs += lib_base/glib_1

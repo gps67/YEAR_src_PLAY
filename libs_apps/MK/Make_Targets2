@@ -57,7 +57,7 @@ WITHLIB36=`$(PKG_CONFIG) libs_apps_sar_plot_post --libs`
 WITHLIB3635=`$(PKG_CONFIG) libs_apps_accts_gtk libs_apps_sar_plot_post --libs`
 
 # INCLS += `$(PKG_CONFIG) _into_base2 --cflags`
-INCLS += `$(PKG_CONFIG) _into_base2_gtk --cflags`
+INCLS += `$(PKG_CONFIG) _into_base2_gtk $(PKGS) --cflags`
 
 # FIRST LINE CLEARS IT, sets it to the C++ compiler/linker
 LINK_SO_FROM  = $(CXX)
@@ -555,21 +555,40 @@ $(RUN_INCL_PATH):
 	@# Process $(RUN_INCL_PATH) with MK_doxies
 
 show:
+	#
 	# TGT=$(TGT)
+	#
 	# LINKS='$(LINKS)'
-	P PKG_CONFIG_PATH
-	env | grep PKG
+	#
+	# DEFS='$(DEFS)'
+	#
+	# PKG_CONFIG_LIST='$(PKG_CONFIG_LIST)'
+	#
+	# PKGS='$(PKGS)'
+	#
+	# P PKG_CONFIG_PATH
+	#
+	@P PKG_CONFIG_PATH
+	#
+	# env | grep PKG
+	#
+	@env | grep PKG
+	#
 	echo $(shell P PKG_CONFIG_PATH)
-	pwd
 	#
-	# PKG_CONFIG manually typed list
+	# pwd
 	#
-	$(PKG_CONFIG) _into_base1 --libs
+	@pwd
 	#
-	# now again from PKGS
+	# PKGS --cflags
+	#
+	$(PKG_CONFIG) $(PKGS) --cflags
+	#
+	# PKGS --libs
 	#
 	$(PKG_CONFIG) $(PKGS) --libs
 	#
+	# INCLS=$(INCLS)
 	#
 
 deadd:

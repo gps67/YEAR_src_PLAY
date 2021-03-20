@@ -127,6 +127,101 @@
 	// ok
 #endif // WITH_PYTHON
 
+/*
+	static VTL_PyObject * CAST_FROM_PyObject( PyObject * P )
+	test that P is a C++ object (not a plain python type)
+
+	There's lots of ways, but want a V quick way 
+
+	_typeobject
+
+		Py_Type(P) == fixed_pointer
+		 P -> ob_type
+
+		 IDEA use NULL as fixed pointer (eg using own xxx)
+
+	P -> ob_type -> tp_flags // unsigned long // bit X
+
+		python uses upto bit 31
+		python stupidly does not then use a second word for UDEF
+
+		a good sharable scheme would be for C++ objects with VTBL
+		then we could ask the object itself,
+		and have a "standard" virtual question for which module
+		or require all C++ to have common bas class
+
+		a good sharable scheme would be to a single byte extn id
+		then the opcode TEST == FIXED_VALUE // == 0 //
+		that can be compiled into x86 OPCODE BYTE CMP idx==0x04
+		that might need a DLL to be poked a lot
+		but source compiled modules would be "easy" (#define FOUR 0x04)
+		#define EXTN_CPP_MODULE_ID_ours 0x04
+
+		if( P -> ob_type -> extn_module_id == EXTN_CPP_MODULE_ID_ours)
+		{
+			PY_CPP_BASE * obj = static_cast<VTL_PyObject *>(P);
+			// that subtracted 16 from P to get obj
+			// 16 is a guess, maybe test it
+			// now we know obj is derived from our base class
+			// we can use C++ type casts, or our own
+		} else {
+			// it's not a CPP object
+			// or at least not one from our scheme
+			// maybe it is a PyString or Tuple or list or callable
+			// ...
+		}
+
+
+		object.h
+
+		pycore_object.h
+		_PyType_HasFeature
+
+
+	suggest
+
+		0 = UNSET but can treat as generic PyObject as normal
+		1 = standard builtin as found in tgz
+		2 = common extension as found in batteries included website
+		3 = embedded user group scheme THREE
+		4 = c++ extensions user group scheme FOUR
+		5 = C++ extensions that have their own way
+		6 = temporary SOLO no standard generally unused // DEFAULT SOLO
+		7 = temporary SITE specific compiled only
+
+		8-15 = reserved as unusable, so above fits into 3 bits
+		16-255 = reserved for u5-u3 // u5 == { 0, 1, AVAILABLE }
+		so then you have 30 extra tags, on top of u3, all in u8
+		eg c++ extn four, then which module, maybe which dll slot
+
+
+		get byte
+		decr
+		if -ve goto was zero // if carry 
+		if zero goto was one
+
+		decr
+		if zero was two
+
+		decr
+		if zero goto was three
+
+		decr
+		if zero goto was four
+		goto five or more or start again with a function not inline
+
+		compare_0x03 & unsigned byte_with 0x02
+		<= goto is standard // or zero // no need to test
+		< goto is unset
+		> goto or jsr decode further
+
+		compare_unsigned byte_with 0x01
+		== goto is standard
+		< goto is unset
+		> goto or jsr decode further
+
+
+*/
 
 
 #endif

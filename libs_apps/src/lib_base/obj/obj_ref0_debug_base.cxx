@@ -26,7 +26,7 @@
 	*/
 	int debug_list_era = 0;
 
-#ifdef REF_DEBUG_LIST
+#ifdef REF_DEBUG_LIST // there is only the version with DEBUG_LIST
 
 
 static void * debug_P_lo = NULL;
@@ -47,7 +47,7 @@ inline bool check_addr_range_28( void * PTR )
 }
 
 /*!
-	CTOR - remember this is all removable, debug helpers
+	CTOR does almost nothing, except for tracing purposes
 */
 obj_ref0_debug_base::obj_ref0_debug_base()
 {
@@ -90,7 +90,7 @@ if(0)	fprintf(stderr,"ctor = %p\n", this );
 		// ie NO STATICS (and also when in fields on struct)
 		// this only catches the first (SP pointer is negative top)
 		// it is then hard to find, maybe use a flag-bit-track
-#warning make this a runtime option - invoke gdb for static obj
+// #warning make this a runtime option - invoke gdb for static obj
 		if(0) // 28 not relevent
 		 gdb_invoke(true);
 		//
@@ -101,7 +101,6 @@ if(0)	fprintf(stderr,"ctor = %p\n", this );
 	}
 	if( this < debug_P_lo ) debug_P_lo = this;
 	if( this > debug_P_hi ) debug_P_hi = this;
-
 }
 
 const char * obj_ref0_debug_base:: debug_get_obj_name()
@@ -125,6 +124,7 @@ if(0)	debug_track_pointer(); // it appears soon enough
 }
 
 /*!
+	DTOR does almost nothing, except for tracing purposes
 */
 obj_ref0_debug_base::~obj_ref0_debug_base()
 {
@@ -214,8 +214,35 @@ if(0)	fprintf(stderr,"DTOR = %p\n", this );
 // static 
 void obj_ref0_debug_base::list_all_objs_in_era( int era )
 {
+
+ if(1) {
+
+ 	fprintf(stderr,"sizeof(long) %d # eight on u64 machine\n", (int) sizeof(long) );
+	long off = 
+		((long) debug_P_hi ) -
+		((long) debug_P_lo ); 
+	
+	double G_hi = (long) debug_P_hi;
+	G_hi /= (1024.0 * 1024.0 * 1024.0 * 1024.0);
+	// G_hi == 85.8 on 64 bit machine
+
+	double M_off = off;
+	M_off /= (1024.0*1024.0);
+
+	double K_off = off;
+	K_off /= (1024.0);
+
+	// P_hi is the lo start of highest obj that reaches higher
+	fprintf(stderr, "MEM_RANGE: debug P_hi = %12lX %6.3f G\n", (long) debug_P_hi, G_hi );
+	fprintf(stderr, "MEM_RANGE: debug P_lo = %12lX\n", (long) debug_P_lo );
+	fprintf(stderr, "MEM_RANGE: debug ==== = %12lX %6.3f M %6.3f K \n", (long) off, M_off, K_off );
+	// hmmm // some of these might come from STATIC vars
+	// so the total is NOT 114K // might be 12K
+ }
+
 	INFO("not printing a useless list");
 	return;
+
 	gdb_break_point(); // but its not easy to decode ref_obj *
 	if( !debug_list_root )
 	{
@@ -237,11 +264,10 @@ void obj_ref0_debug_base::list_all_objs_in_era( int era )
 		obj_ref0 * O = (obj_ref0*) O1;
 		O->debug_print_ln();
 	}
-
 }
 
 /*
-	Print a 1 line summary of a VALID object
+	Print a 1 line summary of a VALID object (not virtual tho)
 */
 bool obj_ref0_debug_base:: PRNT_fn(const char * file, const char * func)
 {
@@ -812,13 +838,14 @@ void obj_ref0_debug_base:: debug_ref_zero()
 */
 const char * obj_ref0_debug_base::type_name(buffer1 & tn)
 {
-        const char * s = typeid(*this).name();
+	// https://en.cppreference.com/w/cpp/header/typeinfo
+        const char * s = typeid(*this).name(); // C++ feature typeid(var)
+
+	// calls abi::__cxa_demangle( ... ) // C++ feature 
+	// converts mangled namspace_type_etc to a::b::c
 	int pos = tn.gap_offs(); // pos where s will be placed
-	demangle_cpp_symbol( tn, s );
+	demangle_cpp_symbol( tn, s ); // dgb
 	return (char *) tn.addr_of_offset(pos);
-// with leading digits skipped
-        while( ('0'<=*s) && (*s<='9') ) s++;
-        return s;
 }
 
 void obj_ref0_debug_base::debug_print_ln()
@@ -827,7 +854,6 @@ void obj_ref0_debug_base::debug_print_ln()
 	const char * n = debug_get_obj_name();
 	if(!n) n = "(anon)";
 	e_print(" '%s'\n", n );
-//	e_print("\n");
 }
 
 void obj_ref0_debug_base:: debug_set_is_widget()
@@ -870,6 +896,12 @@ void *  obj_ref0_debug_base:: debug_get_widget_ptr()
 
 int obj_ref0_debug_base:: debug_get_ref_count()
 {
+	/*
+		obj_ref0_debug_base is base of obj_ref
+		it is supposed to be reducable to nothing
+		no other class comes out of it other than obj_ref
+		but it is useful to obtain the ref_count
+	*/
 	obj_ref0 * o = reinterpret_cast<obj_ref*>(this);
 	return o->get_ref_count();
 }

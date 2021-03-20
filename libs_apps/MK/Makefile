@@ -43,6 +43,15 @@
 	# and it will override the pkg-config.pc files in its ..
 
 ######### ???????? ########
+#
+# PKGS - problem is multiple targets of different levels
+# eg base2 needs things that base1 does not
+# so dont add base2 PKGS to all
+# but maybe satisfy ALL and over provide
+# but that leaves base1 exe's loading librs they dont need ?
+# maybe into_base was about that, add it to the _into_base1.pc
+# and not here, noticed for WITH_PYTHON at core obj level
+#
 # I am not sure how to section off area that only use subsets
 # ie when linking base, do no include self in obj list
 # which is what _uses_base does
@@ -147,7 +156,7 @@ ifeq ($(WITH_PYTHON),1)
 	# DEFS += -DWITH_PYTHON_PLUS
 	# OK PKGS not being used - am using fixed lists
 	DEFS += -DWITH_PYTHON
-	PKGS += python3
+	PKGS += python3-embed
 	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig
 endif
 

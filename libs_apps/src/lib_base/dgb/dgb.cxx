@@ -548,6 +548,9 @@ bool demangle_cpp_symbol( buffer1 & buf2, const char * symb )
 		SO use a static buffer1, and LOCK this function (somehow)
 	*/
 	if(!buf.get_space( 2049 )) {
+		// CANT CALL FAIL // even though get_space probably did !!
+		e_print("#### demangle_cpp_symbol buf.get_space()) failed\n");
+		return false;
 	}
 	int status = -1;
 	const char * ret = abi::__cxa_demangle(
@@ -562,6 +565,7 @@ bool demangle_cpp_symbol( buffer1 & buf2, const char * symb )
 		buf2.print( "%s", ret );
 		return true;
 	}
+
 	if((status==-2)&&(!ret)) {
 		/*
 		This is called by fn_WARN which is using symb = prototype

@@ -77,7 +77,7 @@ void ref_tally_t::print_leaked_report()
 	*/
 	struct _typeobject  VTL_PyObject::ob_type_VTL_PyObject = {
 		PyObject_HEAD_INIT(&PyType_Type)
-		0,                              /*ob_size*/
+//		0,                              /*ob_size*/
 		/*(char *)*/ "EXTN.VTL_PyObject",             /*tp_name*/
 		sizeof( VTL_PyObject ),       /*tp_basicsize*/
 		0,                              /*tp_itemsize*/

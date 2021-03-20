@@ -63,43 +63,9 @@ class str2;
 */
 #define REF_DEBUG_LIST 
 #ifndef REF_DEBUG_LIST
-
-	/*!
-		compiled without debugging - most things disappear
-	*/
-
-	class obj_ref0_debug_base
-#ifdef WITH_PYTHON
-	: public VTL_PyObject
-#endif
-	{
-	 public:
-		obj_ref0_list() {};
-		static void list_all_objs_in_era( int era ) {}
-		bool debug_check_pointer() { return true; }
-		bool debug_track_pointer() { return true; }
-		bool debug_check_CTOR_flag() { return true; }
-		int get_debug_flags() { return 0; }
-		void set_debug_flags( int fl ) {}
-		bool debug_flag_test( int fl ) { return false; }
-		void debug_flag_set( int fl ) {}
-		void debug_flag_clr( int fl ) {}
-		void debug_event_on_delete() {}
-		void debug_connect_event_on_delete() {}
-		void debug_ref_zero() {}
-		void debug_set_is_widget() {}
-
-		//! rtti typename with leading digits skipped
-		const char * type_name(buffer1 & tn);
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull-compare"
-		inline bool debug_this_is_NULL() {return !this; }
-#pragma GCC diagnostic pop
-
-	};
-
+#error THIS IS NEVER USED and deleted 
 #else
+// #warning THIS IS USED 
 	/*!
 		compiled with debugging -
 	*/
@@ -110,15 +76,18 @@ class str2;
 #endif
 	{
 	 public:
+	 	// circular linked list of objects // debug_list_*
 		obj_ref0_debug_base * debug_list_next;
 		obj_ref0_debug_base * debug_list_prev;
-		int debug_list_when;
-		int_bitmap debug_flags;
+		int debug_list_when; // debug_list_era ++ allocated in era
+		int_bitmap debug_flags; // debug flags // not object_flags ?
 
-		void debug_ref_zero();
+		// debug_ref_zero should have no effect other than tracing 
+		void debug_ref_zero(); // called when ref hits zero // NOOP
 	 public:
-		obj_ref0_debug_base();
-		virtual ~obj_ref0_debug_base();
+		obj_ref0_debug_base(); // CTOR does nothing
+		virtual ~obj_ref0_debug_base(); // DTOR does nothing
+
 		static void list_all_objs_in_era( int era );
 		bool debug_check_pointer_fn(const char * file, const char * func); // says less
 		bool debug_check_pointer_one(const char * file, const char * func); // says less
@@ -150,6 +119,7 @@ class str2;
 		const char * debug_obj_name_for_now; // recursive include loop
 		const char * debug_get_obj_name();
 		void debug_set_obj_name( const char * s );
+
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull-compare"

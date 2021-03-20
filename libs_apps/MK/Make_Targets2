@@ -39,7 +39,7 @@ RUN_INCL_PATH=$(TOP)/_run_dox/_incl_path
 # link _INTO_ lib_x cant refer to X itself
 # link _WITH_ lib_x does refer to X itself
 
-LINKLIB11=`$(PKG_CONFIG) _into_base1 --libs`
+LINKLIB11=`$(PKG_CONFIG) _into_base1 $(PKGS) --libs`
 LINKLIB21=`$(PKG_CONFIG) _into_base2 libs_apps_base1 --libs`
 LINKLIB23=`$(PKG_CONFIG) _into_base2_gtk libs_apps_base1 --libs`
 LINKLIB33=`$(PKG_CONFIG) libs_apps_base2 --libs`
@@ -58,6 +58,7 @@ WITHLIB3635=`$(PKG_CONFIG) libs_apps_accts_gtk libs_apps_sar_plot_post --libs`
 
 # INCLS += `$(PKG_CONFIG) _into_base2 --cflags`
 INCLS += `$(PKG_CONFIG) _into_base2_gtk $(PKGS) --cflags`
+LINKS += `$(PKG_CONFIG) _into_base2_gtk $(PKGS) --libs`
 
 # FIRST LINE CLEARS IT, sets it to the C++ compiler/linker
 LINK_SO_FROM  = $(CXX)
@@ -589,6 +590,8 @@ show:
 	$(PKG_CONFIG) $(PKGS) --libs
 	#
 	# INCLS=$(INCLS)
+	#
+	# LINKS=$(LINKS)
 	#
 
 deadd:

@@ -1,3 +1,0 @@
-
-#	OBJS_base1_glib += g_timer.o	 # microsecond timer (millisec)
-

@@ -1,6 +1,0 @@
-
-	OBJS_base1 += g_text_buffer.o
-	OBJS_base1 += w_text_view.o
-	OBJS_base1 += g_text_tag_table.o
-
-	OBJS_gtk_text += gtk_text_top_app.o

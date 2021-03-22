@@ -18,6 +18,50 @@
 # DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
 # DATE_STAMP="-d ${DATE_STAMPVAL}"
 
+# TODO #
+# docs_diag_fmt_letters_for_date_print_field( "%Y" )
+#  print a DIAG that looks like
+#	
+# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
+# TODO # libs_apps uses same VAR_NAME_POOL # expr( VAR_NAME ) # TOKEN str
+# NAME_POOL( VAR_NAME ) #
+# POOL_NAME( #DEFAULT_DIALECT_VAR_POOL(DATE_TIME_field_names 
+# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` { # expands to 
+# WHY # is not %2.2m %2.2d %2.2H %2.2M %2.2S 
+# EDIT "T" "join("T") # printf "%s" "T" # printf "%s" mk_item_join(" ") 
+# code_gen _join("${OUTPUT_STR0}") 
+# VIEW "_join( %s )" # invokes SUBLEX_JOIN_ _JOIN_
+#  DATE_YEAR %Y
+#       DATE_YEAR %Y
+#       DATE_MM   %m FMT("%2.2m") // will get PROPER_DIALECT_YEAR_MM_DD
+#       DATE_DD   %d FMT("%2.2d")
+#       DATE_Jan  %b "Jan"
+#       DATE_Tue  %a "Tue"
+#       TIME_HH   %H
+#       TIME_MM   %M
+#       TIME_SS   %S
+# Jan_ January_ Sun_ Sunday_ {int days_after_Sunday()} 
+# SEE ALSO libs_apps
+# $HOME/YEAR/src/libs_apps/src/lib_base/time/tm_parts.h
+#  LEXICON
+#	Jan_ January_ Sun_ Sunday_ {int days_after_Sunday()} 
+#  SAMPLE DATA_SAMPLES	
+#	"Jan" "January" "Sun" "Sunday" "{int days_after_Sunday()}"
+#  MATCH DIALECT EXPECTATIONS
+#  MATCH DIALECT CORRECTS SPELLING {FMT("%2.2d")}
+# LINK gcc objective_c pharo squeak cuis
+# https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev
+
+# 
+# DATE_%s # TIME_%s # shared dialect
+# /* DATE_%s */ # merge join lhs_ _rhs # lhs_rhs # MATCH( lhs join rhs )
+# USING # function parameters as PSG items # esp MATCH ARGV PHRASE_BOOK
+#  _YEAR _MM _DD _Jan _Tue
+# /* TIME_%s */
+#  _HH _MM _SS
+#
+# year mm dd 
+
 # without --date=@SECS it uses NOW and you need all vars at once
 # with --date=@SECS you can convert each when you want
 # I know you dont think this will happen at midnight

@@ -2,7 +2,7 @@
 if [ "$1" == -i ]
 then
 	shift
-	INS=-1
+	INS=-i
 	# echo INS=$INS
 fi
 pattern="$1"

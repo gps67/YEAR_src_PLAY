@@ -220,6 +220,36 @@
 		< goto is unset
 		> goto or jsr decode further
 
+	POINTLESS
+	POINTLESS we cant hold python objects
+	POINTLESS
+
+		when obj_ref is also a PyObject
+		we can give one of our objects to Python to hold
+		it can (with code) call get_attr, set call, etc
+		and return it to us
+		but we cannot hold a PyObject
+
+		we cant add a PyObject to our HT or list or ...
+	
+	ALTERNATIVE
+
+		class hold_PyObject : public obj_ref { public:
+		 // VTBL HEAD
+		 PyObject * held_obj;
+		};
+
+		This gives us an obj_ref that we can hold
+		To give us to Py, either as code_here or
+
+		struct PyObject_obj_ref {
+		 PyHEAD here;
+		 obj_hold<T> held_obj;
+		};
+		_typeobject WHERE {
+		  == our_typeobject // single for tree of our types
+		  get_attr() could bounce, using similar code
+		 }
 
 */
 

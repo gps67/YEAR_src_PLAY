@@ -1,7 +1,0 @@
-
-	OBJS_gtk_text += g_text_buffer.o
-	OBJS_gtk_text += w_text_view.o
-	OBJS_gtk_text += g_text_tag_table.o
-	OBJS_gtk_text += e_print_gtk_text.o
-	OBJS_gtk_text += gtk_text_top_app.o
-

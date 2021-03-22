@@ -76,11 +76,8 @@ fn_FAIL_TEXT() {
 fn_FAIL() {
 	fn_FAIL_TEXT "$@"
 	local errn="$?"
-# OK
-#	echo "## fn_FAIL ## errn is $errn"
 	sleep 2
 	exit $errn
-	sleep 2
 	return 1
 }
 

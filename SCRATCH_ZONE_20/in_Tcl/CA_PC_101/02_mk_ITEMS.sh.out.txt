@@ -1,0 +1,161 @@
+# SELF SIGN
+# is_CA 1
+# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl req -new -x509 -newkey rsa:4096 -days 1600 -nodes -subj /CN=CA_ZERO -keyout ca/CA_ZERO/private/CA_ZERO.key -out ca/CA_ZERO/CA_ZERO.csr
+Generating a RSA private key
+........................................................................................................................++++
+..................................................................................................................................++++
+writing new private key to 'ca/CA_ZERO/private/CA_ZERO.key'
+-----
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # openssl x509 -in ca/CA_ZERO/CA_ZERO.csr -text -out ca/CA_ZERO/CA_ZERO.csr.txt
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# is_CA 1
+# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl req -new -x509 -newkey rsa:2048 -days 800 -nodes -subj /CN=CA_ONE -keyout ca/CA_ONE/private/CA_ONE.key -out ca/CA_ONE/CA_ONE.csr
+Generating a RSA private key
+........................+++++
+........................+++++
+writing new private key to 'ca/CA_ONE/private/CA_ONE.key'
+-----
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # openssl x509 -in ca/CA_ONE/CA_ONE.csr -text -out ca/CA_ONE/CA_ONE.csr.txt
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# is_CA 0
+# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl req -new -x509 -newkey rsa:2048 -days 365 -nodes -subj /CN=PC_101 -keyout ca/PC_101/private/PC_101.key -out ca/PC_101/PC_101.csr
+Generating a RSA private key
+.....................................+++++
+.........................................................................................................+++++
+writing new private key to 'ca/PC_101/private/PC_101.key'
+-----
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # openssl x509 -in ca/PC_101/PC_101.csr -text -out ca/PC_101/PC_101.csr.txt
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# is_CA 0
+# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl req -new -x509 -newkey rsa:2048 -days 365 -nodes -subj /CN=PC_102 -keyout ca/PC_102/private/PC_102.key -out ca/PC_102/PC_102.csr
+Generating a RSA private key
+.....+++++
+.............................................................................................+++++
+writing new private key to 'ca/PC_102/private/PC_102.key'
+-----
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # openssl x509 -in ca/PC_102/PC_102.csr -text -out ca/PC_102/PC_102.csr.txt
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# is_CA 0
+# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl req -new -x509 -newkey rsa:2048 -days 365 -nodes -subj /CN=PC_103 -keyout ca/PC_103/private/PC_103.key -out ca/PC_103/PC_103.csr
+Generating a RSA private key
+...................................................+++++
+.......................+++++
+writing new private key to 'ca/PC_103/private/PC_103.key'
+-----
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # openssl x509 -in ca/PC_103/PC_103.csr -text -out ca/PC_103/PC_103.csr.txt
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
+# RUN # tree
+# exit_code  # 0
+# output     # .
+├── 00_rm_rf_ca
+├── 01_mk_dirs.tcl
+├── 02_mk_ITEMS.sh
+├── 02_mk_ITEMS.sh.out.txt
+├── 02_mk_ITEMS.tcl
+├── 03_mk_CA.conf
+├── ca
+│   ├── CA_ONE
+│   │   ├── CA_ONE.csr
+│   │   ├── CA_ONE.csr.txt
+│   │   └── private
+│   │       └── CA_ONE.key
+│   ├── CA_ZERO
+│   │   ├── CA_ZERO.csr
+│   │   ├── CA_ZERO.csr.txt
+│   │   └── private
+│   │       └── CA_ZERO.key
+│   ├── PC_101
+│   │   ├── PC_101.csr
+│   │   ├── PC_101.csr.txt
+│   │   └── private
+│   │       └── PC_101.key
+│   ├── PC_102
+│   │   ├── PC_102.csr
+│   │   ├── PC_102.csr.txt
+│   │   └── private
+│   │       └── PC_102.key
+│   └── PC_103
+│       ├── PC_103.csr
+│       ├── PC_103.csr.txt
+│       └── private
+│           └── PC_103.key
+├── CA.conf.next
+├── ca_root
+├── ca_WITH
+│   ├── CA_ONE
+│   │   ├── CA_ONE.csr
+│   │   ├── CA_ONE.csr.txt
+│   │   └── private
+│   │       └── CA_ONE.key
+│   ├── CA_ZERO
+│   │   ├── CA_ZERO.csr
+│   │   ├── CA_ZERO.csr.txt
+│   │   └── private
+│   │       └── CA_ZERO.key
+│   ├── PC_101
+│   │   ├── PC_101.csr
+│   │   ├── PC_101.csr.txt
+│   │   └── private
+│   │       └── PC_101.key
+│   ├── PC_102
+│   │   ├── PC_102.csr
+│   │   ├── PC_102.csr.txt
+│   │   └── private
+│   │       └── PC_102.key
+│   └── PC_103
+│       ├── PC_103.csr
+│       ├── PC_103.csr.txt
+│       └── private
+│           └── PC_103.key
+├── fns_tcl
+│   ├── ca_pathnames.tcl
+│   ├── mki.tcl
+│   ├── say_do2.tcl
+│   ├── say_do.tcl
+│   └── tclIndex
+├── openssl.cfg -> CA.conf.next
+└── TODO.txt
+
+24 directories, 44 files
+# trap_says  # 
+# RET # 1

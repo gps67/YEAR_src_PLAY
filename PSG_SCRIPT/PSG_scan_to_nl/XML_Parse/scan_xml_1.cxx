@@ -115,7 +115,7 @@ bool scan_xml_1::scan_file( const u8 * filename )
 					break;
 				}
 				if(LEX.scan_chars('/','>')) {
-					printf(":%s ... /> - empty (closes in openiong)\n", (STR0)* LEX.tokenised_namespace_elem );
+					printf(":%s ... /> - empty (closes in opening)\n", (STR0)* LEX.tokenised_namespace_elem );
 					break;
 				}
 
@@ -149,8 +149,8 @@ bool scan_xml_1::scan_file( const u8 * filename )
 				// attr_val = _attr_val;
 				printf(":%s ... %s=\"%s\"\n",
 					(STR0) * LEX.tokenised_namespace_elem,
-					attr_name.str,
-					attr_val.str
+					(STR0) attr_name.str,
+					(STR0) attr_val.str
 				);
 			}
 		 }

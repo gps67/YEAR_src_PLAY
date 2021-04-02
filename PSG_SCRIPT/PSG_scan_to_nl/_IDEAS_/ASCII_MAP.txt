@@ -1,14 +1,83 @@
 
- 00 - 1F CTRL incl CR LF FF BS TAB 
-      20 SP
- 21 - 2F ! " # $ % & ' ( ) * + ' -
- 30 - 39 [0-9]
- 3A - 40 : ; < = > ? @
- 41 - 5A [A-Z]
- 5B - 60 [ \ ] ^ _ `
- 61 - 7A [a-z]
- 7B - 7E { | } ~
-      7F DEL
+ 00 - 1F    CTRL incl CR LF FF BS TAB 
+      20    SP
+ 21 - 2F    ! " # $ % & ' ( ) * + ' -
+ 30 - 39   [0-9]
+ 3A - 40    : ; < = > ? @
+ 41 - 5A   [A-Z]
+ 5B - 60    [ \ ] ^ _ `
+ 61 - 7A   [a-z]
+ 7B - 7E    { | } ~
+      7F    DEL
 
- 80 - FF -ve 8 bit 
+ 80 - FF   -ve 8 bit 
+
+
+CTRL		 00 - 1F    CTRL incl CR LF FF BS TAB 
+		      20    SP
+PUNCT		 21 - 2F    ! " # $ % & ' ( ) * + ' -
+	digit	 30 - 39   [0-9]
+PUNCT		 3A - 40    : ; < = > ? @
+	upper	 41 - 5A   [A-Z]
+PUNCT		 5B - 60    [ \ ] ^ _ `
+	lower	 61 - 7A   [a-z]
+PUNCT		 7B - 7E    { | } ~
+CTRL		      7F    DEL
+
+HIGH		 80 - FF   -ve 8 bit 
+
+	high_CTRL
+	high_glyph_punct
+	high_glyph_letter
+	high_UTF8_block
+
+ASCII_CSET
+
+	GROUP[ item ]
+
+WORD
+	u48_u8_u8
+	u48_u16
+
+	build tables of ABS GOTO pointers
+	but match PFX_u16_opcode_data of machine
+	scan through list as a CASE statement goto selected, ELSE
+
+	u64_t WORDS[] 
+
+	u16_u16 GOTO is another lookup
+	OFFS = OFFS_of_LOCN[ u16_locn ]
+	ADDR = BASE + OFFS
+
+FSM
+	POS
+	 +- STEP --> ...
+	 +- STEP --> ...
+	 +- STEP --> fan_out
+	     +- STEP --> ...
+	     +- STEP --> ...
+	     +- STEP --> ...
+	 +- STEP --> ...
+	 +- STEP --> ...
+
+	 PEEK == STEP but PEEK
+	 comes from CUT STEP but stay at CUT point
+	 predicts and joins tracks
+	 but simplistic code probably repeats STEP0
+	 -or- GEN /* NEED PRESUME STEP_ZERO STEP_ONE CUT DONE */ STEP_TWO ...
+
+MACRO
+	renumbered('+') 1 of 32 punct[idx2]
+	to allow lots of TABLE[ renumbered_plus ]
+	do an initial CSET renumber('+') ==> TOK <==
+	or TOKEN_t * TOKEN = TABLE[ renumbered_plus ]
+	lookup STATE in TOKEN (not token in state)
+	LEX has limited number of states, esp after a1_plus( a1 ) a2_star( a2 )
+
+MACHINE
+	per LANG will have fixed a1 a2 possibly a3_UTF8_glyph_in_cident
+
+
+
+
 

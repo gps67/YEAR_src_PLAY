@@ -40,7 +40,10 @@ ref_tally_t::ref_tally_t()
 */
 void ref_tally_t::print_leaked_report()
 {
+	fprintf(stderr, "GIT_DATE: %s\n", GIT_DATE ); // -DGIT_DATE='"..."'
+
         obj_ref0_debug_base::list_all_objs_in_era( -1 );
+
 	fprintf(stderr, "\n" );
 	fprintf(stderr, "ref_tally_report\n" );
 	fprintf(stderr, "ref_tally: n_newed   = %4d\n", n_newed );

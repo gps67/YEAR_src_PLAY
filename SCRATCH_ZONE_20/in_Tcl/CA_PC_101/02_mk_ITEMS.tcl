@@ -6,9 +6,18 @@ lappend auto_path [pwd]/fns_tcl
 
 proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 
+	set is_self_sign 0
 	if { $CA_CN == $CN } { # self sign # CA == CA_CN
-		puts "SELF SIGN"
+		set is_self_sign 1
+		puts "# SELF SIGN"
 	}
+	set is_CA 0
+	if { [string equal -length 3 "CA_" $CN] } {
+		set is_CA 1
+	}
+	puts "# is_CA $is_CA"
+
+	puts "# pwd # [pwd]"
 
 	set dir_priv [DIR_NAME_CN_key $CN]
 	file mkdir $dir_priv
@@ -33,20 +42,56 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	lappend cmd openssl 
 	lappend cmd req 
 	lappend cmd -new -x509 
+
+  if 0 {
+	lappend cmd -config openssl.cfg
+	if {$is_CA} {
+		puts "# is_CA # NOW $is_CA"
+		lappend cmd -extensions easyrsa_ca
+	} else {
+		# org is not -extensions valid
+		# lappend cmd -extensions org
+		puts "# is_CA # NOW $is_CA"
+	}
+  }
+
 	lappend cmd -newkey rsa:$RSA_nbits -days $RSA_days
 	if {$phrase=={}} {
 		lappend cmd -nodes
-	} else { }
+	} else {
+		# somehow use phrase to protect + access key
+	}
 	lappend cmd -subj "/CN=$CN"
 	lappend cmd -keyout [FILENAME_CN_key $CN]
-	lappend cmd -out  [FILENAME_CN_csr $CN]
+	lappend cmd -out    [FILENAME_CN_csr $CN]
 
 	say_do $cmd
 
+	# convert csr to txt
+	set cmd2 {}
+	lappend cmd2 openssl 
+#	lappend cmd2 req 
+	lappend cmd2 x509
+	lappend cmd2 -in [FILENAME_CN_csr $CN]
+	lappend cmd2 -text
+	lappend cmd2 -out [FILENAME_CN_csr $CN].txt
+	say_do $cmd2
+
 	# apply AES256 PHRASE to .key after all done
+
 	# chmod 600 .key now
+	# repeat runs are OK with that as 6=rw writable
 	file attributes [FILENAME_CN_key $CN] -permissions 0600
  }
+ # PHRASE to add passphrase to key
+ # openssl rsa -des3 -in server.key -out server.key.new 
+ # PHRASE to view csr
+ # openssl req -in $1 -text -noout
+ # PHRASE to view x509
+ # openssl x509 -in $1 -text -noout
+
+	# NOW SIGN CSR
+
 
 }
 

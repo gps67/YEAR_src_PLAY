@@ -160,6 +160,13 @@ ifeq ($(WITH_PYTHON),1)
 	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig
 endif
 
+	# git log -1 --format=%ad --date=local
+	# shell
+	GIT_DATE=$(shell git log -1 --format=%ad --date=local)
+	DEFS += -DGIT_DATE='"$(GIT_DATE)"'
+##	fprintf(stderr, "GIT_DATE %s\n", GIT_DATE ); // -DGIT_DATE='"..."'
+
+
 	# PKG_CONFIG_LIST += /usr/lib/pkgconfig last
 	#
 	# also added to by Makefile_X_$(TGT)

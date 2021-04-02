@@ -1,6 +1,6 @@
 #!/tools/CTXT/tcl/bin/tclsh
 
-proc x_say_do {cmd} {
+proc say_do {cmd} {
 	# cmd is a list # ARGS
 	# need to add exec as first arg and call eval on that
 	puts "# RUN # $cmd"

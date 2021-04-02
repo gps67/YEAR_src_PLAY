@@ -1,9 +1,12 @@
-./mk x1
+./mk x1.exec
 
-PATH=/tools/2000/gdb/bin:$PATH
+# PATH=/tools/2000/gdb/bin:$PATH
 
-T1=/home/gps/2000/src/libs_apps/src/lib_base/strings
-T2=/home/gps/2000/src/libs_apps/src/lib_play/hash
+T1=/home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/strings
+T2=/home/gps/YEAR/srcPLAY//libs_apps/src/lib_play/hash
+
+T1=/home/gps/YEAR/src/PLAY/libs_apps/src/
+T2=/home/gps/YEAR/srcPLAY//libs_apps
 
 insight -w -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
 # insight -nx -w  -d $T --args lib/x1 test/test3.xml

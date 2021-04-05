@@ -2,6 +2,11 @@
 
 lappend auto_path [pwd]/fns_tcl
 
+	# using symb link to /tmp/ca
+	set dir_priv /tmp/ca
+	file mkdir $dir_priv
+	file attributes $dir_priv -permissions 0700
+
 ## LIBR above ## LIBR below ##
 
 proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
@@ -24,7 +29,11 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	file attributes $dir_priv -permissions 0700
 	
 
- if 0 {
+	set RSA_priv_key [FILENAME_CN_key $CN]
+ if 1 {
+  if [file exists $RSA_priv_key] {
+  #	puts "# RSA_priv_key already exists $RSA_priv_key"
+  } else {
 	set cmd {}
 	lappend cmd openssl 
 	lappend cmd genrsa
@@ -34,7 +43,9 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	lappend cmd $RSA_nbits
 	lappend cmd 
 
-	say_do $cmd
+	# say_do $cmd
+	if ![say_do $cmd] return
+  }
 }
 
  if 1 {
@@ -43,7 +54,7 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	lappend cmd req 
 	lappend cmd -new -x509 
 
-  if 0 {
+  if 1 {
 	lappend cmd -config openssl.cfg
 	if {$is_CA} {
 		puts "# is_CA # NOW $is_CA"
@@ -51,21 +62,28 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	} else {
 		# org is not -extensions valid
 		# lappend cmd -extensions org
+		lappend cmd -extensions basic_exts
 		puts "# is_CA # NOW $is_CA"
 	}
   }
 
+  if [file exists $RSA_priv_key] {
+  	puts "# RSA_priv_key already exists $RSA_priv_key"
+	lappend cmd -key [FILENAME_CN_key $CN]
+  } else {
+	lappend cmd -keyout [FILENAME_CN_key $CN]
 	lappend cmd -newkey rsa:$RSA_nbits -days $RSA_days
 	if {$phrase=={}} {
 		lappend cmd -nodes
 	} else {
 		# somehow use phrase to protect + access key
 	}
+  }
+
 	lappend cmd -subj "/CN=$CN"
-	lappend cmd -keyout [FILENAME_CN_key $CN]
 	lappend cmd -out    [FILENAME_CN_csr $CN]
 
-	say_do $cmd
+	if ![say_do $cmd] return 
 
 	# convert csr to txt
 	set cmd2 {}
@@ -75,7 +93,8 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	lappend cmd2 -in [FILENAME_CN_csr $CN]
 	lappend cmd2 -text
 	lappend cmd2 -out [FILENAME_CN_csr $CN].txt
-	say_do $cmd2
+	# say_do $cmd2
+	if ![say_do $cmd2] return
 
 	# apply AES256 PHRASE to .key after all done
 
@@ -92,14 +111,17 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 
 	# NOW SIGN CSR
 
-
+	return true
 }
 
-	mk_CN_RSA CA_ZERO CA_ZERO 4096 1600 {}
-	mk_CN_RSA CA_ZERO  CA_ONE 2048 800 {}
-	mk_CN_RSA CA_ONE   PC_101 2048 365 {}
-	mk_CN_RSA CA_ONE   PC_102 2048 365 {}
-	mk_CN_RSA CA_ONE   PC_103 2048 365 {}
+proc main {} {
+	if ![mk_CN_RSA CA_ZERO CA_ZERO 4096 1600 {}] return
+	if ![mk_CN_RSA CA_ZERO  CA_ONE 2048 800 {}] return
+	if ![mk_CN_RSA CA_ONE   PC_101 2048 365 {}] return
+	if ![mk_CN_RSA CA_ONE   PC_102 2048 365 {}] return
+	if ![mk_CN_RSA CA_ONE   PC_103 2048 365 {}] return
+}
+main
 
-	say_do tree
+	say_do {tree ca}
 

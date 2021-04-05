@@ -58,3 +58,11 @@ display a graph
 	NB the range is an extra graph in a second script
 
 	CTRL-Q quits as does closing the window
+
+ASIDE
+
+	extent 14.77 million square km
+	5.7 million square miles
+	March 21
+	https://nsidc.org/news/newsroom/arctic-sea-ice-maximum-extent-2021
+	https://nsidc.org/support/64231694-FTP-Client-Data-Access

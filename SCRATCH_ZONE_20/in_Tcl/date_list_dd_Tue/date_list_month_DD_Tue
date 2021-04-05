@@ -1,0 +1,29 @@
+#!/usr/bin/env tclsh
+
+# used to make a diary for this month
+
+puts [exec cal]
+
+set t1 [clock seconds]
+set year [clock format $t1 -format "%Y"]
+set mm [clock format $t1 -format "%m"]
+
+# t0 is the start of the month
+# mm0 is the month
+set t0 [clock scan $year-$mm-01]
+set mm0 $mm
+
+# t slides [t0 [+=dt [next_mm
+set t $t0
+set dt [expr 24*60*60]
+
+while true {
+	set mm [clock format $t -format "%m"]
+	if { $mm0 != $mm } { break }
+
+	set dd [clock format $t -format "%d"]
+	set Tue [clock format $t -format "%a"]
+	puts "$dd $Tue"
+
+	set t [ expr $t + $dt ]
+}

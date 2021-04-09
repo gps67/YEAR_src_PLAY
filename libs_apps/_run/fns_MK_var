@@ -8,7 +8,7 @@
 ##
 
 	fn_MK_var_ABS_OVER() {
-		export ABS_OVER="${ABS_OVER:-$HOME/YEAR/src}"
+		export ABS_OVER="${ABS_OVER:-$HOME/YEAR/src/PLAY}"
 	}
 
 	fn_MK_var_ABS_TOP() {

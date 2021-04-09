@@ -1,10 +1,10 @@
 
 #	./mk_less "${@:-test8}" 
 set -x
-cd /home/gps/YEAR/src/libs_apps/src/lib_base2/ssl_1/
+cd /home/gps/YEAR/src/PLAY/libs_apps/src/lib_base2/ssl_1/
 g++ -g -O2 \
 -c \
--I /home/gps/YEAR/src/libs_apps/src/include \
+-I /home/gps/YEAR/src/PLAY/libs_apps/src/include \
 test1.cxx \
 \
 #

@@ -12,8 +12,8 @@
 		# I need to edit these to find which debian package is which
 
 		prog_else_pkg pkg-config pkg-config
-		prog_else_pkg g++ pkg-g++
-		prog_else_pkg make pkg-make
+		prog_else_pkg g++ g++
+		prog_else_pkg make make
 
 		# I need to edit these to find file_else_pkg
 

@@ -9,7 +9,8 @@ Description: libs_apps uses JavaScript from mozilla
 Version: 0.2.67
 
 # Requires: mozjs-67
-Requires: mozjs-78
+# Requires: mozjs-78
+Requires: 
 Cflags:
 Libs:
 

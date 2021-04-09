@@ -11,14 +11,14 @@
 	# the boot strap is a bit lame
 	# $HOME/YEAR/src/libs_apps/run_		<== WE ARE HERE
 
-	PATH=$PATH:$HOME/YEAR/src/libs_apps/MK_bin
-	PATH=$PATH:$HOME/YEAR/src/libs_apps/MK_bin/bin_LGX # PATH_TOOL
-	PATH=$PATH:$HOME/YEAR/src/libs_apps/_run	# HERE
+	PATH=$PATH:$HOME/YEAR/src/PLAY/libs_apps/MK_bin
+	PATH=$PATH:$HOME/YEAR/src/PLAY/libs_apps/MK_bin/bin_LGX # PATH_TOOL
+	PATH=$PATH:$HOME/YEAR/src/PLAY/libs_apps/_run	# HERE
 	PATH=$PATH:	# HERE is ABS_OBJDIR/.
 	# PATH=$PATH: # MK_fns_TGT
 
 	# try to use nearest copies first
-	PATH=$HOME/YEAR/src/libs_apps/MK_bin:$PATH
+	PATH=$HOME/YEAR/src/PLAY/libs_apps/MK_bin:$PATH
 
 	. fns_ASKS	# ask_do a r g v
 	. fns_DATE	# ${

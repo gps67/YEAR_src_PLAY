@@ -107,7 +107,7 @@
 
 ifeq (1,0)
 	# makefile should ingnore this line because already det as ENV var
-	ABS_OVER=/home/gps/YEAR/src/libs_apps/
+	ABS_OVER=/home/gps/YEAR/src/PLAY/libs_apps/
 
 	# TODO check when set
 	# ABS_OVER=/media/X3/2011/src/

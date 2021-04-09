@@ -57,7 +57,8 @@
 #	TEST_FILE8 = amix default Master 50
 #	TEST_FILE8 = SPOUT test2
 #	TEST_FILE8 = cfg_demo
-	TEST_FILE8 = base64_demo
+#	TEST_FILE8 = base64_demo
+	TEST_FILE8 = 
 	## TEST_FILE8 = cfg_demo test4
 	## TEST_FILE8 = HT_main
 

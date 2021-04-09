@@ -119,10 +119,35 @@ bool cmd_HT_demo(int argc, char ** argv ) {
 	return 0==HT_main(); // ( argc, argv );
 }
 
+#include "util_buf.h"
+#include "auth_pw.h"
+bool VNC_PASS_DECODE(int argc, char ** argv ) {
+	if(argc!=1) {
+		return FAIL("argc!=1 # filename of passwd_73");
+	}
+	// return 0==HT_main(); // ( argc, argv );
+	STR0 filename = argv[0];
+	buffer1 filedata;
+	buffer2 clearpass;
+
+	if(!AUTH::PW_UTIL_VNC::vncpassfile_read( filename, clearpass )) return FAIL_FAILED();
+
+	// supposedly that did it all
+
+        clearpass.dgb_dump("clearpass");
+	INFO("CLEAR(%s)", (STR0) clearpass );
+	
+	return PASS("DECODE(%s)", filename);
+}
+
 bool cmd_play_code(int argc, char ** argv )
 {
 
 	const char * default_argv[] = {
+	 "VNC_PASS_DECODE",
+	 "/tmp/passwd_73",
+	};
+	const char * x_default_argv[] = {
 	 "HT_demo",
 	 "cfg_demo",
 	};
@@ -143,6 +168,7 @@ bool cmd_play_code(int argc, char ** argv )
 	if( cmd1 == "SPOUT" ) return cmd_SPOUT( argc, argv );
 	if( cmd1 == "HT_demo" ) return cmd_HT_demo( argc, argv );
 	if( cmd1 == "amix" ) return amix_cmd(argc, argv);
+	if( cmd1 == "VNC_PASS_DECODE" ) return VNC_PASS_DECODE(argc, argv);
 
 	// holder does this // setlocale(LC_ALL,"");
 	//	TOPAPP_Holder_gtk holder(&argc, &argv);

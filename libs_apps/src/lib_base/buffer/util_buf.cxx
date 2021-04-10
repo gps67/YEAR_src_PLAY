@@ -46,7 +46,7 @@ bool get_file_size_32( const char * filename, u32 & size )
 	size = 0; // fail will leave this
 
 	i64 file_size_64;
-	if( !get_file_size( filename, file_size_64 )) return false;
+	if( !get_file_size( filename, file_size_64 )) return FAIL_FAILED();
 
 	const u32 max_uns_32 = (u32) -1; // 0xFFFF ## FFFF
 	const u32 max_uns_31 = max_uns_32 >> 1;
@@ -85,7 +85,7 @@ bool blk_read_entire_file(
 	// get file size
 	// what if file does not exist, or exceeds 4G
 	u32 file_size_32 = 0;
-	if( !get_file_size_32( filename, file_size_32 )) return false;
+	if( !get_file_size_32( filename, file_size_32 )) return FAIL_FAILED();
 
 	u32 file_size_K = file_size_32 >> 10 ; // 1024 = 1K // rounding down
 
@@ -94,7 +94,7 @@ bool blk_read_entire_file(
 		return FAIL("file %s too big %d", filename, file_size_32 );
 	}
 
-	if(!mem_in.get_space( file_size_32 )) return false;
+	if(!mem_in.get_space( file_size_32 )) return FAIL_FAILED();
 
 	obj_hold<fd_hold> f = new fd_hold();
 	bool wait_for_sync = true; // WAIT_FOR_SYNC not notted for async !
@@ -105,7 +105,7 @@ bool blk_read_entire_file(
 	// HERE auto cast from STR0 to str0 
 	// problem is INFO/print using str0 not casting to STR0
 #endif
-	if(!f->open_RO( filename, wait_async )) return false;
+	if(!f->open_RO( filename, wait_async )) return FAIL("%s", filename );
 	// default sync, so will wait
 
 	// one huge slurp - but key file should not block much
@@ -114,7 +114,7 @@ bool blk_read_entire_file(
 	if(file_size_31 != t ) {
 		INFO("expected %d got %d", file_size_31 , t );
 		return FAIL(filename);
-		return false;
+		return FAIL_FAILED();
 	}
 	f->close();
 	mem_in.nbytes_used += file_size_31;
@@ -133,7 +133,7 @@ bool blk_write_to_file_mask( blk1 & mem_out, const char * filename, mode_t mask 
 	obj_hold<fd_hold> f = new fd_hold();
 	// _CREATE is OK if it already exists, its not _CREATE_EXCL
 	bool async = false;
-	if(!f->open_RW_CREATE_modmask( filename, async, mask )) return false;
+	if(!f->open_RW_CREATE_modmask( filename, async, mask )) return FAIL_FAILED();
 	i32 file_size_32 = (int) mem_out.nbytes_used;
 
 	if( file_size_32 != f->write(

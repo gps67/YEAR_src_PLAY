@@ -938,7 +938,7 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 // printf " %s%s " of "LEX_VAL_0xF_" { SCRIPT ... { OPCODE LHS RHS CMNT } ... }
 // " %s%s " { SCRIPT ... { OPCODE LHS RHS CMNT } ... }
 		}
-		INFO( "open '%s' flags %X", (STR0) filename, flags );
+		INFO( "open '%s' flags %X fd %d", (STR0) filename, flags, fd );
 		return true;
 	}
 

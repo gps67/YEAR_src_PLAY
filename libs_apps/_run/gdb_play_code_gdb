@@ -1,0 +1,8 @@
+
+cd /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320
+gdb -tui \
+--command ./.gdbinit_play_code \
+--args play_code \
+#
+
+

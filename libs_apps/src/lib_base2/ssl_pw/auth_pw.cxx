@@ -387,7 +387,9 @@ bool PW_UTIL_VNC:: decrypt_vncpass( const char * crypt, buffer2 & plain )
 	
 	vnc_key_holder vnc_well_known_key;
 	if(!vnc_well_known_key.set_to_well_known_vnc_key()) return FAIL_FAILED();
+	INFO("maybe null ctx ...");
 	evp_cipher_base crypter( vnc_well_known_key, de_crypt );
+	INFO("or was OK");
 	int i = 0;
 	while( i++ < LEN8 ) {
 		u8 c = *crypt;
@@ -413,8 +415,10 @@ bool PW_UTIL_VNC:: vncpassfile_read(
 	// read it in
 	buffer2 pw_vnc_stored;
 	int MAX1K = 1;
-	if(blk_read_entire_file( pw_vnc_stored, filename, MAX1K ))
+	if(!blk_read_entire_file( pw_vnc_stored, filename, MAX1K ))
 		return FAIL_FAILED();
+
+	if(1) pw_vnc_stored.dgb_dump(filename);
 
 	// decrypt it
 	if(!decrypt_vncpass( pw_vnc_stored, pw_vnc_plain ))

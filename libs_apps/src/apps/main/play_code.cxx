@@ -121,6 +121,7 @@ bool cmd_HT_demo(int argc, char ** argv ) {
 
 #include "util_buf.h"
 #include "auth_pw.h"
+#include "SSL_global.h" 
 bool VNC_PASS_DECODE(int argc, char ** argv ) {
 	if(argc!=1) {
 		return FAIL("argc!=1 # filename of passwd_73");
@@ -200,6 +201,9 @@ int main(int argc, char ** argv )
 	INFO("Invoked as '%s'", (STR0)cmd0 );
 	argc --;
 	argv ++;
+
+	obj_hold<SSL_global_server_eg>  _ssl_serv = new SSL_global_server_eg();
+
 
 	// all roads lead to cmd_play_code( argc, argv ) // after SHIFT cmd0
 	// but does not have to, could interpret argv0 as cmd0

@@ -26,6 +26,10 @@ evp_cipher_base::evp_cipher_base()
 
 bool evp_cipher_base::init_ctx()
 {
+	if(!ctx) {
+		ctx = EVP_CIPHER_CTX_new(); // added 2021_04 // how before ?
+		if(!ctx) return FAIL("NULL from EVP_CIPHER_CTX_new()");
+	}
 	EVP_CIPHER_CTX_init( ctx );
 	// THERE IS NO RETURN VALUE FROM SSL
 	return true;

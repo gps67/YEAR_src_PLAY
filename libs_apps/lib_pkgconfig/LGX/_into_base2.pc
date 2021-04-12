@@ -29,7 +29,7 @@ Requires: \
 	libs_apps_amix \
 	libs_apps_base1 \
 	libs_apps_mozjs \
-#	libs_apps_pdflib \
+	libs_apps_pdflib \
 
 
 

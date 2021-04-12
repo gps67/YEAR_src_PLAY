@@ -244,6 +244,7 @@ void	blk1::dgb_dump(str0 msg)
 {
 	buffer2 printer;
 	printer.hex_dump_into_8859( buff, nbytes_used );
+	printer.drop_trailing_eoln();
 	INFO( "%s ...\n# DATA # %s", (STR0) msg, (STR0) printer );
 }
 
@@ -256,6 +257,7 @@ void	blk1::dgb_max_str(int max, u8 * msg)
 	if(n>max) n = max;
 	buffer2 printer;
 	printer.hex_dump_into_8859( buff, n );
+	printer.drop_trailing_eoln();
 	INFO( "%s ...\n# DATA # %s", (STR0) msg, (STR0) printer );
 }
 

@@ -162,6 +162,9 @@ struct buffer2 : public buffer1
 		return *this;
 	}
 
+
+	bool drop_trailing_eoln();
+
 	/*!
 		debugging thing, to dump another object into this buffer
 	*/

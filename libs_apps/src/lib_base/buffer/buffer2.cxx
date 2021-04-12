@@ -45,6 +45,24 @@ void buffer2::hex_dump_into_8859( void * buf, int len )
 }
 
 
+bool buffer2:: drop_trailing_eoln()
+{
+	if(!nbytes_used) return false; // not found in an empty string
+	if( buff[nbytes_used-1] == '\n' ) {
+		INFO("LF found");
+		nbytes_used --;
+		if( buff[nbytes_used-1] == '\r' ) {
+			INFO("CR found");
+			nbytes_used --;
+		}
+		buff[nbytes_used] == 0x00;
+		return true;
+	}
+
+	INFO("not found");
+	return false;
+}
+
 bool buffer2:: print_n_digits_binary(
 	int ndigits,
 	int value,

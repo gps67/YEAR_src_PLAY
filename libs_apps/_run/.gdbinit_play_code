@@ -5,4 +5,5 @@ r
 b evp_cipher_base::init
 b evp_cipher_base::evp_cipher_base
 b evp_cipher.cxx:91
+b AUTH:: PW_UTIL_VNC:: decrypt_vncpass
 c

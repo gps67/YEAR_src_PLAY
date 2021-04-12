@@ -7,6 +7,14 @@
 
 key_holder::key_holder( const EVP_CIPHER * _cipher_type )
 {
+	// init zero - for debugging only ?
+	cipher_type = NULL;
+	// no need // blk_key.scrub(); // default ctor sets empty
+	// no need // blk_iv.scrub(); // default ctor sets empty
+	iv_len = 2;
+	key_len = 2;
+	encr = false; // key_data might be direction fussy // unused if not AES
+
 	if(!_cipher_type) {
 		INFO("DEFAULT CIPHER TYPE is bf");
 		_cipher_type = EVP_bf_cbc();
@@ -18,7 +26,7 @@ key_holder::key_holder( const EVP_CIPHER * _cipher_type )
 key_holder::~key_holder()
 {
 	cipher_type = NULL;
-	blk_key.scrub();
+	blk_key.scrub(); // no leaking keys for malloc to reuse
 	blk_iv.scrub();
 	iv_len = 1;
 	key_len = 1;
@@ -48,10 +56,13 @@ copy_from( key_holder & rhs )
 }
 
 /*!
-	the cipher_type also tells the iv_len and key_len,
+	the cipher_type knows+tells the iv_len and key_len,
+	at least the default NN bytes, for you to correct with
+	bool key_holder::set_len_iv_key( int _iv_len, int _key_len ) 
+
 	but for those ciphers that have a VARIABLE key kength,
 	you will have to figure out virtuals that change the key_len
-	here, and later in the evp_cipher_base( key_munger )
+	in key_holder, and later in the evp_cipher_base( key_munger )
 
 	As a kludge, you could eg enforce only NN bits for bf()
 	as though that was the only option (for your app),
@@ -71,11 +82,18 @@ bool key_holder::set_cipher_type( const EVP_CIPHER * _cipher_type )
 }
 
 bool key_holder::set_len_iv_key( int _iv_len, int _key_len ) {
+	// either cipher_type has fixed key sizes or variable options
+	// calling with the correct values is callers problem (see above)
+	// calling twice or more is OK, eg default then chosen key sizes
+	// you will still have to provide the key and iv
+	//
 	// scrub() out any old value - then free() releases them, clear()
 	// you must do that first because free() might happen
 	// you then do it after get_space() for luck
 	blk_key.zap();
 	blk_iv.zap();
+
+	// always have MAX bytes (nul) available for overreaching bugs
 	if(1) {
 		// just incase I get the IV_LEN wrong
 		// extend to MAX with NUL
@@ -83,14 +101,20 @@ bool key_holder::set_len_iv_key( int _iv_len, int _key_len ) {
 		blk_iv.get_space( EVP_MAX_IV_LENGTH );
 		blk_key.get_space( EVP_MAX_KEY_LENGTH );
 	}
+
+	// get the correct number of bytes // at_least
 	blk_iv.get_space( _iv_len );
 	blk_key.get_space( _key_len );
+
 	// FILL space with NUL bytes incase they actually get used
 	blk_iv.zero_all();
 	blk_key.zero_all();
+
+	// KEEP the chosen key sizes // this is the new central point #
 	key_len = _key_len;
 	iv_len = _iv_len;
-	// complain after using the values though ...
+
+	// complain // after using the values though ...
 	if( key_len <= 0 ) {
 		return FAIL("key_len %d < 0", key_len );
 	}

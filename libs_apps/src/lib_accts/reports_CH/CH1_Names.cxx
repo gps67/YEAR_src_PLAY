@@ -40,15 +40,15 @@ bool ACCTS:: mk_CH_name( buffer1 & buf, int year2, CH_Name_Tag tag )
 	int y1 = year1 % 100;
 	int y2 = year2 % 100;
 
-	const char * PRIV_sample2 = "../PRIV_sample2";
+//	const char * PRIV_sample2 = "../PRIV_sample2";
 
 	str1 YPY1; YPY1.print("%2.2d%2.2d", yP, y1 );
 	str1 Y1Y2; Y1Y2.print("%2.2d%2.2d", y1, y2 );
 
 	const char * d1 = "../PRIV_samples/"; // trailing /
 	const char * d2 = "../PRIV_samples2/"; // trailing /
-	const char * d3 = d1; // when it is correct
-	d3 = d2; // whilst testing - no live data
+//	const char * d3 = d1; // when it is correct
+//	d3 = d2; // whilst testing - no live data
 
 	time_t t_now;
 	time( & t_now );
@@ -56,7 +56,7 @@ bool ACCTS:: mk_CH_name( buffer1 & buf, int year2, CH_Name_Tag tag )
 	tm_now.local_from_time( t_now );
 	const char * datestr = tm_now.str_year_mm_dd(); 
 
-	const char * dir_dot = ".";
+//	const char * dir_dot = ".";
 	const char * dir_d1 = d1;
 	const char * dir_d2 = d2;
 	const char * dir_none = "";
@@ -64,7 +64,7 @@ bool ACCTS:: mk_CH_name( buffer1 & buf, int year2, CH_Name_Tag tag )
 	const char * ext_colname = ext_none;
 	const char * ext_csv = ".csv";
 	const char * ext_pdf = ".pdf";
-	const char * ext_spout = ".ps";
+//	const char * ext_spout = ".ps";
 	const char * ext_mm3 = ".mm3";
 
 	const char * dir = ".";

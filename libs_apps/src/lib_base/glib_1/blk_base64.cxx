@@ -134,6 +134,8 @@ bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 	int len1 = blk_in.nbytes_used;
 	int len2 = calc_size_decoded( len1 );
 
+	// this is confused // look at later
+
 	int word3 = 0;
 	while( len1 > 0 ) { // and no junk found
 	 len1--;

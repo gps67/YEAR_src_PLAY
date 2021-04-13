@@ -6,6 +6,51 @@
 // that will check the callers args, 
 // https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html
 // __printf__, __scanf__, __strftime__, __strfmon__.
+// 5 == position of fmt
+// 6 == start of first-to_check // 0 for varargs fprintf
+
+// FLAG # alternate form adds 0x or . or 
+// FLAG 0 zero padded
+// FLAG - left 
+// FLAG (SP) add space before +ve 
+// FLAG + add + when +ve
+// FLAG ' (UNIX_1) put comma in thousands
+// FLAG I (glib2) use fa_IR digits in that locale ??
+
+// FIELD_WIDTH dec // decimal avoid 0 start // 
+// FIELD_WIDTH * // *m$ # m-th arg //
+// PRECISION . dec // . * // .*m$ // "." means zero // 
+// for % d i o u x X // minimum # digits
+// for % a A e E f F // significant // maximum // blurry
+// LENGTH MODIFIER
+// hh
+// h
+// l long int, 
+// ll long long int
+// L long double
+// z size_t
+// t ptrdiff_t
+// CONVERSION SPECIFIER %s
+// d decimal, padded with 0's,
+// i integer, decimal
+// 
+// u unsigned decimal
+// o octal
+// x hex
+// X HEX
+//
+// e E -d.ddde-dd
+// f F -ddd.ddd // precision == 6
+//
+// g G double
+// a A hex float
+// c char // lc wint_t
+// s str // ls means wide chars
+// p PTR // %#x
+// n STO // int * STO = n chars written
+// m // strerror(errno) // no parameter // message str
+// %% // %
+
 
 
 
@@ -17,8 +62,12 @@
 // They all return false, so you can return FAIL("FUGAZI");
 
 // YOU CAN USE THIS WITHOUT THE REST OF libs_apps
-// YOU MAY STATICALLY LINK IT (.o) WITH YOUR APPLICATION
-// LGPL elsewhere
+// YOU MAY STATICALLY LINK IT (.o) WITH YOUR APPLICATION (or dll no probs)
+// without it bothering your copywrite of your code
+// because if(gone_wrong) return FAIL("explain"); // not a HARPOON
+// so the code must exist, you can have it, FAIL WARN INFO PASS e_print dgb
+// just dont ask me to extract it into an independent module, one day, laters
+// LGPL elsewhere // the rest of libs_apps is LGPL though // Library GPL // was
 
 extern void set_prog_alias( const char * s );
 extern const char * get_prog_alias();
@@ -55,11 +104,13 @@ extern void dgb_sleep_here(); // here is a bit of both and place to sleep
 extern void dgb_sleep_less_less(); // error has been half reported
 extern void dgb_sleep_zero(); // error has been reported
 
+// this looks orphaned
 enum fn_WARN_tag 
 {
 	
 };
 
+__attribute__((__format__ (printf, 5, 6))) // fn_WARN(a,b,c,d,fmt,..
 extern bool fn_WARN(
 	const char * note,
 	int depth,

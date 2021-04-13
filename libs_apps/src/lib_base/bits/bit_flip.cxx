@@ -33,6 +33,7 @@ u8 reverse_bits_in_byte( u8 byte_in ){
 	return byte_out;
 }
 
+#if 0
 bool print_4_binary( int b )
 {
 	char buff[5];
@@ -44,6 +45,7 @@ bool print_4_binary( int b )
 	buff[4] = 0;
 	return false;
 }
+#endif
 
 bool TEST_reverse_bits_in_byte()
 {

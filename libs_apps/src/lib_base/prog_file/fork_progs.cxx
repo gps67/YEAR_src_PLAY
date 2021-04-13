@@ -50,6 +50,14 @@ bool name_looks_bad( str0 filename )
 	return ! ok;
 }
 
+bool call_system( const char * cmd ) {
+
+	int t = system( (STR0) cmd );
+	if( t==-1 ) return FAIL("CMD %s", (STR0) cmd );
+	if( t==0 ) return true;
+	return FAIL("CMD %s RETVAL %d", (STR0) cmd, t );
+}
+
 bool fork_xpdf_page( str0 filename, int pageno )
 {
 	if( name_looks_bad( filename ) ) return false;
@@ -67,7 +75,8 @@ bool fork_xpdf_page( str0 filename, int pageno )
 //	str0 st0b = (str0) p1b;
 //	e_print( "Running: %s\n", (STR0)p1b );
 	e_print( "Running: %s\n", (STR0)cmd );
-	system( (STR0) cmd );
+	if(!call_system(cmd)) return FAIL_FAILED();
+
 	return true;
 }
 
@@ -79,9 +88,8 @@ bool fork_xpdf( str0 filename )
 	cmd.print("'C:/Program Files/Adobe/Acrobat 4.0/Reader/AcroRd32.exe' %s &", (STR0) filename );
 #else
 	cmd.print("xpdf %s &", (STR0) filename );
+	if(!call_system(cmd)) return FAIL_FAILED();
 #endif
-	e_print( "Running: %s\n", (STR0)cmd );
-	system( (STR0) cmd );
 	return true;
 }
 
@@ -100,9 +108,7 @@ bool fork_netscape( str0 filename )
 	cmd.print("netscape -remote 'openFILE(%s,new-window)' &",
 		(STR0) dir_name_ext::abs_filename(filename) );
 #endif
-	e_print( "Running: %s\n", (STR0) cmd );
-	system( STR0(cmd) );
-	// sleep_secs(1);
+	if(!call_system(cmd)) return FAIL_FAILED();
 	return true;
 }
 
@@ -117,11 +123,7 @@ bool fork_make( str0 dir, str0 target )
 		(STR0) target
 	);
 	e_print( "Running: %s\n", (STR0) cmd );
-	int t = system( STR0(cmd) );
-	if( t ) {
-		e_print("# FAIL # exit code %d from system('%s')\n", (STR0) cmd );
-		return false;
-	}
+	if(!call_system(cmd)) return FAIL_FAILED();
 	// sleep_secs(1);
 	return true;
 }

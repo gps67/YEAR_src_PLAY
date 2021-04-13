@@ -49,17 +49,17 @@ bool buffer2:: drop_trailing_eoln()
 {
 	if(!nbytes_used) return false; // not found in an empty string
 	if( buff[nbytes_used-1] == '\n' ) {
-		INFO("LF found");
+	//	INFO("LF found");
 		nbytes_used --;
 		if( buff[nbytes_used-1] == '\r' ) {
-			INFO("CR found");
+	//		INFO("CR found");
 			nbytes_used --;
 		}
-		buff[nbytes_used] == 0x00;
+		buff[nbytes_used] = 0x00;
 		return true;
 	}
 
-	INFO("not found");
+	INFO("EOLN not found");
 	return false;
 }
 

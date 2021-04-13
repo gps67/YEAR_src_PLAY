@@ -40,18 +40,17 @@
 		if( cert ) {
 		//	show_some_info();
 			if( keep ) {
-				INFO("X509_free( %s ) %x", get_str_CN(), cert );
+				INFO("X509_free( %s ) %p", get_str_CN(), (caddr_t)cert );
 				X509_free( cert );
 				keep = false;
 			} else {
-				INFO("X509_free( %s ) %x NOT CALLED", get_str_CN(), cert );
+				INFO("X509_free( %s ) %p NOT CALLED", get_str_CN(), (caddr_t) cert );
 			}
 			cert = NULL;
 		}
 	}
 	
 	X509_cert:: operator X509 *() {
-	if(0)	WARN("WHO OWNS THIS COPY OF THE CERT %x %s", this, get_str_CN());
 		return get_so_dont_delete();
 		// return cert;
 	}
@@ -65,7 +64,7 @@
 	*/
 	void X509_cert::set( X509 * _cert, bool _keep )
 	{
-		INFO("X509_cert::set(%x,keep)", _cert );
+		INFO("X509_cert::set(%p,keep)", _cert );
 		if( _cert == cert ) {
 			return;
 		}
@@ -397,7 +396,7 @@
 			if(1) {
 			 int off = buf.nbytes_used - len;
 			 u8 * p = & buf.buff[off];
-			 INFO("DER='...unreadable binary...'", p );
+			 INFO("DER='...unreadable binary...'" );
 			}
 		} else {
 			free( out );

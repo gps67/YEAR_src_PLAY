@@ -245,7 +245,7 @@ bool SSL_global_base:: configure_ssl_global_parameters()
 bool SSL_global_base::CTX_set_mode( long mode)
 {
 	long modenow = SSL_CTX_set_mode( ssl_ctx, mode);
-	INFO( "adding mode flag %x to get %x", mode, modenow );
+	INFO( "adding mode flag %lx to get %lx", mode, modenow );
 	return true;
 }
 
@@ -1103,8 +1103,11 @@ bool call_RAND_load_data_file( const char * filename, int k_max )
 	blk1 rand_buff;
 	rand_buff.get_space(3000);
 
-	if(!blk_read_entire_file( rand_buff, filename, k_max ))
-		return FAIL("%s", filename );
+	if(!blk_read_entire_file( rand_buff, filename, k_max )) {
+		FAIL("%s", filename );
+		errno_zero(); // clear error, encourage load RAND files
+		return false;
+	}
 
 	INFO("got %d bytes from %s", rand_buff.nbytes_used, filename );
 

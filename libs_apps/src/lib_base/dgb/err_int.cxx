@@ -160,12 +160,22 @@ void err_int_t:: set_obj_one( obj_ref * obj )
 		e_obj_name = "NULL";
 }
 
+/*!
+	This cant be inlined
+	It is intended to defeat GCC knowing that a reference cannot be null
+	when it might actually be null. So call a fn
+*/
+bool is_NULL_fn( caddr_t PTR ) {
+	return PTR;
+}
+
 bool err_int_t:: get_NET_error_from_socket( fd_hold & fd )
 {
 	// I never use NULL as a referenced var
 	// but it might happen, and not be all that alien
 	// if it does ...
-	if(&fd == 0 ) gdb_invoke();
+	if(is_NULL_fn((caddr_t)&fd)) gdb_invoke();
+	// if(&fd == 0 ) gdb_invoke();
 	// not sure if GCC is letting me do this, it is saying warning:
 	// the compiler can assume that the address of ‘fd’
 	// will never be NULL 

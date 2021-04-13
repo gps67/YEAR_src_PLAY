@@ -189,7 +189,7 @@ static void compression_button_pressed(
 	char * state = (char *) "OFF";
 	if( fsel->compression_option )
 		state = (char *) "ON";
-	static char message[20];
+	static char message[30];
 	sprintf( (char *) &message, "Compression (is %s)", state );
 	fsel->btn_compression->set_text( (str0)(char *) &message );
 	

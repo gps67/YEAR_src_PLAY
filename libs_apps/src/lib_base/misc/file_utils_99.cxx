@@ -10,6 +10,8 @@ bool file_utils_99::chdir( const char * dir )
 		FAIL("chdir(%s)",dir);
 		return false;
 	}
+// does not work //  __attribute__((unused))
+__attribute__((unused)) int t =
 	system("pwd");
 	return true;
 }

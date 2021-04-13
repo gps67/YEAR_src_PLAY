@@ -219,7 +219,7 @@ public:
 		 argc = 0; // already is
 		 arg = ""; // const
 		 on_usage_error();
-		 return FAIL("CODE ERROR expected %s arg // %s",
+		 return FAIL("CODE ERROR expected %s arg arg arg // %s // got ''",
 			(STR0) cmd,
 			(STR0) argdesc
 			);
@@ -231,11 +231,23 @@ public:
 		// check for absent arg
 		// should commit to eating the two words
 		if( argc < 3 ) {
+		 str0 arg_1 = "NULL_A";
+		 str0 arg_2 = "NULL_B";
+		 str0 arg_3 = "NULL_C";
+
+		 if( argc > 0 ) arg_1 = argv[0];
+		 if( argc > 1 ) arg_2 = argv[1];
+		 if( argc > 2 ) arg_3 = argv[2];
+
 		 arg = ""; // const
 		 on_usage_error();
-		 return FAIL("expected 3 args // %s",
+		 return FAIL("expected %s %s 3 args got %d // %s %s %s",
 			(STR0) cmd,
-			(STR0) argdesc
+			(STR0) argdesc,
+		 	argc,
+			(STR0) arg_1,
+			(STR0) arg_2,
+			(STR0) arg_3
 			);
 		}
 

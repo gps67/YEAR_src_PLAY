@@ -445,6 +445,7 @@ void print_trace(FILE *out, int show, int skip )
 
 //     /nfs/md7/GPS/libs_apps/lib/libbase.so(_Z7fn_WARNPKciS0_S0_S0_z+0x115) [0x2b12c67c12de]
 
+	__attribute__((unused))
 		bool found = true; // optimistic
 		char * line = stack_strings[i];
 		char * left = line;

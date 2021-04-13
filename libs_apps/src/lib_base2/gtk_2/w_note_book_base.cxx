@@ -26,7 +26,7 @@ void w_note_book_base::event_switch_page( int idx )
 */
 void w_note_book_base::connect_event_switch()
 {
-	void * self = this;
+//	void * self = this;
 	connect(
 		"switch-page",
 		(SignalFunc) C_switch_page

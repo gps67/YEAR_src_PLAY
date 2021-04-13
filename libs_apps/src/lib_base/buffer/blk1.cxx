@@ -148,7 +148,7 @@ bool	blk1::resize( unsigned N )	// to exact N bytes
 				float mb = float(N) / MB; // bytes to MB
 				// mught be 36 bytes
 
-				return FAIL("malloc( %ld ) // %5.2f MB", N, mb );
+				return FAIL("malloc( %d ) // %5.2f MB", N, mb );
 				return FALSE;
 			}
 		}

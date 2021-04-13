@@ -43,7 +43,7 @@ bool C_event_delete_event(
 	INFO("w_win_top * that = %p %s", that, "TBA:that->type_name()" );
 	INFO("GtkWidget * that.w = %p", that->w );
 	if(!that->w) {
-		INFO("that.w = %p may  have been cleared by XXX" );
+		INFO("that.w = NULL may  have been cleared by XXX" );
 	}
 	if( that && that->w ) {
 		if( that->w != (GtkWidget*) w ) {

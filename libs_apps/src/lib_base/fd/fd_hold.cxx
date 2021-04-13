@@ -262,7 +262,7 @@ static inline int get_IPPROTO_ICMP()
 			O_TRUNC
 		*/
 
-		FAIL( "# ERROR # fcntl(%d,%s,0x%xl) %m \n", fd, CMD, arg );
+		FAIL( "# ERROR # fcntl(%d,%s,0x%lx) %m \n", fd, CMD, arg );
 		return false;
 #endif
 	}
@@ -1123,6 +1123,14 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 			errno = 22;
 			return FAIL( "filename.str_len() exceeds UNIX_PATH_MAX %s", (STR0)filename );
 		}
+		// gcc says they are the same, so that was a good thing?
+		// strncpy pads with NUL bytes upto n
+		// strncpy copies the NUL, but only if it CAN
+		// so a full store need to have +1 in its reserve decl
+		// the only safe thing to do is N==MAX then buf[N-1]=NUL
+		// otherwise the last byte is not cleared, != , hash etc
+		// raise a bug with sa.sun_path !!
+	//	strncpy( sa.sun_path, (STR0) filename, UNIX_PATH_MAX-1 );
 		strncpy( sa.sun_path, (STR0) filename, UNIX_PATH_MAX );
 
 		if( async ) set_non_block();

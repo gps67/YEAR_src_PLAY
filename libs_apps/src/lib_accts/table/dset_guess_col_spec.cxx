@@ -233,6 +233,7 @@ col_spec * data_set::guess_col_spec( table * tbl, str2 * colname )
 			col_spec * spec1 = new col_spec_str2( s_KEY );
 			col_spec * spec2 = new col_spec_str2( s_GRP );
 			col_spec * spec3 = new col_spec_str2( s_DESC );
+		__attribute__((unused))
 			col_spec * spec =  new col_spec_link_dot_dot( s_GRP );
 			era_tbl = dset->find_add_table( s_ERA2 );
 			// era_tbl = dset->find_add_fake_table( s_ERA2 );

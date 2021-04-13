@@ -279,8 +279,8 @@ endif
 	# SPOUT_code_generator: setup_pallette
 	# SPOUT_code_generator: setup_pallette
 
-	#	WITH_PDFLIB=1
-		WITH_PDFLIB=0
+		WITH_PDFLIB=1
+	#	WITH_PDFLIB=0
 
 		WITH_SPOUT=1
 	#	WITH_SPOUT=0

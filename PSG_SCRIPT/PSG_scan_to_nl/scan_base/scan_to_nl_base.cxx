@@ -41,7 +41,7 @@ void scan_to_nl_base::report_lhs( const char * LHS )
 */
 void scan_to_nl_base::report1( const char * name )
 {
-	report_lhs( "got" );
+	report_lhs( "Got" );
 	e_print("# %s \n", name );
 }
 
@@ -49,7 +49,7 @@ void scan_to_nl_base::report1( const char * name )
 */
 void scan_to_nl_base::report2( const char * name, const char * s )
 {
-	report_lhs( "got" );
+	report_lhs( "GOT" );
 	e_print("# %s('%s')\n", name, s );
 }
 

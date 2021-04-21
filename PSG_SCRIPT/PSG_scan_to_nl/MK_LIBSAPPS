@@ -6,7 +6,7 @@
 	INCL += `pkg-config $(PKGS) --cflags`
 	LIBS += `pkg-config $(PKGS) --libs`
 
-        PKG_CONFIG_dirs += /home/gps/YEAR/src/libs_apps/lib_pkgconfig/$(TGT)
+        PKG_CONFIG_dirs += /home/gps/YEAR/src/PLAY/libs_apps/lib_pkgconfig/$(TGT)
         PKG_CONFIG_dirs += /tools/2000/libs/lib/pkgconfig
         PKG_CONFIG_dirs += /tools/2000/gtk/lib/pkgconfig
         PKG_CONFIG_dirs += /tools/2000/X11R6/lib/pkgconfig

@@ -1,0 +1,22 @@
+
+# Makefile_libs_apps
+
+	YEAR_src_PLAY=$(HOME)/YEAR/src/PLAY
+	DIR_libs_apps=$(YEAR_src_PLAY)/libs_apps
+#	LGX=LGX
+	LGX=W32
+#	BOXNAME=M7
+	BOXNAME=$(shell uname -n)
+	DIR_libs_apps_build=$(DIR_libs_apps)/build_$(LGX)_$(BOXNAME)
+
+#	DIR_libs_apps_build=$(DIR_libs_apps)/build_LGX_M7# MK TRICKY
+
+	INCLS += -I$(DIR_libs_apps)/include
+	LINKS += -Wl,--rpath=$(DIR_libs_apps)/lib
+	LINKS += -Wl,--rpath=$(DIR_libs_apps_build)
+	LINKS += -L$(DIR_libs_apps)/lib
+	LINKS += -L$(DIR_libs_apps_build)
+
+	LINKS += -lbase
+
+

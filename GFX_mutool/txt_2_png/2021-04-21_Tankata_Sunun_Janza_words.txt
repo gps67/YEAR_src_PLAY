@@ -28,7 +28,7 @@
  ... three four
 
  rhythm
-	       stt-ss-- # 4---2--
+	       stt-ss-- # 4+1-2+--
 
 
 	

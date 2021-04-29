@@ -1,1 +1,1 @@
-libs_apps_uses_ssl.pc_
+libs_apps_ssl.pc

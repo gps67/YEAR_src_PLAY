@@ -1,0 +1,16 @@
+2021-04-28_Tankata_Sunun_Janza.txt
+
+sangban - Mamady Keita - jeni
+
+r	bell BOTH 	+
+	gap
+r	bell BOTH 	1
+	gap
+r	bell		  
+l	bell PRESS	 
+	gap
+l	bell		 
+
+handage shown for speed check
+not actual handage
+

@@ -138,6 +138,8 @@ endif
 	# note how $TGT overrides the default
 	#
 	export PKG_CONFIG_LIST
+	# openssl 3.0 #
+	PKG_CONFIG_LIST += /tools/VPN/lib/pkgconfig
 	PKG_CONFIG_LIST += .
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)/$(UNAME)
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)

@@ -1,0 +1,36 @@
+2021-04-28_Tankata_Sunun_Janza.txt
+
+sangban - Mamady Keita - jeni
+
+r	bell BOTH 	+
+	gap
+r	bell BOTH 	1
+	gap
+r	bell		  
+l	bell PRESS	 
+	gap
+l	bell		 
+
+handage shown for speed check
+not actual handage
+
+Version B is completely different
+The trailing bell joins to the start
+(this is with the a1 on top of that looping)
+
+ 	bell BOTH 	a
+	bell BOTH 	1
+	-
+ 	bell BOTH
+	bell BOTH
+	-
+ 	bell 
+	bell
+	-
+	bell
+	-
+	bell
+	-
+	bell
+	-
+	bell

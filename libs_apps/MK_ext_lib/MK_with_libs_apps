@@ -46,6 +46,9 @@ ifeq (1,1)
 	# $HOME/G/prefix is where moz js was placed
 	LIST_PKG_CONFIG_PATH += /home/gps/G/prefix/lib/pkgconfig/
 
+	# /tools/VPN is where openssl is
+	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/
+
 # TODO above # fix $(TGT) $(UNAME_n_rthing) $(build_dir)
 
 	INCL += -I$(DIR_LIBS_APPS_INCL)

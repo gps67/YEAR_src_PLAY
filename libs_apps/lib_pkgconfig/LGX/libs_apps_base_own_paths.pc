@@ -15,5 +15,5 @@ Version: 0.1.2
 Requires: 
 
 # OK ${libdir}/libmedia.dll 
-Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/tools/CTXT/lib/ -Wl,--rpath=${prefix}/lib
+Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/tools/VPN/lib/ -Wl,--rpath=/tools/CTXT/lib/ -Wl,--rpath=${prefix}/lib
 Cflags:  -I${includedir}

@@ -5,7 +5,7 @@
 	# we are in $T/obj/.
 
 	T=..
-	MK_ext_lib=/home/gps/YEAR/src/libs_apps/MK_ext_lib
+	MK_ext_lib=/home/gps/YEAR/src/PLAY/libs_apps/MK_ext_lib
 
 	CXX = g++
 	OPTIM += -g 

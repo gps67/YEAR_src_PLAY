@@ -1,29 +1,12 @@
-TGT=LGX
 
-############
-# lstyle
-############
-# lstyle=static # LGX static is empty # could fix it maybe
-lstyle=shared
+# open ssl version 3
+# PKG_CONFIG_LIST += /tools/VPN/lib/pkgconfig
 
-prefix=/home/gps/G/prefix
-
-exec_prefix=${prefix}
-libdir=${prefix}/lib
-includedir=${prefix}/include
-
-Name: libs_apps_uses_ssl
-Description: LIBS_APPS uses OPENSSL
+Name: libs_apps_ssl
+Description: libs_apps uses ssl 
 Version: 0.1.2
 
-# need to split the INSTALL prefix from PREFIX
-#
-# rpathed=-Wl,--rpath=${libdir}
-rpathed=
+Requires: openssl
 
-Requires: libs_apps_sockets
-
-# for DLLś instead use libeay32 and ... see INSTALL.W32
-
-Libs: -L${libdir} -lssl -lcrypto ${rpathed}
-Cflags: -I${includedir}
+# Libs: 
+# Cflags:

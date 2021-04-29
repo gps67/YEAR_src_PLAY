@@ -1,0 +1,47 @@
+2021-04-28_Tankata_Sunun_Janza.txt
+
+	 1-2-3-4-1-2-3-4-1-
+	       -tt-ss--		START on +1
+	       stt-ssB-		BASS every other time
+	       stt-ss--		LOOP rhythm 1 == 4+1-2+--
+	         t-ssB-st	Aligned to music bar
+	         t-ssB-s-	STOP on 4
+	tt-ss--stt-ss--stt-ss-
+	lr-rl--rlr-rlB-rlr-rl-
+	 1-2-3-4-1-2-3-4-1-
+
+ken kene
+
+	bell BOTH 
+	bell
+	bell BOTH 
+	bell
+	bell BOTH 
+	bell
+	bell BOTH 
+	bell
+
+sangban - Mamady Keita - jeni
+
+r	bell BOTH 	+
+	gap
+r	bell BOTH 	1
+	gap
+r	bell		  
+l	bell PRESS	 
+	gap
+l	bell		 
+
+handage shown for speed check
+not actual handage
+
+dun dun 
+
+	
+
+PRESS can play
+	right hand 3 fingers (thumb) hold
+	left hand slap
+
+	vary right hand harmonics effect
+	

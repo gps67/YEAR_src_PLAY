@@ -73,7 +73,7 @@ struct buffer2 : public buffer1
 		put a block of (ASCII) without any convertion
 	*/
 	bool put( const blk1 & b ) {
-		return blk1::put( b );
+		return blk1::put_blk( b );
 	}
 
 	/*!

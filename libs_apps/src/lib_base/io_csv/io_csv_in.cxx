@@ -83,7 +83,7 @@ bool io_csv_in::load_text( char * text ) // text is overwritten with NUL's
 		{
 			c1 = *p1++;
 			c2 = c1 ? c1 : LF;
-			b1.put( c2 );
+			b1.put_byte( c2 );
 		}
 		b1.trailing_nul();
 		bool ok_line = load_line( (char *) b1.buff ) && ok;

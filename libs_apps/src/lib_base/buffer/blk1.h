@@ -62,6 +62,8 @@ struct blk1 : public GRP_lib_base
 		return * this;
 	}
 
+	bool put_ASCII( const char * s ); // ASCII STR0 // ie _bytes
+
 	bool set( const char * s ) { return set( (str0) s ); }
 	bool set( str0 s );
 	bool set( str0 s, int len );
@@ -214,10 +216,33 @@ struct blk1 : public GRP_lib_base
 	/*!
 		put a block of bytes
 	*/
-	bool	put( const blk1 & b )
+	bool	put_blk( const blk1 & b )
 	{
 		return put_nn_bytes( b.nbytes_used, b.buff );
 	}
+
+#if 0
+	// adding these was a surprise to me
+	// the problem was not that they were missing
+	// but that using them whilst missing
+	// cause a silent NOOP
+	// probably cast from (char) to (blk1) and empty blk1 ??
+	// not good tho
+	//
+	// am happy with put_byte
+	// but want complaint
+
+	bool	put( const char * s )
+	{
+		while(*s) if(!put(*s++)) return FAIL_FAILED();
+		return true;
+	}
+
+	bool	put( char ch )
+	{
+		return put_byte(ch);
+	}
+#endif
 
 	/*!
 		fast put_byte for when you KNOW you have enough space
@@ -227,7 +252,7 @@ struct blk1 : public GRP_lib_base
 		buff[nbytes_used++] = byte;
 	}
 	/*!
-		append a byte to the buffer
+		append a byte to the buffer // no re-interp of char
 	*/
 	bool	put_byte( uchar byte )
 	{

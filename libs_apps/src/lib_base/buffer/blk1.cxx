@@ -49,7 +49,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 	buff = 0;
 	// this will avoid allocating 3/2 times but allows a trailing NUL
 	resize( b.nbytes_used + 1 );
-	put( b );
+	put_blk( b );
 	trailing_nul();
 }
 
@@ -63,7 +63,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 	buff = 0;
 	int len = s.str_len();
 	resize( len + 1 );
-	put( s );
+	set( s, len );
 	trailing_nul();
 }
 
@@ -319,6 +319,19 @@ void	blk1::del_copy_down( int n )
 	// because it is not part of the nbytes_used, so not copied
 	// or add one to above memmove (we know there is a gap)
 	// trailing_nul();
+}
+
+
+/*!
+	put STR0 without any convertion
+*/
+bool	blk1::put_ASCII( const char * s ) // ASCII STR0 // ie _bytes
+{
+	if(!s) {
+		put_ASCII("null)");
+		return FAIL("(null)");
+	}
+	return put_n_bytes( strlen(s), s );
 }
 
 /*!

@@ -1,7 +1,7 @@
 #include "blk_base64.h"
 
 #warning TODO WRITE THIS and its tests currently forked glib call
-#include <glib.h>
+// #include <glib.h>
 
 #include "dgb.h"
 
@@ -171,14 +171,25 @@ inline bool decode_B64( u8 ch, int & val )
 }
 
 void write_word_as_bytes( blk1 & blk_out, int val, int n_bits ) {
+/*
+	val is u24 ' XYZ'
+	it had 6 bits shifted in and in
+	even when those inputs were not there (AB== ABC==)
+	so you have to shift those null bits out
+	or not print Z or YZ
+
+	nb X Y Z often look like CHARS but they are DATA BYTES
+	so do not skip NUL bytes !!
+
+	alternatively shift right by (24-nbits)
+	then print nbits left to right
+*/
 // put 
 // put does not do what I think it should
 // now it should not exist!!
 // put_byte is OK
-	blk_out.put('#');
-	blk_out.put_byte('!');
-	INFO("blk_out == '%s'", (STR0) blk_out );
-	blk_out.dgb_dump("blk_out");
+//	INFO("blk_out == '%s'", (STR0) blk_out );
+//	blk_out.dgb_dump("blk_out");
 	int nbytes = n_bits / 8;
  	INFO("nbits %d val %6.6X nbytes %d", n_bits, val, nbytes );
 	if(( nbytes == 0 ) || ( nbytes > 3 )) {
@@ -199,18 +210,15 @@ void write_word_as_bytes( blk1 & blk_out, int val, int n_bits ) {
 	INFO("DATA as text '%c' '%c' '%c' ", X, Y, Z );
 
 	switch( nbytes ) {
-	 case 3: blk_out.put( (u8) X ); // and stay for next case
-	 case 2: blk_out.put( (u8) Y ); // and stay for next case
-	 case 1: blk_out.put( (u8) Z ); // and done
+	 case 1: blk_out.put_byte( X ); break;
+	 case 2: blk_out.put_2_bytes( X, Y ); break;
+	 case 3: blk_out.put_3_bytes( X, Y, Z ); break;
 	}
 }
 
 
 bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 {
-	blk_out.put((STR0)"{at-->}");
-	blk_out.put('@');
-	blk_out.put((STR0)"{<--put(STR)}");
 	// got to stop somewhere // NUL required // no other thread may add
 	if(!blk_in.trailing_nul()) return FAIL_FAILED();
 
@@ -338,37 +346,6 @@ bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 	return true;
 }
 
-#if 0
-// glib based
-bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
-{
-	int len1 = blk_in.nbytes_used;
-	int len2 = calc_size_decoded( len1 );
-
-	// this is confused // look at later
-
-	int word3 = 0;
-	while( len1 > 0 ) { // and no junk found
-	 len1--;
-	}
-
-	guint saveu;
-	blk_out.get_space( len2 );
-	len2 = g_base64_decode_step(
- (gchar*) 	blk_in.buff,
-		blk_in.nbytes_used,
-// NO	//	multi_line,
-		blk_out.gap_addr(),
-		&state,
-		&saveu
-	);
-	blk_out.nbytes_used += len2;
-
-	blk_out.trailing_nul(); // might be binary, might be ASCII
-	return true;
-}
-#endif
-
 bool blk_base64:: encode( const char * str_in, blk1 & blk_out )
 {
 	blk1 blk_in;
@@ -422,12 +399,12 @@ bool blk_base64::test1()
         buffer2 blk_b64;
         blk_b64.put("aGVsbG8K"); // includes a newline
         b64_coder.decode( blk_b64, blk_txt );
-        INFO("'%s' -> '%s'", STR0(blk_b64), STR0(blk_txt) );
+        INFO("'%s' -decode-> '%s'", STR0(blk_b64), STR0(blk_txt) );
         blk_b64.clear();
         blk_txt.clear();
-        blk_txt.put("hello");
+        blk_txt.put("hello"); // no newline
         b64_coder.encode( blk_txt, blk_b64 );
-        INFO("'%s' <- '%s'", STR0(blk_b64), STR0(blk_txt) );
+        INFO("'%s' <-encode- '%s'", STR0(blk_b64), STR0(blk_txt) );
 	return false;
 }
 

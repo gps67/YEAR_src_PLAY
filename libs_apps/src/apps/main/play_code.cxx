@@ -72,16 +72,33 @@ bool cmd_base64_demo(int argc, char ** argv )
 	blk_base64 filter;
 	str_base64 filter_glib;
 
+	filter.test1();
+
+	filter.gap4 = false;
+
 	blk1 blk_in;
 	blk1 blk_out;
 	blk1 blk_out_glib;
+	blk1 blk_out_back;
 
-	blk_in = "HELLO";
+	blk_in = "\n"
+		"HELLO HELLO What is all this then?"
+		" Growing the text to be more than 72 or whatever"
+		" Growing the text to be more than 72 or whatever"
+		" Growing the text to be more than 72 or whatever"
+		" Growing the text to be more than 72 or whatever"
+		" Growing the text to be more than 72 or whatever"
+	;
+ //	blk_in = "HELLO";
+ 	blk_in = "HELLO";
 	if(!filter.encode( blk_in, blk_out )) return FAIL_FAILED();
+	if(!filter.decode( blk_out, blk_out_back )) return FAIL_FAILED();
+//	if(!filter_glib.decode( blk_out, blk_out_back )) return FAIL_FAILED();
 	if(!filter_glib.encode( blk_in, blk_out_glib )) return FAIL_FAILED();
 
-	INFO( "1 %s", (STR0) blk_out );
-	INFO( "2 %s", (STR0) blk_out_glib );
+	INFO( "1 LIBR %s", (STR0) blk_out );
+	INFO( "2 glib %s", (STR0) blk_out_glib );
+	INFO( "3 TEXT '%s'", (STR0) blk_out_back );
 
 	return PASS("does");
 }

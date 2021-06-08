@@ -8,9 +8,11 @@
 blk_base64::
 blk_base64()
 : multi_line( true )
+, line_length( line_length_76 )
 , base64url( false )
 , pad4( true )
-, gap4( false )
+, gap4( true )
+// , gap4( false )
 {
 	// getting uninitialised bytes from valgrind
 	// but surely it knows it is C++ zero, optimisation?
@@ -19,6 +21,7 @@ blk_base64()
 	// call something here
 	state = 0;
 	save = 0;
+	space_on_line = line_length;
 }
 
 /*!
@@ -27,16 +30,17 @@ blk_base64()
 	dialect opcode from into
 	dialect opcode lhs rhs // comment // ... // EA_LOCN CODE_POINT
 
-	multi_line 1 means a BASE64_DATA_SCROLL with a polite WIDTH72 margin
+	multi_line 1 means a BASE64_DATA_SCROLL with a polite WIDTH76 margin
 	multi_line 0 means a BASE64_STREAM_of_N_bytes // limit u24 // block u16
 
-	// block u12 // block 4K // sector_size 4096 //
-	// SEEKABLE SUB SEGMENT DVD_32K_sector_size // u15 // u16 //
+	if you want to encode in multiple steps, part by part
+	you must provide a multiple of 3 bytes
+	so that it pauses and resumes seamlessly
+	line breaks and gap4 will vary
 
-	// next word size is u32 then u48 then u64 
-	// view P0 P2 over stream_segment_cache
-
-	// YAWN write a BASE64 function 
+	TODO
+		leave last 0 1 or 2 bytes in a carry-over-state
+		with line_space_remaining
 
 */
 bool blk_base64::encode( blk1 & blk_in, blk1 & blk_out )
@@ -58,6 +62,8 @@ bool blk_base64::encode( blk1 & blk_in, blk1 & blk_out )
 		char_of_6[ 62 ] = '-';
 		char_of_6[ 63 ] = '_';
 	}
+
+	space_on_line = line_length;
 
 	const u8 * P = blk_in.buff;
 	while( len1 > 0 ) {
@@ -95,6 +101,14 @@ bool blk_base64::encode( blk1 & blk_in, blk1 & blk_out )
 		C = char_of_6[ C ];
 		D = char_of_6[ D ];
 
+		if( multi_line ) {
+		  if( space_on_line < 4 ) {
+			blk_out.put_byte( '\r' );
+			blk_out.put_byte( '\n' );
+			space_on_line = line_length;
+		  }
+		}
+
 		switch( len1 ) {
 		 case 1:
 		  blk_out.put_byte( A );
@@ -120,15 +134,212 @@ bool blk_base64::encode( blk1 & blk_in, blk1 & blk_out )
 		 break;
 		}
 		len1 -= 3;
-		if( gap4 )
+		space_on_line -= 4;
+		if( gap4 ) {
+		  // OK leave trailing SP on line //
 		  blk_out.put_byte( ' ' );
-		WARN("TODO lines of 72");
+		  space_on_line -= 1;
+		}
 	}
 
 	blk_out.trailing_nul();
 	return true;
 }
 
+inline bool decode_B64( u8 ch, int & val )
+{
+	if(( 'A' <= ch ) && ( ch <= 'Z' )) {
+		val = ch - 'A';
+		return true;
+	}
+	if(( 'a' <= ch ) && ( ch <= 'z' )) {
+		val = ch - 'a' + 26;
+		return true;
+	}
+	if(( '0' <= ch ) && ( ch <= '9' )) {
+		val = ch - '0' + 26 + 26;
+		return true;
+	}
+	switch( ch ) {
+	  case '+': val = 62; return true;
+	  case '/': val = 63; return true;
+	  case '-': val = 62; return true;
+	  case '_': val = 63; return true;
+	}
+	INFO("NOT B64 %c %2.2X", ch, ch );
+	return false;
+}
+
+void write_word_as_bytes( blk1 & blk_out, int val, int n_bits ) {
+// put 
+// put does not do what I think it should
+// now it should not exist!!
+// put_byte is OK
+	blk_out.put('#');
+	blk_out.put_byte('!');
+	INFO("blk_out == '%s'", (STR0) blk_out );
+	blk_out.dgb_dump("blk_out");
+	int nbytes = n_bits / 8;
+ 	INFO("nbits %d val %6.6X nbytes %d", n_bits, val, nbytes );
+	if(( nbytes == 0 ) || ( nbytes > 3 )) {
+		FAIL("nbytes must be 1 2 or 3 # got %d", nbytes );
+		return;
+	}
+
+	u8 Z = val & 0xFF;
+	val >>= 8;
+	u8 Y = val & 0xFF;
+	val >>= 8;
+	u8 X = val & 0xFF;
+	val >>= 8;
+	if( val ) {
+		WARN("val should now be zero, have %d", val );
+	}
+
+	INFO("DATA as text '%c' '%c' '%c' ", X, Y, Z );
+
+	switch( nbytes ) {
+	 case 3: blk_out.put( (u8) X ); // and stay for next case
+	 case 2: blk_out.put( (u8) Y ); // and stay for next case
+	 case 1: blk_out.put( (u8) Z ); // and done
+	}
+}
+
+
+bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
+{
+	blk_out.put((STR0)"{at-->}");
+	blk_out.put('@');
+	blk_out.put((STR0)"{<--put(STR)}");
+	// got to stop somewhere // NUL required // no other thread may add
+	if(!blk_in.trailing_nul()) return FAIL_FAILED();
+
+	int len1 = blk_in.nbytes_used;
+	int len2 = calc_size_decoded( len1 );
+
+	if(!blk_out.get_space( len2 )) return FAIL_FAILED();
+	// NB do check for malloc fail because
+	// we are NOT doing incremental block-by-block with carry over
+	// we are doing whole file convertion (eg a few certs)
+	// if they are ever huge files, need to check early
+
+	// DEMAND // no SP within group of 4 // 
+
+	// parse direct within blk_in
+	// optionally export P to whatever STOP eg {SCRIPT {B64=}}
+	const u8 * P = blk_in.buff;
+
+	bool more = true;
+	int n_bits = 0; // 0 6 12 18 24 //
+	int val_24_bits = 0; // 6 12 18 24 bits
+	int val_6_bits = 0; // each B64 char carries 6 bits
+	// one loop for each bunch of 4 chars
+	while(1) {
+	  // bad design but cute
+	  // if a word was built, write it
+	  // if this is the first loop there is no word
+	  // if this is the last loop, check more AFTER writing it
+	  if( n_bits ) {
+	  	if( n_bits == 6 ) {
+			FAIL("looped on 6 - should be caught later");
+		}
+		write_word_as_bytes( blk_out, val_24_bits, n_bits );
+		val_24_bits = 0; // 6 12 18 24 bits
+//		val_24_bits = -1; // check shift
+		n_bits = 0; // 0 6 12 18 24 //
+	  }
+	  if(!more) break; // while
+
+	  // skip gaps but stop at nul
+	  while( (*P) && (*P <= ' ') ) { P++; }
+	  if(!P) {
+			more = false;
+			continue; // break or continue
+	  }
+		
+	  for( int i=0; i<4; i++ ) {
+	    u8 ch = *P;
+	    if( decode_B64( ch, val_6_bits ) ) {
+	    		INFO("ch %c val %2.2X", ch, val_6_bits );
+			P++;
+			val_24_bits <<= 6;
+			val_24_bits += val_6_bits;
+			n_bits += 6;
+	    } else {
+		// anything that is not B64 stops file
+		// P points to it
+		more = false;
+		switch( n_bits ) {
+		 case 0: // non-starter // OK
+		 break; // switch
+		 case 6: // 1 in is not enough
+			FAIL("base_64 requires at least 2 chars");
+			INFO("ch is 0x%2.2X '%c'", (int) ch, ch );
+		 break; // switch
+		 case 12: // 12 bits might be OK
+			if( '=' == ch ) {
+				P++;
+				ch = *P;
+				if( '=' == ch ) {
+					P++;
+					ch = *P;
+					PASS("AB==");
+				} else {
+					WARN("base_64 expects AB== 2 ");
+					INFO("ch is 0x%2.2X '%c'", (int) ch, ch );
+				}
+			} else {
+				WARN("base_64 expects AB== 1 ");
+				INFO("ch is 0x%2.2X '%c'", (int) ch, ch );
+			}
+		 break; // switch
+		 case 18: // 18 bits might be OK
+			if( '=' == ch ) {
+				P++;
+				ch = *P;
+				// ABC= // perfect 16 bits PAD4
+				PASS("ABC=");
+			} else {
+				WARN("base_64 expects = ABC= ");
+				INFO("ch is 0x%2.2X '%c'", (int) ch, ch );
+			}
+		 break; // switch
+		 default: // cant happen
+		 	FAIL("CODE ERROR cant happen");
+		}
+
+		// now pad the bits to 24 high
+		val_24_bits <<= (24 - n_bits );
+		// X 0 0 // 12
+		// X Y 0 // 18
+		// X Y Z 
+		// keep n_bits
+
+		break; // break for loop
+	    }
+	  }
+
+	} // while
+	blk_out.trailing_nul(); // no need // debugging luck
+
+
+
+	/*
+		A B C D     => X Y Z
+		  B C D =   =>   Y Z
+		    C D = = =>     Z
+		      D =   ERROR
+			=   EMPTY
+			= || EOT || ANYSTOPCHAR // return EA(*P)
+
+		They all get similar when aligned to RHS BIT 0
+	*/
+
+	return true;
+}
+
+#if 0
+// glib based
 bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 {
 	int len1 = blk_in.nbytes_used;
@@ -153,11 +364,10 @@ bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 	);
 	blk_out.nbytes_used += len2;
 
-#if 0
-#endif
 	blk_out.trailing_nul(); // might be binary, might be ASCII
 	return true;
 }
+#endif
 
 bool blk_base64:: encode( const char * str_in, blk1 & blk_out )
 {

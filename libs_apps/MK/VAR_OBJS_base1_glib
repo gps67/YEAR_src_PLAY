@@ -9,7 +9,7 @@
 # hash
 	OBJS_base1_glib += ht1.o		# glib hash table
 
-	OBJS_base1_glib += str_base64.o # but this is base2 ??
+	OBJS_base1_glib += g_str_base64.o # but this is base2 ??
 
 	OBJS_base1_glib += g_timer.o	 # microsecond timer (millisec)
 

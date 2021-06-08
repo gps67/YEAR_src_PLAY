@@ -166,7 +166,9 @@ inline bool decode_B64( u8 ch, int & val )
 	  case '-': val = 62; return true;
 	  case '_': val = 63; return true;
 	}
-	INFO("NOT B64 %c %2.2X", ch, ch );
+	// '=' is not B64 but reduce noise
+	// will report on { '}' or ',' or () [] <>
+	if(ch!='=') INFO("NOT B64 %c %2.2X", ch, ch );
 	return false;
 }
 
@@ -191,7 +193,7 @@ void write_word_as_bytes( blk1 & blk_out, int val, int n_bits ) {
 //	INFO("blk_out == '%s'", (STR0) blk_out );
 //	blk_out.dgb_dump("blk_out");
 	int nbytes = n_bits / 8;
- 	INFO("nbits %d val %6.6X nbytes %d", n_bits, val, nbytes );
+  //	INFO("nbits %d val %6.6X nbytes %d", n_bits, val, nbytes );
 	if(( nbytes == 0 ) || ( nbytes > 3 )) {
 		FAIL("nbytes must be 1 2 or 3 # got %d", nbytes );
 		return;
@@ -207,7 +209,7 @@ void write_word_as_bytes( blk1 & blk_out, int val, int n_bits ) {
 		WARN("val should now be zero, have %d", val );
 	}
 
-	INFO("DATA as text '%c' '%c' '%c' ", X, Y, Z );
+ //	INFO("DATA as text '%c' '%c' '%c' ", X, Y, Z );
 
 	switch( nbytes ) {
 	 case 1: blk_out.put_byte( X ); break;
@@ -268,7 +270,7 @@ bool blk_base64::decode( blk1 & blk_in, blk1 & blk_out )
 	  for( int i=0; i<4; i++ ) {
 	    u8 ch = *P;
 	    if( decode_B64( ch, val_6_bits ) ) {
-	    		INFO("ch %c val %2.2X", ch, val_6_bits );
+	     //		INFO("ch %c val %2.2X", ch, val_6_bits );
 			P++;
 			val_24_bits <<= 6;
 			val_24_bits += val_6_bits;
@@ -362,6 +364,10 @@ bool blk_base64:: decode( const char * str_in, blk1 & blk_out )
 
 bool blk_base64:: encode( const char * str_in, str1 & str_out )
 {
+	if(gap4) WARN("you probably dont want gap4 into STR1");
+	// eg when used to encrypt "passwd" into a_word
+	// 
+
 	blk1 blk_in;
 	blk1 blk_out;
 	blk_in.set( str_in );

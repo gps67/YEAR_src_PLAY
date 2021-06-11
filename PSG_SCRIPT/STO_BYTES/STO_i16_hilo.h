@@ -60,7 +60,7 @@ namespace STO {
 
 	bool print_0xFFFF(buffer2 & out) {
 		i16 val = get_i16_cpu(); // decided there is no ACTUAL type _cpu
-		out.print("0x%4X", val ); // short to int
+		return out.print("0x%4X", val ); // short to int
 	}
 
  // SHIPPING as hilo network byte order 
@@ -129,6 +129,7 @@ namespace STO {
 		// round returnd double, sure there is an asm to i16
 		i16 _val = (short) round( dbl );
 		set_from_i16( _val );
+		return get_as_float();
 	}
 
 	float set_from_float( double dbl ) {

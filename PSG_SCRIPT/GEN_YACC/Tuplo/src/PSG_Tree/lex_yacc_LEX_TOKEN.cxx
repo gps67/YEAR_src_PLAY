@@ -209,7 +209,7 @@ using namespace PSG;
  //	buff .put_byte( '_' ); // PUNCT_
 	if(sep) buff .put_byte( sep ); // PUNCT_
 	sep = '_';
-	buff .put( NAME_of_char ); // PUNCT_PLUS
+	buff .put_ASCII( NAME_of_char ); // PUNCT_PLUS
   }
   STR0 _PLUS_PLUS = buff; 
   // INFO( "PLUS_PLUS == '%s'", _PLUS_PLUS );

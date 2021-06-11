@@ -21,8 +21,8 @@ Requires: \
 	libs_apps_editline \
 	libs_apps_libz \
 	libs_apps_base_own_paths \
-	libs_apps_glib \
 	libs_apps_amix \
+	libs_apps_glib \
 #
 # errm amix but not media
 

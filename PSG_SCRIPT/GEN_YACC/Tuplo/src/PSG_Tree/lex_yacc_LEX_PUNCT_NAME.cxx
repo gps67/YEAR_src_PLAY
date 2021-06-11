@@ -83,8 +83,8 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 		return FAIL_FAILED(); // Never happens ENOMEM
 	return true;
   }
-  return WARN("char 0x2.2X", chr); // false // buff == '' //
-  return FAIL("char 0x2.2X", chr);
+  return WARN("char 0x%2.2X", chr); // false // buff == '' //
+  return FAIL("char 0x%2.2X", chr);
 }
 
 

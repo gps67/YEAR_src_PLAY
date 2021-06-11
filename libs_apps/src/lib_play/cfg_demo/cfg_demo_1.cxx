@@ -1,6 +1,6 @@
 
 #include "cfg_demo_1.h"
-#include "str_base64.h"
+#include "blk_base64.h"
 #include "SSL_global.h" // RAND_
 #include "util_buf.h" // 
 #include "sql_link_MySQL.h"
@@ -27,7 +27,7 @@ void kf_cfg_demo_1:: gen_random_str()
 	blk1 rnd_blob;
 	RAND_get_nn_bytes_of_random( 240, rnd_blob );
 	blk1 rnd_str;
-	str_base64 conv64;
+	blk_base64 conv64;
 	conv64.multi_line = true;	// keyfile fails with this
 	conv64.multi_line = false;
 	conv64.encode( rnd_blob, rnd_str );

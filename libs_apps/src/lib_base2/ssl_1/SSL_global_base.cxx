@@ -7,7 +7,7 @@
 #include "CB_get_phrase.h"
 #include "X509_cert.h"
 #include "EVP_P_KEY.h"
-#include "str_base64.h"
+#include "blk_base64.h"
 #include "fd_hold.h" // CHECK_can_write_file(name)
 #include "err_int.h" // get_SSL_error() - should be here maybe ?
 #include "util_buf.h" // blk_read_entire_file
@@ -1070,7 +1070,7 @@ bool RAND_get_32_base64( buffer2 & RETVAR ) // caller provides BASE64 storage
 	// PRINT 64 BYTES in 4/3 85.3 bytes one long line raw or 2 lines LF SP
 	// from md_calc // 64 binary bytes
 	// into RETVAR // RETVAL PARAMETER // 90 base64 bytes
-	str_base64 conv64;
+	blk_base64 conv64;
 	if(!conv64.encode( md_calc.md, RETVAR )) return FAIL_FAILED();
 	
 	return true;

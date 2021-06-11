@@ -1119,7 +1119,7 @@ gen_YACC_rules( buffer2 & out )
 	buffer1 filename;
 	filename.print("%s%s%s", lhs, psg, rhs );
 	if(!gen_YACC_includes( out, filename )) {
-		return FAIL("%s", filename );
+		return FAIL("%s", (STR0) filename );
 	}
 	return true;
 }

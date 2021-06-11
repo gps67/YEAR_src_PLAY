@@ -1,10 +1,10 @@
-#ifndef file_utils_99_H
-#define file_utils_99_H
+#ifndef file_utils_99_glib_H
+#define file_utils_99_glib_H
 
 #include <glib.h>
 #include <glib/gstdio.h> // g_chdir
 
-struct file_utils_99
+struct file_utils_glib
 {
 	struct stat st;
 

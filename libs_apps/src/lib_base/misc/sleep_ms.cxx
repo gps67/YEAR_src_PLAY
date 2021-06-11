@@ -5,11 +5,12 @@
 #else
 #include <unistd.h> // sleep
 #endif
-#include <glib.h>
 
 // #define GLIB_NOT_WIN32
 
 #ifdef GLIB_NOT_WIN32
+#warning "depending on glib for sleep_*"
+// OFF // #include <glib.h>
 
 //	GLIB provides sleep with microsecond parameter
 

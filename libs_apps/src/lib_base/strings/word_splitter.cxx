@@ -3,7 +3,7 @@
 #include "word_splitter.h"
 #include "CR_LF_NUL.h"
 #include "ASCII_chars.h"
-#include "str_base64.h"
+#include "blk_base64.h"
 
 /*!
 */
@@ -366,9 +366,9 @@ bool word_splitter:: scan_base64_line_from_buffer_to_blob(  buffer3 &in, blk1 & 
 	buffer2 line;
 	if(!scan_text_line_from_buffer_to_buffer(  in, line )) // no CRLF
 		return false;
-	str_base64 conv;
+	blk_base64 conv;
 	if(!conv.decode( line, blob ))
-		return FAIL("str_base64::decode()");
+		return FAIL("blk_base64::decode()");
 	return true;
 }
 

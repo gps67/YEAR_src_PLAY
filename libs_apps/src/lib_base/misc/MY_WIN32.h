@@ -18,8 +18,9 @@
 #include "dgb.h"
 
 // also included by dgb_fail.h
-
+// provides:
+// INFO("fmt %s",str); // vprintf 
+// WARN("something");
 // return FAIL("clue");
-// WARN("something")
 
 #endif

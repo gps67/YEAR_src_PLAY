@@ -1,4 +1,8 @@
 
+# blk_base64 replaces g_str_base64 # but rename
+# now only used to test its replacement
+	OBJS_base1_glib += g_str_base64.o # but this is base2 ?? # 
+
 # amnt
 	OBJS_base1_glib += date_glib.o	 # WRAP over glib date, 64bit year-mm-dd
 	OBJS_base1_glib += date_glib_test.o
@@ -8,8 +12,6 @@
 
 # hash
 	OBJS_base1_glib += ht1.o		# glib hash table
-
-	OBJS_base1_glib += g_str_base64.o # but this is base2 ??
 
 	OBJS_base1_glib += g_timer.o	 # microsecond timer (millisec)
 

@@ -1,7 +1,7 @@
 #include "auth_pw.h"
 
 #include "dgb.h"
-#include "str_base64.h"
+#include "blk_base64.h"
 #include "SSL_global_base.h" // RAND_ -- presume init'd
 #include <openssl/des.h>
 #include "cset_bit_map.h"
@@ -19,7 +19,7 @@ using namespace AUTH;
 bool PW_UTIL_UNIX:: compare_passenc_pass64( const char * crypted_true_pass, const char * clearpass64 )
 {
 	buffer2 clearpass;
-	str_base64 conv;
+	blk_base64 conv;
 	if(!conv.decode( clearpass64, clearpass )) return FAIL_FAILED();
 	// use DES_fcrypt openSSL THREAD SAFE replacement for UNIX crypt
 	return compare_passenc_pass( crypted_true_pass, (STR0) clearpass );
@@ -310,7 +310,7 @@ bool PW_UTIL_VNC:: RAND_pass8_dense_vnc( buffer2 & pw_vnc_plain )
 bool PW_UTIL_VNC:: encrypt_vncpass64( buffer2 & crypt, const char * plain64 )
 {
 	buffer2 plain;
-	str_base64 conv;
+	blk_base64 conv;
 	if(!conv.decode( plain64, plain )) return FAIL_FAILED();
 	// use DES_fcrypt openSSL THREAD SAFE replacement for UNIX crypt
 	return encrypt_vncpass( crypt, (STR0) plain );

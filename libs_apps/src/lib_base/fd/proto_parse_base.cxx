@@ -2,7 +2,7 @@
 #include "proto_parse_base.h"
 
 #include "ASCII_chars.h"
-#include "str_base64.h"
+#include "blk_base64.h"
 
 #define SPELLING_SET "SET"
 #define SPELLING_GET "GET"
@@ -388,7 +388,7 @@ arg_idx_is_value(int idx )
 {
 	if(!check_arg_idx_is_valid(idx)) return FAIL_FAILED(); // double check
 	word_splitter & argv  = splitter; // nicer name
-	str_base64 conv;
+	blk_base64 conv;
 	if( cmd_spec-> value_is_always_base64 ) {
 		if(!conv.decode( argv[2], value_blob )) {
 			dump_FAILED_cmd("arg_idx_is_value");
@@ -453,7 +453,7 @@ bool proto_parse_base:: prep_ARG_TEXT( blk1 valtext )
 bool proto_parse_base:: prep_ARG_blob( blk1 & value )
 {
 	blk1 value_blob;
-	str_base64 conv;
+	blk_base64 conv;
 	conv.multi_line = true;
 	conv.encode( value, value_blob );
 

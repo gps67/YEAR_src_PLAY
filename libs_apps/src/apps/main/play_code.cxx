@@ -20,7 +20,8 @@
 #include "cfg_demo_1.h"
 #include "sql_link_MySQL.h"
 
-#include "str_base64.h"
+#warning retaining glib use of base64 to test it !!
+#include "g_str_base64.h"
 #include "blk_base64.h"
 
 struct SPOUT_session {

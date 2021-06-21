@@ -31,7 +31,45 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	Seems that we will need to do a HT lookup of hwnd
 	to find the thing that it corresponds to
 
+		or hwnd_get_ClientData { OBJ & ref } // Item_t * item; // desc
+		pas comments could be ASCII VAR_t & var_name // DESC // INIT
+		// DESC // template to define a var // link to obj somewhere
+		// INIT // var_type_mem thread_local.global_vars.POOL += INIT
+		// init // hwnd == local_object.hwnd.EA // EA is GETTER
+		// DATA_DICT_CSR_EA GETTER VAR_POOL VAR_NAME VAR_HELD EA CSR=EA
+		// PLUS // Item_t & local_object // STO.SESS.TEMPS.MEM
+
+		or item = HT.lookup( item, hwnd )
+
+			obj = item ; // so well known it merges into template BG
+
+		or if( HT.lookup( var_item_PTR, u32_HWDN_hwnd_from_w32 )
+
+			var_TYPE u32 HWND{ varname == "hwnd" }
+
+
 	Then theres sub-windows, so hwnd is a detail with a parent
+
+	TODO
+	
+	 TEMPLATE for 
+ CODE	  	// MSG == "WM_CREATE"
+ CODE		// CODE == INDENTED_BLOCK_CODE_t CODE
+ CODE
+ CODE	 	case ${MSG}:
+ DGB	 printf( WndProc( ...
+ CODE			${CODE}
+ CODE			break;
+
+ 	TODO
+
+	 EDIT LIST of BLOCK
+	 	LIST == BLOCK[idx]
+		BLOCK == INDENTED_CODE_BLOCK _t
+
+			STO += BLOCK.TEXT _as_ASCII as_UTF8 GEN_INTO
+			BLOCK.TXT == LINES_of_TEXT with added filter INDENT
+
 */
 
 	switch (message)

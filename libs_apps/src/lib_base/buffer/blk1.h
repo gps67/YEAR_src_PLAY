@@ -11,6 +11,14 @@ typedef unsigned char uchar;
 #define BLK1_N_STATIC 60 // often allocated on stack space
 
 
+#ifndef ASCII_NUL
+#define ASCII_NUL 0
+#endif
+
+#ifndef ASCII_LF
+#define ASCII_LF '\n'
+#endif
+
 /*!
 	A dynamic byte-based buffer with at least 60 (BLK1_N_STATIC) bytes.
 
@@ -180,6 +188,9 @@ struct blk1 : public GRP_lib_base
 	bool	resize( unsigned N );
 	void	del_copy_down( uchar * p2 );
 	void	del_copy_down( int n );
+
+	uchar get_last_byte(); // NUL if empty
+	bool ends_with_lf() { return ASCII_LF == get_last_byte(); }
 
 	/*!
 		return the address of CHAR at index [i]

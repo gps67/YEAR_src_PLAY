@@ -2,8 +2,9 @@ handle SIGSEGV nostop noprint pass
 handle SIGABRT nostop noprint pass
 b main
 r 
-b evp_cipher_base::init
-b evp_cipher_base::evp_cipher_base
-b evp_cipher.cxx:91
-b AUTH:: PW_UTIL_VNC:: decrypt_vncpass
-c
+#b evp_cipher_base::init
+#b evp_cipher_base::evp_cipher_base
+#b evp_cipher.cxx:91
+#b AUTH:: PW_UTIL_VNC:: decrypt_vncpass
+#c
+b VNC_PASS_DECODE

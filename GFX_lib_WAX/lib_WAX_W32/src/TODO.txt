@@ -1,0 +1,85 @@
+/home/gps/YEAR/src/PLAY/GFX_lib_WAX/lib_WAX_W32/src
+	TODO.txt: 
+
+WAX has a W32 API for Pascal-Plus
+
+	similar HWND type { per_lang CT RT "Item_TYPE_EXPR" HWND_t HWND // hwnd
+
+	switch out REPL LOOP
+
+		select_says ...
+
+		using GUI == "w32_delphi_api" 
+		using GUI == "w32_mingw_api" // lib_mingw libc sockets
+	
+  API
+	LRESULT CALLBACK 
+	WndProc(
+	  HWND hwnd,
+	  UINT message,
+	  WPARAM wParam,
+	  LPARAM lParam
+	)
+  API
+  	local var = "HDC hdc; hdc = BeginPaint(hwnd,local_PAINTSTRUCT STO.pallate)"
+  	local var = "PAINTSTRUCT & ps; ps = allocate_stacklocal_init0_FUNC(...)"
+	{CT default CTOR with provider that did init0 calling this CTOR code}
+	{ ps_t & ps = CT_EA_EXPR_stack_local_ }
+	// PTR = { SEGMENT OFFS NBYTES TYPE NAME } //
+	// CT -vs- RT layers OWN the declarations that matter to them
+	// CT_RT_BENCH can do PTR_t += struct{ SEGMENT OFFS NBYTES TYPE NAME }
+	// CT += obj_is_at_least_of_BASE_TYPE // GENRE
+	// CT += obj has VTBL code using it 
+	// CT += obj_is_BLK1_not_VTBL // obj_provides_VTBL_API
+	// 
+
+ API
+ 	at code start KNOW
+
+	  HWND hwnd,
+	  UINT message,
+	  WPARAM wParam,
+	  LPARAM lParam
+
+ 	at code start KNOW
+
+	  item_obj = lookup( hwnd ) // self = SESS
+	
+	KNOW
+
+		Item_t %{NAME}s
+
+		// OPTION use %{NAME}d for ASCI_of_VALUE
+		// like ${VAR:-$default}
+		// BASH ${%s:-%s} VAR_name VAR_default_expr
+		// `%s` // TEMPLATE triggers CODE_LEVEL using `bq`
+	
+	STR0
+
+		STR provides NLP %s VAR_NAME
+
+		 STR_is_KEY_is_SPELLING_of_VAR_name
+		 STR_is_KEY_is_TEXT_of_SCRIPT
+		 STR_to_PTR { CODE HERE }
+
+		 	ie some special for of CT_GETTER obj = lookup( id )
+			ie add extra swept in code, incl pre-conditions
+			CTOR is called // init0 from NULS already there
+			 PTR = lookup( TEXT )
+			 SMART_VAR_PTR = SESS.lookup( CT_var_name )
+			 // return OBJ = SESS_CYCLE_alloca_stack_var
+			 // LIST = SESS_CYCLE_REPL_KEEP_LIST
+			 // KEEP += PTR // until next REPL
+			 // keep until return, but lazy eval
+			 // lazy = then_tell_FUNC_ARGS_SCRIPT
+
+		 STR_to_PTR
+		 .key == "Item_t & item" // %s & %s
+		 .obj == HT.
+
+	PSG presents a smorgasbourd of spellings
+
+		"SPELLING" -links- EA_spelling_object_over_STR0
+		STEP_by_STEP
+
+

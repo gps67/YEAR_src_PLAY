@@ -445,3 +445,13 @@ bool blk1:: replace_nul_bytes( u8 c1 )
 	}
 	return true; // cannot fail
 }
+
+uchar blk1:: get_last_byte() // NUL if empty
+{
+	unsigned int POS = nbytes_used - 1;
+	if( POS < 0 ) {
+		WARN("empty buffer");
+		return ASCII_NUL;
+	}
+	return buff[ POS ];
+}

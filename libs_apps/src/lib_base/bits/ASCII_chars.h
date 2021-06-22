@@ -1,14 +1,12 @@
 #ifndef ASCII_chars_H
 #define ASCII_chars_H
 
-// #include "CR_LF_NUL.h"
-
-// This does presume ASCII/unicode not ebcdic
-//
-
 #ifdef NUL
 #undef NUL
 #endif
+
+// unsure if these cause problems with uchar compare
+// but they do fit in the +ve side of signed
 
 static const char ASCII_NUL = 0;
 static const char ASCII_TAB = 9;
@@ -23,13 +21,16 @@ static const char ASCII_QUOTE_SINGLE = '\'';
 static const char ASCII_QUOTE_DOUBLE = '"';
 static const char ASCII_QUOTE_BACK = '`';
 
-static const char ASCII_BRACE_LEFT = '{';
-static const char ASCII_BRACE_RIGHT = '}';
-
 static const char ASCII_PAREN_LEFT = '(';
 static const char ASCII_PAREN_RIGHT = ')';
 
+static const char ASCII_SQUARE_LEFT = '[';
+static const char ASCII_SQUARE_RIGHT = ']';
+
 static const char ASCII_BACKSLASH = '\\';
+
+static const char ASCII_BRACE_LEFT = '{';
+static const char ASCII_BRACE_RIGHT = '}';
 
 /*
 	too many to mention

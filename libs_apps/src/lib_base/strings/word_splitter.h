@@ -33,8 +33,8 @@ class word_splitter : public GRP_lib_base
 	word_splitter();
 	~word_splitter();
 	void clear();
-	void split_by_spaces( str0 line, int len = 0 );
-	void split_by_spaces_and_quotes( str0 line, int len = 0 );
+	bool split_by_spaces( str0 line, int len = 0 );
+	bool split_by_spaces_and_quotes( str0 line, int len = 0 );
 
 	bool split_next_line_from( buffer3 & buf );
 

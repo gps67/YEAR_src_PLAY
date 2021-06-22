@@ -9,7 +9,7 @@
 // struct GObject; 
 struct g_object; 
 // #include <gtk/gtk.h> // g_object
-#include "g_obj.h"
+#include "g_obj_not.h"
 
 #include "dgb_fail.h"
 

@@ -42,6 +42,8 @@ class sock_addr_base;
 	recv returns 0 EOF
 	recv returns -1 errno = ...
 
+	UNIX style, W32 alternatives, libc mingw seems to wrap API
+
 		EINTR		can retry immediately, handle other interrupt
 		EAGAIN		retry but not immediately, no data
 

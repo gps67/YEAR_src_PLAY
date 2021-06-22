@@ -9,4 +9,10 @@ Version: 0.1.2
 Requires: openssl
 
 # Libs: 
-# Cflags:
+
+# openssl has deprecated a layer that I made my home in
+# that layer is still good, but I need to move to the API pivot point
+# I need to remember to remove this
+#
+Cflags: -Wno-deprecated-declarations
+#

@@ -345,11 +345,13 @@ endif
 	makes += $M/Make_Targets
 
 	makes += $M/VAR_OBJS_base1
-	makes += $M/VAR_OBJS_base1_glib
 	makes += $M/VAR_OBJS_base2
 ifeq ($(WITH_GTK2),1)
+	makes += $M/VAR_OBJS_base2_glib
 	makes += $M/VAR_OBJS_base2_gtk
 	makes += $M/VAR_OBJS_gtk_text
+else
+	makes += $M/VAR_OBJS_base1_glib_not
 endif
 	makes += $M/VAR_OBJS_accts
 	makes += $M/VAR_OBJS_sar_plot
@@ -506,7 +508,11 @@ endif
 # WITH_PYTHON # was here #
 
 ifeq ($(WITH_GLIB),1)
-	SubDirs += lib_base/glib_1
+	# g_obj_not # hmmm
+	# glib_1 still used in base
+	# want to drive it out to build on WIN32
+	# want to keep it for gtk
+	SubDirs += lib_base2/glib_1
 	SubDirs += lib_base2/glib_2
 endif
 ifeq ($(WITH_GTK2),1)

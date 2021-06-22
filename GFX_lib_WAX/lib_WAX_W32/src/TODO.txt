@@ -75,7 +75,34 @@ WAX has a W32 API for Pascal-Plus
 
 		 STR_to_PTR
 		 .key == "Item_t & item" // %s & %s
-		 .obj == HT.
+		 .obj == HT.lookup( "str" ) // "str" is TOKENISED
+		 .EA_PTR = u48_ADDR i48_TWIN_HALF_with_M1_and_ZERO_and_EA
+		 .EA_OPCODE = u16_AB_OPCODE_t
+	
+	M1
+
+		M1 == -1
+
+		  ZONE_SPLIT_PLUS_MINUS_IDX
+
+		  u16_or_i16
+		  u8_or_i8
+		  _u5_bit_shift
+		  _i5_bit_shift
+		  _i48_who_wants_this M1
+
+		  ZONE_SPLIT_59_50_or_KEEP_PAGE
+		  KEPT_PAGE // eg -1 -2 -3 -127 -128 -256 +256 +127 
+
+		  	a small pool of items u8_idx i8_idx_expr
+			// -7 -6 -5 -4 // -3 -2 -1 +0 // 1 2 3 // 4 5 6 7
+			// -8 // +0 // lookup[ u3 ] // LIST[ u3 ] // i4
+
+		DECODE u8
+
+		 HIGH_PAGE[ u7 ] // %s = SIGNED_PAGE[ i8 ]
+
+		 DECODE_BIT_FIELD _INTO_u8
 
 	PSG presents a smorgasbourd of spellings
 

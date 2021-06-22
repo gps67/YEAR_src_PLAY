@@ -142,8 +142,8 @@ fi
 	jobs=2
 	jobs=4
 	jobs=8
-	jobs=1
-	JOBS=${JOBS:-$jobs}
+	jobs=1	# default is simplest
+	jobs=${JOBS:-$jobs}
 
 	# make -j $jobs WITH_GTK=$G -f ../MK/Makefile "$@" 2>&1  \
 	#

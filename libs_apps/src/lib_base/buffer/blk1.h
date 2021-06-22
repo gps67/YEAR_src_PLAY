@@ -10,14 +10,15 @@
 typedef unsigned char uchar;
 #define BLK1_N_STATIC 60 // often allocated on stack space
 
+#include "ASCII_chars.h"
+// now defined as static const char DEFINE
+// #ifndef ASCII_NUL
+// #define ASCII_NUL 0
+// #endif
 
-#ifndef ASCII_NUL
-#define ASCII_NUL 0
-#endif
-
-#ifndef ASCII_LF
-#define ASCII_LF '\n'
-#endif
+// #ifndef ASCII_LF
+// #define ASCII_LF '\n'
+// #endif
 
 /*!
 	A dynamic byte-based buffer with at least 60 (BLK1_N_STATIC) bytes.

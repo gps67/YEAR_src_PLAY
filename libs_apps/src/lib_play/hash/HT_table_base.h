@@ -25,6 +25,16 @@ struct p0p2;
 	which speeds things up a lot. That allows N_items to exceed N_slots,
 	and still be optimal (you dont need 1:2) as long as the lists dont
 	get too long.
+
+	Then slots N_count exceeds 256 N_items in u8[u8] ; idx = VAR_POOL[str]
+	// u8 var_name; u8_idx_t u8_idx;
+	// u8 var_name = IDX_of_TOKEN_of_LOOKUP( str ) // GETTER_ALLOC_ATOR
+	// u64_OPCODE_16_ADDR_48 // actually with u16 in low vals of u64_LOHI
+	// u64_OPCODE_lo_ADDR_hi // shift right 16 // top fill zero // OPT_M1
+	// u64_OPT_M1 // shift right 16 // top fill one // M1 == -1 //
+	// u64_LOHI_u16_LOHI_u48_lohi_shifted_16
+	// u64_LOHI_i16_LOHI_u48_lohi_shifted_16_M1 // top fill one // M1 == -1
+	// M1 == -1 // STBL_KEY_REF //
 */
 class HT_table_base : public GRP_lib_play
 {

@@ -1,7 +1,7 @@
 
 #include "dgb.h"
+const static char CHAR_DELETE = 22;
 #include "word_splitter.h"
-#include "CR_LF_NUL.h"
 #include "ASCII_chars.h"
 #include "blk_base64.h"
 
@@ -31,7 +31,7 @@ void word_splitter::clear()
 
 /*!
 */
-void word_splitter::split_by_spaces( str0 line, int len )
+bool word_splitter::split_by_spaces( str0 line, int len )
 {
 	if(!len) len = line.str_len();
 	clear();
@@ -64,11 +64,12 @@ void word_splitter::split_by_spaces( str0 line, int len )
 	{
 		word_list[i] = (str0)(STR0)( word_space.buff + word_offs[i] );
 	}
+	return true;
 }
 
 /*!
 */
-void word_splitter::split_by_spaces_and_quotes( str0 line, int len )
+bool word_splitter::split_by_spaces_and_quotes( str0 line, int len )
 {
 	if(!len) len = line.str_len();
 	clear();
@@ -164,6 +165,7 @@ void word_splitter::split_by_spaces_and_quotes( str0 line, int len )
 	{
 		word_list[i] = (str0)(STR0)( word_space.buff + word_offs[i] );
 	}
+	return true;
 }
 
 void word_splitter::dgb_show( const char * name )
@@ -234,7 +236,7 @@ bool word_splitter:: split_next_line_from( buffer3 & in_buf )
 			*P1b = NUL;
 			int len = P1b - P1a;
 			split_by_spaces_and_quotes( P1a, len );
-#warning above process could actually fail - it should be a bool
+#warning above split_by_... could actually fail - it should be a bool
 			line_found = true;
 			// splitter.split_by_spaces_and_quotes( P1a, len );
 			// splitter.split_by_spaces( P1a, len );

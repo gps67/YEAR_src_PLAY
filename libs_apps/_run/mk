@@ -1,3 +1,4 @@
+#! /usr/bin/bash
 # mk 
 # call make
 # (all the other scripts go through here)
@@ -155,8 +156,10 @@ fi
 
 	# the tee causes a loss of exit code 
 
+	sync
 	# sync
-	# sync
+
+	echo "That took $SECONDS seconds"
 
 	exit $t
 	exit $?

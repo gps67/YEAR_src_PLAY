@@ -66,7 +66,7 @@ TOPIC_YEAR="${TOPIC}_${DATE_YEAR}"
 year=YEAR
 TOPIC_year_="${TOPIC}_${year}" 
 HOME_YEAR="${HOME}/${DATE_YEAR}"
-HOME_year_="${HOME}/${year}"
+HOME_year_="${HOME}/${year}" # already ~/YEAR
 HOME_year_TOPIC_YEAR="${HOME}/${year}/${TOPIC_YEAR}"
 
 ln_s YEAR_offline/ $HOME_year_
@@ -74,7 +74,8 @@ T1
 
 
 # update link to year change
-cd_mkdir_FAIL ${HOME}/${DATE_YEAR} 
+#cd_mkdir_FAIL ${HOME}/${DATE_YEAR} 
+cd_mkdir_FAIL ${HOME_year}
 T1
 cd
 # echo "# or KEEP YEAR => YEAR_offl/"
@@ -88,7 +89,8 @@ cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR}
 # FAIL HERE
 
 cd_or_FAIL $HOME
-cd_or_FAIL ${HOME_YEAR} 
+# cd_or_FAIL ${HOME_YEAR} 
+cd_or_FAIL ${HOME_year} 
 
 # ~/2018/TOPIC_2018/
 cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
@@ -101,7 +103,7 @@ cd_mkdir_FAIL $YEAR_MM_Jan
 # ln_s_ask $TOPIC_YEAR_MM_Jan/ TOPIC_ 
 # ln_s_ask $TOPIC_YEAR/TOPIC_ ../TOPIC_
 # ln_s_ask ${TOPIC}_${DATE_YEAR}/ $HOME/$year/TOPIC_YEAR
-ln_s_ask ${TOPIC}_${DATE_YEAR}/ $HOME/$year/${TOPIC}
+# ln_s_ask ${TOPIC}_${DATE_YEAR}/ $HOME/$year/${TOPIC}
 # ln_s_ask YEAR/TOPIC_/ ${HOME}/TOPIC_
 
 

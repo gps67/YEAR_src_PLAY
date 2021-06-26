@@ -1,0 +1,47 @@
+	2021-06-26
+
+	2021_06_Jun
+	2021-06-26_VARS_STO.txt
+
+Module 
+ eg 
+  TASK
+   upload photos from camera and process
+  TASK 
+   write C++ from SCRIPT // strong type auto (shows working) (later auto)
+  TASK
+   edit SCRIPT run C++ with TEST_DATA and sample tuorial docs
+  TASK
+   water PVR, file already loaded so process
+
+  TASK == BENCH
+
+  	VAR is LOCAL v // C in fn C++ in block FN==FUNCTION STACK_OFFS_EXPR
+	GETTER( LOCAL v ) { SP+OFFS BASE=FP+block_zero TYPE * PTR
+	# WHISPS of OFFS wrt BASE SP+OFFS for BLOCK_LOCALS
+	# init0 _from_NUL _from_used reset_zero # CT undo reset CTOR2
+
+	VAR is NAMED_OBJ_VAR.sub_expr 
+
+	VAR is THREAD_LOCAL # as if global shared with process + threads
+	VAR is SEGMENT_GLOBAL # SEGMENT_THREAD_LOCAL #
+	VAR is _THIS_
+
+	VAR is MODULE.name is thread_local GLOBAL_var # per thread
+
+	VAR is GETTER EA_components
+	VAR is FILE.LOCN.ITEM // SPEC // CODE 
+
+ VAR = FUNCTION.FRAME.OFFS
+ VAR = THREAD.GLOBAL.EXPR
+ VAR = PROCESS.GLOBAL.EXPR
+ VAR = THREAD.CPU_VAR.EXPR
+ VAR = FUNCTION_TEMP.CPU_VAR
+
+ VAR = SESS # fd.SESS routes via MUX to SESS_subsess
+ SESS += VAR_POOL("SESS.VAR_POOL")
+ SESS += VAR_ITEM("ITEM") is SESS.ITEM is ... lookup find desc
+
+ VAR_POOL += { db.row_A.fieldNames* }
+ create mysql data, create C++ struct, load one from other, CRUD
+

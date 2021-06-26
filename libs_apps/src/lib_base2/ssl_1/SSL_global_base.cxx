@@ -332,6 +332,8 @@ DH * load_dh_file( const char * filename, int keylen )
 			return NULL;
 		}
 	}
+// TODO openssl 1 to 3.0 
+// https://www.openssl.org/docs/manmaster/man7/migration_guide.html
 	ret = PEM_read_bio_DHparams(bio,NULL,NULL,NULL);
 	if( !ret ) {
 		FAIL("ERROR reading file '%s'", filename );

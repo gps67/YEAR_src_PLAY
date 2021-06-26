@@ -14,5 +14,5 @@ Requires: openssl
 # that layer is still good, but I need to move to the API pivot point
 # I need to remember to remove this
 #
-Cflags: -Wno-deprecated-declarations
+# Cflags: -Wno-deprecated-declarations
 #

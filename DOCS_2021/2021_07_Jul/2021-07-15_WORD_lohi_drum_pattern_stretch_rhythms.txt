@@ -1,0 +1,114 @@
+	2021-07-15
+
+	2021_07_Jul
+	2021-07-15_WORD_lohi_drum_pattern_stretch_rhythms.txt
+
+	+1+2+3+4 5 6 7 8
+
+	rl
+
+	 r l
+	 r l
+	 r l
+
+	rlrlR-	Pattern template x3 // xn == 3 // phrase loop repeat 3
+
+	 rlrlR-
+	 rlrlR-
+	 rlrlR-
+	 
+	L-R-
+	lrl-
+	---X
+
+ DIAG  ANIM  // %s // ['%s'] // operator [] (int idx);
+
+	STRETCH ZOOM LEVEL (int&EA) 
+
+	AVAIL PATTERN
+
+	%d e n a # 1 e n a 2 e n a ...
+
+	FREQ of STEP 1/16 1/4 1/8 2/16 
+	 PATTERN
+	  TEMPLATE
+
+	  	ITEM[ u8 ] // idx = u8_idx // field var from DECODER
+
+		ALTERNATING LEFT RIGHT or RIGHT LEFT
+
+		CLOCK - FREQ == "1/16"
+
+		CLOCK STEPS ALTERNATING "1/8" of pairs "1/16"
+		CLOCK STEPS XPOS on DIAG interp FREQ ADDR("s")
+		ALTERNATING "1/8" of pairs "1/16"
+
+		ADDR RANGE 4 e n a %d e n a %d e n a TOCK_1 1 2 # 4 1 2 # 3 4 1
+
+		TEMPLATE has array of ITEM for each quarter beat
+
+		  on e n a # %d (int beat_one);
+
+		  BAR = BEAT[ beat_one ]
+
+		  BEAT = BEAT[ beat_one ] // beat_one == "3"
+		  # AUTO # %d integer_32 # u8 # u3 #
+	
+	DECODER
+
+		DIAG attach a group at XY
+
+		 LIST += ITEM
+		 ITEM == { SCRIPT }
+
+		--L--R--
+		--R--L--
+
+	LAYOUT
+
+		[a[b[c[d[e[g[h[i[j[k[l[m[n[o[p "[P0[P2"
+
+		XPOS == P1 
+		XPOS == TIME_XPOS 
+		XPOS == "{ u8 u8_idx; i} // BEAT_NUMBER // FREQ == "1/16"
+		ITEM == STEP_ITEM // OBJ = STEP // OBJ_idx = N++; // N=="N"
+		// N == "N" // aka "%s++" "N" // NEAR 
+		  // retval == this CODE point // CSR in SCRIPT ROM
+		
+	UDEF
+		SCRIPT is UDEF N++
+
+	DIAG
+
+		XPOS = TIME_STEP // [lo[hi // [0[N // P0P2 // NBYTES
+	GEN	as_ascii() normally returns "R--L" 
+	LEX	R--L is 1ena 1--a
+	LEX	R--L--R--L-- // R-- L--
+	FLIP	R--L--R--L-- // L-- R-- // BIAS is notation_only // style_one
+	ITEM	- r l { R L B F } { Z9 } 
+
+
+	LAYOUT
+
+		[abcd[0[
+
+		GRID of ITEM //  CUBE // UNIT // ITEM = "1/16" "%s_t"
+
+		class DIAG_UNIT { draw in group type DIAGS }
+		as_ascii %c %s "l" GYLPH_LIST
+		# ASCII dialect BYTE dialect is not ASCII ## otherwise same
+		%s name = TABLE_per_var_NAME[ idx_name ] // EA() // ITEM.EA()
+
+		class TIME_STEP : public int // u8_idx //
+		class STEP_ITEM : public OBJ // DIAG_FRAG_MENT
+		class FRAG_MENT : public DRAW_group
+	
+	DRAW_GROUP
+
+		XYWH BBOX; // -AKA- BBOX_t //
+
+		XYPOS XY1	// CSR1.XY // POS1 // POS%s "%d" pos
+		VARS POS1 // local_vars // %s // CSR // POS // LHS_%s LHS rhs
+
+
+

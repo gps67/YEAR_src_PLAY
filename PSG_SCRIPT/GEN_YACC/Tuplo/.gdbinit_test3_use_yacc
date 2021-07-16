@@ -1,0 +1,4 @@
+b main
+b yyerror
+r ../NimbusMonoPS-Bold.afm 
+

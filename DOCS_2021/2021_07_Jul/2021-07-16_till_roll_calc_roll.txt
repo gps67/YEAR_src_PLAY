@@ -1,0 +1,10 @@
+	2021-07-16
+
+	2021_07_Jul
+	2021-07-16_till_roll_calc_roll.txt
+
+	EXPR as collection of rolls, vars, etc
+	DATA + TEMPLATE => goes to ROLL table component
+
+
+

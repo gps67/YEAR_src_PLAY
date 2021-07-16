@@ -361,6 +361,15 @@ test3: $(PROG3_exec)
 	# test3
 	./$(PROG3_exec) $S/test3.test
 
+dgb_PROG3: $(PROG3_exec)
+	# debug
+	# BUT STDIN < $S/test3.test
+	# errm
+	# gdb --args ./$(PROG3_exec)
+	#
+	# -tui messes stderr with same tty
+	gdb -tui --command ../.gdbinit_$(PROG3) --args ./$(PROG3_exec)
+
 dgb_PROG2: $(PROG2_exec)
 	# debug
 	# BUT STDIN < $S/test2.test

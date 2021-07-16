@@ -1,2 +1,9 @@
+
+# UNDO UNDO DUNDU
+
+ask_do \
 ./93_git_cmd reset \
 libs_apps/EastEnders_-_6301._2021-07-05_m000xpz9_original.mp4
+
+ask_do \
+./93_git_cmd reset HEAD~

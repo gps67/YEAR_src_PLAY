@@ -1,0 +1,14 @@
+. ./.env
+echo "https://www.earthdatascience.org/workshops/intro-version-control-git/undoing-things/#:~:text=using%20git%20reset%20.-,Undoing%20a%20commit,HEAD~%20to%20undo%20your%20commit"
+
+echo "
+https://docs.gitlab.com/ee///////topics/git/numerous_undo_possibilities_in_git/index.html
+# see changing history
+#
+https://rtyley.github.io/bfg-repo-cleaner/
+# branch filter git (is not) git filter branch
+"
+
+set -x
+ask_do \
+git reset HEAD~

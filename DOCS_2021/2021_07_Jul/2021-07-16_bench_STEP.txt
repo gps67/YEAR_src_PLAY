@@ -108,6 +108,136 @@ PHRASES LIKE:
 	# WRAPPER adds CHECK_NULL(this) # COMPILER KNOWS STUFF #
 	# on NULL invoke dgb sess on MACHINE SESS CODE DATA # MODULE
 
+ DECODE u48_u16
+
+ 	opcode_AB // the u16 of the DECODE_u48_u16 //
+REM	mentioning { u16 } { DECODE_u48_u16 } { opcode_AB }
+REM	DECODE(u48) as u32_u16_u16 // need SPLICEWORK
+REM	SPLICE shift left to top
+REM	SPLICE shift right to bottom SIGNED UNSIGNED
+REM	SPLICE detect ZERO SIGN CARRY_LAST_DROP_ PARITY
+REM	SPLICE usage CMP IS_SAME IS_LESS IS_MORE 
+REM	ALIAS IS_NEGATIVE IS_ZERO IS_POSITIVE ...
+
+ SCRIPT STEP += DATA such as { here }
+
+	A B "u16==u16_liho_within_u64_WORD"
+	A B "u16==filter(64_WORD)"
+	u8_idx_A
+	u8_idx_B
+	u8_hi
+	u8_lo
+
+	u64_from_u64 DECODE_TRANSLATE(u64_TOKENISED_EXPR)
+	bit]0]
+	bits = {
+		n_left == 
+		n_mid ==
+		n_right == "n_right" "n==field_nbits"
+		# EG # u4u4 u4u4
+	}
+
+	ADAPT_ABLA
+
+	 SPLICE FILTER over bit_fields # or let cland do it for us
+	 nbits_lhs = 64 - (nbits_mid + nbits_rhs) // CHECK [0[64
+	 // INTERP 64]0] // BONUS BYTE_B BYTE_A // which is why we are lohi
+
+	 // INTERP 64]0] // 
+	 nbits_lhs nbits_mid  nbits_rhs // CHECK [0[64 64]0]
+	 // INTERP 64]16]8]0] // INTEL SUBFIELD RULES but adjusted // DIALECT
+	
+	// nbits_%s { "lhs", "mid", "rhs" } // check add up to 64
+	// shift left (nbits_lhs)
+	// shift_right_unsigned( nbits_lhs + nbits_rhs )
+	// shift_right_signed( nbits_lhs + nbits_rhs )
+	// detect IS_ZERO IS_NEGATIVE
+	// NULL MEANS mid == NULL_as_ZERO
+
+	// only use IS_NEGATIVE with i64 i5_idx
+	// TEST APPLY i5 from i5 alloc all PTR[u5] = INIT_NULL
+	// ARRAY[idx] permitting -16 .. -1 0 1..15 i5 u5
+	// LEX finds words in DIAG's explains
+	// BENCH builds EXPR ... LEX ITEM STREAM ... ARGV
+	// 
+	// GET( u8 ) GET( u64 ) get( bitfield }
+	// INTO u8, INTO u16_lohi, INTO_BITFIELD
+	// KNOW_INTEL_TWISTS zapping other bitfields or ROTATE
+
+	lhs_mid_rhs
+	nbits_rhs = N_so_far
+	nbits_mid = 5 // u5
+	nbits_pos == 0 // init _pos==_used == 0
+	nbits_pos += nbits_rhs // AUTO conv from const to var("nbits_pos")
+	nbits_pos += rbits_mid // explain BITFIELD from pos upwards left
+	nbits_used == rbits_pos // DEEP LINK SAME { _pos _used }
+	// HIGH_LEFT_BIT 64]hi]lo]0]
+	// if lo == 0
+	// lhs == "64]hi]"
+	// mid == "hi]lo]"
+	// rhs == "lo]0]"
+
+	nbits_lhs = 64 - nbits_used
+
+	// OPTIMISE // CT checl nbits_pos <=64
+	// OPTIMISE // look for VALUE == IS_ZERO
+
+	FIXED lookup tables (with NULL means call fallback script)
+	
+ fn get_INTO_u8
+ fn get_INTO_u16
+ fn get_INTO_u32
+ fn get_INTO_u24 // => _INTO_u32
+ fn get_INTO_u48 // => _INTO_u64
+ fn get_INTO_u64 // <== FROM_u32 // simply use strange semantic less tags
+  // and the actual semantic tags are allocated in a modest table range
+
+  ARRAY AT
+
+   V2 = N;
+   VAR = IDX # from GETTER # that has finite windows of TABLE_ROWS[u5]
+   VAR -= V2
+   if IS_ZERO am at EOT
+   if IS_NEGATIVE is good but needs original IDX
+   if IS_POSATIVE is overshoot # ACTION = PLUMBING HERE
+   VAR += V2
+   if IS_ZERO "N==0" is_empty
+   if IS_NEGATIVE was -ve IDX // VAL == "-val" // val = TOKEN++
+   if IS_NEGATIVE STOP, you have gone off the rails
+   if IS_NEGATIVE WARN, you are off the rails
+   HANDLER recomputes END-val # END+val already -ve
+   AT behaviour ? 
+   if IS_POSATIVE hopefully normal VAL==N
+
+  build ARRAY
+
+   add ITEM to LIST
+   allocate IDX = N++
+   renumber each time, except stabilises to ROM
+
+	check nbits_mid KNOWN ZERO so skip this GEN "skip_empty_bitfield"
+	check nbits_mid RT_ZERO so behave as empty GEN "asap_empty_bitfield"
+	# failed to optimise out # clang can try tho
+
+   	V2 = N
+	lo = N // _pos is _N
+	check lo <= 64
+	N += nbits_mid
+	hi = N // _pos is _N
+
+	check hi <= 64
+	IS_SAME # means exactly full, pointing over top
+	IS_LESS # means have space for more
+	IS_MORE # FAIL WORD OVER ALLOC
+	# 64]hi]0]
+
+   DETECT NOTHING ADDED
+   DETECT SYSTEM ERROR
+
+
+ 
+
+
 
 
 

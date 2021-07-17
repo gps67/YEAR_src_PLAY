@@ -1,0 +1,114 @@
+	2021-07-16
+
+	2021_07_Jul
+	2021-07-16_bench_STEP.txt
+
+	bench is a SHED's work bench NEAR ... TOOLS ... MESSAGES DIARY
+	STEP is an FSM_LOCN see FSM_MATCH FSM_RUN CLOCK TICK TOCK
+	SCRIPT is a wild NLP language, welll not quite, TOKENISE, 
+
+	RUN SCRIPT STEP
+
+		create snapshot of vars
+		 PREV HERE NEXT
+		 LEFT MID RIGHT
+		 # THIS == MID # SESS.HERE_NOW #
+		 # all these items get STO in SESS.HERE.STO or .str(ctxt)
+
+	VARS += VAR "name" # "type" ... SCRIPT ...
+
+	 CTOR gets called by C++ engine # clang api ROM from C++ in SESS CTXT
+	 CTOR(&item,CTOR_DATA,...)
+	 fn CTOR ARGV SESS_id
+	 # PROVIDE a C++ compiled u8_TOKEN when used in EA_SCOPE
+
+	g++ and clang c++ 
+	g++ and clang c++ # convey enum item in group maybe usage
+
+	 The life cycle of an object in memory via malloc()
+	 We have added some ref_count system, or GC_LISP
+	 So get accurate calls of CTOR and DTOR also LIBR
+	 CTOR Item_t item = { INIT_SCRIPT }
+	 CTOR Item_t BENCH_ITEM_OBJ_CTOR = { INIT_SCRIPT } += INIT_DATA
+	 # LANG SCRIPT # INIT_DATA is valid in SCRIPTS streams segments
+	 # SEGMENT # REQ_STO( ARGS ) # // DATA is SCRIPT DATA // ctxt
+	 # CTXT # SESS # QUOTA += anthing # range of SESS PRE_BUILD
+	 # SPLIT PRE_BUILT PRE_BUILD # CODE_POINT HERE += prepped VAR_NAME
+
+	 CTXT(ctxt)
+	 CTOR(ctxt)
+	 ITEM(sess) # CTOR new ITEM in SESS(sess) # CAPS is TOKENISED CONST
+	 CODE(code) # most parameters are PAIR{SPEC,DATA} with INTERP_THIS
+	 THIS(data) # running lines of SCRIPT builds the SESS(ctxt)
+	 SELF(data) # UDEF DIALECT # mk_VAR name type ctor exprs near
+	 ADDR(this) # use_method_var "this" # ALIAS -HERE- _LIST_HERE_
+
+	 FSM 
+	  ADDR_t LOCN[u8 u8_idx]
+	  ADDR_t ITEM[u8 u8_idx]
+	  ADDR_t CALL[u8 u8_idx]
+	  ADDR_t EXPR[u8 u8_idx] { DECODE } // from FRAMEWORK == UDEF
+	  TOKEN = TOKENISE["THIS(data)"] // with added CTXT SESS ARGV MODULE
+	  EXPR[lookup("THIS(data)")] // repeat TOKEN use is not DECL_CONFLICT
+	  EXPR[u8_idx_t idx]
+	  EXPR[idx]		// from [byte] to u48_u16_expr u64_idx_for_DECODER
+	  DECODER("EXPR[idx]") bind to the api's GETTER // docking strategy
+	  PRECOMPILED DECODER("anystr") within SCRIPT within SESSION
+
+	  VAR_POOL += { MATCH_PATTERN_%d } // u8 = DECODER( u64_bitmap )
+	  DECODE( u48_u16_t u64_WORD )
+
+	 BENCH
+	  editing USER ROM
+	  editing USER SESS PRESET
+	  drawing TYPE_DIAG [uncompiled VECTOR can step_up_to u24_idx i8_heap]
+	  Often entire module uses u4_idx TOKEN, allowing idx in opcode
+	  streamed opcode is malice sess EA machine u4_addr
+	  low numbers can be registers, or sparse lookup tables
+	  create error handler dgb.err
+	  # PASS INFO WARN FAIL OTHER # OTHER == "show_var" "val=='%s'"
+	  # VIEW CODE "..." # DROP_Q2 # DIALECT_USES_Q1 # val == '%s'
+	  # VIEW CODE "..." # INTO_Q2 # DIALECT_USES_Q2 # val == "%s"
+	  # VIEW CODE "..." # INTO_Q2 # DIALECT_USES_Q2 # val == "%s(%s) # %s"
+
+PHRASES LIKE:
+
+	 CTXT(ctxt)
+	 CTOR(ctxt)
+	 ITEM(sess) # CTOR new ITEM in SESS(sess) # CAPS is TOKENISED CONST
+	 CODE(code) # most parameters are PAIR{SPEC,DATA} with INTERP_THIS
+	 THIS(data) # running lines of SCRIPT builds the SESS(ctxt)
+	 SELF(data) # UDEF DIALECT # mk_VAR name type ctor exprs near
+	 ADDR(this) # use_method_var "this" # ALIAS -HERE- _LIST_HERE_
+	 COPY(item) # from this to new item, in same memory space, or move
+	 MOVE(item) # auto RESOLVE where to is CPU_MACHINE_MMAP_QUOTA_B
+
+	EA( EXPR )
+	EA_EXPR DECODE_STEP( u48_u16 ) # mini world in u16 # "var_type"
+
+	DECODE( u8, u8, u48_OFFS )
+	_t _u48_offs i32_offs u32_offs u32_offs_expr(ctxt) 
+	u8_idx idx_item = DECODED.var_name.field_name.expr(ctxt)
+	array[ N++ ] of VAR_NAME_idx 
+	u8_idx idx = N++ // LOCK ALLOC HERE // N++ // MATCH "N++"
+
+	operator %s ( ARGS ) // cpp rules, or avoid other then VANILLA
+	%s is the operator, we can redefine them all, I think
+	== != < > CMP CMP_OPTIMISE_LOOKUP
+	+= *= <<= + - 
+	operator = # COPY_CTOR {{ZAPS oldval} {CTOR newval}}
+	ref_holder VAR = NEWVAL // release OLDVAL // copy outof NEWVAL_to_VAR
+	MODULE says list of MODULE.NAME[idx_already_looked_up] # u64 WORD PAIR
+	# WORD_PAIR u32_u32 in u64 # often split as u48_u16
+	# u32 ARM uses PAIR of WORDS for u32_u32 SPLIT
+	# u32_u32_SPLIT defines loads of access macros
+	# these will be available for BENCH accessing ZONE.STBL.item #  expr
+	# GETTER of EA( obj ) { return this; }
+	# GETTER of EA( & obj ) { return * this; }
+	# WRAPPER adds CHECK_NULL(this) # COMPILER KNOWS STUFF #
+	# on NULL invoke dgb sess on MACHINE SESS CODE DATA # MODULE
+
+
+
+
+

@@ -110,5 +110,102 @@
 		XYPOS XY1	// CSR1.XY // POS1 // POS%s "%d" pos
 		VARS POS1 // local_vars // %s // CSR // POS // LHS_%s LHS rhs
 
+	HEM DIN
+
+		< -- > 
+		> -- <
+
+		zig zag pattern
+		like a sewing machine hem pattern
+
+	SKI SWERVE PATTERN GENERATOR (warps time, uphill, fader_pos)
+
+		\ \ \ \ \  FADER PATTERN
+		/ / / / / 
+
+		\ \ \ \ \  FADER MACHINE
+		/ / / / / 
+
+		\ \ \ \ \  FADER POSITION
+		/ / / / / 
+
+	UDEF interpretations over SYSTEM_ROM ## only generic API on 'base'
+
+		STRUCT
+
+		BITFIELD
+
+		TOKEN ZONE
+
+		ARRAY[ u32 ] of ITEM
+		ARRAY[ i32 ] of ITEM // we simply BLOCK this // dont do it
+
+		#
+		#	have_flags
+		#
+
+		get MID VAL
+			shift_left
+			shift right
+		get RHS VAL
+			shift right
+		get LHS VAL
+			shift_left
+			shift right
+
+		get_u48_PTR == get_u48_OFFS == get_u48
+
+			shift right 16 unsigned # within SEGMENT
+
+		get_i48_PTR == get_i48_OFFS == get_u48
+
+			shift right 16 signed # BELOW ZERO ABOVE
+
+		_OFFS == _IDX // but contra-cross-space // overlap // alloc BOTH
+
+		# ask clang group for core phrases # could easily rephrase
+		# compiler knows cached values in own registers
+		# simply inline these GET scripts
+		# they each have local variables
+		# which only need to exist in the ROM not RT
+		# cached_mid shifted down from bitfield
+		# INTEL SCALE BOXES # u8 u16 u32 u64 u48_u16 u48_val
+		# u48_val means shifted # unsigned 
+
+		MACHINE
+
+		 B-
+		 tt-tB-
+		 tt-tB-
+		 t-B-
+		 tt-tt
+		 M-M-
+		 t-t-
+
+		SHIFTED FRAME VIEW
+
+			B-tt-t
+			B - t t - t
+			B - t -
+			t t -
+			t t -
+			M- M-
+			t- t-
+
+		 VIEW has VIEW_WISE_FLIP_SLIDE
+		  rephrase to TEMPLATE_TWO
+		  stay_phrase in TEMPLATE_ZONE
+
+		 VIEWS offered
+		  ASCII letter
+		  NOTE TOKEN
+		   get_ASCII_letter(out) 
+		   // APPEND BUFFER
+		   // APPEND STREAM
+		   // APPEND SCRIPT
+		   // print DATA as "DATA"
+
+		  NOTE += NOTE_VAL 
+		  NOTE_VAL += HANDAGE_explain_calc # predrawn LIST[ N ]
 
 

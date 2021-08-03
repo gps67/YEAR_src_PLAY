@@ -66,7 +66,7 @@ ifeq ($(WITH_JS_SM),1)
 	OBJS_base2 += jssm_Context.o 
 endif
 
-ifeq ($(WITH_JS),10000000000000000000000000000)
+ifeq ($(WITH_JS_SM),10000000000000000000000000000)
 # js_1
 	OBJS_base2 += j_cx.o 
 	OBJS_base2 += js_my_ErrorReporter.o

@@ -17,7 +17,7 @@ ifeq (1,1)
 endif
 
 
-ifeq ($(WITH_JS),1)
+ifeq ($(WITH_JS_SM),1)
 	#OBJS_base1_play += jsc_scan_Module.o	# 
 	OBJS_accts += jsc_scan_Module.o	# 
 endif

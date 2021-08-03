@@ -63,7 +63,7 @@ endif
 	OBJS_sar_plot += sar_parser_temps.o
 
 # sar_tests/stats_*
-ifeq ($(WITH_JS),1)
+ifeq ($(WITH_JS_SM),1)
 	OBJS_sar_plot += stats_sysinfo.o
 	OBJS_sar_plot += proc_partitions.o
 	OBJS_sar_plot += jsc_Stats_Module.o

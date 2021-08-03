@@ -289,9 +289,16 @@ endif
 
 	# there are some missing functions, but it runs
 	# but some things try to build without it
-	#	WITH_JS_SM=1
-		WITH_JS_SM=0
+	
+	# there is only spider monkey
+	# anything else is a completely different api
+	#
+		WITH_JS_SM=1
+	#	WITH_JS_SM=0
+
+	# WITH_JS is now unused, use WITH_JS_SM
 		WITH_JS=0
+
 	# if you change this - recompile everything
 	# as obj_ref is derived from PyObject
 	# this is not started, yet ...
@@ -563,7 +570,7 @@ ifeq ($(WITH_JS_SM),1)
 	# see also -I and -L in Rules file
 	SubDirs += lib_base2/js_sm
 endif
-ifeq ($(WITH_JS),1)
+ifeq ($(WITH_JS_SM),1)
 	# see also -I and -L in Rules file
 	SubDirs += lib_base2/js_1
 #	SubDirs += lib_base2/js_2
@@ -667,7 +674,7 @@ endif
 	LOTS2 += $(PROG3_EXE)
 	LOTS2 += $(PROG4_EXE)
 	LOTS2 += $(PROG5_EXE)
-ifeq ($(WITH_JS_SM),19)
+ifeq ($(WITH_JS_SM),1)
 	LOTS += $(PROG6_EXE)
 endif
 	LOTS2 += $(PROG7_EXE)

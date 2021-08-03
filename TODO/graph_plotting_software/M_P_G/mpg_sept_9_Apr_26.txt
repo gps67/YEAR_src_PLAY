@@ -3,3 +3,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-04-16, 106600, 29.72, 30.93, Full Tesco Shaftsbury nr priddy
 2021-04-20, 106747, 19.00, 23.12, Full Morrisons from priddy henge
 2021-06-01, 107392, 43.61, 54.38, Full Morrisons 
+2021-07-08, 107677, 21.01, 27.25, ABSENT see bank ?
+2021-07-08, 107966, 21.01, 27.25, FULL written
+2021-07-15, 108146, 22.22, 29.04, Full Morrisons 
+2021-07-21, 108323, 20.56, 27.08, Full Morrisons - data TBS placeholder

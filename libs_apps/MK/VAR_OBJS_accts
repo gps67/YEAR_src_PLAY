@@ -44,7 +44,7 @@
 
 
 # accts_js
-ifeq ($(WITH_JS_OLD),1)
+ifeq ($(WITH_JS_SM),1)
 	OBJS_accts_rpt += jsc_Accts_Module.o
 	OBJS_accts_rpt += jsc_Dset.o
 	OBJS_accts_rpt += jsc_Row.o

@@ -1,0 +1,78 @@
+	2021-08-04
+
+	2021_08_Aug
+	2021-08-04_TaskName_LOCN_t.txt
+
+	LOCN_t
+		specific_THIS_VAR_LOCN
+	_t
+		the type it's dependents its api
+
+	LOCN
+		IDX {
+		 SCRIPT { DECODE( IDX ) {
+		 }
+		}
+	
+	MODULE += HERE_Module // this->idx_Module // lib_STR0.a // .h // .api
+
+	API custom_SPEC_api // { SCRIPT } // CODE_FOLD DATA_FOLD ARGV_VIEW
+
+	EVERY_ITEM_HAS_API_base_class_obj_plus
+	_t obj_plus { SPEC_EXPR } // CMNT //
+	// SCRIPT // BENCH view_SCRIPT as CSR and CTXT
+	// C++ CTXT is a reserved register, or expr, or plain global
+	// CSR is one model // INDENTED_ZONE // SCRIPT_is_Module_api
+
+	MODULE API "TaskName" ".api // DECL_Module_api // SESS_data // CURR TASK
+
+	  Module ModuleName_api : public everything_is_a_module_api_t {
+	   Module "ModuleName_api" {
+	   // HERE // SCRIPT //
+	   // PSG // PARSER // DIALECT OBJ_t
+	   PICK DIALECT HERE {
+	   	// SCRIPT // fully declared Module api
+	   } // </DIALECT> // no args just EOT END EDGE
+	   }
+	  }
+
+/home/gps/YEAR/2021/src/G/HOME_Downloads/meme/art_maija/of_maija
+
+	art_2021-06-12_Another_Planet_is_Ours.jpg
+
+	FB SAID { ... }
+
+	art_2021-06-12
+	Another_Planet_is_Ours
+	jpg 720x399 OPTS ## API_JPEG // VFS VIEWER with FRAME DIR Filename .jpg
+	jpg_FIELD_DATE ## API ## SUBLEX_part_filename_as_date ## or ID or Title
+		art_2021-06-12
+	jpg_COMMENT_FIELD ## API ##
+		Another_Planet_is_Ours
+
+	.jpg { SCRIPT } // Module // API // VIEW_on that screen with subtitles
+	// PLAYER // STATIC_IMAGE .jpg GRAPHICS_API VIEW Title_text 
+
+	get_HDR_Width_Height W_var H_var UNITS_found
+	default compression parameter 75%
+	# NEAR # default_MP3_lame_opts # -H 4 #
+	# NEAR # default_JPG_WxH_artwork #
+	# NEAR # default_SVG_SCRIPT_api { MODULE }
+
+	// a MODULE has a mount_open_setup_code
+	// called by the LOADER INIT( SELF CTXT SELF }
+	// EVERYTHING_is_a_MODULE // NLP HERE SELF this-> // PTR
+	// module.init_module() { PALLETTE SCRIPT DATA }
+	// declaring auto generates the call to module_init() // UDEF_CODE
+	// API adds call_C++function cfn with CPU_ARGS // SELF CTXT A B C D R6
+	// 
+	// even without CTXT as a CPU_VAR // u8_idx register_id_
+	// _idx { BASECLASS_MODULE "_idx" { SCRIPT } } // PLUS ,,,
+
+
+Maija Varvatsis
+Geoff Sawers Michael Vicary, I think he is local. He's part of a group who do portraits every Thursday. Good, isn't he??
+
+
+...
+	a bit like a ArtWork announcement

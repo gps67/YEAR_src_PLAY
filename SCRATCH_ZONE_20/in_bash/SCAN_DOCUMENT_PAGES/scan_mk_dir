@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# where my fns_ABCD are
+
+	PATH=$PATH:$HOME/bin:/home/gps/bin:/home/gps/bin_LGX
+
+# source all my bash script functions
+
+	. fns_DATE
+	. fns_EDIT
+	. fns_BASE
+	. fns_ASKS
+	. fns_FAIL
+	. fns_DIRS
+	# . fns_VARS
+
+# edit TASKNAME the document name and DIR name
+
+	fn_BASE_edit .varfile SCAN_DIR_NAME_PART TASKNAME
+
+# DIR name always has DATE
+
+	DIRNAME="${DATE_YEAR_MM_DD}_${SCAN_DIR_NAME_PART}"
+
+# EDIT DIRNAME
+
+	fn_EDIT_var_prompt DIRNAME
+
+# go ahead ? ask
+
+	yes_no mkdir $DIRNAME || FAIL 1 "bailing out"
+
+# going ahead, make dir save filename, install ../scan_it link
+
+	cd_mkdir_FAIL "${DIRNAME}"
+
+# save the filename for scan_it to find
+
+	SCAN_FILE_NAME_PART="${SCAN_DIR_NAME_PART}"
+	fn_BASE_wr .varfile SCAN_FILE_NAME_PART
+
+# link in scan_it, so subdir works asis
+
+	ln_s ../scan_it ./scan_it
+
+# 

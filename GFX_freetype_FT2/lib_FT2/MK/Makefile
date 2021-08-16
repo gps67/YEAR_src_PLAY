@@ -5,7 +5,10 @@
 	CXX = g++
 	OPTIM += -g
 	INCL += -I../
-	INCL += -I../buffer
+#	dont confuse MK_with_libs_apps
+#	INCL += -I../buffer
+
+#	unusual X11 build 
 #	INCL = -I/tools/2000/X11R6/include
 	dot_EXE=.elf
 
@@ -28,7 +31,11 @@ endif
 #	LIBS += -L/tools/2000/X11R6/lib -lX11
 
 	S=../src
-	S2=$S_WAX
+#	# borrow some source from WAX # duplicate compile but not fork
+#	S2=../../../GFX_lib_WAX/lib_WAX_X11/src
+	YEAR_src_PLAY=../../..
+	S2=$(YEAR_src_PLAY)/GFX_lib_WAX/lib_WAX_X11/src
+
 	VPATH +=$S
 	VPATH +=$(S2)
 	INCL += -I$(S2)
@@ -36,6 +43,10 @@ endif
 #	include ../MK/Makefile_libs_apps
 	include ../MK/MK_with_libs_apps
 
+	MAKES += ../MK/MK_with_libs_apps
+	MAKES += ../MK/Makefile
+
+	# WAX headers
 	HDRS += $(S2)/A_point_plus.h
 	HDRS += $(S2)/X_Colours.h
 	HDRS += $(S2)/X_Display.h
@@ -43,6 +54,7 @@ endif
 	HDRS += $(S2)/X_STUBS.h
 	HDRS += $(S2)/X_Window.h
 
+	# WAX objs
 	OBJS += A_point_plus.o
 	OBJS += A_Map_W.o
 	OBJS += X_Window.o
@@ -52,6 +64,7 @@ endif
 	OBJS += WAX_argv_decoder.o
 	OBJS += test_X_two.o
 
+#	# libs_apps alternatives
 #	OBJS += gdb_invoke.o
 #	OBJS += str0.o
 #	OBJS += str1.o
@@ -69,10 +82,14 @@ endif
 
 all: run_test2
 
+ifeq (1,0)
 .SUFFIXES: .cxx .c .o                                                           
 
+# this is in MK_SUFFIXES
+# I need to document my choice of VARS
 .cxx.o:                                                                         
 	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<                                  
+endif
 
 
 $(OBJS): $(HDRS)
@@ -83,10 +100,17 @@ run_test1: $(EXEC1)
 run_test2: $(EXEC2)
 	./$(EXEC2) $(test2_font)  P # "Sample Text"
 
+$(EXEC1): $(MAKES)
+
+$(EXEC2): $(MAKES)
+
 $(EXEC1): $(OBJS) $(PROG1).o
 	g++ $(PROG1).o $(OBJS) $(LIBS) -o $@
 
 $(EXEC2): $(OBJS) $(PROG2).o
+	# VPATH is $(VPATH)
+	# INCL  is $(INCL)
+	# LIBS  is $(LIBS)
 	# INCL = pkg-config --cflags freetype2
 	# INCL = `pkg-config --cflags freetype2`
 	# LIBS = pkg-config --libs freetype2

@@ -1,0 +1,128 @@
+#!/bin/bash
+
+	PATH=$PATH:$HOME/bin:/home/gps/bin:/home/gps/bin_LGX
+
+#
+#	THIS PATH useful for other users adn for sudo
+#	This PATH has $HOME/bin before /home/gps/bin
+#	This PATH has old $PATH first
+#	This PATH adds bin_LGX which must find own architecture LGX_CPU_AMD64
+#	VFS: PATH_STEP = "LGX_CPU_%s" AMD64 # ARM64 # ARM32 # x86_64 # CPU="AMD64"
+#	CODE: CPU = "AMD64" // "ARM32" // the issue is the word_32 #
+#	CODE: CPU == "AMD64" // SWITCH CPU to ARM32 VIA SIMULATION
+#	# actually that means ARM32 is itself an IR that generates ARM32
+#	# it intentioanlly avoids u64 values uses u32_u32 addressing 
+#	# eg in "ARM32" # ALIAS ARM_32_DIALECT #
+#	# actually that means ARM32 is itself an IR that generates ARM32
+#	# IDX = ENCODE("EA_EXPR")
+#
+#	use var_add PATH $HOME/bin # to clear out duplicates
+#	
+
+
+	. fns_VARS
+	var_add PATH $HOME/bin # clear out duplicates
+	. fns_DATE
+	. fns_EDIT
+	. fns_BASE
+	. fns_ROOT
+
+#
+# rerun_as_root calls this script via sudo
+# 
+	rerun_as_root "$@"
+
+# remember who to chown the files to
+
+	export FILE_USER=${SUDO_USER:-gps}
+
+# all filenames start with SCAN_YEAR-MM-DD
+
+	PFX=SCAN
+
+	YEAR_MM_DD=${DATE_YEAR_MM_DD}
+
+# edit the document pages name, default "PageName"
+
+	echo "# EDIT the short name of the document SCAN_FILE_NAME_PART"
+	fn_BASE_edit .varfile SCAN_FILE_NAME_PART PageName
+
+# keeping SCAN_FILE_NAME_PART add or edit tail
+
+	NAME2=${PFX}_${YEAR_MM_DD}_${SCAN_FILE_NAME_PART}
+	echo "# EDIT the dated name of the document NAME2"
+	fn_EDIT_var_prompt NAME2 
+
+# NN is page N as 09
+
+	fn_BASE_incr .varfile NN
+	NN=`printf '%2.2d' $NN`
+
+# F is SCAN_2021-08-06_PageName_01
+
+	F=${NAME2}_${NN}
+
+# in a lint checked script, 2 known file.ext
+
+	F_tiff=$F.tiff
+	F_png=$F.png
+
+# TIFF and PNG may or may not keep COMMENT
+# _date = good
+# _cat _desc are placeholders ...
+
+	comment_date=${YEAR_MM_DD}
+	comment_cat="_cat"
+	comment_desc="_desc"
+	comment="$comment_date $comment_cat - $comment_desc"
+	COMMENT=""
+	COMMENT="$comment"
+
+# scanimage --resolution $resolution # dpi that scanner uses (300 is slower)
+
+	resolution=300
+	resolution=100
+
+# gm convert -resize $resize # the A4 pixel size = dpi/dpi
+
+	resize=1700x2338 
+	resize=850x1169 
+
+# not found without ROOT, not sure why
+# the redirect is as calling USER, sudo access the device
+
+	scanimage \
+	-d artec_eplus48u: \
+	--mode Color \
+	--depth 16 \
+	--resolution $resolution \
+	-x 216 -y 297 \
+	--format=tiff \
+	> $F_tiff
+
+	chown $FILE_USER $F_tiff
+
+# The slightly higher res image gets deleted in 1 second
+# if you dont want that, edit this script to move it (.tiff)
+# The convert script is a bit fuzzy, but much smaller
+# and just enough for receipts etc
+# although best with added BIRO
+
+	gm convert \
+	-sharpen 4 \
+	-colors 14 \
+	-depth 8 \
+	-resize $resize \
+	-comment "$COMMENT" \
+	$F_tiff \
+	$F_png \
+	\
+	&& rm -f $F_tiff \
+	&& chown $FILE_USER $F_png \
+	&& gm display $F_png
+	 
+
+# Now previewing, user should TRANSFORM/Crop 
+# still running as root though
+
+

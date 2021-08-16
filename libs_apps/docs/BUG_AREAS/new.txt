@@ -1,0 +1,57 @@
+
+	new(std::nothrow)
+
+	int * PTR = new(std::nothrow) int[999];
+	if( PTR == nullptr ) ...
+
+	try {
+		///
+		// new 
+		///
+	} catch (const std::bad_alloc & e) 
+	{
+		std_cout << e.what() << '\n';
+	}
+
+ placement new = ok
+ 
+ CTOR sequence ???
+
+ 	virtual base classes
+	non-virtual base classes
+	class members
+	class constructor
+
+	??? seems off a bit ???
+
+ PER CLASS
+
+ class SomeThing
+ {
+  public:
+   SomeThing() {}
+  ~SomeThing() {}
+
+  static void * operator new( size_t sz )
+  {
+  	void * m = OTHER_malloc(sz);
+	return m;
+  }
+
+  static void operator delete(void * m)
+  {
+  	OTHER_free(sz);
+  }
+
+ };
+
+ARRAY delete -vs- item
+
+	ITEM_t * ARY = new ITEM_t[ 20 ];
+
+	delete ARY; // only attempts to delete ARY[0]
+	delete [] ARY; // OK
+
+	// N is added secret, held somewhere !!
+
+

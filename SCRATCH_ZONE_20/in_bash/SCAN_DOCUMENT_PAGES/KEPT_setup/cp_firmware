@@ -1,0 +1,10 @@
+# /nfs/NAS2/mnt/HD/HD_b2/2021/2021/SCANS_2021/setup_
+
+	DIR=/usr/share/sane/artec_eplus48u
+
+ask_do \
+	mkdir -p $DIR
+
+ask_do \
+	cp -p Artec48.usb $DIR
+

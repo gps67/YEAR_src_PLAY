@@ -3,7 +3,19 @@ echo "## HERE # `id -un` # $0 $*"
 
 if id | grep root
 then
-	. /home/gps/YEAR/src/mp3_hissy_fit/env_hissy_fit
+	# newly promoted to root # need the pre sudo env # or again
+	# this is hardwired, sorry #
+	# alternative is load start script AS_ROOT #
+	# and it includes the ./.env which is hardwired too
+	# but HOME is also clobbered into /root
+	# and it is used in the pre-flight checks for $HOME/audio/*
+	# ie the checks done within env
+	# good job I didn't just mkdir -p them all
+	#
+	# RTFM sudo # $SUDO_USER # get_HOME_of_SUDO_USER # or edit
+	HOME=/home/gps
+	. $HOME/YEAR/src/PLAY/UTIL/mp3_hissy_fit/env_hissy_fit
+	# rerun the command line # now as ROOT # without $0 #
 	"$@"
 else
 	# sudo invokes /bin/sh when SHELL is /bin/bash

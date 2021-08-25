@@ -9,6 +9,14 @@ var_add PATH $HOME/bin
 var_add PATH $HOME/bin/bin_one
 var_add PATH $HOME/bin_1
 var_add PATH $HOME/bin_LGX
+
+# python3 has stupidity with print
+# python3 has stupidity with indentation # SP !< TAB # SP TAB != TAB #
+# so if you use an indentation of # SP SP # you must have them on all lines
+# really quite sad #
+
+PYTH=python2
+
 check_exe()
 {
 	local cmd="${1:-type}"
@@ -35,7 +43,7 @@ check_exe()
 }
 
 check_exe PATH_TOOL || exit # actually no need - fns_var_add uses full pathname
-check_exe python || exit
+check_exe $PYTH || exit
 check_exe cdda2wav || exit
 check_exe lame || exit
 check_exe perror || exit
@@ -43,8 +51,8 @@ check_exe perror || exit
 check_exe cd-discid || ask_do sudo apt install cd-discid
 )
 ## OPTIONAL # check_exe cd-discid optional to make new cddb file
-python --version
-python -c 'import ID3 ; print "PYTHONPATH found ID3"'
+$PYTH --version
+$PYTH -c 'import ID3 ; print "PYTHONPATH found ID3"'
 if false
 then
 	P 

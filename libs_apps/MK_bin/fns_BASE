@@ -41,6 +41,9 @@ fn_BASE_wr()
 
  	local BASE_tempfile="/tmp/${USER}_BASE_wr_$$"
 
+	# ensure that grep does not complain
+
+	[ -f "$BASE_filename" ] || touch "$BASE_filename" 
 	grep -v "^${BASE_varname}[ 	]" "${BASE_filename}" > "${BASE_tempfile}"
 	mv "${BASE_tempfile}" "${BASE_filename}"
 	echo "${BASE_varname} ${BASE_value}" >> "${BASE_filename}"

@@ -1,0 +1,37 @@
+
+	GLIB - g_rrr g_print select_says 
+	ERRR - multi module sources
+	fd_VTBL - switch with-out glib
+	fd_BASE - 
+	STATS - write in-mem stats gather
+	STATS - gather sensors LGX W32 
+	POST - test, repair or remove
+	HASH 
+	PG SQL - revive for stats, ?no blobs now?, sqlite, oracle?
+	w_ - fileselector into fixed holder
+	w_ - DTOR sequence
+	CERT Layout revamp (remove to apps own libr)
+	CERT ref counting tests
+	SSL - clean compile to new API
+	JS_SM - restart class wrap to new API
+	SPOUT - away from lib PDF, add SVG ?
+	WAX - get pixmap from screen, new pixmap offscreen on-card,
+	WAX - why the **** is freetype so far away from X11 (yet inside)
+	WAX - field edit, scrollbars
+	HEAP - no safety tho, MMAP plain, DECODE(u32_u32)
+	HEAP - CPU_32 CPU_ARM CPU_64_lohi CPU_DECODE(u64)
+	DTP - using u24_u8 DECODE(u32_lohi)
+	DTP - using u48_u16 DECODE(u64_lohi)
+	DOC_TREE -
+	DIAG - start some
+	API_CLI - argv_decoder expr_parser
+	GEN - XML ARGV_SCRIPT TREE_PRINT ELF_SEGMENT
+	select_says_api LGX W32 glib // not glib //
+	VFS - plain, key, 
+	bpf - or iptables user_mode filter
+	WAX - on droid ?
+	RFC - heap += cache, validated_data, my_ref_your_ref, WASM?, SAND
+	DGB - actual ? // or just SCRIPT
+
+
+

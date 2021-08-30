@@ -37,7 +37,10 @@ class mmap_file : public fd_hold_1 // obj_ref_
 	u32 fd_size;	/* file length */
 	char * page0;	/* mmapped */ /* NOT alloc'ed */
 
-	u32 fd_grumble_size; /* file as big as this, have different handler */
+	u64 fd_grumble_size; /* file as big as this, have different handler */
+
+ static
+	void print_GMKB( buffer1 & buf, u64 gsz );
 
 	bool mmap_in_file_RW( const char * filename)
 	{ return map_in_file( (const u8*) filename, true ); }

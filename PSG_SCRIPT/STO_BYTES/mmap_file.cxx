@@ -7,6 +7,18 @@
 
 using namespace STO;
 
+void mmap_file::print_GMKB( buffer1 & buf, u64 gsz )
+{
+	u32 G, M, K, B;
+	static const u64 M10 = 1024-1; 
+	B = gsz & M10; gsz >>= 10;
+	K = gsz & M10; gsz >>= 10;
+	M = gsz & M10; gsz >>= 10;
+	G = gsz & M10; gsz >>= 10;
+
+	buf.print( "%4d G %4d M %4d K %4d B", G,M,K,B );
+}
+
 mmap_file::mmap_file( void )
 {
 	// BASE // fd = -1;
@@ -19,7 +31,12 @@ mmap_file::mmap_file( void )
 	fd_grumble_size = 1024 * 1024 * 1023 * 2; // 1<<31 // 2G // WARN SIGN 
 	fd_grumble_size = 1024 * 200; // a lot for a .ini tree
 	fd_grumble_size = 1024 * 20; // test mini files
+
+	buffer1 buf;
+	buf.print("fd_grumble_size = " );
+	print_GMKB( buf, fd_grumble_size );
 }
+
 mmap_file::~mmap_file()
 {
 	unmap();
@@ -150,8 +167,16 @@ bool mmap_file:: remap( void )	/* eg after grow file */
 	}
 	if( st.st.st_size > fd_grumble_size ) // eg 2G 
 	{
-		int szk = (int)( st.st.st_size >> 10);
-		WARN( "max filelength 63 K - %ld is too much\n", szk );
+		buffer1 buf;
+		buf.print("st_size = ");
+		print_GMKB( buf, st.st.st_size );
+
+		buf.print("exceeds " );
+
+		buf.print("fd_grumble_size = " );
+		print_GMKB( buf, fd_grumble_size );
+
+		WARN( "%s", (STR0) buf );
 		// its onlw a warning, from loading
 	}
 	fd_size=(u32)st.st.st_size;
@@ -233,7 +258,7 @@ bool mmap_file::test1( void )
 	cmd1.clear();
 
 	cmd1.print( "date > '%s'", filename );
-	INFO( (STR0) cmd1 );
+	INFO( "%s", (STR0) cmd1 );
 	system( (STR0) cmd1 );
 	cmd1.clear();
 

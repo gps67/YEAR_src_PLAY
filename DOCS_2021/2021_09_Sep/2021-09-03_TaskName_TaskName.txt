@@ -25,3 +25,249 @@
 	EXPECT fn_id = load_link RETVAR_TYPE_FUNC_ARGV {
 		Item_t == RETVAR_TYPE
 	}
+	
+ SO we may declare a basic JS6_API
+
+ 	USING V8
+ 	USING NODE
+	USING Spider_Monkey // _v99
+	USING js_subset_mupdf
+	USING js_subset_embedded
+	USING js_subset_mupdf_plus
+	USING js_subset_V8
+	USING js_subset_V8_plus
+	USING js_subset_spider_monkey
+	USING js_subset_spider_monkey_plus
+	USING js_api_plus
+	USING js_libr_plus
+
+
+	We can declare a VAR called "anystr" // _VAR_t //
+	We can EVAL EXPR 
+	TREE_WALK_DIALECT DECL EXPR FUNC SPEC CTXT
+
+	We provide a bunch of variables,
+	in our lookup tables // api
+	We provice tree_walking CSR
+
+	_edit
+	_compile_
+	_load
+	_run
+	_sto
+	_SPEC
+
+	MODULE
+	 VAR 
+	  VAR varname // TYPE
+
+	FUNC func_name { SCRIPT } { // INCLUDES OUTER PHRASE WRAP
+
+		RETVAL_t func_name( ARGV_SPEC ) {
+		 INDENTED_SCRIPT_BLOCK
+		}
+	}
+	// FUNC // parsing SCRIPT returns CALLABLE_with_ARGV_and_SPEC
+	// BENCH // PARSE // SCRIPT // DIALECT // API
+	// BENCH // LIBR // DIALECT // ELF_API // ARGV_API //
+	// ANYSTR // WRAP "UDEF" { VARNAME_ANYSTR_as_anystr( UDEF ) }
+
+	PTR_t VOID_STAR Item_t_item; 
+	POINTER_TO_OBJECT_t
+	OBJECT_t
+
+	VARS {
+		VARNAME("anystr") { LINK_LOAD_BIND_VARS lookup "anystr" }
+		@LAYER_VARNAME("layer","anystr") { SCRIPT }
+
+		VARS += DECl VAR varname // SCRIPT
+
+	}
+
+	TEMPLATE {
+		Item_t /* STR_t & */ item; // SCRIPT
+	}
+	TEMPLATE {
+		REQUIRE that SCRIPT provides Item_t & PTR_Item // SCRIPT
+		EVAL "EXPR" API GETTERS
+
+		GET ITEM
+		SET ITEM VALUE
+
+		API BIND_ITEM // ref_incr, KEEP_LIST_ITEM, GC_REACHABLE_LINK
+		API BIND_ITEM & // ref_incr, item_SPEC //
+
+		API CALLABLE EXPR ARGV ARGV_SPEC
+		SESS VAR ARGV = {
+			ARGV_r ARGV; // "ARGV" "{ SCRIPT }"
+			 VARNAME == "ARGV"
+			 VARTYPE == "ARGV_t"
+			 SCRIPT == CACHED_lookup( "SCRIPT" )
+			 PARAMETERS {
+			 	int argc
+				PTR argv[] // "array[ argc ]  of PTR"
+			  DECL {
+				PTR_r PTR {
+				}
+				PTR_varname "anystr"
+				PTR_varname "PTR"
+				// I think those 2 create a var
+				PTR_type "PTR_t"
+			  }
+			  DECL API_of_ARGV {
+			  	GETTER_GEN {
+				 SET( VALUE )
+				 GET		// eg TOKENISED GET_TOKEN
+				 GET ARGV
+				 SET ARGV	// option to handle NOT NULL ITEM
+				 Item_t PTR // PTR == "VARNAME"
+				 VARNAME == "item"
+				 VARTYPE == "Item_t *" // ALIAS & for *
+				 VARBIND == "'&' { TYPE & VAR ; // SCRIPT }
+				 VARBIND == "'*' { TYPE * VAR ; // VAR == PTR }
+				 GEN_CODE {
+				   GETTER.GETTER = ROM_CODE_LIBR_API_AGENNT_
+				   {
+				 	GETTER.SET = C_FUNC from LOOKUP
+					GETTER.GETTER = ROM_CODE_LIBR_API_AGENNT_
+					MODULE.TYPE.FUNC ITEM ARGV
+					// += API ARGV_t
+					// char * ARG_is_a_STR;
+					// char * argv[ argc ]
+					// char * SCRIPT // THIS_is_anystr
+					IMPORT TOKENISED SCRIPT PARSER {
+					 that pulls in VARS from ROM
+					 our script gets AUTO STO 
+
+					RUN PARSED SCRIPT
+
+					 PSG SUBLEX // firstvar multiplexes
+					 PSG EXPORT TREE_OF_CODE _OF_DATA
+					 STO SEGMENT_t * SEGMENT = lookup TOKEN
+					 // STO multiplexes TEMPLATE = LINE
+					 // STO registered it's own name as CMD
+					 // TCL does that sometimes // API 
+					 // register_CMD "STO" client_data API
+					}
+				   }
+				 }
+
+				}
+			  }
+			 } // PARAMETERS argc argv char * SCRIPT = argv[1]
+			 // VARNAME == "SCRIPT"
+			 // VARTYPE == "{ SCRIPT }" // _t
+			 // OBJ_t SCRIPT // access API RW // enjoy RW+=W
+		}
+
+ TEMPLATE { 
+  MATCH { "Item_t * item = EXPR ; // CMNT" }
+
+  	PARSE_SCRIPT "Item_t * item = EXPR ; // CMNT"
+	// only one WORD in mini_sub_cmd_expr is that STR
+	// PARSE STR // GETS // MK_VAR_EVAL_SCRIPT // DECLS TOO 
+	// PARSE ROM "Item_t * item = EXPR ; // CMNT"
+	// PARSE ROM "{ Item_t * item = EXPR ; // CMNT }"
+	// PARSE SAYS { GENERATED STUFF } // Module += 
+
+ }
+ TEMPLATE { 
+ 	SCRIPT += LIST OF CMD LINES each ARGV VARS CTXT SESS ROM -etc-
+	LANGUAGE == "JS" // NEEDS API
+	JS_API { GLOBAL VAR "FIELDNAME" } // VIEW NEAR LOCN gets local LINKS
+	// a local import table // "FIELDNAME == '%s'"
+	// on_load_import { ... }
+	// CODE gets C++ access to { Item_t & item } // C_DECL item {LINE}
+	// "{ ref_hold<Item_t> item = EXPR; // CMNT }"
+	// registers that code line with itself as it's name == "{ LINE }"
+	// LINE "%2"
+	// DATA "{ ref_hold<Item_t> item = EXPR; // CMNT }"
+	// DATA_is_STR0_but_also_PARSED // see CTXT and new NEAR VARS
+	}
+ }
+ TEMPLATE { 
+ 	STR0 == "{ LINE }" // imports LINE exports STR0 == "%s"
+	// MK_VAR ROM_STR0 STR0_t LINE = argv[ argc ] //
+	// use of "{ STR0 LINE = LINE } // PROVIDER == "ROM"
+   SPELLING {
+   	"ROM" // SCOPE_NAME // TOKENISED
+
+		Write SCRIPTS using {if STO == "ROM" ... }
+		TOKEN = SPELLING[ "ROM" ]
+
+		Every SCRIPT OBJECT has STR0 TOKENISED_NAME_and_OBJECT
+		ROM -is- "ROM" "{ TOKEN = SPELLING[ "ROM" ]; ROM = TOKEN }"
+		ROM -is- "ROM" 
+		{
+			ALIAS ROM 
+			ALIAS "ROM"
+			ALIAS UDEF_LIST
+			COMPILE SCRIPT to RUNNABLE_JS 
+			ATTACH AVAIL to COMPILED_SCRIPT to SPELLING
+
+			COMPILED_SCRIPT = COMPIILE "{ SCRIPT }"
+		}
+
+		"{ TOKEN = SPELLING[ "ROM" ]; ROM = TOKEN }"
+		 {
+		  TOKEN = SPELLING[ "ROM" ];
+		  ROM = TOKEN }"
+		 }
+		}
+    	
+   }
+
+   USAGE 
+		"{ TOKEN = SPELLING[ "ROM" ]; ROM = TOKEN }"
+	
+	That is the squeezed SCRIPT FRAGMENT
+	Use an auto PP_as_LINE // _as_EXPR_in_LINE // -as_NAME_PLUS
+	use NAME = TOKENISE( "anystr" ) // HINT SCRIPT is 2_STEPS
+	STEP[++] 
+		  TOKEN = SPELLING[ 'anystr' ];
+	STEP[++] 
+		  ROM = TOKEN 
+	END COMPILE 
+	 N == 2
+	 N == "STEP.N()" // CT knows N == 2
+
+	STMT "TOKEN = SPELLINGS[%s]" // hash_table lookup
+
+   CODE
+
+   	ROM is TOKENISED 'anystr'
+	anystr == "ROM" // example value along with ROM
+	SPELLING = SPELLING[anystr]
+	GETTER upgrade SELF to ALLOCATED_SHARED_LINKED_TOKEN in CTXT
+	GETTER repeats ROM "ROM" "-ROM-" 'ROM' 
+	SPELLING = lookup( str_spelling ) // was buffer // now TOKEN SPELLING
+	struct VAR_VAL {
+		STR0 VAR_NAME = "%s"
+		STR0 VAR_TYPE = "%s"
+		STR0 VAR_DATA = "ref_hold<VAR_VAL_t> VAR_VAL; // SELF"
+		// if you can TYPE it // you have parsed it
+		// the key str pulls in the ROM environment
+		// "ROM" SPELLING == VAR_NAME
+		// "ROM" VAR_NAME == SPELLING 
+		// "ROM" VAR_TYPE == lookup( VAR_NAME ) in CTXT_vars
+		// "ROM" var_TYPESPELLING == VAR_NAME
+	}
+
+	EVAL "{ PARSE SCRIPT }"
+	 PARSE == THIS_CODE in THIS_MODULE etc
+	 SCRIPT == "{ SCRIPT }"
+	 ENVIRONMENT_LINKS_INTO MODULE
+	 PRE_COMPILED_SCRIPT SEGMENT_ROM_DOC_TREE
+	 SEGMENT == SEGMENT // HINT it exists
+
+
+
+	objval ==
+ 
+ }
+ TEMPLATE { 
+  MATCH NO_MATCH
+   need fast NO_MATCH from yacc 
+ }
+
+

@@ -6,6 +6,8 @@ PATH=$HOME/bin:$PATH
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
 
 L1="
+https://gitlab.freedesktop.org/freetype/freetype-demos
+https://gitlab.freedesktop.org/freetype/freetype
 https://github.com/NativeScript/NativeScript.git
 git://sourceware.org/git/elfutils.git
 https://github.com/antirez/linenoise

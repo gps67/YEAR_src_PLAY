@@ -1,0 +1,27 @@
+	2021-09-03
+
+	2021_09_Sep
+	2021-09-03_TaskName_TaskName.txt
+
+ API includes JS /* JS_Modern */ // SUBLEX splits JS /* _ */  Modern _Modern
+
+	EXPECT a basic JS // embedded
+	EXPECT API ES6 // plus lib_plus
+
+ API includes ECMA_SCRIPT_PLUS // local added scripts // BASE_CODE_API js_E6
+
+ 	ALIAS E6 ECMA_SCRIPT_ES6
+ 	ALIAS E6 ECMA_SCRIPT_ECMAS6
+ 	ALIAS E6 ECMA_SCRIPT_ECMAS_6
+ 	ALIAS E6 ECMA_SCRIPT_PLUS // PLUS_local_API // Object_libr
+
+ API includes JS6
+
+ 	EXPECT ECMA_SCRIPT
+	SESSION SESS
+	CTXT SESS.CTXT SESS CTXT ALIAS // ALIAS binds to wider lookup( ARGV )
+	EXPECT ECMA_RUNTIME SCRIPTED TREE OF CLASSES
+	EXPECT Object_t * item; // CMNT /* BIND_DATA_LINK_VAR
+	EXPECT fn_id = load_link RETVAR_TYPE_FUNC_ARGV {
+		Item_t == RETVAR_TYPE
+	}

@@ -9,3 +9,4 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-07-21, 108323, 20.56, 27.08, Full Morrisons - data TBS placeholder
 2021-08-17, 108649, 43.94, 57.87, Full Morrisons - reset after mot adj
 2021-08-21, 108964, 36.20, 47.68, Full ASDA - first usable after mot adj
+2021-09-21, 109072, 13.70, 18.04, Full Morr

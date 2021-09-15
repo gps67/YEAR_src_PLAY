@@ -1,0 +1,19 @@
+	2021-09-03
+
+	2021_09_Sep
+	2021-09-03_C++_DIALECT.txt
+
+ DOCS += C++ SAMPLES 
+ DOCS += EXPLAINS
+ DOCS += HIGHLIGHTED USAGE - see here for TOPIC
+ DOCS C++ decode ELF via plain C++ loadable.so or builtin.a
+ DOCS C++ decode ELF SEGMENT utils gettable("table")
+ API WRAP "ONION_RINGS" 
+  CORE
+    "table" == "SELF_as_table"
+    gettable("table") { return table }
+   WRAP
+    ALIAS "table" UDEF_name"
+ DOCS += PHRASE_BOOK
+
+

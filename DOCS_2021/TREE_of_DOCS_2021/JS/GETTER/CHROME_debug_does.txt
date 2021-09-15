@@ -1,0 +1,20 @@
+chrome debugger
+
+	the debugger itself runs some functions on UDEF functions
+	on USER code data DIC on ...
+
+	ie when in debugger mode, single stepping alien code
+	the code is actually run, at full speed, by the debugger,
+	but not in debug single step mode
+
+	so putting a few GETTERS on some key HTML elements (or other)
+	shows how debugger works, might help debugging, might help hackers
+
+	GETTER	my_div.id
+
+WKP:
+
+https://medium.com/@weizmangal/javascript-anti-debugging-some-next-level-sh-t-part-2-abusing-chromium-devtools-scope-pane-b2796c00331d
+
+
+

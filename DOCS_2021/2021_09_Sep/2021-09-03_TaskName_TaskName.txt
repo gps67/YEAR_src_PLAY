@@ -267,7 +267,12 @@
  }
  TEMPLATE { 
   MATCH NO_MATCH
-   need fast NO_MATCH from yacc 
+   need fast NO_MATCH from yacc // FIND HOW TO CALL YACC for SPEED VARIETY
+   // SCRIPTED PARSER does not have CT so it matches LINES by LINES
+ }
+ TEMPLATE { 
+  MATCH NO_MATCH
+	// "{ STR0 LINE = LINE } // PROVIDER == "ROM"
  }
 
 

@@ -1,0 +1,73 @@
+It is very easy to have X increasing left to right
+
+	XY graphs - Y
+	MEM diags - Y
+	SCN diags - Y
+	HUMANS - Y
+
+	only question is to start from ZERO or ONE
+
+There is genuine choice for Y going upwards/downwards
+
+	XY graphs - UP
+	MEM diags - DOWN
+	SCN diags - DOWN
+
+	HUMANS - VARIES
+
+	STACK -
+	STRUCT LINES
+	STRUCT ADDRS
+
+TECH
+
+	XY graphs definitely grow +ve UPWARDS
+	higher values are higher
+
+	PAGE LINES definitely grow downwards
+	Line 1 is at the top, line 66 at the bottom
+
+	CODE LINES grow downwards, like TEXT lines
+	MEM addresses increase with each line
+	CODE + DATA addresses increase with each line
+	DATA declared as stack-local - ... see STACK !!
+	STACK ARGS in C put the first closest to the edge
+
+	PC++
+	CODE (and DATA also)
+	every line of code, generate ASM (or data) PC++
+	so the address increases down the page
+
+	If you drew a DIAG of mem,
+	it might appear upside down,
+	or strange diagonal (left to right+)
+
+	STACK is a hardware choice,
+	and different CPU's made different choices
+	(also SP points to BLANK NEXT || to LAST)
+	(also SP align to nn)
+
+	One reason for the choice, is to put the CODE
+	near ZERO, the DATA above that, growing upwards,
+	then start the stack from the opposite end (HIGH)
+	and both grow towards the middle, never meeting
+
+	S/390 - neither it's a chain of frames
+
+	x86 - down
+	x86, PowerPC, MIPS, SPARC, ...
+	ARM - DOWN - points to valid item, start of word
+
+		LDMIA
+		VAL = * SP
+		SP ++ // 4 byte += 4
+
+		STMDB
+		SP -= 4
+		VAL = * SP
+
+
+	UP - 8051 (128 bytes and no DATA clash)
+
+
+

@@ -4,7 +4,10 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-04-20, 106747, 19.00, 23.12, Full Morrisons from priddy henge
 2021-06-01, 107392, 43.61, 54.38, Full Morrisons 
 2021-07-08, 107677, 21.01, 27.25, ABSENT see bank ?
-2021-07-08, 107966, 21.01, 27.25, FULL written
+2021-06-19, 107677, 11.11, 54.38, ABSENT see bank Morrisons
+2021-06-30, 107677, 11.11, 54.09, ABSENT see bank Tesco
+2021-07-01, 107966, 11.11, 13.68, ABSENT from bank morrisons
+2021-07-08, 107966, 21.01, 27.25, FULL written morrisons
 2021-07-15, 108146, 22.22, 29.04, Full Morrisons 
 2021-07-21, 108323, 20.56, 27.08, Full Morrisons - data TBS placeholder
 2021-08-17, 108649, 43.94, 57.87, Full Morrisons - reset after mot adj

@@ -9,13 +9,20 @@
 
 
 #include <stdio.h>
+#include <stdarg.h>	// va_start etc
 
+// man dlopen says C is stuffed up (as per usual)
+// and the (VOID *) is wrong because FUN_PTR size != data ptr size
+// gcc -pedantic permits use of void * into prototyped though
+// *(void **) (&cosine) = dlsym(handle, "cos");
 
-typedef void (* ANY_FUNC)();
+typedef void * (* ok_FUNC_PTR_t)(); // a good thing but C-ISO says no PTR sz
+typedef void * FUNC_PTR_t; // works with gcc -pedantic // because dlsym does
+// typedef *(void **) (& FUNC_PTR_t)(); // strange mess // never valid
 
-void * call_dlsym_fn( const char * sym, ANY_FUNC * EA_FUNC_VAR )
+FUNC_PTR_t call_dlsym_fn( const char * sym, FUNC_PTR_t * EA_FUNC_VAR )
 {
-	ANY_FUNC PTR = * EA_FUNC_VAR;
+	FUNC_PTR_t PTR = * EA_FUNC_VAR;
 	if( PTR ) {
 		fprintf(stderr,"Already set FUNC_VAR '%s'\n", sym );
 		return PTR; // PASS
@@ -43,9 +50,10 @@ void * call_dlsym_fn( const char * sym, ANY_FUNC * EA_FUNC_VAR )
 	* EA_FUNC_VAR = PTR;
 	return PTR;
 }
-// cast any EA_FUNC_VAR to ANY_FUNC
+// cast any EA_FUNC_VAR to FUNC_PTR_t
+// gcc -pedantic permitted cast from FUNC_PTR to VOID_STAR
 #define call_dlsym( sym, EA_FUNC_VAR ) \
-        call_dlsym_fn( sym, (ANY_FUNC *) EA_FUNC_VAR )
+        call_dlsym_fn( sym, (FUNC_PTR_t *) EA_FUNC_VAR )
 
 
 static // is default anyway for global to this file
@@ -54,6 +62,12 @@ int (* orig_open)( const char * pathname, int flags, ... ) = 0 ; // mode_t mode
 // extern
 int open( const char * pathname, int flags, ... ) // mode_t mode 
 {
+
+	va_list args;
+	va_start( args, flags );
+	int mode = va_arg( args, int ); // 
+	va_end( args );
+
 	fprintf( stderr, "open() called \n");
 
 	if(!call_dlsym( "open", & orig_open )) {
@@ -64,7 +78,8 @@ int open( const char * pathname, int flags, ... ) // mode_t mode
 		fprintf(stderr,"FAIL on SECOND LOAD\n"); // I pass it anyway
 	}
 
-	int t = orig_open( pathname, flags ); // mode_t from varargs
+	fprintf(stderr, "call open( %s, %d, %3.3o )\n", pathname, flags, mode );
+	int t = orig_open( pathname, flags, mode ); // mode_t from varargs
 	if(t<0) {
 		perror(pathname);
 	}

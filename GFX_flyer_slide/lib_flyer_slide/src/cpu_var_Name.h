@@ -43,6 +43,7 @@ namespace WORDS {
 	struct WORD_16 {
 	};
 	struct WORD_32 {
+		u32 word;
 		u32 get_u32() { return word; }
 	};
 	struct WORD_64 {

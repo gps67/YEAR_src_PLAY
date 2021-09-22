@@ -1,0 +1,10 @@
+E=x1.exec
+
+gdb -tui \
+--command ./.gdbinit_$E \
+--args $E \
+#
+
+tput reset
+
+

@@ -165,6 +165,7 @@ echo
 	IMG_LOG="${DIR_LOG}/${dvd_name_2}_mkiso_log.tmp"
 	NAS_ISO="${DIR_NAS}/${IMG_ISO}"		# IMG_ISO must be relative path
 	IMG_OUT_tmp="${IMG_ISO}_tmp"
+	IMG_OUT="${IMG_ISO}"
 
 	# dvd_name_2 # is dir where vobcopy left the tree of files
 	# this is flawed because | tee is the retcode

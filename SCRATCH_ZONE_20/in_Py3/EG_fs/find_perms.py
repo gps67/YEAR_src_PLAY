@@ -4,6 +4,7 @@ import os
 from stat import *
 
 # TEST # os.chdir("ROOT")
+# TEST # os.chdir("..")
 
 def walk( dir ):
 
@@ -24,8 +25,8 @@ def walk( dir ):
 			dest = os.readlink( fullname )
 			print( "LINK", fullname, "->", dest )
 		elif S_ISDIR(m):
-			walk( fullname )
 			print( "DIR ", fullname )
+			walk( fullname )
 		elif S_ISBLK(m):
 			print( "BLK ", fullname )
 		elif S_ISCHR(m):
@@ -35,11 +36,13 @@ def walk( dir ):
 		elif S_ISSOCK(m):
 			print( "SOCK", fullname )
 		else:
-			# FILE ?? #
-			print( "ELSE", fullname )
+			# not totally clear is a plain FILE #
+			print( "FILE", fullname )
 		# print dir, f
 
-walk(".")
+# walk("../..")
+walk("..")
+# walk(".")
 
 #for root, dirs, files in os.walk("."):  
 #	for filename in files:

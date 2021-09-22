@@ -4,6 +4,8 @@ PATH=$HOME/bin:$PATH
 # https://information-cascade.monday.com/
 
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
+# svn is not git 
+# svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
 https://gitlab.freedesktop.org/freetype/freetype-demos

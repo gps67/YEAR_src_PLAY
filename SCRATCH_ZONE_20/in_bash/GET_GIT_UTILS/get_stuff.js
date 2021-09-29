@@ -8,6 +8,15 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+https://github.com/http-party/http-server
+
+https://github.com/CreateJS/SoundJS
+https://github.com/CreateJS/EaselJS
+https://github.com/CreateJS/TweenJS
+https://github.com/CreateJS/PreloadJS
+https://github.com/CreateJS/Zoe
+https://github.com/CreateJS/CreateJS
+
 https://gitlab.freedesktop.org/freetype/freetype-demos
 https://gitlab.freedesktop.org/freetype/freetype
 https://github.com/NativeScript/NativeScript.git

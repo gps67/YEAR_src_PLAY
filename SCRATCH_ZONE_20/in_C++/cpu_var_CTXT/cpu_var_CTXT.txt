@@ -1,7 +1,7 @@
 cpu_var_CTXT
 
    the magic to make gcc reserve a register is
-	register int * cpu_var_CTXT asm("a15");
+	register char * cpu_var_CTXT asm("a15");
    to make GCC include that everywhere, tell CPP
 	-include FILENAME # on CPP cmd line
 	# search = . then ... or maybe ...
@@ -20,3 +20,21 @@ cpu_var_CTXT
    with gcc 9.3.0 built for that, (poss future chroot)
    theres nothing odd about that gcc, until .../specs added
    then EVERYTHING it compiles will reserve cpu_var_CTXT
+
+   In theory you MUST recompile all librs with that line already set
+   However, if you look at API, and use something that gcc rarely does
+   you might find a register unused ... maybe
+   or possibly a CALLER_SAVES - just dont expect still there nested
+   only on return
+
+	struct CTXT_t;
+	register CTXT_t * cpu_var_CTXT asm("a15");
+
+	later define CTXT_t as whatever has evolved
+	you only need to recompile YOUR OWN code that uses CTXT->field
+
+	To move to another compiler or architecture
+	Simply create cpu_var_CTXT as a global or thread_var
+
+   another idea might be MMX, not sure what it uses
+

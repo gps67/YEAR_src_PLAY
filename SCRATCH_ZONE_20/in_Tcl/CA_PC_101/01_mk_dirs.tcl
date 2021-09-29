@@ -1,3 +1,4 @@
+#!/usr/bin/env tclsh
 #!/tools/CTXT/tcl/bin/tclsh
 
 proc say_do {cmd} {

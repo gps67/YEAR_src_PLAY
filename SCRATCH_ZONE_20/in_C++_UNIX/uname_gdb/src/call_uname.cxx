@@ -14,7 +14,7 @@ int main()
 	INFO("release    -r %s", uts_name.release );
 	INFO("version    -v %s", uts_name.version );
 	INFO("machine    -m %s", uts_name.machine );
-	INFO("domainname XX %s", uts_name.domainname );
+	INFO("domainname __ %s", uts_name.domainname );
 	return 0;
 }
 

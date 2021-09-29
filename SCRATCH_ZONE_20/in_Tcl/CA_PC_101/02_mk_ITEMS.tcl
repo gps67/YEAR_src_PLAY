@@ -1,3 +1,4 @@
+#!/usr/bin/env tclsh
 #!/tools/CTXT/tcl/bin/tclsh
 
 lappend auto_path [pwd]/fns_tcl
@@ -9,20 +10,42 @@ lappend auto_path [pwd]/fns_tcl
 
 ## LIBR above ## LIBR below ##
 
+proc csr_to_text { CERTFILE {TEXTFILE {}} } {
+	x509_to_text $CERTFILE $TEXTFILE
+}
+
+proc x509_to_text { CERTFILE {TEXTFILE {}} } {
+	if {{}==$TEXTFILE} {
+		set TEXTFILE $CERTFILE.text
+	}
+	# convert csr to txt
+	set cmd2 {}
+	lappend cmd2 openssl 
+#	lappend cmd2 req ;# csr is supposed to have this, seems to know
+	lappend cmd2 x509
+	lappend cmd2 -in $CERTFILE
+	lappend cmd2 -text
+	lappend cmd2 -out $TEXTFILE
+	# say_do $cmd2
+	if ![say_do $cmd2] return
+}
+
 proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
+
+	puts "\n##### ##### ##### mk_CN_RSA $CA_CN $CN \n"
 
 	set is_self_sign 0
 	if { $CA_CN == $CN } { # self sign # CA == CA_CN
 		set is_self_sign 1
 		puts "# SELF SIGN"
 	}
+
 	set is_CA 0
 	if { [string equal -length 3 "CA_" $CN] } {
 		set is_CA 1
 	}
 	puts "# is_CA $is_CA"
 
-	puts "# pwd # [pwd]"
 
 	set dir_priv [DIR_NAME_CN_key $CN]
 	file mkdir $dir_priv
@@ -46,7 +69,7 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	# say_do $cmd
 	if ![say_do $cmd] return
   }
-}
+ }
 
  if 1 {
 	set cmd {}
@@ -67,6 +90,8 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 	}
   }
 
+  	# the RSA either exists or we create it
+	# add opts to cmds that do that
   if [file exists $RSA_priv_key] {
   	puts "# RSA_priv_key already exists $RSA_priv_key"
 	lappend cmd -key [FILENAME_CN_key $CN]
@@ -77,6 +102,7 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 		lappend cmd -nodes
 	} else {
 		# somehow use phrase to protect + access key
+		# TODO # use phrase
 	}
   }
 
@@ -85,16 +111,8 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 
 	if ![say_do $cmd] return 
 
-	# convert csr to txt
-	set cmd2 {}
-	lappend cmd2 openssl 
-#	lappend cmd2 req 
-	lappend cmd2 x509
-	lappend cmd2 -in [FILENAME_CN_csr $CN]
-	lappend cmd2 -text
-	lappend cmd2 -out [FILENAME_CN_csr $CN].txt
-	# say_do $cmd2
-	if ![say_do $cmd2] return
+	csr_to_text [FILENAME_CN_csr $CN]
+#	x509_to_text [FILENAME_CN_csr $CN]
 
 	# apply AES256 PHRASE to .key after all done
 
@@ -115,6 +133,7 @@ proc mk_CN_RSA {CA_CN CN RSA_nbits RSA_days phrase} {
 }
 
 proc main {} {
+	puts "# pwd # [pwd]"
 	if ![mk_CN_RSA CA_ZERO CA_ZERO 4096 1600 {}] return
 	if ![mk_CN_RSA CA_ZERO  CA_ONE 2048 800 {}] return
 	if ![mk_CN_RSA CA_ONE   PC_101 2048 365 {}] return

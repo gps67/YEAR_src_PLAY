@@ -1,12 +1,17 @@
 # external users of the libs_apps code can do this:
-# include /home/gps/2005/src/libs_apps/MK_ext_lib/MK_with_libs_apps
+# include YEAR/src/PLAY/libs_apps/MK_ext_lib/MK_with_libs_apps
 
 	#
 	#
 	#
 
+	D_HOME=$(HOME)
+	D_YEAR=$(D_HOME)/YEAR
+	D_PLAY=$(D_HOME)/YEAR/src/PLAY
+	D_G=$(D_HOME)/G
 
-	DIR_libs_apps =/home/gps/YEAR/src/PLAY/libs_apps
+
+	DIR_libs_apps =$(D_PLAY)/libs_apps
 
 # make is clever so including early does not matter much, vars used later
 # how stuff is built, and my LIST_xxx vars
@@ -29,9 +34,10 @@ ifeq (1,1)
 
 
 	# build varies on each box # LINK2 dir
+	# hostname of this BOX
 	BOX=$(shell uname -n)
 
-	# all include incl.h symb-linked from one place
+	# libs_apps/include/*.h # all of them
 	DIR_LIBS_APPS_INCL = $(DIR_libs_apps)/include
 
 	# LINK2 is the only one used
@@ -40,11 +46,15 @@ ifeq (1,1)
 	DIR_LIBS_APPS_LINK2 = $(DIR_libs_apps)/build_$(TGT)_$(BOX)
 
 	# build up like pkg_config LIST += uses_NAME 
+	# LIST_ gets converted SP to COLON # PKG_CONFIG_PATH
+	# search list allows BOXNAME to override TGT which overrides DEFAULT
+	# need to gen each pc file from source tree 
+	# AUTO move around edits, back to generic layer via origin EDIT
 	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig/$(TGT)
 	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig
 
 	# $HOME/G/prefix is where moz js was placed
-	LIST_PKG_CONFIG_PATH += /home/gps/G/prefix/lib/pkgconfig/
+	LIST_PKG_CONFIG_PATH += $(D_G)/prefix/lib/pkgconfig/
 
 	# /tools/VPN is where openssl is
 	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/

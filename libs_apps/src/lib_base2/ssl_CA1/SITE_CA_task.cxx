@@ -825,7 +825,7 @@ bool CA_task:: REQ_set_client_key_priv( EVP_P_KEY * key )
 	If you want to set the VALS, do so _BEFORE_ calling this,
 	and set them into the task->VALS->*
 */
-bool CA_task:: REQ_apply_VALS()
+bool CA_task:: REQ_apply_VALS() // this.VALS appears global // a fast parameter
 {
 	if(!VALS) return FAIL("NULL VALS");
 	return REQ_apply_VALS( *VALS );

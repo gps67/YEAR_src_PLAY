@@ -1,0 +1,107 @@
+	2021-09-29
+
+	2021_09_Sep
+	2021-09-29_SEGMENTS_CRYPTS_VERSIONS.txt
+
+	MMAP runs encrypted DATA pages
+	SYNC
+	list of writes
+	SYNC
+
+		cache can keep decoded pages - this is not that secure
+		cache can merge overlapping writes - only matters at SYNC
+	
+	SYNC
+
+		The SYNC data intermesh LOCKING etc
+		merges levels of SYNC, 
+
+		all modified pages go to latest
+		SYNC arrives AFTER telling APP to FLUSH buffers SUB_STEP
+		SUB_STEP
+
+			LOCK OUT ALL NEW INCOMERS
+
+			TELL ALL PROCESSES TO SYNC_SOON
+			give each a TASK that it can mark DONE or NEXT
+
+			GIVE CPU and TIME to SYNC_NOW
+			WAIT each TASK_WORKING
+
+			OK load new MMAP pages to READ
+	
+	MMAP of 16MB x16 256MB where WORD==16_bytes WORD_PAIR u64_u64
+
+	u64_u64 WORD_PAIR;
+
+	 u24_u24_u16 lhs rhs u16_opcode
+
+	CTXT provides a lot of ROM space and CODE SLOT IDX DECODERS
+
+	works particularly on MINI_MACHINE FILTERS
+
+	 u28_OFFS = u24_IDX << 4; // WORD == 16_bytes
+	 u24 lhs --> WORD_PAIR_u64_u64 // unfortunately not using X86 8_bytes
+
+	u32 WORD_PAIR[2] // u24_u8_idx_opcode
+
+	DECODE(u8_u8)       { lhs rhs }
+	DECODE(u24_u24)     { lhs rhs }
+	DECODE(u24_u24_u16) { lhs rhs u16_opcode }
+	DECODE(u48_u16)     { lhs rhs } { u48_payload u16_opcode }
+	DECODE(u32_u32)     { lhs rhs } { u32_lhs u32_rhs } {u32_lo u32_hi}
+	DECODE(u64)
+	DECODE(u64_u64)     { lhs rhs }
+	DECODE(u128)
+
+	SYNC_START
+	SUM_OF_PAGE_UPDATES
+	FULL CATCHUP
+	SYNC_STOP WAIT FOR FULL CATCHUP // lock out new TASKS APP SYNC TOO
+
+	write those pages to the TRANSACTION log (DONE) individually IV'able
+	update the list of remapped pages += this list
+
+	KEEP SYNC between major SYNC points
+	 short circuit sum of all page changes
+	  keep in working area, new_data
+	   copy out old_data ? // available in CHAIN
+
+	STILL RISKY between SYNC points
+	 intermesh INPUT request stream // LOCKOUT // SYNC // RUN_TILL_DONE
+	 use some SYNC level of RUN_TILL_DONE to lockout new transactions
+	 updates have to be finite, jump to NEXT value, 
+
+	DB_KEYS_PERMITS_CERTS_QUOTAS_ADMIN
+
+		MACRO EA  { u24_lhs u24_rhs u16_opcode }  
+		 ARRAY = ARRAY
+		 IDX = IDX
+
+		 OFFS = ... multiple ways of calculating
+
+		 MACRO uses { lhs rhs u16_opcode } { u24_lhs u24_rhs }
+	
+		EVAL u24_lhs
+
+		u28_OFFS = u24_lhs << 4 // 16_bytes per idx click_pos
+		16_bytes * WORD_PAIR = *(BASE + OFFS)
+		u64_WORD lhs = *(WORD_PAIR_BASE + OFFS_0)
+		u64_WORD rhs = *(WORD_PAIR_BASE + OFFS_8)
+
+		u8 BYTE_B = WORD.BYTE_B
+		VOID * FUNC = TABLE[ WORD.BYTE_A ]
+
+		CALL FUNC WORD FUNC BYTE_B u64_lhs u64_rhs
+
+			MINI MACHINE applies scope brings extra VARS
+
+			VARS += BYTE_B
+			VARS += u64_lhs
+
+			SCOPE += TRAY of VARS
+			connect  alocate deliver DATA
+
+
+
+

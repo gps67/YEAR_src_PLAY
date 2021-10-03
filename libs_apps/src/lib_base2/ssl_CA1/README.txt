@@ -11,7 +11,7 @@ CA1 is an experimental MESS, sorry.
 
 I really like _VALS_
 
-	These are string values that are to be put ito the request
+	These are string values that are to be put into the request
 	(maybe some integer values, dates, etc).
 
 	Instead of single stepping over a REQ, look at a bunch of strings.

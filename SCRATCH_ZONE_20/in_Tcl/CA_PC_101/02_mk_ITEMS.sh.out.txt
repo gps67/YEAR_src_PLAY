@@ -1,6 +1,18 @@
+# pwd # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+
+##### ##### ##### CA_mk_CN  CA_ZERO CA_ZERO 
+
 # SELF SIGN
 # is_CA 1
-# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl genrsa -out ca/CA_ZERO/private/CA_ZERO.key 4096
+Generating RSA private key, 4096 bit long modulus (2 primes)
+...................................................................................................++++
+............................................++++
+e is 65537 (0x010001)
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
 # is_CA # NOW 1
 # RSA_priv_key already exists ca/CA_ZERO/private/CA_ZERO.key
 # RUN # openssl req -new -x509 -config openssl.cfg -extensions easyrsa_ca -key ca/CA_ZERO/private/CA_ZERO.key -subj /CN=CA_ZERO -out ca/CA_ZERO/CA_ZERO.csr
@@ -8,13 +20,24 @@
 # output     # 
 # trap_says  # 
 # RET # 1
-# RUN # openssl x509 -in ca/CA_ZERO/CA_ZERO.csr -text -out ca/CA_ZERO/CA_ZERO.csr.txt
+# RUN # openssl x509 -in ca/CA_ZERO/CA_ZERO.csr -text -out ca/CA_ZERO/CA_ZERO.csr.text
 # exit_code  # 0
 # output     # 
 # trap_says  # 
 # RET # 1
+
+##### ##### ##### CA_mk_CN  CA_ZERO CA_ONE 
+
 # is_CA 1
-# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl genrsa -out ca/CA_ONE/private/CA_ONE.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+......................................................+++++
+...........+++++
+e is 65537 (0x010001)
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
 # is_CA # NOW 1
 # RSA_priv_key already exists ca/CA_ONE/private/CA_ONE.key
 # RUN # openssl req -new -x509 -config openssl.cfg -extensions easyrsa_ca -key ca/CA_ONE/private/CA_ONE.key -subj /CN=CA_ONE -out ca/CA_ONE/CA_ONE.csr
@@ -22,17 +45,19 @@
 # output     # 
 # trap_says  # 
 # RET # 1
-# RUN # openssl x509 -in ca/CA_ONE/CA_ONE.csr -text -out ca/CA_ONE/CA_ONE.csr.txt
+# RUN # openssl x509 -in ca/CA_ONE/CA_ONE.csr -text -out ca/CA_ONE/CA_ONE.csr.text
 # exit_code  # 0
 # output     # 
 # trap_says  # 
 # RET # 1
+
+##### ##### ##### CA_mk_CN  CA_ONE PC_101 
+
 # is_CA 0
-# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
 # RUN # openssl genrsa -out ca/PC_101/private/PC_101.key 2048
 Generating RSA private key, 2048 bit long modulus (2 primes)
-....+++++
-........................................+++++
+..+++++
+.............................................+++++
 e is 65537 (0x010001)
 # exit_code  # 0
 # output     # 
@@ -45,13 +70,24 @@ e is 65537 (0x010001)
 # output     # 
 # trap_says  # 
 # RET # 1
-# RUN # openssl x509 -in ca/PC_101/PC_101.csr -text -out ca/PC_101/PC_101.csr.txt
+# RUN # openssl x509 -in ca/PC_101/PC_101.csr -text -out ca/PC_101/PC_101.csr.text
 # exit_code  # 0
 # output     # 
 # trap_says  # 
 # RET # 1
+
+##### ##### ##### CA_mk_CN  CA_ONE PC_102 
+
 # is_CA 0
-# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl genrsa -out ca/PC_102/private/PC_102.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+........................................................................................+++++
+....+++++
+e is 65537 (0x010001)
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
 # is_CA # NOW 0
 # RSA_priv_key already exists ca/PC_102/private/PC_102.key
 # RUN # openssl req -new -x509 -config openssl.cfg -extensions basic_exts -key ca/PC_102/private/PC_102.key -subj /CN=PC_102 -out ca/PC_102/PC_102.csr
@@ -59,13 +95,24 @@ e is 65537 (0x010001)
 # output     # 
 # trap_says  # 
 # RET # 1
-# RUN # openssl x509 -in ca/PC_102/PC_102.csr -text -out ca/PC_102/PC_102.csr.txt
+# RUN # openssl x509 -in ca/PC_102/PC_102.csr -text -out ca/PC_102/PC_102.csr.text
 # exit_code  # 0
 # output     # 
 # trap_says  # 
 # RET # 1
+
+##### ##### ##### CA_mk_CN  CA_ONE PC_103 
+
 # is_CA 0
-# pwd # /home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl/CA_PC_101
+# RUN # openssl genrsa -out ca/PC_103/private/PC_103.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+...........+++++
+..........................+++++
+e is 65537 (0x010001)
+# exit_code  # 0
+# output     # 
+# trap_says  # 
+# RET # 1
 # is_CA # NOW 0
 # RSA_priv_key already exists ca/PC_103/private/PC_103.key
 # RUN # openssl req -new -x509 -config openssl.cfg -extensions basic_exts -key ca/PC_103/private/PC_103.key -subj /CN=PC_103 -out ca/PC_103/PC_103.csr
@@ -73,7 +120,7 @@ e is 65537 (0x010001)
 # output     # 
 # trap_says  # 
 # RET # 1
-# RUN # openssl x509 -in ca/PC_103/PC_103.csr -text -out ca/PC_103/PC_103.csr.txt
+# RUN # openssl x509 -in ca/PC_103/PC_103.csr -text -out ca/PC_103/PC_103.csr.text
 # exit_code  # 0
 # output     # 
 # trap_says  # 
@@ -83,27 +130,27 @@ e is 65537 (0x010001)
 # output     # ca
 ├── CA_ONE
 │   ├── CA_ONE.csr
-│   ├── CA_ONE.csr.txt
+│   ├── CA_ONE.csr.text
 │   └── private
 │       └── CA_ONE.key
 ├── CA_ZERO
 │   ├── CA_ZERO.csr
-│   ├── CA_ZERO.csr.txt
+│   ├── CA_ZERO.csr.text
 │   └── private
 │       └── CA_ZERO.key
 ├── PC_101
 │   ├── PC_101.csr
-│   ├── PC_101.csr.txt
+│   ├── PC_101.csr.text
 │   └── private
 │       └── PC_101.key
 ├── PC_102
 │   ├── PC_102.csr
-│   ├── PC_102.csr.txt
+│   ├── PC_102.csr.text
 │   └── private
 │       └── PC_102.key
 └── PC_103
     ├── PC_103.csr
-    ├── PC_103.csr.txt
+    ├── PC_103.csr.text
     └── private
         └── PC_103.key
 

@@ -8,6 +8,10 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+git://anongit.freedesktop.org/git/cairo
+git://anongit.freedesktop.org/git/pixman.git
+git@gitlab.com:cairo/cairo-demos.git
+
 https://github.com/http-party/http-server
 
 https://github.com/CreateJS/SoundJS

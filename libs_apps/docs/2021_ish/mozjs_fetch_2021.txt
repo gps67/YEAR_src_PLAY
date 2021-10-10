@@ -1,0 +1,82 @@
+
+to obtain mozjs
+need to ask it's automation
+
+https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonkey-sm-package
+
+	That displays rows of things (version change ids)
+	one or two of these things is a release
+	with "SM(PKG)" 2/3 along screen
+	click on the PKG # and wait 10 seconds
+
+That pops up a bottom left panel, with tiny text
+
+	up pops bottom left panel, + next to that
+	bottom right panel, click on header Artifacts 
+
+		it is easy to miss that dark heading
+		and the text is illegible
+		but it is there :-)
+
+	artifact uploaded: live_backing.log
+
+		artifact uploaded: live.log
+ ***==>	artifact uploaded: mozjs-85.0.0.tar.xz
+		artifact uploaded: libmozjs-85.so
+		artifact uploaded: jsapi-tests
+		artifact uploaded: js-gdb.py
+		artifact uploaded: js
+
+	click on the xz tarball to download it
+
+		wait for 67 MB -93.0.0
+
+# extract 
+
+	tar -C /home/gps/YEAR/src_build/JS/ -Jxvf mozjs-85.0.1.tar.zx
+	tar -C /home/gps/G/src_build/ -Jxvf mozjs-85.0.0.tar.xz
+
+# dependencies
+
+	rust
+
+# build
+
+	cd TOP
+	cd /home/gps/G/src_build_G/mozjs-85.0.0
+	mkdir js/src/obj
+	cd js/src/obj
+	../configure --prefix=$HOME/G/prefix --enable-debug
+	make -j4 
+	make     install
+
+	# 1531 seconds = 25 minutes
+
+# error
+
+	#include "js/RequiredDefines.h"
+
+	? --enable-debug ?
+
+
+# pkgconfig - edit version
+
+	libs_apps/lib_pkgconfig/LGX/libs_apps_mozjs.pc
+
+# prefix
+
+	maybe move back to ~/G/prefix
+	because everything is version numbered
+	include, lib, bin,
+	just edit libs_apps_mozjs.pc
+# FIX
+	ProfilingCategoryList.h
+
+src_build/mozjs-93.0.0/js/src/OBJ_gps/mozglue/baseprofiler/public/
+prefix/include/mozjs-93/js/
+
+
+
+
+
+

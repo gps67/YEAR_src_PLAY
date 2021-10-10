@@ -1,0 +1,17 @@
+2021-10-05 Oct Tue 20:17 # 51 #  tcl_embed/tcl_embed.txt
+
+ Tcl_Main.3
+
+ 	All in one, one-stop-shop, from main() to running app
+
+	Tcl_SetStartupScript - changes how init happens
+
+ Hash Table Item 
+
+ 	has ClientData ...
+
+	so NAME => DATA + TclObj ??
+
+
+
+

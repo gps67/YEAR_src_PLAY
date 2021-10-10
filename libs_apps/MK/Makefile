@@ -293,6 +293,11 @@ endif
 	# there is only spider monkey
 	# anything else is a completely different api
 	#
+	# seems can build multiple versions into same prefix
+	# as they have prefix/include/mozjs-78 # ditto bin
+	# but you MUST edit pkgconfig to pick 78 or 93
+	# also -DDEBUG might matter
+
 		WITH_JS_SM=1
 	#	WITH_JS_SM=0
 

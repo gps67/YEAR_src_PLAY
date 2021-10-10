@@ -394,7 +394,7 @@ int SITE_X509_layout:: CA_depth(  SITE_X509_tag_enum tag )
 	case is_CA_item:
 
 		FAIL("tag not supported");
-		return 0;
+		return 1;
 
 /*
 	case is_CA_server:	return 1;

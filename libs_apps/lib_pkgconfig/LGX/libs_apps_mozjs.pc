@@ -10,7 +10,12 @@ Version: 0.2.67
 
 # Requires: mozjs-67
 # Requires: mozjs-78
-Requires: 
-Cflags:
+Requires: mozjs-93
+# Requires: 
+
+# yes this is included
+# Cflags: -DMOZ_JS_93
+Cflags: -DMOZ_JS_XX
+# Cflags:
 Libs:
 

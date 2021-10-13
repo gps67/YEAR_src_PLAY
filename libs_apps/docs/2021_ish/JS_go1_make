@@ -1,0 +1,11 @@
+(
+ echo
+ date
+ echo
+ make -j4 "${@}" && \
+ make     "install"
+ date
+ echo "# exit code $? # SECONDS $SECONDS"
+ echo
+)2>&2 | tee -a $0.log.txt
+

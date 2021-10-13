@@ -23,22 +23,22 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
    PAIR( 0x0A, "LF" )
    PAIR( 0x0C, "FF" )
    PAIR( 0x1C, "ESC" )
-   PAIR( 0x20, "SP" ) // alias SPACE
-
-   PAIR( 0x21, "NOT" ) // aliad bang shriek not exclamation
-   PAIR( 0x22, "Q2" ) // 
-   PAIR( 0x23, "HASH" ) // 
-   PAIR( 0x24, "DOLLAR" ) // 
-   PAIR( 0x25, "PERCENT" ) // 
-   PAIR( 0x26, "AMP" ) // alias ampersand
-   PAIR( 0x27, "Q1" ) // 
-   PAIR( 0x28, "L_PAR" ) // alias PAR_L PARENTHESIS_LEFT LPAR
-   PAIR( 0x29, "PAR_R" ) // alias PARR // allow _ in sublex
-   PAIR( 0x2A, "STAR" ) // alias "ASTERISK"; // 
-   PAIR( 0x2C, "COMMA" ) // 
-   PAIR( 0x2D, "MINUS" ) // alias DASH
-   PAIR( 0x2E, "DOT" ) // 
-   PAIR( 0x2F, "SLASH" ) // 
+   PAIR( 0x20, "SP" )		// alias SPACE
+   // SP is both CTRL and GLYPH
+   PAIR( 0x21, "NOT" )		// aliad bang shriek not exclamation
+   PAIR( 0x22, "Q2" )		// 
+   PAIR( 0x23, "HASH" )		// 
+   PAIR( 0x24, "DOLLAR" )	// 
+   PAIR( 0x25, "PERCENT" )	// 
+   PAIR( 0x26, "AMP" )		// alias ampersand
+   PAIR( 0x27, "Q1" ) 		// 
+   PAIR( 0x28, "L_PAR" )	// alias PAR_L PARENTHESIS_LEFT LPAR
+   PAIR( 0x29, "PAR_R" )	// alias PARR // allow _ in sublex
+   PAIR( 0x2A, "STAR" )		// alias "ASTERISK"; // 
+   PAIR( 0x2C, "COMMA" )	// 
+   PAIR( 0x2D, "MINUS" )	// alias DASH
+   PAIR( 0x2E, "DOT" )		// 
+   PAIR( 0x2F, "SLASH" )	// 
 
 #if 0
    PAIR( 0x30, "ZERO" ) // 
@@ -55,7 +55,7 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 
 #if 0
    PAIR( 0x41, "UPPER_A" ) // 
-   PAIR( 0x5A, "UPPER_Z" ) // DIGIT_NINE
+   PAIR( 0x5A, "UPPER_Z" ) // LETTER Z
 #endif
 
    PAIR( 0x5B, "L_SQUARE" ) // L_SQUARE_R SQUARE_BRACKET_LEFT BRACKET_LEFT 
@@ -68,7 +68,7 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 
 #if 0
    PAIR( 0x61, "LOWER_a" ) // aliases ...
-   PAIR( 0x7A, "LOWER_z" ) // aliases ...
+   PAIR( 0x7A, "LOWER_z" ) // LETTER z ...
 #endif
 
    PAIR( 0x7B, "L_CURLY" ) // aliases ...

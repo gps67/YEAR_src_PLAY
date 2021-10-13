@@ -1,0 +1,8 @@
+../configure \
+    --prefix=$HOME/G/prefix \
+    --disable-jemalloc \
+    --with-system-zlib \
+    --with-intl-api \
+    --enable-debug \
+    --enable-optimize
+

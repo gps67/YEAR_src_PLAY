@@ -298,8 +298,8 @@ endif
 	# but you MUST edit pkgconfig to pick 78 or 93
 	# also -DDEBUG might matter
 
-		WITH_JS_SM=1
-	#	WITH_JS_SM=0
+	#	WITH_JS_SM=1
+		WITH_JS_SM=0
 
 	# WITH_JS is now unused, use WITH_JS_SM
 		WITH_JS=0

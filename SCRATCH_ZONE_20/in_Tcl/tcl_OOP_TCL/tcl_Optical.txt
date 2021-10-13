@@ -1,0 +1,135 @@
+2021-10-03 Oct Sun 09:26 # 51 #  tcl_Optical/tcl_Optical.txt
+
+ClientData means PTR
+
+	Item_t * item_ptr = new Item_t( ARGS_ETC);
+	clientData = (ClientData) item_ptr;
+
+//	Then later on - if you are CERTAIN of the type
+	Item_t * item_ptr = (Item_t *) clientData;
+
+Every Single Tcl_Cmd has a CLientData
+
+	This enable you to merge an object and a function.
+
+	When you create the function 
+	When you register the command
+		Tcl_CreateCommand( ... )
+	You attach a ClientData to it.
+	The TCL script cant directly access that (unless you help it),
+	but every call of that command, gets that same ClientData
+
+	When you delete the command, a callback is made for you to delete the data.
+	When your code deltes it's own object, you should delete the function,
+	and or replace the stored value (PTR).
+
+	That sort of makes a COMMAND more of a NOUN than a VERB.
+	EG in tk, { set $c [canvas .c] } you then say { .c create image $x $y ... }
+	note how the first parameter makes the CALL a bit more VERB-like,
+	or if a data item is returned, the new NOUN-like [ .c bbox $c_item ]
+
+	Even if you dont use ClientData, you have one (a NULL one).
+	so you are paying the cost for it, to be stored, to be provided, etc.
+
+A Few DATA items or lots of DATA items
+
+	If you have 10,000 leaves of a tree, you dont want to create a function for each item.
+	If each leaf needs to be a C object, you could put them in an array, and each TCL_leaf
+	is the integer [idx] of where the leaf is stored.
+
+	If you have 3 socket connections { sock_client sock_db_server sock_device }
+	then it might make sense, to convert them to commands.
+
+	If you have one big subsystem, and it has global C variables, but you want them as a PTR,
+	then it makes a lot of sense to create one function, that is the subsystem, and attach the PTR.
+	This may help dynamic-linked DLL's which struggle to find absolute addresses, of the module.
+	Resolving it once and for all into a PTR may be a small speed up for you. 
+
+So a command is a NOUN or a VERB
+
+	You can name a function anything,
+	but it might be verb-like or noun-like eg
+
+	VERB is the best way of naming a function, GET SET OPEN CLOSE are all verbs,
+	but NOUN can also make sense, particularly when it returns an object
+
+	Commands take ARGS and Tcl makes good use of parameter_is_the_verb,
+	and also of paraneter is the returned noun. Just beware of yoda talk.
+
+	but $ITEM get_NOUN_of $ARGS
+
+		canvas .c ;# .c is a thing, it is a canvas widget # tk function
+
+One alternative
+
+	TYPENAME $obj_id OCOPDE A R G S
+
+	so TYPENAME (possibly namespace::TYPENAME) is a command
+	(possibly scripted), that can lookup $obj_id to find $OBJ_VALS.
+
+	Doing it all in TCL is convoluted, but the top call is the same,
+	and doing it in C is more natural.
+
+	Then you can do exactly the same, but now $obj_id is a key,
+	and SOMETIMES the actual value. If so there is no lookup.
+
+tcl_main -or- module
+
+	tcl has a lot of shell components, as does our app
+
+		on_event loop
+		signal handlers
+		thread
+	
+	so maybe let Tcl do it's thing,
+	and we only add a thin layer where necessary
+
+PHRASES
+
+	OBJ $obj SET fieldname	;# old school 
+	OBJ $obj SET fieldname value
+	OBJ $obj GET fieldname 
+	OBJ $obj CALL methodname A R G S
+	OBJ $obj CALL methodname { A R G S } ;# option but must choose early
+	NEW TYPENAME A R G S ;# or obtain from CXX modules activity
+	TYPENAME $obj OPCODE ... ;# OPCODE is any of these phrase structures
+	TYPENAME $obj funcname ;# allow varname funcname etc ?
+	TYPENAME $obj SET fieldname value
+	TYPENAME $obj CALL func_name A R G S
+	TYPENAME $obj CALL_WITH_ARGV func_name { A R G S }
+	TYPENAME $obj CALL_ARGV { func_name  A R G S }
+	CALL_ARGV { $obj func_name  A R G S }
+	CALL_ARGV { func_name  $obj A R G S }
+
+	OPTION $obj is ARGV[1]
+	OPTION func_name is ARGV[1]
+
+OBJ $obj
+
+	fixed names "db_link_one"
+	alloc names "db_link_%2.2d" idx
+
+	name can be copied then recover the copy
+	name can be converted to hidden obj
+
+	func_name is also a candidate for conv to TOKENISED_SYMBOL_HASHED_KEY
+	so "fieldname" and "func_name"
+	 are Strings are TOKENS
+	 are active in the lookup
+	 are ACCESSOR
+
+
+
+LOOKUP field in SPEC
+LOOKUP SPEC in field accesor
+
+	LOOKUP SPEC in field accessor
+
+		accessor was SCRIPTS "string" hijacked
+		PURPOSE_A PAIRS { SPEC1 action1 } { SPEC2 action2 }
+		PURPOSE_B PAIRS { SPEC1 action1 } { SPEC2 action2 }
+	
+	UPGRADE "string" to ACCESSOR
+
+		type was NULL
+

@@ -1,4 +1,8 @@
 
+	JS_SM as a module outside
+	sar_data - need mem_store_db that is not POST
+
+
 	GLIB - g_rrr g_print select_says 
 	ERRR - multi module sources
 	fd_VTBL - switch with-out glib

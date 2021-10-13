@@ -2,6 +2,9 @@
 to obtain mozjs
 need to ask it's automation
 
+PLAN-B-2
+	https://ftp.mozilla.org/pub/firefox/releases/93.0/source/
+
 https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonkey-sm-package
 
 	That displays rows of things (version change ids)

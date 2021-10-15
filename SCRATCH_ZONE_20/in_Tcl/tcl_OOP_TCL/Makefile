@@ -17,6 +17,7 @@
 	Module_objs += OBJ_decoder.o
 	Module_objs += TCL_PTR_t.o
 	Module_objs += TCL_LIST_t.o
+	Module_objs += TCL_HELP.o
 
 # // edit any .h // recompile everything
 
@@ -24,6 +25,7 @@
 	Module_hdrs += OBJ_decoder.h
 	Module_hdrs += TCL_PTR_t.h
 	Module_hdrs += TCL_LIST_t.h
+	Module_hdrs += TCL_HELP.h
 
 .SUFFIXES: .o .cxx .so .exec .h
 

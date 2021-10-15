@@ -1,0 +1,47 @@
+
+	static
+	MATCHER
+	"GET"
+
+	INIT_SELF on first use
+
+	INIT_STR on first match
+
+	MATCHER keeps WORD // PTR //
+
+		if( WORD == KEPT_WORD_MATCH_1 ) return true;
+		if( WORD == KEPT_WORD_MATCH_2 ) return true;
+		// incr hit count
+
+
+		if( WORD == KEPT_WORD_NOMATCH_1 ) return true;
+		if( WORD == KEPT_WORD_NOMATCH_2 ) return true;
+		// incr hit count
+
+	DO string match
+
+	MATCH
+
+		add to KEPT LIST
+
+	NOMATCH
+	
+		add to KEPT LIST
+	
+
+	What if lots of same spelling different OBJ appear?
+
+	ON FULL
+	Clear out recount == 1 // unused elsewhere
+	sort by count ?
+	sort by addr ? // faster stop
+
+	SINGLE MATCH - not MULTI GET SET CALL 
+
+		PTR+ from calling script
+		PTR+ from SPELLING_POOL if you want it
+		INT_TOKEN_VAL
+
+
+	
+

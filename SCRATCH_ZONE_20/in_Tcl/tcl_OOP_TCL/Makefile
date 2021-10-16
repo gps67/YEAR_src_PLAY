@@ -18,6 +18,8 @@
 	Module_objs += TCL_PTR_t.o
 	Module_objs += TCL_LIST_t.o
 	Module_objs += TCL_HELP.o
+	Module_objs += TCL_HASH.o
+	Module_objs += TCL_DICT.o
 
 # // edit any .h // recompile everything
 
@@ -26,6 +28,8 @@
 	Module_hdrs += TCL_PTR_t.h
 	Module_hdrs += TCL_LIST_t.h
 	Module_hdrs += TCL_HELP.h
+	Module_hdrs += TCL_HASH.h
+	Module_hdrs += TCL_DICT.h
 
 .SUFFIXES: .o .cxx .so .exec .h
 

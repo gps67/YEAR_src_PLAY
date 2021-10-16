@@ -3,7 +3,7 @@
 
 #include "TCL_PTR_t.h"
 
-#define GET_STRING(objPtr) \
+#define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
 
 struct TCL_LIST_t
@@ -65,7 +65,7 @@ struct TCL_LIST_t
 		// now do the Incr(newval) and Decr(oldval)
 		RET_VAR = RET_VAL;
 
-		fprintf(stderr,"GET [%d] == '%s'\n", index, GET_STRING( RET_VAL) );
+		fprintf(stderr,"GET [%d] == '%s'\n", index, Tcl_GetString( RET_VAL) );
 		return true;
 	}
 
@@ -77,7 +77,7 @@ struct TCL_LIST_t
 
 	bool SET( Tcl_Interp * interp, int index, Tcl_Obj * VAL )
 	{
-		const char * str = GET_STRING( VAL );
+		const char * str = Tcl_GetString( VAL );
 		fprintf(stderr,"SET [%d] = %s \n", index, str );
 		int objc = 1;
 		Tcl_Obj * objv[1] = { VAL };
@@ -138,7 +138,7 @@ struct TCL_LIST_t
 	*/
 		}
 		
-		fprintf(stderr,"ADD pos == %d '%s' \n", *intPtr, GET_STRING(VAL));
+		fprintf(stderr,"ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
 		return true;
 	}
 

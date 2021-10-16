@@ -42,6 +42,81 @@
 		PTR+ from SPELLING_POOL if you want it
 		INT_TOKEN_VAL
 
+ CAST IRON TYPE
+
+ 	OBJ -> bytes == "idx_of_obj_for_BIND"
+	OBJ -> TYPE == "holder_of_a_PTR_to_opaque_C_type" // openssl X509 
+	INT1 == BITFIELD{ u8_spec u24_unused }
+	PTR2 ==> OPEN_SSL_REF_COUNTED_X509 // ASSIST REF_COUNT_FN_PAIR
+
+ CAST IRON TYPE
+
+ 	OBJ -> bytes == "idx_of_obj_for_BIND"
+	OBJ -> TYPE == "holder_of_a_PTR_to_opaque_C_type" // openssl X509 
+
+	INT1 == BITFIELD{ u8_spec u24_unused }
+	PTR2 ==> LIBR_PHRASE_IN_WRAPPED_FORMAT // ASSIST REF_COUNT_FN_PAIR
+
+ SPEC = SPECS[u8]
+
+ 	CXX built Tcl_Obj from X509
+	CXX gets same item back
+	CXX checks type of PTR2
+	CXX provides pair of REF_INCR REF_DECR functions (INCR done)
+	
+	SPEC.GENRE is PTR_to_nearly_OPAQUE // SPEC must know type
+	SPEC.GENRE is PTR_to_virtual_CXX_ROOT_ONE // VTBL has more info
+	SPEC_GENRE is BITFIELD u32 + u24
+	SPEC.GENRE is 
+
+	if # classes exceeds 256 need a second TYPE or a second PAGE
+
+ TYPE SYMBOL
+ TYPE SYMBOL_ALIAS
+
+ 	probably SPELLING maybe ALIAS
+
+	found as TYPE_was_NULL upgraded in-situ to SYMBOL or _ALIAS
+
+	ALMOST ALWAYS - Tcl uses a SPELLING POOL
+
+		(( LINK HERE ))
+
+	But one SYMBOL might have multi bindings, even in same func
+
+		MATCH LOCN "GET" --flag variation
+	
+		if STRING is already TOKENISED
+		if KEPT TOKEN # _ONE _TWO # _REPORT 
+		exact PTR match
+
+		keep a list of ALIASES 
+		keep a list of COMMON OTHERS # top 20 list # grow
+
+
+
+LITERAL
+	TclRegisterLiteral
+	tclLiteral.c
+
+	TclCreateLiteral
+
+	CompileEnv has a object array 
+
+	maybe need later when creating own TOKEN strings
+	or simply create a list, eval, pick of results
+
+	return OBJ # but from within SCRIPT or EVAL
+
+		set AVAR "The Value" 
+
+		returns The\sValue
+
+
+
+
+
+
 
 	
 

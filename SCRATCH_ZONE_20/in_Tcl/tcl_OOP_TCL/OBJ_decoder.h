@@ -4,6 +4,8 @@
 // #include <tcl.h> // done by TCL_PTR_t.h
 #include "TCL_PTR_t.h"
 #include "TCL_LIST_t.h"
+#include "TCL_DICT.h"
+#include "TCL_HASH.h"
 
 
 #if 0
@@ -49,9 +51,13 @@ class OBJ_MODULE // actually any kind of module
 class OBJ_decoder
 {
 	TCL_LIST_t list;
+	TCL_DICT dict;
+	TCL_HASH hash;
  public:
  	OBJ_decoder( Tcl_Interp * interp )
-	:list( interp )
+	: list( interp )
+	, dict( interp )
+	, hash( interp )
 	{
 	}
  	~OBJ_decoder()
@@ -59,6 +65,8 @@ class OBJ_decoder
 	}
 	bool test( Tcl_Interp * interp )
 	{
+		return hash.test(interp);
+		return dict.test(interp);
 		return list.test(interp);
 	}
 

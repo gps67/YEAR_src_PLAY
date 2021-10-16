@@ -4,6 +4,7 @@
 #include <tcl.h>
 
 struct TCL_PTR_t {
+
 	Tcl_Obj * PTR;
 
 	TCL_PTR_t ()
@@ -28,6 +29,11 @@ struct TCL_PTR_t {
 	operator Tcl_Obj * ()
 	{
 		return PTR;
+	}
+
+	operator Tcl_Obj ** ()
+	{
+		return & PTR;
 	}
 
 	operator bool()

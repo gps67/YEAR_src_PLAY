@@ -14,6 +14,7 @@
 
 CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
   {
+  	if( decoder->test(interp) ) return TCL_OK;
 
 	fprintf(stderr, "OBJ objc == %d \n", objc );
 
@@ -32,9 +33,16 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	Tcl_Obj * obj_id = objv[1];
 	Tcl_Obj * cmd = objv[2];
 
-	print_tcl_obj( cmd );
 #if 0
-	GET_STRING(cmd);
+	print_tcl_obj( objv[0] );
+	print_tcl_obj( cmd );
+
+	// look at refCount and at pointer address
+	Tcl_Obj * obj_GET = mk_common_spelling(interp, "GET");
+	print_tcl_obj( obj_GET );
+#endif
+#if 0
+	Tcl_GetString(cmd);
 	print_tcl_obj( cmd );
 #endif
 

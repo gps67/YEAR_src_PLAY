@@ -1,16 +1,17 @@
 #include "TCL_DICT.h"
 #include "TCL_HELP.h" // needs <tcl.h>
+#include "TCL_LIST.h"
 
 	bool TCL_DICT:: test(  Tcl_Interp * interp )
 	{
 		int pos;
-		TCL_PTR_t k1;
-		TCL_PTR_t k2;
-		TCL_PTR_t k3;
-		TCL_PTR_t v1;
-		TCL_PTR_t v2;
-		TCL_PTR_t v3;
-		TCL_PTR_t val;
+		TCL_PTR k1;
+		TCL_PTR k2;
+		TCL_PTR k3;
+		TCL_PTR v1;
+		TCL_PTR v2;
+		TCL_PTR v3;
+		TCL_PTR val;
 
 		k1 = Tcl_NewStringObj( "k1", -1 ); // 
 		v1 = Tcl_NewStringObj( "one", -1 ); //
@@ -36,3 +37,9 @@
 
 		return true;
 	}
+
+	bool TCL_DICT:: array_get( Tcl_Interp * interp, TCL_LIST & LIST )
+	{
+		return false;
+	}
+

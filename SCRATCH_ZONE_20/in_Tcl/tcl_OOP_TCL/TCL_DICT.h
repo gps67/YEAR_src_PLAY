@@ -3,12 +3,13 @@
 
 // INITIAL setup need convert from LIST to DICT
 
-#include "TCL_PTR_t.h"
+#include "TCL_STUBS.h"
+#include "TCL_PTR.h"
 #include "TCL_HELP.h"
 
 struct TCL_DICT
 {
-	TCL_PTR_t dict;
+	TCL_PTR dict;
 
 		// cast to ret type; // == dict.PTR
 		Tcl_Obj * dictPtr() { return dict; }
@@ -23,7 +24,7 @@ struct TCL_DICT
 	{
 	}
 
-	bool GET( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR_t & RET_VAR )
+	bool GET( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR & RET_VAR )
 	{
 		Tcl_Obj * RET_VAL = NULL;
 		if(TCL_OK !=
@@ -48,7 +49,7 @@ struct TCL_DICT
 	}
 
 	// we dont need a smart PTR as the ARG, and auto cast works
-	bool SET_( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR_t & VAL )
+	bool SET_( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR & VAL )
 	{
 		return SET( interp, keyPtr, (Tcl_Obj *) VAL );
 	}
@@ -78,12 +79,11 @@ struct TCL_DICT
 
 	bool N( Tcl_Interp * interp, int * intPtr )
 	{
-		if(TCL_OK!=Tcl_ListObjLength( interp, dictPtr(), intPtr )) {
-			fprintf(stderr,"ADD fail Tcl_ListObjLength\n");
-			return false;
-		}
-		return true;
+	 return TCL_OK ==
+		Tcl_DictObjSize( interp, dictPtr(), intPtr );
 	}
+
+	bool array_get( Tcl_Interp * interp, TCL_LIST & LIST );
 
 	bool test(  Tcl_Interp * interp );
 

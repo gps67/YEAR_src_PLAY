@@ -1,35 +1,35 @@
-#ifndef TCL_LIST_t_H
-#define TCL_LIST_t_H
+#ifndef TCL_LIST_H
+#define TCL_LIST_H
 
-#include "TCL_PTR_t.h"
+#include "TCL_PTR.h"
 
 #define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
 
-struct TCL_LIST_t
+struct TCL_LIST
 {
-	TCL_PTR_t list;
+	TCL_PTR list;
 
 		// cast to ret type; // == list.PTR
 		Tcl_Obj * listPtr() { return list; }
 
-	TCL_LIST_t( Tcl_Interp * _interp )
+	TCL_LIST( Tcl_Interp * _interp )
 	: list()
 	{
 		list = Tcl_NewListObj( 0, NULL );
 	}
 
-	~TCL_LIST_t()
+	~TCL_LIST()
 	{
 	}
 
-	bool GET( Tcl_Interp * interp, int index, TCL_PTR_t & RET_VAR )
+	bool GET( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
 	{
 		if(!RET_VAR) {
 			throw "NULL RET_VAR"; // 
 			return false;
 		}
-		// TCL_PTR_t is not understood by Tcl_List* so use plain RET_VAL
+		// TCL_PTR is not understood by Tcl_List* so use plain RET_VAL
 		Tcl_Obj * RET_VAL = NULL;
 		if(TCL_OK !=
 		 Tcl_ListObjIndex(
@@ -70,7 +70,7 @@ struct TCL_LIST_t
 	}
 
 	// we dont need a smart PTR as the ARG, and auto cast works
-	bool SET_( Tcl_Interp * interp, int index, TCL_PTR_t & VAL )
+	bool SET_( Tcl_Interp * interp, int index, TCL_PTR & VAL )
 	{
 		return SET( interp, index, (Tcl_Obj *) VAL );
 	}

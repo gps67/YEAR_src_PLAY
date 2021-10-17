@@ -1,6 +1,6 @@
-#include "TCL_PTR_t.h"
+#include "TCL_PTR.h"
 
-	TCL_PTR_t:: operator const char * ()
+	TCL_PTR:: operator const char * ()
 	{
 		if(PTR) {
 			int len; // dropped

@@ -1,9 +1,9 @@
-#include "TCL_LIST_t.h"
+#include "TCL_LIST.h"
 
-	bool TCL_LIST_t:: test(  Tcl_Interp * interp )
+	bool TCL_LIST:: test(  Tcl_Interp * interp )
 	{
 		int pos;
-		TCL_PTR_t val;
+		TCL_PTR val;
 
 		val = Tcl_NewStringObj( "one", 3 ); // auto IncrRef
 		ADD( interp, &pos, val );

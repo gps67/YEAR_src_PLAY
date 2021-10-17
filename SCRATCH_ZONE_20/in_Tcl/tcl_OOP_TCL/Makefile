@@ -15,8 +15,8 @@
 	Module=tcl_oop_tcl
 	Module_objs += $(Module).o 
 	Module_objs += OBJ_decoder.o
-	Module_objs += TCL_PTR_t.o
-	Module_objs += TCL_LIST_t.o
+	Module_objs += TCL_PTR.o
+	Module_objs += TCL_LIST.o
 	Module_objs += TCL_HELP.o
 	Module_objs += TCL_HASH.o
 	Module_objs += TCL_DICT.o
@@ -25,8 +25,8 @@
 
 	Module_hdrs += $(Module).h
 	Module_hdrs += OBJ_decoder.h
-	Module_hdrs += TCL_PTR_t.h
-	Module_hdrs += TCL_LIST_t.h
+	Module_hdrs += TCL_PTR.h
+	Module_hdrs += TCL_LIST.h
 	Module_hdrs += TCL_HELP.h
 	Module_hdrs += TCL_HASH.h
 	Module_hdrs += TCL_DICT.h

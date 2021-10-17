@@ -3,23 +3,23 @@
 
 #include <tcl.h>
 
-struct TCL_PTR_t {
+struct TCL_PTR {
 
 	Tcl_Obj * PTR;
 
-	TCL_PTR_t ()
+	TCL_PTR ()
 	: PTR( NULL )
 	{
 	}
 
-	TCL_PTR_t ( Tcl_Obj * ptr )
+	TCL_PTR ( Tcl_Obj * ptr )
 	: PTR( ptr )
 	{
 		if(PTR) 
 			Tcl_IncrRefCount( PTR );
 	}
 
-	~TCL_PTR_t ()
+	~TCL_PTR ()
 	{
 		if(PTR) 
 			Tcl_DecrRefCount( PTR );
@@ -41,7 +41,7 @@ struct TCL_PTR_t {
 		return PTR; // (PTR != NULL)
 	}
 
-	TCL_PTR_t & operator= ( Tcl_Obj * ptr )
+	TCL_PTR & operator= ( Tcl_Obj * ptr )
 	{
 		if(ptr) 
 			Tcl_IncrRefCount( ptr );

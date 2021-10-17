@@ -1,4 +1,4 @@
-#include "TCL_PTR_t.h"
+#include "TCL_PTR.h"
 #include "TCL_HASH.h"
 #include "TCL_HELP.h" // needs <tcl.h>
 

@@ -52,12 +52,12 @@ class OBJ_decoder
 {
 	TCL_LIST_t list;
 	TCL_DICT dict;
-	TCL_HASH hash;
+//	TCL_HASH hash;
  public:
  	OBJ_decoder( Tcl_Interp * interp )
 	: list( interp )
 	, dict( interp )
-	, hash( interp )
+//	, hash( interp )
 	{
 	}
  	~OBJ_decoder()
@@ -65,7 +65,7 @@ class OBJ_decoder
 	}
 	bool test( Tcl_Interp * interp )
 	{
-		return hash.test(interp);
+//		return hash.test(interp);
 		return dict.test(interp);
 		return list.test(interp);
 	}

@@ -40,6 +40,62 @@
 
 	bool TCL_DICT:: array_get( Tcl_Interp * interp, TCL_LIST & LIST )
 	{
-		return false;
+		Tcl_DictSearch search;
+		Tcl_Obj * KEY;
+		Tcl_Obj * VAL;
+		int done;
+		
+		int t = TCL_OK;
+		t = Tcl_DictObjFirst(interp,
+			  dictPtr(),
+			& search,
+                        & KEY,
+			& VAL,
+			& done
+		);
+		if(t != TCL_OK ) {
+			return false;
+		}
+		while(!done) {
+			int forget_pos;
+			LIST.ADD( interp, &forget_pos, KEY );
+			LIST.ADD( interp, &forget_pos, VAL );
+			Tcl_DictObjNext(&search, &KEY, &VAL, &done );
+		}
+		Tcl_DictObjDone(&search); // release lock
+		return true;
+	}
+
+	bool TCL_DICT:: array_set( Tcl_Interp * interp, Tcl_Obj * list )
+	{
+		int pos = 0;
+		int N = 0;
+		if(TCL_OK!= Tcl_ListObjLength(interp, list, &N )) {
+			return false;
+		}
+		if( (N%2) ) {
+			Tcl_AppendResult( interp,
+			"MUST BE EVEN NUMBER k1 v1 j2 v2",
+			NULL
+			);
+			return false;
+		}
+
+		Tcl_Obj * KEY = NULL;
+		Tcl_Obj * VAL = NULL;
+		while( pos < N ) {
+		 if(TCL_OK != Tcl_ListObjIndex(interp, list, pos, &KEY )) {
+			return false;
+		 }
+		 pos ++;
+		 if(TCL_OK != Tcl_ListObjIndex(interp, list, pos, &VAL )) {
+			return false;
+		 }
+		 pos ++;
+		 SET( interp, KEY, VAL );
+
+		}
+
+		return true;
 	}
 

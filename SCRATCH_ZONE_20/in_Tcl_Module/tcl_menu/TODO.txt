@@ -1,0 +1,207 @@
+Parse( "SP_LEX_EDGE")
+
+	wm bring_to_front $w2
+
+		if not already started " $w2 " // DIALECT $VAR // DIALECT VAR
+		 static VAR wm2 = NULL;
+
+		 code
+		 if( !wm2 ) {
+		 	wm2 = call_func_argv // CALL = RET_VAL_t & RET_VAL = EVAL
+			wm2 = mk_w2
+		 }
+
+	ALIAS
+	 wm PARSE("VAR "VARNAME") // type known VARNAME_t // SWITCHABLE MACRO
+
+	SYNTAX
+	use_example_values
+	use_demo_values
+
+	VIEW { EDIT_FRAME FILTER_INVIS between { SYNTAX } and item {" use demo values ")
+	PARSE lhs SP Q2 
+	PARSE ("Q2") # APPLY name is TYPE_t Q2; // Q2 == "Q2" // Q2 == " Q2 " //
+	MATCH IMPLIED Q2 = "q2"
+	MATCH IMPLIED idx_Q2 = "q2.idx" // EA("Q2") // Lex no_need_for_Q2 SP_q2
+	MATCH VAR Q2 = Parsed("\"") // ALIAS "Q2" PARSE _as_lex_in_Q2
+
+DEMO("Q2)
+
+	LEX_parse(" wm2 ")
+
+		VAR CSR = PARSE_CSR // "csr_stdin" // 
+		VAR CSR += SESSION.wm_vars // "SCRIPT API += VARS"
+		VARS,API = Module(" VARS "); // as_if_parsed_as_lex
+	
+	LEX_match(" w2_man_page_list ") // PARSE_LEX_
+
+		MATCH LEX_in("w2") // ALIAS {"q2"} // RENAMED API var_name item_name
+		MATCH Menu_Name Q2 // STO POS sort_pos 
+
+	MENU "Q2" // SWITCH Q2_%s list_files_man_page_troff
+
+	MENU_ITEM BUTTON == WINDOW " %s " // Q2_%s "q2_list_panel"
+
+	LIST_PANEL "q2_%s list_panel" // PRE_PARSED text TEMPLATE "uses %s" 
+	" %s " // SELF_PARSER_MATCHES_SP_STAR // incl NONE // incl "anystr"
+
+	LEX_parse_ _LEX_EXPR_ // NB EDGE { EDGE_L SP_TAB_CMNT_STAR EDGE_R
+	LEX_ALIAS EDGE_L += " L " //
+
+	PARSE { SP LEX_ITEM_is_a_NAME_or_ALIAS SP Q2 // OPTIONAL CMNT }
+
+PARSE("SP_TAB_CMNT _PARSE_LEX_") lsh == "expr_that_returns_" "SP_TAB_CMNT"
+PARSE("SP_TAB_CMNT _PARSE_LEX_")
+
+	lsh == "expr_that_returns_" "SP_TAB_CMNT"
+	rhs == "expr_that_returns_" "API_SUBLEX"
+	GEN OPTION "%s_%s" FILTER that _ is dropped if prev already is "_"
+	GEN OPTION "%s%s" FILTER that adds CMNT // %s%s%s lhs "_" rhs // CMNT
+	GEN_OPTION "{ %s lhs %s "_" %s rhs }" 
+	GEN_OPTION "{ %s %s %s lhs "_" rhs }" // PARSE STYLE
+	PARSE MATCH Q2 { A_P_I_ lhs } { %s lhs } VAR_BIND _to_NAME 
+	FILTERS += IMPLIES IMPL_infer // infer_implies // 
+
+TODO
+
+	w1.MENU_Q2 // to the right of Edit before Misc
+
+	That raises our MENU_w2 panel
+
+	 if already exists: 
+	 	wm raise "name_for_wm('w2')" // TYPE_CAST (LEX_NAME_%s) 
+			AUTO SPELL
+			LEX_NAME_%s "w2" // LEX_OUT == LEX_IN == { LEX_NAME %s }
+	BENCH DIALECT SAYS DATA = { LEX_parse_varname %s found }"
+	BENCH DIALECT SAYS "eliminate" // like staircase floaters
+	BENCH DIALECT SAYS MATCH "{ %s }" // eg { SCRIPT }
+
+	w2_PANEL
+
+		API OUTSIDE += top_level_api // main_window // -vs- popup
+		API_PANEL += LIST_of_PANEL_LINES += API_text_layout
+		API_STREAM += buffers of 4K api of ALLOC INIT RUN
+		API_EXPRS += PARSE("/* { SCRIPT } */");
+		// PARSED lhs "{ /* { SCRIPT } */ ); } "
+		// PARSED lhs     " { SCRIPT } "
+		// PARSED lhs "{ /* { SCRIPT } */ ); } "
+		// PARSED lhs "{ /* { SCRIPT } */ ); } "
+		// PARSED lhs "{ %s }" SCRIPT
+		// AUTOGEN local item "SCRIPT"{ SCRIPT %s }" // DIALECT TEMPLATE
+		// AUTOGEN offers LIST of available MACROS // EACH in VIEW
+		// VIEW SP %s SP /* SP only there to mark LEX EDGE around %s
+
+ BENCH
+ 	w2_PANEL
+
+		MENU // build it function "dir/file.tcl" 
+		// OK { auto_mkindex . *.tcl } //
+		// RT // source dir/tclIndex // long list of
+	set auto_index(FUNC_NAME) [
+		list source [
+			file join $dir %s.tcl $file // mixed metaphor fuller view
+			// that language required all at runtime incl CT OPTIONS
+			file join $dir $file // ../DIRNAME/%s.tcl
+			// build custom TEMPLATE for DIALECT DEFAULT VALUES
+			// ../DIRNAME/%s.tcl // 
+			// ../%s/%s DIRNAME %s
+			// %s fns_LIBR_FILE // .tcl auto added parsed //
+			// parse /* even though */ .tcl absent, is this STYLE
+			// ABSENT .tcl IMPLIES LAYOUT_VIEW_STYLE_no_dot_tcl
+/* DREAM WORLD 
+// ABSENT .tcl
+ IMPLIES
+  LAYOUT_VIEW_STYLE	"%s" SUBLEX demands lexname is valid_varname
+   _no_dot_tcl		"%s.tcl" ABSENT 
+   _got_dot_tcl		"%s.tcl" PRE_ADDED_SO_DONE // PARSED OUT TOO
+	
+*/
+
+		]
+	]
+[
+	GEN THIS:
+		{ source ../DIRNAME/FILE.tcl }
+	WITH THIS SCRIPT DATA // FUTURE DATA BINDINGS compile NOW for THEN
+
+		list source [ file join $dir $file ]
+		LIST2 lhs rhs // CMNT available as derive subclass add field
+	
+	GEN THIS: (LINES OF file1)
+set auto_index($func_names) [list source [file join $dir $file.tcl]]
+set auto_index(%s) [list source [file join %s %s.tcl]]
+set auto_index(%s) [list source [file join %s %s]] func_name dir file // .tcl added
+set auto_index(%s) [list source [file join %s %s]] func_name dir file // .tcl already there
+
+	GEN dir / filename funcname 
+	GEN dir / filename funcname 
+	GEN dir / filename funcname 
+
+	GEN funcname  dir / filename
+	GEN funcname  dir / filename
+	GEN funcname  dir / filename
+
+	Comedy
+	BHM
+	Turtle casement
+	7:30 - 9-30
+
+	+44 74 111 511 00
+	Cole
+
+
+*/
+
+ BENCH
+ 	w2_PANEL
+
+	PANEL = MENU of MAN_PAGE // 
+	PANEL = MENU of FUNCTION // found in DIR FILE expr_api
+
+	 ADD ITEM
+
+	 output from LIST of ITEM generator
+
+	 ITEM 
+	  id = idx
+	  name = "funcname"
+	  dir = "dir" // LEX_NAME expects LEX_EDGE to do its job
+	  file = "file" // LEX_NAME // SWITCH OPTIONAL .tcl FOUND
+
+	 LIST
+	  prev
+	  ITEM
+	  next
+
+	  api groups and sorts (sub_sort)
+	  SORT: funcname local_sort_options // and pick LAYOUT "NAME"
+	  local_sort_options L2R reverse_sort // or named direction 
+	  GROUP: funcs_in_TREE // sort matches order found in DOCUMENT
+	  SORT: DOCUMENT provides SORTED list GROUPED list FUNCTION text
+
+
+	 ITEM is FUNCTION_DECL_CODE
+	 DRAW BUTTON name = "%s" action = TEMPLATE CODE DATA ARGS
+
+	  CODE adds api to available CODE and text
+	  DATA adds api to available DATA and data_SESS_data
+	  ARGS adds api to available ARGS and objv[objc] // PARSED
+
+	  LEFT BUTTON { unix_fork_exec H m %s } // %s filename //
+	  RIGHT BUTTON { unix_fork_exec H vi %s } // %s filename //
+	  // local defaults AUTO VARS for ../DIRNAME/%s ..
+	  // RIGHT popup MENU for actions to FILE
+	  // default = VIEW as manpage in new XTERM
+	  // 
+
+
+
+
+
+
+	  // rewrite GEN as if PARSED //
+	   
+	PANEL = MENU of MAN_PAGE // 
+	PANEL = MENU of MAN_PAGE // troff mkwhatis
+	PANEL = MENU of MAN_PAGE // 
+

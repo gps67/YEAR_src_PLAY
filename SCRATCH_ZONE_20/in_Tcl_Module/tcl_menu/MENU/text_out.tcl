@@ -5,6 +5,11 @@
 # text_out_ln - "TEXT" ;# with added newline
 # GLOBAL VAR $text_out_global
 
+# write some TEXT to the default log transcript
+# uses global $text_out_global 
+# boils down to #
+# # $text_widget  insert end  $text
+
 proc text_out {text_widget text} {
 	# single default output text widget "-" or {} or "default"
 	if {$text_widget == "-" } { set text_widget {}} 
@@ -17,12 +22,22 @@ proc text_out {text_widget text} {
 	$text_widget insert end $text
 }
 
+
+#
+# text_out $TEXT # then a trailing newline
+#
 proc text_out_ln { text_widget text} {
 	text_out $text_widget $text
 	text_out $text_widget "\n"
 }
 
+#
+# create the text_out panel w1.panelname
+#
 proc mk_text_out { w1 {text_out text_out}} {
+     # w1 is created # along with its scroll bars etc
+     # w1 must be specified # see mk_text_out_global
+     # w1.panelname has default 
      set w1_text_out $w1.$text_out
      set w1_scroll $w1_text_out.scroll ;# nested fails zero size
      set w1_scroll $w1.scroll ;# works, loses scrollbar at 75% width
@@ -40,7 +55,9 @@ proc mk_text_out { w1 {text_out text_out}} {
 
 set text_out_global .unset
 proc mk_text_out_global { {w1 {}} } {
+	# w1 defaults to primary window "." # but dot gets added
 	if { $w1 == "dot" } { set w1 {} }
+	if { $w1 == "." } { set w1 {} }
 	if { $w1 == "-" } { set w1 {} }
 
 	global text_out_global 

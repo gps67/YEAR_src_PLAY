@@ -14,4 +14,6 @@ lappend auto_path \
  package require Tk
 
 # lappend auto_path .
- demo_main_menubar
+# menubar_demo_main
+ w2_demo_main
+

@@ -2,6 +2,7 @@
 
 proc fn1 {X} {
 	puts "This is fn1"
+	OBJ obj_id array_get
 	OBJ obj_id SET fieldname value
 	OBJ obj_id GET fieldname 
 }

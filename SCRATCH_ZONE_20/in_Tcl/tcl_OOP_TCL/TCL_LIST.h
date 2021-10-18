@@ -6,6 +6,12 @@
 #define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
 
+/*!
+	A flat array or vector of Tcl_Obj * items, accessed by int
+
+	Most functions expect [idx]
+	except GET_LIST_COPY which removes NULL items
+*/
 struct TCL_LIST
 {
 	TCL_PTR list;
@@ -16,11 +22,37 @@ struct TCL_LIST
 	TCL_LIST( Tcl_Interp * _interp )
 	: list()
 	{
-		list = Tcl_NewListObj( 0, NULL );
+		renew();
 	}
 
 	~TCL_LIST()
 	{
+	}
+
+	bool renew() // no Tcl_nterp * required // Tcl is so specific
+	{
+		// nb a List is really a VECTOR or flat ARRAY of (Tcl_Obj *)
+		list = Tcl_NewListObj( 0, NULL );
+		return true;
+	}
+
+	bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
+	{
+		// this squeezes out the NULL items, so loses obj_id [pos]
+		bool OK = true;
+		TCL_LIST list2(interp);
+		TCL_PTR item;
+		int pos;
+		int N = 0;
+		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
+		for(int i = 0; i<N; i++ ) {
+			GET( interp, i, item );
+			if(item) {
+				list2.ADD( interp, &pos, item );
+			}
+		}
+		RET_VAR = list2.list;
+		return OK;
 	}
 
 	bool GET( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
@@ -100,7 +132,7 @@ struct TCL_LIST
 		return true;
 	}
 
-	bool N( Tcl_Interp * interp, int * intPtr )
+	bool NN( Tcl_Interp * interp, int * intPtr )
 	{
 		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), intPtr )) {
 			fprintf(stderr,"ADD fail Tcl_ListObjLength\n");
@@ -114,7 +146,7 @@ struct TCL_LIST
 		// [0 .. [N
 		// ADD places VAL at POS == N_old N++
 
-		if(!N( interp, intPtr )) {
+		if(!NN( interp, intPtr )) {
 			return false;
 		}
 		if(TCL_OK !=

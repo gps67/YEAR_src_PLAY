@@ -77,13 +77,14 @@ struct TCL_DICT
 		Tcl_DictObjRemove( interp, dictPtr(), keyPtr );
 	}
 
-	bool N( Tcl_Interp * interp, int * intPtr )
+	bool NN( Tcl_Interp * interp, int * intPtr )
 	{
 	 return TCL_OK ==
 		Tcl_DictObjSize( interp, dictPtr(), intPtr );
 	}
 
 	bool array_get( Tcl_Interp * interp, TCL_LIST & LIST );
+	bool array_set( Tcl_Interp * interp, Tcl_Obj * list );
 
 	bool test(  Tcl_Interp * interp );
 

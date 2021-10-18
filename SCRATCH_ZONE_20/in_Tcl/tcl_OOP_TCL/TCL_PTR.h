@@ -3,6 +3,13 @@
 
 #include <tcl.h>
 
+/*!
+	a smart pointer to a Tcl_Obj
+
+	nb this stops you using return (Tcl_Obj *)
+	because the DTOR will delete the item before it arrives
+	so you have to pass a { TCL_PTR & RET_VAR } in
+*/
 struct TCL_PTR {
 
 	Tcl_Obj * PTR;

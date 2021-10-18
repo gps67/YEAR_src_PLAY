@@ -1,7 +1,7 @@
+#!/usr/bin/env tclsh
 #!/tools/CTXT/tcl/bin/tclsh8.7
 #!/usr/bin/env tcl_SCRIPT_FILE
 #!/tools/CTXT/tcl/bin/tclsh8.7
-#!/usr/bin/env tclsh
 
 puts "HELLO"
 

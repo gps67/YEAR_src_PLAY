@@ -20,7 +20,37 @@ bool CMP( Tcl_Obj * obj, const char * str )
 	return 0 == strcmp( str, str_word );
 }
 
-struct MATCHER {
+/*!
+	Store a "Literal" in a LITERAL_MATCHER("GET")
+	ask MATCHER_get.MATCHES( objv[i] )
+	ask MATCHER_set.MATCHES( objv[i] )
+	ask MATCHER_array_set.MATCHES( objv[i] )
+
+	Use a {proc _anon_ {} { return {Literal} } to internalise it
+	That means it WILL have a bytes value, but test for dafe zone
+
+	Match obj against LITERAL_MATCHER, aiming for single PTR == PTR
+
+	Match obj against _one _two # accept possible str not SPELLING
+
+	That was inline, now call func
+
+	Now do strcmp (against match_one) to confirm match or different
+
+	KEEP first 4 competing differents, cached, false on PTR == PTR
+
+	Too many printfs, making this look a bit naff
+
+*/
+struct LITERAL_MATCHER {
+	//
+	//
+	//
+
+
+	// LITERAL_MATCHER // <--HERE-
+	// FIELDNAME_MATCHER // <-- ALSO HERE
+	// obi_id // NO NO // that is decoder // will GET_STRING it 
 	static const int N_different = 4;
 
 	// these auto DTOR CTOR NULL refcount 
@@ -28,18 +58,18 @@ struct MATCHER {
 	TCL_PTR match_two;
 	TCL_PTR differents[N_different];
 
-	~MATCHER()
+	~LITERAL_MATCHER()
 	{
 	}
 
-	MATCHER( Tcl_Interp * interp, const char * str )
+	LITERAL_MATCHER( Tcl_Interp * interp, const char * str )
 	{
 		match_one = mk_common_spelling( interp, str );
 	}
 
 	bool MATCHES_fn( Tcl_Obj * obj )
 	{
-		fprintf(stderr,"# CALL # MATCHER_%s #  MATCHES_fn # %s \n",
+		fprintf(stderr,"# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 			Tcl_GetString( match_one ),
 			Tcl_GetString( obj ));
 
@@ -52,37 +82,64 @@ struct MATCHER {
 		// plough through NULL values
 
 		for( int i = 0; i<N_different; i++ ) {
+			Tcl_Obj * ITEM =  differents[i];
+			const char * s = NULL;
+			if(ITEM)
+				s = differents[i].PTR->bytes;
+			else
+				s = "ITEM (NULL)";
+
+			if(!s) s = "(NULL)";
+			const char * s2 = match_one.PTR->bytes;
+			fprintf(stderr,"# LITERAL_MATCHER(%s) TRY_NOT '%s' \n", s2, s );
 			if( obj == differents[i] ) {
+				fprintf(stderr,"# LITERAL_MATCHER(%s) CONFIRMED_NOT '%s' \n", s2, s );
 				// add to counters
 				return false;
 			}
 		}
-		if( (match_one && match_one.PTR->bytes )) {
-			// match_one is supposed to exist
-		} else {
+
+		// obj not found in cached items
+		// do the strcmp compare
+		// maybe add it to cache 
+
+		// some sanity checks
+		if( !(match_one && match_one.PTR->bytes )) {
 			// match_one is supposed to exist with string
 			fprintf(stderr,"**** // NULL match_one\n");
 			fprintf(stderr,"**** // NULL match_one bytes\n");
 			return false;
-		} // else OK continue
+		} // else OK stay happy
 
 		// match_ONE is "GET" or "array_get"
+		// do the strcmp compare
 		if( CMP( obj, match_one.PTR->bytes )) {
+			// match_two is rare, second route to "Literal"
+			if(match_two) { // already have a second, this is 3rd
+				// do not cache // _one _two but not _three
+				fprintf(stderr,"**** // match_two OVERWRITE\n");
+			}
 			match_two = obj; // never third
-			// report match_two used
-			fprintf(stderr,"**** // match_two used\n");
+			fprintf(stderr,"**** // match_two used ///////////\n");
 			return true;
-		}
+		} // else strcmp differs
 
 		// add obj to differents[i] overwrite NULL or FULL
 		for( int i = 0; i<N_different; i++ ) {
+			if( differents[i] ) {
+		fprintf(stderr,"**** keeping differents[%d] = %s \n",
+				i, differents[i].PTR->bytes );
+			}
 			if( !differents[i] ) {
 				differents[i] = obj;
+		fprintf(stderr,"**** stored differents[%d] = %s \n",
+				i, differents[i].PTR->bytes );
 				// add to counters
 				return false;
 			}
 		}
-		// no space for another different
+		// no space for another, N_different used
+		fprintf(stderr,"**** differents[N] FULL ///////////\n");
 		return false;
 	}
 
@@ -141,10 +198,10 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 		TODO
 	*/
 
-	static MATCHER match_GET( interp, "GET" );
-	static MATCHER match_SET( interp, "SET" );
-	static MATCHER match_array_set( interp, "array_set" );
-	static MATCHER match_array_get( interp, "array_get" );
+	static LITERAL_MATCHER match_GET( interp, "GET" );
+	static LITERAL_MATCHER match_SET( interp, "SET" );
+	static LITERAL_MATCHER match_array_set( interp, "array_set" );
+	static LITERAL_MATCHER match_array_get( interp, "array_get" );
 
 
 	switch( objc ) {

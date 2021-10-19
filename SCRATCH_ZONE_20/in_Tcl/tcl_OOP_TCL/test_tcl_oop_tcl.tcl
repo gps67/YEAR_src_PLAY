@@ -26,6 +26,7 @@ proc fn2 {X} {
 	load ./tcl_oop_tcl.so optical
 	# already said k1 k2 k3 test from C
 	test2
+	test2
 	fn1 A
 	fn1 B
 	fn2 C

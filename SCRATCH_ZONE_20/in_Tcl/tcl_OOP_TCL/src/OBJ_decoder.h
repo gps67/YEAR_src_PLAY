@@ -6,6 +6,7 @@
 #include "TCL_LIST.h"
 #include "TCL_DICT.h"
 #include "TCL_HASH.h"
+#include "TCL_MATCHER.h"
 
 
 #if 0

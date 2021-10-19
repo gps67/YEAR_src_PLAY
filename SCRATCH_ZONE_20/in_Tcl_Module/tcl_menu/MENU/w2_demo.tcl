@@ -104,6 +104,7 @@ proc w2_demo_build {{w2 .w2}} {
 	wm geometry $w2 =200x$H+$X+$Y
 #	wm attributes $w2 -topmost 1 -fullscreen 1
 	wm_always_in_front $w2
+	raise $w2 ;# not wm command
 	# above does not work much
 }
 
@@ -128,6 +129,7 @@ proc w2_demo_main {} {
 	# WINDOW ONE .
 	EXIT_BUTTON $w1 ;# see at_least_dot.tcl
 	menubar_demo_build_menubar $w1
+	raise $w1
 
 ## move this to the MENU item or other start button
 ## TODO default on app start ... call w2_build ?

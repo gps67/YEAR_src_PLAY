@@ -12,7 +12,9 @@
 */
 struct TCL_PTR {
 
+private:
 	Tcl_Obj * PTR;
+public:
 
 	TCL_PTR ()
 	: PTR( NULL )
@@ -33,17 +35,22 @@ struct TCL_PTR {
 		PTR = NULL; // debugging option
 	}
 
-	operator Tcl_Obj * ()
+	operator Tcl_Obj * () const
 	{
 		return PTR;
 	}
 
-	operator Tcl_Obj ** ()
+	Tcl_Obj * operator -> () const	// return pointer even though -> // ?
+	{
+		return PTR;
+	}
+
+	operator Tcl_Obj ** ()  // cant be const
 	{
 		return & PTR;
 	}
 
-	operator bool()
+	operator bool() // cant be const
 	{
 		return PTR; // (PTR != NULL)
 	}

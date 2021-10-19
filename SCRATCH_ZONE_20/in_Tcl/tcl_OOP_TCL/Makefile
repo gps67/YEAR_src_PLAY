@@ -20,6 +20,7 @@
 	Module_objs += TCL_HELP.o
 	Module_objs += TCL_HASH.o
 	Module_objs += TCL_DICT.o
+	Module_objs += TCL_MATCHER.o
 
 # // edit any .h // recompile everything
 
@@ -30,6 +31,13 @@
 	Module_hdrs += TCL_HELP.h
 	Module_hdrs += TCL_HASH.h
 	Module_hdrs += TCL_DICT.h
+	Module_hdrs += TCL_MATCHER.h
+
+	VPATH_LIST += ./src
+	VPATH_LIST += ../src
+	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$(sub))
+#	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
+
 
 .SUFFIXES: .o .cxx .so .exec .h
 

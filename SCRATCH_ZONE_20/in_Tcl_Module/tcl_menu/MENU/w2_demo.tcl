@@ -23,6 +23,7 @@ proc w2_demo_build_menubar {{w_top .}} {
 	set w_Opts [add_menu      $w_bar - Opts]
 	set w_Help [add_menu      $w_bar - Help]
 
+#	add_item $w_MENU Name {CMDS }
 	add_item $w_File Open {text_out_ln - "opened\n"} 
 	add_item $w_File Save {text_out_ln - "saved\n"} 
 	add_item $w_File ---- 
@@ -44,10 +45,22 @@ proc w2_demo_fill_menu_items { w2 }  {
 	set list [glob -tails -directory $man3 * ]
 	set list [lsort $list]
 
+	set btns $w2
 	foreach name $list {
-	 text_out_ln - $name
+	  text_out_ln - $name
+	  btns_b_text_text_troff_file $btns - $name $man3/$name
 	}
+}
 
+proc btns_b_text_text_troff_file { btns b text troff_file } {
+	  # what m does
+	  set m_cmd "groff -c -Tlatin1 -mandoc $troff_file |less -R "
+	  # except it needs to be made a list and appended to in str
+	  # and also T sh -c '%s' etc
+	  # see also expect tkterm ...
+	  set m m
+
+	  btns_b_text_cmd $btns - $text "exec T m $troff_file"
 }
 
 proc wm_always_in_front {{wtop .}} {
@@ -69,15 +82,15 @@ proc w2_demo_build {{w2 .w2}} {
 	catch {
 		toplevel $w2
 	}
+#	canvas $w2.c
+#	v_pack_big $w2.c
+	EXIT_BUTTON $w2 ;# works but resizes to "EXIT"
 
 	
 	# w2 has its own MENU_BAR
 	w2_demo_build_menubar $w2
 	w2_demo_fill_menu_items $w2
 	
-	canvas $w2.c
-	v_pack_big $w2.c
-	EXIT_BUTTON $w2 ;# works but resizes to "EXIT"
 
 	wm attributes $w2 -topmost 1 
 	set W {}
@@ -113,14 +126,11 @@ proc w2_demo_main {} {
 
 	# w1_demo_build .
 	# WINDOW ONE .
-	EXIT_BUTTON ;# CANT PASS dot ~ ATM$w1
+	EXIT_BUTTON $w1 ;# see at_least_dot.tcl
 	menubar_demo_build_menubar $w1
 
 ## move this to the MENU item or other start button
 ## TODO default on app start ... call w2_build ?
-	# WINDOW TWO $w2
-#	w2_demo_build $w2
-	##  namespace import ::
 
 #	mk_text_out_global $w1 ;# " .text_out %s.%s {} "text_out":w
 
@@ -128,8 +138,7 @@ proc w2_demo_main {} {
 	# write text to it with # text_out {} $TEXT
 	mk_text_out_global
 
-# we dont want the TOP window always on top
-#	w m attributes . -topmost 1 ;# -fullscreen 1
+	# WINDOW TWO $w2
 	w2_demo_build $w2
 }
 

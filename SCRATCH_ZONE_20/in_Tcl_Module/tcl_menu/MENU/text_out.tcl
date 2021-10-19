@@ -20,6 +20,12 @@ proc text_out {text_widget text} {
 	}
 	# add text to widget
 	$text_widget insert end $text
+
+	text_out_see_end $text_widget ;# see last line
+}
+
+proc text_out_see_end {text_widget } {
+	$text_widget see end
 }
 
 

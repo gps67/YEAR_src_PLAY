@@ -55,6 +55,73 @@ struct TCL_LIST
 		return OK;
 	}
 
+	bool array_get( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
+	{
+		// this squeezes out the NULL items, so loses obj_id [pos]
+		bool OK = true;
+		TCL_LIST list2(interp);
+		TCL_PTR item;
+		int pos;
+		int N = 0;
+		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
+		for(int i = 0; i<N; i++ ) {
+			GET( interp, i, item );
+			if(item) {
+				list2.ADD( interp, &pos, Tcl_NewIntObj(pos) );
+				list2.ADD( interp, &pos, item );
+			}
+		}
+		RET_VAR = list2.list;
+		return OK;
+	}
+
+	bool array_set( Tcl_Interp * interp, Tcl_Obj *  pairs_list )
+	{
+		// this squeezes out the NULL items, so loses obj_id [pos]
+		bool OK = true;
+
+		int N1 = 0;
+		if(TCL_OK!=Tcl_ListObjLength(interp, pairs_list, &N1 )) {
+		       return false;
+		}
+		if(N1 % 2) {
+			printf("# FAILS not even N1\n");
+		       return false;
+		}
+
+		int pos1 = 0;
+		while( pos1 < N1 ) {
+
+			Tcl_Obj * KEY_INT = 0;
+			Tcl_Obj * VAL = 0;
+
+
+		       if( TCL_OK !=
+		       Tcl_ListObjIndex(interp, pairs_list, pos1, &KEY_INT )) {
+			       return false;
+		       }
+
+		       pos1 ++;
+
+		       if( TCL_OK !=
+		       Tcl_ListObjIndex(interp, pairs_list, pos1, &VAL )) {
+			       return false;
+		       }
+
+		       pos1 ++;
+
+			int pos2;
+			if(TCL_OK!=Tcl_GetIntFromObj(interp, KEY_INT, &pos2 )) {
+				return false;
+			}
+
+			if(!SET( interp, pos2, VAL )) return false;
+
+		}
+
+		return OK;
+	}
+
 	bool GET( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
 	{
 		if(!RET_VAR) {

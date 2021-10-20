@@ -5,6 +5,7 @@
 #include "TCL_STUBS.h"
 // #include "TCL_TYPE.h"
 #include <tcl.h> // Tcl_Obj typePtr
+#include <stdlib.h> // strtol
 
 	// typedef __u32__ u32;
 	typedef unsigned int u32;
@@ -12,7 +13,7 @@
 	typedef  u8  u8_idx;
 	typedef u32 u32_lohi;
 
-#define ASCII_NUL 0x00;
+#define ASCII_NUL 0x00
 
 
 /*!
@@ -395,7 +396,7 @@ class TCL_TYPE_UDEF
 		// check NN is valid HEX HEX *
 		// convert NN from HEX * // str_to_long
 
-		u32 NN = strtol( type_name_str[5] , NULL,  16 );
+		u32 NN = strtol( &type_name_str[5] , NULL,  16 );
 
 		// check range // reject out of domain or convert
 
@@ -484,7 +485,7 @@ class TCL_TYPE : public TCL_TYPE_UDEF
 
 
 	bool is_one_of_my_types( Tcl_Obj * obj ) {
-		u32 & u8_FF = 0x00;
+
 		// only check first 4 bytes;
 		// which 
 		if( ! obj->typePtr ) {
@@ -492,7 +493,7 @@ class TCL_TYPE : public TCL_TYPE_UDEF
 			// could attempt to PARSE to upgrade to ours
 			// but that is only for BIND decoders
 		}
-		if( type_name_UDEF_u8( Tcl_Obj * obj, u8_FF ) {
+		if( type_name_UDEF( obj ) ) {
 			return true; // FAST_MATCH HERE
 		}
 		// INLINE catches built_in // look for other things
@@ -500,13 +501,18 @@ class TCL_TYPE : public TCL_TYPE_UDEF
 	}
 
 	bool get_u8_HEX_HEX_from_STR4_2X_typename( Tcl_Obj * obj, u8_idx & ret ) {
-		if(! is_one_of_my_types( obj ) { return false; }
+		if(! is_one_of_my_types( obj )) { return false; }
 		// KNOW NOW typePtr NOT NULL
 
-		u32 * str0_words = obj->typePtr->name ;
-		u32 * u32 EFGH = /* & */ str0_words[1];
+		u32 * str0_words = (u32 *) obj->typePtr->name ;
+		u32 * u32_EFGH = /* & */ & str0_words[1];
 		u8 * EFGH = (u8*) EFGH;
 		u8 A = EFGH[0];
+		u8 B = EFGH[1];
+		u8 C = EFGH[2];
+		u8 D = EFGH[3];
+
+
 
 		// if( EFGH.A == '_' ) 
 

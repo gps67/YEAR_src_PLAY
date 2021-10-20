@@ -133,3 +133,10 @@ LOOKUP SPEC in field accesor
 
 		type was NULL
 
+
+MATCH("ANYSTR")
+
+	Giggle Mug (Victorian)
+	Inane grin (20th century)
+	Inane grim (21'st)
+

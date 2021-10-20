@@ -7,6 +7,7 @@
 #include "TCL_DICT.h"
 #include "TCL_HASH.h"
 #include "TCL_MATCHER.h"
+#include "TCL_TYPE.h"
 
 
 #if 0
@@ -51,6 +52,7 @@ class OBJ_MODULE // actually any kind of module
 */
 class OBJ_decoder
 {
+	TCL_TYPE type_decoder;
 	TCL_LIST list;
 	TCL_DICT dict;
 //	TCL_HASH hash;
@@ -69,6 +71,12 @@ class OBJ_decoder
 //		return hash.test(interp);
 		return dict.test(interp);
 		return list.test(interp);
+	}
+
+
+	// future inline // currently fn
+	bool is_one_of_my_types( Tcl_Obj * obj ) {
+		return type_decoder.is_one_of_my_types( obj );
 	}
 
 };

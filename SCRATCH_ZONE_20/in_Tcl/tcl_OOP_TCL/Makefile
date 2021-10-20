@@ -21,6 +21,7 @@
 	Module_objs += TCL_HASH.o
 	Module_objs += TCL_DICT.o
 	Module_objs += TCL_MATCHER.o
+	Module_objs += TCL_TYPE.o
 
 # // edit any .h // recompile everything
 
@@ -32,6 +33,7 @@
 	Module_hdrs += TCL_HASH.h
 	Module_hdrs += TCL_DICT.h
 	Module_hdrs += TCL_MATCHER.h
+	Module_hdrs += TCL_TYPE.h
 
 	VPATH_LIST += ./src
 	VPATH_LIST += ../src

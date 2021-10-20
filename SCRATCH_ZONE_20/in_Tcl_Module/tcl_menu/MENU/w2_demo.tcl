@@ -89,7 +89,13 @@ proc w2_demo_build {{w2 .w2}} {
 	
 	# w2 has its own MENU_BAR
 	w2_demo_build_menubar $w2
-	w2_demo_fill_menu_items $w2
+	set w2_mf $w2.mf
+	set w2_vs $w2.vs
+	scrollbar $w2_vs -command "$w2_mf yview"
+	frame $w2_mf
+	h_pack $w2_vs
+	v_pack $w2_mf
+	w2_demo_fill_menu_items $w2_mf
 	
 
 	wm attributes $w2 -topmost 1 
@@ -103,7 +109,7 @@ proc w2_demo_build {{w2 .w2}} {
 	set Y 400
 	wm geometry $w2 =200x$H+$X+$Y
 #	wm attributes $w2 -topmost 1 -fullscreen 1
-	wm_always_in_front $w2
+#	wm_always_in_front $w2
 	raise $w2 ;# not wm command
 	# above does not work much
 }
@@ -121,7 +127,7 @@ proc w2_demo_main {} {
 	#
 	lappend auto_path .
 
-	set w1 {} ;# .
+	set w1 . ;# {} ;# .
 	set w2 .w2
 
 

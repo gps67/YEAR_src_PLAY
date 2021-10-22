@@ -13,6 +13,7 @@
 	Tcl_includes += -I$(Tcl_prefix)/include/tcl
 
 	Module=tcl_oop_tcl
+	Module_objs += TCL_Obj_Type_PLUS.o
 	Module_objs += $(Module).o 
 	Module_objs += OBJ_decoder.o
 	Module_objs += TCL_PTR.o
@@ -34,6 +35,7 @@
 	Module_hdrs += TCL_DICT.h
 	Module_hdrs += TCL_MATCHER.h
 	Module_hdrs += TCL_TYPE.h
+	Module_hdrs += TCL_Obj_Type_PLUS.h
 
 	VPATH_LIST += ./src
 	VPATH_LIST += ../src

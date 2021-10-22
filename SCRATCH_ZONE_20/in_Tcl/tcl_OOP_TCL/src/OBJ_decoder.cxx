@@ -90,6 +90,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	static LITERAL_MATCHER match_SET( interp, "SET" );
 	static LITERAL_MATCHER match_array_set( interp, "array_set" );
 	static LITERAL_MATCHER match_array_get( interp, "array_get" );
+	static LITERAL_MATCHER match_LIST_ALL( interp, "LIST_ALL_OBJ_TYPE" );
 
 
 	switch( objc ) {
@@ -105,8 +106,28 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 			return TCL_OK;
 		}
 
-		fprintf(stderr,"not GOT %s \n",cmd->bytes );
+		if( match_LIST_ALL.MATCHES(cmd ) ) {
+		//	return list of all objType names
+		//	boolean double end-offset regexp list cmdName bytecode
+		//	procbody bytearray int dict {array search} string
+		if(0)
+			fprintf(stderr,"GOT LIST_ALL\n");
+			Tcl_Obj * retlist = Tcl_NewListObj( 0, NULL );
+			if( TCL_OK!=
+				Tcl_AppendAllObjTypes( interp, retlist )
+			) {
+				return false;
+			}
+			Tcl_SetObjResult( interp, retlist );
+		if(0)
+			fprintf(stderr,"GOT LIST_ALL ==> %s\n",
+				Tcl_GetString( retlist ));
+			return TCL_OK;
+		}
+
+		fprintf(stderr,"not recognised Literal %s \n",cmd->bytes );
 		return OBJ_usage_error( interp, objc, objv );
+
 	 break;
 	 case 4:	// OBJ $id OPCODE fieldname
 
@@ -114,6 +135,9 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 			fprintf(stderr,"GOT GET\n");
 			return TCL_OK;
 		}
+	
+		// GET fieldname // 
+
 	 break;
 	 case 5:	// OBJ $id OPCODE fieldname value
 

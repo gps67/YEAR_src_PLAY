@@ -1,0 +1,271 @@
+2021-10-22 Oct Fri 11:14 # 37 #  GEN_ARGV_TCL/GEN_ARGV_TCL.txt
+
+	GEN_ARGV_TCL/
+	GEN_ARGV_TCL.txt
+
+	GEN_OBJV_TCL.txt != . // ;-)
+
+	Actual BASH shell scripting is fraught with hassle.
+	Files with spaces in the name, crap like that
+
+	TCL is STR0 based STR0 argv[argc]
+	TCL is ARGV based ARGV argv[argc]
+	TCL is OBJV based OBJV objv[objc]
+
+	DIALEX_PUN can rewire some of above, by adding ALIAS
+
+		ITEM_t * PTR 
+		PTR = " PTR "
+		PTR == "item" // AUTO LEX EDGE DETECT NAME EA_LOCN
+		OBJV = { PTR = PTR_t RETVAL_from_EXPR("argv[%d]")
+
+		// build this by allowing %d to be %s // ETC //
+		// pick up PHRASES as SUBLEX PSG VARS SESS ROM MINI_MACHINE
+
+	TCL is OBJV based OBJV argv[argc] // alias pun
+	TCL is OBJV based OBJV objv[argc] // alias pun // see 
+
+
+
+ # ARGV # REMOTE API # run script step ARGV # CTXT ETC
+
+ 	both ends of LINK run copies of vars in LIST // AUTO_FILTER
+
+	API allows a lot of fast RPC to be done
+	SHARED ROM DATA
+	SHARED MEM PAGE
+	SHARED VFS PAGE
+
+	WASM modes may be streaming data feed in SAFE mode
+	 API has limited splashback
+	 CACHE += QUOTA + PRE_LOAD + ACCESS + CONNECTION // CSR
+	 WASM box will run ANYSTR as suspish // double glove
+	 WASM = CXX_SCRIPT // and Tcl too // QUOTA DISK MEM CPU DEBUG
+	 CXX_SCRIPT = nested_indented_SCRIPT // SCRIPT_Tcl_Extension
+	 pass_parameters_by_name
+	 // IE EXEC A R G V // ENV // SESS // ENV == SESS.ENV // 
+
+	WASM can run https://wiki.tcl-lang.org/page/Jim ?
+	WASM can run TCL_BUILD_FOR_WASM // minimalism of latest monolith
+
+	WASM can be given DATA VFS DEBUG BATCH TCL_SCRIPT SCRIPT_SCRIPT
+	WASM can be given loadable extension // linked in PRE_LOAD //
+	WASM cache is improved when EXE is separate from DLL PRE_LOAD
+
+ # ARGV # RET_VAR OBJ $idx OPCODE ... ARGV // LIMIT SINGLE TAIL // FLAT
+
+ 	Both sides offer a wonderland for the API to call.
+	If that means starting a process pid then argv is STR0 not OBJV
+	So we use string, varname, expr_locn_id, NO_BINARY
+	NO_BINARY but C can write data in 0xFFFF 16 bit chunks 
+	
+	REWORK as SECURE MODULE // A CODE REVIEW // simplify
+
+	Within the called program, the provided identifiers,
+	got reformatted and printed out as FILTER FILTERED
+
+	Within a called Process, PID, VARS are available
+	idx = lookup("xFF") // idx of ITEM in VECTOR // ARRAY
+	item = index[idx] // morph syntax fn(x) v[x]
+	name ="xFF" // everything is its own first guest sample val
+	// ie the source of that module, calaims and uses
+	// STR0 xFF = %s // sample value "xFF" // DIALECT before FORMAL
+	// STR0 xFF = %s // %s idx_UDEF // DIALECT before FORMAL
+	// STR0 xFF = %s // "'%s'" "xFF" // LANG is ARGV but twig OBJV
+	// LANG persists between lines, retaining LOCAL STACKED THREAD_lLOCAL
+	// LANG does as little CAST as possible, but uses u32 u8_idx
+	// MORE comes from multiple pages SEGMENT QUOTA CHUNKS
+	// run nice // done soon // QUOTA is generous and adds_up
+	// ask more // API opens up to ADMIN // OPTION DBG // PRTC //
+
+	ARGV is expected to morph to OBJV
+	but the foundation ATOM is CIDENT and SIMPLE_EXPR_as_ITEM_in_ARGV
+
+	ARGV of our FNC collects its parameter names // fixed ARGV //
+	name - can be name of local var with actual value
+	DATA - not yet seen by this script, just moved around, EA_%s
+	ADDR - { DATA "ADDR" } { ADDR $DATA } // optional $ // { ADDR DATA }
+	// so above line mentions a key value // { ADDR DATA }
+	// That is loaded into a nearby phrase book 
+	// " { ADDR DATA } " -MEANS- LIST ADDR DATA 
+	// -ALSO- // ... " as string with outside spaces to mark lex edge "
+	// -PLUS- // " %s " // that was easy
+	// -MACRO- // SEQ Q2 SP L SP lhs SP rhs SP R SP Q2 // " { lhs rhs } "
+	// -MACRO- // SEQ Q2 SP L SP lhs SP rhs SP R SP Q2 // " { lhs rhs } "
+	// -MACRO- // SEQ    SP L SP  %s        SP R SP Q2 // " { %s } " 
+
+
+Cross Process addressing
+
+	BIND varname "key_val" key_data var_data api_var
+	BIND "var_name" ;# same eveywhere
+
+
+	mysql or sqlite or DB_MMAP provide the data
+	for the WASM it is a bunch of { KEY VAL }
+
+
+	 { SCRIPT } 
+	 { KEY VAL }
+	 { NAME DATA }
+	"{ NAME SPEC DATA }"
+	{ CTXT DB ROM VAR_POOL_STORAGE TEMP_STORAGE KEPT_DATA }
+
+	{ TUPLO }
+	{ KEY VAL } KEY="NAME" VAL="DATA"
+	VAR { NAME SPEC DATA }
+
+	#	u32 u32
+	#	u23 u32
+
+	#	u8_pool u8_item
+	#	U8 spec u8_data
+
+		SPEC_t * SPEC = SPECS[u8_idx]; // CMNT
+		// idx == u8_idx == u8_SPEC
+		// array [ u8_idx_t IDX ] of EIGHT_t // AMD64 u64 AMD32 u32_u32
+
+		// array_name = "SPECS"
+		// index_name = "u8_idx"
+
+		// item_name = "SPEC" // CTXT.CP.explain("item_name = %s ");
+		// that trailing SP imported a PARSER for GAPS n EOLN n SUBLEX
+
+	# EIGHT_t
+	#
+	# type__alias EIGHT_t u64
+	# type__alias EIGHT_t u32_u32
+	# type__alias EIGHT_t char_8  // typedef char EIGHT_t[8]; // CMNT
+	# type__alias EIGHT_t byte_8  // typedef byte EIGHT_t[8]; // CMNT
+	#
+	#
+
+	_TYPE_(" { KEY VAL } // CMNT ") // ROM.code_point
+	MATCH _TYPE_ "%s" " %s "
+	MATCH _TYPE_ "%s" "{  %s } " // DETECT NULL as SP EMPTYSTR SP
+	MATCH " { KEY VAL } // CMNT " // ROM.code_point // TYPE = template_name_t
+
+	template_name " { KEY VAL } " == literal_lookup_parse
+	actually does some parse before lookup (as part of)
+	and reduces itself to ARGV[pos] VAL = name of var "KEY"
+	STR0 KEY = "KEY"; // is own varname
+	STR0 EA = "lookup(KEY)" // then this SCRIPT runs whatever it can
+	CT might make that arg = argv[idx]
+	argv[0] == "OBJ" // the Tcl_Command // namespace optional // imported
+	argv[1] is $obj_id // xFF
+	argv[2] == "SET"
+	argv[3] is Literal_FieldName_or_Literal_EXPR // ANYSTR
+	argv[4] is Tcl_Obj * PARAMETER_VALUE
+
+	OBJ $idx SET time_start $time_start
+	OBJ $idx SET time_end   $time_end
+	OBJ $idx SET { // Literal Script // EATS ^OBJ $idx SET" // SP means more
+
+		time_start $time_start
+		time_end   $time_end
+		task_name  $task_name
+
+		// GEN these all set as own name as value
+		// GEN CIDENT // already valid CIDENT no SP tricks required
+		// $task_name == "task_name" // DIALECT NO SP // KNOW SP //
+
+		FUNC name args SCRIPT
+		FUNC name args SCRIPT
+		FUNC name args SCRIPT
+		FUNC name args SCRIPT
+		FUNC name args _LINKAGE_ DATA_SCRIPT_for_LINKAGE ARGV_API
+		FUNC my_func {{SELF SELF_tcl}} { // PARSED SCRIPT //
+
+			// my_func $obj_idx
+			//
+			// MACRO SELF_tcl refers to ALIAS "obj_idx" // seen $v
+
+			// AUTO_IMPORT_CTXT // 
+			// CTXT is local variant of universal thread local 
+			// VAR_POOL == CTXT.VAR_POOL
+			// VAR_POOL_%s == CTXT.VAR_POOL_%s //
+
+		}
+
+# ARGV # PAIR { LHS RHS } // is actually a QUAD because code_point TUPLO
+
+	TUPLO_TYPE = " PAIR { LHS RHS } " // FULLY SPELLED OUT for FAST PARSER 
+	# KEYWORDS { TUPLO_TYPE PAIR }
+	# PAIR_ VAR_VAL { LHS %s } // default "think of a smaple name" == "LHS"
+	# PAIR_ VAR_VAL { RHS %s } // { RHS RHS } // Literal from compiler :-)
+	# %s_ the trailing "_" means continuation it implies it for action
+	# %s_%s OPTION from that
+	# %s_%d OPTION from that
+	# %s == %d FIXUP 
+
+# ARGV # argv[i]
+# ARGV # obj.bytes[length] 
+# ARGV # obj.bytes " { TUPLO_TYPE PAIR } " // name is outside TOP_EXPR
+# ARGV # obj.type == TUPLO_TYPE // defined above // AS_VAR
+# ARGV # obj.type_name == TUPLO_TYPE // defined above // AS_NAME
+# ARGV # obj.type_name == "TUPLO PAIR { LHS RHS } " // name is inside PARSABLE
+
+	This is an extension MACRO called "TUPLO PAIR LHS RHS"
+	It is parsed from the STREAM via FILTER
+	Well defined setup remote VAR cache api
+	# compiled into ROM_CODE so runs exactly with this SCRIPT compiled
+	# runs OUR ROM because it is ours
+	# runs SCRIPT ARGV only as outer BATCH or ONLINE BATCH MODE
+
+# ARGV # obj.VAL1 == LHS
+# ARGV # obj.VAL2 == RHS
+
+	PAIR LHS RHS {
+
+		just drawing this DIAG
+		brings that ARGV to life
+		with those VAR names // FUNC ARGS by sample line
+	}
+
+	TCL_EIGHT_BYTE_DATA {
+
+		u8_u8
+		u8_u8
+
+		u8_u8
+		u8_u8
+	}
+
+
+
+	TCL_EIGHT_BYTE_DATA { u32 u32 } { SCRIPT }
+	TCL_EIGHT_BYTE_DATA { u32 u32 } { SCRIPT_Layout }
+
+		u8_u8
+		u16
+
+		u8_u8
+		u16
+
+		Because we are in a MINI_MACHINE u16_EXPR_POSN
+		We still want something very close to
+
+			ADDR = BASE + OFFS
+			OFFS = EXPR( CTXT, SELF, u16 ) // CTXT.NEAR
+
+			EIGHT_t BASE[u16_idx]; // EIGHT_t tracks X86
+			LHS = BASE[SLOT] // VAR in SPACE==HEAP==OF_ITEM
+			LHS_t == ITEM_t
+
+			EA_WORD + 4 PTR_GET_u32
+			EA_WORD + 1 PTR_GET_u8 // BYTE_B //
+			EA_WORD     PTR_GET_u8 // BYTE_A //
+			EA_WORD     PTR_GET_u64 // u64_WORD_maybe
+			EA_WORD     PTR_GET_u32 // u32_WORD_first
+			EA_WORD + 4 PTR_GET_u32 // u32_WORD_second
+			EA_WORD     PTR_GET_u8 // BYTE_A // "_" // cyber men //
+			EA_WORD + 5 PTR_GET_u8_EA // strcmp from after _
+
+			u16 * 8 bytes = 512K of index pointer pairs [u16]
+
+			or EA = EA_NBYTES // aligned 8 both ends
+
+			char * text = EA_of_text
+	}
+
+

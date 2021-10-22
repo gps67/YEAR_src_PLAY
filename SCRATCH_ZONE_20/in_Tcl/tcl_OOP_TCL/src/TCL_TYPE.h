@@ -7,12 +7,6 @@
 #include <tcl.h> // Tcl_Obj typePtr
 #include <stdlib.h> // strtol
 
-	// typedef __u32__ u32;
-	typedef unsigned int u32;
-	typedef unsigned char u8;
-	typedef  u8  u8_idx;
-	typedef u32 u32_lohi;
-
 #define ASCII_NUL 0x00
 
 
@@ -78,7 +72,27 @@
 		55 44 45 46 5f  41  42 0a  
 		 U  D  E  F  _ HEX HEX NL 
 		 U  D  E  F  _ HEX HEX LEX_EDGE // SHARP_OPTION // WORD_PART_USAGE
+
+	// PARSE UDEF_%s // AUTO_GEN %2X for UDEF_%X // ACCEPT 0xF u4 u3 u2 BIT
 	
+	if( TypeName _starts_with_ u32_UDEF )
+	{
+			abcd == "UDEF"
+			efgh ==  "STR4" 
+			// STR4_with at least one NUL
+			// STR4_as_WORD_of_LEX_BYTES
+			// STR_30 DESC // typenames describe fmt widths
+			// STR0_LEX // NUL at the end 
+
+			// BECAUSE "UDEFXXX0" u4 u4 u4 u8 u12 u64 u8_u8
+			// "UDEF_%X_%X "%2X" "%3X" // u12 in HEX // BASE64_ABC
+	}
+	if( TypeName _continues_with_ u32_EFGH ) {
+	//
+		abcd == "UDEF"
+		efgh ==  "STR4" // HERE
+	}
+
 	if( TypeName _starts_with_ u32_UDEF )
 	{
 		CLAIM entire u32 abcd u32 second word 
@@ -87,11 +101,50 @@
 
 		CLAIM entire second u32 word
 
+			efgh == { "_" %2X } u8 u8_UDEF u8 %s UDEF
+			efgh == STR4 " _ HEX HEX NUL "
+			efgh == STR4 " _ HEX HEX BYTE "
+			efgh == STR4 " _ HEX HEX LEX_EDGE "
+			efgh == STR4 " _ HEX SUB_HEX BYTE "
+
+			efgh == STR4 u32 // no_NUL_required
+			// other reasons do REQUIRE NUL // or STR0_more_than_u64
+
+			abcd efgh == "u8 byte[8] // set [7] NUL" // keep set
+			abcd efgh == "u8 byte[32] // CIDENT // byte[512]
+			abcd efgh == "u64_word in stream"
+
+		STAYING as { %X HEX }{ %2X byte }{ %4X u32 } { %6X u48 } 
+
+			{ %X HEX } // printf u8_SPEC
+			{ %2X byte }
+			{ %4X u32 } 
+			{ %6X u48 } 
+			{ %8X u64 } 
+
 			_AB == "_AB"  use " HEX HEX " HEX = HEX_DIGIT_builtin
 
 		CLAIM 256 points of the u32_word
 
 			u8_FMT_2X "_%2X" // followed by a NUL // USUALLY
+
+			CLAIM a PAGE of [u8] 
+
+			 ITEM_t * item = lookup( xFF )
+			 ITEM_t * item = ATTR_for_EACH( xFF ) // EACH_in_PAGE
+			 ITEM_t & item = decode_u32_u32
+
+			 ITEM_t * EA_ITEM[256] // CMNT // u8_idx u8 u16 u32 
+
+		TABLE = ARRAY [ BYTE ] of EA_ITEM
+
+			EXPR("EA of ITEM")
+			KNOW EA u48_absolute_PTR
+			KNOW EA_ZERO can be u32_OFFS_EXPR
+			KNOW ADDR = BASE + OFFS
+			KNOW PTR == ADDR 
+			FIND PTR.NAME == "PTR"
+			FIND ADDR.NAME == "ADDR"
 
 		USUALLY provides GENERIC API though DIALECT
 
@@ -310,6 +363,7 @@ class TCL_TYPE_UDEF
 			obj->typePtr->name; 
 
 	  	// TYPE_NAME (NULL) // this should never happen // TYPE exists
+		// possibly an unregistered type
 		if( !type_name_str ) {
 			return false;
 		}
@@ -422,7 +476,7 @@ class TCL_TYPE_UDEF
 			 );
 		}
 
-		u8_FF = NN;
+		u8_FF = NN; // nb can overflow upto u32 
 
 		return true; // no more questions // UDEF_NN
 	
@@ -468,6 +522,9 @@ class TCL_TYPE_UDEF
 	}
 };
 
+// silly upside down experiment
+// switch TCL_TYPE to TCL_TYPE_only_one_uses_PTR1_as_SPEC
+
 class TCL_TYPE : public TCL_TYPE_UDEF
 {
  public:
@@ -503,6 +560,14 @@ class TCL_TYPE : public TCL_TYPE_UDEF
 	bool get_u8_HEX_HEX_from_STR4_2X_typename( Tcl_Obj * obj, u8_idx & ret ) {
 		if(! is_one_of_my_types( obj )) { return false; }
 		// KNOW NOW typePtr NOT NULL
+		u32 u8_FF = -1;
+		if(!type_name_UDEF_u8( obj, u8_FF ) {
+			return false;
+		}
+		if( u8_FF >> 8 ) {
+			return false;
+		}
+		return true;
 
 		u32 * str0_words = (u32 *) obj->typePtr->name ;
 		u32 * u32_EFGH = /* & */ & str0_words[1];

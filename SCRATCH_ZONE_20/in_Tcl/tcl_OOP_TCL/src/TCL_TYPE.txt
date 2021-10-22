@@ -1,0 +1,55 @@
+
+ TCL_TYPE is a bit of a misnomer
+ 
+ 	it knows "is_an_extension_type"
+
+	it knows "typename starts with "UDEF"
+
+	it will be the one that arranges SP1 SP2 etc
+	but not be them itself
+
+ We need to provide these
+
+       typedef struct Tcl_ObjType {
+                const char *name;
+                Tcl_FreeInternalRepProc *freeIntRepProc;
+                Tcl_DupInternalRepProc *dupIntRepProc;
+                Tcl_UpdateStringProc *updateStringProc;
+                Tcl_SetFromAnyProc *setFromAnyProc;
+        } Tcl_ObjType;
+
+        Tcl_FreeInternalRepProc *freeIntRepProc;
+        Tcl_DupInternalRepProc   *dupIntRepProc;
+        Tcl_UpdateStringProc  *updateStringProc;
+        Tcl_SetFromAnyProc      *setFromAnyProc;
+
+Tcl_FreeInternalRepProc *freeIntRepProc; (obj)
+
+	called during RefDecr delete
+
+Tcl_DupInternalRepProc   *dupIntRepProc; (src,dst)
+
+	WAS: src valid dst not
+
+Tcl_UpdateStringProc  *updateStringProc; (obj)
+
+	always starts from bytes == NULL
+
+	use Tcl_Alloc or mkalloc
+
+Tcl_SetFromAnyProc      *setFromAnyProc; (interp, obj)
+
+	"Any" means a string with NULL type
+	"Any" means a TYPE with a string value
+
+	if oldtype // must call
+		freeIntRepProc // to release old 
+	
+
+
+	
+
+####################
+
+Tcl_ConvertToType
+ 

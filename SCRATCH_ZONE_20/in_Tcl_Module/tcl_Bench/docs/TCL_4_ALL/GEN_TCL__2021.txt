@@ -1,0 +1,107 @@
+ GEN TCL
+
+ 	BENCH uses THIS as a TEMPLATE LIBR and DATA STO_mysql
+
+		COMMON DB CODE ARGV SPEC CODE { SCRIPT } {
+
+		#! hash_bang CMD ARG # supplied ARGV is ignored # ARG == "-f" #
+		/* API */
+
+		 hash_bang.elf # interpreter "hash_bang" {
+
+
+			ITEM = TABLE[ ITEM_idx ]
+			SPEC = TABLE[ ITEM_idx ]
+
+			ITEM_TYPE_t TYPE
+			ITEM_NAME_t NAME
+
+			ITEM_idx_t idx; // uses system of idx = N++ // vect [idx]
+			TABLE_idx_t idx; // NODE has VECT[idx++] IDX // .libr
+			TABLE_t {
+		FRAME - ROM + STO // RUNTIME 
+				VAR_NAME = "VAR_POOL_t VAR_POOL[key_t] ;"
+				DIALECT += API_ARRAY_of_NAMED_ITEM
+				DIALECT += API_ARRAY_of_INDEX_ITEM
+				RUNTIME += GEN_API_ARRAY_ITEM
+
+				OBJ_t & OBJ = EA_OBJ ARGV
+				EIGHT_t u64_WORD // same size as PTR 48+16
+				u32 objc;
+				typedef u64 EIGHT_t;
+				typedef u64 WORD_t;
+				typedef u64 u64_WORD;
+				typedef u32 u32_WORD;
+				typedef u16 u16_WORD;
+				typedef u8 u8_WORD;
+				// GEN %s == %s // %s_WORD // _t // SUBLEX
+				// DIALECT // { BLOCK_of_CODE } //
+				// FILTER detects USAGE of DIALECT
+				// RERUN
+				// CHANGE // TRANSACTION_API // GETTER //
+
+				STR0 { arg_%s idx_%d } { NAME LOCN }
+
+				const char * CMD_LINE_ARGV[argc]
+
+				 STR0_t WORD = argv[argc] idx var
+
+				STR0 SHELL_VAR_name = getenv( "VAR_name")
+
+
+			}
+			TCL_SCRIPT extension of TCL
+			adds C++ SCRIPTABLE_FUNC PRE_COMPILED_SCRIPTABLE
+			adds GLOBAL VARS in SCOPES 
+			( the idea of a VAR in SCOPE ; if so ::SCOPE::VAR }
+
+			adds get_obj_id_ITEM() == ALLOC { idx = N++ }
+			adds safe_scripts_over_api
+			// api_interpretation my_ref:your_ref vars decoders
+
+			PRE_BUILT DECODER TABLES
+			rebuild as part of BUILD_ROM target HERE
+			BOTH_L_R_NEITHER idx = lookup anystr // CTXT
+			BOTH_L_R_NEITHER idx2 = lookup any_var_name // CTXT
+			BOTH_L_R_NEITHER idx = lookup any_expr // CTXT
+			PSG expr = common phrases eg C statement ("3 lines")
+			PSG item = name hopefully better than "ITEM_%X"
+
+			PSG_expr == "%s %s = %s // %s ", 
+			(
+				"ITEM_t"
+				"ITEM"
+				"INIT_VAL_as_STR0"
+				"CMNT"
+			)
+ DIAG combine PSG_expr to write it's code along those framelines VAR_NAME_t_idx
+
+
+		 	DIAG
+
+				PSG_expr == "%s %s = %s // %s ", 
+				(
+					"ITEM_t"
+					"ITEM"
+					"INIT_VAL_as_STR0"
+					"CMNT"
+				)
+
+			TYPE = "ITEM_t" // TYPE_NAME _t
+			TYPE = "ITEM" // TYPE_NAME _t
+			DATA = "INIT_VAL_as_STR0_PARSED"
+			CODE = "CMNT" // PARSED // gather sprayed EXPRS 
+			// MODE LEARN // setup start run stop compile load run
+			DRAW connect via TEMPLATE
+
+				ITEM_t & item = GET_ITEM_EXPR; // EXPLAIN
+
+				CTXT += CODE_POINT SCRIPT_FILE_LINE_NEAR_STEP
+				// CODE POINT // this 
+
+
+ DIAG combine PSG_expr to write it's code along those framelines VAR_NAME_t_idx
+			 
+		 }
+
+		}

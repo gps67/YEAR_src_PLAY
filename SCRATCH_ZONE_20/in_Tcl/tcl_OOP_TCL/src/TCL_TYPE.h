@@ -433,7 +433,7 @@ class TCL_TYPE_UDEF
 			// or log badly formed NAME_%s
 			// but let it happen
 
-			INFO("EXPECTED %%s_%%s GOT %%s.%%s # '%s'\n",
+			WARN("EXPECTED %%s_%%s GOT %%s.%%s # '%s'\n",
 			 type_name_str );
 		 	return false; // DEMAND '_ in %s_%s
 		}
@@ -458,11 +458,11 @@ class TCL_TYPE_UDEF
 			// check for 0 else it was a wrong blind parse
 		 if( '0' == type_name_str[5] ) {
 			// all good // really is a 0
-			 INFO("GOT_UDEF_00 quite unusual # '%s'\n",
+			 WARN("GOT_UDEF_00 quite unusual # '%s'\n",
 			  type_name_str
 			 );
 		 } else { // FAIL // DEMANS %2X
-			 INFO("GOT 'UDEF_%%s' expected ""2X # '%s'\n",
+			 FAIL("GOT 'UDEF_%%s' expected ""2X # '%s'\n",
 			  type_name_str
 			 );
 		 	return false;
@@ -470,7 +470,7 @@ class TCL_TYPE_UDEF
 		} // else not TYPE UDEF_00
 
 		if( NN > 255 ) {
-			 INFO("GOT 'UDEF_%d' from ""2X # '%s'\n",
+			 FAIL("GOT 'UDEF_%d' from ""2X # '%s'\n",
 			  NN,
 			  type_name_str
 			 );

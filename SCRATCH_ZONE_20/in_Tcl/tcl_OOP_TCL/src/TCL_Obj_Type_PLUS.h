@@ -4,6 +4,7 @@
 
 #include <tcl.h>
 #include "TCL_STUBS.h" // INFO WARN FAIL
+#include "TCL_HELP.h" // PTR1 PTR2
 
 struct TCL_ObjType_PLUS : Tcl_ObjType
 {
@@ -29,10 +30,13 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 //	: Tcl_ObjType()
 	{
 		set_funcs_NULL();
+		TODO("name UDEF_00_UNSET - alloc TCL_TYPE or u8_xFF or ...");
+	name = "UDEF_00_unset";
 		alias_one_ABB = ABB;
 		alias_one_LONG = ABB;
 //		alias_two_ABB = NULL;
 //		alias_two_LONG = NULL; 
+		name = ABB;
 
 		has_DICT_of_KEY_VAL = false; // SP1 no extra KEY_VAL fields
 	}

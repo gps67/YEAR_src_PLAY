@@ -41,6 +41,7 @@
 
 int OBJ_usage_error( Tcl_Interp * interp, int objc, Tcl_Obj *const* objv )
 {
+	FAIL("USAGE");
 	objc = 0;
 	Tcl_WrongNumArgs(interp, objc, objv, 
 	"..." CRLF
@@ -125,7 +126,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 			return TCL_OK;
 		}
 
-		INFO("not recognised Literal %s \n",cmd->bytes );
+		WARN("not recognised Literal %s \n",cmd->bytes );
 		return OBJ_usage_error( interp, objc, objv );
 
 	 break;

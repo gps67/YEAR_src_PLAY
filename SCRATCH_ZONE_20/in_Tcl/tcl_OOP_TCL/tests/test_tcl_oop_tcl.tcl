@@ -23,7 +23,14 @@ proc fn2 {X} {
 
 #	load ./tcl_oop_tcl.so
 #	load ./tcl_oop_tcl.so Optical
-	load ./tcl_oop_tcl.so optical
+	lappend auto_path \
+	. 	\
+	../obj/	\
+	/home/gps/YEAR/src/PLAY/SCRATCH_ZONE_20/in_Tcl/tcl_OOP_TCL/obj \
+	#
+	load ../obj/tcl_oop_tcl.so optical
+	puts "# FAIL # can find module without ../obj/filename.so"
+#	load tcl_oop_tcl.so optical
 	puts [OBJ - LIST_ALL_OBJ_TYPE]
 
 	# already said k1 k2 k3 test from C

@@ -68,9 +68,8 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 
 		if(!s) s = "(NULL)";
 		const char * s2 = match_one->bytes;
-		INFO("# LITERAL_MATCHER(%s) TRY_NOT '%s' \n", s2, s );
 		if( obj == differents[i] ) {
-			INFO("# LITERAL_MATCHER(%s) CONFIRMED_NOT '%s' \n", s2, s );
+			INFO("# %s CONFIRMED_NOT '%s' \n", s2, s );
 			// add to counters
 			return false;
 		}
@@ -150,7 +149,8 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		// match_two is rare, second route to "Literal"
 		if(match_two) { // already have a second, this is 3rd
 			// do not cache // _one _two but not _three
-			INFO("**** // match_two OVERWRITE\n");
+			WARN("match_two OVERWRITE\n");
+			FAIL("match_two OVERWRITE I consider this a FAIL\n");
 		}
 		match_two = obj; // no third
 		const char * s = obj->bytes;
@@ -161,19 +161,19 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	// add obj to differents[i] overwrite NULL or FULL
 	for( int i = 0; i<N_different; i++ ) {
 		if( differents[i] ) {
-	INFO("**** keeping differents[%d] = %s \n",
+	INFO("keeping differents[%d] = %s \n",
 			i, differents[i]->bytes );
 		}
 		if( !differents[i] ) {
 			differents[i] = obj;
-	INFO("**** stored differents[%d] = %s \n",
+	INFO("setting differents[%d] = %s \n",
 			i, differents[i]->bytes );
 			// add to counters
 			return false;
 		}
 	}
 	// no space for another, N_different used
-	INFO("**** differents[N] FULL ///////////\n");
+	WARN("differents[N] FULL");
 	return false;
 }
 

@@ -140,7 +140,7 @@ struct TCL_LIST
 		 )) {
 		 	// ERROR only on not-a-list
 			// index out of range returns TCL_OK and NULL
-			INFO("GET fail POS = %d\n", index );
+			FAIL("Tcl_ListObjIndex() POS = %d\n", index );
 		 	// ERROR message already set
 			// HMMM leaves OLD_VAL
 			return false;
@@ -149,7 +149,7 @@ struct TCL_LIST
 			// NULL from Tcl_ListObjIndex means out of bounds
 			int N = 0;
 			if(TCL_OK !=Tcl_ListObjLength( interp, listPtr(), &N )) {
-				INFO("GET error Tcl_ListObjectLength\n" );
+				FAIL("GET error Tcl_ListObjectLength\n" );
 			}
 			// is a NULL value ever possible ?
 			char msg[50];
@@ -165,7 +165,7 @@ struct TCL_LIST
 		// now do the Incr(newval) and Decr(oldval)
 		RET_VAR = RET_VAL;
 
-		INFO("GET [%d] == '%s'\n", index, Tcl_GetString( RET_VAL) );
+		PASS("[%d] == '%s'\n", index, Tcl_GetString( RET_VAL) );
 		return true;
 	}
 
@@ -203,7 +203,7 @@ struct TCL_LIST
 	bool NN( Tcl_Interp * interp, int * intPtr )
 	{
 		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), intPtr )) {
-			INFO("ADD fail Tcl_ListObjLength\n");
+			FAIL("ADD fail Tcl_ListObjLength\n");
 			return false;
 		}
 		return true;
@@ -224,7 +224,7 @@ struct TCL_LIST
 		    VAL
 		 )) {
 			// ERROR message already in interp //
-			INFO("ADD fail Tcl_ListObjAppendElement\n");
+			FAIL("ADD fail Tcl_ListObjAppendElement\n");
 			// set some bad POS for later
 			* intPtr = -1;
 			return false;
@@ -238,7 +238,7 @@ struct TCL_LIST
 	*/
 		}
 		
-		INFO("ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
+		PASS("ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
 		return true;
 	}
 

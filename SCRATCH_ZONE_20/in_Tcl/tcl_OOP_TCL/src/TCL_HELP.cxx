@@ -90,7 +90,8 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	if( t == TCL_OK ) {
 		return Tcl_GetObjResult(interp);
 	}
-	INFO("mk_common_spelling %s failed \n", str );
+	FAIL("Tcl_EvalEx %s failed \n", str );
+//	FAIL("mk_common_spelling %s failed \n", str );
 
 	return Tcl_NewStringObj( str, -1 );
 }

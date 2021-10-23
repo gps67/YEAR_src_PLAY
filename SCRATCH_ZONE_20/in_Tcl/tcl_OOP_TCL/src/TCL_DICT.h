@@ -36,13 +36,13 @@ struct TCL_DICT
 		 )) {
 		 	// ERROR only on not-a-dict
 			// keyPtr out of range returns TCL_OK and NULL
-			INFO("GET fail POS = %s\n", Tcl_GetString(keyPtr) );
+			FAIL("maybe not_a_dict POS = %s\n", Tcl_GetString(keyPtr) );
 		 	// ERROR message already set
 			// HMMM leaves OLD_VAL
 			return false;
 		}
 		if(!RET_VAR) {
-			INFO("SILENT GET absent key = '%s'\n", Tcl_GetString(keyPtr) );
+			FAIL("absent key = '%s'\n", Tcl_GetString(keyPtr) );
 			return false;
 		}
 		return true;
@@ -66,6 +66,7 @@ struct TCL_DICT
 		    keyPtr,
 		    VAL
 		 )) {
+		 	FAIL("Tcl_DictObjPut(...)");
 			return false;
 		}
 		return true;

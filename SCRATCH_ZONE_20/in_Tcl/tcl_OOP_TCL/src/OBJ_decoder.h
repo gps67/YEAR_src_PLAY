@@ -9,6 +9,8 @@
 #include "TCL_MATCHER.h"
 #include "TCL_TYPE.h"
 
+#include "TCL_Obj_Type_PLUS.h" // SP1
+
 
 #if 0
 class OBJ_MODULE // actually any kind of module
@@ -56,12 +58,18 @@ class OBJ_decoder
 	TCL_LIST list;
 	TCL_DICT dict;
 //	TCL_HASH hash;
+	TCL_ObjType_SP1 * TYPE_SP1;
+	TCL_ObjType_PLUS * TYPE_SP2;
  public:
  	OBJ_decoder( Tcl_Interp * interp )
 	: list( interp )
 	, dict( interp )
 //	, hash( interp )
+	, TYPE_SP1( NULL )
+	, TYPE_SP2( NULL )
 	{
+		TYPE_SP1 = get_TYPE_SP1(); // build it
+		// a TYPE_pbj is not a Tcl_Obj just a STRUCT*
 	}
  	~OBJ_decoder()
 	{

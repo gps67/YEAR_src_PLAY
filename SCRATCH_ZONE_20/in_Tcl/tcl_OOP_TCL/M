@@ -1,1 +1,5 @@
-make "$@" 2>&1
+[ -d obj ] || mkdir obj
+cd obj
+
+make -f ../MK/Makefile "$@" 
+# make -f ../MK/Makefile "${@:--k}" 

@@ -1,10 +1,11 @@
-#ifndef TCL_Obj_Type_PLUS_H
-#define TCL_Obj_Type_PLUS_H
-//	#include "TCL_Obj_Type_PLUS.h"
+#ifndef TCL_ObjType_PLUS_H
+#define TCL_ObjType_PLUS_H
+//	#include "TCL_ObjType_PLUS.h"
 
 #include <tcl.h>
+#include "TCL_STUBS.h" // INFO WARN FAIL
 
-struct TCL_Obj_Type_PLUS : Tcl_ObjType
+struct TCL_ObjType_PLUS : Tcl_ObjType
 {
  // pretty printing require CTOR to set up good defaults
 
@@ -24,9 +25,10 @@ struct TCL_Obj_Type_PLUS : Tcl_ObjType
 
 	bool has_DICT_of_KEY_VAL; // ie user added fields { KEY VAL }
 
-	TCL_Obj_Type_PLUS( const char * ABB )
+	TCL_ObjType_PLUS( const char * ABB )
 //	: Tcl_ObjType()
 	{
+		set_funcs_NULL();
 		alias_one_ABB = ABB;
 		alias_one_LONG = ABB;
 //		alias_two_ABB = NULL;
@@ -35,21 +37,46 @@ struct TCL_Obj_Type_PLUS : Tcl_ObjType
 		has_DICT_of_KEY_VAL = false; // SP1 no extra KEY_VAL fields
 	}
 
-	TCL_Obj_Type_PLUS()
+	TCL_ObjType_PLUS()
 	: Tcl_ObjType()
 	{
 		alias_one_ABB = "UNSET";
 		alias_one_LONG = "UNSET";
 	}
 
+	void set_funcs_NULL()
+	{
+	 #if 0
+		Tcl_FreeInternalRepProc *freeIntRepProc;
+		Tcl_DupInternalRepProc *dupIntRepProc;
+		Tcl_UpdateStringProc *updateStringProc;
+		Tcl_SetFromAnyProc *setFromAnyProc;
+	 #endif
+		freeIntRepProc = NULL;
+		dupIntRepProc = NULL;
+		updateStringProc = NULL;
+		setFromAnyProc = NULL;
+	}
+
+
 }; // struct
 
-struct TCL_Obj_Type_SP1 : TCL_Obj_Type_PLUS
+struct TCL_ObjType_SP1 : TCL_ObjType_PLUS
 {
-	TCL_Obj_Type_SP1()
-	: TCL_Obj_Type_PLUS("SP1")
+	TCL_ObjType_SP1()
+	: TCL_ObjType_PLUS("SP1")
 	{
+		set_funcs_SP1();
 	}
+
+	void set_funcs_SP1();
+
 };
+
+// extern TCL_ObjType_SP1 * ObjType_SP1; // = NULL;
+// Tcl_ObjType * get_SP1();
+
+extern
+TCL_ObjType_SP1 * get_TYPE_SP1(); // does not need interp
 
 #endif

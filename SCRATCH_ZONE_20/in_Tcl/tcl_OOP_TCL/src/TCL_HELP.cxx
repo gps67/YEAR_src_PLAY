@@ -1,6 +1,7 @@
 
 #include <tcl.h>
 
+#include "TCL_STUBS.h" // WARN
 #include "TCL_HELP.h"
 
 // this shows that "SET" in a script, appears as a NULL type string value
@@ -89,7 +90,7 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	if( t == TCL_OK ) {
 		return Tcl_GetObjResult(interp);
 	}
-	fprintf(stderr,"mk_common_spelling %s failed \n", str );
+	INFO("mk_common_spelling %s failed \n", str );
 
 	return Tcl_NewStringObj( str, -1 );
 }

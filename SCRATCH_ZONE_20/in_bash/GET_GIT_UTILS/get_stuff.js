@@ -8,6 +8,7 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+https://github.com/msteveb/jimtcl.git
 git://anongit.freedesktop.org/git/cairo
 git://anongit.freedesktop.org/git/pixman.git
 git@gitlab.com:cairo/cairo-demos.git

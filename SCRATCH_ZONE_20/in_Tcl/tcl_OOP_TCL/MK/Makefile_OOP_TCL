@@ -2,15 +2,49 @@
 
 # where is tclsh rooted and where are its include files
 
-#	Tcl_prefix=/usr
 	Tcl_prefix=/tools/x86_64/tcl
 
+	CXX = g++
+	OPTIM += -g
+	INCLS += -I./
+	INCLS += -I../
+	INCLS += -I../src/
+	INCLS += -I../STO/
+#	INCLS += -I../buffer # get from libs_apps
+#	INCLS += -I/tools/2000/X11R6/include
+
+#	Tcl_prefix=/usr
 #	Tcl_prefix=/usr/local
 #	Tcl_prefix=/opt9906/tcl
 #	Tcl_prefix=/tools/2000/tcl
+#	Tcl_prefix=/tools/x86_64/tcl
 
-	Tcl_includes += -I$(Tcl_prefix)/include
-	Tcl_includes += -I$(Tcl_prefix)/include/tcl
+	INCLS += -I$(Tcl_prefix)/include
+	INCLS += -I$(Tcl_prefix)/include/tcl
+#	Tcl_includes += -I$(Tcl_prefix)/include
+#	Tcl_includes += -I$(Tcl_prefix)/include/tcl
+
+	DEFS = 
+
+	# we are in $(S)/obj/
+	S=..
+	VPATH +=$S
+	VPATH +=$S/src
+#	VPATH +=$S/src/src_PLUS
+#	VPATH +=$S/src/STO
+
+	include ../MK/Makefile_libs_apps
+
+	# I want to use FAIL WARN PASS INFO from dgb.h
+	# I need to detatch that from libs_apps
+	# particularly for a Tcl module
+	# but that is over the horizon
+
+	# will need to fully merge libs_apps
+	# eg for open_ssl wrap,
+	# eventually merge event loop io fd_
+	# but for now I want INFO WARN and FAIL
+
 
 	Module=tcl_oop_tcl
 	Module_objs += TCL_Obj_Type_PLUS.o
@@ -23,6 +57,9 @@
 	Module_objs += TCL_DICT.o
 	Module_objs += TCL_MATCHER.o
 	Module_objs += TCL_TYPE.o
+
+	#imported LITE
+	# Module_objs += dgb.o
 
 # // edit any .h // recompile everything
 
@@ -38,7 +75,8 @@
 	Module_hdrs += TCL_Obj_Type_PLUS.h
 
 	VPATH_LIST += ./src
-	VPATH_LIST += ../src
+	VPATH_LIST += ./src_PLUS
+#	VPATH_LIST += ../src
 	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$(sub))
 #	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
 
@@ -47,7 +85,7 @@
 
 test: $(Module).so
 	nm $(Module).so | grep Init
-	tclsh test_$(Module).tcl 2>&1 | tee fa 
+	tclsh ../tests/test_$(Module).tcl 2>&1 | tee fa 
 	@echo '---'
 
 # all of the .o depend on all of the .h
@@ -55,10 +93,12 @@ test: $(Module).so
 $(Module_objs): $(Module_hdrs)
 
 $(Module).so:  $(Module_objs)
-	g++ -shared -o $@ $(Module_objs)
+	# LINKS adds the libs_apps .so
+	# LINKS does not refer to libtcl.so that comes from loading EXE
+	g++ -shared -o $@ $(Module_objs) $(LINKS)
 
 .cxx.o:
-	g++ -g -O2 -fPIC -c $< $(Tcl_includes)
+	g++ -g -O2 -fPIC -c $< $(INCLS)
 
 clean:
 	rm -f $(Module).so $(Module_objs) fa fb

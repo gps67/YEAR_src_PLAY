@@ -14,29 +14,29 @@ bool CMP( Tcl_Obj * obj, const char * str )
 bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 {
 	if(!obj) {
-	fprintf(stderr,"# NULL # LITERAL_MATCHER(%s).MATCHES_fn(NULL) # \n",
+	INFO("# NULL # LITERAL_MATCHER(%s).MATCHES_fn(NULL) # \n",
 	"{ NULL OBJ ERROR }" );
 	return false;
 	}
 
 	if(!match_one) {
-	fprintf(stderr,"# NULL match_one # should be set by CTOR to SP2 of SP1\n");
+	INFO("# NULL match_one # should be set by CTOR to SP2 of SP1\n");
 	// see 
 	return false;
 	}
 
 	if(!match_one->bytes) {
-	fprintf(stderr,"# CODE_ERROR_CTOR_FAIL\n");
+	INFO("# CODE_ERROR_CTOR_FAIL\n");
 	// STAY // return false;
 	}
 
 	if(!obj->bytes) {
-		fprintf(stderr,"# CODE_ERROR_CTOR_FAIL no bytes\n");
+		INFO("# CODE_ERROR_CTOR_FAIL no bytes\n");
 		Tcl_GetString( obj );
 		// STAY // return false;
 	}
 
-	fprintf(stderr,"# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
+	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 		Tcl_GetString( match_one ),
 		Tcl_GetString( obj ));
 
@@ -44,7 +44,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	if( obj == match_one ) return true;
 //	if( obj == match_two ) return true;
 	if( obj == match_two ) {
-		fprintf(stderr,"# FAST MATCH # used match_two # %s \n",
+		INFO("# FAST MATCH # used match_two # %s \n",
 			obj->bytes );
 		return true;
 	}
@@ -68,9 +68,9 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 
 		if(!s) s = "(NULL)";
 		const char * s2 = match_one->bytes;
-		fprintf(stderr,"# LITERAL_MATCHER(%s) TRY_NOT '%s' \n", s2, s );
+		INFO("# LITERAL_MATCHER(%s) TRY_NOT '%s' \n", s2, s );
 		if( obj == differents[i] ) {
-			fprintf(stderr,"# LITERAL_MATCHER(%s) CONFIRMED_NOT '%s' \n", s2, s );
+			INFO("# LITERAL_MATCHER(%s) CONFIRMED_NOT '%s' \n", s2, s );
 			// add to counters
 			return false;
 		}
@@ -124,7 +124,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 #if 0
 	// some sanity checks
 	if( !(match_one )) { 
-		fprintf(stderr,"**** // NULL match_one // set for first time\n");
+		INFO("**** // NULL match_one // set for first time\n");
 		match_one = obj; 
 
 		// that's it, but stay for upgrade obj to SP2
@@ -132,8 +132,8 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 
 	if( !(match_one && match_one->bytes )) {
 		// match_one is supposed to exist with string
-		fprintf(stderr,"**** // NULL match_one\n");
-		fprintf(stderr,"**** // NULL match_one bytes\n");
+		INFO("**** // NULL match_one\n");
+		INFO("**** // NULL match_one bytes\n");
 		return false;
 	} // else OK stay happy
 #endif
@@ -150,30 +150,30 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		// match_two is rare, second route to "Literal"
 		if(match_two) { // already have a second, this is 3rd
 			// do not cache // _one _two but not _three
-			fprintf(stderr,"**** // match_two OVERWRITE\n");
+			INFO("**** // match_two OVERWRITE\n");
 		}
 		match_two = obj; // no third
 		const char * s = obj->bytes;
-		fprintf(stderr,"**** // match_two used // %s \n",s);
+		INFO("**** // match_two used // %s \n",s);
 		return true;
 	} // else strcmp differs
 
 	// add obj to differents[i] overwrite NULL or FULL
 	for( int i = 0; i<N_different; i++ ) {
 		if( differents[i] ) {
-	fprintf(stderr,"**** keeping differents[%d] = %s \n",
+	INFO("**** keeping differents[%d] = %s \n",
 			i, differents[i]->bytes );
 		}
 		if( !differents[i] ) {
 			differents[i] = obj;
-	fprintf(stderr,"**** stored differents[%d] = %s \n",
+	INFO("**** stored differents[%d] = %s \n",
 			i, differents[i]->bytes );
 			// add to counters
 			return false;
 		}
 	}
 	// no space for another, N_different used
-	fprintf(stderr,"**** differents[N] FULL ///////////\n");
+	INFO("**** differents[N] FULL ///////////\n");
 	return false;
 }
 
@@ -185,7 +185,7 @@ bool LITERAL_MATCHER:: upgrade_to_SP1( Tcl_Obj * obj ) {
 }
 
 bool LITERAL_MATCHER:: upgrade_to_SP2( Tcl_Obj * obj ) {
-	fprintf(stderr,"upgrade_to_SP2 %s\n", obj->bytes);
+	INFO("upgrade_to_SP2 %s\n", obj->bytes);
 
 	/*
 		DESIGN PATTERN

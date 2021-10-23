@@ -26,14 +26,14 @@
 		SET( interp, k3, v3 );
 
 		GET( interp, k1, val );
-		fprintf(stderr,"DICT[%s] == %s\n", k1.str(), val.str() );
+		INFO("DICT[%s] == %s\n", k1.str(), val.str() );
 
 		DEL( interp, k1 );
 
 		if(!GET( interp, k1, val )) return false;
 
 		GET( interp, k1, val );
-		fprintf(stderr,"DICT[%s] == %s\n", k1.str(), val.str() );
+		INFO("DICT[%s] == %s\n", k1.str(), val.str() );
 
 		return true;
 	}

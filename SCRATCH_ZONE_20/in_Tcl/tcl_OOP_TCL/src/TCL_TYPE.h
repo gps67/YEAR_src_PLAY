@@ -433,7 +433,7 @@ class TCL_TYPE_UDEF
 			// or log badly formed NAME_%s
 			// but let it happen
 
-			fprintf(stderr,"EXPECTED %%s_%%s GOT %%s.%%s # '%s'\n",
+			INFO("EXPECTED %%s_%%s GOT %%s.%%s # '%s'\n",
 			 type_name_str );
 		 	return false; // DEMAND '_ in %s_%s
 		}
@@ -458,11 +458,11 @@ class TCL_TYPE_UDEF
 			// check for 0 else it was a wrong blind parse
 		 if( '0' == type_name_str[5] ) {
 			// all good // really is a 0
-			 fprintf(stderr,"GOT_UDEF_00 quite unusual # '%s'\n",
+			 INFO("GOT_UDEF_00 quite unusual # '%s'\n",
 			  type_name_str
 			 );
 		 } else { // FAIL // DEMANS %2X
-			 fprintf(stderr,"GOT 'UDEF_%%s' expected ""2X # '%s'\n",
+			 INFO("GOT 'UDEF_%%s' expected ""2X # '%s'\n",
 			  type_name_str
 			 );
 		 	return false;
@@ -470,7 +470,7 @@ class TCL_TYPE_UDEF
 		} // else not TYPE UDEF_00
 
 		if( NN > 255 ) {
-			 fprintf(stderr,"GOT 'UDEF_%d' from ""2X # '%s'\n",
+			 INFO("GOT 'UDEF_%d' from ""2X # '%s'\n",
 			  NN,
 			  type_name_str
 			 );
@@ -557,11 +557,12 @@ class TCL_TYPE : public TCL_TYPE_UDEF
 		return is_one_of_my_types_fn( obj );
 	}
 
-	bool get_u8_HEX_HEX_from_STR4_2X_typename( Tcl_Obj * obj, u8_idx & ret ) {
+	bool get_u8_HEX_HEX_from_STR4_2X_typename( Tcl_Obj * obj, u32 & ret )
+	{
+		u32 u8_FF = -1;
 		if(! is_one_of_my_types( obj )) { return false; }
 		// KNOW NOW typePtr NOT NULL
-		u32 u8_FF = -1;
-		if(!type_name_UDEF_u8( obj, u8_FF ) {
+		if(!type_name_UDEF_u8( obj, u8_FF )) {
 			return false;
 		}
 		if( u8_FF >> 8 ) {

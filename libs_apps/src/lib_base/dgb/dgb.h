@@ -83,7 +83,8 @@ class buffer1;
 extern bool demangle_cpp_symbol( buffer1 & buf, const char * symb );
 
 // struct err_int_t;
-#include "CTXT_stubs.h"
+// #include "CTXT_stubs.h"
+struct err_int_t;
 
 extern void errno_zero_fn();
 #ifdef WIN32

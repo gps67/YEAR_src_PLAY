@@ -56,7 +56,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
   {
   	if( decoder->test(interp) ) return TCL_OK;
 
-	fprintf(stderr, "OBJ objc == %d \n", objc );
+	INFO( "OBJ objc == %d", objc );
 
   	// OBJ $obj GET fielname
   	// OBJ $obj SET fielname val
@@ -102,7 +102,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	 case 3:	// OBJ $id OPCODE
 
 		if( match_array_get.MATCHES(cmd ) ) {
-			fprintf(stderr,"GOT array_get\n");
+			INFO("GOT array_get\n");
 			return TCL_OK;
 		}
 
@@ -111,7 +111,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 		//	boolean double end-offset regexp list cmdName bytecode
 		//	procbody bytearray int dict {array search} string
 		if(0)
-			fprintf(stderr,"GOT LIST_ALL\n");
+			INFO("GOT LIST_ALL\n");
 			Tcl_Obj * retlist = Tcl_NewListObj( 0, NULL );
 			if( TCL_OK!=
 				Tcl_AppendAllObjTypes( interp, retlist )
@@ -120,19 +120,19 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 			}
 			Tcl_SetObjResult( interp, retlist );
 		if(0)
-			fprintf(stderr,"GOT LIST_ALL ==> %s\n",
+			INFO("GOT LIST_ALL ==> %s\n",
 				Tcl_GetString( retlist ));
 			return TCL_OK;
 		}
 
-		fprintf(stderr,"not recognised Literal %s \n",cmd->bytes );
+		INFO("not recognised Literal %s \n",cmd->bytes );
 		return OBJ_usage_error( interp, objc, objv );
 
 	 break;
 	 case 4:	// OBJ $id OPCODE fieldname
 
 		if( match_GET.MATCHES(cmd ) ) {
-			fprintf(stderr,"GOT GET\n");
+			INFO("GOT GET\n");
 			return TCL_OK;
 		}
 	
@@ -142,12 +142,12 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	 case 5:	// OBJ $id OPCODE fieldname value
 
 		if( match_SET.MATCHES(cmd ) ) {
-			fprintf(stderr,"GOT SET\n");
+			INFO("GOT SET\n");
 			return TCL_OK;
 		}
 
 		if( match_array_set.MATCHES(cmd ) ) {
-			fprintf(stderr,"GOT array_set\n");
+			INFO("GOT array_set\n");
 			return TCL_OK;
 		}
 	 break;
@@ -155,7 +155,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 		return OBJ_usage_error( interp, objc, objv );
 	}
 
-	  fprintf(stderr,"not GOT %s \n",cmd->bytes );
+	  INFO("not GOT %s \n",cmd->bytes );
 
 #if 0
 	print_tcl_obj( objv[0] );

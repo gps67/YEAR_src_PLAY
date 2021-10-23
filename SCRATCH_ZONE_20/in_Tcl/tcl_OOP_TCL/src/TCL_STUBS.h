@@ -1,6 +1,8 @@
 #ifndef TCL_STUBS_H
 #define TCL_STUBS_H
 
+	#include "dgb.h" // INFO WARn FAIL
+
 	// Tcl_Proper types (standard)
 	// TCL_related types (this project)
 	// 

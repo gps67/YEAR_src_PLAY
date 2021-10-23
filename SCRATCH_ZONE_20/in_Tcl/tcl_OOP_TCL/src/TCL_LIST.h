@@ -1,6 +1,7 @@
 #ifndef TCL_LIST_H
 #define TCL_LIST_H
 
+#include "TCL_STUBS.h"
 #include "TCL_PTR.h"
 
 #define XX_GET_STRING(objPtr) \
@@ -139,7 +140,7 @@ struct TCL_LIST
 		 )) {
 		 	// ERROR only on not-a-list
 			// index out of range returns TCL_OK and NULL
-			fprintf(stderr,"GET fail POS = %d\n", index );
+			INFO("GET fail POS = %d\n", index );
 		 	// ERROR message already set
 			// HMMM leaves OLD_VAL
 			return false;
@@ -148,7 +149,7 @@ struct TCL_LIST
 			// NULL from Tcl_ListObjIndex means out of bounds
 			int N = 0;
 			if(TCL_OK !=Tcl_ListObjLength( interp, listPtr(), &N )) {
-				fprintf(stderr,"GET error Tcl_ListObjectLength\n" );
+				INFO("GET error Tcl_ListObjectLength\n" );
 			}
 			// is a NULL value ever possible ?
 			char msg[50];
@@ -164,7 +165,7 @@ struct TCL_LIST
 		// now do the Incr(newval) and Decr(oldval)
 		RET_VAR = RET_VAL;
 
-		fprintf(stderr,"GET [%d] == '%s'\n", index, Tcl_GetString( RET_VAL) );
+		INFO("GET [%d] == '%s'\n", index, Tcl_GetString( RET_VAL) );
 		return true;
 	}
 
@@ -177,7 +178,7 @@ struct TCL_LIST
 	bool SET( Tcl_Interp * interp, int index, Tcl_Obj * VAL )
 	{
 		const char * str = Tcl_GetString( VAL );
-		fprintf(stderr,"SET [%d] = %s \n", index, str );
+		INFO("SET [%d] = %s \n", index, str );
 		int objc = 1;
 		Tcl_Obj * objv[1] = { VAL };
 		int first = index;
@@ -202,7 +203,7 @@ struct TCL_LIST
 	bool NN( Tcl_Interp * interp, int * intPtr )
 	{
 		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), intPtr )) {
-			fprintf(stderr,"ADD fail Tcl_ListObjLength\n");
+			INFO("ADD fail Tcl_ListObjLength\n");
 			return false;
 		}
 		return true;
@@ -223,7 +224,7 @@ struct TCL_LIST
 		    VAL
 		 )) {
 			// ERROR message already in interp //
-			fprintf(stderr,"ADD fail Tcl_ListObjAppendElement\n");
+			INFO("ADD fail Tcl_ListObjAppendElement\n");
 			// set some bad POS for later
 			* intPtr = -1;
 			return false;
@@ -237,7 +238,7 @@ struct TCL_LIST
 	*/
 		}
 		
-		fprintf(stderr,"ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
+		INFO("ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
 		return true;
 	}
 

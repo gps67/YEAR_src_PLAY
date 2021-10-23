@@ -1,0 +1,119 @@
+" PAIR { LHS RHS } "
+
+	would work in JIM
+	would work in tclsh // vanilla on 32 bit Linux
+
+	JIM claims to work under WASM
+
+	http://jim.tcl.tk/index.html/doc/www/www/documentation/oo/
+
+	Looks robust, maybe follow it's syntax with a JIM command
+
+	JIM {
+		class myclass {key1 val1}
+
+	. class Account {balance 0}
+	Account
+
+	. info procs Account*
+	{Account get}
+	{Account methods}
+	{Account eval}
+	 Account
+	{Account new}
+	{Account destroy}
+	{Account vars}
+	{Account classname}
+	{Account classvars}
+	{Account method}
+
+	JIM Acct
+	. Acct  method show {{chan stdout}} {
+		  $chan puts "varname is $varname"
+		}
+	  . $b   show
+	JIM $obj new ~vars~ ;# new {{key val}{k2 v2}}
+	JIM $obj method name args body
+	JIM $obj methods
+	JIM $obj vars
+	JIM $obj classvars
+	JIM $obj name
+
+	JIM $obj destroy
+	JIM $obj get varname
+	JIM $obj eval ?locals? body
+
+	
+	JIM $obj 
+	method	name of ARG[0] ;# expect builtin that creates methods
+	name	name of ARG[1] ;# expect CIDENT for name of function
+	args	name of DECL_ARGS ;# ARGV builder with NULL defaults
+	body	name of { SCRIPT TEXT }
+
+	JIM_SCRIPT {
+		PARSE SCRIPT
+		RUNTIME
+		INTERPRET
+		as       method name args body
+		JIM  -   method name args body
+
+	}
+
+		super cmdname $value
+	
+## MINI_MACHINE
+
+	EA_VAR %s "u8_idx"
+	EA_VAR VARS[u8]
+	EA_VAR = ITEM[u8] // claim TYPE_OF_ITEM[u8] == "AVAR"
+
+	EA_VAR = u8_u8 
+	EA_VAR = PAGE[u8] i ->. ITEM[u8]
+	   VAR == EA_VAR += TYPE "AVAR" // EIGHT_t
+
+	EA_VAR = ITEMS[u16] 
+
+		// u8_u8 // 256 * 4 bytes = 1K per INDEX (2K on 64bit)
+		// Sparse array, but if not NULL is full [u8]
+		// EIGHT_t // u32_u32 // PTR_PTR //
+		// EIGHT_t // u16_u16_u16_u16 // TUPLO PAIR lhs rhs CMNT
+		// KNOW // CMNT is stored in CMNT_STO
+		// KNOW // lhs rhs  stored in DATA
+		// KNOW // PAIR = { PAIR lhs rhs } // parsed TUPLO
+		// { TUPLO TUPLO_PAIR_lhs_rhs_CMNT }
+		// { TUPLO TUPLO_ITEM_lhs_CMNT }
+		//  TUPLO { TUPLO_PAIR_lhs_rhs_CMNT 
+		//  TUPLO_PAIR_lhs_rhs lhs rhs
+			// this is AMBIG OPCODE { lhs rhs }
+			// TYPE gives OPCODE which appear to be real
+			{ OPCODE PTR1 PTR2 }
+		//  TUPLO_PAIR_lhs_rhs_CMNT u16_TUPLO_PAIR_lhs_rhs_CMNT
+		// u16_ ASM can directly pick u16 from array of EIGHT with X86
+		EIGHT[ IDX ] // u8_idx // CPU_VAR[u5] // DATA_WORD_8[u16_idx]
+
+		 obj.PAIR
+		 obj.lhs
+		 obj.rhs
+		 obj.CMNT
+
+		 PAIR[obj]
+		 lhs[obj]
+		 rhs[obj]
+		 CMNT[obj]
+
+
+SCRIPIT		if it looks like a var then it might be 
+ALIAS EXPR	obj.field field[obj]
+
+	Then make it CLI API like JIM ?
+	Probably as simple as a module, for JIM to load,
+	using same API as Tcl_Latest, valid subset,
+
+	Then need list of
+	#define Tcl_Obj Jim_Obj
+	#define Tcl_Ref_IncrObj Jim_...... etc
+
+	ie it does not join in with the Jim_ oo system
+	but it can co-exist and link (maybe TBA not even attempted yet)
+
+

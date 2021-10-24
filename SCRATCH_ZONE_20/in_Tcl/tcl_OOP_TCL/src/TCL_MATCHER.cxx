@@ -20,7 +20,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	}
 
 	if(!match_one) {
-	INFO("# NULL match_one # should be set by CTOR to SP2 of SP1\n");
+	INFO("# NULL match_one # should be set by CTOR to LEX2 of LEX1\n");
 	// see 
 	return false;
 	}
@@ -83,26 +83,26 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		match_one is it all in one
 		match_two is local ALIAS that LINKS to MATCH_one
 
-		so if it is not SP1 or SP2 it might be another SP2
+		so if it is not LEX1 or LEX2 it might be another LEX2
 		so if it is TYPE_NULL, we want to upgrade it
 
-			STR0 UPGRADE to SP2 to SP1
+			STR0 UPGRADE to LEX2 to LEX1
 			the next call from that PROC 
 			will be of TCL_TYPE_NAME UDEF_%2X // u8_SPEC_id
 
 			SPEC_t * ea_spec = SPECS[u8_idx];
 			u8_idx = UDEF_NN
 
-		any other user of this system would LINK to SP1
+		any other user of this system would LINK to LEX1
 		
-			SP1 the PRIMARY_SPELLING
-			SP2 SIMILAR_SEPARATE LINK to SP1
+			LEX1 the PRIMARY_SPELLING
+			LEX2 SIMILAR_SEPARATE LINK to LEX1
 
-		SP2 = new SP2 // second spelling
+		LEX2 = new LEX2 // second spelling
 
-		eg ALIAS SP2 -> SP1
-		eg FILTER SP2 .PTR1 -> SP1
-		eg FILTER SP2 .PTR2 -> CP_where_this_SP2_is_DECLARED_MAYBE
+		eg ALIAS LEX2 -> LEX1
+		eg FILTER LEX2 .PTR1 -> LEX1
+		eg FILTER LEX2 .PTR2 -> CP_where_this_LEX2_is_DECLARED_MAYBE
 
 		eg FILTER { FILTER }
 
@@ -126,7 +126,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		INFO("**** // NULL match_one // set for first time\n");
 		match_one = obj; 
 
-		// that's it, but stay for upgrade obj to SP2
+		// that's it, but stay for upgrade obj to LEX2
 	}
 
 	if( !(match_one && match_one->bytes )) {
@@ -139,13 +139,13 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 
 	// THIS is SPEC_FF xFF // something tokenised ITEM of PAGE_256
 	// EA_u8 // MINI_MACHINE item in table[u8]
-	// CLASS_SP1 // IDX // PTR1 == SP1_as_u32_TOKEN
-	// CLASS_SP2 // IDX // PTR2 == SP1
+	// CLASS_LEX1 // IDX // PTR1 == LEX1_as_u32_TOKEN
+	// CLASS_LEX2 // IDX // PTR2 == LEX1
 
 	// match_ONE is "GET" or "array_get"
 	// do the strcmp compare
 	if( CMP( obj, match_one->bytes )) {
-		upgrade_to_SP2( obj ); // MORPH_OBJ_TO_TYPE
+		upgrade_to_LEX2( obj ); // MORPH_OBJ_TO_TYPE
 		// match_two is rare, second route to "Literal"
 		if(match_two) { // already have a second, this is 3rd
 			// do not cache // _one _two but not _three
@@ -177,21 +177,21 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	return false;
 }
 
-bool LITERAL_MATCHER:: upgrade_to_SP1( Tcl_Obj * obj ) {
+bool LITERAL_MATCHER:: upgrade_to_LEX1( Tcl_Obj * obj ) {
 	// ALIAS UDEF_%$ HERE UDEF_%X NN 
 	// ALIAS %$ HERE %X NN 
-	// TYPE = UDEF_SP1
+	// TYPE = UDEF_LEX1
 	return true;
 }
 
-bool LITERAL_MATCHER:: upgrade_to_SP2( Tcl_Obj * obj ) {
-	INFO("upgrade_to_SP2 %s\n", obj->bytes);
+bool LITERAL_MATCHER:: upgrade_to_LEX2( Tcl_Obj * obj ) {
+	INFO("upgrade_to_LEX2 %s\n", obj->bytes);
 
 	/*
 		DESIGN PATTERN
 
-			upgrade_STR_to_SP2
-			upgrade TEXT_to_KEY_VAL_SP2_of_TEXT // not Literal
+			upgrade_STR_to_LEX2
+			upgrade TEXT_to_KEY_VAL_LEX2_of_TEXT // not Literal
 			upgrade_STR_to_PARSED_TREE 
 			PARSE("bytes[length]")
 
@@ -205,13 +205,13 @@ bool LITERAL_MATCHER:: upgrade_to_SP2( Tcl_Obj * obj ) {
 			TEXT_HELD("{ SCRIPT }")
 			TREE_TEXT("{ TOKENISED SCRIPT }")
 
-		static SP2_SPEC; // a complete TYPE for ALIAS SP2 to SP1
+		static LEX2_SPEC; // a complete TYPE for ALIAS LEX2 to LEX1
 
 		TOKEN
-			TCL_TYPE create SP2 ; return SP2 ;
+			TCL_TYPE create LEX2 ; return LEX2 ;
 	*/
-//	static u8_idx_SPEC_SP2 = // OBJ->typePtr = type_Ptr_SP2
-//	static u8_idx_SPEC_SP2 = // OBJ->typePtr = type_Ptr_SP2
+//	static u8_idx_SPEC_LEX2 = // OBJ->typePtr = type_Ptr_LEX2
+//	static u8_idx_SPEC_LEX2 = // OBJ->typePtr = type_Ptr_LEX2
 	return true; // but not actually done
 	return false; // upgrade failed somehow
 }

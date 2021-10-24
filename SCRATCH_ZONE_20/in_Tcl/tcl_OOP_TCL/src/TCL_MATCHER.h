@@ -63,8 +63,8 @@ struct LITERAL_MATCHER {
 
 	bool MATCHES_fn( Tcl_Obj * obj );
 
-	bool upgrade_to_SP1( Tcl_Obj * obj ); // no interp nearby
-	bool upgrade_to_SP2( Tcl_Obj * obj ); // no interp nearby
+	bool upgrade_to_LEX1( Tcl_Obj * obj ); // no interp nearby
+	bool upgrade_to_LEX2( Tcl_Obj * obj ); // no interp nearby
 
 };
 

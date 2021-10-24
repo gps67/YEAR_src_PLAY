@@ -10,19 +10,19 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 {
  // pretty printing require CTOR to set up good defaults
 
-	const char * alias_one_ABB; // when not UDEF_25 UDEF_SP1 or "SP1"
-	// "SP1"
+	const char * alias_one_ABB; // when not UDEF_25 UDEF_LEX1 or "LEX1"
+	// "LEX1"
 
 	const char * alias_one_LONG;
-	// "UDEF_25_SP1" // SP1 is also an STR4 // with NUL
+	// "UDEF_25_LEX1" // LEX1 is also an STR4 // with NUL
 
 //	const char * alias_two_ABB;
 	// "SPELLING_ONE"
 
-//	const char * alias_two_LONG; // when not UDEF_25 UDEF_SP1 or "SP1"
-	// { SP1_t "SP1" }
+//	const char * alias_two_LONG; // when not UDEF_25 UDEF_LEX1 or "LEX1"
+	// { LEX1_t "LEX1" }
 
-	// when not UDEF_25 UDEF_SP1 or "SP1"
+	// when not UDEF_25 UDEF_LEX1 or "LEX1"
 
 	bool has_DICT_of_KEY_VAL; // ie user added fields { KEY VAL }
 
@@ -38,7 +38,7 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 //		alias_two_LONG = NULL; 
 		name = ABB;
 
-		has_DICT_of_KEY_VAL = false; // SP1 no extra KEY_VAL fields
+		has_DICT_of_KEY_VAL = false; // LEX1 no extra KEY_VAL fields
 	}
 
 	TCL_ObjType_PLUS()
@@ -65,22 +65,37 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 
 }; // struct
 
-struct TCL_ObjType_SP1 : TCL_ObjType_PLUS
+struct TCL_ObjType_LEX1 : TCL_ObjType_PLUS
 {
-	TCL_ObjType_SP1()
-	: TCL_ObjType_PLUS("SP1")
+	TCL_ObjType_LEX1()
+	: TCL_ObjType_PLUS("LEX1")
 	{
-		set_funcs_SP1();
+		set_funcs_LEX1();
 	}
 
-	void set_funcs_SP1();
+	void set_funcs_LEX1();
 
 };
 
-// extern TCL_ObjType_SP1 * ObjType_SP1; // = NULL;
-// Tcl_ObjType * get_SP1();
+
+struct TCL_ObjType_LEX2 : TCL_ObjType_PLUS
+{
+	TCL_ObjType_LEX2()
+	: TCL_ObjType_PLUS("LEX2")
+	{
+		set_funcs_LEX2();
+	}
+
+	void set_funcs_LEX2();
+
+};
+
+
 
 extern
-TCL_ObjType_SP1 * get_TYPE_SP1(); // does not need interp
+TCL_ObjType_LEX1 * get_TYPE_LEX1(); // does not need interp
+
+extern
+TCL_ObjType_LEX2 * get_TYPE_LEX2(); // does not need interp
 
 #endif

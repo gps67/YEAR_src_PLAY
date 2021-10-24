@@ -21,11 +21,12 @@ char * P64( void * PTR )
 /*
 	print the refcount and outher fields
 */
-void print_tcl_obj( Tcl_Obj * obj )
+void print_tcl_obj( Tcl_Obj * obj, const char * str )
 {
+	if(!str) str = "!";
 //	fprintf(stderr,"\n");
 //	fprintf(stderr,"tcl_obj              0x%lx\n", (long) obj );
-	fprintf(stderr,"tcl_obj --------->   %s\n", P64( obj ) );
+	fprintf(stderr,"tcl_obj --------->   %s  %s\n", P64( obj ), str );
 	fprintf(stderr,"tcl_obj refCount     %d\n", obj->refCount );
 	fprintf(stderr,"tcl_obj bytes %4d   %s\n", obj->length, obj->bytes ? obj->bytes : "(NULL)" );
 	fprintf(stderr,"tcl_obj typePtr.name %s\n", obj->typePtr ? obj->typePtr->name : "(NULL)" );

@@ -4,6 +4,7 @@
 #include "TCL_STUBS.h"
 #include "TCL_PTR.h"
 #include "TCL_HELP.h"
+#include "TCL_Obj_Type_PLUS.h"
 // #include "TCL_MATCHER.h"
 
 extern
@@ -27,8 +28,9 @@ struct LITERAL_MATCHER {
 	static const int N_different = 4;
 
 	// these auto DTOR CTOR NULL refcount 
-	TCL_PTR match_one;
-	TCL_PTR match_two;
+	TCL_PTR match_one; // LEX1
+	TCL_PTR match_two; // LEX2 from outside of proc
+	TCL_PTR match_three; // another LEX2, similar ways
 	TCL_PTR differents[N_different];
 
 	~LITERAL_MATCHER()
@@ -37,7 +39,8 @@ struct LITERAL_MATCHER {
 
 	LITERAL_MATCHER( Tcl_Interp * interp, const char * str )
 	{
-		match_one = mk_common_spelling( interp, str );
+		match_one = mk_LEX1( interp, str );
+	//	match_one = mk_common_spelling( interp, str );
 	}
 
 	/*!
@@ -48,7 +51,10 @@ struct LITERAL_MATCHER {
 		// match cache
 		if( obj == match_one ) return true;
 		if( obj == match_two ) return true;
+		if( obj == match_three ) return true;
 
+#if 0
+		// actually I think that different list is waste of time
 		// different cache
 		// rewrite as ASM word compare macro
 		for( int i = 0; i<N_different; i++ ) {
@@ -56,6 +62,7 @@ struct LITERAL_MATCHER {
 				return false;
 			}
 		}
+#endif
 
 		// not finding obj means strcmp and update cache required
 		return MATCHES_fn( obj );
@@ -63,8 +70,8 @@ struct LITERAL_MATCHER {
 
 	bool MATCHES_fn( Tcl_Obj * obj );
 
-	bool upgrade_to_LEX1( Tcl_Obj * obj ); // no interp nearby
-	bool upgrade_to_LEX2( Tcl_Obj * obj ); // no interp nearby
+//	bool upgrade_to_LEX1( Tcl_Obj * obj ); // no interp nearby
+	bool SEE_C_upgrade_to_LEX2( Tcl_Obj * obj, Tcl_Obj * LEX1  ); // 
 
 };
 

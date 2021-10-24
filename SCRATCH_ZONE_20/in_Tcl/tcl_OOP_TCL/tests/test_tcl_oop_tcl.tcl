@@ -21,6 +21,10 @@ proc fn2 {X} {
 	OBJ obj_id GET fieldname 
 }
 
+proc fn3 {} {
+	puts [OBJ - LIST_ALL_OBJ_TYPE]
+}
+
 #	load ./tcl_oop_tcl.so
 #	load ./tcl_oop_tcl.so Optical
 	lappend auto_path \
@@ -31,7 +35,16 @@ proc fn2 {X} {
 	load ../obj/tcl_oop_tcl.so optical
 	puts "# FAIL # can find module without ../obj/filename.so"
 #	load tcl_oop_tcl.so optical
+
+if 1 {
+	# these 2 show that the use of LITERAL LIST_ALL_OBJ_TYPE
+	# outside of any proc, creates a LEX2
+	# even after the use inside fn3 used the LEX1
+	fn3
 	puts [OBJ - LIST_ALL_OBJ_TYPE]
+}
+
+if 1 {
 
 	# already said k1 k2 k3 test from C
 	test2
@@ -41,7 +54,6 @@ proc fn2 {X} {
 	fn2 C
 	OBJ obj_id ONE
 
-if 0 {
 	OBJ obj_id SET fieldname value
 	OBJ obj_id GET fieldname 
 	OBJ obj_id 

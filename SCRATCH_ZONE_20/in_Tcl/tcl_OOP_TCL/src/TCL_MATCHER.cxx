@@ -36,7 +36,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		// STAY // return false;
 	}
 
-	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
+if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 		Tcl_GetString( match_one ),
 		Tcl_GetString( obj ));
 
@@ -48,7 +48,13 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 			obj->bytes );
 		return true;
 	}
+	if( obj == match_three ) {
+		INFO("# FAST MATCH # used match_three # %s \n",
+			obj->bytes );
+		return true;
+	}
 
+	#if 0
 	// there should be an ASM for this
 	// plain searches though N can be blindingly fast
 	// but setup overhead makes it less so
@@ -74,6 +80,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 			return false;
 		}
 	}
+	#endif
 
 	// ASM OPTIM search for PTR in PTRS[ N ]
 	// IF idx in lhs[2] or rhs[6]
@@ -145,19 +152,39 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	// match_ONE is "GET" or "array_get"
 	// do the strcmp compare
 	if( CMP( obj, match_one->bytes )) {
-		upgrade_to_LEX2( obj ); // MORPH_OBJ_TO_TYPE
+	//	print_tcl_obj( obj, "obj that is not LITERAL" );
+	//	print_tcl_obj( match_one, "match_one" );
+	//
+		upgrade_to_LEX2( obj, match_one ); // MORPH_OBJ_TO_TYPE
+		print_tcl_obj( obj, "obj_after_upgrade" );
+
 		// match_two is rare, second route to "Literal"
-		if(match_two) { // already have a second, this is 3rd
-			// do not cache // _one _two but not _three
-			WARN("match_two OVERWRITE\n");
-			FAIL("match_two OVERWRITE I consider this a FAIL\n");
+		// hallens every LEX2 outside of proc
+		if(!match_two) { // first LEX2
+			match_two = obj; // 
+			INFO("setting match_two");
+			return true;
 		}
-		match_two = obj; // no third
+
+		if(!match_three) { // another LEX2
+			match_three = obj; // 
+			INFO("setting match_three");
+			return true;
+		}
+
+		// match_tree slides over most recent
+		// that might fix it or not
+		// I consider this a FAIL
+		WARN("match_three OVERWRITE\n");
+		FAIL("match_three OVERWRITE I consider this a FAIL\n");
+		match_three = obj; // 
+		
 		const char * s = obj->bytes;
-		INFO("**** // match_two used // %s \n",s);
+		INFO("match_three = %s",s);
 		return true;
 	} // else strcmp differs
 
+	#if 0
 	// add obj to differents[i] overwrite NULL or FULL
 	for( int i = 0; i<N_different; i++ ) {
 		if( differents[i] ) {
@@ -174,17 +201,18 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	}
 	// no space for another, N_different used
 	WARN("differents[N] FULL");
+	#endif
 	return false;
 }
 
-bool LITERAL_MATCHER:: upgrade_to_LEX1( Tcl_Obj * obj ) {
-	// ALIAS UDEF_%$ HERE UDEF_%X NN 
-	// ALIAS %$ HERE %X NN 
-	// TYPE = UDEF_LEX1
-	return true;
-}
+//bool LITERAL_MATCHER:: upgrade_to_LEX1( Tcl_Obj * obj ) {
+//	// ALIAS UDEF_%$ HERE UDEF_%X NN 
+//	// ALIAS %$ HERE %X NN 
+//	// TYPE = UDEF_LEX1
+//	return true;
+//}
 
-bool LITERAL_MATCHER:: upgrade_to_LEX2( Tcl_Obj * obj ) {
+bool LITERAL_MATCHER:: SEE_C_upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
 	INFO("upgrade_to_LEX2 %s\n", obj->bytes);
 
 	/*

@@ -91,11 +91,17 @@ struct TCL_ObjType_LEX2 : TCL_ObjType_PLUS
 };
 
 
+// NB this is where GLOBAL meets parametised LAYERS
+// mk_LEX1("lookup") needs global TYPE_LEX1 and global LEX1_SPELLING_POOL
 
 extern
 TCL_ObjType_LEX1 * get_TYPE_LEX1(); // does not need interp
 
 extern
 TCL_ObjType_LEX2 * get_TYPE_LEX2(); // does not need interp
+
+Tcl_Obj * mk_LEX1( Tcl_Interp * interp, const char * str );
+bool upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 );
+
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef TCL_HELP_H
 #define TCL_HELP_H
 
-extern void print_tcl_obj( Tcl_Obj * obj );
+extern void print_tcl_obj( Tcl_Obj * obj, const char * str = NULL );
 extern Tcl_Obj * mk_str( const char * str );
 extern Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str );
  
@@ -51,6 +51,15 @@ VAL_t TCL_get_VAL2( Tcl_Obj * obj ) {
 
 #undef VAL_t
 
+// this was private, seems useful
+extern
+char * P64( void * PTR );
+
+inline
+const char * str_not_NULL( const char * str )
+{
+	return str ? str : "(null)";
+}
 
 #endif
 

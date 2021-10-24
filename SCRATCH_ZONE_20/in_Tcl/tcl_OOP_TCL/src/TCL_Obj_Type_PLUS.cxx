@@ -1,5 +1,6 @@
 
 #include "TCL_Obj_Type_PLUS.h" // error in "_"
+#include "TCL_HELP.h" // P64
 
 void LEX1_FreeInternalRepProc( 
   Tcl_Obj *obj
@@ -7,12 +8,15 @@ void LEX1_FreeInternalRepProc(
 	/*
 		A SYSTEM EXIT is happening
 		the Literal is being deleted
+
+		obj->bytes IS ALREADY GONE and NULL
 	*/
-	if( obj->bytes ) {
-		WARN("DELETE LEX1 '%s'", obj->bytes );
-	} else {
-		WARN("DELETE LEX1 '(NULL)'" );
-	}
+	if(1)
+		WARN("DELETE %s %s '%s'",
+			P64( obj ),
+			obj->typePtr->name, 
+			str_not_NULL(obj->bytes)
+		);
 	TCL_set_PTR1( obj, NULL );
 	TCL_set_PTR2( obj, NULL );
 }
@@ -143,6 +147,7 @@ void LEX2_FreeInternalRepProc(
 	} else {
 		WARN("DELETE LEX2 '(NULL)'" );
 	}
+	Tcl_DecrRefCount( (Tcl_Obj*) TCL_get_PTR2( obj ) );
 	TCL_set_PTR1( obj, NULL );
 	TCL_set_PTR2( obj, NULL );
 }
@@ -258,5 +263,40 @@ TCL_ObjType_LEX2 * get_TYPE_LEX2()
 };
 
 ////////////////////////
+
+Tcl_Obj * mk_LEX1( Tcl_Interp * interp, const char * str )
+{
+	// called by MATCHER.MATCHES CTOR
+	Tcl_Obj * lex1 = mk_common_spelling( interp, str );
+	if( lex1 -> typePtr ) {
+		WARN("already a TYPE_XXXX %s %s",
+		  str_not_NULL(lex1 -> typePtr -> name),
+		  str
+		);
+		print_tcl_obj( lex1, "from mk_common_spelling" );
+	}
+	TCL_ObjType_PLUS * TYPE_LEX1 = get_TYPE_LEX1();
+	TYPE_LEX1 -> setFromAnyProc( interp, lex1 );
+	print_tcl_obj( lex1, "after set_from_any" );
+	return lex1;
+}
+
+// Tcl_Obj * mk_LEX2( Tcl_Interp * interp, const char * str );// MAKES NO SENSE
+// LEX2 is the forced use of a fixed Tcl_Obj when a LEX1 would be better
+// LEX2 comes from NOT using proc, or from other clever construction of obj
+// LEX2 holds a PTR2 -> a_LEX1
+// LEX2 may even be multiple instances
+
+bool upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
+#if 1
+	
+#endif
+	INFO("%s %s", obj->bytes, LEX1->bytes);
+	obj -> typePtr = get_TYPE_LEX2();
+	TCL_set_PTR1( obj, NULL );
+	TCL_set_PTR2( obj, LEX1 );
+	Tcl_IncrRefCount( LEX1 );
+	return TCL_OK;
+}
 
 

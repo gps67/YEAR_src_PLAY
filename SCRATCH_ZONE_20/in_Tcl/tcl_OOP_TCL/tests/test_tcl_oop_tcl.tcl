@@ -54,6 +54,7 @@ if 1 {
 	fn2 C
 	OBJ obj_id ONE
 
+	puts "# TEST # SET and GET outside of proc become LEX2"
 	OBJ obj_id SET fieldname value
 	OBJ obj_id GET fieldname 
 	OBJ obj_id 

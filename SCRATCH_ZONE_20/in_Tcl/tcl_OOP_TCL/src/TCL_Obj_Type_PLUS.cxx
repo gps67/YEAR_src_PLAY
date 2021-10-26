@@ -1,6 +1,101 @@
 
 #include "TCL_Obj_Type_PLUS.h" // error in "_"
 #include "TCL_HELP.h" // P64
+#include "dgb.h" // FAIL
+
+/*
+	this DUP func is used as a KEEP_PTR 
+	all _PLUS types do this
+	only _PLUS types do this
+	so we KNOW that 
+	srcPtr -> typePtr == A_PLUS_TYPE # subtype within group
+	so bounce through to find and call the correct function
+*/
+void PLUS_MYTYPE_DupInternalRepProc( Tcl_Obj *srcPtr, Tcl_Obj *dupPtr )
+{
+	#if 1
+	// KEEP_PTR == this function, get it to check TYPE -> DUP func
+	Tcl_DupInternalRepProc *dupIntRepProc
+	= PLUS_MYTYPE_DupInternalRepProc; // this_func so fast
+
+	// some checks // supposedly guaranteed
+	if(!srcPtr) { FAIL("NULL src in DUP"); return; }
+	if(!srcPtr->typePtr) { FAIL("NULL src_type in DUP"); return; }
+	if(!(srcPtr->typePtr->dupIntRepProc != dupIntRepProc)) {
+		FAIL("NULL src_type in DUP");
+		return;
+	}
+	#endif
+
+	// so NOW we know that this is a _PLUS typePtr
+	// we DID know that because that is the only way this is called
+	// but belt and braces
+
+	// cast from Tcl_TypeObj * to PLUS
+	TCL_ObjType_PLUS * PLUS =
+	(TCL_ObjType_PLUS*) srcPtr->typePtr;
+	if(!PLUS) {
+		FAIL("NULL typePtr after cast");
+		return;
+	}
+	// find and call the real dup function
+	// PTR stored in the PLUS struct
+	Tcl_DupInternalRepProc * plus_dup =PLUS-> dupIntRepProc_PLUS;
+	if(!plus_dup) {
+		FAIL("NULL dupIntRepProc_PLUS");
+		return;
+	}
+	plus_dup( srcPtr, dupPtr );
+}
+
+bool TCL_ObjType_PLUS:: check_funcs_not_NULL()
+{
+	bool OK = true;
+
+	// check they are not NULL
+	if(! freeIntRepProc ) {
+		OK = FAIL("NULL freeIntRepProc");
+	}
+	if(! dupIntRepProc ) {
+		// maybe we should set it here ?
+		// or that is all done by the CTOR and adjusts
+		OK = FAIL("NULL dupIntRepProc");
+	}
+	if(! dupIntRepProc_PLUS ) {
+		OK = FAIL("NULL dupIntRepProc_PLUS");
+	}
+	if(! updateStringProc ) {
+		OK = FAIL("NULL updateStringProc");
+	}
+	if(! setFromAnyProc ) {
+		OK = FAIL("NULL setFromAnyProc");
+	}
+
+	// check DUP is the specific rerouted one
+	// DUP is the one that is easily forgotten // because _PLUS
+	if( dupIntRepProc != PLUS_MYTYPE_DupInternalRepProc) {
+		OK = FAIL("dupIntRepProc != PLUS_MYTYPE_DupInternalRepProc");
+	}
+
+	if(!OK) {
+		FAIL("NULL function in TCL_ObjType");
+	}
+
+	return OK;
+}
+
+bool TCL_ObjType_PLUS:: Register_ObjType()
+{
+	if(! check_funcs_not_NULL() ) {
+		FAIL("NULL funcs CODE error, registering type anyway");
+	}
+	// registering is optional
+	PASS("Registering %s", name );
+	Tcl_RegisterObjType( this );
+	return true;
+}
+	
+/////////////
 
 void LEX1_FreeInternalRepProc( 
   Tcl_Obj *obj
@@ -67,10 +162,13 @@ int LEX1_SetFromAnyProc(
 		return TCL_ERROR; // already reported
 	}
 	if( !TYPE_LEX1 -> name ) {
+		// this never happens
 		FAIL("TYPE_LEX1 has no name");
 		return TCL_ERROR;
 	}
 	if( !obj -> bytes ) {
+		// this never happens / because Tcl cant call to convert a {}
+		// hmm or can it - an empty string // points ot ""
 		// TCL_FAIL // write FAIL text to TCL val
 		FAIL("obj bytes == NULL Literal");
 		return TCL_ERROR;
@@ -88,16 +186,11 @@ int LEX1_SetFromAnyProc(
 
 void TCL_ObjType_LEX1:: set_funcs_LEX1()
 {
- #if 0
-	Tcl_FreeInternalRepProc *freeIntRepProc;
-	Tcl_DupInternalRepProc *dupIntRepProc;
-	Tcl_UpdateStringProc *updateStringProc;
-	Tcl_SetFromAnyProc *setFromAnyProc;
- #endif
-	freeIntRepProc = LEX1_FreeInternalRepProc;
-	dupIntRepProc = LEX1_DupInternalRepProc;
-	updateStringProc = LEX1_UpdateStringProc;
-	setFromAnyProc = LEX1_SetFromAnyProc;
+	freeIntRepProc     = LEX1_FreeInternalRepProc;
+	dupIntRepProc      = PLUS_MYTYPE_DupInternalRepProc;
+	dupIntRepProc_PLUS = LEX1_DupInternalRepProc;
+	updateStringProc   = LEX1_UpdateStringProc;
+	setFromAnyProc     = LEX1_SetFromAnyProc;
 	INFO("CALLED");
 }
 
@@ -106,34 +199,39 @@ TCL_ObjType_LEX1 * get_TYPE_LEX1()
 	// return the TYPE , cached or new
 	// build it and register it
 	//
+	// cache var //
 	static TCL_ObjType_LEX1 * ObjType_LEX1 = NULL;
 	if( ObjType_LEX1 ) return ObjType_LEX1;
+
 	if( 1 )
-		INFO("# CALL # new ObjType_LEX1" );
 	INFO("building LEX1");
 
 	// I want to call the objects of type LEX1_t LEX1
 	// using a temp LEX1 so that it is fully init'd before not NULL
 	// 
-	TCL_ObjType_LEX1 * LEX1 =
-		new TCL_ObjType_LEX1(); // _PLUS("LEX1")
+	TCL_ObjType_LEX1 * LEX1
+	= new TCL_ObjType_LEX1(); // _PLUS("LEX1")
 	if( !LEX1 ) {
 		FAIL("NULL from new ObjType_LEX1" );
 		return NULL;
 	}
 	// LEX1->set_funcs_LEX1(); // done in CTOR
+	// CTOR also did KEPT_PTR into DUP field
+	// hence derived class for PLUS/LEX1
 
-
+	// save the cached local value
 	ObjType_LEX1 = LEX1;
-	// registering is optional
-	PASS("Registering %s", LEX1->name );
-	Tcl_RegisterObjType( LEX1 );
+
+	if(! LEX1->Register_ObjType()) {
+		WARN("proceeding anyway");
+	}
+
 	return ObjType_LEX1;
 };
 
 ////////////////////////
-
-
+// LEX2
+// LEX2 uses PTR2 -> LEX1
 
 void LEX2_FreeInternalRepProc( 
   Tcl_Obj *obj
@@ -219,16 +317,11 @@ int LEX2_SetFromAnyProc(
 
 void TCL_ObjType_LEX2:: set_funcs_LEX2()
 {
- #if 0
-	Tcl_FreeInternalRepProc *freeIntRepProc;
-	Tcl_DupInternalRepProc *dupIntRepProc;
-	Tcl_UpdateStringProc *updateStringProc;
-	Tcl_SetFromAnyProc *setFromAnyProc;
- #endif
-	freeIntRepProc = LEX2_FreeInternalRepProc;
-	dupIntRepProc = LEX2_DupInternalRepProc;
-	updateStringProc = LEX2_UpdateStringProc;
-	setFromAnyProc = LEX2_SetFromAnyProc;
+	freeIntRepProc     = LEX2_FreeInternalRepProc;
+	dupIntRepProc      = PLUS_MYTYPE_DupInternalRepProc; // CALLS ...
+	dupIntRepProc_PLUS = LEX2_DupInternalRepProc;
+	updateStringProc   = LEX2_UpdateStringProc;
+	setFromAnyProc     = LEX2_SetFromAnyProc;
 	INFO("CALLED");
 }
 
@@ -252,15 +345,16 @@ TCL_ObjType_LEX2 * get_TYPE_LEX2()
 		FAIL("NULL from new ObjType_LEX2" );
 		return NULL;
 	}
-	// LEX2->set_funcs_LEX2(); // done in CTOR
 
 
 	ObjType_LEX2 = LEX2;
-	// registering is optional
-	PASS("Registering %s", LEX2->name );
-	Tcl_RegisterObjType( LEX2 );
+
+	if(! LEX2->Register_ObjType()) {
+		WARN("proceeding anyway");
+	}
+
 	return ObjType_LEX2;
-};
+}
 
 ////////////////////////
 

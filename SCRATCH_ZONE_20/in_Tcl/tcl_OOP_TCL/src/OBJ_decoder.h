@@ -1,8 +1,8 @@
 #ifndef OBJ_decoder_H
 #define OBJ_decoder_H
 
-// #include <tcl.h> // done by TCL_PTR.h
-#include "TCL_PTR.h"
+// #include <tcl.h> // done by TCL_REF.h
+#include "TCL_REF.h"
 #include "TCL_LIST.h"
 #include "TCL_DICT.h"
 #include "TCL_HASH.h"
@@ -54,7 +54,8 @@ class OBJ_MODULE // actually any kind of module
 */
 class OBJ_decoder
 {
-	TCL_TYPE type_decoder;
+ //	TCL_TYPE type_decoder;
+ 	KEPT_PTR_type KEPT_PTR; 
 	TCL_LIST list;
 	TCL_DICT dict;
 //	TCL_HASH hash;
@@ -65,9 +66,15 @@ class OBJ_decoder
 	: list( interp )
 	, dict( interp )
 //	, hash( interp )
+ 	, KEPT_PTR( NULL )
 	, TYPE_LEX1( NULL )
 	, TYPE_LEX2( NULL )
 	{
+		// KEEP the KEPT_PTR
+		KEPT_PTR = GET_KEPT_PLUS_PTR_GLOBAL();
+
+		// do INIT this thing, DONT keep it
+		// TODO remove
 		TYPE_LEX1 = get_TYPE_LEX1(); // build it
 		// a TYPE_pbj is not a Tcl_Obj just a STRUCT*
 	}
@@ -82,10 +89,10 @@ class OBJ_decoder
 	}
 
 
-	// future inline // currently fn
-	bool is_one_of_my_types( Tcl_Obj * obj ) {
-		return type_decoder.is_one_of_my_types( obj );
-	}
+ //	// future inline // currently fn
+ //	bool is_one_of_my_types( Tcl_Obj * obj ) {
+ //		return type_decoder.is_one_of_my_types( obj );
+ //	}
 
 };
 

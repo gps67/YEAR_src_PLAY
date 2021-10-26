@@ -10,7 +10,7 @@
 	struct Tcl_Obj;
 	struct Tcl_Interp;
 
-	struct TCL_PTR;
+	struct TCL_REF;
 	struct TCL_LIST;
 	struct TCL_DICT;
 

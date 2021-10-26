@@ -5,13 +5,13 @@
 	bool TCL_DICT:: test(  Tcl_Interp * interp )
 	{
 		int pos;
-		TCL_PTR k1;
-		TCL_PTR k2;
-		TCL_PTR k3;
-		TCL_PTR v1;
-		TCL_PTR v2;
-		TCL_PTR v3;
-		TCL_PTR val;
+		TCL_REF k1;
+		TCL_REF k2;
+		TCL_REF k3;
+		TCL_REF v1;
+		TCL_REF v2;
+		TCL_REF v3;
+		TCL_REF val;
 
 		k1 = Tcl_NewStringObj( "k1", -1 ); // 
 		v1 = Tcl_NewStringObj( "one", -1 ); //

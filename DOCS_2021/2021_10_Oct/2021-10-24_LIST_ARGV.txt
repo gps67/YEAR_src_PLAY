@@ -1,0 +1,29 @@
+	2021-10-24
+
+	2021_10_Oct
+	2021-10-24_LIST_ARGV.txt
+
+	CMD A R G S
+
+	CMD => "Literal" "::SPACE::name" "c[expr]" " { lhs rhs } "
+
+	MATCH REDUCE APPLY
+
+	" { lhs rhs } "
+	 "{ lhs rhs }"
+	  "{ %s %s }"
+	    "%s %s"
+	       T
+
+	X += CONFIRM LEX EDGE
+	X += STEP named parameter
+	X += HINT probably %X numeric idx
+
+
+	DECL
+		SAMPLE LIST
+		SAMPLE DATA
+		BENCH extracts name type etc
+
+
+

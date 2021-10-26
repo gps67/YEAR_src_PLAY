@@ -2,7 +2,7 @@
 #define TCL_LIST_H
 
 #include "TCL_STUBS.h"
-#include "TCL_PTR.h"
+#include "TCL_REF.h"
 
 #define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
@@ -15,7 +15,7 @@
 */
 struct TCL_LIST
 {
-	TCL_PTR list;
+	TCL_REF list;
 
 		// cast to ret type; // == list.PTR
 		Tcl_Obj * listPtr() { return list; }
@@ -37,12 +37,12 @@ struct TCL_LIST
 		return true;
 	}
 
-	bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
+	bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
 	{
 		// this squeezes out the NULL items, so loses obj_id [pos]
 		bool OK = true;
 		TCL_LIST list2(interp);
-		TCL_PTR item;
+		TCL_REF item;
 		int pos;
 		int N = 0;
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
@@ -56,12 +56,12 @@ struct TCL_LIST
 		return OK;
 	}
 
-	bool array_get( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
+	bool array_get( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
 	{
 		// this squeezes out the NULL items, so loses obj_id [pos]
 		bool OK = true;
 		TCL_LIST list2(interp);
-		TCL_PTR item;
+		TCL_REF item;
 		int pos;
 		int N = 0;
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
@@ -123,13 +123,13 @@ struct TCL_LIST
 		return OK;
 	}
 
-	bool GET( Tcl_Interp * interp, int index, TCL_PTR & RET_VAR )
+	bool GET( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
 	{
 		if(!RET_VAR) {
 			throw "NULL RET_VAR"; // 
 			return false;
 		}
-		// TCL_PTR is not understood by Tcl_List* so use plain RET_VAL
+		// TCL_REF is not understood by Tcl_List* so use plain RET_VAL
 		Tcl_Obj * RET_VAL = NULL;
 		if(TCL_OK !=
 		 Tcl_ListObjIndex(
@@ -170,7 +170,7 @@ struct TCL_LIST
 	}
 
 	// we dont need a smart PTR as the ARG, and auto cast works
-	bool SET_( Tcl_Interp * interp, int index, TCL_PTR & VAL )
+	bool SET_( Tcl_Interp * interp, int index, TCL_REF & VAL )
 	{
 		return SET( interp, index, (Tcl_Obj *) VAL );
 	}

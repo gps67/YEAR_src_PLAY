@@ -4,12 +4,12 @@
 // INITIAL setup need convert from LIST to DICT
 
 #include "TCL_STUBS.h"
-#include "TCL_PTR.h"
+#include "TCL_REF.h"
 #include "TCL_HELP.h"
 
 struct TCL_DICT
 {
-	TCL_PTR dict;
+	TCL_REF dict;
 
 		// cast to ret type; // == dict.PTR
 		Tcl_Obj * dictPtr() { return dict; }
@@ -24,7 +24,7 @@ struct TCL_DICT
 	{
 	}
 
-	bool GET( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR & RET_VAR )
+	bool GET( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_REF & RET_VAR )
 	{
 		Tcl_Obj * RET_VAL = NULL;
 		if(TCL_OK !=
@@ -49,7 +49,7 @@ struct TCL_DICT
 	}
 
 	// we dont need a smart PTR as the ARG, and auto cast works
-	bool SET_( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_PTR & VAL )
+	bool SET_( Tcl_Interp * interp, Tcl_Obj * keyPtr, TCL_REF & VAL )
 	{
 		return SET( interp, keyPtr, (Tcl_Obj *) VAL );
 	}

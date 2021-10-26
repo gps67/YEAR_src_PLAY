@@ -76,6 +76,9 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	snprintf(line,sizeof(line)-1,"set _junk_var_ %s", str ); // RC2
 	snprintf(line,sizeof(line)-1,"proc _junk_fn_ {} { return %s } ; _junk_fn_", str );
 	#endif
+	// only proc gets it to LEX1, global main gets to LEX2
+	// expect ditto for VAL from dynamic string, or C, or ...
+	// with proc over Literals, getting 100% LEX1, so simplify
 	snprintf(line,sizeof(line)-1,"proc _junk_fn_ {} { return {%s} } ; _junk_fn_", str );
 	int t = 0;
 	// OK Tcl_Eval does not compile the script

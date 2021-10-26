@@ -55,9 +55,14 @@ int OBJ_usage_error( Tcl_Interp * interp, int objc, Tcl_Obj *const* objv )
 
 CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
   {
+
+
   	if( decoder->test(interp) ) return TCL_OK;
 
 	INFO( "OBJ objc == %d", objc );
+//  gdb_invoke(false);
+	INFO( "and on" );
+//  gdb_break_point();
 
   	// OBJ $obj GET fielname
   	// OBJ $obj SET fielname val
@@ -71,7 +76,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 		return OBJ_usage_error( interp, objc, objv );
 	}
 
-	// objv[0] == ~ "OBJ" as something
+	// objv[0] == ~ "OBJ" or something
 	Tcl_Obj * obj_id = objv[1];
 	Tcl_Obj * cmd = objv[2];
 
@@ -83,7 +88,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 
 	/*
 		LOOK at cmd
-		It REALLY should be a Literal OPCODE
+		cmd REALLY should be a Literal OPCODE
 		TODO
 	*/
 
@@ -102,12 +107,12 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	 break;
 	 case 3:	// OBJ $id OPCODE
 
-		if( match_array_get.MATCHES(cmd ) ) {
+		if( match_array_get.MATCHES(cmd) ) {
 			INFO("GOT array_get\n");
 			return TCL_OK;
 		}
 
-		if( match_LIST_ALL.MATCHES(cmd ) ) {
+		if( match_LIST_ALL.MATCHES(cmd) ) {
 		//	return list of all objType names
 		//	boolean double end-offset regexp list cmdName bytecode
 		//	procbody bytearray int dict {array search} string

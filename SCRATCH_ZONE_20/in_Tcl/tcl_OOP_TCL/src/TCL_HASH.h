@@ -5,7 +5,7 @@
 // INITIAL setup need convert from LIST to HASH
 // http://npg.dl.ac.uk/MIDAS/manual/ActiveTcl8.5.7.0.290198-html/tcl/TclLib/Hash.htm
 
-#include "TCL_PTR.h"
+#include "TCL_REF.h"
 #include "TCL_HELP.h"
 
 struct TCL_HASH
@@ -14,7 +14,7 @@ struct TCL_HASH
 	Tcl_HashEntry * HT_entry;
 
 
-	TCL_PTR hash;
+	TCL_REF hash;
 
 		// cast to ret type; // == hash.PTR
 		Tcl_Obj * hashPtr() { return hash; }

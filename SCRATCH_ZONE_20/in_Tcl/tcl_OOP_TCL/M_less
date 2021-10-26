@@ -1,5 +1,7 @@
 
 SEARCH=+/SP1
+SEARCH=+/KEPT
 SEARCH=+/FAIL
+SEARCH=+/LEX
 
 ./M "$@" | less $SEARCH

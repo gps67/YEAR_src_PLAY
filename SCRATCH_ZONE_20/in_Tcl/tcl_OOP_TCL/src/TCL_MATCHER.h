@@ -2,7 +2,7 @@
 #define TCL_MATCHER_H
 
 #include "TCL_STUBS.h"
-#include "TCL_PTR.h"
+#include "TCL_REF.h"
 #include "TCL_HELP.h"
 #include "TCL_Obj_Type_PLUS.h"
 // #include "TCL_MATCHER.h"
@@ -28,10 +28,10 @@ struct LITERAL_MATCHER {
 	static const int N_different = 4;
 
 	// these auto DTOR CTOR NULL refcount 
-	TCL_PTR match_one; // LEX1
-	TCL_PTR match_two; // LEX2 from outside of proc
-	TCL_PTR match_three; // another LEX2, similar ways
-	TCL_PTR differents[N_different];
+	TCL_REF match_one; // LEX1
+	TCL_REF match_two; // LEX2 from outside of proc
+	TCL_REF match_three; // another LEX2, similar ways
+	TCL_REF differents[N_different];
 
 	~LITERAL_MATCHER()
 	{
@@ -52,6 +52,39 @@ struct LITERAL_MATCHER {
 		if( obj == match_one ) return true;
 		if( obj == match_two ) return true;
 		if( obj == match_three ) return true;
+
+		// actually we KNOW match_one->typePtr is TYPE_LEX1 not NULL
+		// as the CTOR guarantees that
+		//( match_one && match_one->type_Ptr && ... )
+		if( obj->typePtr == match_one->typePtr ) {
+			// KNOW match_one not null, typePtr == LEX1
+			// KNOW obj is not NULL (semi guarantee)
+			// 
+			// so BOTH are LEX1 // so no match
+			// 
+			// else LEX2 goes to fn, plain goes to fn
+			// else STRANGE list int other goes to fn
+			// we have a majority of LEX1
+			// for scripts using proc // 
+		#if 1
+			// visual tracer
+			INFO("FAST MATCH LEX1 != LEX1");
+			INFO("FAST MATCH %s != %s",
+			 obj->bytes,
+			 match_one->bytes
+			);
+		#endif
+			return false;
+		}
+	/*
+		obj -> PTR2 == match_one
+		obj -> TYPE == LEX2
+
+		LEX2 catpured in match_two does as good as this already
+		but the MATCH_FALSE path should nned to call
+		particularly if obj is already LEX1 or LEX2->LEX1
+		so fater return of FALSE
+	*/
 
 #if 0
 		// actually I think that different list is waste of time

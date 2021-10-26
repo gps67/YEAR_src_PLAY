@@ -1,18 +1,18 @@
-#ifndef PTR_keeper_H
-#define PTR_keeper_H
+#ifndef TCL_PTR_H
+#define TCL_PTR_H
 
 #include <tcl.h>
 
 /*!
-	a smart pointer to a Tcl_Obj
+	a plain Tcl_Obj *
 
-	nb this stops you using return (Tcl_Obj *)
-	because the DTOR will delete the item before it arrives
-	so you have to pass a { TCL_PTR & RET_VAR } in
+	TCP_REF is based on this, it keeps a REF
+
 */
 struct TCL_PTR {
 
 private:
+protected: // avoid using *this = ptr // use PTR = ptr
 	Tcl_Obj * PTR;
 public:
 
@@ -24,14 +24,34 @@ public:
 	TCL_PTR ( Tcl_Obj * ptr )
 	: PTR( ptr )
 	{
-		if(PTR) 
-			Tcl_IncrRefCount( PTR );
+	}
+	
+	void ref_incr()
+	{
+		INFO("count was %d", PTR->refCount );
+		if(PTR) Tcl_IncrRefCount( PTR );
+	}
+	
+	void ref_decr()
+	{
+		INFO("count was %d", PTR->refCount );
+		if(PTR) Tcl_DecrRefCount( PTR );
+	}
+	
+	int ref_count()
+	{
+		return PTR->refCount;
+	}
+	bool is_shared()
+	{
+		return Tcl_IsShared( PTR );
 	}
 
 	~TCL_PTR ()
 	{
-		if(PTR) 
-			Tcl_DecrRefCount( PTR );
+		// if we have a pointer to someone elses obj
+		// it does not go out of scope when this does
+		// so OK for debugging clear out registers
 		PTR = NULL; // debugging option
 	}
 
@@ -57,18 +77,32 @@ public:
 
 	TCL_PTR & operator= ( Tcl_Obj * ptr )
 	{
+		INFO("maybe this should not be here");
+		#if 0
 		if(ptr) 
 			Tcl_IncrRefCount( ptr );
 		Tcl_Obj * old = PTR;
 		PTR = ptr;
 		if(old) 
 			Tcl_DecrRefCount( old );
+		#endif
+		PTR = ptr;
 		return *this;
 	}
 
 	operator const char * ();
 
 	const char * str() { return * this; } // cast
+
+	const char * get_type_name()
+	{
+		if(!PTR) return "(NULL PTR)";
+		if(!PTR->typePtr) return "(NULL TYPE)";
+		if(!PTR->typePtr->name) return "(NULL TYPE NAME)";
+		return PTR->typePtr->name; // never NULL // ATM
+	}
+
+	void print_tcl_obj( const char * str );
 
 };
 

@@ -1,7 +1,8 @@
+#define TCL_TYPE_H
 #ifndef TCL_TYPE_H
 #define TCL_TYPE_H
 
-// #include <tcl.h> // done by TCL_PTR.h
+// #include <tcl.h> // done by TCL_REF.h
 #include "TCL_STUBS.h"
 // #include "TCL_TYPE.h"
 #include <tcl.h> // Tcl_Obj typePtr

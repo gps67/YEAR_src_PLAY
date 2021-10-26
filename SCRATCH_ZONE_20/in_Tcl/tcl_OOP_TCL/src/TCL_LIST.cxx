@@ -3,7 +3,7 @@
 	bool TCL_LIST:: test(  Tcl_Interp * interp )
 	{
 		int pos;
-		TCL_PTR val;
+		TCL_REF val;
 
 		val = Tcl_NewStringObj( "one", 3 ); // auto IncrRef
 		ADD( interp, &pos, val );

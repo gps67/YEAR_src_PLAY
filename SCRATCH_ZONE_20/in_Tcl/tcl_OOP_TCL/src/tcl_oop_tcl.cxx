@@ -1,4 +1,4 @@
-#include <tcl.h> /* TCL */
+#include "TCL.h" /* TCL */
 
 #include "OBJ_decoder.h"
 

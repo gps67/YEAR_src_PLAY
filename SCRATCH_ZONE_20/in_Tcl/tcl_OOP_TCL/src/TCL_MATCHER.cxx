@@ -144,6 +144,8 @@ if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 	} // else OK stay happy
 #endif
 
+	// TYPE_LEX2
+
 	// THIS is SPEC_FF xFF // something tokenised ITEM of PAGE_256
 	// EA_u8 // MINI_MACHINE item in table[u8]
 	// CLASS_LEX1 // IDX // PTR1 == LEX1_as_u32_TOKEN
@@ -155,6 +157,30 @@ if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 	//	print_tcl_obj( obj, "obj that is not LITERAL" );
 	//	print_tcl_obj( match_one, "match_one" );
 	//
+		INFO("CMP match %s", obj->bytes );
+
+		if( obj->typePtr ) {
+			/*
+				POSSIBLE obj->typePtr->name == "nameCmd"
+				cannot "upgrade" to LEX1
+				then
+				create LEX2 (or 2b) or3
+				lex2 -> PTR2 == obj // cmdName("OBJ")
+				then
+				match_two = lex2
+			*/
+			if(!match_two) {
+				match_two = obj;
+				INFO("saved match_two %s", obj->bytes );
+			} else 
+			if(!match_three) {
+				match_three = obj; 
+				INFO("saved match_three %s", obj->bytes );
+			}
+
+			return true;
+		}
+
 		upgrade_to_LEX2( obj, match_one ); // MORPH_OBJ_TO_TYPE
 		print_tcl_obj( obj, "obj_after_upgrade" );
 
@@ -205,6 +231,7 @@ if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 	return false;
 }
 
+#if 0
 //bool LITERAL_MATCHER:: upgrade_to_LEX1( Tcl_Obj * obj ) {
 //	// ALIAS UDEF_%$ HERE UDEF_%X NN 
 //	// ALIAS %$ HERE %X NN 
@@ -213,7 +240,7 @@ if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 //}
 
 bool LITERAL_MATCHER:: SEE_C_upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
-	INFO("upgrade_to_LEX2 %s\n", obj->bytes);
+	INFO("XXXX upgrade_to_LEX2 %s\n", obj->bytes);
 
 	/*
 		DESIGN PATTERN
@@ -243,4 +270,5 @@ bool LITERAL_MATCHER:: SEE_C_upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
 	return true; // but not actually done
 	return false; // upgrade failed somehow
 }
+#endif
 

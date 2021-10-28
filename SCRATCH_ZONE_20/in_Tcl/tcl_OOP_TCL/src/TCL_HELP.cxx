@@ -1,5 +1,5 @@
 
-#include <tcl.h>
+#include "TCL.h"
 
 #include "TCL_STUBS.h" // WARN
 #include "TCL_HELP.h"

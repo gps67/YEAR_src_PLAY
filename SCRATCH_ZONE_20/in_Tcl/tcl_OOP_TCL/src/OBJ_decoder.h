@@ -1,7 +1,6 @@
 #ifndef OBJ_decoder_H
 #define OBJ_decoder_H
 
-// #include <tcl.h> // done by TCL_REF.h
 #include "TCL_REF.h"
 #include "TCL_LIST.h"
 #include "TCL_DICT.h"
@@ -78,9 +77,13 @@ class OBJ_decoder
 		TYPE_LEX1 = get_TYPE_LEX1(); // build it
 		// a TYPE_pbj is not a Tcl_Obj just a STRUCT*
 	}
+
  	~OBJ_decoder()
 	{
 	}
+
+	bool new_OBJ( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
+
 	bool test( Tcl_Interp * interp )
 	{
 //		return hash.test(interp);

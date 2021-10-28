@@ -1,9 +1,28 @@
 #!/usr/bin/env tclsh
 
+proc test_VECT {} {
+	puts "# test_VECT #################"
+	set VECT [OBJ]
+	set VECT [VECT]
+	set VECT [OBJ {} VECT]
+	set VECT [OBJ NEW VECT]
+	OBJ $VECT ADD A ;# OPTION ADD A B C
+	OBJ $VECT ADD B
+	OBJ $VECT ADD C
+	set AS_LIST [OBJ $VECT array_get]
+
+	set VECT2 [OBJ mk_ VECT]
+	OBJ $VECT2 array_set $AS_LIST
+	set AS_LIST2 [OBJ $VECT2 array_get]
+	puts "$AS_LIST2"
+
+}
+
 proc test2 {} {
 	puts "# This is test2 #################"
-	OBJ obj_id GET fieldname 
-	OBJ obj_id SET fieldname value
+	OBJ - GET fieldname 
+	OBJ {} GET fieldname 
+	OBJ {{}} SET fieldname value
 	OBJ obj_id array_get
 	OBJ obj_id array_get { 1 "a1"  2 "b2" }
 }
@@ -43,6 +62,9 @@ if 1 {
 	fn3
 	puts [OBJ - LIST_ALL_OBJ_TYPE]
 }
+
+	test_VECT ;# want to see ARGV0 typePtr
+	test_VECT ;# second call # see not LEX 1 ified
 
 if 1 {
 

@@ -2,7 +2,7 @@
 #define TCL_ObjType_PLUS_H
 //	#include "TCL_ObjType_PLUS.h"
 
-#include <tcl.h>
+#include "TCL.h"
 #include "TCL_STUBS.h" // INFO WARN FAIL
 #include "TCL_HELP.h" // PTR1 PTR2
 // #include "dgb.h" // FAIL

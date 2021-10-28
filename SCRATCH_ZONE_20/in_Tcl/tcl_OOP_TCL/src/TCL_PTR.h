@@ -1,7 +1,7 @@
 #ifndef TCL_PTR_H
 #define TCL_PTR_H
 
-#include <tcl.h>
+#include "TCL.h"
 
 /*!
 	a plain Tcl_Obj *
@@ -28,13 +28,13 @@ public:
 	
 	void ref_incr()
 	{
-		INFO("count was %d", PTR->refCount );
+		INFO("ref_count was %d '%s'", PTR->refCount, get_str() );
 		if(PTR) Tcl_IncrRefCount( PTR );
 	}
 	
 	void ref_decr()
 	{
-		INFO("count was %d", PTR->refCount );
+		INFO("ref_count was %d '%s'", PTR->refCount, get_str() );
 		if(PTR) Tcl_DecrRefCount( PTR );
 	}
 	
@@ -79,6 +79,7 @@ public:
 	{
 		INFO("maybe this should not be here");
 		#if 0
+		// see TCL_REF operator=
 		if(ptr) 
 			Tcl_IncrRefCount( ptr );
 		Tcl_Obj * old = PTR;
@@ -93,6 +94,7 @@ public:
 	operator const char * ();
 
 	const char * str() { return * this; } // cast
+	const char * get_str() { return * this; } // cast // str is a busy ident
 
 	const char * get_type_name()
 	{

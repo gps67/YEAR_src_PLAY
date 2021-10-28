@@ -5,7 +5,7 @@
 // #include <tcl.h> // done by TCL_REF.h
 #include "TCL_STUBS.h"
 // #include "TCL_TYPE.h"
-#include <tcl.h> // Tcl_Obj typePtr
+#include "TCL.h"
 #include <stdlib.h> // strtol
 
 #define ASCII_NUL 0x00

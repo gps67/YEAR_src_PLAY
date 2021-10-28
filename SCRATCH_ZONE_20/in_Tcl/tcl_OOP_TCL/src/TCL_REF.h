@@ -3,7 +3,7 @@
 
 #include "TCL_STUBS.h"
 #include "TCL_PTR.h"
-#include <tcl.h>
+#include "TCL.h"
 
 /*!
 	a smart pointer to a Tcl_Obj

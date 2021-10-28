@@ -17,6 +17,8 @@ TCL_PTR:: operator const char * ()
 
 /*
 	print the refcount and outher fields
+
+	remove from TCL_HELP
 */
 void TCL_PTR:: print_tcl_obj( const char * str )
 {

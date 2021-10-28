@@ -14,6 +14,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-08-17, 108649, 43.94, 57.87, Full Morrisons - reset after mot adj
 2021-08-21, 108964, 36.20, 47.68, Full ASDA - first usable after mot adj
 2021-09-21, 109072, 13.70, 18.04, Full Morr
-2021-09-28, 109250, 22.19, 34.59, 70% Full fake miles £1.56 !!
+2021-09-28, 109300, 22.19, 34.59, 70% Full fake miles £1.56 !!
+2021-10-02, 109437, 15.46, 20.67, Y 100% Full Morrisons
 2021-10-21, 109475, 16.78, 23.44, Y 100% Full Morrisons
 

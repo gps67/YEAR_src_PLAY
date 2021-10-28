@@ -5,7 +5,49 @@
 #include "TCL_MATCHER.h"
 #include "buffer1.h" // buffer1 print
 
-	bool OBJ_decoder:: new_OBJ( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	// MAYBE move these to _PLUS ?
+
+	bool OBJ_decoder:: new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	{
+		if(!RET_VAL) {
+			return FAIL("NULL RET_VAL");
+		}
+		int pos = 0;
+	//	Tcl_Obj * VAL = Tcl_NewObj();
+		buffer1 text;
+		int obj_idx = 0;
+		int obj_idx_2 = 0;
+		list.NN( interp, & obj_idx ); // no lock upto ADD
+		text.print("obj_%2X", obj_idx );
+		Tcl_Obj * VAL = Tcl_NewStringObj((STR0) text,-1);
+//	// there is no TYPE_DICT
+//	maybe reuse set from any
+		VAL -> typePtr = TYPE_DICT;
+
+		// set VAL->typePtr = TYPE_obj_2X
+		// set VAL->PTR2 = TCL_LIST_over_PTR
+		if(!VAL) return FAIL("NULL VAL");
+		list.ADD( interp, &obj_idx_2, VAL );
+		if(obj_idx != obj_idx_2) {
+			FAIL("obj_idx != obj_idx_2 %d != %d",
+				obj_idx,
+				obj_idx_2);
+			// but stay
+			return false; // or not
+		}
+
+		// get the new OBJ back somehow ...
+
+		* RET_VAL = VAL;
+
+		return PASS("DONE == %s", VAL->bytes );
+
+		return true;
+	//	return FAIL("TODO");
+	}
+
+
+	bool OBJ_decoder:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 	{
 		if(!RET_VAL) {
 			return FAIL("NULL RET_VAL");
@@ -19,6 +61,7 @@
 		text.print("obj_%2X", obj_idx );
 		Tcl_Obj * VAL = Tcl_NewStringObj((STR0) text,-1);
 		// set VAL->typePtr = TYPE_obj_2X
+		VAL -> typePtr = TYPE_VECT;
 		// set VAL->PTR2 = TCL_LIST_over_PTR
 		if(!VAL) return FAIL("NULL VAL");
 		list.ADD( interp, &obj_idx_2, VAL );
@@ -57,7 +100,7 @@
 	ask MATCHER_array_set.MATCHES( objv[i] )
 
 	Use a {proc _anon_ {} { return {Literal} } to internalise it
-	That means it WILL have a bytes value, but test for dafe zone
+	That means it WILL have a bytes value, but test for safe zone
 
 	Match obj against LITERAL_MATCHER, aiming for single PTR == PTR
 
@@ -113,7 +156,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 	// no matches with {{}}
 
 
-  	if( decoder->test(interp) ) return TCL_OK;
+  //	if( decoder->test(interp) ) return TCL_OK;
 
 	INFO( "OBJ objc == %d", objc );
 //  gdb_invoke(false);
@@ -234,7 +277,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 		   if( CMD_OBJ) { // set V [OBJ NEW] // set X [OBJ {}] 
 
 
-			if(!decoder->new_OBJ( interp, & NEW_VAL ))
+			if(!decoder->new_OBJ_DICT( interp, & NEW_VAL ))
 				return FAIL_FAILED();
 
 			Tcl_SetObjResult( interp, NEW_VAL );
@@ -243,7 +286,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 		   }
 		   if( CMD_VECT) { // set V [VECT NEW] // set V [VECT {}] 
 
-			if(!decoder->new_OBJ( interp, & NEW_VAL ))
+			if(!decoder->new_OBJ_VECT( interp, & NEW_VAL ))
 				return FAIL_FAILED();
 
 			Tcl_SetObjResult( interp, NEW_VAL );

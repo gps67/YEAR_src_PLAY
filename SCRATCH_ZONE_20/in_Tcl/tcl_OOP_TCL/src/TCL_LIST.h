@@ -18,7 +18,8 @@ struct TCL_LIST
 	// we want LIST to be unshared
 	// we are the sole owner of LIST
 	// we cant give the list to anyone - without copy
-	TCL_REF list;
+//	TCL_REF list;
+	TCL_PTR list;
 
 	// cast to ret type; // == list.PTR
 	Tcl_Obj * listPtr() { return list; }

@@ -166,9 +166,27 @@ struct TCL_ObjType_LEX2 : TCL_ObjType_PLUS
 	{
 		set_funcs_LEX2();
 	}
-
 	void set_funcs_LEX2();
+};
 
+struct TCL_ObjType_DICT : TCL_ObjType_PLUS
+{
+	TCL_ObjType_DICT()
+	: TCL_ObjType_PLUS("DICT")
+	{
+		set_funcs_DICT();
+	}
+	void set_funcs_DICT();
+};
+
+struct TCL_ObjType_VECT : TCL_ObjType_PLUS
+{
+	TCL_ObjType_VECT()
+	: TCL_ObjType_PLUS("VECT")
+	{
+		set_funcs_VECT();
+	}
+	void set_funcs_VECT();
 };
 
 

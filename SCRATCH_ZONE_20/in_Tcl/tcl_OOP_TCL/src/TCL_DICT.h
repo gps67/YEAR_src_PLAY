@@ -9,10 +9,25 @@
 
 struct TCL_DICT
 {
-	TCL_REF dict;
+//	TCL_REF dict;
+	TCL_PTR dict; // caller must keep the ref
 
 		// cast to ret type; // == dict.PTR
 		Tcl_Obj * dictPtr() { return dict; }
+
+	// eg PTR2 is dict, but for "safety" we have to unwrap TCP_PTR
+	// because of this, drop strong type
+	TCL_DICT( Tcl_Interp * _interp, Tcl_Obj ** KEPT_DICT )
+	: dict()
+	{
+		dict = *KEPT_DICT;
+		if(!KEPT_DICT) {
+			FAIL("NULL KEPT_DICT");
+		}
+		if(!dict) {
+			FAIL("NULL dict");
+		}
+	}
 
 	TCL_DICT( Tcl_Interp * _interp )
 	: dict()

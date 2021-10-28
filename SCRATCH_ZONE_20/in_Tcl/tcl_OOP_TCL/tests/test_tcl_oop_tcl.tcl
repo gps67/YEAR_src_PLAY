@@ -4,8 +4,9 @@ proc test_VECT {} {
 	puts "# test_VECT #################"
 	set VECT [OBJ]
 	set VECT [VECT]
-	set VECT [OBJ {} VECT]
-	set VECT [OBJ NEW VECT]
+#	set VECT [OBJ {} VECT]
+#	set VECT [OBJ NEW VECT]
+	OBJ $VECT SET A A ;# 
 	OBJ $VECT ADD A ;# OPTION ADD A B C
 	OBJ $VECT ADD B
 	OBJ $VECT ADD C

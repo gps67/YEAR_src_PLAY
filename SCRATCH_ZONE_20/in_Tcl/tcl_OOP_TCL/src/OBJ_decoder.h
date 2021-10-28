@@ -60,6 +60,8 @@ class OBJ_decoder
 //	TCL_HASH hash;
 	TCL_ObjType_LEX1 * TYPE_LEX1;
 	TCL_ObjType_PLUS * TYPE_LEX2;
+	TCL_ObjType_DICT * TYPE_DICT;
+	TCL_ObjType_VECT * TYPE_VECT;
  public:
  	OBJ_decoder( Tcl_Interp * interp )
 	: list( interp )
@@ -68,6 +70,8 @@ class OBJ_decoder
  	, KEPT_PTR( NULL )
 	, TYPE_LEX1( NULL )
 	, TYPE_LEX2( NULL )
+	, TYPE_DICT( NULL )
+	, TYPE_VECT( NULL )
 	{
 		// KEEP the KEPT_PTR
 		KEPT_PTR = GET_KEPT_PLUS_PTR_GLOBAL();
@@ -82,7 +86,8 @@ class OBJ_decoder
 	{
 	}
 
-	bool new_OBJ( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
+	bool new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
+	bool new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
 
 	bool test( Tcl_Interp * interp )
 	{

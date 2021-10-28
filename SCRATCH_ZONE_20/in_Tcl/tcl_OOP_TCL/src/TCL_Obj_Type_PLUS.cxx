@@ -393,4 +393,25 @@ bool upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
 	return TCL_OK;
 }
 
+// edit these 
+
+void TCL_ObjType_VECT:: set_funcs_VECT()
+{
+	freeIntRepProc     = LEX2_FreeInternalRepProc;
+	dupIntRepProc      = PLUS_MYTYPE_DupInternalRepProc; // CALLS ...
+	dupIntRepProc_PLUS = LEX2_DupInternalRepProc;
+	updateStringProc   = LEX2_UpdateStringProc;
+	setFromAnyProc     = LEX2_SetFromAnyProc;
+	INFO("CALLED");
+}
+
+void TCL_ObjType_DICT:: set_funcs_DICT()
+{
+	freeIntRepProc     = LEX2_FreeInternalRepProc;
+	dupIntRepProc      = PLUS_MYTYPE_DupInternalRepProc; // CALLS ...
+	dupIntRepProc_PLUS = LEX2_DupInternalRepProc;
+	updateStringProc   = LEX2_UpdateStringProc;
+	setFromAnyProc     = LEX2_SetFromAnyProc;
+	INFO("CALLED");
+}
 

@@ -5,8 +5,8 @@ SEARCH=+/LEX
 SEARCH=+/NULL
 SEARCH=+/curly
 SEARCH=+/XXX
-SEARCH=+/FAIL
 SEARCH=+/new_OBJ
+SEARCH=+/FAIL
 
 
 ./M "$@" | less $SEARCH

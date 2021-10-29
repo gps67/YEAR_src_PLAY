@@ -58,6 +58,7 @@ class OBJ_decoder
 	TCL_LIST list;
 	TCL_DICT dict;
 //	TCL_HASH hash;
+	// the _PLUS types are not directly usable in typePtr !!! because VTBL
 	TCL_ObjType_LEX1 * TYPE_LEX1;
 	TCL_ObjType_PLUS * TYPE_LEX2;
 	TCL_ObjType_DICT * TYPE_DICT;

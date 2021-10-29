@@ -66,8 +66,39 @@ enum PLUS_method_tag
 };
 
 
+/*
+	ERRM
+		giving this a VTBL
+		requires convertion to and from 
+			Tcl_ObjType
+			TCL_ObjType_PLUS
+		also requires no free
+		but we never free a _PLUS
+
+		get_typePtr_from_PLUS()
+			a simple cast gets CXX to do it
+		get_PLUS_from_typePtr()
+			uses awful &first field
+			offsetof not working (also awful)
+
+		That is a simple addition
+
+*/
 struct TCL_ObjType_PLUS : Tcl_ObjType
 {
+	// C++ is wrong to put VTBL in front of plain STRUCT
+	// it does not cost much to put VTBL in the middle
+	// that would keep all pointers compat
+
+	virtual ~TCL_ObjType_PLUS()
+	{
+		INFO("UNCALLED DTOR");
+	}
+
+	// OPTION // TCL_ObjType_BASIC += first field PTR_TO_PLUS_MGR
+	// OPTION // then put _BASIC mid way through _PLUS _MGR
+	// offset compute from sub to surround // less adj naff //
+
  // pretty printing require CTOR to set up good defaults
 
 	const char * alias_one_ABB; // when not UDEF_25 UDEF_LEX1 or "LEX1"
@@ -99,11 +130,26 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 	*/
 	bool has_DICT_of_KEY_VAL; // ie user added fields { KEY VAL }
 
+	bool bytes_never_NULL; // INIT false; // true for me // 
+
+	/*
+		DICT PTR2 -> TCL_VECT.list
+		VECT PTR2 -> TCL_VECT.dict
+		LEX2 PTR2 -> LEX1
+
+		SO on setFromAny ... call CTOR ( obj ) += args 
+		SO at lease DTOR call RefDecr( PTR2 )
+	*/
+	bool PTR2_is_Tcl_Obj; // 
+	bool PTR2_is_CXX_Obj; // C obj really
+	virtual bool PTR2_CTOR(Tcl_Obj * obj) { TCL_set_PTR2(obj,NULL); return true; };
+	virtual bool PTR2_DTOR(Tcl_Obj * obj) { TCL_set_PTR2(obj,NULL); return true; }; 
+
 	TCL_ObjType_PLUS( const char * ABB )
 //	: Tcl_ObjType()
 	: dupIntRepProc_PLUS( NULL )
 	{
-		set_funcs_NULL();
+		set_funcs_NULL(); // Register calls set_funcs()
 		alias_one_ABB = ABB;
 		alias_one_LONG = ABB;
 //		alias_two_ABB = NULL;
@@ -111,6 +157,9 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		name = ABB;
 
 		has_DICT_of_KEY_VAL = false; // LEX1 no extra KEY_VAL fields
+		PTR2_is_Tcl_Obj = false;
+		PTR2_is_CXX_Obj = false; // C eg openssl X509 via CXX fn
+		bytes_never_NULL = false; // set true for me // default others
 		INFO("CTOR '%s'", name );
 	}
 
@@ -137,24 +186,84 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		dupIntRepProc_PLUS = NULL;
 	}
 
+	void set_funcs_BASE();
+	virtual void set_funcs();
+	/* each class sets own functs */
+
 	// caller must set the funcs
 
 	bool check_funcs_not_NULL();
 
 	bool Register_ObjType();
 
+	void TCL_set_PTR2_incr( Tcl_Obj * INST, Tcl_Obj * P2 )
+	{
+		Tcl_Obj * old_val = (Tcl_Obj *) TCL_get_PTR2( INST );
+		if( P2 ) Tcl_IncrRefCount( P2 );
+		TCL_set_PTR2( INST, P2 );
+		if( old_val ) {
+			WARN("Expected NULL old_val PTR2 '%s'", old_val->bytes);
+			Tcl_DecrRefCount( old_val );
+		}
+	}
+
+	operator Tcl_ObjType * ()
+	{
+		INFO("AUTO CAST"); // never called ?
+		FAIL("AUTO CAST"); // never called ?
+		return this;
+	}
+
 
 }; // struct
+
+inline // TCL_HELP
+void TCL_set_PTR2_decr_NULL( Tcl_Obj * INST )
+{
+	Tcl_Obj * old_val = (Tcl_Obj *) TCL_get_PTR2( INST );
+	TCL_set_PTR2( INST, NULL );
+	if( old_val ) {
+		Tcl_DecrRefCount( old_val );
+	}
+}
+
+inline
+Tcl_ObjType      * get_typePtr_from_PLUS(TCL_ObjType_PLUS * PLUS ) {
+	return (Tcl_ObjType * ) PLUS;
+}
+
+inline
+TCL_ObjType_PLUS * get_PLUS_from_typePtr( const Tcl_ObjType * PLAIN ) {
+	
+	TCL_ObjType_PLUS * P_PLUS;
+//	int adj = offsetof( struct TCL_ObjType_PLUS, name );
+//	u8 * P1 = (u8*) P_PLUS;
+//	u8 * P2 = 
+	int adj = (long) (u8*) &( P_PLUS->name ) - (long) (u8*) P_PLUS;
+	u8 * PTR = (u8*) PLAIN;
+	PTR -= adj;
+	INFO("adj = %d", adj );
+	return (TCL_ObjType_PLUS *) PTR;
+}
+
+inline
+TCL_ObjType_PLUS * get_PLUS_from_obj( const Tcl_Obj * obj ) {
+	INFO("CALLED");
+	// already have tested it is a _PLUS
+	return get_PLUS_from_typePtr( obj->typePtr );
+}
 
 struct TCL_ObjType_LEX1 : TCL_ObjType_PLUS
 {
 	TCL_ObjType_LEX1()
 	: TCL_ObjType_PLUS("LEX1")
 	{
-		set_funcs_LEX1();
+		// see get_TYPE_LEX1
+//		bytes_never_NULL = true; // LEX1 is LEX1 -> bytes
+//		PTR2_is_Tcl_Obj = false; // LEX1 is just a typePtr tag
 	}
 
-	void set_funcs_LEX1();
+	virtual void set_funcs();
 
 };
 
@@ -164,9 +273,10 @@ struct TCL_ObjType_LEX2 : TCL_ObjType_PLUS
 	TCL_ObjType_LEX2()
 	: TCL_ObjType_PLUS("LEX2")
 	{
-		set_funcs_LEX2();
+		// see get_TYPE_LEX2() for details
+		bytes_never_NULL = true; // LEX2 is LEX1 -> bytes
 	}
-	void set_funcs_LEX2();
+	virtual void set_funcs();
 };
 
 struct TCL_ObjType_DICT : TCL_ObjType_PLUS
@@ -174,9 +284,9 @@ struct TCL_ObjType_DICT : TCL_ObjType_PLUS
 	TCL_ObjType_DICT()
 	: TCL_ObjType_PLUS("DICT")
 	{
-		set_funcs_DICT();
+		PTR2_is_Tcl_Obj = true; // dict
 	}
-	void set_funcs_DICT();
+	virtual void set_funcs();
 };
 
 struct TCL_ObjType_VECT : TCL_ObjType_PLUS
@@ -184,9 +294,9 @@ struct TCL_ObjType_VECT : TCL_ObjType_PLUS
 	TCL_ObjType_VECT()
 	: TCL_ObjType_PLUS("VECT")
 	{
-		set_funcs_VECT();
+		PTR2_is_Tcl_Obj = true; // list is vect
 	}
-	void set_funcs_VECT();
+	virtual void set_funcs();
 };
 
 
@@ -195,9 +305,12 @@ struct TCL_ObjType_VECT : TCL_ObjType_PLUS
 
 extern
 TCL_ObjType_LEX1 * get_TYPE_LEX1(); // does not need interp
-
 extern
 TCL_ObjType_LEX2 * get_TYPE_LEX2(); // does not need interp
+extern
+TCL_ObjType_DICT * get_TYPE_DICT(); // does not need interp
+extern
+TCL_ObjType_VECT * get_TYPE_VECT(); // does not need interp
 
 Tcl_Obj * mk_LEX1( Tcl_Interp * interp, const char * str );
 bool upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 );

@@ -61,5 +61,21 @@ const char * str_not_NULL( const char * str )
 	return str ? str : "(null)";
 }
 
+inline
+const char * TCL_get_type_name( Tcl_Obj * obj ) {
+	if(!obj) {
+		FAIL("EXPECT NEVER NULL");
+		return "(NULL OBJ)";
+	}
+	if(!obj->typePtr) {
+		return "(NULL TYPE)";
+	}
+	if(!obj->typePtr->name) {
+		FAIL("EXPECT name NEVER NULL");
+		return "(NULL TYPE NAME)";
+	}
+	return obj->typePtr->name;
+}
+
 #endif
 

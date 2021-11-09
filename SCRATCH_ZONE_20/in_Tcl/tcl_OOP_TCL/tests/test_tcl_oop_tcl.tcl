@@ -1,21 +1,35 @@
 #!/usr/bin/env tclsh
+puts "argv0 is $argv0"
+
+proc TT {ARGV} {
+#	set ret [eval $ARGV]
+	set ret [uplevel $ARGV]
+	puts "TT {$ARGV} -> '$ret'"
+}
 
 proc test_VECT {} {
 	puts "# test_VECT #################"
-	set VECT [OBJ]
+	# want this imperative set V [VECT] # [VECT NEW A R G S ]
 	set VECT [VECT]
+# TODO soon
+#	set VECT [OBJ + VECT]
+#	set VECT [OBJ - VECT]
+#	set VECT [OBJ _ VECT]
 #	set VECT [OBJ {} VECT]
 #	set VECT [OBJ NEW VECT]
-	OBJ $VECT SET A A ;# 
-	OBJ $VECT ADD A ;# OPTION ADD A B C
-	OBJ $VECT ADD B
-	OBJ $VECT ADD C
-	set AS_LIST [OBJ $VECT array_get]
+TT {	OBJ $VECT ADD A ;# OPTION ADD A B C }
+TT {	OBJ $VECT ADD A ;# OPTION ADD A B C	}
+TT {	OBJ $VECT ADD B	}
+TT {	OBJ $VECT ADD C	}
+TT { 	OBJ $VECT GET 2	}
+TT {	set AS_LIST [OBJ $VECT array_get]	}
 
-	set VECT2 [OBJ mk_ VECT]
-	OBJ $VECT2 array_set $AS_LIST
-	set AS_LIST2 [OBJ $VECT2 array_get]
-	puts "$AS_LIST2"
+TT {	set VECT2 [OBJ mk_ VECT]	}
+TT {	OBJ $VECT2 array_set $AS_LIST	}
+TT {	set AS_LIST2 [OBJ $VECT2 array_get]	}
+TT {	puts "$AS_LIST2"	}
+TT {	set DICT [OBJ]	}
+TT {	OBJ $DICT SET A A ;# 	}
 
 }
 
@@ -51,9 +65,13 @@ proc fn3 {} {
 	. 	\
 	../obj/	\
 	/home/gps/YEAR/src/PLAY/SCRATCH_ZONE_20/in_Tcl/tcl_OOP_TCL/obj \
-	#
-	load ../obj/tcl_oop_tcl.so optical
+;	#
+	# load the CXX module from a known file path
+	# todo LOAD from PATH search, or TRAX("purpose")
+	# todo LOAD from PATH search, or TRAX("TCL_CXX_MODULE tcl_oop_tcl")
+	# search PATH for %s.so file(s) { .so .db .rc .sess }
 	puts "# FAIL # can find module without ../obj/filename.so"
+	load ../obj/tcl_oop_tcl.so optical
 #	load tcl_oop_tcl.so optical
 
 if 1 {

@@ -59,8 +59,10 @@ class OBJ_decoder
 	TCL_DICT dict;
 //	TCL_HASH hash;
 	// the _PLUS types are not directly usable in typePtr !!! because VTBL
+ public:
 	TCL_ObjType_LEX1 * TYPE_LEX1;
-	TCL_ObjType_PLUS * TYPE_LEX2;
+	TCL_ObjType_LEX2 * TYPE_LEX2;
+//	TCL_ObjType_PLUS * TYPE_PLUS;
 	TCL_ObjType_DICT * TYPE_DICT;
 	TCL_ObjType_VECT * TYPE_VECT;
  public:
@@ -80,7 +82,10 @@ class OBJ_decoder
 		// do INIT this thing, DONT keep it
 		// TODO remove
 		TYPE_LEX1 = get_TYPE_LEX1(); // build it
-		// a TYPE_pbj is not a Tcl_Obj just a STRUCT*
+		TYPE_LEX2 = get_TYPE_LEX2(); // build it
+		TYPE_DICT = get_TYPE_DICT(); // build it
+		TYPE_VECT = get_TYPE_VECT(); // build it
+		// a TYPE_obj is not a Tcl_Obj just a STRUCT*
 	}
 
  	~OBJ_decoder()

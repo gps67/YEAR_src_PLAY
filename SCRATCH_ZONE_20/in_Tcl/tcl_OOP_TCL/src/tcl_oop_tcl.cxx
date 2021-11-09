@@ -71,6 +71,28 @@ MODULE_INIT( Optical )
 
 	}
 #endif
+	// maybe move this to OBJ_decoder
+	// maybe rename that TCL_module
+	// or OBJ_decoder is a sub assembly of module
+	// add ARGV_decoder
+	// 
+
+//	bool set_progname_argv0( Tcl_Interp * interp );
+	// this uses "../tests/test_tcl_oop_tcl.tcl" not "tclsh"
+	// which is what you want to know which SCRIPT it was
+	// but that got resolved somehow, into /usr/bin/tclsh8.6
+	// maybe gdb is bright // figured absent exe file // 
+	// Reading symbols from +
+	// + ../obj/tcl_oop_tcl.so // dlopen remembered it
+	// + /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320/libbase.so
+
+	const char * varval = Tcl_GetVar( interp, "argv0", TCL_GLOBAL_ONLY );
+	if( varval ) {
+		progname_argv0 = varval; // static // strdup needed ? //
+		WARN("forcing specific binary for tclsh");
+		progname_argv0 = "/tools/CTXT/tcl/bin/tclsh";
+		INFO("progname_argv0 %s", progname_argv0 );
+	}
 
 
 	OBJ_decoder * decoder = new OBJ_decoder( interp );

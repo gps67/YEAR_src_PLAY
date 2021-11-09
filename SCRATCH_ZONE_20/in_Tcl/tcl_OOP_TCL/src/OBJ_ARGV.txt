@@ -1,0 +1,178 @@
+2021-10-31 Oct Sun 06:48 # 34 #  OBJ_ARGV.txt
+
+	OBJ
+	ARGV
+
+	== sysonyms
+	+= groups
+	+= group_of_WORDS[STR0 str_val]
+
+	+= STO NYBTES ARGV[] .NN() objv
+	+= STO OBJV [N] 
+
+	// DECODE FAST CALL u48_u8_u8
+	// ARGV0 = u48_payload() // as_PTR // WORD >> 16
+	// const char * argv[int argc]; // 
+	// ITEM_t * ITEM = u48_payload(); // varname is function
+
+	// PTR_BITFIELD_PTR
+	// u64 == { u48_PTR u8_u8 _t }
+	// _t == { DECODER(u64) { SCRIPT } }
+	// _t.CALLABLE_EXPR // u8_idx lookup("ITEM")
+	// _t += DECODER u8_u8 // import LIBR
+	// _t is an alias for UDEF_TYPE_ITEM // idx and VAL
+	// UDEF_t UDEF = INIT CALC EXPR DATA // named parameters
+	// so that line above claimed "INIT CALC EXPR DATA" 
+	// or OTHER as common name "NAME"
+	// ITEM_t & ITEM { DATA_SCRIPT }
+	// PTR = & ITEM; // SUB_EXPR DIALECT //
+	// that adds TEXT requirement, DIALECT_filename_expr_IS_RESERVED
+	// u64 * PTR_to_u64_VECT N == BYTE_B SPEC == BYTE_A VECT
+	// u32[2] PTR1_PTR2 // OFF1_OFF2 // DECODE( u32_PAIR )
+	u48_PTR_OFF
+	// BYTE_PAIR
+	u8 ARG1
+	u8 ARG0
+
+		u8_ARG0 might be token for u32_ARG0 for u64_ARG0
+		u8_ARG1 might be token for u32_ARG1 for u64_ARG0
+
+		// ALIAS u8 = looked_up(SOMETHING) u64_ARGV0
+		// ITEM("ITEM") // var_name // guess ITEM_TYPE
+		// DECODE u64
+		// 
+	
+	WHEN_32BIT
+		u16_payload
+		u8_u8
+		BYTE_PAIR
+
+		KNOW use within WORD_PAIR u32_u32 in u64
+		KNOW poss mis_aligned # loaded at odd address # 
+		KNOW use within WORD_PAIR u32_u32 in u64
+
+		u32_u32_lohi PAIR of u32_WORD[2]
+
+		EIGHT_u32_u16_u8_u8 // u8_u8 //
+		 get_u16 == GETTER == BITFIELD_GETTER 
+		 get_u8_u8 == GETTER == BITFIELD_GETTER_%s
+		 get_u32 == GETTER == WORD_GETTER side_of BITFIELDS
+
+	BITFIELD_EIGHT_t
+
+		UNIONS
+		u64
+		u32_u32
+		u16_u16_u16_16
+		u8[8]
+		u32_PTR
+		u16_EXTRA
+		u8_BYTE_B
+		u8_BYTE_A
+
+		ALIAS EXPRS
+		u48_u8_u8	// in cpu_var_u48_u8_u8 // BYTE_B BYTE_A
+		u48_u16
+		u32_u16_u8_u8
+		u8_u8		// BUILT from AXIOMS above
+
+		BITFIELDS
+		_BYTE_B_
+		_BYTE_A_
+		_u48_PAYLOAD_ // _pre_shifted_ // WORD >> 16 //
+
+		BITFIELD_GETTER_API // can GEN code to INIT_VAL
+
+		EIGHT_API += BITFIELD_GETTER_API
+		// += indirect inherit api
+		// += PEER_TYPE_ATTR BITFIELDS VARS INTS ASM
+		// += ROOT can simply be picked from list // default
+		// += ROOT is current access view of union // ABBR
+		
+		EA_EXPR => OBJ0 = PTR0 // retval_from_eval
+		// PTR = WORD.get_u48_payload() // WORD >> 16 //
+		// u8_u8 = WORD_in_situ_in_CPU // compiler fixes if not
+		// u8_u8.BYTE_B // API GETTER // SWITCH_OVER
+		// u8_u8.BYTE_A // LINK GEN to LIHO_BYTE_ORDER
+
+
+		EIGHT_t WORD = MEM_WORD_within_NBYTES // ARGV actually
+		EIGHT_t WORD = MEM_WORD_within_WORDS // DECODED BINARY
+		EIGHT_t WORD = MEM_WORD_within_OBJV // NBYTES too
+		EIGHT_t WORD = MEM_WORD_within_ARGV // DECODED SCRIPT
+
+		u64 REG2 = (un_)sign extend to u64_WORD from u16
+		// CXX GEN active_cast_from_u16_to_WORD //
+		// ASM R2.u64 = R1.u16 // UNSIGN extend ZEROS 
+		// OPTION GEN SET R1.ZERO COPY R2.u16_liho //
+
+	EA_arg0 = CMD of * CMD ARGV0 ARGV1 {
+		EA_t EA = PTR_to_STR_EXPR("text")
+		// text == "ARG0"
+		// ARG0 == "CMD"
+		// CMD = "CIDENT_t" // OPTION ANYSTR 
+		// OPTION SETTING "display_as_nick"
+		// nick_k EA_ITEM_is_NAME
+
+		STR0 ARGV0 == ITEM
+		STR0 ARGV1 == get_EA(ITEM)
+			LINK 
+			 STR0 Name.var = ANYSTR
+
+			 PSG_LEX item_name _t
+
+			 "EA_ITEM" _t
+		// { ARGV0 ARGV1 } // as BYTE_PAIR
+	
+	STR0 ITEM_NAME "CIDENT" // local DIALECT Name
+	u64 ITEM_MEM_WORD[N] // N == 0,1,2,3, ...
+
+	u64 EIGHT_t WORDS[u8 N] // u32_u16_u8_u8
+	// or other u64_bitmap // bitfield += "u32"
+	// u64 ARGV[argc==N]
+	// u64_WORD // cpu_var_CTXT //
+	// u48_PTR_t PTR // = local MEM PTR // word_aligned or not
+
+	u64 NBYTES_MULT_EIGHT 
+	 OPTION NBYTES _rounded_up_to_8_BYTES_
+	 OPTION "u64_WORD_t u64_WORD_EXPR // INTO DECODER_B"
+	 OPTION IDX = u5 u8_DATA == VECT[ IDX]
+
+	STR0 ARGV[argc]
+	
+	STR0 argv[argc] 
+
+	const char * argv[ int argc ] // STR0 [N] // plus EXTRA NULL
+	// WANT ARGV in ROM // NO EXTRA NULL WORD // ALWAYS EXTRA NULL 
+
+	also GET_ENV("ENV_VAR_NAME") // "const char *"
+
+	also MODULE_DLL_and_STORED_DATA // CXX include "MODULE_NAME.h"
+	also MODULE_DLL_and_STORED_DATA // CXX include "MODULE_SESS.h"
+
+	When called over SCRIPT PARAMETERS = ARGV
+	KNOW STR0 ARGV[argc]
+	TREE COPY CODE[item] // name // type_t // 
+
+	KNOW PERMIT DECODE u48 u8_u8 // PAIR A_B u16_lohi  B_A u16_hilo
+	RUNTIME PAIR -is- "u16_lohi" // "_t" //
+	OPTION _t creates u16_lohi // within u64_cpu_var_byte_pair
+	u64 { u8 get_BYTE_B {THIS_u64_WORD} }
+	u64 { u64 u48_payload {"get_u48_payload"} ... }
+
+	u64_DECODER OBJ_ARGV from STR_ARGV
+		int argc; // IMPORT FROM UNIX LOADER
+		const char * argv; // IMPORT FROM UNIX LOADER
+		// KNOW argv[argc+1] // because LOADER adds an extra NULL
+		// PREFER argc within a fast DECODER // BATCHED ARGV
+
+
+
+OBJ_ARGV
+
+	OBJ_ARGV_t {
+		[int N]; // %s[%d] TABLE IDX // IDX = ITEM // [N]
+		const char * argv[int argc];
+	}
+
+	}

@@ -22,6 +22,7 @@
 	TXT=test1.txt
 	TXT=test1_az.txt
 	TXT=test1.txt # SYMB_LINK dir/file where .txt file is found 
+	TXT=test1_u32_Decoder.txt # SYMB_LINK dir/file where .txt file is found 
 
 # ARGV # TXT
 

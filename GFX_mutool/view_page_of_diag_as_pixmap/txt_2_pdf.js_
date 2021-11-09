@@ -13,9 +13,9 @@
 
 	var font_name = font_file
 	var pt_sz = 8.0
+	var pt_sz = 36.0
 	var pt_sz = 12.0
 	var pt_sz = 14.0
-	var pt_sz = 36.0
 
  // MACRO API { font pt } = " { font pt } // { font == font } ; { pt == pt }
  // MACRO API { SCRIPT }
@@ -157,7 +157,6 @@
 
 	var page_W = glyph_dx * n_cols  + X_margin + X_margin
 	var page_H = glyph_dy * n_lines + Y_margin + Y_margin
-	page_H = page_H /2
 	dbg_print_2( "page_W", page_W )
 	dbg_print_2( "page_H", page_H )
 
@@ -192,27 +191,20 @@ if( 0 ) {
 //	var filename_pdf = "filename.pdf"
 //	var device = new DrawDevice(Identity, pixmap);
 
-	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
-	pixmap.clear(255)
-	var device = new DrawDevice(Identity, pixmap);
+//	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
+//	pixmap.clear(255)
+//	var device = new DrawDevice(Identity, pixmap);
 
 /////////////////////
-	var transform = [1, 0, 0,-1, 0, page_H]
-	var transform = [1, 0, 0, 1, 0, page_H]
- 	var transform = [2, 0, 0, 2, 0, 0] // from api eg
- 	var transform = [1, 0, 0, 1, 0, 0]
-
+	var transform = [1,0,0,-1,0,page_H]
+	var transform = [1,0,0, 1,0,page_H]
+	var transform = [1,0,0, 1,0,0]
 	var text = new Text();
-
 
 	var X = X_margin
 	var Y = page_H - Y_margin // top down
 	var Y = 0 + Y_margin + Y_top_to_baseline // zero is at top
 	var Y = page_H - Y_margin - Y_top_to_baseline // zero is at bottom
-
-	text.showString(font, [16,0,0,-16,100,30], "Hello, world!");
-	text.showString(font, [0,16,16,0,15,100], "Second Line");
-
 
 	for( var i = 0; i < n_lines; i++ ) { // es5 not es6 ?
 		// stupid upside down font raster-Y
@@ -220,7 +212,7 @@ if( 0 ) {
 		var Y2 = Math.round( Y )
 		var X2 = Math.round( X )
 		var mat = [pt_sz,0,0,pt_sz,X2,Y2]
-//		dbg_print_2( "mat", mat )
+		dbg_print_2( "mat", mat )
 		var mat = [1,0,0,1,X2,Y2]
 		// var mat = [2,0,0,-2,X,Y]
 		// var mat = [1,0,0,1,X,Y]
@@ -233,11 +225,9 @@ if( 0 ) {
 		Y -= glyph_dy // moving down decreases Y
 	}
 
-	var rgb_one = [0,0,0] // black
 	var rgb_one = [0,1,0] // green // 0.0 < 1.0
-	var rgb_alpha = 1
-	// DeviceRGB // DeviceGray // 
-	device.fillText(text, transform, DeviceRGB, rgb_one, rgb_alpha);
+	var rgb_one = [0,0,0] // black
+	device.fillText(text, transform, DeviceRGB, rgb_one, 1);
 
 // other stuff to draw
 //	device.strokePath(path, {
@@ -246,7 +236,6 @@ if( 0 ) {
 //		lineCap:'Round'}, transform, DeviceRGB, [0,0,0], 1);
 	
 	// pixmap.saveAsPNG( name_png );
-	dbg_print_2( "endPage", "readched" )
 	doc_writer.endPage( device )
 	doc_writer.close();
 	device.close();

@@ -88,6 +88,9 @@
 
 .SUFFIXES: .o .cxx .so .exec .h
 
+dgb: $(Module).so
+	tclsh ../tests/test_$(Module).tcl 2>&1 
+
 test: $(Module).so
 	nm $(Module).so | grep Init
 	tclsh ../tests/test_$(Module).tcl 2>&1 | tee fa 
@@ -100,7 +103,7 @@ $(Module_objs): $(Module_hdrs)
 $(Module).so:  $(Module_objs)
 	# LINKS adds the libs_apps .so
 	# LINKS does not refer to libtcl.so that comes from loading EXE
-	g++ -shared -o $@ $(Module_objs) $(LINKS)
+	g++ -g -shared -o $@ $(Module_objs) $(LINKS)
 
 .cxx.o:
 	g++ $(OPTIM) $(fPIC) -c $< $(INCLS)

@@ -1,0 +1,29 @@
+The primary benefit of this is:
+
+	Tcl_Obj * openssl_x509_cert
+
+	TYPE_CXX subtype_openssl_x509_cert
+
+	responds to REF_DECR (but is not Tcl_DecrRefCount)
+	identifies as CXX / X509
+	is a parameter to CXX functions that want it
+	has a few FNS 
+
+A primary benefit of this is:
+
+	set obj_id [DICT]
+	SET $obj_id $KEY $VAL
+	GET $obj_id $KEY
+	VECT $obj_id IS_TYPE ;# bool
+	IS_TYPE $obj_id VECT ;# bool
+	IS_TYPE $obj_id ;# "VECT"
+
+	Tcl_Obj * obj_id
+	$obj_id can be anywhere
+
+A primary benefit of this is:
+
+	RW -vs- RO
+
+	A tree of lists, cannot easily be edited
+	Breaking the RO rules says different

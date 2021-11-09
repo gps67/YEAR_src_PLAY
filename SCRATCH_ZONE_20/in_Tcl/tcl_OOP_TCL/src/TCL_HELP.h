@@ -22,6 +22,11 @@ void * TCL_get_PTR1( Tcl_Obj * obj ) {
 }
 
  inline
+void ** TCL_get_EA_PTR2( Tcl_Obj * obj ) { 
+	return &( obj -> internalRep.twoPtrValue .ptr2) ;
+}
+
+ inline
 void * TCL_get_PTR2( Tcl_Obj * obj ) { 
 	return obj -> internalRep.twoPtrValue .ptr2 ;
 }

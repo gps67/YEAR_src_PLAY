@@ -7,6 +7,10 @@ SEARCH=+/curly
 SEARCH=+/XXX
 SEARCH=+/new_OBJ
 SEARCH=+/FAIL
+SEARCH=+/CMD
+SEARCH=+/ADD
+SEARCH=+/TT
+SEARCH=+/NewObj
 
 
 ./M "$@" | less $SEARCH

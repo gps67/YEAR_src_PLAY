@@ -18,7 +18,7 @@
 		int obj_idx = 0;
 		int obj_idx_2 = 0;
 		list.NN( interp, & obj_idx ); // no lock upto ADD
-		text.print("obj_%2X", obj_idx );
+		text.print("obj_%02X", obj_idx );
 		Tcl_Obj * VAL = Tcl_NewStringObj((STR0) text,-1);
 //	// there is no TYPE_DICT
 //	maybe reuse set from any
@@ -47,6 +47,12 @@
 	}
 
 
+	/*
+		a VECT is only a VECT when it is stored in decoder.list
+
+		(a VECT is also a list, as inaPTR2 -> Tcl_NewListObj() )
+
+	*/
 	bool OBJ_decoder:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 	{
 		if(!RET_VAL) {
@@ -58,8 +64,19 @@
 		int obj_idx = 0;
 		int obj_idx_2 = 0;
 		list.NN( interp, & obj_idx ); // no lock upto ADD
-		text.print("obj_%2X", obj_idx );
-		Tcl_Obj * VAL = Tcl_NewStringObj((STR0) text,-1);
+
+		// we dont set the bytes ...
+		text.print("obj_%02X_VECT", obj_idx );
+
+		Tcl_Obj * VAL = Tcl_NewObj();
+	//	Tcl_Obj * VAL = NULL; //  = Tcl_NewObj();
+	//	TclNewLiteralStringObj( VAL, text );
+
+		print_tcl_obj( VAL, "Tcl_NewObj - returns full of junk");
+		TCL_set_PTR1( VAL, NULL );
+		TCL_set_PTR2( VAL, NULL );
+		TCL_set_PTR2( VAL, Tcl_NewListObj( 0, NULL ) );
+		print_tcl_obj( VAL, "Tcl_NewObj - with type and PTR2");
 		// set VAL->typePtr = TYPE_obj_2X
 		VAL -> typePtr = TYPE_VECT;
 		// set VAL->PTR2 = TCL_LIST_over_PTR
@@ -138,6 +155,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 //	CIDENT LITERAL or tcl_word_maybe_not_IDENT
 	static LITERAL_MATCHER match_GET( interp, "GET" );
 	static LITERAL_MATCHER match_SET( interp, "SET" );
+	static LITERAL_MATCHER match_ADD( interp, "ADD" );
 	static LITERAL_MATCHER match_array_set( interp, "array_set" );
 	static LITERAL_MATCHER match_array_get( interp, "array_get" );
 	static LITERAL_MATCHER match_LIST_ALL( interp, "LIST_ALL_OBJ_TYPE" );
@@ -145,6 +163,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 //	ARGV0
 	static LITERAL_MATCHER match_OBJ( interp, "OBJ" );
 	static LITERAL_MATCHER match_VECT( interp, "VECT" );
+	static LITERAL_MATCHER match_DICT( interp, "DICT" );
 
 //	PUNCT not CIDENT LITERAL
 	static LITERAL_MATCHER match_dash( interp, "-" ); // seems fine
@@ -158,9 +177,29 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 
   //	if( decoder->test(interp) ) return TCL_OK;
 
+	#if 0
 	INFO( "OBJ objc == %d", objc );
+	for( int i=0; i< objc; i++ ) {
+	CMD_NAME.print_tcl_obj( "CMD_NAME .2 of OBJ A R G S");
+		INFO( "OBJ obj%d == %s", i, objv[i]->bytes ) ;
+		
+	}
+	#endif
+
+	#if 1
+
+	buffer1 args_as_text;
+
+	for( int i=0; i< objc; i++ ) {
+		args_as_text.print("%s ", objv[i]->bytes ) ; 
+	}
+	INFO( "OBJ CXX running { %s }", (STR0)args_as_text );
+	args_as_text.clear(); // keep for typical lines < 4K //
+	#endif
+
+// libs_apps used to love gdb insight // but red hat forgot how what why
+
 //  gdb_invoke(false);
-	INFO( "and on" );
 //  gdb_break_point();
 
   	// OBJ $obj GET fielname
@@ -176,30 +215,48 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 		return OBJ_usage_error( interp, objc, objv );
 	}
 
+//////////////////////////////////////////////////////////////////////
+	//
+	// PARSE CMD_NAME == ARGV0 == OBJ
+	//
 	// objv[0] == ~ "OBJ" or something
 	Tcl_Obj * _CMD_NAME = objv[0]; // 
 	TCL_PTR  CMD_NAME = objv[0]; // 
-	CMD_NAME.print_tcl_obj( "CMD_NAME .1 of OBJ A R G S");
+	CMD_NAME.print_tcl_obj( "CMD_NAME in ARGV");
 
 	bool CMD_OBJ = false;
 	bool CMD_VECT = false;
+	bool CMD_DICT = false; // not written yet
+
+//	bool CMD_GET = false; // not written yet
+//	bool CMD_SET = false; // not written yet
+//	bool CMD_CALL = false; // not written yet
 
 	if( match_OBJ.MATCHES(CMD_NAME) ) {
 		CMD_OBJ = true;
-		INFO("GOT OBJ\n");
+		INFO("GOT CMD_NAME OBJ\n");
 	}
 	else
 
 	if( match_VECT.MATCHES(CMD_NAME) ) {
 		CMD_VECT = true;
-		INFO("GOT VECT\n");
+		INFO("GOT CMD_NAME VECT\n");
+	}
+	else
+
+	if( match_DICT.MATCHES(CMD_NAME) ) {
+		CMD_DICT = true;
+		INFO("GOT CMD_NAME DICT\n");
 	}
 
 	else {
-		FAIL("not OBJ not VECT stays '%s'", CMD_NAME->bytes );
+		FAIL("not OBJ not VECT not DICT # CMD_NAME == '%s'", CMD_NAME->bytes );
+		// stay 
 	}
 
-	CMD_NAME.print_tcl_obj( "CMD_NAME .2 of OBJ A R G S");
+//////////////////////////////////////////////////////////////////////
+
+	// OBJ $obj_id ...
 
 /*
 # tcl_obj --------->   0000_55AA_956F_1840  CMD_NAME of OBJ A R G S
@@ -232,8 +289,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 	// objv[0] == LEX1 "OBJ" but internal rep is not ours # SO NOT LEX1
 	// objv[0] == CMD "OBJ" but internal rep is not ours # SO NOT LEX1
 
-	Tcl_Obj * cmd = objv[2];
-
 	/*
 		LOOK at obj_id
 		FETCH obj from OBJ sto
@@ -241,10 +296,20 @@ tcl_obj PTR2         0000_0000_0000_0000
 	*/
 
 
+	bool is_VECT = false;
+	bool is_DICT = false;
+
+	// presume most common is $V is valid $obj_id
 	if( !obj_id ) {
 		obj_id_EMPTY = true;
-
+	} else 
+	if( obj_id -> typePtr == decoder->TYPE_VECT ) {
+		is_VECT = true;
+	} else 
+	if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+		is_DICT = true;
 	} else {
+		// maybe it is "NEW" or "+" ...
 		if( match_EMPTY.MATCHES(obj_id) ) { 
 			obj_id_EMPTY = true;
 			INFO("GOT EMPTY\n");
@@ -268,38 +333,75 @@ tcl_obj PTR2         0000_0000_0000_0000
 		}
 	}
 	
+
+//////////////////////////////////////////////////////////////////////
+//	STILL GOT
+//	 OBJ $id ...
+//	 OBJ NEW ...
+//	 OBJ NEW VECT ...// generic use of
+
 	if( obj_id_EMPTY ) {
 	 switch( objc ) {
 	  case 0:	// impossible
 	  case 1:	// OBJ
-	  case 2:	// OBJ $id // id == {} or NEW
+	  case 2:	// VECT $id // id == {} or NEW
 
-		   if( CMD_OBJ) { // set V [OBJ NEW] // set X [OBJ {}] 
-
-
-			if(!decoder->new_OBJ_DICT( interp, & NEW_VAL ))
-				return FAIL_FAILED();
-
+		   if( CMD_VECT) { // set V [OBJ NEW] // set X [OBJ {}] 
+			if(!decoder->new_OBJ_VECT( interp, & NEW_VAL )) {
+				FAIL_FAILED();
+				return TCL_ERROR;
+			}
 			Tcl_SetObjResult( interp, NEW_VAL );
-			PASS("DONE");
+			is_VECT = true;
+			PASS("DONE VECT");
 			return TCL_OK;
 		   }
-		   if( CMD_VECT) { // set V [VECT NEW] // set V [VECT {}] 
 
-			if(!decoder->new_OBJ_VECT( interp, & NEW_VAL ))
-				return FAIL_FAILED();
-
+		   if( CMD_DICT) { // set V [OBJ NEW] // set X [OBJ {}] 
+			if(!decoder->new_OBJ_DICT( interp, & NEW_VAL )) {
+				FAIL_FAILED();
+				return TCL_ERROR;
+			}
 			Tcl_SetObjResult( interp, NEW_VAL );
-			PASS("DONE");
+			is_DICT = true;
+			PASS("DONE DICT");
 			return TCL_OK;
 		   }
+
 		   return OBJ_usage_error( interp, objc, objv );
 	  break;
-	  case 3:	// OBJ $id OPCODE // VECT $id OPCODE
+	  case 3:	// OBJ NEW VECT // OBJ NEW DICT
+
+		   if( CMD_VECT) { // set V [OBJ NEW] // set X [OBJ {}] 
+			if(!decoder->new_OBJ_VECT( interp, & NEW_VAL )) {
+				FAIL_FAILED();
+				return TCL_ERROR;
+			}
+			Tcl_SetObjResult( interp, NEW_VAL );
+			PASS("DONE VECT");
+			return TCL_OK;
+		   }
+
+		   if( CMD_DICT) { // set V [OBJ NEW] // set X [OBJ {}] 
+			if(!decoder->new_OBJ_DICT( interp, & NEW_VAL )) {
+				FAIL_FAILED();
+				return TCL_ERROR;
+			}
+			Tcl_SetObjResult( interp, NEW_VAL );
+			PASS("DONE DICT");
+			return TCL_OK;
+		   }
 	  break;
 
 	 }
 	}
+
+//////////////////////////////////////////////////////////////////////
+
+	Tcl_Obj * cmd = objv[2];	// OBJ $id CMD ... GET SET ADD
+
+	// maybe not yet
+	Tcl_Obj * DATA = objv[3];
 
 	/*
 		LOOK at cmd
@@ -314,21 +416,40 @@ tcl_obj PTR2         0000_0000_0000_0000
 	 case 2:	// OBJ $id
 		return OBJ_usage_error( interp, objc, objv );
 	 break;
-	 case 3:	// OBJ $id OPCODE // VECT $id OPCODE
+	 case 3:	// OBJ $id OPCODE // VECT $id OPCODE // cmd == OPCODE
 
 	 	if(obj_id_EMPTY) { // OBJ {} NEW // VECT {} NEW // OBJ NEW VECT
 
-
 			if( match_VECT.MATCHES(cmd) ) {
-				INFO("GOT VECT\n"); // OBJ NEW VECT // VECT {} VECT
+			// obj_id
+				INFO("GOT OBJ NEW VECT\n"); // OBJ NEW VECT // VECT {} VECT
+				FAIL("TODO");
 
 				return TCL_OK;
 			}
-		}
+		} // else obj_id is not "NEW" "-" "
 
+		INFO("look for array_get");
 		if( match_array_get.MATCHES(cmd) ) {
-			INFO("GOT array_get\n");
-			return TCL_OK;
+		INFO("got array_get");
+// gdb_invoke(false);
+// gdb_break_point();
+			// convert obj_id to LIST
+			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
+				// get PTR2 into LIST without touching ref_count
+				TCL_LIST LIST( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+				print_tcl_obj( (Tcl_Obj*) obj_id, "obj_id" );
+				print_tcl_obj( (Tcl_Obj*) LIST.list, "LIST with bad refcount" );
+				int pos = 0;
+				TCL_REF RET_VAL;
+				if(LIST.array_get( interp, RET_VAL )) {
+					Tcl_SetObjResult( interp, RET_VAL );
+					return TCL_OK;
+				} else
+					return TCL_ERROR;
+			} else {
+				WARN("expected TYPE_VECT");
+			}
 		}
 
 		if( match_LIST_ALL.MATCHES(cmd) ) {
@@ -356,12 +477,62 @@ tcl_obj PTR2         0000_0000_0000_0000
 	 break;
 	 case 4:	// OBJ $id OPCODE fieldname
 
+
 		if( match_GET.MATCHES(cmd ) ) {
 			INFO("GOT GET\n");
 			return TCL_OK;
 		}
+
+		if( match_ADD.MATCHES(cmd) ) {
+			// convert obj_id to LIST
+			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+				WARN("DICT is not a LIST no ADD");
+		//		TCL_DICT DICT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+		//		int pos = 0;
+		//		Tcl_Obj * VAL = objv[3];
+		//		if(DICT.ADD( interp, &pos, VAL ))
+		//			return TCL_OK;
+		//		else
+					return TCL_ERROR;
+			}
+
+			else 
+			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
+			//	TCL_LIST VECT( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
+				WARN("DICT is a VECT");
+			}
+
+			else {
+				FAIL("ADD but obj_id is not LIST");
+				return OBJ_usage_error( interp, objc, objv );
+				return TCL_ERROR;
+			}
+
+			if(CMD_VECT) ;
+			if(CMD_DICT) // or data_is_DICT
+			// VECT LIST DICT OBJ 
+			INFO("GOT ADD returning nothing\n");
+			return TCL_OK;
+		} 
+
+		if( match_array_set.MATCHES(cmd) ) {
+			// convert obj_id to LIST
+			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+				TCL_LIST LIST( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
+				int pos = 0;
+				Tcl_Obj * VAL = objv[3];
+				if(LIST.array_set( interp, VAL )) {
+					// return what ?
+					return TCL_OK;
+				} else
+					return TCL_ERROR;
+			}
+		} else
+
+		;
 	
 		// GET fieldname // 
+		return OBJ_usage_error( interp, objc, objv );
 
 	 break;
 	 case 5:	// OBJ $id OPCODE fieldname value
@@ -400,7 +571,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 
 CXX_PROTO_T( OBJ_test1, OBJ_decoder * decoder )
   {
-  	
   	if( ! decoder -> test(interp)) {
 		return TCL_ERROR;
 	}
@@ -420,7 +590,7 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder )
 /* CAST */ (Tcl_ObjCmdProc*)
 		OBJ_test1,
 /* CAST */  (ClientData)
-		decoder,
+		decoder, // ClientData == decoder // += one_of_group
 		deleteProc
 	);
 
@@ -443,6 +613,90 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder )
 		decoder,
 		deleteProc // VECT.ClientData == OBJ.CLientData == MOD_OBJ
 	);
+
+	token=Tcl_CreateObjCommand(
+		interp,
+		"DICT", // DICT new // an alias for "OBJ" Command
+/* CAST */ (Tcl_ObjCmdProc*)
+		OBJ_OBJ, // keep to one CXX function OBJ_OBJ decoder // etc
+/* CAST */  (ClientData)
+		decoder,
+		deleteProc // VECT.ClientData == OBJ.CLientData == MOD_OBJ
+	);
+
+	/*	ALIAS u8_u8 { u8_spec u8_N }
+		u8_spec {
+			// KNOW // PTR == u48_payload
+			// u8_u8 // stmt N // GETTER("PROVIDES ARGV[N]")
+			// WORDS = THIS_STO.ARGV_WORDS
+			// SELF += lookup( PTR ) // spec says is u48_payload
+			// N = u8_N
+		}
+
+		SPEC_t SPECS[N]
+		EIGHT_t WORDS[idx]
+
+		u8_spec = byte_A
+		u8_item = byte_B
+		or
+		u8_spec = byte_B
+		u8_item = byte_A
+
+		HERE=CODE[u8_spec]
+		SPEC=SPEC[u8_spec] // SPEC SPECS // SUBLEX
+
+
+
+	*/
+	/*	ALIAS
+
+		OBJ	- stay with OBJ as it does double_step first_step
+		LIST	- creates a LIST_VIEW of OBJ
+		DICT	- creates a ITEM_VIEW of OBJ
+		VECT	- creates a ITEM_VIEW of OBJ
+		FIELDS	- byte_fields in shared REG or expanded WORD = VAR
+		BITFIELDS - worth a try
+		ITEM_t & ITEM = DRY[KEY] // & is dropped, but there for reminder
+		ITEM_t * ITEM = DRY[KEY] // * is dropped, dot notation used
+		V = %d { idx_t idx } // typedef u32 idx_t
+		OBJ $V GET $idx // u64_WORD "$idx" is EXPR is local VAR "idx"
+		# local VARS # nearby vars # V idx
+		# typed VALS # $V is u64_VECT_V_t { TCL_VECT V // ALIAS $V }
+
+		N_WORDS_IN_ARGV==BYTE_A
+		SPEC_THIS_PICK==BYTE_B
+
+			WORDS = EIGHT_u8 // MINI_API_MACHINE
+
+			 // EIGHT_t * WORDS = u64_MEM_ADDR // EXPR
+
+			OBJ $u48_V $u8_u8
+			// SCRIPT makes ALIAS u8_u8 very fast
+			// it KNOWS u16_lohi_of_u64_lohi // cpu_var_BYTE_FIELDS
+			// {OPCODE} 
+			// V = u48
+			// u8_u8 // SPEC_t & SPEC = SPECS[u8_spec] // "OBJV" _t
+			// u8_u8 // ITEM_t & ITEM = ITEMS[u8_item]
+			// u8_u8_lohi is u16_lohi
+			// u8_u8_lohi u8_u8_liho --PICK-->
+
+			// I think that we REQUIRE ints stored lohi
+			// I think that SOURCE FILTER can RPC remote data
+			// 
+			u8_u8_lohi
+			u8_u8_hilo 
+
+			ASM REG_RET_VAL = WORDS[BYTE_B]
+
+		TODO
+
+		GET
+		SET
+		CALL // obj is CALLABLE // GEN tracing API // LOG VAL //
+
+
+
+	*/
 
 	/*	TODO
 

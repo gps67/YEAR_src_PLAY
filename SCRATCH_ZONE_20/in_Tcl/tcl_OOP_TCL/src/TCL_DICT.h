@@ -35,6 +35,13 @@ struct TCL_DICT
 		dict = Tcl_NewDictObj();
 	}
 
+	TCL_DICT( Tcl_Obj * obj )
+	: dict()
+	{
+		dict = obj;
+		INFO("setting from obj - debug should test is_a_dict");
+	}
+
 	~TCL_DICT()
 	{
 	}

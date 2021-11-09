@@ -30,6 +30,38 @@ struct TCL_LIST
 		renew();
 	}
 
+	TCL_LIST( Tcl_Obj * obj )
+	: list()
+	{
+		list = obj;
+		INFO("setting from obj - debug should test is_a_list");
+	}
+
+	void get_from_PTR2( Tcl_Obj * obj )
+        {
+		list.get_from_PTR2( obj );
+        }
+
+	void set_into_PTR2( Tcl_Obj * obj )
+        {
+		list.set_into_PTR2( obj );
+        }
+
+
+	// eg PTR2 is dict, but for "safety" we have to unwrap TCP_PTR
+	// because of this, drop strong type
+	TCL_LIST( Tcl_Interp * _interp, Tcl_Obj ** KEPT_ITEM )
+	: list()
+	{
+		list = *KEPT_ITEM;
+		if(!KEPT_ITEM) {
+			FAIL("NULL KEPT_ITEM");
+		}
+		if(!list) {
+			FAIL("NULL dict");
+		}
+	}
+
 	~TCL_LIST()
 	{
 	}
@@ -302,7 +334,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		return OK;
 	}
 
-	bool array_get( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
+	bool array_get( Tcl_Interp * interp, TCL_REF & RET_VAR ) // auto &
 	{
 		// this squeezes out the NULL items, so loses obj_id [pos]
 		bool OK = true;
@@ -310,6 +342,8 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		TCL_REF item;
 		int pos;
 		int N = 0;
+		INFO("about to call NN");
+	// gdb_break_point();
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
 		for(int i = 0; i<N; i++ ) {
 			GET( interp, i, item );

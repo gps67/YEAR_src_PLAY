@@ -3,6 +3,7 @@
 
 #include "TCL.h"
 
+
 /*!
 	a plain Tcl_Obj *
 
@@ -89,6 +90,20 @@ public:
 		#endif
 		PTR = ptr;
 		return *this;
+	}
+
+	void get_from_PTR2( Tcl_Obj * obj )
+	{
+		PTR = (Tcl_Obj*) obj -> internalRep.twoPtrValue.ptr2 ;
+//		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
+		// do not ref_incr
+	}
+
+	void set_into_PTR2( Tcl_Obj * obj )
+	{
+		obj -> internalRep.twoPtrValue.ptr2  = PTR;
+//		TCL_set_PTR2( obj, PTR );
+		// do not ref_incr
 	}
 
 	operator const char * ();

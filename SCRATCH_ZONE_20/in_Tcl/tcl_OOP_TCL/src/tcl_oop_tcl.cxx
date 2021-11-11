@@ -1,6 +1,6 @@
 #include "TCL.h" /* TCL */
 
-#include "OBJ_decoder.h"
+#include "OBJ_module.h"
 
 // some struggling attempt to parametise the module anme
 // CAP1 makes it tricky
@@ -71,9 +71,9 @@ MODULE_INIT( Optical )
 
 	}
 #endif
-	// maybe move this to OBJ_decoder
+	// maybe move this to OBJ_module
 	// maybe rename that TCL_module
-	// or OBJ_decoder is a sub assembly of module
+	// or OBJ_module is a sub assembly of module
 	// add ARGV_decoder
 	// 
 
@@ -95,7 +95,7 @@ MODULE_INIT( Optical )
 	}
 
 
-	OBJ_decoder * decoder = new OBJ_decoder( interp );
+	OBJ_module * decoder = new OBJ_module( interp );
 
 	if( TCL_OK != declare_OBJ_functions( interp, decoder ))
 	 return TCL_ERROR;

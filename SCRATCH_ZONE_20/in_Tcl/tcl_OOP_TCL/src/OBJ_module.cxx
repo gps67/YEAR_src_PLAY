@@ -1,5 +1,5 @@
 
-#include "OBJ_decoder.h"
+#include "OBJ_module.h"
 #include "TCL_HELP.h"
 #include <string.h>
 #include "TCL_MATCHER.h"
@@ -32,9 +32,9 @@ struct OBJ_ARGV_helper
 
 	// MAYBE move these to _PLUS ?
 
-	bool OBJ_decoder:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	bool OBJ_module:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 	{
-		return OBJ_decoder:: new_OBJ_type_nam(
+		return OBJ_module:: new_OBJ_type_nam(
 		 interp,
 		 RET_VAL,
 		 TYPE_VECT,
@@ -42,9 +42,9 @@ struct OBJ_ARGV_helper
 		);
 	}
 
-	bool OBJ_decoder:: new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	bool OBJ_module:: new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 	{
-		return OBJ_decoder:: new_OBJ_type_nam(
+		return OBJ_module:: new_OBJ_type_nam(
 		 interp,
 		 RET_VAL,
 		 TYPE_DICT,
@@ -52,7 +52,7 @@ struct OBJ_ARGV_helper
 		);
 	}
 
-	bool OBJ_decoder:: new_OBJ_type_nam(
+	bool OBJ_module:: new_OBJ_type_nam(
 		Tcl_Interp * interp,
 		Tcl_Obj ** RET_VAL,
 		Tcl_ObjType * typ,
@@ -161,7 +161,7 @@ int OBJ_usage_error( Tcl_Interp * interp, int objc, Tcl_Obj *const* objv )
 	return TCL_ERROR;
 }
 
-CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
+CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
   {
 
 	OBJ_ARGV_helper cmd(interp);
@@ -633,7 +633,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 	return TCL_OK;
   }
 
-CXX_PROTO_T( OBJ_test1, OBJ_decoder * decoder )
+CXX_PROTO_T( OBJ_test1, OBJ_module * decoder )
   {
   	if( ! decoder -> test(interp)) {
 		return TCL_ERROR;
@@ -643,7 +643,7 @@ CXX_PROTO_T( OBJ_test1, OBJ_decoder * decoder )
 
 
 // extern 
-int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder )
+int declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder )
 {
 	Tcl_CmdDeleteProc * deleteProc = NULL; // for now
 	Tcl_Command token;

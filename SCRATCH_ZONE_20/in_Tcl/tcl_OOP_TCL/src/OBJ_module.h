@@ -1,5 +1,5 @@
-#ifndef OBJ_decoder_H
-#define OBJ_decoder_H
+#ifndef OBJ_module_H
+#define OBJ_module_H
 
 #include "TCL_REF.h"
 #include "TCL_LIST.h"
@@ -26,7 +26,7 @@ class OBJ_MODULE // actually any kind of module
 #endif
 
 /*!
-	OBJ_decoder holds a TABLE[ obj_id ] of Tcl_Obj *
+	OBJ_module holds a TABLE[ obj_id ] of Tcl_Obj *
 
 	Each OBJ that gets decoded will be a KEY 
 	where PTR1 is obj_id * 256 + obj_op
@@ -51,12 +51,10 @@ class OBJ_MODULE // actually any kind of module
 	That would limit to [64K] of bright objects on ARM32
 	but then be consistent to DECODE u8_u8 
 */
-class OBJ_decoder
+class OBJ_module
 {
- //	TCL_TYPE type_decoder;
  	KEPT_PTR_type KEPT_PTR; 
 	TCL_LIST objs;
-//	TCL_DICT dict;
 	// the _PLUS types are not directly usable in typePtr !!! because VTBL
  public:
 	TCL_ObjType_LEX1 * TYPE_LEX1;
@@ -65,7 +63,7 @@ class OBJ_decoder
 	TCL_ObjType_DICT * TYPE_DICT;
 	TCL_ObjType_VECT * TYPE_VECT;
  public:
- 	OBJ_decoder( Tcl_Interp * interp )
+ 	OBJ_module( Tcl_Interp * interp )
 	: objs( interp )
 //	, dict( interp )
 //	, hash( interp )
@@ -87,7 +85,7 @@ class OBJ_decoder
 		// a TYPE_obj is not a Tcl_Obj just a STRUCT*
 	}
 
- 	~OBJ_decoder()
+ 	~OBJ_module()
 	{
 	}
 
@@ -116,7 +114,7 @@ class OBJ_decoder
 };
 
 extern
-int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder );
+int declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder );
 
 ///////////////////////////////////////////////
 

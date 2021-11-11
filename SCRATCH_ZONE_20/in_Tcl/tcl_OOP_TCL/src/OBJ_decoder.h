@@ -55,9 +55,8 @@ class OBJ_decoder
 {
  //	TCL_TYPE type_decoder;
  	KEPT_PTR_type KEPT_PTR; 
-	TCL_LIST list;
-	TCL_DICT dict;
-//	TCL_HASH hash;
+	TCL_LIST objs;
+//	TCL_DICT dict;
 	// the _PLUS types are not directly usable in typePtr !!! because VTBL
  public:
 	TCL_ObjType_LEX1 * TYPE_LEX1;
@@ -67,8 +66,8 @@ class OBJ_decoder
 	TCL_ObjType_VECT * TYPE_VECT;
  public:
  	OBJ_decoder( Tcl_Interp * interp )
-	: list( interp )
-	, dict( interp )
+	: objs( interp )
+//	, dict( interp )
 //	, hash( interp )
  	, KEPT_PTR( NULL )
 	, TYPE_LEX1( NULL )
@@ -94,12 +93,18 @@ class OBJ_decoder
 
 	bool new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
 	bool new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
+	bool new_OBJ_type_nam(
+		Tcl_Interp * interp,
+		Tcl_Obj ** RET_VAL,
+		Tcl_ObjType * typ,
+		const char * NAME
+	);
 
 	bool test( Tcl_Interp * interp )
 	{
 //		return hash.test(interp);
-		return dict.test(interp);
-		return list.test(interp);
+//		return dict.test(interp);
+		return objs.test(interp);
 	}
 
 
@@ -112,5 +117,7 @@ class OBJ_decoder
 
 extern
 int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder );
+
+///////////////////////////////////////////////
 
 #endif

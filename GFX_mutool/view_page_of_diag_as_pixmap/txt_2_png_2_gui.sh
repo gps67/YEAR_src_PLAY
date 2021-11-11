@@ -37,8 +37,9 @@ TXT=test1.txt
 	rm $PNG
 
 	mutool run txt_2_pdf.js $TXT # $PDF # it computes itself 
-	[ -f $PDF ] && mupdf $PDF
-	[ -f $PDF ] && mutool run view_pdf.js $PDF
+	[ -f $PDF ] && mupdf-gl $PDF
+#	[ -f $PDF ] && mupdf $PDF
+#	[ -f $PDF ] && mutool run view_pdf.js $PDF
 	# $PNG # $OBJ_PIXMAP # TODO shared mmap file pixmap objects .sh
 	# $OBJ_PIXMAP # TODO shared mmap file pixmap objects link_name -> store`
 	[ -f $PNG ] && gm display $PNG

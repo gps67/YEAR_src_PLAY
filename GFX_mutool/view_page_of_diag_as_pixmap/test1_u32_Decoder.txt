@@ -1,6 +1,6 @@
-
-        
-        u32 Decoder {
+X
+ X       
+  X    u32 Decoder {
 
                 u32   get_VAL();
                 u32 & get_VAR();

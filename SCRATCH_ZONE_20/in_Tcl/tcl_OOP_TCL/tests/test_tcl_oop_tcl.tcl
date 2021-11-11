@@ -10,7 +10,10 @@ proc TT {ARGV} {
 proc test_VECT {} {
 	puts "# test_VECT #################"
 	# want this imperative set V [VECT] # [VECT NEW A R G S ]
-	set VECT [VECT]
+#	set VECT [VECT]
+TT {	set VECT [set b b] }
+TT {	set VECT [VECT] }
+TT {	set VECT [OBJ NEW VECT] }
 # TODO soon
 #	set VECT [OBJ + VECT]
 #	set VECT [OBJ - VECT]
@@ -24,9 +27,9 @@ TT {	OBJ $VECT ADD C	}
 TT { 	OBJ $VECT GET 2	}
 TT {	set AS_LIST [OBJ $VECT array_get]	}
 
-TT {	set VECT2 [OBJ mk_ VECT]	}
-TT {	OBJ $VECT2 array_set $AS_LIST	}
-TT {	set AS_LIST2 [OBJ $VECT2 array_get]	}
+TT {	set DICT [DICT]	}
+TT {	OBJ $DICT array_set $AS_LIST	}
+TT {	set AS_LIST2 [OBJ $DICT array_get]	}
 TT {	puts "$AS_LIST2"	}
 TT {	set DICT [OBJ]	}
 TT {	OBJ $DICT SET A A ;# 	}
@@ -74,7 +77,7 @@ proc fn3 {} {
 	load ../obj/tcl_oop_tcl.so optical
 #	load tcl_oop_tcl.so optical
 
-if 1 {
+if 0 {
 	# these 2 show that the use of LITERAL LIST_ALL_OBJ_TYPE
 	# outside of any proc, creates a LEX2
 	# even after the use inside fn3 used the LEX1
@@ -83,7 +86,7 @@ if 1 {
 }
 
 	test_VECT ;# want to see ARGV0 typePtr
-	test_VECT ;# second call # see not LEX 1 ified
+	test_DICT ;# second call # see not LEX 1 ified
 
 if 1 {
 

@@ -5,55 +5,59 @@
 #include "TCL_MATCHER.h"
 #include "buffer1.h" // buffer1 print
 
+/*!
+	OBJ_MODULE * obj_module == ClientData == a CPU register
+	OBJ_ARGV_helper * ARGV_helper == a local var
+	
+	The key issues are:
+	
+		obj_module->some_kept_pointer == findable
+		obj_module is NOT multi-thread variable
+		OBJ_OBJ needs a local var to assist
+	
+	hoping for as much inline as poss
+	so that uses the callers CPU_register
+*/
+struct OBJ_ARGV_helper 
+{
+	TCL_LIST list;
+	TCL_DICT dict;
+
+	OBJ_ARGV_helper( Tcl_Interp * interp )
+	: list( interp )
+	, dict( interp )
+	{
+	}
+};
+
 	// MAYBE move these to _PLUS ?
+
+	bool OBJ_decoder:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	{
+		return OBJ_decoder:: new_OBJ_type_nam(
+		 interp,
+		 RET_VAL,
+		 TYPE_VECT,
+		 "VECT"
+		);
+	}
 
 	bool OBJ_decoder:: new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 	{
-		if(!RET_VAL) {
-			return FAIL("NULL RET_VAL");
-		}
-		int pos = 0;
-	//	Tcl_Obj * VAL = Tcl_NewObj();
-		buffer1 text;
-		int obj_idx = 0;
-		int obj_idx_2 = 0;
-		list.NN( interp, & obj_idx ); // no lock upto ADD
-		text.print("obj_%02X", obj_idx );
-		Tcl_Obj * VAL = Tcl_NewStringObj((STR0) text,-1);
-//	// there is no TYPE_DICT
-//	maybe reuse set from any
-		VAL -> typePtr = TYPE_DICT;
-
-		// set VAL->typePtr = TYPE_obj_2X
-		// set VAL->PTR2 = TCL_LIST_over_PTR
-		if(!VAL) return FAIL("NULL VAL");
-		list.ADD( interp, &obj_idx_2, VAL );
-		if(obj_idx != obj_idx_2) {
-			FAIL("obj_idx != obj_idx_2 %d != %d",
-				obj_idx,
-				obj_idx_2);
-			// but stay
-			return false; // or not
-		}
-
-		// get the new OBJ back somehow ...
-
-		* RET_VAL = VAL;
-
-		return PASS("DONE == %s", VAL->bytes );
-
-		return true;
-	//	return FAIL("TODO");
+		return OBJ_decoder:: new_OBJ_type_nam(
+		 interp,
+		 RET_VAL,
+		 TYPE_DICT,
+		 "DICT"
+		);
 	}
 
-
-	/*
-		a VECT is only a VECT when it is stored in decoder.list
-
-		(a VECT is also a list, as inaPTR2 -> Tcl_NewListObj() )
-
-	*/
-	bool OBJ_decoder:: new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
+	bool OBJ_decoder:: new_OBJ_type_nam(
+		Tcl_Interp * interp,
+		Tcl_Obj ** RET_VAL,
+		Tcl_ObjType * typ,
+		const char * NAME
+	)
 	{
 		if(!RET_VAL) {
 			return FAIL("NULL RET_VAL");
@@ -63,25 +67,29 @@
 		buffer1 text;
 		int obj_idx = 0;
 		int obj_idx_2 = 0;
-		list.NN( interp, & obj_idx ); // no lock upto ADD
-
-		// we dont set the bytes ...
-		text.print("obj_%02X_VECT", obj_idx );
+		objs.NN( interp, & obj_idx ); // no lock upto ADD
 
 		Tcl_Obj * VAL = Tcl_NewObj();
-	//	Tcl_Obj * VAL = NULL; //  = Tcl_NewObj();
-	//	TclNewLiteralStringObj( VAL, text );
+		if(!VAL) return FAIL("NULL VAL");
 
-		print_tcl_obj( VAL, "Tcl_NewObj - returns full of junk");
+		VAL -> typePtr = typ;
 		TCL_set_PTR1( VAL, NULL );
 		TCL_set_PTR2( VAL, NULL );
 		TCL_set_PTR2( VAL, Tcl_NewListObj( 0, NULL ) );
-		print_tcl_obj( VAL, "Tcl_NewObj - with type and PTR2");
+
+		// compute the bytes
+		text.print("obj_%02X_%s", obj_idx, NAME );
+
+		// copy text into bytes[length]
+		const char * S = (STR0) text; // adds NUL byte
+		int len = text.nbytes_used; // remember to add 1
+		VAL->bytes = (char *)ckalloc(len + 1);
+		memcpy(VAL->bytes, S, len+1);
+		VAL->length = len;
+
 		// set VAL->typePtr = TYPE_obj_2X
-		VAL -> typePtr = TYPE_VECT;
 		// set VAL->PTR2 = TCL_LIST_over_PTR
-		if(!VAL) return FAIL("NULL VAL");
-		list.ADD( interp, &obj_idx_2, VAL );
+		objs.ADD( interp, &obj_idx_2, VAL );
 		if(obj_idx != obj_idx_2) {
 			FAIL("obj_idx != obj_idx_2 %d != %d",
 				obj_idx,
@@ -94,11 +102,15 @@
 
 		* RET_VAL = VAL;
 
+		Tcl_SetObjResult( interp, VAL );
+
+		print_tcl_obj( VAL, "Tcl_NewObj - PLSU ");
 		return PASS("DONE == %s", VAL->bytes );
 
 		return true;
 	//	return FAIL("TODO");
 	}
+
 
 #define CXX_PROTO_T( func_name, parameter_line )	\
 				\
@@ -151,6 +163,8 @@ int OBJ_usage_error( Tcl_Interp * interp, int objc, Tcl_Obj *const* objv )
 
 CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
   {
+
+	OBJ_ARGV_helper cmd(interp);
 
 //	CIDENT LITERAL or tcl_word_maybe_not_IDENT
 	static LITERAL_MATCHER match_GET( interp, "GET" );
@@ -251,7 +265,8 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_decoder * decoder )
 
 	else {
 		FAIL("not OBJ not VECT not DICT # CMD_NAME == '%s'", CMD_NAME->bytes );
-		// stay 
+		return OBJ_usage_error( interp, objc, objv );
+		// stay  or ERROR
 	}
 
 //////////////////////////////////////////////////////////////////////
@@ -269,7 +284,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 
 	Tcl_Obj * obj_id = NULL;
 	bool obj_id_EMPTY = false; 
-	if(objc < 2 ) {
+	if( objc < 2 ) {
 		obj_id_EMPTY = true;
 	} else {
 		obj_id = objv[1];
@@ -296,7 +311,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 	*/
 
 
-	bool is_VECT = false;
+	bool is_VECT = false; // a VECT is really a LIST
 	bool is_DICT = false;
 
 	// presume most common is $V is valid $obj_id
@@ -305,6 +320,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 	} else 
 	if( obj_id -> typePtr == decoder->TYPE_VECT ) {
 		is_VECT = true;
+		// NB the CMD_NAME and the obj type is VECT
 	} else 
 	if( obj_id -> typePtr == decoder->TYPE_DICT ) {
 		is_DICT = true;
@@ -332,6 +348,9 @@ tcl_obj PTR2         0000_0000_0000_0000
 			INFO("GOT curly_pair\n");
 		}
 	}
+
+	// so that sets { obj_id_EMPTY = true; } requiring a NEW
+
 	
 
 //////////////////////////////////////////////////////////////////////
@@ -339,6 +358,8 @@ tcl_obj PTR2         0000_0000_0000_0000
 //	 OBJ $id ...
 //	 OBJ NEW ...
 //	 OBJ NEW VECT ...// generic use of
+//	VECT NEW ... A R G S ...
+//	DICT NEW k1 v1 k2 v2 ...
 
 	if( obj_id_EMPTY ) {
 	 switch( objc ) {
@@ -351,7 +372,8 @@ tcl_obj PTR2         0000_0000_0000_0000
 				FAIL_FAILED();
 				return TCL_ERROR;
 			}
-			Tcl_SetObjResult( interp, NEW_VAL );
+			// return the new object, not its value
+			// this means more later on VECT NEW A R G S
 			is_VECT = true;
 			PASS("DONE VECT");
 			return TCL_OK;
@@ -362,7 +384,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 				FAIL_FAILED();
 				return TCL_ERROR;
 			}
-			Tcl_SetObjResult( interp, NEW_VAL );
 			is_DICT = true;
 			PASS("DONE DICT");
 			return TCL_OK;
@@ -377,7 +398,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 				FAIL_FAILED();
 				return TCL_ERROR;
 			}
-			Tcl_SetObjResult( interp, NEW_VAL );
 			PASS("DONE VECT");
 			return TCL_OK;
 		   }
@@ -387,7 +407,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 				FAIL_FAILED();
 				return TCL_ERROR;
 			}
-			Tcl_SetObjResult( interp, NEW_VAL );
 			PASS("DONE DICT");
 			return TCL_OK;
 		   }
@@ -398,14 +417,14 @@ tcl_obj PTR2         0000_0000_0000_0000
 
 //////////////////////////////////////////////////////////////////////
 
-	Tcl_Obj * cmd = objv[2];	// OBJ $id CMD ... GET SET ADD
+	Tcl_Obj * cmd0 = objv[2];	// OBJ $id CMD ... GET SET ADD
 
 	// maybe not yet
 	Tcl_Obj * DATA = objv[3];
 
 	/*
-		LOOK at cmd
-		cmd REALLY should be a Literal OPCODE
+		LOOK at cmd0
+		cmd0 REALLY should be a Literal OPCODE
 		TODO
 	*/
 
@@ -416,21 +435,28 @@ tcl_obj PTR2         0000_0000_0000_0000
 	 case 2:	// OBJ $id
 		return OBJ_usage_error( interp, objc, objv );
 	 break;
-	 case 3:	// OBJ $id OPCODE // VECT $id OPCODE // cmd == OPCODE
+	 case 3:	// OBJ $id OPCODE // VECT $id OPCODE // cmd0 == OPCODE
 
 	 	if(obj_id_EMPTY) { // OBJ {} NEW // VECT {} NEW // OBJ NEW VECT
 
-			if( match_VECT.MATCHES(cmd) ) {
-			// obj_id
-				INFO("GOT OBJ NEW VECT\n"); // OBJ NEW VECT // VECT {} VECT
-				FAIL("TODO");
+		 if( match_VECT.MATCHES(cmd0) ) {
 
-				return TCL_OK;
+			if(!decoder->new_OBJ_VECT( interp, & NEW_VAL )) {
+				FAIL_FAILED();
+				return TCL_ERROR;
 			}
+			PASS("DONE obj new VECT");
+			return TCL_OK;
+		 }
+
+		 // else ... _DICT
+		 // else FAIL
+		 return OBJ_usage_error( interp, objc, objv );
+
 		} // else obj_id is not "NEW" "-" "
 
 		INFO("look for array_get");
-		if( match_array_get.MATCHES(cmd) ) {
+		if( match_array_get.MATCHES(cmd0) ) {
 		INFO("got array_get");
 // gdb_invoke(false);
 // gdb_break_point();
@@ -452,7 +478,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 			}
 		}
 
-		if( match_LIST_ALL.MATCHES(cmd) ) {
+		if( match_LIST_ALL.MATCHES(cmd0) ) {
 		//	return list of all objType names
 		//	boolean double end-offset regexp list cmdName bytecode
 		//	procbody bytearray int dict {array search} string
@@ -471,20 +497,63 @@ tcl_obj PTR2         0000_0000_0000_0000
 			return TCL_OK;
 		}
 
-		WARN("not recognised Literal %s \n",cmd->bytes );
+		WARN("not recognised Literal %s \n",cmd0->bytes );
 		return OBJ_usage_error( interp, objc, objv );
 
 	 break;
-	 case 4:	// OBJ $id OPCODE fieldname
+	 case 4: // {
+	 	// OBJ $id OPCODE fieldname
+	       	// OBJ $id ADD value
+	       	// OBJ $id GET fieldname
+	       	// OBJ $id GET 2 // VECT
 
-
-		if( match_GET.MATCHES(cmd ) ) {
-			INFO("GOT GET\n");
+	       	// OBJ $id GET fieldname
+		if( match_GET.MATCHES(cmd0 ) ) {
+		 if(is_VECT) {
+			int VAL_IDX = -1;
+			if(TCL_OK!=Tcl_GetIntFromObj( interp, DATA, &VAL_IDX )) {
+				WARN("expected VAL_IDX got %s", "XXX");
+				return TCL_ERROR;
+			}
+			if( obj_id -> typePtr != decoder->TYPE_VECT ) {
+				WARN("expected TYPE_VECT got %s", "TTT");
+				return TCL_ERROR;
+			}
+//  gdb_invoke(false);
+//  gdb_break_point();
+				// get PTR2 into LIST without touching ref_count
+			TCL_LIST VECT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+			print_tcl_obj( obj_id, "obj_id");
+			print_tcl_obj( VECT.listPtr(), "VECT.listPtr()");
+			TCL_REF RET_VAL;
+			VECT.GET( interp, VAL_IDX, RET_VAL );
+			Tcl_SetObjResult( interp, (Tcl_Obj*)RET_VAL );
 			return TCL_OK;
+		 }
+		 if(is_DICT) {
+		 }
+				WARN("expected VAL_IDX got %s", "XXX");
+				return TCL_ERROR;
 		}
 
-		if( match_ADD.MATCHES(cmd) ) {
+	       	// OBJ $id ADD value
+		if( match_ADD.MATCHES(cmd0) ) {
 			// convert obj_id to LIST
+			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
+				// obj_id is id of obj AND also obj holder itself
+				// 
+				TCL_LIST VECT( (Tcl_Obj*) TCL_get_PTR2( obj_id ) );
+				// DATA was objv[3]
+				int pos = 0;
+				if(!(VECT.ADD( interp, &pos, DATA ))) {
+					FAIL_FAILED();
+					return TCL_ERROR;
+				}
+				Tcl_SetObjResult( interp, DATA );
+				return TCL_OK;
+			}
+
+			else
 			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
 				WARN("DICT is not a LIST no ADD");
 		//		TCL_DICT DICT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
@@ -494,12 +563,6 @@ tcl_obj PTR2         0000_0000_0000_0000
 		//			return TCL_OK;
 		//		else
 					return TCL_ERROR;
-			}
-
-			else 
-			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
-			//	TCL_LIST VECT( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
-				WARN("DICT is a VECT");
 			}
 
 			else {
@@ -515,7 +578,7 @@ tcl_obj PTR2         0000_0000_0000_0000
 			return TCL_OK;
 		} 
 
-		if( match_array_set.MATCHES(cmd) ) {
+		if( match_array_set.MATCHES(cmd0) ) {
 			// convert obj_id to LIST
 			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
 				TCL_LIST LIST( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
@@ -534,15 +597,16 @@ tcl_obj PTR2         0000_0000_0000_0000
 		// GET fieldname // 
 		return OBJ_usage_error( interp, objc, objv );
 
+	 // }
 	 break;
 	 case 5:	// OBJ $id OPCODE fieldname value
 
-		if( match_SET.MATCHES(cmd ) ) {
+		if( match_SET.MATCHES(cmd0 ) ) {
 			INFO("GOT SET\n");
 			return TCL_OK;
 		}
 
-		if( match_array_set.MATCHES(cmd ) ) {
+		if( match_array_set.MATCHES(cmd0 ) ) {
 			INFO("GOT array_set\n");
 			return TCL_OK;
 		}
@@ -551,19 +615,19 @@ tcl_obj PTR2         0000_0000_0000_0000
 		return OBJ_usage_error( interp, objc, objv );
 	}
 
-	  INFO("not GOT %s \n",cmd->bytes );
+	  INFO("not GOT %s \n",cmd0->bytes );
 
 #if 0
 	print_tcl_obj( objv[0] );
-	print_tcl_obj( cmd );
+	print_tcl_obj( cmd0 );
 
 	// look at refCount and at pointer address
 	Tcl_Obj * obj_GET = mk_common_spelling(interp, "GET");
 	print_tcl_obj( obj_GET );
 #endif
 #if 0
-	Tcl_GetString(cmd);
-	print_tcl_obj( cmd );
+	Tcl_GetString(cmd0);
+	print_tcl_obj( cmd0 );
 #endif
 
 	return TCL_OK;
@@ -742,9 +806,9 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder )
 	
 	DESIGN
 
-		cmdName == "cmd" == "ARGV0 -> typeName == "cmdName"
+		cmdName == "cmd0" == "ARGV0 -> typeName == "cmdName"
 			EA = ARGV0
-			bytes == "cmd"
+			bytes == "cmd0"
 	
 	DESIGN
 
@@ -839,7 +903,7 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_decoder * decoder )
 
 				UDEF type SCRIPTED value types
 
-					SUBLEX "cmd" Tcl_Obj_typePtr_name_cmdName
+					SUBLEX "cmd0" Tcl_Obj_typePtr_name_cmdName
 
 
 	*/

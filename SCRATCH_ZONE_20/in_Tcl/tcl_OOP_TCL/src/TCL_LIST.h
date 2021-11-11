@@ -3,6 +3,7 @@
 
 #include "TCL_STUBS.h"
 #include "TCL_REF.h"
+#include "TCL_HELP.h" // print_tcl_obj( listPtr() );
 
 #define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
@@ -342,13 +343,12 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		TCL_REF item;
 		int pos;
 		int N = 0;
-		INFO("about to call NN");
-	// gdb_break_point();
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
+		INFO("NN == %d", N);
 		for(int i = 0; i<N; i++ ) {
 			GET( interp, i, item );
 			if(item) {
-				list2.ADD( interp, &pos, Tcl_NewIntObj(pos) );
+				list2.ADD( interp, &pos, Tcl_NewIntObj(i) );
 				list2.ADD( interp, &pos, item );
 			}
 		}
@@ -405,10 +405,12 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 
 	bool GET( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
 	{
-		if(!RET_VAR) {
+	 if(0)	if(!RET_VAR) { // VAR is not null but VAL or VAR is NULL
+			FAIL( "NULL RET_VAR" ); // 
 			throw "NULL RET_VAR"; // 
 			return false;
 		}
+
 		// TCL_REF is not understood by Tcl_List* so use plain RET_VAL
 		Tcl_Obj * RET_VAL = NULL;
 		if(TCL_OK !=

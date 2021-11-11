@@ -17,6 +17,9 @@
 	var pt_sz = 14.0
 	var pt_sz = 36.0
 
+	// pt_sz must also be in the [mat] given to showString
+	// pt_sz is not in the font, and you calc layout with it
+
  // MACRO API { font pt } = " { font pt } // { font == font } ; { pt == pt }
  // MACRO API { SCRIPT }
  // MACRO API { txt_to_pdf }
@@ -41,6 +44,10 @@
 
  // FONT PT // font pt // dtp 
 
+
+	// last one wins
+	var is_pix = true; // png else pdf
+	var is_pix = false; // so pdf
 
 	// I'm using " { lhs rhs } " with CODE_SAYS EXPR ARG_t DIALECT_t
 	// I also like "{ lhs == rhs }" { DRAW_STYLE PSG_STYLE CODE_POINT
@@ -77,11 +84,16 @@
 	var name_png = name + ".png"
 	var name_pdf = name + ".pdf"
 
+	if( is_pix ) {
+	} else {
+	}
+
 	if( 1 ) {
 	 dbg_print_2("dir_name_tx", dir_name_txt);
 	 dbg_print_2("dir", dir);
 	 dbg_print_2("name", name);
 	 dbg_print_2("name_png", name_png);
+	 dbg_print_2("name_pdf", name_pdf);
 	}
 
 //	// PARSE file dir_name_txt 
@@ -124,7 +136,7 @@
 
 	// get font and metrics
 	var font = new Font(font_name)
-	var gid = 32
+	var gid = 32 // dx is width of SPACE
 	var glyph_dy = 1.0
 	var glyph_dx = font.advanceGlyph(gid, 0)
 
@@ -151,39 +163,45 @@
 	} else {
 		// padding for PAGE or for FRAME_EDGE
 		// all text widgets need a half a char from clip edge
+		// more from left, less from top // because mostly empty 
+		// nb these are FRAME to TEXT not page margin
 		var Y_margin = 0.3 * glyph_dy
-		var X_margin = 0.9 * glyph_dx
+		var X_margin = 0.4 * glyph_dx
 	}
 
 	var page_W = glyph_dx * n_cols  + X_margin + X_margin
 	var page_H = glyph_dy * n_lines + Y_margin + Y_margin
-	page_H = page_H /2
 	dbg_print_2( "page_W", page_W )
 	dbg_print_2( "page_H", page_H )
 
-if( 0 ) {
+if( is_pix ) {
 	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
 	pixmap.clear(255)
 	var device = new DrawDevice(Identity, pixmap);
+	dbg_print_2( "pixmap", pixmap )
+
+	var options_png = { // UNUSED
+	 width: page_W,	// pixels
+	 height: page_H,
+	 resolution: dpi,
+	 zzzlaszz: 0
+	}
 } else {
 	var format = ""
 	var dpi = 150
 	var dpi =  72
 	var options_pdf = {
 	}
-}
 	var options_pdf = "pretty,compress,compress-fonts,sanitize"
 	var options_pdf = "ascii,pretty" 
-	var options_png = {
-	 width: page_W,	// pixels
-	 height: page_H,
-	 resolution: dpi,
-	 zzzlaszz: 0
-	}
+
 	var format = "pdf"
 	var doc_writer = new DocumentWriter( name_pdf, format, options_pdf )
-	var mediabox = ""
-	var device = doc_writer.beginPage( mediabox )
+	dbg_print_2( "doc_writer", doc_writer )
+	var page_bounds = ""
+	var page_bounds = [page_W, page_H]
+	var device = doc_writer.beginPage( page_bounds )
+}
 
 //	var doc = new PDFDocument() // A4 ?
 // var page = pdf.addPage([0,0,300,350], 0, resources, contents)
@@ -192,14 +210,17 @@ if( 0 ) {
 //	var filename_pdf = "filename.pdf"
 //	var device = new DrawDevice(Identity, pixmap);
 
-	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
-	pixmap.clear(255)
-	var device = new DrawDevice(Identity, pixmap);
+//	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
+//	pixmap.clear(255)
+//	var device = new DrawDevice(Identity, pixmap);
 
 /////////////////////
 	var transform = [1, 0, 0,-1, 0, page_H]
-	var transform = [1, 0, 0, 1, 0, page_H]
  	var transform = [2, 0, 0, 2, 0, 0] // from api eg
+ 	var transform = [1, 0, 0, 1, 0, 0]
+	var transform = [1, 0, 0, 1, 0, page_H]
+	var transform = [1, 0, 0,-1, 0, page_H] // -1 from H down (flipped)
+	var transform = [1, 0, 0,-1, 0, page_H] // -1 from H down (flipped)
  	var transform = [1, 0, 0, 1, 0, 0]
 
 	var text = new Text();
@@ -210,8 +231,33 @@ if( 0 ) {
 	var Y = 0 + Y_margin + Y_top_to_baseline // zero is at top
 	var Y = page_H - Y_margin - Y_top_to_baseline // zero is at bottom
 
-	text.showString(font, [16,0,0,-16,100,30], "Hello, world!");
-	text.showString(font, [0,16,16,0,15,100], "Second Line");
+	        var path = new Path();
+        {
+                path.moveTo(10, 10);
+                path.lineTo(90, 10);
+                path.lineTo(90, 90);
+                path.lineTo(10, 90);
+                path.closePath();
+        }
+	
+        device.fillPath(path, false, transform, DeviceRGB, [1,0,0], 1);
+        device.strokePath(path, {dashes:[5,10], lineWidth:3, lineCap:'Round'}, transform, DeviceRGB, [0,0,0], 1);
+
+	        var path = new Path();
+        {
+		var V1 = -90
+		var V2 =  90
+                path.moveTo(V1, V1);
+                path.lineTo(V1, V2);
+                path.lineTo(V2, V2);
+                path.lineTo(V2, V1);
+                path.closePath();
+        }
+	
+        device.fillPath(path, false, transform, DeviceRGB, [1,0,1], 1);
+        device.strokePath(path, {dashes:[5,10], lineWidth:3, lineCap:'Round'}, transform, DeviceRGB, [0,0,0], 1);
+
+
 
 
 	for( var i = 0; i < n_lines; i++ ) { // es5 not es6 ?
@@ -222,6 +268,7 @@ if( 0 ) {
 		var mat = [pt_sz,0,0,pt_sz,X2,Y2]
 //		dbg_print_2( "mat", mat )
 		var mat = [1,0,0,1,X2,Y2]
+		var mat = [pt_sz,0,0,pt_sz,X2,Y2]
 		// var mat = [2,0,0,-2,X,Y]
 		// var mat = [1,0,0,1,X,Y]
 		line = text_lines[i]
@@ -229,9 +276,20 @@ if( 0 ) {
 	//	dbg_print_2( "line", line )
 		dbg_print_2( "text.showString(font, mat, line ); |", line )
 		text.showString(font, mat, line );
-		dbg_print_2( "rix", mat )
+		var X3 = Math.round( mat[4] )
+	//	dbg_print_2( "rix", mat )
+	//	dbg_print_2( "X3", X3 )
+		dbg_print_2( "DX", X3-X2 )
 		Y -= glyph_dy // moving down decreases Y
 	}
+
+	text.showString(font, [16, 0,  0, -16, 100,  30], "Hello, world!");
+	text.showString(font, [0, 16, 16,   0,  15, 100], "Second Line");
+
+	text.showString(font, [26, 0,  0, -26,  20,   20], "LINE");
+	text.showString(font, [26, 0,  0, -26, -20,   20], "LINE");
+	text.showString(font, [26, 0,  0, -26,  20,  -20], "LINE");
+	text.showString(font, [26, 0,  0, -26, -20,  -20], "LINE");
 
 	var rgb_one = [0,0,0] // black
 	var rgb_one = [0,1,0] // green // 0.0 < 1.0
@@ -247,11 +305,27 @@ if( 0 ) {
 	
 	// pixmap.saveAsPNG( name_png );
 	dbg_print_2( "endPage", "readched" )
-	doc_writer.endPage( device )
-	doc_writer.close();
-	device.close();
+	if( is_pix ) {
+		device.close();
+		pixmap.saveAsPNG( name_png );
+
+	} else {
+		device.close();
+		doc_writer.endPage( device )
+		doc_writer.close();
+	}
+
 	// doc.save( name_pdf, "ascii,pretty" )
 // pdf.save("out.pdf", "pretty,ascii,compress-images,compress-fonts")
+
+
+	// this is not working
+	// the pdf is created with set size
+	// but completely blank
+	// is is all off -ve
+	// is is all zero size
+	// is the RGB scale wrong ??
+
 
 
 

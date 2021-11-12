@@ -2,19 +2,32 @@
 # include YEAR/src/PLAY/libs_apps/MK_ext_lib/MK_with_libs_apps
 
 	#
+	# this wont work for you, soz, you need dirs
+	# /home/you/YEAR/src/PLAY/
+	# /home/gps/YEAR/src/PLAY/libs_apps
+	# PLAY is on github, not uniquely named tho
 	#
+	# easiest way is to create symb link
+	# /home/gps/ => /home/you
 	#
 
 	D_HOME=$(HOME)
 	D_YEAR=$(D_HOME)/YEAR
 	D_PLAY=$(D_HOME)/YEAR/src/PLAY
-	D_G=$(D_HOME)/G
 
+	#
+	# I have some standard libraries installed here $(D_G)/prefix
+	#
+	D_G=$(D_HOME)/G
 
 	DIR_libs_apps =$(D_PLAY)/libs_apps
 
 # make is clever so including early does not matter much, vars used later
 # how stuff is built, and my LIST_xxx vars
+# MK_SUFFIXES is opinionated about VAR names - might need fixing
+# MK_LISTS_ splits / joins LIST_PKG_CONFIG_PATH += $(D) # SP becomes :
+# nb LIST_* is the simpler SP list that becomes proper PKG_CONFIG_PATH
+
 	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
 	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
 
@@ -31,6 +44,7 @@ ifeq (1,1)
 	INCL += `$(PKG_CONFIG) $(PKGS) --cflags`
 	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
 
+	## ERRM ## "INCL" or "INCLS" or .. what are others using ?
 
 
 	# build varies on each box # LINK2 dir

@@ -11,6 +11,7 @@ SEARCH=+/ADD
 SEARCH=+/NewObj
 SEARCH=+/FAIL
 SEARCH=+/TT
+SEARCH=+/CAST
 
 
 ./M "$@" | less $SEARCH

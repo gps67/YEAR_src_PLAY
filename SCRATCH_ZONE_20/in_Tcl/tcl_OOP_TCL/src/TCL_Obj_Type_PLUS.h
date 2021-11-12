@@ -11,9 +11,6 @@
 // local definition of GET_KEPT_PTR is used 
 // not the one in this file
 
-#define is_my_type( obj ) \
-	(obj -> typePtr == GET_KEPT_PTR()
-
 // if you change from DUP to (one of the 4 function pointers)
 // you will also want to change this
 // strong type makes it a sensible thing
@@ -196,6 +193,48 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 
 	bool Register_ObjType();
 
+	operator Tcl_ObjType * ()
+	{
+		INFO("AUTO CAST"); // never called ?
+		FAIL("AUTO CAST"); // never called ?
+		// it is not a FAIL but that is more visible
+		return this;
+	}
+
+	Tcl_ObjType * plain()
+	{
+		INFO("MANUAL CAST"); // manually called !
+
+		// I dont know why the manual is needed
+		Tcl_ObjType * self1 = this; // C++ did cast +8
+
+	// forwards	Tcl_ObjType * self2 = get_typePtr_from_PLUS(this);
+
+		Tcl_ObjType * self2 = (Tcl_ObjType*) (this);
+		// self2 never triggered operator
+
+		char * self3 = (char *) this; // PLUS as char *
+		char * self1b = (char *) self1; // BASIC as char *
+		if( self3 == self1b ) {
+			INFO("SAME");
+		} else {
+			INFO("DIFF %d", (int)(self1b - self3));
+			/*
+				This shows as DIFF 8
+				so self1 had an auto cast of +8
+			*/
+		}
+
+		TCL_ObjType_PLUS * THAT;
+	//	int DIFF = (char *)(Tcl_ObjType *) THAT - (char *) THAT;
+		int DIFF = (char *) THAT - (char *)(Tcl_ObjType *) THAT;
+		INFO("UNDIFF %d", DIFF );
+
+		return this;
+	}
+
+// PLUS // OBJ // type operates on obj // caller must know if OK
+
 	void TCL_set_PTR2_incr( Tcl_Obj * INST, Tcl_Obj * P2 )
 	{
 		Tcl_Obj * old_val = (Tcl_Obj *) TCL_get_PTR2( INST );
@@ -207,11 +246,10 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		}
 	}
 
-	operator Tcl_ObjType * ()
+	void TCL_set_PTR2_no_incr( Tcl_Obj * INST, Tcl_Obj * P2 )
 	{
-		INFO("AUTO CAST"); // never called ?
-		FAIL("AUTO CAST"); // never called ?
-		return this;
+		// so no DECR either //
+		TCL_set_PTR2( INST, P2 );
 	}
 
 
@@ -227,6 +265,8 @@ void TCL_set_PTR2_decr_NULL( Tcl_Obj * INST )
 	}
 }
 
+//////////////////// CAST Tcl_ObjType to TCL_ObjType_PLUS ////////////////
+
 inline
 Tcl_ObjType      * get_typePtr_from_PLUS(TCL_ObjType_PLUS * PLUS ) {
 	return (Tcl_ObjType * ) PLUS;
@@ -234,6 +274,15 @@ Tcl_ObjType      * get_typePtr_from_PLUS(TCL_ObjType_PLUS * PLUS ) {
 
 inline
 TCL_ObjType_PLUS * get_PLUS_from_typePtr( const Tcl_ObjType * PLAIN ) {
+
+	if(!PLAIN) return NULL;
+	// this dupliates logic in OBJ_module.h
+	if(PLAIN -> dupIntRepProc != PLUS_MYTYPE_DupInternalRepProc )
+	{
+		FAIL("TYPE is '%s' not PLUS", PLAIN->name);
+		return NULL;
+	}
+
 	
 	TCL_ObjType_PLUS * P_PLUS;
 //	int adj = offsetof( struct TCL_ObjType_PLUS, name );
@@ -242,16 +291,18 @@ TCL_ObjType_PLUS * get_PLUS_from_typePtr( const Tcl_ObjType * PLAIN ) {
 	int adj = (long) (u8*) &( P_PLUS->name ) - (long) (u8*) P_PLUS;
 	u8 * PTR = (u8*) PLAIN;
 	PTR -= adj;
-	INFO("adj = %d", adj );
+	INFO("CAST adj = %d", adj );
 	return (TCL_ObjType_PLUS *) PTR;
 }
 
 inline
 TCL_ObjType_PLUS * get_PLUS_from_obj( const Tcl_Obj * obj ) {
-	INFO("CALLED");
+	INFO("UP CAST CALLED");
 	// already have tested it is a _PLUS
 	return get_PLUS_from_typePtr( obj->typePtr );
 }
+
+//////////////////////////////////////////////////////////////
 
 struct TCL_ObjType_LEX1 : TCL_ObjType_PLUS
 {

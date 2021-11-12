@@ -12,17 +12,34 @@
 
 
 #if 0
-class OBJ_MODULE // actually any kind of module
+// or put this isn _PLUS
+enum OBJ_types
 {
- public:
-	OBJ_MODULE( Tcl_Interp * interp )
-	{
-	}
-	~OBJ_MODULE()
-	{
-	}
-
+	UNSET = 0
+	LEX1,
+	LEX2,
+	VECT,
+	DICT,
 };
+/*
+	SCHEME
+		TYPE == LEX1
+		VAL1 == 0
+		PTR2 == 0
+
+		TYPE == LEX2
+		VAL1 == 0
+		PTR2 => LEX1
+
+		TYPE == DICT || VECT || ...
+		VAL1 == u16_u8_u8
+		PTR2 == Tcl_Obj  -> list dict
+
+		TYPE == CXX
+		VAL1 == u16_u8_u8
+		PTR2 == C_VOID *
+
+*/
 #endif
 
 /*!
@@ -53,9 +70,54 @@ class OBJ_MODULE // actually any kind of module
 */
 class OBJ_module
 {
- 	KEPT_PTR_type KEPT_PTR; 
+	// a list of ALL the objs created in the system
+	// only needed for the BIND command strings to find obj
+	// each obj is it's own ID, bytes[length] is there IDX stored
 	TCL_LIST objs;
 	// the _PLUS types are not directly usable in typePtr !!! because VTBL
+
+	// The idea is that OBJ_module * is a parameter in a CPU register
+	// so this is the fastest way to find "KEPT_PTR"
+	// ie even faster than loading a 32-bit constant pointer
+	// LDA ADDR_of_magic_func
+	// LDA 0xFFFF_FFFF // of 64_bit
+	// 
+	// ld A P->KEPT_PTR_type
+	// LDA CPU_VAR + OFFS DEREF // KEPT_PTR is ADDR_of_magic_func
+	// LDB obj +OFFS(typePtr) DEREF TESTNULL +OFFS(magic_func_vect) DEREF
+	// if(A==B) { KNOW("is_PLUS_type") }
+	typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
+	KEPT_PTR_type KEPT_PTR;
+
+	bool is_PLUS_type( const Tcl_Obj * obj )
+	{
+		// obj is not NULL
+		return is_PLUS_type( obj->typePtr );
+		// if(!obj->typePtr) return false;
+		// return  obj->typePtr -> dupIntRepProc == KEPT_PTR;
+	}
+
+	bool is_PLUS_type( const Tcl_ObjType * typePtr )
+	{
+		if(!typePtr) return false;
+		return  typePtr -> dupIntRepProc == KEPT_PTR;
+	}
+
+	bool get_PLUS_type( const Tcl_Obj * obj, TCL_ObjType_PLUS *& PLUS )
+	{
+		if( !is_PLUS_type( obj )) return false;
+		// see _PLUS.h
+		PLUS = get_PLUS_from_typePtr( obj->typePtr );
+		return true;
+	}
+
+	TCL_ObjType_PLUS * get_PLUS_type( const Tcl_Obj * obj )
+	{
+		if( !is_PLUS_type( obj )) return NULL;
+		// see _PLUS.h
+		return get_PLUS_from_typePtr( obj->typePtr );
+	}
+
  public:
 	TCL_ObjType_LEX1 * TYPE_LEX1;
 	TCL_ObjType_LEX2 * TYPE_LEX2;
@@ -63,27 +125,7 @@ class OBJ_module
 	TCL_ObjType_DICT * TYPE_DICT;
 	TCL_ObjType_VECT * TYPE_VECT;
  public:
- 	OBJ_module( Tcl_Interp * interp )
-	: objs( interp )
-//	, dict( interp )
-//	, hash( interp )
- 	, KEPT_PTR( NULL )
-	, TYPE_LEX1( NULL )
-	, TYPE_LEX2( NULL )
-	, TYPE_DICT( NULL )
-	, TYPE_VECT( NULL )
-	{
-		// KEEP the KEPT_PTR
-		KEPT_PTR = GET_KEPT_PLUS_PTR_GLOBAL();
-
-		// do INIT this thing, DONT keep it
-		// TODO remove
-		TYPE_LEX1 = get_TYPE_LEX1(); // build it
-		TYPE_LEX2 = get_TYPE_LEX2(); // build it
-		TYPE_DICT = get_TYPE_DICT(); // build it
-		TYPE_VECT = get_TYPE_VECT(); // build it
-		// a TYPE_obj is not a Tcl_Obj just a STRUCT*
-	}
+ 	OBJ_module( Tcl_Interp * interp );
 
  	~OBJ_module()
 	{
@@ -91,11 +133,10 @@ class OBJ_module
 
 	bool new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
 	bool new_OBJ_VECT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL );
-	bool new_OBJ_type_nam(
+	bool new_OBJ_type(
 		Tcl_Interp * interp,
 		Tcl_Obj ** RET_VAL,
-		Tcl_ObjType * typ,
-		const char * NAME
+		TCL_ObjType_PLUS * TYPE_PLUS
 	);
 
 	bool test( Tcl_Interp * interp )

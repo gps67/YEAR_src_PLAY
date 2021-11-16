@@ -1,0 +1,78 @@
+2021-11-16 Nov Tue 02:48 # 32 #  FILTER_VFS_from_tgz.txt
+
+ FILTER_VFS_from_tgz.txt
+
+ 	DIFF VFS TGZ
+
+		meta_inode
+		if same DATA set mtime
+		if diff DATA ROM KNOWN AS "{ same_DATA }"
+
+	SPIN_py
+	SPIN_py-2011-10-30.tgz
+
+		SPIN_py-2011-10-30/
+
+			ARCHIVE DIR IN ROM
+			ARCHIVE += DIRS // incl . TOP
+			ARCHIVE += FILES // FILE[s]
+			ARCHIVE += LINKS // EXPR CALC
+			ARCHIVE += EXPR // EXPR LINK // VAR_POOL [ __ ]
+
+		This is found and loaded, not yet patched or even attempt
+		at compile, this is ARCHIVE.
+
+		SOON restart this API, add in tkiner, SCRIPT, GEN JS_PDF
+
+			GEN prints out JS that draws PDF // load LIBR PALETTE
+			can then use mupdf at JS level from C
+			maybe add in some C API into EVAL over RPC
+
+		REMOTE RPC API
+
+			same as local but slower
+			inline means local is full speed
+			filter means remote works at some speed
+			parse SGML STREAM into DTP to DOCUMENT PDF
+			parse SGML STREAM into DTP to PAGE HTML // CSS ETC
+			parse TCL LINES OF WORDS STREAM into DTP SCRIPT
+			GEN += DTP_PAGE_GEN_PDF_GEN_JS
+			API CALL mupdf(script) // script = page_FFFF // PAGES
+
+			parse SGML and XML // CSET_PARSER or SGML_Parser_api
+			parse XML inside { TCL_SCRIPT }
+			parse XML inside { TCL_TREE } // { SPEC DATA }
+
+			MATCH SPEC_t DATA_t as { SPEC DATA } // CMNT
+			FILTER result = "{ lhs rhs } // CODE // CMNT"
+
+			YACC is only so much, manual u8*P 
+			A B C D  P Q 
+			SP FP PC
+			PC_CALC // FILE/ZONE/ITEM/NEAR/OFFS into u8*HERE
+			SCRIPT PC is TREE_CODE_POINT
+			Other VARS in VAR_POOL("VARS")
+			cpu_var_CTXT
+			cpu_var_THIS
+			cpu_var_NEAR // a specific vague thing // relay api //
+			// NEAR == "an_actual_specific_item"
+			// NEAR += MATCH NEAR
+			// NEAR += new LOCN for SESS // for ROM // for FILTER
+
+
+
+
+
+
+
+
+	SPIN_py
+	SPIN_py-2011-10-30.tgz
+
+	FILTER_SWEEP.txt
+	FILTER_SYMB_LINK_LIST.txt
+	FILTER_VFS_from_tgz.txt
+	in_PY
+	old_src
+	py_sgml_text
+	py_sgml_text_orig

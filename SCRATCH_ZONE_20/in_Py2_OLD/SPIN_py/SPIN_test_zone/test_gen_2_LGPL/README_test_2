@@ -1,0 +1,52 @@
+/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_gen_2_LGPL/
+
+	This is a live test dir.
+	It generates a part of my website 
+	http://www.information-cascade.co.uk/LGPL/index1.html
+
+	There is a 'database' in python format, that holds
+	the name, desc_line, desc_text of each project,
+	and the list of those items.
+
+	There are actually two such lists, as libs_apps
+	contains several sub-apps within its .tgz
+
+	With a strange irony, the description text must be one
+	plain paragraph. no added <B> or <PRE> or even &amp;
+	This is on the TODO list, reading XML from a string,
+	but that will use the as-yet-unwritten XML parser.
+
+	There is a local stage-post directory, where new .tgz
+	files are uploaded to, each called name-2006-12-31.tgz,
+	and there is a python script that lists that dir, to deduce
+	the latest available tar file, and its (apparent) date.
+
+	The 'R' shell script calls ./PY_gen_2.py which generates
+	the index1.html file. That uses spin_py, but only in
+	GENERATE mode, building a tree of ELEM_INST's (etc) and
+	printing it out.
+
+	The 'R' shell script then calls "PY_normalise.py"
+	(in an adjacent test dir) which uses spin_py, and
+	uses SP to read the input HTML, along with the HTML4.dtd.
+	That will report any syntax warnings/errors from SP,
+	and will apply a proper SGML normalisation of the file.
+
+	This is important, as the 'generate' side of SPIN_py
+	can assemble trees that dont follow any DTD. 
+
+	The 'R' script then places the index1.html file in the
+	local staging area, and uploads it to the web-server.
+	It also invokes a browser on the report file.
+
+N.B. "dont belive the hype"
+
+	Other projects, which use this publication system,
+	often call the 'make_tgz_and_upload' function,
+	without renaming the .tgz, ie the DATE remains old.
+
+	Even the SPIN_py tarball, gets 'backed up' after minor
+	changes to this directory, but retains a date from months
+	ago. The 'meaning' of the date, is implied, so blame yourself!
+	
+

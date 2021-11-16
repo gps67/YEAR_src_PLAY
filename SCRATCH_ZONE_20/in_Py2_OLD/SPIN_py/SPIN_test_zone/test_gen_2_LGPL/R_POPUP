@@ -1,0 +1,43 @@
+
+PATH=/tools/2000/py/bin:$PATH
+
+#
+# run the generator (could stop there)
+#
+# ./PY_gen_2.py || exit
+
+# normalise index1.html (to and from itself)
+# the above html hasnt been checked for DTD or attributes
+# this resolves them, to see what would happen if it did happen
+#
+NORM=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_number2/PY_normalise.py
+f1=index1.html
+f2=in1_not_norm.htm
+# cp -f $f1 $f2
+# $NORM $f2 $f1
+
+# setup some vars and upload
+
+# these two locations are almost the same
+# U1 - the URL
+# D1 - the local directory
+U1=http://www.information-cascade.co.uk #
+D1=/home/gps/2000/SITE/www.information-cascade.co.uk/htdocs
+D1=/home/gps/2000/SITE/www.gps.talktalk.net
+
+# the relative file 
+f1=LGPL/index1.html
+
+#copy it locally
+# cp -p index1.html $D1/$f1
+
+# copy it remotely
+cd $D1
+# putter_ukl $f1
+
+# view it
+# netscape -remote "openFILE($D1/f1)"
+# mozilla -remote "openURL($U1/$f1)"
+set -x
+#mozilla -remote "openURL($U1/$f1,new-window)"
+mozilla -remote "openURL($U1/$f1)"

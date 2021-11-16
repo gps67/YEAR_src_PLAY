@@ -1,0 +1,4 @@
+echo "DELETE ALL OBJECT FILES - press CTRL-C or Return"
+read junk
+set -x
+rm -f SPIN_py/*o M-out.txt

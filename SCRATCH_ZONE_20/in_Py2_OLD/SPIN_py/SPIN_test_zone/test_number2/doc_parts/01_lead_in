@@ -1,0 +1,25 @@
+<h4> DR Exercise - Mirrored Disks </h4><p>
+
+	Here is a document I wrote one evening for a friend to use
+	in their Disaster Recovery Weekend Docs as a L1 section.
+</>
+
+<DIV class="TOC"> 
+	this gets deleted
+	And replaced with the TOC
+
+	You can enhance the script to do RE-numbering, by removing
+	and numbers found in headers, particularly in A-NAME.
+</>
+
+<H1> Test Boot - Mirrored Disk </H1><p>
+
+	With a pair of mirrored root disks, you have some fail-over
+	reliability.  If one fails, the other carries on. If you dont boot,
+	HPUX knows which is the good one, and that it <B>is</B> good.
+
+</P>
+
+
+
+

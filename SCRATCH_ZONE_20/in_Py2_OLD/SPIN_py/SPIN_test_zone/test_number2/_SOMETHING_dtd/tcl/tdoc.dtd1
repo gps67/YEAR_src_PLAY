@@ -1,0 +1,55 @@
+<!element tdoc o o ( S0 | S1 | S2 ) >
+<!attlist tdoc 
+		id cdata ""
+		date cdata "2000-01-01"
+		db_id cdata ""
+	 >
+<!element S0 - o  intro $sn*  >
+<!attlist S0 
+		id cdata ""
+		db_id cdata ""
+	 >
+<!element S1 - o  intro $sn*  >
+<!attlist S1 
+		id cdata ""
+		db_id cdata ""
+	 >
+<!element S2 - o  intro $sn*  >
+<!attlist S2 
+		id cdata ""
+		db_id cdata ""
+	 >
+<!element intro o o  %plist  >
+<!attlist intro 
+		id cdata ""
+		db_id cdata ""
+	 >
+<!entity % plist "P+" >
+<!element P o o  %ptext  >
+<!attlist P 
+		id cdata ""
+		db_id cdata ""
+	 >
+
+<!entity psplit '</P><P>' >
+<!shortref pmap
+        "&#RS;B" null
+        "&#RS;B&#RE;" psplit
+        "&#RS;&#RE;" psplit
+>
+<use pmap p>
+<!entity % plist "(#PCDATA|B|UL|OL|AHREF|A|CODE)*" >
+<!element UL o o  LI*  >
+<!attlist UL 
+		id cdata ""
+		db_id cdata ""
+	 >
+<!element OL   o o  LI*  >
+<!attlist OL   
+		id cdata ""
+		db_id cdata ""
+	 >
+<!element B - -  %ptext  >
+<!element CODE - -  %ptext  >
+<!element AHREF - -  %ptext  >
+<!element A - -  %ptext  >

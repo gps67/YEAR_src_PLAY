@@ -1,0 +1,13 @@
+./PY_gen_3.py || exit
+# F=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_gen_3/index.html
+# F=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_gen_3_home_ukl/index.html
+
+D=/home/gps/2000/SITE/www.gps.uklinux.net/
+D=/home/gps/2000/SITE/www.gps.talktalk.net/
+F=$D/index.html
+cp -f index.htm $F # .html
+cd $D
+# putter_ukl index.html
+putter_TT index.html
+mozilla -remote "openFILE($F)"
+# netscape -remote "openFILE($F)"

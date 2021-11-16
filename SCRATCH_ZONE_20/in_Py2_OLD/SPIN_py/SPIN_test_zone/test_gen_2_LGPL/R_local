@@ -1,0 +1,24 @@
+PATH=/tools/2000/py/bin:$PATH
+./PY_gen_2.py || exit
+
+send=false
+
+# cp -f index.htm index.html
+U1=http://www.information-cascade.co.uk # OK!
+D1=/home/gps/2000/SITE/www.information-cascade.co.uk/htdocs
+D1=/home/gps/2000/SITE/www.gps.talktalk.net
+f1=LGPL/index1.html
+F=$D1/$f1
+F=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_gen_2_LGPL/index1.html
+cd $D1
+if $send
+then
+	./putter $f1
+	# netscape -remote "openURL($U1/$f1)"
+	mozilla -remote "openURL($U1/$f1)"
+else
+	set -x
+	# netscape -remote "openFILE($F)"
+	### mozilla -remote "openFILE($F)"
+	netscape -remote "openFILE($F)"
+fi

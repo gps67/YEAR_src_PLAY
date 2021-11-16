@@ -1,0 +1,16 @@
+
+
+
+
+./PY_gen_wml_1.py || exit
+# exit
+
+D=/home/gps/2000/SITE/www.information-cascade.co.uk/htdocs/
+D=/home/gps/2000/SITE/www.gps.talktalk.net
+F=w.wml
+DF=$D/$F
+cp -f $F $DF # .html
+cd $D
+putter_TT $F
+# mozilla -remote "openFILE($DF)"
+

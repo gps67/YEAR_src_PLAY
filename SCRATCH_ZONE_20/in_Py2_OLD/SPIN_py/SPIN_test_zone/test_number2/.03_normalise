@@ -1,0 +1,13 @@
+
+
+. ./.set_env
+
+# normalise that file (using old pretty-printer script)
+# this is to test the pretty-printer code
+# that it is re-readable by SP, not just lynx being nice
+
+./PY_normalise.py \
+ $base.h \
+ $base.ht \
+ 2>&1 | tee fa
+

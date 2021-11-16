@@ -1,0 +1,24 @@
+# MK_SPIN_lib
+# $(OPT_LIB_EXT)
+# $(OPT_LIBNAME)
+# $(OBJS)	-- from Makefile.sub
+# $(COBJS)
+# $(dir_SP_lib) # where the libraries are placed (not installed)
+# lib must be the current directory (so that OBJS are findable)
+# make -f Makefile.sub should have been included
+# this builds the library (which depends on most files but not apps)
+# there are two libraries (shared.so, static.a) x 2 char_size (8,16) x debug (g)
+# but only one can be built from the obj's available, (( -fPIC (or not) ))
+# the top level makefile decides which is the target, and opts to build it
+# you only edit this file to change the compilers linkers options
+# -shared is hardcoded, and selected by target extension
+
+
+$(dir_SP_lib)/lib$(OPT_LIBNAME).a: $(OBJS) $(COBJS)
+	ar r $@ $?
+	ranlib $@
+
+$(dir_SP_lib)/lib$(OPT_LIBNAME).so: $(OBJS) $(COBJS) 
+	g++ -shared -o $@ $+
+	chmod 644 $@
+

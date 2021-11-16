@@ -1,0 +1,77 @@
+Weak Links:
+
+	You have lots of references to a stepping stone to a complex object.
+
+		PyObject * ref1 -->
+		PyObject * ref2 -->
+		PyObject * ref3 --> 
+		PyObject * ref4 -->
+		PyObject * ref5 -->
+
+		PY_weak_link stepping_stone
+
+		PY_weak_base/MyComplex_Object main_obj
+	
+
+	The class you want to point to, must be based on PY_weak_base.
+	main_obj creates the stepping_stone, and reuses that each time.
+	main_obj controls the stepping stone, telling it to become NULL.
+	main_obj keeps stepping_stone alive (with a ref cout), but so does
+	every link to that weak link.
+
+	The stepping stone is a PY_weak_link. It outlives the main object,
+	and is auto GC'd when the last reference to it disappears.
+
+	stepping_stone does NOT keep a refCount on main, but knows
+	that its pointer is either NULL or valid.
+
+	main must be kept alive by some other holder. This might
+	be a tree where the parent node has a normal list of children,
+	but each child has a weak link to its parent. The tree root is
+	held in some global variable. When that is released, the top
+	node hits zero, releases each of its children, which release
+	each of their children, which release the WEAK up-link stepping_stones,
+	then the PY_weak_base destructor (last) sets its own stepping-link
+	pointer to NULL, and releases that stepping_stone.
+
+	If any sub-branch has been kept elsewhere, that top node
+	will now be orphaned (uplink is weak_link with NULL pointer,
+	which is returned as PyNone) This example shows the problem of
+	a single tree only having sense in a singe tree, branches
+	might be moved (re-parented) but not appear in two trees,
+	without up-link losing sense.
+
+	
+
+	Each use of a ref5 to the step to the main object must check
+	that that the link isnt NULL.
+
+Broken weak links
+
+	The PY_weak_link continues to exist, but the thing it points to doesnt.
+
+	Any number of links (including the first) does not effect the refcount
+	of the main object, which is actually owned by some strong link
+	somewhere else.
+	All of those links DO refcount the stepping object, so this oddity
+	is contained by the class once.
+
+	Your app must test the weak link for NULL target, as well as NULL absent.
+	This is easier when you use P_weak_link (P->PY) and ask it
+
+
+		P_weak_link<BASE> uplink;
+		uplink.claim_weak( that );
+		if( uplink.link_intact() )
+		{
+			uplink.link_target()->some_func(args);
+		}
+
+		BASE * up;
+		up = uplink.link_target();
+		if( up )
+			up->some_func(args);
+		else {
+			// ignore or report
+                }
+

@@ -1,0 +1,116 @@
+Compile.txt
+
+	If it works, installation is simple but not automatic.
+	If it doesn't work, ensure that SP compiles, and refer 
+	to the other "Compile_wont.txt" file. 
+
+(1)	unpack /usr/src/sp-1.3, check a makefile
+
+	Download it from www.jclark.com
+	Versions other than 1.3 might work
+	untar it
+
+		cd /usr/src
+		gzcat sp-1.3.tgz | tar -zxf -
+
+	Create a link so that it appears as /usr/src/sp.
+
+		ln -s sp-1.3 sp
+
+	If you choose somewhere other than /usr/src, you will have
+	to edit a line in one of the makefiles (MK_SPIN_top_2)
+
+(2)	unpack /usr/src/sp/SPIN_py  modify /usr/src/sp/include/config.h
+
+		cd /usr/src/sp
+		tar -zxf /tmp/spin_py-990909
+	
+	That creates one main sub-dir, and a few others, all called
+	SPIN_something. The make process will also create SP_lib.
+	I've tried to separate my dirs from SP's.
+
+	(CHANGE:
+
+	With SP-1.3.4 it no-longer needs a modified config.h
+	so if it doesn't compile (and SP itself doesn't) check:
+
+		/usr/src/sp/./include/config.h
+
+	(CHANGE:
+
+	you can now install SP and SPIN anywhere you like, simply
+	edit the MK_SPIN_site Makefile and set $(src_sp) $(src_spin)
+	
+(3)	Find where Python.h is on your system, edit a makefile
+
+	The makefile to edit is MK_SPIN_site, the change is the dir
+	and the version of Python. All the makefiles are in one dir,
+	except the "application" makefile, which is in SPIN_py.
+
+		locate Python.h
+		vi /usr/src/sp/SPIN_Makefiles/MK_SPIN_site
+		
+(4)	Pick a build model (16 bit, shared lib, no-debug), and a build
+	dir, and build everything. Using "mc" is a good tool ...
+
+		cd /usr/src/sp/SPIN_build_16_so
+		./MK_SPIN_16_so
+	
+	or to keep a logfile ...
+
+		./MK_SPIN_16_so  2>&1 | tee log_file_1
+
+	Wait 6 minutes, and check that it didn't complete with an error
+	If it did, it might be simple, or it might be impossible.
+
+	If it didn't work, try using egcs-2.91.66 on a crudely patched
+	RH-Linux-6.0 x86 box. My makefiles are very similar to SP's,
+	and SPIN does not trample on SP's files.
+
+	Try compiling SP on it's own, and let me know what you had to
+	do. Then apply similar modifications to SPIN's makefiles.
+	If that didn't work, seek pre-built binaries, and hack out the
+	targets that you already have.
+
+(5)	There is no "make install", so adjust your env to run in situ
+
+	# edit /etc/ld.so.conf	# LINUX or export LD_LIBRARY_PATH=... or ...
+	# add the line:
+
+		/usr/src/sp/SP_lib
+
+	# run the command
+
+		ldconfig
+	
+	That helps the shared library loader find libsp16-1.3.so,
+	and it helps the Python loader find spin_py.so.
+
+	Once that is done, you can test for (no) missing symbols,
+	by running nsgmls
+
+		cd /usr/src/sp/SPIN_build_16_so/nsgmls
+		./nsgmls
+		<CTRL-D>
+	
+	Similarly, the "spin_py.so" file has to be found by python.
+
+	Note that the multiple build options create libs with different
+	names in the same SP_lib dir. eg SP_lib/libsp16-1.3.so
+
+	Except for spin_py.so, which will keeps the same name, even
+	if you compile it for 8 bit text, though it automatically
+	links against the correct libsp.so.
+
+(6)	Setup the SGML search paths, put the DTD's into place
+
+		cd /usr/src/sp/SPIN_py/tests
+		... experiment ...
+
+	The scripts in the tests dir, expects that to be the current
+	directory. Read them, run them, fix them, break them.
+
+	The test script  SPIN_py/tests/misc/spin_ldoc.py will search
+	/etc/sgml/catalog, ./etc_sgml/catalog and optionally a few others.
+	Ensure that your /etc/sgml does not conflict with the tests (unlikely),
+	and that the DTD and other files you need are present.

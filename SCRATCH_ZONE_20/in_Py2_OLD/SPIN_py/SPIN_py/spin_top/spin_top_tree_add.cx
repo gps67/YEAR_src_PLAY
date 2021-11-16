@@ -1,0 +1,24 @@
+// going through a callback adds 10%
+// though not much flexibility,
+// because the stack has to be the same SP_App currently!
+// Future: send to a "tree_building_filter" and it's stack1
+// Future: do this in C, never call Python! (elem.info.on_add_item)
+
+static PyObject *
+SPIN_tree_add(
+        SPIN_top * self,
+        PyObject *args)
+{
+        PyObject *obj = 0;
+        PyObject *val = 0;
+        if (!PyArg_ParseTuple(args, (char *)"O",
+		&val ))
+                return NULL;
+	SP_App * spin_code = self->app;
+	if(!spin_code) {
+		return NULL;
+	}
+	spin_code->stack.add_item( val );
+	Py_INCREF( Py_None );
+	return Py_None;
+}

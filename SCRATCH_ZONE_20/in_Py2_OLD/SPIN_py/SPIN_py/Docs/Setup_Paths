@@ -1,0 +1,34 @@
+Setup_Paths_Install
+
+	You have to edit a few paths until it works.
+
+	If you use the pre-compiled files you have to install
+	the libraries where LD_LIBRARY_PATH finds them.
+
+	If you build from source, you will need to edit the makefile
+	MK_SPIN_site to set the python paths, and others.
+
+	When you run the scripts, they will need to find /etc/sgml
+	or some relative path that I've hardcoded somewhere. see
+
+		tests_number/dtd/base/spin_eh.py # etc_sgml
+		# normally you dont edit this base class file
+
+	Within /etc/sgml you have catalog files which know where to
+	find the DTD for HTML4 (point to SP's pubtext dir). EACH FILE
+	listed in the catalog must exist, or you get an error! so you
+	must edit:
+
+		tests_number/dtd/etc_sgml/catalog # files must exist
+	
+
+	When you run the scripts, they will need to find the sub-scripts
+	which can most easily be done by setting shell $PATH, or by
+	setting it within the scripts.
+
+	When testing from within Apache/mod_python, its sets sys.path[0]
+	to the dir where the script was named, which might confuse you.
+
+	Methinks - I've added so many paths to help you, I've confused things.
+
+

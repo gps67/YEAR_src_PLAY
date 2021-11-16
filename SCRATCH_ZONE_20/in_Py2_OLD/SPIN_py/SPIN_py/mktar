@@ -1,0 +1,30 @@
+FILE=/home/ftp/.dircon/SPIN/$(date +%Y)/SPIN_py-$(date +%m%d).tgz
+set -x
+# cd /usr/src/sp
+cd ..
+rm -f SPIN_py/SP_App/SP_App.cxx
+for tests in tests test-load load-collated test_0625_renumber/dtd
+do
+	rm -f SPIN_py/$tests/core
+	rm -f SPIN_py/$tests/*.pyc
+	rm -f SPIN_py/$tests/*/*.pyc
+	rm -f SPIN_py/$tests/spin_*.so
+done
+mv SP_lib SP_lib_
+mv SP_lib2 SP_lib
+mkdir SP_lib
+list1="
+	SPIN_py
+	SPIN_Makefiles
+	SPIN_build_16_so_
+	SPIN_build_8_so_
+	SP_lib
+"
+list1_deleted="
+	include/config.h_*
+"
+tar -cv $list1 | gzip -9 > $FILE
+rmdir SP_lib
+mv SP_lib SP_lib2
+mv SP_lib_ SP_lib
+ls -la $FILE

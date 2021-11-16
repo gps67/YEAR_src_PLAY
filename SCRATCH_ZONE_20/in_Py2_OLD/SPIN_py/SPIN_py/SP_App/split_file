@@ -1,0 +1,21 @@
+
+# exec < gen_1.c
+N=90
+file=_TOP-temp_
+FILE=$N$file
+IFS=""	# else multiple spaces stripped
+while read -r line
+do
+
+	EXPR="// -- SPLIT -- \(.*\)"
+	if file=$(expr match "$line" "$EXPR")
+	then
+		N=$( echo "$N + 10" | bc )
+		FILE=${N}_$file
+		echo >&2 "$FILE"	
+		# exec > "$FILE"
+		echo "// $file"
+	else
+		echo "$line"
+	fi
+done

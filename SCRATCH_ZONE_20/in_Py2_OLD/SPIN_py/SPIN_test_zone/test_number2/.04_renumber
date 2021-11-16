@@ -1,0 +1,10 @@
+
+. ./.set_env
+
+# strace python dtd/p2num.py \
+# time \
+./PY_renumber.py \
+ $base.ht \
+ $base.htm_ \
+ 2>&1 | tee fb
+

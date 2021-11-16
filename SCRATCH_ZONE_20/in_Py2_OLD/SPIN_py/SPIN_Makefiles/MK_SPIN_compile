@@ -1,0 +1,65 @@
+
+# MK_SPIN_compile
+
+# GCC compiler flags for SP
+
+        CXX=c++
+        CXXFLAGS += -fno-implicit-templates
+        CXXFLAGS += -ansi
+	CXXFLAGS += $(OPT_DEBUG)
+	CXXFLAGS += $(OPT_PIC)
+	CXXFLAGS += $(OPT_OPTIM)
+	CXXFLAGS += $(OPT_CSET)
+	CXXFLAGS += $(OPT_THREADS)
+
+# CCS things per site
+
+	CXXFLAGS += -DSP_HAVE_BOOL 
+	CXXFLAGS += -DSP_ANSI_CLASS_INST
+
+# compiler wanings
+
+#	WARN += -Wall
+#	WARN += -Wno-reorder
+#	WARN += -Wwrite-strings
+#	WARN += -Wpointer-arith
+#	WARN += -Wnested-externs
+#	WARN += -Woverloaded-virtual
+#	WARN += -Wbad-function-cast
+
+# If you dont want to compile SP, you still need the generic includes
+# These have been COPIED into this project, so beware of confusion.
+
+	# INCLUDES += -I$(src_spin)/SP_include
+	INCLUDES += $(osp_INCLUDES)
+	# INCLUDES += -I/tools/2000/xml/include/OpenSP
+
+# If you want to compile SP, you need its includes
+# Its OK if these files are absent
+
+##	INCLUDES += -I$(src_sp)/include
+##	INCLUDES += -I$(src_sp)/generic
+#	INCLUDES += -I$(src_sp)/lib
+	INCLUDES += -I.
+#	INCLUDES += -I..
+##	INCLUDES += -I$(src_spin)/SPIN_py #  only when #inc #inc in subdir !!
+
+# defines for SP
+
+#	DEFINES += -DSP_HAVE_BOOL
+#	DEFINES += -DSP_ANSI_CLASS_INST
+#	DEFINES += $(OPT_CSET)
+
+# INCLUDE -- comes from Makefile.sub
+
+	ALL_CXXFLAGS=$(CXXFLAGS) $(WARN) $(INCLUDES) $(INCLUDE) $(DEFINES)
+
+.SUFFIXES: .cxx .o .app .deps
+
+.cxx.o:
+	$(CXX) $(ALL_CXXFLAGS) -c $<
+
+# Makefile.app
+# .app:.deps: 
+# 	$(CXX) -MM $(ALL_CXXFLAGS) `find . -name *.cxx`  > $@
+ 

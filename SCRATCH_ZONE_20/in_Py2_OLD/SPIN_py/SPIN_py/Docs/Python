@@ -1,0 +1,96 @@
+The Python callbacks are (mostly) listed in app_link2.cxx, Others are:
+
+app_link.cxx
+	EH.report_error( type, value, traceback ) # python error not SGML error
+
+
+NEW C++ Wrappers for Python
+---------------------------
+
+	Firstly there is a fake wrap for plain Python objects,
+	to handle REFINCR, and pointers. This extends into
+	handlers for specific types (Dictionary, List, Tuple,...)
+
+		PY_Object_plain : PyObject_HEAD
+
+			Can be cast from plain Python types
+			can access this->ob_type_tp_name (etc)
+
+		P_ref_base
+			PY_Object_plain * ref;                                                  
+
+			Does ref counting
+
+		P_ref<PyStandardObject> : P_ref_base
+
+			Does type checking
+			Each Standard adds some useful functions
+
+		P_Int  : P_ref<PyIntObject> -- pointer to Python Integer
+		P_Tuple : (ETC)
+
+	Secondly there is a VTBL base, for new types to use.
+	Its not initially VTBL, but any sub-tree can add that
+	(VTBL doesnt have to be at offset zero, it can appear half
+	way down an object, after PyObject_HEAD).
+
+	If you plan to have virtual functions, I think that most of them
+	should appear in the BASE class, but you MUST know that that
+	they are not PY_Object_plain.
+
+		PY_Object_base : PY_Object_plain
+
+			all added types have a var_pool (NULL)
+			so that you can write THAT.anyname = sensible
+			If unused, its a NULL pointer.
+
+	Reference Counting
+	------------------
+
+	Python does it all wrong, and you have to follow that.
+	Heres how it SHOULD be done (but isnt)
+
+	Containers (lists, etc) always do RefIncr/Decr 
+	when objects are added or removed.
+
+	Functions almost NEVER touch their parameters,
+	except when adding an object to this object.
+	(Container types, and fields).
+
+	NEW returns an object with a ZERO refcount
+	NEW adds that object to a list of RECENTLY_CREATED
+	(which increments the refcount to 1 ;-)
+
+	Return values do not carry a refcount, but they might be in
+	a KEEP list.
+
+	REFCOUNT_HITS_ZERO doesnt delete the object YET !!
+	It adds it to the RECENTLY_HIT_ZERO list.
+
+	StackBack - is when RECENTLY_CREATED RECENTLY_HIT_ZERO
+	are processed. Tclsh uses "next time a script line is stepped",
+	C would use the select-loop (as long as its not nested - AND
+	there are no del/add sequences not yet completed!)
+
+	Multi-threaded apps will need to sweep a SYNC marker past each
+	thread (idle thread is not afraid of losing an object its
+	(not-)holding on the stack, and then the RECENT-lists are cleared.
+
+	This code should process consequent REFCOUNT_HITS_ZERO's sooner
+	so that a tree (l-list) is deleted soon, not one layer per
+	sweep. -OR-
+	Classes (flat ones like linked list) might have a BURN() virtual
+	function, that immediately BURN()'s the next item in the list,
+	and clears all fields. That might then leave all the basic
+	structs on the RECENTLY_ZERO list, to delete in one step.
+
+	Large objects wont be deleted within one cycle. If you
+	created it, you can clear it down.
+
+	Objects might have 1 bit in the flags, to say IN_A_KEEP_LIST.
+	If set, no need to add to another.
+
+	Objects might have 1 bit in the flags, to say NAKED_ON_STACK.
+	Set when first passed as a parameter. If not set, no need for
+	KEEP list (requires water-proof-use).
+

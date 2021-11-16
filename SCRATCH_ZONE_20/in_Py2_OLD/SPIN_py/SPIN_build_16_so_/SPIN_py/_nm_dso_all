@@ -1,0 +1,1 @@
+nm -A *.o | grep dso

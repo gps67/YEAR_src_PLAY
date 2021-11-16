@@ -1,0 +1,31 @@
+PyObject * new_SPIN_top( PyObject * the_module, PyObject * args )
+{
+/*
+	fprintf(stdout, "new_SPIN_top - v 123 \n");
+	fflush(0);
+*/
+	PyObject * string1;
+        if (!PyArg_ParseTuple(args, (char *)"S", &string1 ))
+                return NULL;
+ 
+	SPIN_top * self = new SPIN_top();
+	if(!self) { return NULL; }
+
+	self->eg  = NULL;
+	self->app = NULL;
+
+	// create the new dtd_tables dictionary
+	self->dtd_tables.snatch_this( new SPIN_dtd_tables() );
+	if(!self->dtd_tables) return NULL;
+
+	self->kit.snatch_this( new_SP_peg_kit( the_module, args ) );
+	if(self->kit.is_null()) {
+		Py_XDECREF( self );
+                // some error - cant use raise_error - no EH yet
+		return NULL; // python will report something
+	}
+
+	// DONE // kit_setProgramName( self->kit, args );
+
+	return (PyObject *) self;
+}

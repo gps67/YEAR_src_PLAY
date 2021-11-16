@@ -1,0 +1,1 @@
+./MK_SPIN_16_so "$@" 2>&1 | tee -a M-out.txt | less

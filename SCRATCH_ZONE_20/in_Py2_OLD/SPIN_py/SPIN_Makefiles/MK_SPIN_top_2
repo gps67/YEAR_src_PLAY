@@ -1,0 +1,179 @@
+
+# MK_SPIN_top_2
+# part 2 of the top makefile
+# part 1 is MK_SPIN_16_so (or other) it sets other global options
+# also look in SPIN_py for it's Makefile.app (defines python include dir)
+
+## SITE SPECIFIC STUFF GOES THERE ##
+
+	include ../SPIN_Makefiles/MK_SPIN_site
+
+# it says: ##########
+#
+#	src_base1=/tools/1999/_src/lib2
+#	src_sp   =$(src_base1)/sp-1.3.4
+#	src_spin =$(src_base1)/SPIN-0.2.2
+#
+#	SPIN_Makefiles=$(src_spin)/SPIN_Makefiles
+#
+#        py_base1=/tools/1999/py
+#        PYTHON_INCLUDE = -I$(py_base1)/include/python1.6
+#
+##       tcl_base1=/tools/1999/tcl # unused 8.3
+#
+##############
+
+
+	dir_SP_lib=$(src_spin)/SP_lib
+
+	LINKDIRS += -L$(dir_SP_lib)
+
+	# assumes all subdirs share same python version!
+	# not useful for with/out py-threading siblings
+
+# actually its included ../ the first time, then it uses
+# make -f 
+
+## other things might need editing but less likely ##
+
+## VPATH ##
+#	This layout already uses VPATH but not in the usual layout
+#	Instead of /tools/1999/_obj/lib2 it builds into a subdir of _src
+#	Specifically, you have the options of multiple builds with
+#	different options (-g, 16-BIT, ... ).
+
+## (NOT) building SP itself
+#
+#	These makefiles are (were) completely compattible with
+#	the proper SP makefiles (except for purify/install/etc)
+#	and a default make will build both, with matching options.
+#	This vanilla libsp.so should be similar to that from any distro.
+#
+#	To build a version of SP that matches the same options
+#	use: make -f ./MK_SPIN_16_so # in an empty dir!
+#
+#	To avoid building all of SP (and re-checking each time)
+#	see the file: SPIN-0.2.2/SPIN_build_16_so_/M_SPIN_py
+#	It simply calls: make -f ./MK_SPIN_16_so  SPIN_py
+
+## VARIENT SPECIFIC ##
+
+	# done before getting here, ie #
+        ## OPT_DEBUG=-g
+        ## OPT_OPTIM=-O2
+        ## OPT_CSET=-DSP_MULTI_BYTE
+        ## OPT_PIC=-fPIC
+        ## OPT_LIBNAME=sp16-1.3
+        ## OPT_LIB_EXT=so
+
+	OPT_THREADS += -DSP_MUTEX_PTHREADS 
+
+# but export them for the caller #
+
+#	XPORT += src_spin='$(src_spin)'
+	XPORT += OPT_DEBUG='$(OPT_DEBUG)'
+	XPORT += OPT_OPTIM='$(OPT_OPTIM)'
+	XPORT += OPT_CSET='$(OPT_CSET)'
+	XPORT += OPT_PIC='$(OPT_PIC)'
+	XPORT += OPT_LIBNAME='$(OPT_LIBNAME)'
+	XPORT += OPT_LIB_EXT='$(OPT_LIB_EXT)'
+	XPORT += OPT_THREADS='$(OPT_THREADS)'
+
+
+# which are also exported #
+
+	## NO ! ## srcdir=$(src_sp)
+	XPORT += src_sp='$(src_sp)'
+	## NO ! ## XPORT += srcdir='$(srcdir)'
+	XPORT += src_spin='$(src_spin)'
+	XPORT += dir_SP_lib='$(dir_SP_lib)'
+	XPORT += LINKDIRS='$(LINKDIRS)'
+	XPORT += PYTHON_INCLUDE='$(PYTHON_INCLUDE)'
+
+# standard SP program dirs - each has Makefile.sub
+
+	SP_PROGDIRS += nsgmls
+	SP_PROGDIRS += spam
+	SP_PROGDIRS += sgmlnorm
+	SP_PROGDIRS += spent
+	SP_PROGDIRS += sx
+
+# added SPIN "prog" dirs - each has Makefile.app
+# nb thsee might not create "progs" but libraries
+
+	SPIN_PROGDIRS += SPIN_py
+#	SPIN_PROGDIRS += SPIN_py2
+#	SPIN_PROGDIRS += test2
+#	SPIN_PROGDIRS += SPIN_tcl # the wrong way
+#	SPIN_PROGDIRS += SPIN_cint # unstarted
+
+### Here comes the first "all" target
+### after that you dont set any more variables!
+
+## all
+## to save 2 secs, change "all" to SPIN_py (subdir)
+## its faster to only pick a specific target
+## its also less distracting (one others are built)
+## all: test2 SPIN_py
+## all:  libs $(SPIN_PROGDIRS) $(SP_PROGDIRS)
+
+all:  libs $(SPIN_PROGDIRS) $(SP_PROGDIRS)
+## all:  $(SPIN_PROGDIRS) 
+
+spin_only: $(SPIN_PROGDIRS)
+
+libs: FORCE
+	@echo "making $@"
+	@[ -d lib  ] || mkdir lib
+	[ -d ../SP_lib/. ] || mkdir ../SP_lib
+	@[ -d libs/. ] || ln -sf ../SP_lib/ libs
+	cd lib && \
+	make \
+		VPATH=$(src_sp)/lib \
+		srcdir='$(src_sp)/$@' \
+		$(XPORT) \
+		-f $(src_sp)/lib/Makefile.sub \
+		-f $(SPIN_Makefiles)/MK_SPIN_site \
+		-f $(SPIN_Makefiles)/MK_SPIN_lib \
+		-f $(SPIN_Makefiles)/MK_SPIN_compile \
+		$(dir_SP_lib)/lib$(OPT_LIBNAME).$(OPT_LIB_EXT)
+		# ../libs/lib$(OPT_LIBNAME).$(OPT_LIB_EXT)
+
+# Makefile.dep is built by SP's normal makefiles
+# it has "gcc knowledge" about include dependencies
+# which might not be listed in Makefile's
+
+# build the normal SP progdirs (nsgmls lib ...
+
+$(SP_PROGDIRS): FORCE
+	@echo "making $@"
+	@[ -d $@ ] || mkdir $@
+	cd $@ && \
+	make \
+		VPATH=$(src_sp)/$@ \
+		srcdir='$(src_sp)/$@' \
+		$(XPORT) \
+		-f $(src_sp)/$@/Makefile.sub \
+		-f $(SPIN_Makefiles)/MK_SPIN_site \
+		-f $(SPIN_Makefiles)/MK_SPIN_prog \
+		-f $(SPIN_Makefiles)/MK_SPIN_compile \
+		all
+
+# build the SPIN directories
+# only difference is name of Makefile.{sub,app} and src_spin top dir
+
+$(SPIN_PROGDIRS): FORCE
+	@echo "making $@"
+	@[ -d $@ ] || mkdir $@
+	cd $@ && \
+	env > /tmp/fa1 && \
+	make \
+		xVPATH1=$(src_spin)/$@ \
+		$(XPORT) \
+		-f $(src_spin)/$@/Makefile.app \
+		-f $(SPIN_Makefiles)/MK_SPIN_site \
+		-f $(SPIN_Makefiles)/MK_SPIN_prog \
+		-f $(SPIN_Makefiles)/MK_SPIN_compile \
+		all
+
+FORCE:

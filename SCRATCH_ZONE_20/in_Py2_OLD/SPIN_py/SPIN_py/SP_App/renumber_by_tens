@@ -1,0 +1,25 @@
+#!/bin/sh
+# renumber-by-name
+
+ls -1 | grep '^[0-9].*_.*' | awk '
+{
+	line=$0
+	# lhs is just the number
+	lhs=line
+	gsub("_.*","",lhs)
+	# rhs is just the name
+	rhs=line
+	gsub("^[0-9]*_","",rhs)
+
+	name = rhs
+	numb = lhs
+
+	old=numb 
+	# calc new number
+	new=sprintf("%03d", NR * 10 )
+	# move old file with old number to new file
+	oldf = old "_" name
+	newf = new "_" name
+	printf("mv %s %s\n", oldf, newf)
+}'
+

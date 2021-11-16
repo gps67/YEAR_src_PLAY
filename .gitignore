@@ -77,6 +77,10 @@ prng_seed.dat
 *.iso
 *.dat.gz
 
+# accidental media files
+# *.mp3 # if not GEN ?
+*.mp4
+
 #noise
 .nfs000*
 

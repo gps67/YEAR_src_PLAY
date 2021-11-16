@@ -1,0 +1,13 @@
+ldoc1.pl
+
+	This is a 1997 perl script that converted SGML to HTML,
+	using the SGMLS module.
+
+	Its not perfect, but I'm using it to remember how things
+	can be done with other libraries.
+
+http://search.cpan.org/search?query=sgmls&mode=all
+
+	Heres a page I havent read yet:
+
+http://search.cpan.org/~bjoern/SGML-Parser-OpenSP-0.98/lib/SGML/Parser/OpenSP.pm

@@ -1,0 +1,21 @@
+static void
+spin_top_dealloc( SPIN_top *self )
+{
+	if( self->eg ) {
+		self->eg->halt();
+		delete self->eg;
+		self->eg = NULL;
+	}
+	// or does halt do this delete (leaving pointer) ??
+	if( self->app ) {
+		delete self->app;
+		self->app = NULL;
+	}
+	// dont tell user that they could keep kit
+	// theyll only want to build another top from it
+        self->kit.release();
+	delete self;
+        // Py_XDECREF(self->kit);
+        // PyMem_DEL(self);
+}
+

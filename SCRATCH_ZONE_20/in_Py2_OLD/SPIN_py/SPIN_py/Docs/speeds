@@ -1,0 +1,20 @@
+nsgmlsnorm (with .so)
+
+	real    0.33s
+	user    0.29s
+	sys     0.04s
+
+
+time ./run
+
+	real    0.87s
+	user    0.78s
+	sys     0.09s
+
+	(python internal timer after load)
+	load - 0.34
+	dump - 0.21
+
+apache mod_python
+
+	0.65 secs (0.10 overhead with apache?)

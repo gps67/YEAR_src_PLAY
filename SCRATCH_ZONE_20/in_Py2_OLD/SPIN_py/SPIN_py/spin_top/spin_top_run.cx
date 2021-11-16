@@ -1,0 +1,57 @@
+static PyObject *
+SPIN_run(
+        SPIN_top * self,
+        PyObject *args)
+{
+        PyObject *py_args = 0;
+        PyObject *obj = 0;
+
+        if (!PyArg_ParseTuple(args, (char *)"O:SPIN_run", &py_args ))
+           return NULL;
+
+	// kit was initialised when top was created
+	if(!self->kit) return PY_Static::AttributeError( "kit is NULL");
+
+	// EH should also be prepared by caller
+	if(!self->EH) return PY_Static::AttributeError( "EH is NULL");
+
+	if(self->EH == Py_None ) return PY_Static::AttributeError( "EH is None");
+
+	// eg should be null (nested calls to Run ?)
+	if(self->eg) return PY_Static::AttributeError( "eg is NOT NULL");
+
+	// app should be null (nested calls to Run ?)
+	if(self->app) return PY_Static::AttributeError( "app is NOT NULL");
+
+	// heres a good place to create the elem_info dictionary ?
+	
+	argv_builder * argv = new argv_builder( py_args );
+	if(!argv) return PY_Static::AttributeError( "files.argv is NULL");
+	if(argv->argc==0) return PY_Static::AttributeError( "files.argc is NULL");
+
+	// callback to script
+	// could be prepared earlier?
+	// could be get_opts
+
+	// create generator from Kit and list of files
+	self->eg = self->kit.self()->kit->makeEventGenerator(
+		argv->argc,
+		argv->argv
+	); 
+
+	// create the SP_App event handler (from SPIN_top)
+	self->app = new SP_App(self);
+
+	// run generator --> handler (ie run the document)
+	PyObject * non_conf = 0; // number of errors (object)
+	non_conf = PyInt_FromLong( 
+		self->eg->run(*(self->app))
+	);
+
+	delete argv;
+	delete self->eg;	// we still own it
+	delete self->app;	// we still own it
+	self->eg = NULL;	// TOP remains
+	self->app = NULL;	// TOP remains
+        return non_conf;
+}

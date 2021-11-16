@@ -1,0 +1,2 @@
+set -x
+python /tools/2004/py/lib/python2.2/compileall.py .

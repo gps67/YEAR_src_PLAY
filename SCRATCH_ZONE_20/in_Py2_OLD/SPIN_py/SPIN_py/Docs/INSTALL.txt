@@ -1,0 +1,209 @@
+# do not run make from here!
+# run them from the OBJECT build dir
+# see step (4)
+
+	(1)	Look at the following layout 
+
+		decide where you want to do the builds
+		decide which version you want to build
+		(pick debigging on)
+		(pick 16 bit unicode, not utf8 or latin)
+		(pick shared.so not static.a)
+		figure out where Python is (eg 1.5 built from source)
+
+		Yoy should download SP or have its development rpm installed
+		NB Compare SP's include files with those in SP_include
+
+	(2)
+		Copy over ../SPIN_build_16_so/. using cp or mc (DONE)
+
+			that creates the dir where you will build
+			SP and SPIN
+
+		Link over ../SPIN_Makefiles/ using ln -s
+
+			that must be ../relative to where you do the build
+
+		(or simply do the build from within SPIN_build_16)
+
+	(3)
+		Edit ../SPIN_Makefiles/MK_SPIN_site 
+
+
+		$(src_spin) probably has to be an absolute path,
+		it is usually a SYMB link  SPIN_py-->SPIN_py-1999-12-31
+
+		Where is Python? What version ?
+
+	(4)
+		cd _obj/.../SPIN_build_so/
+		./M_SPIN_py
+		./M
+		(fixup and repeat as required)
+
+	(5)
+		DONT INSTALL ANYTHING - I DONT - TEST IT FIRST
+
+			you might need some files such as the HTML.DTD
+			from the SP package, /etc/sgml, but they dont
+			vary between versions of SPIN_py
+
+			see (6) for hints and (7)
+
+		TEST in ../SPIN_test_zone/...
+
+			SPIN_test_zone/test_gen_2_baks
+
+				being a live script (it produces my
+				web sites download page), it refers to
+				dirs and scripts outside this tree,
+				but should work with minor adjustments
+				or warnings.
+
+			SPIN_test_zone/test_number2 ...
+
+				this renumbers sections in a file
+				and buld a TOC at the top.
+
+				The idea is to allow editing of the
+				output, as the new input
+
+				note that is NORMALISES the result
+				as a second action, which may add tags
+				you didnt expect (TBODY) to match the DTD
+
+	(6)
+		IF you want it installed ...
+
+		Manually Install scripts on python path
+		(I dont copy into python/lib/site-packages/spin_py
+		because these are not yet ready)
+
+		Manually install spin_py.so into /usr/lib or set
+		LD_LIBRARY_PATH where it can be found. The shared
+		library is stable-enough to be centrally installed.
+
+		The test scripts probably export LD_LIBARARY_PATH
+
+		NB: I dont install the files to Python/lib, but I do find
+		them by adding a dir to the search path in
+		../SPIN_test_zone/lib_base/spin_eh_base.py 
+
+		sys.path.append( '/home/gps/2005_src_SPIN_py/SP_lib' )
+
+	(7)
+		Manaully setup /etc/sgml/ or ./etc_sgml/ or ...
+
+		cd _src/.../SPIN_test_zone/
+		... play ...
+
+
+		/etc/sgml is an issue with all SGML installations.
+
+	(8)
+		build mod_python as a DSO into Apache
+		(spin_py.so needed no changes at all, but the
+		surrounding scripts/setup did, also beware
+		of whose SGML you run, eg <entity % pw /etc/passwd>
+		as SP is not intended to be safe in a hostile env.
+
+		IE do not process any document that someone else uploads.
+		Many PHP sites are configured to be "safe", SP isnt.
+
+		Whilst waiting for XML, SP might be useful, for
+		your own documents in Apache.
+
+		The real purpose is not for Apache, but to process
+		SGML files in a controlled (fragile) environment,
+		and distribute the stable result on CDROM.
+		
+
+LAYOUT - DIRS AND KEY FILES:
+
+_src and _obj are separate, using VPATH
+
+_src/
+  spin_py-1999-12-31/
+    SPIN_Makefiles/	-- use ln -s to use this dir where you want ..
+    SPIN_build_16_so/	-- use mc to copy this build dir to where you want it
+    SPIN_py/		-- stays where it is, contains the source
+
+_obj/
+  spin_py-1999-12-31/
+    SPIN_Makefiles@     --> symb link to _src/spin-1999-12-31/SPIN_Makefiles/
+    SP_lib@	        --> dir on $LD_LIBRARY_PATH or symb_link /usr/local/lib
+    SPIN_build_16_so/	-- COPY of that source dir (few files only)
+	.		-- the current dir where you start the build
+	./M_SPIN_py	-- shell script that calls Make to build so (not SP)
+	./M		-- shell script that calls Make to build SP (20 min)
+	./MK_SPIN_16_so	--> symb link SPIN_Makefiles/MK_SPIN_16_so (makefile)
+
+	./SPIN_py/	-- auto created if deleted, where SPIN is built
+	  *.o		-- spin_py object files created here
+	  spin_py.so	-- shared library built here, then copied to ../SP_lib/
+
+	./nsgmls/	-- SP builds here (nsgmls is the well known new-sgmls)
+	./lib/		-- SP's shared object library is built here (or .a)
+	./.../		-- SP's other build dirs
+
+Really, its so simple, you edit the 4 lines of MK_SPIN_site, then
+it just builds into the example build dir (SPIN_build_16_so/),
+or any VPATH copy of that dir.
+
+--OLD-TEXT-FOLLOWS-- needs updating
+
+/usr/src/sp-1.3/SPIN_py/Makefiles/Readme.txt
+
+
+This dir contains the Makefiles I use, you have to create a build sub-dir
+(_build_16_so), then link one of these (MK_SPIN_16_so) into that dir
+and run it from within that dir. (if make isn't /usr/bin/make, then call
+make -f yourself)
+
+	cd /usr/src/sp/_build_
+	./M
+
+That will build all of SP, then the SPIN_py directory. You will then have
+to SYMB-LINK or install the libsp16-1.3.so (/usr/lib or LD_LIBRARY_PATH)
+so that it can be found by the spin_py.so module at runtime. You also
+have to manually install spin_py.so, so that Python finds it. Python
+has a security option, to only look in specific dirs (switchable off).
+Then and run the test script and sgml file.
+
+If you don't want to rebuild all of SP (you can get it's source from a
+decent CD), you can simply edit out the target, and link against something
+called libsp.so (but your #define SP_MULTI_BYTE must match that of the
+lib.so when it was compiled, otherwise it will crash treating 8 bits as
+16). Linking against libsp.a won't work on HP/UX or other architectures
+where .a code (without -fPIC) isn't relocatable. In that case you have
+to build libsp.a into your python binary, or build libsp.so
+
+I recently tried the Jade package from www.sgmltools.org.
+It contains SP, and builds the .so file with -DSP_MULTI_BYTE
+no problem, just set the -L -I dirs/names, and comment out the SP build
+
+I don't doubt that you will have to edit something, but it does work.
+
+NB These makefiles allow you to build several (8) parallel versions,
+8/16 bit, with/out debugging, .so/.a quite easily (disk usage and time!)
+and they are named to NOT coflict with SP's makefiles, whilst still
+using Makefile.sub in the SP prog dirs.
+
+  MK_SPIN_16_so		- set OPT_DEBUG and include top_2
+  MK_SPIN_top_2		- builds each subdir of /usr/src/sp
+  MK_SPIN_compile	- compiler options (other than paramaters)
+  MK_SPIN_lib		- compiles ./lib and ./libs
+  MK_SPIN_prog		- compiles $PROG$EXE
+  MK_SPIN_site		- EDIT THIS ONE - where is Python? - Where am I?
+
+There is also Makefile.app in the SP_App dir, and Makefile.sub in all
+of SP's subdirs. They contain (or not) the dependency on Python (that
+means setting the -I include path) and anything special to the subdir.
+In SPIN_py's case, there is no $(PROG) to build, just the spin_py.so
+target.
+
+Sometimes I comment out the all: rule in top_2, so that make runs quicker
+(no need to rebuild libsp or nsgmls - if they haven't changed). If
+so un-comment it. It takes 6 minutes to compile libsp, 10 seconds to
+compile spin_py and 2 secs to check the other subdirs ( and a lot of
+screen scrolling).

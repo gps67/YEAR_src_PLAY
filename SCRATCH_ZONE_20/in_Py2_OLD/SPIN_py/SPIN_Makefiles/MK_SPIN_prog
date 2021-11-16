@@ -1,0 +1,51 @@
+
+# MK_SPIN_prog
+# link the SP progs
+# NB SP is special because it doesn't use any other libs
+# ie adding -ltk8.1 needs a bit more ...
+# see SPIN_py/Makefile.app
+
+	so=$(OPT_LIB_EXT)
+	sp=$(OPT_LIBNAME)
+	libsp=lib$(OPT_LIBNAME)
+#	LINKDIRS=-L../libs 
+#	LINKDIRS += -L/usr/local/lib
+#	LINKDIRS += -L$(dir_SP_lib)
+# unused
+	CLEANFILES=$(PROG)$(EXE) $(OBJS) core
+
+# caller makes all
+# this makes $PROG
+# you can add extra targets to SPIN_TARGETS
+
+xxall:
+	env | grep PAT
+
+all: $(PROG)$(EXE) $(SPIN_TARGETS)
+
+pure: $(PROG).pure
+
+#put libsp before objs that might override those functions
+
+# this links the binary
+$(PROG)$(EXE): $(OBJS) $(COBJS) 
+	$(CXX) $(LDFLAGS) \
+	-o $@ \
+	$(OBJS) \
+	$(LIBS) $(LLIBS) \
+	$(LINKDIRS) \
+# -l$(sp) 
+
+# unused:
+$(PROG).pure: $(OBJS) $(COBJS) $(XLIBS) $(libspso)
+	$(PURIFY) $(CXX) $(ALL_CXXFLAGS) $(LDFLAGS) -o $@ $(libspso) $(OBJS) $(COBJS) $(XLIBS) $(LIBS) $(LLIBS)
+
+# probably won't work
+install: $(PROG)$(EXE)
+	-test -d $(bindir) || mkdir $(bindir)
+	-rm -f $(bindir)/$(PROG)$(EXE)
+	$(INSTALL) $(PROG)$(EXE) $(bindir)/$(PROG)$(EXE)
+
+depend: depend_src
+depend.temp: $(GENSRCS)
+gen: $(GENSRCS)

@@ -16,5 +16,6 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-09-09, 109072, 13.70, 18.04, Y Full Morr - but miles unwritten
 2021-09-28, 109300, 22.19, 34.59, 70% Full fake miles £1.56 !!
 2021-10-02, 109437, 15.46, 20.67, Y 100% Full Morrisons
-2021-10-21, 109475, 16.78, 23.44, Y 100% Full Morrisons
+2021-10-21, 109574, 16.78, 23.44, NY 100% Full Morrisons
+2021-11-13, 109716, 32.69, 47.30, N 100% Full Morrisons handwritten
 

@@ -1,0 +1,217 @@
+2021-11-16 Nov Tue 00:58 # 25 #  FILTER_SYMB_LINK_LIST.txt
+
+	 FILTER_SYMB_LINK_LIST.txt
+
+		 FILTER
+		 SYMB
+		 LINK
+		 LIST
+		 .txt
+	
+https://open.spotify.com/episode/0xwHXw79pxRB9IZUKAnrpN
+
+	GETS/GILBERT 1001 all time list - podcast reviews each
+
+https://www.youtube.com/watch?v=OFWCbGzxofU
+
+	The Girl From Ipanema is a far weirder song than you thought
+	Adam Neely
+
+
+eg LINKS_into_DOMAIN TARGET SPACE
+
+	ARCHIVE_TWO GIT_private // CRYPTO_WRAP // STO on CLOUD_VFS
+
+		SPIN_Py-2011/
+		SPIN_Py/
+
+	BUILD API
+
+		SGML_Parser SP
+
+		update to recent API
+		simple TRANSPARENT FILTER DIALECT == SP SGML_Parser SP
+
+		DIALECT
+		+= CSET 8859_8bit_europe_ASCII
+		+= CSET utf8_DECODER GEN_utf8 GEN_CSET CSET_utf8 utf8_ASCII
+		+= CSET_ASCII // _PLUS
+		// 8BIT clean TEXT files // PRE_KNOW SESS.ROM
+
+		DIALECT += SESS.ROM and nearby API LIBR_of_api SESS.Module.API.
+		DIALECT += Module.api
+		// TLA works here Module.api.txt // or other MINE // KNOW SESS
+
+		List of variables that need to be set.
+		Parse mode options DEBUG MIN_SELF_PROVIDE
+		MIN_SELF_PROVIDE provides Module.ROM.api.txt // api.txt
+
+		Parse File, VFS API, 
+
+			STREAM_control
+			STREAM_VFS_ROM
+			STREAM_OBJECT
+			OBJECT_ITEM
+			LOCN_ITEM
+			ITEM_LOCN
+			LOCN_Item // Item == "UDEF"
+			ITEM_Item // Item == "ITEM"
+
+			DTD = VFS_GIT_DECL_LIST // { SCRIPT == DTD }
+
+			is_PRE
+			is_FLOW
+			is_BLOCK
+			is_WORD
+			is_WORDS
+			is_WORD_TREE += PHRASE PSG_SCRIPT // that builds DTD TREE
+			sdata_glyph // does not break word // OK %%c in word
+			sdata_macro // requires bench to KNOW // KEEP FIND OUT
+
+			elem_info
+			elem_inst
+			text_list // DIALECT += LISTS_default_for_first_ITEM
+			
+			sgml_comment // FILTER += on_event
+			sgml_parser // FILTER += SOURCE STREAM FILE
+			sgml_GEN // write PALETTE to SCRIPT // rewrite merge
+			edit_rewrite_merge // reg_GEN sorted matches // diff
+			
+			sgml_is_DTP_LITE // LaTeX in XML or SGML or PLUS
+
+			DTP.font .txt
+			DTP.draw .txt
+			DTP.anim .txt
+			DTP.flow .Module .txt
+
+			// that .txt "creates" by mentioning that file
+			// that .txt can then hold a Module.txt
+			// that .Module is sum of { nearby files }
+			// it mentions sibling files .py .tcl .script .so
+			// mention can happen by file existing of that name.ext
+
+			DTP.page_layout // scroll_page_break // build_page
+
+				font += freetype2 and pesky remote api dataflow
+				font += draw palette ... CODE ... DATA ...
+
+			DTP.macro
+
+				GEN DIALECT += macro
+
+				macro += { SCRIPT } //
+
+			DTP.draw 
+
+				draw_tools
+				var_tools
+				script_tools EVAL LIST
+				// CAPS means LINK to LOAD PROFILE IMPORT LIST
+				// EVAL is a VAR Item_t & item; // CMNT
+				// LIST is a VAR LIST_of_Item & LIST[u16]
+				// limit is int not u16 // except when API u16
+
+				PSG_of_SCRIPT
+				 parse_YACC
+				 parse_SCANF
+				 parse_BUFF .api
+
+			PSG.SCRIPT
+
+				PARSE_SCRIPT
+
+					PSG_of_SCRIPT
+					 parse_YACC
+					 parse_SCANF
+					 parse_BUFF .api
+
+				SCRIPT_PSG_TREE
+
+					STO_PSG_SPEC
+					STO_PSG_DIALECT
+					STO_PSG_PARSED_STREAM .api
+
+						PARSE { SCRIPT }
+						PARSE { STREAM }
+						PARSE { STRING }
+						PARSED { SCRIPT_Module }
+
+				MACHINE_API
+
+				 INIT MONITOR ADJUST DEBUG
+				 VAR_POOL "Item_t & item = lookup( expr )"
+				 EXPR "expr DECL VAR PHRASEBOOK ITEM"
+				 TREE EXPR DTD = LOADER SCRIPT // plumbing
+
+				 PHRASE += PHRASE { // { NEW_ITEM_ALIAS SCRIPT }
+				   // LINK += NEW_ITEM ALIAS // TYPE //
+				   // DIALECT // %s %s $1 $1 // puzzle parser
+ PSG puzzle parser
+// %s %s $1 $1 // puzzle parser FMT(" %s %s ",$1, $1 ) // $9 fast ARGV //
+// 
+// SUBLEX // %s %s $1 $1 // is registered LOOKUP of puzzle parser
+// DIALECT // %s %s $1 $1 // puzzle parser
+  
+				 }
+				 PHRASE += { NEW_ITEM_ALIAS SCRIPT } // guess //
+				 KNOW += guess MATCH { lhs rhs } // CMNT //
+
+Machine 
+
+	SCRIPT can do anything within CPU BUDGET and MEM BUDGET and API
+	LIBR can arrange VFS sort of things SESS.VARS
+	VARS SESS.VARS // creates SESS and VARS and SESS.VARS // symb links
+	API VARS.ITEM.api // API CALL item expr // other items //
+	SESS THREAD SUSPEND RESTART LITE_TASK_API
+
+	TASK load DTD by building it from PSG description // annotated
+
+		PHRASE = ONE_of_ OPTIONS_LIST SELECTED CACHED 
+		PHRASE = new PHRASE("expr") // Name == "expr" // Match
+
+		invent DIALECT by referring to well known new Name == "expr"
+		and that includes the Q2 CIDENT Q2 // OPTION Q2 SP CIDENT SP Q2
+		MENTION Q2 %s Q2 MATCH SWEEP = FILTER be the ROM
+
+		PHRASE = SEQ LIST of ITEM_TYPE == PHRASE_SUBLEX_ITEM // WORD //
+		SUBLEX += SUBLEX
+		PHRASE += SUBLEX
+		SUBLEX += ITEM
+		ITEM += VALUE
+		ITEM += NAME
+		ITEM += EXPR // with ES6 CXX Py Tcl style // API
+		PHRASE += { NAME SEQ L I S T }
+		FOLD { NAME T A I L } as DECL NAME RESTREAM TAIL ## FILTER
+		FILTER # treansparent filter TAIL == " { T A I L } "
+		MATCH # NAME LIST # SEQ == LIST # SEQ is TAIL decoded 
+ LOOKUP VOCAB
+   what is syntax for 
+    foreach item in list 
+     dest = expr item
+     dest == dest_list[ u32 ] 
+ FILTER
+   MATCH "{ dest = expr item }" // already C like CIDENT ASCII SUBSET PLUS
+    LINK { dest dest } { expr expr } { item item } { PHRASE phrase }
+
+
+API TCL_WRAP of SPIN via api
+  TCL provices { SIMPLICITY } // ASCII QUOTING now in utf8 // ASCII PLUS
+  TCL provides { PARSED LISTS OF WORDS } // utf8 or CSET == "utf8" // UK // ME //
+  TCL provides py_tcl_tk
+  even though we are in py_tk, provide py_tcl_api and api_tk
+  both use objv[objc] // ITEM_t == "Tcl_Obj *" // refCounted TREE of DTP SCROLL
+
+  DTP.SCROLL
+  text_pool += "raw_text" // know is list of words // L_EDGE_R // LEDGER //
+  word_pool += "VOCAB" // single ITEM multi LIST or TREE or CACHE or ...
+  LINE += OBJ_t objv[int objc] // u16 objc # for long lines // u64 often //
+  WORD += u64 // because noone uses half a register // except BIT_FIELDS_CPU
+  WORD_TYPE += u32_as_u16_u8_u8 // DECODER //
+
+  OBJECT[LINK] == { lhs rhs } // MATCH { that } // ROM SCRIPTED // 
+  DIALECT += { THIRD lhs rhs } // CODE + DATA //
+  
+
+
+	
+

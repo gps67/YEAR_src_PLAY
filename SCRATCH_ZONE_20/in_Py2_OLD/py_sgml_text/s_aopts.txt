@@ -1,0 +1,110 @@
+total 28
+drwxrwxr-x 2 gps gps 4096 Nov 16 00:05 .
+drwxrwxr-x 4 gps gps 4096 Nov 16 00:05 ..
+-r-xr-xr-x 1 gps gps 1357 May 26  1997 s_aopts.py
+-rw-rw-r-- 1 gps gps    0 Nov 16 00:05 s_aopts.txt
+-r-xr-xr-x 1 gps gps 4975 Jul 13  1997 s_text1.py
+-r-xr-xr-x 1 gps gps 3809 Jul 13  1997 s_text2.py
+-r-xr-xr-x 1 gps gps 3215 Nov 16  1997 s_text3.py
+
+2021-11-16 Nov Tue 00:06 # 01 # 
+	
+	backups see ../*/
+
+/home/gps/YEAR/src/GITS/
+	YEAR_src_PLAY/SCRATCH_ZONE_20/
+		in_Py2_OLD/
+			py_sgml_text
+
+	AS_FOUND 2021-11-16 dated DATED 
+	{ AS_FOUND 2021-11-16 } { dated DATED }
+	...
+
+	CODE FILTER dedox code_and_test_data_and_libr_filter
+	FILTER COPY_OVER_A_WORKING_MODULE SKIP UNUSED API
+	KINK_LOAD clear away unused outcomes keep pre_loaded_api
+	API Module provides it's own SCRIPT source + STO data + SESS ctxt
+
+file py_sgml_s_aopts_s_text9 s_aopts.py
+// FILE_COPY_TO_EOT EOF .txt .py
+#!/usr/local/bin/python
+# s_aopts.py
+
+import regex
+import string
+import regsub
+
+class aopt1:
+	"""	A named option
+	"""
+	def	__init__( self, name, cset, data ):
+		self.attr = name
+		self.cset = cset
+		self.data = data
+
+	def	prints(self):
+		name = self.attr
+		cset = self.cset
+		data = self.data
+		if cset == 'CDATA':
+			print '%(name)s="%(data)s"' % vars() ,
+		else:
+			print '%(name)s="%(data)s[%(cset)s]"' % vars()
+#		print "A_opt attr:", self.attr, "cset:", self.cset, "data:",self.data,
+
+expr1 = "^\([^ ]*\) \([^ ]*\) \(.*\)$"
+a_opts_prog = regex.compile( expr1 )
+
+def	A_opts(str):
+	global a_opts_prog
+	n = a_opts_prog.match( str )
+	if n > 0:
+		name, cset, data = a_opts_prog.group(1,2,3)
+		return aopt1( name, cset, data)
+	else:
+		print "ERROR n=%s" % n
+		print "A_opt%s" % str
+		return None
+
+class	A_opts_list:
+	def __init__(self):
+	    self.set_null()
+	def set_null(self):
+	    self.dry = {}
+	def get_cdata_field( self, name ):
+	    str = self.dry[ name ]	# BUG NO EXIST
+	    return str
+	def add_from_esis_line( self, str ):
+    	    global a_opts_prog
+	    n = a_opts_prog.match( str )
+	    if n > 0:
+		name, cset, data = a_opts_prog.group(1,2,3)
+		if cset != "CDATA":
+		    print "WARNING: CDATA expected got", cset
+	   # 	print name, "=", data
+		self.dry[ name ] = data
+	    else:
+		print "ERROR n=%s" % n
+		print "A_opt%s" % str
+		return None
+	    
+
+
+# This is Python API to Tcl/Tk
+# Work done by Tcl_SESS_shell { SCRIPT } ;# { DIALECT dictionary } ;# lookup
+# It has better TTY and PID and EVENT_MAIN_LOOP because Tcl/Tk is tight
+
+
+	py_tcl_tk
+	SPIN_py Tk_inter tcl_tk 
+	 
+
+# API_tcl API_py Tk_api API_tcl API_CXX API_C_app_api
+
+	API
+	 DIALECT
+	 TCL
+	 PY
+	 CXX
+
+

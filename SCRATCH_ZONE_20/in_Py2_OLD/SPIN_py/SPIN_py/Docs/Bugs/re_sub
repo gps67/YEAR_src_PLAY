@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "./base/spin_eh_num.py", line 163, in ElementEnd_H
+    lbl = "HDR_" + re.sub( "!", "_", nnstr, 0 )
+  File "/tools/1999/py/lib/python1.6/re.py", line 175, in sub
+    pattern = _cachecompile(pattern)
+  File "/tools/1999/py/lib/python1.6/re.py", line 120, in _cachecompile
+    value = compile(pattern, flags)
+  File "/tools/1999/py/lib/python1.6/re.py", line 243, in compile
+    code=pcre_compile(pattern, flags, groupindex)
+pcre.error: ('\\ at end of pattern', 15937)
+[Sun Aug  6 22:03:32 2000] [notice] child pid 4284 exit signal Segmentation faul
+
+??
+Maybe I have another pcre.so somewhere ? 
+It works from the command line, maybe LD_LIBNRARY_PATH or PATH or ...
+??
+

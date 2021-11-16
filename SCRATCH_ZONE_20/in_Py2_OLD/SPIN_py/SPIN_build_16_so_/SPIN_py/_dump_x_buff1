@@ -1,0 +1,1 @@
+objdump -s -S -x buffer1.o | less +/dso

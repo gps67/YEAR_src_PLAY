@@ -1,0 +1,35 @@
+elem_obj	An element, its attributes and the data inside
+
+	el.info		- the elem_info (name)
+	el.atts		- list of attributes name,value
+	el.data		- list of text or elem_obj or PyObject
+
+	el.trip()	- returns a tuple of the above 3 fields
+			- deprecated, for old scripts that used tuples
+
+	el.my_attribute_name = anyvalue
+
+	def is_elem( e ):
+		return spin_py.SPIN_elem_obj_type() == type(e)
+	def mk_elem( info, atts, data ):
+		return spin_py.SPIN_elem_obj( info, atts, data )
+
+OVER-LOAD:
+	There is (currently) no data object for COMMENTS, ERRORS, PI's,
+	MARKED-SECTIONS, DTD-LINE's (etc). I'm considering using
+	elem_obj to hold those, with an extra flag (and the elem_info
+	is something).
+
+SPEED:
+	Scripts building trees from elem_obj would be quick not not
+	faster, as there will still be some overhead calling the functions
+	that do it. Conversely Python Tuple support is right at the
+	byte-code-compiler-interpreter.
+
+INDENTATION:
+	Trees of elem_obj are much more controllable, as there is no
+	explicit layout, and the pretty-printer can handle them well.
+
+ATTRIBUTES:
+	Currently there is no special type for attributes, and advanced
+	SGML sites might have problems with non-8859 in attributes.

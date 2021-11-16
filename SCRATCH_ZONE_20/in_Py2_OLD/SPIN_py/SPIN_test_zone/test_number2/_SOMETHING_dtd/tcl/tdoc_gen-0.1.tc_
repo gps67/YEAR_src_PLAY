@@ -1,0 +1,174 @@
+#!/usr/bin/env tclsh
+
+lappend path [pwd]/global
+
+namespace eval dtd_gen {
+
+proc put {args} {
+	switch [llength $args] {
+	1 { ::puts stdout [lindex $args 0] }
+	2 { ::puts stdout [lindex $args 0] [lindex $args 1] }
+	default error "puts $args"
+	}
+}
+
+proc gen_tdoc {} {
+	set tag tdoc
+	set t1 o
+	set t2 o
+	set subslist { S0 | S1 | S2 }
+	set a1 {id cdata ""}
+	set a2 {date cdata "2000-01-01"}
+	set a3 {dbid cdata ""}
+	set attlist "
+		$a1
+		$a2
+		$a3
+	"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	put "<!attlist $tag $attlist >"
+}
+
+proc gen_title {} {
+	set tag title
+	set t1 o
+	set t2 o
+	set subslist { %ptext }
+	put "<!element $tag $t1 $t2 ($subslist) >"
+}
+
+proc gen_Sn {sn sub} {
+	set tag $sn
+	set t1 -
+	set t2 o
+	set subslist " title, intro, $sub* "
+	set a1 {id cdata ""}
+	set a3 {dbid cdata ""}
+	set attlist "
+		$a1
+		$a3
+	"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	put "<!attlist $tag $attlist >"
+}
+
+proc gen_intro {} {
+	set tag intro
+	set t1 o
+	set t2 o
+	set subslist { %plist; }
+	set a1 {id cdata ""}
+	set a3 {dbid cdata ""}
+	set attlist "
+		$a1
+		$a3
+	"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	put "<!attlist $tag $attlist >"
+}
+
+proc gen_plist {} {
+	set macro_name plist
+	set macro_text P+
+	put "<!entity % $macro_name \"$macro_text\" >"
+}
+
+proc gen_p {} {
+	set tag P
+	set t1 o
+	set t2 o
+	set subslist { %ptext }
+	set a1 {id cdata ""}
+	set a3 {dbid cdata ""}
+	set attlist "
+		$a1
+		$a3
+	"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	put "<!attlist $tag $attlist >"
+	put {
+<!entity psplit '</P><P>' >
+<!entity null '' >
+<!shortref pmap
+ --     "&#RS;B" null --
+        "&#RS;B&#RE;" psplit
+        "&#RS;&#RE;" psplit>
+<!usemap pmap p>}
+
+}
+
+proc gen_ptext {} {
+	# general problem with adding more to this:
+	set macro_name ptext
+	set macro_text {(#PCDATA|B|UL|OL|AHREF|A|CODE)*}
+	put "<!entity % $macro_name \"$macro_text\" >"
+}
+
+proc run_var_val list {
+	foreach {var val} $list {
+		upvar $var v
+		set v $val
+	}
+}
+
+proc gen_LI {} {
+	run_var_val {
+		tag LI
+		t1 o
+		t2 o
+		subslist { %ptext }
+	}
+	put "<!element $tag $t1 $t2 ($subslist) >"
+}
+
+proc gen_UL {} {
+	run_var_val {
+		tag UL
+		t1 o
+		t2 o
+		subslist { LI* }
+	}
+	set a1 {id cdata ""}
+	set a3 {dbid cdata ""}
+	set attlist "
+		$a1
+		$a3
+	"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	put "<!attlist $tag $attlist >"
+	put "<!element OL   $t1 $t2 ($subslist) >"
+	put "<!attlist OL   $attlist >"
+}
+
+proc gen_B {tag} {
+	set	t1 -
+	set	t2 -
+	set	subslist { %ptext }
+	set a1 {id cdata ""}
+	set a3 {dbid cdata ""}
+	set attlist "
+	$a1
+	$a3"
+	put "<!element $tag $t1 $t2 ($subslist) >"
+	# put "<!attlist $tag $attlist >"
+}
+
+# define macroes before use
+gen_plist
+gen_ptext
+# any order for elements
+gen_tdoc
+gen_title
+gen_Sn S0 S1
+gen_Sn S1 S2
+gen_Sn S2 S3
+gen_intro
+gen_p
+gen_UL
+gen_LI
+gen_B B
+gen_B CODE
+gen_B AHREF
+gen_B A
+
+}

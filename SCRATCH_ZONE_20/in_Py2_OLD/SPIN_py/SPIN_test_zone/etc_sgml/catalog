@@ -1,0 +1,2 @@
+CATALOG ./some_dir_catalog2
+--# redirect to other cats in other dirs --

@@ -20,10 +20,10 @@ TT {	set VECT [OBJ NEW VECT] }
 #	set VECT [OBJ _ VECT]
 #	set VECT [OBJ {} VECT]
 #	set VECT [OBJ NEW VECT]
-TT {	OBJ $VECT ADD A ;# OPTION ADD A B C }
 TT {	OBJ $VECT ADD A ;# OPTION ADD A B C	}
 TT {	OBJ $VECT ADD B	}
 TT {	OBJ $VECT ADD C	}
+TT {	OBJ $VECT ADD D ;# OPTION ADD A B C }
 TT { 	OBJ $VECT GET 2	}
 TT {	set AS_LIST [OBJ $VECT array_get]	}
 

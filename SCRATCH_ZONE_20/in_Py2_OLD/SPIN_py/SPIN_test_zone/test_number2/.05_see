@@ -1,0 +1,4 @@
+set -x
+base=disk_action_draft
+
+ lynx ./$base.html  

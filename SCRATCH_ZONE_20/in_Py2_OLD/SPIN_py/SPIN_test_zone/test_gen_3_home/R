@@ -1,0 +1,14 @@
+./PY_gen_3.py WWW_127 || exit
+./PY_gen_3.py || exit
+F=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_gen_3/index.html
+D=/home/gps/2000/SITE/www.information-cascade.co.uk/htdocs/
+D=/home/gps/2000/SITE/www.gps.talktalk.net
+F=$D/index.html
+cp -f index.htm $F # .html
+cd $D
+# putter_e7 index.html
+putter_TT index.html
+firefox -remote "openFILE($F)"
+# mozilla -remote "openFILE($F)"
+# netscape -remote "openFILE($F)"
+

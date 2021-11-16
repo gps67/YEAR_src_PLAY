@@ -1,0 +1,20 @@
+
+if false
+then
+	if :
+	then
+		# regenerate, unnormalised file
+		./PY_gen_2.py
+		cat index1.html > t1.ht
+	fi
+fi
+
+
+cp in1_not_norm.htm t1.ht
+
+NORM=/home/gps/2000/src/SPIN_py/SPIN_test_zone/test_number2/PY_normalise.py
+$NORM t1.ht t2.ht 
+$NORM t2.ht t3.ht 
+
+
+

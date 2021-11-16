@@ -1,0 +1,60 @@
+#ifndef REF_HOLDER_H
+#define REF_HOLDER_H
+
+#include "app_types.h"
+
+class refhold {
+	AppObject ref;
+	friend class P_util;
+ public:
+ 	refhold( AppObject _ref = 0 )
+	{
+		ref = _ref;
+	}
+ 	void forget()
+	{
+		ref = 0;
+	}
+ 	void release ()
+	{
+		Py_XDECREF( ref );
+		ref = 0;
+	}
+ 	void snatch_this( AppObject obj ) // I was holding it
+	{
+		release();
+		ref = obj;
+	}
+ 	void claim_this( AppObject obj ) //
+	{
+		Py_INCREF( obj ); // do first in-case same obj
+		snatch_this( obj );
+	}
+	PyObject * get()
+	{
+		return ref;
+	}
+	PyObject * get_plus()
+	{
+		Py_XINCREF( ref ); // for when returning from ...
+		return ref;
+	}
+	void set( PyObject * p )
+	{
+		claim_this( p );
+	}
+ 	~refhold()
+	{
+		release();
+	}
+	bool is_null()
+	{
+		return NULL == ref;
+	}
+	bool is_real()
+	{
+		return NULL != ref; // nothing to do with float ;-)
+	}
+};
+
+#endif

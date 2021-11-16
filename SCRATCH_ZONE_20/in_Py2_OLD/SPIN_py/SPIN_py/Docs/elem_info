@@ -1,0 +1,65 @@
+elem_info	the element's name, and general info
+
+	The idea is that all occurences of "P" (as in <P class="intro">)
+	share a similar spelling, and it holds information available from
+	the DTD (is-if!) or the programs style sheet, eg:
+
+		e.name		- "P"
+		e.is_empty	- like <HR> <BR> ...
+		e.is_pre	- element introduces PRE-formatting
+		e.ctype		- "cdata"
+		e.element_breaks_word - (also treat element-tags as spaces)
+
+		e.on_element_start = EH.ElementStart_function_name
+		e.on_element_end = EH.ElementEnd_function_name
+
+		e.my_attribute_name = any_value
+
+Different DTD's or stages of processing
+
+	There is no specific handling of namespace, or context, other
+	than what SP supplies as the element name string, but you COULD
+	have multiple SETS of elem_info. For example one set for the
+	input document (LINUXDOC-SGML), and one for the output (HTML).
+
+	Unfortunately, that gets confusing when some elements get carried
+	through filters, unchanged, and the tree is built from several
+	'dtd' layers. Conversely, that swirling pool of confusion, is
+	clarified by having elem_info's which are clearly tagged, even
+	if the spelling of the element names are similar.
+
+Finding Creating elem_info's
+
+	To find the elem_info, SPIN uses a dictionary (also available to
+	the user), but your program could have several such trays of names.
+
+	The first time SP tells SPIN about an element (startElement), is
+	when SPIN cant find it in its dictionary, or when the app-created
+	element has the IS_first_use flag set. SPIN creates a default
+	elem_info (It can never know .is_pre), gets '.ctype' from the
+	DTD, guesses .element_breaks_word (magically quite well), adds
+	it into the input dictionary and gives the script a chance to
+	override/learn about the new elem_info.
+
+(( WANT:
+
+	SP itself has its own table of element names (it must do!), and it
+	would be nice to poke a pointer (the elem_info) into that table,
+	so that repeated tags would not require another hash-table lookup
+	(additional field in the event).
+
+	SP would not have to do any GC, the app would keep a list of what
+	it has told SP, and simply delete that list when SP finishes its
+	run (deletes the entire table).
+))
+
+RUN-SPECIFIC
+	Each run will require a new set of elem_info's, as each run
+	will use different style-sheet values. Similarly different
+	scripts will use different call-backs.
+
+NO-DTD-INFO
+	If you are using elem_info's for output, and they are never seen
+	on input, you must make sure that you define el.is_empty correctly
+	(and maybe .ctype), as SPIN wont set them.
+

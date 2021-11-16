@@ -1,0 +1,38 @@
+2021-11-16 Nov Tue 02:33 # 08 #  FILTER_SWEEP.txt
+
+	FILTER_SWEEP
+
+		scan VFS
+
+	FILTER LAYER
+
+		 find link -> devel_scribblings layer
+		 rewrite link tree
+		 cache link tree files meta 
+		 VFS.meta_inode // and name and ALIAS ES
+
+	Find all LINKS
+
+		LIST LINKS # regen from file LINKS.meta_inode // += ALIASES
+
+		DIALECT on mention of ALIASES look for ALIAS
+
+		VFS rewrite LINKS LIST as MACHINE_VARS_EXPRS
+
+		VOCAB += SUBLEX ITEM EXPR(ITEM)
+
+		PARSE non_SP " EXPR(ITEM) "
+		PARSE MATCH STYLE " Q2 EXPR Q2 " // "Q2 $1 Q2" // ROM UNARY ==
+
+		PROCESS LIST {
+			TOP/path/ => TOP2/path/ // expr EVAL $1 = `script`
+			TOP/path/file.ext => TOP2/path/file.ext
+			// SCRIPT for EXPR $1 // NAME => MACRO expr
+			// LINE -> LIST OF WORD[s]
+
+		}
+
+
+	
+
+

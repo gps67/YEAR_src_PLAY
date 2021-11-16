@@ -1,0 +1,9 @@
+Builtin list
+
+	amp	&
+	lt	<
+	gt	>
+	quot	"
+	apos	'
+
+These 5 are always pre-defined

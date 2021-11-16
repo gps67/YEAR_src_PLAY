@@ -1,0 +1,51 @@
+/*
+eg:	self.SPIN_opt( 'sdata_as_char', 1 )
+*/
+
+static PyObject *
+spin_top_app_opt(
+        SPIN_top * self,
+        PyObject *args)
+{
+        PyObject *obj = 0;
+        PyObject *val = 0;
+	const char * opt;
+        if (!PyArg_ParseTuple(args, (char *)"sO",
+		&opt,
+		&val ))
+                return NULL;
+	if(!self->app) {
+		PyErr_SetString(PyExc_AttributeError,
+			"SPIN_top->app is null, see DtdStart.py for eg ");
+		return NULL;
+	}
+	self->app->set_SPIN_opt( opt, val );
+	Py_INCREF( Py_None );
+	return Py_None;
+}
+
+/*
+	if you dont like the DTD that the document wants,
+	or if you only want the title page, call halt.
+
+	EDIT: move this to app_link
+*/
+
+static PyObject *
+spin_top_halt(
+        SPIN_top * self,
+        PyObject *args)
+{
+        PyObject *obj = 0;
+        if (!PyArg_ParseTuple(args, (char *)"O",
+		&obj ))
+                return NULL;
+	SP_App * spin_code = self->app;
+	if(!self->eg) {
+		return NULL;
+	}
+	self->eg->halt(); 
+	printf("\n -- at this stage the SP engine should shutdown and halt\n");
+	Py_INCREF( Py_None );
+	return Py_None;
+}

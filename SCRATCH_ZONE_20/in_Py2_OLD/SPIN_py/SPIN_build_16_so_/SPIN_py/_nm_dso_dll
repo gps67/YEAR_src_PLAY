@@ -1,0 +1,2 @@
+nm -A spin_py.so | less +/dso_handle
+nm -A spin_py.so | grep dso_handle

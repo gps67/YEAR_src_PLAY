@@ -1,0 +1,13 @@
+
+<H3> shutdown -h </H3><p>
+	Shutdown the machine, using shutdown -h, and remove the primary
+	path disk, and boot. Booting takes at least 20 minutes, because
+	the system wants to check everything.
+</P>
+
+<H3> let autoboot fail </H3><p>
+	First let it try its own thing, to see what happens. It will
+	detect the missing pri-path disk and should return to the BIOS
+	command line.
+</P>
+

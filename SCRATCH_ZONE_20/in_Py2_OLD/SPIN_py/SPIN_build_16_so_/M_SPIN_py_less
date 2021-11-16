@@ -1,0 +1,5 @@
+# this rebuilds the SPIN module, without rebuilding SP
+. /tools/2005/profile
+
+unset CDPATH
+./MK_SPIN_16_so "${@:-SPIN_py}" 2>&1 | tee -a M-out.txt | less +16G

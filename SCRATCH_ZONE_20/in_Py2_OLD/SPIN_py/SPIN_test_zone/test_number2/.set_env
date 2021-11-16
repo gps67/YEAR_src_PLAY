@@ -1,0 +1,41 @@
+# .set_env
+
+	. ../add_to_path.sh # which is found on PATH !!
+
+# D0 - the directory where SPIN_py is loaded
+
+	D0=`sh -c 'cd ../..; pwd'`
+	echo "D0: $D0"
+
+# D1 - above
+
+	D1=`sh -c 'cd ..; pwd'`
+	echo "D1: $D1"
+
+# D2 - here (This is PRESUMED to be run from '.' probably via mc
+
+	D2=`sh -c 'pwd'`
+	echo "D2: $D2"
+
+# Where is libsp.so - if not installed spin_py.so needs to find it
+
+	add_to_var LD_LIBRARY_PATH $D0/SP_lib
+
+# Where are the scripts libraries
+
+	pfx_to_var PATH ""
+	pfx_to_var PATH $D1/base
+	pfx_to_var PATH $D1/plus
+
+# The document being processed
+
+	base=disk_action_draft
+
+## print PATH
+#
+#	P
+#	type find_X
+
+# trace shell execution
+
+	set -x

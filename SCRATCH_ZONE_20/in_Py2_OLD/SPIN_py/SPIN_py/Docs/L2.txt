@@ -1,0 +1,9 @@
+baks/catalogue
+baks/L1
+baks/L1/L2
+
+	<!doctype L2 ...
+
+
+	This is in the contect of a catalogue for baks
+	Simply calling it L2 means not having to rename "baks" inside

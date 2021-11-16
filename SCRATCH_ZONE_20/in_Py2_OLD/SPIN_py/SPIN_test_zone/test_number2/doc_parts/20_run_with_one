@@ -1,0 +1,33 @@
+<H2> Running with one disk </H2><p>
+
+</P><H3> Check for (no) messages </H3><p>
+	Run lvdisplay on a mirrored LVOL (on the disk you are looking at),
+	and check that it says 'current' on both disks. Check syslog.
+
+</P><H3> Remove either disk </H3><p>
+	You can ONLY remove a disk if it is 'hot-pluggable'. BOX5 has
+	its disks in the external Jamaica cabinets, with those grey/blue
+	levers to pull and reseat disks.
+</P><P>
+	Now remove one of the two disks, by pulling it out by 1/2"
+
+</P><H3> POWERFAIL messages </H3><p>
+	Check syslog, dmesg and lvdisplay. You should see error messages,
+	saying POWERFAIL (on the disk address) but the system still runs.
+	lvdisplay should show errors.
+
+</P><H3> Replace Disk </H3><p>
+	Now firmly/gently put the disk back, and check syslog/dmesg until
+	you see the POWERFAIL/RECOVERED message. That indicates that
+	the disk has been seen and checked by the OS, as being there and
+	functioning correctly.
+
+</P><H3> PE becomes CURRENT </H3><p>
+	Quickly check lvdisplay (rerunning several times) and you will
+	see some physical extents change from ERROR/STALE to current.
+	That is the LVM bringing both sides up-to-date.
+
+</P><H3> Now Normal </H3><p>
+	When that is finished, the system is fully back to normal.
+
+</P>

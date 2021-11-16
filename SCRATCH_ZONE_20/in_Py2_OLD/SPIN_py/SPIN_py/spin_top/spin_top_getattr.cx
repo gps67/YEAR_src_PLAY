@@ -1,0 +1,60 @@
+static PyObject *
+spin_top_getattr(
+	SPIN_top *self,
+	char *name )
+{
+	if(0==strcmp( name, "EH" ))
+	{
+		return self->EH.new_ref() ; 
+	}
+//	if(0==strcmp( name, "dtd_tables_weak" ))
+//	{
+//		return self->dtd_tables.weak.new_ref() ; 
+//	}
+	if(0==strcmp( name, "dtd_tables" ))
+	{
+		return self->dtd_tables.new_ref() ; 
+	}
+	if(0==strcmp( name, "kit" ))
+	{
+		return self->kit.new_ref() ; 
+	}
+	if(0==strcmp( name, "atts" ))
+	{
+		return self->var_pool.new_ref() ; 
+	}
+	// printf(" spin.getattr(%s)\n",name);
+	if (self->var_pool != NULL) {
+		PyObject *ret = PyDict_GetItemString(self->var_pool, name);
+		if (ret) {
+			Py_INCREF(ret);
+			return ret;
+		}
+	}
+	return self->get_attr_tail( SPIN_top_methods, name );
+}
+
+static int
+spin_top_setattr(
+	SPIN_top *self,
+	char *name,
+	PyObject *v )
+{
+	if(0==strcmp( name, "EH" ))
+	{
+		self->EH.claim_this( v );
+		return 0;
+	}
+	if(0==strcmp( name, "dtd_tables" ))
+	{
+		self->dtd_tables.claim_this( (SPIN_dtd_tables*)v );
+		return 0;
+	}
+	if(0==strcmp( name, "kit" ))
+	{
+		PyErr_SetString(PyExc_AttributeError,
+			"pointer to kit is readonly");
+		return -1;
+	}
+	return self->set_attr_tail( name, v );
+}

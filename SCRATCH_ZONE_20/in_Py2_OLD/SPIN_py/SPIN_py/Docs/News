@@ -1,0 +1,163 @@
+Aug-04	Rename
+
+	elem_info_pool -> dtd_tables (still cant read the dtd)
+
+Aug-04	Various work done to date
+
+Aug-04	PY_Object
+
+	Python base class faked in C++, then derived subclasses ...
+
+	This gives a much more C++ style for module types, and even
+	standard things (PyInteger, etc). However I seem to have grown
+	two branches, when one should have been enough ... I have
+	struct types, and I have POINTERS to struct types. Both seem to make
+	sense, until you think about it.
+
+Aug-04	New Examples
+
+	I use spin_py to generate two pages on my web site.
+	They make more sense on this machine, where the external
+	dirs and files exist. (NB this is also an example of generating
+	an output tree, without an input one. This shows the need for
+	the DTD to be ... available to the code .. in a different place)
+
+Aug-03	tree_print now in C++
+
+	Theres still some work to do with the layout flags in elem_info,
+	so that tags appear on own_line when thats suitable
+
+Aug-03	elem_info_pool
+
+	All elem_info's should (usually) be in the same pool.
+
+Aug-03	.add_elem( name, atts, data ) .add_text("already utf8")
+
+	To make tree construction more natural (without any input),
+	you can now use one element to create and append a child element,
+	possibly creating a new elem_info (in the same pool).
+
+Aug-03	PY_Object
+
+	Some C++ work that makes Python a bit different (inconsistent but ...)
+
+Aug-03	EH is the new TOP
+
+	SPIN_TOP holds EH, but EH is the central receiver of events, so it
+	is the axis.
+
+Aug-00	auto_load and new callback model
+
+	You can now tell an elem_info that you want custom callbacks
+
+		ei['H1'].on_element_start = EH.ElementStart_Hn_counter
+		ei['P'].on_element_end = EH.ElementEnd_P_delete_if_empty
+
+	You also set auto_load, and generally you wont get any callbacks
+	for other element start/ends or even Data! They will default to
+	the automatic tree_building process. Other events still happen,
+	so you might create an object and put it in the tree.
+
+	This is new, and the setup for it will change, but it will use
+	similar parameters, like the original model.
+
+Aug-00	write_buffer for output.write() and .flush() and .flush2()
+
+	Added write_buffer.h so that Apache gets a single write request
+	instead of every tag or 50 bytes. The type wraps any type that
+	has write(), optionally flush(), and optionally flush2().
+
+		req = mod_pythons req -or-  open( filename, 'w' )
+		fd = spin_py.SPIN_write_buffer( req, 10*1024, 100*1024 )
+		...
+		fd.write( string )
+		...
+		fd.flush() # otherwise it never gets sent to req.write()
+
+Jul-00	Tried within Apache / mod_python (mod_python-request@modpython.org)
+
+	spin_py.so was immediately OK with mod_python in Apache, but the
+	calling script needs editing to set dirs paths IO etc, and
+	debugging messages go ... where ?
+
+	Perf not amazing though, eg get a plain dir is 45 Hz, test_py is
+	1.5 Hz, and stand-alone is 1.7 Hz, still that better than 10 secs
+	per doc!
+
+	NB: bugs might include mem leakage, or <!entity % pw /etc/passwd>
+
+Jul-00	Different Demo - numbers H1 in an HTML document
+
+	Lots of old text removed, and the demo replaced.
+	Now it takes a simple HTML document, numbers each heading,
+	and puts up an intro section with the index. (not re-num)
+
+Jun-00	line_buffer script added
+
+	This attempts primitive word wrapping, and implements the
+	indentation, and some 8859-to-sdata convertion (&lt;).
+	Would probably be better in C. Needs downstream buffer!
+
+Jun-00	Minor fix to SPIN_elem_info calling new_SPIN_elem_info
+
+	Started re-reading this code, uphill, and no TCL object model.
+	NB config.h no-longer needs an edited version
+	Makefiles are now more relocatable (want single top dir?)
+
+Oct-99	SP_lib/spin_py.so
+
+	this is the new location of the binary,
+	it still has to symb-linked from . (or installed properly)
+	beware of using an 8 bit or 16 bit version by mistake
+
+Oct-99	SPIN_App.cxx -renamed- SP_App
+
+	SPIN_App is now called SP_App, (SPIN is an SP app, generic API),
+	that now leaves the way for app_link to become a SPIN_App ...
+	(a name that is currently unused)
+
+Oct-99	Moving code from SPIN_App to app_link
+
+	app_link is growing to do the calls to the app (Python)
+(todo:)	lots more mk_something() required, mk_enum_xxx also
+
+Sep-99	Pear shaped ...
+
+	The C and the Py code stopped working, so I reduced the Py code
+	down to  test-load, and commented out chunks of the C code.
+
+	There is a new elem_obj which works, and a text_obj which doesn't.
+	The  text_collector_utf probably isn't, and currently it
+	double-strikes everything, to make it standout and to prove 
+	that its there.
+
+	It compiles, and pretty prints a dump of the loaded SGML
+	tree, plus the base spin_eh.py code is a tad simpler for you to
+	create your own system.
+
+	Space migration still works (to cross one level of tag), but
+	things like two spaces between sentences would require a re-think
+	(to only absorb spaces around newlines). That is not planned,
+	so if its a problem, set is_pre on your top element (ARTICLE)
+	and do it in script.
+
+	Just for a laugh, the test-load example loads an HTML file.
+
+	The SP engine stops at 10 errors! The generic interface
+	(which is easier than ParserApp) has no way of changing that!
+
+	Due to compile problems with gcc-2.95, I've included the
+	libsp16-1.3.so  file, which make this 100K package almost
+	a megabyte. It does compile, but not on new C++ systems,
+	and not on non-gnu-precision architectures.
+	("most likely ..." <impressive plausable-sounding rubbish here>)
+
+ Apr-99 Easier to not install ...
+
+	Whilst making your first steps,
+	its very frustrating to have to setup /etc/sgml
+	and /usr/lib, and ...
+
+	So I fixed that a bit.	Now you will have problems if your
+	OS doesn't understand LD_LIBRARY_PATH
+

@@ -1,0 +1,17 @@
+# this is from httpd.conf
+# see mod_python docs for more details
+
+# it will push all requesta in that dirs onto the one script
+# which might then look at the parameters, or original URI, etc
+# (it doesn't, it just runs spin on a file, edit the paths!)
+
+
+<Directory "/tools/1999/serv2/htdocs/py">
+#    AllowOverride FileInfo
+
+      AddHandler python-program .py
+      PythonHandler test
+      PythonDebug On
+
+</Directory>
+ 

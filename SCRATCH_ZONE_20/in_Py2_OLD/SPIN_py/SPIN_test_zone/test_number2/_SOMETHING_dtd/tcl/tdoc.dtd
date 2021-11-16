@@ -1,0 +1,42 @@
+<!entity % plist "(P|PRE|OL|UL|HR|LIST)*" >
+<!entity % ptext "(#PCDATA|UL|OL|AHREF|A|CODE|TT|B|I|U)*" >
+<!entity pend '</P>' >
+<!entity titleend '</TITLE>' >
+<!entity psplit '</P><P>' >
+<!-- gen_file -->
+<!shortref titlemap
+	"&#RS;B&#RE;" titleend
+	"&#RS;&#RE;" titleend>
+<!element title o o ( %ptext ) >
+<!usemap titlemap title>
+<!element S0 - o (title, intro, plist?, S1*) >
+<!element S1 - o (title, intro, plist?, S2*) >
+<!element S2 - o (title, intro, plist?, S3*) >
+<!element S3 - o (title, intro, plist?) >
+<!element intro - o ( P ) >
+<!element plist o o ( %plist ) >
+<!shortref pmap
+	"&#RS;B&#RE;" pend
+	"&#RS;&#RE;" pend>
+<!element P o o ( %ptext ) >
+<!usemap pmap P>
+<!element PRE - o ( %ptext ) >
+<!element UL o o ( LI* ) >
+<!element OL o o ( LI* ) >
+<!element LI o o ( %ptext ) >
+<!element LIST o - ( ITEM+ ) >
+<!element ITEM o - ( %ptext ) >
+<!element B o o ( %ptext ) >
+<!element CODE o o ( %ptext ) >
+<!element AHREF o o ( %ptext ) >
+<!element A o o ( %ptext ) >
+<!element TT o o ( %ptext ) >
+<!element TITLEPAG - o ( TPTITLE, TPAUTHOR, TPDATE, TPABSTRACT ) >
+<!element TPTITLE - o (%ptext) >
+<!element TPAUTHOR - o (%ptext) >
+<!element TPDATE - o (%ptext) >
+<!element TPABSTRACT - o (%ptext) >
+<!element tdoc o o ( (titlepag, S0+) ) >
+<!attlist tdoc 
+        date cdata   "2000-01-01"
+        dbid cdata   "" >

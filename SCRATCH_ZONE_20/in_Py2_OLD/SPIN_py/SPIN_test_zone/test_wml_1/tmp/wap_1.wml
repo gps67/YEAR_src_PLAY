@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.2.1//EN" "http://www.wapforum.org/DTD/wml13.xml">
+
+<WML>
+ <CARD id="card1" title="DEMO TITLE">
+  <P>
+   <SMALL><A HREF="frio_128_128.jpg">frio_128_128.jpg</A>
+    <BR/>
+    <A HREF="frio_128_160.jpg">frio_128_160.jpg</A>
+    <BR/>
+    <A HREF="uk_128_128.jpg">uk_128_128.jpg</A>
+    <BR/>
+    <A HREF="uk_128_160.jpg">uk_128_160.jpg</A>
+    <BR/>
+    OK?</SMALL></P>
+  <P>
+   <SMALL><A href="http://m.google.co.uk">m.google</A>
+    <BR/></SMALL></P>
+  <P>
+   <SMALL><A href="http://maps.google.co.uk">maps.google</A>
+    <BR/></SMALL></P>
+  <P>
+   <SMALL><A href="target3.wml">target2</A>
+    <BR/></SMALL></P></CARD></WML>

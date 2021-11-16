@@ -1,0 +1,12 @@
+print_tree should handle:
+
+	<TAG attr="quoted string with spaces">
+
+and ensure that wrap_point() isnt called within the string.
+EG SVG witha  lot of attribute might hit this
+
+ALSO:
+	wrap_point combined with queued_spaces
+	tracks location of the next character
+	if overflow, divert away, splice CRLF_Indent, replace
+	Plus: try to keep low number of trailing "> in same line

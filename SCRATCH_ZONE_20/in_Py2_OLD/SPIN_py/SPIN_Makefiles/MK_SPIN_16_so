@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+
+# -g is switched on # buts its not supposed to be
+
+# to install this do the following:
+#	cd /usr/src/sp
+#	mkdir SPIN_build_16_so
+#	cd    SPIN_build_16_so
+#	ln -s ../SPIN_Py/Makefiles/MK_SPIN_16_so .
+#	./MK_SPIN_16_so
+# and a tree of object files will magically appear
+# you "might" have to edit Makefiles/* to set a few option
+# then look in SPIN_Py/test/ for scripts to run 
+
+# this is the "not-debugging, shared, unicode version"
+# thats 3 binary options making (upto) 8 builds
+# you might also want TCL to be .so or .a, edit to suit
+# NB Python doesn't dirctly do unicode, it gets chopped to 8859
+# even so I think that '16' bit unicode is the way to go
+
+# the role of this file is a preamble to the main Makefile
+# the role of the top level makefile is to make the subdirs
+# here is where you set (1) debug (2) shared lib (3) unicode
+
+# switch debug off and opim on
+
+	#OPT_DEBUG=
+	OPT_DEBUG=-g
+#	OPT_OPTIM=-O2
+
+# select 16-bit unicode not 8-bit 8859, 
+# thats a compilation flag AND part of the libsp16-1.3.so name
+
+	OPT_CSET=-DSP_MULTI_BYTE 
+	OPT_LIBNAME=osp
+#	OPT_LIBNAME=osp
+#	OPT_LIBNAME=sp16-1.3
+#	OPT_LIBNAME=sp
+
+# this is the shared .so library version ...
+
+	# compile all code with pos indep code and global vectors
+	OPT_PIC=-fPIC
+
+	# filename calculation
+	OPT_LIB_EXT=so
+
+	# link with -shared
+	# OPT_SHARED=-shared
+	# not required as it's hard coded into rule that creates .so!
+
+# now include the generic rest of this makefile
+
+	include ../SPIN_Makefiles/MK_SPIN_top_2

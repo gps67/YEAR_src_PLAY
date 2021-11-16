@@ -1,0 +1,49 @@
+
+<H3> System Now Up  -- on one disk </H3><p>
+	Quickly test that Informix is functioning at all, check syslog.
+
+</P>
+
+<H3> Replace Primary Disk </H3><p>
+	Now return the missing disk, by gently pushing the lever (over
+	a catch). The LED will blink, and there may even be a SCSI bus
+	reset as the controller detects it.
+
+</P>
+
+<H3> ioscan detect disk </H3><p>
+	HPUX will not know its back, or even that it exists! You need
+	to run <CODE>ioscan</CODE>, without the -k option (from kernel
+	memory), but probably with -fn and through pg.
+</P><p>
+	The HPUX kernel now knows that the device exists, but the LVM
+	is still running without it. (I'm presuming the replacement
+	disk is the original disk, with the old LVM info on it. If not,
+	you will need to check vgcfgrestore in the manual pages and the
+	Admin-Tasks-Guide -- again -- if that ever really happens the
+	HP engineer will do that with you).
+
+</P>
+
+<H3> vgsync </H3><p>
+	<CODE>vgsync</CODE> is required to tell the LVM to look-for,
+	find and re-sync with the disk. Notice that you didn't do that
+	when you didn't boot. You must do it this time, because the LVM
+	has completely forgotten about the absent disk, and is not polling
+	to find it.
+
+</P>
+
+<H3> stale/error becomes current </H3><p>
+	<CODE>lvdisplay -v /dev/vg00/lvol11</CODE> will show you lots
+	of physical extents in error or stale, but repeated running will
+	show you the LVM bringing each PE back into CURRENT status.
+
+</P>
+
+<H3> System Now Up - on both mirrors </H3><p>
+	You can now proceed, or if superstitious, you can do a full
+	normal, unattended reboot, to be sure.
+</P>
+
+

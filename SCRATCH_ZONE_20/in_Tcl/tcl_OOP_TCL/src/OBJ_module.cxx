@@ -499,6 +499,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 		INFO("got array_get");
 	// gdb_invoke(false);
 	// gdb_break_point();
+
 			// convert obj_id to LIST
 			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
 				// get PTR2 into LIST without touching ref_count
@@ -512,9 +513,25 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 					return TCL_OK;
 				} else
 					return TCL_ERROR;
-			} else {
-				WARN("expected TYPE_VECT");
 			}
+
+			// convert obj_id to LIST
+			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+				// get PTR2 into DICT without touching ref_count
+				TCL_DICT DICT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+				print_tcl_obj( (Tcl_Obj*) obj_id, "obj_id" );
+				print_tcl_obj( (Tcl_Obj*) DICT.dict, "DICT with bad refcount" );
+				int pos = 0;
+		/* DIFF */		TCL_LIST RET_VAL(interp);
+				if(DICT.array_get( interp, RET_VAL )) {
+					Tcl_SetObjResult( interp, RET_VAL.list );
+					return TCL_OK;
+				} else
+					return TCL_ERROR;
+			}
+
+			WARN("expected TYPE_VECT or DICT");
+			return TCL_ERROR;
 		}
 
 		if( match_LIST_ALL.MATCHES(cmd0) ) {
@@ -618,17 +635,34 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 		} 
 
 		if( match_array_set.MATCHES(cmd0) ) {
+
 			// convert obj_id to LIST
-			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
 				TCL_LIST LIST( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
 				int pos = 0;
 				Tcl_Obj * VAL = objv[3];
 				if(LIST.array_set( interp, VAL )) {
 					// return what ?
+	Tcl_SetObjResult( interp, objv[3] );
 					return TCL_OK;
 				} else
 					return TCL_ERROR;
 			}
+
+			// convert obj_id to DICT
+			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
+				TCL_DICT DICT( interp, (Tcl_Obj **) TCL_get_EA_PTR2(obj_id));
+				int pos = 0;
+				Tcl_Obj * VAL = objv[3];
+				if(DICT.array_set( interp, VAL )) {
+					// return what ?
+	Tcl_SetObjResult( interp, objv[3] );
+//	Tcl_SetObjResult( interp, DICT.dict );
+					return TCL_OK;
+				} else
+					return TCL_ERROR;
+			}
+
 		} else
 
 		;

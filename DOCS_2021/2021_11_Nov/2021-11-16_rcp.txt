@@ -1,0 +1,26 @@
+	2021-11-16
+
+	2021_11_Nov
+	2021-11-16_rcp.txt
+
+	rsync fails half way
+
+		sort of spoils the point of using rsync (local)
+		not much luck with kill + restart (or worse?)
+
+		that was with WiFi
+		eth0 gigabyte ran OK with plain mc / cp
+
+		generally fails were "io error"
+		previous problems were ONLY on close of file
+		which left the mtime uid perms unset
+	
+	Still need for scp tcp ... with lzo on queue
+
+		when idle, pre-compress AOT upto DEPTH
+		when moving, top-up queue,
+		when queue collapses, jump over queued ?
+
+
+
+

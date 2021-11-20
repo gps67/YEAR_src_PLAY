@@ -1,0 +1,37 @@
+	2021-11-17
+
+	2021_11_Nov
+	2021-11-17_u64_WORDS.txt
+
+	u48_u8_u8	u3  from _u48  u45_u3
+	u32_u16_u8_u8 	u2  from  u32  u14_u2  u13_u3 //
+	u32_u32	
+
+	u3 extracted from u48, when pointer is aligned to word
+	u32_u32 can have unused u16, so all of u13+u3 available
+	OPTION u3==0 means normal PTR2 else action required
+
+	u32_u16_u8_u8   u2 from u32 align4 u3 align8 // 386 OPCODE EA[i*8]
+	u8_subclass
+	u8_N_value
+	u16_idx_in_bind_world
+	+ u16_idx_of_type	# allow extra u6 from typePtr PLUS (u_any)
+
+		IDX = TYPE_xff_sub_xFFFF_idx
+
+		TYPE_xff_sub . WORDS[ u16 ]
+
+			"TYPE" is one of 100 types
+			xff_sub is u8_subtype of TYPE
+			xFFFF is u16 in this POOL
+
+			if NITEMS > u16 { create new TYPE21b }
+	
+	array [ u8 ] of u64_WORD
+
+		Q: belongs to whom?
+
+		USAGE: objv[u8] // u4 would also be plenty
+
+
+

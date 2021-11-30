@@ -1,5 +1,7 @@
 #include "TCL_LIST.h"
 
+using namespace TCL;
+
 	bool TCL_LIST:: test(  Tcl_Interp * interp )
 	{
 		int pos;

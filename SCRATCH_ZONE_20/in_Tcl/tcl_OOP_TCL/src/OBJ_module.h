@@ -6,9 +6,10 @@
 #include "TCL_DICT.h"
 #include "TCL_HASH.h"
 #include "TCL_MATCHER.h"
-#include "TCL_TYPE.h"
 
-#include "TCL_Obj_Type_PLUS.h" // LEX1
+// #include "TCL_ObjType_PLUS.h" // LEX1
+#include "TCL_PLUS_BASE.h" // remove LEX1 though !?
+namespace TCL {
 
 
 #if 0
@@ -89,9 +90,15 @@ class OBJ_module
 	typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
 	KEPT_PTR_type KEPT_PTR;
 
+ // OK THE WEAKNESS //
+ // KEPT_PTR // is in OBJ_module * clientData; // provided to FUNC OBJ_OBJ
+ // PLUS knows more about itself than we do // 
+ // SO // CACHE // via nearest local pointer //
+ // a sensible thing would make interp a field of _Module
+
 	bool is_PLUS_type( const Tcl_Obj * obj )
 	{
-		// obj is not NULL
+		// NEED // KNOW // obj is not NULL
 		return is_PLUS_type( obj->typePtr );
 		// if(!obj->typePtr) return false;
 		// return  obj->typePtr -> dupIntRepProc == KEPT_PTR;
@@ -103,27 +110,28 @@ class OBJ_module
 		return  typePtr -> dupIntRepProc == KEPT_PTR;
 	}
 
-	bool get_PLUS_type( const Tcl_Obj * obj, TCL_ObjType_PLUS *& PLUS )
+	bool get_PLUS_type( const Tcl_Obj * obj, TCL_PLUS_BASE *& PLUS )
 	{
-		if( !is_PLUS_type( obj )) return false;
-		// see _PLUS.h
-		PLUS = get_PLUS_from_typePtr( obj->typePtr );
-		return true;
+		return TCL_PLUS_BASE:: get_PLUS_type( obj, PLUS );
+//		if( !is_PLUS_type( obj )) return false;
+//		// see _PLUS.h
+//		PLUS = get_PLUS_from_typePtr( obj->typePtr );
+//		return true;
 	}
 
-	TCL_ObjType_PLUS * get_PLUS_type( const Tcl_Obj * obj )
+	TCL_PLUS_BASE * get_PLUS_type( const Tcl_Obj * obj )
 	{
 		if( !is_PLUS_type( obj )) return NULL;
 		// see _PLUS.h
-		return get_PLUS_from_typePtr( obj->typePtr );
+		return (TCL_PLUS_BASE*) get_PLUS_from_typePtr( obj->typePtr );
 	}
 
  public:
-	TCL_ObjType_LEX1 * TYPE_LEX1;
-	TCL_ObjType_LEX2 * TYPE_LEX2;
-//	TCL_ObjType_PLUS * TYPE_PLUS;
-	TCL_ObjType_DICT * TYPE_DICT;
-	TCL_ObjType_VECT * TYPE_VECT;
+	TCL_PLUS_LEX1 * TYPE_LEX1;
+	TCL_PLUS_LEX2 * TYPE_LEX2;
+//	TCL_PLUS_PLUS * TYPE_PLUS;
+	TCL_PLUS_DICT * TYPE_DICT;
+	TCL_PLUS_VECT * TYPE_VECT;
  public:
  	OBJ_module( Tcl_Interp * interp );
 
@@ -136,7 +144,7 @@ class OBJ_module
 	bool new_OBJ_type(
 		Tcl_Interp * interp,
 		Tcl_Obj ** RET_VAL,
-		TCL_ObjType_PLUS * TYPE_PLUS
+		TCL_PLUS_BASE * TYPE_PLUS
 	);
 
 	bool test( Tcl_Interp * interp )
@@ -159,4 +167,5 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder );
 
 ///////////////////////////////////////////////
 
+}; // namespace
 #endif

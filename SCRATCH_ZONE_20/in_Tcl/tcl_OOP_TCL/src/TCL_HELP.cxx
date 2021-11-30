@@ -5,6 +5,7 @@
 #include "TCL_HELP.h"
 
 // this shows that "SET" in a script, appears as a NULL type string value
+namespace TCL {
 
 char * P64( void * PTR )
 {
@@ -100,3 +101,4 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	return Tcl_NewStringObj( str, -1 );
 }
 
+}; // namespace

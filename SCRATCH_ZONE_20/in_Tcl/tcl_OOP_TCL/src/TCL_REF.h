@@ -5,6 +5,8 @@
 #include "TCL_PTR.h"
 #include "TCL.h"
 
+namespace TCL {
+
 /*!
 	a smart pointer to a Tcl_Obj
 
@@ -66,5 +68,6 @@ struct TCL_REF : public TCL_PTR {
 
 };
 
+}; // namespace
 #endif
 

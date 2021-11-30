@@ -47,6 +47,7 @@ TRUSTED MODULE
 	By using "optical::OBJ" as the function name
 	the namespace is auto_created.
 */
+using namespace TCL;
 
 extern "C"
 // int Optical_Init( Tcl_Interp *interp )
@@ -99,6 +100,17 @@ MODULE_INIT( Optical )
 
 	if( TCL_OK != declare_OBJ_functions( interp, decoder ))
 	 return TCL_ERROR;
+
+	int exact = 0;
+	Tcl_PkgRequire(interp, "PLUS", "0.1", exact);
+	// clientData for a Package means what ??? // OBJ_module ??
+	// that is the clientData for the function
+	// how to get for the package - would be slow //
+	// require info probably tells // seems more Pkg info
+
+	INFO("PLUS");
+	gdb_invoke(false);
+
 
 	return TCL_OK;
 }

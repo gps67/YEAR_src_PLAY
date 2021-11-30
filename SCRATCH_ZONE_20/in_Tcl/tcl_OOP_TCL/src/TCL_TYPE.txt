@@ -1,4 +1,8 @@
 
+ TCL_PLUS is the new TCL_TYPE
+ it uses VTBL and a tree of logic
+ ZZ
+
  TCL_TYPE is a bit of a misnomer
  
  	it knows "is_an_extension_type"

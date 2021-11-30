@@ -1,0 +1,137 @@
+	
+	trace_var
+	bind_C_var	u32 i32 u64 i64 f32 f64 WORD_u64_WORD
+	script_invoke
+
+		funcname A R G S ;# funcname == func_name_of_ARGV_0 ARGV[0]
+	
+	MATCH script fragment ;# within COMMENT ;# witin SCRIPT
+
+		MULTI VIEW
+	
+	lookup {
+
+		func_link == "[ func_name_of_ARGV_0 ARGV[0] ]"
+
+	 CODE_LABEL:
+
+		table = link to $table // compiled CT AUTO_EXPORT_TABLE
+		func_name_of_ARGV_0 // ==  SELF // == lookup $0 table
+		ARGV == $ARGV // dialect $var as VARNAME // IS_ARGV_VECTOR
+	 	ARGV_0 = ARGV[ 0 ]
+
+	
+	}
+
+#################
+
+	mki.tcl	
+	OBJ_ARGV.txt		scribbles
+	OBJ_tokeniser.txt
+	_TODO_.txt
+	tcl_Optical.txt
+
+	TCL.h		#include <tcl.h> // within IFNDEF
+
+	TCL_STUBS.h	namespace and types
+
+	tcl_oop_tcl.cxx
+	tcl_oop_tcl.h
+			DECL LIBR for load library
+			initialises module
+			DECL API OBJ_OBJ
+
+	OBJ_module.cxx
+	OBJ_module.h
+			Module * clientData 
+			 static LITERAL_MATCHER match_%s( interp, "%s" )
+
+				 match_NAME( interp, "NAME" )
+	TCL_HELP.cxx
+	TCL_HELP.h
+			these to be moved to _LIST _DICT _PLUS _PTR
+
+	TCL_PTR.cxx
+	TCL_PTR.h	Tcl_Obj * PTR;
+
+			ref_incr 
+			get_str
+			get_PTR2
+			set_PTR2
+			get_type_name
+
+	TCL_REF.cxx
+	TCL_REF.h
+			REF = PTR += ref_count
+
+	TCL_DICT.cxx
+	TCL_DICT.h
+			TCL_DICT DICT
+			.dict 
+			.GET( interp, key, RET_VAR )
+			.SET( interp, key, VAL )
+			.DEL( interp, key )
+			.NN( interp, N_var )
+			.array_get( interp, RET_VAR_LIST )
+			.array_set( interp, VAL_LIST )
+
+	TCL_HASH.cxx
+	TCL_HASH.h
+			// NO // using DICT instead
+			// REVIEW // LATER
+
+	TCL_LIST.cxx
+	TCL_LIST.h
+			NN
+			GET array_get 
+			SET array_set
+			ADD( interp, &ret_pos, ITEM )
+			GET_LIST_COPY
+
+	TCL_MATCHER.cxx
+	TCL_MATCHER.h
+			LITERAL_MATCHER match_NAME( interp, NAME )
+
+	TCL_TYPE.cxx
+	TCL_TYPE.h
+	TCL_TYPE.txt
+			OLD attempt - used STR0 type_name is_own_type
+
+	TCL_ObjType_PLUS.cxx
+	TCL_ObjType_PLUS.h
+
+			BASE class of our various _PLUS types
+			VTBL means a trick is needed to convery
+			obj => PLUS_TYPE
+
+	TCL_ObjType_PLUS & PLUS
+
+		PLUS = get_PLUS_from_obj( obj ) || NULL
+
+		PLUS.TCL_set_PTR2_incr( obj, P2 )
+		PLUS.TCL_set_PTR2_no_incr( obj, P2 )
+	 -SETUP-
+	 	Register_ObjType()
+		set_funcs_NULL() // standard Tcl_ObjType_stuff
+		set_funcs_BASE() // standard Tcl_ObjType_stuff
+
+
+
+
+
+#########################
+
+
+	TODO	NO_VAL
+
+		SCRIPT moves all CT ppoints to NO_VALS
+		ID's of VARS holding VAL
+		ID's of VALS in STATE -mid-expr-
+
+		When VAL is actually required,
+		GET and CACHE
+		when not, leave EXPR as PXPR
+		when if(val=="val") leave as expr for RT ## AND_OR compile
+	
+
+

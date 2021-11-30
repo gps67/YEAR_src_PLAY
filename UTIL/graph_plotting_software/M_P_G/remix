@@ -1,0 +1,2 @@
+cat mpg*txt | sort -u | tee fa | ./read1.exec - | less
+# cat mpg*txt | sort -u | tee $0.out

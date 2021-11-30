@@ -5,6 +5,8 @@
 #include "TCL_MATCHER.h"
 #include "buffer1.h" // buffer1 print
 
+using namespace TCL;  
+
 /*!
 	OBJ_MODULE * obj_module == ClientData == a CPU register
 	OBJ_ARGV_helper * ARGV_helper == a local var
@@ -47,7 +49,7 @@ OBJ_module:: OBJ_module( Tcl_Interp * interp ) // CTOR
 	TYPE_VECT = get_TYPE_VECT(); // build it
 	// a TYPE_obj is not a Tcl_Obj just a STRUCT*
 
-	// see also TCL_Obj_Type_PLUS.h
+	// see also TCL_PLUS_BASE.h
 	// obtain addr of link loaded function
 	KEPT_PTR = PLUS_MYTYPE_DupInternalRepProc;
 }
@@ -79,7 +81,7 @@ bool OBJ_module:: new_OBJ_DICT( Tcl_Interp * interp, Tcl_Obj ** RET_VAL )
 bool OBJ_module:: new_OBJ_type(
 	Tcl_Interp * interp,
 	Tcl_Obj ** RET_VAL,
-	TCL_ObjType_PLUS * TYPE_PLUS	// or make this a PLUS type .ABB
+	TCL_PLUS_BASE * TYPE_PLUS	// or make this a PLUS type .ABB
 )
 {
 	if(!RET_VAL) {
@@ -252,7 +254,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 
 	// libs_apps used to love gdb insight // but red hat forgot how what why
 
-	//  gdb_invoke(false);
+	 gdb_invoke(false);
 	//  gdb_break_point();
 
 	// OBJ $obj GET fielname
@@ -715,8 +717,9 @@ CXX_PROTO_T( OBJ_test1, OBJ_module * decoder )
 }
 
 
+// require TCL:: // using namespace not enough // CALAS yes FUNC no
 // extern 
-int declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder )
+int TCL:: declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder )
 {
 	Tcl_CmdDeleteProc * deleteProc = NULL; // for now
 	Tcl_Command token;
@@ -763,7 +766,6 @@ int declare_OBJ_functions( Tcl_Interp * interp, OBJ_module * decoder )
 
 	return TCL_OK;
 }
-
 
 /*	ALIAS u8_u8 { u8_spec u8_N }
 	u8_spec {

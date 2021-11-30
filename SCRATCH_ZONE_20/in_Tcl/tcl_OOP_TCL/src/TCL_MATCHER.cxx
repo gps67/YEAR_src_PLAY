@@ -1,8 +1,10 @@
 #include "TCL_MATCHER.h"
 #include <string.h>
+using namespace TCL;
 
+// NB require TCL:: because FN not a CLASS // CMP 
 extern
-bool CMP( Tcl_Obj * obj, const char * str )
+bool TCL:: CMP( Tcl_Obj * obj, const char * str )
 {
 	// this gets string rep of Literal // also anystr
 	const char * str_word = Tcl_GetString( obj );
@@ -272,3 +274,4 @@ bool LITERAL_MATCHER:: SEE_C_upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 ) {
 }
 #endif
 
+// }; // namespace

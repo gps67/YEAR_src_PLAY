@@ -10,9 +10,17 @@
 	struct Tcl_Obj;
 	struct Tcl_Interp;
 
+ namespace TCL {
+
+	class OBJ_module;
+
+	class TCL_PLUS_LEX1;
+	class TCL_PLUS_BASE;
+
 	struct TCL_REF;
 	struct TCL_LIST;
 	struct TCL_DICT;
+ };
 
 	// usually defined elsewhere
 	// see stdint.h

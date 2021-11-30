@@ -4,6 +4,7 @@
 #include "TCL.h"
 
 
+namespace TCL {
 /*!
 	a plain Tcl_Obj *
 
@@ -123,5 +124,6 @@ public:
 
 };
 
+}; // namespace
 #endif
 

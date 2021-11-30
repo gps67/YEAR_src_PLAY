@@ -7,6 +7,8 @@
 #include "TCL_HELP.h" // PTR1 PTR2
 // #include "dgb.h" // FAIL
 
+namespace TCL { // ##################################### TCL ####
+
 // this is poly_essence (not polymorphic)
 // local definition of GET_KEPT_PTR is used 
 // not the one in this file
@@ -16,7 +18,7 @@
 // strong type makes it a sensible thing
 
 typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
-// ie void (*) func( Tcl_Obj *srcPtr, Tcl_Obj *dupPtr );
+// ie void (*) func( Tcl_Obj *src, Tcl_Obj *dst );
 
 
 // PTR to this function is the actual KEPT_PTR
@@ -25,7 +27,7 @@ typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
 // which might be faster, than the ELF symbol WRT PC, or other
 extern "C" 
 void
-PLUS_MYTYPE_DupInternalRepProc( Tcl_Obj *srcPtr, Tcl_Obj *dupPtr );
+PLUS_MYTYPE_DupInternalRepProc( Tcl_Obj *src, Tcl_Obj *dst );
 
 
 // see the KEPT_PTR is that function
@@ -52,15 +54,6 @@ GET_KEPT_PLUS_PTR_GLOBAL() {
 // to PLUS_MYTYPE_DupInternalRepProc 
 // that casts it's typePtr to TCL_ObjType_PLUS  // not VTBL
 // that then reads a tag to see which GENRE of EXTN it is
-
-enum PLUS_method_tag
-{
-	PLUS_Dup_,
-	PLUS_STR_UDEF_,
-	PLUS_STR_OBJ_2X,
-	PLUS_STR_obj_X,
-	PLUS_STR_obj_str,
-};
 
 
 /*
@@ -89,6 +82,7 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 
 	virtual ~TCL_ObjType_PLUS()
 	{
+		set_funcs_NULL(); 
 		INFO("UNCALLED DTOR");
 	}
 
@@ -101,24 +95,10 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 	const char * alias_one_ABB; // when not UDEF_25 UDEF_LEX1 or "LEX1"
 	// "LEX1"
 
+// UNUSED starts HERE
 	const char * alias_one_LONG;
 	// "UDEF_25_LEX1" // LEX1 is also an STR4 // with NUL
 
-
-	/*
-		you must set dupIntRepProc_PLUS
-
-		OPTION of having Register do it,
-		as that would enable the choice of DUP DEL STR CAST
-		but not
-
-		Maybe make them all "hard to see" and use SETTERS
-		maybe just remember to set the _PLUS
-
-	*/
-
-	// Tcl_UpdateStringProc *updateStringProc;
-	Tcl_DupInternalRepProc *dupIntRepProc_PLUS;
 
 	/*
 		now _PLUS attempts to describe the extra features
@@ -142,11 +122,12 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 	virtual bool PTR2_CTOR(Tcl_Obj * obj) { TCL_set_PTR2(obj,NULL); return true; };
 	virtual bool PTR2_DTOR(Tcl_Obj * obj) { TCL_set_PTR2(obj,NULL); return true; }; 
 
+// UNUSED UPTO HERE
+
 	TCL_ObjType_PLUS( const char * ABB )
-//	: Tcl_ObjType()
-	: dupIntRepProc_PLUS( NULL )
 	{
-		set_funcs_NULL(); // Register calls set_funcs()
+		set_funcs_NULL(); 
+		set_funcs_BASE();  
 		alias_one_ABB = ABB;
 		alias_one_LONG = ABB;
 //		alias_two_ABB = NULL;
@@ -160,12 +141,14 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		INFO("CTOR '%s'", name );
 	}
 
+#if 0
 	TCL_ObjType_PLUS()
 	: Tcl_ObjType()
 	{
 		alias_one_ABB = "UNSET";
 		alias_one_LONG = "UNSET";
 	}
+#endif
 
 	void set_funcs_NULL()
 	{
@@ -179,19 +162,26 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		dupIntRepProc = NULL;
 		updateStringProc = NULL;
 		setFromAnyProc = NULL;
-
-		dupIntRepProc_PLUS = NULL;
 	}
 
 	void set_funcs_BASE();
-	virtual void set_funcs();
 	/* each class sets own functs */
-
 	// caller must set the funcs
-
-	bool check_funcs_not_NULL();
+	// or not rewriting this to always use VTBL
+	// or maybe not for most common // have a NULL that could do more
 
 	bool Register_ObjType();
+	// nb these return bool even though Tcl might return void
+ virtual
+	bool VTBL_FreeInternalRepProc( Tcl_Obj *obj );
+ virtual
+	bool VTBL_DupInternalRepProc( Tcl_Obj *src, Tcl_Obj * dst );
+ virtual
+	bool VTBL_UpdateStringProc( Tcl_Obj * obj );
+ virtual
+	bool VTBL_SetFromAnyProc( Tcl_Interp *interp, Tcl_Obj *obj );
+
+ // CAST // Tcl_ObjType <--> Tcl_ObjType_PLUS <--> TCL_PLUS_BASE // 
 
 	operator Tcl_ObjType * ()
 	{
@@ -199,29 +189,32 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 		FAIL("AUTO CAST"); // never called ?
 		// it is not a FAIL but that is more visible
 		return this;
+		// ie unexpected behaviour from CAST (type *)
+		// need to scribble some RTFM explains
 	}
 
 	Tcl_ObjType * plain()
 	{
-		INFO("MANUAL CAST"); // manually called !
+		INFO("MANUAL CALLED CAST"); // manually called !
 
 		// I dont know why the manual is needed
-		Tcl_ObjType * self1 = this; // C++ did cast +8
+		Tcl_ObjType * self_BASIC = this; // C++ did cast +8 // not above
 
-	// forwards	Tcl_ObjType * self2 = get_typePtr_from_PLUS(this);
+// forwards	Tcl_ObjType * self_BASIC_another = get_typePtr_from_PLUS(this);
+		Tcl_ObjType * self_BASIC_another = (Tcl_ObjType*) (this);
+		// self_BASIC_another never triggered operator
+		// C++ did cast +8 // but not operator cast above
 
-		Tcl_ObjType * self2 = (Tcl_ObjType*) (this);
-		// self2 never triggered operator
+		char * EA_self_PLUS = (char *) this; // PLUS as char *
+		char * EA_self_BASIC = (char *) self_BASIC; // BASIC as char *
 
-		char * self3 = (char *) this; // PLUS as char *
-		char * self1b = (char *) self1; // BASIC as char *
-		if( self3 == self1b ) {
-			INFO("SAME");
+		if( EA_self_PLUS == EA_self_BASIC ) {
+			FAIL("SAME");
 		} else {
-			INFO("DIFF %d", (int)(self1b - self3));
+			INFO("DIFF %d", (int)(EA_self_BASIC - EA_self_PLUS));
 			/*
 				This shows as DIFF 8
-				so self1 had an auto cast of +8
+				so self_BASIC had an auto cast of +8
 			*/
 		}
 
@@ -273,6 +266,28 @@ Tcl_ObjType      * get_typePtr_from_PLUS(TCL_ObjType_PLUS * PLUS ) {
 }
 
 inline
+TCL_ObjType_PLUS * get_PLUS_from_typePtr_RAW( const Tcl_ObjType * PLAIN ) {
+
+	// RAW means no check // caller often KNOWS
+
+	
+	// imagine a PLUS at EA_PLUS
+	TCL_ObjType_PLUS * EA_PLUS;
+	// EA_PLUS -> name used to be at offset ZERO
+	// so adj = offsetof( name )
+	// int adj = offsetof( struct TCL_ObjType_PLUS, name );
+//	int adj = offsetof( struct TCL_ObjType_PLUS, name );
+	int adj = (long) (u8*) &( EA_PLUS->name ) - (long) (u8*) EA_PLUS;
+	// compiler should optimise out the above // adj == 8
+
+	// so now subtract adj from PLAIN to get PLUS // EA == PTR
+	u8 * PTR = (u8*) PLAIN;	
+	PTR -= adj;
+	INFO("CAST adj = %d", adj );
+	return (TCL_ObjType_PLUS *) PTR;
+}
+
+inline
 TCL_ObjType_PLUS * get_PLUS_from_typePtr( const Tcl_ObjType * PLAIN ) {
 
 	if(!PLAIN) return NULL;
@@ -283,16 +298,7 @@ TCL_ObjType_PLUS * get_PLUS_from_typePtr( const Tcl_ObjType * PLAIN ) {
 		return NULL;
 	}
 
-	
-	TCL_ObjType_PLUS * P_PLUS;
-//	int adj = offsetof( struct TCL_ObjType_PLUS, name );
-//	u8 * P1 = (u8*) P_PLUS;
-//	u8 * P2 = 
-	int adj = (long) (u8*) &( P_PLUS->name ) - (long) (u8*) P_PLUS;
-	u8 * PTR = (u8*) PLAIN;
-	PTR -= adj;
-	INFO("CAST adj = %d", adj );
-	return (TCL_ObjType_PLUS *) PTR;
+	return get_PLUS_from_typePtr_RAW( PLAIN );
 }
 
 inline
@@ -302,69 +308,13 @@ TCL_ObjType_PLUS * get_PLUS_from_obj( const Tcl_Obj * obj ) {
 	return get_PLUS_from_typePtr( obj->typePtr );
 }
 
+inline
+TCL_ObjType_PLUS * get_PLUS_from_obj_RAW( const Tcl_Obj * obj ) {
+	return get_PLUS_from_typePtr_RAW( obj->typePtr );
+}
+
 //////////////////////////////////////////////////////////////
 
-struct TCL_ObjType_LEX1 : TCL_ObjType_PLUS
-{
-	TCL_ObjType_LEX1()
-	: TCL_ObjType_PLUS("LEX1")
-	{
-		// see get_TYPE_LEX1
-//		bytes_never_NULL = true; // LEX1 is LEX1 -> bytes
-//		PTR2_is_Tcl_Obj = false; // LEX1 is just a typePtr tag
-	}
 
-	virtual void set_funcs();
-
-};
-
-
-struct TCL_ObjType_LEX2 : TCL_ObjType_PLUS
-{
-	TCL_ObjType_LEX2()
-	: TCL_ObjType_PLUS("LEX2")
-	{
-		// see get_TYPE_LEX2() for details
-		bytes_never_NULL = true; // LEX2 is LEX1 -> bytes
-	}
-	virtual void set_funcs();
-};
-
-struct TCL_ObjType_DICT : TCL_ObjType_PLUS
-{
-	TCL_ObjType_DICT()
-	: TCL_ObjType_PLUS("DICT")
-	{
-		PTR2_is_Tcl_Obj = true; // dict
-	}
-	virtual void set_funcs();
-};
-
-struct TCL_ObjType_VECT : TCL_ObjType_PLUS
-{
-	TCL_ObjType_VECT()
-	: TCL_ObjType_PLUS("VECT")
-	{
-		PTR2_is_Tcl_Obj = true; // list is vect
-	}
-	virtual void set_funcs();
-};
-
-
-// NB this is where GLOBAL meets parametised LAYERS
-// mk_LEX1("lookup") needs global TYPE_LEX1 and global LEX1_SPELLING_POOL
-
-extern
-TCL_ObjType_LEX1 * get_TYPE_LEX1(); // does not need interp
-extern
-TCL_ObjType_LEX2 * get_TYPE_LEX2(); // does not need interp
-extern
-TCL_ObjType_DICT * get_TYPE_DICT(); // does not need interp
-extern
-TCL_ObjType_VECT * get_TYPE_VECT(); // does not need interp
-
-Tcl_Obj * mk_LEX1( Tcl_Interp * interp, const char * str );
-bool upgrade_to_LEX2( Tcl_Obj * obj,  Tcl_Obj * LEX1 );
-
-
+}; // namespace
 #endif

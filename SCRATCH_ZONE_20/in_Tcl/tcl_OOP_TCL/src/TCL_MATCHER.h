@@ -4,9 +4,11 @@
 #include "TCL_STUBS.h"
 #include "TCL_REF.h"
 #include "TCL_HELP.h"
-#include "TCL_Obj_Type_PLUS.h"
+#include "TCL_PLUS_BASE.h"
+#include "TCL_PLUS_LEX.h"
 // #include "TCL_MATCHER.h"
 
+namespace TCL {
 extern
 bool CMP( Tcl_Obj * obj, const char * str );
 
@@ -106,8 +108,8 @@ struct LITERAL_MATCHER {
 //	bool upgrade_to_LEX1( Tcl_Obj * obj ); // no interp nearby
 	bool SEE_C_upgrade_to_LEX2( Tcl_Obj * obj, Tcl_Obj * LEX1  ); // 
 
-};
+ }; // class
+}; // namespace
 
-typedef LITERAL_MATCHER xTCL_MATCHER;
 
 #endif

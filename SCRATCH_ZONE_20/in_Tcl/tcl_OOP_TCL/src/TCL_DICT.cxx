@@ -2,6 +2,7 @@
 #include "TCL_HELP.h" // needs <tcl.h>
 #include "TCL_LIST.h"
 
+using namespace TCL;
 	bool TCL_DICT:: test(  Tcl_Interp * interp )
 	{
 		int pos;

@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+
+# where is tclsh rooted and where are its include files
+
+
+	CXX = g++
+	OPTIM += -g
+#	OPTIM += -O2
+	fPIC = -fPIC
+#	OPTIM += $(fPIC)
+	INCLS += -I./
+	INCLS += -I../
+	INCLS += -I../src/
+
+
+
+	DEFS = 
+
+	# we are in $(S)/obj/
+	S=..
+
+	VPATH_LIST += $S/src
+	VPATH_LIST += $S/src_PLUS
+	# this aint working ! is a tracer # unused though
+	VPATH+=$S$(foreach sub,$(VPATH_LIST),!:$(sub))
+#	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
+#	VPATH +=$S
+#	VPATH +=$S/src
+#	VPATH +=$S/src/src_PLUS
+
+	# actually that is not the right one
+	# still does not use PKG_CONFIG_PATH_LIST_VAR 
+	# want $(PKGS) # PKGS += libs_apps_base
+	# hardwired to -lbase
+	include ../MK/Makefile_libs_apps
+
+	Module=libr_unused
+	PROG1=copy_restart
+	PROG_OBJS += $(PROG1).o 
+
+	PROG_EXE=$(PROG1).exec
+
+	#imported LITE
+	# PROG_OBJS += dgb.o
+
+# // edit any .h // recompile everything
+
+	PROG_HDRS += $(PROG1).h
+
+.SUFFIXES: .o .cxx .so .exec .h
+
+dgb: $(PROG_EXE)
+	# VPATH $(VPATH)
+	./$(PROG_EXE) 2>&1 
+
+# each of the .o depend on all of the .h
+$(PROG_OBJS): $(PROG_HDRS)
+
+$(PROG_EXE):  $(PROG_OBJS)
+	# LINKS adds the libs_apps .so
+	# LINKS does not refer to libtcl.so that comes from loading EXE
+	g++ -g -o $@ $(PROG_OBJS) $(LINKS)
+
+$(Module).so:  $(PROG_OBJS)
+	# LINKS adds the libs_apps .so
+	# LINKS does not refer to libtcl.so that comes from loading EXE
+	g++ -g -shared -o $@ $(PROG_OBJS) $(LINKS)
+
+.cxx.o:
+	g++ $(OPTIM) $(fPIC) -c $< $(INCLS)
+
+clean:
+	rm -f $(PROG_EXE) $(PROG_OBJS) fa fb

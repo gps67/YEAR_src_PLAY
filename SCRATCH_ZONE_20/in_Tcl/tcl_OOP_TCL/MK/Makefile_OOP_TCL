@@ -50,7 +50,10 @@
 
 
 	Module=tcl_oop_tcl
-	Module_objs += TCL_Obj_Type_PLUS.o
+	Module_objs += TCL_ObjType_PLUS.o
+	Module_objs += TCL_PLUS_BASE.o
+	Module_objs += TCL_PLUS_LEX.o
+	Module_objs += TCL_PLUS_TCL2.o
 	Module_objs += $(Module).o 
 	Module_objs += OBJ_module.o
 	Module_objs += TCL_PTR.o
@@ -60,7 +63,7 @@
 	Module_objs += TCL_HASH.o
 	Module_objs += TCL_DICT.o
 	Module_objs += TCL_MATCHER.o
-	Module_objs += TCL_TYPE.o
+#	Module_objs += TCL_TYPE.o
 
 	#imported LITE
 	# Module_objs += dgb.o
@@ -76,8 +79,10 @@
 	Module_hdrs += TCL_HASH.h
 	Module_hdrs += TCL_DICT.h
 	Module_hdrs += TCL_MATCHER.h
-	Module_hdrs += TCL_TYPE.h
-	Module_hdrs += TCL_Obj_Type_PLUS.h
+#	Module_hdrs += TCL_TYPE.h
+	Module_hdrs += TCL_ObjType_PLUS.h
+	Module_hdrs += TCL_PLUS_BASE.h
+	Module_hdrs += TCL_PLUS_LEX.h
 
 	VPATH_LIST += ./src
 	VPATH_LIST += ./src_PLUS

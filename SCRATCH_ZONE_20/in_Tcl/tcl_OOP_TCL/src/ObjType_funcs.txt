@@ -1,0 +1,76 @@
+	Tcl_DupInternalRepProc *dupIntRepProc_PLUS;	# you must provide this
+
+	Tcl_FreeInternalRepProc *freeIntRepProc;
+	Tcl_DupInternalRepProc *dupIntRepProc;		# we are stealing this
+	Tcl_UpdateStringProc *updateStringProc;
+	Tcl_SetFromAnyProc *setFromAnyProc;
+
+PLUS
+
+	we only use these funcs in PLUS types
+	we KNOW we can upcast it past the VTBL
+
+	Tcl_FreeInternalRepProc *freeIntRepProc;
+
+		Tcl stupidly deletes the STRING bytes[length]
+		BEFORE calling this
+
+		That stops us deleting THIS OBJ from a lookup table
+		becasue we have lost it's KEY value
+		unless we ALSO store that in the VAL1 or use EA_OBJ "xFFFF"
+		or we keep reverse lookup. A real mess. A stupid one
+
+		We delete the internal allocated resources
+
+		We set stuff to NULL
+
+		RTFM says NULL proc means no dealloc required
+
+	Tcl_DupInternalRepProc *dupIntRepProc;
+
+		copy SRC to DST
+
+		before
+		 SRC has INT_REP
+		 DST not
+		 SRC type "type determines that copying rep does"
+
+
+		BUT
+			when is this called
+			why ?
+
+		GUESS
+
+			list is shared
+			edit list needs a new copy
+			call dup
+			then modify dst (but dst specific code could do that anyway)
+
+
+	Tcl_UpdateStringProc *updateStringProc;
+
+		create STRING bytes[length] from internal value
+
+		before bytes == NULL
+		must set bytes to NON-NULL
+		must have a NUL at bytes[length] - and not before
+		YES THAT MEANS NBYTES == length+1
+		use Tcl_Alloc or ckalloc
+
+	Tcl_SetFromAnyProc *setFromAnyProc;
+
+		before call: STRING = VALUE
+		after call: internal_rep = set
+		else TCL_ERROR
+
+		this is confused, as it says we have to
+		delete another types int-rep
+
+		maybe it is only our OWN types intrep?
+
+		cant see WHEN it is called BY WHO for WHY
+
+		we do SET LEX1 from STRING
+
+		but we do it by hijacking the ObjType less STRING

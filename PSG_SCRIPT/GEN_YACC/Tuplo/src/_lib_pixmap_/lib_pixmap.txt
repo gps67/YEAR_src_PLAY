@@ -25,3 +25,88 @@
 
 	RAW Reachable 
 
+	send_pixmap_to_server
+	fetch_panel_as_pixmap # update(panel) fetch(pixmap) local_remote
+
+
+		panel = top_level of window
+		panel = inner frame of window
+
+			if not ... bounce API calls through
+
+		panel = in situ direct access to clipped subpanel of canvas
+		canvas += basic XY_FG_pixel += API_fetch_pixmap += BLIT
+		+= API {
+			GET XT_pixel
+			SET XT_pixel
+			BLIT ... api ... // zone_copy_with_UDEF_FX
+			UDEF_FX simple_subset_of_BLIT_word_macro_scripts
+			SCRIPT INVOKE CXX $obj 
+			// ignore Tcl details use $var style // OPTION on_off
+			SCRIPT DISPLAY { [view code screen UI] }
+		}
+		pixmap = local_copy -or- direct_sub_panel (in-situ)
+		+= API {
+			GET_XY_pixel GET SET DRAW BLIT
+			API_XY_pixel export_api_for_use
+			API_BASE_for_UDEF ## UDEF == ALIAS for UDEF_1234
+			API_OBJ_ALLOC_REFS_BIND_VAR_on_edit_on_newval
+		}
+
+		api = Module
+
+			emergent name { Module api; }
+			ALIAS MATCH TUPLO { Module api }
+
+		api = X11 WIN32 MINGW SVGA_MMAP
+
+			local_copy = new PIXMAP
+			remote_link = api_rpc
+			script_preload = api_provided_by_SYSTEM # remotes own
+			remote_actual = api_rpc_actual
+			remote_connect = api_rpc_connect
+			api_parallel_A_B
+			 one call bounces to BOTH
+			 other HERE = collect_script_STEP
+			 Run BOTH local and remote // "CT_remote"
+			 at_end have list of all USED tokens
+			 compile all PLUS prebuild_EXPR MACRO builderZZ
+			
+
+		SCRIPT += api
+
+			Parse Module
+			RPC_API
+			API_pixmap
+			API_desktop
+			API_PANEL
+			API_UI
+			DRAW { SCRIPT } ARGV
+
+				ARGV is api of INVOKE SCRIPT ARGV
+				PLUS api.C_vars_local_and_remote
+
+			VARS VALS ARGV FNS
+
+				API += ITEM 
+				+= { API_ITEM API ITEM } {
+				 ITEM {
+					API_ITEM { API ITEM } 
+				 }
+				}
+
+		API += PRE_COMPILED ROM SCRIPT
+
+			works over RPC
+
+		API += RPC
+		RPC += CACHE
+
+		 PICK DIRECT DEFERRED BATCH
+
+		 	DIRECT += SHARED_PIXMAP multi_panel
+	
+
+				
+		
+

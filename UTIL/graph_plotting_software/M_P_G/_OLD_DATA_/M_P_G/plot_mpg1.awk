@@ -1,14 +1,8 @@
 #!/usr/bin/awk -f
 #!/usr/bin/gawk -f
 
-# fortunately the data starts at day 0 of 1979 (1?)
-# fortunately the data has no (-1) missing values
-# fortunately the data has 365 normalised days in each year (no leap)
-
-# you might also run plot_range, AFTER running this
-
-# every year you must find and edit the filename
-#	F="PIO/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat"
+# fortunately the data starts at day 0 of 1979
+# but the average for the current incomplete year will be wrong
 
 
 BEGIN {
@@ -16,7 +10,7 @@ BEGIN {
 	D_tmp = "./tmp_" 
 	D_tmp = "./tmp/tmp_" 
 	# mk_tarball will ignore *.tmp
-	# want to put min max mid into tarfile # so no .tmp
+	filename_plot_script   = D_tmp "plot_script.gnuplot"
 	filename_plot_data_day = D_tmp "plot_data_day.data.tmp"
 	filename_plot_data_min = D_tmp "plot_data_min.data"
 	filename_plot_data_max = D_tmp "plot_data_max.data"
@@ -24,13 +18,8 @@ BEGIN {
 	filename_plot_data_avg1 = D_tmp "plot_data_avg1.data.tmp"
 	filename_plot_data_avg2 = D_tmp "plot_data_avg2.data.tmp"
 	filename_plot_data_avg3 = D_tmp "plot_data_avg3.data.tmp"
-	filename_plot_data_pencil = D_tmp "plot_data_pencil.data.tmp"
-	filename_plot_name ="sea_ice_vol"
-
+	filename_plot_png ="mpg_yet_to_code.png"
 	plot_title="PIOMAS Arctic Sea Ice Volume"
-
-	# I want to rename avg2 as avg365
-	# but that comes from the A365 parameter (set next)
 
 	A365=365*2
 	A365=365*10
@@ -40,46 +29,23 @@ BEGIN {
 	A365=90 # days
 	A365=180 # days
 	A365=365*3
-	A365=365*1
-	
-	A365=365*5	#  flat for 8 years
-	A365=365*1
-	A365=365*10
-	A365=365*3	# curves
-	A365=365*3
-	A365=365*4
 	A365=365*2
 	A365=365*1
-	A365=365*4
-	A365=365*10
-	A365=365*6
-	A365=365*4
-	A365=365*1 # looks like spraying started 2012
-	A365=365*5 # looks like a step down, then exponential decay to V2
-	A365=365*4
-	A365=365*3
-	A365=365*2
-	A365=365*6 # looks like a step down, then exponential decay to V2
 
-	A365=365*1 # this is PROPER # 365 day average # must be exact multiple
-#	A365=365*2
-	A365=365*5
-	A365=365*6 # looks like a step down, then exponential decay to V2
-
-	F365=1.0*A365 # as a floating point
+	F365=1.0*A365
 
 	plot_to_png = 0
 	plot_to_png = 1
 
 	# plot or not
 #	P_8 = 1
-#	P_9 = 0 # pencil lines
 	P_max = 1
 	P_min = 1
 	P_mid = 0 # plot midyear avg
 	P_avg = 1 # plot rolling day 365 average
 
 	# remove old files to avoid making it look OK
+	rm_f_filename( filename_plot_script )
 	rm_f_filename( filename_plot_data_day )
 	rm_f_filename( filename_plot_data_min )
 	rm_f_filename( filename_plot_data_max )
@@ -87,7 +53,7 @@ BEGIN {
 	rm_f_filename( filename_plot_data_avg1 ) # +8 against max
 	rm_f_filename( filename_plot_data_avg2 ) # == avg for year A365
 	rm_f_filename( filename_plot_data_avg3 ) # -8 against min
-	rm_f_filename( filename_plot_data_pencil ) # 
+	rm_f_filename( filename_plot_png  )
 
 	year_curr = -1
 
@@ -95,63 +61,31 @@ BEGIN {
 	data_day_pos = 0
 	data_day_max = 0
 
+	plot_script = plot_script_daily()
+	print plot_script > filename_plot_script
+	close( filename_plot_script )
+	RUN4( "nl -ba " filename_plot_script ) # line numbers are useful
+	RUN4( "sh -c pwd" )
+  	# print plot_script
+
+	pipe_gnuplot = "gnuplot " filename_plot_script
+	pipe_view_png = "gm display " filename_plot_png  " &"
+	# ampersand optional, stops waiting for it # may need SHELL support
+
 	process_data_file()
 
-	b_zoomed_in = 0
-	b_zoomed_out = 1
-	process_gnuplot_file( b_zoomed_out )
-	process_gnuplot_file( b_zoomed_in )
+	RUN4( "gnuplot " filename_plot_script )
+ if(plot_to_png) {
+	RUN4( pipe_view_png )
+ }
+
 	# how to avoid the AWK filter theme
 	# close( /dev/stdin ) # nope
 	exit(0)
 }
-
- function process_gnuplot_file( zoomed_out )
- {
-	if( zoomed_out ) {
-		P_9 = 1 # pencil lines
-		name_part = "zoomed_out"
-	} else {
-		P_9 = 0 # pencil lines
-		name_part = "zoomed_in"
-	}
-
-	filename_plot_script_zoomed   = D_tmp "plot_script_" name_part ".gnuplot"
-	filename_plot_zoomed_png  = filename_plot_name "_" name_part ".png"
-
-	rm_f_filename( filename_plot_script_zoomed )
-	rm_f_filename( filename_plot_zoomed_png  )
-
-	plot_script = plot_script_daily(filename_plot_zoomed_png, zoomed_out)
-	print plot_script > filename_plot_script_zoomed
-	close( filename_plot_script_zoomed )
-	RUN4( "nl -ba " filename_plot_script_zoomed ) # line numbers are useful
-	RUN4( "sh -c pwd" )
-  	# print plot_script
-
-	pipe_gnuplot = "gnuplot " filename_plot_script_zoomed
-	pipe_view_png = "gm display " filename_plot_zoomed_png  " &"
-	copy_png_to_OUT = "cp -p " filename_plot_zoomed_png  " OUT/ "
-	# ampersand optional, stops waiting for it # may need SHELL support
-
-	RUN4( "gnuplot " filename_plot_script_zoomed )
- if(plot_to_png) {
-	RUN4( pipe_view_png )
-	RUN4( copy_png_to_OUT )
- }
-}
-
 function get_filename_data_gz()
 {
-	# you have to edit out the 2016 ANYWAY
-	# so option of linking to here or finding in 2016/FTP_
-	F="PIOMAS.vol.daily.1979.2016.Current.v2.1.dat"
-	F="PIOMAS.vol.daily.1979.2017.Current.v2.1.dat"
-	F="PIOMAS.vol.daily.1979.2018.Current.v2.1.dat"
-	F="PIOMAS.vol.daily.1979.2019.Current.v2.1.dat"
-	F="PIO/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat"
-	F="PIO/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat"
-	return F
+	return "mpg.txt"
 }
 function Q1( str ) {
 	return "'" str "'"
@@ -269,7 +203,7 @@ function line_in( year, year_frac, day, vol ) {
 		}
 	}
 
- if(0) {
+ if(1) {
 		S12 = C1 C2 C3
 	printf( "day %3d vol %.3f %s days_past_min_max %3d,%3d seen up,down %d,%d seen min_max %d,%d\n",
 		day, vol, S12,
@@ -301,19 +235,13 @@ function line_in( year, year_frac, day, vol ) {
 	year_vol_avg1_sum += vol - vol_old
 	if( data_day_avg ) {
 		A365_half = F365/(365.0*2.0) 
-# // A365_half // WHAT IS THIS NONSENSE // why not F365 / 2
-# // A units are units of 1 year, x-axis is in units of years not days
-# // measurments are daily tho
-// data_day_pos is where the mid-ends are
 		year_frac3 = sprintf( fmt_3, (year_frac - A365_half ))
 		L_day_1 = year_frac3 " " (year_vol_avg1_sum/F365 + 8.0)
 		L_day_2 = year_frac3 " " (year_vol_avg1_sum/F365)
 		L_day_3 = year_frac3 " " (year_vol_avg1_sum/F365 - 8.0)
-		print L_day_2 > filename_plot_data_avg2
-	 if( P_8 ) {
 		print L_day_1 > filename_plot_data_avg1
+		print L_day_2 > filename_plot_data_avg2
 		print L_day_3 > filename_plot_data_avg3
-	 }
 	}
 
 	year_frac3 = sprintf( fmt_3, year_frac )
@@ -321,76 +249,29 @@ function line_in( year, year_frac, day, vol ) {
 	print L_day > filename_plot_data_day
 }
 
-function gen_pencil_data() {
-	gen_pencil_data_2()
-}
-
-
-function gen_pencil_data_1() {
-
-	print "1970 21.0" > filename_plot_data_pencil
-	print "2035 0" > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-	print "1970 28.0" > filename_plot_data_pencil
-	print "2060 0" > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-	print "1970 36.0" > filename_plot_data_pencil
-	print "2090 0" > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-}
-
-function gen_pencil_data_2() {
-
-	VL = 21.0
-	VM = 29.0
-	VH = 36.0
-	V0 = 0
-
-	Y0 = 1970
-	YL = 2030
-	YM = 2060
-	YH = 2090
-
-
-
-	print Y0 " " VL > filename_plot_data_pencil
-	print YL " " V0 > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-	print Y0 " " VM > filename_plot_data_pencil
-	print YM " " V0 > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-	print Y0 " " VH > filename_plot_data_pencil
-	print YH " " V0 > filename_plot_data_pencil
-	print "" > filename_plot_data_pencil
-
-}
-
 function process_data_file() {
 	F = get_filename_data_gz()
 
 	CMD = "zcat " F 
+	CMD = "cat " F 
 	LNO = 0
 	while(( CMD | getline ) > 0 ) {
 		LNO ++
 		if(LNO == 1 ) continue
 		# if( LNO > 7) break
-		year=$1
-		day=$2
-		vol=$3
+		YEAR_MM_DD=$1
+		miles=$2
+		litres=$3
+		cost=$4
+		note=$5
+
+		print( YEAR_MM_DD miles )
+		
 		# convert day of year to fraction of year
-		YY=year + (day/365.0) # different to A365
-		line_in( year, YY, day, vol )
 	}
 
 # SHOULD CALL but not doing so because min max not passed
 	if( year_curr != -1 ) flush_year_end()
-
-	gen_pencil_data();
 
 	close(CMD) # it exited ? code ?
 	close( filename_plot_data_day )
@@ -400,30 +281,13 @@ function process_data_file() {
 	close( filename_plot_data_avg1 )
 	close( filename_plot_data_avg2 )
 	close( filename_plot_data_avg3 )
-	close( filename_plot_data_pencil )
 	# old way # close( pipe_gnuplot )
 	# belt and braces
 	fflush()
 }
 
-function plot_script_daily(filename_plot_png, zoomed_out)
+function plot_script_daily()
 {
-	if(zoomed_out) {
-		X_lo = "1950"
-		X_hi = "2100"
-		Y_lo = -10
-		Y_lo = 0
-		Y_hi = 40
-		X_lo = "1970"
-		X_hi = "2070"
-		X_hi = "2100"
-	} else {
-		X_lo = "1980"
-		X_hi = "2025"
-		Y_lo = 0
-		Y_hi = 35
-	}
-
 
 	plot_title_line_max = "max" # 
 	plot_title_line_day = "day" # better than "<CAT"
@@ -432,7 +296,6 @@ function plot_script_daily(filename_plot_png, zoomed_out)
 	plot_title_line_avg1 = "avg2+8" # 
 	plot_title_line_avg2 = "avg" # rolling average
 	plot_title_line_avg3 = "avg2-8" # 
-	plot_title_line_pencil = "pencil" # 
 	plot_Y_label = "1000 km3"
 	plot_filename = "<cat"
 	plot_filename = filename_plot_data_day
@@ -442,8 +305,7 @@ function plot_script_daily(filename_plot_png, zoomed_out)
  if(plot_to_png) {
 	T = T CRLF "set terminal png"
 	T = T CRLF "set output " Q1(filename_plot_png)
-#	T = T CRLF "set term png size 1200, 800"
-	T = T CRLF "set term png size 800, 600"
+	T = T CRLF "set term png size 1200, 800"
 	
  } else {
 #	T = T CRLF "set output " Q1(filename_plot_png)
@@ -451,10 +313,10 @@ function plot_script_daily(filename_plot_png, zoomed_out)
 #	T = T CRLF "set xrange [1960:2040]"
 #	T = T CRLF "set xrange [:2040]"
 #	T = T CRLF "set xrange [1975:2020]"
-	T = T CRLF "set xrange [" X_lo ":" X_hi "]"
-	T = T CRLF "set yrange [" Y_lo ":" Y_hi "]"
+	T = T CRLF "set xrange [1950:2100]"
+	T = T CRLF "set yrange [0:40]"
 	T = T CRLF "set title " Q1(plot_title)
-	T = T CRLF "set ylabel " Q1(plot_Y_label)
+	T = T CRLF "set ylabel" Q1(plot_Y_label)
 	T = T CRLF "set multiplot"
 	T = T CRLF "plot \\" 
 P_max&&	T = T CRLF Q1(filename_plot_data_max) " with lines title " Q1(plot_title_line_max) ", \\"
@@ -463,7 +325,6 @@ P_mid&&	T = T CRLF Q1(filename_plot_data_mid) " with linespoints title " Q1(plot
 P_8&&	T = T CRLF Q1(filename_plot_data_avg1) " with lines title " Q1(plot_title_line_avg1) ", \\"
 P_avg&&	T = T CRLF Q1(filename_plot_data_avg2) " with lines title " Q1(plot_title_line_avg2) ", \\"
 P_8&&	T = T CRLF Q1(filename_plot_data_avg3) " with lines title " Q1(plot_title_line_avg3) ", \\"
-P_9&&	T = T CRLF Q1(filename_plot_data_pencil) " with lines title " Q1(plot_title_line_pencil) ", \\"
 P_min&&	T = T CRLF Q1(filename_plot_data_min) " with lines title " Q1(plot_title_line_min)
 	T = T CRLF 
  if(!plot_to_png) {
@@ -473,7 +334,6 @@ P_min&&	T = T CRLF Q1(filename_plot_data_min) " with lines title " Q1(plot_title
 	T = T CRLF "pause -1"
  }
 	T = T CRLF 
-#	print "RETURNING >>>>>" T "<<<<<<"
 	return T
 }
 

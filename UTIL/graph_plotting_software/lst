@@ -1,0 +1,3 @@
+# locate mpg | grep 'mpg\.txt$' | less
+locate mpg | grep 'mpg[^/]*\.txt$' | sort | less
+

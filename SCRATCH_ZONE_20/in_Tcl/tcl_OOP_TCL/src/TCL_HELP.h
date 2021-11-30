@@ -1,6 +1,8 @@
 #ifndef TCL_HELP_H
 #define TCL_HELP_H
 
+namespace TCL {
+
 extern void print_tcl_obj( Tcl_Obj * obj, const char * str = NULL );
 extern Tcl_Obj * mk_str( const char * str );
 extern Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str );
@@ -82,5 +84,6 @@ const char * TCL_get_type_name( Tcl_Obj * obj ) {
 	return obj->typePtr->name;
 }
 
+}; // namespace
 #endif
 

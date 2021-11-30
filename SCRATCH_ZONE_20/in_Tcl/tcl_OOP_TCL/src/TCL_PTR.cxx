@@ -2,6 +2,8 @@
 #include "TCL_PTR.h"
 #include "TCL_HELP.h" // P64
 
+using namespace TCL;
+
 TCL_PTR:: operator const char * ()
 {
 	if(!PTR) {

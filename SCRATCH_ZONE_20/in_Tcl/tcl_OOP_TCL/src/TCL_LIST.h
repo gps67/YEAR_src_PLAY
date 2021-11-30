@@ -4,6 +4,7 @@
 #include "TCL_STUBS.h"
 #include "TCL_REF.h"
 #include "TCL_HELP.h" // print_tcl_obj( listPtr() );
+namespace TCL {
 
 #define XX_GET_STRING(objPtr) \
     Tcl_GetString( objPtr )
@@ -528,5 +529,6 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 
 
 };
+}; // namespace
 #endif
 

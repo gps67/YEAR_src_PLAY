@@ -6,6 +6,7 @@
 #include "TCL_STUBS.h"
 #include "TCL_REF.h"
 #include "TCL_HELP.h"
+namespace TCL {
 
 struct TCL_DICT
 {
@@ -113,5 +114,6 @@ struct TCL_DICT
 
 
 };
+}; // namespace
 #endif
 

@@ -1,0 +1,68 @@
+
+	process packets as they arrive
+	GET
+	SET
+	CALL
+	NUDGE
+
+	they may or may not respond immediately
+	eg GET requires blocking work
+	but on a good day, the process has been started, and gets there
+
+	ERA says flush all sendable
+	list all incomplete
+	start new era
+	possible delete of undone, timeouts recomputed, etc
+
+	mini-machine accumulates state
+
+	mini-machine may demand handover to next level
+	eg LOGIN -> ACTIVE // suspend previous state ?
+
+
+	id_sess	- switching CRYPT 
+	id_mode	- switching CRYPT 
+	id_era
+	id_pkt
+	id_enq
+
+	is_MODE	= clear binary packet
+	is_MODE	= AES_one	// fields are in 
+	is_MODE	= AES_two	// inside outer frame ?
+	is_MODE	= AES_three	// no outer frame, decrypt then look
+
+		here is some entropy
+
+		please send me some OTP materials
+		here is some OTP materials // gets stored in LOCAL/REMOTE sto
+
+			USAGE NAME RANDOM
+			OTP_1 1a1 0xFAFF
+			time_recent time_OPT 0xFFAFF
+
+		here is a collection of vars that claims to prove PASS
+
+			time_recent = u64_recent_1
+			time_remote = u64_remote
+			time_OTP = 
+
+			id_pass = PERMIT_TO_ASK_FOR_RSA _11
+			   pass_user = "LINE_PASS_ONE"
+			   pass_text = ...
+			   pass_pick = bytes 1 5 11 22 or key_munged
+			   crypt_
+			   _method = AES1
+			   _key = pass_user in key_wrap_128
+			   _in = pass_text
+			   _out = _in crypted
+
+		ACK pass accepted (id_pass _binary_64_id)
+		ENQ send RSA chat step
+		ACK resp RSA chat step
+
+		negociate shared secret
+
+			substep
+			complete
+			goto mode
+

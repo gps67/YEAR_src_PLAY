@@ -1,0 +1,255 @@
+
+	Makefile
+
+	 item build_Script buildscript_libr LIBR
+
+	 SESS SCRIPT WORLD creates items in VAR_POOL "NAME_in_LIBR"
+
+	 BLANK LINE // optional
+	 FILENAME : FILENAMES EOLN TAB_INDENTED_BLOCK
+	 TAB_INDENTED_BLOCK
+
+	 	TAB LINE_TO_EOLN EOLN
+		TAB LINE_of_BLOCK EOLN
+
+		// NOT TAB LINE
+
+	TAB LINE_of_BLOCK
+
+		TAB LINE_of_BLOCK EOLN
+		TAB LINE_of_BLOCK # CMNT_TO_EOLN  EOLN
+		CMNT_TO_EOLN  EOLN
+		BLANK_LINE_WITH_EOLN
+		TAB_BLANK_LINE_EOLN
+
+		-LINE
+		@LINE
+
+		ARGV = PARSE LINE as SHELL_LINE [s] into ARGV[ARGC]
+		// ARG_t = union { STR0 OBJ_NAME } { OBJ_t OBJ_NAME }
+		// KNOW basic LANG EXPR for BENCH // GEN and PARSE // STO // 
+		// BUILDING a ZONE with VOCAB for SHELL STEPS // TWO_CMD //
+		// KNOW squashed LINES // ARGV = LINE[i] // SAME_LINE_CMDS
+
+		EVAL_LINE
+		place VAR_VAL into SCRIPT.LINE.ARGV
+		precompiled /* ROM_STEP_xFFFF */ 
+
+			expand VARNAME in "PHRASE"
+
+				add it to list 
+				API add_var VARNAME PHRASE
+				PHRASE = "PHRASE"
+				PHRASE = "TEXT"
+
+			expand BACKQUOTED_EXPR in "PHRASE"
+
+				[ tcl script ]
+				` bash script `
+
+			parse LEX_EDGE in LINE in SCRIPT
+
+				BASH_RULES_FOR_ARGV // SUBSET
+
+			parse Makefile_line as BASH ARGV LINES
+
+				$( MAKEVAR ) // round parenth
+				$A // A == "LETTER or SPECIAL"
+				$@ $< $? // SPECIAL $X
+
+		VAR in Makefile
+
+			belongs to Makefile ENV	# default
+			belongs to Compile ENV # OPTION
+
+		VAR is LIST of NAMES # ie simple ARGV possible numbers values
+
+			VAR + ITEM // NAME
+
+		VAR is LIST into LIST
+
+			VAR1 = LIST1	// IN
+			VAR2 = LIST2	// OUT
+
+			LIST2 = rewire LIST1
+
+#       VPATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_VPATH),$(sub)))
+
+		LIST_%s += ITEM // %s == "SEARCHPATH"
+
+		LIST_VPATH
+		LIST_PKG_CONFIG_PATH
+		LIST_CPLUS_INCLUDE_PATH 
+		LIST_PKGS
+
+			PKGS += base1 
+			PKGS += base2 
+			PKGS += openssl
+
+			PKGS += libs_apps_base_uses_list
+	
+	INCLS += $(shell `$(PKG_CONFIG) $(PKGS) --cflags`)
+
+		call BASH /* subset */ to run external task
+
+		LIMIT batch eval deterministic VAR_CALC_ENQ_ACK
+	
+	Use Makefiles as include components MACRO etc
+
+		standard CCS phrases
+
+		.SUFFIXES: .cxx .c .o .a .so .exe
+
+		$(NAME1).exe: $(NAME1).o $(OBJS)
+
+			$GXX $OPTS -o $@ $< $(LINKS)
+			# a guess #
+
+
+
+	 NOT Makefile YES SCRIPT ALSO {SCRIPT} "{ SCRIPT }" {\ SCRIPT\ } 
+	 SUBLEX SP_options // TRIGGER GEN("\ ") // GEN NOSP // GEN SUBLEX_EDGE
+	  PARSE_OPTION NOTICE MATCH "\\ "
+	   SCRIPT is self DECL // create PARSER for SCRIPT
+	   SEARCH for a range of possible MATCH fragments // PSG += ITEMS_HERE
+	   MATCH within CIDENT [^_]* { SEQ _ [^_]* }* ## SCRIPT 
+	   SCRIPT_LINE += SEQ "_" "SUBLEX" // CIDENT.A2 but not '_'
+	   
+
+	  DIALECT LIBR[l9] LIBR[few] // prefix exists as AUTOVAR LIBR 
+
+	   ALIAS LIBR LIBR[%s] LIBR_idx_%d LIB_FEW.lib // repettition // LEX //
+
+	   GEN_CODE { ITEM_t * NAME_view = INIT_VAL /* CMNT */ }
+
+	   	ITEM_t
+		NAME_view
+		INIT_VAL
+		CMNT
+
+		LEX_LEXICON OFFER ALIAS
+		LEX_LEXICON malloc AS ALIAS
+		LEX_ALIAS "VARNAME" 
+		LEX_BIND GEN_CODE_VAR 
+		GEN_CODE GEN_CODE_VAR {
+			+= MATCH VAR_NAME
+			+= STO_for_VAR _t // TRIX VAR "_t" holds_SPEC_of_VAR
+			// LEX += SPEC_of_VAR
+			// LEX += STO_for_VAR
+			// LEX_+= SCRIPT_for_SESS 
+			// SCRIPT += LEX_for_NOUN // LEX_for_ITEM //
+			// ITEM += SPEC_of_ITEM
+			// ITEM += STO_for_ITEM
+			// ITEM += SCRIPT_for_ITEM
+		}
+		GEN_CODE GEN_CODE_SCRIPT { SCRIPT } { foreach_LINE_in_SCRIPT SESS }
+		 foreach line of
+
+			// LEX += SPEC_of_VAR
+			// LEX += STO_for_VAR
+			// LEX_+= SCRIPT_for_SESS 
+
+		 substitute	
+
+			// LEX += ITEM
+
+			// ITEM one of { %s_%s_%s { SPEC STO SCRIPT } {of for} { VAR SESS }
+			// LEX = LEX_t.new(LEX) // ONE_OF { LIST } // EACH_DECL
+			// SESS += ITEM_NAME PICK[u16_idx]
+			// u16_idx is placeholder for any_idx uns_idx int_idx
+			// compiler GEN_CODE { static int_idx_t var_name CMNT { INFO }
+			// MATCH { "{ %s }" } as { %s ITEM } in STO = B_TREE
+			// KNOW LOOKUP %s NAME NAME_t STO_ITEM_t SPEC_ITEM_t
+
+		  PHRASE "( %s }" TRIM_to_DIALECT " SP { "%s" } SP "
+
+			// LEX += SPEC_of_VAR
+			// LEX += STO_for_VAR
+			// LEX_+= SCRIPT_for_SESS 
+
+			// LEX += SPEC_of_VAR
+			// VAR_NAME += SCRIPT_for SESS // ARGV'ification
+			// LEX_+= SCRIPT_for_SESS { LEX SCRIPT "for" SESS }
+			// SUBLEX { 
+			//  eg VAR "LEX" VAR Module_ITem 
+			//  eg VAR "%s" VAR %s EXPR { SCRIPT ARGS }
+
+
+		//  EXPR { SCRIPT ARGS }
+
+			//  EXPR { SCRIPT ARGS } { HERE }
+			//  SESS += PRE_PARSE_EXPR ROM_LIBR_ITEM [s]
+			//  LIBR += ITEM // SPEC // STO for SESS //
+
+		// MATCH %s_%s_5s %s "for" %s
+
+		// MATCH " for " as LEX_furniture // CONST ENUM VAL
+			// MATCH 'for' as_one_of { for of OTHER } ALIAS OTHER "..."
+			// MATCH 'for' as_one_of { for of ... } 
+			// LANG_LEX permit values to be names
+			// GEN_CODE for LANG // { %s GENCODE } {%s LANG}
+			// heuristics for adding spaces in " SP { %s } SP "
+			// that is a SPELLED out alias for " { %s } " one_of {
+			//	" SP { %s } SP " // "%s" // " SP %s SP " 
+			// that extra SP in pattern matches LEX EDGE in PARSER
+			// DIALECT says CORRECT_SPELLING says CORRECT_SPECCING
+			// DIALECT MATCH "SP" for " SP " and "MATCH("name_for_val ' %s ' "
+			// DIALECT FIXUP VIEW = fmt_expr
+			// fmt_expr // GEN_DATA // PARSE_BYTES // 
+			//
+			// STEP_EDIT MASK_OUT_VIEW EXPR lhs mid rhs
+			// VIEW += DRAW LINE
+			//	                 // "%s" // " SP %s SP " 
+			//	" SP { %s } SP " // "%s" // " SP %s SP " 
+			//	" SP { %s } SP "
+			//	   " { %s } "
+			//	    "{ %s }"
+			//	     "{%s}"
+			//	      "%s"
+			//	       %s 
+
+			// DIALECT %s // %s // "USAGE { ARGV_SCRIPT } SESS DATA"
+			// DIALECT MATCH("%s") // where LEX_NAME == "%s" //
+			// DIALECT MATCH("%s") // where LEX_NAME_from_ANYSTR
+			// ANYSTR "%s" // AUTO LEX_MATCH(STR0 LEX_MATCH_SUBLEX
+			// SUBLEX " %s " // SP indicates OPTION_SP
+			// SUBLEX %s of { %s "%s" " %s " " { %s } "
+			// MATCHED "{ %s }" // indicate LEX_EDGE _add_SP_here
+			// MATCHED " %s " // VIEW = PICK from { LIST } 
+			// DIALECT += { "%s" "from" "{ LIST }" // ARGV_io }
+			// DIALECT += { "%s" "from" "{ LIST }" // ARGV_io
+			// AUTOGEN PARSER that works on ABOVE_PARSE_EXPRESSIONS
+			// AUTOGEN VIEW = fmt_expr // LIST of STEP [s]
+			// AUTOGEN STEP == STEP[s] // s local to VAR
+			// AUTOGEN PARSER that works on THIS_SCRIPT
+			// RUN PARSER STREAM SESSION_DATA CODE LIBR [s] //
+			// AUTOGEN create a textfile world from LEX_NAMES
+			// AUTOGEN VIEW and SCAN // PSG STEPS for TEXTFILE
+			// LEXER SP_optionsal SP_clarifies 
+			// PARSER SUBLEX
+			// GEN_CODE from MODULE_SCRIPT to GEN_CODE_output
+			// GEN_CODE { PARSER GEN_CODE GEN_DATA LOAD_DATA BIND_EXPR
+			// RUN_SCRIPT PRINT_fmt STRING_FILTER FMT_STEP
+			// FMT_STEP // add "str" to fmt // add ARG to ARGV
+			// FMT_STEP // %d WORD_from_u16 // WARN_if_XS //
+			// FMT STEP // %s ANYSTR // but often simple LEX TEXT
+			// FMT SUBLEX STEP // STEP // ONE of LIST //
+			// FMT_STEP // merged symbol as CIDENT // as KEY_STR a
+			// ANYSTR // HOPE that PARSER can easily find LEX EXPRS
+			// SCRIPT += lines_of_words
+			// SCRIPT += INDENTED_TEXT_VIEW or CURLY_TEXT or "{ SCRIPT }"
+			// SCRIPT += " SP_options PUNCT_BRACE_L 
+			// SCRIPT += " SP { %s } SP " // ARG == ARGV[1] 
+			// ARGV_0 // 
+
+			+= 
+
+
+			// }
+
+		// MATCH %s // PARAMETER_PASS_THROUGH //
+		// MATCH KNOW { VAR_POOL SCRIPT_DATA SCRIPT_EXPR SCRIPT_DATA }
+		// PARSE ANYSTR eg " { %s } " // precise or metaphorical MATCH
+		// PARSE PLAUSIBLE_is_SCRIPT ANYSTR eg LEXER 
+		// KNOW PARSE DIALECT usually with SP
+

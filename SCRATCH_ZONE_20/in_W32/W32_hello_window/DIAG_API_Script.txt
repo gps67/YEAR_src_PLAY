@@ -1,0 +1,60 @@
+
+gps@E6320:~/YEAR/src/SCRATCH_SCRIPTS/Wine/wine_buid_bases$ ./hello
+wnd_class( hInstance=400000, 'app_name' );
+RegisterClass() wc_atom=C028
+WndProc( W: 1004E, MSG: 1, wP: 0, lP: 68FA9C ); WM_CREATE g_hInst = 0
+create_window( 0, 'SECOND TITLE' ); => 1004E
+WndProc( 1004E, F, 0, 0 ); WM_PAINT
+
+'wnd_class' = "app_name" = "..."
+'app_name' = "app_name"
+ENUM {
+ Group "WM_enum"
+ Items CREATE DESTROY PAINT {
+ # EACH
+ 	#define WM_Item = value // in .h = "#include <something.h>"
+ # EACH
+ 	CMNT Explain Readable // PFX_Name is simple clarity
+	IDIOMA 
+ # EACH SPEC 
+ 	Item.Group = DIALECT.Named_Item.lookup_expr( "Item.Group.C_name" )
+		Name_C_decl = "UINT message" 
+			parameter given to WndProc
+
+ 	.h = "#include <something.h>"
+ 	.h = "#include <windows.h>"
+	 DECL SPEC TYPE
+		enum C_name = "WM_MESSAGE" {
+		// MOST PFX WM_NAME
+		// ALL UPPER wm_ NAME
+		// EACH // comma list, so not last , OK trailing COMMA
+		  PFX_ITEM_NAME { , } // CMNT // " == %d" // HIDE DATA Detail
+		};
+		#define WM_Item = value // in .h = "#include <something.h>"
+
+ }
+}
+DESKTOP_Object {
+ TOP_Window {
+ 	Title "SECOND TITLE"
+	ID 0x1004E
+	APP ...
+
+	PROC_WndProc
+
+	SEND_event_via_APP_TOP_Filter( ... ) 
+ }
+}
+
+So { SCRIPT } gets WIN32 subset LOCAL DIALECT
+	WM_MESSAGE // VIEW TOKEN // - for - // SUBLEX_Linkage Item
+
+	TAB_Completion
+	 suggestion list
+	 SUBLEX_interactive
+
+	 # diag FIRST_second # diag LHS RHS # collapse to ARGV[0] = diag
+	 # the above TRANSFORM rule kmown by PARSE_Recognise
+
+
+

@@ -1,0 +1,28 @@
+
+https://www.winsocketdotnetworkprogramming.com/winsock2programming/winsock2advancediomethod5chap.html
+
+
+	something very similar to unix select
+
+		requires all fd's come from socket source
+	
+	something like window messages
+
+		apparently ancient!
+
+	WSASend() and WSARecv()
+
+	Overlapping
+
+		WSASend()
+		WSASendTo()
+		WSARecv()
+		WSARecvFrom()
+		WSAIoctl()
+		WSARecvMsg()
+		AcceptEx()
+		ConnectEx()
+		TransmitFile()
+		TransmitPackets()
+		DisconnectEx()
+		WSANSPIoctl()

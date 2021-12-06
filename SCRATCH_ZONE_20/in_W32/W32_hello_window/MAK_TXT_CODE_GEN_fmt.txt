@@ -1,0 +1,69 @@
+
+//	                 // "%s" // " SP %s SP " 
+//	" SP { %s } SP " // "%s" // " SP %s SP " 
+//	" SP { %s } SP "
+//	   " { %s } "
+//	    "{ %s }"
+//	     "{%s}"
+//	      "%s"
+//	       %s 
+
+	Need editor to REGEN with original manually edited SPACING layout
+
+	Recognise need for DRAW_PAGE style of programming
+	Define items where they land, expand in margin notes
+	Bench accumulates FILTERS that find local PATTERNS
+		bind VARNAME
+		apply MACRO
+		edit outdent_or_DRAW_PAGE_layout
+		DRAW_PAGE_layout 
+		+= DRAW_PAGE
+		+= Layout
+
+		+= triggers CLASS DECL += FEATURE GROUP BASECLASS MIXIN
+		+= triggers DIALECT now applies near here
+
+		DRAW_PAGE notice TEXT ANIIMATION over VARIENTS
+		+= centralise trimmed core progressive layout
+	
+	SINGLE ARG
+	 %s
+	 %d
+	 %...d
+	 %f
+	 %X
+	
+
+GEN_CODE Makefile
+
+	write list of paragraphs
+	write TEXT_BLOCK of VARS or items 
+	{ %s += %s } // BIND NEEDS LINKER to provide LISTVAR ITEMVAL CMNT
+	{ %s += %s // LISTVAR ITEMVAL // ITEMVAL == "VARNAME" }
+	CMNT += code_point_src_csr // and what is found nearby
+
+	NODE = LIST of ITEMS as { LIST_NAME += ITEM # CMNT # NO_SP }
+	EDIT LIST of TEXT_LINE # with markers and with preset BLANK_LINE 
+	TEXT_LINE => WORDS EOLN
+	TEXT_LINE => BLANK_LINE EOLN
+	TEXT_LINE => INDENTED_BLANK_LINE EOLN # may include /* EXTRAS */
+
+include Makefile_SCRIPT
+
+	run GEN to create SCRIPT
+	run Make with set of edited SCRIPTS
+	regen SCRIPT so that no edits required
+	COPY_OVER -vs- DIRECT
+
+	Detached remote project imports a SUBSET of files
+	Module Layer on top of Module Layer
+	Lots of local USE_OF_EXPR Module += Module_Component_DECLS
+	DECLS += add ITEM to LIST # with custom USAGE #
+	DECLS += mask CT_RT_IFDEF_MASK
+	impose RULE at CODE_POINT # check DIALECT causes no false_matches
+	# +VE too abstract MATCH more specific # DIALECT ALIAS # LINE_in_STREAM
+
+	PARSE Makefile from same rules // possible manual frontend pre-parse
+	PRE_PARSE Makefile // LEX and PSG // find patterns in templates
+
+

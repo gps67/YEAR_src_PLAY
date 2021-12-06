@@ -1,0 +1,23 @@
+	2021-12-04
+
+	2021_12_Dec
+	2021-12-04_edit_text_on_web.txt
+
+	https://www.tiny.cloud/
+		TinyMCE
+		LGPL or paid cloud service
+
+	https://richtexteditor.com/
+
+	https://ckeditor.com/
+		CKEditor 5
+		document
+
+	https://quilljs.com/
+	https://slab.com/ team dox
+	
+
+https://handsontable.com/blog/articles/2017/8/11-best-rich-text-editors
+
+	
+

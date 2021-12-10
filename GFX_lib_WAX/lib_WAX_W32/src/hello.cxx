@@ -10,15 +10,101 @@ HINSTANCE g_hInst = 0;          // current instance of 'module'
 
 void CenterWindow(HWND hWnd);
 
-//+---------------------------------------------------------------------------
-//
-//  Function:   WndProc
-//
-//  Synopsis:   very unusual type of function - gets called by system to
-//              process windows messages.
-//
-//  Arguments:  same as always.
-//----------------------------------------------------------------------------
+/*! obj_ref - refcounted object
+*/
+struct obj_ref_t {
+	virtual ~obj_ref_t() {}
+	obj_ref_t() {ref_count = 0;}	// maybe demand an extra loop allocator ?
+	int ref_count;
+
+	void ref_incr() {
+		ref_count ++;
+	}
+	void ref_decr() {
+		ref_count --;
+		if( ref_count == 0 ) {
+			delete this;
+		}
+	}
+
+	virtual
+	void on_ref_count_zero() {
+		// pre-call // calls DTOR twice !!
+		// in C would check this NULL
+		// it might decide to ref_incr ?
+	}
+
+	static
+	void ref_incr(obj_ref_t *& obj) {
+		obj->ref_count ++;
+	}
+	static
+	void ref_decr(obj_ref_t *& obj) {
+		obj->ref_count --;
+		if( obj->ref_count == 0 ) {
+			// protect against tree loops
+			// ensure PTR left as NULL
+			obj_ref_t * obj_2 = obj;
+			obj = NULL;
+			// OPTION // not inline from here //
+			// OPTION // THREE calls per DTOR!
+			obj_2 -> on_ref_count_zero(); // add CTXT here ?
+			if( obj_2-> ref_count == 0 ) {
+				delete obj_2; // call two DTORs inefficient
+				// that also deletes memory
+				// not same for MMAP tree
+				// which W_t never is
+			}
+		}
+	}
+	// OK instead of ref_hold<T> use these
+	static
+	bool set_ptr(obj_ref_t *& ptr2, obj_ref_t * obj) {
+		if(!obj) return set_NULL( ptr2 );
+		ref_incr( obj );
+		obj_ref_t * ptr2_old = ptr2;
+		ptr2 = obj;
+		if( ptr2_old ) ref_decr( ptr2_old );
+		return true;
+	}
+	static
+	bool set_NULL(obj_ref_t *& ptr2) {
+		obj_ref_t * ptr2_old = ptr2;
+		ptr2 = NULL;
+		if( ptr2_old ) ref_decr( ptr2_old );
+		return true;
+	}
+
+};
+
+/*!	W_t - VTBL defines all that is a widget
+
+	On WIN32 the HWND hwnd holds a lot of XYWH info
+	Some extra fields are held here, wich is not efficient
+
+	There is a circular reference, as WHND holds the W_t * self;
+
+	All the different window types will need their own subclass of W_t,
+	and they will all need to recognise the same base class API
+
+	To get back to (or near to) the specific W_t subclass,
+	we need some design luck. eg a button hooks into the
+	on_click() at the BUTTON_t level to activate btn_run() (slow/fast)
+	and the specific subclass holds the data that fits btn_run()
+	When following that chain of calls, the BASE type magically 
+	upgrades from W_t to SLOW_BUTTON_that_starts_a_process_t
+
+	In that example virtual btn_run() is added by the BUTTON_t
+	subtree, (SLOW_ means change_FGBG add_lock start_activity change FGBG)
+
+*/
+struct W_t : public obj_ref_t{
+	virtual ~W_t() {}
+	W_t():hwnd(0) {}
+
+	HWND hwnd;
+};
+
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -31,45 +117,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	Seems that we will need to do a HT lookup of hwnd
 	to find the thing that it corresponds to
 
-		or hwnd_get_ClientData { OBJ & ref } // Item_t * item; // desc
-		pas comments could be ASCII VAR_t & var_name // DESC // INIT
-		// DESC // template to define a var // link to obj somewhere
-		// INIT // var_type_mem thread_local.global_vars.POOL += INIT
-		// init // hwnd == local_object.hwnd.EA // EA is GETTER
-		// DATA_DICT_CSR_EA GETTER VAR_POOL VAR_NAME VAR_HELD EA CSR=EA
-		// PLUS // Item_t & local_object // STO.SESS.TEMPS.MEM
-
-		or item = HT.lookup( item, hwnd )
-
-			obj = item ; // so well known it merges into template BG
-
-		or if( HT.lookup( var_item_PTR, u32_HWDN_hwnd_from_w32 )
-
-			var_TYPE u32 HWND{ varname == "hwnd" }
-
-
 	Then theres sub-windows, so hwnd is a detail with a parent
-
-	TODO
-	
-	 TEMPLATE for 
- CODE	  	// MSG == "WM_CREATE"
- CODE		// CODE == INDENTED_BLOCK_CODE_t CODE
- CODE
- CODE	 	case ${MSG}:
- DGB	 printf( WndProc( ...
- CODE			${CODE}
- CODE			break;
-
- 	TODO
-
-	 EDIT LIST of BLOCK
-	 	LIST == BLOCK[idx]
-		BLOCK == INDENTED_CODE_BLOCK _t
-
-			STO += BLOCK.TEXT _as_ASCII as_UTF8 GEN_INTO
-			BLOCK.TXT == LINES_of_TEXT with added filter INDENT
-
 */
 
 	switch (message)
@@ -81,6 +129,7 @@ printf( "WndProc( W: %X, MSG: %X, wP: %X, lP: %X ); WM_CREATE g_hInst = %X \n", 
 			break;
 
 		case WM_DESTROY:
+			// FREE USER DATA etc
 			PostQuitMessage(0); // send the message 0==> WM_QUIT
 			break;
 
@@ -200,6 +249,14 @@ printf( "wnd_class( hInstance=%X, '%s' ); \n", hInstance, app_name );
 
 		/*
 			T * P = (T*) getWindowLong( hwnd, GWL_USERDATA );
+
+		 64 bit not 32 bit (as well as)
+			SetWindowLongPtr(hWnd, GWLP_USERDATA, this);
+
+		SetProp/RemoveProp/
+
+https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowlongptra
+
  * 		*/
 	}
 
@@ -307,6 +364,8 @@ printf( "wnd_class( hInstance=%X, '%s' ); \n", hInstance, app_name );
 	{
 		if( window_class.wc_atom ) {
 			window_class_name = (const char *)  window_class.wc_atom;
+			// CAST // putting a smaller INT inside a larger INT
+			// CAST // BUT it is NOT a (const char *)
 		} else
 			set_window_class_name( window_class.get_ClassName() );
 	}
@@ -342,16 +401,9 @@ printf( "create_window( %X, '%s' ); => %X \n", g_hInst, border_title, hwnd_new_w
 	}
  };
 
-};
+}; // namespace WAX
 using namespace WAX;
 
-//+---------------------------------------------------------------------------
-//
-//  Function:   WinMain
-//
-//  Synopsis:   standard entrypoint for GUI Win32 apps
-//
-//----------------------------------------------------------------------------
 int APIENTRY WinMain(
 	HINSTANCE hInstance,	// of the program
 	HINSTANCE hPrevInstance, // ignore
@@ -387,6 +439,11 @@ int APIENTRY WinMain(
 	) ) {
 		return 0;
 	}
+
+	/*
+		TODO	associate hwnd with OBJ *
+			deep so that WndProc is OOP
+	*/
 
 // TUTOR says these are needed .. but apparently done by messages
 // 	ShowWindow(hWnd, SW_SHOWNORMAL);

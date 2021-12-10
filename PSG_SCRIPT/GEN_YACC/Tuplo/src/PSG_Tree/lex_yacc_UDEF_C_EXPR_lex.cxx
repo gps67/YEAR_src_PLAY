@@ -119,6 +119,8 @@ bool lex_yacc_UDEF:: add_lex_for_C_EXPR() {
 	POOL_LEX.add_LEX( "WS" );
 	POOL_LEX.add_LEX( "DOUBLE" );
 	POOL_LEX.add_LEX( "INTEGER" );
+	POOL_LEX.add_LEX( "STRING" );
+	POOL_LEX.add_LEX( "COMMENT" );
 
 	// PSG // VALUE Value_type value_as_str value_as_binary // except BLOB
 	// PSG // NAME // portal to DECLARATION 

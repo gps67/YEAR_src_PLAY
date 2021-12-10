@@ -7,6 +7,7 @@
 #include "buffer2.h"
 
 #include "lex_yacc_LEX_TOKEN.h"
+#include "lex_yacc_LEX_START.h"
 
 #include "PSG_STUBS.h"
 using namespace PSG;
@@ -197,6 +198,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	LEX_TOKEN_GROUP POOL_PUNCT;
 	LEX_TOKEN_GROUP POOL_RW;
 	LEX_TOKEN_GROUP POOL_LEX;
+	LEX_START_GROUP POOL_START;
 
  // XXXX
 

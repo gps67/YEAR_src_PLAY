@@ -24,7 +24,7 @@ endif
 
 	S=../src
 	VPATH +=$S
-	VPATH +=$S/buffer
+#	VPATH +=$S/buffer
 
 	include ../MK/Makefile_libs_apps
 
@@ -44,6 +44,7 @@ endif
 	OBJS += WAX_argv_decoder.o
 	OBJS += test_X_two.o
 
+#	we nolonger build a few files, now with -I libs_apps/include -lbase
 #	OBJS += gdb_invoke.o
 #	OBJS += str0.o
 #	OBJS += str1.o

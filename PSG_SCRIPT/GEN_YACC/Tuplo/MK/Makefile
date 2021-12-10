@@ -17,6 +17,8 @@
 	VPATH +=$S
 	VPATH +=$S/src
 	VPATH +=$S/src/PSG_Tree
+	VPATH +=$S/src/PSG_Tree/e1
+	VPATH +=$S/src/PSG_Tree/AFM
 	VPATH +=$S/src/STO
 
 	include ../MK/Makefile_libs_apps
@@ -39,10 +41,13 @@
 
 	# PROG knows to add _yacc _lex
 	# MAKE still needs to know
+	# add lines for each gramma
+	# track use around Makefile
 	#
 	e1_psg_2=AFM
 	e1_psg_3=e1
 
+	# logic that is in source, names of files generated, ../obj/gen_*
 	e1_gen=gen_
 	e1_left=../obj/
 	e1_file_2=$(e1_left)$(e1_gen)$(e1_psg_2)# NOSP # same logic in binary
@@ -100,8 +105,6 @@ endif
 	# order matters - maybe put into .a to mix it up
 
 
-	OBJS1 += Y_PARSE_gen.o 
-	OBJS23 += Y_PARSE.o 
 	OBJS1 += lex_yacc_LEX_PUNCT_NAME.o 
 	OBJS1 += lex_yacc_LEX_TOKEN.o
 	OBJS1 += lex_yacc_LEX_TOKEN_precedence.o
@@ -111,10 +114,13 @@ endif
 	OBJS1 += lex_yacc_UDEF_C_EXPR_yacc.o
 	OBJS1 += lex_yacc_UDEF_CALC.o
 	OBJS1 += lex_yacc_UDEF_AFM.o
+	OBJS1 += STO_E32.o
+	OBJS1 += Y_PARSE_gen.o 
+	OBJS1 += lex_yacc_LEX_START.o 
+	OBJS23 += Y_PARSE.o 
 	OBJS23 += EXPRS.o
 	OBJS23 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o
-	OBJS1 += STO_E32.o
 
 
 	# PGS will want STO but it was itself PROG2

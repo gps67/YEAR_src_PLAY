@@ -576,6 +576,9 @@ gen_LEX_lex_return( buffer2 & out )
 bool lex_yacc::
 gen_LEX_start_symbol( buffer2 & out )
 {
+	POOL_START.print_lines(out);
+	return true;
+
 	L1("// ");
 	L1("// lex_start_symbol - emit as TOKEN once");
 	L1("// ");
@@ -658,9 +661,12 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("*/");
 	L1("");
 
+	// mechanism to insert first token of lex_start_symbol
+	gen_LEX_start_symbol( out );
+
 	L1("%{"); // on line of its own unindented
 	// this comment is in CODE and gcc is OK with C++ // comments
-	L1("// within definitions %{ is A CODE SECTION START // like %TOP see 5.1 ");
+	L1("// within definitions %{ is A CODE SECTION BEGIN // like %TOP see 5.1 ");
 	L1("");
 
 	// include buffer1 Y_PARSE using namespace YY
@@ -668,9 +674,6 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 
 	// utility functions that carry return " RETVAL STRVAL" from LEX
 	gen_LEX_lex_return( out );
-
-	// mechanism to insert first token of lex_start_symbol
-	gen_LEX_start_symbol( out );
 
 	// our code will need the table of tokens that YACC maintains for us
 	if(1) {
@@ -691,7 +694,49 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 
 	L1(" /* definions section END */"); // 
 	L1("%%");
-	L1(" /* rules section START*/"); // cannot be at BOLN
+	L1(" /* rules section BEGIN */"); // cannot be at BOLN
+	L1("");
+
+	L1(" /* added START condition rules for comments and string */");
+	L1("");
+	L1("\"/*\"	{");
+	L1("	BEGIN(CMNT_C);");
+	L1("	}");
+
+
+	// OR START_x_RULE_ACTION( "CMNT_C", "[^*\\n]*", "...");
+	// OPTION build REGEXP to buffer1 to STR0
+	L1("<CMNT_C>[^*\\n]*        /* eat anything that's not a '*' */");
+	L1("<CMNT_C>\"*\"+[^*/\\n]*   /* eat up '*'s not followed by '/'s */");
+	L1("<CMNT_C>\\n             yylineno++;");
+
+	buffer1 L;
+#define L1b(L) out.put( (STR0) L ); out.put("\n")
+static const char Q2 = '"';
+	L.clear();
+	L.print("<%s>", 	"CMNT_C"); // start tag
+	L.print("%c%c%c%c",	Q2, '*', Q2, '+' );
+	L.print("%c%c%c",	Q2, '/', Q2 );
+	L.print("\t%s",	        "BEGIN(INITIAL);");
+	L1b(L);
+
+
+	L1("");
+//	L1(" // OK that drops the CMNT text ");
+
+	L.clear();
+//	L.print("%c%s%c", Q2, "\\\"", Q2 );
+	L.print("[%c]", Q2 );
+	L.print("\t%s",		"BEGIN(STRING_C);");
+//	L1b(L);
+	L.clear();
+	L.print("<%s>", 	"STRING_C"); // start tag
+	L.print("[^%s]*",	"\\\"" );
+	L.print("\t%s",	        "return TOKEN(LEX_STRING);" );
+//	L1b(L);
+
+	L1("");
+	L1("");
 	L1("");
 
 	// comments may not be where pattern_RE goes - at start of line
@@ -730,7 +775,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 
 	L1(" /* rules section END*/"); // cannot be at BOLN
 	L1("%%");
-	L1("// code section START // to eof // is copied through");
+	L1("// code section BEGIN // to eof // is copied through");
 	L1("// ");
 	L1("");
 	return true;
@@ -778,6 +823,7 @@ bool lex_yacc:: gen_LEX_RULES_ident_values( buffer2 & out )
  gen_PTN_lex_return_TOK( out, "[a-zA-Z_][a-zA-Z0-9_]*", "", "LEX_IDENTIFIER");
  gen_PTN_lex_return_TOK( out, "-?[0-9]+\\.[0-9]*","      ", "LEX_DOUBLE");
  gen_PTN_lex_return_TOK( out, "-?[0-9]+", "              ", "LEX_INTEGER");
+ gen_PTN_lex_return_TOK( out, "<STRING_C>[^\"]*", "      ", "LEX_STRING");
 	return true;
 }
 

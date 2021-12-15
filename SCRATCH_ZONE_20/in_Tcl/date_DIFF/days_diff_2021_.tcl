@@ -5,6 +5,7 @@ set dates {
 	2021-02-25 {day 56}
 }
 set dates {
+	2016-01-22 {Chris n Bex Godalming}
 	2021-04-04 {Lunch at 1}
 	2021-04-15 {Priddy}
 	2021-04-22 {CA Flying}
@@ -14,7 +15,8 @@ set dates {
 	2021-07-18 {Carmen 2020 anniv}
 	2021-07-29 {Met Chris at Albany}
 	2021-07-30 {Chris leaves Albany}
-	2021-07-31 {Andrea Facebook Sat}
+	2021-07-31 {Andrea broadcasts photo}
+	2021-10-23 {CA Flying maybe}
 	2021-12-02 {Malcolm email}
 	2021-12-24 {xmas eve}
 }

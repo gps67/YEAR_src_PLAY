@@ -6,7 +6,13 @@
 		rework BOOL
 		rework error message - silent on fail ?
 		(proc watcher - syslog of errout, e_print also changes)
+
+		see file_stat to get/set mtime
 */
+
+// lseek64
+#define _LARGEFILE64_SOURCE
+
 
 
 #include <stdio.h>
@@ -1153,6 +1159,16 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 		return true;
 #endif // WIN32
 	}
+
+bool fd_hold_1::
+seek_SET_64( u64 pos )
+{
+	if(-1 == lseek64( fd, pos, SEEK_SET ) )
+	{
+		return FAIL("seek");
+	}
+	return true;
+}
 
 bool fd_hold_1::
 seek_SET_32( u32 pos )

@@ -1,6 +1,9 @@
 
-
 #include "file_stat.h"
+
+// #include <fcntl.h>
+// #include <sys/stat.h>
+
 
 // #include <sys/types.h>
 // #include <dirent.h>
@@ -170,6 +173,11 @@ const char * str_file_type( File_Type file_type )
 		return true;
 	}
 
+
+	bool file_stat::stat_quiet( const char * filename ) {
+		return stat( filename );
+	}
+
 	/*!
 	*/
 	bool file_stat::stat( const char * filename )
@@ -298,4 +306,26 @@ const char * str_file_type( File_Type file_type )
 		WARN("%s is a link to %s but not %s",
 			src, (STR0) readlink_val, dst );
 		return false;
+	}
+
+	/*!
+		copy mtime from prev stat'd file to filename2
+	*/
+	bool file_stat:: utime_to_filename( const char * filename )
+	{
+		struct timespec times[2];
+		times[0] = st.st_atim;
+		times[1] = st.st_mtim;
+		int dirfd = AT_FDCWD; // if relative pathname use current dir
+		int flags = 0; // AT_SYMLINK_NOFOLLOW // man utimensat
+		int t = utimensat(
+			dirfd,
+			filename,
+			times,
+			flags
+		);
+		if(t) {
+			return FAIL("%s", filename );
+		}
+		return PASS("%s", filename );
 	}

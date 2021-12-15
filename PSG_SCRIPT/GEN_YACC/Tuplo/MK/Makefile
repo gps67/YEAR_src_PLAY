@@ -1,19 +1,24 @@
 #!/usr/bin/env make
 
+	# S=../src
+	S=..
+
 	CXX = g++
 	OPTIM += -g
+
 	INCLS += -I./
 	INCLS += -I../
-	INCLS += -I../src/
-	INCLS += -I../STO/
+	INCLS += -I$S/src/
+	INCLS += -I$S/src/PSG_Tree
+	INCLS += -I$S/src/PSG_Tree/e1
+	INCLS += -I$S/src/PSG_Tree/AFM
+	INCLS += -I$S/STO/
 #	INCLS += -I../buffer # get from libs_apps
 #	INCLS += -I/tools/2000/X11R6/include
 
 	DEFS = 
 #	LINKS = -L/usr/X11R6/lib -lX11
 
-	# S=../src
-	S=..
 	VPATH +=$S
 	VPATH +=$S/src
 	VPATH +=$S/src/PSG_Tree

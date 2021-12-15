@@ -86,6 +86,22 @@ int complain_depth = 4;
 static const char * prog_alias = 0;
 
 // extern
+void set_prog_name( const char * progname )
+{
+	if( progname ) {
+		progname_argv0 = progname;
+		// point to name.ext part of path/name.ext
+		progname_name = strrchr( progname, '/' );
+		if( progname_name )
+			progname_name++;
+		else
+			progname_name = progname;
+		// set it here, (MAYBE)
+		set_prog_alias( progname_name );
+	}
+}
+
+// extern
 void set_prog_alias( const char * s )
 {
 	if(!s) {

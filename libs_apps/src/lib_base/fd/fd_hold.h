@@ -331,6 +331,7 @@ class fd_hold_1 : public obj_ref
 	bool open_TCP_async( sock_addr_ip & spec ) { return open_TCP( spec, true ); }
 	bool open_AF_UNIX_async( str0 filename ) { return open_AF_UNIX( filename, true ); }
 
+	bool seek_SET_64( u64 pos );
 	bool seek_SET_32( u32 pos );
 	bool seek_REL_32( i32 pos );
 	bool seek_END_32( i32 pos );

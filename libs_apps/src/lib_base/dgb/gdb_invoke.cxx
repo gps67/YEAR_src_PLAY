@@ -298,7 +298,7 @@ void gdb_invoke( bool usegui )
 	char pid_str[16];
 	sprintf(pid_str, "%d", pid); 
 
-	INFO("pid is %d", pid );
+	INFO("pid %d exe_name %s", pid, exe_name );
 
 
 	fflush(0); // fflush before fork - just in case
@@ -579,7 +579,9 @@ void gdb_fatal_error_handler(int signo)
 */
 void gdb_sigaction( const char * progname )
 {
-	if( progname ) {
+	set_prog_name( progname );
+ /*
+ 	if( progname ) {
 		progname_argv0 = progname;
 		// point to name.ext part of path/name.ext
 		progname_name = strrchr( progname, '/' );
@@ -590,6 +592,7 @@ void gdb_sigaction( const char * progname )
 		// set it here, (MAYBE)
 		set_prog_alias( progname_name );
 	}
+ */
 
 #ifdef WIN32
 	return;

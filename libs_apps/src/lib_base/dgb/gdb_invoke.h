@@ -16,6 +16,9 @@ extern const char * progname_name;
 //! called by the signal handler (eg split this into POST::post_file.cxx)
 extern void gdb_fatal_error_handler(int signo);
 
+//! set progname_argv0 // DONT setup a sigaction default
+void set_prog_name( const char * progname );
+
 //! set progname_argv0 and setup a sigaction default
 void gdb_sigaction( const char * progname );
 

@@ -80,12 +80,15 @@ class file_stat : public GRP_lib_base
 	file_stat();
 	void clear();
 	bool stat( const char * filename );
+	bool stat_quiet( const char * filename );
 	bool stat_fd( int fd );
 	bool readlink_to_buf( const char * filename, blk1 & buf );
 	bool readlink_to_val( const char * filename );
 	static File_Type get_file_type( const struct stat & s );
 	bool check_ln_s( const char * dst, const char * src );
 	bool renew_ln_s( const char * dst, const char * src );
+	// used to copy mtime to another file
+	bool utime_to_filename( const char * filename );
 };
 
 #endif

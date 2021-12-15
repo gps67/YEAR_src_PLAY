@@ -134,6 +134,7 @@ endif
 #misc
 #unix (or misc) (todo: os_util)
 	OBJS_base1 += dir_list.o
+	OBJS_base1 += file_rename.o
 # unused ...
 #	OBJS_base1 += file_utils_glib.o
 #	OBJS_base1 += file_utils_99.o

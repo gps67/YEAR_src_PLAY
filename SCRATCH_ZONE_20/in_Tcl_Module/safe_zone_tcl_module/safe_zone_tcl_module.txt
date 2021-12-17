@@ -1,4 +1,5 @@
 
+
 	safe_zone_tcl_module/
 	safe_zone_tcl_module.txt
 
@@ -15,33 +16,19 @@
 
 	C++ API
 
-	ARGV = ... various layouts ...
-	OBJECT OPCODE ARGS
-	OPCODE OBJECT // THIS.EXPR_1234() // may use own local // CPU uCODE
-	OPCODE OBJECT ONE
-	OPCODE OBJECT ONE TWO
-	ARGV = OPCODE OBJECT ...
-	DECODED_n_words_5 // LIST $OPCODE $object $lhs $rhs $plus
-	OPCODE_FIVE OBJECT ONE TWO MORE
 
-	CACHE for RPC_API over shared DATA
+	BINARY proveds SESS_api
 
-	On the server the API's are attached to the SQL QUEUE API
-	On the client the API's are CACHED RPC's
+		LOGIN user // PROOF WAS ... BINARY ... Module ... SCRIPT ...
 
-	They share a common BATCH PROCESSING STEPS API
-	That would normally mean LOCKS and ACCESS LINK PERMITS
-	All the requests are queued up.
-	The priority queue stream gets mostly to the fromt
-	The primary queue gets most of the bandwidth
-	The duplicated MMAP zones // HERE -- THERE -- NEAR
-
-	You invent your own API for your FEATURE
-	As long as it looks like Module API_FEATURE_api
-	and fits in an ITEM[u16] world
-	 16 K HEAP_ITEM
-	 48 K OFFS_EXPR // DECODED u14_u16_ // OPCODE opcode u32_PAYLOAD
-	 48 K OFFS_EXPR // DECODED u14_u16_ // OPCODE opcode u32_PAYLOAD
-
-	u64_WORD u8_u8_u16_u32 // _lohi
+		PERMIT += eval SCRIPT as user // OPTION SESS CTXT
+		PERMIT += eval BINARY as user // RPC as it self // via RPC_CACHE
+		PERMIT += load Module as user // IMPORT FILTER = SAFE_LIST
+		FILTER += SAFE EVAL ANY SCRIPT within sandpit machine session
+		FILTER += SAFE EVAL VOCAB AVAIL += DIALECT API SCRIPT
+		SCRIPT += SAFE EVAL GEN_BINARY RUN API SESS //
+		SCRIPT_RUNTIME DATA // elf_segment api_header api_runtime
+		SCRIPT += WRAP EVERYTHING WITH_UNDER TCL_SAFE_MODE
+		SCRIPT += TCL_SAFE_MODE
+	
 

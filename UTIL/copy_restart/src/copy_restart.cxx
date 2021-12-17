@@ -14,12 +14,13 @@ bool bool_main( int argc, char ** argv ) {
 
 //	gdb_invoke(false);
 
-	const char * src_name = "/home/gps/G/RIPS/eg_rip_DVD_here/iso/THE_MISSION_DISC_1.iso";
+	const char * src_name = "/home/gps/G/RIPS/eg_rip_DVD_here/iso/"
+	"THE_DVD_DISC_1.iso";
 	const char * dst = "/nfs/NAS_ln_s/NAS3_a2_DVDS/iso";
 
-	if( argc != 2 ) {
+	if( argc != 3 ) {
 		errno = 22;
-		FAIL("USAGE %s src dst", get_prog_alias() );
+		FAIL("USAGE %s src dst # argc %d", get_prog_alias(), argc );
 		WARN("test defaulting src and dst");
 //		return false;
 	} else {

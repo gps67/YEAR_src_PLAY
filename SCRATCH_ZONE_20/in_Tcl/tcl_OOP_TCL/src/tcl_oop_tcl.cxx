@@ -87,13 +87,18 @@ MODULE_INIT( Optical )
 	// + ../obj/tcl_oop_tcl.so // dlopen remembered it
 	// + /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320/libbase.so
 
+	// gdb likes to know // gdb_invoke uses it as exe_name
+	// progname_argv0 = // where gdb_invoke wants it
+	// "/tools/CTXT/tcl/bin/tclsh";
+	set_prog_name( Tcl_GetNameOfExecutable() );
+//	set_prog_name( "STUPID_CTXT_NAME" );
+
+#if 0
 	const char * varval = Tcl_GetVar( interp, "argv0", TCL_GLOBAL_ONLY );
 	if( varval ) {
-		progname_argv0 = varval; // static // strdup needed ? //
-		WARN("forcing specific binary for tclsh");
-		progname_argv0 = "/tools/CTXT/tcl/bin/tclsh";
-		INFO("progname_argv0 %s", progname_argv0 );
+		INFO("varval %s is argv0 is the script filename", varval );
 	}
+#endif
 
 
 	OBJ_module * decoder = new OBJ_module( interp );

@@ -58,7 +58,17 @@ PLUS
 		YES THAT MEANS NBYTES == length+1
 		use Tcl_Alloc or ckalloc
 
+		This makes a lot of sense, and is quite simple
+
 	Tcl_SetFromAnyProc *setFromAnyProc;
+
+		THIS IS USELESS FOR US and VTBL
+		because we are only given the obj == A_STRING
+		with typePtr == NULL, and we dont have a typePtr !!
+ TODO
+ 		Every type must define its own
+		maybe call C_FN or VTBL with extra parameter
+ 	
 
 		before call: STRING = VALUE
 		after call: internal_rep = set

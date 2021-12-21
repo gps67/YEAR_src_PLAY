@@ -1,0 +1,89 @@
+2021-12-17 Dec Fri 20:45 # 40 #  GEN_TCL_FROM_SCRIPT.txt
+
+	PARSE SCRIPT
+	GEN C_CODE SAFE_CODE
+	GEN tcl with generic scripted API
+	ADD api CXX TYPE_NAME
+
+CXX
+	obj_PTR2 => CXX_OBJ 
+
+	REGISTERED_CXX_OBJ_WITH_VTCL_API_AND_TCL_API
+
+	OBJ $obj GET $fieldname // API
+	OBJ $obj CALL $funcname ARGS // API
+
+
+ARGS
+
+	int argc;
+	OBJ_t * ARGS[int];
+	int & ARGS_argc = ARGS.argc; // CXX ARGS
+
+STEP { TYPE * VECT[int] = EXPR ; } // EXPR = ASIS INIT_ZERO LOAD ROM
+
+	TYPE == "%s" // "Item_t" //
+
+	VECT == "ARGS" // LEXICON += ARGS // 
+
+	* == "&" // LEX_ITEM_STAR // auto_gen_alias STAR "*" *
+
+	"*" == "&"
+
+		strval_STAR	// name is PUNCT *
+		strval_AMP	// name is PUNCT &
+
+	int == "int"
+
+		// NAME_CLASH "int" as "IDX_decl_int" // tell PARSER too
+	
+	EXPR == "EXPR" // "EXPR = fn_EXPR(ARGS); // CMNT"
+
+		CMNT == "CMNT += { SPECIFICS }"
+	
+STEP { ITEM_t & WORD = ARGS[idx] ; // CMNT }
+STEP { PTR = CALC_PTR( ARGS[idx] ) // OUT = FILTER( IN )
+STEP { EA_EIGHT = & ARGS[ idx ] }
+STEP { u64_WORD = * EA_EIGHT }
+STEP { u32_field = EXPR } // limited CPU_VAR_EXPRS_POSS
+STEP { u48_payload } // cpu_VAR >>= 16; // zero_sign
+STEP { u16_payload_in_situ } // cpu_VAR AX AH AL
+STEP { u16 & u16_AB_lohi } // 
+STEP { u8 & BYTE_B }
+STEP { u8 & BYTE_A }
+
+
+MMAP
+	u48_u16 // pair of tractors moving left
+
+	u32_u32 // u48 is tricky for u32 machines
+	
+	u32_u16_u8_u8 // cpu_var_BYTE_FIELDS
+
+	elf_SEGMENTS .bss
+	filename.elf
+
+	You can have DATA only. NO_CODE,
+	and have other CODE load the DATA
+
+	It can have a compiled INIT_MODULE
+	eg DECL the types, provide extra API
+	OS.DATA_api 
+
+	Module.so CODE
+	SEGMENT.elf DATA
+
+	MMAP_FILE[u4] // limit N_FILES to 5
+
+	Module.so += GEN VARS API
+	API += SESS
+	API += cpu_var_CTXT 
+	API += cpu_var_VARS; // _THREAD // THREAD_VARS
+	API += call SESS_FRAME ARGS // += GLOBALS to parsed SCRIPT
+	API += "{ /* CXX */ u64 ARGS[ u32 ]; // ARGS = PROVIDED }";
+	API += A_STRING // DECODE_A_STRING // DECLS += A_STRING
+
+
+
+
+	

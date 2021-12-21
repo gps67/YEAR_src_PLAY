@@ -123,8 +123,38 @@ int PLUS_SetFromAnyProc(
  Tcl_Obj *obj
 )
 {
+	/*
+		called with obj->typePtr == NULL
+		should not call _RAW
+		because we dont KNOW that obj really is a _PLUS type
+
+		actually here we probably know it ISNT
+		as we are converting a non-type to a PLUS type
+
+		maybe, this Tcl_Obj TYPE system is naff beyond belief
+		It does not achieve much
+		and it is confusing whilst not doing it
+
+	*/
+	/*
+		PLUS_SetFromAnyProc is set into a typePtr somewhere
+		WE are bouncing the C_fn to a VTBL_CXX_fn
+		but we dont know what that VTBL_CXX_class is !!
+		because having picked this function, obj is plain string
+	*/
+	if(!obj) {
+		FAIL("NULL obj");
+		return TCL_ERROR;
+	}
+	if(!obj->typePtr) {
+		FAIL("NULL obj->typePtr");
+		gdb_break_point();
+		return TCL_ERROR;
+	}
+	gdb_invoke(false);
 	TCL_ObjType_PLUS * PLUS
 	= get_PLUS_from_obj_RAW( obj );
+	INFO( "PLUS %p obj %p", PLUS, obj );
 
 	if( !PLUS -> VTBL_SetFromAnyProc( interp, obj )) {
 		FAIL_FAILED();

@@ -229,6 +229,8 @@ const char * str_file_type( File_Type file_type )
 			} else {
 				linked_file_type = get_file_type( linked_st );;
 			}
+		} else {
+			linked_file_type = file_type;
 		}
 		return true;
 	}
@@ -252,12 +254,22 @@ const char * str_file_type( File_Type file_type )
 
 		// is_absent only from stat + ENOENT
 		// is_error only from stat and errno
- 
+	}
+
+	// src => dst
+	// ln -s something_that_probably_already_exists new_thing
+	// ln -s dst src
+	bool file_stat:: symlink( const char * dst, const char * src )
+	{
+		if( ::symlink( dst, src ) == 0 ) {
+			return true;
+		}
+		return FAIL("symlink(%s,%s)", dst, src );
 	}
 
 	/*!
 	*/
-	bool file_stat::check_ln_s( const char * dst, const char * src )
+	bool file_stat:: check_ln_s( const char * dst, const char * src )
 	{
 		if(!stat( src )) return FAIL_FAILED();
 		if( is_link != file_type ) {
@@ -329,3 +341,20 @@ const char * str_file_type( File_Type file_type )
 		}
 		return PASS("%s", filename );
 	}
+
+	bool file_stat:: stat_expect_is_dir(const char * filename) // accept is_link
+	{
+		if(!stat( filename )) return FAIL_FAILED();
+		if( linked_file_type == is_dir ) return true;
+		INFO("%s", filename );
+		return FAIL("expected is_dir got %s", str_file_type( linked_file_type ));
+	}
+
+	bool file_stat:: stat_expect_is_file(const char * filename) // accept is_link // FAIL with message
+	{
+		if(!stat( filename )) return FAIL_FAILED();
+		if( linked_file_type == is_file ) return true;
+		INFO("%s", filename );
+		return FAIL("expected is_file got %s", str_file_type( linked_file_type ));
+	}
+

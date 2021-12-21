@@ -89,6 +89,11 @@ class file_stat : public GRP_lib_base
 	bool renew_ln_s( const char * dst, const char * src );
 	// used to copy mtime to another file
 	bool utime_to_filename( const char * filename );
+
+	bool symlink( const char * dst, const char * src ); // src => dst
+
+	bool stat_expect_is_dir(const char * filename); // accept is_link
+	bool stat_expect_is_file(const char * filename); // accept is_link // FAIL with message
 };
 
 #endif

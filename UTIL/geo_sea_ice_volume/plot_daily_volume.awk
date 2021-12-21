@@ -65,6 +65,8 @@ BEGIN {
 #	A365=365*2
 	A365=365*5
 	A365=365*6 # looks like a step down, then exponential decay to V2
+	A365=365*3
+	A365=365*1
 
 	F365=1.0*A365 # as a floating point
 
@@ -442,8 +444,10 @@ function plot_script_daily(filename_plot_png, zoomed_out)
  if(plot_to_png) {
 	T = T CRLF "set terminal png"
 	T = T CRLF "set output " Q1(filename_plot_png)
-#	T = T CRLF "set term png size 1200, 800"
-	T = T CRLF "set term png size 800, 600"
+	T = T CRLF "set term png size 1200, 800"
+#	T = T CRLF "set term png size 800, 600"
+#	T = T CRLF "set term png size 400, 300"
+#	T = T CRLF "set term png size 500, 450"
 	
  } else {
 #	T = T CRLF "set output " Q1(filename_plot_png)

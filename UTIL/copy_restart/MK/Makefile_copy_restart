@@ -40,6 +40,10 @@
 
 	PROG_EXE=$(PROG1).exec
 
+	ARG_FILE=/home/gps/G/RIPS/eg_rip_DVD_here/iso/THE_DVD_DISC_1.iso
+	ARG_DIR=/nfs/NAS_ln_s/NAS3_a2_DVDS/iso
+	ARGS=$(ARG_FILE) $(ARG_DIR)
+
 	#imported LITE
 	# PROG_OBJS += dgb.o
 
@@ -51,7 +55,7 @@
 
 dgb: $(PROG_EXE)
 	# VPATH $(VPATH)
-	./$(PROG_EXE) 2>&1 
+	./$(PROG_EXE) $(ARGS) 2>&1 
 
 # each of the .o depend on all of the .h
 $(PROG_OBJS): $(PROG_HDRS)

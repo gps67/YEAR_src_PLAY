@@ -1,4 +1,0 @@
-[ -d obj ] || mkdir obj
-cd obj
-
-make -f ../MK/Makefile "$@" 2>&1

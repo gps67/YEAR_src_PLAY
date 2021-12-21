@@ -254,7 +254,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 
 	// libs_apps used to love gdb insight // but red hat forgot how what why
 
-	 gdb_invoke(false);
+	// gdb_invoke(false);
 	//  gdb_break_point();
 
 	// OBJ $obj GET fielname

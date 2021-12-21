@@ -31,4 +31,144 @@
 		SCRIPT += WRAP EVERYTHING WITH_UNDER TCL_SAFE_MODE
 		SCRIPT += TCL_SAFE_MODE
 	
+	TCL SAFE MODE
 
+		GEN VECTORS that are Tcl Callable // OOP CXX extension API
+
+	API
+
+		Handful of C types 
+		API += VAR name // DETAILS
+		API += TYPE_expr_libr
+		API += TYPE_libr_name _t
+		API += EXPR_LIBR // += SCRIPTS // CALLABLE ARGV OBJV C_fn CXX
+		API += LOAD_elf_so // SEGMENT // API CALL ARGV Item_t SCRIPT
+		API += COMPILIED SCRIPT DATA // SESS //
+		SESS += this_pid carries SEGMENTS N_BYTES
+
+	API
+	SAFE EVAL of C_CODE 
+
+		GEN C_CODE as COMPILED_SCRIPT
+
+			Every SCRIPT_STEP compiles to SAFE_C
+				foreach if while 
+				VAR name = expr // ARGV // OBJV //
+
+			SAFE_C is provided by OS // or outer LIBR own API
+
+		GEN SAFE_C as COMPILED_SCRIPT
+
+			DIRECTLY OPTIMISED Tcl_Obj BINARY_API
+
+			CXX DATA_TYPE_LIBR { STRUCT // DESC }
+
+			OS provides some SAFE_CODE
+
+				only safe because we wrote it's caller
+				full safe via EVAL_FILTER
+				full safe via GEN_SAFE_CODE // 
+				// for use in SAFE_CODE_RUNN_SESS machine
+
+		GEN COMPILED_SCRIPT
+
+			ARGV OBJV // LEXICON += ARGV OBJV // DIALECT
+
+		GEN PARSER for SCRIPT
+
+			NOTICE { NAME=="%s" NAME }
+
+		SCRIPT uses { Tcl STYLE } a lot
+
+			as a Q2 quoting system Q2 BRACES
+
+			FAST MATCH { TOKEN == "$s" }
+			MATCHES
+	
+	SAFE EVAL
+
+		QUOTA MEM = TODO // start with BENCH MONITOR and API
+		QUOTA CPU = TODO // limit 20% of FOUR_CORE 10 second burst
+		QUOTA STO = pathname filename // expect BLOCK_16_MB OR_LESS
+		SESS += "{ varname += SEGMENT_16_MB }" // QUOTA filenames 
+
+			QUOTA u24_IDX // MB16 G4_64
+	
+	G4_64
+
+		u8 G4[ u32 ]; // u32_N_bytes; u8 bytes[ u32 ]; // API_nbytes
+
+		EIGHT_BYTES_u64 G4[ u32 ]
+		EIGHT_BYTES_PTR_u64 G4[ u32 ]
+
+		BENCH uses some more formal sequence of DATA decls
+		PARSER merges layers 
+		LAYER = LAYER_ALIAS "G4" // VARIOUS TYPES
+
+		8 * 4 GB == 32 GB in MB16 blocks
+
+		OS occupies 1 GB of CODE + TABLES
+
+		64 BIT CPU 32 BIT MEM 
+		EA = BASE + OFFS // OFFS = u32_ADDR // EA_EXPR // 
+
+	EA_32
+
+		u32_OFFS
+
+	IDX_32
+
+		u32_IDX
+	
+	EXPR_32
+
+		u32_WORD = u32_EXPR( ARGV ) { SCRIPT ARGS }
+	
+	{ SCRIPT ARGS }
+
+		PARSE SCRIPT
+		GEN C_CODE
+		CALL FUNC == ARGV0 ARGS
+		CALLABLE CLOSURE // JS_STYLE // TCL_V8 ??
+	
+		{ ARGS == ARGV += SESS += VARS }
+	
+	
+
+	
+
+
+	
+	PARSE
+	TAB TEXT
+
+		INDENTED TEXT
+		PRECISE -vs- DIALECT INDENT_USED
+		DIALECT INDENT_USED += { SP TAB %s }
+	
+	{ SYNTAX }
+	" { SCRIPT } "
+	" %s "
+
+		PARSE this .txt file
+		MATCH PATTERNs
+	
+	{ BENCH }
+	%s
+
+		PARSE EXPR LIBR as_FILTER
+		IMPORT every PHRASE // LEXICON // MATCHER
+		LIBR += OPTIMISER { MATCHER_t FILTER_MATCH_PATTERN
+
+		GEN += GEN C_for_Match_pattern
+		GEN += regexp expr libr api
+		GEN += DESCRIBE PATTERN // builtin // LEXPR += STEP
+		STEP += { [a-zA-Z0-9_]* [%s%s]+ PATTERN /* SELF */ 
+		STEP += { [a-zA-Z0-9_]* [%s%s]+ CSET_PATTERN_COMPONENT BASE CSET_STEP "CSET += [0-9]" /* SELF */ 
+		STEP += "[0-9]*" // DEFAULT KNOW EMPTY_STR from NULL STAR PLUS
+	
+	{ GEN }
+	GEN SAFE_CODE CXX	
+	RUN SAFE CODE CXX SEGMENT SESS
+
+			SAFE_C is provided by OS // or outer LIBR own API

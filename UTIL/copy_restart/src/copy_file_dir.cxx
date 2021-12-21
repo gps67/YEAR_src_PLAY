@@ -1,40 +1,12 @@
 #include "dgb.h"
-#include "ints.h"
-#include <stdio.h>
+// #include "ints.h"
+// #include <stdio.h>
 #include "file_stat.h"
 #include "dir_name_ext.h"
 #include "fd_hold.h"
 #include "file_rename.h"
 #include "copy_restart.h"
 // typedef unsigned int uns;
-
-bool bool_main( int argc, char ** argv ) {
-
-	set_prog_name( argv[0] ); // check this
-//	gdb_sigaction( argv[0] ); // check this
-
-//	gdb_invoke(false);
-
-	const char * src_name = "/home/gps/G/RIPS/eg_rip_DVD_here/iso/"
-	"THE_DVD_DISC_1.iso";
-	const char * dst_dirname = "/nfs/NAS_ln_s/NAS3_a2_DVDS/iso";
-
-	if( argc != 3 ) {
-		errno = 22;
-		FAIL("USAGE %s src dst_dirname # argc %d", get_prog_alias(), argc );
-		WARN("test defaulting src and dst_dirname");
-//		return false;
-	} else {
-		src_name = argv[1];
-		dst_dirname = argv[2];
-	}
-
-	if(!copy_file_dir( src_name, dst_dirname )) {
-		return FAIL_FAILED();
-	}
-	return true;
-}
-
 
 bool copy_file_dir( const char * src_name, const char * dst_dirname ) {
 
@@ -189,15 +161,4 @@ bool copy_file_dir( const char * src_name, const char * dst_dirname ) {
 	}
 	
 	return true;
-}
-
-int main( int argc, char ** argv ) {
-	if( bool_main( argc, argv )) {
-		PASS("DONE");
-		return 0;
-	}
-	if(errno) 
-		return errno;
-	WARN("NO ERRNO");
-	return 1;
 }

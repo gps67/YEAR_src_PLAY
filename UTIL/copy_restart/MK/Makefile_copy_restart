@@ -37,6 +37,7 @@
 	Module=libr_unused
 	PROG1=copy_restart
 	PROG_OBJS += $(PROG1).o 
+	PROG_OBJS += copy_file_dir.o
 
 	PROG_EXE=$(PROG1).exec
 

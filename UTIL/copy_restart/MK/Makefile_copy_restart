@@ -38,6 +38,7 @@
 	PROG1=copy_restart
 	PROG_OBJS += $(PROG1).o 
 	PROG_OBJS += copy_file_dir.o
+	PROG_OBJS += copy_tree.o
 
 	PROG_EXE=$(PROG1).exec
 
@@ -67,7 +68,28 @@ $(PROG_EXE):  $(PROG_OBJS)
 	g++ -g -o $@ $(PROG_OBJS) $(LINKS)
 
 $(Module).so:  $(PROG_OBJS)
-	# LINKS adds the libs_apps .so
+	# LINKS adds the libs_apps .so 
+	# LINKS adds the E6320 .so // {`uname -n`} // MATCH is regexp_exact
+	# LINKS adds the FEATURE .so // {ANYSTR} // MATCH is regexp_exact // SP
+	# no SP ADDED to { ANYSTR } ie {ANYSTR} not ...others...
+	# currently there is no lib_FEATURE.so # TRY LIBR AUTO_LOAD // .elf
+	# somewhere is CXX feature to direct LD_LOADER SEARCH_PATH
+	# add useful DIR to LIST # DIALECT += LOCAL // AUTO_LOAD
+	# SESSION registers LOAD_MODULE into this SANDPIT == "{ pid %d }"
+	# NEED METHOD CODE = LOOKUP MATCH // RUN CODE ARGS // CODE == { SCRIPT }
+	# SCRIPT DATA comes into being as PARAMETER of " // CODE == { SCRIP }"
+	# SCRIPT += COMPILED_CXX // using "safe_C_CODE" // not safe
+	# ARGS += { argc argv } # but now { OBJ_t * obj } not { char * expr }
+	# VIEW add SEMI_COLON or SIMPLIFY # FILTER OMIT_or_EMIT #
+	# LOAD CODE += COMPILED_SCRIPT # CXX += { Item_t item CMNT CODE_POINT }
+	# FAST FILTER FLEXIBLE SCRIPTABLE SCRIPT # CODE_POINT HERE #
+	# copy_restart #
+	# move_tree #
+	# libs_apps_extension # ARGV_DECODER # ZZ
+	# // not safe but is in sandpit
+	# LINKS -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320
+	# libs_apps/build_LGX_E6320 # E6320 == "hostname" // GROUP == "WLAN"
+	##
 	# LINKS does not refer to libtcl.so that comes from loading EXE
 	g++ -g -shared -o $@ $(PROG_OBJS) $(LINKS)
 

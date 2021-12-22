@@ -8,33 +8,36 @@
 #include "copy_restart.h"
 // typedef unsigned int uns;
 
-bool copy_src_name_dst(
-
+bool copy_tree(
 	const char * src_over,
 	const char * src_name,
 	const char * dst_over
-	) {
-
-	dir_name_ext test_dir_name_ext;
-	test_dir_name_ext.test1();
+) {
 
 
-	file_stat src_stat;
-	file_stat dst_stat;
+	file_stat stat_src;
+	file_stat stat_dst;
 	u64 size_full = 0;
 
-	// dst_name must exist as a dir 
-	if( !dst_stat.stat_expect_is_dir( dst_over )) {
+	// dst_over must exist as a dir 
+	// dst_over/dir_name/steps/file.ext
+	// TEMPLATE_PHRASE += { step/.pfx.file.ext }
+	// EG
+	// src_over src_dir1 // . //
+	// dst_over dst_dir1 // . // handle DIR == "." //
+	// SCRIPT now leans towards exact MATCH no added SP //
+	// SIMPLIFY is the easy HOW + WHY 
+	if( !stat_dst.stat_expect_is_dir( dst_over )) {
 		return FAIL_FAILED();
 	}
 
-	// src file must exist, as a file
-	if( !dst_stat.stat_expect_is_file( src_name )) {
+	// src name must exist, as a dir
+	if( !stat_dst.stat_expect_is_dir( src_name )) {
 		return FAIL_FAILED();
 	}
 
 	// 31 BIT warning
-	size_full = src_stat.st.st_size;
+	size_full = stat_src.st.st_size;
 	if( size_full >> 31 ) {
 		WARN("SIZE more than 2G");
 	}
@@ -43,25 +46,25 @@ bool copy_src_name_dst(
 	str1 dst_name_tmp;	// copy into this
 	str1 dst_name;		// timestamped final copy // name of
 	// decode src_name
-	dir_name_ext src_dir_name_ext;
-	if(!src_dir_name_ext.decode_filename(src_name)) return FAIL_FAILED();
+	dir_name_ext dir_name_ext_src;
+	if(!dir_name_ext_src.decode_filename(src_name)) return FAIL_FAILED();
 
-//	src_dir_name_ext.test_print();
+//	dir_name_ext_src.test_print();
 
 	// temp name // partial copy restart
 	buffer1 buff_dst_name_tmp;
 	buff_dst_name_tmp.print("%s/.tmp.%s_%s.cpy",
-	 (STR0)	dst_over, 		// TOPDIR
-	 (STR0)	src_dir_name_ext.name,	// FILE_NAME.EXT
-	 (STR0)	src_dir_name_ext.ext	// .EXT 
+	 (STR0)	dst_over, 
+	 (STR0)	dir_name_ext_src.name,
+	 (STR0)	dir_name_ext_src.ext
 	);
 
 	// dest name // full copy
 	buffer1 buff_dst_name;
 	buff_dst_name.print("%s/%s.%s",
 	 (STR0)	dst_over, 
-	 (STR0)	src_dir_name_ext.name,
-	 (STR0)	src_dir_name_ext.ext
+	 (STR0)	dir_name_ext_src.name,
+	 (STR0)	dir_name_ext_src.ext
 	);
 
 	dst_name_tmp = (STR0) buff_dst_name_tmp;
@@ -71,7 +74,7 @@ bool copy_src_name_dst(
 	INFO("dst_name %s", (STR0) dst_name );
 
 	// if dst_name already exists, it is A COMPLETE COPY
-	if( dst_stat.stat_quiet( dst_name )) {
+	if( stat_dst.stat_quiet( dst_name )) {
 		// we should check size date perms uid gid
 		// and be happy if they match
 		// but we simply fail so the calling script does that
@@ -89,12 +92,12 @@ bool copy_src_name_dst(
 	// LOOK for restart
 	fd_hold_1 fd_dst;
 	u64 size_part = 0;
-	if( dst_stat.stat_quiet( (STR0) dst_name_tmp )) {
+	if( stat_dst.stat_quiet( (STR0) dst_name_tmp )) {
 		// exists means restart
-		if( dst_stat.linked_file_type != is_file ) {
+		if( stat_dst.linked_file_type != is_file ) {
 			return FAIL("not is_file");
 		}
-		size_part = dst_stat.st.st_size;
+		size_part = stat_dst.st.st_size;
 		if(!fd_dst.open_RW( (STR0) dst_name_tmp )) {
 			return FAIL_FAILED();
 		}
@@ -160,7 +163,7 @@ bool copy_src_name_dst(
 	}
 	// if there was an actual fail, this point is not reached
 
-	if(!src_stat.utime_to_filename( (STR0) dst_name_tmp ) ) {
+	if(!stat_src.utime_to_filename( (STR0) dst_name_tmp ) ) {
 		return FAIL_FAILED();
 	}
 
@@ -169,28 +172,4 @@ bool copy_src_name_dst(
 	}
 	
 	return true;
-}
-
-bool copy_file_dir (
-	const char * src_name, // src_name == src_file // ALIAS VAR
-	const char * dst_over
-	) {
-	// decode src_name
-	dir_name_ext
-	 src_dir_name_ext_src;
-	if(!src_dir_name_ext_src.decode_filename(src_name)) return FAIL_FAILED();
-
-	STR0 src_over = src_dir_name_ext_src.dir;
-
-	return copy_src_name_dst(
-		src_over,
-		src_dir_name_ext_src.name_ext,
-		dst_over );
-}
-
-bool copy_tree(
-	const char * src_over,
-	const char * dst_over
-	) {
-	return FAIL("TODO");
 }

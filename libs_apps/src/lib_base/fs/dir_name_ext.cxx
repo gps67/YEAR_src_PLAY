@@ -38,25 +38,39 @@ bool dir_name_ext::dos_drive_prefix( str0 path )
 */
 bool dir_name_ext::decode_filename( str0 _path )
 {
+	// clear all results
+
 	ext.clear();
 	name.clear();
+	name_ext.clear();
 	dir.clear();
 	orig_path_name.set( _path );
+
+	// check NULL
 
 	if(!_path || (!*_path)) 
 	{
 		return false;
 	}
+
+	// working buffer buf
+
 	buffer2 buf(50);
 	buf.put( _path );
 	buf.trailing_nul();
+
+	// [start [end // end is extra NUL 
+	// parse from RHS 
 
 	uchar * start = buf.buff;
 	uchar * end = buf.buff + buf.nbytes_used    ; // the NUL
 
 	uchar * pos = end; // the NUL or . or /
+	uchar * dot = end; // the NUL or . or /
+	// [start name [dot .ext [end
 	// search end to start, right to left, for .ext for dir/file
 	// pos points to the char OUTSIDE the string
+	// pos points to a NUL
 	// pos-- ; required
 
 	// search for .ext, leave pos at '.'
@@ -66,22 +80,26 @@ bool dir_name_ext::decode_filename( str0 _path )
 		uchar c1 = *pos;
 		if( c1 == '.' )
 		{
+		//	pos . P1 <= end
 			uchar * p1 = pos + 1;
-			ext.set( p1, end - p1 );
-			end = pos;
+			ext.set( p1, end - p1 ); // N = P2-P0
+			dot = pos;
 			break;
 		} else if( (c1 == '/') || (c1 == '\\') )
 		{
+			// . not seen
 			// ext is NULL
 			dir.set( start, pos-start ); // exclude /
 			uchar * p1 = pos + 1;
 			name.set( p1, end - p1 );
+			name_ext.set( p1, end - p1 );
 			return true;
 		}
-	}
+	} 
 
 	if( pos == start ) {
-		name.set( pos, end - pos );
+		name.set( pos, dot - pos );
+		name_ext.set( pos, end - pos );
 		return true;
 		// dir is absent
 		// maybe .bashrc as .ext
@@ -98,13 +116,15 @@ bool dir_name_ext::decode_filename( str0 _path )
 		if( (c1 == '/') || (c1 == '\\') )
 		{
 			uchar * p1 = pos + 1;
-			name.set( p1, end - p1 );
+			name.set( p1, dot - p1 );
+			name_ext.set( p1, end - p1 );
 			dir.set( start, pos-start ); // exclude /
 			return true;
 		}
 	}
 
-	name.set( pos, end - pos );
+	name.set( pos, dot - pos );
+	name_ext.set( pos, end - pos );
 
 	return true;
 }
@@ -189,10 +209,11 @@ void dir_name_ext::test_print()
 {
 	mk_BOTH_path_name();
 	e_print("\n" );
-	e_print(" cwd   '%s'\n", (STR0) cwd );
-	e_print(" dir   '%s'\n", (STR0) dir );
-	e_print(" name  '%s'\n", (STR0) name );
-	e_print(" ext   '%s'\n", (STR0) ext );
+	e_print(" cwd      '%s'\n", (STR0) cwd );
+	e_print(" dir      '%s'\n", (STR0) dir );
+	e_print(" name     '%s'\n", (STR0) name );
+	e_print(" ext      '%s'\n", (STR0) ext );
+	e_print(" name_ext '%s'\n", (STR0) name_ext );
 	e_print(" orig_path_name  '%s'\n", (STR0) orig_path_name );
 	e_print(" near_path_name  %s\n", (STR0) near_path_name );
 	e_print(" full_path_name  %s\n", (STR0) full_path_name );

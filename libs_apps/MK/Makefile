@@ -498,6 +498,7 @@ endif
 	## SubDirs += lib_base/BYTE/bits # // gets import - merge in from peer
 	SubDirs += lib_base/STR0/bits # // current
 	SubDirs += lib_base/fd
+	SubDirs += lib_base/fs
 	SubDirs += lib_inet/fd_http
 	SubDirs += lib_inet/fd_ftp
 #	SubDirs += lib_inet/fd_cddb
@@ -563,7 +564,7 @@ ifeq ($(WIN32),1)
 	# so need improved clarity what is where, why
 	# also fd_win32 is in fd with fd_unix ...
 	# but for now it is somewhere to work
-	SubDirs += lib_base/unix / add it anyway
+	SubDirs += lib_base/unix # add it anyway
 else
 	SubDirs += lib_base/unix
 	SubDirs += lib_base/win32

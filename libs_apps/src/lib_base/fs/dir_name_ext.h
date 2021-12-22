@@ -21,8 +21,9 @@ class dir_name_ext  : public GRP_lib_base
 	buffer2 cwd;
 	buffer2 dir;
 	buffer2 name;
+	buffer2 name_ext;
 	buffer2 ext;
-	buffer2 orig_path_name;
+	buffer2 orig_path_name;	// the original string //
 	buffer2 full_path_name;
 	buffer2 near_path_name;
 

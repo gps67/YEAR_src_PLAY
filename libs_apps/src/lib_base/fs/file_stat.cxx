@@ -358,3 +358,13 @@ const char * str_file_type( File_Type file_type )
 		return FAIL("expected is_file got %s", str_file_type( linked_file_type ));
 	}
 
+	const char * file_stat:: file_type_str()
+	{
+		return str_file_type( file_type );
+	}
+
+	const char * file_stat:: linked_file_type_str()
+	{
+		return str_file_type( linked_file_type );
+	}
+

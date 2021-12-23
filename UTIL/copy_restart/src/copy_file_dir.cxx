@@ -11,13 +11,34 @@
 bool copy_src_name_dst(
 
 	const char * src_over,
-	const char * src_name,
+	const char * src_name_ext,
 	const char * dst_over
 	) {
 
-	dir_name_ext test_dir_name_ext;
-	test_dir_name_ext.test1();
+//	gdb_invoke(false);
 
+//	dir_name_ext test_dir_name_ext;
+//	test_dir_name_ext.test1();
+
+	INFO("src_over     %s", src_over );
+	INFO("src_name_ext %s", src_name_ext );
+	INFO("dst_over     %s", dst_over );
+
+	str1 name = src_name_ext;
+	if( name.has_prefix(".tmp.")) {
+		INFO("SKIPPING OWN %s", (STR0) name );
+		return true;
+	}
+	if( name.has_suffix(".cpy")) {
+		INFO("SKIPPING OWN %s", (STR0) name );
+		return true;
+	}
+
+	buffer1 src_name;
+	if( src_over )
+		src_name.print("%s/%s", src_over, src_name_ext );
+	else 
+		src_name.print("%s", src_name_ext );
 
 	file_stat src_stat;
 	file_stat dst_stat;
@@ -28,9 +49,44 @@ bool copy_src_name_dst(
 		return FAIL_FAILED();
 	}
 
-	// src file must exist, as a file
-	if( !dst_stat.stat_expect_is_file( src_name )) {
+	// OK TODO // any device fifo etc
+
+	// src file must exist, as a file, or as ...
+	if( !src_stat.stat( (STR0) src_name )) {
+		// it really should exist
 		return FAIL_FAILED();
+	}
+	switch( src_stat.file_type ) {
+	 case is_absent:
+	 	return FAIL("code error - really must exist");
+	 break;
+         case is_file:
+	 	// stay for the rest of the function
+	 break;
+         case is_dir:
+	 	return FAIL("code error - really cant be dir");
+	 break;
+         case is_dev_c:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_dev_b:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_link:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_fifo:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_socket:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_other:
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 break;
+         case is_error:
+	 default: 
+	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
 	}
 
 	// 31 BIT warning
@@ -188,9 +244,3 @@ bool copy_file_dir (
 		dst_over );
 }
 
-bool copy_tree(
-	const char * src_over,
-	const char * dst_over
-	) {
-	return FAIL("TODO");
-}

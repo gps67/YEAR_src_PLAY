@@ -94,6 +94,8 @@ class file_stat : public GRP_lib_base
 
 	bool stat_expect_is_dir(const char * filename); // accept is_link
 	bool stat_expect_is_file(const char * filename); // accept is_link // FAIL with message
+	const char * file_type_str();
+	const char * linked_file_type_str();
 };
 
 #endif

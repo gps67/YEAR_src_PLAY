@@ -44,7 +44,11 @@
 
 	ARG_FILE=/home/gps/G/RIPS/eg_rip_DVD_here/iso/THE_DVD_DISC_1.iso
 	ARG_DIR=/nfs/NAS_ln_s/NAS3_a2_DVDS/iso
-	ARGS=$(ARG_FILE) $(ARG_DIR)
+	ARG_SRC_DIR=/home/gps/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo
+	ARG_DST_DIR=/tmp
+
+	ARGS=$(ARG_SRC_DIR) $(ARG_DST_DIR)
+#	ARGS=$(ARG_FILE) $(ARG_DIR)
 
 	#imported LITE
 	# PROG_OBJS += dgb.o

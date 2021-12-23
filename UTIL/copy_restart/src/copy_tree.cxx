@@ -6,170 +6,82 @@
 #include "fd_hold.h"
 #include "file_rename.h"
 #include "copy_restart.h"
+#include "dir_list.h"
+#include "fs_mkdir.h"
 // typedef unsigned int uns;
 
 bool copy_tree(
-	const char * src_over,
-	const char * src_name,
+	const char * src_tree,
 	const char * dst_over
 ) {
+	INFO("src_tree     %s", src_tree );
+	INFO("dst_over     %s", dst_over );
 
-
-	file_stat stat_src;
-	file_stat stat_dst;
-	u64 size_full = 0;
-
-	// dst_over must exist as a dir 
-	// dst_over/dir_name/steps/file.ext
-	// TEMPLATE_PHRASE += { step/.pfx.file.ext }
-	// EG
-	// src_over src_dir1 // . //
-	// dst_over dst_dir1 // . // handle DIR == "." //
-	// SCRIPT now leans towards exact MATCH no added SP //
-	// SIMPLIFY is the easy HOW + WHY 
-	if( !stat_dst.stat_expect_is_dir( dst_over )) {
+	file_stat stat_item;
+	if(!stat_item.stat_expect_is_dir( dst_over )) {
 		return FAIL_FAILED();
 	}
 
-	// src name must exist, as a dir
-	if( !stat_dst.stat_expect_is_dir( src_name )) {
+	dir_reader_base dir_list;
+	if(!dir_list.open( src_tree )) {
+		FAIL("%s", src_tree );
 		return FAIL_FAILED();
 	}
 
-	// 31 BIT warning
-	size_full = stat_src.st.st_size;
-	if( size_full >> 31 ) {
-		WARN("SIZE more than 2G");
-	}
+	buffer1 src_sub_dir;
+	buffer1 dst_sub_dir;
 
-	// get BASENAME and gen some temp names // from src_name
-	str1 dst_name_tmp;	// copy into this
-	str1 dst_name;		// timestamped final copy // name of
-	// decode src_name
-	dir_name_ext dir_name_ext_src;
-	if(!dir_name_ext_src.decode_filename(src_name)) return FAIL_FAILED();
-
-//	dir_name_ext_src.test_print();
-
-	// temp name // partial copy restart
-	buffer1 buff_dst_name_tmp;
-	buff_dst_name_tmp.print("%s/.tmp.%s_%s.cpy",
-	 (STR0)	dst_over, 
-	 (STR0)	dir_name_ext_src.name,
-	 (STR0)	dir_name_ext_src.ext
-	);
-
-	// dest name // full copy
-	buffer1 buff_dst_name;
-	buff_dst_name.print("%s/%s.%s",
-	 (STR0)	dst_over, 
-	 (STR0)	dir_name_ext_src.name,
-	 (STR0)	dir_name_ext_src.ext
-	);
-
-	dst_name_tmp = (STR0) buff_dst_name_tmp;
-	dst_name = (STR0) buff_dst_name;
-
-	INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
-	INFO("dst_name %s", (STR0) dst_name );
-
-	// if dst_name already exists, it is A COMPLETE COPY
-	if( stat_dst.stat_quiet( dst_name )) {
-		// we should check size date perms uid gid
-		// and be happy if they match
-		// but we simply fail so the calling script does that
-		return PASS(" already exists %s", (STR0) dst_name );
-		return true;
-	}
-
-	// read from src
-	fd_hold_1 fd_src;
-	if(!fd_src.open_RO( (STR0) src_name )) {
-		return FAIL_FAILED();
-	}
-
-	// write to mid file
-	// LOOK for restart
-	fd_hold_1 fd_dst;
-	u64 size_part = 0;
-	if( stat_dst.stat_quiet( (STR0) dst_name_tmp )) {
-		// exists means restart
-		if( stat_dst.linked_file_type != is_file ) {
-			return FAIL("not is_file");
+	while( dir_list.next() ) {
+		INFO("DIR ITEM %s %s",
+		 dir_list.name(), 
+		 dir_list.item.file_type_str()
+		);
+		str0 name = dir_list.name();
+		if( name.ends_with(".cpy") ) {
+			INFO("skipping .cpy %s", (STR0) name );
 		}
-		size_part = stat_dst.st.st_size;
-		if(!fd_dst.open_RW( (STR0) dst_name_tmp )) {
-			return FAIL_FAILED();
-		}
-		// TODO TEST on 32 bit CPU
-		if(!fd_dst.seek_SET_64( size_part )) { // must match fd_dst
-			return FAIL_FAILED();
-		}
-		if(!fd_src.seek_SET_64( size_part )) { // must match fd_dst
-			return FAIL_FAILED();
-		}
-	} else {
-		if(!fd_dst.open_RW_CREATE( (STR0) dst_name_tmp )) {
-			return FAIL_FAILED();
-		}
-	}
-
-	u64 size_left = size_full - size_part;
-	int size_block = 1024 * 32; // 32K is DVD block size
-	static const int loops_per_sync = 5;
-	if(0) size_block = 1024; // TEST slow down
-	char buff[ size_block ];
-	int fake_stop = 5; // TEST partial copy using fixed limit progress
-	int loops_count = loops_per_sync;
-	while (size_left > 0) {
-		if( !loops_count-- ) {
-			loops_count = loops_per_sync;
-			if(! fd_dst.fdatasync() ) {
-				// syncs not working as expected
+		switch( dir_list.item.file_type ) {
+		 case is_dir: 
+		 	src_sub_dir.clear();
+			src_sub_dir.print("%s/%s", src_tree, (STR0) name);
+		 	dst_sub_dir.clear();
+			dst_sub_dir.print("%s/%s", dst_over, (STR0) name);
+			if(!stat_item.stat( (STR0) dst_sub_dir )) { // quiet stat for absent
+				// INFO("TODO MKDIR %s", (STR0) dst_sub_dir ); // stat found absent
+			}
+			switch( stat_item.linked_file_type ) {
+			 case is_dir: ; // perfect already exists
+			 	INFO("OK already exists %s", (STR0) dst_sub_dir );
+			 break;
+			 case is_absent: // perfect mkdir
+			 	if(!fs_mkdir( dst_sub_dir )) return FAIL_FAILED();
+			 break;
+			 default: // anything else is not a good thing
+			 	return FAIL("NOT A DIR %s %s", 
+				 (STR0) dst_sub_dir,
+				 stat_item.linked_file_type_str()
+				);
+			}
+			if(!copy_tree( 
+			 (STR0) src_sub_dir,
+			 (STR0) dst_sub_dir
+			)) {
 				return FAIL_FAILED();
 			}
-		}
-		if(0)
-		 if(!fake_stop--) {
-			return FAIL("fake_stop");
-		 }
-		e_print("\r size_left %7.2f M", (float) size_left / (1024*1024) ) ;
-		int sz_write = size_block;
-		if( sz_write > size_left ) {
-			sz_write = (int) size_left;
-		}
-		int got = 0;
-		got = fd_src.read( buff, sz_write );
-		if( got != sz_write ) {
-			FAIL("ERROR READ expected %d got %d", sz_write, got);
-			sleep(2);
-			return FAIL_FAILED(); // try complete restart
-			continue;
-		}
-		int wrote = 0;
-		wrote = fd_dst.write( buff, sz_write );
-		if( wrote != sz_write ) {
-			FAIL("ERROR WRITE expected %d got %d", sz_write, wrote);
-			sleep(2);
-			continue;
-		}
-		size_left -= wrote;
-	}
-	if(! fd_dst.fdatasync() ) {
-		return FAIL_FAILED();
-	}
-	if(! fd_dst.close() ) {
-		return FAIL_FAILED();
-	}
-	// if there was an actual fail, this point is not reached
 
-	if(!stat_src.utime_to_filename( (STR0) dst_name_tmp ) ) {
-		return FAIL_FAILED();
+		 break;
+		 case is_file:
+		 	if(!copy_src_name_dst( src_tree, dir_list.name(), dst_over ) ) {
+				return FAIL_FAILED();
+			}
+		 break;
+		 default:
+		 	return FAIL("not a plain dir or file %s %s",
+				dir_list.name(),
+				dir_list.item.file_type_str() );
+		}
 	}
 
-	if(! file_rename( (STR0) dst_name_tmp, (STR0) dst_name ) ) {
-		return FAIL_FAILED();
-	}
-	
+	dir_list.close();
 	return true;
 }

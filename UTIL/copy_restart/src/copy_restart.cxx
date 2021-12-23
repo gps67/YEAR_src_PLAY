@@ -122,6 +122,10 @@ bool bool_main( int argc, char ** argv ) {
 	"THE_DVD_DISC_1.iso";
 	const char * dst_dirname = "/nfs/NAS_ln_s/NAS3_b2_DVDS/iso";
 
+	src_name = "/home/gps/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
+	dst_dirname = "/tmp";
+
+
 	if( argc != 3 ) {
 		errno = 22;
 		FAIL("USAGE %s src dst_dirname # argc %d", get_prog_alias(), argc );
@@ -132,9 +136,17 @@ bool bool_main( int argc, char ** argv ) {
 		dst_dirname = argv[2];
 	}
 
+
+ if(0)
 	if(!copy_file_dir( src_name, dst_dirname )) {
 		return FAIL_FAILED();
 	}
+
+	if(!copy_tree( src_name, dst_dirname )) {
+		return FAIL_FAILED();
+	}
+
+
 
 	return true;
 }

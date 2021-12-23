@@ -108,7 +108,7 @@ bool dir_name_ext::decode_filename( str0 _path )
 	// . was found (no detection of .tar.gz only .gz)
 	// no detection of .bashrc
 
-	// search for name
+	// search for / before name
 	while( pos > start )
 	{
 		pos --;

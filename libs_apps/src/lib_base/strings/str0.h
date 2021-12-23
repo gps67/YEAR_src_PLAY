@@ -355,6 +355,14 @@ class str0 : public GRP_lib_base
 		return (0==strncmp( STR0(s0), sfx, l2 ));
 	}
 
+	bool ends_with( const str0 & s ) const {
+		return has_suffix( s );
+	}
+
+	bool starts_with( const str0 & s ) const {
+		return has_prefix( s );
+	}
+
 	//! NULL or str-with-tail of substr 
 	str0 pos_substr( const str0 & sub )
 	{

@@ -7,6 +7,7 @@
 #include "file_rename.h"
 #include "copy_restart.h"
 #include "dir_list.h"
+#include "dir_reader_sorted.h"
 #include "fs_mkdir.h"
 // typedef unsigned int uns;
 
@@ -23,6 +24,7 @@ bool copy_tree(
 	}
 
 	dir_reader_base dir_list;
+//	dir_reader_sorted dir_list;
 	if(!dir_list.open( src_tree )) {
 		FAIL("%s", src_tree );
 		return FAIL_FAILED();
@@ -40,6 +42,7 @@ bool copy_tree(
 		if( name.ends_with(".cpy") ) {
 			INFO("skipping .cpy %s", (STR0) name );
 		}
+		// TODO FIXUP NOW have growing list of ALL types to redup
 		switch( dir_list.item.file_type ) {
 		 case is_dir: 
 		 	src_sub_dir.clear();
@@ -56,7 +59,9 @@ bool copy_tree(
 			 case is_absent: // perfect mkdir
 			 	if(!fs_mkdir( dst_sub_dir )) return FAIL_FAILED();
 			 break;
-			 default: // anything else is not a good thing
+			 default: // anything else is in the way 
+			 	// not a good thing
+				// MAYBE allow symblink to alternative ?
 			 	return FAIL("NOT A DIR %s %s", 
 				 (STR0) dst_sub_dir,
 				 stat_item.linked_file_type_str()
@@ -71,11 +76,16 @@ bool copy_tree(
 
 		 break;
 		 case is_file:
+		 case is_link:
 		 	if(!copy_src_name_dst( src_tree, dir_list.name(), dst_over ) ) {
 				return FAIL_FAILED();
 			}
 		 break;
 		 default:
+		 	if(!copy_src_name_dst( src_tree, dir_list.name(), dst_over ) ) {
+				return FAIL_FAILED();
+			}
+			return true;
 		 	return FAIL("not a plain dir or file %s %s",
 				dir_list.name(),
 				dir_list.item.file_type_str() );

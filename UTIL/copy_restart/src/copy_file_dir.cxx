@@ -49,13 +49,73 @@ bool copy_src_name_dst(
 		return FAIL_FAILED();
 	}
 
-	// OK TODO // any device fifo etc
 
 	// src file must exist, as a file, or as ...
 	if( !src_stat.stat( (STR0) src_name )) {
 		// it really should exist
 		return FAIL_FAILED();
 	}
+
+	// 31 BIT warning
+	size_full = src_stat.st.st_size;
+	if( size_full >> 31 ) {
+		WARN("SIZE more than 2G");
+	}
+
+	if( size_full == 0 ) {
+		WARN("CODE error forgot to stat or ZERO size file");
+		// check mtime
+		// return FAIL("CODE error forgot ot stat");
+	}
+
+	// get BASENAME and gen some temp names // from src_name
+	str1 dst_name_tmp;	// copy into this
+	str1 dst_name;		// timestamped final copy // name of
+	// decode src_name
+	dir_name_ext src_dir_name_ext;
+	if(!src_dir_name_ext.decode_filename(src_name)) return FAIL_FAILED();
+
+//	src_dir_name_ext.test_print();
+
+	// temp name // partial copy restart
+	// we can take the EXT out because it is a mangled filename
+	buffer1 buff_dst_name_tmp;
+	buff_dst_name_tmp.print("%s/.tmp.%s_%s.cpy",
+	 (STR0)	dst_over, 		// TOPDIR
+	 (STR0)	src_dir_name_ext.name,	// FILE_NAME.EXT
+	 (STR0)	src_dir_name_ext.ext	// .EXT 
+	);
+
+	// dest name // full copy
+	// BEWARE of %s.%s which reintroduces absent . use name_ext
+	buffer1 buff_dst_name;
+	buff_dst_name.print("%s/%s", // ERROR 
+	 (STR0)	dst_over, 
+	 (STR0)	src_dir_name_ext.name_ext
+	);
+
+	dst_name_tmp = (STR0) buff_dst_name_tmp;
+	dst_name = (STR0) buff_dst_name;
+
+	INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
+	INFO("dst_name %s", (STR0) dst_name );
+
+	// if dst_name already exists, it is A COMPLETE COPY
+	// MAYBE check mtime nbytes and report mismatch
+	// or not
+	if( dst_stat.stat_quiet( dst_name )) {
+		// we should check size date perms uid gid
+		// and be happy if they match
+		// but we simply fail so the calling script does that
+		return PASS(" already exists %s", (STR0) dst_name );
+		return true;
+	}
+
+
+	// maybe put these vars in a block in case
+	file_stat tmp_stat;
+	buffer1 link_text;
+
 	switch( src_stat.file_type ) {
 	 case is_absent:
 	 	return FAIL("code error - really must exist");
@@ -73,6 +133,17 @@ bool copy_src_name_dst(
 	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
 	 break;
          case is_link:
+	 	if(!tmp_stat.readlink_to_buf( src_name, link_text ))
+			return FAIL_FAILED();
+		if(!symlink( (STR0) link_text, dst_name )) 
+			return FAIL_FAILED();
+		return true;
+		// note reuse of words "src" and "dst"
+		// BECAUSE src -> LINK
+		// NORMALLY when talking about symlink src => dst
+		// WANT dst_name -> link
+
+
 	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
 	 break;
          case is_fifo:
@@ -89,51 +160,7 @@ bool copy_src_name_dst(
 	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
 	}
 
-	// 31 BIT warning
-	size_full = src_stat.st.st_size;
-	if( size_full >> 31 ) {
-		WARN("SIZE more than 2G");
-	}
 
-	// get BASENAME and gen some temp names // from src_name
-	str1 dst_name_tmp;	// copy into this
-	str1 dst_name;		// timestamped final copy // name of
-	// decode src_name
-	dir_name_ext src_dir_name_ext;
-	if(!src_dir_name_ext.decode_filename(src_name)) return FAIL_FAILED();
-
-//	src_dir_name_ext.test_print();
-
-	// temp name // partial copy restart
-	buffer1 buff_dst_name_tmp;
-	buff_dst_name_tmp.print("%s/.tmp.%s_%s.cpy",
-	 (STR0)	dst_over, 		// TOPDIR
-	 (STR0)	src_dir_name_ext.name,	// FILE_NAME.EXT
-	 (STR0)	src_dir_name_ext.ext	// .EXT 
-	);
-
-	// dest name // full copy
-	buffer1 buff_dst_name;
-	buff_dst_name.print("%s/%s.%s",
-	 (STR0)	dst_over, 
-	 (STR0)	src_dir_name_ext.name,
-	 (STR0)	src_dir_name_ext.ext
-	);
-
-	dst_name_tmp = (STR0) buff_dst_name_tmp;
-	dst_name = (STR0) buff_dst_name;
-
-	INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
-	INFO("dst_name %s", (STR0) dst_name );
-
-	// if dst_name already exists, it is A COMPLETE COPY
-	if( dst_stat.stat_quiet( dst_name )) {
-		// we should check size date perms uid gid
-		// and be happy if they match
-		// but we simply fail so the calling script does that
-		return PASS(" already exists %s", (STR0) dst_name );
-		return true;
-	}
 
 	// read from src
 	fd_hold_1 fd_src;

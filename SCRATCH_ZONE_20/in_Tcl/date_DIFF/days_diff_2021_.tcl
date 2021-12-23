@@ -6,6 +6,8 @@ set dates {
 }
 set dates {
 	2016-01-22 {Chris n Bex Godalming}
+	2018-07-12 {Andreas wedding}
+	2019-10-20 {AMS (flights)} 
 	2021-04-04 {Lunch at 1}
 	2021-04-15 {Priddy}
 	2021-04-22 {CA Flying}

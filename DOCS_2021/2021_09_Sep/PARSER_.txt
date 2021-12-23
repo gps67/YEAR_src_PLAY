@@ -1,0 +1,85 @@
+
+Read utf8 from API // all encoding here is utf8 over ASCII
+
+	varname "%s"
+
+Read utf8 from SESS.CTXT.STO
+
+	" UDEF_t " // { Q2 SP NAME SP Q2 } // MATCH all SP options
+	// DETECT STYLE // { Q2 SP NAME SP Q2 } // MATCH all SP options
+	// " LEX_EDGE Q2 SP %s SP Q2 LEX_EDGE " // MORE SP same style words list
+	// " LEX_EDGE " as " LEX_JOIN " // dialect says SO //
+
+X86 prefered array size is EIGHT_BYTES
+
+	we want to support 32 bit for modest dataset sizes
+	on intel we use
+
+		lea eax, [idx * EIGHT]
+
+		u64 EIGHT_BYTES = BASE[ idx ] ; // u8_idx // u12_idx // 
+		u64 * BASE = OFFS_in_SEGMENT + BASE_of_SEGMENT_nbytes_P0
+
+	idx
+
+		ANY u8 u32 // 32 bit machines can only cope with 32 bit idx
+		// u8 // MINI_MACHINE
+		// uns idx // 32 bit limit //
+		// u32 // the core_type_word_limit //
+	
+	EIGHT
+
+		OFFS8 = OFFS * 8
+		OFFS8 = OFFS * 4
+		OFFS8 = OFFS * 2
+		OFFS8 = OFFS * 1	// compiler should notice // OKAY //
+
+		EIGHT bytes in the array slot,
+		not 16 because that needs idx2 == idx1 << 4 // * 16 // 
+		and x86 does not have any other than { 1 2 4 8 }
+	
+	EIGHT
+
+		PTR32
+		PTR32
+	
+	EIGHT
+
+	 ALIASES
+		u48_u16
+		u32_u16_u8_u8
+		u32_u32
+		u32_u32 // particularly u16_u8_u8 compiles to X86 ASM ARM_TOO
+	
+	 
+X64 WORD_PAIR_16_BYTES
+
+	u64 WORD[2];
+
+
+	" u64 WORD[2] " // AMBIG without ; // READY print as %s # FILTER OFF PC
+
+
+	This will only work by overflowing one word into PAIR
+
+	" u32 WORD[4] " //
+	 " u32 WORD[2] " // lhs
+	 " u32 WORD[2] " // rhs
+
+	We only alloc even idx, so that the idx is already pre_multiplied
+
+
+EIGHT_PAIR [idx2] // ATOMIC{ idx2 == N; N+=2; } // PROVIDE PERMIT SIXTEEN_BYTES
+
+	EIGHT_BYTE[2]
+	-alias-
+	EIGHT_BYTE lhs
+	EIGHT_BYTE rhs
+	--alias--
+	SIXTEEN_BYTE	# provides PERMIT to run all above in this space 
+	--
+
+	union_rules WORD // MIND other half // MIND WORD_BITFIELD_EXPRS
+	// put "_byte_B" into BITFIELD_EXPRS // optimise it sometimes
+
+

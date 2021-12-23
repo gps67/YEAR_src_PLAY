@@ -193,7 +193,7 @@ const char * str_file_type( File_Type file_type )
 			// WIN32 - may need editing
 			if( errno == ENOENT ) {
 				file_type = is_absent;
-				return WARN("%s", filename);
+				return WARN("ENOENT %s", filename);
 			}
 			return FAIL("%s", filename);
 		}
@@ -203,7 +203,7 @@ const char * str_file_type( File_Type file_type )
 		{
 			if( errno == ENOENT ) {
 				file_type = is_absent;
-				return WARN("%s", filename);
+				return WARN("ENOENT %s", filename);
 				// false matches -1 from syscall
 			}
 			return FAIL("%s", filename);
@@ -217,7 +217,7 @@ const char * str_file_type( File_Type file_type )
 				return FAIL_FAILED();
 
 			// hmmm (STR0) necessary on readlink_val TYPE
-			WARN("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
+			INFO("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
 
 			/*
 				get the stat info of the linked target,

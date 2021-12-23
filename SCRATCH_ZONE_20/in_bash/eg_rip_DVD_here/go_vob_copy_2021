@@ -26,8 +26,8 @@
 	mkdir_FAIL $DIR_LOG
 	mkdir_FAIL $DIR_DEL
 
-// check that vobcopy is available # not done
-// vobcopy // apt install
+# check that vobcopy is available # not done
+# vobcopy // apt install
 
 say_do()
 {
@@ -161,6 +161,8 @@ echo
 
 # write out DIR to ISO
 
+	# DIR_IN ==  "${dvd_name_2}"
+
 	IMG_ISO="${DIR_ISO}/${dvd_name_2}.iso"	# DIR_ISO must be relative
 	IMG_LOG="${DIR_LOG}/${dvd_name_2}_mkiso_log.tmp"
 	NAS_ISO="${DIR_NAS}/${IMG_ISO}"		# IMG_ISO must be relative path
@@ -202,7 +204,10 @@ echo
 	# copy ISO to NAS #
 	if [ -d "${DIR_NAS}/." ]
 	then
-		say_do cp -p $IMG_ISO $NAS_ISO || FAIL $? cp
+		# NAS failing with io errors on big transfers
+		# the entire reason for copy_restart
+		# say_do cp -p $IMG_ISO $NAS_ISO || FAIL $? cp
+		say_do ./copy_iso_tree
 	else
 		echo "# ISO not copied to NAS - you must do this later"
 	fi

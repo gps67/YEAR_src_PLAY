@@ -8,21 +8,25 @@
 #include "copy_restart.h"
 // typedef unsigned int uns;
 
-bool copy_src_name_dst(
+// put time into a module
+#include <time.h>
 
+bool copy_src_name_dst_try(
 	const char * src_over,
 	const char * src_name_ext,
 	const char * dst_over
-	) {
+ ) {
 
 //	gdb_invoke(false);
 
 //	dir_name_ext test_dir_name_ext;
 //	test_dir_name_ext.test1();
 
+	if(0) {
 	INFO("src_over     %s", src_over );
 	INFO("src_name_ext %s", src_name_ext );
 	INFO("dst_over     %s", dst_over );
+	}
 
 	str1 name = src_name_ext;
 	if( name.has_prefix(".tmp.")) {
@@ -59,7 +63,11 @@ bool copy_src_name_dst(
 	// 31 BIT warning
 	size_full = src_stat.st.st_size;
 	if( size_full >> 31 ) {
-		WARN("SIZE more than 2G");
+		float szg = size_full;
+		szg /= 1024; // K
+		szg /= 1024; // M
+		szg /= 1024; // G
+		WARN("SIZE more than 2G, %4.2fG", szg);
 	}
 
 	if( size_full == 0 ) {
@@ -196,24 +204,60 @@ bool copy_src_name_dst(
 
 	u64 size_left = size_full - size_part;
 	int size_block = 1024 * 32; // 32K is DVD block size
-	static const int loops_per_sync = 5;
+	static const int loops_per_sync = 1000; // 500; // 100; // 50;
 	if(0) size_block = 1024; // TEST slow down
 	char buff[ size_block ];
 	int fake_stop = 5; // TEST partial copy using fixed limit progress
 	int loops_count = loops_per_sync;
+	static const int every_n_seconds = 10; // 5; // do full fsync not fdatasync
+	time_t time_last_sync; // rounded seconds
+	time_t time_last_fsync; // rounded seconds
+	time_t time_right_now; // rounded seconds
+	time_last_fsync = time_last_sync = time_right_now = time(NULL);
 	while (size_left > 0) {
-		if( !loops_count-- ) {
+
+		time_right_now = time(NULL);
+		if( time_right_now != time_last_sync ) {
+			// every changed second
+			time_last_sync = time_right_now;
+			if( time_last_fsync + every_n_seconds <= time_right_now ) {
+				time_last_fsync = time_right_now ;
+				// every 5 seconds // if check within that sec
+				if(1)
+				if(! fd_dst.fsync() ) {
+					return FAIL_FAILED();
+				}
+			} else {
+				// every second other than multiple
+				if(0)
+				if(! fd_dst.fdatasync() ) {
+					return FAIL_FAILED();
+				}
+			}
+			// restart loop counter // every second
 			loops_count = loops_per_sync;
-			if(! fd_dst.fdatasync() ) {
-				// syncs not working as expected
-				return FAIL_FAILED();
+		} else {
+			// every loop // where tick has not happened
+			if( !loops_count-- ) {
+				// every n loops
+				loops_count = loops_per_sync;
+				// so why is it showing 0 when pausing not 100
+				if(1)
+				if(! fd_dst.fdatasync() ) {
+					// syncs not working as expected
+					return FAIL_FAILED();
+				}
 			}
 		}
 		if(0)
 		 if(!fake_stop--) {
 			return FAIL("fake_stop");
 		 }
-		e_print("\r size_left %7.2f M", (float) size_left / (1024*1024) ) ;
+	//	e_print("\r size_left %7.2f M loops_count %3d ", (float) size_left / (1024*1024), loops_count ) ;
+		e_print("\r size_left %7.2f M ", (float) size_left / (1024*1024) ) ;
+	//	if(!loops_count) e_print("\n");
+	//	e_print("\n");
+	//	fflush(0); // e_print does not need fflush(0)
 		int sz_write = size_block;
 		if( sz_write > size_left ) {
 			sz_write = (int) size_left;
@@ -234,8 +278,8 @@ bool copy_src_name_dst(
 			continue;
 		}
 		size_left -= wrote;
-	}
-	if(! fd_dst.fdatasync() ) {
+	} // while
+	if(! fd_dst.fsync() ) { // also write inode
 		return FAIL_FAILED();
 	}
 	if(! fd_dst.close() ) {
@@ -271,3 +315,17 @@ bool copy_file_dir (
 		dst_over );
 }
 
+
+bool copy_src_name_dst(
+	const char * src_over,
+	const char * src_name_ext,
+	const char * dst_over
+ ) {
+	int loops = 4;
+	for( int i=0; i<loops; i++ ) {
+		if( copy_src_name_dst_try( src_over, src_name_ext, dst_over )) {
+			return true;
+		}
+	}
+	return FAIL_FAILED();
+ }

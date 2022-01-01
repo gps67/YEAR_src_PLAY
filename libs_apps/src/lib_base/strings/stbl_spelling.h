@@ -1,6 +1,9 @@
 #ifndef Stbl_spelling_H
 #define Stbl_spelling_H
 
+//
+// a common STR2 for the SPELLING // held in global POOL //
+//
 #define STR2_TOKENISE( s ) STBL::Spelling_Pool_lookup_add( s )
 
 struct buffer1;

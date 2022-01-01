@@ -89,10 +89,14 @@ class lex_lookup
 	 bool look_8859( const p0p2 & s )
 	 {
 		 str_buffer.set_8859( s ); // UTF8
+		 return look_buffer();
 	 }
 	 bool look_buffer()
 	 {
+	 	// this might be unused
 		 str_spelling = STBL::Spelling_Pool_lookup_add( str_buffer );
+		 return WARN("not sure what this should do");
+		 return true;
 	 }
 
 	 void set_utf8( p0p2 & s );

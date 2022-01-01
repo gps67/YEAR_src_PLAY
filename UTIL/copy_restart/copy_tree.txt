@@ -1,0 +1,45 @@
+copy_tree
+copy_restart
+
+	for when cpio fails
+
+NFS fails with IOERROR within mc
+partially copied file left
+
+	TODO
+
+	scan both trees, 
+	 list mtimes perms wrong // size same
+	 list FILE smaller
+	 list FILE larger
+
+	 offer a reverse rename that simulates broken transfer
+	 
+	 TODO
+
+	 dont exit on first error
+	 retry until happier
+	 add a sync ? 
+	 why is fsync not doing the job?
+	 (it accumulates delay)
+
+	 TODO
+	 sleep_more is overdoing it
+
+	 TODO
+	 sort dir_list
+
+	 TODO
+	 converyer belt
+	 task manager
+	 disk user lan user quota varies with cost + convenience
+	 progress schedule throttle sprint 
+
+	 TODO
+	 mknod FIFO etc
+
+	 TODO
+	 rewrite SYMB links somehow
+
+
+

@@ -34,7 +34,7 @@ void scan_to_nl_base::report_lhs( const char * LHS )
 	if(!LHS) LHS = "LHS";
 
 	get_x_y( x_start, y_start );
-	e_print("# %4s %2d %2d ", LHS, y_start, x_start );
+	e_print("# %2d %2d # %s  ", y_start, x_start, LHS );
 }
 
 /*!
@@ -313,3 +313,76 @@ void	scan_to_nl_base::get_curr_line_zone( p0p2 & line_zone )
 	while( (*P1) && (*P1 != '\n') ) P1++;
 	line_zone.p2 = P1;
 }
+
+/* TODO
+	{ u32 c3 c2 c1 OP } {
+		DECODER MATCH OP
+		 OP {
+		 	OP is BYTE_A
+		 	C1 is BYTE_B	// fast start
+			WORD >> 16
+		 	c2 is BYTE_A	// == CMP was_not_NUL
+		 	C3 is BYTE_B	// == CMP was_not_NUL // detect NUL *P
+		 }
+	}
+	FILTER plays a series of TOKENISED OPCODES MATCH(c1,c2,c3) etc
+	PARSER plays against *P into PSG
+	PSG uses TOKENISED_SCRIPT_from_GEN
+
+		DECODER OP 
+		 OP {
+		 	OP is "c3 c2 c1 OP"
+			B1 is "goto [B1]
+			LO 
+			HI
+
+			HAVE { C == *P }
+			if( C < LO ) goto NOMATCH
+			// OPTION == // if( C == LO ) goto MATCH_LO //
+			if( C > HI ) goto NOMATCH
+			// OPTION == // if( C == HI ) goto MATCH_HI //
+			goto "HERE = MATCH_in_range_LO_HI" // KNOW able
+
+			MATCH "[LO HI]"
+		 }
+
+		SUBRANGE {
+			used to hold a small number of GOTO_ADDR words
+
+			u32 SUBRANGE[N] // 
+			 idx2 = idx1 + SUBRANGE_BASE  // LO
+			LO == SUBRANGE_BASE 
+			OV == SUBRANGE_BASE + N
+			HI == OV -1
+			i2 == i1 - LO
+			WORD = SUBRANGE[ i2 ] // [0[N // "[LO HI]" // [LO HI]
+		}
+
+		REMAP {
+			u8 REMAP[range]
+			used to hold a small number of GOTO_ADDR words
+
+			u16 REMAP[range]
+			used to hold a shared_space of EXPRS
+
+			eg
+			LIST_VALS V A L S
+			LIST_IDX2 0 1 2 3 // idx2 = RANGE_idx ++ // N == idx
+			VECT_EXPR E0 E1 E2 E3 // E2 = SHARED_SPACE[u16_E2]
+		}
+
+		SHARED_SPACE {
+			EIGHT_t SPACE[u16_idx] // filled low to ROM STO
+			u16 MINI_MACHINE_REMAPPE[u8] // why not LO += N
+			u16 BIND_TOKEN_REMAPPE[u8] // why not LO += N
+		}
+
+		compile FSM to ASM switch_case goto_case[step]
+		 NODE + STEPS[+] // STEP += on_MATCH_STEP_STEP_STEP
+		  foreach NODE_MATCH_STEP[i] 
+		   if MATCH then STEP // GOTO_EXIT_no_return
+		  ELSE NO_MATCH
+
+
+
+*/

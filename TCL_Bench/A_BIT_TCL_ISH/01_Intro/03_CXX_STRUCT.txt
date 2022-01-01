@@ -1,0 +1,106 @@
+2021-12-29 Dec Wed 23:24 # 14 #  03_CXX_STRUCT.txt
+
+	CXX_STRUCT type_name { // AUTO _t //
+	 TOKENISE EXPR { // PARSER detects WORDS then EOLN or CMNT at 
+	 	EA( OBJ, FIELD ) {
+		 GET_EA
+		 GET_VAL
+		 SET_VAL
+		 RUN_EXPR // CALL OBJ.proc A_R_G_S // {
+		  case ARGV == ABSENT 
+		  case ARGV == SINGLE 
+		  case ARGV == PAIR
+		  case ARGV == TUPLO // SUB_DECODE
+		  case ARGV == argc // ARGS PARSER // on_load_check_field
+		  // TCL actually has HOOKS for SET_DETECT
+		  // 
+		  switch argc 
+		  case ABSENT { case 0 ;// ABSENT } // { lhs == "case" rhs == TOKEN }
+		  case SOLO { case 1 }
+		  case PAIR { case 2 }
+		  case TRIP { case 3 }
+		  case argc  { case 4 } 
+		  /*
+		  	KNOW fully parsed with CMNT field in ROM
+			KNOW u3_is_plenty AUTO_GROW to u64 via u8
+			KNOW u8 is likely
+			KNOW u16 uses u8_u8
+			KNOW u16 uses u64_WORD or BITFIELD // eg u16_shifted
+		  */
+		  DECODE EXPR
+		   results in TOKENISED EXPRS
+		   uses MIN_WIDTH of NBITS BITFIELD
+		   += CPU_u32_u16_u8_u8
+		   += CPU_shifted_bitfied // u48_payload_shifted // NOTATION
+		  DECODE u32_u16_u8_u8 {
+		   { PROC get_u16_half_upper }
+		   { PROC get_u16_AX }
+		   { PROC get_BYTE_B } // BIND to EA_EXPR // then GET/SET/lock
+		   { PROG get_u48_OFFS } // TYPE BIND IDX
+		   { PROG get_u64_WORD } // as uns //
+		   { PROG get_u64_EIGHT } // as array i64 of u16 subfield   //
+		   { PROC STRUCT handler_SCRIPT } // ARGS == "ARGS" // u4_n
+		   { PROC FRAME_where_STRUCT_in_DIALECT handler_SCRIPT } // ARGS
+		  COMPILE 
+		   TOKENISE
+		    ROM uses a few ARGC values a lot TOP_u4 
+		    ROM uses a few ARGC values // encode u16_along_with_OPCODES
+		    ROM uses a few ARGC values // encode u2 A B C D
+		   COMPILER
+		    CPU has A B C D P Q 
+		    CPU has PC SP FP FLAGS SPEC_now_
+		    CPU has FRAME SPEC_now_ // CODE_POINT in ROM // MERGED
+		    CPU has BYTE_B lohi 
+		    CPU has cpu_var_CTXT -> STRUCT .FIELD 
+		    CPU has EXPR ADDR = BASE + OFFS
+		    CPU has EXPR OFFS = IDX * bytes_per_item
+		    CPU has EXPR OFFS = OFFS * bytes_per_item_1_2_4_8
+		    CPU has EXPR BIT_FIELD nbits _left _mid _right 
+		  }
+		 }
+		}
+
+		GET_EA
+		GET_VAL
+		SET_VAL
+		CALL_EXPR // without ARGS // with ARGV[ARGC] // TUPLO //
+
+	 }
+	}
+
+	u64 WORDS[uns]; // LOADED // uns < N | uns == N NULL | error uns > N
+	BOUNDS_CHECK uns N  
+	BOUNDS_CHECK P0 P2
+
+	STRUCT typename { // RUN this SCRIPT to define CLASS
+		add_field {
+		 typename	typename_or_expr
+		 name		name 
+		 offset		u16 bytes or u8 bytes or u8 token_nbytes
+		 nbytes		u3 nbytes u3 token_nbytes // CACHE of typename
+	}
+		add_layer {
+		  balloon_text	en_uk
+		  password_requirements	u64_word
+		  parser = CXX over STR30 STR16 // BYTE_STR15 // NUL or FULL
+	}
+
+	 // DIALECT var_name type_name plus_detail // move nmame left
+	 // CXX_SPEC typename { SCRIPT }
+	 // SCRIPT repeats CMD line with // CODE = CXX_SPEC type_name //
+	 // REPEAT struct %s { INNARDS } ; // CMNT //
+	 // USAGE hint_type_usage // eg STR40 is YEAR_MM_DD_and_KEYS // 
+	 // HINT expect STR16 75% of time STR32 [76[95 STR64 [96[101
+	 // IDX_nbits_AUTO_GROW u3 u8 u16 u24 u32 u48 u48_shifted u64 // PLUS
+	 // 
+	}
+
+	BIND_ACCESSOR_KEYWORD_TOKEN "fieldname"
+	 CIDENT ANYSTR STR0 STR15 STR30 STR[N] u8_N u16_N u32_N API_ALLOC
+
+	API_ALLOC VALUE_TYPE VALUE_with_TAG
+
+TCL	VARNAMES PROC_ARGS ARG_by_NAME # upvar
+
+	list varname 
+

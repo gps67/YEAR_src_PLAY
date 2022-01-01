@@ -1,0 +1,104 @@
+
+.S2 {
+ .HDR {Intro}
+ .P {
+ 	Tcl is a scripted language, with a clean but confused syntax.
+
+	Like bash it looks like lines of words
+
+		.CODE cmd arg1 arg2 
+	
+	Like bash and BASIC, variables use $var
+
+		.CODE $b
+
+	Unlike bash and C, you cant use {a=$b} you must use {set a $b}.
+	That is interpretad as a command {set} with 2 arguments {a} and {$b}
+
+		.CODE set a $b
+
+	Each word does NOT need "quotes", so "tmp" can be written as tmp
+	Sometimes this can make it quite clean, but dont worry, there is
+	still proper punctuation to worry about
+
+		.code set dirname tmp
+
+	Unlike bash, it is quite easy to work with spaces within filenames.
+	They do need "quotes" on the way in, but after that $filename
+	and "$filename" are almost identical
+
+		.CODE {
+			set progname prog.exe
+			set dirname "program files"
+			set pathname /$dirname/$progname
+			# nb TCL provides platform independent funcs for /
+		}
+	
+	Like bash comments are lines that start with #
+
+	Unlike bash, any statement on the left must be closed with ;#
+	This is mildly annoying, but you will get used to it
+
+	One Tcl magic ingredient, is how it uses {braces}. They are a bit like
+	bashs 'single quotes', in that what is inside has the minimum of
+	processing (yet), but they quickly look like C-block-braces.
+
+		Basically a single {word} can actually be {multi-line-block}
+		held as a single word. This allows blocks of code, to be there
+		as a single word item, all on the 1 line.
+
+	.code {
+		if { $a < $b } {
+			# lines
+			# of
+			# code 
+			# here
+		} else {
+			# lines
+			# of
+			# code 
+			# here
+		}
+	}
+
+	One strange-ness is how it uses [code] where bash uses `code`
+
+		On the on hand this is like {code in braces} 
+
+		but on the other hand it is NOT like C array[idx]
+
+		Like `bash backquotes` or $((bash eval))
+		you have to use it a lot
+
+		.code {
+			set width 10
+			set height 20
+			set area [expr $width * $height]
+		}
+	
+	A VERY STRANGE thing is that there are more than one parse styles.
+	It is very confusing until you realise it, but lines_of_code
+	use one parser and if {CONDITION} uses a different parser.
+	Quoted list data uses yet another (you lose newlines)
+
+	CODE uses LINES of WORDS
+
+		where LINE of WORDS is COMMAND ARG ARG ARG
+	
+	EXPR uses tightly parsed words
+
+		if { $a < $b } {then_code} {else_code}
+
+	DATA list uses WORDS 
+
+		set mylist {
+			your
+			word 
+			list here
+		}
+
+ }
+
+
+
+}

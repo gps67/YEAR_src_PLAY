@@ -80,7 +80,8 @@ bool scan_xml_1::scan_file( const u8 * filename )
 				it calls Elem->Info->ElementEnd( STACK )
 				(no parameters)
 			*/
-			printf("</%s>\n", (STR0)*LEX.tokenised_namespace_elem );
+		// 	printf("</%s>\n", (STR0)*LEX.tokenised_namespace_elem );
+			printf("<</%s>>\n", (STR0)*LEX.tokenised_namespace_elem );
 		 } else if( LEX.scan_char('!')) { // < !
 			if( LEX.scan_chars('-','-')) { // < ! --
 				scan_from_comment();
@@ -147,7 +148,7 @@ bool scan_xml_1::scan_file( const u8 * filename )
 				LEX.ml_gap();
 
 				// attr_val = _attr_val;
-				printf(":%s ... %s=\"%s\"\n",
+				printf(":(!)%s(!ELEM)... %s=\"%s\"\n",
 					(STR0) * LEX.tokenised_namespace_elem,
 					(STR0) attr_name.str,
 					(STR0) attr_val.str

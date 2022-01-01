@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PATH=:$PATH
+
+rename_IMG.tcl $HOME/tmp/DEMO_IMG

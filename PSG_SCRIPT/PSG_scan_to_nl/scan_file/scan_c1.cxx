@@ -1,5 +1,6 @@
 #include "scan_c1.h"
 #include "str1.h"
+#include "buffer1.h"
 
 #include <stdio.h>
 
@@ -18,6 +19,7 @@ bool scan_c1::var_decl()
 	p0p2 _varname;
 	str1 typ_name;
 	str1 varname;
+	buffer1 buf;
 	bool value_set = false;
 	int value = -1;
 
@@ -48,15 +50,15 @@ bool scan_c1::var_decl()
 		goto fail;
 	}
 
-	char buff[200];
-	sprintf( buff, "# VAR # %s%s%s %s",
+	buf.print( "# VAR # %s%s%s %s",
 		typ_name.str,
 		asterisk? " *" : "",
 		ampersand? " &" : "",
 		varname.str
 	);
-	if( value_set ) sprintf( buff, "%s = %d", buff, value );
-	LEX.report1( buff );
+	// eshers not here ...
+	if( value_set ) buf.printf( " = %d", value );
+	LEX.report1( buf );
 
 	return true;
 
@@ -310,6 +312,7 @@ top:
 	str1 varname;
 	p0p2 _typ_name;
 	p0p2 _varname;
+	buffer1 buf;
 	bool value_set = false;
 	int value = -1;
 
@@ -345,15 +348,15 @@ top:
 		goto fail;
 	}
 
-	char buff[200];
-	sprintf( buff, "# VAR # %s%s%s %s",
+	buf.print( "# VAR # %s%s%s %s",
 		typ_name.str,
 		asterisk? " *" : "",
 		ampersand? " &" : "",
 		varname.str
 	);
-	if( value_set ) sprintf( buff, "%s = %d", buff, value );
-	LEX.report1( buff );
+	// eshers not here ...
+	if( value_set ) buf.printf( " = %d", value );
+	LEX.report1( buf );
 
 	return true;
 }

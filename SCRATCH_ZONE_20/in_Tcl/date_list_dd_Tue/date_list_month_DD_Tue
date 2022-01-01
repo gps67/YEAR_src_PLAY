@@ -1,23 +1,45 @@
 #!/usr/bin/env tclsh
 
+# lex_intent
+# usage {mm} should be $mm except when v_mm /* name_of_var */
+
+# usage upvar $parameter varname(newcopy) # call uses var_name as parameter str
+
+proc un_octal_dd mm {
+	switch mm {
+	 08 {return 8}
+	 09 {return 9}
+	}
+	return $mm
+}
+
+proc incr_mm {v_mm} {
+	# LINT USAGE $v_mm not v_mm
+	# LINT USAGE true false - not here in tcl
+	upvar $v_mm mm
+	switch mm {
+	 08 {set mm 8}
+	 09 {set mm 9}
+	}
+	set mm [format {%2.2d} [expr $mm + 1 ]]
+	# return false on fail overflow needs next year 
+	if {$mm == "13"} { return 0 } {return 1}
+}
+
 # used to make a diary for this month
 
-puts [exec cal]
-
-set t1 [clock seconds]
-set year [clock format $t1 -format "%Y"]
-set mm [clock format $t1 -format "%m"]
+proc list_days_in_month {year mm} {
+  # extra heading
+  puts ""
+  puts "$year-$mm-01"
 
 # t0 is the start of the month
 # mm0 is the month
-set t0 [clock scan $year-$mm-01]
-set mm0 $mm
-
-# t slides [t0 [+=dt [next_mm
-set t $t0
-set dt [expr 24*60*60]
-
-while true {
+  set t0 [clock scan $year-$mm-01]
+  set mm0 $mm
+  set t $t0
+  set dt_day [expr 24*60*60]
+  while true {
 	set mm [clock format $t -format "%m"]
 	if { $mm0 != $mm } { break }
 
@@ -25,5 +47,43 @@ while true {
 	set Tue [clock format $t -format "%a"]
 	puts "$dd $Tue"
 
-	set t [ expr $t + $dt ]
+	set t [ expr $t + $dt_day ]
+  }
 }
+
+proc year_mm_of_t {v_year v_mm t1} {
+	upvar $v_year year
+	upvar $v_mm mm
+
+	set year [clock format $t1 -format "%Y"]
+	set mm [clock format $t1 -format "%m"]
+}
+
+proc incr_year_mm {v_year v_mm} {
+	# USAGE v_varname LIKE incr varname
+	upvar $v_year year
+	upvar $v_mm mm
+
+	if [incr_mm mm] {
+	} else {
+		incr year 
+		set mm 01
+	}
+}
+
+proc year_mm_after_year1_mm1 {v_year v_mm year1 mm1 } {
+	upvar $v_year year2
+	upvar $v_mm mm2
+
+	set year2 $year1
+	set mm2 $mm1
+	incr_year_mm year2 mm2
+
+}
+
+  puts [exec cal]
+  set t1 [clock seconds]
+  year_mm_of_t year mm $t1 
+  year_mm_after_year1_mm1 year2 mm2 $year $mm 
+  list_days_in_month $year $mm 
+  list_days_in_month $year2 $mm2 

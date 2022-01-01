@@ -8,7 +8,8 @@ T2=/home/gps/YEAR/srcPLAY//libs_apps/src/lib_play/hash
 T1=/home/gps/YEAR/src/PLAY/libs_apps/src/
 T2=/home/gps/YEAR/srcPLAY//libs_apps
 
-insight -w -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
+gdb -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
+# insight -w -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
 # insight -nx -w  -d $T --args lib/x1 test/test3.xml
 # gdb -w --args ./x1 test3.xml
 # gdb --nx -w --args ./scan_mm3 0001.mm3

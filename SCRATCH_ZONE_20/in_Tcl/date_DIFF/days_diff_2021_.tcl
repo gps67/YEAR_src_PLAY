@@ -21,6 +21,8 @@ set dates {
 	2021-10-23 {CA Flying maybe}
 	2021-12-02 {Malcolm email}
 	2021-12-24 {xmas eve}
+	2021-10-17 Order
+	2021-12-29 Deliver
 }
 
 proc days_between {d1 d2} {

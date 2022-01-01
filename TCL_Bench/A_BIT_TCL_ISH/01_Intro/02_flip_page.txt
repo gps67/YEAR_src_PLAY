@@ -1,0 +1,271 @@
+2021-12-29 Dec Wed 20:22 # 37 #  02_flip_page.txt
+
+	list of .code { ZONE } { PAGE } { SCRIPT EXPR }
+
+
+ DOC_HERE { HERE } 02_flip_page.txt: # CMNT
+
+ 	PARSE DATA into basic API callables for STRUCT and LIBR and THINGS
+
+	 SAMPLE OBJ_t API_for_C_PLUS_ELF # loadble CXX_SCRIPT SCRIPT
+
+	 SAMPLE PAGE += Layout += SESS += CODE += HERE_api
+
+	  HERE_api_t HERE_api = POOL == "SESS" 
+
+	  SESS_api_t UDEF_SCRIPT # OBJ_api obj_t; // var_name == "typename_t"
+
+	  OBJ_t UDEF_SPEC_obj _t; // GEN varname & SPEC_of_OBJ // UDEF_SPEC_t //
+
+	  SESS/%s %s // ALIAS SESS/%s varname // varname == "%s" //
+
+	  ANYSTR as ID # lookup key_str "ANYSTR"
+
+	  SCRIPT += FEATURE {
+	  ...
+	  }
+
+	  FEATURE += NAME 
+	  FEATURE += IDX == lookup NAME # MATCH SCRIPT DIALECT HERE
+	  FEATURE += SCRIPT UDEF_SCRIPT
+
+	  UDEF_SCRIPT += FEATURES if while proc var expr SPEC spec
+	  UDEF_SCRIPT += SESS_LIBR CODE SEGMENT elf_CODE_api CALL_FUNC
+	  UDEF_SCRIPT += CACHE SESS VARS_in_CACHE_api
+
+ DOC_HERE { HERE } { LIBR += SESS }
+
+ 	DIALECT_DIAG SESS PAGE
+
+		TREE += SESS_PAGE_HERE_NOW DATA += { CODE } += { SCRIPT }
+
+	SCRIPT 
+		MODULE = UDEF in LIBR 
+
+	SCRIPT
+		PAGE == "Module"
+
+		PSG
+		 SPEC_of_ITEM
+		  OBJ_t obj; // INIT_EXPR // INIT_DATA // CURR_DATA //
+
+		VAR
+			VAR_POOL == "POOL_xFF" // "POOL==xFF_u8 xFF_u32_u16"
+
+			u8_u8 _t;//  %s == "_t" // u8_idx u16_idx EA_OFFS 
+
+			SCOPE += Module S_SLICE_of_Module 
+			Module += Named tree_top tree_root idx 
+			IDX_t idx = lookup "%s" // uses api
+			SCRIPT += PROC VAR API STO 
+		PROC
+
+			EXPR += NAMED_EXPR
+			EXPR += EVAL_SCRIPT // TOKEN _ised //
+
+		DIALECT
+
+		 OPTION
+		 	%s_t %s == INIT_VAL 
+		 	%s_t %s == INIT_EXPR CODE DATA EXPR CMNT
+
+		 OPTION
+
+		 OPTION
+	
+	BENCH
+		POOL += EXPR %s // BY_VAL BY_EVAL
+		BY_VAL means
+			idx = lookup key
+		BY_EVAL means
+			idx = lookup key // CACHED // DATA // api // expr // data
+	SCRIPT
+
+		idx = lookup key // CACHED // DATA // api // expr // data
+		 	
+		idx = lookup key // CACHED // DATA // api // expr // data
+
+			SCRIPT_LINE += expr %s // %s %s ... /// ... RHS MATCH
+			SPLAIN += TUPLO { argc == 0 1 2 3 idx }
+			MATCH += STRING with DIALECTS view of ARGS
+			DECODE += PARSE_ARGV
+
+			COPDE_POINT += "idx++;" // FINITE CACHED EXPR 
+
+
+		idx = lookup key {
+
+		// SCRIPT // CACHED // DATA // api // expr // data // idx // ea
+
+			// each of above have VAR_POOL ROM RAM STO API p//
+
+		// PROC == lookup_key key // CMNT // COPDE_POINT
+		// key
+		// SCRIPT 
+		// CACHED 
+		// DATA 
+		// api 
+		// expr 
+		// data 
+		// idx
+		// ea
+	
+	OBJ_t 
+	 
+	 += CXX_OBJECT // malloc heap_malloc
+	 += CXX_SCRIPT //
+	 += CXX_SPEC // ints floats bitfields structs unions dialects 
+	 += CXX_DIALECT // PSG DATA_SPEC 
+
+	PROC_t
+
+	+= CXX_CALLABLE
+	+= ARGS
+	+= SPEC 
+	+= IMPORT 
+	+= SCRIPT_EVAL
+	+= VARS EXPRS TREE CODE API
+
+	API
+
+	+= TREE
+	+= VARS EXPRS TREE CODE API
+
+	EXPR
+
+	+= VARS POOL_ONE POOL_two 
+
+	POOL
+	+= { key val } // CMNT // CODE_POINT //
+
+
+	CODE_POINT
+	+= new CODE_POINT += ROM_SEGMENT += RAM_SEGMENT += API_ALLOC
+
+	API_ALLOC == CACHE_ALLOC
+	API_ALLOC == RAM_SEGMENT // API_via_specified_ALLOC_SUPPLY
+	API_ALLOC += STO_SEGMENT // EXPR = SPEC_DATA { SPEC DATA CODE }
+
+		//	DATA = IDX // idx = lookup("KEY")
+		} ;# // lookup key 
+	
+	IDX
+	EA_of_WORD = SEGMENT PAGE0 BASE 
+
+	API += TREE
+
+	TREE
+	+= MODULE // HERE is TUPLO of ARGS in SESSION
+	+= PARSE
+	+= SCRIPT
+	+= MIME_TYPE
+	+= CALL_VIEW_STEP_PAGE
+	+= VARS name
+	+= SCOPE SPEC DIALECT SESS ITEM EXPR STEP
+	+= OBJ_t * EA // MEMORY HEAP[ITEM] // lhs rhs //
+
+	u32_u16_u8_u8 
+	u48_u16_u8_u8 // ALIAS u48 u32 OPTION u32_CPU_VAR //
+	+= PTR // either VAL or VAR ie u48 in low place //
+	+= EA_EXPR 
+	+= EA_EXPR BASE == u48_ADDR
+	+= EA_EXPR OFFS == u32_OFFS //
+
+
+ DOC_HERE { HERE } { LIBR += SESS }
+
+
+	LIST of PAGES
+
+	PAGES[%d]
+	PAGE[%d]
+	%s[%d]	"PAGES" { idx_t idx; // CMNT }
+
+	SPEC idx_t
+	 ONE_OF u8 u16 u32 u48 u64 bits+=lhs spec+=rhs PAIR { lhs rhs } 
+	 %s[%s] "PAGES" "{ idx = N++ ; } // CMNT" // idx_PAGE == idx //
+
+	 %s[%s] "PAGES" "%s_%d4.4X" PAGES idx_PAGE   // CMNT"
+
+	 SPEC OBJ_t // API_ALLOC says NBYTES at ADDR plus API // no API yet
+
+	 OBJ_t obj = INIT_EXPR // CMNT // CODE_POINT
+
+	 OBJ_T += PAGE_T += FLIP_PAGE_T
+	 PAGE_T += DRAW_API // MATCH %s_%s // DRAW // API // 
+
+	 SEGMENT == "SESS" // ROM RAM STO { API_t SESS; // CXX }
+
+
+ STATEMENT in CXX
+
+ 	
+	 // this // self // SELF // STR_is_CODE_FRAG_
+	 { API_t SESS; // CXX }
+	 // ITEM in PARSED_ZONE // A R G S ITEM M O R E
+	 // eg decoded // MATCH %s SESS // converting VARNAME to "KEY" // VALUE
+	 SEGMENT == "SESS" // ROM RAM STO { API_t SESS; // CXX } // EG USAGE
+	 // { curlies } triggers CXX_PARSE_STR STR = lookup VAL // VAL == "STR"
+	 // USAGE TOKEN_EXPR { API_t SESS; // CXX } // TOKEN = idx_from_lookup
+
+  RUNTIME
+
+  	idx_t = ONE_OF u8 u16 u32 u48 u64 u8_u8 
+  	idx_t = ONE_OF IDX_API_idx
+	idx_t = AUTO_GROW uns_from_byte_to_EA_NBYTES // ALIAS PTR //
+
+	AUTO_GROW
+	 u8 u16 u24 u32 u48 u64 bit_field // _expr // GET SET EA INFER CACHE
+	
+	WORD_LOCK 
+	 NONE 
+
+ PAGE
+
+  TITLE	{ 'Q1' is now { Q1 } } 
+
+  PAGE
+  	.CODE {
+		LINES_OF_CODE // ANNOTATED
+		MATCH 5 word phrase to TEMPLATE + VAR_POOL
+		SAMPLE CODE BLOCK
+	}
+
+  INDEX
+
+  	Advanced VIEW options for PAGE
+	bubble text
+
+  PARSE
+
+  	lists of words some reserved some noise some parameters else none
+
+  ROM
+  
+  	version dated // manually edited // built of components
+
+  RAM
+
+  	loaded from file or elf segment marked writable for general data STO
+
+  STO
+
+  	MMAP and SPEC_API 
+
+
+ GROUP
+
+	{ if while foreach }
+	{ types strings lists_of_lists arrays CXX_STRUCT }
+
+ PAGE
+
+ 
+
+
+
+
+
+
+
+

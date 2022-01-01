@@ -110,6 +110,7 @@ int map_file::remap( void )
 	struct stat st;
 	if( fstat( fd, &st ) != 0 )
 	{
+		// %m means message from errno (no parameter)
 		e_print("## ERROR ## fstat() %m (PCT M)\n");
 		return errno;
 	}

@@ -38,8 +38,11 @@ void scan_nl_XML_LEX::init_csets(void)
 	cset_xml_ident_a2.set_null();
 	cset_xml_ident_a1 |= cset_AZaz;
 	cset_xml_ident_a2 |= cset_AZaz_;
+#if 1
+	// ignore ns:name // see as CIDENT 
 	cset_xml_ident_a2.set_bit( ':' );
 	cset_ident_a2.set_bit(':');
+#endif
 
 	cset_xml_text.set_null();
 	cset_xml_text.set_range( ' ', 126 );
@@ -161,6 +164,7 @@ bool scan_nl_XML_LEX::scan_elem_name_expect()
 		// TODO RESOLVE
 		return true;
 	};
+
 	if(!scan_name_1_expect( _elem_name, "namespace_elem_name" )) {
 		return false;
 	};

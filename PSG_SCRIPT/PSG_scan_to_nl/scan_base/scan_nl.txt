@@ -1,0 +1,128 @@
+2022-01-02 Jan Sun 21:51 # 48 #  scan_nl.txt
+
+ SCRIPT += LINES_of_WORDS 
+ SCRIPT += PSG_of_ARGS
+
+ PARSE P {
+ 	u8 * P; // PTR // 
+
+	PLUS { // PLUS_t & PLUS /**/ CMNT //  PLUS_t PLUS; // CMNT 
+
+	 += FEATURE { SCRIPT }
+	 += { DATA }
+
+	 FEATURE { SCRIPT DATA } 
+	 	
+	 }
+
+ // ALIAS DIALECT //
+
+	 FEATURE { DATA } { // HERE SCRIPT
+	 	SCRIPT += LINES_of_WORDS
+	 	SCRIPT += Tcl_LEX_parser // simplified SUBLEX avoid {LIST}
+		SCRIPT += SUBLEX PSG Parser TREE = Module
+		SUBLEX += LEX_Parser == "Tcl_LEX_Parser"
+		Parse LINES_of_WORDS_in_SCRIPT // TREE
+
+		CODE_POINT_t CODE_POINT // DIR/FILE/line_xpos
+
+		CSR_in_Parsers_Stream
+		Parser.CSR // MERGE IN SCRIPT where CSR is STREAM_POS // as DFYX
+		DFYX = dir/file/lines/xpos // KNOW TEXT is available as ROM
+		CODE_POINT == DFYX file line xpos // Parse nearby // PSG_TREE
+		CODE_POINT = PSG_TREE.csr // csr = PICK[ "csr" } // csr_two
+		PSG_TREE SEGMENT file xpos
+		file = file in dir at version as_is syntax { file_contents }
+		xpos = xpos_of_seek offs_of_xpos XPOS { XPOS } { FILE SEEK }
+		TEXT == "FILE.TEXT" // u8 * P0 = load_file_to_mem( FILE LOADER )
+		LOADER == "SCRIPT.LOADER" ARGS == "ARGS"
+
+			To create the ARGS concept
+
+				create a var ARGS
+				create a str "ARGS"
+				create a obj "SPEC"
+
+			To create the SPEC concept
+
+				{ ARGS_t & ARGS = lookup "ARGS" }
+				{ SPEC_t & SPEC = lookup "SPEC" }
+				{ EXPR_t & EXPR = CPU_VAR "EXPR" // SUBLEX_FRAG }
+
+			SUBLEX_FRAG "EXPR"
+
+				type "ABCD"
+				MATCH "a2_plus" // not empty name // NULL default
+				{ SUBLEX a2_plus a2 == IDENT_cset_a2 }
+				// a2_plus // or a2_NULL // ABSENT_FIELD
+
+			SUBLEX DIGITS_PLUS // or ABSENT_NULL // FIELD_ABSENT //
+
+				DIGITS += "0123456789" "ABCDEF" "abcdef"
+
+			SUBLEX a2_plus // AS_IN CIDENT_a1_a2_star //
+
+				a1 += [A-Z] [a-z] _
+				a2 += [0-9] _ $
+
+			LEX varnames_start_with_a1 cset_a1 // AZ az // NOT 09
+
+				a1 += [A-Z] [a-z] _
+
+			 VIEW 
+			 	[A-Z] // SP_WORD_SP // HELLO_LEX_WORLD //
+
+			 VIEW
+			 	"abcdefghijklmnopqrstuvwxyz"
+			 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+				"0123456789"
+
+				VIEW as multiple "STR0" joined by LOADER
+				DATA.INIT BITMAP += INCL_bits_parsed_from_STR
+				STR == CSET_as_found_in_EXPR
+				EXPR = incl_chars_found_in_CSET_BYTE_STR0
+				EXPR = one_of( STR0 )
+				compiler CACHE constinit ROM.STO.ITEM = (INIT)
+				// INIT.eval(INIT) // eg TOKEN is GET(TOKEN)
+				// one in range of STR0 mini machines
+				// could have UTF8 ranges currently _ALL // u8
+
+			 MINI_MACHINE
+
+			 	uses manually picked LETTER = { E X P R }
+				idx_packed = N++ // ALLOC //
+
+				SUB_DEVICE iterates pairs K V k v
+				SCRIPT invokes using terse STR == "{ K }"
+
+				TUPLO {
+				 NAME ANYSTR
+				 LETTER K
+				 idx ALLOC { idx = N++ } // well known phrase
+				 CODE %s { // %s SELECT = IDENT = ANYSTR //
+				 // CODE_POINT = XPOS of CSR // DFYX_t XPOS //
+				 }
+				 DATA %s { SCRIPT } // %s = lookup ANYSTR_name
+				 SPEC name { SCRIPT } // %s == "ANYSTR"
+				}
+
+				idx = TOKENISE "ANYSTR" 
+				// compile time keep ANYSTR in ROM use idx
+				// idx = N++ // AUTO_GEN idx = N++; /* CMNT */
+				// SPELLING[idx]
+ AUTO_GEN REWRITE "{ idx = N++ }" {
+ 	RT_val idx_of_TOKEN = "idx"
+ 	CT_obj VAR_from_idx { { NAME "idx" } { OBJ "SPEC(idx)" } // VECT[idx] //
+
+_SYNTAX_ += { ARGS "VECT[idx]" }
+
+ }
+
+
+
+	 } 
+	 	
+	 }
+
+	}
+ }

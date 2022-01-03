@@ -6,9 +6,9 @@
 
 	CXX = g++
 #	CXX = /tools/2004/ccs3/bin/g++
-	OPTIM += -O2
+#	OPTIM += -O2
 #	OPTIM += -O1
-#	OPTIM += -O0
+	OPTIM += -O0
 	OPTIM += -g
 
 	# to link against LIBSAPPS you must match its settings

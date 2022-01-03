@@ -115,6 +115,7 @@ str2 * STBL::Spelling_Pool_lookup_add( const p0p2 & s )
 	buffer1 buf;
 	buf.set( s );
 	// DONE by set() // buf.trailing_nul();
+	// DONE by _lookup_add( buf );
 	return STBL::Spelling_Pool_lookup_add( buf );
 
 //	// I like the idea of not using malloc for buffer1

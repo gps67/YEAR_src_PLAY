@@ -10,6 +10,10 @@
 void str1::set( const str0 & s ) {
 	if( str ) free( (void *) str );
 	str = NULL;
+	if( NULL == & s ) {
+		FAIL("NULL str0");
+		return;
+	}
 	if( !s.str ) return;
 
 	int l = strlen( (STR0) s.str );                                 

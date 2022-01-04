@@ -7,16 +7,16 @@
 class scan_file_base
 {
  public:
-	map_file f;
-	// derived clss must do soomthing LIKE:
-	// scan_nl_XML_LEX LEX;
+ 	// MMAP of FILE.txt that we are Parsing
+	mmap_file mmap_fd;
 
+	// MMAP in entire file // RO //
+	// P0 == mmap_fd.page0 
+	// P2 == P0 + mmap_fd.nbytes
+	// give MMAP_P0P2 to LEX0 
 	bool open_file( const u8 * filename, scan_to_nl * LEX0 );
 
-/*
- NO LEX AVAILABLE YET
-	void report0()	{ LEX.report0();} 
-*/
+	// no derived class for LEX, that is in the CTOR
 
 };
 

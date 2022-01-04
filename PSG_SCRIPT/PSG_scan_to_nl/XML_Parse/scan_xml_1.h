@@ -26,7 +26,7 @@ class scan_xml_1 : public scan_file_base
  public:
 
 	obj_hold<XML_Parse::XML_Stack_Base>	Stack;
-	map_file f;
+	mmap_file f;
 	scan_nl_XML_LEX LEX;
 
 	scan_xml_1()

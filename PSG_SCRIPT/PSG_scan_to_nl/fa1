@@ -1,6 +1,3 @@
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_xml_lex.o -c ../scan_base/scan_nl_xml_lex.cxx
-ar -curs libscan.a scan_nl_xml_lex.o
-ar: `u' modifier ignored since `D' is the default (see `U')
 g++ -O0 -g -o x1.exec x1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/PLAY/libs_apps/lib -L/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -lbase
 ./x1.exec ../test/test3.xml 2>&1 | less
 ##### C init_csets() ###

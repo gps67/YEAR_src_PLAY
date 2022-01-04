@@ -1,0 +1,39 @@
+
+	P0 = P2 = 0xFFFF
+
+	NBYTES == 0
+
+	u8 * s = ""; // a single nul byte
+	s = NULL; // a NULL pointer
+
+	mk_name_found_empty_string
+
+		CALL ERROR empty string
+		SPELLING STR2 = ""
+	
+	We recognise NULL as an empty STR0
+	We generate NULL # because it is out style
+	We often switch to "" # so that standard funcs work
+	But still have to comply with a2_plus a2_star // [0-9]+ // [A-Z]* //
+
+	resolve step ALIAS_LIST { // NAMES on line add up as if derive chain
+	 { [A-Z] + }
+	   [A-Z]+
+	  "[A-Z]+"
+	}
+
+	STR2_of_empty_str ONE_of {
+		P0 = P2 == NULL
+		P0 = P2 == M1
+		P0 = P2 == "" // NUL byte available for use
+		P0 = P2 == somewhere // do not look at *P0
+
+		PTR to {p0p2} is itself NULL
+		PTR to STR2 is itself NULL // or use TOKENISED VALUE //
+		PTR_to_STR1_containing_NUL_byte // shared RO // OWN RW
+
+		...
+
+	}
+
+

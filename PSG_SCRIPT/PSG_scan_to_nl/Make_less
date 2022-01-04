@@ -1,2 +1,2 @@
 rm -f x1
-./mk "$@" 2>&1 | tee fa1 | less '+/(!)'
+./mk "$@" 2>&1 | tee fa1 | less '+/error'

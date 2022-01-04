@@ -3,6 +3,9 @@
 /*
 	scan file.h	scan mm3 file outputting the data
 	Graham Swallow 
+
+	RESTARTED as scan_file - but simpler see there
+	RESTARTING again as lex_NAME lex_STEP STEP = parse EXPR
 */
 
 #include <stdio.h> // fprintf
@@ -17,7 +20,7 @@ extern int trans_id;
 class file_scan_base
 {
  public:
-	map_file f;
+	mmap_file f;
 	scan_nl_C_LEX LEX;
 	p0p2 zone;
 

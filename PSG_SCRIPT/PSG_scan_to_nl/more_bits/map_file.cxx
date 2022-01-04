@@ -2,6 +2,8 @@
 #include <sys/stat.h>
 #include "e_print.h"
 #include "map_file.h"
+#include "ASCII_chars.h" // ASCII_NUL ASCII_LR
+#include "dgb.h" // ASCII_NUL ASCII_LR
 
 #include <sys/mman.h>	// mmap
 #include <unistd.h>	// fsync
@@ -15,37 +17,37 @@
 /*!
 	constructor - init null / -1
 */
-map_file::map_file( void )
+mmap_file::mmap_file( void )
 {
 	fd = -1;
 	writable = FALSE;
-	fd_size = 0;
+	nbytes = 0;
 	page0 = (char *) 0;
 }
 
 /*!
 	destructor - release file and mem
 */
-map_file::~map_file()
+mmap_file::~mmap_file()
 {
 	close();
 }
 
 /*!
-	unmap() releases the mmap file
+	mmap_unmap() releases the mmap file
 */
-void	map_file::unmap( void )
+void	mmap_file::mmap_unmap( void )
 {
 	if( ! page0 ) return;
 	sync();
-	munmap( page0, fd_size );
+	munmap( page0, nbytes );
 	page0 = (char *) 0;
 }
 
 /*!
 	fsync(fd) the mapped file
 */
-int map_file::fsync( void )
+int mmap_file::fsync( void )
 {
 	if( fd < 0 ) return 0;	/* file wasn't open */
 	if( 0 == ::fsync( fd ) )
@@ -54,9 +56,11 @@ int map_file::fsync( void )
 }
 
 /*!
-	mmap in ALL of filename, +- writable
+	mmap in ALL of filename, +- writable 
+	// OPTION // return errno
+	// OPTION // return u8 * P0 // NO //
 */
-int map_file::map_in_file( const u8 * ufilename, int wwritable )
+int mmap_file::map_in_file( const u8 * ufilename, int wwritable )
 {
 	char * filename = (char *) ufilename;
 	writable = wwritable;
@@ -70,7 +74,7 @@ int map_file::map_in_file( const u8 * ufilename, int wwritable )
 	}
 	if( fd >= 0 )
 	{
-		unmap();
+		mmap_unmap();
 		::close( fd );
 	}
 	fd = open( filename, mod );
@@ -79,21 +83,22 @@ int map_file::map_in_file( const u8 * ufilename, int wwritable )
 		e_print( "## ERROR ## open(%s) %m (PCT M)\n", filename );
 		return errno;
 	}
-	return remap();
+	// mmap_remap does it all
+	return mmap_remap();
 }
 
 /*!
-	unmap and re-mmap the entire file (eg after grow file)
+	mmap_unmap and re-mmap the entire file (eg after grow file)
 
 	fails for zero size files
 */
-int map_file::remap( void )
+int mmap_file::mmap_remap( void )
 {
 
 #define SYS_PICK_LOCN 0
 #define OFFSET0 0
 
-	unmap();
+	mmap_unmap();
 
 	int PROT;
 	int FLAGS;
@@ -107,6 +112,7 @@ int map_file::remap( void )
 		FLAGS = MAP_FILE | MAP_SHARED;
 	}
 
+	// stat fd // nbytes in file.txt
 	struct stat st;
 	if( fstat( fd, &st ) != 0 )
 	{
@@ -119,15 +125,17 @@ int map_file::remap( void )
 		e_print( "zero length file (fd=%d)\n",fd);
 		return 1;
 	}
-	fd_size=st.st_size;
+	nbytes = st.st_size;
 
+	// page0 = mmap fd OFFS nbytes of fd
+	// OFFS = OFFSET0 = 0 // entire file from zero
 	caddr_t P = (caddr_t) mmap(
-		SYS_PICK_LOCN,
-		fd_size,
-		PROT,
-		FLAGS,
-		fd,
-		OFFSET0
+		SYS_PICK_LOCN, // page0 = RET_VAL
+		nbytes,	// file_size
+		PROT,	// PROT_WRITE
+		FLAGS,	// MAP_SHARED
+		fd,	// fd
+		OFFSET0	// SEEK =  entire file from zero
 	);
 	if( P == (caddr_t) -1 )
 	{
@@ -139,31 +147,31 @@ int map_file::remap( void )
 }
 
 /*!
-	Extend the file to new_size with hole pages and NULL bytes. remap()
+	Extend the file to new_size with hole pages and NULL bytes. mmap_remap()
 
-	Works by seek-end-of-file, and write a '+' byte, then remap.
+	Works by seek-end-of-file, and write a '+' byte, then mmap_remap.
 
 	This cannot shrink the file.
 */
-int map_file::grow_file( int new_size )
+int mmap_file::grow_file( int new_size )
 {
-	if( new_size < fd_size )
+	if( new_size < nbytes )
 	{
 		e_print( "# ERROR # grow_file( %d ) cannot shrink from %d \n",
 			new_size,
-			fd_size
+			nbytes
 		);
 		return 1;
 	}
-	if( new_size == fd_size )
+	if( new_size == nbytes )
 	{
 		e_print( "# INFO # grow_file( %d ) already %d \n",
 			new_size,
-			fd_size
+			nbytes
 		);
 		return 0;
 	}
-	unmap();
+	mmap_unmap();
 	/*
 		ext2 will fill sparse files with sparse blocks,
 		and pad the last block with NUL bytes.
@@ -178,15 +186,27 @@ int map_file::grow_file( int new_size )
 		e_print("## ERROR ## write() %m (PCT M)\n");
 		return errno;
 	}
-	remap();
+	mmap_remap();
 	return 0;
 }
 
-bool map_file::close( void )
+bool mmap_file::close( void )
 {
-	unmap();
+	mmap_unmap();
 	::close(fd);
 	return true;
+}
+
+bool mmap_file:: check_nl_at_eof()
+{
+	if(!nbytes) return false;
+	char * P = page0 + nbytes - 1;
+	if( *P == ASCII_LF ) return true; // most commonly expected
+	if( *P == ASCII_NUL ) {
+		WARN("expected LF got NUL at eot");
+		return true; // allow STR0 // PARSER must check too
+	}
+	return FAIL("expected LF at eot");
 }
 
 #include <string.h>
@@ -194,16 +214,16 @@ bool map_file::close( void )
 /*!
 	test -
 */
-int map_file::test1( void )
+int mmap_file::test1( void )
 {
 	int t;
 	t=map_in_file( "/tmp/fh1", TRUE ); // -BUG- EINVAL
 //	t=map_in_file( "/tmp/fh1", FALSE );
-	remap();
+	mmap_remap();
 	if(t!=0) return t;
 	grow_file( 600 );
-	t = write( 1, page0, fd_size );
-	if(t!=fd_size) {
+	t = write( 1, page0, nbytes );
+	if(t!=nbytes) {
 	}
 	strcpy( page0, "-HELLO-" );
 	return 0;

@@ -9,17 +9,34 @@ void scan_c1::get_x_y_start()
 	LEX.get_x_y( x_start, y_start );
 }
 
-bool scan_c1::var_decl()
-{
-	// THIS WOULD BE THE FASTEST // u8 * pos = LEX.P;
+bool scan_c1::var_decl()	// Item_t * item; // CMNT //
+{	// 
+	// THIS WOULD BE THE FASTEST // u8 * pos = LEX.P; // CACHE // track and 
+	// Parse LEX_START ident(varname)
+	// Item_t * item; // CMNT // PLUS 
+	// Item_t   item; // LANG // self += { Item_t } 
+	// Obj * obj = PARSE("// Item_t * item; // CMNT // PLUS");
+	// Obj * obj = PARSE("{  Item_t * item; }"(; // CMNT // PLUS ))");yy
+	// Obj * obj = PARSE("// Item_t * item; // CMNT // PLUS");
+	// DIALECT // "{ %s }" // PRINT %s ITEM_NAME  // "%s_t _%s = %s; // %s"
+	// PARSE(
+		// Item_t * item; // CMNT // PLUS
+	// 
 	here_pos pos;
 	LEX.here_start( pos );
 
-	p0p2 _typ_name;
-	p0p2 _varname;
-	str1 typ_name;
-	str1 varname;
-	buffer1 buf;
+	p0p2 _typ_name;		// "Item" "_t" "Item_t" "{ Item_t * item; }"
+	p0p2 _varname;		// item //
+	str1 typ_name;		// "Item_t"
+	str1 varname;		// "item"
+	str1 CMNT_text;		// "CMNT" // AUTO GEN str1 CMNT; // "CMNT"
+	// KNOW // CMNT is { str1 VAR_NAME "CMNT" } { CMNT }
+	// LOOK // typename varname CMNT // CODE_POINT // XPOS
+	// XPOS // dir file seek // or_other_XPOS_units
+	// XPOS // dir file seek // CMNT // 
+	// { XPOS dir file seek CMNT }
+
+	buffer1 buf;		
 	bool value_set = false;
 	int value = -1;
 
@@ -340,6 +357,16 @@ top:
 	if( LEX.lex_char( '=' ) )
 	{
 		value_set = true;
+		// PARSE("EXPR") // EXPR "int" // BENCH AUTO GEN EXPR %d 
+		// "x%2X" u64_EXPR_val // EXPR == "int" // i64_WORD // 
+		// Item_t item = EXPR // i64_WORD // i32_word //
+		// u3_idx = lookup ANYSTR // 
+		// PARSE name CALL( args ) VALUE " %s " EXPR { CMNT = "%s" }
+		// CMNT // parsed_LINE_of_TEXT // _to_eoln //
+		// { this asif text } // NOQ2 dialect //
+		// TODO // calling PSG from within LEX VAR.name
+		// TODO // SCRIPT EXPR // TYPE VAR = EXPR // CMNT //
+		// TODO // SCRIPT NAME // of VAL of VAR of CMNT // which is CMNT
 		if(! LEX.lex_int( value ) ) goto fail;
 	}
 
@@ -348,14 +375,21 @@ top:
 		goto fail;
 	}
 
-	buf.print( "# VAR # %s%s%s %s",
+	str1 CMNT;
+	// GAP
+	// 
+
+	buf.print( "# VAR # %s%s%s %s // %s", // Item_t * & item // CMNT
 		typ_name.str,
 		asterisk? " *" : "",
 		ampersand? " &" : "",
-		varname.str
+		varname.str,
+		"CMNT" // SAMPLE_VALUE "CMNT" AS_IF_VARNAME // FILTER VAR = VAR
+		"// added //"
+		"{ %s }" // universal component // "%s" // '"{ %s }"' // " %s "
 	);
 	// eshers not here ...
-	if( value_set ) buf.printf( " = %d", value );
+	if( value_set ) buf.printf( " = %d // %s", value, CMNT );
 	LEX.report1( buf );
 
 	return true;

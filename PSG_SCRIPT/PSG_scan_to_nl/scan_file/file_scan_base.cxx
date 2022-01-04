@@ -38,13 +38,13 @@ bool file_scan_base::open_file( const u8 * filename )
 	int t;
 	t=f.map_in_file( filename, FALSE );
 	if(t) return FALSE;
-	if( f.fd_size == 0 ) {
+	if( f.nbytes == 0 ) {
 		static u8 fake_buffer[] = {'\n', 0 };
 		zone = p0p2( fake_buffer, (uns) 0 ); // see API
 		// zone = p0p2( "\n", 0 ); // see API
 		f.close();
 	} else {
-		zone = p0p2( f.page0, f.fd_size );
+		zone = p0p2( f.page0, f.nbytes );
 	}
 	LEX.set_file_zone( zone );
 	// already thrown

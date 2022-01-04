@@ -1,7 +1,10 @@
 #ifndef scan_xml_H
 #define scan_xml_H
 // ONLY for various
-#include "file_scan_base.h"
+// #include "file_scan_base.h"
+
+	// xml uses scan_file
+	//  c1 uses file_scan !!
 
 #include "scan_to_nl.h"
 #include "scan_nl_xml_lex.h"

@@ -1,0 +1,168 @@
+2022-01-04 Jan Tue 22:18 # 12 #  scan_nl_XML_MMAP.txt
+
+	map_file
+		MMAP
+	scan_nl
+		P0P2
+	XML_MMAP
+		TREE	// range of ITEM type in MMAP file with SPEC for API
+
+ a1_a2_star()
+ 	IDENT = CIDENT
+	.a1 = CSET_BIT_MAP
+	.a2 = CSET_BIT_MAP
+
+	P0_word_start = P
+	a1_a3_star()
+	P2_word_end = P
+
+		actuall P_word_end must not get tricked by LEX's trailing GAP
+
+	post_lex_GAP_CMNT_EOLN_ETC
+
+		that is how we absorb comments EOLN SP and maybe even INDENT
+	
+	P_next = P
+
+ // finalise //
+
+ 	XPOS = P0_word_start rewrapped as XPOS
+	P0P2_LEX = P0P2 of LEX
+	P0P2_TAIL - P0P2
+	MATCH CODE_POINT { TYPE NAME EXPR CMNT } and those trees
+
+		TYPE_str == "Item_t"	// "Item_t &" // "Item_t *" // "Item_t"
+		NAME_str == "item"	// OPTION for * & // not name but C use
+		EXPR_str == "EXPR"
+		CMNT_str == "CMNT"
+	
+	MATCH CODE_POINT_2
+
+		different template same ARGS
+		different ARGS common subset
+		this is a VIEW on wider TEMPLATE on BENCH
+	
+	MATCH CODE_POINT_3
+
+		variations of a theme
+		use DEFAULT system to fixup NEAR_HERE
+	
+	scan_LIBR
+
+		collections of      a1_a2_star
+		collections of scan_a1_a2_star
+		collections of         a2_star
+		collections of         a2_plus // else ABSENT a2_start expands
+	
+	AUTO_EXPAND
+
+		a2_star either {
+			a2_plus // not star
+			ABSENT // MAGNETIC_NULL_means_ABSENT
+		}
+
+		SUB_LEX a2_star 
+		SUB_LEX DIGITS
+		SUB_LEX NAME // USAGE multi-part-name
+
+	TREE_BUILD
+
+		call functions that tell the stacked_parser_csr
+
+		particularly unexpected CMNT 
+	
+	DOUBLE SCAN
+
+		TYPE mods NAME = INIT // CMNT
+
+		// auto add SEMICOLONS and furniture syntax
+		// use the SUMMARY which is NOT the definition
+		// view VIEW //
+
+		TYPE
+		GAP
+		optional
+			mods
+			GAP
+		NAME
+		GAP
+		=
+		GAP
+		INIT
+		GAP 
+		semicolon
+		GAP
+		OPTIONAL
+			//
+			GAP
+			CMNT
+			// MERGED EOLN
+			GAP
+		EOLN
+	
+	MORE variations
+
+		comment the line before
+		comment the line tail
+		comment the line after
+	
+		GAP_LINE
+	
+	GAP_DONE
+
+		leave P0 primed at first char of something
+		leave XPOS = P0 Y offs_in_line dx = do_utf8_scan_calc_dx_mono
+	
+	(( that is for C ))
+	(( second target is XML
+	(( then maybe .md .info .tex .nroff .dvi_txt .txt .csv .CXX .script
+
+SPIN items for TREE
+
+	one_of {
+                T_elem_inst
+                T_sdata_char
+                T_text_frag
+                T_word_ascii
+                T_word_8859
+                T_word_utf8
+                T_word_list
+        }
+
+SPIN items for TREE
+
+	one_of {
+		DTD_TREE	various components BITS
+			elem_info	// same as following
+			sdata_char	// groups of items
+			sdata_expr	// same as following
+			TREE_ITEM_BITS	// 3 layers in 1 COPDE_POINT
+				CODE_POINT means ZERO extra data ARGS
+
+			DIALECT GROUPINGS MERGE LIBR CSS SIDEWAYS ETC
+
+                elem_info	
+                elem_inst
+                elem_item
+
+		attr_list
+		attr_item
+
+                sdata_char
+		sdata_expr
+
+                text_frag	CSET WORD_EDGE MISC_INFO KNOW_from_TYPE_SPEC
+
+		cmnt_text	reuse same as word_list
+
+                word_ascii
+                word_8859
+                word_utf8
+
+                word_list
+		word_multi_part
+        }
+
+	
+
+

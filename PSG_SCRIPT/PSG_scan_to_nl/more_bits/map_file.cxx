@@ -197,6 +197,23 @@ bool mmap_file::close( void )
 	return true;
 }
 
+bool mmap_file:: check_nul_after_eof()
+{
+	if(!nbytes) return false;
+	char * P = page0 + nbytes - 1; // last byte in file
+	if( *P == ASCII_NUL ) {
+		return true; // allow STR0 // PARSER must check too
+	}
+	// title says do this first
+	// optimism says look inside first
+	// first byte of next 
+	P++;
+	if( *P == ASCII_NUL ) {
+		return true; // allow STR0 // PARSER must check too
+	}
+	return FAIL("wanted NUL at eot");
+}
+
 bool mmap_file:: check_nl_at_eof()
 {
 	if(!nbytes) return false;

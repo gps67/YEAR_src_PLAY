@@ -6,6 +6,19 @@
 
 	RESTARTED as scan_file - but simpler see there
 	RESTARTING again as lex_NAME lex_STEP STEP = parse EXPR
+
+        //  c1 uses file_scan 
+	// xml uses scan_file
+
+	// scan_nl uses p0p2 from mmap
+	// lex_NAME
+	// psg_NAME
+	// chr_BYTES
+	// utf8_PLUS // a1_a2_STAR // limited pass though functionality
+
+	// parse_to_eoln // scan_nl // RO //
+	// needs mmap_p0p2 // no change no relocate // 
+
 */
 
 #include <stdio.h> // fprintf

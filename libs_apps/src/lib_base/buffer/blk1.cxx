@@ -9,7 +9,7 @@
 
 extern "C"        void *memset(void *s, int c, size_t n);
 
-// resize will throw if its request is more than this
+// resize_bytes will throw if its request is more than this
 // simply dont define it, to remove the debugging code
 #define MAX_resize_limit 1024*500
 
@@ -20,6 +20,11 @@ extern "C"        void *memset(void *s, int c, size_t n);
 
 #warning TODO - add const for use with readonly parameters
 #warning TODO - add operator= and copy ctors, so can be used without thought
+
+void my_bzero( u8 * PTR, size_t nbytes )
+{
+	explicit_bzero( PTR, nbytes );
+}
 
 /*!
 	constructor - eg to 50 bytes
@@ -34,9 +39,14 @@ extern "C"        void *memset(void *s, int c, size_t n);
 	buff = 0;
 
 #if 1
-	memset( buff_static, '-', BLK1_N_STATIC);
+	// it is OK to leave the buff_static as RAW OLD_VAL
+	// it is also OK to clean up for tests
+	my_bzero( buff_static, BLK1_N_STATIC);
+	memset( buff_static, '_', BLK1_N_STATIC); // CATCH abset trailing_nul)
 #endif
-	resize( N );
+
+	// resize_bytes from 0 to 1 to BLK1_N_STATIC upto NN
+	resize_bytes( N );
 }
 
 /*!
@@ -48,7 +58,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 	nbytes_used = 0;
 	buff = 0;
 	// this will avoid allocating 3/2 times but allows a trailing NUL
-	resize( b.nbytes_used + 1 );
+	resize_bytes( b.nbytes_used + 1 );
 	put_blk( b );
 	trailing_nul();
 }
@@ -62,7 +72,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 	nbytes_used = 0;
 	buff = 0;
 	int len = s.str_len();
-	resize( len + 1 );
+	resize_bytes( len + 1 );
 	set( s, len );
 	trailing_nul();
 }
@@ -74,7 +84,7 @@ extern "C"        void *memset(void *s, int c, size_t n);
 {
 	zero_all();		// memset buff and STATIC area
 	clear_fn();		// not using  (scrub() calls above and this)
-	resize( 0 );		// releases memory
+	resize_bytes( 0 );		// releases memory
 }
 
 /*!
@@ -96,29 +106,29 @@ bool	blk1::get_space_fn( unsigned space )	// add padding (first time exact)=0)
 		0 51 127 241 412 669 1054 1632 2499 ...
 	*/
 	int N = ((nbytes_alloc * 3)/2) + space + 50;	// ask for more (semi exp) 
-	if( resize( N ) ) return TRUE;		// got more space
+	if( resize_bytes( N ) ) return TRUE;		// got more space
 	N = nbytes_alloc + space;		// try asking for less (exact)
-	return resize( N );
+	return resize_bytes( N );
 }
 
 /*!
-	resize to EXACTLY N bytes, free buffer if N==0
+	resize_bytes to EXACTLY N bytes, free buffer if N==0
 
 	except when buff_static was/will be used
 	maybe add trailinbg_nul 
 */
-bool	blk1::resize( unsigned N )	// to exact N bytes
+bool	blk1::resize_bytes( unsigned N )	// to exact N bytes
 {
 #ifdef MAX_resize_limit
 	/*
-		NULL pointers lead to resize on silly values
+		NULL pointers lead to resize_bytes on silly values
 
 		Other problems will cause buffer to grow beyond 500K
 		or whatever limit you decide (50K is borderline likely)
 
 	*/
 	if( N > MAX_resize_limit ) {
-		THROW_dgb_fail( "blk1::resize(N) - but N is too much");
+		THROW_dgb_fail( "blk1::resize_bytes(N) - but N is too much");
 		// return FALSE;
 	}
 #endif
@@ -180,7 +190,8 @@ bool	blk1::resize( unsigned N )	// to exact N bytes
 	}
 	if( buff ) {
 		if( buff != buff_static ) {
-			memset( buff, 0, nbytes_alloc );
+		//	memset( buff, 0, nbytes_alloc );
+			my_bzero( buff, nbytes_alloc );
 			free( buff );
 		}
 	}
@@ -201,7 +212,8 @@ bool	blk1::resize( unsigned N )	// to exact N bytes
 */
 void	blk1::zero_used()
 {
-	memset( buff, 0, nbytes_used );
+//	memset( buff, 0, nbytes_used );
+	my_bzero( buff, nbytes_used );
 	// trailing_nul(); // iff uses nonzero filler
 }
 
@@ -210,7 +222,8 @@ void	blk1::zero_used()
 */
 void	blk1::zero_above()
 {
-	memset( gap_addr(), 0, space_avail() );
+//	memset( gap_addr(), 0, space_avail() );
+	my_bzero( gap_addr(), space_avail() );
 	// trailing_nul(); // iff uses nonzero filler
 }
 
@@ -219,10 +232,16 @@ void	blk1::zero_above()
 */
 void	blk1::zero_all()
 {
-	memset( buff_static, 0, BLK1_N_STATIC );
+//	The static might be worth not zeroing // gcc optimising
+//	memset( buff_static, 0, BLK1_N_STATIC );
+	my_bzero( buff_static, BLK1_N_STATIC );
+
 	if( buff != buff_static ) {
-		if(nbytes_alloc) // rare case - when nbytes_alloc is zero (CTOR)
-			memset( buff, 0, nbytes_alloc );
+		if(nbytes_alloc) { // rare - when nbytes_alloc is zero (CTOR)
+			// definitely ZERO out malloced blocks // dont free
+			my_bzero( buff, nbytes_alloc );
+		}
+
 	}
 	// trailing_nul(); // iff uses nonzero filler
 }

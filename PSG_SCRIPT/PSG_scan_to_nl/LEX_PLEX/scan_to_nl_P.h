@@ -6,6 +6,12 @@ struct p0p2;
 // #include "p0p2.h"
 
 /*
+	P is a single WORD { u8 * P }
+	Place back where modified required
+	XPOS_from_P 
+
+	move static cset's elsewhere maybe lookup(cset_name)
+
 	cset_bit_map is used a lot (but could rework with [a-z][A-Z] ...
 	This is used for BYTE/8859 but utf8 fits into zones anyway
 */

@@ -27,6 +27,7 @@
 	subdir_list += ../XML_DTD
 	subdir_list += ../XML_DOC
 	subdir_list += ../XML_Parse
+	subdir_list += ../LEX_PLEX
 
         SP=$(empty) $(empty)# SINGLE SPACE
         COLON=:# no  spaces

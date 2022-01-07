@@ -113,19 +113,19 @@ struct mmap_file : public GRP_lib_base // NO BASE CLASS // TODO ref0
 		// the prototype "looks like" a copy during calls return value
 		// the compiler want CTOR DIRECT to EA // COPY to EA
 		// that copy gets optimised out as CTOR data_buffer // DIRECT
-		return (p0p2) this; // see operator p0p2 //
+		return (p0p2) * this; // see operator p0p2 //
 	}
 
 	// COMPILER KNOWS HOW TO RETURN WORD_PAIR_TRIP // A A_MORE
-	bool GET_P0P2_VAR( mmap_file * mmap, P0P2 * P0P2_retval ) { // COPY
-		* P0P2_retval = (p0p2) this; // write output to callers retval
+	bool GET_P0P2_VAR( p0p2 * P0P2_retval ) { // COPY
+		* P0P2_retval = (p0p2) * this; // write output to callers retval
 		return true; // goto next_step
 	}
 
 	// compiler CTOR direct to VAR or WORD_PAIR // and provide PTR origin
 	// memory written, WORD_PAIR returned as floating CURR_VAR p0p2
-	p0p2 & get_P0P2( mmap_file * mmap, P0P2 & P0P2_retval ) { // EA
-		return P0P2_retval = (p0p2) mmap ; // NOTE DIALECT of "&"
+	p0p2 & get_P0P2( p0p2 & P0P2_retval ) { // EA
+		return P0P2_retval = (p0p2) *this ; // NOTE DIALECT of "&"
 	}
 	// OPTION RETVAL bool
 	// OPTION RETVAL p0p2

@@ -5,6 +5,7 @@ T2=/home/gps/YEAR/src/PLAY/libs_apps
 # gdb -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
 
 
+ask_do \
 gdb -tui \
 -d $T1 \
 -d $T2 \

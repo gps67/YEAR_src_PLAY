@@ -72,23 +72,6 @@ class scan_to_nl_P
 
  public:
 
-// statics:
-	static int cset_inited_a; // init defined as = 0;
-	static cset_bit_map cset_09;
-	static cset_bit_map cset_09_af_AF;
-	static cset_bit_map cset_az;
-	static cset_bit_map cset_AZ;
-	static cset_bit_map cset_AZaz;
-	static cset_bit_map cset_AZaz_;
-	static cset_bit_map cset_AZaz09;
-	static cset_bit_map cset_AZaz09_;
-	static cset_bit_map cset_line;
-	static cset_bit_map cset_ident_a1;
-	static cset_bit_map cset_ident_a2;
-
-// init
-	void init_csets(void);
-
 	scan_to_nl_P( void )
 	{
 		P = 0 ;
@@ -284,37 +267,10 @@ class scan_to_nl_P
 		const cset_bit_map & a2
 	);
 
-	/*!
-		different LEX'ers setup different csets
-	*/
-	bool scan_ident( p0p2 & zone )
-	{
-		return scan_a1_a2_star(
-			zone,
-			cset_ident_a1,
-			cset_ident_a2
-		);
-	}
-
-	bool scan_word( const u8 * word, const cset_bit_map & a2 );
-
-	/*!
-		scan over a fixed "word" using standard a2
-	*/
-	bool scan_word( const u8 * word )
-	{
-		// return scan_word( word, cset_AZaz09_ );
-		return scan_word( word, cset_ident_a2 );
-	}
-
-	/*!
-		scan over a fixed "word" using standard a2
-	*/
-	bool scan_word( const char * word )
-	{
-		return scan_word( (const u8 *) word);
-	}
-
+	bool scan_word_a2(
+		const u8 * word,
+		const cset_bit_map & a2
+	);
 
 	bool peek_hex_digit();
 	bool scan_hex_digit();

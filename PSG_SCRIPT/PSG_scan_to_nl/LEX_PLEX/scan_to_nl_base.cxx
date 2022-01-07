@@ -3,6 +3,71 @@
 #include "str1.h"
 #include "p0p2.h"
 
+/*
+	statics are just like "extern" things
+	define them in the .CXX corresponding to the .H
+*/
+int scan_to_nl_base::cset_inited_a = 0; // init defined as = 0;
+cset_bit_map scan_to_nl_base::cset_09;
+cset_bit_map scan_to_nl_base::cset_09_af_AF;
+cset_bit_map scan_to_nl_base::cset_az;
+cset_bit_map scan_to_nl_base::cset_AZ;
+cset_bit_map scan_to_nl_base::cset_AZaz;
+cset_bit_map scan_to_nl_base::cset_AZaz_;
+cset_bit_map scan_to_nl_base::cset_AZaz09;
+cset_bit_map scan_to_nl_base::cset_AZaz09_;
+cset_bit_map scan_to_nl_base::cset_line;
+cset_bit_map scan_to_nl_base::cset_ident_a1;
+cset_bit_map scan_to_nl_base::cset_ident_a2;
+/*!
+*/
+void scan_to_nl_base::init_csets(void)
+{
+	// maybe add force_init_csets() which sets cset_inited_a = 0;
+	if( cset_inited_a ) return;
+	cset_inited_a = 1;
+
+	e_print("##### C init_csets() ###\n");
+
+	// could be done by init constructor!
+	cset_az.set_null();
+	cset_AZ.set_null();
+	cset_09.set_null();
+	cset_AZaz.set_null();
+	cset_AZaz_.set_null();
+	cset_AZaz09.set_null();
+	cset_line.set_null();
+
+	cset_az.set_range( 'a', 'z' );
+	cset_AZ.set_range( 'A', 'Z' );
+	cset_09.set_range( '0', '9' );
+
+	cset_AZaz   |= cset_az;
+	cset_AZaz   |= cset_AZ;
+	cset_AZaz09 |= cset_AZaz;
+	cset_AZaz09 |= cset_09;
+
+	cset_line.set_range( 0, 255 );
+	cset_line.reset_bit( 0 ); // not allowed
+	cset_line.reset_bit( '\n' ); // not allowed
+	cset_line.reset_bit( '\r' ); // not part of line text
+
+	cset_AZaz_ = cset_AZaz;
+	cset_AZaz_.set_bit( '_' );
+
+	cset_AZaz09_ = cset_AZaz09;
+	cset_AZaz09_.set_bit( '_' );
+
+	cset_09_af_AF.set_null();
+	cset_line.set_range( '0', '9' );
+	cset_line.set_range( 'a', 'f' );
+	cset_line.set_range( 'A', 'F' );
+
+	// default identifier is C
+	cset_ident_a1 = cset_AZaz;
+	cset_ident_a2 = cset_AZaz09_;
+}
+
 
 //	u8 *	P_last( void )	{ return file_zone.p2 - 1; } // rare use
 //	int	N_left( void )	{ return file_zone.p2 - P; } // rare use

@@ -1,17 +1,1 @@
-./x1.exec ../test/test3.xml 2>&1 | less
-##### C init_csets() ###
-##### XML init_csets() ###
-#  1 20 # OK  #	<?xml version="1.0" encoding="UTF-8"?>
-#  1 20 # OK  #	-------------------^--OK-- PI:XML:verion=1.0
-#  1 37 # OK  #	<?xml version="1.0" encoding="UTF-8"?>
-#  1 37 # OK  #	------------------------------------^--OK-- PI:XML:encoding=UTF-8
-# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # 'rdf:RDF'
-# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # ''
-# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # :(!)rdf:RDF(!ELEM)... xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-:(!)rdf:RDF(!ELEM)... xmlns:dc="http://purl.org/dc/elements/1.1/"
-:(!)rdf:RDF(!ELEM)... xmlns:mq="http://musicbrainz.org/mm/mq-1.1#"
-:(!)rdf:RDF(!ELEM)... xmlns:mm="http://musicbrainz.org/mm/mm-2.1#"
-:(!)rdf:RDF(!ELEM)... xmlns:ar="http://musicbrainz.org/ar/ar-1.0#"
-:(!)rdf:RDF(!ELEM)... xmlns:az="http://www.amazon.com/gp/aws/landing.html#"
-'mq:Result'
-Segmentation fault (core dumped)
+rm -f   c1.exec x1.exec scan_proc_partitions .o c1.o x1.o .o  file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_xml_1.o lex_lookup.o scan_to_nl_P.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_xml_lex.o map_file.o scan_file_base.o fa tclIndex rpt1.csv libscan.a

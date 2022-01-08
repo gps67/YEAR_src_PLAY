@@ -50,7 +50,7 @@ class scan_nl_XML_LEX : public scan_to_nl
 	scan_nl_XML_LEX();
 	scan_nl_XML_LEX( p0p2 zone );
 
-	void init_csets(void);
+	void init_csets_XML(void);
 
 	/*
 		really this should resolve namespaces ?

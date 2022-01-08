@@ -20,7 +20,7 @@
 
 	subdir_list += ..
 	subdir_list += ../more_bits
-	subdir_list += ../scan_base
+	subdir_list += ../scan_lang
 	subdir_list += ../scan_file
 	subdir_list += ../prog_main
 	subdir_list += ../lex_lookup
@@ -47,6 +47,7 @@
 	OBJS += scan_to_nl_plus.o
 	OBJS += scan_to_nl.o
 	OBJS += scan_nl_c_lex.o
+	OBJS += scan_nl_c_psg.o
 	OBJS += scan_nl_xml_lex.o
 
 ##	OBJS += own_str.o

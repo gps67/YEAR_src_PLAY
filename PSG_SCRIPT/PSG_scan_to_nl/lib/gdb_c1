@@ -4,13 +4,19 @@ T1=/home/gps/YEAR/src/PLAY/libs_apps/src/
 T2=/home/gps/YEAR/src/PLAY/libs_apps
 # gdb -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
 
+# these end up as words on same line
+# no spaces within filenames though
+ARGS="
+../test/test2.c1 
+"
 
-ask_do \
+# ask_do \
 gdb -tui \
 -d $T1 \
 -d $T2 \
 --command ./.gdbinit_$E \
 --args $E \
+$ARGS \
 #
 
 tput reset

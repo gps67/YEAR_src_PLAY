@@ -11,7 +11,7 @@ extern int trans_id;
 class scan_nl_C_LEX : public scan_to_nl
 {
  public:
-
+ 	// scanned LEX items are placed here
 	str1	zone_dox_line;
 	str1	zone_dox_block;
 	str1	zone_dox_pre_line;
@@ -21,8 +21,6 @@ class scan_nl_C_LEX : public scan_to_nl
 	str1	zone_cmnt_line;
 	str1	zone_cmnt_block;
 
- 	bool GAP_after_LEX();
-
 	/*
 		statics - see .cxx where also defined
 	*/
@@ -31,7 +29,9 @@ class scan_nl_C_LEX : public scan_to_nl
 	scan_nl_C_LEX();
 	scan_nl_C_LEX( p0p2 zone );
 
-	void init_csets(void);
+	void init_csets_C(void);
+
+ 	bool GAP_after_LEX();
 
 	bool peek_pp_hash_at_boln();
 	bool scan_pp_hash_at_boln();
@@ -42,7 +42,6 @@ class scan_nl_C_LEX : public scan_to_nl
 	bool scan_dox_comment_block( str1 & str );
 	bool scan_comment_block( str1 & str );
 	bool scan_comment_block_tail( str1 & str );
-
 };
 
 #endif

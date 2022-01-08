@@ -1,2 +1,5 @@
 rm -f x1
-./mk "$@" 2>&1 | tee fa1 | less '+/error'
+SRCH='+/error'
+SRCH='+/FAIL'
+SRCH='+/exec'
+./mk "$@" 2>&1 | tee fa1 | less $SRCH

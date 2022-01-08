@@ -15,16 +15,16 @@ cset_bit_map scan_nl_XML_LEX::cset_xml_text;
 scan_nl_XML_LEX::scan_nl_XML_LEX()
 : scan_to_nl()
 {
-	init_csets();
+	init_csets_XML();
 }
 
 scan_nl_XML_LEX::scan_nl_XML_LEX( p0p2 zone )
 : scan_to_nl( zone )
 {
-	init_csets();
+	init_csets_XML();
 }
 
-void scan_nl_XML_LEX::init_csets(void)
+void scan_nl_XML_LEX::init_csets_XML(void)
 {
 
 	// maybe add force_init_csets() which sets cset_inited_xml = 0;

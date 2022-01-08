@@ -2,27 +2,27 @@
 
 int scan_nl_C_LEX::cset_inited_b = 0; // init defined as = 0;
 
-void scan_nl_C_LEX::init_csets(void)
+void scan_nl_C_LEX::init_csets_C(void)
 {
 	// maybe add force_init_csets() which sets cset_inited_a = 0;
 	if( cset_inited_b ) return;
 	cset_inited_b = 1;
 
 	scan_to_nl::init_csets();
-	printf("##### C_LEX init_csets() ###\n");
+	printf("##### C_LEX init_csets_C() ###\n");
 
 }
 
 scan_nl_C_LEX::scan_nl_C_LEX()
 : scan_to_nl()
 {
-	init_csets();
+	init_csets_C();
 }
 
 scan_nl_C_LEX::scan_nl_C_LEX( p0p2 zone )
 : scan_to_nl( zone )
 {
-	init_csets();
+	init_csets_C();
 }
 
 bool scan_nl_C_LEX::scan_dox_comment_to_eoln( str1 & cmnt )

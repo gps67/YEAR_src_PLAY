@@ -1,0 +1,27 @@
+
+	scan_to_nl.txt
+
+LEX_PLEX
+
+	scan_to_nl
+	_P
+	_base
+	_plus
+	/* END_SUBLEX_PART */ /* NULL STR */ /* core_name */
+
+	scan_to_nl
+	_C_LEX
+
+	file_scan_base
+	.LEX = new scanner("type") // other choice is XML
+
+	map_file
+
+	
+	scan_c1 : public file_scan_base- 
+	 scan_file(str)
+	  open_file(str)o
+	 LEX.scan_file()
+
+
+

@@ -1,34 +1,3 @@
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o c1.o -c ../prog_main/c1.cxx
-../prog_main/c1.cxx:5:5: warning: second argument of ‘int main(int, u8**)’ should be ‘char **’ [-Wmain]
-    5 | int main(int argc, u8 ** argv)
-      |     ^~~~
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o file_scan_base.o -c ../scan_file/file_scan_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_c1.o -c ../scan_lang/scan_c1.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_Parse.o -c ../XML_Parse/XML_Parse.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_DTD.o -c ../XML_DTD/XML_DTD.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_DOC.o -c ../XML_DOC/XML_DOC.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_P.o -c ../LEX_PLEX/scan_to_nl_P.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_base.o -c ../LEX_PLEX/scan_to_nl_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_plus.o -c ../LEX_PLEX/scan_to_nl_plus.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl.o -c ../LEX_PLEX/scan_to_nl.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_c_lex.o -c ../scan_lang/scan_nl_c_lex.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_c_psg.o -c ../scan_lang/scan_nl_c_psg.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_xml_lex.o -c ../scan_lang/scan_nl_xml_lex.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o map_file.o -c ../more_bits/map_file.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_file_base.o -c ../scan_file/scan_file_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_xml_1.o -c ../XML_Parse/scan_xml_1.cxx
-In file included from ../XML_Parse/scan_xml_1.cxx:4:
-../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
-   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
-      |  ^~~~~~~
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o lex_lookup.o -c ../lex_lookup/lex_lookup.cxx
-In file included from ../lex_lookup/lex_lookup.cxx:1:
-../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
-   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
-      |  ^~~~~~~
-ar -curs libscan.a file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_to_nl_P.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_c_psg.o scan_nl_xml_lex.o map_file.o scan_file_base.o scan_xml_1.o lex_lookup.o
-ar: `u' modifier ignored since `D' is the default (see `U')
-g++ -O0 -g -o c1.exec c1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/PLAY/libs_apps/lib -L/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -lbase
 ./c1.exec ../test/test2.c1 2>&1 | less
 ##### C init_csets() ###
 #  5  1 # GOT  ##### C_LEX init_csets_C() ###

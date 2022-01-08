@@ -20,15 +20,4 @@ class scan_c1 : public file_scan_base
 
 	void get_x_y_start();
 
-bool scan_typeexpr();
-
-	bool builtin_type_name( str1 & name );
-	bool known_type_name( str1 & name );
-	bool type_expr_left( str1 & expr );
-
-	// these should return what they find ? or send to STBL ?
-	bool var_decl();
-	bool cpp_hash_line(); //#define #if #endif ...
-	bool scan_pp_include_( str1 & filename, bool & local );
-
 };

@@ -35,6 +35,7 @@
 extern int trans_id;
 
 #include "scan_nl_c_lex.h"	// C Lex scanner upto NL
+#include "scan_nl_c_psg.h"	// C Lex scanner upto NL
 
 class file_scan_base
 {
@@ -47,7 +48,7 @@ class file_scan_base
 	// spec STRUCT { SPEC_STRUCT } // MINI_MACHINE LIBR[item] MMAP
  public:
 	mmap_file MMAP; // MMAP // fd //		// P = BASE + OFFS // p0p2( page0, nbytes ) // fd
-	scan_nl_C_LEX LEX;	// UDEF_PARSER_HERE // LEX.zone == FILE.zone
+	scan_nl_C_PSG LEX;	// UDEF_PARSER_HERE // LEX.zone == FILE.zone
 	p0p2 zone;		// entire_file = (p0p2) TEXT_OF_FILE // in_MMAP
 
 	// must have XY_CSR_xpos // TODO XYZZ

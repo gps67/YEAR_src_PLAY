@@ -85,7 +85,7 @@ public:
 		for( i=0; i < 16; i++ )
 		{
 	//		e_print( " [ %1X_ ]", i );
-			e_print( ":", i );
+			e_print( ":" );
 			for( j=0; j < 16 ;j++,k++ )
 				dgb_print_byte( k );
 			e_print( " :\n" );

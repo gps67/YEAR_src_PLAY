@@ -97,7 +97,7 @@ bool 	group_exclude( const cset_bit_map & rhs )
 		for( i=0; i < 16; i++ )
 		{
 	//		e_print( " [ %1X_ ]", i );
-			e_print( ":", i );
+			e_print( ":" );
 			for( j=0; j < 16 ;j++,k++ )
 				dgb_print_bit( k );
 			e_print(" :\n");

@@ -15,13 +15,16 @@ extern e_print_io_INTERFACE * new_e_print_stderr();
 // extern bool install_e_print_io( e_print_io_INTERFACE & io );
 
 //!  e_print is g_print to a specific error buffer
+__attribute__((__format__ (printf, 1, 2))) // Function-Attributes.html
 extern void e_print( const char * fmt, ... );
 
 
 //!  The target knows its own cset, the source can be utf8 but defaults to 8859
+__attribute__((__format__ (printf, 1, 2))) // Function-Attributes.html
 extern void e_print_from_8859( const char * fmt, ... );
 
 //!  The target knows its own cset, the source can be utf8 but defaults to 8859
+__attribute__((__format__ (printf, 1, 2))) // Function-Attributes.html
 extern void e_print_from_utf8( const char * fmt, ... );
 
 
@@ -32,6 +35,7 @@ extern void e_print_hex_dump( void * buff, int len );
 extern void e_vprint( const char * fmt, va_list args );
 
 //!
+__attribute__((__format__ (printf, 1, 2))) // Function-Attributes.html
 extern void e_perror( const char * fmt, ... );
 
 //!  any app can gently bring window to front, or at least unhide

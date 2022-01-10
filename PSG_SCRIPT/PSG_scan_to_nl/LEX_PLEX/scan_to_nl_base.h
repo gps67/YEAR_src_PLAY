@@ -9,6 +9,7 @@ struct str1; // only used by report2
 
 #include "scan_to_nl_P.h"
 #include "p0p2.h"
+// #include <stdarg.h>
 
 /*!
 	scan_to_nl_base is a sublexer, that pauses at every NL (or NUL)
@@ -41,6 +42,8 @@ class scan_to_nl_base : public scan_to_nl_P
 	int	Y;
 	//! the entire zone of the file (ending in nl or NUL)
 	p0p2	file_zone;
+	//! zero until eof
+	int EOF_touched;
  public:
 
 	scan_to_nl_base( void )
@@ -49,6 +52,7 @@ class scan_to_nl_base : public scan_to_nl_P
 		// P = 0 ;
 		Y = 1 ;
 		P0 = 0 ;
+		EOF_touched = 0; // count 
 	}
 
 	// init over a p0p2 buffer (such as one from mmap)
@@ -64,6 +68,7 @@ class scan_to_nl_base : public scan_to_nl_P
 		P=file_zone.p0;
 		Y=1;
 		P0=P;
+		EOF_touched = 0; // count 
 		// require a terminator
 		if( file_zone.str_len() == 0 )
 		{
@@ -142,8 +147,10 @@ class scan_to_nl_base : public scan_to_nl_P
 	terminator characters must only be matched by these (inline) functions
 */
 
-	bool	scan_nl_fn();	// make inline smaller
+	bool	scan_nl_fn() { return scan_LF_fn(); }
+	bool	scan_LF_fn();	// make inline smaller
 	bool	scan_nul_fn();	// make inline smaller
+	bool	scan_eof_fn(); // does any EOF in one place
 
 	/*
 		scan_eof depends on scan_nl() (scan_nul) to 
@@ -158,14 +165,13 @@ class scan_to_nl_base : public scan_to_nl_P
 	*/
 	bool	scan_eof( void )
 	{
-		if( P < P0 )
-		{
-			return TRUE;
-	//		debugging options
-	//		assert( P == file_zone.p2 - 1 );
-	//		assert( (*P=='\n')||(!*P) );
-		}
-		return FALSE;
+		return	scan_eof_fn(); // 
+
+		// you should never call this, except LAST
+		// after SCAN_LINE SCAN_WORD SCAN_PUCT have all failed
+		// after SCAN_LF has failed
+		// so no great optiumisation inline
+		// but is first that detects P == file_zone.p2 or P2-1
 	}
 
 	/*!
@@ -198,6 +204,12 @@ class scan_to_nl_base : public scan_to_nl_P
 	virtual int	get_x();
 	void	get_curr_line_zone( p0p2 & line_zone );
 
+// GCC Function-Attributes to check for fmt
+// GXX increases parameter numbers by 1 == this
+// #define FMT0 __attribute__((__format__ (printf, 1, 2)))  
+#define FMT1 __attribute__((__format__ (printf, 2, 3)))  
+#define FMT2 __attribute__((__format__ (printf, 3, 4)))  
+
 /*
 	Simple error reports, that show the error message under the
 	line where it was detected. NB another system, might collect
@@ -209,10 +221,10 @@ class scan_to_nl_base : public scan_to_nl_P
 	void report2( const char * name, const char * s );
 	void report2( const char * name, const str1 & s );
 	void report_vprint( const char * err, const char * fmt, va_list args );
-	void report_print( const char * err, const char * fmt, ... );
-	void report_FAIL( const char * fmt, ... );
-	void report_WARN( const char * fmt, ... );
-	void report_OK( const char * fmt, ... );
+FMT2	void report_print( const char * err, const char * fmt, ... );
+FMT1	void report_FAIL( const char * fmt, ... );
+FMT1	void report_WARN( const char * fmt, ... );
+FMT1	void report_OK( const char * fmt, ... );
 
 };
 

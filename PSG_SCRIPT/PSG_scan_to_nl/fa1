@@ -1,3 +1,7 @@
+g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_base.o -c ../LEX_PLEX/scan_to_nl_base.cxx
+ar -curs libscan.a scan_to_nl_base.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+g++ -O0 -g -o c1.exec c1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/PLAY/libs_apps/lib -L/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -lbase
 ./c1.exec ../test/test2.c1 2>&1 | less
 ##### C init_csets() ###
 #  5  1 # GOT  ##### C_LEX init_csets_C() ###
@@ -5,24 +9,21 @@
 #  5  1 # Got  # cpp_hash_line 
 # 13  1 # GOT  # include('b.h')
 # 13  1 # Got  # cpp_hash_line 
-# 15  1 # Got  # # VAR # int abc = 55 
-# 15 16 # Got  # cpp_hash_line 
-# 16  1 # Got  # NL 
-# 16 25 # Got  # cpp_hash_line 
-# 17  1 # Got  # NL 
-# 17 40 # Got  # cpp_hash_line 
-# 18  1 # Got  # NL 
-# 18 31 # Got  # cpp_hash_line 
-# 19  1 # Got  # NL 
-# 20  1 # Got  # NL 
-# 21  1 # GOT  # dox_comment_to_eoln('dox to eoln')
-# 22  1 # Got  # # VAR # char * str1 
-# 24  1 # Got  # # VAR # char * & str2 
-# 24 11 # FAIL  #	int proto1( int a );
-# 24 11 # FAIL  #	----------^--FAIL-- Missing semi-colon
-# 24  5 # GOT  # identifier('int')
-# 24 11 # FAIL  #	int proto1( int a );
-# 24 11 # FAIL  #	----------^--FAIL-- varname
-# 24 11 # GOT  # identifier('proto1')
-# 24 11 # FAIL  #	int proto1( int a );
-# 24 11 # FAIL  #	----------^--FAIL-- ERR
+## WARN ##  P == P2 FIRST DETECT 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # P 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # P0 
+# INFO  # void gdb_invoke(bool) # invoking gdb ... maybe
+# PASS  # bool prctl_allow_PTRACE() # prct returned 0
+# INFO  # void gdb_is_running_YES() # Setting yes_it_really_is_running
+# INFO  # void gdb_invoke(bool) # pid 177048 exe_name /usr/bin/make
+# INFO  # void gdb_invoke(bool) # Invoking gdb on pid 177048 /usr/bin/make ...
+# WARN  # void gdb_invoke(bool) # no finish command
+# INFO  # void gdb_invoke(bool) # execlp form 3
+Reading symbols from /usr/bin/make...
+(No debugging symbols found in /usr/bin/make)
+Attaching to program: /usr/bin/make, process 177048
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+(No debugging symbols found in /lib64/ld-linux-x86-64.so.2)
+0x00007f2f7ccea334 in ?? ()
+.gdb_invoked: No such file or directory.
+(gdb) 

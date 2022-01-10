@@ -85,8 +85,6 @@ struct buffer2 : public buffer1
 		return put_plain( (str0) str );
 	}
 
-//	bool print( const char * fmt, ... );
-
 #ifdef WITH_MYSQL
 	/*!
 		put blob b as "quoted \xxx ASCII" for mysql command

@@ -1,6 +1,15 @@
 #ifndef P0P2_H
 #define P0P2_H
 
+	#if 0
+	struct STRUCT_ITEM ITEM_t; // IMPORT on first use BENCH
+	typedef STRUCT_ITEM ITEM_t  ITEM_t ; // CMNT
+	struct ITEM_t; // SCOPE = namespace_one OBJ_t
+	struct STRUCT_ITEM ITEM_t {
+	}
+	struct ITEM_t & EA() { return /* CAST */ (ITEM_t * PTR) // PTR = "ITEM"
+	#endif
+
 /*
 	p0p2  is a string found within other strings (or buffer)
 	it could be arbitrary bytes not chars
@@ -40,6 +49,36 @@ struct p0p2 : public GRP_lib_base
 	u8 * p0;	// points to first char  INSIDE
 	u8 * p2;	// points to first char OUTSIDE
 
+
+	u8 * EA() { return p0; }
+	u8 * BASE() { return p0; }
+	size_t nbytes() { return p2 - p0; }
+
+	// ALIAS get_nbytes( cpu_var_int_nbytes & nbytes ) // int ** nbytes //
+	// DIALECT can convert * to & to * without loops // maybe //
+	// DIALECT get_P0	BASE
+	// DIALECT get_P2	BASE + nbytes
+	// DIALECT get_nbytes	nbytes // going over to STO layout
+	// DIALECT get_BASE	p0 // like TYPE_CAST // operator %s // ITEM_DESC
+	// DIALECT get_NEXT	p2 // stitching the matrial world // into exist
+
+	u8 * P0() { return p0; }	// PTR = BASE + OFFS
+	u8 * P2() { return p2; }	// IDX = LIBR + ITEM // PTR = EVAL
+
+
+// TODO//	ITEM_t & EA() { return *(ITEM_t *) p0; // CAST_TYPE
+
+	// this is a QUIZ // the answers are provided // "ITEM" //
+	// "ITEM" // an ITEM called ITEM // providing its ID_KEY_STR
+	// "TIME_NAME" // DIALEC // SCRIPT // UNIT ITEM STEP PAIR //
+	// STEP ITEM == "Item" // SPELLING // intentionally precise // BENCH //
+	// BENCH // ITEM_t * ITEM = (TYPE_CAST) PTR // PTR == p0 //
+	// CXX SELF == "SELF" == "this" == "%s" // SELF == "ITEM" // _t //
+	// ITEM_t & ITEM = *(ITEM*)EA(); // 
+	// ITEM_t & ITEM =  (ITEM*)EA(); // 
+	// RET_VAL = PTR == EA() ;// both BOOL and ADDR = EA // implied () 
+	// RET_VAL = PTR == EA ;// implied () 
+
 	void clear( void )
 	{
 		p0 = p2 = (u8 *)(-1);
@@ -68,6 +107,9 @@ struct p0p2 : public GRP_lib_base
 		p0 = (u8 *)buff;
 		p2 = (u8 *)buff + len; /* NOT strlen */
 	}
+	// note need to distinguish char * p2 } { int nbytes } // uns DEFAULT //
+	// why uns? avoids breakout using -ve OFFS
+	// BUT then implement as i64_PINT_P_INT
 	p0p2( char * buff )
 	{
 		p0 = (u8 *)buff;

@@ -141,9 +141,16 @@ struct buffer1 : public blk1 {
 		Could ADD flag to buffer1 ? (good idea - use how?
 		Could also stretch printf to use avail nbytes  (?DONE?)
 	*/
-	bool print( const char * fmt, ... );
-	bool printf( const char * fmt, ... ); // it has fmt so printf
-	bool print_into_utf8( const char * fmt, ... );
+// GCC Function-Attributes to check for fmt
+// GXX increases parameter numbers by 1 == this
+// #define FMT0 __attribute__((__format__ (printf, 1, 2)))  // C_FMT1
+#define FMT1 __attribute__((__format__ (printf, 2, 3)))  
+// #define FMT2 __attribute__((__format__ (printf, 3, 4))) 
+
+FMT1	bool print( const char * fmt, ... );
+FMT1	bool printf( const char * fmt, ... ); // it has fmt so printf
+FMT1	bool print_into_utf8( const char * fmt, ... );
+#undef FMT1
 	bool vprint( const char * fmt, va_list args );
 	bool vprint( bool into_utf8, const char * fmt, va_list args );
 	bool vprint_8859_to_utf8( const char * fmt, va_list args );

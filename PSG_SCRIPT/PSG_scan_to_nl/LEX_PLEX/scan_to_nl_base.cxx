@@ -2,6 +2,7 @@
 #include "scan_to_nl_base.h"
 #include "str1.h"
 #include "p0p2.h"
+#include "dgb.h" // WARN FAIL
 
 /*
 	statics are just like "extern" things
@@ -88,119 +89,6 @@ bool	scan_to_nl_base::check_nl_at_eof()
 	return FALSE;
 }
 
-/*!
-	print the lex position at the start of the report line
-*/
-void scan_to_nl_base::report_lhs( const char * LHS )
-{
-	int x_start;
-	int y_start;
-
-	if(!LHS) LHS = "LHS";
-
-	get_x_y( x_start, y_start );
-	e_print("# %2d %2d # %s  ", y_start, x_start, LHS );
-}
-
-/*!
-*/
-void scan_to_nl_base::report1( const char * name )
-{
-	report_lhs( "Got" );
-	e_print("# %s \n", name );
-}
-
-/*!
-*/
-void scan_to_nl_base::report2( const char * name, const char * s )
-{
-	report_lhs( "GOT" );
-	e_print("# %s('%s')\n", name, s );
-}
-
-/*!
-*/
-void scan_to_nl_base::report2( const char * name, const str1 & s )
-{
-	report2( name, (STR0) s.str );
-}
-
-// #warning "here_back cant move to a previous line"
-/*
-	here_start would need to store P0 as well as P
-
-	The original idea was to never pass LF, then back
-
-	maybe get_curr_line_zone could look backwards in zone
-*/
-
-void scan_to_nl_base::report_vprint( const char * err, const char * fmt, va_list args )
-{
-//	va_list args;
-//	va_start( args, fmt );
-
-	// print the source line
-	report_lhs( err ); // x,y should NOT change
-	p0p2 line_zone;
-	get_curr_line_zone( line_zone );	// needs P0
-	str1 line( line_zone );
-	e_print("#\t%s\n", line.str );
-
-	// print the position + message
-	report_lhs( err );
-	e_print("#\t" );
-	int x_start, y_start;
-	get_x_y( x_start, y_start );
-	for( int i=1; i<x_start; i++ )
-		e_print("-");
-
-	e_print( "^--%s-- ", err );
-	e_vprint( fmt, args );
-	e_print( "\n" );
-//	va_end( args );
-}
-
-void scan_to_nl_base::report_print( const char * err, const char * fmt, ... )
-{
-	va_list args;
-	va_start( args, fmt );
-	report_vprint( err, fmt, args );
-	va_end( args );
-}
-
-/*!
-	print multi-line error message, against source, point to pos
-*/
-void scan_to_nl_base::report_FAIL( const char * fmt, ... )
-{
-	va_list args;
-	va_start( args, fmt );
-	report_vprint( "FAIL", fmt, args );
-	va_end( args );
-}
-
-/*!
-	print warning (info) on the current line
-*/
-void scan_to_nl_base::report_WARN( const char * fmt, ... )
-{
-	va_list args;
-	va_start( args, fmt );
-	report_vprint( "WARN", fmt, args );
-	va_end( args );
-}
-
-/*!
-	print warning (info) on the current line
-*/
-void scan_to_nl_base::report_OK( const char * fmt, ... )
-{
-	va_list args;
-	va_start( args, fmt );
-	report_vprint( "OK", fmt, args );
-	va_end( args );
-}
-
 // VIRTUAL
 /*!
 	get the X position within the line (P beyond P0)
@@ -269,7 +157,7 @@ void scan_to_nl_base::get_x_y( int & x, int & y )
 	its code goes here (but also check for comments
 	that cross files)
 */
-bool	scan_to_nl_base::scan_nl_fn()
+bool	scan_to_nl_base::scan_LF_fn() // LF is LINE_FEED NEWLINE NL EOLN LF
 {
 	if( *P != '\n' ) return FALSE;
 
@@ -285,8 +173,21 @@ bool	scan_to_nl_base::scan_nl_fn()
 		something is printed
 	*/
 
+	if( EOF_touched ) {
+		if(1) {
+			e_print("EOF touched and still looking for LF\n");
+		}
+		return FALSE;
+	}
+
 	if( P < P0 )	/* EOF previously found */
 	{
+		/*
+			P0 is our lex p0p2.P0
+		*/
+			// STRANGE condition to flag some condition 
+			// - move away or fix
+
 		/*
 			you have already matched the last NL and asked again!
 
@@ -294,27 +195,40 @@ bool	scan_to_nl_base::scan_nl_fn()
 			try a few more branches, then fall back to EOF.
 			Since the NL only matches ONCE, the other brances fail.
 		*/
-		if(0) {
-			e_print("## WARN ## repeat scan_nl() at EOF\n");
+		if(1) {
+			e_print("## WARN ## P < P0 \n");
 		}
 		return FALSE;
 	}
 
-	/* normal case NL found */
+	/* normal case NL found, possibly last one */
 
+	// step over LF
 	P++;	// scan over NL // BEFORE P0=p;
+	// count Y++ and keep P0 of Y
 	Y++;	// count next line number Y++
-	P0=P;	// line start (char * not file-seek)
+	P0 = P;	// line start (char * not file-seek)
 
 	/* was that NL inside the text, or the last NL, triggering EOF */
 	/* check for the last NL in the buffer, step back one and set flag */
 
 	if( P == file_zone.p2 )	/* weve gone void */
 	{
-		P--;		// valid(P), ( P < P0 )
-		if(0) {
-			e_print("## INFO ## detect EOF in scan_nl()\n");
+		// caller must call if(scan_eof())
+		if(1) {
+			e_print("## WARN ##  P == P2 FIRST DETECT \n");
+			INFO("P %s", P );
+			INFO("P0 %s", P0 );
 		}
+		EOF_touched ++; // actually not reported yet //
+		// STEP BACK to P2_M1
+		P--;		// valid(P), ( P < P0 )
+		gdb_invoke(false);
+		return true;
+	}
+	if( P > file_zone.p2 ) {	/* weve gone full void */
+		FAIL("WAY PAST");
+		// return true EOF
 	}
 	return TRUE;
 }
@@ -356,6 +270,58 @@ bool scan_to_nl_base::scan_crlf( void )
 	if( P[1] != '\n' ) return FALSE; // NUL is not an option
 	P++; // skip the \r
 	return scan_nl(); // always returns true, but does the extra code
+}
+
+bool scan_to_nl_base::scan_eof_fn() 
+{
+	if( EOF_touched ) {
+		WARN("called again");
+		return true;
+	}
+
+	if( (*P==NUL)) {	// we accept NUL as EOF p0p2 == STR0
+		INFO("NUL found for eof");
+		EOF_touched ++;
+		return true;
+	}
+
+	u8 * P2 = file_zone.p2 ;
+	u8 * P2_M1 = P2 - 1;
+
+	if( P < P2_M1 ) {
+		INFO("excessive eof check (P<P2_M1)");
+		return false;
+	}
+
+	if( P == P2 ) {
+		INFO("exact eof - WHY DIDNT _nl_fn set EOF_touched");
+		EOF_touched ++;
+		return true;
+	}
+
+
+	if( P == P2_M1 ) {
+		EOF_touched ++;
+		if( (*P=='\n')  ) {
+			INFO("got LF bouncing at EOF_touched %d", EOF_touched );
+		} else {
+			INFO("expected LF got 0x%2X", *P );
+		}
+		return true;
+	}
+
+	FAIL("this makes no sense");
+	EOF_touched ++;
+	return true;
+
+	if( P < P0 )
+	{
+		return TRUE;
+//		debugging options
+//		assert( P == file_zone.p2 - 1 );
+//		assert( (*P=='\n')||(!*P) );
+	}
+	return FALSE;
 }
 
 /*!

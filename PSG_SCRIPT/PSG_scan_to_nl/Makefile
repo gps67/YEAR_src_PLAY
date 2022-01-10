@@ -43,6 +43,7 @@
 
 
 	OBJS += scan_to_nl_P.o
+	OBJS += scan_to_nl_base_report.o
 	OBJS += scan_to_nl_base.o
 	OBJS += scan_to_nl_plus.o
 	OBJS += scan_to_nl.o

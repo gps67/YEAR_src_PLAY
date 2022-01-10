@@ -11,20 +11,3 @@
 /*!  dox comment */
 
 int abc = 55;
-
-#define first 1
-#define second (first+1)
-#define third(a,b,c) (the_third(a,b,c))
-#define fourth() (the_Fourth()
-
-//! dox to eoln
-char * str1;
-char *& str2;
-
-int proto1( int a );
-
-int & def MISSINGTHING
-
-T * V
-
-

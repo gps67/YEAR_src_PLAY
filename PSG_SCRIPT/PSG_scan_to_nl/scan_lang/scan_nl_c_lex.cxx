@@ -1,4 +1,5 @@
 #include "scan_nl_c_lex.h"	// included the following
+#include "dgb.h"	// FAIL
 
 int scan_nl_C_LEX::cset_inited_b = 0; // init defined as = 0;
 
@@ -94,12 +95,13 @@ bool scan_nl_C_LEX::scan_comment_block_tail( str1 & str )
 		} else if( scan_nl() )
 		{
 			continue;
-		} else if( scan_eof() )
+		} else if( scan_eof() ) // note this comes after scan_nl()
 		{
 			report_FAIL("expected * /\n");
 			return false;
 		}
 	}
+	return FAIL("should be unreached");
 }
 
 bool scan_nl_C_LEX::peek_pp_hash_at_boln()

@@ -65,8 +65,8 @@ BEGIN {
 #	A365=365*2
 	A365=365*5
 	A365=365*6 # looks like a step down, then exponential decay to V2
-	A365=365*3
 	A365=365*1
+	A365=365*3
 
 	F365=1.0*A365 # as a floating point
 
@@ -421,6 +421,7 @@ function plot_script_daily(filename_plot_png, zoomed_out)
 		X_hi = "2100"
 	} else {
 		X_lo = "1980"
+		X_lo = "1970"
 		X_hi = "2025"
 		Y_lo = 0
 		Y_hi = 35

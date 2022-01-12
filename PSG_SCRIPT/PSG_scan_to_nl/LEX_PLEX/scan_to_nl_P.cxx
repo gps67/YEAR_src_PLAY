@@ -13,10 +13,15 @@
 */
 bool scan_to_nl_P::scan_word_a2( const u8 * word, const cset_bit_map & a2 )
 {
+	// single letter test
 	if( *P != *word ) return false;
+	// keep roll-back point
 	u8 * P0 = P;
 	while( *word ) {
-		if( *P != * word) return false;
+		if( *P != * word) {
+			P = P0; // roll back // nb rename P0 P-Y_X0
+			return false;
+		}
 		P ++;
 		word ++;
 		

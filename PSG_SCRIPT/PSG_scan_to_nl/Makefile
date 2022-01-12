@@ -119,7 +119,7 @@ test1: $(PROG1) Makefile
 	./$(PROG1) $(M1).mm3 2>&1 | less
  
 test2: $(PROG2) Makefile
-	./$(PROG2) ../test/test2.c1 2>&1 | less
+	./$(PROG2) ../test/test2.c1 2>&1 # | less
  
 test3: $(PROG3) Makefile
 	./$(PROG3) ../test/test3.xml 2>&1 | less

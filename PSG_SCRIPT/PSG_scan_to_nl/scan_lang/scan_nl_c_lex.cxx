@@ -108,7 +108,7 @@ bool scan_nl_C_LEX::peek_pp_hash_at_boln()
 {
 	// presume not EOF ?
 	if( *P != '#' ) return false;
-	if( P != P0 ) {
+	if( P != P_X0 ) {
 		report_WARN("cpp hash # not at BOLN\n");
 		return false;
 	}
@@ -118,7 +118,7 @@ bool scan_nl_C_LEX::peek_pp_hash_at_boln()
 bool scan_nl_C_LEX::scan_pp_hash_at_boln()
 {
 	if( *P != '#' ) return false;
-	if( P != P0 ) {
+	if( P != P_X0 ) {
 		report_WARN("cpp hash # not at BOLN\n");
 		return false;
 	}

@@ -40,7 +40,7 @@ void scan_to_nl_base::report2( const char * name, const str1 & s )
 
 // #warning "here_back cant move to a previous line"
 /*
-	here_start would need to store P0 as well as P
+	here_start would need to store P_X0 as well as P
 
 	The original idea was to never pass LF, then back
 
@@ -55,7 +55,7 @@ void scan_to_nl_base::report_vprint( const char * err, const char * fmt, va_list
 	// print the source line
 	report_lhs( err ); // x,y should NOT change
 	p0p2 line_zone;
-	get_curr_line_zone( line_zone );	// needs P0
+	get_curr_line_zone( line_zone );	// needs P_X0
 	str1 line( line_zone );
 	e_print("#\t%s\n", line.str );
 

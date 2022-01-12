@@ -229,6 +229,10 @@ top:
 
 /*!
 	caller has found "#include" now find " <a.h> CMNT EOLN"
+
+	OPTION attempt to DOX the CMNT
+	OPTION leave GAP after S.E.P.
+
 */
 bool scan_nl_C_PSG::scan_pp_include_( str1 & filename, bool & local )
 {
@@ -272,7 +276,10 @@ bool scan_nl_C_PSG::scan_pp_include_( str1 & filename, bool & local )
 		caller should now include that file
 		to get symbols from it
 	*/
-	report2( "include", (STR0) filename.str );
+	if(local)
+		report2( "include Q2", (STR0) filename.str );
+	else
+		report2( "include <>", (STR0) filename.str );
 	return true;
  bad:
 	report_FAIL("BAD");

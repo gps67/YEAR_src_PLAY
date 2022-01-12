@@ -64,6 +64,8 @@ struct p0p2 : public GRP_lib_base
 
 	u8 * P0() { return p0; }	// PTR = BASE + OFFS
 	u8 * P2() { return p2; }	// IDX = LIBR + ITEM // PTR = EVAL
+	u8 * P2_M1() { return p2 -1; }	// last byte of file - should be LF
+	u8 * P_last() { return p2 -1; }	// last_byte_of_file
 
 
 // TODO//	ITEM_t & EA() { return *(ITEM_t *) p0; // CAST_TYPE
@@ -83,30 +85,36 @@ struct p0p2 : public GRP_lib_base
 	{
 		p0 = p2 = (u8 *)(-1);
 	}
+
 	p0p2( void )
 	{
 		p0 = p2 = (u8 *)(-1);
 	}
+
 	p0p2( u8 * P0, u8 * P2 )
 	{
 		p0 = (u8 *)P0;
 		p2 = (u8 *)P2;
 	}
+
 	p0p2( u8 * P0, unsigned int len )
 	{
 		p0 = P0;
 		p2 = p0 + len;
 	}
+
 	p0p2( char * P0, char * P2 )
 	{
 		p0 = (u8 *)P0;
 		p2 = (u8 *)P2;
 	}
+
 	p0p2( char * buff, int len )
 	{
 		p0 = (u8 *)buff;
 		p2 = (u8 *)buff + len; /* NOT strlen */
 	}
+
 	// note need to distinguish char * p2 } { int nbytes } // uns DEFAULT //
 	// why uns? avoids breakout using -ve OFFS
 	// BUT then implement as i64_PINT_P_INT
@@ -115,6 +123,7 @@ struct p0p2 : public GRP_lib_base
 		p0 = (u8 *)buff;
 		p2 = p0 + strlen( buff );
 	}
+
 	p0p2( const p0p2 & rhs )
 	{
 		p0 = rhs.p0;
@@ -157,6 +166,7 @@ struct p0p2 : public GRP_lib_base
 
 	int	N_bytes() const { return p2 - p0 ; }
 	int	blk_len() const { return N_bytes(); }
+	int	byte_len(void) const { return p2 - p0 ; }
 	int	str_len(void) const { return p2 - p0 ; }
 
 	char *	str_cpy( void ) const
@@ -181,16 +191,27 @@ struct p0p2 : public GRP_lib_base
 		// return dest;
 	}
 
-// shouldnt this say STATIC ... even though inline its a C++ non-member
 
-	static int cmp( const p0p2 & lhs, const p0p2 & rhs ) // const
+	/*!
+		compare a pair of p0p2 - BINARY 
+		return
+		 IS_LESS
+		 IS_SAME
+		 IS_MORE
+	*/
+	static // static means can call t = cmp( lhs, rhs )
+	int cmp( const p0p2 & lhs, const p0p2 & rhs ) // const
 	{
+		// str_len == p2-p0, does NOT stop on NUL
 		int ll = lhs.str_len();
 		int lr = rhs.str_len();
 		int lo = least( ll, lr ); 
+		// this is for binary not STR0
+		// so it compares gaps after both have NUL bytes
 		int t = memcmp( lhs.p0, rhs.p0, lo );
 		if( t<0 ) return IS_LESS;
 		if( t>0 ) return IS_MORE;
+		// same // pick shortest first
 		if( ll == lr ) return IS_SAME;
 		if( ll <  lr ) return IS_LESS;
 		if( ll >  lr ) return IS_MORE;
@@ -200,7 +221,11 @@ struct p0p2 : public GRP_lib_base
 
 
 	/*!
-		compare this with rhs, return IS_LESS IS_SAME IS_MORE
+		compare this with STR0 rhs,
+		return
+		 IS_LESS
+		 IS_SAME
+		 IS_MORE
 	*/
 	int cmp( const char * rhs_ ) const
 	{
@@ -225,6 +250,7 @@ struct p0p2 : public GRP_lib_base
 	}
 
 	int cmp( const p0p2 & rhs ) const {
+		// call the static cmp(p0p2,p0p2)
 		return cmp( *this, rhs );
 	}
 

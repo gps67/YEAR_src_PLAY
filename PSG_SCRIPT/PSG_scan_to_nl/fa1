@@ -2,28 +2,34 @@ g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_base.o -c 
 ar -curs libscan.a scan_to_nl_base.o
 ar: `u' modifier ignored since `D' is the default (see `U')
 g++ -O0 -g -o c1.exec c1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/PLAY/libs_apps/lib -L/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -lbase
-./c1.exec ../test/test2.c1 2>&1 | less
+./c1.exec ../test/test2.c1 2>&1 # | less
 ##### C init_csets() ###
-#  5  1 # GOT  ##### C_LEX init_csets_C() ###
-# include('a.h')
-#  5  1 # Got  # cpp_hash_line 
-# 13  1 # GOT  # include('b.h')
-# 13  1 # Got  # cpp_hash_line 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # ##### C_LEX init_csets_C() ###
+line_passed '// first comment'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '//'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '#include <a.h>'
+#  5  0 # GOT  # include <>('a.h')
+#  5  0 # Got  # cpp_hash_line 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '#include "b.h"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '// third comment           '
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '/*'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '	block comment'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '*/'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '/*!  dox comment */'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
+# 13  0 # GOT  # include Q2('b.h')
+# 13  0 # Got  # cpp_hash_line 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed 'int abc = 55;'
 ## WARN ##  P == P2 FIRST DETECT 
 # INFO  # bool scan_to_nl_base::scan_LF_fn() # P 
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # P0 
-# INFO  # void gdb_invoke(bool) # invoking gdb ... maybe
-# PASS  # bool prctl_allow_PTRACE() # prct returned 0
-# INFO  # void gdb_is_running_YES() # Setting yes_it_really_is_running
-# INFO  # void gdb_invoke(bool) # pid 177048 exe_name /usr/bin/make
-# INFO  # void gdb_invoke(bool) # Invoking gdb on pid 177048 /usr/bin/make ...
-# WARN  # void gdb_invoke(bool) # no finish command
-# INFO  # void gdb_invoke(bool) # execlp form 3
-Reading symbols from /usr/bin/make...
-(No debugging symbols found in /usr/bin/make)
-Attaching to program: /usr/bin/make, process 177048
-Reading symbols from /lib64/ld-linux-x86-64.so.2...
-(No debugging symbols found in /lib64/ld-linux-x86-64.so.2)
-0x00007f2f7ccea334 in ?? ()
-.gdb_invoked: No such file or directory.
-(gdb) 
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # P_X0 
+EOF touched and still looking for LF
+# WARN  # virtual int scan_to_nl_base::get_x() # P < P_X0
+# 14  0 # Got  # # VAR # int abc = 55 
+EOF touched and still looking for LF
+# INFO  # bool scan_to_nl_base::scan_eof_fn() # should be last
+# WARN  # bool scan_to_nl_base::scan_eof_fn() # called with EOF_touched == 1
+# WARN  # virtual int scan_to_nl_base::get_x() # P < P_X0
+# 14  0 # Got  # EOF 

@@ -3,6 +3,7 @@
 #include "str1.h"
 #include "p0p2.h"
 #include "dgb.h" // WARN FAIL
+#include "buffer1.h" // WARN FAIL
 
 /*
 	statics are just like "extern" things
@@ -17,13 +18,28 @@ cset_bit_map scan_to_nl_base::cset_AZaz;
 cset_bit_map scan_to_nl_base::cset_AZaz_;
 cset_bit_map scan_to_nl_base::cset_AZaz09;
 cset_bit_map scan_to_nl_base::cset_AZaz09_;
-cset_bit_map scan_to_nl_base::cset_line;
-cset_bit_map scan_to_nl_base::cset_ident_a1;
-cset_bit_map scan_to_nl_base::cset_ident_a2;
+cset_bit_map scan_to_nl_base::cset_line; // everything except NUL and NL
+
+// cset_bit_map scan_to_nl_base::cset_ident_a1;
+// cset_bit_map scan_to_nl_base::cset_ident_a2;
 /*!
 */
 void scan_to_nl_base::init_csets(void)
 {
+	init_csets_statics(); // it returns on repeat call
+	// init class CSETS
+	// default identifier is C
+	cset_ident_a1 = cset_AZaz;
+	cset_ident_a2 = cset_AZaz09_;
+}
+
+// cset_bit_map scan_to_nl_base::cset_ident_a1;
+// cset_bit_map scan_to_nl_base::cset_ident_a2;
+/*!
+*/
+void scan_to_nl_base::init_csets_statics(void)
+{
+
 	// maybe add force_init_csets() which sets cset_inited_a = 0;
 	if( cset_inited_a ) return;
 	cset_inited_a = 1;
@@ -39,6 +55,11 @@ void scan_to_nl_base::init_csets(void)
 	cset_AZaz09.set_null();
 	cset_line.set_null();
 
+	cset_line.set_range( 0, 255 );
+	cset_line.reset_bit( 0 ); // not allowed
+	cset_line.reset_bit( '\n' ); // not allowed
+// ?	cset_line.reset_bit( '\r' ); // not part of line text
+
 	cset_az.set_range( 'a', 'z' );
 	cset_AZ.set_range( 'A', 'Z' );
 	cset_09.set_range( '0', '9' );
@@ -48,11 +69,6 @@ void scan_to_nl_base::init_csets(void)
 	cset_AZaz09 |= cset_AZaz;
 	cset_AZaz09 |= cset_09;
 
-	cset_line.set_range( 0, 255 );
-	cset_line.reset_bit( 0 ); // not allowed
-	cset_line.reset_bit( '\n' ); // not allowed
-	cset_line.reset_bit( '\r' ); // not part of line text
-
 	cset_AZaz_ = cset_AZaz;
 	cset_AZaz_.set_bit( '_' );
 
@@ -60,64 +76,139 @@ void scan_to_nl_base::init_csets(void)
 	cset_AZaz09_.set_bit( '_' );
 
 	cset_09_af_AF.set_null();
-	cset_line.set_range( '0', '9' );
-	cset_line.set_range( 'a', 'f' );
-	cset_line.set_range( 'A', 'F' );
-
-	// default identifier is C
-	cset_ident_a1 = cset_AZaz;
-	cset_ident_a2 = cset_AZaz09_;
+	cset_09_af_AF.set_range( '0', '9' );
+	cset_09_af_AF.set_range( 'a', 'f' );
+	cset_09_af_AF.set_range( 'A', 'F' );
 }
 
+// EOF is special // 
 
-//	u8 *	P_last( void )	{ return file_zone.p2 - 1; } // rare use
-//	int	N_left( void )	{ return file_zone.p2 - P; } // rare use
+bool scan_to_nl_base:: set_file_zone( const p0p2 & buffer )
+{
+	file_zone = buffer;
+	P = file_zone.p0;
+	Y = 1;
+	P_X0 = P;
+	EOF_touched = 0; // count 
+
+	// require a terminator
+	if( file_zone.byte_len() == 0 )
+	{
+		WARN("EMPTY usage?");
+		EOF_touched = true;
+		// fake NL,
+		P_X0++;
+	} else if( !check_nl_at_eof() )
+	{
+		EOF_touched = true;
+		e_print("File or buffer does not end in NL\n" );
+		throw "set_file_zone(buffer) - no NL";
+	}
+	return true;
+}
+
+/*!
+	caller must hold STR0
+*/
+bool scan_to_nl_base:: set_file_zone ( const char * text_string ) // not const STR0?
+{
+	if(!text_string) {
+		return FAIL("NULL text_string");
+	}
+	file_zone = p0p2( (char *)text_string ); // unconst cast
+	/*
+		default p0p2(STR0) does not include the trailing NUL
+		I think that we should follow that path
+		but that requires access outside p0p2
+
+		because we were called with a STR0 (not a NULL)
+		we KNOW that a NUL is present (or we just went wrong)
+		so there is no need to check for it
+	*/
+	if(!file_zone.nbytes()) {
+		return WARN("empty text_string");
+	}
+	if(!check_nul_at_eof()) { WARN("NUL outside?"); } // but it is there
+	return true;
+}
 
 /*!
 	the buffer must end with a decent terminator - return T/F
 */
 bool	scan_to_nl_base::check_nl_at_eof()
 {
-	u8 * P_last = file_zone.p2 - 1;
-	u8 clast = *P_last;
-	if(clast == '\n') return TRUE;
-	e_print("# ERROR # check_nl_at_eof() found %2XX %c\n",
+	u8 clast = *P_last();
+	if(clast == '\n') return TRUE;	// most common case //
+	if(clast == 0) {	// second usage
+		INFO("found NUL of STR0");
+		return TRUE; // allow use on strings STR0 // tell found
+	}
+
+	// after that there is no good p0p2 for scan_to_nl
+	// maybe print some diagnostics
+	FAIL("last byte %2XX '%c' pos %d nbytes %d",
 		(unsigned)clast,
-		(unsigned)clast
+		(unsigned)clast,
+		P_as_OFFS(),
+		file_zone.str_len() // p2-p0
 	);
-	if(clast == 0) return TRUE; // allow use on strings ??
 	return FALSE;
+}
+bool	scan_to_nl_base::check_nul_at_eof() {
+	u8 clast = *P_last();
+	if(clast == 0) return TRUE; // silent for this usage
+	if(clast == '\n') return FAIL("got NL at EOF");
+	check_nl_at_eof(); // generalised reporting diagnostics
+	return FAIL("expcted NUL");
 }
 
 // VIRTUAL
 /*!
-	get the X position within the line (P beyond P0)
+	get the X position within the line (P beyond P_X0)
 
 	this wont work well with multi-byte utf, or NUL data
 	but its enough to make ASCII easier to debug.
-	For better, use P, P0 and file_zone.p0
+	For better, use P, P_X0 and file_zone.p0
 
 	converting tabs to counted spaces
 	might require print to have same alignment
 */
-int scan_to_nl_base::get_x()
+int scan_to_nl_base::get_x() // return X 0 for COL 1
 {
-	if( P < P0 ) return 0;
-	u8 * P1 = P0;
-	int x = 1;
+	if( P < P_X0 ) {
+		WARN("P < P_X0");
+		return 0;
+	}
+
+	int x = 0;
+
+	// iterate from P0 to P // count bytes or count utf8 chars ?
+	// at least count TAB8
+	u8 * P1 = P_X0;
 	while( P1 < P )
 	{
 		u8 ch = *P1++;
 		x++;
-		if( ch >= ' ' ) continue;
+		if( ch >= 128 ) continue; // WRONG treat UTF8 BYTES as chars
+		if( ch >= ' ' ) continue; // ASCII glyph
 		if( ch == '\t' ) {
 			x = (x + 7) & ~7;
+			// 0->1->8->8 //
+			// 6->7->14->8
+			// 7->8->15->8
+			// 8->9->16->16 
+			continue;
 		}
+		INFO("ch x%2.2X", ch );
 		// treat all other chars [0..31] as glyphs
 		// should not include CR LF
 	}
 	return x;
 }
+//23456789012345678	// count from 0
+//34567	9012345	7	// count from 1
+//	|	| 	// 8 chars then start xpos 
+//
 
 // VIRTUAL
 /*!
@@ -129,7 +220,7 @@ void scan_to_nl_base::get_x_y( int & x, int & y )
 }
 
 /////////////
-// Things that need P0, Y
+// Things that need P_X0, Y
 // specifically NUL and NL and EOF
 /////////////
 
@@ -140,14 +231,14 @@ void scan_to_nl_base::get_x_y( int & x, int & y )
 	If NL, start next line or detect EOF
 
 		scan over the '\n' char
-		set P0 to point to X0 of next line
-		(That keeps (P0 <= P) in normal use)
+		set P_X0 to point to X0 of next line
+		(That keeps (P_X0 <= P) in normal use)
 		check for EOF
 		
 	if EOF,
 		P is NOT advanced over the NL
 		P is left pointing to the last byte (NL or NUL)
-		P0 is kept outside so that (P0 <= P) is nolonger true
+		P_X0 is kept outside so that (P_X0 <= P) is nolonger true
 
 	If EOF before starting, return FALSE
 
@@ -180,10 +271,10 @@ bool	scan_to_nl_base::scan_LF_fn() // LF is LINE_FEED NEWLINE NL EOLN LF
 		return FALSE;
 	}
 
-	if( P < P0 )	/* EOF previously found */
+	if( P < P_X0 )	/* EOF previously found */
 	{
 		/*
-			P0 is our lex p0p2.P0
+			P_X0 is our lex p0p2.P_X0
 		*/
 			// STRANGE condition to flag some condition 
 			// - move away or fix
@@ -196,18 +287,23 @@ bool	scan_to_nl_base::scan_LF_fn() // LF is LINE_FEED NEWLINE NL EOLN LF
 			Since the NL only matches ONCE, the other brances fail.
 		*/
 		if(1) {
-			e_print("## WARN ## P < P0 \n");
+			e_print("## WARN ## P < P_X0 \n");
 		}
 		return FALSE;
 	}
 
 	/* normal case NL found, possibly last one */
 
+	p0p2 line_passed( P_X0, P );
+	buffer1 b;
+	b.set( line_passed ) ;
+	INFO("line_passed '%s'", (STR0)b );
+
 	// step over LF
-	P++;	// scan over NL // BEFORE P0=p;
-	// count Y++ and keep P0 of Y
+	P++;	// scan over NL // BEFORE P_X0=p;
+	// count Y++ and keep P_X0 of Y
 	Y++;	// count next line number Y++
-	P0 = P;	// line start (char * not file-seek)
+	P_X0 = P;	// line start (char * not file-seek)
 
 	/* was that NL inside the text, or the last NL, triggering EOF */
 	/* check for the last NL in the buffer, step back one and set flag */
@@ -218,12 +314,12 @@ bool	scan_to_nl_base::scan_LF_fn() // LF is LINE_FEED NEWLINE NL EOLN LF
 		if(1) {
 			e_print("## WARN ##  P == P2 FIRST DETECT \n");
 			INFO("P %s", P );
-			INFO("P0 %s", P0 );
+			INFO("P_X0 %s", P_X0 );
 		}
 		EOF_touched ++; // actually not reported yet //
 		// STEP BACK to P2_M1
-		P--;		// valid(P), ( P < P0 )
-		gdb_invoke(false);
+		P--;		// valid(P), ( P < P_X0 )
+	//	gdb_break_point();
 		return true;
 	}
 	if( P > file_zone.p2 ) {	/* weve gone full void */
@@ -236,12 +332,12 @@ bool	scan_to_nl_base::scan_LF_fn() // LF is LINE_FEED NEWLINE NL EOLN LF
 /*!
 	only scan_nul() may step over a NUL byte, else false
 
-	see scan_nl_fn, except NUL doesnt increment Y or P0 (except EOS)
+	see scan_nl_fn, except NUL doesnt increment Y or P_X0 (except EOS)
 */
 bool	scan_to_nl_base::scan_nul_fn( void )
 {
 	if( *P ) return FALSE;
-	if( P < P0 )		// EOF already detected
+	if( P < P_X0 )		// EOF already detected
 	{
 		return FALSE;	// dont match EOS twice
 	}
@@ -249,11 +345,11 @@ bool	scan_to_nl_base::scan_nul_fn( void )
 	if(0) {
 		e_print("## INFO ## detect NUL in scan_nul()\n");
 	}
-	// do not set P0 or Y++, but enables NUL inside text
+	// do not set P_X0 or Y++, but enables NUL inside text
 	if( P == file_zone.p2 )	// GONE VOID
 	{
-		P0 = P;		// NL does that automatically
-		P--;		// NOW (P<P0)
+		P_X0 = P;		// NL does that automatically
+		P--;		// NOW (P<P_X0)
 		if(0) {
 			e_print("## INFO ## detect EOF NUL in scan_nul()\n");
 		}
@@ -274,12 +370,17 @@ bool scan_to_nl_base::scan_crlf( void )
 
 bool scan_to_nl_base::scan_eof_fn() 
 {
+	INFO("should be last"); // probably after syntax error //
+	// after checking everything else
+	// nothing else matches // look for EOF
+
 	if( EOF_touched ) {
-		WARN("called again");
+		WARN("called with EOF_touched == %d", EOF_touched );
+		// that is normal, eg CMNT upto LF EOF
 		return true;
 	}
 
-	if( (*P==NUL)) {	// we accept NUL as EOF p0p2 == STR0
+	if( (*P == NUL)) {	// we accept NUL as EOF p0p2 == STR0
 		INFO("NUL found for eof");
 		EOF_touched ++;
 		return true;
@@ -314,7 +415,7 @@ bool scan_to_nl_base::scan_eof_fn()
 	EOF_touched ++;
 	return true;
 
-	if( P < P0 )
+	if( P < P_X0 )
 	{
 		return TRUE;
 //		debugging options
@@ -325,19 +426,19 @@ bool scan_to_nl_base::scan_eof_fn()
 }
 
 /*!
-	return the current line, going back to P0
+	return the current line, going back to P_X0
 */
 void	scan_to_nl_base::get_curr_line_zone( p0p2 & line_zone )
 {
 	// if EOF, return an empty string before the last byte
-	if( P < P0 )
+	if( P < P_X0 )
 	{
 		line_zone.p0 = P;
 		line_zone.p2 = P;
 		return;
 	}
 	// start with the line so far
-	line_zone.p0 = P0;
+	line_zone.p0 = P_X0;
 	line_zone.p2 = P;
 	// slide upto NL or NUL
 	u8 * P1 = P;

@@ -35,7 +35,7 @@
 	outside, however, the last char read (the terminating newline)
 	will REMAIN pointed to (to prevent excuberant code overshooting
 	the end). In that case a special flag is set, so that the next 
-	scan_nl gets eof. (normally P0 <= P, AFTER-EOF: P<P0)
+	scan_nl gets eof. (normally P_X0 <= P, AFTER-EOF: P<P_X0)
 
 	Hence you can always say: if( *P == 'X' ) P++; provided X is
 	not NL or NUL.
@@ -55,8 +55,8 @@ NOTE:
 	str_len() does NOT do a strlen()  it does p2-p0
 	scan_nl does not OWN the buffer it scans
 	Y is the number of this line
-	P0 points to the first char on this line (X0 might be better?)
-	P0 <= P - except after EOF
+	P_X0 points to the first char on this line (X0 might be better?)
+	P_X0 <= P - except after EOF
 	P points to the next char to be read
 	P is always valid, and "sticks" at end
 
@@ -86,7 +86,7 @@ NOTE:
 
 	The cursor pointer P is ALWAYS VALID (if initialy valid),
 	so there is a special impossible condition for when EOF happens,
-	(P is last NL, *P==NL, P0==NULL ).
+	(P is last NL, *P==NL, P_X0==NULL ).
 
 	If you dont want to load the ENTIRE text in one go (eg 4K chunks),
 	this class only needs a few modifications to load more on demand.
@@ -94,7 +94,7 @@ NOTE:
 	Each loaded segment would need to locate its LAST NL, and your
 	code would still be LINE oriented.
 
-	A line counter is provided to locate syntax errors, and P0
+	A line counter is provided to locate syntax errors, and P_X0
 	points to the first char of the line (NL if an empty line).
 
 	CR is just-another-char.
@@ -138,7 +138,7 @@ class scan_to_nl : public scan_to_nl_plus
 		set_file_zone( buff.file_zone );
 		P = buff.P ;
 		Y = buff.Y ;
-		P0 = buff.P0 ;
+		P_X0 = buff.P_X0 ;
 	}
 */
 

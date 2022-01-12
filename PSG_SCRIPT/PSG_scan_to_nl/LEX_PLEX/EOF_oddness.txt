@@ -1,0 +1,7 @@
+
+	If you look for scan_ident
+	If it looks for GAP_after_LEX
+	If that reaches EOF
+	{ EOF_touched == true } before scan_ident() returns
+
+	In traces EOF appears early, before IDENT reported

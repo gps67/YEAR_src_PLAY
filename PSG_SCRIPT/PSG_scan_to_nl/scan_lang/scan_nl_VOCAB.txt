@@ -1,0 +1,292 @@
+
+ VOCAB
+
+ 	scan_	Parser uses u8 * P; // CSR pointing to start of LEX // in ...
+	...	p0p2 P0P2%s _%s "%s" // P0P2_name // name "STR0" 
+
+	lex_	ident number punctuation gaps CMNT@CODE_POINT
+
+	psg_	DECL_ITEM ALLOC_NEW_ITEM { idx = ALLOC_N ++ }
+		// BENCH VIEW of CODE // PHRASE LINES VARS CALLS //
+
+		{ idx = ALLOC_N ++ } { HERE } // TOKENS += new HERE //
+		{ idx = ALLOC_N ++ } { // CODE_POINT // USE_MACRO // [idx] //o
+		}
+	
+	phrase_VAR_ID_EXPR_CMNT += CODE_POINT
+
+		eval_
+		diag_
+		psg_
+		STO_
+		%s_%s lhs rhs // CODE_POINT_HERE //
+	
+	STO
+
+		TREE
+
+			ITEM
+			
+				SPEC
+
+					PSG + LEX
+	
+	LEX
+		MATCH
+		SUBLEX fmt = { %s_%s } { lhs rhs }
+		EXPR.CODE_POINT {
+		// { DIAG } //
+
+			fmt = STR0 "... %s fmt ARGS"
+
+		// { VIEW } //
+
+			fmt = "%s_%s" LHS RHS
+			{ lhs rhs }
+
+		// { VIEW } //
+
+			DTP_PAGE = DTP_SCROLL 
+			PAGE += LINES of TEXT 
+
+		// { CODE  DATA } // ALLOC QUOTA
+
+		// { CODE  DATA } // CODE_POINT eg HERE
+
+		// ALLOC QUOTA //
+
+			AXIOM { idx = ALLOC_N ++ }
+			AXIOM { offs = ALLOC_OFFS ALLOC_nbytes }
+			AXIOM { offs = CALL ALLOC } // LINK to NEAR_VARS
+			AXIOM { addr = base + offs // CMNT } // CODE_POINT
+
+	view[]		AXIOM { array [ idx ] of WORD_SPEC // EIGHT // }
+	view[]		AXIOM { array [ idx ] of WORD_SPEC }
+	view[]		AXIOM { array [ idx ] of WORD_SPEC } // CODE_POINT
+			
+			AXIOM ALLOC nbytes
+			AXIOM ALLOC { idx = N ++ } // ALLOC_so_far_N // N ++ //
+			AXIOM CTOR_DTOR_EXPR_CODE { LIST }
+			AXIOM QUOTA
+			AXIOM PERMIT
+			AXIOM QUEUE // and of being DATA // SPEC // STO // EVAL //
+		// SPEC STO EVAL // SESS.CTXT //
+
+			VARS + TEXT + DIAG + BENCH 
+
+		// SPEC // STRUCT CLASS SESS_STO // 
+
+			SPEC += STRUCT_LAYOUT
+			SPEC += SEGMENT_LAYOUT
+			SPEC += ENUM_TOKEN_LIBR
+			SPEC += BYTE_WORD_module // module BYTE_WORD_CPU_VAR
+			SPEC += CPU_VAR_SPEC
+
+		// STO // MMAP_of_SEGMENTS
+
+			STO += { P0 nbytes }
+			P0P2 avail as AXIOM { P2 = P0 + nbytes }
+
+			STO.P0P2 = P0P2_from_STO { P0 nbytes } {
+			// that is MACRO as if NAME 
+
+			"STO.P0P2 = P0P2_from_STO { P0 nbytes } { ... }"
+			// CTOR into callers data_buffer
+			// data_buffer.P0P2 // CTOR from { P0 nbytes }
+			// P0P2.p0 = P0
+			// P0P2.p2 = P0 _ nbytes
+			}
+		}
+	
+MATCH CAP1 %s a1_a2_star { ... }
+ a1 = [A-Z]
+ a2 = [a-z]
+
+ eg DIAG Sample Cap 
+ DIALECT += { a2 += [A-Z_0-9] }
+ DIALECT += { a2 += SP } // SCOPE from import headers // local += new_name help
+
+ eg DIAG CamelCap1 // USAGE += %s%s += template fmt args
+
+
+MATCH IDENT a1_a2_star 
+ a1 = [] + IDENT_a1_CTOR_DATA // eg [A-za-z]
+ a2 = [] + IDENT_a2_CTOR_DATA // eg a1 + [_0-9] 
+
+ add_UTF8_transport_as_bytes_in_a2 // all high bytes //
+ // prefer not upp CTRL // 
+ // prefer not Latin local // // possibly raw UTF8 translation
+ 
+ scan_digits_hex
+ scan_digits_decimal
+ scan_digits_octal
+ scan_digits_binary
+ scan_FFH
+ scan_xFF
+ scan_a1_a2_star // picking a1 a2 from IDENT = ident_C99
+ peek_not_a3
+
+ xpos_P
+ xpos_OFFS
+ xpos_OFFS_Y_offs_x // Y // 
+ xpos_var
+
+ lex_number_float
+ lex_number_int
+ lex_number_FFH	// ie FFH not 0xFF
+ lex_number_0xFF // add more
+ lex_number_parsed
+
+ lex_ident_C99
+ lex_ident_UTF8
+ lex_ident_bash
+ lex_ident_tcl 
+
+ lex_ident_varname
+ lex_ident_%sname
+ lex_ident_%s_name { const type var func macro }
+
+ lex_value_STR0
+ lex_value_i8
+ lex_value_number_parsed
+ lex_value_SYMBOL_to_VALUE
+ lex_value_SYMBOL_as_VALUE
+ lex_value_
+
+ psg_include_file
+ psg_var_decl_init_CMNT_CODE_POINT
+ psg typedef { text } new_type_name type_
+ psg decl_class
+ psg decl_var
+ psg decl_func
+ psg_module
+ psg_lines_of_words
+ psg_indented_text
+
+ name = { ANYSTR } // but trim spaces // normalise squared //
+ name = { psg %s } // list of words add up much like %_%
+ name = { psg %s %s } // list of words decode NAMES used in ARGS
+
+ psg_psg_bootstrap
+ psg_psg
+ psg_script
+ psg_struct // _struct _enum __union _class_tree _CTOR_CODE __WORD_ALIAS
+
+ lex_ident // SCOPE cont_type_var_func_module // EA_ITEM EA_VAR
+ lex_punct // token = lookup "<=_=>"
+ lex_CMNT // part line multi_part sruuound // join rules
+ lex_indent // and also rhs aligned text TAB8 or TAB_OFF // lex_layout
+ lex_value_%s
+ lex_comment_DOX // /*! CODE_POINT ! becomes an wrapping flag layout_style
+
+ ident(IDENT)
+ ident(IDENT,IDENT_LOCN) 
+ new_ident(IDENT) // BIND
+ old_ident(IDENT,BIND)
+ val_ident(SPELLING = %)
+
+
+GEN psg_XFFFF( CTXT, TREE, ITEM, VIEW )
+GEN psg_XFFFF( a1_a2_star a1_one a2_two }
+GEN func from PSD_DECL // lexer defines lex using psg + lex_builder BENCH //
+
+	declare PSG in Parsed file // not CXX DATA
+
+		RULE { ITEM_t * ITEM = EXPR // CMT } {
+		 SEQ { ... }
+		 "ITEM_t" from "%s_t" // receives "ITEM"
+		 "ITEM" into %s // provides ITEM // 2way
+		 "EXPR" well known name of EXPR for type
+		 "CMNT" binds to CMNT_as_STR0
+		 XPOS = { filename Y X file_offs } += indented_text_vars 
+		 TREE_POS = { .. [pos] [%s] 
+		TREE CODE_POINT_HERE ARGS 
+		}
+
+	declare PSG in Parsed file // not CXX DATA
+
+		RULE { ITEM_t * VECT[/*idx=N++*/] = EXPR // CMT } {
+		 SEQ { ... }
+		 "ITEM_t" from "%s_t" // receives "ITEM" // _t
+		 "VECT" into %s // VECT = array [ IDX ] of ITEM_t // EIGHT
+		 "EXPR" // locate TABLE in SCOPE for "ITEM"
+		 "CMNT" // as always
+		 XPOS = { filename Y X file_offs } // or filename as OBJ_PTR
+		 TREE_POS = { .. [pos] [%s] 
+		TREE CODE_POINT_HERE ARGS 
+		}
+
+	MATCH PSG 
+
+		RULE {
+			ITEM_t * ITEM = VECT[idx] // CMNT
+
+			// pre requisites //
+			// details used above local customising of AXIOM
+			idx = idx_ITEM
+			//
+			CMNT == CMNT // parameter into macro as "CMNT"
+			VECT == VECT // parameter into macro as "VECT"
+			CMNT == CMNT // parameter into macro as "CMNT"
+			ITEM == ITEM // parameter into macro as "ITEM"
+		}
+
+		DERIVE { ITEM_t * ITEM = VECT[idx] // CMNT } {
+		}
+
+		AXIOM { EIGHT & ITEM_ptr_as_EIGHT = VECT[idx] // CMNT } {
+			
+			ITEM_t * ITEM = get_PTR_from_EIGHT( vect[i] )
+
+				MACROS invoked have DIAG roots
+				vect == VECT
+		}
+
+		AXIOM { array idx of item_type } // ESP EIGHT FOUR TWO BYTE
+
+	MATCH TREE
+
+		Organised as Module
+		Organised as DIR = groups of Modules
+		Organised as DIR = DIR for Module
+		Organised as FILE = FILE for Module // FILES += FILE //
+
+		LINK_LOAD
+		elf_segment
+		mmap_segment
+		mmap_segments
+		mmap_STR0_text_from_file // with added NUL //
+		mmap_HEAP_
+
+		GEN_ROM
+		CODE_segments // like C C++
+		C++ name_mangler
+		C _prefix ... RTFM which funcs it gets applied to
+
+		TREE_WALKER
+
+			UP PICK DOWN
+			claim name from PATHWAY to here (not here itself!!)
+			list all visitables here
+			link CODE_POINT
+			list all visitables there
+			 eg ITEM.ATTR { ATTR="ATTR" VAL="VAL" }
+
+			VIEW of HERE is a BENCH thing
+			for now a simple table { K V }
+			
+			V ha V_TYPE_OF_K_V( K, V ) // KEYNAME => ITEMTYPE often
+			%s_%d NAME ALLOC
+			%s_t NAME
+
+			ZOOM VIEW through ITEM TYPE
+
+		
+
+
+
+
+
+
+
+

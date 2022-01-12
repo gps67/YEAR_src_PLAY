@@ -81,7 +81,7 @@
 
 						-pick-
 						-or-
-						{ BASE == P0 } // P0 == P0P2.P0
+						{ BASE == P_X0 } // P_X0 == P0P2.P0
 
 							I thihnk I need to reword p0p2_t P0P2
 
@@ -91,7 +91,7 @@
 struct here_pos3
 {
 	u8 * P;
-	u8 * P0;
+	u8 * P_X0;
 	int Y;
 };
 
@@ -141,13 +141,13 @@ class scan_to_nl_plus : public scan_to_nl_base
 	// useful when lexer rolls back
 	void here_start( here_pos3 & pos ) const
 	{
-		pos.P0 = P0;
+		pos.P_X0 = P_X0;
 		pos.P = P;
 		pos.Y = Y;
 	}
 	void here_back( const here_pos3 & pos )
 	{
-		P0 = pos.P0;
+		P_X0 = pos.P_X0;
 		P  = pos.P;
 		Y  = pos.Y;
 	}

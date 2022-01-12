@@ -37,7 +37,7 @@ class scan_to_nl_base : public scan_to_nl_P
 {
  protected:
 	//! pointer to the start of the line, eof if 0
-	u8 *	P0;
+	u8 *	P_X0;
 	//! line number
 	int	Y;
 	//! the entire zone of the file (ending in nl or NUL)
@@ -51,7 +51,7 @@ class scan_to_nl_base : public scan_to_nl_P
 	{
 		// P = 0 ;
 		Y = 1 ;
-		P0 = 0 ;
+		P_X0 = 0 ;
 		EOF_touched = 0; // count 
 	}
 
@@ -62,25 +62,8 @@ class scan_to_nl_base : public scan_to_nl_P
 		set_file_zone( buffer ); // can throw
 	}
 
-	void set_file_zone( const p0p2 & buffer )
-	{
-		file_zone = buffer;
-		P=file_zone.p0;
-		Y=1;
-		P0=P;
-		EOF_touched = 0; // count 
-		// require a terminator
-		if( file_zone.str_len() == 0 )
-		{
-			// fake NL,
-			P0++;
-		} else if( !check_nl_at_eof() )
-		{
-	                e_print("File or buffer does not end in NL\n" );
-			throw "set_file_zone(buffer) - no NL";
-		}
-		
-	}
+	bool set_file_zone( const p0p2 & buffer );
+	bool set_file_zone( const char * text_string );
 
 // statics:
 	static int cset_inited_a; // init defined as = 0;
@@ -93,10 +76,14 @@ class scan_to_nl_base : public scan_to_nl_P
 	static cset_bit_map  cset_AZaz09;
 	static cset_bit_map  cset_AZaz09_;
 	static cset_bit_map  cset_line;
-	static cset_bit_map  cset_ident_a1;
-	static cset_bit_map  cset_ident_a2;
+
+// not statics // can vary per class or instance
+	cset_bit_map  cset_ident_a1;
+	cset_bit_map  cset_ident_a2;
 // init
 	void init_csets(void);
+static	void init_csets_statics(void);
+
 
 	/*!
 		different LEX'ers setup different csets
@@ -123,9 +110,7 @@ class scan_to_nl_base : public scan_to_nl_P
 	*/
 	bool scan_word( const u8 * word )
 	{
-		// return scan_word( word, cset_AZaz09_ );
 		return scan_word_a2( word, cset_ident_a2 );
-//		return scan_word( word, cset_ident_a2 );
 	}
 
 	/*!
@@ -134,15 +119,17 @@ class scan_to_nl_base : public scan_to_nl_P
 	bool	scan_hash_at_boln()
 	{
 		if( *P != '#' ) return false;
-		if( P != P0 ) return false;
+		if( P != P_X0 ) return false;
 		P++;
 		return true;
 	}
 
 	u8 *	P_last( void )	{ return file_zone.p2 - 1; } // rare use
 	int	N_left( void )	{ return file_zone.p2 - P; } // rare use
+	int	P_as_OFFS()	{ return P - file_zone.p0; } // rare use
 
 	bool	check_nl_at_eof();
+	bool	check_nul_at_eof(); // for STR0 not LF
 /*
 	terminator characters must only be matched by these (inline) functions
 */
@@ -154,25 +141,25 @@ class scan_to_nl_base : public scan_to_nl_P
 
 	/*
 		scan_eof depends on scan_nl() (scan_nul) to 
-		detect P reaching file_zone.p2, and change P0, P
+		detect P reaching file_zone.p2, and change P_X0, P
 
 		after each sucessful scan_nl or scan_nul (or nothing matching)
 		you should check with scan_eof (also at start of file)
 
 		you only need to test for eof after the end of line
 		
-		MACRO: return ( P < P0 );
+		MACRO: return ( P < P_X0 );
 	*/
 	bool	scan_eof( void )
 	{
 		return	scan_eof_fn(); // 
+	}
 
 		// you should never call this, except LAST
 		// after SCAN_LINE SCAN_WORD SCAN_PUCT have all failed
 		// after SCAN_LF has failed
 		// so no great optiumisation inline
 		// but is first that detects P == file_zone.p2 or P2-1
-	}
 
 	/*!
 		only scan_nul() may step over a NUL bytes, else false
@@ -198,7 +185,7 @@ class scan_to_nl_base : public scan_to_nl_P
 /*
 	This class keeps an over-simplistic position counter
 	A derived class might add multi-segments, backtracking.
-	Hence virtual, eg to reset P0,Y if Y<1 or something?
+	Hence virtual, eg to reset P_X0,Y if Y<1 or something?
 */
 	virtual void	get_x_y( int & x, int & y );
 	virtual int	get_x();

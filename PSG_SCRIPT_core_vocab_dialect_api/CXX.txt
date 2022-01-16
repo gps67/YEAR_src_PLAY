@@ -1,0 +1,87 @@
+/home/gps/
+	YEAR/src/PLAY/..
+
+	PLAY/
+	 PSG_SCRIPT_core_vocab_dialect_api/
+
+		CXX.txt
+	
+	CXX
+
+		SAFE_CXX
+
+			remote provides SCRIPT
+			local provides INTERPRET
+
+			local provides QUOTA
+			 BENCH can allocate a temporary QUOTA 
+			 SEGMENT MMAP in filename 
+
+		{ SPEC DATA }
+		{ CODE_POINT SPEC DATA }
+		{ CODE_POINT DATA } // SPEC = { CODE_POINT SPEC }
+		{ CODE_POINT SPEC } // SPEC = { CODE_POINT SPEC }
+		{ CODE_POINT CALL } // PERMIT += EVAL_SCRIPT_CALL
+	
+	SCRIPT
+
+		CXX type decl
+		{ STO nbytes }
+		STO EA_EXPR
+	
+		Q2 { AUTO_Q2 } Q2 // also \\
+		{ SCRIPT ACCEPTS NO_Q2 CURLIES }
+	
+		EVAL { SCRIPT DATA SESS } // SESS.id
+
+		IMPORT SCRIPTS
+		IMPORT BINARIES 
+		IMPORT DATA // init or edit
+		CONNECT STREAM
+		PUSH PRE FILTERS // as internal SCRIPTS within SANDBOX //
+		TAIL POST FILTERS
+
+		MINI_MACHINES 
+		 inputs
+		 output
+		 files
+		 code
+		 tables
+		 dialects
+		 api_ctrls
+
+		 QUOTA MEMORY
+		 QUOTA DISK_MB
+		 QUOTA CPU
+		 QUOTA FAST_ENQ_ACK // options BATCH
+	
+	TRANSPILE
+
+		GEN CXX
+		GEN C++ // ancient basic minimal core
+		GEN C // not manual name mangle libr_class_func_plus CIDENT
+
+		EXPR_%4X { u16_idx = ALLOC_N ++ } (uns) .idx
+		{ u32_idx } { // already builtin } // so rhs({}) not in CMNT
+	
+	MATCH
+	
+		FILTER( ITEM ) 
+		ITEM_filter
+		EG LHS("{ }") is '{'
+		EG RHS("{ }") is '}'
+		EG KNOW("{ } is {}") is Parse(STR)
+
+		CODE_POINT DATA SPEC == { ITEM_t ITEM INIT DATA CMNT } // CURR
+		CODE_POINT DATA SPEC == { ITEM_t ITEM CALL ARGS CMNT }
+		{ CODE_POINT DATA SPEC } == { ITEM_t ITEM EXPR ARGS CMNT } // CP
+		{ CODE_POINT SPEC DATA } == { ITEM_t ITEM EXPR ARGS CMNT } // CP
+		{ CODE_POINT SCRIPT SPEC DATA } == { ITEM_t ITEM EXPR CMNT } //
+		{ CODE_POINT SCRIPT DATA } == { ITEM_t ITEM EXPR ARGS CMNT } // CP
+
+		CODE_POINT { SCRIPT DATA }
+		CODE_POINT { STO nbytes } // EXPR = CT and RT
+		
+
+
+

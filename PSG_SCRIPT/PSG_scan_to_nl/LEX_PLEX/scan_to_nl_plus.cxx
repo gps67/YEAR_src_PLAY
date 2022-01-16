@@ -9,9 +9,9 @@
 
 /*!
 */
-bool scan_to_nl_plus::scan_hex_digits_expect( int & digits )
+bool scan_to_nl_plus::scan_digits_hex_expect( int & digits )
 {
-	if( scan_hex_digits( digits ) ) return true;
+	if( scan_digits_hex( digits ) ) return true;
 	report_FAIL( "expected hex digits number" );
 	return false;
 }

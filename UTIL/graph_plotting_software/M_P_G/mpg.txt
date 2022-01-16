@@ -19,4 +19,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-10-21, 109574, 16.78, 23.44, NY 100% Full Morrisons
 2021-11-13, 109716, 32.69, 47.30, N 100% Full Morrisons handwritten
 2021-12-21, 109912, 27.58, 39.36, Y Upto incl battery charge
+2022-01-14, 110254, 44.04, 62.85, Y godalming nott
 

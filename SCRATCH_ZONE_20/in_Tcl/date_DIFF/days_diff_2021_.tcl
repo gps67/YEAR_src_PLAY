@@ -23,6 +23,8 @@ set dates {
 	2021-12-24 {xmas eve}
 	2021-10-17 Order
 	2021-12-29 Deliver
+	2021-12-25 Xmas
+	2022-01-07 Xmasothodox
 }
 
 proc days_between {d1 d2} {

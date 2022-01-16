@@ -159,7 +159,7 @@ bool scan_xml_1::scan_file( const u8 * filename )
 			if( LEX.scan_char('#')) {
 				int chr = 0;
 				if(LEX.scan_char( 'x')) {
-					if(!LEX.scan_hex_digits_expect( chr)) {
+					if(!LEX.scan_digits_hex_expect( chr)) {
 						// reported
 						break; // FAIL ACTION 
 					}

@@ -1,0 +1,68 @@
+
+PSG_SCRIPT_core_vocab_dialec_api/
+
+	core_vocab_dialect_api.txt
+
+	{ core vocab }
+	{ dialect }
+	{ api }
+
+	{ PSG_SCRIPT }
+	{ psg }
+	{ spec ]
+	{ CODE_POINT }
+	{ RT SESS } // STATUS //
+
+
+
+ PSG_SCRIPT
+
+ 	TYPE_DECLS // that match CXX SPEC of STRUCT ARRAY UNION CLASS 
+	DATA { STO nbytes }
+	// ITEM = STO.SEGMENT_ONE.HEAP_ZERO.ITEM.idx // 
+	// ITEM_t ITEM 
+	// ITEM_t ITEM // ITEM_t * ITEM // EA_STEP_AND_SYNTAX
+
+	DATA_SPEC AXIOM { int idx = ALLOC.N ++ ; // CMNT }
+	DATA_SPEC AXIOM { int idx ALLOC.N CMNT }
+	ALLOC.N { ALLOC . N } // TOKEN USAGE // 
+
+	PSG DECL SPEC LINES_OF_CODE CALLS_with_ARGS
+
+		CXX pre defined stuff // core lang //
+		API DEMO SCRIPTS WRAP APP
+		UDEF parts of API 
+		Module TREE
+		
+		PSG_of_lex
+		PSG_of_items
+		{ STO nbytes } // SPEC
+		{ SPEC STO nbytes } // CMNT
+	
+	TREE of ITEM
+	 ITEM of TYPE 
+	  SPEC of ITEM
+	  SPEC of LOCN
+	  DIAG of ZONE 
+	  ZONE of TREE
+
+ YACC of PSG
+
+ 	TODO
+
+ PSG of EXPR
+
+ 	SEQ ...
+	ONE ...
+	SIMPLIFY build LIST of ITEM // STAR or PLUS
+	LIST LHS ITEM_TYPE COMMA_SEP RHS
+
+	LIST "{ +INDENT NEWLINE_per_ITEM ITEM=PHRASE" ...
+	... COMMA_SEP NEWLINE_per_ITEM ITEM=PHRASE" ...
+	-that- *
+	-INDENT
+	NEWLINE_per_CLOSE_BACE
+	RHS // "}; // CMNT"
+
+	// FAKE SIMPLICITY == REAL_SIMPLICITY
+	// make ';' an ARGV word

@@ -400,7 +400,7 @@ top:
 		"{ %s }" // universal component // "%s" // '"{ %s }"' // " %s "
 	);
 	// eshers not here ...
-	if( value_set ) buf.printf( " = %d // %s", value, CMNT );
+	if( value_set ) buf.printf( " = %d // %s", value, (STR0) CMNT );
 	report1( buf );
 
 	return true;

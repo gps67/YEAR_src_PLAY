@@ -10,6 +10,11 @@
 	If the match fails, FALSE is returned, and LEX.P is unchanged.
 
 	trailing gaps are untouched
+
+	hmm "word" can be "<=>" or "/*!" or "//!" 
+	a2 is the cset similar to word that would be a longer word,
+	for word = "unsigned" a2 = IDENT_c2
+	for word = "<<"
 */
 bool scan_to_nl_P::scan_word_a2( const u8 * word, const cset_bit_map & a2 )
 {
@@ -24,7 +29,6 @@ bool scan_to_nl_P::scan_word_a2( const u8 * word, const cset_bit_map & a2 )
 		}
 		P ++;
 		word ++;
-		
 	}
 	if( peek_a1( a2 ) ) {
 		/*
@@ -73,7 +77,7 @@ bool scan_to_nl_P::scan_a1_a2_star_fn(
 /*!
 	return true if its a HEX digit
 */
-bool scan_to_nl_P::peek_hex_digit()
+bool scan_to_nl_P::peek_digit_hex()
 {
 	int c = *P; // u8 to int
 	if(( '0' <= c ) && ( c <= '9' )) {
@@ -83,27 +87,6 @@ bool scan_to_nl_P::peek_hex_digit()
 		return true;
 	}
 	if(( 'A' <= c ) && ( c <= 'F' )) {
-		return true;
-	}
-	return false;
-}
-
-/*!
-	scan over a hex digit
-*/
-bool scan_to_nl_P::scan_hex_digit()
-{
-	int c = *P; // u8 to int
-	if(( '0' <= c ) && ( c <= '9' )) {
-		P++;
-		return true;
-	}
-	if(( 'a' <= c ) && ( c <= 'f' )) {
-		P++;
-		return true;
-	}
-	if(( 'A' <= c ) && ( c <= 'F' )) {
-		P++;
 		return true;
 	}
 	return false;
@@ -112,7 +95,7 @@ bool scan_to_nl_P::scan_hex_digit()
 /*!
 	scan over a hex digit, and get its value
 */
-bool scan_to_nl_P::scan_hex_digit( int & dgt )
+bool scan_to_nl_P::scan_digit_hex( int & dgt )
 {
 	int c = *P; // u8 to int
 	if(( '0' <= c ) && ( c <= '9' )) {
@@ -136,13 +119,13 @@ bool scan_to_nl_P::scan_hex_digit( int & dgt )
 /*!
 	scan over a hex digit string, and get its value
 */
-bool scan_to_nl_P::scan_hex_digits( int & value )
+bool scan_to_nl_P::scan_digits_hex( int & value )
 {
-	// call might have done // if( !peek_hex_digit()) return false;
+	// call might have done // if( !peek_digit_hex()) return false;
 	const u8 * P0 = P;
 	int val = 0;
 	int dgt = 0;
-	while( scan_hex_digit(dgt)) {
+	while( scan_digit_hex(dgt)) {
 		val <<= 4;
 		val += dgt;
 	}

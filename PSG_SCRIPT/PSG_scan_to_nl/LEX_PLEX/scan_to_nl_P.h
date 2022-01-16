@@ -28,9 +28,11 @@ struct p0p2;
 
 		if( scan_chars('<','<','=') ) { ...got_operator("<<=")...  }
 
+		if( scan_chars("<<=", 3, cset_punct) ) { not longer punct  }
+
 		if( scan_word("include") ) { ...rw_include_found... }
 
-		if(!scan_hex_digits(val)) { ... }
+		if(!scan_digits_hex(val)) { ... }
 
 	TODO:
 
@@ -152,7 +154,23 @@ class scan_to_nl_P
 	}
 
 	/*!
-		check for a punctuation byte sequence
+		check for a punctuation byte sequence (not NL NUL)
+	*/
+	bool	scan_chars_not( const u8 * str, int len, const cset_bit_map & a3 )
+	{
+		for( int i=0; i<len; i++ )
+		{
+			if( P[i] != str[i] ) return false;
+		}
+		// NOT a3 so if a3 false //
+		if( a3.get_bit( P[len] )) return false;
+		// only step over len, not the extra one
+		P += len;
+		return true;
+	}
+
+	/*!
+		check for a punctuation byte sequence (not NL NUL)
 	*/
 	bool	scan_chars( const u8 * str, int len )
 	{
@@ -272,10 +290,18 @@ class scan_to_nl_P
 		const cset_bit_map & a2
 	);
 
-	bool peek_hex_digit();
-	bool scan_hex_digit();
-	bool scan_hex_digit( int & dgt );
-	bool scan_hex_digits( int & dgt );
+	bool peek_digit_hex();
+	bool scan_digit_hex( int & dgt );
+	bool scan_digits_hex( int & dgt );
+
+//	bool scan_digit_pair_hex( int & dgt ); 
+//	bool scan_digit_pair_dec( int & dgt );
+//	bool scan_year( int & dgt ); // 1000 .. 2999
+//	bool scan_mm( int & dgt );
+//	bool scan_dd( int & dgt );
+//	YEAR MM DD hh mm ss // ambig MM mm
+//	bool scan_YEAR_MM_DD_hh_mm_ss_nn( fields )
+//	thats a plus thing, but it would use scan_dd and check [1..31] 
 
 // NICE EXTRAS
 

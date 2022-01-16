@@ -1,0 +1,201 @@
+
+./
+../
+PSG_SCRIPT_core_vocab_dialec_api/
+PSG_SCRIPT_core_vocab_dialec_api.txt
+	
+	CORE += SPEC // describe_a_struct_as_cxx_type_tree
+
+	CORE += DATA // DESC += Layout DATA as 
+
+		u8 data_buffer[nbytes]
+
+	CORE += EXPR { ALLOC idx = N++ } // SCRIPT += THIS_CODE_POINT // TEXT //
+
+	SCRIPT += EXPR // import LIBR == "EXPR" .libr // Module //
+
+	DIALECT += NAME EXPR TOKEN STO DATA SPEC TREE
+
+	TREE += OBJ _t // _t brings DIALECT
+
+	OBJ += SPEC
+
+	{ SPEC DATA }
+
+
+		SCRIPT { SCRIPT } {
+		  HERE
+			SCRIPT = Parsed script
+		 }
+
+			 LOAD
+			 LOAD_PICK PICK idx_of_N_of_ITEM ITEM[idx]
+			 LOAD_PICK LIBR idx_of_N_of_ITEM ITEM[idx]
+			 += { ITEM[idx] } ITEM=%s idx=%d N=%d GETTER_of_ATTR
+			 += { SPEC[idx] } SPEC=%s idx=%d N=%d GETTER_of_ATTR
+			 SPEC += TREE of DECL in Module // SUBLEX EXPECT Cap1_of_Module
+			 RUN 
+			 
+			  LOAD { STO nbytes } from MMAP filename VAR
+			  SAVE { STO nbytes } plus KNOW KDB.sto into MMAP VAR
+			  NAME { PAIR lhs rhs } // CODE_POINT HERE += PAIR
+			  MATCH { lhs rhs } // NO_CODE_POINT
+			  MATCH { lhs rhs } // CODE_POINT
+
+			 API
+			 { SPEC DATA }
+			 // well_known_phrase("{ SPEC DATA }") // SYNTAX Q2 C
+			 SPELLING
+			 DIALECT
+			 TOKEN_POOL
+			 VAR_POOL CT lookup var_name Module_var _by_name
+
+			 DEMO
+			 API += { SPEC DATA }
+			 // SPEC is now loaded by Module // CODE_POINT // STR0
+			 API += { NAME } // NAME.SPEC == "SPEC"
+			 // AUTO_VAR creates VAR on first mention
+			 // AUTO_VAR provides STO and ALLOC_MORE 
+			 // CODE_POINT SESS.RT.AUTO_VAR.ITEM.EXPR //
+			 API += SESS // brings RT STO // brings CT STO //
+			 STO += CT RT STO SESS
+
+			 UDEF
+			 COPY and PASTE this DEMO CODE adjust to CUSTOM
+
+			  CODE += DEMO CODE // dialect AUTO_VAR DEMO_CODE
+
+			 AUTO_VAR(a_new) // FILTER notice on first use NOUN
+			 NOUN_ITEM // DECL += { Item_t * item = EXPR // CMNT }
+			 // NB not Q2 in line above syntax SEMICOLON too
+
+
+	DEMO CODE
+	UDEF CODE
+
+		API GIFTS { LIBR } { SPEC DATA }
+
+			above line becomes template
+			each word gets %s SUBST %d fmt
+			PSG POOL += TOKEN ALLOC { idx = N("VARNAME") ++ }
+			FUNC RET_VAR & lookup _and_return_as_VAR_LINK
+			LINK VAR CT ROM RT RAM STO MMAP
+			filename = "%s" // %s.%s"
+			EXPR = "%s" // %s%s" // LeftRight
+			EXPR = "%s" // %s.%s" // README.txt
+			EXPR = "%s" // %s_%s" // part_name_sublex
+			EXPR = "%s" // EXPR_FMT_ARGS { %s EXPR }
+			EXPR = TEXT "%s" // EXPR_FMT_ARGS { %s EXPR } ARGV
+			ARGV += STREAM_STEP_ARGV_OPTS_EXPR // CT += TOKEN 
+			CT TOKEN idx = lookup ARG // CSR_point_in_ROM _t //
+			VAR _t // _t sets up own TYPE_SPEC_TREE database
+			STO _t // creates SESS.sto = PRE_ALLOC into SEGMENT
+			TEXT = "%s" // EXPR_FMT_ARGS { %s EXPR }
+
+
+	{ SPEC DATA }
+
+	{ SPEC DATA }
+
+		API GIFTS { STO } {
+		 API += STO.api 
+		 STO += SPEC_of_STO // DIALECT was %s_of_%s
+		 STO += EA_SELF // _and_ EXPR_in_DIALECT
+		 EXPR_ROM += CT script // compile script into CT ROM
+		 EXPR_STO += RT_data // CODE_POINT adds { SCRIPT SPEC DATA }
+		 TREE_EXPR += DIALECT uses // TREE_DATA // SCRIPT_EXPR 
+		 TREE_EXPR += CALL // DIALECT // ... HERE is DIALECT RT TIEM
+		 VAR += EA_EXPR "VAR auto Name // PLUS /* CODE_POINT */"
+		 VAR += EA_EXPR "VAR auto Name // PLUS /* CODE_POINT */"
+		 // "auto" replaced an ARGV[arg] with a CT TOKEN STR0
+		 // "auto" "{ SPEC DATA }"
+		 // { SPEC DATA } // AUTO_Q2 // 
+		}
+
+		SPEC_of_DATA
+		SPEC_of_STO
+
+			SPEC is described in NOTATION DIALECT_CXX
+
+			CXX_SCRIPT
+			 CT tuplo = lookup "{ %s %s %s }" // fmt // args //
+			 TOKEN += NEW {
+			 	NAME "%s" // STR0 //
+				TYPE "%s_t" %s // FILTER OUT IN 
+				 TYPE is itself { print(fmt,argv) } { "%s_t" }
+				 TYPE += CODE_POINT NEAR_HERE { NEAR HERE }
+			 }
+
+			STO += STREAM of named data_buffers
+			STO += TREE of DATA in SPEC
+			SESS.sto == STO // { VALUE "STO" } // 
+
+		SPEC_of_IO_VAR
+
+			REMOTE asks us to AUTO_VAR "VARNAME"
+			REMOTE asks to provide (tree_of) SCRIPT SPEC DATA EXPR
+
+			We agree to that, because we have a SAFE API for SCRIPTS
+
+			We provide SCRIPTS as our API along with DATA
+
+			We accept UDEF SCRIPTS that call API SCRIPTS
+			We provide a layer, for local cutomisation, api_plus
+
+			VAR { Item_t * item = INIT_EXPR // CMNT CODE_POINT }
+
+			Item_t = TYPE_OF_item
+			item = %s // IDENT as "%s"
+			INIT_EXPR = %s // INIT_EXPR %s // ANYSTR via FILTER
+
+			SCOPE = VAR_in_STREAM_SESS // csr.something //
+			NAME_MANGLER csr_something 
+				
+				as stream flows through HERE = FILTER
+
+				SCOPE of VAR is SCOPE of VAR_POOL
+
+				{ VAR_POOL += VAR }
+
+				TOKEN = lookup { VAR_POOL += VAR }
+				TOKEN = lookup "{ VAR_POOL += VAR }"
+
+				NAME = "%s_%d" lhs rhs // AS_STR AS_IDX 
+				// CODE_POINT suggests nearby EXPRS { TEXT }
+				// BENCH edits local SESS STO CODE MACROS 
+
+			REMOTE SAYS { VARS += VAR }
+			{ VAR } // VAR_INFO // CODE_POINT //
+			
+
+
+
+
+
+
+	{ SPEC DATA }
+
+		EVAL
+
+			SCRIPT { SCRIPT } {
+			  HERE
+			 }
+
+		STO
+
+			auto_init_val
+
+			data_spec_of_sess_sto_in_mem("sess.sto");
+	
+		HERE
+
+			SCRIPT = Parsed script
+			 LOAD
+			 RUN
+
+
+
+	{ SPEC DATA }
+
+	{ SPEC DATA }
+

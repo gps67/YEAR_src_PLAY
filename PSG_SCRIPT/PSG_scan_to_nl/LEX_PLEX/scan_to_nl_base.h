@@ -10,6 +10,7 @@ struct str1; // only used by report2
 #include "scan_to_nl_P.h"
 #include "p0p2.h"
 // #include <stdarg.h>
+#include "scan_to_nl_xpos.h"
 
 /*!
 	scan_to_nl_base is a sublexer, that pauses at every NL (or NUL)
@@ -36,14 +37,21 @@ struct str1; // only used by report2
 class scan_to_nl_base : public scan_to_nl_P
 {
  protected:
-	//! pointer to the start of the line, eof if 0
-	u8 *	P_X0;
-	//! line number
-	int	Y;
+
 	//! the entire zone of the file (ending in nl or NUL)
 	p0p2	file_zone;
-	//! zero until eof
+
+	//! zero until eof // NB lookahead triggers it
 	int EOF_touched;
+
+	//! pointer to the start of the line
+	// OPTION eof if 0 M1
+	u8 *	P_X0;
+
+	//! line number
+	int	Y;
+
+
  public:
 
 	scan_to_nl_base( void )
@@ -86,16 +94,131 @@ static	void init_csets_statics(void);
 
 
 	/*!
-		different LEX'ers setup different csets
+		generic identifier a1_a2_star()
+
+			a1 = cset_ident_a1
+			a2 = cset_ident_a2
+
+		All our LEXERS are a1_a2_star
+
+			CIDENT_PLUS // 8859 or utf8 or whatever fits in a2
+
+		return P0P2
+
+			other code might do the here_xpos work
+
+		SHOW this early for what goes on around here
+
+		RENAME scan_ident 
+		RENAME LEX_ident 
 	*/
 	bool scan_ident( p0p2 & zone )
 	{
-		return scan_a1_a2_star(
+		if(! scan_a1_a2_star(
 			zone,
 			cset_ident_a1,
 			cset_ident_a2
-		);
+		)) return false;
+
+		return true;
 	}
+
+	bool lex_ident( p0p2 & zone )
+	{
+//		here_pos xpos_p0;
+//	//	here_xpos xpos_p0;
+//		here_start( xpos_p0 );
+
+		if(! scan_ident(zone)) return false;
+
+//		P0P2_to_HERE( xpos_p0, zone );
+		return true;
+	}
+
+
+
+	// XPOS_GOTO -reduced
+	// useful when lexer rolls back
+
+	/*!
+		KEEP xpos
+	*/
+	void here_start( here_pos & pos ) const
+	{
+		pos.P = P;
+	}
+
+	/*!
+		GOTO xpos
+	*/
+	void here_back( const here_pos & pos )
+	{
+		P  = pos.P;
+	}
+
+	/*!
+		pos.P == lex_p0 // start
+		    P == lex_p2
+
+	*/
+	void P0P2_to_HERE(
+		const here_pos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2.p0 = pos.P;
+		P0P2.p2 = P;
+	}
+
+	/*!
+	*/
+	void here_end( 
+		const here_pos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2_to_HERE( pos, P0P2 );
+	}
+
+	// XPOS_GOTO // other variets are available // OFFS // etc
+
+	/*!
+		KEEP xpos // SEEK = P - P0 // UPTO P2 // CSR = P //
+	*/
+	void here_start( here_xpos & pos ) const
+	{
+		pos.P_X0 = P_X0;
+		pos.P = P;
+		pos.Y = Y;
+	}
+
+	/*!
+		GOTO xpos
+	*/
+	void here_back( const here_xpos & pos )
+	{
+		/*
+			The reason we dont have here_xpos 
+			is because we already used P in the baseclass
+
+			maybe redo as that
+			also add loads of GETTERS to here_xpos
+		*/
+		P_X0 = pos.P_X0;
+		P  = pos.P;
+		Y  = pos.Y;
+	}
+
+	/*!
+	*/
+	void here_end( 
+		const here_xpos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2.p0 = pos.P;
+		P0P2.p2 = P;
+	}
+
+//////////////////////////////////////
+
 
 	/*!
 		scan over a fixed "word" using standard a2

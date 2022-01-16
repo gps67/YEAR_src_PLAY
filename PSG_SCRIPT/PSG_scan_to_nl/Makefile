@@ -69,7 +69,7 @@
 	OBJS4 += proc_parts/proc_partitions.o
 
 	EXEC=.exec
-#	PROG1 = scan_mm3
+	PROG1 = scan_mm3
 	NAME2 = c1
 	NAME3 = x1
 	PROG2 = $(NAME2)$(EXEC)

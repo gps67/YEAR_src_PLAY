@@ -7,15 +7,6 @@
 //	bool scan_double( double & dbl );
 
 
-/*!
-*/
-bool scan_to_nl_plus::scan_digits_hex_expect( int & digits )
-{
-	if( scan_digits_hex( digits ) ) return true;
-	report_FAIL( "expected hex digits number" );
-	return false;
-}
-
 
 /*!
 	scan 2 digits (possibly within a longer string od digits?)
@@ -41,7 +32,9 @@ fail:
 	return FALSE;
 }
 
-// scan for a returned decimal int
+/*!
+	scan for a returned decimal int
+*/
 bool scan_to_nl_plus::scan_int( int & i )
 {
 	// zone only needed if int arith not done here
@@ -59,7 +52,9 @@ bool scan_to_nl_plus::scan_int( int & i )
 	return TRUE;
 }
 
-// scan for a returned decimal int
+/*!
+	scan for a returned decimal int
+*/
 bool scan_to_nl_plus::scan_double( double & dbl )
 {
 	here_pos P0;
@@ -120,7 +115,9 @@ bool scan_to_nl_plus::lex_dd( int & dd )
 	return true;
 }
 
-// scan for a returned decimal int
+/*!
+	scan for a returned decimal int
+*/
 bool scan_to_nl_plus::lex_int( int & i )
 {
 	if( !scan_int( i ) ) return false;
@@ -128,7 +125,9 @@ bool scan_to_nl_plus::lex_int( int & i )
 	return TRUE;
 }
 
-// scan for a returned decimal int
+/*!
+	scan for a returned float
+*/
 bool scan_to_nl_plus::lex_double( double & dbl )
 {
 	if( !scan_double( dbl ) ) return false;
@@ -136,6 +135,9 @@ bool scan_to_nl_plus::lex_double( double & dbl )
 	return TRUE;
 }
 
+/*!
+	scan for a returned p0p2 IDENT
+*/
 bool scan_to_nl_plus::lex_ident( p0p2 & ident )
 {
 	if(!peek_a1( cset_ident_a1 ) ) return false;

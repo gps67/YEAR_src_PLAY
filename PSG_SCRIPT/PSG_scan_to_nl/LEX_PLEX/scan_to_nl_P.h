@@ -2,8 +2,8 @@
 #define SCAN_NL_P_H 
 
 // p0p2 is used as a parameter, not expanded
-struct p0p2;
-// #include "p0p2.h"
+struct p0p2; // STUB
+#include "p0p2.h" // used inline
 
 /*
 	P is a single WORD { u8 * P }
@@ -16,6 +16,7 @@ struct p0p2;
 	This is used for BYTE/8859 but utf8 fits into zones anyway
 */
 #include "cset_bit_map.h"
+#include "scan_to_nl_xpos.h"
 
 /*!
 	scan_to_nl_P is a single pointer ONLY (sub-classes add)
@@ -65,28 +66,143 @@ struct p0p2;
 	MAYBE TODO:
 
 		fixup utf8 double encoding, as its very special
+	
+	here_xpos
+
+		this is a big step up from plain { u8 * P }
+		because I want parallellogram derive
+		ie I will want XPOS { P_X0 P Y }
+		and have to declare them in advance in the BASE CLASS
+
+		will drop plain P ?
+	
+	XPOS_OPTIONS
+
+		u8 BOLN_plus_offs // require MAX 200
+		uns OFFS // u32 max file size ? // u64 ? // word // int ? //
+
+		get_OFFS from P0P2 and P_X0 and X_OFFS
+		get_P from P0 and OFFS
+
+		variations - require switch out base class
+
+		operation XPOS ()
+		operation XPOS3 ()
+	
+	subline
+
+		subline uses plain P (not Y) (not P0)
+		and can roll back to old_P
+	
+	spanning EOLNS
+
+		crossing line - multi part comments (multiline) strings
+		crossing line - structural ARGS_LIST in C (not LISP)
+		crossing line - psg list_of_lines // indented text
+		crossing line - psg that contains item that crosses line
+	
+
+
 */
-class scan_to_nl_P
+class scan_to_nl_P : public here_xpos
 {
  protected:
 	//! pointer to the position in the buffer
-	u8 * 	P;
+//	u8 * 	P;
 
  public:
 
+/*!
+*/
 	scan_to_nl_P( void )
+//	: here_xpos() AUTO_CTOR _ZERO
 	{
 		P = 0 ;
 	}
 
+/*!
+*/
 	bool	peek_nl( void )
 	{
 		return( *P == '\n' );
 	}
 
+	/*!
+	*/
 	bool	peek_nul( void )
 	{
 		return( *P == 0 );
+	}
+
+	// XPOS_GOTO -reduced
+	// useful when lexer rolls back
+	/*!
+		KEEP xpos
+	*/
+	void here_start( here_pos & pos ) const
+	{
+		pos.P = P;
+	}
+	/*!
+		GOTO xpos
+	*/
+	void here_back( const here_pos & pos )
+	{
+//		#warning EOF_reached
+		P  = pos.P;
+	}
+	/*!
+		pos.P == lex_p0 // start
+		    P == lex_p2
+	*/
+	void P0P2_to_HERE(
+		const here_pos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2.p0 = pos.P;
+		P0P2.p2 = P;
+	}
+	/*!
+	*/
+	void here_end( 
+		const here_pos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2_to_HERE( pos, P0P2 );
+	}
+	// XPOS_GOTO // other variets are available // OFFS // etc
+	/*!
+		KEEP xpos // SEEK = P - P0 // UPTO P2 // CSR = P //
+	*/
+	void here_start( here_xpos & pos ) const
+	{
+		pos.P_X0 = P_X0;
+		pos.P = P;
+		pos.Y = Y;
+	}
+	/*!
+		GOTO xpos
+	*/
+	void here_back( const here_xpos & pos )
+	{
+		/*
+			The reason we dont have here_xpos 
+			is because we already used P in the baseclass
+			maybe redo as that
+			also add loads of GETTERS to here_xpos
+		*/
+		P_X0 = pos.P_X0;
+		P  = pos.P;
+		Y  = pos.Y;
+	}
+	/*!
+	*/
+	void here_end( 
+		const here_xpos & pos,
+		p0p2 & P0P2
+	) {
+		P0P2.p0 = pos.P;
+		P0P2.p2 = P;
 	}
 
 /*
@@ -293,6 +409,7 @@ class scan_to_nl_P
 	bool peek_digit_hex();
 	bool scan_digit_hex( int & dgt );
 	bool scan_digits_hex( int & dgt );
+	bool scan_digits_hex_expect( int & digits );
 
 //	bool scan_digit_pair_hex( int & dgt ); 
 //	bool scan_digit_pair_dec( int & dgt );
@@ -302,6 +419,11 @@ class scan_to_nl_P
 //	YEAR MM DD hh mm ss // ambig MM mm
 //	bool scan_YEAR_MM_DD_hh_mm_ss_nn( fields )
 //	thats a plus thing, but it would use scan_dd and check [1..31] 
+
+	// useful when lexer gathers chars after it runs (or rolls back)
+	void p0p2_start( p0p2 & P0 ) {  P0.p0 = P0.p2 = P ; }
+	void p0p2_stop( p0p2 & P0 ) {  P0.p2 = P; }
+	void p0p2_back( p0p2 & P0 ) {  P = P0.p0; }
 
 // NICE EXTRAS
 

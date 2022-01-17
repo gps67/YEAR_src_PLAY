@@ -2,17 +2,23 @@
 #include "scan_nl_c_psg.h"
 #include "buffer1.h"
 
+/*!
+*/
 scan_nl_C_PSG::scan_nl_C_PSG( p0p2 zone )
 : scan_nl_C_LEX( zone )
 {
 }
 
+/*!
+*/
 scan_nl_C_PSG::scan_nl_C_PSG()
 : scan_nl_C_LEX()
 {
 }
 
 
+/*!
+*/
 bool scan_nl_C_PSG::var_decl()	// Item_t * item; // CMNT //
 {	// 
 	// THIS WOULD BE THE FASTEST // u8 * pos = LEX.P; // CACHE // track and 
@@ -89,6 +95,8 @@ fail:
 	return false;
 }
 
+/*!
+*/
 bool scan_nl_C_PSG::cpp_hash_line() //#define #if #endif ...
 {
 	// somehow promote first stmt to inline, to reduce call overhead
@@ -322,6 +330,8 @@ bool scan_nl_C_PSG::known_type_name( str1 & name )
 	return false;
 }
 
+/*!
+*/
 bool scan_nl_C_PSG::scan_typeexpr()
 {
 	// CALL FROM // if( var_decl() ) continue;
@@ -406,6 +416,8 @@ top:
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_PSG::scan_file( const u8 * filename )
 {
 	// MMAP has already loaded the file the name is for labels

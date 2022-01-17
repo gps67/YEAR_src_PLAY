@@ -47,6 +47,8 @@ void scan_to_nl_base::report2( const char * name, const str1 & s )
 	maybe get_curr_line_zone could look backwards in zone
 */
 
+/*!
+*/
 void scan_to_nl_base::report_vprint( const char * err, const char * fmt, va_list args )
 {
 //	va_list args;
@@ -73,6 +75,8 @@ void scan_to_nl_base::report_vprint( const char * err, const char * fmt, va_list
 //	va_end( args );
 }
 
+/*!
+*/
 void scan_to_nl_base::report_print( const char * err, const char * fmt, ... )
 {
 	va_list args;

@@ -131,7 +131,7 @@ class scan_to_nl : public scan_to_nl_plus
 	{
 	}
 
-/*
+/*!
 	// init-copy an existing scanner
 	scan_to_nl( scan_to_nl & buff )
 	{
@@ -141,7 +141,6 @@ class scan_to_nl : public scan_to_nl_plus
 		P_X0 = buff.P_X0 ;
 	}
 */
-
 	scan_to_nl( p0p2 buffer )
 	: scan_to_nl_plus( buffer )
 	{
@@ -151,6 +150,8 @@ class scan_to_nl : public scan_to_nl_plus
 	}
 
 
+/*!
+*/
 	bool	lex_char( u8 literal )
 	{
 		if( *P != literal ) return FALSE; 
@@ -159,6 +160,8 @@ class scan_to_nl : public scan_to_nl_plus
 		return TRUE;
 	}
 
+/*!
+*/
 	bool	lex_char_expect( u8 literal )
 	{
 		if( *P == literal ) {
@@ -170,6 +173,8 @@ class scan_to_nl : public scan_to_nl_plus
 		return false;
 	}
 
+/*!
+*/
 	bool	lex_chars( u8 c0, u8 c1 )
 	{
 		if( P[0] != c0 ) return false;
@@ -180,6 +185,8 @@ class scan_to_nl : public scan_to_nl_plus
 	}
 
 
+/*!
+*/
 	void	scan_line()
 	{
 		scan_a1_star( cset_line );
@@ -189,6 +196,8 @@ class scan_to_nl : public scan_to_nl_plus
 
 
 
+/*!
+*/
 	/*
 		UNUSED - but some might want it - single byte char
 	*/
@@ -221,6 +230,8 @@ class scan_to_nl : public scan_to_nl_plus
 		return ch;
 	}
 
+/*!
+*/
 	/*
 		this is a better getc method, which wont advance over NL or NUL
 		you could even base additional code around this model,
@@ -245,6 +256,8 @@ class scan_to_nl : public scan_to_nl_plus
 	// PRESUME a1 EXCLUDES NUL and NL
 
 
+/*!
+*/
 	bool	scan_NOSP()
 	{
 		if( GAP_after_LEX_found ) return false;

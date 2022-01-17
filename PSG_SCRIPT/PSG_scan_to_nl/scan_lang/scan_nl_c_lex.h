@@ -8,6 +8,8 @@
 
 extern int trans_id;
 
+/*!
+*/
 class scan_nl_C_LEX : public scan_to_nl
 {
  public:

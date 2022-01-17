@@ -1,5 +1,7 @@
 #include "scan_to_nl.h"
 
+/*!
+*/
 bool scan_to_nl::GAP_after_LEX()
 {
 	GAP_after_LEX_found = false;;
@@ -31,6 +33,8 @@ bool scan_to_nl::GAP_after_LEX()
 	XXX_expect section
 */
 
+/*!
+*/
 bool	scan_to_nl::scan_char_expect( u8 literal )
 {
 	bool ok = scan_char( literal );
@@ -39,6 +43,8 @@ bool	scan_to_nl::scan_char_expect( u8 literal )
 	return false;
 }
 
+/*!
+*/
 bool	scan_to_nl::scan_word_expect( const u8 * word )
 {
 	bool ok = scan_word( word );

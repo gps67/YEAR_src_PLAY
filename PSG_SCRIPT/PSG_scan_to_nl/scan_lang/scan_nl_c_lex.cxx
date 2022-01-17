@@ -3,6 +3,8 @@
 
 int scan_nl_C_LEX::cset_inited_b = 0; // init defined as = 0;
 
+/*!
+*/
 void scan_nl_C_LEX::init_csets_C(void)
 {
 	// maybe add force_init_csets() which sets cset_inited_a = 0;
@@ -14,18 +16,24 @@ void scan_nl_C_LEX::init_csets_C(void)
 
 }
 
+/*!
+*/
 scan_nl_C_LEX::scan_nl_C_LEX()
 : scan_to_nl()
 {
 	init_csets_C();
 }
 
+/*!
+*/
 scan_nl_C_LEX::scan_nl_C_LEX( p0p2 zone )
 : scan_to_nl( zone )
 {
 	init_csets_C();
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_dox_comment_to_eoln( str1 & cmnt )
 {
 	// LURK dox has //<! //! ...
@@ -41,6 +49,8 @@ bool scan_nl_C_LEX::scan_dox_comment_to_eoln( str1 & cmnt )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_comment_to_eoln( str1 & cmnt )
 {
 	if( !scan_chars( '/', '/' ) ) return false;
@@ -55,6 +65,8 @@ bool scan_nl_C_LEX::scan_comment_to_eoln( str1 & cmnt )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_dox_comment_block( str1 & str )
 {
 	if( !scan_chars( '/', '*', '!' ) ) return false;
@@ -64,6 +76,8 @@ bool scan_nl_C_LEX::scan_dox_comment_block( str1 & str )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_comment_block( str1 & str )
 {
 	if( !scan_chars( '/', '*' ) ) return false;
@@ -73,6 +87,8 @@ bool scan_nl_C_LEX::scan_comment_block( str1 & str )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_comment_block_tail( str1 & str )
 {
 	// committed to this path
@@ -104,6 +120,8 @@ bool scan_nl_C_LEX::scan_comment_block_tail( str1 & str )
 	return FAIL("should be unreached");
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::peek_pp_hash_at_boln()
 {
 	// presume not EOF ?
@@ -115,6 +133,8 @@ bool scan_nl_C_LEX::peek_pp_hash_at_boln()
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_C_LEX::scan_pp_hash_at_boln()
 {
 	if( *P != '#' ) return false;
@@ -127,6 +147,8 @@ bool scan_nl_C_LEX::scan_pp_hash_at_boln()
 }
 
 
+/*!
+*/
 bool scan_nl_C_LEX::GAP_after_LEX()
 {
 	str1 drop;

@@ -23,6 +23,19 @@ cset_bit_map scan_to_nl_base::cset_line; // everything except NUL and NL
 // cset_bit_map scan_to_nl_base::cset_ident_a1;
 // cset_bit_map scan_to_nl_base::cset_ident_a2;
 /*!
+	init the per parser CSETS (after the static globals)
+
+	specifically _a1 and _a2 are what makes INDENT be CIDENT or OTHER
+
+	UTF8 within IDENT is going to be loose, as the transport-format
+	smudges over the specific values. If it works, it will probably
+	smuggle ANY utf8 into the tail of an IDENT.
+
+	8859 within ident (where utf8 is not around) is an option
+
+	Your lexer may need ASCII punctuation to delimit UTF8 in IDENT
+
+	The alternative is not done here, (parse each char, lookup U glyph)
 */
 void scan_to_nl_base::init_csets(void)
 {
@@ -33,9 +46,9 @@ void scan_to_nl_base::init_csets(void)
 	cset_ident_a2 = cset_AZaz09_;
 }
 
-// cset_bit_map scan_to_nl_base::cset_ident_a1;
-// cset_bit_map scan_to_nl_base::cset_ident_a2;
 /*!
+	This is a one-off init of global variables,
+	of well known CSET portions eg [0-9] or [A-Za-z] 
 */
 void scan_to_nl_base::init_csets_statics(void)
 {
@@ -83,6 +96,19 @@ void scan_to_nl_base::init_csets_statics(void)
 
 // EOF is special // 
 
+/*!
+	The parser will later run over { p0p2 & buffer }
+
+	Rest the line counter to 1 // not 0
+
+	The text in buffer must be properly terminated with a NUL or NL,
+	and this may throw (or possibly return false), which tells you
+	that it would scream past the end of the buffer, un-stopped
+
+	EOF_touched is another way of checking for non-starters,
+	but the parser only checks for it at EOLN.
+
+*/
 bool scan_to_nl_base:: set_file_zone( const p0p2 & buffer )
 {
 	file_zone = buffer;
@@ -98,6 +124,10 @@ bool scan_to_nl_base:: set_file_zone( const p0p2 & buffer )
 		EOF_touched = true;
 		// fake NL,
 		P_X0++;
+
+		// RETURN FALSE //
+		return false;
+
 	} else if( !check_nl_at_eof() )
 	{
 		EOF_touched = true;
@@ -113,6 +143,7 @@ bool scan_to_nl_base:: set_file_zone( const p0p2 & buffer )
 bool scan_to_nl_base:: set_file_zone ( const char * text_string ) // not const STR0?
 {
 	if(!text_string) {
+		EOF_touched = true;
 		return FAIL("NULL text_string");
 	}
 	file_zone = p0p2( (char *)text_string ); // unconst cast
@@ -126,6 +157,7 @@ bool scan_to_nl_base:: set_file_zone ( const char * text_string ) // not const S
 		so there is no need to check for it
 	*/
 	if(!file_zone.nbytes()) {
+		EOF_touched = true;
 		return WARN("empty text_string");
 	}
 	if(!check_nul_at_eof()) { WARN("NUL outside?"); } // but it is there
@@ -154,6 +186,9 @@ bool	scan_to_nl_base::check_nl_at_eof()
 	);
 	return FALSE;
 }
+/*!
+	the buffer must end with a decent terminator - return T/F
+*/
 bool	scan_to_nl_base::check_nul_at_eof() {
 	u8 clast = *P_last();
 	if(clast == 0) return TRUE; // silent for this usage
@@ -212,6 +247,7 @@ int scan_to_nl_base::get_x() // return X 0 for COL 1
 
 // VIRTUAL
 /*!
+	get line number and column number (parameter order X and Y)
 */
 void scan_to_nl_base::get_x_y( int & x, int & y )
 {
@@ -368,6 +404,11 @@ bool scan_to_nl_base::scan_crlf( void )
 	return scan_nl(); // always returns true, but does the extra code
 }
 
+/*!
+	match EOF once
+
+	TODO EOF_touch must be unset on ROLL_BACK
+*/
 bool scan_to_nl_base::scan_eof_fn() 
 {
 	INFO("should be last"); // probably after syntax error //

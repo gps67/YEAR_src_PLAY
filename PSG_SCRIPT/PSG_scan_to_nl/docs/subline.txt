@@ -1,0 +1,22 @@
+
+	SUBLINE
+
+		lex_ _word _value _...
+		all smaller than a line
+		none cross EOLN
+	
+	MULTILINE
+
+		need to parse each line into list of components
+		/* comment */
+
+		"string" "joiner" MACRONAME "multiline"
+		never multiline within "string"
+		permit multiline within "string"
+
+		PSG multiline where 1 field is itself multiline
+		PSG roll back to PSG_P0 (not LEX_P0)
+	
+	TODO
+
+		use of p0p2 -vs- P_lex_start _end here_start XPOS

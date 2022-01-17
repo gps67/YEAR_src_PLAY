@@ -39,25 +39,17 @@ class scan_to_nl_plus : public scan_to_nl_base
 	bool scan_int( int & i );
 	bool scan_double( double & dbl );
 
-// added
-//	bool scan_digits_hex( int & digits );
-	bool scan_digits_hex_expect( int & digits );
-
-
 	// useful when lexer rolls back
 //	void here_start( u8 * & P0 ) {  P0 = P; }
 //	void here_back( u8 * P0 ) {  P = P0; }
-
-	// useful when lexer gathers chars after it runs (or rolls back)
-	void p0p2_start( p0p2 & P0 ) {  P0.p0 = P0.p2 = P ; }
-	void p0p2_stop( p0p2 & P0 ) {  P0.p2 = P; }
-	void p0p2_back( p0p2 & P0 ) {  P = P0.p0; }
 
 // expect 
 // lex 
 	virtual bool GAP_after_LEX() = 0;
 
 	bool lex_dd( int & dd );
+	/*!
+	*/
 	bool lex_word( const char * word ) 
 	{
 		if( !scan_word( word )) return false;

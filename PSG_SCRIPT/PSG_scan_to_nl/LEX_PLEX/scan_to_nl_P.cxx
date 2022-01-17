@@ -1,6 +1,7 @@
 
 #include "scan_to_nl_P.h"
 #include "p0p2.h"
+#include "dgb.h"
 
 
 
@@ -134,5 +135,14 @@ bool scan_to_nl_P::scan_digits_hex( int & value )
 	return true;
 }
 
-
+/*!
+*/
+bool scan_to_nl_P::scan_digits_hex_expect( int & digits )
+{
+	// report_FAIL comes from _plus
+	if( scan_digits_hex( digits ) ) return true;
+	// report_FAIL( "expected hex digits number" );
+	FAIL( "expected hex digits number" );
+	return false;
+}
 

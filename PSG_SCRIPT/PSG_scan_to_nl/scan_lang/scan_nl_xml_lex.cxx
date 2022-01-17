@@ -12,18 +12,24 @@ cset_bit_map scan_nl_XML_LEX::cset_xml_ident_a1;
 cset_bit_map scan_nl_XML_LEX::cset_xml_ident_a2;
 cset_bit_map scan_nl_XML_LEX::cset_xml_text;
 
+/*!
+*/
 scan_nl_XML_LEX::scan_nl_XML_LEX()
 : scan_to_nl()
 {
 	init_csets_XML();
 }
 
+/*!
+*/
 scan_nl_XML_LEX::scan_nl_XML_LEX( p0p2 zone )
 : scan_to_nl( zone )
 {
 	init_csets_XML();
 }
 
+/*!
+*/
 void scan_nl_XML_LEX::init_csets_XML(void)
 {
 
@@ -57,6 +63,8 @@ void scan_nl_XML_LEX::init_csets_XML(void)
 */
 }
 
+/*!
+*/
 /*
 	LEX should be a friend of STBL_ITEM
 	There should only be a few variations of a1_a2_star
@@ -90,6 +98,8 @@ bool scan_nl_XML_LEX::scan_name_1( p0p2 & ident )
 #endif
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_name_1_expect( p0p2 & ident, const char * tname )
 {
 	bool ok = scan_elem_name( ident );
@@ -98,31 +108,43 @@ bool scan_nl_XML_LEX::scan_name_1_expect( p0p2 & ident, const char * tname )
 	return ok;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_elem_name( p0p2 & ident )
 {
 	return scan_name_1( ident );
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_attr_name( p0p2 & ident )
 {
 	return scan_name_1( ident );
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_sdata_name( p0p2 & ident )
 {
 	return scan_name_1( ident );
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_elem_name_expect( p0p2 & ident )
 {
 	return scan_name_1_expect( ident, "elem_name" );
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_sdata_name_expect( p0p2 & ident )
 {
 	return scan_name_1_expect( ident, "sdata_name" );
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_elem_name_expect()
 {
 	used_elem_name_space = false;
@@ -177,6 +199,8 @@ bool scan_nl_XML_LEX::scan_elem_name_expect()
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_attr_val_q2_expect( str1 & val )
 {
 	// should really ROLL BACK when not found!
@@ -202,6 +226,8 @@ fail:
 }
 
 
+/*!
+*/
 /*
 	always return true - could be an empty string?
 */
@@ -219,6 +245,8 @@ bool scan_nl_XML_LEX::scan_attr_val( str1 & val )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::GAP_after_LEX()
 {
 	str1 drop;
@@ -244,6 +272,8 @@ bool scan_nl_XML_LEX::GAP_after_LEX()
 	return GAP_after_LEX_found;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::ml_gap()
 {
 	bool found = false;
@@ -260,6 +290,8 @@ bool scan_nl_XML_LEX::ml_gap()
 	return found;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::text_gap()
 {
 	bool found = false;
@@ -276,6 +308,8 @@ bool scan_nl_XML_LEX::text_gap()
 	return found;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::text_gap( p0p2 & gap )
 {
 
@@ -293,6 +327,8 @@ bool scan_nl_XML_LEX::text_gap( p0p2 & gap )
 	return true;
 }
 
+/*!
+*/
 bool scan_nl_XML_LEX::scan_text_1( p0p2 & str )
 {
 	if(!peek_a1( cset_xml_text ) ) return false;

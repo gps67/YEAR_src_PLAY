@@ -2,8 +2,8 @@
 
 	PROJECT_NAME           = .
 	INPUT                  = ../
-	OUTPUT_DIRECTORY       = /home/gps/YEAR_offline/dox/scan/./
-	GENERATE_TAGFILE       = /home/gps/YEAR_offline/dox/scan/..tag
+	OUTPUT_DIRECTORY       = /home/gps/YEAR/dox/scan/./
+	GENERATE_TAGFILE       = /home/gps/YEAR/dox/scan/..tag
 	WARN_LOGFILE           = _dox_WARNINGS_..txt
 
 	@INCLUDE = Doxyfile_general

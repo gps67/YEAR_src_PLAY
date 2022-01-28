@@ -1,0 +1,139 @@
+
+	Having tribulations with doxygen setup bench
+	It just says "Exiting..." 
+	And Exits
+	$0 // RET_CODE // MATCH RET_VAL "RET_CODE"
+
+	SO ... IDK ... OTHER_CODE
+
+		PAIR { OTHER CODE } -aka- "other_code"
+
+	OTHER
+		dunno
+	CODE
+		Module // API UDEF // SCRIPT over API
+
+		GEN
+
+			gen MK_VAR { C decl } VAR_NAME
+
+			PAIR { VAR NAME }
+			{ VAR name }
+
+		GEN
+
+			gen MK_Module
+
+			 SCRIPT CONST TYPE VAR FUNC ARGV
+
+			 	Module
+
+		GEN
+
+			gen MK_Func // Module.Func
+
+			 NAME ARGV_SPEC SPEC OBJ STO 
+
+			 	STO 
+				 load from .profile // load_from_profile //
+				 parse .profile 
+				 parse .api // vector_calls_through_api //
+				 SPEC DATA = STO.DATA // AMP PTR //
+				 SPEC data_buffer = RPC_data_buffer // ALIAS[idx]
+				 RPC ENQ ACK STO SESS 
+				 RPC += API
+				 API += FUNC
+				 API += VAR
+				 API += ARGV
+				 API += CALL
+				 API += CONST
+				 API += CODE
+
+				 ENQ_ACK += { ENQ ACK } // CACHE
+				 ENQ_ACK += { SPEC DATA } // API_MAIN = ...
+
+		GEN
+
+			gen Module // MK_Module //
+
+				CALL { FUNC ARGS }
+
+					FUNC_t  FUNC 
+					ARGS_r  ARGS
+
+				SWITCH CALL ONE TWO
+
+					AUTO_VAR "name" // on first use
+					AUTO_SPEC "SELF" // TOKEN this 
+					AUTO_SPEC "name" // name == this
+
+				IDX
+					int idx = ALLOC.N ++
+					// ALIAS ALLOC = alloc_idx_in_VECT
+					// ALIAS { ALLOC == VECT }
+					// VECT_t * VECT = VECT_ALLOC_N N
+					// TOKEN = idx // SCOPE LOCAL idx 
+					// ITEM_t * ITEM = VECT[idx]
+					// idx = TOKEN // TOKEN = BASE + idx
+					// idx = TOKEN // idx = BASE + TOKEN
+					// BASE = ALLOC.N_items TOKEN=TOKEN //
+					// pos_in_page = idx = N ++
+					// pos_in_shared_SPACE = ADDR_ZERO
+					// ARRAY_TECH += %s[%s]
+					// TYPE_TECH += { %s_t %s }
+					// VAR_TECH += { VAR VALUE } // TUPLO
+
+
+				CODE MATH
+
+					" name == this "
+
+					ALIAS name this
+					ALIAS this SELF
+					TOKEN SPELLING of ...
+					of name
+					of this
+					of SELF
+					of IDX
+					of idx
+					of TOKEN
+					of %s // TOKENISED ITEM_NAME
+
+					TOKEN = lookup NAME
+					SPELLING = use of TOKEN NAME SPELLING
+					ALIAS NAME ARRAY[N] idx_%s
+					SPEC = lookup SPEC // tokenised ACK
+
+					ACK = ENQ but SPEC = FILTER SPEC
+					CACHE of { const TOKEN Name CODE_POINT } // BENCH show_as_TOKEN
+					CACHE
+					BENCH show_as_TOKEN
+
+					Name -to- TOKEN // LIST of DIALECTS
+
+					{ VAR VALUE }
+					Register VAR.name VALUE
+
+					idx = lookup ITEM
+					idx = ALLOC.N ++ 
+					ITEM_t ITEM[ ALLOC.N ]
+					VAR_POOL += VAR
+					VAR_POOL lookup ANYSTR
+					VAR_POOL EA_EXPR EA_of_VAR
+
+				idx = lookup NAME
+				idx = ALLOC ITEM // NAME // CODE_POINT //
+				// ANCHOR CODEPOINT // MATCH anywhere
+				TREE = SESS.ZONE and local VARS from it // 
+				CACHE += TREE // it routes all calls FILTER
+				place pointer to function in var SETTING=which
+				place TOKEN = CONVERT INDEX CONVERT pointer 
+
+
+
+
+
+
+
+
+

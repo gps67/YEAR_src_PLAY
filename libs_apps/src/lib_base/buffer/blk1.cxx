@@ -11,7 +11,9 @@ extern "C"        void *memset(void *s, int c, size_t n);
 
 // resize_bytes will throw if its request is more than this
 // simply dont define it, to remove the debugging code
-#define MAX_resize_limit 1024*500
+// #define MAX_resize_limit 1024*500
+// CET_data_file is 600 K
+#define MAX_resize_limit 1024*1024*2
 
 #ifndef ASCII_NUL
 #define ASCII_NUL 0

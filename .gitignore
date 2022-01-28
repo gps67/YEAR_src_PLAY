@@ -95,3 +95,6 @@ cfg_CA_file.dat
 */__pycache__/*
 __pycache__
 *.pyc
+
+# external files
+cetdl1772on.dat

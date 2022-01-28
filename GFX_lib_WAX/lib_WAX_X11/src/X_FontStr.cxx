@@ -139,12 +139,24 @@ using namespace WAX;
  	init_all("");
 	foundry = "adobe";
 	family = "helvetica";
+
+	foundry = "schumacher";
+	family = "clean";
+
+	foundry = "unregistered";
+	family = "latin modern typewriter";
+
+	foundry = "unregistered";
+	family = "latin modern sans";
+
 	set_weight_medium();
 	set_slant_roman();
 	set_width_normal(); // helv + courier need it
 	set_cset_latin1();
 	set_scalable();
 	// set_point("18");
+// -schumacher-clean-medium-r-normal--0-0-75-75-c-0-iso8859-7
+
  }
 
  void 

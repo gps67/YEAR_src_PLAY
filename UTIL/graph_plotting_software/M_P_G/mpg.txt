@@ -1,5 +1,4 @@
 YEAR_MM_DD, miles, litres, cost, note
-
 2021-01-07, 106130  31.99, 38.04, Y? Full Shell BH
 2021-04-16, 106600, 29.72, 30.93, Full Tesco Shaftsbury nr priddy
 2021-04-20, 106748, 19.00, 23.12, Y Full Morrisons from priddy henge
@@ -20,4 +19,4 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-11-13, 109716, 32.69, 47.30, N 100% Full Morrisons handwritten
 2021-12-21, 109912, 27.58, 39.36, Y Upto incl battery charge
 2022-01-14, 110254, 44.04, 62.85, Y godalming nott
-
+2022-01-20, 110417, 22.37, 31.92, Y morrissons back from BH

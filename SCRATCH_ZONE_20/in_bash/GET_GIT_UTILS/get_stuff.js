@@ -8,6 +8,7 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+https://github.com/derekbanas/Python4Finance
 git://git.ghostscript.com/mupdf.git
 https://github.com/msteveb/jimtcl.git
 git://anongit.freedesktop.org/git/cairo

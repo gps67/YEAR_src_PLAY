@@ -112,7 +112,10 @@ int main( int argc, char ** argv )
 	if(argc>1) filename = argv[1];
 	if(0==strcmp(filename,"-")) filename = NULL;
 	FILE * fin = stdin;
-	if( filename ) fin = fopen( filename, "r" );
+	if( filename ) {
+		fin = fopen( filename, "r" );
+		printf(" # FILENAME # %s #", filename );
+	}
 	if(!fin) {
 		perror( FILE_IN );
 		return errno;

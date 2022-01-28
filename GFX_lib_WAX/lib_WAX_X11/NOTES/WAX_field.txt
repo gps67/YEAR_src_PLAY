@@ -1,0 +1,281 @@
+	WAX_field.txt
+
+	 |		|
+	-+--------------+-
+	 |		|
+	-+------+-------+-
+	 |	|	|
+	-+------+----+--+-
+	 |a	|b   |c |
+	-+------+----+--+-
+	 |		|
+
+	 OK a better DIAG for above is required
+	 WAX_FRAME is a gui_toolkit 4-verb-dialect_code_steps_libr_etc
+	 WAX_FRAME is a gui_toolkit pixel based // gap_width line_width pixel
+	 WAX_FRAME is a gui_toolkit not pixel based // SVG_to_PIX
+
+	 There is a small DIAG difference between UNITS
+
+	 	SVG_to_PIX
+
+		PIX_is_DOT DOT_PIXEL /* width 1 line */
+		EDGE = PIX + 0.5 // or [ 0.0 [ 1.0 // 05 is where handle is
+		EDGE is L_M_R with BORDER
+		BORDER width FGBG // SAMPLE { float }
+		// { %s } // { float } // { int } //
+		// int => idx
+		// float => PIX_POINT width_of_border_usually_1 = 1.2
+		// SCRIPT CONV_to_PIX CONV_to_EDGE CONV_to_DPI_ZOOM
+		DESIGN THEME Draw with pixel based gaps
+		MATERIAL_WALL ADD_GAP { gap_name expr } // { SPEC DATA }
+
+		PIX_shared_gap_dot
+
+		SCRIPTED_PARAMETERS
+
+		// SCRIPT
+		CONV_to_PIX
+		CONV_to_EDGE
+		CONV_to_DPI_ZOOM
+		CONV_to_DOT_ZOOM
+		CONV_to_DOT // alias _to_PIX _in_sketch
+
+		FGBG line width 1 2.4 BIND SCRIPT VAR_POOL ATTR BIND API
+		BIND FGBG_line_width FGBG.line_width 
+		BIND api GETTER OPTION { GET SET REF EA CALL DESC }
+		BIND var { local remote } // CODE_POINT
+		CALL api
+		VAR api
+
+		LOAD SEGMENT
+		BIND VARS FUNCS SPECS APIS
+		BIND VAR FUNC SPEC API CODE_POINT
+		EXPR CODE_POINT = CODE_POINT_one_PLUS_file_line
+		CODE POINT ZERO { file line xpos } { file DATA }
+
+		AUTO FGBG line_width = 5 PIX // AUTO_CALC GAP GRAVITY
+		AUTO GAP WALL has outer GAP frame LINE inside GAP
+		DIAG {
+		 AUTO
+		 GAP
+		 AUTO_GAP
+		}
+		DIAG {
+		 +----------------
+		 | outer 27
+		 +----------------
+		 |  +----------------
+		 |  | line_width = 5
+		 |  +----------------
+		 +----------------
+		 | inner_gap = 7 // MIN 1 PIX // says CSS KNOW EXPR // DAD FACT
+		 +----------------
+		 ( pre_first_inner_gap_7 ) DAD_FACT need a 1 pixel gap at least
+		 |    TEXT
+		 |    TEXT
+		 |    TEXT
+		 +----------------
+		 ... layout ...
+
+		 outer line_width inner { KNOW 1 pix } { STYLE collapse to zero }
+		 # LEFT Layout 
+		 27 5 7 { KNOW DAD_FACT } { KNOW gap = FGBG.EM * 0.25 } 
+		 { GAP gaps_for_word_edges } // half a char # SP * 0.6 
+
+		 # RIGHT layout
+		 ...
+
+		}
+
+ FIELD {
+  FIELD
+ }
+
+// OPTION TYPE WORD in UDEF DOCS
+// OPTION TYPE ANYSTR with UDEF DIALECT DOCS PHRASES
+// OPTION TYPE AVAR // aka FIELD //
+
+ { DIAG } {
+ 	APPLY { %s == DIAG }
+	KNOW { type of diag is WIDGET_BORDER }
+	KNOW { DIAG is WIDGET API LAYOUT DRAW API_DIAG }
+ }
+ { API_DIAG } {
+ 	KNOW { WDGET BORDER API DIAG } // PLUS //
+ }
+ { GRID_FRAME } {
+
+ 	SPOUT provides some LAYOUT 
+
+		print_paragraph
+	
+	PAGE_LAYOUT 
+	WIDGET_LAYOUT
+	WAX_FRAME_FIELD
+
+
+	BENCH helps write this module
+	Parse SCRIPT to TOKENISED and PRE_COMPILED
+	CODE_POINT == FRAG_MENT in TREE
+
+	DOCUMENT is a DTP stream, asif to SCROLL or PAGE
+	PAGE is DTP stream // usual set of LAYOUT_VARS
+	DIALECT += { VAR = VAL }
+	DIALECT += { SETTING = "SETTING" } // the VALUE of something is ITSELF
+	// VALUE = "VARNAME_of_SELF" // "SETTING" // 
+	DIALECT += { ITEM_t * ITEM = "ITEM" } // AUTO_VAR "SELF"
+ }
+
+ WAX FRAME
+
+ 	BASE TYPE is X11 widget with gc 
+ 	BASE TYPE is W32 frame with dc 
+
+	FRAME SURFACE 
+	PANEL SUBFRAME
+
+	CLIP += SURFACE.outside_border_is_CLIP
+	CLIP += /* SURFACE */ XYWH
+	CLIP += Parent CLIP
+	CLIP += BORDER ZONE // clip_zone but only if you ask
+	CLIP += REDRAW ZONE // clip_zone moderate optimise // FAST from PIXMAP
+	CLIP == PANEL PART
+
+ PIXEL -and- PAPER // int and float
+
+ 	XYWH - means P0P2
+
+	PIXMAP XYWH
+
+		fetch from X11
+		draw on locally
+		send to X11
+
+	PIXMAP XYWH
+
+		alloc on X11
+		draw on X11
+
+	BLIT_CITY
+
+		XYWH to XYWH
+
+			TWIST
+				subzone of LHS is ALLOC ZONE on shared zone
+				subzone of RHS is ALLOC ZONE PANEL in Layout 
+
+			USUAL // usage
+
+				entire LHS is ALLOC XYWH on PAGE
+				subzone RHS is ALLOC ZONE PANEL in Layout 
+
+ 	
+		WH -aka- XYWH
+
+			This is like ADDR = BASE + OFFS 
+
+			ZERO = ORIGIN + UNITS
+
+				VIEW = SCREEN_dpi of PIXMAP
+				ZERO is top left
+				X is PIXEL
+				Y is PIXEL
+
+				VIEW = SPOUT_dpi of PDF PAPER 
+				ZERO is bottom left { UNIT pt }
+
+				float xpos_pt
+				float ypos_pt
+
+				XY( float, float )
+
+		BLIT
+
+			XYWH to XYWH
+
+				SURFACE
+				u1 GREY MONO MASK
+				u4 GREY
+				u8 PALETTE
+				u8 GREY
+				u16 PALETTE
+				u32 RGBA 
+				
+
+			FILTER apply DOT.RGBA.A = FGBG.A
+			FILTER apply DOT.RGBA = FGBG.RGBA
+			FILTER u32 RGBA = TABLE_one[ u8 ] // u8 = EXPR
+			FILTER u32 RGBA = TABLE_two[ u8 ]
+
+			COMPLETELY COVER OVER { XYWH }
+
+		BLIT MACHINE
+
+			read u8 from XY LHS
+			conv u32 = conv u8
+			write u32 from XY RHS
+
+			BOTH XY's are OFFS rel to XY_LHS_00 XY_RHS_00
+
+		BLIT MACHINE
+
+			SURFACE.XYWH is where FT2 placed GLYPH
+
+				I think we can write our own ALLOC PIXMAP
+				so that each GLYPH has own
+
+					u8 W
+					u8 H	// maximum height 0.2 of screen
+
+				then
+
+					u16 WW
+					u16 HH
+
+				this layer is OPTIONAL templatable ?
+
+				maybe i16 uses nearby OFFS
+
+				then
+
+					i32 WWWW
+					i32 HHHH
+
+			GLYPH held in ALLOC PIXMAP # ZERO means 255 ? non zero
+
+				u8 W
+				u8 H
+				u8 PIX = array [W] [H] of BYTE
+
+			Probably far too many PIXMAPS for X11 to allocate ?
+
+				but would be easy
+				and would match api when FT2 local
+				our module can offer virtual PIXMAP rewrap
+
+				pixmap.span = W // no rounding this was packed
+				pixmap.WH = W H
+				pixmap.GET = X + Y * W // xero top left
+
+			LONG_LINE = font_height
+
+				in efficient
+
+			u32 RGBA = conv u8
+
+				lookup[ u8 ]	 [0-255] 
+
+				CALC
+					R = FGBG.fg.R * u8 / 255 // bias 1.0
+					G = fg.G scaled by u8
+					B = fg.B scaled by u8
+					A = A ???
+
+
+
+
+
+
+
+

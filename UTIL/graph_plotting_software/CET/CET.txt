@@ -1,0 +1,16 @@
+https://www.metoffice.gov.uk/hadobs/hadcet/cetdl1772on.dat
+
+ Central England Temperature Data 
+
+ 	This data belongs to them, see their T+C's
+	But it needs to be there to test
+
+	https://www.metoffice.gov.uk/hadobs/hadcet/data/daily_format.html
+
+	YEAR day_of_month Jan Feb Mar ...
+
+	numbers in tenths of 'C, -999 means absent data, or 29 30 31 in Feb
+
+
+
+

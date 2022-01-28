@@ -85,6 +85,9 @@ int main_one() {
 	font_str = "-adobe-courier-medium-r-normal--18-180-75-75-m-120-iso8859-1";
 	font_str = "-sony-fixed-medium-r-normal--24-170-100-100-c-120-iso8859-1";
 	font_str = "-adobe-helvetica-medium-r-normal--0-0-0-0-p-0-iso8859-1";
+// last wins
+	font_str = "-bitstream-bitstream charter-*-r-*-*-*-*-*-*-p-*-*-*";
+	font_str = "8x16" ;
 	X_FontStr font_strs;
 	if(font_strs.parse( font_str )) {
 		PASS("parsed font into %s",
@@ -145,11 +148,15 @@ int main_two( argv_decoder & ARGS ) {
 	// TODO near here
 
 
+	// plain X11 font strings (with FT point size)
+	// TODO FT2 on client side not server side
 	X_FontStr font_strs;
-	font_strs.set_courier();
-	font_strs.set_helvetica();
+	font_strs.set_courier(); // this works
+	font_strs.set_helvetica(); // this fails
 	font_strs.set_point(72);
 	font_strs.set_point(18);
+	font_strs.set_point(8);
+	font_strs.set_point(12);
 	font_strs.set_point(36);
 
 	font_strs.print_fields();

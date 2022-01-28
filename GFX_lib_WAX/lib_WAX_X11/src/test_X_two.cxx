@@ -25,7 +25,7 @@
 		// a point inside, top left ish
 		A_Point xy3( xywh2.x+10, xywh2.y+20 );
 		const char * str = "abc\ndef";
-		str = "STR0 _t String1a";
+		str = "STR0 _t String into draw_green.XDrawString";
 		draw_green.XDrawRectangle( xywh1 );
 		draw_green.XDrawRectangle( xywh2 );
 		draw_green.XDrawString( xy3, str );
@@ -54,16 +54,16 @@
 
 		int x= 31;
 
-		A_Rectangle xywh7( x+=5, 30, 0, 0 );
+		A_Rectangle xywh7( x+=35, 30, 0, 0 );
 		draw_green.XDrawRectangle( xywh7 );
 
-		A_Rectangle xywh5( x+=5, 30, 1, 1 );
+		A_Rectangle xywh5( x+=35, 30, 1, 1 );
 		draw_green.XDrawRectangle( xywh5 );
 
-		A_Rectangle xywh4( x+=5, 30, 2, 2 );
+		A_Rectangle xywh4( x+=35, 30, 2, 2 );
 		draw_green.XDrawRectangle( xywh4 );
 
-		A_Rectangle xywh6( x+=5, 30, 3, 3 );
+		A_Rectangle xywh6( x+=35, 30, 3, 3 );
 		draw_green.XDrawRectangle( xywh6 );
 	}
 

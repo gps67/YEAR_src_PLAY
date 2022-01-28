@@ -1,0 +1,76 @@
+
+ spout_draw.txt
+
+ 	TODO
+
+		SSL_SNI_servername_GETTER
+
+		...
+	
+	TODO
+
+		INDENTED_TEXT
+	
+	TODO
+
+		CODE_VIEW
+	
+	NEAR
+
+		PALLETTE _DRAW_ items CSS stuff in spout_subset // bring your own
+
+	DRAW
+
+		FT2 to apps_memory // FTF to screen_memory
+
+		PEN_FILL DRAW line arc polygon[point]
+
+		name "idx" after "ITEM_t point" // SCOPE of ITEM is TEXT_layer
+
+		OBJ system needs TYPE system // also when KNOW TYPE >= BASE
+		// KNOW TYPE += BASE // MAGNET HOOVER // TYPE_TREE STATIC_DATA
+
+		VAR system generates SCOPE ALLOC STO
+		// GROUP += ITEM // GROUP named after first ITEM // name()
+		// POOL += VAR // { EA_VAR == "VAR" # HINT VARNAME == "VAR" } //
+		// LHS += RHS //
+
+	GEN
+
+		BENCH runs AUTO_VAR 
+		OPTION create VAR as VARNAME in SCOPE and WHEN
+	
+		ITEM_t [*&()] NAME // NAME == "ITEM" // name sample as GROUP_t
+		ITEM_t * item = ITEMS[ITEM] // AUTO_VAR UPPERS
+	
+	AUTO_VAR
+
+		UPPER and sub_LEX
+		CODE CTOR(an_AUTO_VAR_spec)
+		Bench creates a VAR { name == "AUTO_VAR" } { type == "ITEM_t" }
+		// { NAME == "ITEM" } // creates ITEM_t // is replaced by "VAR"
+		// { NAME == "AUTO_VAR" } //
+	
+	BIND AUTO_VAR local remote { lhs rhs }
+
+		ENQ_ACK
+			remote (client) requests CACHE_VAR local 
+
+		CACHE_VAR
+
+			local "VARNAME" // ALIAS { NAME == "VARNAME" }
+			local "VARNAME" // ALIAS { VARNAME == "NAME" }
+			{
+				// EIGHT == "{ u32_OFFS u32_SPEC }"
+				OFFS_ADDR ITEM_t * ITEM = EIGHT[idx_item].OFFS
+				ADDR_EXPR
+				TYPE ITEM_t
+				NAME_ITEM
+			}
+
+		BIND_VAR _remote
+
+			cb_VAR_changed_on_remote
+			is_VAR_changed_on_local // NEWVAL == NEWVAL
+			is_VAR_newer_than_clock_two // BATCH += VAR
+

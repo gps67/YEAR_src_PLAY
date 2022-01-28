@@ -10,19 +10,23 @@
 
 SSL_global_server_eg::SSL_global_server_eg()
 {
+	// AUTO_CTOR
 }
 
 SSL_global_server_eg::~SSL_global_server_eg()
 {
+	// AUTO_DTOR
 }
 
 bool SSL_global_server_eg:: class_is_usually_client()
 {
+	// is_server // so false is_client
 	return false;
 }
 
 bool SSL_global_server_eg:: set_ssl_verification()
 {
+	// load KEYS from files // OPTION not from files
 	const char *filename_C_server_cert = "keys/C_server_cert.pem";
 	const char *filename_C_server_key =  "keys/C_server_key.pem";
 
@@ -37,7 +41,7 @@ bool SSL_global_server_eg:: set_ssl_verification()
 
 	// in my jumbled test rig
 	// the client and server have links from the same dir
-	// these are the acceptable CA s that we want the client ot send
+	// these are the acceptable CA s that we want the client to send
 	// 1a 1b 1c - do not have to be within date, just correct subjects
 	// and then I am not sure if this works, yet, or not
 	const char *filename_CA_client_1a = "keys/CA_of_client_1.pem";

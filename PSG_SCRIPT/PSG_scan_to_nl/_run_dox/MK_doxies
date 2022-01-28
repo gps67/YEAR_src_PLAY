@@ -9,15 +9,14 @@
 	xsubs="
 	"
 	# where the output files are placed
-	DOX0=/home/gps/2000/dox
-	DOX0=/home/gps/YEAR_offline/dox
+	DOX0=/home/gps/YEAR/dox
 
 	DOX1=$DOX0/scan
 	# nb DOX1 must exist or else it bails out
 	# where the input files come from
 #	export TOP=/home/gps/2003_gps/src/libs_apps
 	export TOP=/home/gps/2000/src/scan
-	export TOP=/home/gps/YEAR_offline/src/PLAY_GITS/YEAR_src_PLAY/PSG_SCRIPT/PSG_scan_to_nl
+	export TOP=/home/gps/YEAR/src/PLAY_GITS/YEAR_src_PLAY/PSG_SCRIPT/PSG_scan_to_nl
 
 	tagsfile=_dox_tagfile
 	run_file=_DOX_run.sh

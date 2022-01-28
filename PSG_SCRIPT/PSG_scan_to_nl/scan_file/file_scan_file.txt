@@ -1,0 +1,31 @@
+
+	file_scan
+	scan_file
+
+	prog_main/c1.cxx	main() scan_c1.scan_file( argv[1] )
+	scan_file/scan_file_base mmap_fd open_file(filename,LEXER)
+	scan_lang/scan_c1 : file_scan _base	LEX.scan_file(filename)
+
+	                                                               │
+│   14          /*!                                                            │
+│   15          */ -eof- */                                                    │
+│    6          bool scan_c1::scan_file( const u8 * filename )                 │
+│B+ 17          {                                                              │
+│  >18                  if(!open_file( filename ))                             │
+│   19                          return false;                                  │
+│   20                                                                         │
+│   21                  return LEX.scan_file( filename );                      │
+│   22          }                                                              │
+
+		file_scan c1
+		scan_file c1
+
+		 MMAP
+		 LEX
+		 PSG
+		 zone
+
+		Everyone owns { p0p2 zone } 
+		Everyone has own  { p0p2 zone } 
+
+		  MMAP.zone

@@ -137,6 +137,8 @@ using namespace WAX;
  set_helvetica()
  {
  	init_all("");
+
+	// this fails - maybe my installed fonts have changed meta descr
 	foundry = "adobe";
 	family = "helvetica";
 

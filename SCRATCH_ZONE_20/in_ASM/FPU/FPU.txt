@@ -1,0 +1,21 @@
+
+AVX-512
+use:
+
+	8 x double == 64 bytes == 512 bits
+
+VMOVUPS zmm1,[memory location]  ; zmm1 = [64 bytes of memory 8 doubles]
+VMOVUPS [memory location],zmm1  ; Stores zmn1 to memory
+
+VMULPS zmm1,zmm2,zmm3 ; // mm1 = zmm2 * zmm3
+VADDPS zmm1,zmm2,zmm3 ; // mm1 = zmm2 + zmm3
+VSUBPS zmm1,zmm2,zmm3 ; // mm1 = zmm2 - zmm3
+VDIVPS zmm1,zmm2,zmm3 ; // mm1 = zmm2 / zmm3
+
+At same speed as VMOVUPS is VMOVAPS, but must be aligned 64 bytes
+DOES PC support AVX-512:
+
+	YES = All Xeon processors support it
+	NO = usually no Pentium and Celeron
+	MAYBE =  Core processors 
+

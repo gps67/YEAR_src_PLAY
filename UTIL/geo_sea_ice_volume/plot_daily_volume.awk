@@ -153,6 +153,7 @@ function get_filename_data_gz()
 	F="PIOMAS.vol.daily.1979.2019.Current.v2.1.dat"
 	F="PIO/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat"
 	F="PIO/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat"
+	F="PIO/PIOMAS.vol.daily.1979.2022.Current.v2.1.dat"
 	return F
 }
 function Q1( str ) {
@@ -410,6 +411,7 @@ function process_data_file() {
 
 function plot_script_daily(filename_plot_png, zoomed_out)
 {
+	# pick the axis limits #
 	if(zoomed_out) {
 		X_lo = "1950"
 		X_hi = "2100"
@@ -420,13 +422,12 @@ function plot_script_daily(filename_plot_png, zoomed_out)
 		X_hi = "2070"
 		X_hi = "2100"
 	} else {
-		X_lo = "1980"
-		X_lo = "1970"
-		X_hi = "2025"
+		X_lo = "1980"	# data starts at 1980
+		X_lo = "1975"	# a gap
+		X_hi = "2035"	#
 		Y_lo = 0
 		Y_hi = 35
 	}
-
 
 	plot_title_line_max = "max" # 
 	plot_title_line_day = "day" # better than "<CAT"
@@ -443,19 +444,20 @@ function plot_script_daily(filename_plot_png, zoomed_out)
 	CRLF = "\n"
 	T = ""
  if(plot_to_png) {
+ 	# things specific to PNG
 	T = T CRLF "set terminal png"
 	T = T CRLF "set output " Q1(filename_plot_png)
-	T = T CRLF "set term png size 1200, 800"
+	T = T CRLF "set term png size 1200, 800"	# pixel size of png
 #	T = T CRLF "set term png size 800, 600"
 #	T = T CRLF "set term png size 400, 300"
 #	T = T CRLF "set term png size 500, 450"
 	
  } else {
-#	T = T CRLF "set output " Q1(filename_plot_png)
+ 	# things specific to SCREEN
+	# probably unused as now it is all PNG # ?
  }
-#	T = T CRLF "set xrange [1960:2040]"
-#	T = T CRLF "set xrange [:2040]"
-#	T = T CRLF "set xrange [1975:2020]"
+
+	# both SCREEN and PNG
 	T = T CRLF "set xrange [" X_lo ":" X_hi "]"
 	T = T CRLF "set yrange [" Y_lo ":" Y_hi "]"
 	T = T CRLF "set title " Q1(plot_title)

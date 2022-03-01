@@ -11,5 +11,8 @@ BUG
 BUT/ALSO
 	see print_part_name which allows NULL then searches further
 
+SERIAL
+	serial == ?? 
+	option non sequential = encrypt idx = N++
 
 

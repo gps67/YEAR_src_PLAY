@@ -3,6 +3,7 @@
 
 #include "TCL_STUBS.h" // WARN
 #include "TCL_HELP.h"
+#include "buffer2.h"
 
 // this shows that "SET" in a script, appears as a NULL type string value
 namespace TCL {
@@ -51,6 +52,15 @@ Tcl_Obj * mk_text( const char * text )
 /*
 	convert a SHORT string to a shared common Tcl_Obj
 
+	line.printf("
+		proc _junk_fn_ {} {
+			# has to be a proc to get compiled
+			# and the {token} tokenised
+			return {%s}
+		} ;
+		_junk_fn_ ;# call it
+	", str );
+
 	this is the same as a simple fixed string in a proc,
 	not guaranteed though, but yes currently definitely,
 	so maybe need second _ALIAS ability
@@ -69,7 +79,9 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	// Tcl_EvalEx // set _ %s // failed needs a PROC
 	// Tcl_EvalEx // proc _x_ {} { return {%s} } ; _x_ // WORKED A TREAT
 
-	char line[100];
+//	char line[100]; // LURK long name in C source will crash
+	buffer2 line;
+	line.get_space(100);
 	#if 0
 	snprintf(line,sizeof(line)-1,"set _junk_var_ {%s}", str );
 	snprintf(line,sizeof(line)-1,"set _junk_var_ %s", str );
@@ -80,14 +92,15 @@ Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str )
 	// only proc gets it to LEX1, global main gets to LEX2
 	// expect ditto for VAL from dynamic string, or C, or ...
 	// with proc over Literals, getting 100% LEX1, so simplify
-	snprintf(line,sizeof(line)-1,"proc _junk_fn_ {} { return {%s} } ; _junk_fn_", str );
+//	snprintf(line,sizeof(line)-1,"proc _junk_fn_ {} { return {%s} } ; _junk_fn_", str );
+	line.printf("proc _junk_fn_ {} { return {%s} } ; _junk_fn_", str );
 	int t = 0;
 	// OK Tcl_Eval does not compile the script
 	int flags = TCL_EVAL_GLOBAL; // _DIRECT does not compile same
 	flags = TCL_EVAL_DIRECT; // _DIRECT also worked
 	flags = TCL_EVAL_GLOBAL; // _DIRECT does not compile same
 	flags = 0; // 0 also worked
- 	t = Tcl_EvalEx( interp, line, -1, flags );
+ 	t = Tcl_EvalEx( interp, (STR0) line, -1, flags );
  //	t = Tcl_Eval( interp, line ); // did not compile
  //	t = Tcl_Eval( interp, "_junk_fn_" ); // did not compile 
 //	t = Tcl_ExprString( interp, line ); // cant remember

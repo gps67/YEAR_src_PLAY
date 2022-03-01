@@ -114,8 +114,7 @@ MODULE_INIT( Optical )
 	// require info probably tells // seems more Pkg info
 
 	INFO("PLUS");
-	gdb_invoke(false);
-
+//	gdb_invoke(false);
 
 	return TCL_OK;
 }

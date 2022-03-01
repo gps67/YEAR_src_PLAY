@@ -336,7 +336,7 @@
 
 	const char * X509_cert::get_str_CN()
 	{
-		static buffer1 buf;
+		static buffer1 buf;	// holds mem of CN str beyond call
 		buf.clear();
 		return get_str_CN(buf);
 	}

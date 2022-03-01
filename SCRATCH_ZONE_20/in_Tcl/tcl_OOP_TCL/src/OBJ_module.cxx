@@ -2,7 +2,7 @@
 #include "OBJ_module.h"
 #include "TCL_HELP.h"
 #include <string.h>
-#include "TCL_MATCHER.h"
+#include "TCL_MATCH.h"
 #include "buffer1.h" // buffer1 print
 
 using namespace TCL;  
@@ -157,7 +157,7 @@ Tcl_Obj *const objv[]	\
 // CALLED by TCL we must return TCL_OK or _ERROR or ...
 
 /*!
-Store a "Literal" in a LITERAL_MATCHER("GET")
+Store a "Literal" in a LITERAL_MATCH("GET")
 ask MATCHER_get.MATCHES( objv[i] )
 ask MATCHER_set.MATCHES( objv[i] )
 ask MATCHER_array_set.MATCHES( objv[i] )
@@ -165,7 +165,7 @@ ask MATCHER_array_set.MATCHES( objv[i] )
 Use a {proc _anon_ {} { return {Literal} } to internalise it
 That means it WILL have a bytes value, but test for safe zone
 
-Match obj against LITERAL_MATCHER, aiming for single PTR == PTR
+Match obj against LITERAL_MATCH, aiming for single PTR == PTR
 
 Match obj against _one _two # accept possible str not SPELLING
 
@@ -209,25 +209,25 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 	OBJ_ARGV_helper cmd(interp);
 
 	//	CIDENT LITERAL or tcl_word_maybe_not_IDENT
-	static LITERAL_MATCHER match_GET( interp, "GET" );
-	static LITERAL_MATCHER match_SET( interp, "SET" );
-	static LITERAL_MATCHER match_ADD( interp, "ADD" );
-	static LITERAL_MATCHER match_array_set( interp, "array_set" );
-	static LITERAL_MATCHER match_array_get( interp, "array_get" );
-	static LITERAL_MATCHER match_LIST_ALL( interp, "LIST_ALL_OBJ_TYPE" );
+	static LITERAL_MATCH match_GET( interp, "GET" );
+	static LITERAL_MATCH match_SET( interp, "SET" );
+	static LITERAL_MATCH match_ADD( interp, "ADD" );
+	static LITERAL_MATCH match_array_set( interp, "array_set" );
+	static LITERAL_MATCH match_array_get( interp, "array_get" );
+	static LITERAL_MATCH match_LIST_ALL( interp, "LIST_ALL_OBJ_TYPE" );
 
 	//	ARGV0
-	static LITERAL_MATCHER match_OBJ( interp, "OBJ" );
-	static LITERAL_MATCHER match_VECT( interp, "VECT" );
-	static LITERAL_MATCHER match_DICT( interp, "DICT" );
+	static LITERAL_MATCH match_OBJ( interp, "OBJ" );
+	static LITERAL_MATCH match_VECT( interp, "VECT" );
+	static LITERAL_MATCH match_DICT( interp, "DICT" );
 
 	//	PUNCT not CIDENT LITERAL
-	static LITERAL_MATCHER match_dash( interp, "-" ); // seems fine
-	static LITERAL_MATCHER match_EMPTY( interp, "" ); // 
-	static LITERAL_MATCHER match_NEW( interp, "NEW" ); // 
+	static LITERAL_MATCH match_dash( interp, "-" ); // seems fine
+	static LITERAL_MATCH match_EMPTY( interp, "" ); // 
+	static LITERAL_MATCH match_NEW( interp, "NEW" ); // 
 
 	//	problematic // because {} // at depth N
-	static LITERAL_MATCHER match_curly_pair( interp, "{}" );
+	static LITERAL_MATCH match_curly_pair( interp, "{}" );
 	// no matches with {{}}
 
 

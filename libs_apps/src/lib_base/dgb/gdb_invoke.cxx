@@ -443,6 +443,7 @@ void gdb_invoke( bool usegui )
 		    execlp(
 			gdb_prog,
 			gdb_prog,
+			"-tui",
 		//	"-m", "-r",		// prog.syms saved
 			"-x", ".gdb_invoked",	//
 		//	"-n",			// -n = no init files

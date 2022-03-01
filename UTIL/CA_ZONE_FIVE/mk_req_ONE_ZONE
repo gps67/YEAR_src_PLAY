@@ -1,0 +1,5 @@
+if ./M_exe 
+then
+	cd obj
+	./mk_req.exec CA_ONE CA_ZONE 
+fi

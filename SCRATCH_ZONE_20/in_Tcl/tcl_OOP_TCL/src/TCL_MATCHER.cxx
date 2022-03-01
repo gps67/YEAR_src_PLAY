@@ -15,6 +15,9 @@ bool TCL:: CMP( Tcl_Obj * obj, const char * str )
 
 bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 {
+	// inline did the fast match first
+	// so we can meander through a checklist
+
 	if(!obj) {
 	INFO("# NULL # LITERAL_MATCHER(%s).MATCHES_fn(NULL) # \n",
 	"{ NULL OBJ ERROR }" );
@@ -28,13 +31,16 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 	}
 
 	if(!match_one->bytes) {
-	INFO("# CODE_ERROR_CTOR_FAIL\n");
+	INFO("NULL match_one->bytes");
 	// STAY // return false;
 	}
 
 	if(!obj->bytes) {
-		INFO("# CODE_ERROR_CTOR_FAIL no bytes\n");
+		INFO("NULL obj->bytes");
 		Tcl_GetString( obj );
+		if(!obj->bytes) {
+			INFO("NULL obj->bytes - after Tcl_GetString(obj)");
+		}
 		// STAY // return false;
 	}
 

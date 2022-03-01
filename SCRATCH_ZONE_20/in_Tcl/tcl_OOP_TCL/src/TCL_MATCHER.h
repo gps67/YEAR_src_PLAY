@@ -13,6 +13,14 @@ extern
 bool CMP( Tcl_Obj * obj, const char * str );
 
 
+/*!
+	LITERAL_MATCHER * match_GET = new LITERAL_MATCHER(interp,"GET");
+	// keep match_GET forever //
+	if( match_GET.matches( argv[i] ) { /+ objv[i] is "GET" +/ }
+
+	When objv[i] is a const "GET" in a proc, it is a retained const
+	and normally belongs to Tcl
+*/
 struct LITERAL_MATCHER {
 	//
 	//
@@ -30,7 +38,7 @@ struct LITERAL_MATCHER {
 	static const int N_different = 4;
 
 	// these auto DTOR CTOR NULL refcount 
-	TCL_REF match_one; // LEX1
+	TCL_REF match_one; // LEX1 -or- TCL_SPECIFIC_TOKENISED
 	TCL_REF match_two; // LEX2 from outside of proc
 	TCL_REF match_three; // another LEX2, similar ways
 	TCL_REF differents[N_different];
@@ -55,10 +63,15 @@ struct LITERAL_MATCHER {
 		if( obj == match_two ) return true;
 		if( obj == match_three ) return true;
 
-		// actually we KNOW match_one->typePtr is TYPE_LEX1 not NULL
+		// we do NOT KNOW match_one->typePtr is TYPE_LEX1
+		// it is not NULL, but might be a Tcl object
 		// as the CTOR guarantees that
 		//( match_one && match_one->type_Ptr && ... )
-		if( obj->typePtr == match_one->typePtr ) {
+		if( obj->typePtr ) {
+			// this is FINGERS CROSSED
+			// there could be several TYPED tcl types
+			// eg VECT is varname is funcname is bytecode is ...
+			if( obj->typePtr == match_one->typePtr ) {
 			// KNOW match_one not null, typePtr == LEX1
 			// KNOW obj is not NULL (semi guarantee)
 			// 
@@ -68,6 +81,7 @@ struct LITERAL_MATCHER {
 			// else STRANGE list int other goes to fn
 			// we have a majority of LEX1
 			// for scripts using proc // 
+			}
 		#if 1
 			// visual tracer
 			INFO("FAST MATCH LEX1 != LEX1");

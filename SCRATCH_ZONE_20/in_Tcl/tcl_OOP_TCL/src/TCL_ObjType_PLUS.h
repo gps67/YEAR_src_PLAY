@@ -76,6 +76,9 @@ GET_KEPT_PLUS_PTR_GLOBAL() {
 */
 struct TCL_ObjType_PLUS : Tcl_ObjType
 {
+	// Tcl_ObjType is the plain C Tcl declaration
+	// TCL_ObjType_PLUS is our VTBL derived
+
 	// C++ is wrong to put VTBL in front of plain STRUCT
 	// it does not cost much to put VTBL in the middle
 	// that would keep all pointers compat

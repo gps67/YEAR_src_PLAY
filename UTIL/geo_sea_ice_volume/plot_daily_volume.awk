@@ -1,6 +1,7 @@
 #!/usr/bin/awk -f
 #!/usr/bin/gawk -f
 
+# this is the only script you need # mostly
 # fortunately the data starts at day 0 of 1979 (1?)
 # fortunately the data has no (-1) missing values
 # fortunately the data has 365 normalised days in each year (no leap)
@@ -17,6 +18,7 @@ BEGIN {
 	D_tmp = "./tmp/tmp_" 
 	# mk_tarball will ignore *.tmp
 	# want to put min max mid into tarfile # so no .tmp
+	# what all the files are named, in variables named ...
 	filename_plot_data_day = D_tmp "plot_data_day.data.tmp"
 	filename_plot_data_min = D_tmp "plot_data_min.data"
 	filename_plot_data_max = D_tmp "plot_data_max.data"
@@ -29,6 +31,8 @@ BEGIN {
 
 	plot_title="PIOMAS Arctic Sea Ice Volume"
 
+	# A365=365 # one year average # scroll down # LAST ONE WINS #
+	# MUST be a multiple of 365 # TODO # first 365 then 1.5 year
 	# I want to rename avg2 as avg365
 	# but that comes from the A365 parameter (set next)
 
@@ -68,12 +72,14 @@ BEGIN {
 	A365=365*1
 	A365=365*3
 
+	# PICK A365 # LAST one WON #
+
 	F365=1.0*A365 # as a floating point
 
 	plot_to_png = 0
-	plot_to_png = 1
+	plot_to_png = 1	# it is all .png
 
-	# plot or not
+	# plot or not # OPTIONS #
 #	P_8 = 1
 #	P_9 = 0 # pencil lines
 	P_max = 1
@@ -81,7 +87,7 @@ BEGIN {
 	P_mid = 0 # plot midyear avg
 	P_avg = 1 # plot rolling day 365 average
 
-	# remove old files to avoid making it look OK
+	# remove old files to avoid making it look OK when not
 	rm_f_filename( filename_plot_data_day )
 	rm_f_filename( filename_plot_data_min )
 	rm_f_filename( filename_plot_data_max )
@@ -93,18 +99,19 @@ BEGIN {
 
 	year_curr = -1
 
-	data_day[0] = 0
+	data_day[0] = 0	# ALL the data is put into this awk array
 	data_day_pos = 0
 	data_day_max = 0
 
-	process_data_file()
+	process_data_file()	# this is not my best code # tangled mess #
 
-	b_zoomed_in = 0
-	b_zoomed_out = 1
-	process_gnuplot_file( b_zoomed_out )
-	process_gnuplot_file( b_zoomed_in )
-	# how to avoid the AWK filter theme
+	b_zoomed_in = 0		# named flag is better than bit
+	b_zoomed_out = 1	# named flag to produce the zoomed in version
+	process_gnuplot_file( b_zoomed_out ) # produce the file
+	process_gnuplot_file( b_zoomed_in ) # produce the file
+	# how to avoid the AWK filter theme ?
 	# close( /dev/stdin ) # nope
+	# dont act as filter over stdin, so exit
 	exit(0)
 }
 
@@ -192,6 +199,14 @@ function flush_year_end() {
 }
 
 function line_in( year, year_frac, day, vol ) {
+
+	# process the line of data, into ALL hungry filters
+	# this function is a does-it-all monster
+	# it find the PEAK and LOW values
+	# it scrolls the averaging windows
+	# that should be split out and rewritten # TODO #
+	# slightly specific to PIOMASS #
+
 	fmt_3 = "%.4f"
 	fmt_3 = "%.3f"
 	if( year_curr != year ) {
@@ -312,6 +327,13 @@ function line_in( year, year_frac, day, vol ) {
 		L_day_1 = year_frac3 " " (year_vol_avg1_sum/F365 + 8.0)
 		L_day_2 = year_frac3 " " (year_vol_avg1_sum/F365)
 		L_day_3 = year_frac3 " " (year_vol_avg1_sum/F365 - 8.0)
+
+		# print L_line_data > filename_as_var #
+		# awk is not shell # it notices repeat calls with same filename
+		# appends to that one file
+		# the first opens the file, the same filename string appends
+		# you may need to close to flush # before calling gnuplot
+
 		print L_day_2 > filename_plot_data_avg2
 	 if( P_8 ) {
 		print L_day_1 > filename_plot_data_avg1
@@ -374,19 +396,28 @@ function gen_pencil_data_2() {
 }
 
 function process_data_file() {
+	# nb you manualy fetch the file, with PIO/fetch to help you
+	# what is the file called this year (and where is it)
 	F = get_filename_data_gz()
 
+	# the command line that expands the compressed file
 	CMD = "zcat " F 
 	LNO = 0
+	# awk runs CMD once, the while loops over every getline from it
 	while(( CMD | getline ) > 0 ) {
+		# getline reads a single line and splits it into fields
+		# default field separation works fine #
+		# $1 $2 $3 # TODO check NF == 3 #
 		LNO ++
-		if(LNO == 1 ) continue
-		# if( LNO > 7) break
-		year=$1
-		day=$2
-		vol=$3
-		# convert day of year to fraction of year
-		YY=year + (day/365.0) # different to A365
+		if(LNO == 1 ) continue	# skip non data header
+
+		year = $1
+		day  = $2
+		vol  = $3
+
+		# convert day of year to float year 
+		YY = year + (day/365.0) # different to A365
+		# process the line of data, into ALL hungry filters
 		line_in( year, YY, day, vol )
 	}
 
@@ -484,6 +515,7 @@ P_min&&	T = T CRLF Q1(filename_plot_data_min) " with lines title " Q1(plot_title
 	return T
 }
 
+# UNUSED FILTER for every line of stdin #
 {
 	print "## EVERY LINE"
 	exit(22)

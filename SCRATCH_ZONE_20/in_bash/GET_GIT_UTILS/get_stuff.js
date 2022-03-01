@@ -8,13 +8,17 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+https://github.com/mdn/translated-content
+https://github.com/Automattic/node-canvas
+https://gitlab.com/cairo/cairo-demos
+git@gitlab.com:cairo/cairo-demos.git
+git://anongit.freedesktop.org/git/cairo
+git://anongit.freedesktop.org/git/pixman.git
+https://github.com/karma9874/AndroRAT
 https://github.com/kitasuke/monkey-go
 https://github.com/derekbanas/Python4Finance
 git://git.ghostscript.com/mupdf.git
 https://github.com/msteveb/jimtcl.git
-git://anongit.freedesktop.org/git/cairo
-git://anongit.freedesktop.org/git/pixman.git
-git@gitlab.com:cairo/cairo-demos.git
 
 https://github.com/http-party/http-server
 

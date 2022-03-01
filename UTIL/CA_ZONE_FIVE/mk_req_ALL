@@ -1,0 +1,6 @@
+if ./M_exe 
+then
+	cd obj
+	./mk_req.exec ALL
+fi
+echo "ALL means local certs in ZONE, not ZONE or ONE or ZERO"

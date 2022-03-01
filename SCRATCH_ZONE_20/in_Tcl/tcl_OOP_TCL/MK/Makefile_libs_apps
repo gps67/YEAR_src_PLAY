@@ -18,5 +18,6 @@
 	LINKS += -L$(DIR_libs_apps_build)
 
 	LINKS += -lbase
+	LINKS += -lbase2
 
 

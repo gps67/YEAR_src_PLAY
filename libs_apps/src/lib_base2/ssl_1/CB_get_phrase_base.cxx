@@ -51,9 +51,11 @@ int CB_get_phrase_base:: get_phrase_with_double_check( u8 * buf, int maxlen ) {
 	OpenSSL uses this callback - 
 
 		PEM_read_bio_X509(...)
+	
 */
 int CB_get_phrase_base::C_get_passwd_fn(char *buf, int size, int rwflag, void *u)
 {
+	// static // C_fn // to be passed as C func to openssl
 	// buf : where to place the passphase-key-data
 	// size : max sizeof buf
 	// rwflag : if r getting it wrong will soon be apparent, if w ask twice
@@ -73,22 +75,23 @@ int CB_get_phrase_base::C_get_passwd_fn(char *buf, int size, int rwflag, void *u
 
 	u_obj -> flg_CB_called = true;
 
+	/*
+		when an existing X509/KEY/priv is needed rwflag is read
+		when a new X509/KEY/priv is written rwflag is write
+
+		the default behaviour is to ask twice, and ensure both match
+		ask again until a plausible key is entered
+
+		if(rwflag) { obtain_a_new_pass_phrase } 
+		else { obtain_the_old_pass_phrase }
+
+		so you might check for acceptable amount of UPPER lower etc
+
+	*/
 	if(rwflag)
 		return u_obj->get_phrase_with_double_check( (u8*) buf, size );
 	else
 		return u_obj->get_phrase( (u8*) buf, size );
-}
-
-CB_get_phrase_NONE:: 
-CB_get_phrase_NONE()
-: CB_get_phrase_base(NULL)
-{
-}
-
-int CB_get_phrase_NONE:: get_phrase( u8 * buf, int maxlen ){
-	FAIL("an empty phrase must never be asked for");
-	if(buf) buf[0] = 0;
-	return 0;
 }
 
 bool CB_get_phrase_base::CB_called()
@@ -101,4 +104,24 @@ bool CB_get_phrase_base::CB_called_clear()
 	bool was = flg_CB_called;
 	flg_CB_called = false;
 	return was;
+}
+
+// you can define subclasses with your GUI or DB lookup or ...
+// eg FILE provides something compiled ELF provides something // NET too
+// it is not easy to see which ITEM was involved
+// but you create this for each item,
+
+// _NONE is for when you know no phrae will be used
+
+CB_get_phrase_NONE:: 
+CB_get_phrase_NONE()
+: CB_get_phrase_base(NULL)
+{
+}
+
+int CB_get_phrase_NONE:: get_phrase( u8 * buf, int maxlen ){
+	// openssl only asks for the passphrase if one is needed
+	FAIL("an empty phrase must never be asked for");
+	if(buf) buf[0] = 0;
+	return 0;
 }

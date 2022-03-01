@@ -73,6 +73,7 @@ prng_seed.dat
 # Archive tarballs
 *.zip
 *.tgz
+*.tar.gz
 *.tar.bz
 *.iso
 *.dat.gz

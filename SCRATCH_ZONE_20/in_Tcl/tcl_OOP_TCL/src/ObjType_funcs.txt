@@ -65,6 +65,15 @@ PLUS
 		THIS IS USELESS FOR US and VTBL
 		because we are only given the obj == A_STRING
 		with typePtr == NULL, and we dont have a typePtr !!
+
+		We could define 20 C func's, holding [i],
+		and allocate them, storing PLUS[i],
+
+		We could auto-write and compile a C fund for each PLUS
+
+		We could try to find WHERE this is called.
+		and sort of hope it is never called.
+		
  TODO
  		Every type must define its own
 		maybe call C_FN or VTBL with extra parameter

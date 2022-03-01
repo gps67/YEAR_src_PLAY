@@ -248,16 +248,49 @@ TCL_PLUS_VECT * TCL:: get_TYPE_VECT()
 Tcl_Obj * TCL:: mk_LEX1( Tcl_Interp * interp, const char * str )
 {
 	// called by MATCHER.MATCHES CTOR
-	Tcl_Obj * lex1 = mk_common_spelling( interp, str );
-	if( lex1 -> typePtr ) {
-		WARN("already a TYPE_XXXX %s %s",
-		  str_not_NULL(lex1 -> typePtr -> name),
-		  str
-		);
-		print_tcl_obj( lex1, "from mk_common_spelling" );
-	}
+	// ONLY called from there
+	// returns a new LEX1 -or- an old SOMETHING_ELSE
+	// TODO rename mk_LEX1_or_OTHER
+	// if OTHER leave untouched, but keep for match_one
+
 	TCL_PLUS_BASE * TYPE_LEX1 = get_TYPE_LEX1();
-	TYPE_LEX1 -> setFromAnyProc( interp, lex1 );
+
+	// pre-existing or new object
+	Tcl_Obj * lex1 = mk_common_spelling( interp, str );
+	/*
+		mk_common_spelling( interp, "GET" );
+		builds a small proc _T {} { return GET }
+		which tokenises "GET" against the usual Tcl intern tables
+
+		That means that other proc uses of "GET" or GET match
+		That means that typePtr could be any thing
+		a var name a command a bytecode .... anything
+	*/
+	if( lex1 -> typePtr ) {
+		// pre-existing TOKEN
+		if( lex1 -> typePtr == TYPE_LEX1 ) {
+			INFO("already TYPE_LEX1");
+			FAIL("This should never happen");
+			// unless the C code declares two matchers for same str
+		} else {
+			// bytecode ''
+			// cmdName 'VECT'
+			// parsedVarName '-'
+			INFO("not TYPE_LEX1 (%s) '%s'",
+			  str_not_NULL(lex1 -> typePtr -> name),
+			  str
+			);
+//			print_tcl_obj( lex1, "from mk_common_spelling" );
+		}
+	} else {
+		lex1 -> typePtr = TYPE_LEX1;
+		TCL_set_PTR1( lex1, NULL );
+		TCL_set_PTR2( lex1, NULL );
+	}
+	// setFromAnyProc is nonsense 
+	// when is it called
+	// we dont call it
+//	TYPE_LEX1 -> setFromAnyProc( interp, lex1 );
 	print_tcl_obj( lex1, "after set_from_any" );
 	return lex1;
 }

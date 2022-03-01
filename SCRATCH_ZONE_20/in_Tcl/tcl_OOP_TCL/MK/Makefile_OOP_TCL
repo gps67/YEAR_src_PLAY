@@ -63,6 +63,7 @@
 	Module_objs += TCL_HASH.o
 	Module_objs += TCL_DICT.o
 	Module_objs += TCL_MATCHER.o
+	Module_objs += TCL_MATCH.o
 #	Module_objs += TCL_TYPE.o
 
 	#imported LITE

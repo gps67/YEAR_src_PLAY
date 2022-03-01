@@ -22,6 +22,12 @@ typedef void * FUNC_PTR_t; // works with gcc -pedantic // because dlsym does
 
 FUNC_PTR_t call_dlsym_fn( const char * sym, FUNC_PTR_t * EA_FUNC_VAR )
 {
+	// dlsym looks up STR0 "open" and returns its ADDR PTR
+	// call_dlsym_fn wraps it with a fn
+	// call_dlsym /*MACRO */ calls _fn
+
+	// RTLD_NEXT // is how to resolve layer on layer
+
 	FUNC_PTR_t PTR = * EA_FUNC_VAR;
 	if( PTR ) {
 		fprintf(stderr,"Already set FUNC_VAR '%s'\n", sym );
@@ -50,6 +56,7 @@ FUNC_PTR_t call_dlsym_fn( const char * sym, FUNC_PTR_t * EA_FUNC_VAR )
 	* EA_FUNC_VAR = PTR;
 	return PTR;
 }
+
 // cast any EA_FUNC_VAR to FUNC_PTR_t
 // gcc -pedantic permitted cast from FUNC_PTR to VOID_STAR
 #define call_dlsym( sym, EA_FUNC_VAR ) \
@@ -62,30 +69,36 @@ int (* orig_open)( const char * pathname, int flags, ... ) = 0 ; // mode_t mode
 // extern
 int open( const char * pathname, int flags, ... ) // mode_t mode 
 {
+	// LD PRELOAD means calling open() calls this open() from this .so
+
+	fprintf( stderr, "This is the PRE_LOAD_ONE version of open() \n");
+
+	// simulating open( "filename", flags, ... ) needs VAR ARGS
+	// we lookup the original open() and call it
+	// actually the var args is not done fully
 
 	va_list args;
 	va_start( args, flags );
-	int mode = va_arg( args, int ); // 
+	int mode = va_arg( args, int ); // touch wood it was provided // ...
 	va_end( args );
-
-	fprintf( stderr, "open() called \n");
 
 	if(!call_dlsym( "open", & orig_open )) {
 		return -1;
 	}
 
+	if(0) // TEST a second lookup // though above would exit 
 	if(!call_dlsym( "open", & orig_open )) {
 		fprintf(stderr,"FAIL on SECOND LOAD\n"); // I pass it anyway
 	}
 
-	fprintf(stderr, "call open( %s, %d, %3.3o )\n", pathname, flags, mode );
+	fprintf(stderr, "call /* orig_open */ open( %s, %d, %3.3o )\n",
+		pathname, flags, mode );
+
 	int t = orig_open( pathname, flags, mode ); // mode_t from varargs
+
 	if(t<0) {
 		perror(pathname);
 	}
 	return t ; // fd
 
-//	errno = ENOENT;
-//	perror("errno from fake_open says");
-//	return -1 ;
 }

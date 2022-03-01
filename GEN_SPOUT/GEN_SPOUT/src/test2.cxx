@@ -203,12 +203,8 @@ using namespace SPOUT;
 class test_SPOUT_base // : public obj_ref
 {
  public:
-	// GEN_PS_t PS;
-	// NOW IN PS // buffer2 out;
 
-//		GEN_DOC_ARGS_t DOC_ARGS;
-//		GEN_PAGE_t PAGE;
-		GEN_PS_t PS;
+	GEN_PS_t PS;
 
 
 	bool list_end()
@@ -264,7 +260,7 @@ class test_SPOUT_base // : public obj_ref
 			INFO( "system() returned %d", t );
 			return FAIL_FAILED();
 		}
-	//	PASS("system(%s)", (STR0) cmd );
+		PASS("system('%s')", (STR0) cmd );
 		return true;
 	}
 
@@ -273,7 +269,10 @@ class test_SPOUT_base // : public obj_ref
 	*/
 	bool write_normalise_pdf_view() // get .out TEXT
 	{
-		STR0 BASENAME = "/tmp/test1_tmp";
+		// decide on the filenames, call ps2pdf then viewer
+		// actually it is already in buf
+		// TODO print headers then main text
+		STR0 BASENAME = "/tmp/test1_tmp_";
 		dir_name_ext f_name;
 		buffer2 name_1;
 		buffer2 name_2;
@@ -291,7 +290,7 @@ class test_SPOUT_base // : public obj_ref
 		// shared cmd ARGV as STR0
 		buffer2 cmd;
 
-	 if(0) { // test normalising PS though some
+	 if(1) { // test normalising PS though some
 		cmd.print("ps2ps %s %s", (STR0) name_1, (STR0) name_2);
 		if(!system_cmd( cmd ) ) return FAIL_FAILED();
 	}
@@ -329,6 +328,7 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 	{
 		PS.PAGE.page_wh.set( 50, 30 ); // set page size before
 		PS.PAGE.page_wh.set( 594, 841 ); // just shy of ...
+		PS.PAGE.page_wh.set( 500, 700 ); // within screen
 	// do this at END of document first !!
 	// KEEP vars_api of SCRIPT
 	//  vars_api auto_keep scripts varso

@@ -1,4 +1,5 @@
 if ./M_exe 
 then
-./mk_req.exec CA_ZONE C_server
+	cd obj
+	./mk_req.exec CA_ZONE C_server
 fi

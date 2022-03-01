@@ -1,0 +1,98 @@
+
+	The default SSL behaviour is for items in files
+	If we want them in database fields, we can copy from files,
+	or we can use direct memory values
+
+SSL	BIO * bio_mem = BIO_new(BIO_s_mem());
+SSL	BIO * bio_mem = BIO_new_mem_buf( in, len_max );
+
+	CB_get_phrase_base * _cb_pass
+
+		holds a pass phrase, and the callbacks
+		NULL means keys will be naked
+		this usually means there will be NO DIALOG
+		or that YOUR dialog API callbacks are used
+		ie the secret phrase is held by this thing
+
+		You will only know if a phrase was used
+		by clearing using and testing flg_CB_called
+
+		callback used to get actual types passphrase from keyboard
+		get_phrase( buf, maxlen ) // actual plain text of pass phrase
+		new pass_phrases would need to be asked for twice
+		and check for sufficient entropy
+
+		C_get_passwd_fn(char *buf, int size, int rwflag, void *u)
+		// cb_pass = (cast) u // 
+
+	class CB_get_phrase_blk1 : public CB_get_phrase_base
+
+		actually holds { blk1 phrase; } 
+		set_phrase("my pass phrase");
+	
+	class CB_get_phrase_key_holder : public CB_get_phrase_base
+
+		actually holds { key_holder & key; }
+		key may be binary // I THINK // pass_phrase may permit
+	
+	class key_holder // and key_iv
+
+		hold { blk_key } the actual key
+		also { blk_iv } unsecret part of active key
+		also { cypher_type } crypt method
+		key may be binary
+
+	class key_munger ... etc
+
+		useful for setting up key_holder
+		may need identical code at both ends
+		key may be binary
+
+
+
+
+
+
+	EVP_P_KEY	holds an RSA key PUB and/or PRIV with pass_phrase
+
+		read_from_file( filename )
+		read_from_pem_text( STR0 )
+		read_from_buffer( buffer1 )
+			PEM_read_bio_PrivateKey( ... )
+		write_PrivateKey( blk1 & buf ) // cb_pass used
+		write_PublicKey( blk1 & buf ) // clear ASCII PEM
+		// PKCS8 // that is PEM encoded ASCII over binary --markers--
+		// That is pass_phrase encoded, or not, as per
+
+
+		gen_RSA_nbits( int nbits ) // both priv and pub
+	
+	X509_cert
+
+		holds an X509 cert, and TODO the ref counts
+
+		get_str_CN(buffer1 & buf) // append to buf
+		DER_out( buffer2 & buf ) // dump X509 in DER format
+		DER_in( buffer2 & buf ) // dump X509 in DER format
+		PEM_out( buffer2 & buf ) // dump X509 in DER format
+		PEM_in( CB_get_phrase_base * cb_phrase, str0 val ) // buffer2
+		PEM_from_file( cb_phrase, filename ) // pass phrased
+
+		show_subject() // INFO debugging 
+		show_issuer() // INFO debugging 
+		show_some_info() // useful debugging 
+		show_more_info() // sort of CERT_to_TEXT but not
+
+	        bool X509_cert::
+		CA_sign_with_issuers_key( EVP_P_KEY * key )
+
+			key is CA_key_priv // +pub
+			must already be signed by 
+
+
+
+
+
+
+
+

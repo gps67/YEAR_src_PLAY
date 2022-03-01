@@ -151,7 +151,7 @@ int PLUS_SetFromAnyProc(
 		gdb_break_point();
 		return TCL_ERROR;
 	}
-	gdb_invoke(false);
+if(0)	gdb_invoke(false);
 	TCL_ObjType_PLUS * PLUS
 	= get_PLUS_from_obj_RAW( obj );
 	INFO( "PLUS %p obj %p", PLUS, obj );

@@ -94,6 +94,12 @@
 
 .SUFFIXES: .o .cxx .so .exec .h
 
+Default: module
+
+default: module
+
+module: $(Module).so
+
 dgb: $(Module).so
 	tclsh ../tests/test_$(Module).tcl 2>&1 
 

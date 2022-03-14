@@ -1,0 +1,24 @@
+
+2022-03-13 Mar Sun 01:56 # 44 #  TCL_Binary.txt
+
+	TCL uses strings to hold binary ...
+
+	https://wiki.tcl-lang.org/page/Working+with+binary+data
+
+
+
+	fconfigure $fp -translation binary
+
+	set fp [open $filename r]
+	fconfigure $fp -translation binary
+	set data [read $fp]
+	close $fp
+
+
+	YES	string length
+	NO	string bytelength
+
+		-translation binary
+	
+	
+

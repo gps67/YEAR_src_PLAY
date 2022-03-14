@@ -1,6 +1,6 @@
 [ -d obj ] || mkdir obj
-cd obj
+# cd obj
 
-make -f ../MK/Makefile "$@" 2>&1
+make -C obj -f ../MK/Makefile "$@" 2>&1
 # make -f ../MK/Makefile "${@:--k}" 2>&1
 echo stty sane '#' loses less read 1 char responsiveness

@@ -118,6 +118,16 @@ bool	blk1::get_space_fn( unsigned space )	// add padding (first time exact)=0)
 
 	except when buff_static was/will be used
 	maybe add trailinbg_nul 
+
+	TODO zero out memory, realloc, and resize
+
+	TODO flag in bits -- along with CSET
+
+		zero above
+		zero data
+	
+	maybe relaxed clear when realloc and free, DTOR
+	or add this to a list of things to clear
 */
 bool	blk1::resize_bytes( unsigned N )	// to exact N bytes
 {

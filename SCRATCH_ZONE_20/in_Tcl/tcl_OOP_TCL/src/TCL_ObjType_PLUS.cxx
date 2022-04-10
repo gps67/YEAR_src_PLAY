@@ -135,6 +135,25 @@ int PLUS_SetFromAnyProc(
 		It does not achieve much
 		and it is confusing whilst not doing it
 
+		man Object.3 
+		man ObjectType.3 
+
+			if obj->typePtr {
+				must call free internal rep
+				as the object is OLD_TYPE intact
+			}
+			PTR1 = NULL
+			ptr2 = NULL
+			typePtr = NEW_TYPE
+			set internal rep from STRING
+
+		MISSING ARG held in POOL
+
+			each C function carries the idx of NEW_TYPE
+			but we want that as a parameter
+			need a pool[idx] of functions + data
+			register THE_TYPE gets functio that knows idx
+
 	*/
 	/*
 		PLUS_SetFromAnyProc is set into a typePtr somewhere

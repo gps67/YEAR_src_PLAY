@@ -1,5 +1,13 @@
 
 	T=obj_ref0.o
 	T=lots
-	./mk "${@:-$T}" 2>&1 | less
+	PTN=Error
+	PTN=VNC
+	PTN=error
+	PTN=FAIL
+	SRCH=
+	SRCH=+/$PTN
+	SRCH="-p $PTN"
+	set -x
+	./mk "${@:-$T}" 2>&1 | less $SRCH
 	# ./mk "$@" 2>&1 | less

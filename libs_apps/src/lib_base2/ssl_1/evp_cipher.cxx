@@ -6,6 +6,9 @@
 // #include "buffer2.h"
 #include "openssl/evp.h"
 
+// LURK // because DES_fcrypt is deprecated when called through evp_cipher_base
+#include <openssl/des.h>
+
 	// http://www.vidarholen.net/contents/junk/vnc.html
 	// says each byte of the password is bit-mirrored hilo->olih
 	// because that keeps the LSB (B!=C) when losing one bit
@@ -27,6 +30,11 @@ evp_cipher_base::evp_cipher_base()
 bool evp_cipher_base::init_ctx()
 {
 	if(!ctx) {
+		FAIL("ctx was not NULL");
+		ctx = NULL; // in case 
+	}
+
+	if(!ctx) {
 		ctx = EVP_CIPHER_CTX_new(); // added 2021_04 // how before ?
 		if(!ctx) return FAIL("NULL from EVP_CIPHER_CTX_new()");
 	}
@@ -42,7 +50,11 @@ evp_cipher_base::evp_cipher_base(
 {
 	en_crypt_flag = enc_flag;
 	init_ctx();
-	init_from_spec( key_munged, enc_flag );
+	if(!
+		init_from_spec( key_munged, enc_flag )
+	) {
+		FAIL("CTOR failed - but not throwing");
+	}
 }
 
 
@@ -52,10 +64,10 @@ bool evp_cipher_base::init_from_spec( key_holder & key_munged, en_crypt_tag enc_
 //	I think not because that simply overwrites with NULs
 // ??	init_ctx();
 //
-	if(!init( key_munged.get_cipher_type() )) return false;
-	if(!init_enc( enc_flag )) return false;
-	if(!init_iv( key_munged.blk_iv )) return false;
-	if(!init_key( key_munged.blk_key )) return false;
+	if(!init( key_munged.get_cipher_type() )) return FAIL_FAILED();
+	if(!init_enc( enc_flag )) return FAIL_FAILED();
+	if(!init_iv( key_munged.blk_iv )) return FAIL_FAILED();
+	if(!init_key( key_munged.blk_key )) return FAIL_FAILED();
 	return true;
 }
 
@@ -64,17 +76,17 @@ evp_cipher_base::evp_cipher_base( str0 namedtype )
 	init_ctx();
 	const EVP_CIPHER * type = EVP_get_cipherbyname((STR0) namedtype );
 	if(!type) {
-		FAIL("cannot figure the named EVP_CIPHER type");
+
 		INFO("NULL value from EVP_get_cipherbyname('%s');", (STR0)namedtype);
 		THROW_dgb_fail(namedtype);
 	}
-	init( type );
+	if(!init( type )) FAIL_FAILED(); // should throw
 }
 
 evp_cipher_base::evp_cipher_base(const EVP_CIPHER * type )
 {
 	init_ctx();
-	init( type );
+	if(!init( type )) FAIL_FAILED(); // should throw
 }
 
 
@@ -87,6 +99,7 @@ bool evp_cipher_base::init( const EVP_CIPHER * type )
 	// by calling the same Init function
 	// giving them names makes it understandable
 	//
+
 		ENGINE *impl = NULL;
 		unsigned char *key = NULL;
 		unsigned char *iv = NULL;
@@ -94,7 +107,18 @@ bool evp_cipher_base::init( const EVP_CIPHER * type )
 	
 	bool ok = EVP_CipherInit_ex( ctx, type, impl, key, iv, enc );
 	if(!ok) {
-		return FAIL("EVP_CipherInit_ex() returned false");
+// gdb_invoke(false);
+		// for me 'des-cbc' is the failing EVP_CIPHER type
+		// that is used in VNC password decode
+		// there were deprecated warning over there
+		// maybe another route to same DES functionality
+		FAIL("SSL_ERROR MESSAGE ABOVE");
+		INFO("EVP_CIPHER type == '%s'",  EVP_CIPHER_name(type));
+		INFO("EVP_CIPHER desc == '%s'",  EVP_CIPHER_description(type));
+		INFO("0x%p", this ); 
+// DUMPS //
+//		INFO("%s", (STR0) dgb_info_str() ); 
+		return FAIL("EVP_CipherInit_ex() returned false probably because type");
 	}
 	if(1) {
 		WARN("Forcing padding to 1 ");
@@ -339,9 +363,13 @@ bool evp_cipher_base:: set_padding( bool on )
 
 
 bool evp_cipher_base::get_space_for( int in ) {
+	//
 	// one for a guard NUL and also for when in==0 
 	// the guard NUL will be pointless
 	// but someone will add it and cause a realloc (maybe)
+	// the block size() is expected by SSL
+	// inlen probably part of that blocksize so overshoot
+	//
 	return buf_out.get_space( in + cipher_block_size() - 1 + 1 );
 }
 
@@ -385,10 +413,12 @@ bool evp_cipher_base::update_from_str( str0 s )
 	return update( s, strlen(s) );
 }
 
-bool evp_cipher_base::update_from_buf()
+bool evp_cipher_base::update_from_buf() 
 {
 	bool ok = update_from_blk( buf_in );
-	buf_in.clear();
+	buf_in.zero_used(); // overwrite data in with NUL bytes
+	buf_in.clear(); // done
+	if(!ok) FAIL_FAILED();
 	return ok;
 }
 

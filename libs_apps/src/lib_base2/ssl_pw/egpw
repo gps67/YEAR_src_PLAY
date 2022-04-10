@@ -1,0 +1,1 @@
+echo abcd5678 | vncpasswd -f

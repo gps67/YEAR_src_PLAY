@@ -104,7 +104,7 @@ fn_WARN() {
 	else
 		echo >&2 "# WARN # you should pass $errn \$? to WARN as first arg"
 	fi
-	echo -n >&2 "# WARN # $errn # $* # "
+	echo >&2 "# WARN # $errn # $* # "
 	return 1
 }
 

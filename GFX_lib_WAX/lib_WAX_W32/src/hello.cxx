@@ -2,171 +2,122 @@
 
 #include <stdio.h>
 
-#define APPNAME "HELLO_WIN"
+// #define APP_NAME_wnd_class "APP_NAME_wnd_class" // STEPS // APP_NAME edit
+#define APP_NAME_wnd_class "wnd_class_MINX"
+#define WINDOW_TITLE "Window Title"
 
-char *pWindowText;
+char * window_text;
 
-HINSTANCE g_hInst = 0;          // current instance of 'module'
+HINSTANCE h_module = 0;          // current instance of 'module'
 
-void CenterWindow(HWND hWnd);
+void CenterWindow(HWND h_window ); // h_window handle of window WND
 
-/*! obj_ref - refcounted object
-*/
-struct obj_ref_t {
-	virtual ~obj_ref_t() {}
-	obj_ref_t() {ref_count = 0;}	// maybe demand an extra loop allocator ?
-	int ref_count;
-
-	void ref_incr() {
-		ref_count ++;
-	}
-	void ref_decr() {
-		ref_count --;
-		if( ref_count == 0 ) {
-			delete this;
-		}
-	}
-
-	virtual
-	void on_ref_count_zero() {
-		// pre-call // calls DTOR twice !!
-		// in C would check this NULL
-		// it might decide to ref_incr ?
-	}
-
-	static
-	void ref_incr(obj_ref_t *& obj) {
-		obj->ref_count ++;
-	}
-	static
-	void ref_decr(obj_ref_t *& obj) {
-		obj->ref_count --;
-		if( obj->ref_count == 0 ) {
-			// protect against tree loops
-			// ensure PTR left as NULL
-			obj_ref_t * obj_2 = obj;
-			obj = NULL;
-			// OPTION // not inline from here //
-			// OPTION // THREE calls per DTOR!
-			obj_2 -> on_ref_count_zero(); // add CTXT here ?
-			if( obj_2-> ref_count == 0 ) {
-				delete obj_2; // call two DTORs inefficient
-				// that also deletes memory
-				// not same for MMAP tree
-				// which W_t never is
-			}
-		}
-	}
-	// OK instead of ref_hold<T> use these
-	static
-	bool set_ptr(obj_ref_t *& ptr2, obj_ref_t * obj) {
-		if(!obj) return set_NULL( ptr2 );
-		ref_incr( obj );
-		obj_ref_t * ptr2_old = ptr2;
-		ptr2 = obj;
-		if( ptr2_old ) ref_decr( ptr2_old );
-		return true;
-	}
-	static
-	bool set_NULL(obj_ref_t *& ptr2) {
-		obj_ref_t * ptr2_old = ptr2;
-		ptr2 = NULL;
-		if( ptr2_old ) ref_decr( ptr2_old );
-		return true;
-	}
-
-};
-
-/*!	W_t - VTBL defines all that is a widget
-
-	On WIN32 the HWND hwnd holds a lot of XYWH info
-	Some extra fields are held here, wich is not efficient
-
-	There is a circular reference, as WHND holds the W_t * self;
-
-	All the different window types will need their own subclass of W_t,
-	and they will all need to recognise the same base class API
-
-	To get back to (or near to) the specific W_t subclass,
-	we need some design luck. eg a button hooks into the
-	on_click() at the BUTTON_t level to activate btn_run() (slow/fast)
-	and the specific subclass holds the data that fits btn_run()
-	When following that chain of calls, the BASE type magically 
-	upgrades from W_t to SLOW_BUTTON_that_starts_a_process_t
-
-	In that example virtual btn_run() is added by the BUTTON_t
-	subtree, (SLOW_ means change_FGBG add_lock start_activity change FGBG)
-
-*/
-struct W_t : public obj_ref_t{
-	virtual ~W_t() {}
-	W_t():hwnd(0) {}
-
-	HWND hwnd;
-};
+//  wnd_proc - windows_event_handler function
+// todo OBJ = lookup( h_window )
+// on_WM_PAINT
 
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK wnd_proc ( // all TOPLEVELS type WAX same WNDPROC
+  HWND h_window,
+  UINT message,
+  WPARAM wParam,
+  LPARAM lParam
+ )
 {
 /*
-	hwnd		<== window handle
+	h_window	window handle
 	message		WM_MESSAGE
 	wParam		eg 'A' when that key pressed
 	lParam		eg scancode encoded when that key pressed
 
-	Seems that we will need to do a HT lookup of hwnd
+	Seems that we will need to do a HT lookup of h_window
 	to find the thing that it corresponds to
 
-	Then theres sub-windows, so hwnd is a detail with a parent
+	Then theres sub-windows, so h_window is a detail with a parent
+	Both get recorded
 */
 
 	switch (message)
 	{
 		// ----------------------- first and last
 		case WM_CREATE:
-printf( "WndProc( W: %X, MSG: %X, wP: %X, lP: %X ); WM_CREATE g_hInst = %X \n", hwnd, message, wParam, lParam, g_hInst );
-			CenterWindow(hwnd);
+printf( "wnd_proc( W: 0x%X, MSG: 0x%X _WM_CREATE, wP: 0x%X, lP: 0x%X ); WM_CREATE h_module = 0x%X \n", h_window, message, wParam, lParam, h_module );
+			CenterWindow( h_window );
 			break;
 
 		case WM_DESTROY:
-			// FREE USER DATA etc
 			PostQuitMessage(0); // send the message 0==> WM_QUIT
 			break;
 
 
 		// ----------------------- get out of it...
 		case WM_RBUTTONUP:
-			DestroyWindow(hwnd);
+			DestroyWindow( h_window );
 			break;
 
 		case WM_KEYDOWN:
-printf( "WndProc( %X, %X, %X, %X ); WM_KEYDWN\n", hwnd, message, wParam, lParam );
+printf( "wnd_proc( %X, %X, %X, %X ); WM_KEYDWN\n", h_window, message, wParam, lParam );
 			if (VK_ESCAPE == wParam)
-				DestroyWindow(hwnd);
+				DestroyWindow( h_window );
 			break;
 
 
 		// ----------------------- display our minimal info
 		case WM_PAINT:
 		{
-printf( "WndProc( %X, %X, %X, %X ); WM_PAINT\n", hwnd, message, wParam, lParam );
-			PAINTSTRUCT ps;
-			HDC         hdc;
-			RECT        rc;
-			hdc = BeginPaint(hwnd, &ps);
+printf( "wnd_proc( %X, %X, %X, %X ); WM_PAINT\n", h_window, message, wParam, lParam );
+printf( "// # // INDENTED_BLOCK of TEXT calling GDI api\n"); // paint_zone
 
-			GetClientRect(hwnd, &rc);
-			SetTextColor(hdc, RGB(240,240,96));
-			SetBkMode(hdc, TRANSPARENT);
-			DrawText(hdc, pWindowText, -1, &rc, DT_CENTER|DT_SINGLELINE|DT_VCENTER);
+		// LOCAL PRINT_HEAD_item
+		// h_window hdc.CTOR = PAIRED_CALL_begin BegainPaint()
+			PAINTSTRUCT PAINT_ZONE;
 
-			EndPaint(hwnd, &ps);
+		// hdc = BeginPaint( window, PAINT_ZONE )
+			HDC         hdc; // handle draw context
+			// any other CTORS before BeginPaint_ZONE
+			hdc = BeginPaint( h_window, &PAINT_ZONE );
+
+		// rect = Client_Rect( window ) // after title, scrolls, menu
+			RECT        rect; // h_window . Client_Rect 
+			GetClientRect( h_window, &rect );
+
+		// FGBG text.fgbg.text_colour // hdc = this_paint_zone
+		// FGBG item = text.fgbg.text_colour // hdc = "TextColor"
+
+			SetTextColor( hdc, RGB(240,240,96) );
+
+		// BACKGROUND TRANSPARENT
+
+			SetBkMode( hdc, TRANSPARENT );
+
+		// DRAW list //
+
+		   //	traverse_tree_calling_DRAW
+
+		// DRAW text // DT_ auto CENTER single LINE
+
+			DrawText(
+		 	  hdc,
+			  window_text, // as if this is a button sort of hting 
+			  -1, // ??
+			  &rect, // window where centered
+			  // V CENTER ITEM 
+			  DT_CENTER | DT_SINGLELINE | DT_VCENTER
+			 ) ;
+
+			// LAST_UPTO_EOT
+			// BLANK_LINE after indented SCRIPT // EOT
+printf( "// # // INDENTED_BLOCK_EDGE\n");
+			EndPaint( h_window, &PAINT_ZONE);
 			break;
+
+printf( "// # // INDENTED_BLOCK_api\n");
+printf( "// # // INDENTED_BLOCK_is_CODE_API_TEXT\n"); // eg DRAW WM_PAINT()
 		}
 
 		// ----------------------- let windows do all other stuff
 		default:
-			return DefWindowProc(hwnd, message, wParam, lParam);
+			return DefWindowProc( h_window, message, wParam, lParam);
 	}
 	return 0;
 }
@@ -193,48 +144,52 @@ http://msdn2.microsoft.com/en-us/library/ms633574(VS.85).aspx
 	or other method to hold ClientData of window
  */
  class wnd_class {
-	WNDCLASSEX wc;
-	ATOM wc_atom;
-	friend class create_window_helper;
-/*
 
-struct WNDCLASSEX { 
-	UINT       cbSize; 		// its own
-	UINT       style; 		// CLASS STYLE -vs- WINDOW STYLE -?-
-	WNDPROC    lpfnWndProc; 	// WndProc function
-	int        cbClsExtra; 		// more memory for Cls
-	int        cbWndExtra; 		// more memory per Wnd - Object *
-	HINSTANCE  hInstance; 		// the APPLICATION instance or DLL
-	HICON      hIcon; 
-	HCURSOR    hCursor; 
-	HBRUSH     hbrBackground; 
-	LPCTSTR    lpszMenuName; 
-	LPCTSTR    lpszClassName; 
-	HICON      hIconSm; 
-};
-*/
+	WNDCLASSEX wc; // wnd_class uses abbr wc = WIN32_WND_CLASS
+	/* struct WNDCLASSEX { 
+		UINT       cbSize; 		// its own
+		UINT       style; 		// CLASS STYLE -vs- WINDOW STYLE -?-
+		WNDPROC    lpfnWndProc; 	// wnd_proc function
+		int        cbClsExtra; 		// more memory for Cls
+		int        cbWndExtra; 		// more memory per Wnd - Object *
+		HINSTANCE  hInstance; 		// the APPLICATION instance or DLL
+		HICON      hIcon; 
+		HCURSOR    hCursor; 
+		HBRUSH     hbrBackground; 
+		LPCTSTR    lpszMenuName; 
+		LPCTSTR    lpszClassName; 
+		HICON      hIconSm; 
+	}; */
+	ATOM wc_atom; // what is this - if I added it ?
+	friend class create_window_helper;
 
   public:
 	wnd_class(
-		HINSTANCE hInstance,	// the application that own the class
-		const char * app_name,	// CLASS of main window
-		WNDPROC wndProc		// the WM_message handler
+		// h_instance =  this DLL or APP
+		HINSTANCE h_Instance,	// this APP ID // or that own the class
+		// option name == xFFFF byte_A byte_B u16_BA
+		// name "Module" // or api_BUTTON
+		const char * app_WND_CLASS_name,	// GUI_Name == "MINX" // WAX_
+		// pointer to the code that
+		WNDPROC wndProc		// the WM_message handler lp_fn
 	)
 	{
-printf( "wnd_class( hInstance=%X, '%s' ); \n", hInstance, app_name );
+printf( "wnd_class( h_Instance=%X, '%s' ); \n", h_Instance, app_WND_CLASS_name );
 		init_null();
-		// this class belongs to the hInstance module / app
-		wc.hInstance = hInstance;
+
+		// class belongs to the h_Instance module // app api exe dll
+		wc.hInstance = h_Instance;
 		// the class is found by name in 3 search places
-		wc.lpszClassName = app_name;
-		// the point of a class, is the handler
+		wc.lpszClassName = app_WND_CLASS_name;
+		// the point of a class, is the handler func
 		wc.lpfnWndProc = wndProc;
 
+		// make it all default usable
 		default_bg_black();
 		default_icon();
 		default_cursor();
 
-		default_style();
+		default_style(); // accept double clicks
 	}
 
 	void init_null()
@@ -247,16 +202,10 @@ printf( "wnd_class( hInstance=%X, '%s' ); \n", hInstance, app_name );
 		wc.cbWndExtra = 0;	// must be 40 or less for W98
 		wc_atom = 0;
 
+		// TODO cdSize = sizeof(this) // of derived this
+
 		/*
-			T * P = (T*) getWindowLong( hwnd, GWL_USERDATA );
-
-		 64 bit not 32 bit (as well as)
-			SetWindowLongPtr(hWnd, GWLP_USERDATA, this);
-
-		SetProp/RemoveProp/
-
-https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowlongptra
-
+			T * P = (T*) getWindowLong( h_window, GWL_USERDATA );
  * 		*/
 	}
 
@@ -320,7 +269,7 @@ https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowl
 	}
  };
 
- struct create_window_helper
+ struct create_window_helper // helps you create window frames outer_window
  {
 	create_window_helper()
 	{
@@ -328,20 +277,22 @@ https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowl
 	}
 
 	const char * window_class_name; // of special type atomic ROM no free
-	int X,Y,W,H;
+	// WIN32 requires a window_class _name // "window_class" "window" "app_name"
+	// ADD // wc_atom
+	HWND hwnd_parent; // ?? ROOT or WMAN _HWND
+	HMENU hwnd_menu; // window.menu.windows
+	int X,Y,W,H; // zone // 
 	long style;
-	HWND hwnd_parent;
-	HMENU menu;
 
 	void init()
 	{
 		hwnd_parent = 0;
+		hwnd_menu = 0;
 		X = CW_USEDEFAULT;
 		Y = CW_USEDEFAULT;
 		W = CW_USEDEFAULT;
 		H = CW_USEDEFAULT;
 		style = 0;
-		menu = 0;
 		window_class_name = NULL; // LURK not str1 malloc
 	}
 
@@ -355,102 +306,140 @@ https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowl
 
 	void set_window_class_name( const char * name )
 	{
-		window_class_name = name;
-		window_class_name = "EDIT";
 		window_class_name = "BUTTON";
+		window_class_name = "EDIT";
+		window_class_name = name;
 	}
 
 	void set_window_class_name( const wnd_class & window_class )
 	{
+		// wc_atom = window_class.wc_atom;
+		set_window_class_name( window_class.get_ClassName() );
+		if(1) // try it
 		if( window_class.wc_atom ) {
+			/*
+				so on WINE WIN32 AMD64
+				32 bit int handle can be put in 64 bit register
+				and is found
+				without this, it still runs BUT
+				window title bar not found from class
+				window title appears in body
+				window appears white not black
+				text appears black not yellow
+				text appears top left not centralised
+				TODO: clear this down
+
+				WORSE: when _name was "BUTTON" that happened
+				presumable because
+
+			-- after set STR from wc_atom
+			printf( "window_class_name == '%s' \n", window_class_name );
+			window_class_name == 'wine: Unhandled page fault on read access to 0000C027 at address F7B856BA (thread 0009), starting debugger...
+
+			*/
 			window_class_name = (const char *)  window_class.wc_atom;
-			// CAST // putting a smaller INT inside a larger INT
-			// CAST // BUT it is NOT a (const char *)
-		} else
-			set_window_class_name( window_class.get_ClassName() );
+			// warning cast u32 to u64_PTR_t PTR;
+		}
+	// FIXME unravel this TYPE UNION // SEE_AS PRE_TOKEN_ISED "STR"
+	// FIXME unravel this TYPE UNION // SEE_AS PRE_TOKEN_ISED_PSG "SCRIPT"
+	// FIXME unravel this TYPE UNION // SEE_AS PRE_TOKEN_ISED_TEXT "SCRIPT"
+	// FIXME PRE_TOKEN_ISED_TEXT "{ SCRIPT }" // PSG_sublex
+	// FIXME PARSED_TEXT "{ SCRIPT }" // PSG_sublex
+	// FIXME PARSED_TEXT "{ DATA_DESC_SCRIPT }" // PSG_mini_machines
+	//
+	//	if( window_class.wc_atom ) {
+	//		window_class_name = (const char *)  window_class.wc_atom;
+	//		STRING != integer handle
+	//	} else
+	//		set_window_class_name( window_class.get_ClassName() );
 	}
 
 	bool create_window(
-	 HINSTANCE g_hInst,          // current instance MODULE
+	 HINSTANCE h_module,          // current instance MODULE
 	 HWND & hwnd_new_window,
-	 const char * border_title
+	 const char * window_border_title
 	)
 	{
-	// create the browser
-	 hwnd_new_window = CreateWindow(
-		window_class_name,
-		border_title,
-		style,
-		X, Y, W, H,
-		hwnd_parent,
-		menu,
-		g_hInst,
-		0		// MDI would add a menu + subid
+	// create the TOPLEVEL_api WINDOW_api // enable WMAN api
+	 hwnd_new_window = CreateWindow( // "/* WIN32_api */" // CALLING NOW
+		window_class_name,	// "/* Default */" // STR1 AppName
+		window_border_title,    // "%s" "${APP_name}" // "UDEF"
+		style, // double_click_opts WIN32,SYMBOLS { eg RTFM }
+		X, Y, W, H, // position of window XYWH
+		hwnd_parent, // parent surface api
+		hwnd_menu, // is this a WIN32 api shortcut
+		h_module, // WIN32 api module // ?? //
+		0		// MDI would add a hwnd_menu + subid
 	 );
-printf( "create_window( %X, '%s' ); => %X \n", g_hInst, border_title, hwnd_new_window );
+printf( "create_window( %X, '%s' ); => %X \n", h_module, window_border_title, hwnd_new_window );
 	 return hwnd_new_window != 0;
 	}
  };
 
+//	 hwnd_new_window = eg_CreateWindow( // "/* WIN32_api */" // CALLING NOW
+//	 "/* WIN32_api */" 
+//	 "/* %s */" // LIBR_ITEM // import LIBR in CODE_ZONE // data_SPEC
+
+
  struct hwnd_base
  {
-	HWND hwnd;
+	HWND h_window;
 	hwnd_base( HWND h )
 	{
-		hwnd = h;
+		h_window = h;
 	}
  };
 
-}; // namespace WAX
+};
 using namespace WAX;
 
+// like main( ARGV ) but WinMain( w_id, w_prev, line_str, nCmdShow
+
 int APIENTRY WinMain(
-	HINSTANCE hInstance,	// of the program
-	HINSTANCE hPrevInstance, // ignore
-	LPSTR     lpCmdLine,	// command line
+	HINSTANCE h_Instance,	// of the program
+	HINSTANCE h_Instance_prev, // ignore
+	LPSTR     CMD_ARGS_str,	// command line // char* args; not progname
 	int       nCmdShow)
 {
 
 /*
 	should I keep the hInstance with
-	g_hInst = hInstance;
+	h_module = h_Instance;
 	because it is otherwise unset
 */
 
-	MSG msg;
+	MSG msg; // local MSG
 
 	wnd_class window_class(
-		hInstance,
-		"app_name",
-		(WNDPROC)WndProc
+		h_Instance,
+		APP_NAME_wnd_class, // "wnd_class_MINX",
+		(WNDPROC)wnd_proc
 	);
+	// your edits here, then
 	window_class.Register_Class();
 
-	HWND hwnd;
+	HWND h_window; // window_handle 
+	// top_level window // no need to record id // or tokenised
 
 	create_window_helper CW;
 	CW.init_default();	// specific to window type
 	CW.set_window_class_name( window_class );
 
 	if( !CW.create_window(
-		 g_hInst,          // current instance
-		 hwnd,
-		 "SECOND TITLE"
+		 h_module,	// current instance
+		 h_window,	// RETVAR
+		 WINDOW_TITLE // "window_title"
 	) ) {
-		return 0;
+	// eg	return FAIL( "explain" ); // MATCH (bool) == false == explain
+		return 1; // get error code
 	}
 
-	/*
-		TODO	associate hwnd with OBJ *
-			deep so that WndProc is OOP
-	*/
-
 // TUTOR says these are needed .. but apparently done by messages
-// 	ShowWindow(hWnd, SW_SHOWNORMAL);
-// 	UpdateWindow(hWnd);
+// 	ShowWindow( h_window, SW_SHOWNORMAL);
+// 	UpdateWindow( h_window );
 //
 
-	pWindowText = lpCmdLine[0] ? lpCmdLine : (char *)"Hello Windows!";
+	window_text = CMD_ARGS_str[0] ? CMD_ARGS_str : (char *)"Hello Windows!";
 
 	// Main message loop:
 	while (GetMessage(&msg, NULL, 0, 0) > 0)

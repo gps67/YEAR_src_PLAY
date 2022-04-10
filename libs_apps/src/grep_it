@@ -1,0 +1,6 @@
+# -a # as if ascii
+# -s # silent if absent or unreadable
+PTN="decrypt_vncpass"
+PTN="blk_base64"
+PTN="${1:-$PTN}"
+grep -a -s "$PTN" */*/*

@@ -21,6 +21,11 @@
 
 namespace AUTH {
 
+ /*!
+ 	when the computer generates random passwords
+
+	TODO: upper only // digits only // letters only // 
+ */
  class PW_UTIL_CSET {
   public:
 	static bool pick_n_random_bytes(
@@ -85,12 +90,19 @@ namespace AUTH {
  };
 
  class PW_UTIL_VNC {
+ 	// lhs = process rhs //
+	// plain64 is plain secret hidden in base64 // recommended 
+	// _TRAD uses DES_fcrypt // evp_cipher is the upgrade to nowhere
   public:
 	static bool RAND_pass8_dense_vnc( buffer2 & buff );
 	static bool encrypt_vncpass64( buffer2 & crypt, const char * plain64 );
 	static bool encrypt_vncpass( buffer2 & crypt, const char * plain );
-	static bool decrypt_vncpass( const char * crypt, buffer2 & plain );
-	static bool encrypt_vncpass_TIGHT( buffer2 & crypt, const char * plain );
+	static bool encrypt_vncpass_EVP( buffer2 & crypt, const char * plain );
+	static bool encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain );
+	static bool decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt );
+	static bool decrypt_vncpass_EVP( buffer2 & plain, const char * crypt );
+	static bool decrypt_vncpass( buffer2 & plain, const char * crypt );
+	static bool decrypt_vncpass64( buffer2 & plain64, const char * crypt );
 	static bool hex10_encrypt_vncpass( buffer2 & hex10crypt, const char * plain );
 
 	static bool vncpassfile_read(
@@ -101,9 +113,14 @@ namespace AUTH {
 	static bool vncpassfile_write_uid_gid(
 		const char * filename,
 		const char * pw_vnc_plain,
-		// mod is 400
+		// mod is 600
 		int uid,
 		int gid
+	);
+
+	static bool vncpassfile_write(
+		const char * filename,
+		const char * pw_vnc_plain
 	);
 
  };

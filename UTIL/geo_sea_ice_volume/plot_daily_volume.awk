@@ -379,8 +379,24 @@ function gen_pencil_data_2() {
 	YM = 2060
 	YH = 2090
 
+	YH1 = 2000
+	YM1 = YH1
+	YL1 = YH1
+
+	YH2 = 2230.47
+	YM2 = 2144.80
+	YL2 = 2057.45
+
+	VH1 = 25.22
+	VM1 = 15.85
+	VL1 =  6.29
+
+	VH2 = 0
+	VM2 = 0
+	VL2 = 0
 
 
+if (0) {
 	print Y0 " " VL > filename_plot_data_pencil
 	print YL " " V0 > filename_plot_data_pencil
 	print "" > filename_plot_data_pencil
@@ -391,6 +407,19 @@ function gen_pencil_data_2() {
 
 	print Y0 " " VH > filename_plot_data_pencil
 	print YH " " V0 > filename_plot_data_pencil
+	print "" > filename_plot_data_pencil
+}
+
+	print YH1 " " VH1 > filename_plot_data_pencil
+	print YH2 " " VH2 > filename_plot_data_pencil
+	print "" > filename_plot_data_pencil
+
+	print YM1 " " VM1 > filename_plot_data_pencil
+	print YM2 " " VM2 > filename_plot_data_pencil
+	print "" > filename_plot_data_pencil
+
+	print YL1 " " VL1 > filename_plot_data_pencil
+	print YL2 " " VL2 > filename_plot_data_pencil
 	print "" > filename_plot_data_pencil
 
 }

@@ -60,21 +60,6 @@ bool PW_UTIL_UNIX:: compare_passenc_pass( const char * crypted_true_pass, const 
 }
 
 
-// testing above code - variations of DES_fcrypt
-#if 0 // use standard UNIX crypt
-// CRYPT
-#include <unistd.h>
-                const char * crypted_attempt_U = crypt( attempt, salt );
-                INFO("crypted_attempt_U    '%s'", (STR0) crypted_attempt_U );
-                const char * crypted_attempt_O = DES_crypt( attempt, salt );
-                INFO("crypted_attempt_O    '%s'", (STR0) crypted_attempt_O );
-                char mid_buff[14];
-                const char * crypted_attempt = DES_fcrypt( attempt, salt, mid_buff );
-#endif
-
-///////////////
-
-
 // static 
 bool PW_UTIL_CSET:: pick_n_random_bytes(
 		char * buf,
@@ -201,6 +186,7 @@ bool PW_UTIL_UNIX:: easy_chars_2(const char * * ptr_str )
 		cset.reset_bit('o'); 	// if looks like digit it is digit
 		cset.reset_bit('I'); 	// if looks like digit it is digit
 		cset.reset_bit('B'); 	// B looks lik 8
+		cset.reset_bit('S'); 	// S looks lik 5
 
 		buffer2 builder;
 		builder.get_space( 128 ); // a good guess
@@ -249,6 +235,12 @@ bool PW_UTIL_UNIX:: RAND_pass8_easy2( buffer2 & buff )
 	return PASS("OK");
 }
 
+// this is not what I'm getting from my code :-(
+// sure it was once upon a time tho
+// echo abcd5678 | vncpasswd -f | hd -c
+// 00000000  c2 c9 a2 24 51 d1 5b d3    |...$Q.[.|
+// 0000000    �  �  �  $  Q  �  [  �                 
+
 /////////////////////////////////////////////////////
 // class vnc_key_holder
 
@@ -256,6 +248,7 @@ bool PW_UTIL_UNIX:: RAND_pass8_easy2( buffer2 & buff )
 vnc_key_holder:: vnc_key_holder()
 : key_holder( EVP_des_cbc() )
 {
+	INFO("CTOR BODY after CTOR key_holder( EVP_des_cbc())");
 }
 
 vnc_key_holder:: ~vnc_key_holder()
@@ -311,12 +304,39 @@ bool PW_UTIL_VNC:: encrypt_vncpass64( buffer2 & crypt, const char * plain64 )
 {
 	buffer2 plain;
 	blk_base64 conv;
-	if(!conv.decode( plain64, plain )) return FAIL_FAILED();
+	if(!conv.decode( plain64, plain )) return FAIL_FAILED(); // lhs -> rhs
 	// use DES_fcrypt openSSL THREAD SAFE replacement for UNIX crypt
 	return encrypt_vncpass( crypt, (STR0) plain );
 }
 
+//	static
+bool PW_UTIL_VNC:: decrypt_vncpass64( buffer2 & plain64, const char * crypt )
+{
+	buffer2 plain;
+	if(! decrypt_vncpass( plain, crypt ))
+		return FAIL_FAILED();
+
+	blk_base64 conv;
+	if(!conv.encode( plain, plain64 )) return FAIL_FAILED(); // lhs -> rhs
+	return true;
+}
+
+// switch _EVP _TRAD
+
 bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
+{
+	if(0)	return encrypt_vncpass_EVP( crypt, plain );
+	else	return encrypt_vncpass_TRAD( crypt, plain );
+}
+
+bool PW_UTIL_VNC:: decrypt_vncpass(  buffer2 & plain, const char * crypt )
+{
+	if(0)	return decrypt_vncpass_EVP( plain, crypt );
+	else	return decrypt_vncpass_TRAD( plain, crypt );
+}
+
+
+bool PW_UTIL_VNC:: encrypt_vncpass_EVP( buffer2 & crypt, const char * plain )
 {
 //	gdb_invoke();
 	const int LEN8 = 8;
@@ -324,6 +344,9 @@ bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 	vnc_key_holder vnc_well_known_key;
 	if(!vnc_well_known_key.set_to_well_known_vnc_key()) return FAIL_FAILED();
 	evp_cipher_base crypter( vnc_well_known_key, en_crypt );
+	//	test CTOR for it not failing
+	//	return FAIL_FAILED();;
+
 	int i = 0;
 	while( i++ < LEN8 ) {
 		u8 c = *plain;
@@ -339,7 +362,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 /*!
 	this is a dmo to compare results, and show direct calls
 */
-bool PW_UTIL_VNC:: encrypt_vncpass_TIGHT( buffer2 & crypt, const char * plain )
+bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 {
 	DES_cblock key = {23,82,107,6,35,78,88,7};
 	for( int i = 0; i<8; i++ ) {
@@ -356,7 +379,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TIGHT( buffer2 & crypt, const char * plain )
 	DES_key_schedule schedule;
 //	DES_set_odd_parity(& key); // pre-requirement
 	int t = DES_set_key_checked(& key, & schedule);
-	if(t) {
+	if(!t) {
 		// return FAIL("DES_set_key_...() %d", t);
 		FAIL("DES_set_key_...() %d", t);
 		DES_set_key_unchecked(& key, & schedule);
@@ -366,22 +389,28 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TIGHT( buffer2 & crypt, const char * plain )
 	DES_cblock output;
 
 	int PASSLEN = strlen( plain );
-	if(PASSLEN!=8) return FAIL("This is for auto generated dense passwords only");
+	if(PASSLEN!=8) return FAIL("This is for auto generated dense passwords only PASSLEN=%d", PASSLEN);
 	memcpy( input, plain, PASSLEN ); // hope its not short!
 	int enc = DES_ENCRYPT; // VNC encrypts
-	    enc = DES_DECRYPT; // encrypt, decrypt
-	    enc = DES_ENCRYPT; // encrypt, decrypt
 	DES_ecb_encrypt(& input, & output, & schedule, enc );
 
 	crypt.set( output, PASSLEN );
 	return true;
 }
 
+// static
+bool PW_UTIL_VNC:: decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt )
+{
+	return FAIL("TODO");
+}
+
+
 /*!
 	slightly strange left to right sequence that matches encrypt ?
 */
-bool PW_UTIL_VNC:: decrypt_vncpass( const char * crypt, buffer2 & plain )
+bool PW_UTIL_VNC:: decrypt_vncpass_EVP(  buffer2 & plain, const char * crypt )
 {
+
 //	gdb_invoke();
 	const int LEN8 = 8;
 	
@@ -421,11 +450,51 @@ bool PW_UTIL_VNC:: vncpassfile_read(
 	if(0) pw_vnc_stored.dgb_dump(filename);
 
 	// decrypt it
-	if(!decrypt_vncpass( pw_vnc_stored, pw_vnc_plain ))
+	if(!decrypt_vncpass( pw_vnc_plain, pw_vnc_stored ))
 		return FAIL_FAILED();
 
 	if(0) pw_vnc_plain.dgb_dump("TUT TUT");
 	return true;
+	return PASS("DONE");
+}
+
+/*!
+	write the vncpass from a file, encrypt it,
+	and also set the file permissions
+	THIS PRESUMES YOU ARE ROOT
+*/
+// static
+bool PW_UTIL_VNC:: vncpassfile_write(
+	const char * filename,
+	const char * pw_vnc_plain
+	// mod is 660
+)
+{
+	// encrypt it
+	buffer2 pw_vnc_stored;
+ if(0) {
+	if(!encrypt_vncpass( pw_vnc_stored, pw_vnc_plain ))
+		return FAIL_FAILED();
+ } else {
+	if(!encrypt_vncpass_TRAD( pw_vnc_stored, pw_vnc_plain ))
+		return FAIL_FAILED();
+ }
+
+	// store it
+	INFO("WRITING VNC to %s", (STR0) filename );
+	int mask = 0600; // file permission
+	if(!blk_write_to_file_mask(
+		pw_vnc_stored,
+		filename,
+		mask
+	)) {
+		WARN("That would have failed if you ran it as non-root a second time");
+		return FAIL_FAILED();
+	}
+
+	INFO("WRITING %s", (STR0) pw_vnc_plain );
+	pw_vnc_stored.dgb_dump("STORED");
+	INFO("abcd5678 => c2 c9 a2 24 51 d1 5b d3 # EXPECTED");
 	return PASS("DONE");
 }
 
@@ -451,6 +520,9 @@ bool PW_UTIL_VNC:: vncpassfile_write_uid_gid(
 	// store it
 	INFO("WRITING to %s", (STR0) filename );
 	int mask = 0660; // file permission
+	mask = 0640; // group can read
+	mask = 0400; // user cant write, without !
+	mask = 0600; // group CANNOT read
 	if(!blk_write_to_file_mask_uid_gid(
 		pw_vnc_stored,
 		filename,
@@ -464,7 +536,6 @@ bool PW_UTIL_VNC:: vncpassfile_write_uid_gid(
 
 	INFO("WRITING %s", (STR0) pw_vnc_plain );
 	return PASS("DONE");
-
 }
 
 

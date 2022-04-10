@@ -4,11 +4,11 @@ T= exec
 
 tclsh()
 {
-	$T /tools/2000/tcl/bin/tclsh8.5 "$@"
+	$T /tools/x86_64/tcl/bin/tclsh8.7 "$@"
 }
 type tclsh
 echo 'puts [set tcl_version]' | tclsh
 T="strace -f"
-echo load tcl_parser_library.so Parser_library | tclsh 2>f1 
+echo load tcl_parser_library.so Parser_library | tclsh 2>f1.tmp
 T="strace -f" 
-tclsh why_fail.tcl 2>f2
+tclsh why_fail.tcl 2>f2.tmp

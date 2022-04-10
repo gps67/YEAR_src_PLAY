@@ -59,7 +59,8 @@
 #	TEST_FILE8 = cfg_demo
 #	TEST_FILE8 = base64_demo
 #	TEST_FILE8 = 
-	TEST_FILE8 = VNC_PASS_DECODE /tmp/passwd_73
+#	TEST_FILE8 = VNC_PASS_DECODE /tmp/passwd_73
+	TEST_FILE8 = VNC_PASS_ENCODE /tmp/passwd_73 abcd5678
 	## TEST_FILE8 = cfg_demo test4
 	## TEST_FILE8 = HT_main
 

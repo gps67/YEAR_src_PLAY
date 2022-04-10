@@ -20,6 +20,12 @@ PLUS
 		unless we ALSO store that in the VAL1 or use EA_OBJ "xFFFF"
 		or we keep reverse lookup. A real mess. A stupid one
 
+		(In the same spirit, convert to type-2
+		sets the STRING then calls setFromANy
+		which must use OLD TYPE to delete intern rep
+		and unknown_new_type to set intern rep,
+		presumably STRING was already set OK for old intern rep)
+
 		We delete the internal allocated resources
 
 		We set stuff to NULL
@@ -61,6 +67,14 @@ PLUS
 		This makes a lot of sense, and is quite simple
 
 	Tcl_SetFromAnyProc *setFromAnyProc;
+	
+		man ObjectType.3
+
+			objects STRING is the "any" value
+			objects old internal rep may need to be deleted
+			objects old type provides freeIntRepProc
+
+			possibly called by Tcl_ConvertToType
 
 		THIS IS USELESS FOR US and VTBL
 		because we are only given the obj == A_STRING

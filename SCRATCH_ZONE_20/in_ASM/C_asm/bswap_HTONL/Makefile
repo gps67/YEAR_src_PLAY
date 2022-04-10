@@ -13,3 +13,6 @@ $N.o: $N.s
 
 $N.exec: $N.o
 	g++ -o $@ -g -O2 $<
+
+clean:
+	rm -f $N.exec $N.s $N.o

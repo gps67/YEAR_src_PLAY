@@ -256,7 +256,7 @@ int tokeniser_new (
 typedef cast_fn_objv VFN; // VFN = ARGV = argc, argv, u64_WORD, u256_FOUR_WORD
 
 struct opcode_usage {
-	char * opcode; 		// REPLACE CACHE WITH Tcl_Obj * MY_STR_t
+	const char * opcode; 		// REPLACE CACHE WITH Tcl_Obj * MY_STR_t
 	int min;		// tcl_obj_type = Module_2_type_4
 	int max;		// which is SYMBOL is TOKEN is STR0
 	const char * usage;	// WHICH IS ALSO pre_looked_up
@@ -417,7 +417,7 @@ Tcl_Obj * tokeniser::conv_next_token()
 	Tcl_Obj * subs = NULL;
 	if( csr1 >= csr1_end_pos )
 	{
-		char * s = "hit csr1_end_pos";
+		const char * s = "hit csr1_end_pos";
 		printf("hit csr1_end_pos" ); fflush(0);
 		retval( mk_string( s ));
 		return NULL;

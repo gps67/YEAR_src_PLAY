@@ -140,6 +140,7 @@ bool cmd_HT_demo(int argc, char ** argv ) {
 #include "util_buf.h"
 #include "auth_pw.h"
 #include "SSL_global.h" 
+
 bool VNC_PASS_DECODE(int argc, char ** argv ) {
 	if(argc!=1) {
 		return FAIL("argc!=1 # filename of passwd_73");
@@ -148,21 +149,52 @@ bool VNC_PASS_DECODE(int argc, char ** argv ) {
 	STR0 filename = argv[0];
 	buffer1 filedata;
 	buffer2 clearpass;
-
+	
 	if(!AUTH::PW_UTIL_VNC::vncpassfile_read( filename, clearpass )) return FAIL_FAILED();
-
+	
 	// supposedly that did it all
-
+	
         clearpass.dgb_dump("clearpass");
 	INFO("CLEAR(%s)", (STR0) clearpass );
 	
 	return PASS("DECODE(%s)", filename);
 }
 
+bool VNC_PASS_ENCODE(int argc, char ** argv ) {
+	if(argc!=2) {
+		return FAIL("argc!=2 # filename passwd");
+	}
+	STR0 filename = argv[0];
+	STR0 clearpass = argv[1];
+	buffer1 filedata;
+	buffer2 cryptpass;
+	
+	if(!AUTH::PW_UTIL_VNC::
+	 vncpassfile_write(
+	 	filename,
+		clearpass
+	))
+		return FAIL_FAILED();
+	
+	
+        cryptpass.dgb_dump("cryptpass");
+	INFO("CLEAR(%s)", (STR0) clearpass );
+	PASS("ENCODE(%s)", filename);
+
+	// TEST reverse // see logs
+	VNC_PASS_DECODE( 1, argv );
+	return true;
+}
+
 bool cmd_play_code(int argc, char ** argv )
 {
 
 	const char * default_argv[] = {
+	 "VNC_PASS_ENCODE",
+	 "/tmp/passwd_73",
+	 "abcd5678"	// BUG 8 required
+	};
+	const char * xx_default_argv[] = {
 	 "VNC_PASS_DECODE",
 	 "/tmp/passwd_73",
 	};
@@ -188,6 +220,7 @@ bool cmd_play_code(int argc, char ** argv )
 	if( cmd1 == "HT_demo" ) return cmd_HT_demo( argc, argv );
 	if( cmd1 == "amix" ) return amix_cmd(argc, argv);
 	if( cmd1 == "VNC_PASS_DECODE" ) return VNC_PASS_DECODE(argc, argv);
+	if( cmd1 == "VNC_PASS_ENCODE" ) return VNC_PASS_ENCODE(argc, argv);
 
 	// holder does this // setlocale(LC_ALL,"");
 	//	TOPAPP_Holder_gtk holder(&argc, &argv);

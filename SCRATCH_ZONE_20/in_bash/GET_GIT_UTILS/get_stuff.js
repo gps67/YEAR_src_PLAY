@@ -8,6 +8,10 @@ PATH=$HOME/bin:$PATH
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
 L1="
+https://github.com/nodejs/node
+https://github.com/lxc/lxd
+https://github.com/pjps/ndjbdns/
+git://thekelleys.org.uk/dnsmasq.git
 https://github.com/pschatzmann/arduino-audio-tools
 https://github.com/pschatzmann/ESP32-A2DP
 https://github.com/mdn/translated-content

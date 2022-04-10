@@ -106,6 +106,7 @@ get_dvd_name()
 echo
 echo "# SPACE AVAIL #"
 df -m .
+df -h .
 echo
 
 # dvd_name # obtained from DVD # mount point
@@ -207,7 +208,8 @@ echo
 		# NAS failing with io errors on big transfers
 		# the entire reason for copy_restart
 		# say_do cp -p $IMG_ISO $NAS_ISO || FAIL $? cp
-		say_do ./copy_iso_tree
+		#
+		./copy_iso_tree
 	else
 		echo "# ISO not copied to NAS - you must do this later"
 	fi

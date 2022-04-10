@@ -1,5 +1,6 @@
 # bash functions
 
+#	. /home/gps/.profile # .bashrc # sudo removes PATH
 #	rerun_as_root() "%@"
 #	is_root()
 #	say_do()	"$@"
@@ -24,7 +25,11 @@ rerun_as_root()
 	else
 		PATH=$PATH:/home/gps/bin_LGX
 		. /home/gps/.bashrc
-		say_do sudo $0 $@
+		say_do sudo $0 "$@"
+		# sudo removes PATH so caller must set it
+		# caller then calls rerun_as_root "$@" again
+		# this time it returns immediately
+		# fist caller then does this exit
 		exit
 	fi
 }

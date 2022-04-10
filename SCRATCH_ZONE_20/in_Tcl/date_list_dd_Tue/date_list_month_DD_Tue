@@ -81,9 +81,13 @@ proc year_mm_after_year1_mm1 {v_year v_mm year1 mm1 } {
 
 }
 
-  puts [exec cal]
+  # cal -h # turns off highlighting of today
+  # cal -h # required ncal
+  puts -nonewline [exec ncal -h]
   set t1 [clock seconds]
   year_mm_of_t year mm $t1 
   year_mm_after_year1_mm1 year2 mm2 $year $mm 
   list_days_in_month $year $mm 
+  puts {}
+  puts -nonewline [exec ncal -h -d $year2-$mm2]
   list_days_in_month $year2 $mm2 

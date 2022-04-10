@@ -13,13 +13,15 @@
 	# this called by one_line_script,
 	# 
 	# ABS_PATH_libs_apps # easier than ../../libs_apps/.
-	libs_apps=$HOME/YEAR/src_build/libs_apps
+	libs_apps=$HOME/YEAR/src/PLAY/libs_apps
 	# testing is near building # SCRIPTS in bin for MK
 	var_pfx PATH $libs_apps/MK_bin
 	
 	# pick up own pgsql compiled
-	var_pfx PATH /tools/YEAR/sql/bin
-	var_pfx LD_LIBRARY_PATH /tools/YEAR/sql/libvar_pfx LD_LIBRARY_PATH $libs_apps/lib
+	tools_CTXT=/tools/x86_64
+	tools_CTXT_sql=$tools_CTXT/sql
+	var_pfx PATH $tools_CTXT_sql/bin
+	var_pfx LD_LIBRARY_PATH $tools_CTXT_sql/libvar_pfx LD_LIBRARY_PATH $libs_apps/lib
 
 	# generic HOME onto PATHS last, if missing
 	var_add PATH $HOME/bin/
@@ -29,8 +31,8 @@
 
 # PREFER # MERGE TO FORM # _edit FIELD # _name _default
 
-	pgsql_VARS_rd
-	pgsql_VARS_edit
+##	pgsql_VARS_rd
+##	pgsql_VARS_edit
 
 
 #| USER_PASS=gather99 # == gather99_%s tagged_UDEF # == gather99_X4X # alias "%s"
@@ -70,15 +72,19 @@ psql_no_db()
 pgsql_VARS_rd()
 {
 
+	tools_CTXT=${tools_CTXT:-/tools/x86_64}
+	tools_CTXT_sql=$tools_CTXT/sql
+
   # These are the defaults, for first edit
   
 	ROOT_NAME=postgres
-	ROOT_PASS=${ROOT_PASS:-`cat /tools/YEAR/sql/PG_postgres_password`}
+	ROOT_PASS=${ROOT_PASS:-`cat $tools_CTXT_sql/PG_postgres_password`}
 	ROOT_PASS=${ROOT_PASS:-"pg_root_pass"}
 	USER_NAME=obj_stat_gather_user
 	USER_PASS=gather99 
 	BASE_NAME=obj_stat_1 
 
+	# load the config # using defaults from above
 	fn_BASE_rd - ROOT_NAME "${ROOT_NAME}"
 	fn_BASE_rd - ROOT_PASS "${ROOT_PASS}"
 	fn_BASE_rd - USER_NAME "${USER_NAME}"
@@ -88,8 +94,10 @@ pgsql_VARS_rd()
 
 pgsql_VARS_edit()
 {
+	# load the config
 	pgsql_VARS_rd
 
+	# edit the config # from presets
 	fn_BASE_edit - ROOT_NAME "${ROOT_NAME}"
 	fn_BASE_edit - ROOT_PASS "${ROOT_PASS}"
 	fn_BASE_edit - USER_NAME "${USER_NAME}"

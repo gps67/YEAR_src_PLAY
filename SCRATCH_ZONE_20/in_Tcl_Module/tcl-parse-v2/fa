@@ -1,5 +1,5 @@
 # call:  set ::tcl_patchLevel
-# retval: 8.6.10
+# retval: 8.7a5
 # call:  load ./tcl_parser_library.so Parser_library
 Parser_library advertising: Tokeniser 
 tokeniser_init_trusted() - which calls ... 
@@ -12,7 +12,7 @@ sizeof int 4 sizeof ClientData 8
 # call:  load {} Tokeniser
 # retval: 
 # call:  load {} nonexist
-# error: package "nonexist" isn't loaded statically
+# error: no library with prefix "nonexist" is loaded statically
 # call:  tokeniser::new tokeniser::parser1
 # retval: 
 closed

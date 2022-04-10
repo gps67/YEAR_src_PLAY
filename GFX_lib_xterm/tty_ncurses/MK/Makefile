@@ -155,7 +155,7 @@ $(PROG1_exec): $(PROG1).o $(OBJS1)
 	# g++ $< $(LINKS) -o $@
 	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
 
-$(PROG2_exec): $(PROG2).o $(OBJS2) 
+$(PROG2_exec): $(PROG2).o $(OBJS2) $(OBJS1) 
 	# g++ $< $(LINKS) -o $@
 	g++ $(PROG2).o $(OBJS1) $(OBJS2) $(LINKS) -o $@
 

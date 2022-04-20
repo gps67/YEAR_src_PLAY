@@ -1,0 +1,25 @@
+fill_2T
+	A bit like f3
+	But not as clever
+
+	can be used to fill a disk with NUL bytes
+
+	usually fills disk with 1K blocks (written in 32K chunks)
+
+		u64_MARKER = 'FILL_2T' // and a NUL
+		u64_BYTE_POS 
+		u64_TIME_START
+		u8 body[ 1024 - 24 ] // any old pattern pref not NUL
+	
+	also writes a progress file
+
+		u64_BYTE_POS
+	
+	also writes a timings file, as ASCII
+
+		time_to_sync_prev_block_in 
+		seek_pos_of_this_block
+
+		
+
+

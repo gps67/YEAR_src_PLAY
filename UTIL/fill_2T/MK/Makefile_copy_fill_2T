@@ -1,0 +1,82 @@
+#!/usr/bin/make -f
+
+	CXX = g++
+	OPTIM += -g
+#	OPTIM += -O2
+	fPIC = -fPIC
+#	OPTIM += $(fPIC)
+	INCLS += -I./
+	INCLS += -I../
+	INCLS += -I../src/
+
+
+
+	DEFS = 
+
+	# we are in $(S)/obj/
+	S=..
+
+	VPATH_LIST += $S/src
+	VPATH_LIST += $S/src_PLUS
+	# this aint working ! is a tracer # unused though
+	VPATH+=$S$(foreach sub,$(VPATH_LIST),!:$(sub))
+#	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
+#	VPATH +=$S
+#	VPATH +=$S/src
+#	VPATH +=$S/src/src_PLUS
+
+	# actually that is not the right one
+	# still does not use PKG_CONFIG_PATH_LIST_VAR 
+	# want $(PKGS) # PKGS += libs_apps_base
+	# hardwired to -lbase
+	include ../MK/Makefile_libs_apps
+
+	Module=libr_unused
+#	PROG1=copy_restart
+	PROG1=fill_2T
+	PROG_OBJS += $(PROG1).o 
+	PROG_OBJS += dev_fd.o
+	PROG_OBJS += b512_data.o
+
+	PROG_EXE=$(PROG1).exec
+
+	# the test partition will be destroyed
+	# maybe use /dev/sdz # and caller creates a link ?
+	ARG_SDB=sdb
+	ARG_DEV_SDB=/dev/$(ARG_SDB)
+	ARG_DEV_SDB1=$(ARG_DEV_SDB)1
+
+	ARGS=$(ARG_SDB)	# simply sdb # prog does the rest # optional sdb1
+#	ARGS=$(ARG_DEV_SDB)
+
+	#imported LITE
+	# PROG_OBJS += dgb.o
+
+# // edit any .h // recompile everything
+
+	PROG_HDRS += $(PROG1).h
+
+.SUFFIXES: .o .cxx .so .exec .h
+
+dgb: $(PROG_EXE)
+	# VPATH $(VPATH)
+	./$(PROG_EXE) $(ARGS) 2>&1 
+
+# each of the .o depend on all of the .h
+$(PROG_OBJS): $(PROG_HDRS)
+
+exe: $(PROG_EXE)
+
+$(PROG_EXE):  $(PROG_OBJS)
+	# LINKS adds the libs_apps .so
+	g++ -g -o $@ $(PROG_OBJS) $(LINKS)
+
+$(Module).so:  $(PROG_OBJS)
+	# unused # exe from $(Module).so
+	g++ -g -shared -o $@ $(PROG_OBJS) $(LINKS)
+
+.cxx.o:
+	g++ $(OPTIM) $(fPIC) -c $< $(INCLS)
+
+clean:
+	rm -f $(PROG_EXE) $(PROG_OBJS) fa fb

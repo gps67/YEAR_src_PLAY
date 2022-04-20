@@ -3,6 +3,7 @@
 package require Tk
 lappend auto_path [pwd]
 
+namespace import ::MK_ID::mk*
 
 set w1 .w1
 set w1 .w1 ;# // do something else with .

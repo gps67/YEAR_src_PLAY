@@ -1,0 +1,21 @@
+	2022-04-18
+
+	2022_04_Apr
+	2022-04-18_DODO_DRUM.txt
+
+	HTML required
+	mobile will have own HTML, local store
+
+	local store
+	save edited documents
+	keep versions
+	need 100K ? limit == ???
+	sync asap with server
+
+	server store (sync)
+	documents edited
+
+	adverts posted
+	comments posted
+
+

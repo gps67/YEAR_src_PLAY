@@ -1,1 +1,3 @@
-echo abcd5678 | vncpasswd -f
+PASS=abcd5678 
+echo "# PLAIN # $PASS #"
+echo "$PASS" | vncpasswd -f | hd -c

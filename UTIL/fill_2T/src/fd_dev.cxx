@@ -1,52 +1,21 @@
 #include "buffer2.h"
-#include "dev_fd.h"
+#include "fd_dev.h"
 #include <linux/fs.h>
 
-bool dev_fd_t:: open_abb( const char * abb_dev_name )
+bool fd_dev_t:: open_abb( const char * abb_dev_name )
 {
 	buffer1 _dev_name;
 	_dev_name.print("/dev/%s", abb_dev_name );
 	if(! open_device( (STR0) _dev_name ))
 		return FAIL_FAILED();
 	
-	buffer1 _restart_file_name;
-	_restart_file_name.print("./.fill_2T_%s.restart", abb_dev_name );
-	if(! open_restart_file( (STR0) _restart_file_name ))
+	if(! fd_restart_file.open_abb( abb_dev_name, file_size_in_bytes ) )
 		return FAIL_FAILED();
 
 	return true;
 }
 
-bool dev_fd_t:: open_restart_file( const char * _restart_file_name )
-{
-	/*
-		or split this code into a type of its own
-		with limited responsibilites to self
-		then combine in over arching admix
-	*/
-	if(fd_restart_file.open_RW( _restart_file_name )) {
-		INFO("opened %s", _restart_file_name );
-		if(!fd_restart_file.read( &restart_data, sizeof( restart_data )))
-		{
-			WARN("suggest delete and restart %s", _restart_file_name);
-			return FAIL_FAILED();
-		}
-	} else {
-		bool is_async = false; // it is sync
-		if(!fd_restart_file.open_RW_CREATE( _restart_file_name, is_async ))
-		{
-			return FAIL_FAILED();
-		}
-		restart_data.zero();
-		INFO("opened %s and wrote", _restart_file_name );
-		if(!fd_restart_file.write( &restart_data, sizeof( restart_data )))
-			return FAIL_FAILED();
-
-	}
-	return true;
-}
-
-bool dev_fd_t:: open_device( const char * _dev_name )
+bool fd_dev_t:: open_device( const char * _dev_name )
 {
 	file_size_in_bytes = 0;
 	block_size_in_bytes = 0;
@@ -67,7 +36,7 @@ bool dev_fd_t:: open_device( const char * _dev_name )
 	return true;
 }
 
-bool dev_fd_t:: show()
+bool fd_dev_t:: show()
 {
 	INFO( "DEVICE %s", (STR0) dev_name );
 	float size_G = file_size_in_bytes / (1024 * 1024 * 1024);
@@ -78,7 +47,7 @@ bool dev_fd_t:: show()
 }
 
 
-bool dev_fd_t:: flush_buffer_cache()
+bool fd_dev_t:: flush_buffer_cache()
 {
 	INFO("this needs root permission");
 	if( !fd.do_ioctl( "BLKFLSBUF", BLKFLSBUF, NULL )) {

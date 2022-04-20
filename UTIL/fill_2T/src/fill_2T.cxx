@@ -5,7 +5,7 @@
 // #include "ints.h"
 // #include <stdio.h>
 #include "buffer2.h"
-#include "dev_fd.h"
+#include "fd_dev.h"
 #include "fill_2T.h"
 
 
@@ -108,8 +108,8 @@ bool bool_main( int argc, char ** argv ) {
 
 	const char * dev_name_tail = argv[1]; // "sdb";
 
-	dev_fd_t dev_fd;
-	dev_fd.open_abb( dev_name_tail ); // opens 
+	fd_dev_t fd_dev;
+	fd_dev.open_abb( dev_name_tail ); // opens 
 
 	INFO("dev %s", (STR0) dev_name_tail );
 	return PASS("STOP");

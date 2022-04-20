@@ -35,8 +35,10 @@
 #	PROG1=copy_restart
 	PROG1=fill_2T
 	PROG_OBJS += $(PROG1).o 
-	PROG_OBJS += dev_fd.o
+	PROG_OBJS += fd_dev.o
 	PROG_OBJS += b512_data.o
+	PROG_OBJS += fd_restart_file.o
+	PROG_OBJS += mmap_file.o # borrowed # RSN move to libs_apps
 
 	PROG_EXE=$(PROG1).exec
 

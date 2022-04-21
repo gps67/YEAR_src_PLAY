@@ -53,8 +53,10 @@ bool fd_restart_file_t:: grow_file_write_data(
 	INFO("sz_data %d fd_size %d", sz_data, fd_size );
 	if(! grow_file_16( (u16) sz_data )) 
 		return FAIL_FAILED();
+	if(!remap()) return FAIL_FAILED();;
 	restart_mmap = (restart_data_t  *) page0;
 	if(! restart_mmap ) return FAIL("NULL MMAP page0");
+	// write the new restart data // zero + device abb + size
 	restart_mmap->init(_abb, dev_size );
 	return true;
 }
@@ -76,27 +78,41 @@ bool fd_restart_file_t:: open_restart_file(
 
 	if( mmap_in_file_RW( _restart_file_name )) { 
 		// already exists
+		restart_mmap = (restart_data_t  *) page0;
+		// TODO pass &VAR to mmap_in_file_RW
+		// so that mmap updates the types PTR
+		INFO("LOADED");
+		restart_mmap->show_info();
 	} else if( open_RW_CREATE( _restart_file_name )) {
 		// just created
+		// remap is in grow_...
 		if(!grow_file_write_data(_abb,dev_size))
 			return FAIL_FAILED();
 	} else {
 		return FAIL("%s", _restart_file_name );
 		return FAIL_FAILED();
 	}
+	if( ! restart_mmap ) {
+		FAIL("CODE error NULL restart_mmap");
+		return FAIL_FAILED();
+	}
 
-	if( !fd_size  || ( !sz_data != fd_size ))
+	if( !fd_size  || ( sz_data != fd_size ))
 	{
 		FAIL("file wrong size - delete it");
+		false_report_mismatch();
 		return FAIL_FAILED();
-		if(!grow_file_write_data(_abb, dev_size))
-			return FAIL_FAILED();
 	}
-	restart_mmap->show_info();
 	if( restart_mmap->seek_eof != dev_size ) {
 		false_report_mismatch();
 		return FAIL_FAILED();
 	}
+	if( 0!=strcmp( (char*) restart_mmap->abb, _abb )) {
+		FAIL("device abb wrong - delete it");
+		false_report_mismatch();
+		return FAIL_FAILED();
+	}
+	// restart_mmap->show_info();
 	INFO("opened %s", _restart_file_name );
 	return true;
 }

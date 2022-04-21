@@ -29,6 +29,7 @@ struct b512_data_t {
 
 	static void copy_name( name8_t & name8 );
 	static bool comp_name( const name8_t & name8 );
+	bool check_name();
 
 };
 

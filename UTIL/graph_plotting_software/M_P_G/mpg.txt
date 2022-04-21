@@ -20,3 +20,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2021-12-21, 109912, 27.58, 39.36, Y Upto incl battery charge
 2022-01-14, 110254, 44.04, 62.85, Y godalming nott
 2022-01-20, 110417, 22.37, 31.92, Y morrissons back from BH
+2022-04-14, 110518, 23.05, 37.32, Y shell 1.62 
+2022-04-17, 110

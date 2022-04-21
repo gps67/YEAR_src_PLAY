@@ -35,7 +35,14 @@ class fd_dev_t
 	bool open_abb( const char * abb_dev_name ); // "sdb"
 	bool open_device( const char * _dev_name ); // "/dev/sdb"
 	bool open_restart_file( const char * _restart_file_name ); // ./.fill_2T_sdb.restart
+	bool read_next_sector();
+	bool write_next_sector();
 	bool show();
+
+	bool WRITE_SWEEP_RESUME();
+	bool READ_SWEEP_RESUME();
+
+
 
 };
 

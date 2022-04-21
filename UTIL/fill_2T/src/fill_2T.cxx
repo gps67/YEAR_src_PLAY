@@ -98,9 +98,9 @@ bool bool_main( int argc, char ** argv ) {
 	set_prog_name( argv[0] ); // check this
 //	gdb_sigaction( argv[0] ); // check this
 
-	if( argc != 2 ) {
+	if( argc != 3 ) {
 		errno = 22;
-		FAIL("USAGE %s sdb # /dev/sdb # argc == %d", get_prog_alias(), argc );
+		FAIL("USAGE %s sdb WRITE_SWEEP_RESUME # /dev/sdb # argc == %d", get_prog_alias(), argc );
 		return false;
 	}
 
@@ -109,7 +109,23 @@ bool bool_main( int argc, char ** argv ) {
 	const char * dev_name_tail = argv[1]; // "sdb";
 
 	fd_dev_t fd_dev;
-	fd_dev.open_abb( dev_name_tail ); // opens 
+	if(! fd_dev.open_abb( dev_name_tail )) {
+		return FAIL_FAILED();
+	}
+
+	str0 arg_opcode = argv[2];
+	if( arg_opcode == "WRITE_SWEEP_RESUME" )
+	{
+		if(! fd_dev.WRITE_SWEEP_RESUME() ) 
+			return FAIL_FAILED();
+	} else 
+	if( arg_opcode == "READ_SWEEP_RESUME" )
+	{
+		if(! fd_dev.READ_SWEEP_RESUME() ) 
+			return FAIL_FAILED();
+	} else {
+		return FAIL("expected opcode, eg WRITE_SWEEP_RESUME");
+	}
 
 	INFO("dev %s", (STR0) dev_name_tail );
 	return PASS("STOP");

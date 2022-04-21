@@ -48,7 +48,9 @@
 	ARG_DEV_SDB=/dev/$(ARG_SDB)
 	ARG_DEV_SDB1=$(ARG_DEV_SDB)1
 
-	ARGS=$(ARG_SDB)	# simply sdb # prog does the rest # optional sdb1
+	ARG_OPCODE=WRITE_SWEEP_RESUME
+
+	ARGS=$(ARG_SDB)	$(ARG_OPCODE) # simply sdb # prog does the rest # optional sdb1
 #	ARGS=$(ARG_DEV_SDB)
 
 	#imported LITE

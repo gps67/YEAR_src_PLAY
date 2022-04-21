@@ -1,6 +1,7 @@
 
 #include "b512_data.h"
 #include <string.h> // memset
+#include "str0.h"
 
 static b512_data_t:: name8_t name_main =
  { 'f', 'i', 'l', 'l', '_', '2', 'T',  0 };
@@ -14,6 +15,23 @@ bool b512_data_t:: comp_name( const name8_t & name8 ) {
 	for( int i=0; i < N8; i++ ) 
 	  if( name8[i] != name_main[i] )
 	  	return false;
+	return true;
+}
+
+bool
+b512_data_t::
+check_name() {
+	if(comp_name( name )) {
+		return PASS("expected '%s' got '%s'",
+			(STR0) name_main,
+			(STR0) name
+		);
+	} else {
+		return FAIL("expected '%s' got '%s'",
+			(STR0) name_main,
+			(STR0) name
+		);
+	}
 	return true;
 }
 

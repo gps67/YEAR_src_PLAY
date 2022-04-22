@@ -1,5 +1,8 @@
+MTGT=WRITE_SWEEP_RESUME
+MTGT=READ_SWEEP_RESUME
+
 [ -d obj ] || mkdir obj
 cd obj
 
-make -f ../MK/Makefile "$@" 2>&1
-# make -f ../MK/Makefile "${@:--k}" 2>&1
+set -x
+make -f ../MK/Makefile "${@:-$MTGT}" 2>&1

@@ -83,35 +83,51 @@ bool fd_restart_file_t:: open_restart_file(
 		// so that mmap updates the types PTR
 		INFO("LOADED");
 		restart_mmap->show_info();
-	} else if( open_RW_CREATE( _restart_file_name )) {
-		// just created
-		// remap is in grow_...
-		if(!grow_file_write_data(_abb,dev_size))
-			return FAIL_FAILED();
 	} else {
-		return FAIL("%s", _restart_file_name );
-		return FAIL_FAILED();
+		UNFAIL("Creating %s", _restart_file_name );
+		if( open_RW_CREATE( _restart_file_name )) {
+			// just created
+			// remap is in grow_... as is ... page0
+			// restart_mmap = (restart_data_t  *) page0;
+			//
+			if(!grow_file_write_data(_abb,dev_size))
+				return FAIL_FAILED();
+		} else {
+			return FAIL("%s", _restart_file_name );
+			return FAIL_FAILED();
+		}
 	}
+
+	// all of the above set restart_mmap from page0
 	if( ! restart_mmap ) {
 		FAIL("CODE error NULL restart_mmap");
 		return FAIL_FAILED();
 	}
 
+	// look for some checks, CODE error, changes in restart data size
 	if( !fd_size  || ( sz_data != fd_size ))
 	{
 		FAIL("file wrong size - delete it");
 		false_report_mismatch();
 		return FAIL_FAILED();
 	}
-	if( restart_mmap->seek_eof != dev_size ) {
-		false_report_mismatch();
-		return FAIL_FAILED();
-	}
+
+	// check device abb is "sdb" (it always will be)
 	if( 0!=strcmp( (char*) restart_mmap->abb, _abb )) {
 		FAIL("device abb wrong - delete it");
 		false_report_mismatch();
 		return FAIL_FAILED();
 	}
+
+	// this will detect a change in USB device
+	// another idea would be to write it to the device itself
+	// BUT not update it every sector write / read
+	// check device size is what it used to be
+	if( restart_mmap->seek_eof != dev_size ) {
+		false_report_mismatch();
+		return FAIL_FAILED();
+	}
+
 	// restart_mmap->show_info();
 	INFO("opened %s", _restart_file_name );
 	return true;

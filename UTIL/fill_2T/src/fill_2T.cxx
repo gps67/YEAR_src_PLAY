@@ -7,6 +7,7 @@
 #include "buffer2.h"
 #include "fd_dev.h"
 #include "fill_2T.h"
+#include "time_hires.h"
 
 
 
@@ -40,7 +41,7 @@
 	}
 
 	GRAPH_DATA {
-		u64_time_ms	# or _ns # or binary 2^20 
+		i64_time_ms	# or _ns # or binary 2^20 
 		u64_seek_pos	# bytes
 	}
 
@@ -106,12 +107,16 @@ bool bool_main( int argc, char ** argv ) {
 
 //	gdb_invoke(false);
 
+	return test_time();
+
 	const char * dev_name_tail = argv[1]; // "sdb";
 
 	fd_dev_t fd_dev;
 	if(! fd_dev.open_abb( dev_name_tail )) {
 		return FAIL_FAILED();
 	}
+	if(! fd_dev.SHOW_RESTART() ) 
+		return FAIL_FAILED();
 
 	str0 arg_opcode = argv[2];
 	if( arg_opcode == "WRITE_SWEEP_RESUME" )
@@ -123,9 +128,18 @@ bool bool_main( int argc, char ** argv ) {
 	{
 		if(! fd_dev.READ_SWEEP_RESUME() ) 
 			return FAIL_FAILED();
+	} else 
+	if( arg_opcode == "SHOW_RESTART" )
+	{
+		if(! fd_dev.SHOW_RESTART() ) 
+			return FAIL_FAILED();
 	} else {
-		return FAIL("expected opcode, eg WRITE_SWEEP_RESUME");
+		return FAIL("expected opcode, eg SHOW_RESTART, got '%s'",
+			(STR0) arg_opcode );
 	}
+
+	if(! fd_dev.SHOW_RESTART() ) 
+		return FAIL_FAILED();
 
 	INFO("dev %s", (STR0) dev_name_tail );
 	return PASS("STOP");

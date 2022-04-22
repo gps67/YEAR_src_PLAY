@@ -5,6 +5,7 @@
 #include "b512_data.h"
 
 #include "fd_restart_file.h"
+#include "pair_steps.h"
 
 class fd_dev_t 
 {
@@ -22,6 +23,9 @@ class fd_dev_t
 	// progress 
 	fd_restart_file_t fd_restart_file; // fd and data
 
+	// filter to plot data
+	pair_steps_t pair_steps;
+
 	fd_dev_t()
 	: fd()
 	, file_size_in_bytes(0)
@@ -35,12 +39,14 @@ class fd_dev_t
 	bool open_abb( const char * abb_dev_name ); // "sdb"
 	bool open_device( const char * _dev_name ); // "/dev/sdb"
 	bool open_restart_file( const char * _restart_file_name ); // ./.fill_2T_sdb.restart
+	bool check_sector_zero_of_device();
 	bool read_next_sector();
 	bool write_next_sector();
 	bool show();
 
 	bool WRITE_SWEEP_RESUME();
 	bool READ_SWEEP_RESUME();
+	bool SHOW_RESTART();
 
 
 

@@ -152,6 +152,7 @@ extern bool fn_COMPLAIN3( const char * fmt, ... );
 ///////////////// NUMBERLESS SOON //////////////////
 
 
+#define UNFAIL(...) fn_WARN( "UNFAIL",   1, __FILE__, __PRETTY_FUNCTION__, __VA_ARGS__)
 #define FAIL(...)   fn_WARN( "FAIL",   1, __FILE__, __PRETTY_FUNCTION__, __VA_ARGS__)
 #define WARN(...)   fn_WARN( "WARN",   2, __FILE__, __PRETTY_FUNCTION__, __VA_ARGS__)
 #define INFO(...)   fn_WARN( "INFO",   4, __FILE__, __PRETTY_FUNCTION__, __VA_ARGS__)

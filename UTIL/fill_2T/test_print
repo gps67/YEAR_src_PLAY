@@ -1,2 +1,2 @@
 
-printf "fill_2T\0" | hd -c
+printf "fill_2T\0" | hexdump -C

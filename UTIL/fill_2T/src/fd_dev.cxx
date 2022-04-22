@@ -44,7 +44,8 @@ bool fd_dev_t:: open_device( const char * _dev_name )
 	INFO("NULL fd_restart_file.restart_mmap->zero();");
 //	fd_restart_file.restart_mmap->zero(); // fd and data
 
-	if(!read_next_sector()) { // maybe it detects NULL
+	if(!check_sector_zero_of_device()) {
+		// checks "fill_2T" but not seek nor fill_fill data
 		return FAIL_FAILED();
 	}
 
@@ -76,43 +77,75 @@ bool fd_dev_t:: flush_buffer_cache()
 	return true;
 }
 
-void show_OFFS( const char * seekname, u64 seek_val, const char * descr )
+bool fd_dev_t:: check_sector_zero_of_device()
 {
-}
+	if(!fd.seek_SET_64( 0 ) ) return FAIL_FAILED();
 
-bool fd_dev_t:: read_next_sector()
-{
+	// read it in
 	int t=fd.read( (void *) & sect_in, b512_data_t:: N512 );
 	if(t != b512_data_t:: N512 ) {
 		WARN("fd.read() returned %d # expected 512", t );
 		return FAIL_FAILED();
 	}
-	
+
+	// fill_2t NUL //
+	// this is our safeguard to not destroying other disks
 	if(!sect_in.check_name()) {	// error if not "fill_2T" tagged
-		if( !fd_restart_file.restart_mmap ) {
-			WARN("seek_rd NULL means early");
-		} else {
-			WARN("seek_rd 0x%08llX", 
-				fd_restart_file.restart_mmap->seek_rd 
-			);
-		}
+		return FAIL("check_name failed - you have to tag disk manually" );
+	}
+
+	// that's all that is required 
+	// printf "fill_2T\0" > /dev/sdx
+	// but it is checked again AFTER restart file has been loaded
+	// and a READ_SWEEP is done
+
+	// leave seek where you would expect it to be after open
+	if(!fd.seek_SET_64( 0 ) ) return FAIL_FAILED();
+	return true;
+}
+
+bool fd_dev_t:: read_next_sector()
+{
+	// CODE check
+	if( !fd_restart_file.restart_mmap ) {
+		return FAIL("CODE ERROR restart_map not set");
+	} 
+
+	// read it in
+	int t=fd.read( (void *) & sect_in, b512_data_t:: N512 );
+	if(t != b512_data_t:: N512 ) {
+		WARN("fd.read() returned %d # expected 512", t );
+		return FAIL_FAILED();
+	}
+
+	// shorter
+	u64 seek_pos = fd_restart_file.restart_mmap->seek_rd ;
+
+	if(!sect_in.check_name()) {	// error if not "fill_2T" tagged
+		return FAIL("check_name failed in sector 0x%08llX", seek_pos );
+	}
+
+	if(!sect_in.check_sector_is(seek_pos)) {
+		// must be 0xFA // or NUL or FF or 
+		return FAIL("check_sector failed in sector 0x%08llX", seek_pos );
+		return FAIL_FAILED();
+	}
+
+	if(!sect_in.check_fill()) {	// must be 0xFA // or NUL or FF or 
+		return FAIL("check_fill failed in sector 0x%08llX", seek_pos );
 		return FAIL_FAILED();
 	}
 
 	// write modified SEEK after checking it is OK
-	// NULL means we are checking sector zero on open
+	// actual write happens much later, thanks to mmap
 
-	if(!fd_restart_file.restart_mmap) {
-		return PASS("NULL restart_mmap - hope it is sector zero");
-	} else {
-		fd_restart_file.restart_mmap->seek_rd += b512_data_t:: N512;
-	}
-//	fd_restart_file.restart_mmap->zero(); // fd and data
+	fd_restart_file.restart_mmap->seek_rd += b512_data_t:: N512;
 	return true;
 }
 
 bool fd_dev_t:: write_next_sector()
 {
+	// CODE check
 	if(!fd_restart_file.restart_mmap) {
 		return FAIL("caller must have mmaped the restart file");
 	}
@@ -121,30 +154,55 @@ bool fd_dev_t:: write_next_sector()
 	if(!sect_out.check_name())	// error if not "fill_2T" tagged
 		return FAIL_FAILED();
 	
-	// sector_offset was init 0 // seek for resume // += N512
-//	sect_out.sector_offset = fd_restart_file.restart_mmap->seek_wr
+	// WRITE the OFFS into each sector so that we see duplicate blocks
+	sect_out.sector_offset = fd_restart_file.restart_mmap->seek_wr;
 
-	
+	// for decoding later
+	sect_out.time_stamp_now();
+//	sect_out.time_stamp_set(t64);
+
+	// not called each time, saves some speed, called once setup
+	// sect_out.fill_fill()
+
+	// WRITE the DATA into each sector for possible use later
 	int t=fd.write( (void *) & sect_out, b512_data_t:: N512 );
 	if(t != b512_data_t:: N512 )
 		return FAIL_FAILED();
 
+	// retain EA next in restart file
 	fd_restart_file.restart_mmap->seek_wr += b512_data_t:: N512;
+
+	// prep sect_out for next write
 	sect_out.sector_offset += b512_data_t:: N512;
 	return true;
 }
 
 bool fd_dev_t:: WRITE_SWEEP_RESUME()
 {
-	if(!  fd_restart_file.restart_mmap ) {
+	if(! fd_restart_file.restart_mmap ) {
 		return FAIL("NULL page0 - not setup properly");
 	}
-	INFO("HOPE have checked first sector");
-	for( int i=0; i<5; i++ ) {
+
+	if(! fd.seek_SET_64( fd_restart_file.restart_mmap-> seek_wr ))
+	{
+		return FAIL_FAILED();
+	}
+
+	for( int i=0; i<5000; i++ ) {
+		if( fd_restart_file.restart_mmap-> seek_wr  
+		 >= fd_restart_file.restart_mmap-> seek_eof ) 
+		{
+		 	return PASS("stopping at seek_eof");
+		}
 		INFO("seek_wr 0x%08llX",
 			fd_restart_file.restart_mmap-> seek_wr );
 		if(! write_next_sector() )
 			return FAIL_FAILED();
+		static const int every = 100;
+		if( ( i % every ) == 0 ) {
+			INFO("fsync");
+			fd.fsync();
+		}
 	}
 
 	return true;
@@ -152,7 +210,55 @@ bool fd_dev_t:: WRITE_SWEEP_RESUME()
 
 bool fd_dev_t:: READ_SWEEP_RESUME()
 {
-	return FAIL("TODO");
+	// CODE error (check)
+	if(! fd_restart_file.restart_mmap ) {
+		return FAIL("NULL page0 - not setup properly");
+	}
+
+	// seek to where it left off
+	if(! fd.seek_SET_64( fd_restart_file.restart_mmap-> seek_rd ))
+	{
+		return FAIL_FAILED();
+	}
+
+	// actually intention is a while loop
+	// that calls read_next_sector several times, 
+	// 
+	// 1 512 = K/2
+	// 2 512 = K
+	// 2048 = 1M
+	// 2048*1024 = 1G
+	// 2048*1024*1024 = 1T
+
+	for( int i=0; i<5000000; i++ ) {
+		if( fd_restart_file.restart_mmap-> seek_rd  
+		 >= fd_restart_file.restart_mmap-> seek_wr ) 
+		 {
+		 	return PASS("stopping at seek_wr");
+		 }
+		if( fd_restart_file.restart_mmap-> seek_rd  
+		 >= fd_restart_file.restart_mmap-> seek_eof ) 
+		 {
+		 	return PASS("stopping at seek_eof");
+		 }
+
+		INFO("seek_rd 0x%08llX",
+			fd_restart_file.restart_mmap-> seek_rd );
+		if(! read_next_sector() )
+			return FAIL_FAILED();
+	}
+
+	return true;
+}
+
+
+bool fd_dev_t:: SHOW_RESTART()
+{
+	if(!  fd_restart_file.restart_mmap ) {
+		return FAIL("NULL page0 - not setup properly");
+	}
+	show();
+	fd_restart_file.restart_mmap-> show_info();
 	return true;
 }
 

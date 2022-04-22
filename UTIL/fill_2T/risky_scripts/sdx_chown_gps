@@ -1,0 +1,3 @@
+. ./.env
+
+ask_do sudo chown gps $dev_SDX

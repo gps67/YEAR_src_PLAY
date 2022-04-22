@@ -1,0 +1,3 @@
+. ./.env
+
+ask_do sh -c "printf 'fill_2T\0' > $dev_SDX"

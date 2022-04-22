@@ -39,6 +39,8 @@
 	PROG_OBJS += b512_data.o
 	PROG_OBJS += fd_restart_file.o
 	PROG_OBJS += mmap_file.o # borrowed # RSN move to libs_apps
+	PROG_OBJS += time_hires.o # time as microseconds as int
+	PROG_OBJS += pair_steps.o # dt dv #
 
 	PROG_EXE=$(PROG1).exec
 
@@ -61,6 +63,14 @@
 	PROG_HDRS += $(PROG1).h
 
 .SUFFIXES: .o .cxx .so .exec .h
+
+READ_SWEEP_RESUME: $(PROG_EXE)
+	# VPATH $(VPATH)
+	./$(PROG_EXE) $(ARG_SDB)  $@ 2>&1 
+
+WRITE_SWEEP_RESUME: $(PROG_EXE)
+	# VPATH $(VPATH)
+	./$(PROG_EXE) $(ARG_SDB)  $@ 2>&1 
 
 dgb: $(PROG_EXE)
 	# VPATH $(VPATH)

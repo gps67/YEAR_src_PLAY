@@ -284,6 +284,10 @@ bool fn_WARN(
 	if(!fmt) fmt="(null)";
 	bool do_err = false;
 	bool ret_val = false; // usually FAIL
+	if( (NOTE[0] == 'U') && (0==strcmp(NOTE, "UNFAIL")) ) {
+		ret_val = true;
+		FAIL_clear_error();
+	}
 	if( (NOTE[0] == 'P') && (0==strcmp(NOTE, "PASS")) ) {
 		ret_val = true;
 	}

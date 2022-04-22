@@ -1,3 +1,4 @@
 . ./.env
 
-dd if=$dev_SDX bs=512 count=1 | hexdump -v
+set -x
+dd if=$dev_SDX bs=512 count=1 | hexdump -C

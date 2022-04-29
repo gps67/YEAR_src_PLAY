@@ -28,7 +28,7 @@
 		str = "STR0 _t String into draw_green.XDrawString";
 		draw_green.XDrawRectangle( xywh1 );
 		draw_green.XDrawRectangle( xywh2 );
-		draw_green.XDrawString( xy3, str );
+//		draw_green.XDrawString( xy3, str );
 		draw_green.XDrawLine(
 			xywh1.x,
 			xywh1.y,
@@ -65,6 +65,8 @@
 
 		A_Rectangle xywh6( x+=35, 30, 3, 3 );
 		draw_green.XDrawRectangle( xywh6 );
+
+		xft_draw.test();
 	}
 
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env make
 
 	CXX = g++
-	OPTIM = -g
-	INCLS = -I../
-	INCLS = -I../buffer
-#	INCLS = -I/tools/2000/X11R6/include
-#	INCLS = `pkg-config --libs freetype2`
+	OPTIM += -g
+	INCLS += -I../
+	INCLS += -I../buffer
+#	INCLS += -I/tools/2000/X11R6/include
+#	INCLS += `pkg-config --libs freetype2`
 
 	dot_EXE=.elf
 
@@ -21,7 +21,7 @@ endif
 
 ifeq (0,1)
 	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
-	INCLS = -I $(FT2)/include
+	INCLS += -I $(FT2)/include
 	OBJS += -L $(FT2)/objs/.libs
 	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
 	LINKS += -lfreetype

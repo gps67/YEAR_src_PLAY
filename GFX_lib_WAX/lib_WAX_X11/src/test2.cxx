@@ -113,7 +113,7 @@ int main_one() {
 	// win1.draw();
 	
 	// KEY
-	disp.test1();
+if(0)	disp.test1();
 
 /*
 	when win3 is child of win1
@@ -167,8 +167,12 @@ int main_two( argv_decoder & ARGS ) {
 	win1.map();
 	win1.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
 	
+
 	// KEY
-	disp.test1();
+if(1)	disp.test1(); // what does this do ???
+
+	// has to be in the redraw
+	INFO("win1 USED");
 
 /*
 	when win3 is child of win1

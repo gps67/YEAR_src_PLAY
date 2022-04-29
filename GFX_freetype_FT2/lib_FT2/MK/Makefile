@@ -63,6 +63,7 @@ endif
 	OBJS += X_ret_err.o
 	OBJS += WAX_argv_decoder.o
 	OBJS += test_X_two.o
+	OBJS += XFT.o
 
 #	# libs_apps alternatives
 #	OBJS += gdb_invoke.o

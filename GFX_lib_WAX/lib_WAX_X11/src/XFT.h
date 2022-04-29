@@ -1,7 +1,7 @@
 #ifndef XFT_H
 #define XFT_H
 
-// #include "X_STUBS.h"
+#include "X_STUBS.h"
 #include "X_ret_err.h"
 
 // XFT_STUBS
@@ -29,7 +29,15 @@ struct Xft_Draw
 {
 	XftDraw * draw;
 
-	bool Create();
+	Xft_Draw();
+	Xft_Draw( X_Window & W );
+	~Xft_Draw();
+
+	bool create( X_Window & W );
+	bool destroy();
+	bool test();
+
+
 };
 
 // } // namespace

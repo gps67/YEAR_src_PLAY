@@ -6,6 +6,8 @@
 // strdup // #include <string.h>
 #include <X11/Xlib.h>
 
+#include "XFT.h"
+
 namespace WAX {
 
 
@@ -20,6 +22,7 @@ struct X_Window
 	X_Display * disp;
 	const char * name;
 
+	Xft_Draw xft_draw;
 
 	/*!
 		child classes use this to create the object

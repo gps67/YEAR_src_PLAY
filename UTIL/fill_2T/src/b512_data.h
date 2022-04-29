@@ -5,7 +5,8 @@
 #include "dgb.h"
 
 struct b512_data_t {
-	const static int N512 = 512;
+//	const static int N512 = 512;
+	const static int N512 = 4096;
 	const static int N8 = 8;
 	typedef u8 name8_t[N8];
 

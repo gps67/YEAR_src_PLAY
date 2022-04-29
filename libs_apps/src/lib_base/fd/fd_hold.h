@@ -319,8 +319,9 @@ class fd_hold_1 : public obj_ref
 
 	bool open_RO( str0 filename, bool async = false );
 	bool open_RW( str0 filename, bool async = false );
+	bool open_RW_can_CREAT( str0 filename, bool async, int plus );
 	bool open_RW_CREATE_modmask( str0 filename, bool async, mode_t modmask );
-	bool open_RW_CREATE( str0 filename, bool async = false );
+	bool open_RW_CREATE( str0 filename, bool async = false ); // TRUNCATES
 	bool open_TCP( struct sockaddr_in* sa, bool async = false );
 	bool open_TCP( sock_addr_ip & spec, bool async = false );
 	bool open_AF_UNIX( str0 filename, bool async = false ); // client

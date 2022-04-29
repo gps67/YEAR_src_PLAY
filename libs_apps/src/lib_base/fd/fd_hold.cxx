@@ -532,7 +532,7 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 			File = fdopen( fd, "w+" );
 			if(!File) File = fdopen( fd, "r+" );
 			if(!File) File = fdopen( fd, "r" );
-			if(!File) File = fdopen( fd, "w" );
+	// TRUNC //	if(!File) File = fdopen( fd, "w" );
 			if(!File)
 				perr( "file()" );
 		}
@@ -988,11 +988,17 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 
 	/*!
 		open filename or device for reading and writing
-
+	
 		async means wait for read, write, open, close.
 		fcntl always seems to wait on cdroms media change!
-
-		if file doesnt exist ...
+	
+		if file doesnt exist ... FAIL
+	
+		add O_CREAT to create a new file
+		add O_TRUNC to create or truncate 
+		add 0666 octal for perms
+		add O_APPEND (not nfs safe) for APPEND
+	
 	*/
 	bool fd_hold_1::open_RW( str0 filename, bool async )
 	{
@@ -1006,6 +1012,39 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 		if( fd == -1 )
 		{
 			return FAIL( "open %s %od", (STR0) filename, flags );
+		}
+		return true;
+	}
+
+	/*!
+		open filename or device for reading and writing
+	
+		async means wait for read, write, open, close.
+	
+		if file doesnt exist ... FAIL
+	
+		add O_CREAT to create a new file
+		add O_TRUNC to create or truncate 
+		add 0666 octal for perms
+		add O_APPEND (not nfs safe) for APPEND
+	
+	*/
+	bool fd_hold_1::open_RW_can_CREAT( str0 filename, bool async, int plus )
+	{
+		close();
+		int modmask = 0666; // 
+		int flags = O_RDWR ; 
+		flags |= O_CREAT;
+		flags |= plus; // extra flags for open // O_CREAT
+#ifdef WIN32
+	//	return
+		FAIL("WIN32");
+#endif
+		if( async) flags |= O_NONBLOCK;
+		fd = ::open( filename, flags, modmask );
+		if( fd == -1 )
+		{
+			return FAIL( "open %s %od", (STR0) filename, flags, modmask );
 		}
 		return true;
 	}

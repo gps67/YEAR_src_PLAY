@@ -1,0 +1,11 @@
+. ./.env
+
+ask_do hexedit $dev_SDX
+ask_do hexedit $dev_SDX
+ask_do hexedit $file_restart
+
+# bless has font problems
+# gtk# thing ?
+#
+# ask_do bless $file_restart
+# ask_do bless $dev_SDX

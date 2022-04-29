@@ -59,7 +59,7 @@ void X_Display::process_event( XEvent & report )
 		const char * str = XKeysymToString( symb );
 	//	e_print(" KEY Up = %d \n", Up );
 		e_print(" KEY KEY_Up = %d \n", XK_Up );
-		e_print(" KEY symb = %d \n", symb );
+		e_print(" KEY symb = %ld \n", symb );
 
 
 		printf("keycode %3d state %2x type %d name %9s win.name %s \n",

@@ -1,0 +1,6 @@
+. ./.env
+
+F=../obj/fill_2t_restart_sdb.data
+ls -l $F
+
+ask_do rm $F

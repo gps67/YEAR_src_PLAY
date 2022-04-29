@@ -1,5 +1,8 @@
 #ifndef X_ret_err_H
 #define X_ret_err_H
+
+#include "buffer1.h"
+
 namespace WAX {
 
 extern

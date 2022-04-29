@@ -12,7 +12,7 @@ class fd_dev_t
  public:
 
 	str1 dev_name;
-	fd_hold_1 fd;
+	fd_hold_1 fd; // fd_device
 	u64 file_size_in_bytes;
 	u32 block_size_in_bytes; // set to 0 or set to u32 not u64
 
@@ -26,13 +26,7 @@ class fd_dev_t
 	// filter to plot data
 	pair_steps_t pair_steps;
 
-	fd_dev_t()
-	: fd()
-	, file_size_in_bytes(0)
-	, block_size_in_bytes(0)
-	{
-		fd.ref_static(); // else stack smashing crash
-	}
+	fd_dev_t();
 
 	bool flush_buffer_cache();
 
@@ -47,8 +41,6 @@ class fd_dev_t
 	bool WRITE_SWEEP_RESUME();
 	bool READ_SWEEP_RESUME();
 	bool SHOW_RESTART();
-
-
 
 };
 

@@ -1,3 +1,0 @@
-. ./.env
-
-ask_do dd if=/dev/zero of=$dev_SDX bs=512 count=1

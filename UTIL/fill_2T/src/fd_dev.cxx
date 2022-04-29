@@ -2,6 +2,19 @@
 #include "fd_dev.h"
 #include <linux/fs.h>
 
+fd_dev_t::
+fd_dev_t()
+: fd()
+, file_size_in_bytes(0)
+, block_size_in_bytes(0)
+, pair_steps()
+{
+	i64 dx = 1000 * 1000; // 1 second in microseconds
+	i64 dy = 1024 * 1024; // 1 megabyte
+	pair_steps.late_init( dx, dy, dx * 1024 );
+	fd.ref_static(); // else stack smashing crash
+}
+
 bool fd_dev_t:: open_abb( const char * abb_dev_name )
 {
 	buffer1 _dev_name;
@@ -10,6 +23,11 @@ bool fd_dev_t:: open_abb( const char * abb_dev_name )
 		return FAIL_FAILED();
 	
 	if(! fd_restart_file.open_abb( abb_dev_name, file_size_in_bytes ) )
+		return FAIL_FAILED();
+	
+	buffer1 _log_name;
+	_log_name.print("./fill_2T_log_data_%s.data", (STR0) abb_dev_name );
+	if(! pair_steps.open_data_log( (STR0) _log_name ))
 		return FAIL_FAILED();
 
 	return true;
@@ -126,12 +144,13 @@ bool fd_dev_t:: read_next_sector()
 	}
 
 	if(!sect_in.check_sector_is(seek_pos)) {
-		// must be 0xFA // or NUL or FF or 
+		// check that sector is tagged as itself // no wrap-around
 		return FAIL("check_sector failed in sector 0x%08llX", seek_pos );
 		return FAIL_FAILED();
 	}
 
-	if(!sect_in.check_fill()) {	// must be 0xFA // or NUL or FF or 
+	if(!sect_in.check_fill()) {
+		// must be 0xFA // or NUL or FF or memcmp
 		return FAIL("check_fill failed in sector 0x%08llX", seek_pos );
 		return FAIL_FAILED();
 	}
@@ -140,6 +159,17 @@ bool fd_dev_t:: read_next_sector()
 	// actual write happens much later, thanks to mmap
 
 	fd_restart_file.restart_mmap->seek_rd += b512_data_t:: N512;
+
+ 	// tell progress filter
+	// obtain TIME in sect_out - as good as any
+	// TODO obtain TIME from pair_steps ...
+ if(1) {
+	sect_out.time_stamp_now(),
+	pair_steps.pair_data(
+		sect_out.time_stamp_get(),
+		fd_restart_file.restart_mmap->seek_rd  // after ++
+	);
+ }
 	return true;
 }
 
@@ -174,6 +204,13 @@ bool fd_dev_t:: write_next_sector()
 
 	// prep sect_out for next write
 	sect_out.sector_offset += b512_data_t:: N512;
+
+ if(1)
+	pair_steps.pair_data(
+		sect_out.time_stamp_get(),
+		fd_restart_file.restart_mmap->seek_wr  // after ++
+	);
+
 	return true;
 }
 
@@ -188,19 +225,32 @@ bool fd_dev_t:: WRITE_SWEEP_RESUME()
 		return FAIL_FAILED();
 	}
 
-	for( int i=0; i<5000; i++ ) {
+	// do this elsewhere
+	pair_steps.Y100 = fd_restart_file.restart_mmap-> seek_eof;
+
+	for( int i=0; i<5000000000; i++ ) {
 		if( fd_restart_file.restart_mmap-> seek_wr  
 		 >= fd_restart_file.restart_mmap-> seek_eof ) 
 		{
 		 	return PASS("stopping at seek_eof");
 		}
-		INFO("seek_wr 0x%08llX",
-			fd_restart_file.restart_mmap-> seek_wr );
+ if(0)
+		INFO("seek_wr 0x%08llX us 0x%08llX",
+			fd_restart_file.restart_mmap -> seek_wr,
+			sect_out.time_stamp_get()
+		);
 		if(! write_next_sector() )
 			return FAIL_FAILED();
-		static const int every = 100;
+		static const int every = 128;
 		if( ( i % every ) == 0 ) {
-			INFO("fsync");
+
+		 if(0)
+			pair_steps.pair_data(
+				sect_out.time_stamp_get(),
+				fd_restart_file.restart_mmap->seek_wr 
+				// seek_wr after += N512
+			);
+		//	INFO("fsync");
 			fd.fsync();
 		}
 	}
@@ -231,7 +281,8 @@ bool fd_dev_t:: READ_SWEEP_RESUME()
 	// 2048*1024*1024 = 1T
 
 	for( int i=0; i<5000000; i++ ) {
-		if( fd_restart_file.restart_mmap-> seek_rd  
+
+	if(0)	if( fd_restart_file.restart_mmap-> seek_rd  
 		 >= fd_restart_file.restart_mmap-> seek_wr ) 
 		 {
 		 	return PASS("stopping at seek_wr");
@@ -242,7 +293,7 @@ bool fd_dev_t:: READ_SWEEP_RESUME()
 		 	return PASS("stopping at seek_eof");
 		 }
 
-		INFO("seek_rd 0x%08llX",
+	if(0)	INFO("seek_rd 0x%08llX",
 			fd_restart_file.restart_mmap-> seek_rd );
 		if(! read_next_sector() )
 			return FAIL_FAILED();

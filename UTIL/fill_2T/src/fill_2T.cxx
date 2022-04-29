@@ -107,7 +107,7 @@ bool bool_main( int argc, char ** argv ) {
 
 //	gdb_invoke(false);
 
-	return test_time();
+//	return test_time();
 
 	const char * dev_name_tail = argv[1]; // "sdb";
 
@@ -126,6 +126,10 @@ bool bool_main( int argc, char ** argv ) {
 	} else 
 	if( arg_opcode == "READ_SWEEP_RESUME" )
 	{
+		// reset seek_rd to 0
+		if(1) WARN(" reset seek_rd to 0");
+		fd_dev.fd_restart_file.restart_mmap->seek_rd = 0;
+
 		if(! fd_dev.READ_SWEEP_RESUME() ) 
 			return FAIL_FAILED();
 	} else 

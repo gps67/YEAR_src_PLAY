@@ -1,0 +1,4 @@
+. ./.env
+
+fdisk -L $dev_SDX
+ask_do fdisk $dev_SDX

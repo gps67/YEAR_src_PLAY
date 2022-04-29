@@ -1,0 +1,4 @@
+. ./.env
+
+set -x
+umount ${dev_SDX}1

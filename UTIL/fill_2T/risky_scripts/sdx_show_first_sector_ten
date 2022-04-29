@@ -1,4 +1,4 @@
 . ./.env
 
 set -x
-dd if=$dev_SDX bs=512 count=10 | hexdump -C
+dd if=$dev_SDX bs=4096 count=10 | hexdump -C

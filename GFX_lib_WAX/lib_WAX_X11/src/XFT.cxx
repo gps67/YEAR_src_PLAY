@@ -1,7 +1,8 @@
 #include "XFT.h"
 #include <X11/Xft/Xft.h>
 #include "X_Window.h"
-#include <math.h>
+
+#include "A_matrix_2x2.h"
 
 using namespace WAX;
 // using namespace WAX::XFT;
@@ -47,10 +48,11 @@ create( X_Window & W )
 
 	Visual   *visual;
 	Colormap colormap;
+	int screen_0 = 0; // I think this is OK
 
 	if( display ) {
-		visual = DefaultVisual(display, 0);
-		colormap = DefaultColormap( display, 0);
+		visual = DefaultVisual(display, screen_0 );
+		colormap = DefaultColormap( display, screen_0 );
 	} else {
 		draw = NULL;
 		return FAIL("NULL displaY");
@@ -78,6 +80,70 @@ destroy()
 }
 
 
+bool
+WAX::
+Xft_Draw::
+Xft_ColorAllocName (
+	XftColor * colour_purple,
+	const char *name
+)
+{
+	if(! XftColorAllocName (
+		XftDrawDisplay(draw),
+		XftDrawVisual(draw),
+		XftDrawColormap(draw),
+		name,
+		colour_purple 
+	)) {
+		return FAIL("XftColorAllocName( %s )", name );
+	}
+	return true;
+}
+
+bool
+WAX::
+Xft_Draw::
+Xft_FontOpen( 
+	XftFont ** font,
+	const char * font_name,
+	double font_size,
+	A_matrix_2x2 * matrix
+) {
+	Display * display = XftDrawDisplay(draw);
+	int screen = DefaultScreen( display );	// options for ...
+	* font = XftFontOpen(
+		display,
+		screen,
+		XFT_FAMILY, XftTypeString, font_name,
+		XFT_SIZE, XftTypeDouble, font_size,
+		XFT_MATRIX, FcTypeMatrix, &matrix->matrix,
+		NULL
+	);
+	if(!font) return FAIL("font_name %s size %4.1f", font_name, font_size);
+	return true;
+}
+
+bool
+WAX::
+Xft_Draw::
+Xft_FontOpen( 
+	XftFont ** font,
+	const char * font_name,
+	double font_size
+) {
+	Display * display = XftDrawDisplay(draw);
+	int screen = DefaultScreen( display );	// options for ...
+	* font = XftFontOpen(
+		display,
+		screen,
+		XFT_FAMILY, XftTypeString, font_name,
+		XFT_SIZE, XftTypeDouble, font_size,
+		NULL
+	);
+	if(!font) return FAIL("font_name %s size %4.1f", font_name, font_size);
+	return true;
+}
+
 bool		// type_retval
 WAX::		// namespace
 Xft_Draw::	// classname
@@ -87,16 +153,10 @@ test()		// func(proto)
 	if(!draw) return FAIL("NULL draw");
 	INFO("CALLED");
 
-	XftColor purple;
+	XftColor colour_purple;
 	const char *name = "purple";
-	if(! XftColorAllocName (
-		XftDrawDisplay(draw),
-		XftDrawVisual(draw),
-		XftDrawColormap(draw),
-		name,
-		&purple 
-	)) {
-		return FAIL("XftColorAllocName( %s )", name );
+	if(! Xft_ColorAllocName ( & colour_purple, name )) {
+		return FAIL_FAILED();
 	}
 
 #if 0
@@ -111,37 +171,35 @@ test()		// func(proto)
 	);
 #endif
 
-#if 1
+	// see /tools/x86_64_src/tcl/t~7a5/unix/tkUnixRFont.c
+	// it also has a Pattern // 
+
+	// flat angle 0.0 optimises with ...
+	// eg advance
+
+	// also beyond ASCII
+
 	double angle = -22; // + up - down
 	double font_size = 36; // pt
 	const char * font_name = "charter";
 
 
-	double PI = 3.1415926;
-	double s = sin(angle*PI/180.0);
-	double c = cos(angle*PI/180.0);
-	FcMatrix mat;
-	mat.xx = c;
-	mat.yy = c;
-	mat.yx =  s;
-	mat.xy = -s;
 
-	int screen = 0; // get screen from display ?
-	XftFont * font = XftFontOpen(
-		XftDrawDisplay(draw),
-		screen,
-		XFT_FAMILY, XftTypeString, font_name,
-		XFT_SIZE, XftTypeDouble, font_size,
-		XFT_MATRIX, FcTypeMatrix, &mat,
-		NULL
-	);
-#endif
+	A_matrix_2x2 matrix;
+	matrix.set_to_rotate( angle ); // degrees
 
-	if(!font) return FAIL("XftFontOpen(...)");
+	// https://tronche.com/gui/x/xlib/display/display-macros.html
+//	Display * display = XftDrawDisplay(draw);
+//	int screen = DefaultScreen( display );	// options for ...
+
+	XftFont * font = NULL;
+	if(! Xft_FontOpen( & font, font_name, font_size, & matrix ))
+		return FAIL_FAILED();
 
 	const char * string = "XFT_String_XFT";
 	int len = strlen(string);
-	XGlyphInfo extents;
+
+//	XGlyphInfo extents;
 	XftTextExtents8 (
 		XftDrawDisplay(draw),
 		font,
@@ -150,8 +208,9 @@ test()		// func(proto)
 		len,
 		&extents
 	);
+	show_XGlyphInfo( extents );
 
-	XftColor * color = & purple;
+	XftColor * color = & colour_purple;
 	int x = 20;
 	int y = 40;
 	XftDrawString8 (
@@ -167,5 +226,21 @@ test()		// func(proto)
 
 
 	return PASS("return");
+	return true;
+}
+
+//////
+
+bool		// type_retval
+WAX::		// namespace
+Xft_Draw::	// classname
+show_XGlyphInfo( const XGlyphInfo & e ) // Xrender.h
+{
+	buffer1 buf;
+	buf.print( "width %4d height %4d\n", e.width, e.height );
+	buf.print( "x     %4d y      %4d\n", e.x    , e.y     );
+	buf.print( "xOff  %4d yOff   %4d\n", e.xOff , e.yOff  );
+	e_print( "%s", (STR0) buf );
+
 	return true;
 }

@@ -1,60 +1,24 @@
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o c1.o -c ../prog_main/c1.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o file_scan_base.o -c ../scan_file/file_scan_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_c1.o -c ../scan_lang/scan_c1.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_Parse.o -c ../XML_Parse/XML_Parse.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_DTD.o -c ../XML_DTD/XML_DTD.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o XML_DOC.o -c ../XML_DOC/XML_DOC.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_P.o -c ../LEX_PLEX/scan_to_nl_P.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_base_report.o -c ../LEX_PLEX/scan_to_nl_base_report.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_base.o -c ../LEX_PLEX/scan_to_nl_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl_plus.o -c ../LEX_PLEX/scan_to_nl_plus.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_to_nl.o -c ../LEX_PLEX/scan_to_nl.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_c_lex.o -c ../scan_lang/scan_nl_c_lex.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_c_psg.o -c ../scan_lang/scan_nl_c_psg.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_nl_xml_lex.o -c ../scan_lang/scan_nl_xml_lex.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o map_file.o -c ../more_bits/map_file.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_file_base.o -c ../scan_file/scan_file_base.cxx
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o scan_xml_1.o -c ../XML_Parse/scan_xml_1.cxx
-In file included from ../XML_Parse/scan_xml_1.cxx:4:
-../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
-   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
-      |  ^~~~~~~
-g++ -O0 -g -I/home/gps/YEAR/src/PLAY/libs_apps/include	 -o lex_lookup.o -c ../lex_lookup/lex_lookup.cxx
-In file included from ../lex_lookup/lex_lookup.cxx:1:
-../lex_lookup/lex_lookup.h:85:2: warning: #warning "set(utf8) will double encode - must rewrite as set_plain()" [-Wcpp]
-   85 | #warning "set(utf8) will double encode - must rewrite as set_plain()"
-      |  ^~~~~~~
-ar -curs libscan.a file_scan_base.o scan_c1.o XML_Parse.o XML_DTD.o XML_DOC.o scan_to_nl_P.o scan_to_nl_base_report.o scan_to_nl_base.o scan_to_nl_plus.o scan_to_nl.o scan_nl_c_lex.o scan_nl_c_psg.o scan_nl_xml_lex.o map_file.o scan_file_base.o scan_xml_1.o lex_lookup.o
-ar: `u' modifier ignored since `D' is the default (see `U')
-g++ -O0 -g -o c1.exec c1.o libscan.a -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/lib -Wl,--rpath=/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -L/home/gps/YEAR/src/PLAY/libs_apps/lib -L/home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320 -lbase
-./c1.exec ../test/test2.c1 2>&1 # | less
+./x1.exec ../test/test3.xml 2>&1 | less
 ##### C init_csets() ###
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # ##### C_LEX init_csets_C() ###
-line_passed '// first comment'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '//'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '#include <a.h>'
-#  5  0 # GOT  # include <>('a.h')
-#  5  0 # Got  # cpp_hash_line 
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '#include "b.h"'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '// third comment           '
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '/*'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '	block comment'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '*/'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '/*!  dox comment */'
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed ''
-# 13  0 # GOT  # include Q2('b.h')
-# 13  0 # Got  # cpp_hash_line 
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed 'int abc = 55;'
-## WARN ##  P == P2 FIRST DETECT 
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # P 
-# INFO  # bool scan_to_nl_base::scan_LF_fn() # P_X0 
-EOF touched and still looking for LF
-# WARN  # virtual int scan_to_nl_base::get_x() # P < P_X0
-# 14  0 # Got  # # VAR # int abc = 55 
-EOF touched and still looking for LF
-# INFO  # bool scan_to_nl_base::scan_eof_fn() # should be last
-# WARN  # bool scan_to_nl_base::scan_eof_fn() # called with EOF_touched == 1
-# WARN  # virtual int scan_to_nl_base::get_x() # P < P_X0
-# 14  0 # Got  # EOF 
+##### XML init_csets() ###
+#  1 19 # OK  #	<?xml version="1.0" encoding="UTF-8"?>
+#  1 19 # OK  #	------------------^--OK-- PI:XML:verion=1.0
+#  1 36 # OK  #	<?xml version="1.0" encoding="UTF-8"?>
+#  1 36 # OK  #	-----------------------------------^--OK-- PI:XML:encoding=UTF-8
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '<?xml version="1.0" encoding="UTF-8"?>'
+# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # 'rdf:RDF'
+# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # ''
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # line_passed '<rdf:RDF xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # :(!)rdf:RDF(!ELEM)... xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+line_passed '         xmlns:dc  = "http://purl.org/dc/elements/1.1/"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # :(!)rdf:RDF(!ELEM)... xmlns:dc="http://purl.org/dc/elements/1.1/"
+line_passed '         xmlns:mq  = "http://musicbrainz.org/mm/mq-1.1#"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # :(!)rdf:RDF(!ELEM)... xmlns:mq="http://musicbrainz.org/mm/mq-1.1#"
+line_passed '         xmlns:mm  = "http://musicbrainz.org/mm/mm-2.1#"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # :(!)rdf:RDF(!ELEM)... xmlns:mm="http://musicbrainz.org/mm/mm-2.1#"
+line_passed '         xmlns:ar  = "http://musicbrainz.org/ar/ar-1.0#"'
+# INFO  # bool scan_to_nl_base::scan_LF_fn() # :(!)rdf:RDF(!ELEM)... xmlns:ar="http://musicbrainz.org/ar/ar-1.0#"
+:(!)rdf:RDF(!ELEM)... xmlns:az="http://www.amazon.com/gp/aws/landing.html#"
+line_passed '         xmlns:az  = "http://www.amazon.com/gp/aws/landing.html#">'
+# INFO  # str2* STBL::Spelling_Pool_lookup_add(const u8*) # 'mq:Result'
+Segmentation fault (core dumped)

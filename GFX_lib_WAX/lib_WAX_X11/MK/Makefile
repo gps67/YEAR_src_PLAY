@@ -11,6 +11,7 @@
 
 	PKGS += freetype2
 	PKGS += xft
+	PKGS += fontconfig
 
 ifeq (1,1)
 	# these are supposed to be part of the build system
@@ -52,6 +53,7 @@ endif
 	OBJS += X_Display.o
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
+	OBJS += A_matrix_2x2.o
 	OBJS += XFT.o
 	OBJS += WAX_argv_decoder.o
 	OBJS += test_X_two.o

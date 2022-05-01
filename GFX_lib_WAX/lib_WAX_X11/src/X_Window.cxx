@@ -77,7 +77,7 @@ X_Window::X_Window(
 		col_border,
 		col_background
 	);
-	xft_draw.create( *this );
+	xft_draw.Xft_DrawCreate( *this );
 	disp->add( this );
 	printf( "window = %ld\n", window );
 }
@@ -116,7 +116,7 @@ X_Window::X_Window(
 		col_background
 	);
 
-	xft_draw.create( *this );
+	xft_draw.Xft_DrawCreate( *this );
 
 	disp->add( this );
 	map();

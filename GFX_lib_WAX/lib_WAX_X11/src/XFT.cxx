@@ -11,17 +11,19 @@ WAX::
 Xft_Draw::
 Xft_Draw()
 : draw( NULL )
+, pen_font( NULL )
 {
-	INFO("requires late init create(W)");
+	INFO("requires late init Xft_DrawCreate(W)");
 }
 
 WAX::
 Xft_Draw::
 Xft_Draw( X_Window & W )
 : draw( NULL )
+, pen_font( NULL )
 {
 	if( W.window )
-	  if(!create( W ) )
+	  if(!Xft_DrawCreate( W ) )
 		FAIL("should throw");
 }
 
@@ -29,17 +31,18 @@ WAX::
 Xft_Draw::
 ~Xft_Draw()
 {
-	destroy();
+	if(pen_font) Xft_FontClose(pen_font);
+	Xft_DrawDestroy();
 }
 
 bool
 WAX::
 Xft_Draw::
-create( X_Window & W )
+Xft_DrawCreate( X_Window & W )
 {
 	if(draw) {
 		WARN("draw should be NULL");
-		destroy(); // no leak
+		Xft_DrawDestroy(); // no leak
 	}
 	INFO("CALLED");
 
@@ -67,7 +70,7 @@ create( X_Window & W )
 bool
 WAX::
 Xft_Draw::
-destroy()
+Xft_DrawDestroy()
 {
 	if(draw) {
 		XftDrawDestroy(draw);
@@ -84,7 +87,7 @@ bool
 WAX::
 Xft_Draw::
 Xft_ColorAllocName (
-	XftColor * colour_purple,
+	XftColor & colour_purple,
 	const char *name
 )
 {
@@ -93,7 +96,7 @@ Xft_ColorAllocName (
 		XftDrawVisual(draw),
 		XftDrawColormap(draw),
 		name,
-		colour_purple 
+		& colour_purple 
 	)) {
 		return FAIL("XftColorAllocName( %s )", name );
 	}
@@ -103,15 +106,35 @@ Xft_ColorAllocName (
 bool
 WAX::
 Xft_Draw::
+Xft_ColorFree (
+	XftColor & colour
+)
+{
+	XftColorFree (
+		XftDrawDisplay(draw),
+		XftDrawVisual(draw),
+		XftDrawColormap(draw),
+		& colour 	// C PTR to struct
+	);
+	// return FAIL("XftColorFree()" );
+	return true;
+}
+
+// TODO: BOLD ITALIC // maybe use this class as attribute collection
+
+bool
+WAX::
+Xft_Draw::
 Xft_FontOpen( 
-	XftFont ** font,
+	XftFont *& font,	// ret_var is a pointer 
 	const char * font_name,
 	double font_size,
 	A_matrix_2x2 * matrix
 ) {
+	if(font) Xft_FontClose(font);
 	Display * display = XftDrawDisplay(draw);
 	int screen = DefaultScreen( display );	// options for ...
-	* font = XftFontOpen(
+	font = XftFontOpen(
 		display,
 		screen,
 		XFT_FAMILY, XftTypeString, font_name,
@@ -127,13 +150,14 @@ bool
 WAX::
 Xft_Draw::
 Xft_FontOpen( 
-	XftFont ** font,
+	XftFont *& font,	// ret_var is a pointer 
 	const char * font_name,
 	double font_size
 ) {
+	if(font) Xft_FontClose(font);
 	Display * display = XftDrawDisplay(draw);
 	int screen = DefaultScreen( display );	// options for ...
-	* font = XftFontOpen(
+	font = XftFontOpen(
 		display,
 		screen,
 		XFT_FAMILY, XftTypeString, font_name,
@@ -141,6 +165,20 @@ Xft_FontOpen(
 		NULL
 	);
 	if(!font) return FAIL("font_name %s size %4.1f", font_name, font_size);
+	return true;
+}
+
+bool
+WAX::
+Xft_Draw::
+Xft_FontClose( 
+	XftFont *& font	// ret_var is a pointer 
+) {
+	if(!font) return PASS("font was already NULL");
+
+	Display * display = XftDrawDisplay(draw);
+	XftFontClose( display, font );
+	font = NULL;
 	return true;
 }
 
@@ -155,7 +193,7 @@ test()		// func(proto)
 
 	XftColor colour_purple;
 	const char *name = "purple";
-	if(! Xft_ColorAllocName ( & colour_purple, name )) {
+	if(! Xft_ColorAllocName ( colour_purple, name )) {
 		return FAIL_FAILED();
 	}
 
@@ -172,11 +210,6 @@ test()		// func(proto)
 #endif
 
 	// see /tools/x86_64_src/tcl/t~7a5/unix/tkUnixRFont.c
-	// it also has a Pattern // 
-
-	// flat angle 0.0 optimises with ...
-	// eg advance
-
 	// also beyond ASCII
 
 	double angle = -22; // + up - down
@@ -193,7 +226,7 @@ test()		// func(proto)
 //	int screen = DefaultScreen( display );	// options for ...
 
 	XftFont * font = NULL;
-	if(! Xft_FontOpen( & font, font_name, font_size, & matrix ))
+	if(! Xft_FontOpen( font, font_name, font_size, & matrix ))
 		return FAIL_FAILED();
 
 	const char * string = "XFT_String_XFT";
@@ -206,13 +239,13 @@ test()		// func(proto)
 	  (FcChar8*)
 		string,
 		len,
-		&extents
+		&pen_extents
 	);
-	show_XGlyphInfo( extents );
+//	show_XGlyphInfo( pen_extents );
 
 	XftColor * color = & colour_purple;
-	int x = 20;
-	int y = 40;
+	int x = 100;
+	int y = 100;
 	XftDrawString8 (
 		draw,
 		color,

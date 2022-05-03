@@ -23,10 +23,11 @@ endif
 ifeq (0,1)
 	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
 	INCLS += -I $(FT2)/include
-	OBJS += -L $(FT2)/objs/.libs
-	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
+	LINKS += -L $(FT2)/objs/.libs
 	LINKS += -lfreetype
 endif
+
+	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
 
 
 	DEFS = 
@@ -47,6 +48,13 @@ endif
 	HDRS += $S/X_Window.h
 	HDRS += $S/XFT.h
 
+	# after any HRDS edited, rebuild OBJS in this order
+
+	OBJS += test_X_two.o
+	OBJS += XFT.o
+
+	OBJS += WAX_argv_decoder.o
+
 	OBJS += A_point_plus.o
 	OBJS += A_Map_W.o
 	OBJS += X_Window.o
@@ -54,9 +62,6 @@ endif
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
 	OBJS += A_matrix_2x2.o
-	OBJS += XFT.o
-	OBJS += WAX_argv_decoder.o
-	OBJS += test_X_two.o
 
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
 #	OBJS += gdb_invoke.o
@@ -81,6 +86,12 @@ all: run_test2
 
 
 $(OBJS): $(HDRS)
+
+gdb_test1: $(EXEC1)
+	gdb --args ./$(EXEC1)
+
+gdb_test2: $(EXEC2)
+	INGDB=1 gdb -tui --args ./$(EXEC2) $(test2_font)  P 
 
 run_test1: $(EXEC1)
 	./$(EXEC1)

@@ -71,55 +71,59 @@
 		draw_green.XDrawRectangle( xywh6 );
 #endif
 
-		xft_draw.test();
-		xft_draw.show_XGlyphInfo( xft_draw.pen_extents );
+		MY_XFT mine( *this ); // X_Window
+
+		mine.test_redraw();
+
+		Xft_Pen & xft_pen = mine.pen;
+		xft_pen.show_XGlyphInfo( xft_pen.pen_extents );
 		INFO("that is pen_extents");
 
 		A_Rectangle xywh8(
-		//	xft_draw.pen_extents.x,
-		//	xft_draw.pen_extents.y,
+		//	xft_pen.pen_extents.x,
+		//	xft_pen.pen_extents.y,
 #if 0
-			xft_draw.pen_extents.xOff,
-			xft_draw.pen_extents.yOff,
+			xft_pen.pen_extents.xOff,
+			xft_pen.pen_extents.yOff,
 #endif
 		// request was 100,100 // is baseline left
 		// extents (x,y) is that baseline from top left
 		// extents (w,h) is bounding box (from 1
-			100 -
-			xft_draw.pen_extents.x,
-			100 -
-			xft_draw.pen_extents.y,
-			xft_draw.pen_extents.width,
-			xft_draw.pen_extents.height
+			mine.test_x -
+			xft_pen.pen_extents.x,
+			mine.test_y -
+			xft_pen.pen_extents.y,
+			xft_pen.pen_extents.width,
+			xft_pen.pen_extents.height
 		);
 		// 35, 30, 3, 3 );
 		draw_green.XDrawRectangle( xywh8 );
 
 		A_Rectangle xywh9(
-		//	xft_draw.pen_extents.x,
-		//	xft_draw.pen_extents.y,
+		//	xft_pen.pen_extents.x,
+		//	xft_pen.pen_extents.y,
 #if 0
-			xft_draw.pen_extents.xOff,
-			xft_draw.pen_extents.yOff,
+			xft_pen.pen_extents.xOff,
+			xft_pen.pen_extents.yOff,
 #endif
 		// request was 100,100 // is baseline left
 		// extents (x,y) is that baseline from top left
 		// extents (w,h) is bounding box (from 1
 		// (xOff, yOff) is advance from baseline to baseline
-			100 -
-	0, //		xft_draw.pen_extents.x,
-			100 -
-	0, //		xft_draw.pen_extents.y,
-			xft_draw.pen_extents.xOff,
-			xft_draw.pen_extents.yOff
+			mine.test_x -
+	0, //		xft_pen.pen_extents.x,
+			mine.test_y -
+	0, //		xft_pen.pen_extents.y,
+			xft_pen.pen_extents.xOff,
+			xft_pen.pen_extents.yOff
 		);
 		// 35, 30, 3, 3 );
 	//	draw_green.XDrawRectangle( xywh9 );
 		draw_green.XDrawLine(
-			100,
-			100,
-			100+ xft_draw.pen_extents.xOff,
-			100+ xft_draw.pen_extents.yOff
+			mine.test_x,
+			mine.test_y,
+			mine.test_x+ xft_pen.pen_extents.xOff,
+			mine.test_y+ xft_pen.pen_extents.yOff
 		);
 
 	}

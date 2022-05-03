@@ -23,7 +23,7 @@ void X_Window::set_name( const char * _name )
 	, window( _window )
 	, disp( _parent->disp )
 	, name(0)
-	, xft_draw( *this )
+//	, xft_draw( *this )
 	{
 		set_name( _name );
 		disp->add( this );
@@ -44,7 +44,7 @@ void X_Window::set_name( const char * _name )
 	, window( _window )
 	, disp( _disp )
 	, name(0)
-	, xft_draw( *this )
+//	, xft_draw( *this )
 	{
 		set_name( _name );
 		disp->add( this );
@@ -64,7 +64,7 @@ X_Window::X_Window(
 , display( disp_.display )
 , window(0)
 , name(0)
-, xft_draw() // requires following create()
+//, xft_draw() // requires following create()
 {
 	set_name( _name );
 	ulong col_border = BlackPixel( display, 0 );
@@ -77,7 +77,7 @@ X_Window::X_Window(
 		col_border,
 		col_background
 	);
-	xft_draw.Xft_DrawCreate( *this );
+//	xft_draw.Xft_DrawCreate( *this );
 	disp->add( this );
 	printf( "window = %ld\n", window );
 }
@@ -102,7 +102,7 @@ X_Window::X_Window(
 , display( parent_->display )
 , window(0)
 , name(0)
-, xft_draw() // requires following create()
+//, xft_draw() // requires following create()
 {
 	set_name( _name ); // _dgb_
 	ulong col_border = BlackPixel( display, 0 );
@@ -116,7 +116,7 @@ X_Window::X_Window(
 		col_background
 	);
 
-	xft_draw.Xft_DrawCreate( *this );
+//	xft_draw.Xft_DrawCreate( *this );
 
 	disp->add( this );
 	map();

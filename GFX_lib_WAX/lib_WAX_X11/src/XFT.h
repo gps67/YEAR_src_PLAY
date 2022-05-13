@@ -194,6 +194,13 @@ struct Xft_Pen { // a bit like a GC or a PrintHead
 		int len
 	);
 
+	bool measure_str( const char * str, int len = -1 ) {
+		return Xft_TextExtents8( str, len );
+	}
+	bool xy_str( int x, int y, const char * str, int len = -1 ) {
+		return Xft_DrawString8( x, y, str, len ); // calc strlen
+	}
+
 	Xft_Pen(
 		Xft_Draw & _xft_draw
 	)

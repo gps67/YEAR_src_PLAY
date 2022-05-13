@@ -73,11 +73,15 @@ endif
 
 	PROG1=test1
 	PROG2=test2
+	PROG3=test3
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)
+	EXEC3=$(PROG3)$(dot_EXE)
 
-all: run_test2
+all: run_test3
+
+# all: run_test2
 
 .SUFFIXES: .cxx .c .o                                                           
 
@@ -99,12 +103,22 @@ run_test1: $(EXEC1)
 run_test2: $(EXEC2)
 	./$(EXEC2) $(test2_font)  P # "Sample Text"
 
+run_test3: $(EXEC3)
+	./$(EXEC3) 
+
 $(EXEC1): $(OBJS) $(PROG1).o
+	# EXEC1 $(EXEC1)
 	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
 
 $(EXEC2): $(OBJS) $(PROG2).o
+	# EXEC2 $(EXEC2)
 	# LINKS $(LINKS)
 	g++ $(PROG2).o $(OBJS) $(LINKS) -o $@
 
+$(EXEC3): $(OBJS) $(PROG3).o
+	# EXEC3 $(EXEC3)
+	# LINKS $(LINKS)
+	g++ $(PROG3).o $(OBJS) $(LINKS) -o $@
+
 clean: 
-	rm -f *.o $(EXEC1)  $(EXEC2)  test2 fa
+	rm -f *.o $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa

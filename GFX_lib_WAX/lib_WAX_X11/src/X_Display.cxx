@@ -23,59 +23,67 @@
 
 using namespace WAX;
 
-void X_Display::process_event( XEvent & report )
+void X_Display::process_event( XEvent & event )
 {
-	X_Window * W1 = find_Window( report.xany.window );
+	X_Window * W1 = find_Window( event.xany.window );
 	X_Window * W2 = W1;
 	// X_test_box * W2 = (X_test_box *) W1;
 	if(!W2) {
 		printf("ERROR WINDOW not found\n");
 		// return 0;
 	}
-	switch  (report.type) {
+	switch  (event.type) {
 	case Expose:   {
+		INFO("case EXPOSE %s %d %d %d %d",
+			W2->name,
+			event.xexpose.x,
+			event.xexpose.y,
+			event.xexpose.width,
+			event.xexpose.height
+		);
 		A_Rectangle rect(
-			report.xexpose.x,
-			report.xexpose.y,
-			report.xexpose.width,
-			report.xexpose.height
+			event.xexpose.x,
+			event.xexpose.y,
+			event.xexpose.width,
+			event.xexpose.height
 		);
 		W2->event_expose( rect );
 		// return 0;
-	}
+	} break;
 	case KeyRelease:
 		printf("KeyRelease: ");
 	case KeyPress: {
 		int index = 0;
-		// KeySym symb = XKeycodeToKeysym( display, report.xkey.keycode, index);
+		// KeySym symb = XKeycodeToKeysym( display, event.xkey.keycode, index);
 #define z_group 0
 #define z_level 0
 		KeySym symb = XkbKeycodeToKeysym(
 			display,
-			report.xkey.keycode,
+			event.xkey.keycode,
 			z_group,
 			z_level
 		);
 		const char * str = XKeysymToString( symb );
 	//	e_print(" KEY Up = %d \n", Up );
-		e_print(" KEY KEY_Up = %d \n", XK_Up );
-		e_print(" KEY symb = %ld \n", symb );
+	//	e_print(" KEY KEY_Up = %d \n", XK_Up ); // 65362
+	//	e_print(" KEY symb = %ld = XkbKeycodeToKeysym(...) \n", symb );
 
 
-		printf("keycode %3d state %2x type %d name %9s win.name %s \n",
-			report.xkey.keycode,
-			report.xkey.state,
-			report.xkey.type,
+		printf("Keysym %ld keycode %3d state %2x type %d name %9s win.name %s \n",
+			symb,
+			event.xkey.keycode,
+			event.xkey.state,
+			event.xkey.type,
 			str,
 			W2->name
 		);
 		/*Close the program if q is pressed.*/
-		if( 24 == report.xkey.keycode ) exit(0);
+		if( 24 == event.xkey.keycode ) exit(0);
 
 		switch(symb) {
 		 
 		 /**/   case XK_space:
-		 	e_print("ON XK_ spave()\n");
+		 	e_print("ON XK_ space()\n");
 		 break; case XK_Up:
 		 	e_print("ON XK_ Up()\n");
 		 break; case XK_Down:
@@ -85,9 +93,9 @@ void X_Display::process_event( XEvent & report )
 		 break; case XK_Right:
 		 	e_print("ON XK_ Right()\n");
 		 break; case XK_Prior:
-		 	e_print("ON XK_ Prior()\n");
+		 	e_print("ON XK_ Prior() { PG_UP} \n");
 		 break; case XK_Next:
-		 	e_print("ON XK_ Next()\n");
+		 	e_print("ON XK_ Next() { PG_DOWN} \n");
 		 break; case XK_Home:
 		 	e_print("ON XK_ Home()\n");
 		 break; case XK_End:
@@ -120,14 +128,71 @@ void X_Display::process_event( XEvent & report )
 		}
 		// return 0;
 	}
+	break;
+// TODO
+	case ResizeRequest: {
+		e_print( "EVENT ITEM '%s' WH %d %d'%s'\n",
+			"ResizeRequest",
+			event.xresizerequest.width,
+			event.xresizerequest.height,
+			W2->name
+		); break;
+		// XConfigureWindow(), XResizeWindow(), or XMoveResizeWindow().
+		// called by WMAN - a DIFFERENT client
+
+	} break;
+	case ConfigureNotify: {
+		e_print( "EVENT ITEM '%s' WH %d %d'%s'\n",
+			"ConfigureNotify",
+			event.xconfigure.width,
+			event.xconfigure.height,
+			W2->name
+		);
+	//	W2->resize(event.xconfigure.width, event.xconfigure.height);
+
+	} break;
+#define ITEM(nme) case nme: e_print( "win %7s EVENT '%s'\n", W2->name, #nme ); break;
+	ITEM(ButtonPress)
+	ITEM(ButtonRelease)
+	ITEM(MotionNotify)
+	ITEM(EnterNotify)
+	ITEM(LeaveNotify)
+	ITEM(FocusIn)
+	ITEM(FocusOut)
+	ITEM(KeymapNotify)
+	ITEM(GraphicsExpose)
+	ITEM(NoExpose)
+	ITEM(CirculateRequest)
+	ITEM(ConfigureRequest)
+	ITEM(MapRequest)
+
+	ITEM(CirculateNotify)
+	ITEM(CreateNotify)
+	ITEM(DestroyNotify)
+	ITEM(GravityNotify)
+	ITEM(MapNotify)
+	ITEM(MappingNotify)
+	ITEM(ReparentNotify)
+	ITEM(UnmapNotify)
+	ITEM(VisibilityNotify)
+	// ITEM() // Circulate items
+	ITEM(ColormapNotify)
+	ITEM(ClientMessage)
+	ITEM(PropertyNotify)
+	ITEM(SelectionClear)
+	ITEM(SelectionNotify)
+	ITEM(SelectionRequest)
+
 	default:
-		printf( "EVENT type %d in %s\n", report.type, W2->name );
+		printf( "EVENT type %d in %s - default\n", event.type, W2->name );
 		// return 0;
 	}
 }
 
 void X_Display::test1()
 {
+	INFO("CALLED");
+	// pointless play code
 	int keysym = XK_KP_Add;
 
 	const char * keyname = "KP_Add"; // without the XP_prefix
@@ -151,7 +216,7 @@ void X_Display::test1()
 	owner_events = False;
 	owner_events = True;
 	grab_window = DefaultRootWindow( display );
-return;
+// return;
 
 	printf(" XKeyGrab( %s, %d, %x, %ld, %d, %d, %d ); \n",
 		"display",
@@ -175,5 +240,10 @@ return;
 	if( t == NoSymbol ) {
 		printf( "# FAIL # XGrabKey(...)\n" );
 	}
+	/*
+		KEY is now active when window is not top
+		KEY is reported on "R-O-O-T" # whatever that is
+		CALL is to X_display event loop handler
+	*/
 
 }

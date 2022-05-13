@@ -18,6 +18,7 @@
 	void X_test_two::
 	event_expose( A_Rectangle & xywh )
 	{
+		INFO("CALLED test_X_two,cxx");
 		INFO_report(xywh);
 
 		// xywh1 is this window on parent // copy it 

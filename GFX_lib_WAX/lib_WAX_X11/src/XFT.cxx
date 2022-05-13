@@ -192,6 +192,9 @@ Xft_TextExtents8 (
 	// &pen.pen_extents
 ) 
 {
+	if( len < 1 ) 
+		len = strlen(string);
+
 	XftTextExtents8 (
 		get_display(),
 		pen_font,
@@ -216,6 +219,17 @@ Xft_DrawString8 (
 	const char * string,
 	int len
 )  {
+
+	if( len < 1 ) 
+		len = strlen(string);
+	
+	if(!pen_colour) {
+		return FAIL("NULL pen_colour");
+	}
+
+	if(!pen_font) {
+		return FAIL("NULL pen_font");
+	}
 
 	XftDrawString8 (
 		xft_draw.draw,	// 
@@ -246,10 +260,24 @@ WAX::		// namespace
 Xft_Pen::	// classname
 show_XGlyphInfo( const XGlyphInfo & e ) // Xrender.h
 {
+	/*
+		caller remembers initial P0 == START on screen
+			that is the BASELINE
+			that is the XLEFT of first char
+			nb BBOX might be after P0.x
+			nb BBOX might be before P0.x
+			eg Y sloping upwards top starts before P0.x
+			eg Y sloping upwards bottom starts above P0.y
+		P2 == P0 + xyOff == START of next SP along baseline
+		BBOX WH == size of BBOX - tightest fitting BBOX
+		xy == BBOX_START
+		xy == START relative to TOP_LEFT of BBOX
+		BBOX XY == SCREEN_START - (xy)
+	*/
 	buffer1 buf;
-	buf.print( "width %4d height %4d BBOX from top left\n", e.width, e.height );
-	buf.print( "x     %4d y      %4d BASELINE from top left\n", e.x    , e.y     );
-	buf.print( "xOff  %4d yOff   %4d ADVANCE wrt BASELINE\n", e.xOff , e.yOff  );
+	buf.print( "width %4d height %4d BBOX WH  \n", e.width, e.height );
+	buf.print( "x     %4d y      %4d BASELINE START from top left\n", e.x    , e.y     );
+	buf.print( "xOff  %4d yOff   %4d ADVANCE wrt START\n", e.xOff , e.yOff  );
 	e_print( "%s", (STR0) buf );
 	return true;
 }
@@ -270,6 +298,7 @@ alloc_items()
 	angle = +45;
 	font_size = 18;
 	font_size =  8;
+	font_size = 28;
 	test_x = 100;
 	test_y = 300;
 
@@ -315,13 +344,16 @@ test_redraw()	// func(proto)
 	if(!draw.draw) return FAIL("NULL draw");
 
 	// app might keep things for a long time
+	// errm this encodes angle into the font alloc
 	alloc_items();
 
 	// assign pen_ pointers to allocated items
 	pen.pen_font = font_charter;
 	pen.pen_colour = & colour_purple;
 
-	const char * string = "XFT_String_XFT";
+	// initial Y shows BBOX is BBOX
+	//
+	const char * string = "Y_XFT_String_XFT";
 	int len = strlen(string);
 
 	pen.Xft_TextExtents8 (

@@ -7,7 +7,14 @@ PATH=$HOME/bin:$PATH
 # svn is not git 
 # svn://svn.code.sf.net/p/codeblocks/code/trunk
 
+# too many dirs
+# git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
+
 L1="
+http://sourceware.org/git/binutils-gdb.git
+https://github.com/oracle/binutils-gdb
+https://github.com/oracle/binutils-gdb/wiki
+https://gitlab.freedesktop.org/xorg/lib/libXaw3d
 https://github.com/nodejs/node
 https://github.com/lxc/lxd
 https://github.com/pjps/ndjbdns/

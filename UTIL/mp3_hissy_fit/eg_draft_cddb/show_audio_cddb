@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+. ./.env1
+
+hissy_fit --cddb_summary audio.cddb
+

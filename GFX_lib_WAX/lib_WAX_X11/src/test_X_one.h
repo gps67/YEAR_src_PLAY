@@ -142,6 +142,7 @@ class X_test_box : public X_Window
 
 	void event_expose( A_Rectangle & xywh )
 	{
+		INFO("CALLED test_X_one,cxx");
 		INFO_report(xywh);
 
 		A_Rectangle xywh2 = xywh1;

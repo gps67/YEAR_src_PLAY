@@ -1,0 +1,41 @@
+	2022-05-12
+
+	2022_05_May
+	2022-05-12_TODO.txt
+
+	VPN certs, config
+	VNC 
+	IPT
+
+	fd_poll
+	fd_select
+	replace glib
+
+	tcl module fix
+	tcl module
+	tcl on WIN32 as rsh
+	py on WIN32 as rsh
+
+	PSG fix increase
+	PSG view SFT include files
+		py file patterns 
+		py layout dirs files
+
+	X11 
+	XCB - not now
+
+	SDL - as WAX alternative
+	GFX - boot - or just SDL
+	W32 - todo
+
+	sqlite
+
+	WAX graph
+
+	SPOUT
+		.md
+		.rst
+	
+
+
+

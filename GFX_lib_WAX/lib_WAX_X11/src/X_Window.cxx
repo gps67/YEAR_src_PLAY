@@ -124,12 +124,26 @@ X_Window::X_Window(
 	printf( "window = %ld\n", window );
 }
 
+/*!
+	name gets displayed in the title bar, and wman lists
+*/
+void X_Window:: set_title( const char * name )
+{
+	::XStoreName( display, window, name );
+}
 
+
+
+/*
+*/
 struct X_Window_Root : public X_Window
 {
 	virtual void event_expose( A_Rectangle & xywh )
 	{
-		// never gets called!
+		INFO("UNUSED");
+		// we provide an X_Window based class wrap
+		// and it requires some virtual functions
+		// they never get called!
 	}
 
 #define NULL_parent NULL
@@ -157,10 +171,4 @@ X_Window * X_Window:: register_root(
 {
 	X_Window * w = new X_Window_Root( disp_, name );
 	return w;
-}
-
-
-void X_Window:: set_title( const char * name )
-{
-	::XStoreName( display, window, name );
 }

@@ -1,4 +1,4 @@
 # PATH=$HOME/YEAR/src/mp3_hissy_fit:$PATH
-. /home/gps/YEAR/src/mp3_hissy_fit/env_hissy_fit
+. $HOME/YEAR/src/PLAY/UTIL/mp3_hissy_fit/env_hissy_fit
 
 check_exe cd-discid || exit

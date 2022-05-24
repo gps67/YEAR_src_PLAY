@@ -1,7 +1,6 @@
 
  TCL_PLUS is the new TCL_TYPE
  it uses VTBL and a tree of logic
- ZZ
 
  TCL_TYPE is a bit of a misnomer
  
@@ -9,8 +8,168 @@
 
 	it knows "typename starts with "UDEF"
 
-	it will be the one that arranges LEX1 LEX2 etc
-	but not be them itself
+		this is no longer true
+		now I use OBJ_module.h 
+		bool is_PLUS_type( const Tcl_Obj * obj )
+		bool is_PLUS_type( const Tcl_ObjType * typePtr )
+		 return  typePtr -> dupIntRepProc == KEPT_PTR;
+
+		For comparison Python has plenty of space in its
+		type declaration struct, but it also has FILLED UP
+		that space so that there is ZERO space avaialble !!!
+
+	if(dupIntRepProc == KEPT_PTR)
+
+		dupIntRepProc
+
+			when is this called - what circumstances
+			find _PLUS type call a virtual replacement
+
+		KEPT_PTR
+
+			KEPT_PTR == client_data_obj_module -> KEPT_PTR
+
+			C++ FUNC ARG in REGISTER == client_data_obj_module
+	
+	OBJ_module * client_data_held_in_func
+
+		The TCL C++ function holds client_data
+		It is delivered every call by the Tcl platform
+		it decodes the OBJV[objc] it is provided with
+		to tell which args are "GET" and the principal "self"
+		it has KEPT_PTR == client_data_obj_module -> KEPT_PTR
+		you need that to tell if any parameter is a _PLUS_
+	
+	as one of my TCL_PLUS extension types
+	we can upgrade the plain Tcl_ObjType * to TCL_PLUS_BASE *
+	(or get NULL for no_it_isnt)
+
+		note that this converts
+		the plain Tcl_ObjType * 
+		to a C++ VTBL TCL_PLUS_BASE *
+		by adding 8 to the PTR
+
+		which is a really strange hack that C++ forces on us
+		and SHOULD have fixed (the core problem is C++
+		inisists that the VTBL field must be at OFFS_ZERO
+		when it could easily be in the middle of a struct
+		There would always be the issue of (is_it_really_PLUS)
+		but the adding of the const offset is a mental somersault
+	
+	As TCL_PLUS we still have to define the C++ code for EACH
+	extension type, but we get a fast function call, just remember
+	it is the TCL_PLUS_BASE * that is C++ virtual NOT the Tcl_Obj * 
+
+		so every UDEF type will have UDEF C++ code with it
+
+		we can still have GENERIC objects += FIELD
+		depending on how we feel, that could be:
+
+			ALL types have a DICT - some keep it NULL
+			SOME types already use the DICT
+			OPTION no DICT available - no extension beyond design
+
+		So the basic _PLUS handler will have code that does that
+
+			lookup "fieldname" in CLASS get SLOT_SPEC
+			lookup "fieldname" in INST get VAL | NULL | added
+
+			list all fields - from CLASS and INST
+
+			SLOT_SPEC says
+			is_hardcoded
+			is_part_of_tcl_head 
+			is_part_of_obj_struct # via PTR2 # via_PTR1 #
+			is_word_aligned_and_stretched
+			is_byte_spliced
+			is_bit_spliced { L M R } 
+			is_int (not Tcl_Obj * an_int)
+			is_str (not Tcl_Obj * a_str )
+			is_Tcl_ _str _list _obj _any _checked
+			is_signed
+			offs_of_word_in_struct
+			
+			BUILD SETTER and try CLASS INST GLOBAL CALL etc
+
+			fn_check( Tcl_Obj*obj, SLOT_SPEC, WORD_VAL, CODE_POINT )
+			fn_read( Tcl_Obj*obj, SLOT_SPEC, WORD_VAL, CODE_POINT )
+			fn_write( Tcl_Obj*obj, SLOT_SPEC, WORD_VAL, CODE_POINT )
+
+			RETURN SETTER that can do CMP for sort
+
+				if not correct type
+
+				CMP( lhs, rhs ) += ( GETTER ) += ( SORT_SPEC )
+
+			CMP for table of rows with slightly different headers
+
+				sort beneath group 
+				 sort by group, then within group
+
+				sort_drop headers - regen headers for new spec
+
+		check multiple set_vals
+
+			lock_on
+			set_each check_each roll_back
+			lock_off
+
+			a tad too much ?
+			set aside new object to splice over PTR2
+
+
+	If the Tcl_Obj type is NOT a TCL_PLUS, I dont want to touch it.
+	I am only prepared to appropriate a Tcl_Obj * a_string,
+	where the obj->typePtr was NULL (eg for TOKEN == "GET")
+
+		if typePtr and NOT is_PLUS_type( typePtr )
+
+			leave it well alone
+			maybe ask it for it's string rep value
+
+		if typePtr == NULL
+
+			feel free to hijack into is_PLUS_type( typePtr )
+
+		if typePtr and is_PLUS_type( typePtr )
+
+			feel free to do whatever
+
+	Some debugging tests show that Tcl 8.7 do exactly that,
+	they internalise repeated "TOKEN" but keep it as a plain 
+	NULL type string, which I then convert in-situ to a LEX1 or LEX2
+
+	I do accept that there might be any number of internalised
+	"TOKEN" values, and I upgrade each to a LEX2 that points back
+	to a LEX1, which is my agreed "SPELLING" canonical pointer,
+	but I can replace the LEX2 pointer, only make it link back.
+
+	So if you accept input from a data file, and parse a "TOKEN",
+	your code will create a new plain string, my code will upgrade it
+	to a LEX2, you will then let go, and it will disappear.
+
+	NB there is also a problem with TCL ref_count_ZERO delete,
+	where the Tcl core removes the bytes[length] then calls
+	the registered delete procedure. That makes it difficult
+	to find the object in some hidden table, to delete it!!
+
+	One option would be to sweep a "keep list" looking for
+	refcount == 1. Tcl is an arse
+
+	For LEX, bytes[length] is the "human_name" of the item,
+	after that, the string value is a "machine_name" 
+	eg { "obj_id_%d" idx=N++ }, and if you want to find Object_t*
+	from its name (eg you placed it in a bind command string)
+	you will have to keep a table of names, and refcount somehow.
+
+	What Tcl should have done, is to upgrade every BIND_COMMAND_STRING
+	to also hold a second value, a list of objects it refers to.
+	Then if the BIND is deleted or replaced, the objects get unheld.
+
+	This may also be possible with the Widget holding a list,
+	and waiting for the widget to get destroyed.
+
+
 
  We need to provide these
 
@@ -56,4 +215,16 @@ Tcl_SetFromAnyProc      *setFromAnyProc; (interp, obj)
 ####################
 
 Tcl_ConvertToType
+
+
+	I dont use this function, but I think I do use what it does.
+	I hijack objects that had a NULL objType into an extension_type
  
+ ###################
+
+ LEX1 - centralised spelling of "GET"
+ LEX2 - not centralised spelling that points to LEX1
+(LEX3) any non-plain-str with a pre-existing TCL type of "GET"
+
+ VECT
+ DICT

@@ -57,17 +57,39 @@ struct LITERAL_MATCHER {
 		inline test that obj is already cached
 	*/
 	bool MATCHES( Tcl_Obj * obj ) {
+		INFO("INLINE");
 
 		// match cache
 		if( obj == match_one ) return true;
 		if( obj == match_two ) return true;
 		if( obj == match_three ) return true;
 
+		// we know this will never happen - simplify inline ?
+		// also suspect that match_three would be NULL !!!
+		if(!obj) {
+			return FAIL("NULL obj");
+		}
+
+		// if obj is a PLAIN str
+		if( !obj->typePtr ) {
+			// be the first to try to upgrade it
+			return MATCHES_fn( obj );
+		}
+
+		// if obj is ANY type it might be LEX1 LEX2 or untouchable
+		// obj->typePtr 
+		// NULL plain string
+		// LEX1
+		// LEX2
+		// TCL list TCL code symbol (as if) TCL float
+
+
+		// we know match_one is NOT NULL, CTOR assigned it
+		// it probably should be a LEX1 but might not be
+		// we know match_one->typePTr is not NULL, but might not be _PLUS
+		// it might be a Tcl object, (somehow) built from "GET"
 		// we do NOT KNOW match_one->typePtr is TYPE_LEX1
-		// it is not NULL, but might be a Tcl object
-		// as the CTOR guarantees that
 		//( match_one && match_one->type_Ptr && ... )
-		if( obj->typePtr ) {
 			// this is FINGERS CROSSED
 			// there could be several TYPED tcl types
 			// eg VECT is varname is funcname is bytecode is ...
@@ -91,7 +113,7 @@ struct LITERAL_MATCHER {
 			);
 		#endif
 			return false;
-		}
+		
 	/*
 		obj -> PTR2 == match_one
 		obj -> TYPE == LEX2

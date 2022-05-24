@@ -36,6 +36,69 @@
 		.md
 		.rst
 	
+	TEXT byte_swat
+	TEXT FAQ byte swap
+	TEXT FAQ u8 u16 u32 u48 u64 ...
+	TEXT FAQ fork + exec
+	TEXT FAQ argv[ argc ]
+	TEXT FAQ malloc free
+	TEXT FAQ stack / ASM / C
+	TEXT FAQ CPU MEM ASM
+	TEXT FAQ ADDR = BASE + OFFS # OFFS in ARRAY = ITEM_SIZE * IDX // .field
+	TEXT FAQ BYTE bounce skips byte order 
+	TEXT FAQ BITFIELD # byte is reg # bit_zero # bit_high # << lhs >> lhsrhs
+	TEXT FAQ u48 + u16 { u8 u8 } // AL AH AX // WORD >> 16 // SWORD >> 16
+	TEXT FAQ INTRO HTML
+	TEXT FAQ INTRO python
+	TEXT FAQ INTRO Tcl
+	TEXT FAQ Tcl_Obj * objv[objc]
+	TEXT FAQ Tcl_Obj { ref_count bytes length type_ptr PTR1 PTR2 unions }
+	TEXT FAQ 
+	TEXT FAQ ... long list ... tree ... 
+	TEXT FAQ 
+	TEXT FAQ Object_t * VECT[ N ] // all about zero // idx = N++ // idx_t //
+	TEXT FAQ ASM EIGHT_t VECT[N]; // { u32 u16 u8 u8 } // if >8 mult_by_reg
+	TEXT FAQ swap bytes NTOL 486_swab
+	TEXT FAQ process loading 
+	TEXT FAQ process nature
+	TEXT FAQ boot from floppy (if not cassette)
+	TEXT FAQ IP4 various
+	TEXT FAQ IP6 chaos
+	TEXT FAQ SOCKETS
+	TEXT FAQ TTY various
+	TEXT FAQ SHM MMAP 
+	TEXT FAQ pthreads locks drop_on_exec
+	TEXT FAQ VFS inodes uid mod suid
+	TEXT FAQ X11 nested windows remote proto basic nouns verbs
+	TEXT FAQ X11 madness GUI toolkits
+	TEXT FAQ TCL/TK GUI rules tree pack scrollables some canvas text notes
+	TEXT FAQ Python tkinter - add (forgotten) - use kw - use list of pairs
+	TEXT FAQ Gtk nested name system
+	TEXT FAQ Qt 
+	TEXT FAQ HTML canvas svg gl text/box css
+	TEXT FAQ INTS binary 2's comp, xor, shift
+	TEXT FAQ 
+	TEXT FAQ 
+	TEXT FAQ 
+	TEXT FAQ 
+
+	TREE / under / near / dbid
+
+ P I M
+
+ 	mob droid apple desktop 
+
+	calendar
+	diary
+	contacts, phone book, addr
+	call log
+	notes
+	sync subsets
+	photo receipts
+	photo mgmt
+	todo done
+
+
 
 
 

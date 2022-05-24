@@ -1,0 +1,3 @@
+SEARCH=
+SEARCH=+/command
+./M "$@" | less $SEARCH

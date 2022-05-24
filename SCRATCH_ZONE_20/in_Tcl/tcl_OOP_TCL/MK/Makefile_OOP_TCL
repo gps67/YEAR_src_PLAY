@@ -94,7 +94,7 @@
 
 .SUFFIXES: .o .cxx .so .exec .h
 
-Default: module
+Default: test
 
 default: module
 

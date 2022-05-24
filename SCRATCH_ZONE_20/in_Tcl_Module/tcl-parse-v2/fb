@@ -1,7 +1,0 @@
-Parser_library advertising: Tokeniser 
-tokeniser_init_trusted() - which calls ... 
-tokeniser_init_restricted - 0
-sizeof int 4 sizeof ClientData 8 
-# module force loaded by Parser_library_Init 
-# split_file test_split_file.tcl
-# check( interp, OPCODE=parse_script, objc=1 ) returned 1 

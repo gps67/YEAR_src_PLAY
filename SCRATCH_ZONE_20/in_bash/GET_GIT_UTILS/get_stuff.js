@@ -11,6 +11,7 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/pyscript/pyscript
 http://sourceware.org/git/binutils-gdb.git
 https://github.com/oracle/binutils-gdb
 https://github.com/oracle/binutils-gdb/wiki
@@ -334,7 +335,6 @@ https://github.com/opengl-tutorials/ogl
 https://github.com/OpenVPN/easy-rsa
 https://github.com/OpenVPN/easy-rsa
 https://github.com/OpenVPN/openvpn
-https://github.com/OpenVPN/openvpn
 https://github.com/OpenVPN/openvpn3
 https://github.com/OpenVPN/openvpn3.git core
 https://github.com/OpenVPN/openvpn3-linux
@@ -356,7 +356,6 @@ https://github.com/reactiveui/Akavache
 https://github.com/recombinant/petzold-pw5e
 https://github.com/redom/redom
 https://github.com/ReturnInfinity/BareMetal-OS
-https://github.com/ribomation/DroidAtScreen1
 https://github.com/rougier/freetype-gl
 https://github.com/rust-lang/book
 https://github.com/rust-lang/rust.git
@@ -450,6 +449,8 @@ https://sourceware.org/git/insight.git
 #https://github.com/GNOME/gnome-alsamixer
 #https://github.com/idea4good/lvgl
 #https://github.com/rg3/youtube-dl
+http://github.com/FreeRTOS/FreeRTOS
+#https://github.com/ribomation/DroidAtScreen1
 
 "
 for U in $L1

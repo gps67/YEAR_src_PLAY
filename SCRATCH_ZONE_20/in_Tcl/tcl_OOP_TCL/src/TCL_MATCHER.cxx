@@ -15,6 +15,7 @@ bool TCL:: CMP( Tcl_Obj * obj, const char * str )
 
 bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 {
+	INFO("CALLED");
 	// inline did the fast match first
 	// so we can meander through a checklist
 
@@ -44,7 +45,7 @@ bool LITERAL_MATCHER:: MATCHES_fn( Tcl_Obj * obj )
 		// STAY // return false;
 	}
 
-if(0)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
+if(1)	INFO("# CALL # LITERAL_MATCHER(%s).MATCHES_fn # %s \n",
 		Tcl_GetString( match_one ),
 		Tcl_GetString( obj ));
 

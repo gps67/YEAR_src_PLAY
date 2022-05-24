@@ -46,13 +46,22 @@ struct LITERAL_MATCH {
 	*/
 	bool MATCHES( Tcl_Obj * obj ) {
 
-		// match cache
+		// CODE ERROR
 		if( !obj ) return FAIL("CODE_ERROR"); 
 		if( !match_one ) return FAIL("CODE_ERROR"); 
+
+	 INFO("match_one %s argv[i] %s", match_one->bytes, obj->bytes );
+
+		// cached result - is usually LEX1 in match_one
+		// experiments show that TCL internalises
+// LOG		if( obj == match_one ) return PASS("match_one");
+// there is no match_two
+//		if( obj == match_two ) return PASS("match_two");
 
 		if( obj == match_one ) return true;
 
 		if(!obj->bytes) {
+			FAIL("WE SHOULD EXPECT A STRING OR post STRING");
 			const char * str_obj = Tcl_GetString( obj );
 		}
 		if(!match_one->bytes) {

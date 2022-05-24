@@ -51,7 +51,9 @@ proc pp_word {word indent} {
 	flush stdout
 }
 proc pp_script script {
+#	puts "script = $script # command #"
 	foreach command $script {
+#		puts "command = $command"
 		foreach {cmnt cmd args } $command {
 			puts "cmnt = $cmnt"
 			puts "cmd = $cmd"

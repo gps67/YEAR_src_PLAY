@@ -331,7 +331,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 
 bool PW_UTIL_VNC:: decrypt_vncpass(  buffer2 & plain, const char * crypt )
 {
-	if(0)	return decrypt_vncpass_EVP( plain, crypt );
+	if(1)	return decrypt_vncpass_EVP( plain, crypt );
 	else	return decrypt_vncpass_TRAD( plain, crypt );
 }
 

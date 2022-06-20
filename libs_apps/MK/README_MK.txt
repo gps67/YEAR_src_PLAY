@@ -1,3 +1,53 @@
+2022-06-08 Jun Wed 18:24 # 50 #  README_MK.txt
+
+	/home/gps/YEAR/src/PLAY/libs_apps/MK/./README_MK.txt
+	ABS_OVER=/home/gps/YEAR/src/PLAY
+	ABS_TOP=$(ABS_OVER)/libs_apps
+
+	Some tools in the toolchain (gdb-like) need absolute pathnames
+	You will need to edit ABS_OVER, or override it when invoked
+
+ DIR LAYOUT
+
+	ABS_TOP=$(ABS_OVER)/libs_apps
+
+	TOP/MK/
+	TOP/build_LGX_boxname/
+	TOP/src/lib_base/buffer/blk1.cxx # and .h
+	TOP/src/apps/main/play_code.cxx # main() is in each of these apps
+	TOP/lib_pkgconfig/LGX/libs_apps_glib.pc # requires glib-2.0
+	TOP/_run/mk_less_lots_k # run this to build target "lots"
+	TOP/_run/mk # edit this to set vars for all build
+	TOP/include/blk1.h --symb-link--> ../src/lib_base/buffer/blk1.h
+
+
+	I use mc MidnightCommander as menu 
+	I cd to _run
+	I run ./mk_less_PICK_ONE
+
+	It calls ./mk # via ./mk_less
+	It cd's to ../build_LGX_boxname/
+
+		if that does not exist you must create it
+		interactive does not work well with mk_less
+		so try ./mk first
+
+		all of the build is built from that ../build_LGX_boxname/ dir
+		all of the objs.o libs.so apps.exec go there
+
+		"LGX" is for "Linux_Gnu_X11" 
+		"W32" is not working at the moment, io issues
+		"ARM" as in cross compiler is not working
+
+			LGX on arm might work, Linux gcc
+
+		All of these have their own dirs in lib_pkgconfig
+		so that you can override for specific builds
+		For now there is only LGX and "boxname" (uname -n)
+
+	/libs_apps/MK/./README_MK.txt
+
+
 2020-06-09 Jun Tue 18:11 README_MK.txts
 
  NODE = mkdir dirname_of_NODE()

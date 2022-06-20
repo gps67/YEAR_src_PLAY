@@ -1,0 +1,18 @@
+
+D=/home/gps/YEAR/G_MOB/ftp_mobile/Iya_Salisbury/Iya
+
+F=IMG_194x_2022-05-22_1600_Sun_AM_56A4BC91-D877-475F-A18F-26B72166D3B2.mov
+
+mplayer -identify -vo null -ao null -frames 0 $D/$F \
+2>&1 \
+| tee $0.out \
+| less
+
+exit
+
+mv F3 give slightly different result
+the NAME VALUE appeared on same line somehow
+
+FTP_CVS/github.com/MidnightCommander/mc/misc/ext.d/
+	video.sh
+

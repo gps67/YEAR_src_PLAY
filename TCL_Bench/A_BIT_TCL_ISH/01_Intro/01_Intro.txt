@@ -77,9 +77,50 @@
 		}
 	
 	A VERY STRANGE thing is that there are more than one parse styles.
-	It is very confusing until you realise it, but lines_of_code
+	It is very confusing until you realise it, but {lines_of_code}
 	use one parser and if {CONDITION} uses a different parser.
 	Quoted list data uses yet another (you lose newlines)
+
+	When you use {quoting braces} the text gets parsed twice.
+	The first time, the text is NOT parsed, because that is how
+	{braces} is parsed. The text result is passed as an argv parameter
+	to the "if" command, which then chooses to do it's own parse (eval).
+
+	.code if {condition} {code_one} else {code_two}
+
+	If you forget to quote the {condition} or {code}, that is expanded
+	before the "if" command is called, and passed as parameter text.
+
+	All the standard if while foreach ... functions can be replaced by
+	your own user defined ones (this can confuse security), and then your
+	code, like the original, would need to expand $VAR in the callers
+	context. For an easy life, always use {brace_quoting} and the result 
+	is what you expect, but you can choose not to, and the text will be
+	expanded twice. 
+
+	There is a builtin compiler (to tcl byte code) which does that
+	analysis, and retains the logic of what it found, for the next call.
+	It "upgrades" the text values in-situ, which it can do, if {quoted},
+	but might not be able to, is not the same quoted {program text}
+	every time.
+
+	.code while $still_looking { ... ; set still_looking 0; ... }
+
+		This will expand $still_looking once.
+		If it is true, it will loop forever.
+
+	.code while {$still_looking} { ... ; set still_looking 0; ... }
+
+		This is what you want.
+		It expands $still_looking every loop
+	
+	The mechanisms for evaluating variables and code, in the parent
+	callers context, is very useful. see upvar 
+
+	There is a third evaluation style, EXPR CODE and now DATA
+	It is very similar, and again it is the called function that
+	does NOT do an extra eval on the DATA, but chooses to see EOLN
+	as just another GAP between WORDS. CODE sees LINES_of_WORDS
 
 	CODE uses LINES of WORDS
 
@@ -87,15 +128,33 @@
 	
 	EXPR uses tightly parsed words
 
-		if { $a < $b } {then_code} {else_code}
+	.code	if { $a < $b } {then_code} {else_code}
 
 	DATA list uses WORDS 
 
+	.code {
 		set mylist {
 			your
-			word 
-			list here
+			word list
+			here
 		}
+	}
+
+	That produces 1 list of 4 words, this produces 3 words,
+	where the middle word, is itself {TEXT} that will prod
+
+	.code {
+		set mylist {
+			your
+			{ word list }
+			here
+		}
+	}
+
+		actually that sets mylist to the text {...},
+		but as soon as you lappend it is interpreted as WORDS.
+	
+	The outer {braces} are always processed by the callers parser
 
  }
 

@@ -1,0 +1,31 @@
+	2022-05-27
+
+	2022_05_May
+	2022-05-27_USB_type.txt
+
+	USB-1.1    12 Mbps 2.5V 0.5A
+	USB-2.0   480 Mbps 2.5V 1.8A
+	USB-3.0  5    Gps  5  V 1.8A
+	USB-3.1 10    Gps 20  V 5  A
+
+	3 is blue
+
+A	main PC end = almost universal PC end
+b	train tunnel printer
+
+C	
+	can be upside down (but not)
+	upto usb-3.1 10 Gbit/sec 20V 5A 100W
+	bidirectional power !!
+
+
+mini A
+mini B	/__\ pointy corners, used old radios, mp3, obvious up-down
+mini c
+
+micro A
+micro B * COMMON * 
+micro B USB-3 figure-of-8 mid-notch
+micro c
+
+

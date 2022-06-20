@@ -1,0 +1,24 @@
+	2022-05-26
+
+	2022_05_May
+	2022-05-26_Pallette.txt
+
+	Two colours make up the emblem of The Queen’s Platinum Jubilee – platinum and Pantone 3515 C.
+	The platinum colour represents Her Majesty’s 70 years on the throne, whilst the purple colour is synonymous with royalty.
+	Each application requires a different colour code. For print, please refer to CMYK values.
+
+Platinum
+C 0 M 0 Y 1 K 10
+R 229
+G 228
+B 226
+# E5E4E2
+
+Pantone 3515 C
+C 74 M 100 Y 0 K 12
+R 97
+G 0
+B 125
+# 61007D
+
+

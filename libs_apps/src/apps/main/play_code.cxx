@@ -150,6 +150,7 @@ bool VNC_PASS_DECODE(int argc, char ** argv ) {
 	buffer1 filedata;
 	buffer2 clearpass;
 	
+	INFO("filename %s", filename);
 	if(!AUTH::PW_UTIL_VNC::vncpassfile_read( filename, clearpass )) return FAIL_FAILED();
 	
 	// supposedly that did it all

@@ -240,6 +240,7 @@ bool PW_UTIL_UNIX:: RAND_pass8_easy2( buffer2 & buff )
 // echo abcd5678 | vncpasswd -f | hd -c
 // 00000000  c2 c9 a2 24 51 d1 5b d3    |...$Q.[.|
 // 0000000    �  �  �  $  Q  �  [  �                 
+// ok fix was to set odd parity in _TRAD now looking at _EVP
 
 /////////////////////////////////////////////////////
 // class vnc_key_holder
@@ -248,7 +249,8 @@ bool PW_UTIL_UNIX:: RAND_pass8_easy2( buffer2 & buff )
 vnc_key_holder:: vnc_key_holder()
 : key_holder( EVP_des_cbc() )
 {
-	INFO("CTOR BODY after CTOR key_holder( EVP_des_cbc())");
+	FAIL("NOT A FAIL + OK");
+	INFO("CTOR BODY has called CTOR key_holder( EVP_des_cbc())");
 }
 
 vnc_key_holder:: ~vnc_key_holder()
@@ -280,10 +282,11 @@ bool vnc_key_holder:: flip_all_bytes_in_key()
 
 bool  vnc_key_holder:: set_to_users_pass8( buffer2 & plain )
 {
+	blk_key.clear();
 	const int LEN8=8;
 	const int LENi=plain.nbytes_used;
 	for(int i=0; i<LEN8; i++ ) {
-		u8 c = ASCII_NUL;
+		u8 c = ASCII_NUL; // pad to 8 bytes with NUL byte
 		if( i < LENi ) c = plain.buff[i];
 		blk_key.buff[i] = c;
 	}
@@ -302,7 +305,7 @@ bool PW_UTIL_VNC:: RAND_pass8_dense_vnc( buffer2 & pw_vnc_plain )
 
 bool PW_UTIL_VNC:: encrypt_vncpass64( buffer2 & crypt, const char * plain64 )
 {
-	buffer2 plain;
+	buffer2 plain; // always has 8 space
 	blk_base64 conv;
 	if(!conv.decode( plain64, plain )) return FAIL_FAILED(); // lhs -> rhs
 	// use DES_fcrypt openSSL THREAD SAFE replacement for UNIX crypt
@@ -325,7 +328,7 @@ bool PW_UTIL_VNC:: decrypt_vncpass64( buffer2 & plain64, const char * crypt )
 
 bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 {
-	if(0)	return encrypt_vncpass_EVP( crypt, plain );
+	if(1)	return encrypt_vncpass_EVP( crypt, plain );
 	else	return encrypt_vncpass_TRAD( crypt, plain );
 }
 
@@ -338,6 +341,8 @@ bool PW_UTIL_VNC:: decrypt_vncpass(  buffer2 & plain, const char * crypt )
 
 bool PW_UTIL_VNC:: encrypt_vncpass_EVP( buffer2 & crypt, const char * plain )
 {
+	// this is failing compare to _TRAD
+	INFO("plain == '%s'", plain );
 //	gdb_invoke();
 	const int LEN8 = 8;
 	
@@ -373,13 +378,23 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 	buffer2 see;
 	see.put_nn_bytes( 8, key );
 	see.dgb_dump( "SEE well known key reversed");
+	// E8 4A D6 60  C4 72 1A E0 //
  }
 
 	// set schedule from cblock
 	DES_key_schedule schedule;
-//	DES_set_odd_parity(& key); // pre-requirement
+	DES_set_odd_parity(& key); // pre-requirement
 	int t = DES_set_key_checked(& key, & schedule);
-	if(!t) {
+
+ if(0) {
+	buffer2 see;
+	see.put_nn_bytes( 8, key );
+	see.dgb_dump( "AFTER DES_set_key_checked");
+	// E9 4A D6 61  C4 73 1A E0 //
+ }
+
+	if(t) {
+		// -1 means parity error # -2 means weak key # 
 		// return FAIL("DES_set_key_...() %d", t);
 		FAIL("DES_set_key_...() %d", t);
 		DES_set_key_unchecked(& key, & schedule);
@@ -389,6 +404,16 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 	DES_cblock output;
 
 	int PASSLEN = strlen( plain );
+	if(PASSLEN!=8) {
+	 WARN("PASSLEN == %d plain == '%s'", PASSLEN, plain );
+	 WARN("this is overwriting a const char *" );
+	 WARN("caller should pre do this to buffer" );
+	 char * plain2 = (char *) plain;
+	 while(PASSLEN<8) {
+		plain2[PASSLEN++] = 0x00; // PAD password with NUL // not SP ?
+	 }
+	 plain = plain2;
+	}
 	if(PASSLEN!=8) return FAIL("This is for auto generated dense passwords only PASSLEN=%d", PASSLEN);
 	memcpy( input, plain, PASSLEN ); // hope its not short!
 	int enc = DES_ENCRYPT; // VNC encrypts
@@ -472,13 +497,8 @@ bool PW_UTIL_VNC:: vncpassfile_write(
 {
 	// encrypt it
 	buffer2 pw_vnc_stored;
- if(0) {
-	if(!encrypt_vncpass( pw_vnc_stored, pw_vnc_plain ))
+	if(!encrypt_vncpass( pw_vnc_stored, pw_vnc_plain )) // may call _TRAD
 		return FAIL_FAILED();
- } else {
-	if(!encrypt_vncpass_TRAD( pw_vnc_stored, pw_vnc_plain ))
-		return FAIL_FAILED();
- }
 
 	// store it
 	INFO("WRITING VNC to %s", (STR0) filename );

@@ -287,6 +287,37 @@ bool buffer1:: trim_leading_blanks()
 	return true;
 }
 
+bool buffer1::trim_trailing_eoln()
+{
+//	INFO("CALLED nbytes_used == %d", nbytes_used);
+	bool found_gap = false;
+	bool looping = true;
+	int found_count = 0;
+	while( nbytes_used && looping ) {
+		u8 * P = buff + nbytes_used - 1;
+		switch( *P ) {
+		 case CR:
+		 case LF:
+//		 	INFO("found CHR(%2X)",*P);
+			if( found_gap ) {
+				if( *P == LF ) {
+					WARN("trim multiple LF");
+				}
+			}
+			*P = NUL;
+			nbytes_used --; // will overwrite BYTE
+			found_gap = true;
+			looping = true;
+		 break;
+		 default:
+		 	looping = false;
+//		 	INFO("Found CHR(%2X)",*P);
+		}
+	}
+	trailing_nul();
+	return found_gap;
+}
+
 bool buffer1::trim_trailing_blanks()
 {
 	bool found_gap = false;

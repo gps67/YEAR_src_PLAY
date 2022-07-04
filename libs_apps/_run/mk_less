@@ -1,10 +1,11 @@
 
 	T=obj_ref0.o
 	T=lots
-	PTN=Error
-	PTN=VNC
-	PTN=error
-	PTN=FAIL
+	# first one wins # caller wins
+	PTN=${PTN:-FAIL}
+	PTN=${PTN:-Error}
+	PTN=${PTN:-VNC}
+	PTN=${PTN:-error}
 	SRCH=
 	SRCH=+/$PTN
 	SRCH="-p $PTN"

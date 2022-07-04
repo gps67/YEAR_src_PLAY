@@ -171,6 +171,7 @@ FMT1	bool print_into_utf8( const char * fmt, ... );
 		return put_nn_bytes( zone.str_len(), zone.p0 );
 	}
 
+	bool trim_trailing_eoln();
 	bool trim_trailing_gaps();
 	bool trim_trailing_blanks();
 	bool trim_leading_blanks();

@@ -106,9 +106,17 @@ public:
 	time_t time_from_local();
 	time_t time_from_local_with_isdst( int isdst = -1 );
 
+	// 
+  static 
+	time_t OS_time_now() { return time(NULL); } //
+
 	bool UST_from_time( time_t t );
 	bool TZ_from_time( time_t t ) { return local_from_time( t ); }
 	bool local_from_time( time_t t );
+
+	// set all the tm_parts // you probably want this // or for old time_t
+	bool UST_from_time_now() { return UST_from_time( time(NULL)); }
+	bool local_from_time_now() { return local_from_time( time(NULL) ); }
 
 	int Jan_to_MM( char * jan ) { return MM_from_Jan( jan ) ; }
 	int MM_from_Jan( char * jan );
@@ -126,6 +134,8 @@ public:
 	int days_after_Saturday() const { return (tm_wday+1)%7 ; }
 	int days_after_Monday() const { return (tm_wday+6)%7 ; }
 	int is_weekend() const { return (tm_wday==0) || (tm_wday==6) ; }
+
+	bool check_tm_year(); // WARN when 1900 offset is seen
 
 	void year( int year ) {
 		tm_year = year - 1900;
@@ -196,10 +206,24 @@ static
 	bool parse_Jan( const char ** str, int & _mm );
 	bool parse_int( const char ** str, int & _mm );
 
+	// years have different numbers of seconds !!
+	// this is flawed when used with PIOMASS // anything else too //
+	void set_float_year( double year ); // eg 1979.5 is midsummer
+	void get_float_year( double & year ); // get_as_ double
+
 	time_t step_to_first_of_next_month_local();
 	time_t step_to_first_of_next_month_UST();
 	time_t step_to_00_of_next_day_local();
 	time_t step_to_00_of_next_day_UST();
 	void slide_past_hour_23();
+
+ static
+	bool is_leap( int yyyy );
+ static
+	int seconds_in_year( int year );
+ static
+ 	int seconds_in_day() { return 24*60*60; }
+ static
+ 	int minutes_in_day() { return 24*60; } // 1440
 };
 #endif

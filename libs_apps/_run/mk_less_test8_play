@@ -1,2 +1,6 @@
 
+	# first one wins
+	export PTN=${PTN:-FAIL}
+	export PTN=${PTN:-vnc}
+
 	./mk_less -k "${@:-test8}" 

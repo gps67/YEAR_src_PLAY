@@ -17,30 +17,15 @@
 	INCL += $(INCLS)
 	LIBS += $(LINKS)
 
-	PKGS += freetype2
-	PKGS += xft
-	PKGS += fontconfig
+	PKGS += libpng
+#	PKGS += freetype2
+#	PKGS += xft
+#	PKGS += fontconfig
 
-ifeq (1,1)
 	# these are supposed to be part of the build system
 	# TODO docs for the VARS used
 	INCLS += `pkg-config --cflags $(PKGS)`
 	LINKS += `pkg-config --libs $(PKGS)`
-endif
-
-ifeq (1,0)
-	INCL += `pkg-config --cflags freetype2`
-	LIBS += `pkg-config --libs freetype2`
-endif
-
-ifeq (0,1)
-	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
-	INCL = -I $(FT2)/include
-	OBJS += -L $(FT2)/objs/.libs
-	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
-	OBJS += -lfreetype
-endif
-
 
 	DEFS += 
 	LIBS += -L/usr/X11R6/lib -lX11
@@ -63,6 +48,7 @@ endif
 	MAKES += ../MK/MK_with_libs_apps
 	MAKES += ../MK/Makefile
 
+ifeq (1,0)
 	# WAX headers
 	HDRS += $(S2)/A_point_plus.h
 	HDRS += $(S2)/X_Colours.h
@@ -92,6 +78,9 @@ endif
 #	OBJS += e_print.o
 
 	OBJS += ft2.o
+endif
+
+	OBJS += png_one.o
 
 	PROG1=test1
 	PROG2=test2
@@ -99,7 +88,7 @@ endif
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)
 
-all: run_test2
+all: run_test1
 
 ifeq (1,0)
 .SUFFIXES: .cxx .c .o                                                           

@@ -74,7 +74,7 @@ BEGIN {
 
 	# PICK A365 # LAST one WON #
 
-	F365=1.0*A365 # as a floating point
+	F365=1.0*A365 # as a floating point # YEARS not days
 
 	plot_to_png = 0
 	plot_to_png = 1	# it is all .png
@@ -321,8 +321,8 @@ function line_in( year, year_frac, day, vol ) {
 		A365_half = F365/(365.0*2.0) 
 # // A365_half // WHAT IS THIS NONSENSE // why not F365 / 2
 # // A units are units of 1 year, x-axis is in units of years not days
-# // measurments are daily tho
-// data_day_pos is where the mid-ends are
+# // measurments are daily tho, so multiply by 365.0
+# // data_day_pos is where the mid-ends are
 		year_frac3 = sprintf( fmt_3, (year_frac - A365_half ))
 		L_day_1 = year_frac3 " " (year_vol_avg1_sum/F365 + 8.0)
 		L_day_2 = year_frac3 " " (year_vol_avg1_sum/F365)

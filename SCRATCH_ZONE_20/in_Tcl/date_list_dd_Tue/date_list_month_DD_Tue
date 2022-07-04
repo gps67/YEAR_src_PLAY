@@ -6,7 +6,9 @@
 # usage upvar $parameter varname(newcopy) # call uses var_name as parameter str
 
 proc un_octal_dd mm {
-	switch mm {
+	# tcl sees 07 as octal 7
+	# tcl sees 08 as octal error
+	switch -exact $mm {
 	 08 {return 8}
 	 09 {return 9}
 	}
@@ -17,10 +19,7 @@ proc incr_mm {v_mm} {
 	# LINT USAGE $v_mm not v_mm
 	# LINT USAGE true false - not here in tcl
 	upvar $v_mm mm
-	switch mm {
-	 08 {set mm 8}
-	 09 {set mm 9}
-	}
+	set mm [un_octal_dd $mm]
 	set mm [format {%2.2d} [expr $mm + 1 ]]
 	# return false on fail overflow needs next year 
 	if {$mm == "13"} { return 0 } {return 1}

@@ -1,5 +1,7 @@
 #!/usr/bin/env make
 
+# WAX
+
 	CXX = g++
 	OPTIM += -g
 	INCLS += -I../

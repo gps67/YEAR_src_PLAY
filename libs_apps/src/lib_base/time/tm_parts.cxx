@@ -643,3 +643,90 @@ void tm_parts::slide_past_hour_23()
 		tval += 60 * 60;
 	}
 }
+
+// BUG // TODO // FIX // timezone should probably be GMT0
+
+/*!
+	For systems that use a fractional year as an exact time
+*/
+void tm_parts::set_float_year( double year_time ) // eg 1979.5 is midsummer
+{
+	// year_time is year
+	// the result will be inaccurate because input used 2 decimal places
+	// leap is also smeared over entire year
+	int int_year = (int) year_time;
+	double year_frac = year_time - int_year;
+	init1(); //
+	year( int_year ); // must use getter setter because yyyy - 1900 == yy
+
+	if(!check_tm_year()) { /* OK message is enough*/ }
+
+	if(!mktime_from_local()) { FAIL_FAILED(); return; };
+
+	int secs_in_year = seconds_in_year( int_year );
+	// if a data set has 365 values for a 366 day year, 1 will be missing
+	// look around YEAR-12-30 for the missing day // certain input criteria
+
+	int second_of_year = secs_in_year * year_frac;
+	tval += second_of_year;
+
+	local_from_time( tval ); // local or zulu
+
+	// that leaves all the fields ready to print
+}
+
+void tm_parts::get_float_year( double & year_time ) // get_as_ double
+{
+	// tval must be correct // tm_year too
+	int int_year = year();
+	tm_parts tm2;
+	tm2.set_float_year( (double) int_year ); // ONE SIDED LOOP //
+	double second_of_year = tval - tm2.tval;
+	double year_frac = second_of_year / seconds_in_year(int_year);
+
+	year_time = int_year + year_frac;
+}
+
+bool tm_parts::check_tm_year() // WARN when 1900 offset is seen
+{
+	bool is_ok = true;
+	if( tm_year == 0 ) {
+		INFO("# OK # tm_year == %d", tm_year );
+		return true;
+	}
+	int yyyy = year();
+	if( yyyy == 0 ) {
+		INFO("# OK # yyyy == %d", yyyy );
+		return true;
+	}
+	if( yyyy < 120 ) { // most likely error
+		return FAIL("yyyy == %d # 1999 not 99 (5d)", yyyy, yyyy+1900 );
+	}
+	if( yyyy < 1582 ) { // when gregorian came into being
+		return FAIL("yyyy == %d # 1900 off (%d)", yyyy, yyyy+1900 );
+	}
+	if( yyyy > 3700 ) { // 1900 + 1900 == 3800
+		return FAIL("yyyy == %d # 1900 too many (%d)", yyyy, yyyy - 1900 );
+	}
+	if( yyyy > 2200 ) { // 100 years from now
+		return WARN("yyyy == %d # (%d)", yyyy, yyyy - 1900 );
+	}
+	return is_ok;
+}
+
+
+bool tm_parts::is_leap( int yyyy )
+{
+	bool is_leap = false;
+	if( yyyy %   4 == 0 ) is_leap = true;
+	if( yyyy % 100 == 0 ) is_leap = false;
+	if( yyyy % 400 == 0 ) is_leap = true;
+	return is_leap;
+}
+
+int tm_parts::seconds_in_year( int year )
+{
+	int days = 365;
+	if( is_leap( year ) ) days ++;
+	return days*seconds_in_day();
+}

@@ -3,7 +3,8 @@
 
 // #include <stdio.h>
 #include "misc.h"
-#include "blk1.h"
+#include "buffer1.h"
+//#include "blk1.h"
 #include "zlib.h"
 
 // old as zlib is, X11R6 uses an even older include file without this!
@@ -22,13 +23,16 @@ extern "C" char * gzgets (gzFile file, char *buf, int len);
 class zfile_line_in : public GRP_lib_base
 {
 	gzFile f;
-	blk1 linebuff;
+	// blk1 linebuff; // lacks trim_eoln
+	buffer1 linebuff;
 public:
 
 	 zfile_line_in(); 
 	~zfile_line_in() { close(); }
 	bool open( const char * filename ); // readonly!
 	char * getline(); // NULL means ....
+	char * getline_trim_eoln(); // leave trailing SPACES
+	char * getline_trim_trail(); // remove trailing SPACES EOLN
 	//! after a getline() return the SAME LINE again
 	char * repeat_get_line() { return (char *) linebuff.buff; }
 	void close();

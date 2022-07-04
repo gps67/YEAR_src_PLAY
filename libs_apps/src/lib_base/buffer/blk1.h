@@ -164,6 +164,9 @@ struct blk1 : public GRP_lib_base
 		return p0p2( buff, (buff+nbytes_used ) );
 	}
 
+	u8 * get_P0() { return buff ; }
+	u8 * get_P2() { return buff+nbytes_used ; }
+
 	bool set( blk1 & rhs ) {
 		// no cset matching ... simply copy bytes over
 		return set( rhs.buff, rhs.nbytes_used );

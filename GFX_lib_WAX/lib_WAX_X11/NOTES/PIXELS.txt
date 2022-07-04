@@ -1,0 +1,53 @@
+
+	int width;
+	int height;
+	int bytes_per_row;
+	int bytes_per_pixel; // 1 PIX8 2 PIX16 3 PIX24 4 PIX32 // float32 //
+	int pixels_per_byte; // 0 means see bytes_per_pixel
+
+	enum PIXEL_TYPE; // BIT BIT4 BYTE PAIR TRIO QUAD // and then
+	// rgb_u5u5u6
+	// rgba // 8 bit
+	// ARGB_u16
+	// ARGB_f32
+	// BYTE LOOKUP // N
+	// BYTE GREY 255 // GREY 15 // MONO 01
+
+
+	// BYTE LOOKUP // N
+	// BYTE GREY 255 // GREY 15 // MONO 01 // ALPHA_not_GREY
+
+	// BIT4 // 2 pixels per byte
+	// BIT1 // 8 pixels per byte
+
+	// BYTE_LOOKUP PIXEL_TYPE_2 N_LOOKUP // 256 2 16 4 ... // TABLE[N] of
+	// 512 comes from some extra bit
+
+/home/gps/YEAR/src/PLAY/GFX_freetype_FT2/src_build/FT2/pixman/pixman
+
+	pixman.h
+
+ pixman/demos/
+
+ 	gtk-utils.c
+
+		pixman_image_from_file
+
+			 pixbuf = gdk_pixbuf_new_from_file (filename, NULL)))
+
+
+
+/home/gps/YEAR/src/PLAY/GFX_freetype_FT2/src_build/FT2/ft2demos-2.10.0/graph
+
+
+	graph.h
+
+	 enum	grPixelMode
+		gr_pixel_mode_rgb32,
+		gr_pixel_mode_gray,
+		gr_pixel_mode_bgra,
+
+
+// SYNTAX == VIEW // filter // source += { annotations } // += tail_fill
+
+

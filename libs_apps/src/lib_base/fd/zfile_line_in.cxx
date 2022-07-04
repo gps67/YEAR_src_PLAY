@@ -59,7 +59,7 @@ char * zfile_line_in::getline()
 		by 30%) the line is cut
 	*/
 #	define LINE_LEN_MAX_ERROR (1024*99)
-	while( linebuff.nbytes_alloc < LINE_LEN_MAX_ERROR )
+	while( linebuff.nbytes_used < LINE_LEN_MAX_ERROR )
 	{
 		// nb p[-2] requires at least 2 ! Could then grow by 1 though
 		if(!linebuff.get_space( 20 ))
@@ -112,6 +112,8 @@ char * zfile_line_in::getline()
 			f = NULL;
 			return NULL;
 		}
+		// RECOMPUTE strlen of line
+		linebuff.nbytes_used = strlen( (char *) linebuff.buff );
 		/*
 			// p[0] is outside of buffer
 			// p[-1] is \0 (definition of gets)
@@ -144,3 +146,20 @@ char * zfile_line_in::getline()
 	return NULL;
 }
 
+char * zfile_line_in::getline_trim_eoln() // leave trailing SPACES
+{
+	// keeping above logic to put EOLN in // for unknown reason (split line)
+	char * str = getline(); // kept in linebuff
+	if(!str) return str;
+	linebuff.trim_trailing_eoln(); 
+	return (char *) linebuff.buff;
+}
+
+char * zfile_line_in::getline_trim_trail() // remove trailing SPACES
+{
+	// keeping above logic to put EOLN in // for unknown reason (split line)
+	char * str = getline(); // kept in linebuff
+	if(!str) return str;
+	linebuff.trim_trailing_gaps(); 
+	return (char *) linebuff.buff;
+}

@@ -119,7 +119,7 @@ struct X_Window
 
 	NO:
 
-		ResizeRequest - Conly called when window is resized by another
+		ResizeRequest - only called when window is resized by another
 
 	https://tronche.com/gui/x/xlib/event-handling/XSelectInput.html
 	https://tronche.com/gui/x/xlib/events/mask.html

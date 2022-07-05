@@ -23,6 +23,16 @@
 
 using namespace WAX;
 
+void X_Display:: process_events_forever()
+{
+	XEvent report;
+	while (1)  {
+		/* disp. */ XFlush();
+		/* disp. */ XNextEvent( report );
+		/* disp. */ process_event( report );
+	}
+}
+
 void X_Display::process_event( XEvent & event )
 {
 	X_Window * W1 = find_Window( event.xany.window );

@@ -64,6 +64,13 @@ struct X_Display_One
 		return map_W.find( w );
 	}
 
+	// vanilla plus
+	int get_screen_0() { return 0; }
+
+	Visual * get_Default_Visual() {
+		return DefaultVisual( display, get_screen_0() );
+	}
+
 
 };
 
@@ -83,6 +90,8 @@ struct X_Display : public X_Display_One
 	void process_event( XEvent & report );
 
 	void test1();
+
+	void process_events_forever();
 
 };
 

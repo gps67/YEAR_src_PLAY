@@ -1,0 +1,52 @@
+
+https://tronche.com/gui/x/xlib/graphics/images.html
+
+XCreatePixmap(...) 	// a pixmap on the server but off screen // retained
+
+ximage = XCreateImage(
+	display,
+	visual,
+	depth,		// 32 
+	ZPixmap,	// RGB triplets not plane of R plane of G plane of B
+	0,		// ignore left pixels on scanline
+	(char *)xdata,	// xdata = malloc( 4 * W * H )
+	image_width,
+	image_height,
+	pad,		// 32 // 8 // bits // bitmap_pad //
+	0		// bytes_per_line //
+);
+
+// XDestroyImage()
+
+XGetImage(
+);
+
+XPutImage(
+	display,
+	window,		// or possibly a Pixmap ? //
+	gc,
+	ximage,
+	0,		// src_x
+	currrow,	// src_y
+	0,		// dst_x
+	currrow,	// dst_y
+	image_width,	// copied image size
+	image_height	// 16 rows per update
+);
+
+
+ximage->byte_order = MSBFirst
+ximage->byte_order = LSBFirst
+ximage->bits_per_pixel
+ximage->bytes_per_line
+
+dest = ximage->data + row*ximage_rowbytes;
+3 channels in 2 bytes ?
+*dest++ = (char) pixel .hi // >>8 &0xff
+*dest++ = (char) pixel .lo //     &0xff
+4 channels 
+	alpha compose A channel into rgb 
+
+
+                XFlush(display);
+             

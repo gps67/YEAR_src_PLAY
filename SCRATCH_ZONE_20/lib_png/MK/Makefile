@@ -18,9 +18,9 @@
 	LIBS += $(LINKS)
 
 	PKGS += libpng
-#	PKGS += freetype2
-#	PKGS += xft
-#	PKGS += fontconfig
+	PKGS += freetype2
+	PKGS += xft
+	PKGS += fontconfig
 
 	# these are supposed to be part of the build system
 	# TODO docs for the VARS used
@@ -48,7 +48,7 @@
 	MAKES += ../MK/MK_with_libs_apps
 	MAKES += ../MK/Makefile
 
-ifeq (1,0)
+ifeq (1,1)
 	# WAX headers
 	HDRS += $(S2)/A_point_plus.h
 	HDRS += $(S2)/X_Colours.h
@@ -65,6 +65,8 @@ ifeq (1,0)
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
 	OBJS += WAX_argv_decoder.o
+endif
+ifeq (1,0)
 	OBJS += test_X_two.o
 	OBJS += XFT.o
 	OBJS += A_matrix_2x2.o

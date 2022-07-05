@@ -1,157 +1,269 @@
 g++ -g -o sock_cli_test1 sock_cli_test1.c `pkg-config --cflags gtk+-2.0` `pkg-config --libs gtk+-2.0`
-sock_cli_test1.c:40:0: warning: "INFO" redefined
- #define INFO( fmt, arg1 )        ALOG_1( "info", fmt, arg1 );
- 
-sock_cli_test1.c:39:0: note: this is the location of the previous definition
- #define INFO( fmt )              ALOG_0( "info",  fmt );
- 
-sock_cli_test1.c:41:0: warning: "INFO" redefined
- #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
- 
-sock_cli_test1.c:40:0: note: this is the location of the previous definition
- #define INFO( fmt, arg1 )        ALOG_1( "info", fmt, arg1 );
- 
-sock_cli_test1.c:44:0: warning: "PASS" redefined
- #define PASS( fmt, arg1 )  ALOG_1( "PASS", fmt, arg1 );
- 
-sock_cli_test1.c:43:0: note: this is the location of the previous definition
- #define PASS( fmt )   ALOG_0( "PASS",  fmt );
- 
-sock_cli_test1.c:45:0: warning: "PASS" redefined
- #define PASS( fmt, arg1, arg2 ) ALOG_2( "PASS", fmt, arg1, arg2 );
- 
-sock_cli_test1.c:44:0: note: this is the location of the previous definition
- #define PASS( fmt, arg1 )  ALOG_1( "PASS", fmt, arg1 );
- 
-sock_cli_test1.c:48:0: warning: "FAIL" redefined
- #define FAIL( fmt, arg1 )  ALOG_1( "FAIL", fmt, arg1 );
- 
-sock_cli_test1.c:47:0: note: this is the location of the previous definition
- #define FAIL( fmt )   ALOG_0( "FAIL",  fmt );
- 
-sock_cli_test1.c:49:0: warning: "FAIL" redefined
- #define FAIL( fmt, arg1, arg2 ) ALOG_2( "FAIL", fmt, arg1, arg2 );
- 
-sock_cli_test1.c:48:0: note: this is the location of the previous definition
- #define FAIL( fmt, arg1 )  ALOG_1( "FAIL", fmt, arg1 );
- 
+sock_cli_test1.c:40: warning: "INFO" redefined
+   40 | #define INFO( fmt, arg1 )        ALOG_1( "info", fmt, arg1 );
+      | 
+sock_cli_test1.c:39: note: this is the location of the previous definition
+   39 | #define INFO( fmt )              ALOG_0( "info",  fmt );
+      | 
+sock_cli_test1.c:41: warning: "INFO" redefined
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
+sock_cli_test1.c:40: note: this is the location of the previous definition
+   40 | #define INFO( fmt, arg1 )        ALOG_1( "info", fmt, arg1 );
+      | 
+sock_cli_test1.c:44: warning: "PASS" redefined
+   44 | #define PASS( fmt, arg1 )  ALOG_1( "PASS", fmt, arg1 );
+      | 
+sock_cli_test1.c:43: note: this is the location of the previous definition
+   43 | #define PASS( fmt )   ALOG_0( "PASS",  fmt );
+      | 
+sock_cli_test1.c:45: warning: "PASS" redefined
+   45 | #define PASS( fmt, arg1, arg2 ) ALOG_2( "PASS", fmt, arg1, arg2 );
+      | 
+sock_cli_test1.c:44: note: this is the location of the previous definition
+   44 | #define PASS( fmt, arg1 )  ALOG_1( "PASS", fmt, arg1 );
+      | 
+sock_cli_test1.c:48: warning: "FAIL" redefined
+   48 | #define FAIL( fmt, arg1 )  ALOG_1( "FAIL", fmt, arg1 );
+      | 
+sock_cli_test1.c:47: note: this is the location of the previous definition
+   47 | #define FAIL( fmt )   ALOG_0( "FAIL",  fmt );
+      | 
+sock_cli_test1.c:49: warning: "FAIL" redefined
+   49 | #define FAIL( fmt, arg1, arg2 ) ALOG_2( "FAIL", fmt, arg1, arg2 );
+      | 
+sock_cli_test1.c:48: note: this is the location of the previous definition
+   48 | #define FAIL( fmt, arg1 )  ALOG_1( "FAIL", fmt, arg1 );
+      | 
 sock_cli_test1.c:155:24: error: macro "PASS" requires 3 arguments, but only 2 given
-   PASS( "%s", stepname ); // remember "string" concat
-                        ^
+  155 |   PASS( "%s", stepname ); // remember "string" concat
+      |                        ^
+sock_cli_test1.c:45: note: macro "PASS" defined here
+   45 | #define PASS( fmt, arg1, arg2 ) ALOG_2( "PASS", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:158:24: error: macro "FAIL" requires 3 arguments, but only 2 given
-   FAIL( "%s", stepname ); // remember "string" concat
-                        ^
+  158 |   FAIL( "%s", stepname ); // remember "string" concat
+      |                        ^
+sock_cli_test1.c:49: note: macro "FAIL" defined here
+   49 | #define FAIL( fmt, arg1, arg2 ) ALOG_2( "FAIL", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:198:37: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "set_non_block(fd = %d)", fd );
-                                     ^
+  198 |  INFO( "set_non_block(fd = %d)", fd );
+      |                                     ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:214:30: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "flags = 0x%x", flags );
-                              ^
+  214 |  INFO( "flags = 0x%x", flags );
+      |                              ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:240:26: error: macro "INFO" requires 3 arguments, but only 2 given
-   INFO( "'%s'", addr_str );
-                          ^
+  240 |   INFO( "'%s'", addr_str );
+      |                          ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:251:25: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "'%s'", addr_str );
-                         ^
+  251 |  INFO( "'%s'", addr_str );
+      |                         ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:270:36: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "C_select_removal(%s)", str );
-                                    ^
+  270 |  INFO( "C_select_removal(%s)", str );
+      |                                    ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:304:64: error: macro "INFO" requires 3 arguments, but only 2 given
-   INFO( "MULTIBIT %s", str_GIOCondition( (GIOCondition) c_bit ));
-                                                                ^
+  304 |   INFO( "MULTIBIT %s", str_GIOCondition( (GIOCondition) c_bit ));
+      |                                                                ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:320:57: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "C_select_says %s", str_GIOCondition( condition) );
-                                                         ^
+  320 |  INFO( "C_select_says %s", str_GIOCondition( condition) );
+      |                                                         ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:330:35: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD # C_select_says(IN)" );
-                                   ^
+  330 |   INFO("# FD # C_select_says(IN)" );
+      |                                   ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:338:59: error: macro "INFO" requires 3 arguments, but only 2 given
-   INFO( "# Status from read = %s", str_GIOStatus( status ));
-                                                           ^
+  338 |   INFO( "# Status from read = %s", str_GIOStatus( status ));
+      |                                                           ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:344:79: error: macro "INFO" requires 3 arguments, but only 2 given
-    INFO( "# n==0 Status = %s - why does this happen?", str_GIOStatus( status ));
-                                                                               ^
+  344 |    INFO( "# n==0 Status = %s - why does this happen?", str_GIOStatus( status ));
+      |                                                                               ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:354:33: error: macro "INFO" requires 3 arguments, but only 2 given
-    INFO( "# READ %d #", (int) n );
-                                 ^
+  354 |    INFO( "# READ %d #", (int) n );
+      |                                 ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:360:36: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD # C_select_says(OUT)" );
-                                    ^
+  360 |   INFO("# FD # C_select_says(OUT)" );
+      |                                    ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:364:57: error: macro "INFO" requires 3 arguments, but only 1 given
-    INFO("select_says_first_connect - writing something" );
-                                                         ^
+  364 |    INFO("select_says_first_connect - writing something" );
+      |                                                         ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:377:50: error: macro "INFO" requires 3 arguments, but only 2 given
-    INFO( "# Status = %s", str_GIOStatus( status ));
-                                                  ^
+  377 |    INFO( "# Status = %s", str_GIOStatus( status ));
+      |                                                  ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:390:38: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD _ # C_select_says(PRI)" );
-                                      ^
+  390 |   INFO("# FD _ # C_select_says(PRI)" );
+      |                                      ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:399:51: error: macro "INFO" requires 3 arguments, but only 1 given
-    INFO("# FD _ # C_select_says(ERR) EINPROGRESS" );
-                                                   ^
+  399 |    INFO("# FD _ # C_select_says(ERR) EINPROGRESS" );
+      |                                                   ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:403:38: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD _ # C_select_says(ERR)" );
-                                      ^
+  403 |   INFO("# FD _ # C_select_says(ERR)" );
+      |                                      ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:409:38: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD _ # C_select_says(HUP)" );
-                                      ^
+  409 |   INFO("# FD _ # C_select_says(HUP)" );
+      |                                      ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:415:39: error: macro "INFO" requires 3 arguments, but only 1 given
-   INFO("# FD _ # C_select_says(NVAL)" );
-                                       ^
+  415 |   INFO("# FD _ # C_select_says(NVAL)" );
+      |                                       ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:432:37: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "add_watch_full ... %s", str );
-                                     ^
+  432 |  INFO( "add_watch_full ... %s", str );
+      |                                     ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:455:28: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO("socket fd = %d", fd );
-                            ^
+  455 |  INFO("socket fd = %d", fd );
+      |                            ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:478:24: error: macro "INFO" requires 3 arguments, but only 2 given
-  INFO( "port %d", port );
-                        ^
+  478 |  INFO( "port %d", port );
+      |                        ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
 sock_cli_test1.c:541:47: error: macro "INFO" requires 3 arguments, but only 1 given
-  INFO("Setting NULL encoding and no buffering");
-                                               ^
+  541 |  INFO("Setting NULL encoding and no buffering");
+      |                                               ^
+sock_cli_test1.c:41: note: macro "INFO" defined here
+   41 | #define INFO( fmt, arg1, arg2 )  ALOG_2( "info", fmt, arg1, arg2 );
+      | 
+In file included from /usr/include/gtk-2.0/gtk/gtkobject.h:37,
+                 from /usr/include/gtk-2.0/gtk/gtkwidget.h:36,
+                 from /usr/include/gtk-2.0/gtk/gtkcontainer.h:35,
+                 from /usr/include/gtk-2.0/gtk/gtkbin.h:35,
+                 from /usr/include/gtk-2.0/gtk/gtkwindow.h:36,
+                 from /usr/include/gtk-2.0/gtk/gtkdialog.h:35,
+                 from /usr/include/gtk-2.0/gtk/gtkaboutdialog.h:32,
+                 from /usr/include/gtk-2.0/gtk/gtk.h:33,
+                 from sock_cli_test1.c:21:
+/usr/include/gtk-2.0/gtk/gtktypeutils.h:236:64: warning: ‘GTypeDebugFlags’ is deprecated [-Wdeprecated-declarations]
+  236 | void            gtk_type_init   (GTypeDebugFlags    debug_flags);
+      |                                                                ^
+In file included from /usr/include/glib-2.0/gobject/gobject.h:24,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:22,
+                 from /usr/include/glib-2.0/gio/gioenums.h:28,
+                 from /usr/include/glib-2.0/gio/giotypes.h:28,
+                 from /usr/include/glib-2.0/gio/gio.h:26,
+                 from /usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h:30,
+                 from /usr/include/gtk-2.0/gdk/gdk.h:32,
+                 from /usr/include/gtk-2.0/gtk/gtk.h:32,
+                 from sock_cli_test1.c:21:
+/usr/include/glib-2.0/gobject/gtype.h:685:3: note: declared here
+  685 | } GTypeDebugFlags GLIB_DEPRECATED_TYPE_IN_2_36;
+      |   ^~~~~~~~~~~~~~~
+In file included from /usr/include/gtk-2.0/gtk/gtktoolitem.h:31,
+                 from /usr/include/gtk-2.0/gtk/gtktoolbutton.h:30,
+                 from /usr/include/gtk-2.0/gtk/gtkmenutoolbutton.h:30,
+                 from /usr/include/gtk-2.0/gtk/gtk.h:126,
+                 from sock_cli_test1.c:21:
+/usr/include/gtk-2.0/gtk/gtktooltips.h:73:12: warning: ‘GTimeVal’ is deprecated: Use 'GDateTime' instead [-Wdeprecated-declarations]
+   73 |   GTimeVal last_popdown;
+      |            ^~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from sock_cli_test1.c:20:
+/usr/include/glib-2.0/glib/gtypes.h:545:26: note: declared here
+  545 | typedef struct _GTimeVal GTimeVal GLIB_DEPRECATED_TYPE_IN_2_62_FOR(GDateTime);
+      |                          ^~~~~~~~
 sock_cli_test1.c: In function ‘bool STEP_OK(const char*, bool)’:
 sock_cli_test1.c:155:3: error: ‘PASS’ was not declared in this scope
-   PASS( "%s", stepname ); // remember "string" concat
-   ^~~~
+  155 |   PASS( "%s", stepname ); // remember "string" concat
+      |   ^~~~
 sock_cli_test1.c:158:3: error: ‘FAIL’ was not declared in this scope
-   FAIL( "%s", stepname ); // remember "string" concat
-   ^~~~
-sock_cli_test1.c:158:3: note: suggested alternative: ‘FILE’
-   FAIL( "%s", stepname ); // remember "string" concat
-   ^~~~
-   FILE
+  158 |   FAIL( "%s", stepname ); // remember "string" concat
+      |   ^~~~
 sock_cli_test1.c: In function ‘bool set_non_block(int)’:
 sock_cli_test1.c:198:2: error: ‘INFO’ was not declared in this scope
-  INFO( "set_non_block(fd = %d)", fd );
-  ^~~~
+  198 |  INFO( "set_non_block(fd = %d)", fd );
+      |  ^~~~
 sock_cli_test1.c: In function ‘bool addr4_set_a_b_c_d(sockaddr_in&, const char*)’:
 sock_cli_test1.c:240:3: error: ‘INFO’ was not declared in this scope
-   INFO( "'%s'", addr_str );
-   ^~~~
+  240 |   INFO( "'%s'", addr_str );
+      |   ^~~~
 sock_cli_test1.c: In function ‘bool addr4_set_name(sockaddr_in&, const char*)’:
 sock_cli_test1.c:251:2: error: ‘INFO’ was not declared in this scope
-  INFO( "'%s'", addr_str );
-  ^~~~
+  251 |  INFO( "'%s'", addr_str );
+      |  ^~~~
 sock_cli_test1.c: In function ‘void C_select_removal(gpointer)’:
 sock_cli_test1.c:270:2: error: ‘INFO’ was not declared in this scope
-  INFO( "C_select_removal(%s)", str );
-  ^~~~
+  270 |  INFO( "C_select_removal(%s)", str );
+      |  ^~~~
 sock_cli_test1.c: In function ‘const char* str_GIOCondition(GIOCondition)’:
 sock_cli_test1.c:304:3: error: ‘INFO’ was not declared in this scope
-   INFO( "MULTIBIT %s", str_GIOCondition( (GIOCondition) c_bit ));
-   ^~~~
+  304 |   INFO( "MULTIBIT %s", str_GIOCondition( (GIOCondition) c_bit ));
+      |   ^~~~
 sock_cli_test1.c: In function ‘gboolean C_select_says(GIOChannel*, GIOCondition, gpointer)’:
 sock_cli_test1.c:320:2: error: ‘INFO’ was not declared in this scope
-  INFO( "C_select_says %s", str_GIOCondition( condition) );
-  ^~~~
+  320 |  INFO( "C_select_says %s", str_GIOCondition( condition) );
+      |  ^~~~
 sock_cli_test1.c: In function ‘bool add_watches(GIOChannel*, GIOCondition)’:
 sock_cli_test1.c:432:2: error: ‘INFO’ was not declared in this scope
-  INFO( "add_watch_full ... %s", str );
-  ^~~~
+  432 |  INFO( "add_watch_full ... %s", str );
+      |  ^~~~
+sock_cli_test1.c:443:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  443 | }
+      | ^
 sock_cli_test1.c: In function ‘bool mk_g_io()’:
 sock_cli_test1.c:455:2: error: ‘INFO’ was not declared in this scope
-  INFO("socket fd = %d", fd );
-  ^~~~
-Makefile:22: recipe for target 'sock_cli_test1' failed
-make: *** [sock_cli_test1] Error 1
+  455 |  INFO("socket fd = %d", fd );
+      |  ^~~~
+make: *** [Makefile:22: sock_cli_test1] Error 1

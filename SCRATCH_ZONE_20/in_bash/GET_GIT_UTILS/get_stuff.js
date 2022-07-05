@@ -11,6 +11,7 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/rg3/youtube-dl
 https://github.com/libjpeg-turbo/libjpeg-turbo
 https://github.com/pyscript/pyscript
 http://sourceware.org/git/binutils-gdb.git

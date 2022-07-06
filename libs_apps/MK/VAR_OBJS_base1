@@ -29,6 +29,7 @@
 	OBJS_base1 += dgb_fail.o		# dgb # exception throwing
 	OBJS_base1 += zfile_line_in.o	 # fgets from a compressed/plain file
 	OBJS_base1 += bit_flip.o	 # reverse bits in byte
+	OBJS_base1 += fmt_system.o	 # fmt_system("m %s",filename );
 
 ifeq ($(WIN32),1)
 	OBJS_base1 += win_main.o        # avoid console window

@@ -4,10 +4,12 @@
 #include "X_STUBS.h"
 #include "A_point_plus.h"
 #include "X_Window.h"
+#include "X_Pixmap.h"
 #include "X_Draw.h"
 #include "X_Display.h"
 
 
+#include "fmt_system.h"
 #include "buffer2.h"
 #include <stdlib.h>
 using namespace WAX;
@@ -36,10 +38,19 @@ class X_test_png : public X_Window {
 		call_create_image();
 	}
 
+	int Default_Depth() {
+		// this window is a default depth of the display / screen
+		// other things might be a Pixmap of UDEF depth
+		int depth = DefaultDepth(disp->display, 0);
+		return depth;
+	}
 	bool call_create_image()
 	{
 		int pad =8; // bits per pixel
 		int depth = 32; depth = 24; // of screen
+		depth = Default_Depth();
+		INFO("default depth of screen 0 = %d\n", depth );
+
 		int bytes_per_line = 0;
 		bytes_per_line = 4 * png.image.width;
 		bytes_per_line = 0; // maybe it figures that out
@@ -48,7 +59,7 @@ class X_test_png : public X_Window {
 		ximage = ximage = XCreateImage(
 			disp->display,
 			disp->get_Default_Visual(), // vanilla plus
-			depth,          // 32
+			depth,          // 24 not 32
 			ZPixmap,        // RGB triplets not plane of R plane of G plane of B
 			0,              // ignore left pixels on scanline
 			(char *)png.buffer,  // xdata = malloc( 4 * W * H )
@@ -57,10 +68,10 @@ class X_test_png : public X_Window {
 			pad,            // 32 // 8 // bits // bitmap_pad //
 			bytes_per_line // bytes_per_line //
 		);
-		ximage->byte_order = LSBFirst; // 0
-		ximage->byte_order = MSBFirst; // 1 // x86 default after NUL
+//		ximage->byte_order = LSBFirst; // 0 // x86 default after NUL
+//		ximage->byte_order = MSBFirst; // 1
 
-		show_image( ximage );
+		show_image_data( ximage );
 		return true;
 	}
 
@@ -95,10 +106,10 @@ class X_test_png : public X_Window {
 		return;
 	}
 
-	bool show_image( XImage * ximage )
+	bool show_image_data( XImage * ximage )
 	{
-	INFO("default depth = %d\n", DefaultDepth(disp->display, 0));
 
+	INFO("default depth = %d\n", DefaultDepth(disp->display, 0));
 		INFO( "ximage->width %d", ximage->width );
 		INFO( "ximage->height %d", ximage->height );
 		INFO( "ximage->format %d", ximage->format );
@@ -114,6 +125,13 @@ class X_test_png : public X_Window {
 		INFO( "ximage->green_mask %6lX", ximage->green_mask );
 		INFO( "ximage-> blue_mask %6lX", ximage->blue_mask );
 		INFO( "ximage->obdata %p", ximage->obdata );
+		const char * s = "UNKNOWN";
+		switch(ximage->byte_order) {
+		case LSBFirst: s = "LSBFirst"; break;
+		case MSBFirst: s = "MSBFirst"; break;
+		default: ;
+		}
+		INFO( "ximage->byte_order %d == %s", ximage->byte_order, s );
 		return true;
 	}
 
@@ -154,6 +172,7 @@ class X_test_png : public X_Window {
 
 };
 
+// global to outlive main() ??
 png_one png;
 
 bool bool_main( int argc, char ** argv ) {
@@ -167,17 +186,20 @@ bool bool_main( int argc, char ** argv ) {
 	const char * filename_3 = "/tmp/filename_3.png";
 
 	filename_1 = "/home/gps/Downloads/sea_ice_vol_zoomed_out.png";
+	filename_1 = "/home/gps/Pictures/wordle/wordle_4/Screenshot from 2022-07-06 04-42-53.png";
+
 
 
  if(1) {
 	if(!png.read_from_file( filename_1 )) return FAIL_FAILED();
-	png.draw_nasty_blob(); // test RGBA 
+	// png.draw_nasty_blob(); // test RGBA 
   if(0) {
 	if(!png.write_to_file( filename_2 )) return FAIL_FAILED();
 	buffer2 cmd;
 	cmd.print( "m %s", filename_2 );
 	system( (STR0) cmd );
   }
+  	fmt_system("m '%s'", filename_1 );
  }
 
  if(0) {
@@ -198,9 +220,15 @@ bool bool_main( int argc, char ** argv ) {
 
 	win1.map();
 
-	win1.XSelectInput(
-	 ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest
-	 );
+	        long mask = 0;
+        mask |= ExposureMask ;
+        mask |= KeyPressMask ;
+        mask |= ButtonPressMask ;
+        mask |= ButtonReleaseMask; // Pointer button up
+//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
+        mask |= ResizeRedirectMask; // Redirect resize of this window
+
+	win1.XSelectInput( mask );
 
 
 	// the main loop uses a virtual on the relevent X_Window // TODO

@@ -12,11 +12,6 @@ struct X_Pixmap
 {
 
 }; // struct
-
-struct X_Pixmap
-{
-
-}; // struct
 	
 
 }; // namespace

@@ -326,15 +326,16 @@ bool PW_UTIL_VNC:: decrypt_vncpass64( buffer2 & plain64, const char * crypt )
 
 // switch _EVP _TRAD
 
+
 bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 {
-	if(1)	return encrypt_vncpass_EVP( crypt, plain );
+	if(0)	return encrypt_vncpass_EVP( crypt, plain );
 	else	return encrypt_vncpass_TRAD( crypt, plain );
 }
 
 bool PW_UTIL_VNC:: decrypt_vncpass(  buffer2 & plain, const char * crypt )
 {
-	if(1)	return decrypt_vncpass_EVP( plain, crypt );
+	if(0)	return decrypt_vncpass_EVP( plain, crypt );
 	else	return decrypt_vncpass_TRAD( plain, crypt );
 }
 
@@ -426,7 +427,48 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 // static
 bool PW_UTIL_VNC:: decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt )
 {
-	return FAIL("TODO");
+	// TODO // HERE // copy paste from encrypt // rewrite
+	// this decrypts the VNC password that _TRAD encrypted
+	// TODO non 8 char pass ...
+	// a reference for _EVP ..
+
+	DES_cblock key = {23,82,107,6,35,78,88,7};
+	for( int i = 0; i<8; i++ ) {
+		key[i] = reverse_bits_in_byte( key[i] );
+	}
+
+	// set schedule from cblock
+	DES_key_schedule schedule;
+	DES_set_odd_parity(& key); // pre-requirement
+	int t = DES_set_key_checked(& key, & schedule);
+
+	if(t) {
+		// -1 means parity error # -2 means weak key # 
+		// return FAIL("DES_set_key_...() %d", t);
+		FAIL("DES_set_key_...() %d", t);
+		DES_set_key_unchecked(& key, & schedule);
+		// RETCODE // ??
+	}
+
+	DES_cblock input;
+	DES_cblock output;
+
+	int PASSLEN = strlen( crypt );
+	if(PASSLEN!=8) {
+	 WARN("PASSLEN == %d crypt == '%s'", PASSLEN, "XXXXXXXX" ); // crypt );
+	}
+	if(PASSLEN!=8) return FAIL("This is for auto generated dense passwords only PASSLEN=%d", PASSLEN);
+
+	// copy crypt to input
+	memcpy( input, crypt, PASSLEN ); // hope its not short!
+
+//	int enc = DES_ENCRYPT; // VNC encrypts
+	int enc = DES_DECRYPT; // VNC decrypts
+	DES_ecb_encrypt(& input, & output, & schedule, enc ); // en is de
+
+	// copy output to plain 
+	plain.set( output, PASSLEN );
+	return true;
 }
 
 

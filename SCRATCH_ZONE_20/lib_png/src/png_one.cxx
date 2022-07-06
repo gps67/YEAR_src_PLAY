@@ -74,6 +74,7 @@ bool GFX::png_one:: read_from_file( const char * filename )
 	}
 
 	// we only do u32_RGBA atm
+	// the libpng loader converts to this format
 	image.format = PNG_FORMAT_RGBA;
 
 	if(!buffer_alloc()) return FAIL_FAILED();

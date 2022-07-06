@@ -56,15 +56,18 @@ ifeq (1,1)
 	HDRS += $(S2)/X_Draw.h
 	HDRS += $(S2)/X_STUBS.h
 	HDRS += $(S2)/X_Window.h
+	HDRS += $(S2)/X_Pixmap.h
 
 	# WAX objs
 	OBJS += A_point_plus.o
 	OBJS += A_Map_W.o
 	OBJS += X_Window.o
+	OBJS += X_Pixmap.o
 	OBJS += X_Display.o
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
 	OBJS += WAX_argv_decoder.o
+
 endif
 ifeq (1,0)
 	OBJS += test_X_two.o

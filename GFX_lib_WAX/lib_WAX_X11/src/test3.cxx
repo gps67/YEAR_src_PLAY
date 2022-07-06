@@ -145,6 +145,7 @@ int main_two( argv_decoder & ARGS ) {
 
 	// KEY grab - eg NP_Add could become a TSR hotkey
 if(1)	disp.test1(); // what does this do ??? // global grab of + key
+	// INFO says name of window is "R-O-O-T" or "test3.elf"
 
 	/*
 		X11 event loop

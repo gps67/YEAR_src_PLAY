@@ -1,0 +1,60 @@
+2022-07-08 Jul Fri 15:27 # 14 # 
+
+	err_int FAIL errno NET error
+
+	There is too much noise coming from INFO WARN FAIL
+	I think it needs a "level_of_processed" setting per error
+
+	WARN is already designed to report an errno, if FAIL has not been
+	called. INFO does not, so that you can INFO("%s", filename) ;
+	FAIL("..."); but if some other WARN finds an un-FAIL-ed error
+	it exposes what it found
+
+	Long ago, the sub-system was excellent, in the way it popped
+	up a dialog box, that had some breakdown of the errors
+
+		OS UINX says ENOENT file does not exist
+		OS WIN32 says ...
+		NET says ...
+		DNS says ...
+		SQL says ...
+
+	
+	that is probably a way of having some specific fields
+
+		FAIL.filename
+		FAIL.func_that_returned_errno
+		FAIL.func_that_noticed_errno
+		FAIL.but_stat_is_designed_to_fail_ENOENT_when used_like_this
+		FAIL.task_desc = "LOGIN" 
+		FAIL.task_noun_1 = "BOX5"
+		FAIL.time_recorded = ...
+	
+	Also some STEP_ERA edge markers
+
+		STEP.start_task("LOAD CONFIG from FILE");
+		STEP.verb("LOAD").means.file_stat_open_uid_donw_when
+		STEP.noun("FILE").means.file_future_rpc_file
+		STEP.noun("CONFIG").means.file_data_future_rpc_vars_config
+		STEP_word("from").means_LANG_filler
+
+		TASK.start_task("LOAD CONFIG from FILE");
+		TASK_STEP.ask_server_permission_to_use_user_config_ini_file
+		TASK_STEP.load_all_text_in_file # or rpc
+		TASK_STEP.parse_badly_edited_file
+		TASK_STEP.check_semantics_of_config_vars
+		TASK_STEP.apply_config_vars_to_escalating_LOGIN_session
+		TASK_STEP.bloom_to_new_ERA
+	
+	So that becomes a suite of variables { err_int.cxx } 
+	and the detecting code should gather them into one place
+	and process_err_as_detected
+
+	So calling code should call eat_OS_error() eg stat()
+	So FAIL_FAILED() should bounce the same error err_int
+
+	Maybe even log error to a transaction file, and ERROR_ID_0xFFFF
+
+	NB have probably damaged it's behaviour
+	by calling clear() when that has an error at processing level step two
+	

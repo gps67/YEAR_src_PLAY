@@ -35,7 +35,7 @@
 #endif
 
 #define FMT_3			"# %s # %-5s # %-12s # "
-#define FMT_3_2			"# %-5s # %-12s # "
+#define FMT_3_2			"# %-4s # %-12s # "
 #define FMT_WIN_d_s 		"# WIN32 ERRNO # %d # %s"
 #define FMT_UNIX_d_s 		"# LIBC ERRNO # %d # %s"
 #define FMT_UNIX_d_s_lf		 FMT_UNIX_d_s "\r\n"

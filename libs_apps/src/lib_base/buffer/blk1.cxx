@@ -271,7 +271,7 @@ void	blk1::scrub()
 /*!
 	useful to show blk contents on e_print dgb log
 */
-void	blk1::dgb_dump(str0 msg)
+void	blk1::dgb_dump(str0 msg) const
 {
 	buffer2 printer;
 	printer.hex_dump_into_8859( buff, nbytes_used );
@@ -422,42 +422,51 @@ blk1::operator str0()
 	trailing_nul();
 	return (str0) (char *) buff;
 }
-blk1::operator STR0()
-{
+blk1::operator STR0() {
+
 	// call of .. is ambiguous ... looks like CTOR of str0
 	trailing_nul();
 	return (STR0) buff;
  //	return (STR0) (str0) (char *) buff;
 }
 
-bool blk1:: operator == ( const char * rhs )
+blk1::operator STR0() const // not really const
+{
+	blk1 * that = const_cast<blk1 *>( this );
+	// call of .. is ambiguous ... looks like CTOR of str0
+	that->trailing_nul();
+	return (STR0) that->buff;
+ //	return (STR0) (str0) (char *) buff;
+}
+
+bool blk1:: operator == ( const char * rhs ) const
 {
 	return IS_SAME == cmp( rhs );
 }
 
-bool blk1:: operator == ( const str0 & rhs )
+bool blk1:: operator == ( const str0 & rhs ) const
 {
 	return IS_SAME == cmp( (STR0) rhs );
 }
 
-bool blk1:: operator == ( const blk1 & rhs )
+bool blk1:: operator == ( const blk1 & rhs ) const
 {
 	return IS_SAME == cmp( rhs );
 }
 
-IS_DIFF_t blk1:: cmp( const char * rhs )
+IS_DIFF_t blk1:: cmp( const char * rhs ) const
 {
 	p0p2 lhs_p0p2 ( buff, nbytes_used );
 	return (IS_DIFF_t) lhs_p0p2.cmp( rhs );
 }
 
-IS_DIFF_t blk1:: cmp( const p0p2 & rhs_p0p2 )
+IS_DIFF_t blk1:: cmp( const p0p2 & rhs_p0p2 ) const
 {
 	p0p2 lhs_p0p2 ( buff, nbytes_used );
 	return (IS_DIFF_t) lhs_p0p2.cmp( rhs_p0p2 );
 }
 
-IS_DIFF_t blk1:: cmp( const blk1 & rhs )
+IS_DIFF_t blk1:: cmp( const blk1 & rhs ) const
 {
 	p0p2 lhs_p0p2 ( buff, (int) nbytes_used ); // limits size
 	u8 * rhs_p0 = (u8*) rhs.buff; // un const cast

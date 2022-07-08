@@ -23,7 +23,8 @@ void set_prog_name( const char * progname );
 void gdb_sigaction( const char * progname );
 
 //! start gdb with/out the -w gui flag
-void gdb_invoke( bool usegui = true );
+// void gdb_invoke( bool usegui = true ); // insight is broken
+void gdb_invoke( bool usegui = false );
 
 //! is gdb running? Simple test
 extern bool gdb_is_running();

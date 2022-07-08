@@ -12,7 +12,7 @@
 void err_int_t:: PRINT1( buffer2 & buff )
 {
 	// caller would clear buffer before call
-	buff.print( "%s err(errno) %d %s - %s ## %s",
+	buff.print( "%s errno(err %d) == %s - %s ## %s",
 		(STR0) e_zone,
 		err,
 		(STR0) e_name,
@@ -45,6 +45,13 @@ void err_int_t:: clear()
 
 void err_int_t:: clear_quietly()
 {
+
+ static bool can_call = true;
+ if( can_call ) {
+ 	can_call = false;
+ 	gdb_invoke(); // crashes - maybe loop // YEP //
+ }
+
 	if(!err) return;
 	err = 0;	// DWORD on WIN32
 	e_name.clear();
@@ -126,6 +133,7 @@ bool err_int_t:: zap_OS_error() // OS not GTK not SSL nor ...
 #ifdef WIN32
 	SetLastError(0);
 #else
+	if(errno) e_print("# ~~~~ # clearing errno, was %d", errno );
 	errno = 0;
 #endif
 	return is_error();
@@ -264,8 +272,10 @@ bool err_int_t:: set_to_OS_error( int e ) // ie the strerror function
 */
 bool err_int_t:: set_to_UNIX_errno( int e ) // ie the strerror function
 {
+	// remove error // set this one incl 0
 	// retain existing err, unless there is a new one
 	// clear();
+	if(err) clear();
 	if(e) if(err) clear_quietly();
 #ifdef WIN32
 	FAIL("THIS IS NOT UNIX");
@@ -470,6 +480,7 @@ bool err_int_t:: clear_if_EINPROGRESS()
 
 bool  err_int_t:: INFO_REPORT(const char * FN)
 {
+	INFO("errno %d", errno );
 	if(!FN) FN = "(INFO_REPORT)";
 	if(no_error()) return INFO("%p NO ACTUAL ERROR",this);
 

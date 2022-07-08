@@ -123,6 +123,10 @@ namespace AUTH {
 		const char * pw_vnc_plain
 	);
 
+	static bool test_one_a( const buffer2 & plain, const buffer2 & crypt );
+	static bool test_one_b( const buffer2 & plain, const buffer2 & crypt );
+	static bool test_one();
+
  };
 
 };

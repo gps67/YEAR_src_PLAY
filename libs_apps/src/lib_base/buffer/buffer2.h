@@ -175,6 +175,33 @@ struct buffer2 : public buffer1
 		hex_dump_into_8859( b.buff, b.nbytes_used );
 	}
 
+	/*!
+		debugging thing, also useful to set binary blobs AUTH keys
+
+		parse hex bytes upto eoln or # comment or error
+
+		must be bytes not pair quad or eight
+
+		return FALSE if nothing found or error
+	*/
+	bool parse_hex( const char * str );
+
+	/*!
+		hex must be there, append to buffer
+	*/
+	bool parse_hex_expect( const char * str );
+
+	/*!
+		hex optional, clear buffer before start
+	*/
+	bool set_parse_hex( const char * str );
+
+	/*!
+		hex must be there, clear buffer before start
+	*/
+	bool set_parse_hex_expect( const char * str );
+
+
 	/*
 		must manually re-inherit this !!
 	*/

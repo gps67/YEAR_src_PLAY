@@ -142,6 +142,9 @@ bool cmd_HT_demo(int argc, char ** argv ) {
 #include "SSL_global.h" 
 
 bool VNC_PASS_DECODE(int argc, char ** argv ) {
+
+	if(!AUTH::PW_UTIL_VNC::test_one()) return FAIL_FAILED();
+
 	if(argc!=1) {
 		return FAIL("argc!=1 # filename of passwd_73");
 	}
@@ -162,6 +165,7 @@ bool VNC_PASS_DECODE(int argc, char ** argv ) {
 }
 
 bool VNC_PASS_ENCODE(int argc, char ** argv ) {
+	if(!AUTH::PW_UTIL_VNC::test_one()) return FAIL_FAILED();
 	if(argc!=2) {
 		return FAIL("argc!=2 # filename passwd");
 	}

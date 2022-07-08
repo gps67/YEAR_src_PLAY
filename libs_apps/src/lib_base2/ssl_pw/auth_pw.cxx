@@ -249,6 +249,8 @@ bool PW_UTIL_UNIX:: RAND_pass8_easy2( buffer2 & buff )
 vnc_key_holder:: vnc_key_holder()
 : key_holder( EVP_des_cbc() )
 {
+	INFO("LOOK AT ERRNO %d", errno );
+	FAIL("LOOK AT errno %d", errno );
 	FAIL("NOT A FAIL + OK");
 	INFO("CTOR BODY has called CTOR key_holder( EVP_des_cbc())");
 }
@@ -377,14 +379,17 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 
  if(0) {
 	buffer2 see;
-	see.put_nn_bytes( 8, key );
+	see.put_nn_bytes( 8, key ); // key is (char *) // [8]+ //
 	see.dgb_dump( "SEE well known key reversed");
 	// E8 4A D6 60  C4 72 1A E0 //
  }
 
+	// key MUST have odd parity and preset data isn't!!
+	DES_set_odd_parity(& key); // pre-requirement
+
+	// key in an internal format, for speed
 	// set schedule from cblock
 	DES_key_schedule schedule;
-	DES_set_odd_parity(& key); // pre-requirement
 	int t = DES_set_key_checked(& key, & schedule);
 
  if(0) {
@@ -401,6 +406,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 		DES_set_key_unchecked(& key, & schedule);
 	}
 
+	// 8 byte + buffer
 	DES_cblock input;
 	DES_cblock output;
 
@@ -411,7 +417,11 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 	 WARN("caller should pre do this to buffer" );
 	 char * plain2 = (char *) plain;
 	 while(PASSLEN<8) {
+	 	// actually DES will do this for us
+		// indeed decrypt cant remove trailing NUL bytes
+		// as it always expects multiple of 8, with no N
 		plain2[PASSLEN++] = 0x00; // PAD password with NUL // not SP ?
+		// NB plain is being extended // it MUST have space !!
 	 }
 	 plain = plain2;
 	}
@@ -436,10 +446,11 @@ bool PW_UTIL_VNC:: decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt )
 	for( int i = 0; i<8; i++ ) {
 		key[i] = reverse_bits_in_byte( key[i] );
 	}
+	// key MUST have odd parity and preset data isn't!!
+	DES_set_odd_parity(& key); // pre-requirement
 
 	// set schedule from cblock
 	DES_key_schedule schedule;
-	DES_set_odd_parity(& key); // pre-requirement
 	int t = DES_set_key_checked(& key, & schedule);
 
 	if(t) {
@@ -601,7 +612,11 @@ bool PW_UTIL_VNC:: vncpassfile_write_uid_gid(
 }
 
 
-bool PW_UTIL_VNC:: hex10_encrypt_vncpass( buffer2 & hex10crypt, const char * plain )
+bool PW_UTIL_VNC::
+hex10_encrypt_vncpass(
+	buffer2 & hex10crypt,
+	const char * plain
+)
 {
 	if( hex10crypt.nbytes_used ) {
 		WARN("hex10crypt already has data in it - appending");
@@ -620,6 +635,122 @@ bool PW_UTIL_VNC:: hex10_encrypt_vncpass( buffer2 & hex10crypt, const char * pla
 		hex10crypt.print("%2.2X", b );
 	}
 	return true;
-
 }
 
+// LOCAL
+bool test_compare_binary(
+	const char * test_desc,
+	const buffer2 & expected,
+	const buffer2 & got
+) {
+	buffer2 message;
+	buffer2 message2;
+	message.print("TEST %s", test_desc);
+	if( expected == got ) {
+		message.print(" PASS GOT ");
+		got.dgb_dump( (STR0) message );
+		return true;
+	} else {
+		message2 = (STR0) message;
+		message.print(" FAIL GOT ");
+		message2.print(" FAIL EXPECTED ");
+		got.dgb_dump( (STR0) message );
+		expected.dgb_dump( (STR0) message2 );
+		return false;
+	}
+}
+
+// LOCAL
+bool test_compare_ascii(
+	const char * test_desc,
+	buffer2 expected,
+	buffer2 got
+) {
+	return test_compare_binary( test_desc, expected, got );
+}
+
+
+// static 
+bool PW_UTIL_VNC:: test_one()
+{
+	buffer2 pw_plain_expected;
+	buffer2 crypt_1;
+	pw_plain_expected = "abcd5678";
+	crypt_1.set_parse_hex_expect( "c2 c9 a2 24 51 d1 5b d3 # EXPECTED");
+	if(!test_one_a( pw_plain_expected, crypt_1 ))
+		return FAIL_FAILED();
+	if(!test_one_b( pw_plain_expected, crypt_1 ))
+		return FAIL_FAILED();
+	return PASS("OK");
+}
+
+// static 
+bool PW_UTIL_VNC:: test_one_a(
+	const buffer2 & pw_plain_expected,
+	const buffer2 & pw_crypted_expected
+) {
+	// encode and decode a password using the default functions
+	// that might be fixed _EVP or _TRAD
+	buffer2 pw_plain;
+	buffer2 pw_crypted;
+
+	// encrypt //
+	if(!encrypt_vncpass( pw_crypted, (STR0) pw_plain_expected )) // LHS = ENC RHS
+		return FAIL_FAILED();
+
+	// compare //
+	if( !test_compare_binary("_a encode", pw_crypted_expected, pw_crypted ))
+		return FAIL_FAILED();
+
+	// decrypt //
+	if(!decrypt_vncpass( pw_plain, pw_crypted )) // LHS = DEC RHS
+		return FAIL_FAILED();
+	
+	// compare //
+	if( !test_compare_ascii("_a decode", pw_plain_expected, pw_plain )) {
+		return FAIL_FAILED();
+	}
+	return PASS("OK");
+}
+
+// static 
+bool PW_UTIL_VNC:: test_one_b(
+	const buffer2 & pw_plain_expected, // "abcd5678";
+	const buffer2 & pw_crypted_expected  // "c2 c9 a2 24 51 d1 5b d3 # EXPECTED";
+) {
+	// encode using _TRAD and also _EVP and compare
+	buffer2 pw_plain_TRAD; // return journey comes here
+	buffer2 pw_plain_EVP; // return journey comes here
+	buffer2 pw_crypted_EVP;
+	buffer2 pw_crypted_TRAD;
+
+	if(!encrypt_vncpass_TRAD( pw_crypted_TRAD, pw_plain_expected )) // LHS = ENC RHS
+		return FAIL_FAILED();
+
+	if(!encrypt_vncpass_EVP( pw_crypted_EVP, pw_plain_expected )) // LHS = ENC RHS
+		return FAIL_FAILED();
+
+	// compare //
+	if( !test_compare_binary("_b encode _TRAD", pw_crypted_expected, pw_crypted_TRAD ))
+		return FAIL_FAILED();
+
+	// compare //
+	if( !test_compare_binary("_b encode _EVP", pw_crypted_expected, pw_crypted_EVP ))
+		return FAIL_FAILED();
+
+	if(!decrypt_vncpass_TRAD( pw_plain_TRAD, pw_crypted_TRAD )) // LHS = DEC RHS
+		return FAIL_FAILED();
+
+	if(!decrypt_vncpass_EVP( pw_plain_EVP, pw_crypted_EVP )) // LHS = DEC RHS
+		return FAIL_FAILED();
+
+	// compare //
+	if( !test_compare_ascii("_b decode _TRAD", pw_plain_expected, pw_crypted_TRAD ))
+		return FAIL_FAILED();
+
+	// compare //
+	if( !test_compare_ascii("_b decode _EVP", pw_crypted_expected, pw_crypted_EVP ))
+		return FAIL_FAILED();
+	
+	return PASS("OK");
+}

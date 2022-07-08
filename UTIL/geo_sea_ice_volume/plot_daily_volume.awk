@@ -68,8 +68,8 @@ BEGIN {
 	A365=365*1 # this is PROPER # 365 day average # must be exact multiple
 #	A365=365*2
 	A365=365*5
-	A365=365*6 # looks like a step down, then exponential decay to V2
 	A365=365*1
+	A365=365*6 # looks like a step down, then exponential decay to V2
 	A365=365*3
 
 	# PICK A365 # LAST one WON #
@@ -374,6 +374,7 @@ function gen_pencil_data_2() {
 	VH = 36.0
 	V0 = 0
 
+	# Y is Year which is X axis #
 	Y0 = 1970
 	YL = 2030
 	YM = 2060
@@ -387,6 +388,7 @@ function gen_pencil_data_2() {
 	YM2 = 2144.80
 	YL2 = 2057.45
 
+	# V is Volume which is Y axis
 	VH1 = 25.22
 	VM1 = 15.85
 	VL1 =  6.29

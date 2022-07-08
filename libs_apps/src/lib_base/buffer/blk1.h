@@ -195,7 +195,7 @@ struct blk1 : public GRP_lib_base
 	void	zero_all();
 	void	scrub(); // zero_all() and clear()
 	void	zap() { scrub(); }
-	void	dgb_dump(str0 msg);
+	void	dgb_dump(str0 msg) const;
 	void	dgb_max_str(int max, u8 * msg);
 
 	/*!
@@ -425,7 +425,8 @@ struct blk1 : public GRP_lib_base
 		printf("%s\n", (STR0)(str0) blk1 );
 	*/
 	operator str0();
-	operator STR0();
+	operator STR0(); // it is a linker of mangled name
+	operator STR0() const; // its not really const
 
 	// be careful with these
 	// I only added after comparing with str1 failed (pointer different)
@@ -439,17 +440,17 @@ struct blk1 : public GRP_lib_base
 		Now I dont know _WHEN_ it is doing it, derived classes?
 	*/
 
-	bool operator != ( const char * rhs ) {return !operator==(rhs); }
-	bool operator != ( const str0 & rhs ) {return !operator==(rhs); }
-	bool operator != ( const blk1 & rhs ) {return !operator==(rhs); }
+	bool operator != ( const char * rhs ) const {return !operator==(rhs); }
+	bool operator != ( const str0 & rhs ) const {return !operator==(rhs); }
+	bool operator != ( const blk1 & rhs ) const {return !operator==(rhs); }
 
-	bool operator == ( const char * rhs );
-	bool operator == ( const str0 & rhs );
-	bool operator == ( const blk1 & rhs );
+	bool operator == ( const char * rhs ) const;
+	bool operator == ( const str0 & rhs ) const;
+	bool operator == ( const blk1 & rhs ) const;
 
-	IS_DIFF_t cmp( const blk1 & rhs );
-	IS_DIFF_t cmp( const p0p2 & rhs );
-	IS_DIFF_t cmp( const char * rhs );
+	IS_DIFF_t cmp( const blk1 & rhs ) const;
+	IS_DIFF_t cmp( const p0p2 & rhs ) const;
+	IS_DIFF_t cmp( const char * rhs ) const;
 
 	bool replace_nul_bytes( u8 c1 );
 

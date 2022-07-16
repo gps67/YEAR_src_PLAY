@@ -47,6 +47,7 @@ void err_int_t:: clear_quietly()
 {
 
  static bool can_call = true;
+ 	can_call = false;
  if( can_call ) {
  	can_call = false;
  	gdb_invoke(); // crashes - maybe loop // YEP //

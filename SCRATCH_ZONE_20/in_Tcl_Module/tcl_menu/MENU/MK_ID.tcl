@@ -3,7 +3,8 @@
 namespace eval ::MK_ID {
  namespace export *
  variable pfx_N 
- variable G_counter_NAME G_ITEM_ 
+ # window names cannot start with an uppercase
+ variable G_counter_NAME g_ITEM_ 
 #  set pfx_N(G_counter_N) -1 ;# is an array ;# TODO dict
 
  proc mk_id {{pfx {}}} {

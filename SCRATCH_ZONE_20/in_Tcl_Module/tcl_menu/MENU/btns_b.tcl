@@ -40,13 +40,15 @@ btns_b_text_cmd
 }
 
 proc btns_ITEM_script { btns ARGV } {
-	set b [mk_id btn]
+#	set b [mk_id btn]
+	set b -
 	set text "$ARGV"
 	btns_b_text_cmd $btns $b $text $ARGV
 }
 
 proc btns_ITEM_exec { btns ARGV } {
-	set b [mk_id btn]
+#	set b [mk_id btn]
+	set b -
 	set text "LBL_$b"
 	set text "LBL_$ARGV"
 	set text "$ARGV"
@@ -55,7 +57,8 @@ proc btns_ITEM_exec { btns ARGV } {
 }
 
 proc btns_ITEM_view_jpg { btns ARGV } { ;# ARGV is LIST
-	set b [G_counter btn]
+#	set b [mk_id btn]
+	set b -
 	set text "VIEW_JPG $ARGV"
 	set ARGV [linsert $ARGV 0 exec eog ]
 	btns_b_text_cmd $btns $b $text $ARGV
@@ -74,7 +77,9 @@ proc btns_ITEM_wish { btns ARGV } {
 }
 
 proc btns_b_text_cmd_Exit { btns_m1 } {
-	btns_b_text_cmd $btns_m1 [mk_id] "Exit" {
+	set b -
+	# cmd can be ARGV or tcl_script_text_block
+	btns_b_text_cmd $btns_m1 $b "Exit" {
 	    puts stdout "Goodbye destroy dot";
 	    destroy .
 	}

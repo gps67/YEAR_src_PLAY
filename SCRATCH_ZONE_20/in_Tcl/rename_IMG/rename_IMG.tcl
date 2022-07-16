@@ -3,6 +3,10 @@
 # recordYYYYMMDDHHMMSS.3gpp
 
 set dir_default Iya_Salisbury
+set NAME Iya_Sako_Salisbury
+
+set dir_default Tankata_workshop
+set NAME Tankata
 
 proc list_dir {dir} {
 	puts "# dir $dir"
@@ -35,6 +39,15 @@ proc ask_do args {
 
 proc macro_offer_rename {} {
  uplevel {
+	if { $ext == "3gpp" } {
+		if { $VID == "AUD" } {
+		} else {
+			puts "# WANT # set VID AUD # SUGGEST # manual fix"
+			# AUD_2022-05-21_Sat_1029_11.3gpp: #
+			# ISO Media, MPEG v4 system, 3GPP #
+
+		}
+	}
  	ask_do mv $f1 $f2
  }
 }
@@ -58,7 +71,7 @@ proc macro_calc_name_one {} {
 		set Tue [clock format $time -format "%a"]
 		set time_str [clock format $time]
 	#	set Tue [ Tue_of_YEAR_MM_DD $YEAR $MM $DD]
-		set f2 [format "%s_%s_%s_%s.%s" VID $YEAR_MM_DD $Tue $hh_mm_ss $ext]
+		set f2 [format "%s_%s_%s_%s_%s.%s" $VID $YEAR_MM_DD $Tue $hh_mm_ss $NAME $ext]
 		set f2 "$dir/$f2"
 	if 0 {	puts "# val_clock $val_clock"
 		puts "# time_str $time_str" }
@@ -68,6 +81,8 @@ proc macro_calc_name_one {} {
 }
 
 proc rename_IMG_main {dir} {
+	global NAME
+
 	set L1 [list_dir $dir]
 	set D {[0-9]}
 	set DD "($D$D)"
@@ -83,6 +98,7 @@ proc rename_IMG_main {dir} {
 	puts "# re_one == {$re_one}"
 
 	foreach f $L1 {
+	  set VID VID
 	  set f1 "$dir/$f"
 	  foreach {YEAR MM DD hh mm ss ext} { 1999 12 31 23 59 00 ext } {}
 	  if {! [file isfile $f1]} {
@@ -92,6 +108,12 @@ proc rename_IMG_main {dir} {
 	  	# macro_calc_name_one
 	  } elseif [regexp $re_one $f all YEAR MM DD hh mm ss ext] {
 	  	# macro_calc_name_one
+		# record # means audio #
+		if { $ext == "3gpp" } {
+			set VID AUD
+		} else {
+			puts "# record BUT ext == %ext # AUD or VID #"
+		}
 	  } elseif [regexp $re_two $f all YEAR MM DD hh mm ss ext] {
 	  	# macro_calc_name_one
 	  } else {

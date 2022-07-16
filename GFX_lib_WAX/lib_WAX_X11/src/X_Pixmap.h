@@ -10,6 +10,9 @@ namespace WAX {
 
 struct X_Pixmap
 {
+	Pixmap pixmap;
+
+	bool create( X_Window & win );
 
 }; // struct
 	

@@ -659,7 +659,7 @@ void tm_parts::set_float_year( double year_time ) // eg 1979.5 is midsummer
 	init1(); //
 	year( int_year ); // must use getter setter because yyyy - 1900 == yy
 
-	if(!check_tm_year()) { /* OK message is enough*/ }
+	if(!check_tm_year()) { /* OK 1900 message is enough*/ }
 
 	if(!mktime_from_local()) { FAIL_FAILED(); return; };
 

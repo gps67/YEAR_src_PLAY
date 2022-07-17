@@ -1,5 +1,7 @@
 #!/usr/bin/env tclsh 
 
+# array(key) # with SPACE in key
+
 proc TRIER { code } {
 
 	upvar var var

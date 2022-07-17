@@ -12,7 +12,8 @@ struct X_Pixmap
 {
 	Pixmap pixmap;
 
-	bool create( X_Window & win );
+//	bool create( X_Window & win );
+	bool create( X_Window & W, int width, int height  );
 
 }; // struct
 	

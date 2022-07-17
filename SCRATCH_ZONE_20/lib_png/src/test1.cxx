@@ -22,6 +22,7 @@ class X_test_png : public X_Window {
 	GC gc;
 
 	XImage * ximage;
+	X_Pixmap pixmap;
 
  	X_test_png(
 		const char * _name,
@@ -46,6 +47,7 @@ class X_test_png : public X_Window {
 	}
 	bool call_create_image()
 	{
+
 		int pad =8; // bits per pixel
 		int depth = 32; depth = 24; // of screen
 		depth = Default_Depth();
@@ -72,6 +74,11 @@ class X_test_png : public X_Window {
 //		ximage->byte_order = MSBFirst; // 1
 
 		show_image_data( ximage );
+
+		if(!pixmap.create( *this, png.image.width, png.image.height ))
+			return FAIL_FAILED();
+		call_put_image_to_pixmap();
+
 		return true;
 	}
 
@@ -102,7 +109,9 @@ class X_test_png : public X_Window {
                         xywh1.y_last()
                 );
 
-		call_put_image();
+		// call_put_image_to_window();
+		if(!call_put_pixmap_to_window())
+			FAIL_FAILED();// as part of expose redraw
 		return;
 	}
 
@@ -135,7 +144,71 @@ class X_test_png : public X_Window {
 		return true;
 	}
 
-	bool call_put_image() // to window // to drawable might be Pixmap
+	bool call_put_pixmap_to_window() // as part of expose redraw
+	{
+		INFO("XFlush - pre");
+		disp->XFlush();
+
+		Drawable src = pixmap.pixmap;
+		Drawable dst = window;
+		int src_x = 0;
+		int src_y = 0;
+		int width = png.image.width; // BUT dont use png
+		int height = png.image.height; // BUT dont use png
+		int dest_x = 0;
+		int dest_y = 0;
+
+		XCopyArea(
+			display,
+			src,
+			dst,
+			gc,
+			src_x,
+			src_y,
+			width,
+			height,
+			dest_x,
+			dest_y
+		);
+
+		INFO("sent");
+		return true;
+	}
+
+	bool call_put_image_to_pixmap() // to pixmap // to drawable might be Pixmap
+	{
+			INFO("XFlush - pre");
+			disp->XFlush();
+		int Y_pos = 0;
+		int H16 = 16;
+		int H_remain = png.image.height;
+		while( H_remain > 0 ) {
+			int H_band = H_remain;
+		if(0)	if( H_band > H16 ) H_band = H16;
+			INFO("sending %d rows of %d", H_band, H_remain );
+			XPutImage(
+				disp->display,
+				pixmap.pixmap, // window,
+				gc,
+				ximage,
+				0,		// src_x
+				Y_pos,		// src_y
+				0,		// dst_x
+				Y_pos,		// dst_y
+				png.image.width,    // copied image size
+				H_band		// 16 rows per update
+			);
+			Y_pos += H_band;
+			H_remain -= H_band;
+			INFO("XFlush");
+			disp->XFlush();
+			// break;
+		}
+		INFO("sent");
+		return true;
+	}
+
+	bool call_put_image_to_window() // to window // to drawable might be Pixmap
 	{
 			INFO("XFlush - pre");
 			disp->XFlush();
@@ -199,6 +272,7 @@ bool bool_main( int argc, char ** argv ) {
 	cmd.print( "m %s", filename_2 );
 	system( (STR0) cmd );
   }
+ if(0)
   	fmt_system("m '%s'", filename_1 );
  }
 

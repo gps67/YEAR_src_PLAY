@@ -60,20 +60,24 @@ bool GFX::png_one:: create( int w, int h )
 	clear();
 	image.width = w;
 	image.height = h;
-	image.format = PNG_FORMAT_RGBA; // we only do u32_RGBA atm
+	image.format = PNG_FORMAT_RGBA; // we only do u32_RGBA_t atm
 	if(!buffer_alloc()) return FAIL_FAILED();
+	if(!calc_bytes_per()) 
+		return FAIL_FAILED();
 	return true;
 }
 
 bool GFX::png_one:: read_from_file( const char * filename )
 {
-	// clear(); // of image // pre-done
+	u32_RGBA_t::test_byte_order();
+
+	clear(); // of image // pre-done
 
 	if(!png_image_begin_read_from_file(&image, filename )) {
            return FAIL( "%s: %s", filename, image.message);
 	}
 
-	// we only do u32_RGBA atm
+	// we only do u32_RGBA_t atm
 	// the libpng loader converts to this format
 	image.format = PNG_FORMAT_RGBA;
 
@@ -89,6 +93,9 @@ bool GFX::png_one:: read_from_file( const char * filename )
 		  fprintf(stderr, "read %s: %s\n", filename,
 		      image.message);
 	}
+
+	if(!calc_bytes_per()) 
+		return FAIL_FAILED();
 
 	return PASS("%s",filename);
 }
@@ -111,7 +118,7 @@ bool GFX::png_one:: write_to_file( const char * filename )
 
 bool GFX::png_one:: calc_bytes_per() // 
 {
-	u32_RGBA rgba;
+	u32_RGBA_t rgba;
 	bytes_per_row = PNG_IMAGE_ROW_STRIDE( image );
 	bytes_per_pixel = rgba.bytes_per_pixel();
 	// general expectation is non zero
@@ -124,8 +131,12 @@ bool GFX::png_one:: calc_bytes_per() //
 	return true;
 }
 
-bool GFX::png_one:: draw_xywh( int x1, int y1, int w, int h, u32_RGBA rgba )
+/*!
+	solid fill XYWH with rgba pixel value
+*/
+bool GFX::png_one:: draw_fill_xywh( int x1, int y1, int w, int h, u32_RGBA_t rgba )
 {
+	u32_RGBA_t::test_byte_order();
 	int x2_clip = image.width; // 1 outside
 	int y2_clip = image.height; // 1 outside
 
@@ -138,10 +149,13 @@ bool GFX::png_one:: draw_xywh( int x1, int y1, int w, int h, u32_RGBA rgba )
 	if( x2 > x2_clip ) x2 = x2_clip;
 	if( y2 > y2_clip ) y2 = y2_clip;
 
+	// draw upto not over X2 nor Y2
 	for( int y = y1; y < y2; y++ ) {
+	  u32_RGBA_t * pixel_row = get_EA_row( y ); // or *P++ = rgba; //
 	  for( int x = x1; x < x2; x++ ) {
-		u32_RGBA * pixel = get_EA( x, y );
-		* pixel = rgba;
+	  	pixel_row[ x ] = rgba;
+	//	u32_RGBA_t * pixel = get_EA( x, y );
+	//	* pixel = rgba;
 	  }
 	}
 	return true;
@@ -158,7 +172,7 @@ bool GFX::png_one:: draw_nasty_blob() // test
 	int h = y1 * 2;
 
 
-	u32_RGBA rgba;
+	u32_RGBA_t rgba;
 	rgba.red(); // opaque
 
 	if(0) {
@@ -171,7 +185,7 @@ bool GFX::png_one:: draw_nasty_blob() // test
 	rgba.A = 0xFF; // opaque
 	}
 
-	return draw_xywh( x1, y1, w, h, rgba );
+	return draw_fill_xywh( x1, y1, w, h, rgba );
 
 	return true;
 }

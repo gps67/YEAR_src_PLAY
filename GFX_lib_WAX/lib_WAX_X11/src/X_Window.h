@@ -2,11 +2,14 @@
 #define X_Window_H
 
 #include "X_STUBS.h"
+#include "A_point_plus.h"
+
 // free // #include <stdlib.h>
 // strdup // #include <string.h>
 #include <X11/Xlib.h>
 
 #include "XFT.h"
+#include "X_Display.h"
 
 namespace WAX {
 
@@ -21,6 +24,7 @@ struct X_Window
 	Window window;
 	X_Display * disp;
 	const char * name;
+	A_WH WH;
 
 //	Xft_Draw xft_draw;
 

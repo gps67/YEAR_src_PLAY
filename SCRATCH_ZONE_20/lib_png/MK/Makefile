@@ -86,6 +86,7 @@ ifeq (1,0)
 endif
 
 	OBJS += png_one.o
+	OBJS += u32_RGBA.o
 
 	PROG1=test1
 	PROG2=test2

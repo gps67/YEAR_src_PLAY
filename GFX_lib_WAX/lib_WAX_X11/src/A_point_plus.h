@@ -237,6 +237,13 @@ struct A_WH
 	int w;
 	int h;
 
+	A_WH()
+	: w(0)
+	, h(0)
+	{
+		// CTOR ZERO
+	}
+
 	/*!
 	*/
 	A_WH( int _w, int _h )
@@ -272,9 +279,15 @@ struct A_WH
 
 	/*!
 	*/
-	void reduce( A_WH wh )
+	void reduce( const A_WH wh )
 	{
 		reduce( wh.w, wh.h );
+	}
+
+	bool is_zero() const {
+		if( w <= 0 ) return true;
+		if( h <= 0 ) return true;
+		return false;
 	}
 };
 
@@ -299,14 +312,48 @@ struct A_Rectangle : XRectangle
 	*/
 	A_Rectangle( A_XY xy, A_WH wh )
 	{
+		set_XY( xy );
+		set_WH( wh );
+	}
+
+	void set_XY_WH( const A_XY & xy, const A_WH & wh )
+	{
+		set_XY( xy );
+		set_WH( wh );
+	}
+
+	void get_XY_WH( A_XY & xy, A_WH & wh )
+	{
+		get_XY( xy );
+		get_WH( wh );
+	}
+
+	void set_XY( const A_XY xy )
+	{
 		x = xy.x;	// i32 to i16
 		y = xy.y;	// i32 to i16
+	}
+
+	void set_WH( const A_WH wh )
+	{
 		width = wh.w;
 		height = wh.h;
 	}
-	
+
+	void get_XY( A_XY & xy )
+	{
+		xy.x = x;
+		xy.y = y;
+	}
+
+	void get_WH( A_WH & wh )
+	{
+		wh.w = width;
+		wh.h = height;
+	}
+
 	/*!
-		reduce the right / bottom sides by adj
+		reduce 2 sides by adj, right bottom
 	*/
 	void reduce2( short adj )
 	{

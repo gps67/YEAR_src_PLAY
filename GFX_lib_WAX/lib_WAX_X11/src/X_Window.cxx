@@ -23,6 +23,7 @@ void X_Window::set_name( const char * _name )
 	, window( _window )
 	, disp( _parent->disp )
 	, name(0)
+	, WH(0,0)
 //	, xft_draw( *this )
 	{
 		set_name( _name );
@@ -44,6 +45,7 @@ void X_Window::set_name( const char * _name )
 	, window( _window )
 	, disp( _disp )
 	, name(0)
+	, WH(0,0)
 //	, xft_draw( *this )
 	{
 		set_name( _name );
@@ -64,6 +66,7 @@ X_Window::X_Window(
 , display( disp_.display )
 , window(0)
 , name(0)
+	, WH(0,0)
 //, xft_draw() // requires following create()
 {
 	set_name( _name );
@@ -79,7 +82,6 @@ X_Window::X_Window(
 	);
 //	xft_draw.Xft_DrawCreate( *this );
 	disp->add( this );
-	printf( "window = %ld\n", window );
 }
 
 
@@ -102,6 +104,7 @@ X_Window::X_Window(
 , display( parent_->display )
 , window(0)
 , name(0)
+, WH(0,0)
 //, xft_draw() // requires following create()
 {
 	set_name( _name ); // _dgb_
@@ -115,6 +118,8 @@ X_Window::X_Window(
 		col_border,
 		col_background
 	);
+	WH.w = xywh.width;
+	WH.h = xywh.height;
 
 //	xft_draw.Xft_DrawCreate( *this );
 

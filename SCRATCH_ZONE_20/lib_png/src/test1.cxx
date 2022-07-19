@@ -36,21 +36,24 @@ class X_test_png : public X_Window {
 	, png( png_)
 	{
 		gc = CreateGC();
-		call_create_image();
+		call_create_image_from_png( png );
 	}
 
-	int Default_Depth() {
-		// this window is a default depth of the display / screen
-		// other things might be a Pixmap of UDEF depth
-		int depth = DefaultDepth(disp->display, 0);
-		return depth;
-	}
-	bool call_create_image()
+	bool list_depths()
 	{
+		return disp->test_list_depths();
+	}
+
+	bool call_create_image_from_png( png_one & png )
+	{
+		// copy png to ximage //
+		// png must be the one suitable for window
+		// ie it is already png2
 
 		int pad =8; // bits per pixel
 		int depth = 32; depth = 24; // of screen
-		depth = Default_Depth();
+		list_depths(); // 24 1 4 8 15 16 32 //
+		depth = disp->Default_Depth();
 		INFO("default depth of screen 0 = %d\n", depth );
 
 		int bytes_per_line = 0;
@@ -75,7 +78,8 @@ class X_test_png : public X_Window {
 
 		show_image_data( ximage );
 
-		if(!pixmap.create( *this, png.image.width, png.image.height ))
+		A_WH WH( png.image.width, png.image.height );
+		if(!pixmap.create( *this, WH ))
 			return FAIL_FAILED();
 		call_put_image_to_pixmap();
 
@@ -91,11 +95,14 @@ class X_test_png : public X_Window {
 
 		A_Rectangle xywh1 = xywh;
 		A_Rectangle xywh2 = xywh;
+		A_Rectangle xywh_m1 = xywh;
+		xywh_m1.reduce2(1); // reduce 2 sides
 
 		A_Point xy3( xywh2.x+10, xywh2.y+10 );
                 const char * str = "abc\ndef";
-                draw_green.XDrawRectangle( xywh1 );
+                draw_green.XDrawRectangle( xywh_m1 ); // -1 of WH is X11 off?
                 draw_green.XDrawString( xy3, str );
+		// width of line is >1 pixel ?
                 draw_green.XDrawLine(
                         xywh1.x,
                         xywh1.y,
@@ -153,10 +160,12 @@ class X_test_png : public X_Window {
 		Drawable dst = window;
 		int src_x = 0;
 		int src_y = 0;
-		int width = png.image.width; // BUT dont use png
-		int height = png.image.height; // BUT dont use png
-		int dest_x = 0;
-		int dest_y = 0;
+		int width = pixmap.WH.w; 
+		int height = pixmap.WH.h;
+		int dst_x = 0;
+		int dst_y = 0;
+
+		width /= 2; // TEST // should reveal half a green X on bg
 
 		XCopyArea(
 			display,
@@ -167,8 +176,8 @@ class X_test_png : public X_Window {
 			src_y,
 			width,
 			height,
-			dest_x,
-			dest_y
+			dst_x,
+			dst_y
 		);
 
 		INFO("sent");
@@ -177,14 +186,14 @@ class X_test_png : public X_Window {
 
 	bool call_put_image_to_pixmap() // to pixmap // to drawable might be Pixmap
 	{
-			INFO("XFlush - pre");
-			disp->XFlush();
+		INFO("XFlush - pre");
+		disp->XFlush();
 		int Y_pos = 0;
 		int H16 = 16;
-		int H_remain = png.image.height;
+		int H_remain = ximage->height;
 		while( H_remain > 0 ) {
 			int H_band = H_remain;
-		if(0)	if( H_band > H16 ) H_band = H16;
+		if(0)	if( H_band > H16 ) H_band = H16; // disable chunking
 			INFO("sending %d rows of %d", H_band, H_remain );
 			XPutImage(
 				disp->display,
@@ -195,7 +204,7 @@ class X_test_png : public X_Window {
 				Y_pos,		// src_y
 				0,		// dst_x
 				Y_pos,		// dst_y
-				png.image.width,    // copied image size
+				ximage->width,    // copied image size
 				H_band		// 16 rows per update
 			);
 			Y_pos += H_band;
@@ -216,7 +225,7 @@ class X_test_png : public X_Window {
 		int H16 = 16;
 		H16 = (1024 * 32) / ximage->bytes_per_line;
 		H16--;
-		int H_remain = png.image.height;
+		int H_remain = ximage->height;
 		while( H_remain > 0 ) {
 			int H_band = H_remain;
 		if(0)	if( H_band > H16 ) H_band = H16;
@@ -230,7 +239,7 @@ class X_test_png : public X_Window {
 				Y_pos,		// src_y
 				0,		// dst_x
 				Y_pos,		// dst_y
-				png.image.width,    // copied image size
+				ximage->width,    // copied image size
 				H_band		// 16 rows per update
 			);
 			Y_pos += H_band;
@@ -246,7 +255,7 @@ class X_test_png : public X_Window {
 };
 
 // global to outlive main() ??
-png_one png;
+png_one png1;
 
 bool bool_main( int argc, char ** argv ) {
 
@@ -260,14 +269,16 @@ bool bool_main( int argc, char ** argv ) {
 
 	filename_1 = "/home/gps/Downloads/sea_ice_vol_zoomed_out.png";
 	filename_1 = "/home/gps/Pictures/wordle/wordle_4/Screenshot from 2022-07-06 04-42-53.png";
+	filename_1 = "/home/gps/Downloads/meme/JWST/STScI-01G7DDBW5NNXTJV8PGHB0465QP.png";
+
 
 
 
  if(1) {
-	if(!png.read_from_file( filename_1 )) return FAIL_FAILED();
-	// png.draw_nasty_blob(); // test RGBA 
+	if(!png1.read_from_file( filename_1 )) return FAIL_FAILED();
+	// png1.draw_nasty_blob(); // test RGBA 
   if(0) {
-	if(!png.write_to_file( filename_2 )) return FAIL_FAILED();
+	if(!png1.write_to_file( filename_2 )) return FAIL_FAILED();
 	buffer2 cmd;
 	cmd.print( "m %s", filename_2 );
 	system( (STR0) cmd );
@@ -277,19 +288,64 @@ bool bool_main( int argc, char ** argv ) {
  }
 
  if(0) {
-	png_one png;
-	if(!png.create( 300,700 ) ) return FAIL_FAILED();
-	png.draw_nasty_blob(); // test RGBA 
-	if(!png.write_to_file( filename_3 )) return FAIL_FAILED();
+	png_one png3;
+	if(!png3.create( 300,700 ) ) return FAIL_FAILED();
+	png3.draw_nasty_blob(); // test RGBA 
+	if(!png3.write_to_file( filename_3 )) return FAIL_FAILED();
 	buffer2 cmd;
 	cmd.print( "m %s", filename_3 );
 	system( (STR0) cmd );
  }
 
-	// INFO("PNG  W %d H %d ..", png.image.width, png.image.height );
+
+	// copy reduce png1 to png2
+
+ 	A_WH display_WH;
+	if(!disp.guess_screen_size(display_WH)) return FAIL_FAILED();
+
+	float ratio = (1.0 * png1.image.width) / (0.3 * display_WH.w);
+	INFO(" ratio %5f = png1.image.width %d / (0.3 * display_WH.w %d ) ",
+		ratio, png1.image.width, display_WH.w
+	);
+	// ratio is 2.5/1 for big image
+	// triple scale down to fit in 1/3 of screen // 8/1 ish
+	// src / dst = 7.0 // src = 7.0 * dst
+	// src = dst * ratio
+	// dst = src / ratio
+	// 576 = 4537 / 7.876
+
+
+	A_WH dst_WH;
+	dst_WH.w = png1.image.width / ratio;
+	dst_WH.h = png1.image.height / ratio;
+
+	INFO("src_w %d dst_w %d ratio %5f", png1.image.width, dst_WH.w, ratio );
+	INFO("src_h %d dst_h %d ratio %5f", png1.image.height, dst_WH.h, ratio );
+
+	png_one png2;
+	png2.create( dst_WH.w, dst_WH.h );
+
+
+	for( int dst_y = 0; dst_y < dst_WH.h; dst_y++ ) {
+	  int src_y = dst_y * ratio;
+	  INFO("src_y %d dst_y %d ROW ratio %5f", src_y, dst_y, ratio );
+
+	  u32_RGBA_t * src_row = png1.get_EA_row( src_y );
+	  u32_RGBA_t * dst_row = png2.get_EA_row( dst_y );
+
+	  for( int dst_x = 0; dst_x < dst_WH.w; dst_x++ ) {
+	    int src_x = dst_x * ratio;
+	 //   INFO("src_x %d dst_x %d", src_x, dst_x );
+	    dst_row[ dst_x ] = src_row[ src_x ]; // v simple resample
+	  }
+	}
+
+	
+
+	// INFO("PNG  W %d H %d ..", png1.image.width, png1.image.height );
 	// 1200 800 // 
-	A_Rectangle xywh1( 0, 0, png.image.width, png.image.height );
-	X_test_png win1( "png1", disp, xywh1, 0, png );
+	A_Rectangle xywh1( 0, 0, png2.image.width, png2.image.height );
+	X_test_png win1( "png1", disp, xywh1, 0, png2 );
 	win1.set_title( filename_1 );
 
 	win1.map();

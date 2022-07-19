@@ -19,7 +19,7 @@ struct X_Display_One
 {
 	Display * display;
 	X_Colours cmap;
-	A_Map_W map_W;
+	A_Map_W map_W;	// find X_Window from { Window win } // LEAK
 
 	/*!
 		create a connection
@@ -64,12 +64,50 @@ struct X_Display_One
 		return map_W.find( w );
 	}
 
-	// vanilla plus
-	int get_screen_0() { return 0; }
+	static const int SCREEN_0 = 0;
+
+	// vanilla plus // screen 1 fails on my 2 monitor laptop
+	// and SCREEN_0 is opening on the second monitor, same as xterm mon
+	int get_screen_0() const { return SCREEN_0; }
 
 	Visual * get_Default_Visual() {
-		return DefaultVisual( display, get_screen_0() );
+		return DefaultVisual( display, SCREEN_0 );
 	}
+
+	bool test_list_depths(); //
+// https://tronche.com/gui/x/xlib/display/display-macros.html
+// Other depths may also be supported on this screen (see .PN XMatchVisualInfo ).
+
+	int Default_Depth() { return DefaultDepth( display, SCREEN_0 ); }
+
+	GC Default_GC() { return DefaultGC( display, SCREEN_0 ); }
+
+	// DefaultRootWindow
+	// DefaultScreenOfDisplay
+	// ScreensOfDisplay
+	// DefaultScreen 	// TRY maybe using ssh second screen ? xvnc ?
+	// DefaultColormap
+	// DisplayCells // of cmap
+	// DisplayPlanes // depth ??
+	// DisplayString // kept opening string
+	// int n = ScreenCount( display ) // 1
+	// ServerVendor
+	// VendorRelease
+	//XExtendedMaxRequestSize
+	// XMaxRequestSize
+	// WidthOfScreen( Screen * screen )
+	// HeightOfScreen( Screen * screen )
+	// WidthMMOfScreen
+	// HeightMMOfScreen
+	// Screen *DefaultScreenOfDisplay(Display *display);
+
+	Screen *Default_Screen_Of_Display(Display *display) {
+		return  DefaultScreenOfDisplay(display);
+	}
+
+	bool guess_screen_size( A_WH & WH );
+
+
 
 
 };

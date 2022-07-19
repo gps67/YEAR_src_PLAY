@@ -23,6 +23,72 @@
 
 using namespace WAX;
 
+bool X_Display_One :: test_list_depths()
+{
+	int screen_number = 0; // screen 1 retval NULL
+	int count_return = 0; // unchanged if NULL was returned
+	int * ary_of_int;
+
+	int n = ScreenCount( display );
+	INFO("%d == ScreenCount(display)", n ); // always 1 ??
+
+	INFO("ServerVendor(display) == %s", ServerVendor(display) );
+	INFO("VendorRelease(display) == %d", VendorRelease(display) );
+
+	Screen * scn = DefaultScreenOfDisplay(display);
+
+	INFO("WidthOfScreen( Screen * screen ) == %d", WidthOfScreen( scn ) );
+	INFO("HeightOfScreen( Screen * screen ) == %d", HeightOfScreen( scn ) );
+
+	// xwininfo
+	// 3286x1080+0+0	// depth 0 // pretty sure it is 1920 x 1080
+	// 1366x768+0-0		// depth 32
+	// probably virtual sum of 2 screens
+
+
+	// 24 1 4 8 15 16 32 // no repettition default first then sorted
+	ary_of_int = XListDepths(display, screen_number, &count_return);
+	{
+		return FAIL("RETVAL NULL");
+	}
+	for( int i = 0; i < count_return; i++ ) {
+		INFO("[%d] depth %d", i, ary_of_int[i] );
+	}
+	XFree( ary_of_int );
+	return true;
+// screen 0
+// # INFO # bool X_test_png::list_depths() # [0] depth 24
+// # INFO # bool X_test_png::list_depths() # [1] depth 1
+// # INFO # bool X_test_png::list_depths() # [2] depth 4
+// # INFO # bool X_test_png::list_depths() # [3] depth 8
+// # INFO # bool X_test_png::list_depths() # [4] depth 15
+// # INFO # bool X_test_png::list_depths() # [5] depth 16
+// # INFO # bool X_test_png::list_depths() # [6] depth 32
+// screen 1
+// .. RETVAL NULL ..
+}
+
+bool X_Display_One :: guess_screen_size( A_WH & WH )
+{
+	Screen * screen = DefaultScreenOfDisplay(display);
+	WH.w = WidthOfScreen( screen );
+	WH.h = HeightOfScreen( screen );
+	INFO(" WH( %d, %d )", WH.w, WH.h );
+	// I think "screen" is 2 monitors // widest doubled
+	// or sum or both //
+	// 1920 x 1080
+	// 1366 x  768
+	// 3286 x 1848
+	// 3286 x 1080 // sub both sideways // widest vertically // arranged
+	if( WH.w > 1920 ) WH.w =  1920;
+	if( WH.h > 1080 ) WH.h = 1080;
+	if( WH.w > 1920 ) WH.w /= 2;
+	if( WH.h > 1080 ) WH.h /= 2;
+	INFO(" WH( %d, %d )", WH.w, WH.h );
+	return true;
+}
+
+
 void X_Display:: process_events_forever()
 {
 	XEvent report;

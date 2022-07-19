@@ -13,18 +13,46 @@
 
 namespace WAX {
 
+struct X_Drawable_Surface { // not an X thing base of X_Window X_Pixmap
+	Display * display;
+	Drawable drawable;
+	A_WH WH;
+
+	X_Drawable_Surface(
+		Display * _display,
+		Drawable _drawable,
+		A_WH _WH
+	)
+	:	display( _display )
+	,	drawable( _drawable )
+	,	WH( _WH )
+	{
+	}
+
+	X_Drawable_Surface(
+		Display * _display,
+		Drawable _drawable
+	)
+	:	display( _display )
+	,	drawable( _drawable )
+	,	WH( 0,0 )
+	{
+	}
+
+};
+
 
 /*!
 	child class must provide behavior functions
 */
-struct X_Window
+struct X_Window : public X_Drawable_Surface
 {
 	X_Window * parent;
-	Display * display;
-	Window window;
+//	Window window;
 	X_Display * disp;
 	const char * name;
-	A_WH WH;
+
+	Window get_window() { return drawable; }
 
 //	Xft_Draw xft_draw;
 
@@ -100,7 +128,7 @@ struct X_Window
 	*/
 	void map()
 	{
-		::XMapWindow( display, window );
+		::XMapWindow( display, get_window() );
 	}
 
 	/*!
@@ -110,7 +138,7 @@ struct X_Window
 	{
 		unsigned long valuemask = 0;
 		XGCValues * values = NULL;
-		return ::XCreateGC( display, window, valuemask, values );
+		return ::XCreateGC( display, get_window(), valuemask, values );
 	}
 
 	/*!
@@ -131,7 +159,7 @@ struct X_Window
 	*/
 	void XSelectInput( long event_mask )
 	{
-		::XSelectInput( display, window, event_mask );
+		::XSelectInput( display, get_window(), event_mask );
 	}
 
 	virtual void event_expose( A_Rectangle & xywh ) = 0;

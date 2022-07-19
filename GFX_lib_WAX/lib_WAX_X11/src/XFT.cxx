@@ -25,7 +25,7 @@ Xft_Draw::
 Xft_Draw( X_Window & W )
 : draw( NULL )
 {
-	if( W.window )
+	if( W.drawable )
 	  if(!Xft_DrawCreate( W ) )
 		FAIL("should throw");
 }
@@ -49,7 +49,7 @@ Xft_DrawCreate( X_Window & W )
 	INFO("CALLED");
 
 	Display  *display = W.display;
-	Drawable drawable = W.window;
+	Drawable drawable = W.drawable;
 
 	Visual   *visual;
 	Colormap colormap;

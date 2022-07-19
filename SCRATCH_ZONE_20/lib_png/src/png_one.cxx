@@ -35,8 +35,10 @@ void GFX::png_one:: image_free()
 bool GFX::png_one:: buffer_alloc() // for image header
 {
 	buffer_free();
+	u64 nbytes_1 = image.width * image.height * 4;
 	u64 nbytes = PNG_IMAGE_SIZE(image);
-	INFO("nbytes %lld", nbytes );
+	INFO("nbytes %lld nbytes_1 %lld diff %lld", nbytes, nbytes_1, nbytes-nbytes_1 );
+	// same
 	buffer = (png_bytep) malloc(nbytes);
 	if (!buffer) {
 		return FAIL("malloc: out of memory: %lu bytes\n",
@@ -116,11 +118,13 @@ bool GFX::png_one:: write_to_file( const char * filename )
 	return PASS("%s",filename);
 }
 
-bool GFX::png_one:: calc_bytes_per() // 
+bool GFX::png_one:: calc_bytes_per() // and bytes_per_pixel
 {
-	u32_RGBA_t rgba;
+	u32_RGBA_t rgba; 
+
 	bytes_per_row = PNG_IMAGE_ROW_STRIDE( image );
 	bytes_per_pixel = rgba.bytes_per_pixel();
+
 	// general expectation is non zero
 	if( image.width < 1 ) {
 		return FAIL("image width %d", image.width );
@@ -163,9 +167,6 @@ bool GFX::png_one:: draw_fill_xywh( int x1, int y1, int w, int h, u32_RGBA_t rgb
 
 bool GFX::png_one:: draw_nasty_blob() // test
 {
-	if(!calc_bytes_per()) {
-		return FAIL_FAILED();
-	}
 	int x1 = image.width / 4;
 	int y1 = image.height / 4;
 	int w = x1 * 2;

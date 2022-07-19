@@ -30,6 +30,7 @@ namespace WAX {
 	struct X_Display;
 	struct X_Draw;
 	struct X_Window;
+	struct X_Pixmap;
 };
 
 #endif

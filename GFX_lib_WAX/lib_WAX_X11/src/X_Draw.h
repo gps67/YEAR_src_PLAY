@@ -3,6 +3,7 @@
 
 // #include "X_STUBS.h"
 #include "X_ret_err.h"
+#include "X_Pixmap.h"
 
 namespace WAX {
 
@@ -16,33 +17,56 @@ namespace WAX {
 		GC contains clipping ? - not sure, it can do, does it?
 		GC can be shared within display - yes - bit clipping!
 		GC fragments and combinations
+	
+	An X_Draw is kind of an X_Drawable += GC += Display
 */
 struct X_Draw
 {
-	Display * display;
-	Window window;
-	GC gc;
+	Display * display;	// TODO X_Display
+	Drawable drawable;
+	GC gc;			// TODO flag = I_own_this_GC
+//	A_WH WH;		// duplicate ??
 
 	/*!
 		copy the X_Draw
 	*/
 	X_Draw( X_Draw & D )
 	: display( D.display )
-	, window( D.window )
-	, gc( D.gc )
+	, drawable( D.drawable )
+	, gc( D.gc )		// share ownership of GC
 	{
 	}
 
 	/*!
 		allocate a new GC for the window
-
+	
 		TODO choose syntax field = value or field(value) PICK VIEW
 	*/
 	X_Draw( X_Window & W )
 	{
 		display = W.display;
-		window = W.window;
+		drawable = W.drawable;
 		gc = W.CreateGC();
+	}
+
+	/*!
+		A Pixmap is like a Window
+	X_Draw( Display * _display, X_Pixmap & P, GC _gc )
+	{
+		display = _display; // P.display
+		drawable = P.pixmap;
+		gc = _gc; // gc = W.CreateGC();
+	}
+	*/
+
+	/*!
+		A Drawable
+	*/
+	X_Draw( Display * _display, Drawable _drawable, GC _gc )
+	{
+		display = _display;	 // P.display
+		drawable = _drawable;
+		gc = _gc;		 // gc = W.CreateGC(); or not
 	}
 
 	/*!
@@ -89,28 +113,28 @@ struct X_Draw
 	*/
 	void XDrawLine( int x1, int y1, int x2, int y2 )
 	{
-		::XDrawLine( display, window, gc, x1, y1, x2, y2 );
+		::XDrawLine( display, drawable, gc, x1, y1, x2, y2 );
 	}
 
 	/*!
 	*/
 	void XDrawRectangle( int x, int y, int w, int h )
 	{
-		::XDrawRectangle( display, window, gc, x, y, w, h );
+		::XDrawRectangle( display, drawable, gc, x, y, w, h );
 	}
 
 	/*!
 	*/
 	void XDrawRectangle( A_Rectangle xywh )
 	{
-		::XDrawRectangle( display, window, gc, xywh.x, xywh.y, xywh.width, xywh.height );
+		::XDrawRectangle( display, drawable, gc, xywh.x, xywh.y, xywh.width, xywh.height );
 	}
 
 	/*!
 	*/
 	void XDrawString( A_Point xy, const char * str )
 	{
-		::XDrawString( display, window, gc, xy.x, xy.y, str, strlen(str) );
+		::XDrawString( display, drawable, gc, xy.x, xy.y, str, strlen(str) );
 	}
 
 };

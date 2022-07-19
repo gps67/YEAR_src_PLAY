@@ -18,12 +18,10 @@ void X_Window::set_name( const char * _name )
 		Window _window,		// possibly 0 or XXXX
 		const char * _name	// usually set
 	)
-	: parent( _parent )
-	, display( _parent->disp->display )
-	, window( _window )
+	: X_Drawable_Surface( _parent->disp->display, _window )
+	, parent( _parent )
 	, disp( _parent->disp )
 	, name(0)
-	, WH(0,0)
 //	, xft_draw( *this )
 	{
 		set_name( _name );
@@ -40,12 +38,10 @@ void X_Window::set_name( const char * _name )
 		Window _window,		// possibly 0 or XXXX
 		const char * _name	// usually set
 	)
-	: parent( _parent )
-	, display( _disp->display )
-	, window( _window )
+	: X_Drawable_Surface( _disp->display, _window )
+	, parent( _parent )
 	, disp( _disp )
 	, name(0)
-	, WH(0,0)
 //	, xft_draw( *this )
 	{
 		set_name( _name );
@@ -61,18 +57,16 @@ X_Window::X_Window(
 	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
 	int borderwidth
 )
-: parent(NULL)
+: X_Drawable_Surface( disp_.display, 0 )
+, parent(NULL)
 , disp( & disp_ )
-, display( disp_.display )
-, window(0)
 , name(0)
-	, WH(0,0)
 //, xft_draw() // requires following create()
 {
 	set_name( _name );
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
-	window = ::XCreateSimpleWindow(
+	drawable = ::XCreateSimpleWindow(
 		display,
 		RootWindow( display, 0),
 		xywh.x, xywh.y, xywh.width, xywh.height,
@@ -99,20 +93,18 @@ X_Window::X_Window(
 	A_Rectangle xywh,
 	int borderwidth
 )
-: parent( parent_ )
+: X_Drawable_Surface( parent_->disp->display, 0 )
+, parent( parent_ )
 , disp( parent_->disp )
-, display( parent_->display )
-, window(0)
 , name(0)
-, WH(0,0)
 //, xft_draw() // requires following create()
 {
 	set_name( _name ); // _dgb_
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
-	window = ::XCreateSimpleWindow(
+	drawable = ::XCreateSimpleWindow(
 		display,
-		parent->window,
+		parent->get_window(),
 		xywh.x, xywh.y, xywh.width, xywh.height,
 		borderwidth,
 		col_border,
@@ -126,7 +118,7 @@ X_Window::X_Window(
 	disp->add( this );
 	map();
 
-	printf( "window = %ld\n", window );
+	printf( "window = %ld\n", get_window() );
 }
 
 /*!
@@ -134,7 +126,7 @@ X_Window::X_Window(
 */
 void X_Window:: set_title( const char * name )
 {
-	::XStoreName( display, window, name );
+	::XStoreName( display, get_window(), name );
 }
 
 
@@ -162,7 +154,7 @@ struct X_Window_Root : public X_Window
 	)
 	: X_Window( NULL_parent, &disp_, DefaultRootWindow( disp_.display ), _name )
 	{
-		printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, window );
+		printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
 	}
 };
 

@@ -50,6 +50,25 @@ class X_test_png : public X_Window {
 		// png must be the one suitable for window
 		// ie it is already png2
 
+		/*
+			png buffer uses u32_RGBA_t lohi
+GFX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
+
+			ximage SAYS it uses u32_ARGB_
+			ximage->  red_mask FF0000
+			ximage->green_mask   FF00
+			ximage-> blue_mask     FF
+
+			ie 0xAARRGGBB // maybe without AA
+
+			The problem is that ximage and png share buffer
+			maybe there are two invertions on the way to screen
+
+		*/
+
+		// png buffer
+		// ximage 
+
 		int pad =8; // bits per pixel
 		int depth = 32; depth = 24; // of screen
 		list_depths(); // 24 1 4 8 15 16 32 //
@@ -75,6 +94,8 @@ class X_test_png : public X_Window {
 		);
 //		ximage->byte_order = LSBFirst; // 0 // x86 default after NUL
 //		ximage->byte_order = MSBFirst; // 1
+		INFO( "ximage->data %p - SHARED", ximage->data );
+		INFO( "png.buffer   %p - SHARED", png.buffer );
 
 		show_image_data( ximage );
 
@@ -157,7 +178,7 @@ class X_test_png : public X_Window {
 		disp->XFlush();
 
 		Drawable src = pixmap.pixmap;
-		Drawable dst = window;
+		Drawable dst = drawable; // this-> drawable window
 		int src_x = 0;
 		int src_y = 0;
 		int width = pixmap.WH.w; 
@@ -165,7 +186,8 @@ class X_test_png : public X_Window {
 		int dst_x = 0;
 		int dst_y = 0;
 
-		width /= 2; // TEST // should reveal half a green X on bg
+	//	width *= 0.9; // TEST // should reveal half a green X on bg
+		width *= 0.5; // TEST // should reveal half a green X on bg
 
 		XCopyArea(
 			display,
@@ -232,7 +254,7 @@ class X_test_png : public X_Window {
 			INFO("sending %d rows of %d", H_band, H_remain );
 			XPutImage(
 				disp->display,
-				window,
+				drawable,	// dest
 				gc,
 				ximage,
 				0,		// src_x
@@ -300,6 +322,13 @@ bool bool_main( int argc, char ** argv ) {
 
 	// copy reduce png1 to png2
 
+	// TODO // resize WIN where png is displayed //
+	// that instead of display_WH/3
+	// get initial WH from display_WH/3
+	// think about zoom > 1.0 
+	// float zoom = 1.0 / ratio;
+	// dst = src * zoom
+
  	A_WH display_WH;
 	if(!disp.guess_screen_size(display_WH)) return FAIL_FAILED();
 
@@ -328,7 +357,7 @@ bool bool_main( int argc, char ** argv ) {
 
 	for( int dst_y = 0; dst_y < dst_WH.h; dst_y++ ) {
 	  int src_y = dst_y * ratio;
-	  INFO("src_y %d dst_y %d ROW ratio %5f", src_y, dst_y, ratio );
+ //	  INFO("src_y %d dst_y %d ROW ratio %5f", src_y, dst_y, ratio );
 
 	  u32_RGBA_t * src_row = png1.get_EA_row( src_y );
 	  u32_RGBA_t * dst_row = png2.get_EA_row( dst_y );

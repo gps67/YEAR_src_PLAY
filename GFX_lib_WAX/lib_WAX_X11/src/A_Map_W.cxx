@@ -18,7 +18,7 @@ X_Window * A_Map_W::find( Window w )
 	for(int i=0; i<n; i++ )
 	{
 		if( !list[i] ) continue;
-		if( list[i]->window == w ) {
+		if( list[i]->drawable == w ) {
 			return list[i];
 		}
 	}

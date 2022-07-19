@@ -20,7 +20,7 @@ create( X_Window & win, A_WH _WH)
 	WH = _WH;
 
 	Display * display = win.display;
-	Drawable drawable = win.window; // not clear why needed
+	Drawable drawable = win.drawable; // not clear why needed
 	int screen0 = 0;
 	int depth = DefaultDepth(display, screen0);
 

@@ -53,7 +53,7 @@ def check_file_exists( filename, throws=False ):
 			raise filename
 	return stat
 
-# upgrade woth something that can call sudo
+# upgrade with something that can call sudo
 # without lookin at syntax of provided command
 # upgrade with ... something that cant run shell command junk
 def call_system( cmd ):

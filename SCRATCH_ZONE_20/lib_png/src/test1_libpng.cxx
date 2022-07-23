@@ -52,7 +52,7 @@ class X_test_png : public X_Window {
 
 		/*
 			png buffer uses u32_RGBA_t lohi
-GFX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
+WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 
 			ximage SAYS it uses u32_ARGB_
 			ximage->  red_mask FF0000
@@ -188,6 +188,20 @@ GFX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 
 	//	width *= 0.9; // TEST // should reveal half a green X on bg
 		width *= 0.5; // TEST // should reveal half a green X on bg
+
+		// clip
+		// src_XY
+		// src_WH - ie limit of src
+		// dst_XY
+		// dst_WH - ie limit of dst
+		// cpy_WH - sub area of request relative to req_XY
+		//
+		// this gives the algebra of WH1 ^ WH2 intersection overlap etc
+		// a few well known verbs
+		// eg ENTIRE AREA (probably same WH)
+		// eg SPECIFIC expose AREA (of same entire) (of panel)
+		// eg PANEL area // LWW clip zone
+		// add in other clip zone (but that also added by OS)
 
 		XCopyArea(
 			display,

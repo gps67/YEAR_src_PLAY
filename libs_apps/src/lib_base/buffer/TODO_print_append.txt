@@ -1,0 +1,7 @@
+
+STR0 buffer1::print_append( ... ) {
+	int offs = nbytes_used
+	append ... to existing buffer
+	trailing_nul()
+	return buff + offs // volatile STR0 of appended item
+}

@@ -1,0 +1,4 @@
+rm CET2.png
+gnuplot -p -c z.plot
+m CET2.png
+

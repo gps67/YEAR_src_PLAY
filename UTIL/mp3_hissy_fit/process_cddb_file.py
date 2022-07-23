@@ -43,6 +43,7 @@
 # TODO #
 # this parses a cddb text file and stores it in an object
 # note spelling of DISC, etc
+# TODO # python print # cmd # silent !!
 
 # SETUP / INSTALL
 

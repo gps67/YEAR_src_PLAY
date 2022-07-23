@@ -9,44 +9,44 @@ void X_Window::set_name( const char * _name )
 	name = strdup( _name );
 }
 
-	/*!
-		child classes use this to create the object
-	*/
-	X_Window::
-	X_Window(
-		X_Window * _parent,	// provides display ;-)
-		Window _window,		// possibly 0 or XXXX
-		const char * _name	// usually set
-	)
-	: X_Drawable_Surface( _parent->disp->display, _window )
-	, parent( _parent )
-	, disp( _parent->disp )
-	, name(0)
+/*!
+	child classes use this to create the object
+*/
+X_Window::
+X_Window(
+	X_Window * _parent,	// provides display ;-)
+	Window _window,		// possibly 0 or XXXX
+	const char * _name	// usually set
+)
+: X_Drawable_Surface( _parent->disp->display, _window )
+, parent( _parent )
+, disp( _parent->disp )
+, name(0)
 //	, xft_draw( *this )
-	{
-		set_name( _name );
-		disp->add( this );
-	}
+{
+	set_name( _name );
+	disp->add( this );
+}
 
-	/*!
-		NULL_parent
-	*/
-	X_Window::
-	X_Window(
-		X_Window * _parent,	// possibly NULL
-		X_Display * _disp,	// must have display
-		Window _window,		// possibly 0 or XXXX
-		const char * _name	// usually set
-	)
-	: X_Drawable_Surface( _disp->display, _window )
-	, parent( _parent )
-	, disp( _disp )
-	, name(0)
+/*!
+	NULL_parent
+*/
+X_Window::
+X_Window(
+	X_Window * _parent,	// possibly NULL
+	X_Display * _disp,	// must have display
+	Window _window,		// possibly 0 or XXXX
+	const char * _name	// usually set
+)
+: X_Drawable_Surface( _disp->display, _window )
+, parent( _parent )
+, disp( _disp )
+, name(0)
 //	, xft_draw( *this )
-	{
-		set_name( _name );
-		disp->add( this );
-	}
+{
+	set_name( _name );
+	disp->add( this );
+}
 
 /*!
 	create a simple window, NB-TODO some unsigned work 
@@ -110,8 +110,10 @@ X_Window::X_Window(
 		col_border,
 		col_background
 	);
-	WH.w = xywh.width;
-	WH.h = xywh.height;
+	xywh.get_WH( WH );
+//	WH   = xywh.WH; // avoiding struct return // why ?
+//	WH.w = xywh.width; // xywh is not built from WH but { width height }
+//	WH.h = xywh.height; // maybe inline is a good alias
 
 //	xft_draw.Xft_DrawCreate( *this );
 
@@ -160,6 +162,10 @@ struct X_Window_Root : public X_Window
 
 /*!
 	create an internal object for the already existing root window
+
+	no functions are here for ROOT
+	no static singleton for root (TODO)
+	called once
  */
 X_Window * X_Window:: register_root(
 	X_Display & disp_,

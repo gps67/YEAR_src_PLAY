@@ -7,6 +7,7 @@
 #include "A_Obj_IDX_OFFS_SPEC.h"
 // #include "WAX/A_Obj_IDX_OFFS_SPEC.h"
 // #include <WAX/A_Obj_IDX_OFFS_SPEC.h>
+// #include "str0.h" // STR0
 
 namespace WAX {
 /*
@@ -186,6 +187,8 @@ struct A_Point : public XPoint
 		x = _x;
 		y = _y;
 	}
+
+	STR0 print( buffer1 & buf );
 };
 
 /*!

@@ -22,6 +22,14 @@
 	PKGS += xft
 	PKGS += fontconfig
 
+	G_prefix=/home/gps/G/prefix
+	PKG_CONFIG_dirs += $(G_prefix)/lib/pkgconfig/
+	RPATHS += -Wl,--rpath=$(G_prefix)/lib
+	LIBS += $(RPATHS)
+
+
+	PKGS += libturbojpeg
+
 	# these are supposed to be part of the build system
 	# TODO docs for the VARS used
 	INCLS += `pkg-config --cflags $(PKGS)`
@@ -87,14 +95,17 @@ endif
 
 	OBJS += png_one.o
 	OBJS += u32_RGBA.o
+	OBJS += tbl_enum.o
 
-	PROG1=test1
-	PROG2=test2
+	PROG1=test1_libpng
+	PROG2=test2_libjpeg
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)
 
-all: run_test1
+all: run_test1 run_test2
+
+old: run_test1
 
 ifeq (1,0)
 .SUFFIXES: .cxx .c .o                                                           
@@ -112,7 +123,7 @@ run_test1: $(EXEC1)
 	./$(EXEC1)
 
 run_test2: $(EXEC2)
-	./$(EXEC2) $(test2_font)  P # "Sample Text"
+	./$(EXEC2) 
 
 $(EXEC1): $(MAKES)
 

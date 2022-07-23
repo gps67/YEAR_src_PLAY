@@ -13,7 +13,8 @@
 
 namespace WAX {
 
-struct X_Drawable_Surface { // not an X thing base of X_Window X_Pixmap
+struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
+
 	Display * display;
 	Drawable drawable;
 	A_WH WH;
@@ -39,6 +40,16 @@ struct X_Drawable_Surface { // not an X thing base of X_Window X_Pixmap
 	{
 	}
 
+	/*!
+		create a GC for this drawable
+	*/
+	GC CreateGC()
+	{
+		unsigned long valuemask = 0;
+		XGCValues * values = NULL;
+		return ::XCreateGC( display, drawable, valuemask, values );
+	}
+
 };
 
 
@@ -48,7 +59,7 @@ struct X_Drawable_Surface { // not an X thing base of X_Window X_Pixmap
 struct X_Window : public X_Drawable_Surface
 {
 	X_Window * parent;
-//	Window window;
+//	Window window; // base class .drawable
 	X_Display * disp;
 	const char * name;
 
@@ -132,16 +143,6 @@ struct X_Window : public X_Drawable_Surface
 	}
 
 	/*!
-		create a GC for this window
-	*/
-	GC CreateGC()
-	{
-		unsigned long valuemask = 0;
-		XGCValues * values = NULL;
-		return ::XCreateGC( display, get_window(), valuemask, values );
-	}
-
-	/*!
 		set all (of mask) events to cause a callback
 
 		ExposureMask - so redraw
@@ -162,9 +163,11 @@ struct X_Window : public X_Drawable_Surface
 		::XSelectInput( display, get_window(), event_mask );
 	}
 
-	virtual void event_expose( A_Rectangle & xywh ) = 0;
-
 	void set_title( const char * name );
+
+// virtuals
+
+	virtual void event_expose( A_Rectangle & xywh ) = 0;
 
 };
 

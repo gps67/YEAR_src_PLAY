@@ -4,7 +4,7 @@
 
 //static
 bool
-::GFX::
+::WAX::
 u32_RGBA_t::
 test_byte_order()
 {

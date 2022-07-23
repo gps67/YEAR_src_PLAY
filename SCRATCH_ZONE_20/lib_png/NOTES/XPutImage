@@ -50,3 +50,28 @@ dest = ximage->data + row*ximage_rowbytes;
 
                 XFlush(display);
              
+----
+
+	LIB JPEG turbo tj example .cxx
+
+	JPEG reallocates memory, when it wants to
+	it provides the FB_frame_buffer
+
+	maybe COPY memory in an unnecessary step
+	maybe FLAG who own buffer, and propagate PTR
+
+		ximage - can use borrowed buffer
+		png_ { header buffer }
+		jpeg { headers buffer }
+
+		XCreateImage
+	
+	ximage is only really used to copy from { PNG JPEG UDEF }
+	to Pixmap
+	to Window
+
+		XCopyArea
+		from Pixmap to Window
+		from Window to Pixmap 
+
+

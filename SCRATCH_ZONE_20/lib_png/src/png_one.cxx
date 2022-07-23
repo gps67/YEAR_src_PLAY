@@ -2,37 +2,37 @@
 #include "dgb.h"
 #include <memory.h> // memset
 
-GFX::png_one:: png_one()
+WAX::png_one:: png_one()
 {
 	buffer = NULL; // 
 	image_memset_zero(); // and then set version no
 }
 
-GFX::png_one:: ~png_one()
+WAX::png_one:: ~png_one()
 {
 	clear();
 }
 
-void GFX::png_one:: clear()
+void WAX::png_one:: clear()
 {
 	buffer_free(); // 
 	image_free();;
 	image_memset_zero(); // and then set version no
 }
 
-void GFX::png_one:: image_memset_zero()
+void WAX::png_one:: image_memset_zero()
 {
 	memset(&image, 0, sizeof image);
 	image.version = PNG_IMAGE_VERSION;
 	image.format = PNG_FORMAT_RGBA; // because I forgot, you might too
 }
 
-void GFX::png_one:: image_free()
+void WAX::png_one:: image_free()
 {
 	png_image_free(&image); // the opaque contents not the struct itself
 }
 
-bool GFX::png_one:: buffer_alloc() // for image header
+bool WAX::png_one:: buffer_alloc() // for image header
 {
 	buffer_free();
 	u64 nbytes_1 = image.width * image.height * 4;
@@ -50,14 +50,14 @@ bool GFX::png_one:: buffer_alloc() // for image header
 	return true;
 }
 
-void GFX::png_one:: buffer_free()
+void WAX::png_one:: buffer_free()
 {
 	if(buffer)
             free(buffer);
 	buffer = NULL;
 }
 
-bool GFX::png_one:: create( int w, int h )
+bool WAX::png_one:: create( int w, int h )
 {
 	clear();
 	image.width = w;
@@ -69,7 +69,7 @@ bool GFX::png_one:: create( int w, int h )
 	return true;
 }
 
-bool GFX::png_one:: read_from_file( const char * filename )
+bool WAX::png_one:: read_from_file( const char * filename )
 {
 	u32_RGBA_t::test_byte_order();
 
@@ -102,7 +102,7 @@ bool GFX::png_one:: read_from_file( const char * filename )
 	return PASS("%s",filename);
 }
 
-bool GFX::png_one:: write_to_file( const char * filename )
+bool WAX::png_one:: write_to_file( const char * filename )
 {
 	INFO("image.flags = 0x%2X", image.flags );
 	if(!png_image_write_to_file(
@@ -118,12 +118,11 @@ bool GFX::png_one:: write_to_file( const char * filename )
 	return PASS("%s",filename);
 }
 
-bool GFX::png_one:: calc_bytes_per() // and bytes_per_pixel
+bool WAX::png_one:: calc_bytes_per() // and bytes_per_pixel
 {
 	u32_RGBA_t rgba; 
-
-	bytes_per_row = PNG_IMAGE_ROW_STRIDE( image );
 	bytes_per_pixel = rgba.bytes_per_pixel();
+	bytes_per_row = PNG_IMAGE_ROW_STRIDE( image );
 
 	// general expectation is non zero
 	if( image.width < 1 ) {
@@ -138,7 +137,7 @@ bool GFX::png_one:: calc_bytes_per() // and bytes_per_pixel
 /*!
 	solid fill XYWH with rgba pixel value
 */
-bool GFX::png_one:: draw_fill_xywh( int x1, int y1, int w, int h, u32_RGBA_t rgba )
+bool WAX::png_one:: draw_fill_xywh( int x1, int y1, int w, int h, u32_RGBA_t rgba )
 {
 	u32_RGBA_t::test_byte_order();
 	int x2_clip = image.width; // 1 outside
@@ -165,7 +164,7 @@ bool GFX::png_one:: draw_fill_xywh( int x1, int y1, int w, int h, u32_RGBA_t rgb
 	return true;
 }
 
-bool GFX::png_one:: draw_nasty_blob() // test
+bool WAX::png_one:: draw_nasty_blob() // test
 {
 	int x1 = image.width / 4;
 	int y1 = image.height / 4;

@@ -1,0 +1,19 @@
+
+rm CET2.png
+
+< ../CET_datafile \
+sed 1,7d \
+| awk '
+# $1 is year
+# $2 .. $13 is Jan .. Dec
+# $14 is annual average
+# 2022 annual average is -99.99 because it is incomplete
+BEGIN {
+}
+{ if($14 >0) print $1 ", "$14 }
+' \
+> CET2.tmp 
+#
+gnuplot -c CET2.plot
+
+m CET2.png

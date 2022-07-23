@@ -11,7 +11,7 @@ extern "C" {
 }
 
 
-namespace GFX {
+namespace WAX {
 
  /*!
  	a well defined frame array [h][w] of u32_pixel // buffer //
@@ -76,6 +76,6 @@ namespace GFX {
 
 };
 
-using namespace GFX; // TEMP
+using namespace WAX; // TEMP
 
 #endif

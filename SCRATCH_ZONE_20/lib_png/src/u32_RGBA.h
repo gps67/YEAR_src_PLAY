@@ -5,7 +5,7 @@
 #include <byteswap.h>
 
 
-namespace GFX {
+namespace WAX {
 
  struct u32_RGBA_t {
  	// a 32 bit pixel value - used by libpng - used by ximage
@@ -32,6 +32,6 @@ namespace GFX {
 	static bool test_byte_order();
  };
 
-}; // namespace GFX
+}; // namespace WAX
 #endif
 

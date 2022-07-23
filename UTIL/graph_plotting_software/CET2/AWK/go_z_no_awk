@@ -1,0 +1,4 @@
+rm CET2.png
+gnuplot -p -c z_no_awk.plot
+m CET2.png
+

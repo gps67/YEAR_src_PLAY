@@ -1,0 +1,11 @@
+
+	obj_hold<fd_hold_1> fd_hold  = new fd_hold_1();
+	fd_hold_1 fd_hold;
+
+	The first one is correct, but needs fd_hold -> FUNC()
+	the second one crashes but uses fd_hold.FUNC()
+
+	It happens on DTOR of the CTXT, return of the function.
+	It doesn;t even leak, it crashes.
+	Cant remember what it said,
+	something about the obj_list DTOR flag not set

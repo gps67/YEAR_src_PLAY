@@ -37,6 +37,7 @@
 	bool dump();
 	bool lookup_val( int val, int & idx );
 	bool lookup_name( str0 name, int & idx );
+	const char * name_of_value( int val );
  };
 
 #endif

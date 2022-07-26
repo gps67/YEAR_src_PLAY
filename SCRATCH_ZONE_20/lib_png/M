@@ -1,5 +1,5 @@
 cd obj
 #  make -f ../MK/Makefile "${@:-all}" 
-   make -f ../MK/Makefile "${@:-run_test1}" 
-#  make -f ../MK/Makefile "${@:-run_test2}" 
+#   make -f ../MK/Makefile "${@:-run_test1}" 
+  make -f ../MK/Makefile "${@:-run_test2}" 
 

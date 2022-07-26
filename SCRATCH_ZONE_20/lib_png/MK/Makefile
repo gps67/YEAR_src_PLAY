@@ -96,6 +96,13 @@ endif
 	OBJS += png_one.o
 	OBJS += u32_RGBA.o
 	OBJS += tbl_enum.o
+	OBJS += TJ_blk.o
+	OBJS += TJ_scale_factor.o
+	OBJS += TJ_values.o
+	OBJS += TJ_instance.o
+	OBJS += TJ_loader.o
+	OBJS += TJ_saver.o
+
 
 	PROG1=test1_libpng
 	PROG2=test2_libjpeg

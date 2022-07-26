@@ -61,7 +61,11 @@ set xtics 25
   plot 	\
 	unused = init_XY(0), \
 	\
-	\
+	datafile using ($1):(Q_val_Y($14)) \
+	with lines \
+	title 'data' \
+	lw 1 \
+	lc rgb 'forest-green', \
 	\
 	datafile using (Q_avg_X9($1)):(Q_avg_Y9($14)) \
 	with lines \
@@ -82,10 +86,4 @@ set xtics 25
 # that bounces around a lot
 # it shows the 9 year average is good
 
-#	datafile using ($1):(Q_val_Y($14)) \
-#	with lines \
-#	title 'data' \
-#	lw 1 \
-#	lc rgb 'forest-green', \
-#
 

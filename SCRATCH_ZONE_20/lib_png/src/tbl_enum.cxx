@@ -50,5 +50,15 @@ bool enum_tbl_t:: lookup_name( str0 name, int & idx ) {
 	return false;
 }
 
+const char * enum_tbl_t:: name_of_value( int val )
+{
+	int idx = -1;
+	if(!lookup_val( val, idx )) {
+		FAIL_FAILED();
+		return "(ABSENT)";
+	}
+	return rows[idx].name;
+}
+
 
 

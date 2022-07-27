@@ -1,5 +1,8 @@
 #ifndef TJ_FB_image_t_H
 #define TJ_FB_image_t_H
+#include "TJ_blk.h"
+#include "TJ_scale_factor.h"
+
 namespace TJ {
 
  struct TJ_FB_image_t {

@@ -1,0 +1,7 @@
+SRCH=+/scale
+SRCH=+/samp
+SRCH=+/FAIL
+SRCH=+/WxH
+SRCH=
+
+./M run_test1 2>&1 | less $SRCH

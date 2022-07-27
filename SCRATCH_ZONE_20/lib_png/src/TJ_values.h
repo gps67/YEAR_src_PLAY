@@ -3,8 +3,13 @@
 
 #include "str0.h"
 #include "buffer1.h"
+#include "tbl_enum.h"
 
 namespace TJ {
+
+ extern enum_tbl_t tbl_samp;
+ extern enum_tbl_t tbl_PF;
+ extern enum_tbl_t tbl_CS;
 
 
  struct quality_t 

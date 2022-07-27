@@ -1,6 +1,12 @@
 #!/usr/bin/env make
 
 # FT2 # Makefile
+	# the problem with "test2" is that test2.cxx exists in WAX
+	# so the default rule g++ uses all the right flags
+	# but then the default rule cc test2.o -o test2 produces junk
+	# same as THIS makefile has a rule that depends on $(OBJS)
+	# so links them all in
+	# FIX edit run_test2 instead
 
 	CXX = g++
 	OPTIM += -g
@@ -112,7 +118,6 @@ endif
 
 all: run_test1 run_test2
 
-old: run_test1
 
 ifeq (1,0)
 .SUFFIXES: .cxx .c .o                                                           
@@ -129,7 +134,7 @@ $(OBJS): $(HDRS)
 run_test1: $(EXEC1)
 	./$(EXEC1)
 
-run_test2: $(EXEC2)
+test1 run_test2: $(EXEC2)
 	./$(EXEC2) 
 
 $(EXEC1): $(MAKES)

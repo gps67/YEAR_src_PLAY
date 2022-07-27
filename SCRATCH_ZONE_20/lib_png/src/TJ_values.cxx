@@ -2,9 +2,8 @@
 #include "dgb.h"
 // #include "enum_tbl.h"
 #include "tbl_enum.h"
-
- extern
- enum_tbl_t tbl_samp;
+#include "tbl_enum_MACROS.h"
+#include <turbojpeg.h>
 
 using namespace TJ;
 
@@ -35,4 +34,51 @@ using namespace TJ;
 		return PASS("%s == %d", (STR0) str, val );
 	}
 
+namespace TJ {
 
+	// declared class member functions are OK woth "using namespace TJ;"
+	// declared extern vars are NOT OK with using .. these need to be inside
+	// hence above line
+
+ ENUM_TBL( "TJSAMP_", tbl_samp, "output resample", rows_samp, { 
+
+	ITEM2( TJSAMP_444,  "4:4:4" )
+	ITEM2( TJSAMP_422,  "4:2:2" )
+	ITEM2( TJSAMP_420,  "4:2:0" )
+	ITEM2( TJSAMP_GRAY, "Grayscale" )
+	ITEM2( TJSAMP_440,  "4:4:0" )
+	ITEM2( TJSAMP_411,  "4:1:1" )
+
+ })
+	// #define TJ_NUMSAMP  6
+
+ ENUM_TBL( "TJPF_", tbl_PF, "pixel format", rows_PF, { // #define TJ_NUMPF  12
+
+	ITEM3( TJPF_RGB,  "RGB", "descr" )
+	ITEM3( TJPF_BGR,  "BGR", "descr" )
+	ITEM3( TJPF_RGBX, "RGBX", "RGB X bytes order ABCD lohi" )
+	ITEM3( TJPF_BGRX, "BGRX", "descr" )
+	ITEM3( TJPF_XBGR, "XBGR", "descr" )
+	ITEM3( TJPF_XRGB, "XRGB", "descr" )
+	ITEM3( TJPF_GRAY, "GRAY", "descr" )
+	ITEM3( TJPF_RGBA, "RGBA", "RGB A==0xFF ABCD lohi" )
+	ITEM3( TJPF_BGRA, "BGRA", "descr" )
+	ITEM3( TJPF_ABGR, "ABGR", "descr" )
+	ITEM3( TJPF_ARGB, "ARGB", "descr" )
+	ITEM3( TJPF_CMYK, "CMYK", "descr" )
+	ITEM3( TJPF_UNKNOWN,"unset", "default for accept INPUT" )
+
+ })
+
+
+ // CS color space
+ ENUM_TBL( "TJCS_", tbl_CS, "pixel format", rows_CS, { // #define TJ_NUMCS  5
+
+	ITEM3( TJCS_RGB,   "rgb",   "descr" )
+	ITEM3( TJCS_YCbCr, "ycbcr", "descr" )
+	ITEM3( TJCS_GRAY,  "gray",  "descr" )
+	ITEM3( TJCS_CMYK,  "cmyk",  "descr" )
+	ITEM3( TJCS_YCCK,  "ycck",  "descr" )
+
+ } )
+}; // namespace 

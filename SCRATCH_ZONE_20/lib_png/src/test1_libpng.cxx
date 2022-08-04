@@ -14,37 +14,35 @@
 #include <stdlib.h>
 using namespace WAX;
 
-
-class X_test_png : public X_Window {
- public:
-//	A_Rectangle xywh1;      // the inner frame // eg this is border
-	png_one & png;
-	GC gc;
-
-	XImage * ximage;
-	X_Pixmap pixmap;
-
- 	X_test_png(
-		const char * _name,
-		X_Display & disp_,
-		A_Rectangle xywh,
-		int border,
-		png_one & png_
-	)
-	: X_Window( _name, disp_, xywh, border )
-//	, xywh1( xywh )
-	, png( png_)
+	bool show_image_data( XImage * ximage )
 	{
-		gc = CreateGC();
-		call_create_image_from_png( png );
+// 	INFO("default depth = %d\n", DefaultDepth(disp->display, 0));
+		INFO( "ximage->width %d", ximage->width );
+		INFO( "ximage->height %d", ximage->height );
+		INFO( "ximage->format %d", ximage->format );
+		INFO( "ximage->data %p", ximage->data );
+		INFO( "ximage->byte_order %d LSBFirst/MSBFirst %d/%d", ximage->byte_order, LSBFirst, MSBFirst );
+		INFO( "ximage->bitmap_unit %d", ximage->bitmap_unit );
+		INFO( "ximage->bitmap_bit_order %d", ximage->bitmap_bit_order );
+		INFO( "ximage->bitmap_pad %d", ximage->bitmap_pad );
+		INFO( "ximage->depth %d", ximage->depth );
+		INFO( "ximage->bytes_per_line %d", ximage->bytes_per_line );
+		INFO( "ximage->bits_per_pixel %d", ximage->bits_per_pixel );
+		INFO( "ximage->  red_mask %6lX", ximage->red_mask );
+		INFO( "ximage->green_mask %6lX", ximage->green_mask );
+		INFO( "ximage-> blue_mask %6lX", ximage->blue_mask );
+		INFO( "ximage->obdata %p", ximage->obdata );
+		const char * s = "UNKNOWN";
+		switch(ximage->byte_order) {
+		case LSBFirst: s = "LSBFirst"; break;
+		case MSBFirst: s = "MSBFirst"; break;
+		default: ;
+		}
+		INFO( "ximage->byte_order %d == %s", ximage->byte_order, s );
+		return true;
 	}
 
-	bool list_depths()
-	{
-		return disp->test_list_depths();
-	}
-
-	bool call_create_image_from_png( png_one & png )
+	bool call_create_ximage_from_png( X_Display & disp, XImage * & ximage, png_one & png )
 	{
 		// copy png to ximage //
 		// png must be the one suitable for window
@@ -71,8 +69,8 @@ WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 
 		int pad =8; // bits per pixel
 		int depth = 32; depth = 24; // of screen
-		list_depths(); // 24 1 4 8 15 16 32 //
-		depth = disp->Default_Depth();
+		disp.test_list_depths(); // 24 1 4 8 15 16 32 //
+		depth = disp.Default_Depth();
 		INFO("default depth of screen 0 = %d\n", depth );
 
 		int bytes_per_line = 0;
@@ -81,8 +79,8 @@ WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 
 		INFO("png  W %d H %d", png.image.width, png.image.height );
 		ximage = ximage = XCreateImage(
-			disp->display,
-			disp->get_Default_Visual(), // vanilla plus
+			disp.display,
+			disp.get_Default_Visual(), // vanilla plus
 			depth,          // 24 not 32
 			ZPixmap,        // RGB triplets not plane of R plane of G plane of B
 			0,              // ignore left pixels on scanline
@@ -99,12 +97,86 @@ WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 
 		show_image_data( ximage );
 
-		A_WH WH( png.image.width, png.image.height );
-		if(!pixmap.create( *this, WH ))
-			return FAIL_FAILED();
-		call_put_image_to_pixmap();
-
 		return true;
+	}
+
+	bool call_put_image_to_pixmap( X_Display & disp, GC gc, XImage & ximage, X_Pixmap & pixmap ) // to pixmap // to drawable might be Pixmap
+	{
+		INFO("XFlush - pre");
+		disp.XFlush();
+		int Y_pos = 0;
+		int H16 = 16;
+		int H_remain = ximage.height;
+		while( H_remain > 0 ) {
+			int H_band = H_remain;
+		if(0)	if( H_band > H16 ) H_band = H16; // disable chunking
+			INFO("sending %d rows of %d", H_band, H_remain );
+			XPutImage(
+				disp.display,
+				pixmap.pixmap, // window,
+				gc,
+				& ximage,
+				0,		// src_x
+				Y_pos,		// src_y
+				0,		// dst_x
+				Y_pos,		// dst_y
+				ximage.width,    // copied image size
+				H_band		// 16 rows per update
+			);
+			Y_pos += H_band;
+			H_remain -= H_band;
+			INFO("XFlush");
+			disp.XFlush();
+			// break;
+		}
+		INFO("sent");
+		return true;
+	}
+
+	bool create_pixmap_from_ximage( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, XImage & ximage )
+	{
+		A_WH WH( ximage.width, ximage.height );
+		if(! pixmap.create( disp.display, drawable, WH ))
+			return FAIL_FAILED();
+		if(! call_put_image_to_pixmap( disp, gc, ximage, pixmap ))
+			return FAIL_FAILED();
+		return true;
+	}
+
+	bool create_pixmap_from_png( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, png_one & png )
+	{
+		XImage * ximage = NULL;
+		if(! call_create_ximage_from_png( disp, ximage, png ))
+			return FAIL_FAILED();
+		if(! ximage ) return FAIL("ximage NULL but didnt fail");
+		if(! create_pixmap_from_ximage( disp, gc, drawable, pixmap, * ximage ))
+			return FAIL_FAILED();
+		return true;
+	}
+
+
+class X_test_png : public X_Window {
+ public:
+//	A_Rectangle xywh1;      // the inner frame // eg this is border
+	png_one & png;
+	GC gc;
+
+//	XImage * ximage;
+	X_Pixmap pixmap;
+
+ 	X_test_png(
+		const char * _name,
+		X_Display & disp_,
+		A_Rectangle xywh,
+		int border,
+		png_one & png_
+	)
+	: X_Window( _name, disp_, xywh, border )
+//	, xywh1( xywh )
+	, png( png_)
+	{
+		gc = CreateGC();
+		create_pixmap_from_png( *disp, gc, drawable, pixmap, png );
 	}
 
 	void event_expose( A_Rectangle & xywh ){
@@ -141,35 +213,6 @@ WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 		if(!call_put_pixmap_to_window())
 			FAIL_FAILED();// as part of expose redraw
 		return;
-	}
-
-	bool show_image_data( XImage * ximage )
-	{
-
-	INFO("default depth = %d\n", DefaultDepth(disp->display, 0));
-		INFO( "ximage->width %d", ximage->width );
-		INFO( "ximage->height %d", ximage->height );
-		INFO( "ximage->format %d", ximage->format );
-		INFO( "ximage->data %p", ximage->data );
-		INFO( "ximage->byte_order %d LSBFirst/MSBFirst %d/%d", ximage->byte_order, LSBFirst, MSBFirst );
-		INFO( "ximage->bitmap_unit %d", ximage->bitmap_unit );
-		INFO( "ximage->bitmap_bit_order %d", ximage->bitmap_bit_order );
-		INFO( "ximage->bitmap_pad %d", ximage->bitmap_pad );
-		INFO( "ximage->depth %d", ximage->depth );
-		INFO( "ximage->bytes_per_line %d", ximage->bytes_per_line );
-		INFO( "ximage->bits_per_pixel %d", ximage->bits_per_pixel );
-		INFO( "ximage->  red_mask %6lX", ximage->red_mask );
-		INFO( "ximage->green_mask %6lX", ximage->green_mask );
-		INFO( "ximage-> blue_mask %6lX", ximage->blue_mask );
-		INFO( "ximage->obdata %p", ximage->obdata );
-		const char * s = "UNKNOWN";
-		switch(ximage->byte_order) {
-		case LSBFirst: s = "LSBFirst"; break;
-		case MSBFirst: s = "MSBFirst"; break;
-		default: ;
-		}
-		INFO( "ximage->byte_order %d == %s", ximage->byte_order, s );
-		return true;
 	}
 
 	bool call_put_pixmap_to_window() // as part of expose redraw
@@ -220,40 +263,7 @@ WAX::u32_RGBA_t::test_byte_order() # RGBA A=0xFF 0xFF332211 AAGGBBRR
 		return true;
 	}
 
-	bool call_put_image_to_pixmap() // to pixmap // to drawable might be Pixmap
-	{
-		INFO("XFlush - pre");
-		disp->XFlush();
-		int Y_pos = 0;
-		int H16 = 16;
-		int H_remain = ximage->height;
-		while( H_remain > 0 ) {
-			int H_band = H_remain;
-		if(0)	if( H_band > H16 ) H_band = H16; // disable chunking
-			INFO("sending %d rows of %d", H_band, H_remain );
-			XPutImage(
-				disp->display,
-				pixmap.pixmap, // window,
-				gc,
-				ximage,
-				0,		// src_x
-				Y_pos,		// src_y
-				0,		// dst_x
-				Y_pos,		// dst_y
-				ximage->width,    // copied image size
-				H_band		// 16 rows per update
-			);
-			Y_pos += H_band;
-			H_remain -= H_band;
-			INFO("XFlush");
-			disp->XFlush();
-			// break;
-		}
-		INFO("sent");
-		return true;
-	}
-
-	bool call_put_image_to_window() // to window // to drawable might be Pixmap
+	bool call_put_image_to_window( XImage * ximage ) // to window // to drawable might be Pixmap
 	{
 			INFO("XFlush - pre");
 			disp->XFlush();

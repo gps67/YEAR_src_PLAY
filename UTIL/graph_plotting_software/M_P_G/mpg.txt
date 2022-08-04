@@ -24,3 +24,4 @@ YEAR_MM_DD, miles, litres, cost, note
 2022-05-22, 111077, 34.04, 55.72, Y morrissons back from drum
 2022-06-05, 111254, 23.62, 40.32, Y morrissons back from BH1
 2022-07-22, 111480, 36.38, 67.56, Y morrissons town
+2022-08-01, 111623, 17.42, 31.31, Y morrissons back from mud

@@ -18,6 +18,7 @@ struct X_Pixmap
 
 //	bool create( X_Window & win );
 	bool create( X_Window & win, A_WH _WH);
+	bool create( Display * display, Drawable drawable, A_WH _WH);
 //	int get_width() { return WH.w; }
 //	int get_height() { return WH.h; }
 	void get_WH( A_WH & _WH ) { _WH = WH; }

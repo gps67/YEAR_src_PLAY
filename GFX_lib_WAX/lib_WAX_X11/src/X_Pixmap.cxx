@@ -17,10 +17,19 @@ create( X_Window & win, A_WH _WH)
 // create( X_Window & win )
 // create( X_Drawable & win_or_pixmap )
 {
+	Drawable drawable = win.drawable;
+	Display * display = win.display;
+	return create( display, drawable, _WH );
+}
+
+bool
+::WAX:: X_Pixmap::
+create( Display * display, Drawable drawable, A_WH _WH)
+// create( X_Window & win )
+// create( X_Drawable & win_or_pixmap )
+{
 	WH = _WH;
 
-	Display * display = win.display;
-	Drawable drawable = win.drawable; // not clear why needed
 	int screen0 = 0;
 	int depth = DefaultDepth(display, screen0);
 
@@ -32,8 +41,4 @@ create( X_Window & win, A_WH _WH)
 
 	return PASS("DONE");
 }
-
-
-
-
 

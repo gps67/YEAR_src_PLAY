@@ -44,7 +44,10 @@ proc list_days_in_month {year mm} {
 
 	set dd [clock format $t -format "%d"]
 	set Tue [clock format $t -format "%a"]
-	puts "$dd $Tue"
+	set Jan [clock format $t -format "%b"]
+#	puts "$year-$mm-$dd $Jan $Tue"
+#	puts "$dd $Jan $Tue"
+	puts "	$dd $Jan $Tue" ;# initial TAB
 
 	set t [ expr $t + $dt_day ]
   }

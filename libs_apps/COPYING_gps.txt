@@ -1,5 +1,5 @@
 This project is copyright, licenced to you under the (Library) LGPL.
-The LGPL is available online and in COPYING.LIB.
+The LGPL is available online and in COPYING_LIB.txt
 
 Commercial use is encouraged.
 

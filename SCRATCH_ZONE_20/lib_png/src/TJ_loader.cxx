@@ -13,6 +13,48 @@ using namespace TJ;
 		hdr_FB_width = 0; // set by tjDecompressHeader3
 		hdr_FB_height = 0; // set by tjDecompressHeader3
 		req_FB_pixel = 0; // set by caller
+		K_max = 1024 * 20; // 20 MB // JWST is 6
+	}
+
+	bool TJ_loader_t:: set_M_max( float M ) {
+		K_max = M * 1024 + 1;
+		if( K_max < 200 ) {
+			WARN("K_max too low %d", K_max );
+		}
+		return true;
+	}
+
+	bool TJ_loader_t:: do_do_transform() {
+		// do we call transform or not ?
+		// if ANY of these are true
+	 return
+		xform.op != TJXOP_NONE ||       // flip rotate ...
+		xform.options != 0 ||           // crop conv-gray
+		xform.customFilter != NULL ;    // custom per-pixel
+	}
+
+
+	bool TJ_loader_t:: load_file( const char * filename ) {
+		filename_was = filename;
+
+		bool do_call_Transform = false;
+		do_call_Transform = do_do_transform();
+		int flags = 0;
+		flags |= TJFLAG_FASTDCT;
+	//	flags |= TJFLAG_LIMITSCANS; // secure // ABSENT
+                flags |= TJFLAG_ACCURATEDCT;
+	//	flags |= TJFLAG_PROGRESSIVE;
+
+		if(! jpeg_file_in_data.read_entire_file( filename, K_max ))
+			return FAIL_FAILED();
+		if (do_call_Transform) {
+			if(!call_transform_and_decompress( flags ))
+				return FAIL_FAILED();
+		} else {
+			if(!skip_transform_and_call_decompress( flags ))
+				return FAIL_FAILED();
+		}
+		return true;
 	}
 
 	bool TJ_loader_t:: show_info_one(const char * msg) {

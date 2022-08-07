@@ -1,0 +1,22 @@
+
+grapheme
+
+	was char
+	was glyph
+	now grapheme
+
+	is single code_point
+	is multiple code point first + modifier (madness)
+
+UTF32
+
+	32 bit word = U_val 
+	fixed width
+	waste
+
+UTF8
+
+	overlaps ASCII
+	vary width n_bytes
+
+

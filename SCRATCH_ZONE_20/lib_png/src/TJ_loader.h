@@ -3,10 +3,16 @@
 
 #include "TJ_instance.h"
 #include "TJ_values.h"
+#include "str1.h"
 
 namespace TJ {
 
  struct TJ_loader_t : public TJ_instance_t {
+
+ 	int K_max; // camera typically 1.3 MB // JWST 5.5 // 
+
+	bool set_M_max( int M ) { return set_M_max( (float) M ); }
+	bool set_M_max( float M );
 
 	tjtransform xform;
 
@@ -26,11 +32,15 @@ namespace TJ {
 	bool show_info_one(const char * msg);
 	bool tjInstance_Init_Transform();
 	bool tjInstance_Init_Decompress();
+	bool do_do_transform(); // looks at { tjtransform & xform; }
 	bool call_transform_and_decompress( int flags );
 	bool skip_transform_and_call_decompress( int flags );
 	bool call_transform_and_move_back( int flags );
 	bool call_DecompressHeaders3_and_get_WH();
 	bool call_Decompress2( int flags );
+
+	str1 filename_was;
+	bool load_file( const char * filename );
 
  }; // class
 }; // namespace

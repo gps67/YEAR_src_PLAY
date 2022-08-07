@@ -108,6 +108,7 @@ endif
 	OBJS += TJ_instance.o
 	OBJS += TJ_loader.o
 	OBJS += TJ_saver.o
+	OBJS += IMG_loader.o
 
 
 	PROG1=test1_libpng

@@ -197,16 +197,6 @@ bool display_FB_image( TJ_FB_image_t & FB_image )
 }
 
 
-bool do_do_transform( tjtransform & xform ) {
-	// the transform call must be made // or not
-	// if ANY of these are true
-  return
-	xform.op != TJXOP_NONE || 	// flip rotate ...
-	xform.options != 0 ||		// crop conv-gray
-	xform.customFilter != NULL ;	// custom per-pixel
-	// a function because there is no xform class
-}
-
 }; // namespace TJ
 
 bool bool_main(int argc, char **argv)
@@ -324,7 +314,7 @@ bool bool_main(int argc, char **argv)
 	bool outFormat_is_jpg = !strcasecmp(out_ext, "jpg");
 	bool  inFormat_is_jpg = !strcasecmp( in_ext, "jpg");
 	// do we call Transform or not
-	bool do_call_Transform = do_do_transform( argv_xform );
+	bool do_call_Transform = tj_loader.do_do_transform();
 
 	if( inFormat_is_jpg ) {
 	/* Input image is a JPEG image.  Decompress and/or transform it. */
@@ -350,7 +340,7 @@ bool bool_main(int argc, char **argv)
 	// scaling has NOT been done
 	// decompress the headers to get WxH etc
 
-	const char * msg = do_call_Transform ? "Transforme Image" : "Input Image";
+	const char * msg = do_call_Transform ? "Transform Image" : "Input Image";
 	// "Image:  %d x %d pixels, %s subsampling, %s colorspace\n",
 	tj_loader.show_info_one(msg);
 

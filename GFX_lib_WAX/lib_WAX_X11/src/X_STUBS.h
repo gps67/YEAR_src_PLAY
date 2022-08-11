@@ -31,6 +31,7 @@ namespace WAX {
 	struct X_Draw;
 	struct X_Window;
 	struct X_Pixmap;
+	struct X_Image;
 };
 
 #endif

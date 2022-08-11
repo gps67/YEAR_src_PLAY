@@ -8,7 +8,7 @@
 #include "X_Draw.h"
 #include "X_Display.h"
 
-#include "IMG_loader.h"
+#include "X_Image.h"
 
 #include "tbl_enum.h"
 //#include "tbl_enum_MACROS.h"
@@ -48,9 +48,11 @@ class X_test_img : public X_Window {
 		png_one & png
 	)
 	: X_Window( _name, disp_, xywh, border )
+	, pixmap( disp_.display, xywh.get_WH() )
 	{
 		gc = CreateGC();
-		create_pixmap_from_png( *disp, gc, drawable, pixmap, png );
+		X_Image img;
+		img.create_pixmap_from_png( *disp, gc, drawable, pixmap, png );
 		INFO("CREATED");
 	}
 
@@ -62,9 +64,11 @@ class X_test_img : public X_Window {
 		TJ_FB_image_t & FB_image
 	)
 	: X_Window( _name, disp_, xywh, border )
+	, pixmap( disp_.display, xywh.get_WH())
 	{
 		gc = CreateGC();
-		create_pixmap_from_TJ_IMG( *disp, gc, drawable, pixmap, FB_image );
+		X_Image img;
+		img.create_pixmap_from_TJ_IMG( *disp, gc, drawable, pixmap, FB_image );
 		INFO("CREATED");
 	}
 
@@ -109,7 +113,7 @@ class X_test_img : public X_Window {
 		INFO("XFlush - pre");
 		disp->XFlush();
 
-		Drawable src = pixmap.pixmap;
+		Drawable src = pixmap.drawable;
 		Drawable dst = drawable; // this-> drawable window
 		int src_x = 0;
 		int src_y = 0;
@@ -118,7 +122,8 @@ class X_test_img : public X_Window {
 		int dst_x = 0;
 		int dst_y = 0;
 
-	//	width *= 0.9; // TEST // should reveal half a green X on bg
+	 // mad test // only show half
+	 if(0)
 		width *= 0.5; // TEST // should reveal half a green X on bg
 
 		// clip
@@ -156,7 +161,9 @@ class X_test_img : public X_Window {
 
 // global to outlive main() ??
 
-bool bool_main_png( int argc, char ** argv ) {
+bool bool_main_png_jpg( int argc, char ** argv ) {
+
+	// need WAIT_MORE WAIT_LESS WAIT_until_all_windows_closed
 
 	png_one png1; // png2 goes to the window
 
@@ -262,16 +269,28 @@ bool bool_main_png( int argc, char ** argv ) {
 	win1.set_title( filename_1 );
 
 	win1.map();
+	win1.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
 
-	        long mask = 0;
-        mask |= ExposureMask ;
-        mask |= KeyPressMask ;
-        mask |= ButtonPressMask ;
-        mask |= ButtonReleaseMask; // Pointer button up
-//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
-        mask |= ResizeRedirectMask; // Redirect resize of this window
+//	{
+	TJ::TJ_loader_t tj_loader;
+	TJ::scale_factors_t scale_factors;
+	const char * filename_jpeg = "/home/gps/YEAR/G_PHOTOS/Photos_2022/2022-07-0X_Readipop/2022-07-08_Readipop/IMG_20210101_222232.jpg";
 
-	win1.XSelectInput( mask );
+	scale_factors_t factors;
+	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );
+
+	if(! tj_loader.load_file( filename_jpeg ) ) 
+		return FAIL_FAILED();
+
+	A_Rectangle xywh2( 0, 0,
+		tj_loader.FB_image.width,
+		tj_loader.FB_image.height
+	);
+	X_test_img win2( "jpg1", disp, xywh2, 0, tj_loader.FB_image );
+	win2.set_title( filename_1 );
+	win2.map();
+	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
+// }
 
 
 	// the main loop uses a virtual on the relevent X_Window // TODO
@@ -285,32 +304,36 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	TJ::TJ_loader_t tj_loader;
 	TJ::scale_factors_t scale_factors;
 
-	png_one png1; // png2 goes to the window
-
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
 
+	////////////////////////////////////////////
+
 	const char * filename_1 = "/home/gps/YEAR/G_PHOTOS/Photos_2022/2022-07-0X_Readipop/2022-07-08_Readipop/IMG_20210101_222232.jpg";
+
+	scale_factors_t factors;
+	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );
 
 	if(! tj_loader.load_file( filename_1 ) ) 
 		return FAIL_FAILED();
 
-	A_Rectangle xywh1( 0, 0, tj_loader.FB_image.width, tj_loader.FB_image.height );
-	X_test_img win1( "jpg1", disp, xywh1, 0, tj_loader.FB_image );
-	win1.set_title( filename_1 );
+	A_Rectangle xywh1( 0, 0,
+		tj_loader.FB_image.width,
+		tj_loader.FB_image.height
+	);
+	X_test_img win2( "jpg1", disp, xywh1, 0, tj_loader.FB_image );
+	win2.set_title( filename_1 );
+	win2.map();
+	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
 
-	win1.map();
+	//////////////////////////////////////
 
-	        long mask = 0;
-        mask |= ExposureMask ;
-        mask |= KeyPressMask ;
-        mask |= ButtonPressMask ;
-        mask |= ButtonReleaseMask; // Pointer button up
-//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
-        mask |= ResizeRedirectMask; // Redirect resize of this window
+	// copy win2.pixmap to a new ximage and save it as something
+	const char * filename_4 = "/tmp/filename_4.jpg";
 
-	win1.XSelectInput( mask );
-
+	TJ:: TJ_saver_t saver;
+	if(! saver.get_pixmap_save_as_filename( disp, win2.pixmap, filename_4 ))
+		return FAIL_FAILED();
 
 	// the main loop uses a virtual on the relevent X_Window // TODO
 	disp.process_events_forever();
@@ -321,7 +344,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 bool bool_main( int argc, char ** argv ) {
 	
  	return bool_main_jpg( argc, argv );
-	return bool_main_png( argc, argv );
+	return bool_main_png_jpg( argc, argv ); // both
 }
 
 int main( int argc, char ** argv )

@@ -1,7 +1,12 @@
 #ifndef TJ_FB_image_t_H
 #define TJ_FB_image_t_H
+#include "TJ_STUBS.h" // TJ::
 #include "TJ_blk.h"
+
 #include "TJ_scale_factor.h"
+#include "A_point_plus.h"
+
+using namespace WAX;
 
 namespace TJ {
 
@@ -11,14 +16,20 @@ namespace TJ {
 
 	int width;
 	int height;
-	int pixelFormat;
+	int pixel_format_tj;
 
  TJ_FB_image_t()
  : img_buf()
  , width(0)
  , height(0)
- , pixelFormat( TJPF_UNKNOWN )
+ , pixel_format_tj( TJPF_UNKNOWN )
  {
+ }
+
+ bool get_WH( A_WH & WH ) {
+ 	WH.w = width;
+ 	WH.h = height;
+	return true;
  }
 
  bool allocate_img_buf() {
@@ -34,7 +45,7 @@ namespace TJ {
 	// or other 4-byte values
 	// eg when 1 byte bytes_per_row is = TJPAD( width ) // mult of 4
 
-	int t = tjPixelSize[pixelFormat] ;
+	int t = tjPixelSize[pixel_format_tj] ;
 	if( t != 4 ) {
 		FAIL("expected 4 got %d", t );
 	}
@@ -55,7 +66,8 @@ namespace TJ {
  int bytes_for_image() {
 	// INFO("WxH %d %d", width, height );
 	return height * bytes_per_row();
-	return width * height * tjPixelSize[pixelFormat];
+	return width * height * bytes_per_pixel();
+	return width * height * tjPixelSize[pixel_format_tj];
  }
 
 	bool prep_FB_RGBA( 
@@ -65,7 +77,7 @@ namespace TJ {
 		int pix_fmt_RGBA = TJPF_BGRX
 	) {
 		if( pix_fmt_RGBA != TJPF_BGRX ) {
-			WARN("expected %d got %d", TJPF_BGRX, pixelFormat );
+			WARN("expected %d got %d", TJPF_BGRX, pixel_format_tj );
 			WARN("bytes_per_pixel %d", bytes_per_pixel() );
 		}
 		return prep_FB( scale_factor, _width, _height, pix_fmt_RGBA );
@@ -81,7 +93,7 @@ namespace TJ {
 		scale_factor.apply_to_W_H( _width, _height );
 		width = _width;
 		height = _height;
-		pixelFormat = pix_fmt_RGBA; // TJPF_BGRX;
+		pixel_format_tj = pix_fmt_RGBA; // TJPF_BGRX;
 	//	INFO("WxH %d %d", width, height );
 	//	INFO("scale %lf", scale_factor.get_factor() );
 

@@ -108,7 +108,9 @@ endif
 	OBJS += TJ_instance.o
 	OBJS += TJ_loader.o
 	OBJS += TJ_saver.o
-	OBJS += IMG_loader.o
+#	OBJS += IMG_loader.o
+	# here for now
+	OBJS += X_Image.o
 
 
 	PROG1=test1_libpng

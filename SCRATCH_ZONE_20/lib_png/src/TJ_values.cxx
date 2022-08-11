@@ -6,7 +6,6 @@
 #include <turbojpeg.h>
 
 using namespace TJ;
-
 	bool quality_t:: parse_quality_value( const char * str ) {
 		int q = atoi(str);
 		if (q < 1 || q > 100) {
@@ -17,7 +16,13 @@ using namespace TJ;
 	}
 
 //	static
+	int subsamp_t:: get_DEFAULT_subsamp() {
+ 		return TJSAMP_444;
+	}
+
+//	static
 	STR0 subsamp_t:: name_of_val(int intval) {
+		INFO("HERE");
 		return tbl_samp.name_of_value( intval );
 	}
 

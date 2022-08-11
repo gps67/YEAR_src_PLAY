@@ -1,15 +1,19 @@
 #ifndef TJ_loader_H
 #define TJ_loader_H
 
-#include "TJ_instance.h"
+#include "TJ_STUBS.h" // TJ::
+#include "TJ_instance.h" // base class
+// Y // DONE // #include <turbojpeg.h> // tjhandle tjtransform
 #include "TJ_values.h"
+#include "TJ_blk.h"
+#include "TJ_FB_image.h"
 #include "str1.h"
 
 namespace TJ {
 
  struct TJ_loader_t : public TJ_instance_t {
 
- 	int K_max; // camera typically 1.3 MB // JWST 5.5 // 
+ 	int K_max; // camera typically 1.3 MB // JWST 5.5 // 20 //
 
 	bool set_M_max( int M ) { return set_M_max( (float) M ); }
 	bool set_M_max( float M );
@@ -30,8 +34,6 @@ namespace TJ {
 
 	TJ_loader_t();
 	bool show_info_one(const char * msg);
-	bool tjInstance_Init_Transform();
-	bool tjInstance_Init_Decompress();
 	bool do_do_transform(); // looks at { tjtransform & xform; }
 	bool call_transform_and_decompress( int flags );
 	bool skip_transform_and_call_decompress( int flags );

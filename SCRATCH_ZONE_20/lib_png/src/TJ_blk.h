@@ -1,5 +1,6 @@
 #ifndef TJ_blk_H
 #define TJ_blk_H
+#include "TJ_STUBS.h" // TJ::
 
 struct blk1;
 

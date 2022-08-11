@@ -2,6 +2,8 @@
 #define X_Pixmap_H
 
 #include "X_STUBS.h"
+#include "X_Window.h"
+
 // free // #include <stdlib.h>
 // strdup // #include <string.h>
 #include <X11/Xlib.h>
@@ -9,20 +11,27 @@
 
 namespace WAX {
 
-struct X_Pixmap
+struct X_Pixmap : X_Drawable_Surface
 {
-	Pixmap pixmap;
-	A_WH WH;
+//	Pixmap pixmap; // alias drawable
+//	A_WH WH; // base class
 
-	X_Pixmap();
+	X_Pixmap(
+                Display * _display,
+ //             Drawable _drawable, // late init create will create Pixmap
+                A_WH _WH
+	);
+	X_Pixmap(
+                Display * _display,
+                Drawable _drawable,
+                A_WH _WH
+	);
+//	X_Drawable_Surface( display, drawable, WH_ );
 
-//	bool create( X_Window & win );
+
 	bool create( X_Window & win, A_WH _WH);
-	bool create( Display * display, Drawable drawable, A_WH _WH);
-	// you also need { GC gc } to draw on it
-//	int get_width() { return WH.w; }
-//	int get_height() { return WH.h; }
-	void get_WH( A_WH & _WH ) { _WH = WH; }
+	bool create( Drawable drawable, A_WH _WH);
+// 	void get_WH( A_WH & _WH ) { _WH = WH; }
 
 }; // struct
 	

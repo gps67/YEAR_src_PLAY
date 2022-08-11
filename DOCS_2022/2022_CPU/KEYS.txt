@@ -1,0 +1,4 @@
+
+	      Print_Screen	the desktop.
+	  Alt+Print_Screen	a window.
+	Shift+Print_Screen	an area you select.

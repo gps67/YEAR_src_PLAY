@@ -1,7 +1,8 @@
 #ifndef TJ_scale_factor_H
 #define TJ_scale_factor_H
 
-#include <turbojpeg.h>
+#include "TJ_STUBS.h" // TJ::
+#include <turbojpeg.h> // tjscalingfactor
 #include "buffer1.h"
 
 namespace TJ {

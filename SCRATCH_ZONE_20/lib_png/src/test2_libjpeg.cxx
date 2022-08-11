@@ -108,7 +108,7 @@ static void usage(char *programName)
   e_print("     The default is to use the same as the input JPEG\n");
   e_print("     or grayscale if the input image is a grayscale non-JPEG\n");
   e_print("     image, else use DEFAULT %s \n\n",
-	tbl_samp.name_of_value ( subsamp_t::DEFAULT_SUBSAMP )
+	tbl_samp.name_of_value ( subsamp_t::get_DEFAULT_subsamp() )
   );
   e_print("     SUBSAMP must be same spelling as C constant name or alias)\n");
   e_print("     SUBSAMP is case sensitive\n");
@@ -372,8 +372,7 @@ bool bool_main(int argc, char **argv)
 	if( outFormat_is_jpg ) {
 		/* Compress the uncompressed input FB_image. */
 		if(! tj_saver.call_Compress2(
-			tj_loader.FB_image,
-			flags
+			tj_loader.FB_image
 		)) {
 			return FAIL_FAILED();
 		}

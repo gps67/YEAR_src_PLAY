@@ -355,6 +355,11 @@ struct A_Rectangle : XRectangle
 		wh.h = height;
 	}
 
+	A_WH get_WH()
+	{
+		return A_WH( width, height );
+	}
+
 	/*!
 		reduce 2 sides by adj, right bottom
 	*/

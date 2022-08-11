@@ -19,6 +19,8 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	Drawable drawable;
 	A_WH WH;
 
+	X_Drawable_Surface( int temp_skim ) {}
+
 	X_Drawable_Surface(
 		Display * _display,
 		Drawable _drawable,
@@ -49,6 +51,9 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 		XGCValues * values = NULL;
 		return ::XCreateGC( display, drawable, valuemask, values );
 	}
+
+	void get_WH( A_WH & _WH ) { _WH = WH; }
+
 
 };
 
@@ -161,6 +166,18 @@ struct X_Window : public X_Drawable_Surface
 	void XSelectInput( long event_mask )
 	{
 		::XSelectInput( display, get_window(), event_mask );
+	}
+
+	void XSelectInput_mask_one()
+	{
+		long mask  = 0;
+		mask |= ExposureMask ;
+		mask |= KeyPressMask ;
+		mask |= ButtonPressMask ;
+		mask |= ButtonReleaseMask; // Pointer button up
+	//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
+		mask |= ResizeRedirectMask; // Redirect resize of this window
+		XSelectInput( mask );
 	}
 
 	void set_title( const char * name );

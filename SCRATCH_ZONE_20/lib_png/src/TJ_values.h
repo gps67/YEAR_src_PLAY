@@ -5,6 +5,8 @@
 #include "buffer1.h"
 #include "tbl_enum.h"
 
+// #include <turbojpeg.h> // TJSAMP_444
+
 namespace TJ {
 
  extern enum_tbl_t tbl_samp;
@@ -15,12 +17,14 @@ namespace TJ {
  struct quality_t 
  {
 	int val;
- 	static const int DEFAULT_QUALITY = 100;
+
+	static const int DEFAULT_QUALITY = 95;
 
 	quality_t() { val = -1; }
 	bool is_UNSET() { return val == -1; }
 	bool is_SET() { return val != -1; }
 	int get_val() { return is_UNSET() ?  DEFAULT_QUALITY : val; }
+
 
 	bool parse_quality_value( const char * str ); // val=atoi(argv[i])
  };
@@ -28,7 +32,6 @@ namespace TJ {
  struct subsamp_t
  {
 	int val;
- 	static const int DEFAULT_SUBSAMP = 100;
 
 	subsamp_t() {
 		val = -1; //  UNSET
@@ -36,9 +39,11 @@ namespace TJ {
 
 	bool is_UNSET() { return val == -1; }
 	bool is_SET() { return val != -1; }
-	int get_val() { return is_UNSET() ?  DEFAULT_SUBSAMP : val; }
+	int get_val() { return is_UNSET() ?  get_DEFAULT_subsamp() : val; }
+	static
+	int get_DEFAULT_subsamp(); // TSAMP_444
 	
-		// if( pixelFormat == TJPF_GRAY ) // out of reach
+		// if( pixel_format_tj == TJPF_GRAY ) // out of reach
         	//	outSubsamp = TJSAMP_GRAY; // TODO caller
 
  static

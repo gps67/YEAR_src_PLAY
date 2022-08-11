@@ -58,6 +58,7 @@ using namespace TJ;
 	}
 
 	bool TJ_loader_t:: show_info_one(const char * msg) {
+	  INFO("msg %s", msg );
 	  e_print("%s Image: WxH %dx%d subsampling %s colorspace %s scale %5.3lf \n",
 		msg,
 		FB_image.width,
@@ -69,32 +70,13 @@ using namespace TJ;
 	  return true;
 	}
 
-	bool TJ_loader_t:: tjInstance_Init_Transform() {
-
-		if(! set_instance_check( tjInitTransform() ))
-			return FAIL ("tjInitTransform ERROR %s", get_error_str() );
-		return true;
-	}
-
-	bool TJ_loader_t:: tjInstance_Init_Decompress() {
-		if( tjInstance ) {
-			WARN("expected NULL tjInstance");
-		}
-
-		// no transform, just decompress
-		// or other forward would be here // transparent thru
-		if(!set_instance_check( tjInitDecompress() ))
-			return FAIL("tjInitDecompress ERROR %s", get_error_str() );
-		return true;
-	}
-
 	bool TJ_loader_t:: call_transform_and_decompress(
 		int flags
 	) {
 		// flip crop rotate  // AND THEN decompress
 		INFO("doing transform");
 
-		if(! tjInstance_Init_Transform())
+		if(! set_instance_InitTransform())
 			return FAIL_FAILED();
 
 		if(! call_transform_and_move_back( flags ))
@@ -132,7 +114,7 @@ using namespace TJ;
 			// decompress can use same as transform
 			// presuming it was the same original file
 		} else {
-			if(! tjInstance_Init_Decompress())
+			if(! set_instance_InitDecompress())
 				return FAIL_FAILED();
 		}
 
@@ -140,7 +122,7 @@ using namespace TJ;
 		if(! call_DecompressHeaders3_and_get_WH())
 			return FAIL_FAILED();
 
-		// NB we dont have pixelFormat of the original file
+		// NB we dont have pixel_format_tj of the original file
 		// We do get W,H from the headers
 		// WE tell TJ what we want ... using ...
 		if(!FB_image.prep_FB_RGBA(
@@ -209,7 +191,7 @@ using namespace TJ;
 
 	bool TJ_loader_t:: call_Decompress2( int flags ) {
 
-		// you must already have { width height pixelFormat }
+		// you must already have { width height pixel_format_tj }
 		// you should have allocated space - I think
 		// all in this->FB_image where FB pixels are written
 
@@ -225,7 +207,7 @@ using namespace TJ;
 			FB_image.width,		// caller must set from headers
 			0,		// bytes_per_row() // autocalc 0 //
 			FB_image.height,	// caller must set from headers
-			FB_image.pixelFormat,	// caller CAN set OR from headers
+			FB_image.pixel_format_tj,	// caller CAN set OR from headers
 			flags			// from argv
 		) < 0) 
 			return FAIL("decompressing JPEG image ERROR %s", get_error_str() );

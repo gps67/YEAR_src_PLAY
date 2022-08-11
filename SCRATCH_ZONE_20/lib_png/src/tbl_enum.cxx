@@ -30,7 +30,7 @@ bool enum_tbl_t:: lookup_val( int val, int & idx ) {
 		}
 	}
 	// caller _expects_ it to be found
-	return FAIL("%d not found", val );
+	return FAIL("not found val %d tbl name '%s' desc '%s'", val, (STR0) tbl_name, (STR0) tbl_desc );
 }
 
 bool enum_tbl_t:: lookup_name( str0 name, int & idx ) {

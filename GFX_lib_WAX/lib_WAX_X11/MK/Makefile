@@ -1,26 +1,32 @@
 #!/usr/bin/env make
 
 # WAX
+	## hmmm # new dependent on libs_apps
 
 	CXX = g++
 	OPTIM += -g
-	INCLS += -I../
-	INCLS += -I../buffer
+#	INCLS += -I../buffer
 #	INCLS += -I/tools/2000/X11R6/include
 #	INCLS += `pkg-config --libs freetype2`
 
+	# nonstandard, but makes rules easier
 	dot_EXE=.elf
+
+	G_prefix=/home/gps/G/prefix
+	PKG_CONFIG_dirs += $(G_prefix)/lib/pkgconfig/
+	RPATHS += -Wl,--rpath=$(G_prefix)/lib
+	LIBS += $(RPATHS)
 
 	PKGS += freetype2
 	PKGS += xft
 	PKGS += fontconfig
+	# src/IMG/
+	PKGS += libpng
+	PKGS += libturbojpeg
 
-ifeq (1,1)
-	# these are supposed to be part of the build system
 	# TODO docs for the VARS used
 	INCLS += `pkg-config --cflags $(PKGS)`
 	LINKS += `pkg-config --libs $(PKGS)`
-endif
 
 ifeq (0,1)
 	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
@@ -32,15 +38,28 @@ endif
 	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
 
 
-	DEFS = 
+	DEFS += 
 	LINKS += -L/usr/X11R6/lib -lX11
 #	LINKS = -L/tools/2000/X11R6/lib -lX11
 
 	S=../src
 	VPATH +=$S
+	VPATH +=$(S)/IMG
 #	VPATH +=$S/buffer
+	INCLS += -I$(S)
+	INCLS += -I$(S)/IMG
 
-	include ../MK/Makefile_libs_apps
+# OLD	include ../MK/Makefile_libs_apps
+	include ../MK/MK_with_libs_apps
+
+	# beware similarity with file in libs_apps
+
+# rebuild everything after editing ANY makefile !!
+	MAKES += ../MK/MK_with_libs_apps
+	MAKES += ../MK/Makefile
+
+# want RULE .o depends on .h
+# this makes ALL .o's dependent on ALL .h's
 
 	HDRS += $S/A_point_plus.h
 	HDRS += $S/X_Colours.h
@@ -66,6 +85,22 @@ endif
 	OBJS += A_matrix_2x2.o
 	OBJS += X_Drawable_Surface.o
 	OBJS += X_GC.o
+	OBJS += X_Pixmap.o
+
+	# OBJS_IMG
+
+	OBJS += png_one.o
+	OBJS += u32_RGBA.o
+	OBJS += tbl_enum.o
+	OBJS += TJ_blk.o
+	OBJS += TJ_scale_factor.o
+	OBJS += TJ_values.o
+	OBJS += TJ_instance.o
+	OBJS += TJ_loader.o
+	OBJS += TJ_saver.o
+#	OBJS += IMG_loader.o
+	# here for now
+	OBJS += X_Image.o
 
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
 #	OBJS += gdb_invoke.o
@@ -77,11 +112,13 @@ endif
 
 	PROG1=test1_nested_pair
 	PROG2=test2_xft_diagonal
-	PROG3=test3
+	PROG3=test_libpng
+	PROG4=test_libjpeg
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)
 	EXEC3=$(PROG3)$(dot_EXE)
+	EXEC4=$(PROG4)$(dot_EXE)
 
 all: run_test3
 
@@ -89,8 +126,8 @@ all: run_test3
 
 .SUFFIXES: .cxx .c .o                                                           
 
-.cxx.o:                                                                         
-	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
+# .cxx.o:
+# 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
 
 
 $(OBJS): $(HDRS)
@@ -110,6 +147,9 @@ run_test2: $(EXEC2)
 run_test3: $(EXEC3)
 	./$(EXEC3) 
 
+run_test4: $(EXEC4)
+	./$(EXEC4) 
+
 $(EXEC1): $(OBJS) $(PROG1).o
 	# EXEC1 $(EXEC1)
 	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
@@ -119,10 +159,17 @@ $(EXEC2): $(OBJS) $(PROG2).o
 	# LINKS $(LINKS)
 	g++ $(PROG2).o $(OBJS) $(LINKS) -o $@
 
-$(EXEC3): $(OBJS) $(PROG3).o
+$(EXEC3): $(OBJS)
+
+## $(EXEC3): $(OBJS) $(PROG3).o
+## 	# EXEC3 $(EXEC3)
+## 	# LINKS $(LINKS)
+## 	g++ $(PROG3).o $(OBJS) $(LINKS) -o $@
+
+$(EXEC4): $(OBJS) $(PROG4).o
 	# EXEC3 $(EXEC3)
 	# LINKS $(LINKS)
-	g++ $(PROG3).o $(OBJS) $(LINKS) -o $@
+	g++ $(PROG4).o $(OBJS) $(LINKS) -o $@
 
 clean: 
 	rm -f *.o $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa

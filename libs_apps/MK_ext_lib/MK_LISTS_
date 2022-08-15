@@ -4,8 +4,10 @@
 #	CONVERT
 #	into      VPATH
 #	from LIST_VPATH
+#
 #	into      PKG_CONFIG_PATH
 #	from LIST_PKG_CONFIG_PATH
+#
 #	into      CPLUS_INCLUDE_PATH
 #	from LIST_CPLUS_INCLUDE_PATH
 
@@ -16,7 +18,7 @@
 #	SP COLON
 
 	SP=$(empty) $(empty)# SINGLE SPACE
-	COLON=:# no  spaces
+	COLON=:# immediate # comment means no  spaces
 
 # CONVERT make lists into colon lists
 # ALLOW LIST_x += item

@@ -5,17 +5,20 @@
 #
 # you must list all filename extensions used
 #
-.SUFFIXES: .cxx .c .o .exec
+.SUFFIXES: .cxx .c .o .exec .elf
 
 #
 # RULE: compile from .c to .o
 # RULE: compile from .cxx to .o
 # 
 .c.o:
-	gcc $(OPTIM) $(INCL) $(DEFS) -c $<
+	gcc $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 .cxx.o:
-	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<
+	# OPTIM $(OPTIM)
+	# INCLS $(INCLS)
+	#  DEFS $(DEFS) 
+	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 #
 # DEBUG: show some vars used by compiler
@@ -32,6 +35,28 @@
 .o.exec: $(OBJS)
 	#
 	# MK_SUFFIXES # .o.exec
+	# $(CXX) OPTIM _.o OBJS LINKS LIBS 
+	# CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
+	# LDFLAGS: $(LDFLAGS)
+	# YFLAGS: $(YFLAGS)
+	#
+	#   PKGS: $(PKGS)
+	#
+	#   OBJS: $(OBJS)
+	#  LINKS: $(LINKS)
+	#   LIBS: $(LIBS)
+	#
+	#   -@ $@
+	#   -< $<
+	#   -^ $^
+	#
+	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
+	#
+	# NOT # strip $@
+
+.o.elf: $(OBJS)
+	#
+	# MK_SUFFIXES # .o.elf
 	# $(CXX) OPTIM _.o OBJS LINKS LIBS 
 	# CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
 	# LDFLAGS: $(LDFLAGS)

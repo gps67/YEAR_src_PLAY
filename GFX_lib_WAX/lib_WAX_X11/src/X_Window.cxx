@@ -154,6 +154,10 @@ void X_Window:: XSelectInput_mask_one()
 
 /*!
 	name gets displayed in the title bar, and wman lists
+
+	https://tronche.com/gui/x/icccm
+	https://tronche.com/gui/x/icccm/sec-4.html
+	says WM_NAME also WM_ICON_NAME 
 */
 void X_Window:: set_title( const char * name )
 {

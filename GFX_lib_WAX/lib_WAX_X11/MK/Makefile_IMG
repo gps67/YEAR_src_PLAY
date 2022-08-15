@@ -23,17 +23,16 @@
 	INCL += $(INCLS)
 	LIBS += $(LINKS)
 
-	PKGS += libpng
-	PKGS += freetype2
-	PKGS += xft
-	PKGS += fontconfig
-
+#	my build prefix installs libraries here
 	G_prefix=/home/gps/G/prefix
 	PKG_CONFIG_dirs += $(G_prefix)/lib/pkgconfig/
 	RPATHS += -Wl,--rpath=$(G_prefix)/lib
 	LIBS += $(RPATHS)
 
-
+	PKGS += freetype2
+	PKGS += xft
+	PKGS += fontconfig
+	PKGS += libpng
 	PKGS += libturbojpeg
 
 	# these are supposed to be part of the build system
@@ -115,8 +114,8 @@ endif
 	OBJS += X_Image.o
 
 
-	PROG1=test1_libpng
-	PROG2=test2_libjpeg
+	PROG1=test_libpng
+	PROG2=test_libjpeg
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)

@@ -11,16 +11,17 @@
 	# /home/gps/ => /home/you
 	#
 
-	D_HOME=$(HOME)
-	D_YEAR=$(D_HOME)/YEAR
-	D_PLAY=$(D_HOME)/YEAR/src/PLAY
+	DIR_HOME=$(HOME)
+	DIR_YEAR=$(DIR_HOME)/YEAR
+	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
 
 	#
-	# I have some standard libraries installed here $(D_G)/prefix
+	# I have some standard libraries installed here $(DIR_G)/prefix
 	#
-	D_G=$(D_HOME)/G
+	DIR_G=$(DIR_HOME)/G
+	DIR_G_prefix=$(DIR_G)/prefix
 
-	DIR_libs_apps =$(D_PLAY)/libs_apps
+	DIR_libs_apps =$(DIR_PLAY)/libs_apps
 
 # make is clever so including early does not matter much, vars used later
 # how stuff is built, and my LIST_xxx vars
@@ -41,10 +42,10 @@ ifeq (1,1)
 	PKG_CONFIG += pkg-config
 	PKG_CONFIG += --define-variable=TGT=$(TGT)
 
-	INCL += `$(PKG_CONFIG) $(PKGS) --cflags`
+	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
 	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
 
-	## ERRM ## "INCL" or "INCLS" or .. what are others using ?
+	## ERRM ## "INCLS" or "INCLS" or .. what are others using ?
 
 
 	# build varies on each box # LINK2 dir
@@ -68,14 +69,14 @@ ifeq (1,1)
 	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig
 
 	# $HOME/G/prefix is where moz js was placed
-	LIST_PKG_CONFIG_PATH += $(D_G)/prefix/lib/pkgconfig/
+	LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/lib/pkgconfig/
 
 	# /tools/VPN is where openssl is
 	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/
 
 # TODO above # fix $(TGT) $(UNAME_n_rthing) $(build_dir)
 
-	INCL += -I$(DIR_LIBS_APPS_INCL)
+	INCLS += -I$(DIR_LIBS_APPS_INCL)
 	LIBS += -L$(DIR_LIBS_APPS_LINK)
 	LIBS += -L$(DIR_LIBS_APPS_LINK2)
 	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK)

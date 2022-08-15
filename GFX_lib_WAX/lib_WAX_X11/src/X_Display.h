@@ -21,6 +21,13 @@ struct X_Display_One
 	X_Colours cmap;
 	A_Map_W map_W;	// find X_Window from { Window win } // LEAK
 
+ static
+	int reasons_to_stay;
+
+	bool reasons_to_stay_incr() { reasons_to_stay++; return true; }
+	bool reasons_to_stay_decr() { reasons_to_stay++; return reasons_to_stay > 0; }
+	bool reasons_to_stay_test() {return reasons_to_stay > 0; }
+
 	/*!
 		create a connection
 	*/
@@ -51,17 +58,30 @@ struct X_Display_One
 	*/
 	void XNextEvent( XEvent & event )
 	{
+		INFO("... %d reasons",reasons_to_stay );
 		::XNextEvent( display, & event );
 	}
+
+	/*
+		sub_windows appear in events (I think)
+		top_levels are reasons to stay
+	*/
 
 	void add( X_Window * W )
 	{
 		map_W.add( W );
+		reasons_to_stay_incr();
+	}
+
+	void del( X_Window * W )
+	{
+		map_W.del( W );
+		reasons_to_stay_decr();
 	}
 
 	X_Window * find_Window( Window w )
 	{
-		return map_W.find( w );
+		return map_W.find( w ); // DO CHECK NULL
 	}
 
 	static const int SCREEN_0 = 0;
@@ -105,7 +125,7 @@ struct X_Display_One
 		return  DefaultScreenOfDisplay(display);
 	}
 
-	bool guess_screen_size( A_WH & WH );
+	bool guess_screen_size( A_WH & WH ); // pair of side by side = double
 
 
 
@@ -124,8 +144,10 @@ struct X_Display : public X_Display_One
 		the main event handler - calls the subwindows code
 
 		the event has been received over (transport)
+
+		return value bool for convenience
 	*/
-	void process_event( XEvent & report );
+	bool process_event( XEvent & report );
 
 	void test1();
 

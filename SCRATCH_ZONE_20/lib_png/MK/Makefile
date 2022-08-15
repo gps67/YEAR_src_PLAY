@@ -80,6 +80,7 @@ ifeq (1,1)
 	OBJS += X_Display.o
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
+	OBJS += X_GC.o
 	OBJS += WAX_argv_decoder.o
 
 endif

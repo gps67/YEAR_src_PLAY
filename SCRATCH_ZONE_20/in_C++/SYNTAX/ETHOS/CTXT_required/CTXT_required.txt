@@ -1,0 +1,36 @@
+2022-08-13 Aug Sat 13:14 # 21 #  CTXT_required/CTXT_required.txt
+
+C++ requires a zero parameter DTOR
+
+	+= this // obvs
+	+= unwanted_parameters_kept_for_later // and duplicated
+	+= globals // the only other way
+	+= doing_without // eg PTR tells
+
+SO
+	if a struct has some { field = new CTOR( args ) }
+	we MUST rely on pairing { new delete } { malloc free } { CTOR DTOR }
+	we can replace new() with something that uses a different malloc
+	and we can KNOW that a different free() is required,
+	BUT we cant infer a required parameter
+
+EG
+
+	item_on_heap_in_file = special_allocating_func( heap, nbytes, flags, item );
+
+	return the item to which heap?
+	holder probably knows TYPE but not INST of which local heap file
+
+EG 
+
+	GC gc = XCreateGC( display, drawable, mask1, values2 )
+
+		gc is shaped to have the same pixel depth as drawable
+		gc is allocated ON display
+		to DTOR( gc ) you must know which display to tell
+		// simple display //
+
+EG
+
+	
+

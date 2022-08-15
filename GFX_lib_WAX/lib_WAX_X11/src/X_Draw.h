@@ -3,6 +3,7 @@
 
 // #include "X_STUBS.h"
 #include "X_ret_err.h"
+#include "X_Drawable_Surface.h"
 #include "X_Pixmap.h"
 
 namespace WAX {
@@ -19,6 +20,8 @@ namespace WAX {
 		GC fragments and combinations
 	
 	An X_Draw is kind of an X_Drawable += GC += Display
+
+		see X_Drawable_Surface already += Display
 */
 struct X_Draw
 {
@@ -42,7 +45,7 @@ struct X_Draw
 	
 		TODO choose syntax field = value or field(value) PICK VIEW
 	*/
-	X_Draw( X_Window & W )
+	X_Draw( X_Drawable_Surface & W )
 	{
 		display = W.display;
 		drawable = W.drawable;
@@ -51,23 +54,23 @@ struct X_Draw
 
 	/*!
 		A Pixmap is like a Window
-	X_Draw( Display * _display, X_Pixmap & P, GC _gc )
+	*/
+	X_Draw( X_Drawable_Surface & P, GC _gc )
 	{
-		display = _display; // P.display
-		drawable = P.pixmap;
+		display =  P.display; // P.display
+		drawable = P.drawable;
 		gc = _gc; // gc = W.CreateGC();
 	}
-	*/
 
 	/*!
 		A Drawable
-	*/
 	X_Draw( Display * _display, Drawable _drawable, GC _gc )
 	{
 		display = _display;	 // P.display
 		drawable = _drawable;
 		gc = _gc;		 // gc = W.CreateGC(); or not
 	}
+	*/
 
 	/*!
 	*/

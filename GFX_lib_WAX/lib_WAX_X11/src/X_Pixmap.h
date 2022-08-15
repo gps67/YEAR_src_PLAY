@@ -11,7 +11,7 @@
 
 namespace WAX {
 
-struct X_Pixmap : X_Drawable_Surface
+struct X_Pixmap : public X_Drawable_Surface
 {
 //	Pixmap pixmap; // alias drawable
 //	A_WH WH; // base class

@@ -14,8 +14,15 @@ struct buffer1;
 // X11/X.h defines some basis things // ok if duplicated
 typedef long unsigned int XID;
 typedef XID Window;
+typedef XID Drawable;
 struct _XGC;
 typedef struct _XGC * GC ;
+
+// <X11/Xlib.h>
+// typedef struct { ... here  ... } XGCValues;
+// struct XGCValues; // not accepted for 
+// typedef struct XGCValues; // poor syntax 
+// typedef struct XGCValues XGCValues;
 
 struct _XDisplay;
 typedef struct _XDisplay Display;
@@ -28,10 +35,12 @@ namespace WAX {
 	struct X_Colours;
 	struct X_Display_One;
 	struct X_Display;
+	struct X_GC;
 	struct X_Draw;
 	struct X_Window;
 	struct X_Pixmap;
 	struct X_Image;
+	struct X_Drawable_Surface;
 };
 
 #endif

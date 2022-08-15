@@ -27,9 +27,9 @@ class A_Map_W
 
 	X_Window * find( Window w );
 
-	void add( X_Window * W );
+	bool add( X_Window * W );
 
-	void del( X_Window * W );
+	bool del( X_Window * W );
 
 };
 

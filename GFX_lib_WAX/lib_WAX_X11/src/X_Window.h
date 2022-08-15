@@ -9,68 +9,25 @@
 #include <X11/Xlib.h>
 
 #include "XFT.h"
-#include "X_Display.h"
+#include "X_Drawable_Surface.h"
 
 namespace WAX {
 
-struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
-
-	Display * display;
-	Drawable drawable;
-	A_WH WH;
-
-	X_Drawable_Surface( int temp_skim ) {}
-
-	X_Drawable_Surface(
-		Display * _display,
-		Drawable _drawable,
-		A_WH _WH
-	)
-	:	display( _display )
-	,	drawable( _drawable )
-	,	WH( _WH )
-	{
-	}
-
-	X_Drawable_Surface(
-		Display * _display,
-		Drawable _drawable
-	)
-	:	display( _display )
-	,	drawable( _drawable )
-	,	WH( 0,0 )
-	{
-	}
-
-	/*!
-		create a GC for this drawable
-	*/
-	GC CreateGC()
-	{
-		unsigned long valuemask = 0;
-		XGCValues * values = NULL;
-		return ::XCreateGC( display, drawable, valuemask, values );
-	}
-
-	void get_WH( A_WH & _WH ) { _WH = WH; }
-
-
-};
-
-
 /*!
+	X_Window is NOT a TOP LEVEL WINDOW
+
 	child class must provide behavior functions
 */
 struct X_Window : public X_Drawable_Surface
 {
 	X_Window * parent;
-//	Window window; // base class .drawable
 	X_Display * disp;
-	const char * name;
+	const char * name; // debugging name // free never called
 
 	Window get_window() { return drawable; }
+//	Drawable get_drawable() { return drawable; }
 
-//	Xft_Draw xft_draw;
+	~X_Window(); // deregister
 
 	/*!
 		child classes use this to create the object
@@ -168,19 +125,33 @@ struct X_Window : public X_Drawable_Surface
 		::XSelectInput( display, get_window(), event_mask );
 	}
 
-	void XSelectInput_mask_one()
-	{
-		long mask  = 0;
-		mask |= ExposureMask ;
-		mask |= KeyPressMask ;
-		mask |= ButtonPressMask ;
-		mask |= ButtonReleaseMask; // Pointer button up
-	//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
-		mask |= ResizeRedirectMask; // Redirect resize of this window
-		XSelectInput( mask );
-	}
+	void XSelectInput_mask_one(); // default setting // editable
+	//	mask |= ExposureMask ;
+	//	mask |= KeyPressMask ;
+	//	mask |= ButtonPressMask ;
+	//	mask |= ButtonReleaseMask; // Pointer button up
+	//	mask |= ResizeRedirectMask; // Redirect resize of this window
 
 	void set_title( const char * name );
+
+
+        X_Window * find_top_Window()
+        {
+                X_Window * csr = this;
+                while( csr -> parent ) {
+                        csr = csr -> parent;
+                }
+                return csr;
+        }
+
+        bool call_XDestroyWindow_top() {
+
+                int t = XDestroyWindow( display, find_top_Window()->get_window() );
+		INFO("returned %d", t);
+                return true;
+        }
+
+
 
 // virtuals
 

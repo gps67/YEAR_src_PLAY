@@ -125,18 +125,12 @@ void X_Image:: del_ximage()
 	}
 }
 
-bool X_Image:: call_create_ximage_from_png( X_Display & disp, png_one & png ) 
-{
+bool X_Image:: create_image_from_RGBA_frame_buffer(
+	X_Display & disp,
+	char * image_buffer, // caller arranges to keep it alloc'd
+	A_WH _WH
+) {
 	expect_NULL_ximage();
-	WARN("TODO test pixelformat");
-
- //	return FAIL("TEST");
-
-	if( png.image.format == PNG_FORMAT_RGBA ) { 
-	} else {
-		return FAIL("expected png.image.format == PNG_FORMAT_RGBA got ...");
-		// mayhem follows
-	}
 
 	// we asked for these from png and we guess what it provided
 	int pad = 8; // bit padding per line // 32 would make sense too
@@ -146,29 +140,58 @@ bool X_Image:: call_create_ximage_from_png( X_Display & disp, png_one & png )
 	INFO("default depth of screen 0 = %d\n", depth ); // 32
 
 	int bytes_per_line = 0; // zero means auto calc
-	bytes_per_line = 4 * png.image.width; // round up to pad 
+	bytes_per_line = 4 * _WH.w; // round up to pad 
 	bytes_per_line = 0; // maybe it figures that out
 
-	INFO("png  W %d H %d", png.image.width, png.image.height );
+	INFO("png  W %d H %d", _WH.w, _WH.h );
 	ximage = ximage = XCreateImage(
 		disp.display,
 		disp.get_Default_Visual(), // vanilla plus
 		depth,          // 24 not 32
 		ZPixmap,        // RGB triplets not plane of R plane of G plane of B
 		0,              // ignore left pixels on scanline
-		(char *)png.buffer,  // xdata = malloc( 4 * W * H )
-		png.image.width,
-		png.image.height,
+		image_buffer,  // xdata = malloc( 4 * W * H )
+		_WH.w,
+		_WH.h,
 		pad,            // 32 // 8 // bits // bitmap_pad //
 		bytes_per_line // bytes_per_line //
 	);
+
+	if(! ximage ) return FAIL("ximage NULL but didnt fail");
+	show_image_data("created from PNG");
+	return true;
+}
+
+/*
+	X_Image knows a fraction about it's siblings image formats
+
+	someone has to bridge the close gap
+
+	This is all specific to u32 RGBA and near zero gaps per line
+*/
+
+bool X_Image:: call_create_ximage_from_png( X_Display & disp, png_one & png ) 
+{
+	expect_NULL_ximage();
+	WARN("TODO test pixelformat");
+
+	if( png.image.format == PNG_FORMAT_RGBA ) { 
+	} else {
+		return FAIL("expected png.image.format == PNG_FORMAT_RGBA got ...");
+		// mayhem follows
+	}
+	char * image_buffer = (char *)png.buffer;
+	A_WH _WH( png.image.width, png.image.height );
+
+	if(! create_image_from_RGBA_frame_buffer( disp, image_buffer, _WH ))
+		return FAIL_FAILED();
+
 //		ximage->byte_order = LSBFirst; // 0 // x86 default after NUL
 //		ximage->byte_order = MSBFirst; // 1
-	if(! ximage ) return FAIL("ximage NULL but didnt fail");
+
 	INFO( "ximage->data %p - SHARED", ximage->data );
 	INFO( "png.buffer   %p - SHARED", png.buffer );
 
-	show_image_data("created from PNG");
 	return true;
 }
 
@@ -177,33 +200,12 @@ bool X_Image:: call_create_ximage_from_TJ_IMG( X_Display & disp, TJ:: TJ_FB_imag
 	WARN("TODO get pixelformat from Display and from TJ image");
 	/*
 	*/
+	char * image_buffer = (char *) img.img_buf.buff;
+	A_WH _WH( img.width, img.height );
 
-	int pad = 8; // bit padding per line // 64 would make sense too
-	int depth = 32; depth = 24; // of screen
-	disp.test_list_depths(); // 24 1 4 8 15 16 32 //
-	depth = disp.Default_Depth();
-	INFO("default depth of screen 0 = %d\n", depth );
+	if(! create_image_from_RGBA_frame_buffer( disp, image_buffer, _WH ))
+		return FAIL_FAILED();
 
-	int bytes_per_line = 0;
-	bytes_per_line = 4 * img.width;
-	bytes_per_line = 0; // maybe it figures that out
-
-	INFO("TJ  W %d H %d", img.width, img.height );
-	ximage = ximage = XCreateImage(
-		disp.display,
-		disp.get_Default_Visual(), // vanilla plus
-		depth,          // 24 not 32
-		ZPixmap,        // RGB triplets not plane of R plane of G plane of B
-		0,              // ignore left pixels on scanline
-		(char *)img.img_buf.buff,  // xdata = malloc( 4 * W * H )
-		img.width,
-		img.height,
-		pad,            // 32 // 8 // bits // bitmap_pad //
-		bytes_per_line // bytes_per_line //
-	);
-	if(! ximage ) return FAIL("ximage NULL but didnt fail");
-//		ximage->byte_order = LSBFirst; // 0 // x86 default after NUL
-//		ximage->byte_order = MSBFirst; // 1
 	INFO( "ximage->data %p - SHARED", ximage->data );
 	INFO( "png.buffer   %p - SHARED", img.img_buf.buff );
 
@@ -243,7 +245,7 @@ bool X_Image:: call_put_image_to_pixmap( X_Display & disp, GC gc, X_Pixmap & pix
 	return true;
 }
 
-bool X_Image:: get_ximage_from_pixmap( X_Display & disp, X_Pixmap & pixmap ) {
+bool X_Image:: get_ximage_from_pixmap( X_Display & disp, X_Drawable_Surface & pixmap ) {
 	del_ximage();
 	unsigned long plane_mask = AllPlanes;
 	int format = ZPixmap;
@@ -259,6 +261,7 @@ bool X_Image:: get_ximage_from_pixmap( X_Display & disp, X_Pixmap & pixmap ) {
 	show_image_data("created from Pixmap");
 	return ximage; // not NULL
 }
+
 bool X_Image:: put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t & img_tj ) {
 	img_tj.pixel_format_tj = TJPF_BGRX; // HOW ??
 	img_tj.width = ximage->width;
@@ -300,8 +303,10 @@ bool X_Image:: create_pixmap_from_TJ_IMG( X_Display & disp, GC gc, Drawable draw
 	return true;
 }
 
+#if 0
 bool X_Image:: create_pixmap_from_file( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, const char * filename ) {
 	return FAIL("TODO");
 }
+#endif
 
 

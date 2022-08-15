@@ -64,6 +64,8 @@ endif
 	OBJS += X_FontStr.o
 	OBJS += X_ret_err.o
 	OBJS += A_matrix_2x2.o
+	OBJS += X_Drawable_Surface.o
+	OBJS += X_GC.o
 
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
 #	OBJS += gdb_invoke.o
@@ -73,8 +75,8 @@ endif
 #	OBJS += buffer1.o
 #	OBJS += e_print.o
 
-	PROG1=test1
-	PROG2=test2
+	PROG1=test1_nested_pair
+	PROG2=test2_xft_diagonal
 	PROG3=test3
 
 	EXEC1=$(PROG1)$(dot_EXE)

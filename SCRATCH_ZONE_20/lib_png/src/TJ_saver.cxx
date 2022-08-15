@@ -1,5 +1,6 @@
 #include "TJ_saver.h"
 #include "X_Image.h"
+#include "X_Pixmap.h"
 #include "fmt_system.h"
 
 using namespace TJ;

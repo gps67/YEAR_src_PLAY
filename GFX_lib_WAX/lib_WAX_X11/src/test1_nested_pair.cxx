@@ -200,9 +200,10 @@ class X_test_box : public X_Window
 	}
 };
 
-int main_loop_once( X_Display & disp, XEvent & report )
+bool main_loop_once( X_Display & disp, XEvent & report )
 {
 	disp.process_event( report );
+	return disp.reasons_to_stay_test(); // true if stay
 }
 
 /*
@@ -230,11 +231,13 @@ int main() {
 	X_test_box win3( "win3", & win1, xywh3, 0 );
 
 	win1.map();
-	win1.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
-//	win2.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
-	win3.XSelectInput( ExposureMask | KeyReleaseMask | ButtonPressMask |ResizeRequest );
-	// win1.draw();
-	
+// NO 	win3.map(); // win1 is a TOP LEVEL 3 is a sub_level
+	win1.XSelectInput_mask_one();
+	win3.XSelectInput_mask_one();
+
+// REDO // disp already has linst of windows
+// disp->add(W)
+
 	// KEY
 	disp.test1();
 
@@ -243,12 +246,7 @@ int main() {
 	KeyPress is received
 */
 
-	XEvent report;
-	while (1)  {
-		disp.XFlush();
-		disp.XNextEvent( report );
-		int t =  main_loop_once( disp, report );
-	}
+	disp.process_events_forever();
 
 	return 0;
 }

@@ -23,11 +23,17 @@
 
 using namespace WAX;
 
+/*
+	each open window is a reason to stay
+*/
+int X_Display_One:: reasons_to_stay = 0;
+
 bool X_Display_One :: test_list_depths()
 {
 	int screen_number = 0; // screen 1 retval NULL
 	int count_return = 0; // unchanged if NULL was returned
 	int * ary_of_int;
+
 
 	int n = ScreenCount( display );
 	INFO("%d == ScreenCount(display)", n ); // always 1 ??
@@ -89,17 +95,20 @@ bool X_Display_One :: guess_screen_size( A_WH & WH )
 }
 
 
-void X_Display:: process_events_forever()
+void X_Display:: process_events_forever() // loop
 {
 	XEvent report;
 	while (1)  {
 		/* disp. */ XFlush();
 		/* disp. */ XNextEvent( report );
 		/* disp. */ process_event( report );
+		INFO("reasons_to_stay %d", reasons_to_stay );
+		if(!reasons_to_stay_test())
+			return;
 	}
 }
 
-void X_Display::process_event( XEvent & event )
+bool X_Display:: process_event( XEvent & event )
 {
 	X_Window * W1 = find_Window( event.xany.window );
 	X_Window * W2 = W1;
@@ -153,8 +162,12 @@ void X_Display::process_event( XEvent & event )
 			str,
 			W2->name
 		);
-		/*Close the program if q is pressed.*/
-		if( 24 == event.xkey.keycode ) exit(0);
+		if( 24 == event.xkey.keycode ) {
+			// exit(0);
+			INFO("Close the program if q is pressed.");
+			W2->call_XDestroyWindow_top();
+			INFO("q is pressed.");
+		}
 
 		switch(symb) {
 		 
@@ -227,7 +240,7 @@ void X_Display::process_event( XEvent & event )
 	//	W2->resize(event.xconfigure.width, event.xconfigure.height);
 
 	} break;
-#define ITEM(nme) case nme: e_print( "win %7s EVENT '%s'\n", W2->name, #nme ); break;
+#define ITEM(nme) case nme: e_print( "# >>>> # win %-7s EVENT '%s'\n", W2->name, #nme ); break;
 	ITEM(ButtonPress)
 	ITEM(ButtonRelease)
 	ITEM(MotionNotify)
@@ -263,6 +276,7 @@ void X_Display::process_event( XEvent & event )
 		printf( "EVENT type %d in %s - default\n", event.type, W2->name );
 		// return 0;
 	}
+	return true;
 }
 
 void X_Display::test1()

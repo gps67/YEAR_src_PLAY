@@ -9,6 +9,12 @@ void X_Window::set_name( const char * _name )
 	name = strdup( _name );
 }
 
+X_Window::
+~X_Window() // deregister
+{
+	disp->del( this );
+}
+
 /*!
 	child classes use this to create the object
 */
@@ -121,6 +127,29 @@ X_Window::X_Window(
 	map();
 
 	printf( "window = %ld\n", get_window() );
+}
+
+void X_Window:: XSelectInput_mask_one()
+{
+	long mask  = 0;
+	mask |= ExposureMask ;
+	mask |= KeyPressMask ;
+	mask |= ButtonPressMask ;
+	mask |= ButtonReleaseMask; // Pointer button up
+//      mask |= ResizeRequest ; // NOT SURE WHERE THIS CAME FROM
+	mask |= ResizeRedirectMask; // Redirect resize of this window
+	mask |= StructureNotifyMask; // Destroy
+//	mask |= -1;
+	mask |= ((u32)-1) >> 8 ;
+	XSelectInput( mask );
+	// see also
+	// Clients, usually those with multiple top-level windows,
+	// whose server connection must survive the deletion of some
+	// of their top-level windows,
+	// should include the atom WM_DELETE_WINDOW
+	// in the WM_PROTOCOLS property on each such window.
+	// They will receive a ClientMessage event as described above
+	// whose data[0] field is WM_DELETE_WINDOW.
 }
 
 /*!

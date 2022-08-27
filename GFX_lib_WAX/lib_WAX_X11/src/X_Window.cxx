@@ -16,26 +16,8 @@ X_Window::
 }
 
 /*!
-	child classes use this to create the object
-*/
-X_Window::
-X_Window(
-	X_Window * _parent,	// provides display ;-)
-	Window _window,		// possibly 0 or XXXX
-	const char * _name	// usually set
-)
-: X_Drawable_Surface( _parent->disp->display, _window )
-, parent( _parent )
-, disp( _parent->disp )
-, name(0)
-//	, xft_draw( *this )
-{
-	set_name( _name );
-	disp->add( this );
-}
-
-/*!
 	NULL_parent
+	child classes use this to create the object
 */
 X_Window::
 X_Window(
@@ -57,17 +39,13 @@ X_Window(
 /*!
 	create a simple window, NB-TODO some unsigned work 
 */
-X_Window::X_Window(
+X_Window_Top_Level::X_Window_Top_Level(
 	const char * _name,
-	X_Display & disp_,
+	X_Display & _disp,
 	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
 	int borderwidth
 )
-: X_Drawable_Surface( disp_.display, 0 )
-, parent(NULL)
-, disp( & disp_ )
-, name(0)
-//, xft_draw() // requires following create()
+: X_Window_Frame( /*_parent*/ (X_Window *) NULL, & _disp, /*window*/ 0, _name )
 {
 	set_name( _name );
 	ulong col_border = BlackPixel( display, 0 );
@@ -82,6 +60,9 @@ X_Window::X_Window(
 	);
 //	xft_draw.Xft_DrawCreate( *this );
 	disp->add( this );
+	INFO("CTOR_ONE");
+	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
+		FAIL_FAILED();
 }
 
 
@@ -108,7 +89,7 @@ X_Window::X_Window(
 	set_name( _name ); // _dgb_
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
-	drawable = ::XCreateSimpleWindow(
+	Window _window =::XCreateSimpleWindow(
 		display,
 		parent->get_window(),
 		xywh.x, xywh.y, xywh.width, xywh.height,
@@ -116,6 +97,11 @@ X_Window::X_Window(
 		col_border,
 		col_background
 	);
+	if( _window )
+		set_window( _window );
+	else
+		WARN("ZERO window=::XCreateSimpleWindow()"); // cant easily return in CTOR
+	// WH = xywh.WH // GETTER uses RETVAR WH
 	xywh.get_WH( WH );
 //	WH   = xywh.WH; // avoiding struct return // why ?
 //	WH.w = xywh.width; // xywh is not built from WH but { width height }
@@ -125,6 +111,8 @@ X_Window::X_Window(
 
 	disp->add( this );
 	map();
+	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
+		FAIL_FAILED();
 
 	printf( "window = %ld\n", get_window() );
 }
@@ -184,10 +172,10 @@ struct X_Window_Root : public X_Window
 	// LURK no check on DefaultRootWindow() - see syntax
 
 	X_Window_Root(
-		X_Display & disp_,
+		X_Display & _disp,
 		const char * _name
 	)
-	: X_Window( NULL_parent, &disp_, DefaultRootWindow( disp_.display ), _name )
+	: X_Window( NULL_parent, &_disp, DefaultRootWindow( _disp.display ), _name )
 	{
 		printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
 	}
@@ -201,10 +189,18 @@ struct X_Window_Root : public X_Window
 	called once
  */
 X_Window * X_Window:: register_root(
-	X_Display & disp_,
+	X_Display & _disp,
 	const char * name
 )
 {
-	X_Window * w = new X_Window_Root( disp_, name );
+	X_Window * w = new X_Window_Root( _disp, name );
 	return w;
+}
+
+bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
+{
+	// subscribe to be told when WM_ clicks on X button
+	XSetWMProtocols(display, get_window(), & X_Display_One:: atom_wm_delete_window, 1);
+
+	return FAIL("TODO");
 }

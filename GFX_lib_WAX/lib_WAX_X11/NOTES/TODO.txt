@@ -1,0 +1,67 @@
+2022-08-25 Aug Thu 23:29 # 00 # 
+
+	count_top_level_windows_currently_open
+
+		on zero - start anew one ? exit ?
+	
+	X_Window_Top_Level
+
+		will have menu message etc
+		will respond to Delete Destroy 
+		will have file(s) open
+	
+	Xft
+
+		design needed
+		is it a pen on another surface?
+		is it a draw peer (but with xft capability)
+		it has its own colours
+		redo - switch angle
+	
+	edit field
+
+		basic field editor
+		add field validation (whilst partially formed)
+		numeric field formatting
+	
+	select fd of X11
+
+		need non-blocking drain last drop of fd-Q-X11
+	
+	nesting coordinates
+
+		need to pin it down
+	
+	layout workflow
+
+		first sweep - WH + borders
+		second sweep
+			stretch to match peers in surrounding frame
+		third sweep = draw
+	
+	BLIT
+
+		check avail
+	
+WIN32
+
+	catch up with basics XFT (or ft2 + blit)
+	ignore builtins available (easy coding life)
+	catchup with OS various
+
+FB-SVGA
+
+	frame buffer - 
+	cairo - or other primatives
+	ft2 direct
+
+GPU
+
+	FB primatives?
+	FT2 via flood of glyph bitmaps
+	2.5 D - onto pixmaps
+	3 D - wire-frame-triangles
+
+
+
+

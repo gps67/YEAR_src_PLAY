@@ -388,7 +388,7 @@ bool bool_main(int argc, char **argv)
 				return FAIL_FAILED();
 	}
 
-	fmt_system("m '%s'", filename_2);
+	// fmt_system("m '%s'", filename_2);
 	return PASS("OK");
  } 
 

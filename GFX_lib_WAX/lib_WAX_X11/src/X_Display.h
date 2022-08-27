@@ -23,6 +23,8 @@ struct X_Display_One
 
  static
 	int reasons_to_stay;
+ static
+ 	Atom atom_wm_delete_window;
 
 	bool reasons_to_stay_incr() { reasons_to_stay++; return true; }
 	bool reasons_to_stay_decr() { reasons_to_stay++; return reasons_to_stay > 0; }
@@ -36,6 +38,10 @@ struct X_Display_One
 	{
 		display = ::XOpenDisplay( display_name );
 		cmap.late_init( display );
+
+		// only_if_exists == false
+		atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
+
 	}
 
 	/*!
@@ -58,7 +64,7 @@ struct X_Display_One
 	*/
 	void XNextEvent( XEvent & event )
 	{
-		INFO("... %d reasons",reasons_to_stay );
+		// INFO("... %d reasons",reasons_to_stay );
 		::XNextEvent( display, & event );
 	}
 

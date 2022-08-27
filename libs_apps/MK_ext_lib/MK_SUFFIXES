@@ -75,6 +75,7 @@
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
 	#
 	# NOT # strip $@
+	ldd $@ | grep gps
 
 # 
 #

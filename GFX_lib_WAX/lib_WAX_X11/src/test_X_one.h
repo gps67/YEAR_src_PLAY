@@ -6,7 +6,7 @@
 
 // #include "X_STUBS.h"
 // #include "A_point_plus.h"
-// #include "X_Window.h"
+// #include "X_Window_Top_Level.h"
 // #include "X_Draw.h"
 // #include "X_Display.h"
 // #include "WAX_argv_decoder.h" // they are all very similar
@@ -29,7 +29,7 @@ const char * colour_spec_blue  = "#0000FF";
 	It has a drawing GC
 
 */
-class X_test_box : public X_Window
+class X_test_box : public X_Window_Top_Level
 {
  public:
 	X_Draw draw_green; // draw_green.fg = green
@@ -48,7 +48,7 @@ class X_test_box : public X_Window
 
 	*/
 	X_test_box( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
-	: X_Window( _name, disp_, xywh, border )
+	: X_Window_Top_Level( _name, disp_, xywh, border )
 	, draw_green( *this )
 	, xywh1( xywh )
 	{
@@ -87,7 +87,7 @@ class X_test_box : public X_Window
 	  )
 	*/
 	X_test_box( const char * _name, X_Window * parent, A_Rectangle xywh, int border )
-	: X_Window( _name, parent, xywh, border )
+	: X_Window_Top_Level( _name, parent, xywh, border )
 	, draw_green( *this )
 	, xywh1( 0,0, xywh.width, xywh.height )
 	{

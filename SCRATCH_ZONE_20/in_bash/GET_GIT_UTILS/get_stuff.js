@@ -11,6 +11,16 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/VCVRack/Rack
+https://github.com/VCVRack/library
+https://github.com/VCVRack/rack-plugin-toolchain
+https://github.com/VCVRack/Fundamental
+https://github.com/VCVRack/ESeries
+https://github.com/VCVRack/glfw
+https://github.com/VCVRack/pichenettes-eurorack
+https://github.com/VCVRack/Befaco
+https://github.com/VCVRack/AudibleInstruments
+https://github.com/VCVRack/rtaudio
 https://github.com/microsoft/fluentui-emoji
 https://github.com/rg3/youtube-dl
 https://github.com/libjpeg-turbo/libjpeg-turbo

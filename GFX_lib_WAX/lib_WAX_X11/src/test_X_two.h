@@ -6,7 +6,7 @@
 
 // #include "X_STUBS.h"
 // #include "A_point_plus.h"
-// #include "X_Window.h"
+// #include "X_Window_Top_Level.h"
 // #include "X_Draw.h"
 // #include "X_Display.h"
 // #include "WAX_argv_decoder.h" // they are all very similar
@@ -30,7 +30,7 @@ static const char * colour_spec_purple = "#FF00FF";
 	It has a drawing GC
 
 */
-class X_test_two : public X_Window
+class X_test_two : public X_Window_Top_Level
 {
 
 // static const char * colour_spec_green = "#00FF00";
@@ -58,7 +58,7 @@ class X_test_two : public X_Window
 	 A_Rectangle xywh,
 	 int border
 	)
-	: X_Window( _name, disp_, xywh, border )
+	: X_Window_Top_Level( _name, disp_, xywh, border )
 	, draw_green( *this )
 	, xywh1( xywh )
 	{
@@ -69,14 +69,13 @@ class X_test_two : public X_Window
 	}
 
 	/*!
-	*/
 	X_test_two(
 	 const char * _name,	// _dgb_ AND X11 find window by name
 	 X_Window * parent,	// child of window has no title
 	 A_Rectangle xywh,
 	 int border
 	 )
-	: X_Window( _name, parent, xywh, border )
+	: X_Window_Top_Level( _name, parent, xywh, border )
 	, draw_green( *this )
 	, xywh1( 0,0, xywh.width, xywh.height )
 	{
@@ -84,6 +83,7 @@ class X_test_two : public X_Window
 		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_purple );
 		draw_green.set_fg( blue_col );
 	}
+	*/
 
 /*
 */

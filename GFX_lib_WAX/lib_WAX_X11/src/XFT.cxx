@@ -42,6 +42,11 @@ WAX::
 Xft_Draw::
 Xft_DrawCreate( X_Window & W )
 {
+	// before draw exists you may not call
+	// get_display()
+	// get_screen()
+	// draw holds all those, in duplicate
+	// and colors are also duplicated
 	if(draw) {
 		WARN("draw should be NULL");
 		Xft_DrawDestroy(); // no leak
@@ -53,14 +58,18 @@ Xft_DrawCreate( X_Window & W )
 
 	Visual   *visual;
 	Colormap colormap;
-	int screen_0 = 0; // I think this is OK
+	int screen_0 = X_Display:: SCREEN_0; // another alias for 0
+//	cant call get_screen() here because that uses draw which holds display
+//	screen_0 = get_screen();
+	screen_0 = X_Display:: SCREEN_0; // another alias for 0
+	INFO("screen_0 == %d", screen_0 );
 
 	if( display ) {
 		visual = DefaultVisual(display, screen_0 );
 		colormap = DefaultColormap( display, screen_0 );
 	} else {
 		draw = NULL;
-		return FAIL("NULL displaY");
+		return FAIL("NULL display");
 	}
 
 	draw = XftDrawCreate (display, drawable, visual, colormap);
@@ -90,7 +99,7 @@ bool
 WAX::
 Xft_Draw::
 Xft_ColorAllocName (
-	XftColor & alloc_colour,
+	XftColor & alloc_color,
 	const char *name
 )
 {
@@ -99,7 +108,7 @@ Xft_ColorAllocName (
 		XftDrawVisual(draw),
 		XftDrawColormap(draw),
 		name,
-		& alloc_colour 
+		& alloc_color 
 	)) {
 		return FAIL("XftColorAllocName( %s )", name );
 	}
@@ -110,14 +119,14 @@ bool
 WAX::
 Xft_Draw::
 Xft_ColorFree (
-	XftColor & colour
+	XftColor & color
 )
 {
 	XftColorFree (
 		XftDrawDisplay(draw),
 		XftDrawVisual(draw),
 		XftDrawColormap(draw),
-		& colour 	// C PTR to struct
+		& color 	// C PTR to struct
 	);
 	// return FAIL("XftColorFree()" );
 	return true;
@@ -139,7 +148,7 @@ Xft_FontOpen(
 		get_display(),
 		get_screen(),
 		XFT_FAMILY, XftTypeString, font_name,
-		XFT_SIZE, XftTypeDouble, font_size,
+		XFT_SIZE,   XftTypeDouble, font_size,
 		XFT_MATRIX, FcTypeMatrix, &matrix->matrix,
 		NULL
 	);
@@ -160,7 +169,7 @@ Xft_FontOpen(
 		get_display(),
 		get_screen(),
 		XFT_FAMILY, XftTypeString, font_name,
-		XFT_SIZE, XftTypeDouble, font_size,
+		XFT_SIZE,   XftTypeDouble, font_size,
 		NULL
 	);
 	if(!font) return FAIL("font_name %s size %4.1f", font_name, font_size);
@@ -211,7 +220,7 @@ WAX::
 Xft_Pen::
 Xft_DrawString8 (
 //	draw.draw,
-//	pen.pen_colour,
+//	pen.pen_color,
 //	pen.pen_font,
 	int x,
 	int y,
@@ -223,8 +232,8 @@ Xft_DrawString8 (
 	if( len < 1 ) 
 		len = strlen(string);
 	
-	if(!pen_colour) {
-		return FAIL("NULL pen_colour");
+	if(!pen_color) {
+		return FAIL("NULL pen_color");
 	}
 
 	if(!pen_font) {
@@ -233,7 +242,7 @@ Xft_DrawString8 (
 
 	XftDrawString8 (
 		xft_draw.draw,	// 
-		pen_colour,
+		pen_color,
 		pen_font,
 		x,
 		y,
@@ -288,9 +297,9 @@ show_XGlyphInfo( const XGlyphInfo & e ) // Xrender.h
 bool
 WAX::
 MY_XFT::
-alloc_items()
+alloc_items() // color angle matrix font
 {
-	const char *colour_purple_name = "purple";
+	const char *color_purple_name = "purple";
 	double angle = -22; // + up - down
 	double font_size = 36; // pt
 	const char * font_name = "charter";
@@ -302,19 +311,27 @@ alloc_items()
 	test_x = 100;
 	test_y = 300;
 
-	if(! draw.Xft_ColorAllocName ( colour_purple, colour_purple_name )) {
+	// color //
+	if(! draw.Xft_ColorAllocName ( color_purple, color_purple_name )) {
 		return FAIL_FAILED();
 	}
 
+	// angle //
 	A_matrix_2x2  font_matrix; // rotation scale shear
 	font_matrix.set_to_rotate( angle ); // degrees
 
-	if(! draw.Xft_FontOpen( font_charter, font_name, font_size, & font_matrix ))
+	// font //
+	if(! draw.Xft_FontOpen(
+		  font_charter,	// VAR // & of PTR to //
+		  font_name,
+		  font_size,
+		& font_matrix
+	))
 		return FAIL_FAILED();
 
 	// assign pen_ pointers to allocated items
 	pen.pen_font = font_charter;
-	pen.pen_colour = & colour_purple;
+	pen.pen_color = & color_purple;
 
 	if(!draw.draw) return FAIL("NULL draw");
 	return true;
@@ -326,7 +343,7 @@ MY_XFT::
 release_items()
 {
 	if(!draw.draw) return FAIL("NULL draw");
-	if(! draw.Xft_ColorFree ( colour_purple )) {
+	if(! draw.Xft_ColorFree ( color_purple )) {
 		return FAIL_FAILED();
 	}
 	if(! draw.Xft_FontClose( font_charter ))
@@ -349,7 +366,7 @@ test_redraw()	// func(proto)
 
 	// assign pen_ pointers to allocated items
 	pen.pen_font = font_charter;
-	pen.pen_colour = & colour_purple;
+	pen.pen_color = & color_purple;
 
 	// initial Y shows BBOX is BBOX
 	//

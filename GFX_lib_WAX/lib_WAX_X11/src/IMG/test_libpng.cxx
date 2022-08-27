@@ -34,7 +34,7 @@ using namespace TJ;
 */
 
 
-class X_test_img : public X_Window {
+class X_test_img : public X_Window_Top_Level {
  public:
 	GC gc;
 
@@ -47,7 +47,7 @@ class X_test_img : public X_Window {
 		int border,
 		png_one & png
 	)
-	: X_Window( _name, disp_, xywh, border )
+	: X_Window_Top_Level( _name, disp_, xywh, border )
 	, pixmap( disp_.display, xywh.get_WH() )
 	{
 		gc = CreateGC();
@@ -63,7 +63,7 @@ class X_test_img : public X_Window {
 		int border,
 		TJ_FB_image_t & FB_image
 	)
-	: X_Window( _name, disp_, xywh, border )
+	: X_Window_Top_Level( _name, disp_, xywh, border )
 	, pixmap( disp_.display, xywh.get_WH())
 	{
 		gc = CreateGC();
@@ -123,7 +123,7 @@ class X_test_img : public X_Window {
 		int dst_y = 0;
 
 	 // mad test // only show half
-	 if(0)
+	 if(1)
 		width *= 0.5; // TEST // should reveal half a green X on bg
 
 		// clip
@@ -168,7 +168,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 	png_one png1; // png2 goes to the window
 
 	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+	X_Window_Top_Level::register_root( disp, "R-O-O-T" );
 
 
 	const char * filename_1 = "/tmp/filename_1.png";

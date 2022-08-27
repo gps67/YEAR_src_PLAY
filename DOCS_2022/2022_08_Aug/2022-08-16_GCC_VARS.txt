@@ -1,0 +1,83 @@
+	2022-08-16
+
+	2022_08_Aug
+	2022-08-16_GCC_VARS.txt
+
+https://gcc.gnu.org/onlinedocs/gcc-11.1.0/gcc/Environment-Variables.html
+
+	OK GCC has a bunch of vars for itself
+
+	LC_CTYPE
+	LC_MESSAGES
+	LS_ALL
+	TMPDIR
+	GCC_COMPARE_DEBUG
+	GCC_EXEC_PREFIX
+	COMPILER_PATH
+	LIBRARY_PATH
+	LANG
+	GCC_EXTRA_DIAGNOSTIC_OUTPUT
+	CPATH
+	C_INCLUDE_PATH
+	CPLUS_INCLUDE_PATH
+	OBJC_INCLUDE_PATH
+	DEPENDENCIES_OUTPUT
+	SUNPRO_DEPENDENCIES
+	SOURCE_DATE_EPOCH
+
+#	VPATH # make not gcc #
+
+
+	CPATH
+	C_INCLUDE_PATH
+	CPLUS_INCLUDE_PATH
+	OBJC_INCLUDE_PATH
+
+	LIBRARY_PATH -L $A_LIB_DIR -lname
+
+use CC to call ld
+
+	# LOADLIBES is deprecated old form
+	# -L ... # should be in LDFLAGS
+
+	$(CC) $(LDFLAGS) n.o $(LOADLIBES) $(LDLIBS)
+
+##
+
+	$(LINT) $(LINTFLAGS) $(CPPFLAGS) -i
+
+	AS ASFLAGS
+	CPP CPPFLAGS
+	TEX WEAVE TANGLE CTANGLE
+	LEX LFLAGS
+	YACC YFLAGS
+
+
+############## MAKE #############
+
+https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html
+
+.c.o:
+        $(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+by adding % you can add other dependencies
+
+%.o: %.c foo.h
+        $(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+ENV:
+
+${MAKEFILES}
+
+	include EACH before named || default
+	ignore default targets in them
+	ignore missing files
+	always exported
+
+$(INTERNAL):
+
+$(MAKE)
+
+	full pathname of "make" - as originally invoked
+
+

@@ -17,6 +17,9 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	Drawable drawable;
 	A_WH WH;
 
+	#if 1 // permit simple prototype sketch design
+	X_Drawable_Surface() {}
+	#endif
 	X_Drawable_Surface( int temp_skim ) {}
 
 	X_Drawable_Surface(

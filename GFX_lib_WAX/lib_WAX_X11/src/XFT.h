@@ -62,7 +62,7 @@ XFT
 MY_XFT
 
 	holds the one Draw for the one X_Window
-	holds the list of colours
+	holds the list of colors
 	holds the list of fonts
 
 	holds temp vars to build fonts ??
@@ -86,6 +86,7 @@ Pen
 */
 
 namespace WAX {
+
 // namespace XFT {
 /*!
 	X_Draw is the basic drawing context (with GC)
@@ -120,11 +121,11 @@ struct Xft_Draw
 	// parameter order - moving RETVAR to first
 
 	bool Xft_ColorAllocName (
-		XftColor & colour, // retval is struct initialised
+		XftColor & color, // retval is struct initialised
 		const char *name // "purple"
 	);
 	bool Xft_ColorFree (
-		XftColor & colour // retval
+		XftColor & color // retval
 	);
 
 	bool Xft_FontOpen( 
@@ -156,37 +157,31 @@ struct Xft_Pen { // a bit like a GC or a PrintHead
 
 	Xft_Draw & xft_draw;
 
-	Display * get_display() {
-		// this needs the full declatation of Xft_Draw
-		return XftDrawDisplay(xft_draw.draw);
-	}
+	Display * get_display() { return xft_draw.get_display(); }
+	// this needs the full declatation of Xft_Draw
+	//	return XftDrawDisplay(xft_draw.draw);
 
 //	A_matrix_2x2  pen_matrix; // rotation scale shear
 //	str1 pen_font_name;
 //	double pen_font_size;
 
 	// owner of pen owns loans sets these // must do so
-	XftColor * pen_colour; //  pointer to colour_purple
+	XftColor * pen_color; //  pointer to color_purple
 	XftFont * pen_font;
 
 	// measure instead of drawing
 	XGlyphInfo pen_extents; // unused avail for any temp use
+
 	bool show_XGlyphInfo( const XGlyphInfo & extents );
 	bool zero_XGlyphInfo( XGlyphInfo & e );
 
 	bool Xft_TextExtents8 (
-		// XftDrawDisplay(draw.draw),
-		// pen.pen_font,
 	//  (FcChar8*)
 		const char * string,
 		int len
-		// &pen.pen_extents
 	);
 
 	bool Xft_DrawString8 (
-	//	draw.draw,
-	//	pen.pen_colour,
-	//	pen.pen_font,
 		int x,
 		int y,
 	//  (FcChar8*)
@@ -205,7 +200,7 @@ struct Xft_Pen { // a bit like a GC or a PrintHead
 		Xft_Draw & _xft_draw
 	)
 	: xft_draw(  _xft_draw )
-	, pen_colour( NULL )
+	, pen_color( NULL )
 	, pen_font( NULL )
 	{
 		zero_XGlyphInfo( pen_extents );
@@ -238,7 +233,7 @@ struct MY_XFT {	// owns all the resources // loans them to Pen
 	Xft_Draw draw;
 	Xft_Pen pen;	// there is no such thing , a collection of items
 	// on each text draw you might set:
-	// pen.pen_colour
+	// pen.pen_color
 	// pen.pen_font;
 
 	bool alloc_items();
@@ -246,7 +241,7 @@ struct MY_XFT {	// owns all the resources // loans them to Pen
 
 	// this owns these 
 	XftFont * font_charter; // specifically the angled one
-	XftColor colour_purple; // 
+	XftColor color_purple; // 
 
 	int test_x; // = 100;
 	int test_y; // = 100;

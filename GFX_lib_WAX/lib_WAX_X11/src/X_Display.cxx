@@ -28,6 +28,8 @@ using namespace WAX;
 */
 int X_Display_One:: reasons_to_stay = 0;
 
+Atom X_Display_One:: atom_wm_delete_window = 0;
+
 bool X_Display_One :: test_list_depths()
 {
 	int screen_number = 0; // screen 1 retval NULL
@@ -102,7 +104,7 @@ void X_Display:: process_events_forever() // loop
 		/* disp. */ XFlush();
 		/* disp. */ XNextEvent( report );
 		/* disp. */ process_event( report );
-		INFO("reasons_to_stay %d", reasons_to_stay );
+	//	INFO("reasons_to_stay %d", reasons_to_stay );
 		if(!reasons_to_stay_test())
 			return;
 	}
@@ -220,7 +222,7 @@ bool X_Display:: process_event( XEvent & event )
 	break;
 // TODO
 	case ResizeRequest: {
-		e_print( "EVENT ITEM '%s' WH %d %d'%s'\n",
+		e_print( "EVENT ITEM '%s' WH %d %d '%s'\n",
 			"ResizeRequest",
 			event.xresizerequest.width,
 			event.xresizerequest.height,
@@ -231,7 +233,7 @@ bool X_Display:: process_event( XEvent & event )
 
 	} break;
 	case ConfigureNotify: {
-		e_print( "EVENT ITEM '%s' WH %d %d'%s'\n",
+		e_print( "EVENT ITEM '%s' WH %d %d '%s'\n",
 			"ConfigureNotify",
 			event.xconfigure.width,
 			event.xconfigure.height,
@@ -240,6 +242,46 @@ bool X_Display:: process_event( XEvent & event )
 	//	W2->resize(event.xconfigure.width, event.xconfigure.height);
 
 	} break;
+
+	case ClientMessage: {
+		Atom prop = event.xclient.data.l[0];
+		char * prop_name = XGetAtomName( display, prop );
+		e_print( "EVENT %s prop %s win=%s\n",
+			"ClientMessage",
+			prop_name,
+			W2->name
+		);
+		if((Atom)event.xclient.data.l[0] == atom_wm_delete_window) {
+			INFO("WM_DELETE_WINDOW");
+			FAIL("WM_DELETE_WINDOW");
+		} else {
+			FAIL("OTHER ClientMessage");
+		}
+		XFree( prop_name );
+	} break;
+
+	case PropertyNotify: {
+
+// https://tronche.com/gui/x/xlib/window-information/XGetWindowProperty.html
+
+		Atom prop = event.xproperty.atom;
+		const char * state = "UNSET";
+		switch( event.xproperty.state ) {
+		 case PropertyNewValue: state = "NEW"; break;
+		 case PropertyDelete: state = "DEL"; break;
+		}
+		char * prop_name = XGetAtomName( display, prop );
+
+		e_print( "EVENT %s %s %s win=%s\n",
+			"PropertyNotify",
+			state,
+			prop_name,
+			W2->name
+		);
+		XFree( prop_name );
+	} break;
+
+
 #define ITEM(nme) case nme: e_print( "# >>>> # win %-7s EVENT '%s'\n", W2->name, #nme ); break;
 	ITEM(ButtonPress)
 	ITEM(ButtonRelease)
@@ -257,7 +299,7 @@ bool X_Display:: process_event( XEvent & event )
 
 	ITEM(CirculateNotify)
 	ITEM(CreateNotify)
-	ITEM(DestroyNotify)
+	ITEM(DestroyNotify) // after this several events refer to win1
 	ITEM(GravityNotify)
 	ITEM(MapNotify)
 	ITEM(MappingNotify)
@@ -266,8 +308,6 @@ bool X_Display:: process_event( XEvent & event )
 	ITEM(VisibilityNotify)
 	// ITEM() // Circulate items
 	ITEM(ColormapNotify)
-	ITEM(ClientMessage)
-	ITEM(PropertyNotify)
 	ITEM(SelectionClear)
 	ITEM(SelectionNotify)
 	ITEM(SelectionRequest)

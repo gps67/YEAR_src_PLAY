@@ -43,9 +43,9 @@
 
 #	LIBS += -laccts_gtk
 	LIBS += -lbase
-	LIBS += -lbase2
-	LIBS += -lgtk_text
+#	LIBS += -lbase2
+#	LIBS += -lgtk_text
 #	LIBS += -lmedia
-	LIBS += -lsar_plot_post
+#	LIBS += -lsar_plot_post
 
 

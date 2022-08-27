@@ -72,7 +72,7 @@ bool TJ_saver_t:: get_pixmap_save_as_filename(
 	if(! jpeg_file_out_data.write_as_file( filename ))
 		return FAIL_FAILED();
 
-	fmt_system("m %s", filename );
+	if(0) fmt_system("m %s", filename );
 	return PASS("where is %s", filename);
 
 }

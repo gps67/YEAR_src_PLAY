@@ -50,7 +50,7 @@ endif
 	INCLS += -I$(S)/IMG
 
 # OLD	include ../MK/Makefile_libs_apps
-	include ../MK/MK_with_libs_apps
+	include ../MK/MK_with_libs_apps_base
 
 	# beware similarity with file in libs_apps
 
@@ -150,26 +150,14 @@ run_test3: $(EXEC3)
 run_test4: $(EXEC4)
 	./$(EXEC4) 
 
-$(EXEC1): $(OBJS) $(PROG1).o
-	# EXEC1 $(EXEC1)
-	g++ $(PROG1).o $(OBJS) $(LINKS) -o $@
+# pick up default .o.elf from MK_SUFFIXES from libs_apps
+# but add .elf depends on ... same massive pool of $(OBJS)
+# roll back into libs_apps as .so # LATER #
 
-$(EXEC2): $(OBJS) $(PROG2).o
-	# EXEC2 $(EXEC2)
-	# LINKS $(LINKS)
-	g++ $(PROG2).o $(OBJS) $(LINKS) -o $@
-
+$(EXEC1): $(OBJS)
+$(EXEC2): $(OBJS)
 $(EXEC3): $(OBJS)
-
-## $(EXEC3): $(OBJS) $(PROG3).o
-## 	# EXEC3 $(EXEC3)
-## 	# LINKS $(LINKS)
-## 	g++ $(PROG3).o $(OBJS) $(LINKS) -o $@
-
-$(EXEC4): $(OBJS) $(PROG4).o
-	# EXEC3 $(EXEC3)
-	# LINKS $(LINKS)
-	g++ $(PROG4).o $(OBJS) $(LINKS) -o $@
+$(EXEC4): $(OBJS)
 
 clean: 
 	rm -f *.o $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa

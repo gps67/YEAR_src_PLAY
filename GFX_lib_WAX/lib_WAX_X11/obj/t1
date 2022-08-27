@@ -1,0 +1,1 @@
+ldd test_libpng.elf  | grep gps

@@ -1,0 +1,54 @@
+2022-09-07 Sep Wed 04:43 # 17 #  CXX_PSG_TREE.txt
+
+	CXX_Parser
+	CXX_PSG
+	CXX_PSG_Tree
+	CXX_PSG_Tree_STO // write GEN with _STO set to .STO
+	CXX_PSG_Tree.STO // implements STO as JS field of EXPR_ITEM_in_PSG_Tree
+
+		BENCH
+
+	EXPR_ITEM_in_PSG_Tree
+
+		EA == { FILE TABLE IDX }
+		EA == DECODE_EIGHT_GET_EA // get EA of EA
+	
+	CODE_POINT == EA // .sub_EXPR // CT did use this TOKEN near here
+
+	NEAR EXPR_STEP { .sub_EXPR sub_expr } // CODE_POINT = GEN sub_expr
+
+	SEGMENT has multiple LIBS combined during LINK // incl our own LINK
+	SEGMENTS have LIBS have API_FEATURE.CODE_POINT
+
+		API_FEATURE is from LIB subtree of LIBS
+		API_FEATURE is from MODULE
+		CODE_POINT is from MODULE FILE_idx XPOS_CODE_POINT
+	
+	PSG_TREE SPEC 
+	PSG_Tree INST
+
+		CSR in Module space class file func XPOS CODE_POINT
+		SUBDIR += ../Module_%s/
+		SUBDIR += ../%s/ 
+		SUBDIR += STEP ITEM
+		SUBDIR += STEP STEP 
+		SUBDIR += STEP NULL // ABSENT detected SEARCH start point
+	
+	PSG_TREE_Node
+	PSG_TREE_Leaf
+
+		ITEM += XPOS_seek
+		ITEM += PARENT		// get_PARENT(CTXT,SESS,ITEM)
+
+		ITEM += ITEM.PSG_SPEC	// GETTER on ITEMS[idx]
+	
+	// ITEM
+	// ITEM_t ITEM * ITEMS[idx_ITEM] // but EIGHT_t not * PTR
+
+	INST.SPEC = { SPEC_EXPR_t SPEC } // = loaded from MMAP 
+	INST.OBJV = fixed_TUPLO
+	INST.OBJV = ARGV[N] // N == "{ u8 pos_in_ARGVi }"
+	INST.OBJV = ARGV[N] // N == "{ u32 pos_in_ARGVi }"
+
+
+

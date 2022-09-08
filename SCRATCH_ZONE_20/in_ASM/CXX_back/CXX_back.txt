@@ -1,0 +1,44 @@
+2022-09-07 Sep Wed 04:22 # 27 #  CXX_back/CXX_back.txt
+
+	CXX_back is a dialect of CXX_dialect of CXX
+	It is the write_tree_to_backup_for_restore
+	It hopes to be C++ compile and run
+	It hopes to be ASM GEN compile run
+	It hopes to be C GEN compile run
+
+	CXX is C++
+	as far as we can be bothered
+	and no further
+
+	CXX goes to C
+	this uses gtk namespace_classname_funcname _extra _PLUS 
+	UDEF VTBL
+	CALL VTBL[idx_SLOT] ARGV // fixed format for now ? //
+	CALL VTBL[idx_SLOT] ARGV // func_prototype() // SPEC
+
+	CXX goes via SPEC via PSG via SUBLEX via PARSER via GEN_YACC
+	CXX grows as the PARSER grows
+	GEN ALLOC idx = N++; // ITEM_EIGHT_t_ ITEM = VECT_EIGHT[idx]
+	GEN ALLOC idx = N++; // ITEM_FOUR_t ITEM = VECT_FOUR[idx]
+	GEN ALLOC idx = N++; // ITEM_TWO_t ITEM = VECT_TWO[idx]
+	-- NEAR -- CODE --
+	OFFS_t OFFS += nbytes_USED ; // USED += nbytes_of_union
+
+	CXX goes to C
+	CXX goes to C++
+	CXX goes to ASM
+	CXX goes to JIT
+	CXX goes to PSG_TREE to INTERP or EDIT or LAYOUT or VIEW
+
+	CXX goes to C++ // prefered TECH but close to C
+	option C++ but no this just { C " OBJ_t * PTR /* CMNT */"}
+	option space/class/func
+	option space_class_func( SELF_t * SELF, ARGV ) // ARGV += { SELF %SELF% }
+	option space_class_func( MIMI_t * MIMI, ARGV ) // ARGV += { MIMI %MIMI% }
+
+	PROTOTYPE = SUBSET of FUNC BODY == blank || BODY
+
+	PSG_TREE
+
+
+

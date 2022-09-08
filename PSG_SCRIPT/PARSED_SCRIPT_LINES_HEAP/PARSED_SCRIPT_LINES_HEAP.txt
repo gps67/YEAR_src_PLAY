@@ -1,0 +1,404 @@
+2022-09-07 Sep Wed 00:12 # 18 #  PARSED_SCRIPT_LINES_HEAP.txt
+
+	XPOS += SCRIPT { line_number = CODE_POINT }
+
+		SCRIPT_t SCRIPT = SEGMENT.UDEF_ITEM_t ITEM;
+
+		VAR_t VAR_NAME : HASH_NAME_ea.str0() // ID // STR0 // cident // item_id // EA()
+		STR0_t VAR_NAME : HASH_NAME_ea.str0() // ID // STR0 // cident // item_id // EA()
+
+			STR0 VAR_NAME; // CMNT // CODE_POINT SESS_STO // CMNT_is_SCRIPT_CODE_POINT_xFFFF_by_name _by_id() // ALIAS get_EA { EA_t EA = "EXPR ARGV ENV" // ROM_ADDR //
+
+	GEN { GEN_SCRIPT } // ARGV // ENVP // LIBS // SESS // CT_RT //
+
+	CXX Phrase ARGV ENP LIBS SESS RT_CT CXX PSG LIB_SCRIPT_DIALECT_CXX
+
+	ALIAS CXX
+
+2022-08-29 Aug Mon 23:56 # 51 #
+
+	PARSED_SCRIPT_LINES_HEAP/
+	PARSED_SCRIPT_LINES_HEAP.txt
+
+
+	XPOS += SCRIPT lno u8_xpos
+	XPOS += SCRIPT_ZONE P0P2
+	TREE_POS += NEAR NODE ROOTS FILE/LINE/XPOS -also- u64_SEEK
+	// OPTION FILTER // u16_u48 AB u64_WORD BIT_FIELD[%s] 
+
+	HEAP
+	HEAP provides a basic range of STRUCT ARRAY STRING HT_KV UDEF STRUCT
+	SPEC provides a basic range of STRUCT ARRAY UNION STRING OBJECT API
+	OBJS provides STRING HT POOL IDX EXPR OFFS 
+
+	It is very difficult to build a TREE ADDR,
+	but it is relatively easy to GEN SCRIPT REPEATABLY
+	so no need to store the actual text.
+	An external CACHE can keep the text
+	A prebuilt ROM TABLES can hold the SCRIPT_TEXT // VIEW_ZERO == ASIS
+	The runtime does not need the debugger files
+	Embedded keeps the optimisations, that refer to distant ROM SOURCE
+
+	NOW every PSG TREE NODE has a u32_SCRIPT_SEEK_CSR 
+	NOW sweek PSG TREE as_if_mid_GEN looking for CSR
+	GET STEP_V[stack_pos++] == STEP_is_NODE // arrival at NODE new state
+	PREV_FRAME=stack_pos++; // 
+	CURR_FRAME=stack_pos; // MACRO gives us this v lo cost
+	NEXT_FRAME=P2 // AUTO of P0P2 of { FRAME_t FRAME // half parsed }
+
+	GET STEP_V[stack_pos++] == STEP_is_NODE // arrival at NODE new state
+	STEP ABOVE == STEP OVER
+	PARENT_NODE = a_ref_to_a_NODE // u64_DECODE u16_AB u48_payload 
+	CHILD_NODE = a_ref_to_a_NODE // u64_DECODE u16_AB u48_payload 
+	STEP_MAIN = STEP { ... }
+	STEP += PICK argv[i] down TREE
+	STEP += PICK obj.attr // += CODE_POINT "obj.attr" %s.%s
+	STEP += PICK event_t // += UNION vary_view_attr // += CODE_POINT "obj.attr" %s.%s
+	STEP += PICK QUERY #table "ANYSTR" // utf8 is the transparent filter
+	STEP += PICK IDX u16_idx // u8_IDX API is expand u8_IDX to u16_idx
+	STEP += CALL API GET("IDX") // u32_IDX is a lot // u24_idx // u16_idx
+
+	TREE += STEP
+	TREE += LEAF
+	TREE += NODE
+	TREE += PLUS
+
+	TREE += WASM _DATA _CODE
+
+	STMT = list of words on a line 
+	DATA = run SCRIPT to build TREE 
+	DATA = PRELOAD TABLES MMAP ROM
+	TEXT = SCRIPT that GEN PARSES to TREE_component
+	GENP = GEN_PARSER # TEST = REDONE WEELKY # REGEN TEST #
+
+ SWEEP
+ 	GEN SCRIPT_TEXT_OF_FUNC whilst tracking SEEK
+
+		exact CSR == CURR
+		event CSR < CURR // JUST PASSED CSR
+
+		limit 4 GB SCRIPT is plenty 8K more typical
+
+		HEAP can use 1 2 4 8 byte words
+		i8_ i16_ i32_ i64_
+		_IDX _OFFS _WORD 
+		// BITFIELD // u64_WORD // CPU_REG_PICK // AL AH AX EAX REAX
+		// BITFIELD // u64_WORD // BYTE_B // SIGNED UNSIGNED
+		// BITFIELD ROTATED WORD // BITROT // BYTE_A BYTE_B u16_AB
+
+		ARRAY of EIGHT // + ADJ
+
+			MULTI_EIGHT can use WORD[idx] then WORD[idx+1]
+
+			EIGHT can have BITFIELDS 
+
+			u16[4]
+			 u16[0] == u16_AB
+			 u16[1] == u16_CD
+			 u16[2] == u16_EF
+			 u16[3] == u16_GH
+			u16[4] == NEXT_WORD
+
+			WORD << shift_l // lhs
+			WORD >> shift_r // lhs + rhs // mid = 64 - lhs - rhs
+
+			switch mid
+			 0
+			  1 2 3 4 5 6 7
+			 8 // BYTE
+			  9 A B C D E F
+			 10 // PAIR
+			  1 2 3 4 5 6 7
+			 18 // THREE // u24 // i24 
+			  9 A B C D E F
+			 20 // FOUR // NEXT
+
+		u24 of u32 
+		i24 of i32 
+
+		BITFIELD within u64_WORD
+
+			u64_WORDS[idx_of_first_WORD]
+			u64_EIGHT {
+				WORD2 = WORD1 // COPY SHARED value
+				WORD2 << shift_l
+				WORD2 >> shift_r // PRESERVE SIGN TOPBIT
+				RETVAL WORD2
+
+				shift_l = lhs
+				shift_r = rhs + lhs
+				RETVAL = i64 entire word // KNOW u16 u32 u64 u8
+
+				WORD2 = SIGN_EXPAND WORD1
+				RETVAL i8 u8 i16 u16 i32 u32 i64 u64 // int
+				RETVAL u8_BYTE_B
+				RETVAL i8_BYTE_B 
+			}
+
+		AUTOGEN u8_IDX int_IDX u16_IDX_lohi u32_lohi u64_lohi
+
+			WORD2 = u64_WORDS[idx] + OFFS_ADJ // CAST (i8)
+			WORD2 = u64_WORDS[idx] + OFFS_ADJ // CAST (i16)
+			WORD2 = u64_WORDS[idx] + OFFS_ADJ // CAST (i32)
+			WORD2 = u64_WORDS[idx] + OFFS_ADJ // CAST (i64)
+
+			WORD2 = u64_WORDS[idx] + OFFS_ADJ // CAST (i24)
+
+			lhs mid rhs
+			* 8 0
+			* 16 0 // u16_AB // lohi means BA //
+			* 32 0 // u32_ABCD // _lohi
+			* 64 0 // u64_WORD // _lohi
+			* 8 8 // BYTE_B
+			* 16  0 // i16_AB_lohi // REPEAT ALIAS //
+			* 16 16 // i16_CD_lohi //
+			* 16 32 // i16_EF_lohi //
+			* 16 48 // i16_GH_lohi //
+
+
+		mid is 8 16 32 64 
+		rhs is { 0 8 }  { { 0 16 32 48 } 64 }
+		lhs + mid + rhs == 64 // AUTO CALC lhs = 64 - rhs - mid //
+		if rhs == 0 { look out for TEST to get SIGN instead of zero shift
+		if lhs == 0 { look out for WORD }
+		if rhs == 0 { look out for WORD }
+
+		u8 bitpos [0[16 // u4
+		u8 bitpos [0[64 // u6
+
+ HEAP uses ARRAY of EIGHT
+
+ 	u16_idx // all HEAP fits under 64 K items // AUTOGROW u32
+	u8_idx // some core macros dont need more than fields
+	u32_idx // complain when DATA exceeds 1GB // 16MB a good target
+	i17_idx // in i32 or i64_WORD
+	i64_idx // lets assume i48 is world horizon back as i64 
+	i64 i48_payload // or RETVAL from BITFIELD
+
+	WORD2 = (i64_from_i16) SIGN_EXTEND i16_in_EIGHT[4] // u2_pos_of_i16_in_i64 
+	EIGHT = BASE + i64_idx + ADJ // u16_ADJ += OFFS_of_PAIR_in_WORD[u2_plus]
+	// u4 is 16 is 4 u64_WORD[4] as u16[16]
+
+ ITEM uses u16_AB u48_payload
+
+ 	u64_DECODE
+	 u16_AB is PTR
+	 u48_payload 
+
+ HEAP loses ROOT HEADER SPACE
+ HEAP_ROOT_PAGE_ZERO 
+
+ 	OPTION - link to alternate HEAP_ROOT_PAGE_ZERO // when more
+	OPTION - fixed secong root_page in same 4K 
+
+		4K = 256 * 8 * 2 //
+
+	u8 heap [2k]
+
+		u16 POS_in_PAGE0 // u12 is plenty
+
+	EIGHT_t HALF[u8] // 2K of u64_WORD[u8]
+
+		idx <= 0xFF
+
+	#!MMAP_HEAP LF NUL // < 16 IDX[0] IDX[1] 
+
+//	# put PAGE_ZERO HEAP at start of file, and splice in HEAD
+	
+
+	ITEM_in_HEAP // ZERO_PRE_HEAD
+	u64_WORD --> u16_AB u48_payload
+
+		u16_AB	STO = SPEC_PTR
+		u48_payload PTR 
+		u48_payload = u64_WORD >> 16 // ZERO_SIGN_FILL
+		PTR = u48_payload
+
+		SPEC = DECODE_PTR_SPEC( u16_AB )
+		u16_AB { SPEC = ROOT_SPEC[BYTE_B] }
+
+#########################################################
+
+	PSG from LISPY ARGV
+
+		if EB SN
+		if EB SN SN
+		if EB SN else SN
+	
+	SN -> { INDENTED_BLOCK_OF_LINES_FROM_NODE }
+	SN -> { opening indent, ongoing indentm left_as }
+	SN -> { list_of_lines[ lno ] }
+	SN -> { seek_l_brace seel_r_brace seek LINE[ lno ] }
+
+	S1 is ARGV += CMNT += TEMPLATE_if_S1_analysed
+	SN is LIST[ stmt_num ] of BOLD INDENT WORDS CMNT EOLN 
+
+	BOLN = seek
+	EOLN = seek // shared with NEXT
+	WORDS = no seek, but GEN says XPOS is array_of_SEEKS array_of_ALSO
+	WORD = SEEK LBRACE TOEOLN INDENT S1[] TRAIL RBRACE /* gap SP */
+
+	PSG from PSG
+
+		TEMPLATE
+
+			for START STAY STEP BLOCK
+			for { int i 0 } { i < N } { i++ } { BLOCK }
+
+				int i
+				int ZERO 0
+				int N = PRE_FETCH_N // beware changes
+				BOOL { i < N } 
+				BLOCK is { BLOCK }
+
+			seek	for	
+			seek	START
+			seek	STAY
+			seek	STEP
+			seek	BLOCK
+
+			seek	NEXT
+
+		TEMPLATE
+
+			// comment
+			for { int i 0 } { i < N } { i++ } { CODE } // CMNT
+
+		{ IND++ EOLN
+			INDENT LINE_OF_WORDS EOLN
+		  IND-- } /* SP STAY for next WORD */
+
+
+HEAP items that suit HEAP and FREE_LIST and ...
+HEAP items that suit TREE of CODE
+
+	MMAP_PAGE0 PAGE[0]
+
+	X86 EIGHT_t ARRAY_NAME[ i64 ] = INIT SCRIPT DATA SEGMENT
+	X86 Item_t lookup_IDX( int ) // BASE OFFS[idx] // BASE == TABLE_NAME
+	VAR TABLE_NAME[ IDX ] // CT_RT IDX = lookup("ANYSTR") //
+	u8_idx _t // _t is a SPEC_EXPR_DECL_t SPEC_EXPR_DECL // == INIT_VAL
+	{ u8_t idx = xFFFF ; // printf VARNAME = 0x4F // DECL NAME VALUE // }
+	{ u8_t idx = xFFFF ; // CMNT } { EXPR x%4.4X }
+	printf '%4.4X' ${idx:-0} # GET_VAR_else_DEFAULT idx 0 #
+
+	OPCODE new_var { ... } // eval ${SCRIPT} that uses ${VAR_NAME} 
+
+		// AUTO_DETECT += DIALECT //
+		// DIALECT += EG '${VAR_NAME}' # SHELL parses this ARGV ENV
+
+	SHELL += ARGV VARS FUNC DATA DATA_in_FILES SCRIPTS
+
+	SCRIPT can use LEX '${%s:-%s}' ${VAR_NAME} ${DEFAULT_VALUE_EXPR}
+	MATCH '${NAME:-$DEFAULT}' // OK $VAR in "${EXPR}"
+	SUBLEX Q1 DOLLAR LBRACE CIDENT COLON DASH VALUE_EXPR_in_DIALECT RBRACE Q1
+	SUBLEX '${varname:-default_expr_text}'
+	SUBLEX '${varname:-default}'
+	SUBLEX '${varname:-`prog2 args`}' # EG CALL prog2 args to get INIT_VAL
+	SUBLEX '${varname:-`prog2 args`}' # EG CALL prog2 args to set DATA_STO
+
+	SUBLEX '${VARNAME}' // no DEFAULT must have existing VAR with VALUE
+
+		PREVIOUS {
+			set VARNAME `fn_get_ENV("$VARNAME")`
+			set VARNAME %s // INIT_VAL // can add Q1 // 
+		}
+
+	EIGHT_t VARNAME[ 256 ] // PAGE of [u8] of EIGHT_t u64_WORD // u32_PAIR
+
+	EIGHT _t {
+		u8 BYTES[8] // VAL == u64_WORD // WORD[1]
+		u8 BYTES[8] // VAL == u32_WORD u32_WORD // PAIR[2] 
+		u8 BYTES[8] // VAL == u16_WORD u16_WORD u16_WORD u16_WORD //
+		// QUAD[4]
+		u8 BYTES[8] // VAL == u8 FRAG[8] // u8 MENT[u3] // "'EIGHT'"
+
+	}
+
+	{ %s VARNAME } TYPENAME = SUBLEX '%s_t' ${VARNAME}
+	{ %s VARNAME } TYPENAME = ${VARNAME}_t
+	 -AUTO-
+	 	TYPENAME = FILTER SETTING_SCRIPT ARGS
+	 	TYPENAME = "'%s_t' ${VARNAME}"
+		FILTER += check that CIDENT is happy with LEX used
+		FILTER += check VARNAME can be EXPR CODE ARGS
+		FILTER += BENCH A VAR IS BEING SET NEAR HERE # see CODE_POINT
+		FILTER += BENCH found "VARNAME" and "CIDENT" and "%s_t"
+		FILTER += BENCH found "%s_t" and "'%s_t'" # AUTO Q1 #
+		ON_LOAD ON_FIRST_USE // ROM generates this into loadable data files
+		// CT can generate that data into memory or tables or files
+		// union { ... HERE ... }
+		// u8 u64_abcdefgh_byte[8] 
+		// u64 u64_abcdefgh_lohi
+		// u16 u16_AB
+		// u16 u16_CD
+		// u16 u16_EF
+		// u16 u16_GH
+		// u32_AB_CD
+		// u32_EF_GH
+		// u16 BYTES_AB_CD_EF_GH[4] // AUTO 0123 AB CD EF GH // VIEW
+		// u48 u48_payload
+
+OPTIONS
+	u16_u48_t AB_OFFS
+
+	class u16_u48_t : u64_WORD_t // u64_SUBLEX_BITFIELDS
+	 BYTE_A
+	 BYTE_B
+	 WORD_8_BYTES { u8 bytes_in_stored_WORD [8] }
+	 LOHI_DIALECT HERE # AUTO presume it is always LOHI intentionally
+	 LOHI_PREFIX # VIEW gives it as a freebie "LOHI_" ON OFF VIEW
+	 LOHI_AB 
+	 LOHI_CD
+	 LOHI_EF
+	 LOHI_GH
+	 LOHI_ABCD
+	 LOHI_ABCD_EFGH
+	 LOHI_EFGH		// CT will use u32 & u64_WORD_HALF { u32_ABCD }
+	 LOHI_CD_EFGH
+	};
+	 WORD_PLUS // UP_LEVEL { array of u64_WORD ; // u64_ }
+	 WORD_PLUS // ITEM_uses_argv[argc] array of u64_WORDS
+	 WORD_PLUS // ITEM_uses_buff[offs] array of u8_bytes
+	 WORDS
+	 bytes
+
+	 u48_payload = u64_WORD >> 16; // DROP low 16 bits u16_AB
+
+ DIALECT
+ 	u32_ABCD -like- u32_EFGH -via- get u32 from BASE OFFS IDX ADJ 
+	get PICK u64 u32 u16 u8
+	set PICK i64 i32 i16 i8
+	ref BYTE_B // GETTER GET SET PLUS REF // no PLUS
+	CPU32 in MEM64 cache rows of u32[2]
+	STRUCT classname : basetype # uses WORDS[1] or WORDS[512] // 4K PAGE
+	BYTES i8 array[ 4096 ] # classname MMAP_PAGE 4096 == 4096 // OPTION 1024 //
+	UNION single_word_bitfields
+	UNION multi_words_bitfields
+	DIAG u64_WORD BITFIELDS('"%s"')
+	DIAG u64_WORD BITFIELDS("'%s'")
+	DIAG u64_WORD BITFIELDS("%s")
+	DIAG u64_WORD BITFIELDS('%s')
+	DIAG u64_WORD BITFIELDS( %s )
+	DIAG u64_WORD BITFIELDS(%s)
+	VIEW PICK print_as ... above ...
+	CODE PICK add_FILTER_that_checks_if_special_quoting_is_needed 
+	+SIDE_EFFECT+ changes CHECK_VARNAME_is_plain_CIDENT 
+
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

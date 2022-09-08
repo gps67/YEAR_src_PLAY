@@ -1,0 +1,152 @@
+2022-09-05 Sep Mon 03:50 # 49 #  tcl_scrubber/tcl_scrubber.txt
+
+	remove ALL tcl_dependencies
+	build system on tcl platform
+	build system on non_tcl platform
+	missing features // wont link // fails when uses // short_circuited
+
+	secure TCL box 
+
+	 secure script
+
+	 remove ALL commands
+	 add FEW
+
+	 	if
+		set
+		expr
+		format
+	
+	 NB should if use EB_tcl or EB_udef
+
+	 	IF EB SN {STAR ELIF EB SN} {OPT ELSE} {OPT SN}
+
+			warn if ELSE used and SN not
+
+		EB (C_STYLE)
+
+			yet another syntax
+			C is not WORD orientated
+			VAR_STYLE C
+
+	 add CORE
+
+	 	FUNC
+		DECL
+		CXX
+	
+	 add API
+
+	 	ARGV[0] = CMD = TYPENAME // %s_t VARNAME
+		ARGV[1] = OPCODE // eg DECL_VAR
+		ARGV[2] = cident VARNAME("VAR") // CTOR SYNTAX 
+
+		CTOR is a problem because is should be optimised away
+		CTOR is a problem because stack call_call_call TYPE_TREE
+		CTOR can RUN and RECORD use of (invoked_call_using_data)
+		CTOR can load_pre_GEN_INIT_VALS
+		DLL can have them in MMAP_RO Module_INIT_DATA
+
+		CALL is ARGV 
+		CALL is ARGV whare ARGV[0] == "OPCODE" // ARGV_TAIL 
+	
+	 reduced DIALECT 
+
+	 	CXX has VIEW that compiles and links
+		build is GEN_DLL
+		test is UNIT_TEST_EDIT_RETEST
+		test is GEN_Module_AUTO_TEST
+	
+	 AUTO_TEST
+
+	 	GEN Module
+		GEN AUTO_TEST
+
+			LIST += LIST of all ITEM TESTS
+			TICK += LIST and QnA FIELD DATA
+
+				TEST must PASS
+
+			IF += TEST_has_FAILED
+
+				TELL SESS TEST // FAIL META CURR STO
+				allow SESS to continue
+				attempt to WRAP result with STUB_PROXY
+				GETTER - when uncalled - does not have to exist
+				compiler will check and enforce this rule
+				REPORT fail to SESS
+
+					using_UNSET_variable
+
+					# or badly UNSET 
+					# or failed write over rom
+
+			IF += TEST_HAS_PASSED
+
+				cache in VERSION_STATE_AT_CT
+				vouch WELL_TEST_DID_PASS_WAY_AT_FACTORY
+
+	LINK_LOAD_TEST
+
+		reduced functionality without TCL
+		SCRIPT --> PSG_Parsing --> CODE_TREE 
+		USAGE --> GEN NO_TCL 
+		SCRIPT --> RT --> CALL_ARGV
+		SCRIPT --> RT --> SPEC_DECL
+		SCRIPT --> RT --> POOL_DATA
+		SCRIPT --> RT --> SESS_VARS
+	
+	SESS_VARS
+
+		can have CONST as well as VARS, simply a switch, 
+		%s_t * %s = INIT_VAL // 
+		// GEN look in template for closing SEMI_COLON
+		// GEN cache // CODE_POINT already KNOW (above)
+		/* %s UDEF_STRUCT */
+		on_OPEN create UDEF_STRUCT // struct UDEF_STRUCT += FIELD { DECL }}
+	
+	SPEC
+
+		UDEF structs get GEN_api
+
+			LOHI sensitive to data being loaded lohi from memory
+			LOHI can reroute via SWAPB into HILO
+			REMOTE_DATA has LOCAL_CACHE_REPRESENTATIVE_OBJ
+			with care local var tracks remote correctly
+			optimistic transaction - when it all works ... else
+
+		UDEF_STRUCT %s {
+
+			// BIND %s cident
+			// BIND cident STRUCT_NAME
+			// BIND cident EXPR cident_%s
+			// AUTO FILTER "%s" // %s_LIST N == 1 //
+			// AUTO FILTER "%s_%s" // %s_LIST N == 2 //
+			// AUTO FILTER "%s_%s" // %s_LIST N == N //
+			// PARSER has option to make "lhs_rhs" well_known_items
+			// heuristic // GUESS_MATCH //
+
+			ADD_FIELD
+
+				FIELD += field_name
+				FIELD += field_spec_name
+				FIELD += field_type_name
+				FIELD += field_init_val
+				FIELD += field_init_vals
+
+				STEP NAME_t requires
+				 
+
+		}
+
+	REQUIRES
+
+		NO_TCL version alongside TCL version
+		WAX_11 
+		WIN_32
+		SVGA_32 // RGBA
+
+	 
+
+	
+

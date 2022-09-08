@@ -11,6 +11,9 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/libexpat/libexpat
+git://git.savannah.nongnu.org/scew.git
+https://github.com/academind/aws-demos.git
 https://github.com/VCVRack/Rack
 https://github.com/VCVRack/library
 https://github.com/VCVRack/rack-plugin-toolchain

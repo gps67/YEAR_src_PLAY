@@ -1,0 +1,5 @@
+RGBA_Pixmap.txt
+
+	RGBA is u8[4]
+	RGBA ALTERNATE u16[4]
+	RGBA ALTERNATE RGBA -- same as libpng libturbojpeg.so.0

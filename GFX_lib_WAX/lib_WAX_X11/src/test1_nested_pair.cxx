@@ -37,35 +37,25 @@ const char * colour_spec_blue  = "#0000FF";
 	It has a drawing GC
 
 */
-class X_test_box : public X_Window
+class X_test_box_Sub : public X_Window_SubFrame
 {
  public:
 	X_Draw draw_green;
 
 	A_Rectangle xywh1;	// the inner frame // eg this is border
 
-	/*!
-		constructor onto a DISPLAY
-
-	  X_test_box(
-		const char * _name,
-		X_Display & disp_,	X_DISPLAY can have VTBL X_Panels
-		A_Rectangle xywh,	ZERO_is_DISPLAY_SCREEN_TOP_LEFT_ZERO
-		int border
-	  )
-
-	*/
-	X_test_box( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
-	: X_Window( _name, disp_, xywh, border )
+	X_test_box_Sub( const char * _name, X_Window * parent, A_Rectangle xywh, int border )
+	: X_Window_SubFrame( parent, parent->disp, /* window */ 0, _name )
 	, draw_green( *this )
-	, xywh1( xywh )
+	, xywh1( 0,0, xywh.width, xywh.height )
 	{
 		xywh1.reduce2(1);
-		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
-		draw_green.set_fg( green_col );
+		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_blue );
+		draw_green.set_fg( blue_col );
 	}
 
 	/*!
+		TODO was CMNT on CTOR
 		constructor inside a FRAME
 
 	  X_test_box(
@@ -94,15 +84,6 @@ class X_test_box : public X_Window
 	   // REGEN SUBLEX can ANNOTATE up machine settings from comments
 	  )
 	*/
-	X_test_box( const char * _name, X_Window * parent, A_Rectangle xywh, int border )
-	: X_Window( _name, parent, xywh, border )
-	, draw_green( *this )
-	, xywh1( 0,0, xywh.width, xywh.height )
-	{
-		xywh1.reduce2(1);
-		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_blue );
-		draw_green.set_fg( blue_col );
-	}
 
 /*
  CODE REQUIRED
@@ -200,6 +181,32 @@ class X_test_box : public X_Window
 	}
 };
 
+class X_test_box_Top : public X_Window_Top_Level
+{
+ public:
+ 	X_test_box_Sub sub_window;
+
+
+	/*!
+		constructor onto a DISPLAY
+	  X_test_box(
+		const char * _name,
+		X_Display & disp_,	X_DISPLAY can have VTBL X_Panels
+		A_Rectangle xywh,	ZERO_is_DISPLAY_SCREEN_TOP_LEFT_ZERO
+		int border
+	  )
+	*/
+	X_test_box_Top( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
+	: X_Window_Top_Level( _name, disp_, xywh, border )
+	, sub_window( "sub_window", this, xyxh, border )
+	{
+		sub_window.xywh1.reduce2(1);
+		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
+		sub_window.draw_green.set_fg( green_col );
+	}
+
+};
+
 bool main_loop_once( X_Display & disp, XEvent & report )
 {
 	disp.process_event( report );
@@ -221,7 +228,7 @@ int main() {
 	A_Rectangle xywh3( 30, 250, 150, 150 );
 
 	// create a window on the display
-	X_test_box win1( "win1", disp, xywh1, 0 );
+	X_test_box_Top win1( "win1", disp, xywh1, 0 );
 
 //	// create a window within the window
 // 	X_test_box win2( "win2", & win1, xywh2, 0 );

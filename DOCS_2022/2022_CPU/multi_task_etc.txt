@@ -1,0 +1,248 @@
+Single Task
+	A CPU works on the single taks,
+	running instructions one by one,
+	until finished.
+
+Interrupts
+	Extra circuits around the CPU, one detects something,
+	eg a key pressed, a UART got a byte, the network card got a packet.
+
+	The support chips identify the origin of the signal,
+	and generate an interrupt, with a pulse on the interrupt pin.
+
+	The CPU can ignore interrupts, but it usually responds immediately.
+	The current (single task) is paused, either before or after the
+	current instruction. So that it can be rerun, or picked up after.
+
+	The PC = IP = address of the next instruction, to return to,
+	is pushed onto the stack, usually the same stack as the single task,
+	and the PC=IP is set to the address of the code of the interrupt
+	handler.
+
+	The CPU also goes into PRIVILEDGED mode, where the OS
+	can control the CPU MMU etc (when the user code cannot).
+	NB UNIX MMAP does this, by making a request, from user code,
+	to kernel, checking it is not a bad idea, then the kernel does
+	it, and returns. That is usually done through a syscall() 
+	which pivots on a SWI = software interrupt.
+
+	Some CPU designs, permit the user to not have a stack,
+	and it is never used, instead the CPU switches to a second
+	bank of registers, with a second stack pointer, which is used.
+	The kernel setup those registers before running the user code.
+
+	The interrupt handler, then saves the USER registers,
+	possibly on the users stack, so that it can resume later,
+	and claims some (or all) registers for itself. It then
+	asks the support circuitry, which sub-circuit generated
+	the interrupt, and calls the relevent device driver.
+
+	That then runs, handles the interrupt, queues any consequential
+	work, and returns to the main user task.
+
+	The registers are restored from where they were saved,
+	(maybe a stack, maybe an area per-process, for exactly this),
+	the users stack is restored, and the CPU returns from interrupt,
+	losing it's elevated run-level supervisor status, and picks up
+	at the next instruction (possibly resuming a restartable loop
+	instruction, engineers have to think design CPU's to make sense).
+
+	Some interrupts are more important than others, and you can have
+	levels of priority, and mask off the level you dont want to be
+	disturbed by. Well the OS can, user code maybe.
+
+Device Queue Interrupt
+
+	Suppose you have an idle network card.
+
+	To send a fully prepared packet, you write the packet to
+	the cards memory, and invoke the card to send it.
+
+	Cards have buffers, which can hold a few packets,
+	and it will queue them for the OS in hardware.
+
+	If you have a lot of packets to send, you can have your own
+	off-card queue, upto some sensible limit. That would allow your
+	process to fire off a bunck of packets and continue to work.
+
+	If the queues get full, the process will need to be stopped and wait
+	for space.
+
+	When the network card has sent a packet, (or a few, using high tide 
+	low-tide markers), it can generate a hardware interrupt.
+
+	The relevent interrupt handler then takes a packet or two from the
+	OS queue, and puts them on the card queue. 
+
+	It can then recompute process prioirities, and switch, or resume
+	the interrupted task, after that brief interrupt.
+
+	Lots of hardware work like this. Old fashioned UARTS had a hardware
+	queue of 16 bytes, and never ran dry, as they refilled at low-tide,
+	just in time to drive the serial line without gaps.
+
+	Disk drives, UARTS, network cards, all do variations of this.
+	Often there is a "plugin-card-interface" such as PCI, which 
+	makes for consistent stories, over completely different devices.
+
+Device Input or Output
+
+	If the computers task is to output sound,
+	almost live but with a slight latency delay,
+	there will be a specific stream of data,
+	eg 44.1 kHz, doubled for stereo, more for surround.
+
+	Any break in the stream, will sound awful,
+	so a small queue is used to guarantee no gaps,
+	but this does add a small delay.
+
+	Feeding that queue, is another queue, then an app,
+	all on tender-hooks, to do their jobs, of providing
+	data ASAP, and of requesting data as soon as.
+
+	Every interrupt costs, with the code that switches,
+	and the code that decides what to do. For that reason,
+	it helps to process 5 packets at once, with a slightly
+	larger delay, and some sort of LOW-TIDE marker, which
+	only generates an interrupt, when the buffer approaches
+	empty, not at every possible occasion.
+
+	Not all devices "spoil" when there are gaps,
+	but if they get data-hungry, throughput is reduced.
+
+	Input devices, can also be buffered, and when the queue runs dry,
+	it is the app that must wait for it, (or be happy without it).
+
+	So for example, a file write can be queued, to be processed soon,
+	but a file read, must be processed ASAP, if the queue buffer is empty,
+	because the app cannot proceed without it. Look ahead buffering
+	on files can help this, but only so much.
+
+
+Multi-Tasking
+
+	You can have a hardware clock circuit, generate an interrupt at 100Hz
+	(well that's the old fashioned UNIX way, the new way is no-ticks).
+	A users running process can be interrupted 100 times a second,
+
+	The OS can then recompute the processes priority, and decide to
+	give the CPU time to a different process.
+
+	One process gets suspended (just like interrupts, but more so),
+	and the other process gets resumed.
+
+	Like a cinema, of 24 frames per second, you can make a computer to
+	appear to multi-task perfectly smoothly. 
+
+	Obviously if you increase the number of active processes,
+	and what they have to do, the computer can get overloaded,
+	and will soon appear to come to a grinding halt.
+
+	There is no such thing as "overload", only 100% active,
+	but if that is not enough for you, that is overload.
+
+Multi-tasking idle
+
+	When you write data, to a disk, to a printer, to a network card,
+	you can usually queue it.
+
+	When you "grep-ing" through a file, you are reading data. If there is
+	no data in the queue/buffer, you must wait for the device.
+
+	In that case, grep makes a read() which is a blocking read().
+	The read request is started, but the process is blocked until
+	that data is available.
+
+	The kernel is sympathetic, and appreciates that the allocated CPU
+	time has not been used, so gives the process a slightly higher
+	position in the process scheduling queues.
+
+	The blocked process is "frozen", just like an interrupt,
+	just like pre-emptive multi-tasking (that's the 100Hz tick),
+	and a second task is resumed. eg you may be running a low-priority
+	task to recompute Pi, or to do crypto-mining. It runs.
+
+	When the disk rotates, (7200 rpm is 120 rps, so average 1/240'th
+	of a second), and the head reads the data, and the SCSI bus
+	transfers the block, an interrupt is generated.
+
+	The kernel figures out the packet is for the data hungry process,
+	which has unused quota of CPU time, so it schedules that task.
+
+Frozen blocked chaos.
+
+	Note that the other process, was "pre-emtively" frozen. It was not 
+	at a convenient moment "waiting for data", it was mid-flow,
+	interrupted between two CPU instructions.
+
+	If that process was recomputing Pi, it is just a delay,
+	it does not matter, but for some apps, that might have
+	come at a strange moment.
+
+	A process can obtain a lock, do some work then release a lock.
+	If the interrupt happened, mid way, the lock would remain locked,
+	until multi-tasking comes round again.
+
+	Programmers try to think about lock consistency,
+	and about unexpected other events on the system,
+	but it isn't easy, bugs happen, and if they are only
+	found when remarkable timing cause them, it isn't easy.
+
+	It is worse with multi-core CPU's
+
+Multi-CPU multi-tasking and threading
+
+	An extra CPU core is an extra independent CPU, on the same silicon,
+	sharing the same cache, and sharing the same memory.
+
+	Each core can run an independent process, or the kernel.
+	All in parallel. 4 cores can run 4 tasks, simultaneously.
+
+	Multi-tasking (as above) increases that, just running them all faster.
+	There is some clever optimisation that can be done by the OS
+	kernel boffins, attempting the best choice for an unknown usage.
+
+	If you have an idle laptop, with 3 running tasks, and 4 cores,
+	the fourth core might be running MySQL, or the kernel, and
+	three apps NEVER get interrupted (as if!).
+
+	Multi-tasking is now simultaneous. RTFM locks and semaphores.
+
+	Threading is a form of multi-tasking, and can also use
+	multiple CPU cores, or can use time-splicing-multitasking.
+
+Threading
+	
+	UNIX and Linux allocate one process per thread.
+
+	All of those process-threads share the same MMAP memory,
+	for the CODE and the DATA. When one CPU_CORE modifies memory,
+	it is immediately in the memory that a second thread might be reading.
+
+	One parent process, can start multiple threads.
+	Linux sorts out "same process" ideas, like shared fd's,
+	and the U_AREA being separate but shared.
+
+	You can run multi-threaded code on 1 CPU_CORE,
+	and it will task-switch, almost the same,
+	but those pesky simultaneous bugs might appear differently.
+
+	One approach, might be to build your apps queues of tasks to do,
+	and then start off N threads for N+1 CPU_CORES (leave 1 or not?).
+	Each thread goes to the queue of queues, takes 1 app-task, and
+	works on it, until completed.
+
+	There is some advantage, to keep the CORE cache memory, focussed
+	on one task type, so that when it re-runs the same code, or
+	accesses the same data, it is already in the cache.
+
+	Simultaneous modification of global variables, within the same
+	application, by multiple cores, is now a serious issue.
+
+	It is still possible to only have a few locks, and atomic things,
+	as long as huge zones of code, or data, can only be accessed by one
+	thread. EG you could put all GUI calls on one queue, only handled by
+	one thread. EG if you can put all Python operations on one queue,
+	you dont need to worry about IT being multi-thread-safe.
+	If all the threads are calling Pythom, then IT must be ultra thread-safe.
+

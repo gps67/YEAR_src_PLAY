@@ -104,7 +104,8 @@ int main_one() {
 ///	X_test_box win3( "win3", & win1, xywh3, 0 );
 
 //	// create a window within the window
-	X_test_box win3( "win3", & win1, xywh3, 0 );
+// LURK // not a subwindow
+	X_test_box win3( "win3", disp, xywh3, 0 );
 
 	win1.map();
 //	win2.map();

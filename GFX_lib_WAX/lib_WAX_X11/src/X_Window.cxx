@@ -15,6 +15,17 @@ X_Window::
 	disp->del( this );
 }
 
+bool
+X_Window::
+check_window() // true == OK
+{
+	if(!drawable) {
+		WARN("ZERO window in '%s'", name );
+		return false;
+	}
+	return true;
+}
+
 /*!
 	NULL_parent
 	child classes use this to create the object
@@ -34,6 +45,7 @@ X_Window(
 {
 	set_name( _name );
 	disp->add( this );
+	get_window(); // check
 }
 
 /*!
@@ -61,6 +73,7 @@ X_Window_Top_Level::X_Window_Top_Level(
 //	xft_draw.Xft_DrawCreate( *this );
 	disp->add( this );
 	INFO("CTOR_ONE");
+	INFO( "window = %ld", get_window() );
 	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
 		FAIL_FAILED();
 }
@@ -111,10 +124,9 @@ X_Window::X_Window(
 
 	disp->add( this );
 	map();
+	INFO( "window = %ld", get_window() );
 	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
 		FAIL_FAILED();
-
-	printf( "window = %ld\n", get_window() );
 }
 
 void X_Window:: XSelectInput_mask_one()
@@ -202,5 +214,5 @@ bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 	// subscribe to be told when WM_ clicks on X button
 	XSetWMProtocols(display, get_window(), & X_Display_One:: atom_wm_delete_window, 1);
 
-	return FAIL("TODO");
+	return INFO("LURK TODO");
 }

@@ -8,6 +8,13 @@ grapheme
 	is single code_point
 	is multiple code point first + modifier (madness)
 
+BYTE_8859_latin
+	same as unicode, except U is not BYTE
+
+BYTE_8859_cyrillic
+	not at all like unicode, write U = U_from_byte[ b ]
+	then write U to UTF8
+
 UTF32
 
 	32 bit word = U_val 
@@ -18,5 +25,19 @@ UTF8
 
 	overlaps ASCII
 	vary width n_bytes
+
+	can go through most text as-is, and work
+	except for glyph count != byte count
+
+	7 bits go though
+	8 bits 
+
+	0---
+	0654 3210	0654 3210
+
+	1---
+	1654 3210	1100 0016 1054 3210
+	1gfe dcba	1100 001g 10fe dcba
+
 
 

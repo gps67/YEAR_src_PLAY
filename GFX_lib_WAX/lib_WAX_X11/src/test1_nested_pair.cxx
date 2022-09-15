@@ -185,6 +185,7 @@ class X_test_box_Top : public X_Window_Top_Level
 {
  public:
  	X_test_box_Sub sub_window;
+	X_Draw draw_green;
 
 
 	/*!
@@ -198,11 +199,81 @@ class X_test_box_Top : public X_Window_Top_Level
 	*/
 	X_test_box_Top( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, sub_window( "sub_window", this, xyxh, border )
+	, sub_window( "sub_window", this, xywh, border )
+	, draw_green( *this )
 	{
 		sub_window.xywh1.reduce2(1);
 		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
 		sub_window.draw_green.set_fg( green_col );
+		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_blue );
+		draw_green.set_fg( blue_col );
+	}
+
+// NEEDS // virtual void WAX::X_Window::event_expose(WAX::A_Rectangle&);
+
+	// DUPLICATE CODE
+	void INFO_report( A_Rectangle & xywh ) {
+		e_print("'%s' (%d,%d)+(%d,%d) EA_this = %p\n",
+		 name,
+		 xywh.x,
+		 xywh.y,
+		 xywh.width,
+		 xywh.height,
+		 this
+		);
+		// e_print( -ditto- );
+		// a second rectangle inside the first
+	}
+
+	void event_expose( A_Rectangle & xywh1 )
+	{
+		// this is DUPLICATE CODE //
+		INFO_report(xywh1);
+
+		A_Rectangle xywh2 = xywh1;
+		xywh2.reduce4( 50 );
+		// a point inside, top left ish
+		A_Point xy3( xywh2.x+10, xywh2.y+10 );
+		const char * str = "abc\ndef";
+		draw_green.XDrawRectangle( xywh1 );
+		draw_green.XDrawRectangle( xywh2 );
+		draw_green.XDrawString( xy3, str );
+		draw_green.XDrawLine(
+			xywh1.x,
+			xywh1.y,
+			xywh1.x_last(),
+			xywh1.y_last()
+		);
+		draw_green.XDrawLine(
+			xywh1.x_last(),
+			xywh1.y,
+			xywh1.x,
+			xywh1.y_last()
+		);
+
+		/*
+			this shows a stupidity with X11 XDrawRectangle
+			the number of pixels drawn is width+1 height+1
+			-1	unisgned means 64K wide
+			0	*
+			1	**
+			2	*_*
+			3	*__*
+		*/
+
+		int x= 31;
+
+		A_Rectangle xywh7( x+=5, 30, 0, 0 );
+		draw_green.XDrawRectangle( xywh7 );
+
+		A_Rectangle xywh5( x+=5, 30, 1, 1 );
+		draw_green.XDrawRectangle( xywh5 );
+
+		A_Rectangle xywh4( x+=5, 30, 2, 2 );
+		draw_green.XDrawRectangle( xywh4 );
+
+		A_Rectangle xywh6( x+=5, 30, 3, 3 );
+		draw_green.XDrawRectangle( xywh6 );
 	}
 
 };
@@ -222,6 +293,8 @@ int main() {
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
 
+	INFO("This is not a nested pair - as code duplicated to nested pair");
+
 	// pick a rectangle
 	A_Rectangle xywh1( 0, 0, 500, 500 );
 //	A_Rectangle xywh2( 100, 10, 150, 150 );
@@ -235,7 +308,7 @@ int main() {
 ///	X_test_box win3( "win3", & win1, xywh3, 0 );
 
 //	// create a window within the window
-	X_test_box win3( "win3", & win1, xywh3, 0 );
+	X_test_box_Sub win3( "win3", & win1, xywh3, 0 );
 
 	win1.map();
 // NO 	win3.map(); // win1 is a TOP LEVEL 3 is a sub_level

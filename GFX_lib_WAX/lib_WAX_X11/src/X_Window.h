@@ -59,7 +59,12 @@ struct X_Window : public X_Drawable_Surface
 	const char * name; // debugging name // free never called
 
 //	Drawable get_drawable() { return drawable; } // in BASE_t
-	Window get_window() { return drawable; } // cast drawable to Window
+	Window get_window_0() { return drawable; } // cast drawable to Window
+	Window get_window() {
+		check_window();
+		return drawable;
+	} 
+	bool check_window(); // true == OK
 	void set_window( Window _window ) { drawable = _window; }
 
 #if 1

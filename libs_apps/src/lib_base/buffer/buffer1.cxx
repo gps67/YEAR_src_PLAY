@@ -65,18 +65,19 @@ bool buffer1::putc_into_utf8_slower( int ch )
 	if(ch<=0)
 	{
 		if(!ch) return putc_NUL_into_utf8();
-		if( ch >= -128 )
+		// somehow unicode got sign extended
+		if( ch >= -128 ) {
+			WARN("i8 0x%02X got into i32", ch );
 			return putc_into_utf8_slower( ch & 0xFF );
-		{
-			e_print("ERROR putc_into_utf8_slower(%d)\n", ch );
-			return false;
 		}
 		
+		FAIL("ERROR ch is -ve %d", ch );
+		return false;
 	}
 	if( ch < 0x80 )
 	{
-		return put_byte( ch );
 		// ASCII (not iso646) presumed
+		return put_byte( ch );
 	}
 	if( ch < 0x100 ) // within the BYTE range
 	{
@@ -87,6 +88,7 @@ bool buffer1::putc_into_utf8_slower( int ch )
 	if( ch < 0x800 ) // 110. .... + 10.. .... = 11 bits
 	{
 		if(0) put_byte('U');
+		// 0x3F is 6 bit mask 0011 1111
 		uchar c2 = 0x80 + (ch & 0x3F); ch = ch >> 6;
 		uchar c1 = 0xC0 + (ch);
 		return put_2_bytes( c1, c2 );
@@ -184,14 +186,15 @@ bool buffer1::vprint( bool conv_8859_to_utf8, const char * fmt, va_list args )
 */
 bool buffer1::vprint_8859_to_utf8( const char * fmt, va_list args )
 {
-	static buffer1 converter;
+	// static // -vs- thread safe
+	buffer1 converter;
 	if(!converter.vprint( fmt, args )) return false;
 	if( !put_nn_bytes_8859_to_utf8( converter.nbytes_used, converter.buff ))
 	{
-		converter.clear();
-		return false;
+		// converter.clear();
+		return FAIL_FAILED();
 	}
-	converter.clear();
+	// converter.clear();
 	return true;
 }
 
@@ -279,12 +282,12 @@ man sprintf:
 bool buffer1:: trim_leading_blanks()
 {
 //	gdb_invoke();
-	if(!nbytes_used) return true;
+	if(!nbytes_used) return false; // not found
 	p0p2 zone( buff, nbytes_used );
 	zone.trim_leading_blanks();
-	if(zone.p0 == buff) return true;
+	if(zone.p0 == buff) return false; // not found
 	del_copy_down( zone.p0 );
-	return true;
+	return true; // found
 }
 
 bool buffer1::trim_trailing_eoln()
@@ -344,9 +347,10 @@ bool buffer1::trim_trailing_blanks()
 
 bool buffer1:: trim_leading_and_trailing_blanks()
 {
-	if(!trim_trailing_blanks()) return false;
-	if(!trim_leading_blanks()) return false;
-	return true;
+	bool found = false;
+	if(trim_trailing_blanks()) found = true;
+	if(trim_leading_blanks()) found = true;
+	return found;
 }
 
 bool buffer1::trim_trailing_gaps()

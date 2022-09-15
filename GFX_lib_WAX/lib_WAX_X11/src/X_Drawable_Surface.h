@@ -69,6 +69,7 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	*/
 	GC CreateGC()
 	{
+		if(!drawable) WARN("ZERO drawable");
 		unsigned long valuemask = 0;
 		XGCValues * values = NULL;
 		return ::XCreateGC( display, drawable, valuemask, values );

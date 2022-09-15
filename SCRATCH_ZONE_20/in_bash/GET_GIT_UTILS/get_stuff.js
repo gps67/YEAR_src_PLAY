@@ -11,6 +11,9 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/google/oboe
+https://github.com/googlesamples/android-ndk
+https://github.com/joaocarvalhoopen/How_to_learn_modern_Rust
 https://github.com/libexpat/libexpat
 git://git.savannah.nongnu.org/scew.git
 https://github.com/academind/aws-demos.git

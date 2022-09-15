@@ -85,9 +85,8 @@ class X_test_box : public X_Window_Top_Level
 	   // REGEN SUBLEX can ANNOTATE up machine settings from comments
 	   // REGEN SUBLEX can ANNOTATE up machine settings from comments
 	  )
-	*/
-	X_test_box( const char * _name, X_Window * parent, A_Rectangle xywh, int border )
-	: X_Window_Top_Level( _name, parent, xywh, border )
+	X_test_box( const char * _name, X_Display & _disp, A_Rectangle xywh, int border )
+	: X_Window_Top_Level( _name, _disp, xywh, border )
 	, draw_green( *this )
 	, xywh1( 0,0, xywh.width, xywh.height )
 	{
@@ -95,6 +94,7 @@ class X_test_box : public X_Window_Top_Level
 		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_blue );
 		draw_green.set_fg( blue_col );
 	}
+	*/
 
 /*
  CODE REQUIRED

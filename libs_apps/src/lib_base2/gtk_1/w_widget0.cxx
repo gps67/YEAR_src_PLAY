@@ -287,7 +287,7 @@ void w_widget0::event_size_request( GtkRequisition *requisition )
 */
 w_widget0::w_widget0( GtkWidget * w1 )
 {
-	DEBUG_print_stack_trace();
+	DEBUG_print_stack();
 	w_set( w1 );
 }
 

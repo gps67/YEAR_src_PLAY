@@ -184,7 +184,38 @@ class X_test_box_Sub : public X_Window_SubFrame
 class X_test_box_Top : public X_Window_Top_Level
 {
  public:
+
+ 	// PANEL = sub_window {
+	// }; // %s == subwindow // PSG_mk_var; // mk_var_in_API_csr // csr_var //
  	X_test_box_Sub sub_window;
+
+	// PSG // DETECTS // MATCH // %s // ITEM_EXPR // SPEC == SPEC
+	// thats how PSG know to mk_var THIS_PANEL 
+	// thats how PSG know to mk_var THIS_PANEL  += { LIST }
+	// PSG CTXT CT RT // api_WAX_PANEL // api_gui //
+
+	// GUI // THIS += window_panel
+	// GUI // THIS += window_paper
+	// GUI // THIS += window_Api // RT this // IDX_t IDX // EXPR_t EXPR;
+	// API // THIS += PSG // this // this_T this // PSG EXPR ITEM EA_t this;
+
+
+	// DRAW THIS API // "this" // this_api_t this_api;
+	// EA_t = u8*PTR; // ALIAS "%s" // ANYSTR "%s" %s ALIASES // LIST[] //
+	// N_t N = 1; // LIST[N] // --PSG-mertges-to-this_EA { EA_t EA }
+	// SCRIPT // STEP += this_LIST_N // N == 1 // ALIAS LIST EA ITEM OBJ STEP
+	// STEP += LOCN { OBJ EA } // PSG EXPR ITEM IDX STO
+	// STO += HEAP_FILE_SEGMENT_RT
+	// STO += RT
+	// RT += THIS_WINDOW_PANEL; // API_EXPORT_cident 
+	// RT { SCRIPT } // EVAL SESS CSR STEP ITEM EXPRS SCRIPT
+	// RT { THIS_WINDOW_PANEL }
+	// RT { PANEL }
+	// RT { PEN } // SUBDIR OF PANEL // LIBR PANEL // HERE // CSR_PEN //
+	// this += draw_green // PEN += draw_green // _draw_ // 
+	// X_Draw THIS_WINDOW_PANEL_t // CT_RT_X11_t CT_RT_X11_t // PANEL_t
+
+
 	X_Draw draw_green;
 
 
@@ -300,6 +331,12 @@ int main() {
 //	A_Rectangle xywh2( 100, 10, 150, 150 );
 	A_Rectangle xywh3( 30, 250, 150, 150 );
 
+	/*
+		TODO - create blank tree of C++ objects
+		SIZE layout
+		FILL tree create windows
+	*/
+
 	// create a window on the display
 	X_test_box_Top win1( "win1", disp, xywh1, 0 );
 
@@ -308,6 +345,7 @@ int main() {
 ///	X_test_box win3( "win3", & win1, xywh3, 0 );
 
 //	// create a window within the window
+	INFO("Creating win3");
 	X_test_box_Sub win3( "win3", & win1, xywh3, 0 );
 
 	win1.map();

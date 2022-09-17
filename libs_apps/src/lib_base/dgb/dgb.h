@@ -76,8 +76,9 @@ typedef void do_ssl_err();
 extern void set_dgb_ssl_err( do_ssl_err * cb );
 
 extern int complain_depth;
-extern void DEBUG_print_stack_trace( int depth = 30, int skip = 1 );
-extern bool FALSE_print_stack_trace( int depth = 30, int skip = 1 );
+// calls dgb_stackback print_backtrace // gets STACK each time //
+extern bool DEBUG_print_stack( int depth = 30, int skip = 1 ); 
+extern bool FALSE_print_stack( int depth = 30, int skip = 1 );
 
 class buffer1;
 extern bool demangle_cpp_symbol( buffer1 & buf, const char * symb );
@@ -175,12 +176,12 @@ extern bool fn_COMPLAIN3( const char * fmt, ... );
 
 #if 0
 // unused ??
-#define DUMP(fmt) (FAIL(fmt)&&FALSE_print_stack_trace(5))
-#define DUMP_1(fmt,one) (FAIL_1(fmt,one)&&FALSE_print_stack_trace(5))
-#define DUMP_2(fmt,one,two) (FAIL_2(fmt,one,two)&&FALSE_print_stack_trace(5))
-#define DUMP_3(fmt,one,two,three) (FAIL_3(fmt,one,two,three)&&FALSE_print_stack_trace(5))
-#define DUMP_4(fmt,one,two,three,four) (FAIL_4(fmt,one,two,three,four)&&FALSE_print_stack_trace(5))
-#define DUMP_5(fmt,one,two,three,four,five) (FAIL_5(fmt,one,two,three,four,five)&&FALSE_print_stack_trace(5))
+#define DUMP(fmt) (FAIL(fmt)&&FALSE_print_stack(5))
+#define DUMP_1(fmt,one) (FAIL_1(fmt,one)&&FALSE_print_stack(5))
+#define DUMP_2(fmt,one,two) (FAIL_2(fmt,one,two)&&FALSE_print_stack(5))
+#define DUMP_3(fmt,one,two,three) (FAIL_3(fmt,one,two,three)&&FALSE_print_stack(5))
+#define DUMP_4(fmt,one,two,three,four) (FAIL_4(fmt,one,two,three,four)&&FALSE_print_stack(5))
+#define DUMP_5(fmt,one,two,three,four,five) (FAIL_5(fmt,one,two,three,four,five)&&FALSE_print_stack(5))
 #endif
 
 

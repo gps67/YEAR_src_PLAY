@@ -10,7 +10,14 @@ namespace WAX {
 
 
 /*!
+	THIS_WINDOW_PANEL += X_Draw // mk_var _on_mk_PANEL(ARGS) 
+	ARGS += X_Draw
+
 	X_Draw is the basic drawing context (with GC)
+
+		X_Draw += PANEL // ALIAS -SETTING- HERE %s { PANEL_t PANEL }
+	
+	PANEL += X11_SESS X11_DRAW CSR // CSR does most things // by association
 
 	I'm not happy with this layout, as it creates a GC,
 	maybe it should hold a GC created elsewhere.
@@ -22,6 +29,31 @@ namespace WAX {
 	An X_Draw is kind of an X_Drawable += GC += Display
 
 		see X_Drawable_Surface already += Display
+
+	PANEL += X11_SESS X11_DRAW CSR // CSR does most things // by association
+	// by association // MEANS // DOT // CSR // HERE // ITEM // WHEN 
+	// by association // MEANS // DOT // API += POOL of NAME // ANYSTR
+	// ANYSTR_t ANYSTR // CT MATCH { %s == %s } // PSG_EXPR_ITEM_EA
+
+	ALIAS TYPE X_Draw X_Draw_t // FRAME // PANEL // PAGE // BOX // ITEM // DRAW // DRAW //
+
+	X_Draw += PANEL IDX CSR VAR SCRIPTS EXPR 
+	X_Draw += IDX CSR VAR SCRIPT EXPR ITEM EA EA_t
+	X_Draw += DRAW // Draw // 
+	X_Draw += SURFACE // PANEL // DRAW // CODE_MUX sorts this codeline here
+	// THIS = A_BOX // SURFACE ETC // ETC ALIAS // SUBLEX LOOKUP EXPR ARGS PLUS
+	// PLUS XYWH A_BOX PANEL PAGE DIAG ITEM ARGS STO = STO_from_%s // HEAPSo	// THIS_TOP_LEVEL // PANEL // OWNS APP // HOLDS APP // create_by_state mk_var
+	// LEX += SUBLEX_ITEM // VAR_NAME // CT_RT VAR // NAME //
+	// DRAW += PANEL // TYPE_PLUS_LIBR IDX ALIAS EXPR // ARGS // API_ARGS
+	// SCRIPT_PSG += { Panel_t PANEL } // THIS_WINDOW_PANEL ALIAS ANYSTR
+	// ANYSTR cident_VARNAME_dialect ACCENT LEX_ACCENT
+	// ACCENT // BEHAVIOUR // API // API_MODULE // %s // ANYSTR
+	// ^* %s *^ // %s // CSR = "%s" // ANYSTR // AUTO_IDX_GEN( ARGS ) //
+	// ^QUOTE^ // PSG_MATCH _API SUBLEX ^ZONE^ // Q2 { SUBLEX ZONE }
+	// ^LEX_cident^
+	// "LEX_cident" // PSG_OPTION AVAILABLE // AUTO_ALIAS cident:w
+	// CSR + Draw
+
 */
 struct X_Draw
 {

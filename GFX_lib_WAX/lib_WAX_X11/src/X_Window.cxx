@@ -21,6 +21,10 @@ check_window() // true == OK
 {
 	if(!drawable) {
 		WARN("ZERO window in '%s'", name );
+		WARN("WANT_BACKTRACK '%s'", name ); // Q1 Q2 cident SUBLEX //
+		DEBUG_print_stack() ; // (depth,skip) == (30, 1) //
+		// dgb_api // dgb.h // SUBDIR src/lib_base/dgb/ lib_base subdir // dgb.h 
+
 		return false;
 	}
 	return true;
@@ -102,6 +106,7 @@ X_Window::X_Window(
 	set_name( _name ); // _dgb_
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
+	INFO("Calling XCreateSimpleWindow()");
 	Window _window =::XCreateSimpleWindow(
 		display,
 		parent->get_window(),

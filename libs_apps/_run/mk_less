@@ -6,9 +6,9 @@
 	PTN=${PTN:-Error}
 	PTN=${PTN:-VNC}
 	PTN=${PTN:-error}
-	SRCH=
 	SRCH=+/$PTN
 	SRCH="-p $PTN"
+	SRCH=
 	set -x
 	./mk "${@:-$T}" 2>&1 | less $SRCH
 	# ./mk "$@" 2>&1 | less

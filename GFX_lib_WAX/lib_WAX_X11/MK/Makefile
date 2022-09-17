@@ -133,7 +133,7 @@ all: run_test3
 $(OBJS): $(HDRS)
 
 gdb_test1: $(EXEC1)
-	gdb --args ./$(EXEC1)
+	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
 
 gdb_test2: $(EXEC2)
 	INGDB=1 gdb -tui --args ./$(EXEC2) $(test2_font)  P 

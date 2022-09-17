@@ -19,6 +19,7 @@
 # bits
 	OBJS_base1 += CTXT.o		# close to obj
 	OBJS_base1 += dgb.o		# return FAIL("why"); WARN("something");
+	OBJS_base1 += dgb_call_stack.o	# CALL_STACK
 #	OBJS_base1 += dgb.o		# FAIL WARN COMPLAIN TRACE
 	OBJS_base1 += err_int_unix_errno.o # get_name_of_errno(e)
 	OBJS_base1 += err_int.o		# return FAIL("why"); WARN("something");

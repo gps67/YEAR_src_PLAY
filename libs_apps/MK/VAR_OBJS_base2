@@ -1,4 +1,6 @@
 
+# 	LIBS += -lcrypto
+
 	OBJS_base2 += err_int_2.o		# ?? err_int_glib _js _xxx
 
 # draw_pdf

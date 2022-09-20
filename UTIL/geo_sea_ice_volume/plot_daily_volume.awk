@@ -69,8 +69,10 @@ BEGIN {
 #	A365=365*2
 	A365=365*5
 	A365=365*1
-	A365=365*6 # looks like a step down, then exponential decay to V2
 	A365=365*3
+	A365=365*5 # looks like a step down, then exponential decay to V2
+	A365=365*1
+	A365=365*6 # looks like a step down, then exponential decay to V2
 
 	# PICK A365 # LAST one WON #
 

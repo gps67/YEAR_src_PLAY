@@ -72,6 +72,8 @@
 	#   -< $<
 	#   -^ $^
 	#
+	# -rdynamic # helps backtrace get symbols
+	#
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
 	#
 	# NOT # strip $@

@@ -7,7 +7,8 @@
 
 extern bool dgb_demangle_cpp_symbol( buffer1 & buf2, const char * symb );
 extern bool dgb_print_call_stack(FILE *out, int show, int skip );
-extern bool dgb_print_call_stack2(int depth = 30, int skip = 1 );
+extern bool dgb_print_call_stack2(int depth = 30, int skip = 0 );
+extern bool dgb_print_call_stack(); // stdout
 
 extern bool print_call_stack(FILE *out, int show, int skip );
 extern int X_printf( const char * fmt, ... );
@@ -39,9 +40,22 @@ struct dgb_call_stack_t {
 	/*CTOR*/ dgb_call_stack_t();
 	/*DTOR*/ ~dgb_call_stack_t();
 
+	bool print_call_stack_all();
 	bool print_call_stack(FILE *out, int show, int skip );
 	bool stack_get();
 	bool stack_get(const char * stackname );
+
+// './test1_nested_pair.elf(+0x44ce) [0x56065e1b14ce]' 
+// FILENAME ( FUNCNAME + 0xOFFS ) [ 0xADDR ]
+
+	bool parse_stack_string( 
+		const char * line, // 
+		buffer1 & ret_filename,
+		buffer1 & ret_funcname,
+		i64 & ret_offs,
+		i64 & ret_addr
+	);
+
 	static
 	bool demangle_cpp_symbol( buffer1 & buf2, const char * symb ){
 		return dgb_demangle_cpp_symbol( buf2, symb );

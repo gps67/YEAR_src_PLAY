@@ -114,7 +114,7 @@ bool evp_cipher_base::init( const EVP_CIPHER * type )
 		// maybe another route to same DES functionality
 		FAIL("SSL_ERROR MESSAGE ABOVE");
 		INFO("EVP_CIPHER type == '%s'",  EVP_CIPHER_name(type));
-		INFO("EVP_CIPHER desc == '%s'",  EVP_CIPHER_description(type));
+		INFO("EVP_CIPHER desc == '%s'",  EVP_CIPHER_get0_description(type));
 		INFO("0x%p", this ); 
 // DUMPS //
 //		INFO("%s", (STR0) dgb_info_str() ); 

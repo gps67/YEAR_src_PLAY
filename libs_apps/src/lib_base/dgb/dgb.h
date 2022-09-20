@@ -77,8 +77,8 @@ extern void set_dgb_ssl_err( do_ssl_err * cb );
 
 extern int complain_depth;
 // calls dgb_stackback print_backtrace // gets STACK each time //
-extern bool DEBUG_print_stack( int depth = 30, int skip = 1 ); 
-extern bool FALSE_print_stack( int depth = 30, int skip = 1 );
+extern bool DEBUG_print_stack( int depth = 30, int skip = 0 ); 
+extern bool FALSE_print_stack( int depth = 30, int skip = 0 );
 
 class buffer1;
 extern bool demangle_cpp_symbol( buffer1 & buf, const char * symb );

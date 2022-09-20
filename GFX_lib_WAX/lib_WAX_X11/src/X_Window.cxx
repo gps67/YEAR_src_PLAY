@@ -22,7 +22,7 @@ check_window() // true == OK
 	if(!drawable) {
 		WARN("ZERO window in '%s'", name );
 		WARN("WANT_BACKTRACK '%s'", name ); // Q1 Q2 cident SUBLEX //
-		DEBUG_print_stack() ; // (depth,skip) == (30, 1) //
+		DEBUG_print_stack() ; // 
 		// dgb_api // dgb.h // SUBDIR src/lib_base/dgb/ lib_base subdir // dgb.h 
 
 		return false;

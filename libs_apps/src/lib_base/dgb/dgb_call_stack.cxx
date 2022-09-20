@@ -3,6 +3,15 @@
 #include <cxxabi.h>
 #include "dgb_call_stack.h"
 #include "buffer1.h"
+#include "p0p2.h"
+
+bool dgb_print_call_stack()
+{
+	dgb_call_stack_t dgb_call_stack;
+	dgb_call_stack.stack_get("call_stack"); // PRINT CALL STACK
+	dgb_call_stack.print_call_stack_all();
+	return true;
+}
 
 bool print_call_stack(FILE *out, int show, int skip )
 {
@@ -55,6 +64,83 @@ bool dgb_call_stack_t:: stack_get(const char * stackname ) {
 	return FAIL("TODO");
 }
 
+bool dgb_call_stack_t:: print_call_stack_all() {
+	X_printf("inner [0] [%d // stack_depth \n", stack_depth );
+	int show = 100;
+	int skip = 0;
+	return print_call_stack(stderr, show, skip );
+	return true; // RAN_OK
+}
+
+
+bool dgb_call_stack_t:: parse_stack_string( 
+	const char * line_in, // 
+	buffer1 & ret_filename,
+	buffer1 & ret_funcname,
+	i64 & ret_offs,
+	i64 & ret_addr
+) {
+	ret_filename.clear();
+	ret_funcname.clear();
+	ret_offs = -1;
+	ret_addr = -1;
+
+	buffer1 line_rw;
+	line_rw.set( line_in ); // writable buffer
+
+	char * P0 = (char *)line_rw.buff;
+//	char * P2 = line_rw.nbytes_used + P0;
+	char * P;
+
+	P = strchr( P0, '(' );
+	if( !P ) {
+		ret_filename.set( line_in );
+		return FAIL("no '(' in line '%s'", line_in );
+	}
+	*P = NUL;
+	ret_filename.set(P0);	// ^ filename ( func + 0xOFF ) SP [0xADDR]
+
+	P0 = P+1; 
+	P = strchr( P0, '+' );
+	if(!P)
+		return FAIL("no '+' in line '%s'", line_in );
+
+	*P = NUL;
+	if( demangle_cpp_symbol( ret_funcname, P0 ) ) {
+		// name = (char *)(STR0) name_buf; // use before free
+	} else {
+		ret_funcname = P0;
+	}
+
+	P0 = P+1;
+	P = strchr( P0, ')' );
+	if(!P) {
+		return FAIL("no ')' in line '%s'", line_in );
+	}
+
+	*P = NUL; // 
+	str0 str_offs = P0;
+//	INFO("str_offs %s from line %s", (STR0) str_offs, line_in );
+ //	INFO("str_offs %s", (STR0) str_offs );
+
+	P0 = P+1;
+	P = strchr( P0, '[' );
+	if(!P)
+		return FAIL("no '[' in line '%s'", line_in );
+	// SP [
+	P0 = P + 1;
+	P = strchr( P0, ']' );
+	if(!P)
+		return FAIL("no ']' in line '%s'", line_in );
+	*P = NUL; // 
+
+	str0 str_addr = P0;
+//	INFO("str_addr %s from line %s", (STR0) str_addr, line_in );
+ //	INFO("str_addr %s", (STR0) str_addr );
+
+	return true;
+}
+
 bool dgb_call_stack_t:: print_call_stack(FILE *out, int show, int skip ) {
 
 	/*
@@ -66,16 +152,25 @@ bool dgb_call_stack_t:: print_call_stack(FILE *out, int show, int skip ) {
 		__PRETTY_FUNCTION__
 	*/
 
-	
 
-
-// 	bool stack_get(const char * VARNAME) // PRINT CALL STACK dgb.backtrace 
-	stack_get("CALL_STACK");
-
+// dgb_call_stack_t:: { ... } 
 //	int max_depth = 100;
 //	size_t stack_depth;
 //	void *stack_addrs[max_depth]; // max_depth limit
 //	char **stack_strings;
+
+
+// 	bool stack_get(const char * VARNAME) // PRINT CALL STACK dgb.backtrace 
+	stack_get("CALL_STACK");
+ //	stack_depth = backtrace(stack_addrs, max_depth);
+ //	stack_strings = backtrace_symbols(stack_addrs, stack_depth);
+
+	// skip 2 depths
+	// show 25 depths // corrupted stack 
+	// errno /* libc errno */ 
+	// app_err /* libr_error _from_REQ syscall RETVAL errno
+	// app_err /* libr_error _from_REQ libr_func RETVAL libr_error_t
+	// _t { error_number_t error_number } // enum explain // 
 
 	INFO("show = %d skip = %d errno = %d", show, skip, errno );
 
@@ -131,7 +226,13 @@ bool dgb_call_stack_t:: print_call_stack(FILE *out, int show, int skip ) {
 	size_t hi1 = lo + show; // 1 after the highest
 	if( hi1 > stack_depth) hi1 = stack_depth;
 
-#define MAIN_TO_TIP 0
+	// [0 [1 [2 [lo [hi // hi is first byte of next zone
+	X_printf("lo %d hi1 %d stack_depth %d \n", lo, hi1, stack_depth );
+
+// main() is towards the [stack_depth] end
+// tip() is [0] the inner that called backtrace
+
+#define MAIN_TO_TIP 1
 #if MAIN_TO_TIP
 	for (size_t i = lo; i < hi1; i++)
 #else
@@ -140,83 +241,58 @@ bool dgb_call_stack_t:: print_call_stack(FILE *out, int show, int skip ) {
 	{
 
 	//	static const int main_is_3 = 3;
-		int undepth = i - skip;
-//		int undepth = stack_depth - i - main_is_3;
-//		undepth = skip - i ; // negative
 
 //     /nfs/md7/GPS/libs_apps/lib/libbase.so(_Z7fn_WARNPKciS0_S0_S0_z+0x115) [0x2b12c67c12de]
 
 	__attribute__((unused))
 		bool found = true; // optimistic
 		char * line = stack_strings[i];
-		char * left = line;
 		char * name = NULL;
-		char * P = left;
-		P = strchr( left, '(' );
-		if( !P ) {
-			found=false;
-		} else {
-			left = P+1; 
-			P = strchr( left, '+' );
-			if(!P)
-				P = strchr( left, ')' );
-			if(!P) {
-				found=false;
-			} else {
-				*P = 0; // splat mid line
-				name = left;
-			}
-		}
-		// found is genuinely unudes - but what was it - 
-		// want to get back to a working insight or other
-		char *ret = NULL;
-		buffer1 name_buf;
-		if( name ) {
-			if( demangle_cpp_symbol( name_buf, name ) ) {
-				name = (char *)(STR0) name_buf; // use before free
-			} else {
-				// name stays as undemangleable
-			}
-		} else {
-			// below thinks input name might be line number
-		}
-#if 0
-		int status = -1;
-		if(name) {
-			ret = abi::__cxa_demangle(name, NULL, NULL, &status );
-#warning LEAK this should be free( ret )
-		}
-		if(ret) name = ret;
-#endif
+// stack_strings[ N ]
+// [11] '/lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f0f7ddf5d90]'
+// [10] './test1_nested_pair.elf(+0x3f50) [0x563bfc6f2f50]'
+// [9] './test1_nested_pair.elf(+0x4cc2) [0x563bfc6f3cc2]'
+// [3] './test1_nested_pair.elf(+0x6986) [0x563bfc6f5986]'
+// [-] 'left(+0x%s) [0x%x]' // left OFFS ADDR
+// left is filename A.exe B.so C.dll
+// left is C++ mangled name
+// -rdynamic // 
 
+	//	X_printf("stack_strings[%d] '%s'\n", i, line);
+
+	buffer1 ret_filename;
+	buffer1 ret_funcname;
+	i64 ret_offs;
+	i64 ret_addr;
+
+	if(! parse_stack_string( 
+		line, // 
+		ret_filename,
+		ret_funcname,
+		ret_offs,
+		ret_addr
+	)) return FAIL_FAILED();
+
+	X_printf("# SP[%2.2d] # %s   %s \n",
+		i, 
+		(STR0) ret_filename,
+		(STR0) ret_funcname
+	);
+
+	continue;
 
 		char func[20];
-		sprintf( func, "%d", int(undepth));
 		X_printf( dgb_FMT_3_s_s_s_par, get_prog_alias(), NOTE, func );
-//		X_printf( "# %s # %s # %s(): ", get_prog_alias(), NOTE, func );
 		if( name )
 			X_printf( "%s\r\n", name );
 		else
 			X_printf( "%s\r\n", line );
 
-#if 0
-		if( name )
-		 if(status==0)
-			X_printf(out, "C++ %s\n", name);
-		 else if(status==-2)
-			X_printf(out, "C   %s()\n", name);
-		 else
-			X_printf(out, "?+? %s()  %d\n", name,status);
-		else
-			X_printf(out, " -  %s # no symbol\n", line);
-//			X_printf(out, " -  %s // file [offs] // try -rdynamic\n", line);
-
-#endif
-		if(ret) free(ret);
 	}
 	X_printf( "# %s # %s # ---------- \n", get_prog_alias(), NOTE );
 //	X_printf(out, "# } # \n" );
-//	fflush(out);
+	fflush(out);
+	fflush(NULL);
 	return true; // RAN_OK //
 }
 
@@ -225,7 +301,20 @@ bool dgb_call_stack_t:: print_call_stack(FILE *out, int show, int skip ) {
 
 bool dgb_demangle_cpp_symbol( buffer1 & buf2, const char * symb )
 {
+
+	// { buffer1 LHS } = demangle { STR0 RHS }
+
 	// CANT use FAIL etc ... because they call this
+
+	// WANT optimised recycle of buffer1 // get_space( 2049 ) // 2K + 1
+	// USE a carousel of buffer1's of get_space( 3K )
+	// ON RELEASE put { wrapped buffer1 LHS } in recycle queue
+	// overwrite optimised part of BUFF // or all of it // CTOR THEORY //
+	// ON CLAIM { mark item as IN_USE CLAIMED BY AS UDEF }
+	// UDEF means "SCRIPTED_TYPE" // eg "%s_%s" lhs rhs // lhs == "UDEF"
+	// rhs == "{ FUNC NAME ARGS }" // NS CLS METH ARG[v]
+	// lhs == "{ SPEC NAME DECL } " // DECL == SCRIPT
+
 
 #ifdef WIN32
 	buf.print( "%s()", symb ); // is it a function? eg an exception
@@ -233,8 +322,13 @@ bool dgb_demangle_cpp_symbol( buffer1 & buf2, const char * symb )
 	
 	const char * ret = 0;
 #else
+
+#if 0
 #warning LOCK buf here
-	static buffer1 buf;
+	static
+#endif
+
+	buffer1 buf;
 	buf.clear();
 	/*
 		buf can get itself remalloced which is a problem.

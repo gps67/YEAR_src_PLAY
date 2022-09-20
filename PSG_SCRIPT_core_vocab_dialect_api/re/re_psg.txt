@@ -1,0 +1,271 @@
+PSG -vs- RE
+
+	SUBLEX
+
+		MATCH LINE
+		MATCH WORD
+		MATCH PARSED
+		PARSE
+		 INST has PTR to SELF
+		 INST has PTR to TUPLO_PARSE_SEQUENCE
+		 	self.id = "{ self_id_t self.id }" // cyclic creat
+			a1_a2_star a1 a2 
+
+cyclic creat
+	first mention of (cident)
+	AUTO LEX NEW "self_id_t"
+	AUTO LEX NEW "%s_%s_t"
+	SUBLEX self id "self_id_t" // SUBLEX auto resonates on list of nearby 
+
+	NEW OBJECT SPEC = cident_t	// OPTION += ANYSTR // or so
+	 often seen as LEX_WORD 	// EXPR += LEX[EXPR]
+	
+first mention causes concept to exist
+
+	self.id = "{ self_id_t self.id }" // CMNT
+	// 
+
+	setting self.id to a STRING that is what it will be
+	bless it with INTENT "{ RUNME }" "{ DECLS }" or " { SCRIPT } "
+	CONTEXT INTERP_AS DIALECT
+	// an abundance of SP spaces
+	MATCHER == { Q2 SP \{ SP SCRIPT SP \} SP Q2 } 
+
+	L_BRACE
+	  BRACE(LEFT)
+	  BRACE_R
+	  \{ \}
+	  { }
+
+
+	 ALIAS	{
+	 	Q2 \{ SP SCRIPT SP \} Q2 
+	 	Q2 \{ SP SCRIPT SP \} Q2 // "{ script }" // EG SCRIPT = " script "
+	MATCH_ALL_LIKE_THESE
+		// " { script } " // YEP !! when found as this, notice
+		//  "{ script }"  // SUBMATCH well formed variations
+		//   "{script}"   // SUBMATCH fast min // NO SP USED //
+		//  " {script} "  //
+		//    "script"    // SUBMATCH HEURISTIC GUESS // lex_doubt //
+	
+	LEX_DOUBT
+		a1 includes any of [0-9] ... OTHERS
+			flag needs prefix that is subset of a1 not this
+			flag knows works_when_SUBLEX_fixes_it
+		cident = cident + a2_star_segment_of_cident 01
+		cident = cident + a2_star_segment_of_cident _
+		cident = cident + a2_star_segment_of_cident anystr
+		cident = cident + a2_star_segment_of_cident .* // AUTO_TAIL
+	 }
+
+first mention compiled
+
+	first mention creates
+	ITEM_t ITEM; // its a STRUCT or OBJECT
+	MAGNETIC MATCH // detect use and usage
+	FUNC { self.field = " { DECL } "; // CMNT } // fields auto_create too
+	VARS { CMNT "TEXT" } // CODE_POINT provides TYPE of this TUPLO
+	TUPLO_TYPE += ARGV[2] ATTRNAME TEXT // spray text into 8859 to utf8
+	on use: CODE_POINT = { VARS set_var_TEXT /* set_TEXT */ lhs rhs }
+	// Q2 not needed { dialect }
+
+multi-mention OBJ = lookup( TEXT }
+multi-mention OBJ = { run SCRIPT look out for OBJ } // IMPORT EXPORT tables
+multi-mention OBJ = { OBJ } // detect SP
+
+	SCRIPT can also be obtained and PARSED and 
+	mk_OBJ = CTOR ARGS // sequence of OPCODES to do
+
+	OBJ = SCRIPT &OBJ {
+		OBJ = IDX_new_OBJ // POSS "OBJ" or " OBJ " or { OBJ } 
+		OBJ = NAME of OBJ
+		OBJ = EXPR of OBJ
+		OBJ = SCRIPT or COMPONENT that builds OBJ from / when / now
+	
+	self.id = SOMESTR ; SOMESTR looks like SCRIPT_DIALECT ; accept as CTOR
+
+		Running the various SCRIPTS _LISTS and EXPR TREE
+		creates some vars, with values,
+		and has explored enough learning extras, that EXPRS helps first
+
+		CT_RT can create enum values that have changed
+		CT_RT relies on enum_names to be correct
+		CT_RT relies on TEMP_USE same compile link process
+		CT_RT relies on TEMP_USE checked_runtime_OK
+	
+	not "self.id" can be a COMPILED EXPR with RT CACHE
+	}
+	
+
+EXCESSIVE SPACE
+
+	EXPR_one = " SP cident SP " // EG " script " //
+
+	Shows that is is using DIALECT in SCRIPT
+	That might trigger GEN MATCH_ALL_LIKE_THESE
+
+	SPEED would match GAP [ SP TAB CR LF UNDER_SP ] STAR
+
+		ABSENT GAP HINTS at SENSIBLE TERSE DIALECT
+	
+	MATCH
+
+		TEXT found matches PATTERN
+
+		EXPR_SCRIPT ran as
+
+			Q2
+			|OPT_GAP
+			||L_BRACE
+			|||OPT_GAP
+
+		/* INDENT_MORE */	ZONE
+
+			|||OPT_GAP
+			||BRACE_R
+			|OPT_GAP
+			Q2
+	
+		ZONE
+			cident
+		ZONE
+			" cident "
+
+		NOT_ANY_SPACE 
+			0 <= CH || NEGATIVE_CH
+			CH <= SP  && IS_GAP_so_NOT(NOT_A_SPACE)
+			[0 [SP
+			[SP]
+
+		OPT_GAP
+
+		NOT [0[SP SP
+		NOT_SUBSPACE // includes SP but may use SPECIFIC MATCH SP
+	
+		SP NOT_SUBSPACE
+
+		SP SP NOT_ANY_SPACE
+	
+	LEX_EDGE
+
+		cmp CH NUL
+		if_ZERO { got_NUL }
+		if_NEGATIVE { got negative }
+		else_PLUS { got CH // first byte 
+
+		if_POSATIVE /* and not zero */ { got glyph_byte } // first byte
+
+		cmp CH SP
+		if_SAME { goto got_SP }
+		if_LESS { goto got_SUBSPACE } // or negative
+		if_MORE { goto NOT_SUBSPACE } // got usage
+
+
+		CODE_CACHE
+	
+	LEX_ANYSTR
+
+		ROM STR0
+			const char * text;
+			u64_EA_EXPR u16_u48 uses u48 after u16 says so
+			u16_EA_EXPR_OPCODE
+			u48_EA_EXPR_u48_payload
+
+		SLOW_STEP
+			lookup EA_is_PTR
+			lookup PTR_is_STR0
+			lookup PTR_is_P0P2
+			lookup PTR_is_EXPR // BIT EXPR 
+
+		MACHINE { STR0 "value" }
+		MACHINE { P0P2 P0 } // P2 unknown
+		MACHINE { P0P2 P0 } // P2 known somehow
+		MACHINE { PTRN P0 } // N bytes somehow
+
+		EA = BASE + OFFS
+		OFFS = VECT[idx] SCRIPT 
+		OFFS = FUNC u16 u48 u64
+		.bitfield == OFFS
+		.bitfield << 12 == OFFS_of_PAGE // KNOW 4K << 12
+
+
+
+	ROM_STR_EXPR
+	EXPR_in_ROM // utf8 or 8859 or ASCII // OBJ_ID = PTR
+
+		CT_RT.CT_EXPR = ...
+		+= STR0 "original text upto NUL byte"
+		+= HEAD { OBJECT STR0 } += STR0 text past braces to EOLN P0
+	
+	ROM.MODULE.EXPR_TABLE.u16_idx
+	ROM		OPCODE HERE.ROM.MODULE.EXPR_TABLE.idx // u16 u16 u16 //
+	 .MODULE	u16	// when not u5
+	  .EXPR_TABLE	u16	// when not u7
+	   .u16_idx	u16	// when not u12
+	
+	ABBR
+	 .CODE_POINT_NEAR.
+	 .CODE_POINT_NEAR.MODULE
+	 .CODE_POINT_NEAR.EXPR_TABLE 
+	 .CODE_POINT_NEAR.IDX
+
+	 u4 OPCODE_DATA_ABBR
+	 u12 u12_idx
+
+	 u4 OPCODE_DATA_ABBR {
+	  u12 u12_idx
+	  u4 = u16 && 0x0F // or 2 shifts to get sign i4
+	  u12 = u16 >> 4
+	 }
+
+-------------
+
+	struct STR0_EXPR {
+		STR0 str;
+		HASH word;
+		EXPR expr;
+		FLAG flag; // += str was malloced -vs str was ROM alloc
+	};
+
+	ROM provides STR0
+	CODE provides RW struct 
+
+	first use upgrade PTR to EXPR
+	second use lookup( PTR )
+
+---
+
+	struct EXPR {
+	 // KEY
+		str1 str;
+		u32 len;
+		hash word;
+
+	 // VAL
+		SUBLEX SEQ
+		[N] of 
+			u8 chr
+		or
+			u8_u8 ch2
+		or
+			u8_u8_u8 ch3
+		or
+			[u8[u8 range
+		or
+			alpha2 = lookup_alpha_2[u8] // ASCII 
+
+	};
+
+ EXPR_STEP
+
+ 	a1_a2_star_cident_ish a1 a2
+	a3_plus
+	a3_star
+	ch_0xFF
+	ch2_0xFFFF // also matches utf8 of 8859 eg test double encoding
+	str_...
+
+ 32 BIT
+ 	u8 u24
+
+

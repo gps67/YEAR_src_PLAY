@@ -8,6 +8,12 @@ exec_prefix=${prefix}
 libdir=${exec_prefix}/libs_apps_obj_${TGT}
 includedir=${prefix}/include
 
+# problem was older VPN openssl
+
+lib1=/tools/VPN/lib
+lib2=/tools/CTXT/lib
+lib3=${prefix}/lib
+
 Name: libs_apps_own_paths
 Description: Libraries and Applications - own_rpath and includes
 Version: 0.1.2
@@ -15,5 +21,7 @@ Version: 0.1.2
 Requires: 
 
 # OK ${libdir}/libmedia.dll 
-Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/tools/VPN/lib/ -Wl,--rpath=/tools/CTXT/lib/ -Wl,--rpath=${prefix}/lib
+# Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=. -Wl,--rpath=/tools/VPN/lib/ -Wl,--rpath=/tools/CTXT/lib/ -Wl,--rpath=${prefix}/lib
+
+Libs: -L${libdir} -L./lib/ -L../lib/ -Wl,--rpath=${lib1} -Wl,--rpath=${lib2} -Wl,--rpath=${lib3}
 Cflags:  -I${includedir}

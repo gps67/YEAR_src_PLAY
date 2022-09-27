@@ -11,6 +11,7 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/intel/hyperscan
 https://github.com/PCRE2Project/pcre2
 https://github.com/google/oboe
 https://github.com/googlesamples/android-ndk

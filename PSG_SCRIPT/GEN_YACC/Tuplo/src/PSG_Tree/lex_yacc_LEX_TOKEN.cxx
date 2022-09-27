@@ -178,44 +178,46 @@ using namespace PSG;
 	return FAIL("GROUP('%s')ITEM('%s')", (STR0) PFX, (STR0) Value );
  }
 
-/*
-	upgrade "++" to _PLUS_PLUS and add_PUNCT that
-*/
+ STR0 
+ LEX_TOKEN_GROUP::
+ NAME_of_C1C2( buffer1 & PLUS_PLUS_buff, STR0 c1c2 )
+ {
+  PLUS_PLUS_buff.clear();
+  const char * p = c1c2;
+  char sep = 0; // no starting SEP
+  while( char c = *(char *)p++ ) {
+	if(sep) PLUS_PLUS_buff.put_byte( sep ); // "PLUS" "_" "EQUAL"
+	else sep = '_'; // first time was NUL next time will be _
+	// put each char as a word
+	// NOTE // TRANSFORMATION // obj.verb( args ) // verb( obj, args )
+	if( !print_LEX_punct_name( PLUS_PLUS_buff, c ) ) {
+		if(!PLUS_PLUS_buff.print("x%2.2X", c )) {
+			FAIL_FAILED(); // malloc error maybe
+			return "FAIL";
+		} else {
+			WARN("using xFF == x%2.2X for PUNCT name", c );
+		}
+	}
+  }
+  return (STR0) PLUS_PLUS_buff;
+ }
 
+#if 0
+/*
+	upgrade "++" to PLUS_PLUS and add_PUNCT that
+*/
  bool
  LEX_TOKEN_GROUP::
  add_PUNCT(
-   STR0 punct,  // "==" ); // STR0 tail,  // "_EQUAL_EQUAL", // 
+   STR0 punct,  // "==" ); // STR0 tail,  // => "EQUAL_EQUAL", // 
    STR0 op_info,
    STR0 opcode_desc // == NULL
  ) {
-  // buff .put( PFX ); // PRF_PUNCT is added later
-
-  buffer1 buff; // TAIL = _PLUS_PLUS
-  buffer1 NAME_of_char; // PLUS
   
-  STR0 Z1 = "OK";
-  const char * p = punct;
-  char sep = 0;
-  while( char c = *(char *)p ) {
-	p++; // but leave at NUL
-	NAME_of_char.clear();
-	if( !print_LEX_punct_name( NAME_of_char, c ) ) {
-		// not all defined :-)
-		return FAIL_FAILED();
-	}
-	// add it to tail
- //	buff .put_byte( '*' ); // PUNCT_
- //	buff .put_byte( '_' ); // PUNCT_
-	if(sep) buff .put_byte( sep ); // PUNCT_
-	sep = '_';
-	buff .put_ASCII( NAME_of_char ); // PUNCT_PLUS
-  }
-  STR0 _PLUS_PLUS = buff; 
-  // INFO( "PLUS_PLUS == '%s'", _PLUS_PLUS );
-  return add_PUNCT_4( _PLUS_PLUS, punct, op_info, opcode_desc );
-
+  buffer1 PLUS_PLUS_buff; // TAIL = PLUS_PLUS
+  STR0 PLUS_PLUS = NAME_of_C1C2( PLUS_PLUS_buff, punct );
+  INFO( "PLUS_PLUS == '%s'", PLUS_PLUS );
+  return add_PUNCT_4( PLUS_PLUS, punct, op_info, opcode_desc );
  }
-
-
+#endif
 

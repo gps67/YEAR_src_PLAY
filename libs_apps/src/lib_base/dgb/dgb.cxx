@@ -36,6 +36,9 @@
 #include "e_print.h"
 #endif
 
+#include "fork_exec_setup.h" // e_print stderr to child stdin
+#include "fork_exec_parent.h" // 
+
 #if 0 
 // moved to dgb_call_stack.h
 #define dgb_FMT_3			"# %s # %-5s # %-12s # "
@@ -55,8 +58,67 @@ bool DEBUG_print_stack( int depth, int skip )
 }
 
 
+#ifdef WIN32
+bool dgb_fork_stderr_to_tcl_text()
+{
+	return FAIL("TODO WIN32");
+}
+#else
+bool dgb_fork_stderr_to_tcl_text()
+{
+	// call this as line 1 of main()
+	// INFO will appear in the Tcl/Tk window
+	// gdb -tui then runs a lot smoother
+	// no interruptions from INFO
+	//
+	// TODO // absolute path
+	//
+	fflush(0);
+	pipe_to_child pipe_parent_to_child;
+	if( !pipe_parent_to_child.open_pipe() ) return FAIL("open_pipe");
+	int pid_child = fork(); 
+	if( pid_child == -1 )
+	{               
+		e_print("ALERT fork() failed %m\n");
+		return false;
+	}               
+	if( pid_child == 0 ) // is child
+	{       
+		// fprintf(stderr,"CHILD from fork\n");
+		fflush(0);
+		pipe_parent_to_child.as_child(); // sets fd_here to fd_read
+		pipe_parent_to_child.dup2(0); // stdin
+	//	fork_parent->exec_child();
+		const char * filename =
+		 "/home/gps/YEAR/src/PLAY"
+		 "/SCRATCH_ZONE_20/in_Tcl_Module"
+		 "/tcl_less/"
+		 "tcl_less.tcl";
+		char * const argv[] = { (char *) filename, NULL, NULL };
+		char ** envp = environ; // global
+		execve( filename, argv, envp );
+		fflush(0);
+		fprintf(stderr, "EXEC %s FAIL %m \n", filename );
+		e_print( "ALERT exec() %s %m\n", filename );
+		_exit( errno );
+		return false;
+	} else { // is parent
+		pipe_parent_to_child.as_parent();
+		pipe_parent_to_child.dup2(2); // stderr
+	}
+
+	INFO("NB you have to press the EXIT button - after reading the closing messages");
+	return PASS("PASS FAIL WARN INFO should now be in tcl/tk text window");
+}
+#endif
+
 int V_print( const char * fmt, va_list args )
 {
+	// FAIL calls WARN_fn calls X_print calls V_print calls e_print (or stderr)
+	// e_print calls e_vprint
+	// e_vprint uses a vector which is NULL so it uses printf stderr //
+	// static obj_hold<e_print_io_INTERFACE> e_print_io; // e_print.cxx
+	// hmm needs a tidy up //
 	static buffer1 buf1;
 	int old_errno=errno;
 #warning LOCK buf1 here
@@ -69,7 +131,7 @@ int V_print( const char * fmt, va_list args )
 
 	int t = 0;
 #if WITH_EPRINT
-	e_print( "%s", (STR0) buf1 );
+	e_print( "%s", (STR0) buf1 ); // 2022 this is in use
 #else
 	t = fprintf( stderr, "%s", (STR0) (str0) buf1 );
 #endif

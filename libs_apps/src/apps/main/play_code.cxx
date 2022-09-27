@@ -240,6 +240,7 @@ bool cmd_play_code(int argc, char ** argv )
 
 int main(int argc, char ** argv )
 {
+	dgb_fork_stderr_to_tcl_text();
 	// gdb_invoke();
 	dir_name_ext pathname;
 	// lots todo // pathname.test1();

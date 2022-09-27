@@ -73,6 +73,8 @@ void e_vprint( const char * fmt, va_list args )
 	if(e_print_io) {
 		e_print_io->write_UTF8( e_print_temp_buffer );
 	} else {
+	// yes we are using stderr
+	//	fprintf(stderr, "STDERR %s", (STR0) e_print_temp_buffer );
 		fprintf(stderr, "%s", (STR0) e_print_temp_buffer );
 		fflush(0);
 	}

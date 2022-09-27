@@ -112,6 +112,8 @@ enum fn_WARN_tag
 	
 };
 
+extern bool dgb_fork_stderr_to_tcl_text();
+
 __attribute__((__format__ (printf, 5, 6))) // fn_WARN(a,b,c,d,fmt,..
 extern bool fn_WARN(
 	const char * note,

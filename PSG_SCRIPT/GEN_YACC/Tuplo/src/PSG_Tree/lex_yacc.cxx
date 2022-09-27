@@ -10,6 +10,12 @@ lex_yacc()
 	POOL_RW   .PFX = "RW";   // OK omit trailing _
 	POOL_LEX  .PFX = "LEX"; // OK omit trailing _
 
+	/*
+		PUNCT "+="
+		RW "if"
+		LEX EOLN IDENT q
+	*/
+
 	// CSET 
 }
 
@@ -17,6 +23,28 @@ lex_yacc::
 ~ lex_yacc()
 {
 }
+
+/*
+	TODO
+
+	union is list of { type fieldname }
+
+	token is list of { // relates to union }
+
+	top is start
+
+	%x start token used in LEX expr ... <token>...
+
+	{ $include_file filename } -- added to PSG at place
+
+	SEQ name += STEP get number of step $1 
+	or at least log all tokens named
+
+	STEP "+=" // add to token list LEX PUNCT
+
+	pre-learn a list of common operator PUNCTS
+	but only declare those mentioned in PSG
+*/
 
 #include "dir_name_ext.h"
 
@@ -454,7 +482,7 @@ print_TOKEN_name_2( // PFX _ Name // "PUNCT_COMMA"
 
 
 bool lex_yacc::
-gen_YACC_includes( buffer2 & out, STR0 filename )
+gen_YACC_cat_file( buffer2 & out, STR0 filename )
 {
 	int K_max = 32;
 	buffer2 filed;
@@ -544,15 +572,13 @@ gen_LEX_lex_return( buffer2 & out )
  L1(" */");
  L1("int lex_return( int tok )");
  L1("{");
- L1("        // skip first cell once, get it next time, or init -1");
+ L1("        // pos == nlex_pos // this kept lex in circular loop of buffer1");
+ L1("        int pos = nlex_pos;");
  L1("        // ");
  L1("        // step to next slot in round_robin loop");
  L1("        nlex_pos = (nlex_pos+1) % nlex16;");
  L1("        // ");
- L1("        // pos == nlex_pos");
- L1("        int pos = nlex_pos;");
- L1("        // ");
- L1("        // save the text pos and leng of the lex");
+ L1("        // save a copy of the the text of the lex"); // drop old value
  L1("        lex_pool[ pos ].set( yytext, yyleng ); // buffer2");
  L1("        // ");
  L1("        // return a STR0 of LEXs text; ");
@@ -864,6 +890,7 @@ gen_YACC( buffer2 & out ) // all of it
 	gen_YACC_str_of_token( out );
 	L1("%}");
 	// declare the parameter to get i// int yyparse( HERE );
+
 	gen_yyparse_parameter( out ); // see Y_PARSE.h
 	gen_YACC_union( out );
 	gen_YACC_token_list( out );
@@ -875,6 +902,8 @@ gen_YACC( buffer2 & out ) // all of it
 	L1("%%");
 	L1("");
 
+	// (1) (DONE) load PSG with rules
+	// (2) (HERE) GEN text for rules from PSG tree
 	gen_YACC_rules( out );
 	L1("");
 	L1(" /* EOF */");
@@ -1156,6 +1185,9 @@ gen_YACC_rules( buffer2 & out )
  L1("// RULES - I thought this was virtual overruled");
  L1("// RULES ");
 
+ 	// CHEAT: include a manually edited file
+	// ../src/e1.y_RULES
+
 	STR0 lhs = "../src/";
 	STR0 psg = "PSG";
 	psg = "AFM";
@@ -1164,7 +1196,8 @@ gen_YACC_rules( buffer2 & out )
 	INFO("PSG %s", psg );
 	buffer1 filename;
 	filename.print("%s%s%s", lhs, psg, rhs );
-	if(!gen_YACC_includes( out, filename )) {
+
+	if(!gen_YACC_cat_file( out, filename )) {
 		return FAIL("%s", (STR0) filename );
 	}
 	return true;

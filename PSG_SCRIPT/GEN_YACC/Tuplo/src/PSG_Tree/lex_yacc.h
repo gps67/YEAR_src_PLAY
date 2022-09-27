@@ -275,7 +275,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 		include some fragment file, verbatim
 	*/
 	virtual
-	bool gen_YACC_includes( buffer2 & out, STR0 filename );
+	bool gen_YACC_cat_file( buffer2 & out, STR0 filename );
 
 	/*!
 		GEN lex and yacc files

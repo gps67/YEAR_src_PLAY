@@ -1,6 +1,8 @@
 handle SIGSEGV nostop noprint pass
 handle SIGABRT nostop noprint pass
 b main
+b evp_cipher_base::init_from_spec
+
 r 
 #b evp_cipher_base::init
 #b evp_cipher_base::evp_cipher_base

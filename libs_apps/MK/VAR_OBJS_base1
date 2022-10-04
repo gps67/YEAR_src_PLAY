@@ -146,6 +146,7 @@ endif
 	OBJS_base1_unix += fork_exec_parent.o # use this
 	OBJS_base1_unix += fork_exec_setup.o # hidden
 	OBJS_base1_unix += ntping.o # the user of ntping, not ntping itself!
+	OBJS_base1_unix += tty_ptmx.o # /dev/pts/1 # TTY #
 
 	OBJS_base1 += edit_line.o # edit line from TTY with history
 	LIBS_unix += -ledit -lncurses

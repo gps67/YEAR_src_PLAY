@@ -13,6 +13,44 @@
 #include "fork_exec_parent.h"
 
 /*!
+	fd_pipe_ends holds the 2 ends of a pipe. read and write.
+
+	It is possible to SEND an fd (over another local fd),
+	but the usual usage is to fork a child process.
+
+	You normally pick a derived type, either of
+
+		pipe_to_child
+		pipe_from_child
+	
+	the default CTOR will init -1, call that.open_pipe(), and fork()
+	
+	on the child, call that.as_child()
+	on the parent call that.as_parent()
+
+	you could then use that.fd_here
+	but to make it STDIN or STDOUT or STDERR call that.dup2(2)
+
+	that.dup2_close(fd2) is that.dup2(fd2) then close of the pre-dup2-fd
+	It puts the new correct fd in fd_here, in-case your code uses that
+
+	The main job fd_pipe_ends does, is to know which end of the pipe
+	is which, and wrap the call to pipe()
+
+	SEE: dgb_fork_stderr_to_tcl_text() in dgb.cxx
+
+TODO
+
+	I like fd_pipe_ends, but everything else near here is convoluted
+	and needs to be reworked. EG ntping::exec_child()
+
+	rename _t
+
+
+
+
+
+
 	fd_pipe_triple uses fd_pipe_ends as a base class for pipe_to_child,
 	pipe_from_child, etc. They use fd_here as the resulting fd
 */
@@ -36,7 +74,9 @@ struct fd_pipe_ends : public GRP_lib_base
 		int fds[2];
 		if( pipe( &fds[0] ) == -1 )
 		{
-			e_print("ALERT pipe() failed: %m\n" );
+			perror("pipe(fds[2]) syscall failed\n");
+			e_print("pipe(fds[2]) syscall failed %m\n");
+			FAIL("pipe(fds[2]) syscall failed");
 			return false;
 		}
 		fd_read = fds[0];
@@ -49,6 +89,7 @@ struct fd_pipe_ends : public GRP_lib_base
 	{
 		if( fd_here == -1 )
 		{
+			return FAIL("fd_here == -1 // call open_pipe and as_child");
 			return false;
 		}
 		if( -1 == ::dup2( fd_here, fd012 ) )

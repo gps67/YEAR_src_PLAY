@@ -71,7 +71,19 @@ bool dgb_fork_stderr_to_tcl_text()
 	// gdb -tui then runs a lot smoother
 	// no interruptions from INFO
 	//
-	// TODO // absolute path
+	// TODO // gdb -tui // sees stdout notatty // refuses
+	// so /dev/ptm on stdout !!!
+	// nb OK for gdb invoked BEFORE this func, 
+	// NOT OK for gdb invoked on gdb_invoke() AFTER this func
+	// so rerun as mk_gdb_test8 
+	// TODO // try dup2 1 2 // if not a tty
+	//
+	// tcl_text // tcl_less.tcl // is on PATH
+	// it reads stdin and writes to tk_text widget
+	// that can be edited, copy+paste, 
+	// see YEAR_src_PLAY on github
+	//	 "/home/gps/YEAR/src/PLAY"
+	//	 "/SCRATCH_ZONE_20/in_Tcl_Module"
 	//
 	fflush(0);
 	pipe_to_child pipe_parent_to_child;
@@ -90,16 +102,19 @@ bool dgb_fork_stderr_to_tcl_text()
 		pipe_parent_to_child.dup2(0); // stdin
 	//	fork_parent->exec_child();
 		const char * filename =
+	#if 0
 		 "/home/gps/YEAR/src/PLAY"
 		 "/SCRATCH_ZONE_20/in_Tcl_Module"
 		 "/tcl_less/"
+	#endif
 		 "tcl_less.tcl";
 		char * const argv[] = { (char *) filename, NULL, NULL };
 		char ** envp = environ; // global
-		execve( filename, argv, envp );
-		fflush(0);
+	//	execve( filename, argv, envp ); // exact filename no PATH search
+		execvpe( filename, argv, envp );
 		fprintf(stderr, "EXEC %s FAIL %m \n", filename );
 		e_print( "ALERT exec() %s %m\n", filename );
+		fflush(0);
 		_exit( errno );
 		return false;
 	} else { // is parent

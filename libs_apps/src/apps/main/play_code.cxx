@@ -24,6 +24,24 @@
 #include "g_str_base64.h"
 #include "blk_base64.h"
 
+#include "tty_ptmx.h"
+using namespace BASE1;
+bool check_tty_012()
+{
+	bool is_tty = true; // optimist
+	if( not_a_tty( 0 )) {
+		WARN("stdin not a TTY");
+	}
+	if( not_a_tty( 1 )) {
+		WARN("stdout not a TTY");
+	}
+	if( not_a_tty( 2 )) {
+		WARN("stderr not a TTY");
+	}
+	if( is_tty ) PASS("is a TTY");
+	return is_tty;
+}
+
 struct SPOUT_session {
 	// curr_pen // _inks_from_ _curr_pallete _inks
 	// curr_paper // DPI FONTS FGBG ANIM DRAW
@@ -240,8 +258,17 @@ bool cmd_play_code(int argc, char ** argv )
 
 int main(int argc, char ** argv )
 {
-	dgb_fork_stderr_to_tcl_text();
-	// gdb_invoke();
+	// must set progname_argv0 = argv[0]; // via ...
+	// eg maybe TOPAPP_Holder_gtk holder(&argc, &argv);
+	gdb_sigaction( argv[0] ); // sets progname_argv0 // gdb_invoke needs it
+
+	check_tty_012(); // shows that make | tee //
+	// fork 2>&1 | tcl_less.tcl 
+	dgb_fork_stderr_to_tcl_text(); // needs X11
+	// gdb_invoke(); // shows that above takes stderr
+
+	check_tty_012();
+
 	dir_name_ext pathname;
 	// lots todo // pathname.test1();
 	if( !pathname.decode_filename( argv[0] )) {

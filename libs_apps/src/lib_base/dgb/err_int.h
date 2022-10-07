@@ -10,7 +10,27 @@ class fd_hold_1; // base2 g_rrr.h
 
 #include "buffer2.h"
 
-/*!	err == errno	+= EVENT { errno } // open(filename) OPTS
+/*!
+	not errno - but a surround that can use errno, or more
+
+	TODO
+		enum err_from; // _zone as _enum
+		int err;
+	
+	TODO
+		_zone += UDEF1 UDEF2 UDEF3 UDEF
+		_name += "LIBR_ONE" "LIBR_TWO" "LIBR_THREE"
+			WIN32 sockets
+			LIBR _ssl_
+			LIBR _sqlite_
+			LIBR _SM2_
+			LIBR _py_ # or exception objects
+			LIBR _tcl_ # does it have a list of codes? 
+		_list_of_zone += RT_allocated_enum + RT_str1 
+		IE module registers itself, .so .dll .scripted
+
+
+	err == errno	+= EVENT { errno } // open(filename) OPTS
 
 	using libc errno as source // UNIX LIBC // todo port WIN32 //
 

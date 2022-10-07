@@ -69,6 +69,7 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 int main( int argc, char ** argv )
 {
+	dgb_fork_stderr_to_tcl_text();
 	const char * filename = argv[1];
 	if(!filename) {
 		filename = "../test2.test";

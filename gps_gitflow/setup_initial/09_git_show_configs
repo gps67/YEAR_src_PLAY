@@ -1,0 +1,15 @@
+# NO # . ./.env
+
+RUNS()
+{
+	echo ""
+	echo "#"
+	echo "# $*"
+	echo "#"
+	"$@"
+}
+
+# git config username # no such thing
+RUNS git config user.name # blank
+RUNS git config user.email
+RUNS git config --list

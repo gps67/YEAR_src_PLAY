@@ -47,12 +47,20 @@ proc mk_text_out { w1 {text_out text_out}} {
      set w1_text_out $w1.$text_out
      set w1_scroll $w1_text_out.scroll ;# nested fails zero size
      set w1_scroll $w1.scroll ;# works, loses scrollbar at 75% width
+     # fontname is not var
+     # font create font_text -family Helvetica -size 14
+     font create font_text -family Fixed -size 14 
+
+	# -width 100 # for INFO("usage"); #
      text $w1_text_out \
 	-yscrollcommand [list $w1_scroll set] \
 	-setgrid 1 \
 	-height 30 \
+	-width 100 \
 	-undo 1 \
-	-autosep 1
+	-autosep 1 \
+	-font font_text \
+	;#
      ttk::scrollbar $w1_scroll -command [list $w1_text_out yview]
      h_pack_big $w1_text_out ;# -expand yes -fill both
      h_pack $w1_scroll ;# -side right -fill y

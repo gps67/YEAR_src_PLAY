@@ -20,6 +20,9 @@ static bool was_gdb_fatal_error_handler = false;
 // argv and then fork/exec
 #include "g_spawn.h"
 
+#include "tty_ptmx.h" // not_a_tty(fd)
+using namespace BASE1; // not_a_tty // need_fd_as_a_TTY
+
 
 /*
 	Other WIN32 sections in this file, are for completely
@@ -234,6 +237,8 @@ STEP("b");
 void gdb_invoke( bool usegui )
 {
 	INFO("invoking gdb ... maybe");
+	INFO("the point of the FSF and GCC and GDB is that it is already done");
+	INFO("not 'an opportunity to build a debugger' but to USE it");
 	// lets the user see any message that brought us here
 	fflush(0);
 
@@ -284,6 +289,7 @@ void gdb_invoke( bool usegui )
 	*/
 	// caller is supposed to set progname_argv0 in main()
 	const char* exe_name = progname_argv0;
+	// $_ == "/usr/bin/make" // which is what bash last saw
 	if( !exe_name ) exe_name = getenv("_"); // typically set by sh/bash
 	if( !exe_name )
 	{
@@ -397,12 +403,11 @@ void gdb_invoke( bool usegui )
 
 		 } else {
 
-			fprintf(stderr, "Invoking %s on pid %s %s ...\n",
+			INFO( "Invoking %s on pid %s %s ...",
 				gdb_prog,
 				pid_str,
 				exe_name
 			);
-			fflush(0);
 		    
 		    INFO("execlp form 2");
 		    execlp(
@@ -438,8 +443,23 @@ void gdb_invoke( bool usegui )
 		 }
 		}
 		else {
+		    INFO("GDB still complains that 'make' is not 'myapp.exe' load symbols");
+		    INFO("gdb_prog %s", gdb_prog ); // gdb
+		    INFO("exe_name %s", exe_name ); // /usr/bin/make
+		    // -tui // demands that stderr is a tty // tcl_less.tcl
+		    //
+		    need_fd_as_a_tty(1);
+		    need_fd_as_a_tty(2);
+		    if( not_a_tty( 0 )) {
+		    	FAIL("TODO make stdin a TTY");
+		    }
+		    if( not_a_tty( 1 )) {
+		    	FAIL("TODO make stdout a TTY");
+		    }
+		    if( not_a_tty( 2 )) {
+		    	FAIL("TODO make stderr a TTY");
+		    }
 		    // is this a relic from a cut+paste typo - three opts?
-		    INFO("execlp form 3");
 		    execlp(
 			gdb_prog,
 			gdb_prog,

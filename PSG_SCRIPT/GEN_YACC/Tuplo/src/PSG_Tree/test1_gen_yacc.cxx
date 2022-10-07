@@ -15,6 +15,7 @@ using namespace PSG;
 #include "Y_PARSE.h" // to provide uncalled thing
 
 bool bool_main( int argc, char ** argv ) {
+	dgb_fork_stderr_to_tcl_text();
 	set_prog_alias( argv[0] ); // or other ?
 
  if(argc!=4) {

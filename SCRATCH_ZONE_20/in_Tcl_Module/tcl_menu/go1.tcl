@@ -55,6 +55,9 @@
 
 	mk_text_out_global ;# uses h_pack tho
 
+	# strange thing to not have as default
+	wm_raise .
+
 # refresh this every REPL
 
 	puts $L_files

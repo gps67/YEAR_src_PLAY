@@ -55,6 +55,10 @@ struct aligned_buffer
 		}
 	}
 
+	void fmt( const char * name, OFFS_t addr, const char * desc = "" ) {
+		printf("%20s %14p %s\n", name, addr, desc );
+	}
+
 	bool preallocate( int align, int sz )
 	{
 		deallocate();
@@ -69,13 +73,22 @@ struct aligned_buffer
 
 		// treat PTR as INT by converting it to OFFS 
 		OFFS_t p0 = (OFFS_t) allocated;
-		OFFS_t p0_furthest = p0 + align - 1 ;
-		int excess = p0_furthest % align; // remainder after div // overshoot
-		p0 = p0 - excess;
-		page0 = (void *) p0;
-		if(1) printf("aligned_buffer::preallocate( align=0x%4.4X, sz=0x%x )\n\t alloc=%p \n\t    p0=%p\n",
-			align, sz, allocated, page0 
-		);
+		int excess = align - 1; // over allocated
+		OFFS_t p0_furthest = p0 + excess ; // was bug
+		int over_skip = p0_furthest % align; // remainder after div // overshoot
+		OFFS_t p1 = p0_furthest - over_skip ;
+		int skipped = p1 - p0;
+		page0 = (void *) p1;
+		printf("aligned_buffer::preallocate()\n");
+		fmt("sz", (OFFS_t) sz );
+		fmt("align", (OFFS_t) align, "" );
+		fmt("allocated", (OFFS_t) allocated );
+		fmt("excess", (OFFS_t) excess );
+		fmt("p0_furthest", (OFFS_t) p0_furthest );
+		fmt("over_skip", (OFFS_t) over_skip );
+		fmt("page0", (OFFS_t) page0 );
+		fmt("skipped", (OFFS_t) skipped );
+		fmt("allocated", (OFFS_t) allocated );
 		return true;
 	}
 
@@ -131,8 +144,10 @@ int main( int argc, char ** argv )
 	{
 		if( remaining < iosz )
 		{
-			iosz = st.st_blksize; // overshoot upto block boundry
-		//	iosz = remaining;     // retain filesize, but read-tail?
+		 if(0)	iosz = st.st_blksize; // overshoot upto block boundry
+		 else	iosz = remaining;     // retain filesize, but read-tail?
+		 // cant remember why - probably FS puts tails of files in blk2
+		 // but want SAME data overwritten - not reallocated elsewhere
 		}
 		t = write( fd, buf.page0, iosz );
 		if( t == -1 ) {

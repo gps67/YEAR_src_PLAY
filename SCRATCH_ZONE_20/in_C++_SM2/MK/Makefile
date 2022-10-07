@@ -2,10 +2,18 @@
 # external users of the libs_apps code can do this:
 # include /home/gps/2004/src/libs_apps/MK_ext_lib/MK_with_libs_apps
 
+# rework this to new pmakefile layout
+# code borrowed from (ssl_somewhere)
+# this is supposed to be SM = Spider Monkey
+
 	# we are in $T/obj/.
 
 	T=..
-	MK_ext_lib=/home/gps/YEAR/src/PLAY/libs_apps/MK_ext_lib
+	# You will probably move this
+	YEAR_src_PLAY=$(HOME)/YEAR/src/PLAY
+	# subdir in that project where makefiles are
+	# which will also need editing (soz)
+	MK_ext_lib=$(YEAR_src_PLAY)/libs_apps/MK_ext_lib
 
 	CXX = g++
 	OPTIM += -g 
@@ -47,16 +55,19 @@
 
 # names of the programs (but not with .exec)
 
+	PROG2 =SM_BASICS# NOSP
 	PROG1 =SM_test1# NOSP
 	# PROG1 =ssl_bio_test# NOSP
 
 # .exec files are used to make new makefiles easier ? and WIN32 too
 
 	EXE_1 =$(PROG1).exec# NOSP
+	EXE_2 =$(PROG2).exec# NOSP
 
 # one way of making all targets
 
 	EXELIST += $(EXE_1)
+	EXELIST += $(EXE_2)
 
 #	OBJS += SITE_X509_VALS_base.o
 #	OBJS += SITE_X509_layout.o
@@ -81,7 +92,8 @@
 	# TODO multi example C_
 	# TODO stream from SQL
 
-	OBJS += SM_BASICS.o
+# no ??
+#	OBJS += SM_BASICS.o
 
 # no need for PROG1.o
 # except when deleting *.o
@@ -113,7 +125,7 @@ show_vars:
 	# $(DEFS)
 	#
 
-default_test: $(EXE_1)
+default_test: $(EXE_2)
 	./$<
 	# NO # ./client_req_view.sh
 	# NOW BUILTIN to save files # ./client_iss_view.sh
@@ -129,8 +141,11 @@ exe1: $(EXE_1)
 default1_test: P $(EXE_1)
 	./$<
 
+default2_test: P $(EXE_2)
+	./$<
 
-exe: $(EXE_1)
+
+exe: $(EXE_1) $(EXE_2)
 
 P:
 	#
@@ -152,13 +167,15 @@ P:
 
 $(EXE_1): $(PROG1).o $(OBJS) # make the main first
 
+$(EXE_2): $(PROG2).o # Cdouble main is a problem !
+
 # $(EXE_1): $(OBJS) $(PROG1).o # make the main last!
 # that doesnt work - .exe probably depends on .o so its first!
 # the benefit is sorting out the synax of a (new) basic .h
 # dont believe me ? drop the ';' from a class decl
 
 zap:
-	rm -rf $(EXELIST) *.o client_key.pem client_req.pem
+	rm -rf $(EXELIST) *.o 
 
 #
 # DEPENDENCIES

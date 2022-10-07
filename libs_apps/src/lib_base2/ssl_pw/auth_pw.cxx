@@ -140,9 +140,11 @@ bool PW_UTIL_UNIX:: RAND_salt2( char * salt )
 // static 
 bool PW_UTIL_UNIX:: dense_chars_1(const char * * ptr_str )
 {
+	// dense_chars_1( & myptr ) // returns computed constant, malloced into static var str1
+	// MINOR RISK during first call // add a lock here
 	static str1 str1_dense;
 	if(!str1_dense) {
-		// ... LOCK ... and repeat check return
+		// ... LOCK ... and repeat check str1_dense is NULL as well as LOCK
 		cset_bit_map cset;
 		cset.set_range( 0x21, 0x7E ); // NOT SPACE DEL
 		cset.reset_bit(ASCII_QUOTE_SINGLE); 
@@ -161,6 +163,7 @@ bool PW_UTIL_UNIX:: dense_chars_1(const char * * ptr_str )
 		for(u8 c = 0x20; c < 0x80; c++ ) {
 			if( cset.get_bit( c ) ) builder.put_byte( c );
 		}
+		// ATOMIC // write PTR into static var
 		str1_dense = (STR0) builder; // malloc own copy
 	}
 	if(!str1_dense) {
@@ -187,6 +190,7 @@ bool PW_UTIL_UNIX:: easy_chars_2(const char * * ptr_str )
 		cset.reset_bit('I'); 	// if looks like digit it is digit
 		cset.reset_bit('B'); 	// B looks lik 8
 		cset.reset_bit('S'); 	// S looks lik 5
+		cset.reset_bit('Z'); 	// Z looks lik 2
 
 		buffer2 builder;
 		builder.get_space( 128 ); // a good guess
@@ -346,11 +350,11 @@ bool PW_UTIL_VNC:: encrypt_vncpass_EVP( buffer2 & crypt, const char * plain )
 {
 	// this is failing compare to _TRAD
 	INFO("plain == '%s'", plain );
-//	gdb_invoke();
 	const int LEN8 = 8;
 	
 	vnc_key_holder vnc_well_known_key;
 	if(!vnc_well_known_key.set_to_well_known_vnc_key()) return FAIL_FAILED();
+	gdb_invoke();
 	evp_cipher_base crypter( vnc_well_known_key, en_crypt );
 	//	test CTOR for it not failing
 	//	return FAIL_FAILED();;
@@ -431,6 +435,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass_TRAD( buffer2 & crypt, const char * plain )
 	DES_ecb_encrypt(& input, & output, & schedule, enc );
 
 	crypt.set( output, PASSLEN );
+if(1)	PASS("OK %s", plain);
 	return true;
 }
 
@@ -724,6 +729,9 @@ bool PW_UTIL_VNC:: test_one_b(
 	buffer2 pw_crypted_EVP;
 	buffer2 pw_crypted_TRAD;
 
+	INFO("HERE");
+
+	// _TRAD is OK
 	if(!encrypt_vncpass_TRAD( pw_crypted_TRAD, pw_plain_expected )) // LHS = ENC RHS
 		return FAIL_FAILED();
 

@@ -29,7 +29,7 @@ evp_cipher_base::evp_cipher_base()
 
 bool evp_cipher_base::init_ctx()
 {
-	if(!ctx) {
+	if(ctx) {
 		FAIL("ctx was not NULL");
 		ctx = NULL; // in case 
 	}
@@ -58,8 +58,15 @@ evp_cipher_base::evp_cipher_base(
 }
 
 
-bool evp_cipher_base::init_from_spec( key_holder & key_munged, en_crypt_tag enc_flag )
-{
+bool evp_cipher_base::init_from_spec(
+	key_holder & key_munged, // key has cipher_type, iv and key
+	en_crypt_tag enc_flag //
+) {
+	// key_munged is key // _munged is pre-processed-plain-key
+	// eg key = "LOGIN ^ HERE ^ $SECRET" // itself MD5 rolled
+	// so SECRET can be reused for several tasks //
+	// LOGIN // SCREEN_SAVE // FS_ACCESS // PRE_CONNECT // ...
+
 //	NOT SURE if re-init should call init_ctx or not
 //	I think not because that simply overwrites with NULs
 // ??	init_ctx();

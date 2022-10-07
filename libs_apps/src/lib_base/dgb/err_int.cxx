@@ -45,13 +45,13 @@ void err_int_t:: clear()
 
 void err_int_t:: clear_quietly()
 {
-
- static bool can_call = true;
- 	can_call = false;
- if( can_call ) {
- 	can_call = false;
- 	gdb_invoke(); // crashes - maybe loop // YEP //
- }
+	// gdb_invoke() for no good reason - debug early use maybe // de-loop
+	static bool can_call = true;
+	can_call = false;
+	if( can_call ) {
+		can_call = false;
+		gdb_invoke(); // crashes - maybe loop // YEP //
+	}
 
 	if(!err) return;
 	err = 0;	// DWORD on WIN32
@@ -134,7 +134,7 @@ bool err_int_t:: zap_OS_error() // OS not GTK not SSL nor ...
 #ifdef WIN32
 	SetLastError(0);
 #else
-	if(errno) e_print("# ~~~~ # clearing errno, was %d", errno );
+	if(errno) e_print("# ~~~~ # clearing errno, was %d \n", errno );
 	errno = 0;
 #endif
 	return is_error();

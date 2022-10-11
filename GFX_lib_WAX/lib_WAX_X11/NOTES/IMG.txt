@@ -1,0 +1,110 @@
+
+../	X_Pixamp	// a pixmap on the X11 SVGA card // isa Drawable //
+../	X_Drawable_Surface // a window or a pixmap on the X11 SVGA card
+
+IMG/	.png .jpg load/save // namespace WAX // RGBA mostly u32 //
+
+	u32_RGBA_t	// a pixel with .R .G .B .A // 
+	X_Image 	// a pixmap in main memory // _t //
+
+		A 2 dimensional array of pixels, u32_RGBA
+
+		I have put this at the hub,
+		so to convert to and from (eg JPG) look here
+		so to copy to and from X_Pixmap look here
+		so to draw pixels from the app (eg FT2) look here
+		The actual work can be done anywhere, but the api is here
+
+		This puts a dependency in libjpeg libpng libx11 etc
+		and harpoons them onto this central core thing
+
+		Maybe move that code away from this BASIC core decl
+
+	png_one.h
+	 struct png_one 
+
+		I only use u32_RGBA - you might want to extend this
+	 	this wrapper was written first,
+		maybe move to X_Image access
+
+		NB .png is more suited to high contrast graphs
+		NB .jpg is more suited to lossy shades of photo
+	
+	namespace TJ
+
+		turbo jpeg is a library with some ASM
+		it is a lot like libjbpeg 6
+
+		TJ_STUBS.h // the usual STUBS for function parameters
+
+	TJ_FB_image_t
+
+		same as X_Image, can share the same memory
+		a pixmap - a 2D Frame Buffer array of pixel
+
+	TJ_blk.h
+
+		a malloc'd block of memory,
+		or not, it might be borrowed from elsewhere,
+		eg X_Image might own it, and we share a PTR to it
+
+	TJ_instance.h
+
+		a session is an instance, CTOR optimises per usage
+		used as a BASE_CLASS of _loader or _saver
+
+	TJ_saver.h
+
+		get_pixmap_save_as_filename( X_display_, X_Pixmap_&, filename )
+
+		  X_Image_tmp.get_ximage_from_pixmap( disp, pixmap ))
+		  X_Image_tmp.put_ximage_into_TJ_IMG( this->img_tj ))
+		  call_Compress2( this->img_tj )
+		  jpeg_file_out_data.write_as_file( filename ))
+
+	TJ_loader.h
+
+		bool load_file( const char * filename );
+
+	TJ_scale_factor.h
+
+		[ 1 .. 16 ] / 8 // using turbo scaling code
+
+	TJ_values.h
+
+		 quality_t	95%
+		 subsamp_t	TJSAMP_444
+
+		 /* Pixel Format */ TJPF_RGBA // _GRAY
+		 /* Color Space */ TJCS_RGB // cmyk
+
+	GENERIC CORE BASE table of enum values and strings
+
+		tbl_enum.cxx
+		tbl_enum.h
+		tbl_enum_MACROS.h // specific to IMG
+
+		enum_row _t
+		.name .alias .desc .int_val
+
+		enum_tbl _t
+		.tbl_name .tbl_desc .pfx .N_rows .rows 
+
+		name_of_value( int ) // etc
+
+	test_libjpeg.cxx main()
+		non GUI test load save - does same as CLI DEMO example.c
+
+	test3
+	test_libpng.cxx
+		class X_test_img : public X_Window_Top_Level { ... }
+
+		Merging both .jpg and .png into one
+
+		shows morcheeba image, half-of, with X behind it
+	
+//	../test3.cxx
+//		class X_test_two : public X_Window_Top_Level { ... }
+
+
+

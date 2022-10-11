@@ -141,6 +141,9 @@ gdb_test1: $(EXEC1)
 gdb_test2: $(EXEC2)
 	INGDB=1 gdb -tui --args ./$(EXEC2) $(test2_font)  P 
 
+gdb_test3: $(EXEC3)
+	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG3) --args ./$(EXEC3)
+
 run_test1: $(EXEC1)
 	./$(EXEC1)
 
@@ -152,6 +155,9 @@ run_test3: $(EXEC3)
 
 run_test4: $(EXEC4)
 	./$(EXEC4) 
+
+lots: $(EXEC1) $(EXEC2) $(EXEC2) $(EXEC2) 
+	# make lots
 
 # pick up default .o.elf from MK_SUFFIXES from libs_apps
 # but add .elf depends on ... same massive pool of $(OBJS)

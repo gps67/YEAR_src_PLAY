@@ -142,6 +142,7 @@ int main_two( argv_decoder & ARGS ) {
 */
 
 	win1.XSelectInput( mask );
+	win1.X_Raise_Window();
 	
 
 	// KEY grab - eg NP_Add could become a TSR hotkey

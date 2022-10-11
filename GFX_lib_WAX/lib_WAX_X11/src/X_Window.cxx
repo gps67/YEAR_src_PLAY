@@ -53,37 +53,6 @@ X_Window(
 }
 
 /*!
-	create a simple window, NB-TODO some unsigned work 
-*/
-X_Window_Top_Level::X_Window_Top_Level(
-	const char * _name,
-	X_Display & _disp,
-	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
-	int borderwidth
-)
-: X_Window_Frame( /*_parent*/ (X_Window *) NULL, & _disp, /*window*/ 0, _name )
-{
-	set_name( _name );
-	ulong col_border = BlackPixel( display, 0 );
-	ulong col_background = BlackPixel( display, 0 );
-	drawable = ::XCreateSimpleWindow(
-		display,
-		RootWindow( display, 0),
-		xywh.x, xywh.y, xywh.width, xywh.height,
-		borderwidth,
-		col_border,
-		col_background
-	);
-//	xft_draw.Xft_DrawCreate( *this );
-	disp->add( this );
-	INFO("CTOR_ONE");
-	INFO( "window = %ld", get_window() );
-	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
-		FAIL_FAILED();
-}
-
-
-/*!
 	create a simple window on the parent
 
 	really - should create the local X_Window object
@@ -157,18 +126,8 @@ void X_Window:: XSelectInput_mask_one()
 	// whose data[0] field is WM_DELETE_WINDOW.
 }
 
-/*!
-	name gets displayed in the title bar, and wman lists
 
-	https://tronche.com/gui/x/icccm
-	https://tronche.com/gui/x/icccm/sec-4.html
-	says WM_NAME also WM_ICON_NAME 
-*/
-void X_Window:: set_title( const char * name )
-{
-	::XStoreName( display, get_window(), name );
-}
-
+//-----------------------------------------------------------------//
 
 
 /*
@@ -192,15 +151,29 @@ struct X_Window_Root : public X_Window
 		X_Display & _disp,
 		const char * _name
 	)
-	: X_Window( NULL_parent, &_disp, DefaultRootWindow( _disp.display ), _name )
-	{
+	: X_Window(
+		NULL_parent,
+		&_disp,
+		DefaultRootWindow( _disp.display ),
+		_name
+	) {
 		printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
 	}
 };
 
+bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
+{
+	// subscribe to be told when WM_ clicks on X button
+	XSetWMProtocols(display, get_window(), & X_Display_One:: atom_wm_delete_window, 1);
+
+	return INFO("LURK TODO");
+}
+
+// has to go after decl of X_Window_Root
+
 /*!
 	create an internal object for the already existing root window
-
+	
 	no functions are here for ROOT
 	no static singleton for root (TODO)
 	called once
@@ -214,10 +187,66 @@ X_Window * X_Window:: register_root(
 	return w;
 }
 
-bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
-{
-	// subscribe to be told when WM_ clicks on X button
-	XSetWMProtocols(display, get_window(), & X_Display_One:: atom_wm_delete_window, 1);
+//-----------------------------------------------------------------//
 
-	return INFO("LURK TODO");
+/*!
+	name gets displayed in the title bar, and wman lists
+
+	https://tronche.com/gui/x/icccm
+	https://tronche.com/gui/x/icccm/sec-4.html
+	says WM_NAME also WM_ICON_NAME 
+	
+	NB moving to Top_Level
+*/
+void X_Window_Top_Level:: set_title( const char * name )
+{
+	::XStoreName( display, get_window(), name );
 }
+
+
+/*!
+	create a simple window, NB-TODO some unsigned work 
+*/
+X_Window_Top_Level::X_Window_Top_Level(
+	const char * _name,
+	X_Display & _disp,
+	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
+	int borderwidth
+)
+: X_Window_Frame( /*_parent*/ (X_Window *) NULL, & _disp, /*window*/ 0, _name )
+{
+	set_name( _name );
+	ulong col_border = BlackPixel( display, 0 );
+	ulong col_background = BlackPixel( display, 0 );
+	drawable = ::XCreateSimpleWindow(
+		display,
+		RootWindow( display, 0),
+		xywh.x, xywh.y, xywh.width, xywh.height,
+		borderwidth,
+		col_border,
+		col_background
+	);
+//	xft_draw.Xft_DrawCreate( *this );
+	disp->add( this );
+	INFO("CTOR_ONE");
+	INFO( "window = %ld", get_window() );
+	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
+		FAIL_FAILED();
+}
+
+bool X_Window_Top_Level::
+X_Raise_Window()
+{
+	// only Raises above siblings, not WM ...
+	XRaiseWindow(display, get_window() );
+	XFlush(display);
+
+	INFO("but see XRestackWindows");
+	return true;
+	// MAYBE create as child of ROOT
+	// https://stackoverflow.com/questions/4345224/x11-xlib-window-always-on-top
+	// maybe ... _NET_WM_STATE_ABOVE
+}
+
+
+//-----------------------------------------------------------------//

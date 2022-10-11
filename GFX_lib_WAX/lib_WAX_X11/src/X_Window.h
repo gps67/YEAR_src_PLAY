@@ -74,14 +74,6 @@ struct X_Window : public X_Drawable_Surface
 	~X_Window(); // deregister
 
 	/*!
-		call this once - register ROOT window in our list of items
-	*/
-	static X_Window * register_root(
-		X_Display & _disp,
-		const char * _name
-	);
-
-	/*!
 		child classes use this to create the object
 		generic CTOR of fields
 		NULL_parent
@@ -112,6 +104,14 @@ struct X_Window : public X_Drawable_Surface
 		X_Window * parent_,
 		A_Rectangle xywh,
 		int borderwidth
+	);
+
+	/*!
+		call this once - register ROOT window in our list of items
+	*/
+	static X_Window * register_root(
+		X_Display & _disp,
+		const char * _name
 	);
 
 
@@ -159,7 +159,7 @@ struct X_Window : public X_Drawable_Surface
 	//	mask |= ButtonReleaseMask; // Pointer button up
 	//	mask |= ResizeRedirectMask; // Redirect resize of this window
 
-	void set_title( const char * name );
+// TOP	void set_title( const char * name );
 
 
         X_Window * find_top_Window()
@@ -233,6 +233,10 @@ struct X_Window_Frame : public X_Window_SubFrame
 	{}
 };
 
+
+
+// XXXX
+
 // ------------------- Top_Level -------- handles X button and ...
 
 struct X_Window_Top_Level : public X_Window_Frame 
@@ -251,10 +255,14 @@ struct X_Window_Top_Level : public X_Window_Frame
 		A_Rectangle xywh,
 		int borderwidth
 	);
+
+	void set_title( const char * name );
+	bool X_Raise_Window(); // NO it doesn't - within siblings only
+
 	// NOTE name in wrong place in args list
 
 	// MATCH { TYPENAME %s_t } in DOCUMENT = SCRIPT = HERE = CSR { DOC }
-	// kebab <KEYWORD> in { virtual bool on_api_event( event } }
+	// kebab <KEYWORD> in { virtual bool on_api_event( event ) }
 	// KEYWORD event // MATCH SUBCT lhs rhs //  ITEM ITEM // EXPR EXPR //
 	// EXPR = ITEM // SCRIPT is a VIEW over DOC = SCRIPT //
 	// SCRIPT LEX ITEM // %s cident // 
@@ -286,7 +294,7 @@ struct X_Window_Top_Level : public X_Window_Frame
 	// EXPLAIN_enum group item explain // explains ERROR // { int ERROR_t }
 	// SYNTAX VIEW // { int ERROR } // "ERROR_t ERROR = VAL; // CMNT"
 	// SYNTAX FILTER // VAL // "cident_of_enoum_group_item" // cident //
-	// DECL EVENT // API event_t event // init_event( event, SCRIPT, DATA }
+	// DECL EVENT // API event_t event // init_event( event, SCRIPT, DATA )
 	// EVENT {
 	// // event_t == api_event_t // FILTER has each as "%s" || TREE_NODE
 	// // %s == %s // "event" // "api_event_t" // %s_t // %s_%s_t //

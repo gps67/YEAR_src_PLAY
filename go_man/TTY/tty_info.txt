@@ -1,0 +1,67 @@
+
+	process group
+		SHELL uses for pipelines ?
+		within session
+
+		pid_t pgid = getpgid( pid );
+		if( -1 == setpgid(pid, pgid) ) { ... } // OK 0
+
+	process group leader
+
+		so what ...
+			
+
+	OLD OS VARIATIONS API (nb "grp" not "gid")
+
+		pid_t getpgrp(void);                 /* POSIX.1 version */
+		pid_t getpgrp(pid_t pid);            /* BSD version */
+
+		int setpgrp(void);                   /* System V version */
+		int setpgrp(pid_t pid, pid_t pgid);  /* BSD version */
+
+	session
+
+		pid_t sid = getsid(pid); // pid == 0 // means this pid
+
+		pid_t sid = setsid(); // create new session IF ...
+
+			sid = new session this pid
+			pgid == new group this pid
+
+		kept over fork, exec
+
+		can fail due to not permitting another session
+	
+	session group leader == session
+
+		if CLOCAL not set
+		HUP => SIGHUP to leader
+
+		on EXIT, send SIGHUP to each in group
+		"the foreground process group of the controlling terminal"
+	
+	controlling terminal
+
+		first opened TTY
+		except is O_NOCTTY
+
+		a terminal has MAX one session
+	
+	foreground job
+
+		THE one, only one
+		only it can read from terminal
+		others doing read() receive SIGTTIN
+		(which suspends)
+
+		IF TOSTOP set on terminal
+		only foreground may write to tty
+		others receive SIGTOU (suspends)
+
+		CTRL-C goes to fg-job
+
+
+
+
+
+

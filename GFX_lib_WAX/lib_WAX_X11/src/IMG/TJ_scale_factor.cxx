@@ -88,6 +88,13 @@ STR0 scale_factors_t:: list_scaling_factors( buffer1 & buf ) {
 	  1/4,   2 / 8
 	  1/8    1 / 8
 
+	Old camera did 1600x1200 0.34 MB 72dpi
+	Cant see a way of editing attrs,
+
+	2048x1370 
+	1296x1728
+	
+
 */
 }
 

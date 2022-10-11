@@ -67,7 +67,10 @@ int tty_ptmx::fork_vtty()
 		return -1;
 	case 0:
 		// child process
-		setsid(); // so that /dev/tty works and signals etc
+	//	setsid(); // so that /dev/tty works and signals etc
+		// setsid = no need - should get parents /dev/tty
+		// man 7 credentials
+
 		// fd_slave possibly closed on exec
 		fd_slave = open( name_slave, O_RDWR ); // for setsid 
 		if( fd_slave == -1 ) {

@@ -325,6 +325,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	win2.set_title( filename_1 );
 	win2.map();
 	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
+	win2.X_Raise_Window(); // just the once
 
 	//////////////////////////////////////
 
@@ -343,6 +344,8 @@ bool bool_main_jpg( int argc, char ** argv ) {
 
 bool bool_main( int argc, char ** argv ) {
 	
+	// MERGING .jpg into .png frame (both were similar) 
+	// RENAME REFACTOR PENDING
  	return bool_main_jpg( argc, argv );
 	return bool_main_png_jpg( argc, argv ); // both
 }

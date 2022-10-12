@@ -126,10 +126,7 @@ struct X_Window : public X_Drawable_Surface
 
 	/*!
 	*/
-	void map()
-	{
-		::XMapWindow( display, get_window() );
-	}
+	bool map();
 
 	/*!
 		set all (of mask) events to cause a callback
@@ -256,8 +253,22 @@ struct X_Window_Top_Level : public X_Window_Frame
 		int borderwidth
 	);
 
+	// Top_Level // api
+
 	void set_title( const char * name );
 	bool X_Raise_Window(); // NO it doesn't - within siblings only
+	bool set_always_on_top(); // no off switch !!
+
+	// TODO 
+	// set always on top
+	// to_icon // from_icon // to_top // full_screen { to from }
+	// track previous XYWH // restore // 
+
+	// Top_Level // api events //
+	// on_EVENT 
+	// on_%s
+
+};
 
 	// NOTE name in wrong place in args list
 
@@ -312,8 +323,6 @@ struct X_Window_Top_Level : public X_Window_Frame
 	// SCRIPT += CTOR { PTR = CT_EXPR } //
 	// RT_EXPR += SCRIPT += CTXT += CODE += DATA
 	// }
-
-};
 
 }; // NAMESPACE
 #endif

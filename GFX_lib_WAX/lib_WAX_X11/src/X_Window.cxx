@@ -103,6 +103,15 @@ X_Window::X_Window(
 		FAIL_FAILED();
 }
 
+bool X_Window:: map()
+{
+ 
+	// was above everything else, but not the focussed window
+ if(0)	::XMapRaised( display, get_window() ); // worked more
+ else	::XMapWindow( display, get_window() );
+	return true;
+}
+
 void X_Window:: XSelectInput_mask_one()
 {
 	long mask  = 0;
@@ -248,5 +257,32 @@ X_Raise_Window()
 	// maybe ... _NET_WM_STATE_ABOVE
 }
 
+bool X_Window_Top_Level::
+set_always_on_top() // _add // todo _remove + { bool toggle = off }
+{
+	Window win_root = DefaultRootWindow( display );
+	XClientMessageEvent xclient;
+	memset( &xclient, 0, sizeof (xclient) );
+	//
+	xclient.type = ClientMessage;
+	xclient.window = get_window();
+	xclient.message_type = X_Display_One:: atom_wm_state;
+	xclient.format = 32;
+	xclient.data.l[0] = X_Display_One:: atom_wm_state_add;	 // _remove
+	xclient.data.l[1] = X_Display_One:: atom_wm_state_above; // _below
+	xclient.data.l[2] = 0;
+	xclient.data.l[3] = 0;
+	xclient.data.l[4] = 0;
+	XSendEvent(
+		display,
+		win_root,
+		false,
+		SubstructureRedirectMask | SubstructureNotifyMask,
+		(XEvent *)&xclient
+	);
+	XFlush(display);
+	PASS("CALLED TOP"); // was called not on top
+	return True;
+}
 
 //-----------------------------------------------------------------//

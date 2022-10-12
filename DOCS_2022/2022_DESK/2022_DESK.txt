@@ -1,0 +1,366 @@
+2022-10-12 Oct Wed 03:56 # 37 #  2022_DESK/2022_DESK.txt
+
+ MINI  DESK
+
+ 	The umbilical cord is a hassle to rewind.
+	So a simpler solution is to not use it
+
+	It carries signals to and from stage
+	from behind audience
+
+	Alternative, is under the floorboards
+	Always there, a spray of LXR's and OUT_to_SPK
+
+	Alternative is simpler kit, mini setup
+	From sount blaster, with added wifi_mic, MIC to IN_MIC_IN
+	// DIALECT { lhs rhs } {IN MIC } { ${rhs}_${lhs} } // SUBLEX PSG
+
+		sound_blaster "SKPR"
+		cable "XLR.xFFFF" // OBJ_id_t id = parse_name( xFFFF ) // CMNT
+		cable "JACK_635" // 6.35 mm JACK // XLR_to_MIC { JACK == XLR }
+		microphone "saturn_sound_
+		mains kettle_plug
+	
+	street_speaker
+
+		trolley cable mic battery
+
+		Q_LINE
+
+		ARM32 esp32 to SD and SPKR from LINE_PAIR WIFI_LINE RETRY_Q_LINE
+	
+		AMP_to_SPK
+	
+	wifi_mic
+		this does notexist yet
+		because of latency 
+		laptop reads all { wifi_mic } // SPEC explain //
+		writes to MIX // realtime_latency_fixers // _filters //
+		writes to MP3 // udp_buffers // retrans // fall_back
+		amp_filter_feature // DESK tells MIC to use GAIN settings
+		amp_filter_feature // DESK gets MIC DATA over WIFI
+		WIFI module attempts to make UDP as good as TCP 
+		WIFI module attempts reliable_transport upto_FALL_BACK_TOO_LATE
+		WIFI monitor each channel,
+
+			first buffer is optimistic early KPS 
+			KPS works with scheduler over WIFI or CABLE 
+			FILTER_COPES_OVER_REAL_TIME_DROPOUTS
+
+			KPS_DELAY means 0.1 second ESP32_SPEED
+			SUBSCRIBE airtime booking
+			DIALOG PACKET_CLASHED
+			RETRANSMISSION REQUEST // compressed subsample
+
+			second buffer is 
+			RETRANSMISSION REQUEST // compressed subsample
+
+			PACKET_BOOKING // goes out on next REALTIME_DELAYED
+
+	REALTIME_DELAYED // name of MODULE that does MUX_RELAY_RE_TRANSMIT
+
+		on a good day see 100% reliable retransmitted TREE
+
+			STREAMS // and later retransmit // dual 24_bit
+
+		u16 header	// includes channels 0 1 // channels 2 3 // 5 5
+		u48_dual_24_bit // either stereo or two data steps // 
+		CHANNEL _ODD _EVEN aliases for half speed interleaved
+
+		u8_header
+		u24_data
+
+		x2
+
+		TREE of 1 minute segments xN channel
+
+			RECORDING TYPE 4 minute TRACK
+
+			RECORDING TYPE 3 hour SESSION
+
+			RECORDING TYPE 1 second RETRY WIFI // hopefully 0.01
+	
+	MIC = 130 KPS
+
+		u24 3 bytes
+		44,100 hz
+		130 KPS (of 10,000 KPS)
+
+	ETH = 10 MB/s
+
+		LINE_8 // active of addressable
+		SEND_2 // L_R to PA
+
+		1 MB/s each
+
+		MIC = 130 KPS
+
+		10 MB / 1.5K (pkt_size) 
+
+		eth_100 = 6K packets / s
+		eth_10 = 600 packets / s
+	
+	ADSL
+
+		51.4 Mbps download
+		 7.5 Mbps upload
+
+		 8 Mbps = 1 MB/s - seven MIC uncompressed 130 KPS
+		51 Mbps = 
+
+	DESK = ETH_10 = ROOM
+
+		record u24 to disk
+		share MP3 to desk // enough for GROUP to 
+	
+	MORE ROOMS will need better KIT
+	but this is scalable from ESP32 and laptop_DUO_16
+
+		STAGE_RADIO
+
+	REALTIME_DELAYED // name of MODULE that does MUX_RELAY_RE_TRANSMIT
+
+		There is a total delay of 0.3, we cause 0.1 to become 0.2
+		tests to find RATE through upto DELAY budget
+
+		MOSTLY - WIFI is behind us, is CAT5 from here //
+
+			ie ethernet is using a SWITCH
+			which is what we are doing here
+			a slight delay, and fewer CLASHES
+			WIFI NOISE is like a CLASH
+			WIFI NOISE LEVEL // fall_back_degrade
+			WIFI RETRY
+
+		WIFI RETRY
+
+			FAIL_RATE ROUND_ROBIN TAKE_TURN RATE_FEED
+			FEED_DELAY round_robin_rate 3_cycles_retry
+				-send->
+				(clash)
+					tell_sender_to_retransmit // t_now_STEP
+				deduce retransmit is a good idea
+				-retry->
+					tell
+
+		CHIP_NEXT
+
+			it's only time until CHIP appears 
+			that can look at every PKT
+			GROUP_CHANNEL BROADCAST_on_CHANNEL
+			"READ_every_PKT" // along with PKT_INFO OBJ_SPEC_STO
+
+			CONNECTION == GROUP_BROADCAST_UDP
+
+				READ_every_PACKET
+
+				FILTER dte_of_sender == ADDR_MAC_sender
+					yes known host // crypt deducer //
+
+				FILTER UDP_GROUP_ADDR IP4_ADDR
+
+				FILTER UDP_GROUP PORT_TEMP 
+					yes MBONE at SWITCH level
+
+				FILTER UDP_GROUP_BROADCAST
+					pkt_id++ // optionally src_id+i
+
+
+			CONNECTION == 
+			CONNECTION == GROUP_BROADCAST_UDP
+
+				FILTER read clear LABEL
+					checksum confirms value_is_unchanged
+						else being hacked
+
+				FILTER read various CRYPTED buffers
+					expand all before running code for STEP
+					BUFFER N_bytes KEYS_ CALLS_
+					API_CRYPTED_BUFFERS 
+						ALL_INTO_CLEAR
+						API_SUB_SEGMENT
+
+				FILTER
+					IS subscribed to FEED // FEED == LINE
+
+				DIALECT
+					lhs == "rhs" // operator== uses DIALECT
+
+				CTXT = hidden parameter += this += self += HERE
+				HERE += CTXT_near_by
+
+				DECODE PKT
+
+			PKT.STEP == LINE[4] . Q_DELIVERED // ACK received _able
+
+			PKT.QPOS = { queue pos_idx } += DATA
+
+				ie a STREAM SEGMENT has been DECODED
+				it was RETRY_WRAPPED
+				it was CRYPTO_HIDDEN // and SIGNED
+				it was CRYPTO_SIGNED // DB of ID
+
+				one thread is SEAMLESS_SOUND
+
+			FILE FORMAT
+			DATA FORMAT
+				
+				HDR	time_was_MIC // according to MIC
+				HDR	nbytes of MP3_PKTS // whole to EOT
+				HDR	left_tail OFFS of NEXT_in_Q of broke
+				HDR	LINE_idx == 4 // "4" // "LINE[4]" //
+
+			NBYTES
+
+				PARSE MP3_PACKET_STREAM // JOIN BROKE //
+
+			PARSE
+
+				JOIN_BROKE // somehow // OPTION AVOID //
+				MP3 packet parser // clicks off packets //
+
+					SECOND STREAM = INDEX of where 
+					FIRST STREAM = NBYTES of MP3_PKT_LIST
+
+				INDEX to find TIME_OFFS in TREE
+
+					MINUTE of STREAM	+= INDEX
+					MINUTE of STREAM	[IDX]
+					MINUTE of STREAM	BASE[OFFS]
+					MINUTE of STREAM	u64_EXPR
+					MINUTE of STREAM
+					MINUTE of STREAM
+					MINUTE of STREAM
+					MINUTE of STREAM
+
+
+			u64_TIME_BASE _t
+			u64_TIME_OFFS
+
+				u32_TIME_OFFS // SECOND after BASE SIGN -5%
+				i32_TIME_OFFS // SECOND NEAR BASE SIGNED
+				i32_WRAP_WORD // ARM32 friendly u32_WORD
+
+			u64_EXPR_WORD _t
+
+				PKT_TYPE = STREAM_DATA // reliable in order
+				PKT_LINE = EXPR // OBJ[u8] // LINE[u4] //
+				PKT_TIME_BASE = LINE.TIME_BASE
+				PKT_TIME_OFFS = EIGHT.FOUR.u32_payload
+
+			DECODE(" { BASE OFFS } == { PKT_TIME_BASE PKT_TIME_OFFS } "
+
+			VIEW("			START_AFTER_EOLN // LIKE_SP_ONE
+			{			
+		 	    BASE		ROM4_CODE_POINT_xFFFF	
+			    OFFS		ROM4_CODE_POINT_xFFFF	
+			}
+			==
+			{
+				PKT_TIME_BASE
+				PKT_TIME_OFFS
+			} "			// LIKE_SP_TWO
+
+// one eye
+// 10 minutes to zero // gone in 3
+// https://sovren.media/video/611-the-worshippers-of-the-watchers-with-christopher-knowles-and-zero-dark-tony-1892.html
+
+
+PARSER BIAS
+
+	what causes the CT interpretation of { lhs rhs } as ...
+SPEC # CT #
+	TUPLO(CODE_POINT)
+DATA # RT #
+	LHS_t lhs 
+	RHS_t rhs 
+			
+	MATCH TEMPLATE -to- INSTANCE
+	MATCH SAME NAME FILTER 
+	FILTER UPPER upper lower LOWER
+	SUGGEST explain
+	BENCH SETTING - deduced from SCRIPTS - CODE_POINT.CT.value_here
+
+	REWIRE PSG to generate BENCH vars from SCRIPT via DIALECT
+	ACCEPT RULES found USED to explain all here MATCH ALL
+	ACCEPT RULES that filter self
+	ACCEPT ==> STRUCTURAL PARSER += DATA { SPEC CODE DATA } { STEP DATA }
+	STEP = CODE_POINT + PICK // ary_%s[PICK] %s == STEP PICK == PICK
+
+	SAME_NAME
+		weight MATCH factor
+		by 100%
+		as OPTIONAL interpretation, ALIAS, ACTIVE_ALIAS
+		VAR_VAL
+
+
+
+
+
+
+		PKT_in[Q] 
+
+
+	laptop mixer desk wifi_local 
+		desk = 6_MIC STEREO // POLY // DESK // OVERLOAD_N_LINES //
+		wifi from ESP32 or ARM32 with lib_ARM64_OPTIMISATION
+		ESP32_C++ as MIX_api // real_time_sound_desk //
+		ARM32_C++ as OBJ_api // SPEC _of_ OBJ //
+		CHANNELS += wifi_mic // CONFIG // VARS // API //
+		LINE[idx] // N_LINES _N idx _MAX == "(N-1)" // "(EXPR)"
+		MATCH DECL TEXT CODE_POINT_VALUE "[0[16" 
+		MP3 streams are easily spliced as buffered blocks
+		MP3 packet = K_147 // ethernet packet UDP_NOW
+		NOW packet POS_in_DEVICES_TIME // server can do it or let device
+		The mic has a minimum functionality, as DESK_LINE_MIC_AMP
+
+
+	mini_setup
+
+		2 PA speakers // MAINS_PLUG //
+		2 long XLR stage cables 
+		mini desk // has own amp
+		2 microphones
+		 EACH += long MIC cables // XLR3 // distance to map
+		 
+
+
+
+		https://en.wikipedia.org/wiki/XLR_connector
+
+	// DIALECT { lhs rhs } {IN MIC } { ${rhs}_${lhs} } // SUBLEX PSG
+	// PSG += SUBLEX //
+	// PARSE(" { ${rhs}_${lhs} } // SUBLEX PSG
+        // PSG += SUBLEX // AUTO_IMPORT //
+        // PARSE(" RHS_LHS ") // CTXT { maj min } += SCOPE += DIALECT
+	// OBJ += SCOPE // explain //
+	// OBJ += DIALECT // explain //
+	// OBJ += SESS // explain //
+	// OBJ += EXPR // explain // vars exprs scripts .java { GEN .js }
+	// PARSE += GEN // GEN += PARSE // explain // STO per SESS request MK_x
+	// ALLOC // { POOL += ITEM } // TUPLO += ARGV_as_TUPLO ARGS
+	// ARGS // ARGS[N_ARGS] // AUTO ALIAS " argv[argc] "
+	// ALIAS " ARGV[ARGC " //
+	// FIELD " argv[0] " // DIALECT "{ %s }" // TEMPLETE ${POS=HERE} //
+	// ENV VAR in BENCH // BENCH += "{ SPEC DATA }" // cident == "spec_data" )
+	// PSG // EXPR ARGS == "{ int argc; obj_t argv[argc]; // VAL = STO_COPY_NBYTES
+	// EA // SCRIPT_LINE EA = XPOS // CSR == "{ DIAG XPOS }" //
+	// API // XPOS is TEXT as TREE // FRUIT += "/* SPEC */DATA"
+	// VIEW // " SP /* ${SPEC} */ SP DATA SP "
+	// GEN // SUBST SP // SINGLE_SPACE_MERGE // LEXEDGE // SPACE // GAP //
+	// GEN // SUBST ${ANYSTR} C_EXPR_SUBSTR == "get_text('ANYSTR'); // CMNT EOLN // XPOS "
+	// EXPORT // next ITEM will read DATA from here using SPEC and API
+	// ANYSTR // VARNAME // "${VAR}" // ALSO "${expr}" //
+	// ALSO "${expr:-expr}" // shell has some good GET_VAL CALC_VAL ROM_VAL
+	// ALSO " BASH "${VARNAME:-VALUE}" // VALUE %s // BASH_EXPR_psg
+	// DIALECT += BASH_VAR_EXPR_PLUS
+	// GEN can INTERPRET DIALECT // it is safe mode sandpit data SCRIPT //
+	// API_python // module SPEC_DATA // "{ module CODE SPEC DATA }"
+	// MUX_object is a python object // SM2 var sto SPEC DATA // { SPEC DATA }
+	// fruits and instrumentalities-of-crime // SPEC DATA //
+
+
+
+
+
+

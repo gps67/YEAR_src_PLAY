@@ -29,6 +29,27 @@ using namespace WAX;
 int X_Display_One:: reasons_to_stay = 0;
 
 Atom X_Display_One:: atom_wm_delete_window = 0;
+Atom X_Display_One:: atom_wm_state = 0;
+Atom X_Display_One:: atom_wm_state_above = 0;
+Atom X_Display_One:: atom_wm_state_add = 0;
+Atom X_Display_One:: atom_wm_state_remove = 0;
+
+/*!
+	create a connection
+*/
+X_Display_One :: 
+X_Display_One( const char * display_name )
+: cmap( NULL ) // what is the correct C++ of doing this ?
+{
+	display = ::XOpenDisplay( display_name );
+	cmap.late_init( display );
+	// only_if_exists == false // NULL might match NULL
+	atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
+	atom_wm_state = XInternAtom( display, "_NET_WM_STATE", False);
+	atom_wm_state_above = XInternAtom( display, "_NET_WM_STATE_ABOVE", False);
+	atom_wm_state_add = XInternAtom( display, "_NET_WM_STATE_ADD", False);
+	atom_wm_state_remove = XInternAtom( display, "_NET_WM_STATE_REMOVE", False);
+}
 
 bool X_Display_One :: test_list_depths()
 {

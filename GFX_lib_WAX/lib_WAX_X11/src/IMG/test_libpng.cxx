@@ -289,6 +289,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 	X_test_img win2( "jpg1", disp, xywh2, 0, tj_loader.FB_image );
 	win2.set_title( filename_1 );
 	win2.map();
+	win2.set_always_on_top(); // used
 	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
 // }
 
@@ -326,6 +327,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	win2.map();
 	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
 	win2.X_Raise_Window(); // just the once
+	win2.set_always_on_top(); // unused
 
 	//////////////////////////////////////
 

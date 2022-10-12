@@ -21,10 +21,12 @@ struct X_Display_One
 	X_Colours cmap;
 	A_Map_W map_W;	// find X_Window from { Window win } // LEAK
 
- static
-	int reasons_to_stay;
- static
- 	Atom atom_wm_delete_window;
+ static int reasons_to_stay;
+ static Atom atom_wm_delete_window;
+ static Atom atom_wm_state;
+ static Atom atom_wm_state_above;
+ static Atom atom_wm_state_add;
+ static Atom atom_wm_state_remove;
 
 	bool reasons_to_stay_incr() { reasons_to_stay++; return true; }
 	bool reasons_to_stay_decr() { reasons_to_stay++; return reasons_to_stay > 0; }
@@ -33,16 +35,7 @@ struct X_Display_One
 	/*!
 		create a connection
 	*/
-	X_Display_One( const char * display_name )
-	: cmap( NULL ) // what is the correct C++ of doing this ?
-	{
-		display = ::XOpenDisplay( display_name );
-		cmap.late_init( display );
-
-		// only_if_exists == false
-		atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
-
-	}
+	X_Display_One( const char * display_name );
 
 	/*!
 		send all drawing requests

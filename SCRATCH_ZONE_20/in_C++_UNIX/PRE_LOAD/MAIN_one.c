@@ -12,6 +12,6 @@ int main( int argc, char ** argv )
 	// if we dont provide it, the stack provides some random
 	int mode = 04755; // suid and 755
 	int t = open( "myfilename", O_RDONLY, mode );
-	fprintf( stderr, "got %d from open() \n", t);
+	fprintf( stderr, "%s: got %d from open() \n", argv[0], t);
 	return 0 ;
 }

@@ -1,7 +1,23 @@
+	BOLN // SYNTAX // EA == XPOS // EXPR ARGS _val _t PSG SESS VARS
+	VARS += VARNAME
+	VARS += ANYSTR // SCRIPT HERE ALIAS ENV { SPEC DATA } // COPDE_POINT HERE
+	STEP = SCRIPT.STEP XPOS EXPR DATA // += IMPORT "EXPR" // API //
+
+	STEP = RUN STEP // STEP is { CODE DATA } += CTXT += SELF += ALLOC
+	STEP = SCRIPT.STEP // API expands connecting code into GIT history
+	CTXT += CTXT // import API(" API ") // PRE_ALLOCATED CODE_POINT
+	CODE_Point_t FILE_LINE_XPOS EXPRS alias EXPR_t EXTR += SCRIPT_CODE_POINT
+	OBJ_t SESS_VAR ITEM_t ITEM; // INIT_VAR EXPR API 
+	OBJ_t OBJ; // DIALECT VAR " OBJ " // auto _t // DIALECT MK_VAR
+
+
 	Phrase_BOOK/
 	Phrase_BOOK.txt
 	Phrase_BOOK/Phrase_BOOK.txt
 	Phrase_BOOK/Phrase_BOOK_CSET.txt
+	Phrase_BOOK/Phrase_BOOK_SCRIPT; USES PSG LEX API DATA // ITEM = STO.ALLOC.INIT EXPR _s
+	// _s // adds CSET "STRING" PSG SUBLEX ALIAS VAR_POOL _s
+
 
 	CSET bit_map byte_map
 	struct scan_to_NL {

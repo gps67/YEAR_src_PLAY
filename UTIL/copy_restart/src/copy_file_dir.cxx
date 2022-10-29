@@ -105,8 +105,10 @@ bool copy_src_name_dst_try(
 	dst_name_tmp = (STR0) buff_dst_name_tmp;
 	dst_name = (STR0) buff_dst_name;
 
+	if(0) {
 	INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
 	INFO("dst_name %s", (STR0) dst_name );
+	}
 
 	// if dst_name already exists, it is A COMPLETE COPY
 	// MAYBE check mtime nbytes and report mismatch
@@ -115,8 +117,8 @@ bool copy_src_name_dst_try(
 		// we should check size date perms uid gid
 		// and be happy if they match
 		// but we simply fail so the calling script does that
-		return PASS(" already exists %s", (STR0) dst_name );
 		return true;
+		return PASS(" already exists %s", (STR0) dst_name );
 	}
 
 

@@ -1,0 +1,77 @@
+
+	Phrase_BOOK/
+	Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK.txt
+	Phrase_BOOK/Phrase_BOOK_CSET.txt
+	Phrase_BOOK/Phrase_BOOK_CSET_SUBLEX_IDENT_ANYSTR.txt
+
+
+	Phrase_BOOK/
+		. is imported SEGMENT from LIBR_SESS LIBR_SESS_ROM
+
+		Phrase BOOK
+		CSET a1 a2 a1_a2_star cident _t 
+		SUBLEX cident { OPTION ANYSTR } // { DROP IN } // 
+		IDENT cident PARSER "LEX(ITEM)") // CT a1_a2_star a1 a2 // += MORE FLLOWS
+		PARSE a1_a2_star a1 a2 // INPUT = STDIN // OUTPUT = BUILD_TREE_for_STDOUT // str0 cident = "%s" // dialect dual wrap Q2_percent_s // ALIAS "%s" "'%s'"
+		NAME cident
+		TYPE_NAME cident
+		DATA_NAME cident
+		EXPR_ADDR { & cident } // no MALLOC can be CT const KNOWN_at_CT
+		ANYSTR // OPTION to FILTER UDEF names or allow through as_is CXX 
+		GEN EXPR_that_looks_like_an_ITEM_EXPR
+		GEN EXPR == ITEM_EXPR
+		GEN ARGS.parameter_ARGV_known CT { IDX = CALC_IDX }
+
+		VAR_POOL
+			bunch of PEER objects in a SEGMENT in compiled CXX
+
+		VAR_t * VAR = loopup( VAR_NAME ) // ROM_STR("VAR_NAME") // LEX_EDGE_DETECT LEX_EDGE VAR_NAME ... explain ...
+
+		RT VAR = lookup_VAR("%s") 
+	
+	Object_ZONE
+
+		HEAP_TECH u16_idx
+		HEAP_TECH u8_u8_idx EA_ITEM_LOHI_as_STR0 "{ i8 i8 }" // -ve CODE +ve ITEM // VECTOR SEGMENT [-128[0 // [ -128 .. -1 / 0 // [0..[N // 128 // 127 is last inside
+
+		// u4_idx u8_idx u16_idx u24_idx u32_idx u48_idx u64_idx //
+
+		SPEC == "u48 is PTR" { %s == " %s " // CODE_POINT }
+		SPEC == "u48 is PTR" { %s == "%s" // CODE_POINT }
+		SPEC == "u48 is PTR" { %s == " '%s' " // MATACH ALIAS } // on_GEN VIEW3 // no change required for usage
+		SPEC == "u48 is PTR" { u48 = u48_payload = { u64_word >> 16 } // one clock cycle "
+	
+	Q2 quotes 'Q1' // LEX_EDGE += BOTH
+
+		JIT incrementally compute LEX items found in ROM
+		AUTO_DETECT CACHE that is CT aware esp to gen useful code
+
+	NAME = ANYSTR
+
+		I actually meant UTF8 8859_Latin 8859_cyrillic BYTE_CSET MULTIBYTE_CSET
+		You can have emojiis in beyond_cident
+		You cannot have NUL bytes within
+		You can have NUL bytes within
+
+		TOKEN = lookup NAME 
+
+		TOKEN = lookup ARGS NAME NAME_t
+
+		TOKEN { EA_of_ITEM_STRING_in_SOURCE { LIBR SCRIPT LINE XPOS } as { SEEK CODE_POINT PRE_PARSE_cident }
+
+		PERMIT NAME == ANYSTR // no attempt at fixing CSET, BYTES AS IS, expect correct lookup NBYTES // may contain NULLS // might NOT overrun
+		// NO NULL is confident that the NBYTES did not end with a str looking for a NUL 
+		// eg it stopped before the previous u48_seek_pos // eg no NUL using nbytes sometimes BOTH
+		// for now ANYSTR is bounce(%s) EXPR_CODE(u48_payload) // i48_payload = i64_WORD >> 16
+		// use GCC BITFIELD to get i16 from u64 // two clock cycles, shift left, killing over bits, shift rith, matching zero, bringing sign to THIS field
+		// expect very few -1 -2 test then put back as u16 or u24 // 0 is a valid idx // possibly most valid as HERE == SELF == this //
+
+		EA = lookup ANYSTR // clutch of parsing running vars appeared, sign flags, packed [PICK] 
+		EA = lookup NAME // of ITEM // at RT or at CT
+		OFFS_EXPR = lookup_NAME in ROM POOL
+		{ OFFS NBYTES } // needs BASE where SEGMENT IS loaded in wider MMAP
+		u48 * MEM = u48_BASE + u48_OFFS ; { u48 * MEM = u48_BASE + u48_OFFS }
+		// u16 = OPCODE "{ u48 * MEM = u48_BASE + u48_OFFS }"
+		// Q2_DETECT causes local BIAS // Q2 LBRACE SP code_expr // Running code gives BIND to each LEX cident
+

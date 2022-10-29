@@ -1,0 +1,18 @@
+2022-10-24 Oct Mon 10:18 # 57 #  ffmpeg_reduce/ffmpeg_reduce.txt
+
+https://www.google.com/search?q=linux+reduce+mp4
+
+ffmpeg -i input.mp4 -vcodec libx264 -s hd720 -crf 35 -vf output.mp4
+# adjust the -crf 35 # constant rate factor
+# else -b:v # 1 pass target bitrate
+# else 2 pass bitrate
+# CRF #
+
+ffmpeg -i input -c:v libx265 -crf 28 -preset slower -c:a copy output.mp4
+
+
+
+
+ffmpeg -i input.mkv -c:v libx265 -vtag hvc1 -c:a copy output.mkv
+
+

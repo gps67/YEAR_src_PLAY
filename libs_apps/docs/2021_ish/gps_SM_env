@@ -1,0 +1,18 @@
+echo see /home/gps/YEAR/src_build/mozjs-106.0.0/js/src/doc/build.rst
+echo see $HOME/mozconfig/go1
+exit
+
+d_obj_gps=js/src/OBJ_gps
+d_prefix=$HOME/G/prefix_js 
+
+. fns_FAIL
+. fns_DIRS
+
+# actually see MOZ_OBJDIR=@TOPSRCDIR@/obj-debug-@CONFIG_GUESS@
+# actually see js/src/doc/build.rst
+
+cd_d_obj_gps()
+{
+	cd_mkdir_FAIL $d_obj_gps
+}
+

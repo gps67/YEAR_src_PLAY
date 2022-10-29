@@ -2,14 +2,17 @@
 # MK_LISTS
 
 #	CONVERT
-#	into      VPATH
 #	from LIST_VPATH
+#	into      VPATH
 #
-#	into      PKG_CONFIG_PATH
 #	from LIST_PKG_CONFIG_PATH
+#	into      PKG_CONFIG_PATH
 #
-#	into      CPLUS_INCLUDE_PATH
 #	from LIST_CPLUS_INCLUDE_PATH
+#	into      CPLUS_INCLUDE_PATH
+#
+#	from LIST_RPATH
+#	into      RPATHS
 
 	# S=.
 	# S=/home/gps/YEAR/src/libs_apps-2019-12-15_EDITS/IDEAS_SOON/MK
@@ -18,7 +21,7 @@
 #	SP COLON
 
 	SP=$(empty) $(empty)# SINGLE SPACE
-	COLON=:# immediate # comment means no  spaces
+	COLON=:# immediate comment # means no  spaces
 
 # CONVERT make lists into colon lists
 # ALLOW LIST_x += item
@@ -41,17 +44,20 @@
 	# no spaces allowed in dirs in LIST_VPATH
 	# unsure about luck of having 1 SP per list item # TAB # SPSP #
 	VPATH+=$(subst $(SP),$(COLON),$(LIST_VPATH))
-#	VPATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_VPATH),$(sub)))
 	export VPATH
 
 	# LIST_CPLUS_INCLUDE_PATH  => CPLUS_INCLUDE_PATH
 	# where C++ looks for include files
-	CPLUS_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(foreach sub,$(LIST_CPLUS_INCLUDE_PATH),$S/$(sub)))
+	# first convert to relative to $S # which is nonsense
+	# then convert SP to :
+	CPLUS_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(LIST_CPLUS_INCLUDE_PATH))
 	export CPLUS_INCLUDE_PATH
 
 # DEBUG = FOUND #
 	# this seems to be adding a space
 	## VPATH+=$S$(foreach sub,$(LIST_VPATH),:XX$S/$(sub)ZZ)YY
 
+	RPATHS += $(foreach dir,$(LIST_RPATH),-Wl,--rpath=$(dir))
+	export RPATHS
 
 

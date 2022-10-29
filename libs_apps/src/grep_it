@@ -2,5 +2,7 @@
 # -s # silent if absent or unreadable
 PTN="decrypt_vncpass"
 PTN="blk_base64"
+PTN="WITH_JS[^_]"
+PTN="WITH_JS_SM"
 PTN="${1:-$PTN}"
 grep -a -s "$PTN" */*/*

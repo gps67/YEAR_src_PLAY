@@ -2,7 +2,9 @@
 	Phrase_BOOK/
 	Phrase_BOOK.txt
 	Phrase_BOOK/Phrase_BOOK.txt
-	Phrase_BOOK/Phrase_BOOK_CSET.txt
+**	Phrase_BOOK/Phrase_BOOK_CSET.txt
+	Phrase_BOOK/Phrase_BOOK_CSET_SUBLEX_IDENT_ANYSTR.txt
+
 
 	PSG_Tuplo_Structs
 	 NBYTES ITEM
@@ -55,37 +57,111 @@
 
 		MATCH LEX.NAME.cident99_t // VAT SCRIPT EXPR NAME
 		[:ident:]
+
 		[A-Za-z0-9_\-\ // NOTE RISK - has interpret_as_RANGE_DASH
 		[A-Za-z0-9_]+
-		a1_a2_star( CSET_a1, CSET_a2 ) // CSET = ITEM || EXPR //
+
+		a1_a2_star( CSET_a1, CSET_a2 ) // CSET = ITEM || EXPR // HERE == "%s" cident // PSG += { CSR_PTR_EACSR } // ON_LOAD_CODE SCRIPT VAR_NAME // CODE SPEC DATA ALIAS
+		// CODE SPEC DATA ALIAS // HERE == " FILE LINE XPOS // PLUS " // MATCH ASSOCIATE { EA == HERE == PTR } // PSG DIALECT HERE // cident_t here = "HERE"; // "cident_t"
+		// FILTER XPOS adds MARKERS LINE_NUMBERS // FILTER GEN TRICK FILE { %s NAME } name_idx = lookup( NAME ) // FILTER %s NAME = CT_EVAL_BIND_NAME("MK_VAR(%s)")
+		// VAR_NAME_t VAR_NAME = INIT_VAL("%s") // EXPECT_VALID { const char * PTR = ARGS // INIT_VAL = ARGS + CTXT + CODE + SPEC + DATA + VARS
+		// PSG  // INIT_VAL = ARGS + CTXT + CODE + SPEC + DATA + VARS //
+                // PSG  // SPEC += ARGS_t // ARGV of ITEM_t ADDR;
+		// RUN  // PTR = u48_u16_in_CPU_REG // API += u48_payload // += u16_decoded_as_SCRIPT_GRAIN_STATE_eg_NAMED_ATTR VAR_NAME SPEC_NAME _t
+
+
+
 		 a1 += "[A-Z]" // CAP1_CHECK ED // 
 		 a1 += "[a-z]"
 		 a1 += "[0-9]"
 		 a1 += "[0-9]"
 
+		ALIAS cident // ITEM // EA // REF_EA_EXPR EXPR // ARGS // DIALECT 
+		SCRIPT_VAR exists_on_mention // SCOPE = ALLOC_NEAR_SCOPE
+		ALLOC_NEAR SESSION_VAR 
+		EA = TUPLO ... CTOR = SCRIPT this SPEC INIT_ARGV CALL_ARGV ARGS
+		ARGS += { { STO += MK_VAR("%s") } { VAR_NAME } }
 
 
 
 	   */
 
-	  PSG writes FILTERS each into POOL
+//	  PSG writes FILTERS each into POOL
+//
+//	   see
+//	   /home/gps/YEAR/src/PLAY/
+//	    libs_apps/
+//	     src/
+//	      mm3_scan-2003-02-23.tgz/
+//	       utar://mm3_scan-2003-02-23/mm3_file/mm3_file_scan.h
+//	       	LANG_PSG_LEX_SUBLEX_STO_VAR("SESS") // LIST += SESS //
+//
+//	   CSET
+//	   	UDEF SINGLE_BYTE_LIMIT // but 8 bit clean
+//	   	UDEF MULTI_BYTE_SCAN // utf8 of 8859 
+//
+//		STEP_MATCH
+//
+//		 BOOL_EXPR("ZONE += {
+//		 	cset_bit_map cset_
+//
+//
+//	   cident
+//
+//		VARS += VAR
+//		VARS += EXPR _CODE _DATA _LIBR _CODE
+//
+//		VARS += EXPR VAR // PROVIDE STO_t /* for */ STO // OR "\* %s */"
+//		VARS += EXPR _CODE _DATA _LIBR _CODE
+//
+//		SPEC += DATA // FIELD _S NAMES API PSG += VAR 
+//		VARS += EXPR _CODE _DATA _LIBR _CODE
+//		EXPR += { CODE } { SPEC DATA } // API says CSR_HERE += REF_ITEM
+//		EXPR += ITEM SPEC DATA EXPR // invoke STEP from EXPR DECODER
+//		ITEM = RET_VAT from finder_of_objects EA("ANYSTR") // SUBLEX_JOIN
+//		BIND = ITEM // SUBLEX JOIN HERE_invokes_EXPR ARGS PICK EXPR 
+//
+//		PSG += NAMED_VAR a1_a2_star cident_t; // AUTO_t DETCT _t
+//		PSG += EXPR_POOL_t STO_for_SESS_HERE_CSR_t csr; // CSR // BIND
+//		// LEX_DETECT VAR_NAME // FULL_SPEC_available_via_api
+//
+//
+//	   MK_VAR	{ %s VAR_NAME } // OPTION_CSET UTF8 LATIN_8859_CSET // CSET SUBSET a1_a2_star a1 a2 " SUBSET_cident // SUBSET_SCRIPT_TEXT_EXPRS // Q2 name // "VARNAME")
+//		CT.KNOW ... ON_MK_VAR gen script VAR_POOL = VAR_POOL // LINK to provided via api
+//		CT.KNOW ... ON_MK_VAR gen script VAR_POOL_t VAR_POOL = INIT_VAL // LINK to LOADED_VAL // BIND_or_COPY // CT_BIND using GCC optimised VARS in ARGS
+//		CT.KNOW ... HERE ... SUBLEX_NAME cident // VAR_NAME == "%s" // cident was a1_a2_star_cident _AKA_ANYSTR // BIZARE ANYSTR // WORKS!!
+//
+//		SESS.STO += MK_VAR ANYSTR INIT_to_PROFILE INIT_VAL ;// 
+//		SESS.RT.STO += MK_VAR ANYSTR INIT_to_PROFILE INIT_VAL ;// 
+//		SESS.CT.STO += MK_VAR ANYSTR INIT_to_%s INIT_VAL ;// BIND_LEX
+//		// BIND_LEX %s HERE this // SCRIPTLINE == CODE_POINT == XPOS
+//		// XPOS FILE_LINE_XPOS // FILE == DIALECT %s FILENAME // LEXPOS // IDENT //
+//		MK_VAR += ALLOC EA_RETVAL PTR 
+//		ALLOC_NEAR LIBR // LIBR += SESSION_VAR_LIBR
+//
+//	   SESSION_VAR("%s")
+//	   SESSION_VAR("{ %s %s }") // { NAME DATA } // { SPEC STO } // 
+//		EXPR_t += local varname // imported from API CT RT
+//		GETTER_t GETVAR SETVAR TELL_VAR_ARGS CODE_POINT // SCRIPT MANIFESTS
+//		VAR_POOL EA_ITEM PTR INVOKES MENTIONS { /*CT*/ INIT_VAL == ""ANYSTR") // ALIAS "%s" // EG_VAL AS_IS
+//		VAR_NAME SUBLEX ITEM EA VAR_REF CODE_EXPR 
+INVOKES MENTIONS
+//
+//
+//  OT  // MARKER // ALIAS CODE_POINT HERE CSR EA ITEM EXP VAR STO SESS_VAR
+// PSG // MY SCRIPT += DIALECT VARS += EXPR += INIT INIT_VAL CODE SCRIPT
+// PSG // MY SCRIPT += DIALECT CODE += CODE_t SCRIPT_FRAGMENT _SUBLEX _PSG _RT _CT 
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_DECODER HERE // CXX BIND HERE { HERE_VAR_t HERE_VAR } 
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_DECODER HERE // CXX HERE { HERE_VAR_t HERE_VAR } 
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_DECODER CTXT // CXX DATA { HERE_VAR_t HERE_VAR } // DATA held in MEM for SESS // export _to_all u48_PTR_t CSR; // csr_name ... // ... // AUTO MK_VAR("CIDENT") // %s //
 
-	   see
-	   /home/gps/YEAR/src/PLAY/
-	    libs_apps/
-	     src/
-	      mm3_scan-2003-02-23.tgz/
-	       utar://mm3_scan-2003-02-23/mm3_file/mm3_file_scan.h
-
-	   CSET
-	   	UDEF SINGLE_BYTE_LIMIT // but 8 bit clean
-	   	UDEF MULTI_BYTE_SCAN // utf8 of 8859 
-
-		STEP_MATCH
-
-		 BOOL_EXPR("ZONE += {
-		 	cset_bit_map cset_
-
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_SCRIPT_LINE _XPOS "{ SPEC DATA }" // GUESS '"%s"' { print %Q2_text // CMNT %s ARGS // VARNAME // ALLOC_NEAR
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_SESSION_VAR 
+// PSG // MY SCRIPT += ALLOC_NEAR SEGMENT _PEER_LIBR 
+// PSG // MY SCRIPT += DIALECT CSET += PSG_DIALECT_SESSION_VAR _SPEC _DATA _STO _ALIAS _EXPR _EVAL 
+//
+//
+	
 
 	  	check_cident99 { 
 		 prep_vars_SCRIPT {

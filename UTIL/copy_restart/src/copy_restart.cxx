@@ -9,6 +9,8 @@
 #include "copy_restart.h"
 // typedef unsigned int uns;
 
+#include "str0.h" // ==
+
 // #include "copy_restart.h" // copy_file_dir $file $dir //
 // #include "copy_file_dir.h" // copy_file_dir(file,dir) // copy_file_dir file dir //
 // VIEW HIDE DEPENDENCT which was merged into copy_restart Module
@@ -111,6 +113,9 @@
 
 */
 
+// extern
+bool opt_move = false;
+
 bool bool_main( int argc, char ** argv ) {
 
 	set_prog_name( argv[0] ); // check this
@@ -124,6 +129,12 @@ bool bool_main( int argc, char ** argv ) {
 
 	src_name = "/home/gps/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
 	dst_dirname = "/tmp";
+
+	str0 str_move = "-move";
+	if( str_move == argv[1] )
+	{
+		opt_move = true;
+	}
 
 
 	if( argc != 3 ) {

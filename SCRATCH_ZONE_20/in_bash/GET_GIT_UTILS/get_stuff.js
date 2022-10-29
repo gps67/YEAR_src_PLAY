@@ -11,6 +11,9 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/v8/v8
+https://gitlab.gnome.org/GNOME/gjs
+https://github.com/mozilla-spidermonkey/spidermonkey.dev
 https://github.com/intel/hyperscan
 https://github.com/PCRE2Project/pcre2
 https://github.com/google/oboe
@@ -69,7 +72,6 @@ https://gitlab.freedesktop.org/freetype/freetype
 https://github.com/NativeScript/NativeScript.git
 git://sourceware.org/git/elfutils.git
 https://github.com/antirez/linenoise
-https://gitlab.gnome.org/GNOME/gjs
 https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
 https://github.com/danchitnis/webgl-plot-examples
 https://github.com/MrRio/jsPDF

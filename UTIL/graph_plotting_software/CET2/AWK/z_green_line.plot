@@ -2,7 +2,6 @@
 #
 #     gnuplot -p -c z.plot
 #
-# (C) Graham Swallow 2022 # LGPL # open source #
 
 # this is the no_awk version, it replaces a script that did:
 # sed 1,7d | awk '{ if($14 >0) print $1 ", "$14 }' > datafile1
@@ -20,11 +19,10 @@
   url = "https://www.metoffice.gov.uk/hadobs/hadcet/cetml1659on.dat"
   title = url
   png_file = "CET2.png"
-  y_size =  800 # height pixels
-  x_size = 1200 # width
+  x_size = 1200 # pixels 
+  y_size =  800
   y_label = 'Centigrade'
-  # x is obviously year # save screen realestate # reduce distractions
-  y_hi  =    11.0 # actually y data goes higher
+  y_hi  =    11.0
   y_lo  =     7.8
   y_tics =    0.1
   x_tics =   20 
@@ -138,6 +136,13 @@
 	unused = init_XY(0), 			\
 						\
 	datafile 				\
+	  using ($1):(Q_val_Y($14)) 		\
+	  title 'data' 				\
+	  with lines 				\
+	  lw 1 					\
+	  lc rgb 'forest-green', 		\
+						\
+	datafile 				\
 	  using (Q_avg_X9($1)):(Q_avg_Y9($14))	\
 	  title "avg 9 points" 			\
 	  with lines 				\
@@ -152,15 +157,6 @@
 	  lc rgb "black",  			\
 						\
   # EOLN # of long line
-
-# removed green line # every year
-#
-#	datafile 				\
-#	  using ($1):(Q_val_Y($14)) 		\
-#	  title 'data' 				\
-#	  with lines 				\
-#	  lw 1 					\
-#	  lc rgb 'forest-green', 		\
 
 # 'mylines.dat' # some horizontal and vertical hand-drawn lines
 # touch mylines.dat so that no error happens or delete the code below

@@ -1,0 +1,14 @@
+
+fconfigure $fd \
+-translation binary \	MOSTLY
+-encoding binary \	EOLN
+#
+
+ByteArray			no
+properByteArrayType		maybe
+
+binary (cmd) a bit like scanf/printf
+
+or use V8 
+
+

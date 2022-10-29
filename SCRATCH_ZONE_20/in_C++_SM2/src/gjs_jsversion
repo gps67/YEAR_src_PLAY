@@ -1,0 +1,4 @@
+type gjs
+gjs --jsversion
+ask_do locate gjs
+

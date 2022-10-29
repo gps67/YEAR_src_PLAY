@@ -1,0 +1,23 @@
+HOW: fetching a recent mozjs source
+
+https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonke
+
+scroll down to find "SM(+6)" 2/3 of the way along the screen
+(x86 opt)
+
+click on the SM, and "SM(+6)" changes into "SM((asan f nojit pkg tsan)"
+
+click on pkg
+a bottom panel appears,
+the right panel has a title "Artifacts and Debugging"
+click on "mozjs-106.0.0.tar.xz"
+
+save it, (136 MB)
+untar it,
+that is the source
+that is the binary too 
+all file dates will be from 2 weeks ago,
+when their version CI system checked it out, and built it
+
+see
+/home/gps/YEAR/src_build/mozjs-106.0.0/js/src/doc/build.rst

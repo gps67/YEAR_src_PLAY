@@ -15,8 +15,8 @@ bool copy_tree(
 	const char * src_tree,
 	const char * dst_over
 ) {
-	INFO("src_tree     %s", src_tree );
-	INFO("dst_over     %s", dst_over );
+//	INFO("src_tree     %s", src_tree );
+//	INFO("dst_over     %s", dst_over );
 
 	file_stat stat_item;
 	if(!stat_item.stat_expect_is_dir( dst_over )) {
@@ -41,6 +41,11 @@ bool copy_tree(
 		str0 name = dir_list.name();
 		if( name.ends_with(".cpy") ) {
 			INFO("skipping .cpy %s", (STR0) name );
+			continue;
+		}
+		if( name.starts_with(".del.") ) {
+			INFO("skipping .del.* %s", (STR0) name );
+			continue;
 		}
 		// TODO FIXUP NOW have growing list of ALL types to redup
 		switch( dir_list.item.file_type ) {
@@ -80,15 +85,12 @@ bool copy_tree(
 		 	if(!copy_src_name_dst( src_tree, dir_list.name(), dst_over ) ) {
 				return FAIL_FAILED();
 			}
+			// rename
 		 break;
 		 default:
 		 	if(!copy_src_name_dst( src_tree, dir_list.name(), dst_over ) ) {
 				return FAIL_FAILED();
 			}
-			return true;
-		 	return FAIL("not a plain dir or file %s %s",
-				dir_list.name(),
-				dir_list.item.file_type_str() );
 		}
 	}
 

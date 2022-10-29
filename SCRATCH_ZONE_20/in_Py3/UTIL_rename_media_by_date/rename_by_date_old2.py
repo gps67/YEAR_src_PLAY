@@ -31,60 +31,38 @@ def os_rename( filename1, filename2 ):
 		os.rename( filename1, filename2 )
 
 class match_filename_filter:
- def build_tails( self ):
+ def __init__( self ):
  	self.tail_dict = {}
-	# only need to list UPPER CASE 
  	tails = [
+ 		"jpg",	# J700
  		"JPG",
+ 		"jpeg",
  		"JPEG",
+ 		"avi",
  		"AVI",
+ 		"mp4",
  		"MP4",	# SAMSUNG Camera
- 		"MP3",
- 		"3GP",
+ 		"3gp",
+ 		"mp3",
  	]
- 	# convert all exts to lower
  	for tail in tails:
  		tail_low = tail.lower()
  		self.tail_dict [ tail ] = tail_low
  		self.tail_dict [ tail_low ] = tail_low
  	# print( "#", self.tail_dict )
- def build_re( self ):
- 	d = "[0-9]" # digit # 
- 	re_decimal = d + "+" # timestamp as long decimal # 1663447650623
- 	re_sep = "[-_]"
- 	re_YEAR = "[0123]" + d + d + d 
- 	re_MM = "[01]" + d 
- 	re_DD = "[0123]" + d
 
- 	# R matches 1999-12-31
- 	# R matches 1999_12_31
- 	# which will matche files we have already renamed
- 	# or files that are already good enough
- 	# most cameras dont use re_sep
- 	#
- 	self.re_YEAR_MM_DD = re_YEAR + re_sep + re_MM + re_DD
-
- 	R3 = ""
- 	R3 += RE.wrap_group_re( re_YEAR )
- 	R3 += re_sep 
- 	R3 += RE.wrap_group_re( re_MM )
- 	R3 += re_sep 
- 	R3 += RE.wrap_group_re( re_DD )
- 	self.re_YEAR_MM_DD_3 = R3
-
- 	self.re_myrec_STAMP = "myrec" + RE.wrap_group_re( re_decimal )
-
- 	# print( "self.re_YEAR_MM_DD_3", self.re_YEAR_MM_DD_3 )
-
- def __init__( self ):
- 	## applied to filename keep this
- 	self.found_YYYY = 1999
- 	self.found_MM = 12
- 	self.found_DD = 31
-
- 	self.build_tails()
- 	self.build_re()
-
+	# R matches 1999-12-31
+	# R matches 1999_12_31
+	# which will matche files we have already renamed
+	# or files that are already good enough
+	# most cameras dont use sep
+	#
+ 	d = "[0-9]" # digit # dont bother with 3000-99-99 # lose 999-01-01
+ 	sep = "[-_]"
+ 	R = ""
+ #	R += d + d + d + d + sep + d + d + sep + d + d 
+ 	R += "[0123]" + d + d + d + sep + "[01]" + d + sep + "[0123]" + d 
+ 	self.re_YEAR_MM_DD = R
 
  def match_filename_ext( self, filename ):
  	# only match .ext in list # skip over others
@@ -95,7 +73,7 @@ class match_filename_filter:
  		seen = self.tail_dict[ ext ]
  	except:
  		seen = None
- 	print( "seen = ", seen, "ext = ", ext )
+ 	# print( "seen = ", seen, "ext = ", ext )
  	return seen
 
  def get_valid_ext( self, filename ):
@@ -103,18 +81,7 @@ class match_filename_filter:
  	ext = l[-1:]
  	
  def match_filename_uses_YEAR_MM_DD( self, filename ):
- 	if RE.run( filename, self.re_YEAR_MM_DD_3 ):
- 		if 0:
- 			print( "group(0)", RE.group(0) ) # YEAR-MM-DD #
- 			print( "YEAR", RE.group(1) )
- 			print( "MM", RE.group(2) )
- 			print( "DD", RE.group(3) )
- 		self.found_YYYY = RE.group(1)
- 		self.found_MM = RE.group(2)
- 		self.found_DD = RE.group(3)
- 		return "uses YEAR_MM_DD_3"
  	if RE.run( filename, self.re_YEAR_MM_DD ):
- 		print( "uses YEAR_MM_DD" )
  		return "uses YEAR_MM_DD"
  	else:
  		return None
@@ -166,18 +133,13 @@ time_now = time.time()
 time_too_old = time_now - secs_from_days( days_too_old )
 time_too_new = time_now - secs_from_days( days_too_new )
 
-print( "# MIN #", local_str_from_time_int( fmt1, time_too_old ) )
-print( "# NOW #", local_str_from_time_int( fmt1, time_now ) )
-print( "# MAX #", local_str_from_time_int( fmt1, time_too_new ) )
+print( "# NOW #", local_str_from_time_int( fmt, time_now ) )
+print( "# MINIMUM (edit script) # ", local_str_from_time_int( fmt2, time_too_old ) )
 
 
 D1="."
 
 filter = match_filename_filter()
-
-# filter.match_filename_uses_YEAR_MM_DD( "1999-12-31" )
-# filter.match_filename_uses_YEAR_MM_DD( "1999-12-31ABC" )
-# filter.match_filename_uses_YEAR_MM_DD( "LHS1999-12-31ABC" )
 
 L = os.listdir(D1)
 L.sort()
@@ -187,30 +149,23 @@ for filename1 in L:
 	if reason:
 		print( "# SKIPPING filename #", reason, "#",  filename1 )
 		continue
-	
-	if RE.run( filename1, filter.re_myrec_STAMP ):
-		decimal = RE.group(1)
-		print("# REC #", filename1, decimal )
-		continue;
 
 	# skip if .ext not on the list
 	ext2 = filter.match_filename_ext( filename1 )
 	if ext2 == None:
-		print( "# SKIPPING ext2 == None # ", filename1 )
+		print( "# SKIPPING ext # ", filename1 )
 		continue
 
 	# skip if mtime too_old or too_new
 	s = os.stat( filename1 ) # might FAIL if deleted since listdir (etc)
-	file_mtime = s.st_mtime
-	if file_mtime > time_too_new:
-		print( "#", filename1, local_str_from_time_int( fmt1, file_mtime ), "# TOO NEW" )
+	t = s.st_mtime
+	if t > time_too_new:
+		print( "#", filename1, local_str_from_time_int( fmt1, t ), "# TOO NEW" )
 		continue
-	if file_mtime < time_too_old:
-		print( "#", filename1, local_str_from_time_int( fmt1, file_mtime ), "# TOO OLD" )
+	if t < time_too_old:
+		print( "#", filename1, local_str_from_time_int( fmt1, t ), "# TOO OLD" )
 		continue
 
-	print("# ??? #", filename1 )
-	continue;
 	# compute new filename, version vn is clash from same second
 	vn_str = ""
 	vn = 0
@@ -219,9 +174,7 @@ for filename1 in L:
 		# move this forward - to end 
 		vn += 1
 		vn_str = "-{0}".format( vn )
-		# fmt1 = "%Y-%m-%d_%a_%H%M_%S"
-		# f2 = "1999-12-31-Fri_2359_59"
-		f2 = local_str_from_time_int( fmt1, file_mtime )
+		f2 = local_str_from_time_int( fmt1, t )
 		filename2 = f2.lower() + vn_str + "." + ext2
 		if filename2 == filename1:
 			# rename file as itself = OK ish

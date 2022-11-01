@@ -6,6 +6,10 @@
 URL=https://www.metoffice.gov.uk/hadobs/hadcet/cetdl1772on.dat # CET
 URL=https://www.metoffice.gov.uk/hadobs/hadcet/cetml1659on.dat # CET2
 
+URL=https://www.metoffice.gov.uk/hadobs/hadcet/data/meantemp_daily_totals.txt
+URL=https://www.metoffice.gov.uk/hadobs/hadcet/data/mintemp_daily_totals.txt
+URL=https://www.metoffice.gov.uk/hadobs/hadcet/data/maxtemp_daily_totals.txt
+
 
 BASENAME=`basename $URL`
 
@@ -17,8 +21,8 @@ BASENAME=`basename $URL`
 # it is touched for last sucessful download
 # web fetch if modified since ...
 
-# DATED_file_mtime=$BASENAME
-DATED_file_mtime=CET2_dated
+DATED_file_mtime=$BASENAME
+# DATED_file_mtime=CET2_dated
 
 
 date_r()

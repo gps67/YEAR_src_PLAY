@@ -15,9 +15,6 @@
 	gcc $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 .cxx.o:
-	# OPTIM $(OPTIM)
-	# INCLS $(INCLS)
-	#  DEFS $(DEFS) 
 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 #
@@ -32,41 +29,22 @@
 # if that doesnt work, you wont be using the .exec rule (convenience mostly)
 #
 
-.o.exec: $(OBJS)
-	#
-	# MK_SUFFIXES # .o.exec
-	# $(CXX) OPTIM _.o OBJS LINKS LIBS 
-	# CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
-	# LDFLAGS: $(LDFLAGS)
-	# YFLAGS: $(YFLAGS)
-	#
-	#   PKGS: $(PKGS)
-	#
-	#   OBJS: $(OBJS)
-	#  LINKS: $(LINKS)
-	#   LIBS: $(LIBS)
-	#
-	#   -@ $@
-	#   -< $<
-	#   -^ $^
-	#
-	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
-	#
-	# NOT # strip $@
+# .elf and .exec are the same
+# do not use .exe # leave that for WIN32
 
-.o.elf: $(OBJS)
+.o.elf .o.exec: $(OBJS)
 	#
-	# MK_SUFFIXES # .o.elf
-	# $(CXX) OPTIM _.o OBJS LINKS LIBS 
-	# CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
+	#    RULE: .o.lf # MK_SUFFIXES # link program
+	#     CXX: $(CXX) 
+	#   OPTIM: $(OPTIM)
+	#  CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
 	# LDFLAGS: $(LDFLAGS)
-	# YFLAGS: $(YFLAGS)
+	#  YFLAGS: $(YFLAGS)
+	#    PKGS: $(PKGS)
 	#
-	#   PKGS: $(PKGS)
-	#
-	#   OBJS: $(OBJS)
-	#  LINKS: $(LINKS)
-	#   LIBS: $(LIBS)
+	#    OBJS: $(OBJS)
+	#   LINKS: $(LINKS)
+	#    LIBS: $(LIBS)
 	#
 	#   -@ $@
 	#   -< $<
@@ -77,7 +55,9 @@
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
 	#
 	# NOT # strip $@
+	# list libraries used # particularly non system
 	ldd $@ | grep gps
+	# BUILT # $@ #
 
 # 
 #

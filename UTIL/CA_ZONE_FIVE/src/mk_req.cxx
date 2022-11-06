@@ -47,14 +47,14 @@ using namespace CA1;
 bool DEMO_mk_VPN_GW( str0 ABBR ) // ABBR = "VPN_97"
 {
 	buffer1 NAME;
-	NAME.print("GW_%s", ABBR );
+	NAME.print("GW_%s", (STR0) ABBR );
 	return FAIL("TODO");
 }
 
 bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 {
 	buffer1 NAME;
-	NAME.print("PC_%s", ABBR );
+	NAME.print("PC_%s", (STR0) ABBR );
 	SITE_X509_tag_enum ISS_tag = is_C_pc;
 	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout();
 	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag );
@@ -85,20 +85,78 @@ bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 
 bool DEMO_mk_cert_group()
 {
+	// EDIT SOURCE LIST // GEN { FOREACH PCID !DEMO_mk_VPN_PC( PCID ) }
+	// EDIT SOURCE DATA // GEN LIST_of_IDENT KEYS VAR_POOL
+	// VAR_POOL += LOAD_CSR_in_TREE_of_SPEC // multi bundle
+	// CT RT TREE SPEC STO STR TREE_as_DB_tree
+	// DB_three uses virtual_base_class, provides sample DB_api_module
+	// DB_api is CACHE_api_FILTER // need safe way of installing this code
+	// DB_api is ELF_SEGMENT_api // CXX_API // CALL_api stack_frame CPU
+	// DB_api is FILTER // DB_api in; DB_api out; // drop _t DIALECT
+	// BENCH // _t "{ DIALECT drop_t _t }" // expect TYPE_NAME as VAR_NAME
 
 	// ISSUER_CERT = loaded from somewhere (filename?)
 	// ISSUED_CERT = VALS + ROLE in layout + FILENAME
 	// supposedly online signing REQ from 
 
+	// mk_VAR // DB[key] // KEY PC_ID //
+
 	// mk_LAPTOP
-	if(!DEMO_mk_VPN_PC("DWS_")) return FAIL_FAILED();
-	return true;
-	if(!DEMO_mk_VPN_PC("AMS_10")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_PC("GPS_E6320")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_PC("MBS_")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_GW("HUB_GW")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("PC01_HUB_GW")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("PC02_DWS")) return FAIL_FAILED();
+	return PASS("OK");
+	if(!DEMO_mk_VPN_PC("PC02_AMS_10")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("PC03_GPS_E6320")) return FAIL_FAILED();
+	return PASS("OK");
+	if(!DEMO_mk_VPN_PC("PC04_MBS_")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_GW("PC05_HUB_GW/*_PLUS*/")) return FAIL_FAILED();
+	// KEY NEEDS TIGHT /*CMNT*/ parse mid_lex // semi_lex_edge //
+	if(!DEMO_mk_VPN_GW("%s_%s/*%s*/")) return FAIL_FAILED();
+	// OBJ_ID from ("%s_%s/*%s*/") {
+		// BEHAVE AS_IF fmt looking for a STACK of ARGS
+		// PROVIDE { %s "PC05" }
+		// PROVIDE { %s "HUB_GW" }
+		// PROVIDE { %s "_PLUS_" } // CMNT_FACTORY DATA_AS_CODE_SCRIPT
+		// PROVIDE { IDX %d } // LIST of PC_ID "PC%02d" { IDX = N++ }
+		// ALLOC RETVAR { idx = N++ } // PC_ID = ALLOC_PC_ID_N ++ //
+		// REGEN DATA from NAME // int pcid = GET %d from "PC%02d" //
+	// }
+
 
 	return PASS("OK");
+return PASS("OK");
+
+	// following code left to re-integrate with USAGE
+	// probably fell short of parameters // maybe
+
+	// note above expects DB_PCID "PC_ID" is a CSR in env SESS_CTXT
+	// alias SESS SESS_CTXT // VAR_POOL_MERGE // add ALIAS SUBSCRIBER
+	// alias CTXT SESS_CTXT // VAR & POOL.lookup("STR0") // TYPE_as_VAR_NAME
+	// TYPE_as_VAR_NAME // HINT leave a hungry api var connecting as TYPE("STR0")
+	// HINT MATCH ("WELL_KNOWN_TYPE_NAME") // one of "STR0" OBJ_NAME
+	// INFER // TYPE_USED_AS_NAME("STR0") // CTOR NLAPI
+	// NLAPI // NOUN_VERB_ADJECTIVE_SUBLEX // ALIAS EACH { NOUN VERB LEX SUBLEX }
+	// LEX // NOUN // OBJ_t & OBJ = DB["NAME"] // AUTO_VAR
+	// DB["MATCHES"] // CACHE as SESS.STO and DB.KEEP
+	// DB["EXPR"] // find a readonly preloaded tables API // VARS //
+
+	// DB["{ idx = N ++ }" // "{ INTENTIONAL LEX SPACING }"
+	// DB["PC05"]
+	// DB["GW_HUB"]
+	// DB["GW_HUB_PC05"]
+	// DB["PC05_GW_HUB"]
+	// DB["ALIAS"] // API_PLUS PLUS_API NAME suggests ENUM_GROUP 
+	// DB["ALIAS"] // API_PLUS PLUS_API NAME suggests ENUM_GROUP 
+	// DB.lookup("STR0"); // TYPE_as_NAME expects STR0_t // provided BY
+	// DB["KEY"]
+	// DB["PSG"]
+	// DB["IDX"]
+	// DB["EXPR"]
+	// DB["RPC"]
+	//
+
+
+
 
 	SITE_X509_tag_enum ISS_tag = is_CA_ZONE;
 
@@ -210,6 +268,7 @@ bool_main(int argc, char *argv[])
 		INFO("unnecessary SAVE might update fields descrs");
                 cfg.save_file_();
         } else {
+		// TODO // if bad pass - dont overwrite cfg ??
                 INFO("defaulted");
                 cfg.set_DEMO_values();
                 cfg.save_file_();
@@ -286,6 +345,10 @@ bool_main(int argc, char *argv[])
 int
 main(int argc, char *argv[])
 {
+	gdb_sigaction( argv[0] ); // sets progname_argv0 
+//	check_tty_012(); // 
+	dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
+
 	if(bool_main(argc, argv )) return 0;
 	WARN("want to get errno ...");
 	return 1;

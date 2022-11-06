@@ -144,6 +144,9 @@ test99:
 
 exe1: $(EXE_1)
 
+gdb: exe1
+	INGDB=1 T gdb -tui --cd $(PWD) --command ../.gdbinit_$(PROG1) $(EXE_1)
+
 default1_test: P $(EXE_1)
 	./$<
 
@@ -155,8 +158,12 @@ exe: $(EXE_1)
 P:
 	#
 	# PKG_CONFIG_PATH=# dirs used to find pkgconfig files
-	# $(PKG_CONFIG_PATH)
+	# (PKG_CONFIG_PATH)
 	var_list PKG_CONFIG_PATH
+	var_list LIST_C_INCLUDE_PATH
+	var_list CPLUS_INCLUDE_PATH
+	var_list LIBRARY_PATH
+	var_list VPATH
 	#
 	# The INCLUDE settings come from this commands output
 	#

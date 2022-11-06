@@ -148,7 +148,8 @@ endif
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig
 	PKG_CONFIG_LIST += $(HOME)/G/prefix/lib/pkgconfig
-	PKG_CONFIG_LIST += $(HOME)/G/mozjs/lib/pkgconfig
+	PKG_CONFIG_LIST += $(HOME)/G/prefix/SM/lib/pkgconfig
+	PKG_CONFIG_LIST += /home/gps/G/prefix/SM/lib/pkgconfig
 #	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig
 #	PKG_CONFIG_LIST += /tools/CTXT/py/lib/pkgconfig/falsely
 

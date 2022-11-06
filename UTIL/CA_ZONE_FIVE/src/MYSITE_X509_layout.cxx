@@ -67,7 +67,8 @@ bool MYSITE_X509_layout:: obtain_CB_for_tag(
 		cb_phrase = new CB_get_phrase_NONE();
 		return PASS("MYSITE sets NONE");
 	}
-	
+
+	FAIL("phrase '%s'", (STR0) phrase );
 
 	buffer2 buf;
 	buf.print("%s_", phrase );

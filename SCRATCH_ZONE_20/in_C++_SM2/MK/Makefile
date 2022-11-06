@@ -17,7 +17,6 @@
 
 	CXX = g++
 	OPTIM += -g 
-#	OPTIM += T_IS_$T
 
 # UNUSED see INCL or todo INCL_LIST
 #	INCLS += -I./
@@ -34,7 +33,14 @@
 	LIST_VPATH+=:$T/objs
 #	LIST_VPATH+=:.
 
-#	include ../MK/Makefile_libs_apps
+#	# libs_apps # brings this
+#        LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/lib/pkgconfig/
+#        LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/SM/lib/pkgconfig/
+
+	LIST_RPATH += $(DIR_G_prefix)/SM/lib
+
+
+#	include ../MK/Makefile_libs_apps # can be a symb link
 	include $(MK_ext_lib)/MK_with_libs_apps # TODO put back there
 # which includes these
 #	include $(MK_ext_lib)/MK_SUFFIXES
@@ -44,14 +50,11 @@
 #	TGT=WIN32
 #	TGT=LGX
 
-#	INCL += -I ../fd_api
-#	INCL += -I ../fd_sel_ssl
-# NO	LIBS += -L ../fd_api
-
 	PKGS += libs_apps_base1
 	PKGS += libs_apps_base2
 	PKGS += libs_apps_uses_ssl
-#	PKGS += libs_apps_mozjs
+	PKGS += libs_apps_mozjs
+	# mozjs is included by others anyway
 
 # names of the programs (but not with .exec)
 
@@ -69,30 +72,6 @@
 	EXELIST += $(EXE_1)
 	EXELIST += $(EXE_2)
 
-#	OBJS += SITE_X509_VALS_base.o
-#	OBJS += SITE_X509_layout.o
-#	OBJS += X509_VALS_base.o
-#	OBJS += X509_util_EXT.o
-#	OBJS += X509_util_NAME.o
-#	OBJS += X509_util_NID.o # entirely optional
-
-	# tree layout of CA_ _ZERO _ONE _ZONE [_VPN_level_4] then C_
-	# each CA_ZONE is given to the local admin to look after
-	# you could have a CA_ for each category of C_  but ... too many ?
-	# LAPTOP || USER || SERVER || ITEM
-	# some items use RSA not X509, that comes for ride
-	# some items use RSA elsewhere (not within itself) eg db_of_config
-	
-	# task is the process of issuing one of those X509's
-	# particularly getting VALS into the REQ
-	# signing with the up-tree CA_
-	# and saving in a knowable filename
-	# TODO pass files
-	# TODO pass from ...
-	# TODO multi example C_
-	# TODO stream from SQL
-
-# no ??
 #	OBJS += SM_BASICS.o
 
 # no need for PROG1.o

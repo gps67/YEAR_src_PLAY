@@ -1,0 +1,7 @@
+https://www.codeproject.com/Articles/5345489/oneMKL-Cplusplus-API-with-SYCL-Support-for-Data-Fi
+
+        Intel wants us to use their GPU CXX world and compiler
+        ? ARM code
+        ? GCC
+        ? maybe ? others
+~                                

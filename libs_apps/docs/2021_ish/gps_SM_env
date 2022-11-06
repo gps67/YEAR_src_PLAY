@@ -3,7 +3,7 @@ echo see $HOME/mozconfig/go1
 exit
 
 d_obj_gps=js/src/OBJ_gps
-d_prefix=$HOME/G/prefix_js 
+d_prefix=$HOME/G/prefix/SM 
 
 . fns_FAIL
 . fns_DIRS

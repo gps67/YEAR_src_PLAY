@@ -44,6 +44,7 @@ ifeq (1,1)
 
 	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
 	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
+	LINKS += $(RPATHS)
 
 	## ERRM ## "INCLS" or "INCLS" or .. what are others using ?
 
@@ -68,29 +69,21 @@ ifeq (1,1)
 	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig/$(TGT)
 	LIST_PKG_CONFIG_PATH += $(DIR_libs_apps)/lib_pkgconfig
 
+	LIST_CPLUS_INCLUDE_PATH += $(DIR_LIBS_APPS_INCL)
+	LIST_LIBRARY_PATH += $(DIR_LIBS_APPS_LINK)
+	LIST_LIBRARY_PATH += $(DIR_LIBS_APPS_LINK2)
+	LIST_RPATH += $(DIR_LIBS_APPS_LINK)
+	LIST_RPATH += $(DIR_LIBS_APPS_LINK2)
+
 	# $HOME/G/prefix is where moz js was placed
 	LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/lib/pkgconfig/
+	LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/SM/lib/pkgconfig/
+	LIST_RPATH += $(DIR_G_prefix)/lib/
+	LIST_RPATH += $(DIR_G_prefix)/SM/lib/
+
 
 	# /tools/VPN is where openssl is
 	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/
-
-# TODO above # fix $(TGT) $(UNAME_n_rthing) $(build_dir)
-
-	INCLS += -I$(DIR_LIBS_APPS_INCL)
-	LIBS += -L$(DIR_LIBS_APPS_LINK)
-	LIBS += -L$(DIR_LIBS_APPS_LINK2)
-	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK)
-	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK2)
-
-#	PKGS += libs_apps_base1
-
-#	#	LIBS += -laccts_gtk
-#		LIBS += -lbase
-#		LIBS += -lbase2
-#		LIBS += -lgtk_text
-#	#	LIBS += -lmedia
-#		LIBS += -lsar_plot_post
-
 
 endif
 

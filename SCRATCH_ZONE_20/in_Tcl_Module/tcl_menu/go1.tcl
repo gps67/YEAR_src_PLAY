@@ -26,6 +26,9 @@
 	set d_artist rodrigo_y_gabriela
 	set d_album 11_11
 
+	set d_artist simple_minds
+	set d_album once_upon_a_time
+
 # [pwd] local layout # where .mp3 files keps # or .wavs # etc #
 # parse $var in path/naame.ext # optional ${var} 
 # Layout.MACRO recalc(dir_album) # move to CACHE of layout macro

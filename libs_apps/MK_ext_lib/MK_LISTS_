@@ -3,7 +3,7 @@
 
 #	CONVERT
 #	from LIST_VPATH
-#	into      VPATH
+#	into      VPATH # subst COLON for SPACE in PATH VAL VARS
 #
 #	from LIST_PKG_CONFIG_PATH
 #	into      PKG_CONFIG_PATH
@@ -12,7 +12,8 @@
 #	into      CPLUS_INCLUDE_PATH
 #
 #	from LIST_RPATH
-#	into      RPATHS
+#	into      RPATHS Wl
+	RPATHS += $(foreach dir,$(LIST_RPATH),-Wl,--rpath=$(dir))
 
 	# S=.
 	# S=/home/gps/YEAR/src/libs_apps-2019-12-15_EDITS/IDEAS_SOON/MK
@@ -46,18 +47,32 @@
 	VPATH+=$(subst $(SP),$(COLON),$(LIST_VPATH))
 	export VPATH
 
+	# LIST_C_INCLUDE_PATH  => C_INCLUDE_PATH
+	# where C looks for include files
+	# convert SP to :
+	C_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(LIST_C_INCLUDE_PATH))
+	export C_INCLUDE_PATH
+
 	# LIST_CPLUS_INCLUDE_PATH  => CPLUS_INCLUDE_PATH
 	# where C++ looks for include files
-	# first convert to relative to $S # which is nonsense
-	# then convert SP to :
+	# convert SP to :
 	CPLUS_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(LIST_CPLUS_INCLUDE_PATH))
 	export CPLUS_INCLUDE_PATH
+
+	# LIST_LIBRARY_PATH  => LIBRARY_PATH
+	# where C++ looks for -l libabc.a .so files
+	# convert SP to :
+	LIBRARY_PATH+=$(subst $(SP),$(COLON),$(LIST_LIBRARY_PATH))
+	export LIBRARY_PATH
 
 # DEBUG = FOUND #
 	# this seems to be adding a space
 	## VPATH+=$S$(foreach sub,$(LIST_VPATH),:XX$S/$(sub)ZZ)YY
 
+	# LIST_RPATH => $(RPATHS) # a list of ARGV words
 	RPATHS += $(foreach dir,$(LIST_RPATH),-Wl,--rpath=$(dir))
 	export RPATHS
+	# need LINKS += $(RPATHS)
+	# need SUFFIXES
 
 

@@ -1,0 +1,247 @@
+DB is an API_CHANNEL // possibly a FILTER pipeline // SESS rejoins via DB
+DB might be SESS.STO.DB // eg one sqlite file per dir on map // relotaced
+DB dir_name = %s // actual FS dirname possibly path/name 
+DB dir_ABBR = %s // ABBR used in SEGMENT_NAME_EXPR ARGS += ABBR
+DB POCKET near CODE_POINT // has own VARS EXPRS API // MINI_MACHINE
+DB move DB_file into ZONE_DB_file/SEGMENT/DB_file
+
+	IE On the way in, the first needer of SESS.VARNAME, auto_created it
+	LATER it seems to be EDITED using MMAP_HEAP_TREE SESS_STO
+	LATER it goes through FILTER // READ_ROM_TREE // READ_RAM_TREE //
+
+DB brings CACHE_API API_CACHE
+
+	CACHE_VAR held in SESS_STO for SCOPE // 
+
+		ORIGINALLY_FETCHED_FROM = ORIGINALLY_FETCHED_FROM_EXPR
+
+			EXPR = USER.PROFILE.SETTINGS
+			EXPR = USER.ARCHIVE.ROM
+			EXPR = USER.ARCHIVE.RAM
+
+		VFS PAGE_CHANGE_RELOAD_PENDING // may mean _REQUIRED_
+
+			EXPR = FETCH_UPDATED EXPR // expect RETVAL == EXPR 
+
+			EXPR = lookup( STR0 ) // PREFER STR_KEY
+			EXPR = lookup( KEY0 ) // PARSE upto EOLN or NUL or P2
+		
+			EXPR = {
+				TABLE = TABLE
+				ITEM = TABLE[KEY] // 
+
+				THIS EXPANDS TO 
+
+				SETTER "EA_ITEM" & EA_ITEM
+
+				REF_COUNT EA_ITEM within HEAP file // DROP_TRAY
+				OBJ_CACHE EA_REF bounces API over C++ VTBL
+				// and quite a direct mapping // 
+				// API.msg_slot_VTBL[N++] // BRUTAL // IDX // 
+	
+				FILE = file_near_this_dir // near == for
+				FILE = SEGMENT in shared DB_file
+				FILE = DB_file = FILTER { CODE DATA } PLUS
+			}
+
+		SQLITE commit transaction write update DONE			
+		SQLITE commit transaction TRANSACTION_LOG update DONE
+		// DONE -vs- STARTED //
+
+DB CREATE_ON_MENTION %s
+DB CACHE CREATED BINDINGS API
+DB BINDING GETTER = { CODE DATA }
+DB BINDING SETTER = { CODE DATA } += VERSION_LAYERS_EDGES // ticking clock
+DB MATH defines a few MACRO transformations then use. AUTO_GEN += feed_data
+DB MATH of CACHE pre_fetch list of things, on first use of TRIGGER
+DB MATH of CACHE pre_fetch _ed list of things, during BUILD_LIST of TRIGGER
+DB MATH _ed means at least STARTED often UP_TO_DATE 
+
+	CHECK_FOR_SIGNAL // default is NONE until end of clock tick //
+	CHECK_FOR_SIGNAL "VALUE_CHANGED NEED_TO_FETCH_UPDATED_VALUE"
+	CHECK_FOR_SIGNAL "VALUE_CHANGED HERE_is_UPDATED_VALUE NEW_VAL"
+
+	SIGNAL is detected quite quickly and a comprehensive reload done
+	DEPENDS is the spreadsheet CELL link but "ANY_ACTUAL_USE_OF"
+	PKT_IN created or shared a CLOCK TICK
+	PKT_IN says MODIFIED( my_ref_your_ref )
+	DB MATCH floods the CALLER_depends_on_EXPR_REFETCH_REQUIRED
+	flood does not repeat when it finds CLOCK >= MY_UPDATE_CODE_POINT_TIME
+	flood repeat UPDATE { WHEN ADDR NEWVAL } // esp obj_hold<VALUE> is PTR or REF
+	flood repeat UPDATE sees same { WHEN ... { ADDR NEWVAL } ... }
+	WHEN is this clock tick, with it's own MATH
+
+	MONOTONIC FETCH PROGRESS == SEQ {
+		OLDVAL
+		STABLE
+		CHANGED
+		HAVE_DATA_QUEUED 
+		HAVE_DATA_INSTALLED
+		ASOF == WHEN == "THIS CLOCK TICK TOCK" // == sys so ! DIALECT
+		HAVE_SENT_FETCH_NOW_WAITING
+		 CHANGED no DATA available !DATA
+	}
+
+	DB processes all available packets, and issues a CLICK TICK TOCK
+	REMOTE_RELAY may put a dozen clock cycles DB_MATH usage NEXT + AFTER THAT
+
+	SYNC_CLICK
+	 TICK_TOCK 
+		ON_FIRST_USE
+			SEGMENT ends un modified // EXPR = FLAG SEGMENT.MODIFIED
+		ON REPEAT USE
+			still waiting for next time when DATA is available
+			// this is how you FOLD transactions to overlap
+		ON_COMPLETE
+			TICK_TOCK
+			ERA_OVERLAP
+			DONE WAITING DATA HERE ... QUEUED ... ACTIVE ... SUPD
+		TRACK_VAR 
+			allows unresolved VARIABLE to be used in OBJ_NAME
+			later resolve with STR0 NAME or STR0 VALUE or BOTH
+			previous DB MATH was OK because VAL_of_EXPR not asked
+			tracking substitute FUTURE_VALUES 
+			means can sweep over surface
+			updating all { const char * %s = "%s"; } NAME VAL
+			// TYPE_OF_VAL is for strings within "Q2"
+			// VIEW rewrite it as called can do the Q2 or more
+			// VIEW can reach back and convery to multiline CRLF
+
+			spreadsheet cell changed 
+			# date of all old_cells was PREV_CLICK_NOW
+			# date of all new cells is CURR_CLICK_SOON
+			# date of all interesting cells is CURR_CLICK_QUEUED
+			# some lazy eval does not push forwards
+			# can simply let it unravel as user bumps into oldval
+			# GUI shows OLD_VIEW until NEW_TIME # when ALL_AVAIL
+			# FILTER merge ALL UPDATES in ERA # CLICK #
+
+		TRACK TIME WINDOW
+
+			START MARKER
+
+				request all updates
+
+			-SYNC-
+
+				obtain all updates
+
+			-SYNC-
+
+				step to/past those updates
+				acceptable mid-way state
+
+				FILTER_VIEW may hold back unwritten actions
+
+			ACID = replay request frol CLOCK_TICK DATA
+
+				but lots of sub-clicks 
+				get rolled into 1 or 3
+				or complete transaction chain
+				or LIST all CHANGED 
+				or LIST all CHANGED 
+
+				maybe no rollback available
+				unless you can roll forward to it's start DATA
+
+			SYNC_CLICK - default level 2
+			_TWO = lots of milli-clicks
+			_ONE = complete transaction
+			_ZERO = OVERLAPPING_FROZEN :-)
+
+		TIME OVERLAP
+
+			3 clock systems
+			{ lhs rhs } EXT
+			{ OLD NEW } CTXT
+
+			OLD persists until SYNC_CLICK_EDGE
+			NEW persists from SYNC_CLICK_EDGE
+
+			but other code continues to access BOTH
+			there is a newer than NEW, maybe even EDGE
+
+			kissing gate
+			the presumption is that it will work
+			it just takes the lock sequencing
+			other work goes on over there
+			this work goes on here
+			both add up to an updated RPC world
+
+			changes retained locally until backup arrives
+			daily is excellent for cost of outage, rare event
+			benefit is ROM and PRE_LOAD
+
+		FILE BACKUP
+		PAGE BACKUP
+
+			With low data needs
+			FUTURE EDGE impending changes NUDGE_to_get_progress
+			-EDGE-
+			convert all PAGE to PARSABLE // EDGE // no changes
+			reload all PARSABLE to PAGE // GC edge //
+			-EDGE-
+
+		API ROUTE FLAG
+
+			if GETTER uses VAR_FIELD 
+			via OLD # CANNOT BE UPDATE # READ ONLY ##
+			via OLD # UPDATE TO SAME VALUE # READ ONLY COMPLIANT #
+			via OLD # UPDATE # FAIL BROKEN CODE #
+			via NEW # { FILE ZONE SEGMENT OFFS SPEC OPCODE EXPR }
+
+			expr GET_STR0 
+			expr SET_STR0 
+			expr GET_LEAF
+			expr SET_LEAF
+			expr GET_TWIG
+			expr SET_TWIG
+			expr NOW_API TICK_TOCK something
+
+	PREDICT_REMOTE_CACHE
+
+		STAY with old set of values
+		UNTIL SYNC_STEP bounces back with TICK_TOCK
+		UNTIL SYNC_STEP bounces back with FULL_DATA
+		PREDICT says stay with OLD until UPDATE COMPLETE
+		PREDICT says THIS_TICK will include all updated SYNC_CLICK
+
+
+
+One neural network per SENSOR
+
+	eg BENCH workflow
+	eg email GREP
+	eg edit GIT CLOCK 
+	eg voice recognition
+	eg document OCR
+	eg photo OCR
+	eg habit detect
+	eg task repeat
+	eg MINI_MACHINE inline rewriter
+
+
+hybrid 8 bit precision
+ibm AI chip 
+short formats
+train larger models faster - trade off
+
+better comms links - express
+
+DB
+	TABLES of enum names, by val, by obj_id (sqlite) by ...
+
+	update
+		old_ref
+		new_ref
+	update
+		old_val
+		new_rval
+
+	
+
+
+
+
+
+

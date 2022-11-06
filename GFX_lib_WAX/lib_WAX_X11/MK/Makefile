@@ -5,37 +5,29 @@
 
 	CXX = g++
 	OPTIM += -g
-#	INCLS += -I../buffer
-#	INCLS += -I/tools/2000/X11R6/include
-#	INCLS += `pkg-config --libs freetype2`
 
 	# nonstandard, but makes rules easier
 	dot_EXE=.elf
 
-	G_prefix=/home/gps/G/prefix
-	PKG_CONFIG_dirs += $(G_prefix)/lib/pkgconfig/
-	RPATHS += -Wl,--rpath=$(G_prefix)/lib
-	LIBS += $(RPATHS)
+#	G_prefix=/home/gps/G/prefix
+#	LIST_PKG_CONFIG_PATH += $(G_prefix)/lib/pkgconfig/
+#	LIST_RPATH += $(G_prefix)/lib
 
 	PKGS += freetype2
 	PKGS += xft
 	PKGS += fontconfig
+	PKGS += libs_apps_base1
+
 	# src/IMG/
 	PKGS += libpng
 	PKGS += libturbojpeg
 
 	LINKS += -rdynamic # export all symbols - backtrace works!
 
-	# TODO docs for the VARS used
-	INCLS += `pkg-config --cflags $(PKGS)`
-	LINKS += `pkg-config --libs $(PKGS)`
-
-ifeq (0,1)
-	FT2=/home/gps/YEAR/src_build_2020/FT2/freetype2
-	INCLS += -I $(FT2)/include
-	LINKS += -L $(FT2)/objs/.libs
-	LINKS += -lfreetype
-endif
+#	# TODO docs for the VARS used
+#	INCLS += `pkg-config --cflags $(PKGS)`
+#	LINKS += `pkg-config --libs $(PKGS)`
+#	LINKS += $(RPATHS)
 
 	test2_font = /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf
 
@@ -52,8 +44,10 @@ endif
 	INCLS += -I$(S)
 	INCLS += -I$(S)/IMG
 
+	# a symb link to libs_apps 
+	include ../MK/MK_with_libs_apps
 # OLD	include ../MK/Makefile_libs_apps
-	include ../MK/MK_with_libs_apps_base
+#	include ../MK/MK_with_libs_apps_base
 
 	# beware similarity with file in libs_apps
 
@@ -63,6 +57,9 @@ endif
 
 # want RULE .o depends on .h
 # this makes ALL .o's dependent on ALL .h's
+
+	# although this is IMG it uses a lot of WAX
+	# that will become PKGS += libs_apps_WAX # maybe
 
 	HDRS += $S/A_point_plus.h
 	HDRS += $S/X_Colours.h
@@ -106,6 +103,7 @@ endif
 	OBJS += X_Image.o
 
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
+#	this is ALL that we need from base1 though
 #	OBJS += gdb_invoke.o
 #	OBJS += str0.o
 #	OBJS += str1.o
@@ -167,6 +165,9 @@ $(EXEC1): $(OBJS)
 $(EXEC2): $(OBJS)
 $(EXEC3): $(OBJS)
 $(EXEC4): $(OBJS)
+
+relink: 
+	rm -f $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa
 
 clean: 
 	rm -f *.o $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa

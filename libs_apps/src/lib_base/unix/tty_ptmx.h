@@ -26,9 +26,10 @@ struct tty_ptmx_t
 {
 	int fd_master;
 	int pid;	
-	int fork_vtty(); // returns smae as fork() -1 childspid or 0
+	int fork_vtty_old(); // returns smae as fork() -1 childspid or 0
 private:
-	char _DEL_name_master[11];
+//	// probably from SVR4 days
+//	char _DEL_name_master[11];
 	char name_slave[21];
 	int fd_slave;
 

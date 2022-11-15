@@ -169,7 +169,13 @@ default_test: $(EXE_1)
 	sleep 1 # align with second tick
 	./$< tty
 	./$< ls -l
+	./$< --tee $@.log  tty
 	./$< --tee_a $@.log  tty
+	./$< false
+
+gdb_test1: $(EXE_1)
+	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG1) --args ./$(EXE_1) tty
+
 
 test99:
 	sh -c 'echo $$VPATH'

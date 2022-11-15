@@ -17,6 +17,115 @@ using namespace BASE1;
 #define letter1 "pqrstuvwxyz"
 #define letter16 "0123456789abcdef"
 
+/*!
+	This is a specific UNIX dance to create /dev/tty99
+
+	The use case, is the parent feeds IN->child->OUT 
+
+	With some other options, the child process
+	gets fd { 0 1 2 }
+	is_a_tty(fd)
+	IS_A_STREAM(fd_0,fd_1))
+	ERROUT_IS_TEE_LOGFILE_TEE_FILTER_to_DEST
+	ERROUT_is-parents_fd2 # buffer STDERR points to same
+	ERROUT_is_FILTER_EVENTS_TELL_LINE
+	ERROUT_is_ONE_WAY_API # no return signal # check_world_patch #
+	ERROUT_is_CODE_POINT_CONNECTING_TO_BENCH_RUNNING_ACTION_QUERY
+	ERROUT_is_dup_STDOUT # same log file filter action cache
+
+	ONE_WAY_FILTER_api
+		SEND OPCODE ARGS
+	ONE_WAY_FILTER_MACRO_PATTERNS_api
+		SET VAR VALUE
+		SET VAR2 VALUE2
+		SET VALUE3 [EVAL ARGS]
+
+		ARGS == EXPR {
+
+			SET VAR VALUE {
+				SUBLEX_CODE_POINT {
+				 SUBLEX_CODE_POINT {
+					LEX "SET" {
+					 ALIAS_lower
+					 MATCH_adjacent // UpperLowerMix
+					 SUBLEX // SYL-A-BLE S
+					}
+				 }
+				 SUBLEX_CODE_POINT {
+					LEX "%s" VAR_name {
+					MACRO VAR_name VAR.name
+					 LEX "%s" ITEM(NAME) 
+					  %s == NAME == "VAR"
+					}
+				 }
+				 SUBLEX_CODE_POINT {
+					LEX "%s" VALUE_name {
+						"EXPR"
+					}
+					LEX "%s" VALUE_name {
+						"VALUE"
+					}
+				 }
+				}
+			}
+		}
+
+		EIGHT_t u64_WORD [ u48_idx ] // N == "N"
+		// DIALECT { N == "N" } AUTO_VAR NAME = "cident99"
+	
+	SET("cident99") at CODE_POINT 
+	 detect well known "cident99"
+	 MATCH "cident99" { += well_known_dialect_noun }
+	 MATCH "cident99" // consider { cident99 SCRIPT } {
+	  MATCH
+	 	{
+			{ cident99 SCRIPT } {
+			// HERE //
+			}
+		}
+	  MATCH
+	 	{
+			HERE {
+			// HERE //
+			}
+		}
+
+	  MATCH
+	 	{
+			Permit_Paradox LOOPY_NAME
+			// LOOPY += SELF += EXPR SELF OTHER as ARGS
+			// The provider of NAME_t starts with AUTO_VAR
+			// all of these OPTIONS to PICK are STR0
+			// PARSED SCRIPT // { 
+			// HERE // resolves to ITEM // tokenised_promise
+			// DECL { CXX { HERE_t HERE } }
+			// excessive { SUB_ITEM } or { PAIR }
+			// POSSIBLE MATCH { TUPLO }
+			// POSSIBLE MATCH { TUPLO CODE_POINT CSR STO }}
+			// TOKENISED MATCH { ANYSTR }
+			// IDX TOKEN_t TOKEN // CODE_POINT TOKEN PLUS
+			// CODE_POINT is the PLUS as SESS and OBJV
+			// CXX has same available STACK GLOBALS
+			// CXX has API "TOKEN_from_ANYSTR"
+			// but still cident99 // VIEW as "x%X"
+			// { FMT "x%X" } # MATCH idx_ITEM %X u48_idx
+			// u48_idx // or 4 bit nybble // UPTO u48
+			// implies have used u16_lo_of_u64
+			// USING CPU REGISTER_BYTE_A
+			// USING CPU REGISTER_BYTE_B
+			// USING CPU REGISTER_BYTES_BA
+			// obviously it was "ABCD" in MEM
+			// now seen in u16_hilo loaded from _lohi
+			// u16 // u16_cpu_byte_order // u16_lohi
+			// u16_AB // u16_loaded_from_AB
+			// u16_BA // u16_loaded_from_AB // VIEW_BA
+			// VIEW_BA is a name of a VIEW mode
+			// SET %s VIEW_BA // KNOW // HINT //
+			// }
+		}
+	 }
+
+*/
 bool tty_ptmx_t::open_pair ()
 {
 	const char * name_master = "/dev/ptmx";
@@ -55,9 +164,13 @@ bool tty_ptmx_t::open_pair ()
 	return true;
 }
 
-int tty_ptmx_t::fork_vtty()
+int tty_ptmx_t::fork_vtty_old()
 {
 	// deprecated for libs_app // kept for luck
+	// redo // where fork() is OUTSIDE, many other things ALSO going on
+	// pre_fork, post_fork_as_child, post_fork_as_parent, ...
+	// distill these
+
 	pid = -1;
 	if( !open_pair() ) return -1;
 	pid = fork();
@@ -95,7 +208,10 @@ int tty_ptmx_t::fork_vtty()
 
 bool tty_ptmx_t::stty_saner( int fd )
 {
-	return FAIL("TODO");
+
+	return true;
+	return PASS("TODO");
+	return WARN("TODO");
 }
 
 bool BASE1::is_a_tty( int fd )

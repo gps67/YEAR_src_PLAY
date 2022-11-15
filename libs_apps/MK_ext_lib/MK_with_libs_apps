@@ -31,6 +31,12 @@
 
 	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
 	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
+#	include /absent/file
+
+#	# libs_apps_base # faulty
+#	# it does not know UNAME # build_LGX_UNAME
+#	# so put that here FOR NOW
+# DID	LIST_CPLUS_INCLUDE_PATH += include $(DIR_libs_apps)/include
 
 ifeq (1,1)
 

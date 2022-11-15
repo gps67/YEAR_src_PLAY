@@ -22,7 +22,7 @@ namespace BASE1 {
 
 	/dev/pts/1 is a bit like /dev/tty1 - the app pid sees this
 */
-struct tty_ptmx
+struct tty_ptmx_t
 {
 	int fd_master;
 	int pid;	

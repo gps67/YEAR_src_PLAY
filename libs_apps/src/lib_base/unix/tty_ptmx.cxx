@@ -17,7 +17,7 @@ using namespace BASE1;
 #define letter1 "pqrstuvwxyz"
 #define letter16 "0123456789abcdef"
 
-bool tty_ptmx::open_pair ()
+bool tty_ptmx_t::open_pair ()
 {
 	const char * name_master = "/dev/ptmx";
 	fd_master = open( name_master, O_RDWR );
@@ -55,7 +55,7 @@ bool tty_ptmx::open_pair ()
 	return true;
 }
 
-int tty_ptmx::fork_vtty()
+int tty_ptmx_t::fork_vtty()
 {
 	// deprecated for libs_app // kept for luck
 	pid = -1;
@@ -93,7 +93,7 @@ int tty_ptmx::fork_vtty()
 	}
 }
 
-bool tty_ptmx::stty_saner( int fd )
+bool tty_ptmx_t::stty_saner( int fd )
 {
 	return FAIL("TODO");
 }

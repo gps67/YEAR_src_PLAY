@@ -72,6 +72,8 @@ bool lex_yacc_UDEF:: add_lex_for_C_EXPR() {
 	POOL_PUNCT.add_PUNCT( "<<<", L2R "14", "bitwise ROTATE"  ); 
 	POOL_PUNCT.add_PUNCT( ">>>", L2R "14", "bitwise ROTATE"  ); 
 
+	POOL_PUNCT.add_PUNCT( "<=>", R2L "14", "spaceship operator COMPARE"  ); 
+
 	// CHECK: who says these are R2L not L2R // or is it the =
 
 	POOL_PUNCT.add_PUNCT( "<<=", R2L "14", "bitwise SHIFT"  ); 

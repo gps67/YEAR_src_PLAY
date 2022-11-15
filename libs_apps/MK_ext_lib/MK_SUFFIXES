@@ -34,7 +34,7 @@
 
 .o.elf .o.exec: $(OBJS)
 	#
-	#    RULE: .o.lf # MK_SUFFIXES # link program
+	#    RULE: .o.elf # MK_SUFFIXES # link program
 	#     CXX: $(CXX) 
 	#   OPTIM: $(OPTIM)
 	#  CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc

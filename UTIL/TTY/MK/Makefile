@@ -166,6 +166,7 @@ show_vars:
 	#
 
 default_test: $(EXE_1) 
+	sleep 1 # align with second tick
 	./$< tty
 	./$< ls -l
 	./$< --tee_a $@.log  tty

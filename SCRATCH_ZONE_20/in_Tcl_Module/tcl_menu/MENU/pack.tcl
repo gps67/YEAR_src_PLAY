@@ -11,3 +11,14 @@ proc v_pack_big {item}	{ pack $item -side top  -fill x -expand y }
 proc h_pack_big {item}	{ pack $item -side left -fill both -expand y }
 
 # proc h_pack_big {item} { pack $item -side left -fill y -expand y }
+
+# GENERIC widget
+proc forget_all_packed_content {w} { #
+	set old_list [pack content $w]
+	if { $old_list != {} } {
+		set del_list [linsert $old_list 0 pack forget ]
+		eval $del_list
+	}
+}
+
+

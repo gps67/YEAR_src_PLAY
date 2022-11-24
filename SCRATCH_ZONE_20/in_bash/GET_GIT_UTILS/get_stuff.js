@@ -11,6 +11,7 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/libuv/libuv
 https://github.com/basecamp/trix
 https://github.com/swig/swig
 https://github.com/v8/v8

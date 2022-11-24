@@ -1,12 +1,18 @@
 #include "dgb.h"
 #include "tty_ptmx.h"
 #include "str0.h"
+#include "fd_selectable.h"
 #include <unistd.h> // execve
 #include <sys/wait.h> // wait
 
 // TODO // ecit with childs exit code
 
 using namespace BASE1;
+
+class fd_sel_ptm_IO; // bidirectional
+class fd_sel_pipe_IN;
+class fd_sel_pipe_OUT;
+
 
 class tty_wrap_t { public:
 	tty_ptmx_t tty_ptmx;
@@ -18,6 +24,10 @@ class tty_wrap_t { public:
 	bool tee;
 	bool tee_a;
 	str0 tee_file;
+
+	obj_hold<fd_sel_ptm_IO> fd_ptm_IO;
+	obj_hold<fd_sel_pipe_IN> fd_pipe_IN;
+	obj_hold<fd_sel_pipe_OUT> fd_pipe_OUT;
 
  // CTOR
  	tty_wrap_t() {
@@ -88,6 +98,14 @@ class tty_wrap_t { public:
 		return FAIL("execve '%s' ... returned %d", argv[0], t );
 	}
 
+};
+
+class fd_sel_ptm_IO : public fd_selectable_base { public:
+	bool s;
+};
+class fd_sel_pipe_IN : public fd_selectable_base { public:
+};
+class fd_sel_pipe_OUT : public fd_selectable_base { public:
 };
 
 bool bool_main( int argc , char ** argv, char ** envp )
@@ -321,7 +339,7 @@ bool bool_main( int argc , char ** argv, char ** envp )
 	  // ARGS => { ARGV }
 	  // ARGS => { OBJV }
 	  // ARGS => { %s } // STR0_for_TOKEN // no NULLS within first part of STR0
-	  // DATA ALLOC STR0 /* NUL */ /* MORE BYTES */
+	  // DATA ALLOC STR0 { NUL } { MORE BYTES }
 	  // DIALECT split MORE == CODE_POINT BYTES == DATA == SELF
 	  // 
 	}
@@ -331,7 +349,7 @@ bool bool_main( int argc , char ** argv, char ** envp )
 	 // TOKEN_from_STR0("ARGS") // varname
 	 // TOKEN_from_STR0("ANYSTR") // must have unique MD_CRC // ie PTR2 != PTR1
 	 // __ATTR__ TOKENISE THING_from_LOCN // EA_ITEM_NOW stable_id 
-	 // __SPEC__ /* of __ATTR__ */ SPEC { SPEC }
+	 // __SPEC__ / of __ATTR__ / SPEC { SPEC }
 	 // DIALEXT SPEC { SPEC }
 	 // %s == SPEC {
 	 // ZONE == SPEC as VIEW // with NOW and its SESS_VARS // LIBR

@@ -1,0 +1,189 @@
+2022-11-27 Nov Sun 01:50 # 39 #  PARSE_at_line.txt
+
+#        at_R "@R MPG123" # it volunteers its own PROG_NAME
+#        at_I "@I ID3:%s" BYTE_ZONE_upto_EOLN # ID3_DECODER
+#        at_I "@I ID3:%s" ID3_api BYTE_ZONE # PARSE EOLN #
+#        at_S "@S 1.0 3 44100 Joint-Stereo 2 320 2 0 0 0 128 2"
+#        at_P "@P 1" # EOLN_expected # ALL_DONE #
+#        at_P "@P 2" # EOLN_expected # AUTO_REASONS_WHY_FAST_MATCH
+#        at_P "@P 3" # EOLN #
+#
+#        at_P "@P %s CTOR_NEW_IDX_ALIAS
+#
+# regexp for these (RTFM for THIS)
+#
+#	gets $fd line_from_API_fd
+#	TEXT_LINE
+#	MATCH BOLN @ LETTER SP text_upto_eoln EOLN 
+#	MATCH EXPR BUILDER SCRIPT # SCRIPT += DATA #
+#	
+#	FAST MATCH 
+
+
+	regexp
+		RE $line all ARGS_VARS
+		RE $line all ARGS
+		RE $line all VARS
+	
+	FILTER 
+		rephrase_as
+		as_lhs
+		as_rhs
+		as_lhs_rhs
+		as_lhs_rhs SCRIPT ARGV
+	
+	ARGV
+		ARGV
+		OBJV
+		argv(argc) [0[argc
+	
+	UTF8
+		CXX ARGV picks overloaded name
+		as_lhs_rhs SCRIPT ARGV
+		as_lhs_rhs SCRIPT ARGV CTXT SESS LIBR KEEP
+
+	VAR_NAME
+		   [0[argc
+		  "[0[argc"
+		{ "[0[argc" }
+
+	VAR_NAME
+		" { ... } "	# INDICATES + FASTIDIOUS USE OF API
+		 " {...} "	# INDICATES LEX_EDGE # SUBLEX_EDGE # PSG MATCHER
+		  "{...}"	# HOPES FOR LEX_EDGE # is_ident_ANYSTR
+		   {...}	# DIALECT USES {...} # MENTION LINKS CTOR INIT0
+
+	PARSE
+		likes all of the above
+		generates them for you
+		optimises
+		adjusts to VIEW # lhs rhs # name value # view2 view2
+
+	BENCH
+	LEARN
+		use in PSG of DIALECT 
+
+		   [0[argc
+	DECL i	   [0[N
+	DECL i	   idx		// SUBST into ARG of INVOKED MACRO 
+
+		code_hints
+
+		ALIAS i arg_pos
+		for(int i=0; i<N; i++ ) { USE argv[i] } 
+		FILTER
+		 CHECK
+			argv[i] == NULL
+				possible overrun of ARGV
+				possible reliance on NULL terminated list
+				possible mid ARG using NULL as OK_NULL
+			WARN unexpected mid_list_NULL
+			WARN those listed above here ...
+
+		 CHECK
+		 	FILTER += CHECK
+			RETVAL = NONE || ran_OK
+			OBJECT = const_unmodified
+			OBJECT = STO_RW_modified
+			OBJECT = CACHED ...
+
+
+
+
+
+
+{
+} elseif [regexp $re_zero $f all YEAR MM DD hh mm ss ext] {
+}
+
+	regexp 
+		$re_zero
+		$f
+		all
+		... ARGS
+		... YEAR MM DD hh mm ss ext ...
+		... ARGS
+
+	PREP_CODE
+
+		set re_zero "^@[A-Z]+ .*" 
+
+		PRE_NAME
+		"@R line" PARSER # with added DIALECT and CACHE PRE_LOAD
+
+		R == CIDENT99 == { UTF8 "[0-9A-Za-z_$]+" } { but dont start with digits
+
+		set re_zero "^@[A-Z]+ .*" 
+
+		regexp $RE $TEXT all V A R S
+	
+	RE
+		regexp $RE $TEXT all V A R S
+
+		set D "{{0-9]}" # local # protect against []
+		set DD "($D$D)" # ( EXPR ) # into VARNAME V
+		set DD "($D$D$D$D)" # ( YEAR ) # into VARNAME EXPR_YYYY
+	
+	RE_BUILDER
+
+		DECL RE_EXPR ALIAS
+		YEAR_MM_DD
+
+		SCRIPT that can be run at CT, maybe on some test data
+
+		OPENS up a world of SCRIPT => RETVAL 
+
+			SCRIPT => SCRIPT // _in_situ_ edit of SCRIPT //
+
+			EDIT = FILTER
+			 MATCH
+			 EDIT
+			 DONE
+
+			COMPILE 
+			 SCRIPT
+			 CONST
+			 SPEC
+			 VAR
+			 FN
+
+			RUN
+			 SESS
+			 STO
+			 ROM
+			 LINK_TABLES
+
+		CXX can run a database search, to count all spellings,
+		to prioritise the huffcoding for SUBLEX 
+		eg picj TOP_TEN for u4__idx LIST_TOP_TEN[u4_idx] // u8_idx / int
+		then CXX can output tables of precomputed values.
+		then CXX can pre_load CACHE_top_FIVE # do from ROM # u8 # ELSE
+
+		In particular when SCRIPT => ITEM 
+		CXX can use const_init, and GCC can prove CONST,
+		CXX can prove no need to read var, set at lower priority
+		GEN can do this by accident, because GCC does the work
+		GEN still writes out the uncalled code, already minimal
+		GCC gets to TOKENISED, then data in TUPLO
+
+		 YEAR-MM-DD
+		"YEAR-MM-DD"
+		ALIAS "YEAR-MM-DD"
+		lookup the_RE_that_parses( YEAR_MM_DD ) // minimalism no "RE_"
+		 ACTUAL_VAR_NAME == "RE_%s" "YEAR-MM-DD"
+
+		 AUTO_LANG lists all permutations, some first,
+		 DIALECT_DETECT notices use of   %s 
+		 DIALECT_DETECT notices use of  "%s" 
+		 DIALECT_DETECT notices use of " %s " 
+		 RE_SENSITIVE += "(ZONE)" 
+		 RE_SENSITIVE_BYTES += "()\\|&||&&\"" 
+		 RE_SENSITIVE_BYTES += "\\" 
+		 RE_SENSITIVE_BYTES += "\"" 
+		 RE_SENSITIVE_BYTES += "{}" 
+		 RE_SENSITIVE_BYTES += "()" 
+		 RE_SENSITIVE_BYTES += "[]" 
+
+		I
+		
+

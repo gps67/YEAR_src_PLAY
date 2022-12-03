@@ -33,8 +33,8 @@ bool copy_tree(
 	buffer1 src_sub_dir;
 	buffer1 dst_sub_dir;
 
-	while( dir_list.next() ) {
-		INFO("DIR ITEM %s %s",
+	while( dir_list.next() ) { // first is queued to be next
+		INFO("DIR ITEM %s TYPE %s",
 		 dir_list.name(), 
 		 dir_list.item.file_type_str()
 		);
@@ -52,10 +52,14 @@ bool copy_tree(
 		 case is_dir: 
 		 	src_sub_dir.clear();
 			src_sub_dir.print("%s/%s", src_tree, (STR0) name);
+
 		 	dst_sub_dir.clear();
 			dst_sub_dir.print("%s/%s", dst_over, (STR0) name);
-			if(!stat_item.stat( (STR0) dst_sub_dir )) { // quiet stat for absent
-				// INFO("TODO MKDIR %s", (STR0) dst_sub_dir ); // stat found absent
+
+			// is the dst there ?
+			if(!stat_item.stat_OK_if_absent( (STR0) dst_sub_dir )) { // quiet stat for absent
+				FAIL("stat failed even when absent OK");
+				// ie absent should return true //
 			}
 			switch( stat_item.linked_file_type ) {
 			 case is_dir: ; // perfect already exists

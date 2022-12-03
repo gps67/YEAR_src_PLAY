@@ -80,7 +80,9 @@ class file_stat : public GRP_lib_base
 	file_stat();
 	void clear();
 	bool stat( const char * filename );
+	bool stat_OK_if_absent( const char * filename );
 	bool stat_quiet( const char * filename );
+	bool stat_FAIL_if_absent( const char * filename, bool FAIL_if_absent );
 	bool stat_fd( int fd );
 	bool readlink_to_buf( const char * filename, blk1 & buf );
 	bool readlink_to_val( const char * filename );

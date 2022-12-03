@@ -10,12 +10,15 @@
 
 // put time into a module
 #include <time.h>
+#include "tm_parts.h"
 
 bool copy_src_name_dst_try(
 	const char * src_over,
 	const char * src_name_ext,
 	const char * dst_over
  ) {
+	if(0) // did we get here
+ 	 INFO("%s", src_name_ext );
 
 //	gdb_invoke(false);
 
@@ -106,19 +109,22 @@ bool copy_src_name_dst_try(
 	dst_name = (STR0) buff_dst_name;
 
 	if(0) {
-	INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
-	INFO("dst_name %s", (STR0) dst_name );
+	 INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
+	 INFO("dst_name %s", (STR0) dst_name );
 	}
 
 	// if dst_name already exists, it is A COMPLETE COPY
 	// MAYBE check mtime nbytes and report mismatch
 	// or not
-	if( dst_stat.stat_quiet( dst_name )) {
+	if( !dst_stat.stat_quiet( (STR0) dst_name )) {
+		return FAIL_FAILED();
+	}
+	if( dst_stat.file_type != is_absent ) {
 		// we should check size date perms uid gid
 		// and be happy if they match
 		// but we simply fail so the calling script does that
-		return true;
-		return PASS(" already exists %s", (STR0) dst_name );
+		 return true;
+		 return PASS(" already exists %s", (STR0) dst_name );
 	}
 
 
@@ -182,10 +188,13 @@ bool copy_src_name_dst_try(
 	// LOOK for restart
 	fd_hold_1 fd_dst;
 	u64 size_part = 0;
-	if( dst_stat.stat_quiet( (STR0) dst_name_tmp )) {
+	if( !dst_stat.stat_quiet( (STR0) dst_name_tmp )) {
+		return FAIL_FAILED();
+	}
+	if( dst_stat.linked_file_type != is_absent ) {
 		// exists means restart
 		if( dst_stat.linked_file_type != is_file ) {
-			return FAIL("not is_file");
+			return FAIL("%s not is_file", (STR0) dst_name_tmp );
 		}
 		size_part = dst_stat.st.st_size;
 		if(!fd_dst.open_RW( (STR0) dst_name_tmp )) {
@@ -211,7 +220,7 @@ bool copy_src_name_dst_try(
 	char buff[ size_block ];
 	int fake_stop = 5; // TEST partial copy using fixed limit progress
 	int loops_count = loops_per_sync;
-	static const int every_n_seconds = 10; // 5; // do full fsync not fdatasync
+	static const int every_n_seconds = 1; // 10; // 5; // do full fsync not fdatasync
 	time_t time_last_sync; // rounded seconds
 	time_t time_last_fsync; // rounded seconds
 	time_t time_right_now; // rounded seconds
@@ -225,15 +234,21 @@ bool copy_src_name_dst_try(
 			if( time_last_fsync + every_n_seconds <= time_right_now ) {
 				time_last_fsync = time_right_now ;
 				// every 5 seconds // if check within that sec
-				if(1)
-				if(! fd_dst.fsync() ) {
-					return FAIL_FAILED();
+				if(1) {
+					e_print("f_");
+					if(! fd_dst.fsync() ) {
+						return FAIL_FAILED();
+					}
+					e_print("\b");
 				}
 			} else {
 				// every second other than multiple
-				if(0)
-				if(! fd_dst.fdatasync() ) {
-					return FAIL_FAILED();
+				if(1) {
+					e_print("d_");
+					if(! fd_dst.fdatasync() ) {
+						return FAIL_FAILED();
+					}
+					e_print("\b");
 				}
 			}
 			// restart loop counter // every second
@@ -244,10 +259,13 @@ bool copy_src_name_dst_try(
 				// every n loops
 				loops_count = loops_per_sync;
 				// so why is it showing 0 when pausing not 100
-				if(1)
-				if(! fd_dst.fdatasync() ) {
-					// syncs not working as expected
-					return FAIL_FAILED();
+				if(1) {
+					e_print("d_");
+					if(! fd_dst.fdatasync() ) {
+						// syncs not working as expected
+						return FAIL_FAILED();
+					}
+					e_print("\b");
 				}
 			}
 		}
@@ -255,8 +273,11 @@ bool copy_src_name_dst_try(
 		 if(!fake_stop--) {
 			return FAIL("fake_stop");
 		 }
-	//	e_print("\r size_left %7.2f M loops_count %3d ", (float) size_left / (1024*1024), loops_count ) ;
-		e_print("\r size_left %7.2f M ", (float) size_left / (1024*1024) ) ;
+
+		 tm_parts tm_part;
+		 tm_part.local_from_time(time(NULL));
+
+		e_print("\r %s size_left %7.3f M ", tm_part.str_http(), (float) size_left / (1024*1024) ) ;
 	//	if(!loops_count) e_print("\n");
 	//	e_print("\n");
 	//	fflush(0); // e_print does not need fflush(0)
@@ -273,6 +294,7 @@ bool copy_src_name_dst_try(
 			continue;
 		}
 		int wrote = 0;
+		e_print(".");
 		wrote = fd_dst.write( buff, sz_write );
 		if( wrote != sz_write ) {
 			FAIL("ERROR WRITE expected %d got %d", sz_write, wrote);
@@ -280,7 +302,29 @@ bool copy_src_name_dst_try(
 			continue;
 		}
 		size_left -= wrote;
+
+		if(0) {
+
+			if(1) {
+				e_print("D_");
+				if(! fd_dst.fdatasync() ) {
+					// syncs not working as expected
+					return FAIL_FAILED();
+				}
+				e_print("\b");
+			}
+
+			if(1) {
+				e_print("F_");
+				if(! fd_dst.fsync() ) {
+					return FAIL_FAILED();
+				}
+				e_print("\b");
+			}
+
+		}
 	} // while
+	e_print("\r");
 	if(! fd_dst.fsync() ) { // also write inode
 		return FAIL_FAILED();
 	}
@@ -297,7 +341,7 @@ bool copy_src_name_dst_try(
 		return FAIL_FAILED();
 	}
 	
-	return true;
+	return PASS("%s", (STR0) dst_name );
 }
 
 bool copy_file_dir (
@@ -328,6 +372,7 @@ bool copy_src_name_dst(
 		if( copy_src_name_dst_try( src_over, src_name_ext, dst_over )) {
 			return true;
 		}
+		INFO("retry %d of %d", i+1, loops );
 	}
 	return FAIL_FAILED();
  }

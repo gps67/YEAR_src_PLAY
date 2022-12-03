@@ -19,6 +19,7 @@
 #include "dgb.h"
 #include "blk1.h"
 #include <unistd.h>
+#include "err_int.h"
 
 /*!
 	Convert File_Type to a string
@@ -173,14 +174,35 @@ const char * str_file_type( File_Type file_type )
 		return true;
 	}
 
+	/*!
+		get file stat - absent file is an error
 
-	bool file_stat::stat_quiet( const char * filename ) {
-		return stat( filename );
+		as indeed it is, UNIX sets errno and so on
+	*/
+	bool file_stat::stat( const char * filename ) {
+		bool FAIL_if_absent = true;
+		return stat_FAIL_if_absent( filename, FAIL_if_absent );
+	}
+
+	/*!
+		return true - stat done without error
+
+		return with file_type == is_absent
+	*/
+	bool file_stat::stat_OK_if_absent( const char * filename ) {
+		bool FAIL_if_absent = false;
+		return stat_FAIL_if_absent( filename, FAIL_if_absent );
 	}
 
 	/*!
 	*/
-	bool file_stat::stat( const char * filename )
+	bool file_stat::stat_quiet( const char * filename ) {
+		return stat_OK_if_absent( filename );
+	}
+
+	/*!
+	*/
+	bool file_stat::stat_FAIL_if_absent( const char * filename, bool FAIL_if_absent )
 	{
 		file_type = is_error;
 		linked_file_type = is_absent; // is_unset
@@ -193,7 +215,14 @@ const char * str_file_type( File_Type file_type )
 			// WIN32 - may need editing
 			if( errno == ENOENT ) {
 				file_type = is_absent;
-				return WARN("ENOENT %s", filename);
+				if( FAIL_if_absent ) {
+					return FAIL("ENOENT %s", filename);
+				} else {
+					err_int_t errr;
+					errr zap_OS_error();
+					return true;
+					return false;
+				}
 			}
 			return FAIL("%s", filename);
 		}
@@ -203,8 +232,15 @@ const char * str_file_type( File_Type file_type )
 		{
 			if( errno == ENOENT ) {
 				file_type = is_absent;
-				return WARN("ENOENT %s", filename);
-				// false matches -1 from syscall
+				if( FAIL_if_absent ) {
+					return FAIL("ENOENT %s", filename);
+					// false matches -1 from syscall
+				} else {
+					err_int_t err_int;
+					err_int.zap_OS_error();
+					return true;
+					return false;
+				}
 			}
 			return FAIL("%s", filename);
 		}
@@ -216,8 +252,8 @@ const char * str_file_type( File_Type file_type )
 			if(!readlink_to_buf( filename, readlink_val ))
 				return FAIL_FAILED();
 
-			// hmmm (STR0) necessary on readlink_val TYPE
-			INFO("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
+			if(1)	
+			 INFO("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
 
 			/*
 				get the stat info of the linked target,
@@ -226,6 +262,9 @@ const char * str_file_type( File_Type file_type )
 			if(-1==::stat( filename, &linked_st ))
 			{
 				linked_file_type = is_absent;
+				err_int_t errr;
+				errr.zap_OS_error();
+				WARN("symb_link to absebt file");
 			} else {
 				linked_file_type = get_file_type( linked_st );;
 			}
@@ -330,8 +369,12 @@ const char * str_file_type( File_Type file_type )
 		times[1] = st.st_mtim;
 		int dirfd = AT_FDCWD; // if relative pathname use current dir
 		int flags = 0; // AT_SYMLINK_NOFOLLOW // man utimensat
-		int t = utimensat(
-			dirfd,
+#ifdef WIN32
+#  warning does this work on WIN32 ??
+// will probably be an absent function
+#endif
+		int t = utimensat( // nano second u-time // touch file mtime
+			dirfd,		// either fd of dir or AT_FDCWD
 			filename,
 			times,
 			flags

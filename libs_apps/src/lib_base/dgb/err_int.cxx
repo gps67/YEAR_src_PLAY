@@ -134,7 +134,8 @@ bool err_int_t:: zap_OS_error() // OS not GTK not SSL nor ...
 #ifdef WIN32
 	SetLastError(0);
 #else
-	if(errno) e_print("# ~~~~ # clearing errno, was %d \n", errno );
+	if(0)
+	 if(errno) e_print("# HUSH # clearing errno, was %d \n", errno );
 	errno = 0;
 #endif
 	return is_error();

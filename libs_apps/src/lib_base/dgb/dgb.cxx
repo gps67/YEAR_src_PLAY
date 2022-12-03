@@ -614,7 +614,8 @@ void dgb_sleep_calc() // maybe I am mad
 
 	dgb_sleep_calc_silent(); // maybe I am out of control
 
-	INFO("fail/pass/fade/here = %d/%d/%d/%d",
+	if(0)
+	 INFO("fail/pass/fade/here = %d/%d/%d/%d",
 		dgb_mad_count_fail,
 		dgb_mad_count_pass,
 		dgb_mad_count_fade,

@@ -13,7 +13,7 @@ typedef struct yy_buffer_state * YY_BUFFER_STATE;
 // yy_
 // IT also does the BUFFER MAGAZINE loading
 
-// extern YY_BUFFER_STATE yy_scan_buffer ( char *base, yy_size_t size  );
+   extern YY_BUFFER_STATE yy_scan_buffer ( char *base, int size  );
    extern YY_BUFFER_STATE yy_scan_string ( const char *yy_str  );
    extern YY_BUFFER_STATE yy_scan_bytes ( const char *bytes, int len  );
 
@@ -25,6 +25,7 @@ extern void yyrestart ( FILE *input_file  );
 extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 // FREE BISON buffer position holder
 
+#define  YY_END_OF_BUFFER_CHAR 0x00
 
 // YY:: Y_Parse_t CALLS yyparse PROVIDES SELF.TREE // _BUILDER
 
@@ -74,6 +75,8 @@ void yyerror( Y_Parse_t & psg, const char * msg )
   bool Y_Parse_t::
   buf_yy_parse( blk1 & text ) // returns when done
   {
+  	text.put_byte(YY_END_OF_BUFFER_CHAR); // 
+  	text.put_byte(YY_END_OF_BUFFER_CHAR); // 
   	// PRE_BOOK FULL LOCK on text holder; // just add this change //
   	text.trailing_nul(); // noone else can add stuff, please no, NUL needed
 	// LOCK text // SNAP nbytes // KEEP lock until DTOR of link to text
@@ -84,14 +87,23 @@ void yyerror( Y_Parse_t & psg, const char * msg )
 	// struct yy_buffer_state ... // in gen_e1_lex.cc
 
 	YY_BUFFER_STATE buffer =	// feed YY's LEX buffer with blk1 text
-	  yy_scan_bytes(
-	   (const char *) text.buff,
+	#if 1
+	  yy_scan_bytes( // does malloc copy slow loop
+	#else
+	  yy_scan_buffer(
+	#endif
+	  // bison adds 2 bytes of YY_END_OF_BUFFER_ so we do too size +=2
+  //	(const char *) text.buff,
+	   (      char *) text.buff,
 	            (int) text.nbytes_used
 	  );
 	  //
 	  // api_direct // loan our buffer to yyin_to_FLEX // single user
 	  // that stays in effect, throughout the parsing, EOF and shutdown
 	  // could set buffer-> ...
+	  if(!buffer) {
+	  	return FAIL("bad buffer did not end with two NUL bytes");
+	  }
 
 #if 0
 	//

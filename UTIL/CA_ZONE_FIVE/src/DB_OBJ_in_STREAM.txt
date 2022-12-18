@@ -1,0 +1,30 @@
+2022-12-18 Dec Sun 20:47 # 00 #  DB_OBJ_in_STREAM.txt
+
+	OBJ = DB.TABLE.ROW {
+	  DB = DB
+	  TABLE = TABLE
+	  ROW = ROW {
+	   OBJ_t & ROW = { SCRIPT }
+	   SCRIPT += EA_ROW = this // EA_in_MEM // EA_in_STO // EA_EXPR
+	   EA_EXPR : EA_EXPR {
+	    EA_EXPR {
+	    	.as_script_val EA_EXPR /* NO_ARGS plus THIS */{ // CTXT
+:PSG:		PARSE_EA_EXPR { SCRIPT } {
+:PSG:			PSG_t & PSG = lookup( " { SCRIPT } "); // DIALECT ==
+:PSG:		}
+
+		CT_RT = RT
+		CT_RT.EA_as_DIALECT( WORD_u64 ) // += SPEC == SPEC // MATCH
+			WORD_u64_t WORD_u64; // MACRO "%s_u64" u64_t 
+			SOFT_u64_t WORD_u64_lohi ; // BYTE_ORDER_ABCD_lohi
+		}
+	    }
+	    EA_EXPR {
+	    }
+	    EA_EXPR {
+	    }
+	   }
+	  }
+	}
+
+	

@@ -1,0 +1,195 @@
+2022-12-13 Dec Tue 20:36 # 34 #  item_u3_ARGS/item_u3_ARGS.txt
+#  item_u3_ARGS/item_u3_ARGS.txt
+
+# VI # ARGV[IDX] # ARG = ARGV[ I ] # argv[argc] # OBJV # ARGS _A _R _G _S
+
+	cpu API # API_CPU_t API = { SCRIPT } # ARGV # STR0_t STR0; // PTR //
+	// CMNT //
+
+	   CMNT // CODE_POINT_T CODE_POINT == here // POST_FILTER_VALUE
+
+	   CODE_POINT = { SCRIPT ] += { Module } // MK_VAR explain = EXPLAIN //
+
+	   // _t Module = { SCRIPT } // CODE_POINT_t SCRIPT = HERE 
+
+  https://www.youtube.com/watch?v=mt8I71VUazw
+
+
+	The Future of Computing is Light
+
+
+
+
+
+
+
+
+
+
+
+	...
+	RTFM
+	{ "argv(argc)" }
+	{ "%s(%s)" } // %s %s // 
+
+	MATCH("%s") // INCLUDE SCRIPT // TODO VOCAB of REPL_STEAM // argv // STR0
+
+	USAGE u3_idx // ITEM = PICK[ IDX ] // _t "OBJ_PTR_t ITEM = list[u3]" // VECT
+	VECT [u3_idx_t u3_idx = EXPR // VECTOR = ARRAY_of_EIGHT //
+	// ITEM_t & ITEM = %s[%d] == "%s[%s]" // %s = as_EA_from_CT { EIGHT }
+	// EIGHT_t EIGHT // BASE u64_t // ALIAS %s //
+	// ALIAS u8[8]
+	// ALIAS u48_PTR
+ 
+ 	USAGE u48_ITEM_idx // ITEM = LOOKUP idx_EXPR // EXPR = SCRIPT
+
+	SCRIPT ... to EOLN ... // USAGE
+	SCRIPT TREE_t TREE = SCRIPT_EXPR_TREE
+	// choice of implemenation
+	// SCRIPT = CXX compiled 
+
+	EXPR = CXX_EXPR CT RT_ARGS CODE_POINT # AUTO_VAR in BENCH # STATE # STO #
+
+	u64_WORD_PAIR // u32_ABCD // u32_EFGH // u32_%s // %s //
+	u32_u32__WORD_PAIR // u32_ABCD // u32_EFGH // u32_%s // %s //
+	u32_EXPR { u24_u8_ABCD }
+	u32_ABCD { ABCD A B C D AB CD BCD ABC ABCD
+	u24_payload == WORD >> 8 // WORD_lohi // u8_OPCODE = A ; u24_payload = BCD_shifted
+	u32_CBD_shifted = WORD_u32 >> 8
+	u32_t u32_WORD_lhs u32_WORD_rhs // u64_lohi_world // decode left to right
+	EIGHT_t == "{ u32_lhs u32 rhs }" // PAIR //
+	EIGHT_t == "EXPR_{ u32 lhs ; u32 rhs } PAIR_t // PAIR_u32_u32 //
+	u32_u32_t WORD_64; // CMNT // CODE_POINT // 
+	LAYOUT SEGMENT += STO_array_of_words // of_u64_as "u32_u32" // LEX //
+	STO_array_of_words // of_u64_as "u32_u32" // LEX //
+	EIGHT_in_WASM // JavaScript WASM provides MEMORY STO BLOCK_of_BYTES_via_u32
+	// LANG is ARGV when no quotes needed // FILTER == "ABSENT" //
+	IDX_CALC OFFS += IDX * WORD_SIZE // KNOWN_at_CT NOW_VAL_in_LOOKUP
+	// LUUKUP // "OFFS_of_IDX(idx)" // AUTO_ARGV += u32_idx "idx"
+	// NEARBY "u32_t idx = EXPR" // EXPR = AVAIL_on_REQ as SCRIPT SESS
+	// NEARBY SESS // CXX "EXPR_t" // AUTO_DETECT "%s_t" EXPR = "EXPR"
+	// name thing by its RET_VAL = EXPR_as_STR0 "EXPR" // it is LEX_EDGE
+	// LEX_EDGE // LEX_HERE // LEX_EDGE // SUBLEX_may_permit_IDENT //
+	// LEX_ITEM // THUS // THUS is THIS as_EA_EXPR //
+	// THIS as_EA_EXPR // RANGE_of_EA_types_and_of_EXPR_AVAIL
+	// EXPR = CODE_POINT // 
+	// CODE += LINE // LINE += CSR_in_BLOCK_of_LINE_in_PARSED_TEXT
+	// CODE += ITEM // ITEM_t * ALIAS // ALIAS { ITEM TIME } //
+	// CODE += LOOKUP 
+	// CODE += SCOPE VAR = EXPR // += CODE_POINT += PARSED_CODE_POINT //
+	// PSG += DIALECT ITEMS // SUBLEX clusters _of_ITEM
+	// PSG "{ ITEM_t & ITEM = CT_LOOKUP_EXPR( "EXPR" ) // MATCH_VAR_NAME
+	// FILTER MATCH VAR_NAME // GET_VAL // DEFAULT "%s" VAR_NAME //
+	// BENCH MK_VAR EXPR = "EXPR" // return "EXPR" works //
+	// BENCH MATCH SCRIPT_LINE "%s" // KNOW DIALECT JS_SUBLEX
+	// BENCH MATCH SCRIPT_LINE "%s" // KNOW DIALECT CXX
+	// BENCH MATCH SCRIPT_LINE "%s" // KNOW DIALECT ARGV
+	// BENCH MATCH_SCRIPT_DATA ARGV // KNOW DIALECT ARGV // OBJV //
+	// BENCH MATCH_SCRIPT_DATA ARGV_EXPR // KNOW DIALECT ARGV // OBJV // IDX
+	// BENCH WASM DATA SPEC // array_IDX_of_EIGHT // even 386 can do this
+	// DIALECT += IDX u3_idx = BYTE_A // require u5 be zero // MUX_LEX
+	// DIALEXT u3_u5 u3 == BYTE_A >> 5
+	// DIALEXT u3_u5 u3 == BYTE_A << 3 >> 3 // as_u5 BITFIELD_as_u5 
+	// EXPR u5_PAYLOAD = (BYTE_A << 3) >> 3 // BYTE_A &= 0x1F // KNOW MASK
+	// BITFIELD_VOCAB // CT repeat COMPILE for WORD_ _u64 _u32 "u8[8]"
+	// PSG MATCH "u8[8]" // typedef u32[2] u32_u32_t // 
+	// AUTO FILTER += OPTION += "u32_u32_t u32_u32 = EXPR"
+	// USAGE NAME gets EXPR can use MINI_MACHINE VARS SPEC SCRIPTS STO
+	// USAGE EXPR == "EXPR" // the value of EXPR is EXPR // not unnoticed //
+	// USAGE STRING_NAME_is_TYPICAL_NAME "EXPR" // LEX_EDGE IDENT cident99
+	// USAGE UNION VAR_NAME EXPR_NAME EXPR_SCRIPT EXPR_EA_ITEM // as_SPEC
+	// USAGE as_SPEC // FILTER += SPEC // VARS VALS get held in CPU_REG
+	// USAGE CPU_WORD MID_EXPR_VAL_WORD_64 // USAGE BYTE_B_MACHINE
+	// USAGE MEMORY_as_u32_half_of_EIGHT_t _INTO_ CPU_WORD_from_lohi
+	//
+	//	AMD64 is u64_lohi
+	//
+	//	AMD64 is EIGHT_t in lohi_world 
+	//
+	//	AMD64 
+	// //	AMD64 is EIGHT_hilo // no it isnt so that invalidates these:
+	//
+	// //	AMD64 is EIGHT_hilo_holding_EIGHT_lohi
+	// //	AMD64 is EIGHT_hilo_holding_EIGHT_hilo 
+	//
+	//	This provices CHOICE // use AMD64_REGISTER_and_BITFIELDS
+	//	OPTION actual REGISTERS += XMMS // SOFT_ZONE D.BYTE_B
+	//	OPTION actual REGISTERS += EXPR_CPU D.BYTE_B // in_SITU or GOT_VAL
+	//	AMD64 is EIGHT_lohi_holding_EIGHT_lohi // VANILLA
+	//	AMD64 is EIGHT_lohi_holding_EIGHT_hilo // not_network_bye_order
+	//
+	//	M68K is EIGHT_hilo
+	//	M68K is EIGHT_hilo_holding_EIGHT_lohi
+	//	M68K is EIGHT_hilo_holding_EIGHT_hilo
+	//
+	//	CPU has OPCODE HALF
+	//	
+	//	u5_OPCODE SET_EXPR_7 EA_from_ITEM_EXPR u24_OFFS // EXPR[8]
+	//	u3_idx_field
+	//
+	//	CXX uses u32_VAL to hold u24_idx u3_PICK u5_OPCODE
+	//
+	// 	POOL == POOL[u3_idx]
+	//	u3_idx == BYTE_A >> 5 // fill ZEROS above BYTE // LONG_from_byte
+	//	u24_payload == "{ WORD_32 >> 8 }" == WORD >> 8
+	//	ITEM_IDX == u24_idx == u24_payload
+	//	ITEM == u24_idx == u24_payload == "{ WORD_32 >> 8 }"
+	//	CT_COMPILE WORD_32 operator>> u8_shift // u6 [0[64 // u4 [0[16
+	//	
+	//	ITEM = MINI_MACHINE_EXPR[ u3_idx ] // [0[8 //
+	//	ITEM_t & ITEM = PICK_u3_idx( u3_idx )
+	// 
+	//	WORD_64_t == u32_u24_u3_u5_t
+	//
+	//	OPCODE u5_opcode
+	//	u5 == BYTE_or_MORE(BYTE_A >> 3) // ZERO extend (u32) u8_BYTE_B
+	//
+	//	u3 BITFIELD_u3_from_u32(u32_WORD)
+
+BITFIELD 
+
+	DIAG that shows multiple state BITFIELD EXPRS
+	STEP COST
+		requires ASM to be generated
+		often allow next ASM to pick opcode from range guess COST
+	
+	PLAY DIAG 
+		to satisfy GET(field) try range of access into EIGHT
+		compare costs of picking DIAG_METHOD
+		compare costs of creating TABLES 
+		guess loop count factors 
+		GEN top few as CODE that uses CODE
+		u3_idx 
+		u5_idx 
+		u8_idx // _exact_FULL or _N_ZERO_means_FULL_NEXT check idx<MAX
+		i16_idx
+		u24_idx // VAL_in_WIDER_WORD_u32 // _WORD_u64
+		u24_idx // BITFIELD_that_needs_shift // inline_func
+		u32_idx
+		u48_idx // CHOP_CHECK_u32_asif_u48 // 
+	
+	DIAG
+	 u64
+	 	u32_ONE_of_u64
+			ZERO_EXTEND_u32_to_u64
+	 	u32_TWO_of_u64
+			WORD_64 >> 32
+		
+
+	CPU_as_CPU
+		KNOW_BITFIELD_has_zero_headroom_in WORD_ONE_u8
+		KNOW_BITFIELD_has_zero_headroom_in WORD_TWO_u8 // AVOID
+		KNOW_BITFIELD_has_zero_headroom_in WORD_ONE_u16
+		KNOW_BITFIELD_has_zero_headroom_in WORD_TWO_u16
+		KNOW_BITFIELD_has_zero_headroom_in WORD_ONE_u32
+		KNOW_BITFIELD_has_zero_headroom_in WORD_TWO_u32
+		KNOW_BITFIELD_has_zero_headroom_in WORD_u64
+		KNOW_VAL_would_fit_in_HALF
+		KNOW_BITFIELD_is_already_shifted_down
+		KNOW_BITFIELD_has_data_above_it
+
+	CPU_as_AMD
+
+		#
+	
+

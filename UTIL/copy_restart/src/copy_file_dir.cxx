@@ -12,11 +12,25 @@
 #include <time.h>
 #include "tm_parts.h"
 
-bool copy_src_name_dst_try(
+struct sender_t {
+	fd_hold_1 fd_src;	// read from file
+	fd_hold_1 fd_dst;	// write to file
+
+	u64 size_full = 0;
+
+	bool copy_src_name_dst_try(
+		const char * src_over,
+		const char * src_name_ext,
+		const char * dst_over
+	 );
+};
+
+bool sender_t::copy_src_name_dst_try(
 	const char * src_over,
 	const char * src_name_ext,
 	const char * dst_over
  ) {
+
 	if(0) // did we get here
  	 INFO("%s", src_name_ext );
 
@@ -49,10 +63,11 @@ bool copy_src_name_dst_try(
 
 	file_stat src_stat;
 	file_stat dst_stat;
-	u64 size_full = 0;
+	size_full = 0;
 
 	// dst_name must exist as a dir 
-	if( !dst_stat.stat_expect_is_dir( dst_over )) {
+	file_stat dst_over_stat;
+	if( !dst_over_stat.stat_expect_is_dir( dst_over )) {
 		return FAIL_FAILED();
 	}
 
@@ -127,11 +142,6 @@ bool copy_src_name_dst_try(
 		 return PASS(" already exists %s", (STR0) dst_name );
 	}
 
-
-	// maybe put these vars in a block in case
-	file_stat tmp_stat;
-	buffer1 link_text;
-
 	switch( src_stat.file_type ) {
 	 case is_absent:
 	 	return FAIL("code error - really must exist");
@@ -143,12 +153,15 @@ bool copy_src_name_dst_try(
 	 	return FAIL("code error - really cant be dir");
 	 break;
          case is_dev_c:
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("TODO %s %s", src_stat.file_type_str(), src_name_ext );
 	 break;
          case is_dev_b:
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("TODO %s %s", src_stat.file_type_str(), src_name_ext );
 	 break;
-         case is_link:
+         case is_link: {
+	 	// clone the link to the same // abs or rel // the same
+		file_stat tmp_stat;
+		buffer1 link_text;
 	 	if(!tmp_stat.readlink_to_buf( src_name, link_text ))
 			return FAIL_FAILED();
 		if(!symlink( (STR0) link_text, dst_name )) 
@@ -158,9 +171,7 @@ bool copy_src_name_dst_try(
 		// BECAUSE src -> LINK
 		// NORMALLY when talking about symlink src => dst
 		// WANT dst_name -> link
-
-
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 }
 	 break;
          case is_fifo:
 	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
@@ -177,19 +188,17 @@ bool copy_src_name_dst_try(
 	}
 
 
-
-	// read from src
-	fd_hold_1 fd_src;
+	// open to read from src
 	if(!fd_src.open_RO( (STR0) src_name )) {
 		return FAIL_FAILED();
 	}
 
 	// write to mid file
 	// LOOK for restart
-	fd_hold_1 fd_dst;
+	// open RW +- CREATE // seek zero or stat.midfile.size_part
 	u64 size_part = 0;
 	if( !dst_stat.stat_quiet( (STR0) dst_name_tmp )) {
-		return FAIL_FAILED();
+		return FAIL_FAILED(); // stat failed // not absent 
 	}
 	if( dst_stat.linked_file_type != is_absent ) {
 		// exists means restart
@@ -214,17 +223,22 @@ bool copy_src_name_dst_try(
 	}
 
 	u64 size_left = size_full - size_part;
+	// end // size_part
 	int size_block = 1024 * 32; // 32K is DVD block size
 	static const int loops_per_sync = 1000; // 500; // 100; // 50;
 	if(0) size_block = 1024; // TEST slow down
+	if(1) size_block = 1024*256; // TEST slow down
 	char buff[ size_block ];
 	int fake_stop = 5; // TEST partial copy using fixed limit progress
 	int loops_count = loops_per_sync;
-	static const int every_n_seconds = 1; // 10; // 5; // do full fsync not fdatasync
+	static const int every_n_seconds = 2; // 10; // 5; // do full fsync not fdatasync
 	time_t time_last_sync; // rounded seconds
 	time_t time_last_fsync; // rounded seconds
 	time_t time_right_now; // rounded seconds
 	time_last_fsync = time_last_sync = time_right_now = time(NULL);
+	u64 size_sent = 0;
+//	u64 size_sent_tide = 1024*1024; // 1 MB ~ 20 seconds 
+	u64 size_sent_tide = 512*1024; // 256 K ~ 5 seconds // ?
 	while (size_left > 0) {
 
 		time_right_now = time(NULL);
@@ -234,11 +248,20 @@ bool copy_src_name_dst_try(
 			if( time_last_fsync + every_n_seconds <= time_right_now ) {
 				time_last_fsync = time_right_now ;
 				// every 5 seconds // if check within that sec
-				if(1) {
+				if(0) {
 					e_print("f_");
 					if(! fd_dst.fsync() ) {
 						return FAIL_FAILED();
 					}
+					e_print("\b");
+					size_sent = 0;
+				}
+				if(1) {
+					e_print("d_");
+					if(! fd_dst.fdatasync() ) {
+						return FAIL_FAILED();
+					}
+					size_sent = 0;
 					e_print("\b");
 				}
 			} else {
@@ -248,6 +271,7 @@ bool copy_src_name_dst_try(
 					if(! fd_dst.fdatasync() ) {
 						return FAIL_FAILED();
 					}
+					size_sent = 0;
 					e_print("\b");
 				}
 			}
@@ -259,7 +283,7 @@ bool copy_src_name_dst_try(
 				// every n loops
 				loops_count = loops_per_sync;
 				// so why is it showing 0 when pausing not 100
-				if(1) {
+				if(0) {
 					e_print("d_");
 					if(! fd_dst.fdatasync() ) {
 						// syncs not working as expected
@@ -277,7 +301,7 @@ bool copy_src_name_dst_try(
 		 tm_parts tm_part;
 		 tm_part.local_from_time(time(NULL));
 
-		e_print("\r %s size_left %7.3f M ", tm_part.str_http(), (float) size_left / (1024*1024) ) ;
+		e_print("\r %s size_sent K x%lX size_left %7.3f M ", tm_part.str_http(), (long) (size_sent/1024), (float) size_left / (1024*1024) ) ;
 	//	if(!loops_count) e_print("\n");
 	//	e_print("\n");
 	//	fflush(0); // e_print does not need fflush(0)
@@ -302,8 +326,9 @@ bool copy_src_name_dst_try(
 			continue;
 		}
 		size_left -= wrote;
+		size_sent += wrote;
 
-		if(0) {
+		if(size_sent >= size_sent_tide) {
 
 			if(1) {
 				e_print("D_");
@@ -314,7 +339,7 @@ bool copy_src_name_dst_try(
 				e_print("\b");
 			}
 
-			if(1) {
+			if(0) {
 				e_print("F_");
 				if(! fd_dst.fsync() ) {
 					return FAIL_FAILED();
@@ -322,6 +347,7 @@ bool copy_src_name_dst_try(
 				e_print("\b");
 			}
 
+			size_sent = 0;
 		}
 	} // while
 	e_print("\r");
@@ -369,7 +395,8 @@ bool copy_src_name_dst(
  ) {
 	int loops = 4;
 	for( int i=0; i<loops; i++ ) {
-		if( copy_src_name_dst_try( src_over, src_name_ext, dst_over )) {
+		sender_t sender;
+		if( sender.copy_src_name_dst_try( src_over, src_name_ext, dst_over )) {
 			return true;
 		}
 		INFO("retry %d of %d", i+1, loops );

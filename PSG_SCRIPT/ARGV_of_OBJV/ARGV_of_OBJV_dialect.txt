@@ -1,0 +1,210 @@
+2022-12-18 Dec Sun 21:08 # 17 #  ARGV_of_OBJV_dialect/ARGV_of_OBJV_dialect.txt
+
+	// UNIX THING: FILE CREATE_TIME_as_time48
+	// UNIX THING: FILE CREATE_TIME_as_time64 // 32 upto Real_Soon_Now
+
+
+	// DATA STREAM of BYTES in FILE // FILE_CONTENTS // mount/dir //
+	// mount becomes a LOAD_to_EXEC DATA_LOAD READ( *ADDR ) // DEREF //
+
+	// OBJ_t == "STR0" ; // ARG_t STR0 = "KEYWORD" // %s // ANYSTR // MATCH
+	// OBJ_t == "" ; // ARG_t STR0 = "KEYWORD" // %s // ANYSTR // MATCH
+	// OBJ_t == "IDX" // VECTOR[IDX] { ETC }
+	// PSG_t & PSG = EXPR_EA_EXPR { SCRIPT }
+	// SCRIPT += { ... } // PARSE THESE LINES 
+
+	STR0 IDX_printed = u32_WORD // u32_WORD_ABCD //
+	STR0 IDX_printed = u32_WORD_ABCD // u32_WORD //
+	STR0 get_IDX_printed "STR0" // VAR_NAME is sort of TYPE_NAME sublex
+
+	const unsigned char * STR0 = "INIT VALUE" // CMNT // CODE_POINT
+
+		mk_NODE "CODE_POINT"
+		mk_TYPE "%s_t" CODE_POINT // CT MK_VAR "code_point" DIALECT "_t"
+		mk_WORD u64 += "u32_OPCODE u32_DATA"
+		mk_WORD u64 += "u32_DATA"
+		mk_WORD u64 += "u32_CODE" // EA_XPOS_EA //
+
+		DECODE( u64_lohi ) // ABCD_lohi //
+
+		PARSE( const char * phrase ) // += CTXT += SESS += SCRIPT
+
+		MATCH("%s") // lookup LEX in CACHE //
+		CACHE LEX optimises its own DEREF
+		CACHE RT += WELL_KNOWN_PRE_TOKENISED( "STR0" )
+		CACHE RT += WELL_KNOWN_PRE_TOKENISED( "RT" )
+		CACHE RT += WELL_KNOWN_PRE_TOKENISED( "CT" )
+		CACHE RT += { SCRIPT } // mk_VAR SCRIPT _t
+		// { SCRIPT _t } can do { DESCRIBE describ
+		SCRIPT += SCRIPT_LINE // mk_var _SCRIPT_LINE _t CODE_POINT
+		SCRIPT_LINE += 
+		CODE_POINT += XPOS_in_SCRIPT_in_dir_in_LIBR { SCRIPT }
+		VECTOR[STR0] // KEY is presumed utf8 or UDEF
+		STR0_byte_8859_eu // _uk too //
+		eg KEY == "VAR NAME"
+		DIALECT multi_word_name // tr SP "_" // compress_multiple "_"
+		ITEM = NAME // every DECL is self creating into STREAM
+		ITEM = lookup( NAME )
+		ITEM = lookup( EXPR )
+	
+	PSG EXPR
+
+		ITEM_t & ITEM = HT_lookup( HERE, EXPR )
+		ITEM == MATCH( HERE, ARGS )
+		ARGS = ARGV
+		ARG_t == "STR0" // LIBC_ARGV // "const unsigned char *" typedef  
+		ARG_t & OBJ = get_OBJ( "STR0 OBJ_STR0 = %s",ARG)
+		ARG_t & OBJ_t = LIBC_ARGV_STR0_utf8 // "const unsigned char *" typedef  
+		ARG_t & OBJ_t = LIBC_ARGV_STR0_8859 // "const unsigned char *" typedef  
+		ARG_t & OBJ_t = LIBC_ARGV_STR0_ASCII // "const unsigned char *" typedef  
+		OPTION u7_ASCII_u8_BYTE
+		ARG_t & OBJ_t = LIBC_ARGV_STR0_BYTE // "STR0" // PTR_to_NAME
+		CACHE_t & CACHE_VAR = lookup( STR0 ) // using type is name
+
+		ITEM == "VAR_NAME" // inference BENCH does instant MATCH
+		ITEM == "VAR_TYPE" // TYPE = "NAME_t" { NAME %s } cident_t
+		SPELLING += "ITEM" // VAR_POOL += ITEM // CT // CT_RT //
+
+	PSG_EXPR
+
+		NAME.EXPR
+		NAME.field_idx "field" "IDX"
+		NAME.field_IDX IDX == "IDX" // OPTION SETTABLE as VAR in CACHE
+		// features auto_add on first use // 
+		DECL_VAR { IDX_t IDX = 0xABCD } // IE u32_PAYLOAD = u32_CONST
+		IDX = lookup_IDX( "IDX" ) 
+		IDX = lookup_IDX( "IDX_t & IDX = '%s';", "IDX" ) 
+		IDX = "0xFFFF" u32_idx // soft view u16_ bursting banks
+	
+	EVAL_SCRIPT is
+		NAME.feature IDX // "%s_%X" // 
+	
+	EVAL_SCRIPT is
+		NAME OPCODE ARGS 
+
+			NAME = NAME
+			NAME == "NAME"
+			OPCODE == "mk_VAR { THIS_SCRIPT }" // CT_RT
+			ARGS = OBJV from parsed ARGV // 
+			 COPY_THROUGH
+			 CONV_FILTER
+			 ALIAS FILTER_ITEM_THROUGH
+			 STR0 "ANYSTR" // MATCHES C_STR0 _utf8 _8859 cident
+	
+	EVAL_SCRIPT is
+		LINE_of_WORDS
+		WORD_is_VALUE
+		WORD_is_TOKEN // RT tokenises CODE_POINT_expr 
+		WORD_is_STR0_pre_lookup
+		WORD_is_OBJ_post_lookup _is_PTR or _ie_EA_EXPR 
+		WORD_is_u48_u16 u48_payload BYTES_AB // _alias_CD // _ABCD //
+		
+
+		WHEN  u48_PAYLOAD == "PTR"
+		WHEN  u48_PAYLOAD == "OBJ"
+		WHEN  u48_PAYLOAD == "ITEM"
+		WHEN  u48_PAYLOAD == "ADDR"
+		WHEN  u48_PAYLOAD == "EA"
+		WHEN  u48_PAYLOAD == "EA_ITEM"
+		WHEN  u48_PAYLOAD == "ALIAS"
+		WHEN  u48_PAYLOAD == "%s"
+		WHEN  u48_PAYLOAD == "ANYSTR"
+		WHEN  u48_PAYLOAD == "MUNGED(...)""
+
+		u4_PICK = lookup_u4( STR0) // STR0 == "EA_ITEM"
+		u4_SLOW_PICK = lookup_u4( STR0) // BENCH shows associacion
+
+		WHEN_CT PTR ITEM OBJ ADDR EA_ITEM ALIAS %s ANYSTR MUNGED
+
+		WORD_is_EA_SCRIPT _EXPR = CALL UDEF ARGS CTXT 
+
+			{ SCRIPT } // STOP at } TELL PARSER NEXT // DONE
+	
+	CXX api_callback TOKEN == " } " // SP is known optional
+	OBJ_t item_found = lookup( EXPR DATA ) // CALL FUNC ARGS CODE_POINT
+	OBJ_t & RET_VAR = lookup( EXPR DATA ) // CALL FUNC ARGS CODE_POINT
+	PARSER KNOWS where "{" and "}" are, can access it's mini machine
+	often CT.state.VAR EA_VAR_EXPR_t & EA_VAR = CT_lookup(CT_STR0)
+	OPTION C++ can run C++ code to generate const bytes[]
+	OPTION C++ uses GEN mini_machine PSG_t PSG_BENCH_USES_t
+
+	OPTION LINE = LIST_of_WORDS _and_comments_layout_etc 
+
+		CSR += XPOS wrt SCRIPT_ZERO
+		CSR += AUTO_GROW DATA += TOKENS used += STR0_normalised
+
+		OBJ_t & OBJ = EA_ITEM u48_u16 u48_payload u16_opcode
+
+		opcode RET_VAL = u48_payload
+		opcode += u16_opcode_AB
+		u8 BYTE_A; // == WORD_BYTE_A
+		u8 BYTE_B; // == WORD_BYTE_B
+
+		u8 & GET_u8_A() { return CPU_AL; } // but %s not A //
+		u8 & GET_u8_B() { return CPU_AH; } // this is hand coded x86
+		u16 & GET_u16_AB() { return CPU_AX; } // inline asm gcc
+
+		u32 GET_u32_ABCD
+		u64 GET_u64_ABCD_EFGH
+
+		// GEN "caddr_t" for "{ PTR _t }"
+		caddr_t PTR = get_PTR_from_WORD_EXPR() (
+			return (PTR_t) u64_WORD >> 16;
+		}
+
+		SPECIAL form of STR0
+			SCOPE of "{ PARSED BLOCK IN CURLIES }"
+			P0P2 = PARSED_TEXT_of_BLOCK
+			STR0_t CSR = P0P2.P0
+			CALC P0 = dir file line xpos SCRIPT
+			SCRIPT {
+				RET_VAR = get("P0")
+			}
+			CODE_TABLE_OF_XPOS
+				"{" 	P0
+				"}"	P2-1
+			CODE_TABLE_OF_XPOS
+				XPOS[idx] u64 XPOS_in_source( IDX ) // u8_idx
+			CODE_TABLE_OF_XPOS
+				u64 XPOS_in_source = OFFS_P1 // _as_EA_EXPR
+
+		IN TREE XPOS {
+			use of %s allows u8_offs_from_BOLN
+			when line > 256 (or 200) switch to u64_offs
+			when line > 256 (or 200) switch to u16_offs
+			re-apply PARSED TREE with no source
+			move by XPOS step
+		}
+
+		EA_EXPR
+			return STR0 SEGMENT_OFFS ; // by name 
+
+		EA_EXPR
+			_t
+			PTR = u48_payload == WORD_64 >> 16
+			on_NULL treat as ""
+			on_NULL treat as NULL // so do least // not an error
+
+			allow for FIELD == NULL when that is not allowed
+			code + data are in a bad state, BENCH VIEW STEP
+
+
+-------------------------
+
+	TABLET
+
+		FB CALL into DESKTOP
+
+			provide CAMERA FEED = WHITEBOARD as pre compressed MP4
+
+		DIAG = DISPLAY
+
+			png with OVERLAYS and SCRIBBLING
+
+		LIVE EDIT DIAG
+
+			SCRIBBLING LIBR loaded as local default
+
+
+
+

@@ -136,8 +136,10 @@ default_test: $(EXE_1)
 	# NO # ./client_req_view.sh
 	# NOW BUILTIN to save files # ./client_iss_view.sh
 
-CA_ROOT: $(EXE_1)
-	./$(EXE_1) CA_ROOT
+CA_ZERO CA_ONE CA_ZONE ALL: $(EXE_1)
+	./$(EXE_1) $@
+	no_comment cfg_CA_file.dat
+
 
 test99:
 	sh -c 'echo $$VPATH'

@@ -3,10 +3,14 @@
 SRCH_PATTERN=get_phrase
 SRCH_PATTERN=days
 SRCH_PATTERN=error # compile
-SRCH_PATTERN=FAIL # run
 SRCH_PATTERN=phrase
-SRCH="+/${SRCH_PATTERN}"
-# SRCH=''
+SRCH_PATTERN=init
+SRCH_PATTERN=error
+SRCH_PATTERN=
+SRCH_PATTERN=FAIL # run
+
+ SRCH=''
+ [ -z "${SRCH_PATTERN}" ] || SRCH="+/${SRCH_PATTERN}"
 # make "${@}" 2>&1 | less $SRCH
 ./M "${@}" 2>&1 | less $SRCH
 # ./M "${@}" 2>&1 | less

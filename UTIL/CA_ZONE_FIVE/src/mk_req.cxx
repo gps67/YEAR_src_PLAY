@@ -280,7 +280,7 @@ bool_main(int argc, char *argv[])
 	while(argc>0) {
 		str0 arg = *argv++;
 		argc--;
-		if(arg == "CA_ROOT") {
+		if(arg == "CA_ZERO") {
 			if(!DEMO_mk_cert(is_CA_ZERO)) return FAIL_FAILED();
 			continue;
 		} else
@@ -347,7 +347,7 @@ main(int argc, char *argv[])
 {
 	gdb_sigaction( argv[0] ); // sets progname_argv0 
 //	check_tty_012(); // 
-	dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
+ if(0)	dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
 
 	if(bool_main(argc, argv )) return 0;
 	WARN("want to get errno ...");

@@ -24,6 +24,20 @@
 	%s "symbol"
 	// using VAR_NAME as VAR_VALUE then TOKENISE VAR_ITEM_EXPR
 
+BENCH
+
+	openssl x509 -in CA_ONE_cert.pem -text -noout
+
+	MENU of
+		CA_%s_%s
+		CA_%s_%s_cert.pem 
+		CA_ONE_company_cert.pem 
+	TEXT HIGHLIGHT
+		manual test DATE is few years
+		manual test CA is good chice
+
+
+
 
 
 

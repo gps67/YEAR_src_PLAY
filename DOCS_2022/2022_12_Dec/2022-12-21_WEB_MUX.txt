@@ -1,0 +1,142 @@
+	2022-12-21
+
+	2022_12_Dec
+	2022-12-21_WEB_MUX.txt
+
+	Two WAX panels, via HTML and JS_TK
+
+		eg spotify has PLAYING_PAGE
+		eg spotify has PLAYING_PAGE SECOND_PAGE // also playing
+	
+		listening to
+		The Solstice Carole
+		https://open.spotify.com/track/0ha55LHYe49no72wmpQxst
+
+		that allows multiple windows open on desktop
+		both are console on control, repeat DESK BENCH
+	
+	BENCH
+
+		MP3 PLAYER
+
+		 DEVICE
+		  mp3
+		   file play seek XREF
+
+		 MEDIA
+		  mp3
+		  https://open.spotify.com/track/1K68aJr2qFhLCsn1qolox6?si=716ea8a1f140454d
+		  Lo How a Rose E'er Blooming
+
+		 mp3
+		 https://open.spotify.com/track/0ha55LHYe49no72wmpQxst
+
+		    lulley, lully
+		   lulley, lullo
+		  lulley, lullee
+		 lullay les lullee
+
+		    lulley, lully lulley, lullo
+		    lulley, lullee lullay les lullee
+
+
+		   lulley, lullo
+		 lullay les lullee
+		 les lullay les lullee
+		   lulley, lullo
+		   lulley, lullee,
+
+		   sleep softly now
+
+		SCRATCHING or NOTE is DIARY would through BENCHES other TASKS
+		Saffie is playing this now
+	
+	BENCH mp3 PLAYER mp3 = PICK_FILE ...
+	BENCH dvd PLAYER iso = PICK_FILE or MOUNT POINT where ISO is found 
+	BENCH ROM CODE_and_DATA_LIBR
+	BENCH STO CODE_and_DATA_LIBR SESS LOCKS EA EXPR STO SPEC VARS TABLES DB
+	BENCH SESS WORK_BENCH { a place where TEXT is written } a writing bench
+	BENCH ARCHIVE DOCUMENT DIAG METIA ROOM EDITS SPLICES ANIM DIAG 3D
+	BENCH DIARY LAYERS { Appointments WORK_DAY_ONLY WEEKENDS GAS_BILLS }
+	BENCH SESS DIARY CSR == "MENTION_MAKE"
+
+		DIARY += TODAYS_TASK_LOGS
+		DIARY += TASK STEPS LINKS and DOCS
+		DIARY += VIEW by_month by_layers_and_filters LOOK
+		DIARY += LOOK_LOOMING
+	
+
+	BENCH
+
+		DEVICE += MEDIA_PLAYER_mp3
+
+		 LIBR stream to SOUND_FEED to CHANNEL
+		 CHANNEL += // Vigil Keeping by Saffie // ie THIS == CHANNEL
+
+		 ITEM fd = DEVICE API LIBR IOCTL SOUND
+
+		LIBR += MEDIA_ARCHIVE dirs of mp3 by artist by album by cache
+
+		 TREE of dirs annotated with META // common subtypes //
+		 ASSOC_DATA ALBUM_COVERS SEARCH_PHRASE_BOOK SESS_VIEW
+
+		SESS += PANEL for a MEDIA_PLAYER
+		SESS += PANEL COMPNENTS for a MEDIA_PLAYER_SESS_BENCH
+		SESS += PANEL_FRAME_CONNECTORS // REMOTE_CONTROL 
+
+		PANELS += PANEL // AUTO_MK_VAR creates new template CALLED
+		PANEL += META // AUTO_MK AUTO_ADD_FIELD on_load tell API
+		PANEL += SCROLL_BAR
+		PANEL += MARGIN_NOOTES_AREA
+		PANEL += PAGE
+		PANEL += PAGE SCROLL
+		PANEL += TREE_PAGE
+		PANEL += TREE_NOTE
+		PANEL += PAGE_NOTE
+
+			PAGE provides a PAGE_MANAGER which is an API
+
+				DTP_FLOW
+				DTP_BLOCK
+				DTP_PANEL
+				DTP_DIAG
+
+		SESS += CSR("CSR_%s") // hungry for %s DIAG_SCRIPT
+
+		PSG("%s_%s") {
+		 ASIF PSG("%s_%s",CSR,sess) {
+		 	CSR == "CSR"
+			sess == "DIAG_builder_script"
+		 ASIF SCRIPT_STATE == XPOS // ALIAS //
+		 XPOS += filename
+		 XPOS += seek_64
+		 XPOS += seek_48
+		 XPOS += seek_32
+		 XPOS += seek_16 // many files are 64K within self // link up
+		 XPOS += POS_Y POS_X POS_XPOS(Y,OFFS_of_Y,OFFS_in_LINE,XPOS)
+		 XPOS += { Y byte_pos_in_line }
+		 offs_in_line { HANDLERS } // HANDLERS auto attach to API
+		 // HANDLER is picked from ROM LIBR 
+		 DATA_OPTION { 
+		 XPOS -IS-PAIR- { Y byte_pos_in_line } // Tuplo X CODE_POINT
+		 // CODE_POINT adds XPOS CSR ploughing through utf8 
+		 // CSR_kept = CSR_now // CSR_now not provided in OPCODE
+		 // OPCODE adds EXPR CSR_now GETTER LOADED 
+		}
+
+		FILE += LINE_MUX 
+		 += BLOCK DIAG or PANEL SCROLL_of_BLOCK
+
+		DIAG_SCRIPT += CSV GEN PARSE
+
+		API += INK_SCAPE 
+			start inkscape on media file
+			watch media  file that might have META
+			MACRO inkscape MENU of STUFF
+
+
+		CSV
+		CSR_
+
+
+

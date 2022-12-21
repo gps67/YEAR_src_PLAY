@@ -312,6 +312,10 @@ bool MYSITE_CA_task:: MYSITE_mk_cert_from_VALS()
 */
 bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
 {
+//
+// Vigil Keeping by Saffie
+//	https://open.spotify.com/track/0ha55LHYe49no72wmpQxst
+//
 	static u32 N_users = 0;
 	static u32 N_items = 0;
 	static u32 N_zones = 2; // P1 == P2 = NEXT == "FIVE"
@@ -329,7 +333,7 @@ bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
 		switch(idx) {
 		 case 0: NAME += "ZERO_RESERVED"; break;
 		 case 1: NAME += "ONE_RESERVED"; break;
-		 case 2: NAME += "TWO"; break;
+		 case 2: NAME += "VPN"; break;
 		 case 3: NAME += "THREE"; break;
 		 case 4: NAME += "FOUR"; break;
 		 case 5: NAME += "FIVE"; break;

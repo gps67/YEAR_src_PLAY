@@ -7,6 +7,114 @@
 
 using namespace VARS;
 using namespace CFG_CA;
+using namespace CA1;
+
+bool V_var_group_decl_CA_VALS :: late_init(
+	V_file_decl & V_file,
+	const char * GRP_NAME,
+	const char * subname,	// "VPN_97" 
+	X509_VALS_subject & VALS
+) {
+
+	// the GROUP 
+	if(!GRP_NAME) GRP_NAME = "CA_ZERO";
+
+	GRP_CA.ref_static();
+	GRP_CA.late_init(
+		V_file,
+		GRP_NAME,
+		"Parameters for CA_..."
+	);
+
+	var_CA_name.ref_static();
+	var_CA_C.ref_static();
+	var_CA_ST.ref_static();
+	var_CA_O.ref_static();
+	var_CA_OU.ref_static();
+	var_CA_CN.ref_static();
+
+ // NO	var_CA_name = subname ;
+
+	var_CA_name.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"subname",				// name_sto
+		"var_CA_subname",			// name_gui
+		(STR0) subname,			// default init val
+						// desc_sto
+		"The subname part CA_ZONE_subname",
+						// desc_gui
+		"Of all the peers CA groups subname is this \n"
+		"FM_CA_ROOT/CompanyWorldwide/VPN_97/\n"
+	);
+
+	var_CA_C.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"C",				// name_sto
+		"var_CA_C",			// name_gui
+		(STR0) VALS.C,			// default init val
+						// desc_sto
+		"The C=GB country for the certificate",
+						// desc_gui
+		"CA \n"
+		"C = Country \n"
+	);
+
+	var_CA_ST.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"C",				// name_sto
+		"var_CA_ST",			// name_gui
+		(STR0) VALS.ST,			// default init val
+						// desc_sto
+		"The ST=Berkshire for the certificate",
+						// desc_gui
+		"CA \n"
+		"ST = State \n"
+	);
+
+	var_CA_O.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"O",				// name_sto
+		"var_CA_O",			// name_gui
+		(STR0) VALS.O,			// default init val
+						// desc_sto
+		"The O=Organisation for the certificate",
+						// desc_gui
+		"CA \n"
+		"O = Organisation \n"
+	);
+
+	var_CA_OU.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"OU",				// name_sto
+		"var_CA_OU",			// name_gui
+		(STR0) VALS.OU,			// default init val
+						// desc_sto
+		"The OU=VPN_97 for the certificate",
+						// desc_gui
+		"XX \n"
+		"OU = Organisational Unit \n"
+	);
+
+	var_CA_CN.late_init(
+		GRP_CA,			// section
+		"STRING",			// vartype
+		"CN",				// name_sto
+		"var_CA_CN",			// name_gui
+		(STR0) VALS.CN,			// default init val
+						// desc_sto
+		"The C=GB country for the certificate",
+						// desc_gui
+		"CA \n"
+		"CN is for CA_NAME or C_NAME \n"
+	);
+
+	return PASS("OK");
+}
 
 
 kf_cfg_CA_1::
@@ -58,6 +166,55 @@ bool kf_cfg_CA_1:: late_init()
 // name_gui // could be GROUP_ITEM
 // name_sto // name within group //
 
+	X509_VALS_subject VALS_CA_ZERO;
+	X509_VALS_subject VALS_CA_ONE;
+	X509_VALS_subject VALS_CA_ZONE;
+
+	VALS_CA_ZERO.C = "GB";
+	VALS_CA_ZERO.ST = "Berks";
+	VALS_CA_ZERO.L = "Reading";
+	VALS_CA_ZERO.O = "gps67";
+	VALS_CA_ZERO.OU = "FM";
+	VALS_CA_ZERO.CN = "ROOT_CA";
+
+	VALS_CA_ONE = VALS_CA_ZERO;
+
+	VALS_CA_ONE.C = "GB";
+	VALS_CA_ONE.ST = "Berks";
+	VALS_CA_ONE.L = "Reading";
+	VALS_CA_ONE.O = "CompanyWorldwide";
+	VALS_CA_ONE.OU = "OU_for_company";
+	VALS_CA_ONE.CN = "CA_ONE_company";
+
+	VALS_CA_ZONE = VALS_CA_ONE;
+
+//	VALS_CA_ZONE.C = "GB";
+//	VALS_CA_ZONE.ST = "Berks";
+//	VALS_CA_ZONE.L = "Reading";
+//	VALS_CA_ZONE.O = "Company";
+	VALS_CA_ZONE.OU = "VPN_97";
+	VALS_CA_ZONE.CN = "VPM_90";
+
+	if(! V_grp_CA_ZERO.late_init(
+		V_file,			// all in V_file uplink
+		"CA_ZERO",		// GRP_NAME
+	 (STR0)	VALS_CA_ZERO.O,		// subname
+		VALS_CA_ZERO		// VALS => init_VAL
+	) ) return FAIL_FAILED();
+	if(! V_grp_CA_ONE.late_init(
+		V_file,
+		"CA_ONE",
+	 (STR0)	VALS_CA_ONE.O,		// subname
+		VALS_CA_ONE
+	) ) return FAIL_FAILED();
+	if(! V_grp_CA_ZONE.late_init(
+		V_file,
+		"CA_ZONE",
+	 (STR0)	VALS_CA_ZONE.OU,	// subname
+		VALS_CA_ZONE
+	) ) return FAIL_FAILED();
+
+#if 0
 	GRP_CA_ZERO.ref_static();
 	GRP_CA_ZERO.late_init(
 		V_file,
@@ -78,6 +235,7 @@ bool kf_cfg_CA_1:: late_init()
 		"CA_ZERO \n"
 		"C = Country \n"
 	);
+#endif
 
   ///////////////////
 

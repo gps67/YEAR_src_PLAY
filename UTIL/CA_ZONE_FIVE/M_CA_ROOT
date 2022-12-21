@@ -1,4 +1,0 @@
-if yes_no Create a new CA_ROOT overwriting old one
-then
-	./M CA_ROOT | less
-fi

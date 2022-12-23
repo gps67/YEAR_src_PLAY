@@ -269,6 +269,8 @@ class CA_task : public obj_ref0
 	bool VALS_check_C_not_CA();
 	bool VALS_check_CA_not_C();
 
+	bool set_CN( STR0 CN );
+
 	bool VALS_set_HERE_part0(SITE_X509_tag_enum _tag);
  virtual
         bool VALS_set_HERE_part1_nbits_RSA();

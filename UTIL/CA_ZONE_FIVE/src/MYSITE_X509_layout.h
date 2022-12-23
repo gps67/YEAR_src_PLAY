@@ -83,6 +83,13 @@ void C_progress_genkey( int a, int b, void * cb_arg )
 	This is not specific to the C_pc,
 	it is also used by CA_ZERO
 
+	First use VPN("VPN") PC("PC") 
+	First use VPN("vpn_97") PC("amd_10") 
+
+		that sets CA_ZONE == CA_ZONE_VPN_96 
+		that sets CA_ZONE += CA_ZONE +=_VPN_96 
+		prefer _VPN_ over _VPN_97_ // obviously first VAR VAR2
+
 	USAGE: the layout must be correct for every point in the layout,
 	but will only be used for two of the them. CA and issued item.
 
@@ -103,7 +110,10 @@ void C_progress_genkey( int a, int b, void * cb_arg )
 class MYSITE_X509_layout : public SITE_X509_layout
 {
  public:
-        MYSITE_X509_layout();
+        MYSITE_X509_layout(
+		STR0 layout_name,
+		STR0 C_NAME
+	);
 
 	// might not be called - eg already set
 //	bool obtain_issuer_cb_phrase( CA_task * task );
@@ -112,7 +122,8 @@ class MYSITE_X509_layout : public SITE_X509_layout
 	// added by me for MYSITE
 	bool obtain_CB_for_tag(
 		obj_hold<CB_get_phrase_base> &cb_phrase,
-		SITE_X509_tag_enum ISS_tag
+		SITE_X509_tag_enum ISS_tag,
+		STR0 NAME
 	);
 
 };

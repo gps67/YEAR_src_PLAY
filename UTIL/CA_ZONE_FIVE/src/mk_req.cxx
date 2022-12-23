@@ -8,6 +8,42 @@
 	without too much fuss, OK
 */
 
+/*
+	TODO rework
+	move file_name_part to VALS (?) or scheme? or _task? or loader ?
+	maybe split CA/C into two loaders, one scheme
+
+	maybe dir "CA/FM_CA/company_name/vpn_96/C_PC_amd_10"
+	maybe dir "CA/FM_CA/company/vpn_96/C_PC_amd_10"
+	maybe dir "CA/CA_ZERO_FM_CA/"
+	maybe dir "CA/CA_ONE_company_name/"
+	maybe dir "CA/CA_vpn_96/"
+	maybe dir "CA/C_PC_amd_10*"
+
+	maybe a seperate ./.priv/C_PC_amd_10.{priv_key,priv_key_phrase}
+
+	ABBR "amd_10"
+	NAME "C_PC_amd_10"
+	CA C_VPN_
+
+	Regardmess of all filenames being unique in a flat DB
+	we need to provide CA_ZONE and above
+
+	we need to know CA_ZERO == "CA_ZERO_2022"
+	we need to know CA_ONE  == "CA_ONE_BH1"
+	we need to know CA_ZONE == "CA_ZONE_vpn_96"
+	we need to know C_PC -uses- CA_ZONE "vpn_96"
+
+		load "vpn_96" 
+		find it's parent CA
+	
+	full tree uses subsirs per CA
+	scan C_provided ...
+
+
+	for now FLAT with CN == "C_PC_amd_10" CA == "CA_vpn_96"
+*/
+
 
 #include "dgb.h"		// FAIL, WARN etc
 #include "SSL_global.h"		// everyone must init rand etc
@@ -53,17 +89,24 @@ bool DEMO_mk_VPN_GW( str0 ABBR ) // ABBR = "VPN_97"
 
 bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 {
-	buffer1 NAME;
-	NAME.print("PC_%s", (STR0) ABBR );
+
+	buffer2 C_PC_ABBR;
+	C_PC_ABBR.print("C_PC_%s", (STR0) ABBR );
+//	task->set_CN( (STR0) C_PC_ABBR );
+
+	// SAVE NAME ${NAME} // ALIAS EA NAME // simplistic_LEX_flag("TOKEN")
+	// as it comes into SCOPE send signals FIRST_USE_CREATE_VAL "cident99"
+	// PICK CN = "C_PC_ABBR" // ABBR == "%s" // leaves STACK TOP HUNGRY
+	// %s // %d // %s_%s // NAME_idx // { NAME %s } // 
+
 	SITE_X509_tag_enum ISS_tag = is_C_pc;
-	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout();
-	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag );
+	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout("VPN2022", (STR0) C_PC_ABBR);
+	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag, (STR0) C_PC_ABBR );
 
 	/*
 		VALS <== -code- tag
 
 		that fails - which ZONE is ITEM in 
-	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag )) return FAIL_FAILED();
 
 		OBTAIN CA_ZONE	ZONE
 		CREATE  C_ITEM  USER
@@ -76,6 +119,13 @@ bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 
 	*/
 
+	// set CN { C_VPN_PC_amd_10 }
+	// set ISS_tag is_C_pc
+	// set IDX POOL_ITEM lookup(CN) // CN NAME ABBR group_name SUBLEX //
+	// SUBLEX bind by ID 
+
+	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag, (STR0) C_PC_ABBR )) return FAIL_FAILED();
+
 	/*
 		VALS => REQ => ISS => files
 	*/
@@ -85,6 +135,8 @@ bool DEMO_mk_VPN_PC( str0 ABBR ) // ABBR = "GPS_D630"
 
 bool DEMO_mk_cert_group()
 {
+	// CA_ZONE("vpn_96")
+	// REQUIRE //
 	// EDIT SOURCE LIST // GEN { FOREACH PCID !DEMO_mk_VPN_PC( PCID ) }
 	// EDIT SOURCE DATA // GEN LIST_of_IDENT KEYS VAR_POOL
 	// VAR_POOL += LOAD_CSR_in_TREE_of_SPEC // multi bundle
@@ -101,15 +153,17 @@ bool DEMO_mk_cert_group()
 
 	// mk_VAR // DB[key] // KEY PC_ID //
 
+	// FILTER // PCID = "PC" // SUBLEX // IDX found 
+	// FILTER // %s_%s // C_PC_%s // SYNTAX bounces %s // %s // SCRIPTS
+
 	// mk_LAPTOP
-	if(!DEMO_mk_VPN_PC("PC01_HUB_GW")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_PC("PC02_DWS")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("HUB_GW")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("DWS")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("AMS_10")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("GPS_E6320")) return FAIL_FAILED();
 	return PASS("OK");
-	if(!DEMO_mk_VPN_PC("PC02_AMS_10")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_PC("PC03_GPS_E6320")) return FAIL_FAILED();
-	return PASS("OK");
-	if(!DEMO_mk_VPN_PC("PC04_MBS_")) return FAIL_FAILED();
-	if(!DEMO_mk_VPN_GW("PC05_HUB_GW/*_PLUS*/")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_PC("MBS_BOX1")) return FAIL_FAILED();
+	if(!DEMO_mk_VPN_GW("PC_HUB_GW/*_PLUS*/")) return FAIL_FAILED();
 	// KEY NEEDS TIGHT /*CMNT*/ parse mid_lex // semi_lex_edge //
 	if(!DEMO_mk_VPN_GW("%s_%s/*%s*/")) return FAIL_FAILED();
 	// OBJ_ID from ("%s_%s/*%s*/") {
@@ -122,9 +176,26 @@ bool DEMO_mk_cert_group()
 		// REGEN DATA from NAME // int pcid = GET %d from "PC%02d" //
 	// }
 
+#if 0
+	SWITCH ${USER} { // CMNT
+	}; // CMNT
+
+	{ OBJ_LIST }
+		"HUB_GW"
+		"DWS"
+		"AMS_10"
+		"GPS_E6320"
+		"MBS"
+
+		"PC_%s"
+		"OK"
+		"PC_HUB_GW/*_PLUS*/" // PSG and SUBLEX in CXX_SCRIPT
+#endif
 
 	return PASS("OK");
-return PASS("OK");
+} // FUNC mk_cert_group // regen_all // cancel old ones ? // 
+// DEMO_mk_cert_group // regen_all // cancel old ones ? // 
+#if 1
 
 	// following code left to re-integrate with USAGE
 	// probably fell short of parameters // maybe
@@ -186,9 +257,23 @@ return PASS("OK");
 		_filename == dir_ZONE/CN # all in that dir
 		_filename == dir_ROOT/CN # for a while 
 	*/
-	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout();
-	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag );
+#endif
 
+	const char * str_CA_ZONE = "CA_ZONE_";
+
+	obj_hold<MYSITE_X509_layout> mysite_scheme
+	= new MYSITE_X509_layout( "layout", str_CA_ZONE );
+	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(
+		mysite_scheme,
+		ISS_tag,
+		str_CA_ZONE	// TODO CA scheme tag NAME // API //
+	);
+
+// OLD	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag )) return FAIL_FAILED();
+// in struct DECL ZONE // 	INFO("HERE OK");
+
+#if 0 
+{
 	/*
 		VALS <== -code- tag
 
@@ -203,6 +288,7 @@ return PASS("OK");
 
 	return PASS("DONE");
 }
+#endif
 		//////////////////////////////////////////////
 
 bool DEMO_mk_cert(
@@ -213,24 +299,57 @@ bool DEMO_mk_cert(
 		You have two virtual classes, layout and task
 		You also have this parent _DEMO_ caller
 		Change all 3 for your site,
-
+	
 		the current basis, is that you set VALS
 		then bounce it through REQ and ISS
 		then save the result
 	*/
-	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout();
-	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag );
-
+	obj_hold<MYSITE_X509_layout> mysite_scheme
+	= new MYSITE_X509_layout("layout", "CNCN1a" );
+	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag, "CNCN" );
+	
 	/*
 		VALS <== -code- tag
 	*/
-	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag )) return FAIL_FAILED();
-
+	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag, "CNCN1" )) return FAIL_FAILED();
+	
 	/*
 		VALS => REQ => ISS => files
 	*/
 	if(!task->MYSITE_mk_cert_from_VALS()) return FAIL_FAILED();
+	
+	return PASS("DONE");
+}
+		//////////////////////////////////////////////
 
+bool DEMO_mk_cert_tag_NAME(
+	SITE_X509_tag_enum ISS_tag,
+	STR0 NAME
+)
+{
+	/*
+		You have two virtual classes, layout and task
+		You also have this parent _DEMO_ caller
+		Change all 3 for your site,
+	
+		the current basis, is that you set VALS
+		then bounce it through REQ and ISS
+		then save the result
+	*/
+	STR0 layout = "layout";
+	obj_hold<MYSITE_X509_layout> mysite_scheme = new MYSITE_X509_layout(layout, NAME );
+	obj_hold<MYSITE_CA_task> task = new MYSITE_CA_task(  mysite_scheme, ISS_tag, NAME );
+	
+	/*
+		VALS <== -code- tag
+	*/
+	if(!task->MYSITE_SET_DEMO_VALUE_FOR( ISS_tag, "NAME_CN" )) return FAIL_FAILED();
+	
+	/*
+		VALS => REQ => ISS => files
+	*/
+	if(!task->MYSITE_mk_cert_from_VALS()) return FAIL_FAILED();
+	
 	return PASS("DONE");
 }
 		//////////////////////////////////////////////
@@ -292,14 +411,8 @@ bool_main(int argc, char *argv[])
 		} else
 		if(arg == "C_pc") {
 			if(!DEMO_mk_cert(is_C_pc)) return FAIL_FAILED();
-			if(!DEMO_mk_cert(is_C_pc)) return FAIL_FAILED();
-			if(!DEMO_mk_cert(is_C_pc)) return FAIL_FAILED();
-			if(!DEMO_mk_cert(is_C_pc)) return FAIL_FAILED();
 		} else
 		if(arg == "C_user") {
-			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
-			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
-			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
 			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
 			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
 			if(!DEMO_mk_cert(is_C_user)) return FAIL_FAILED();
@@ -347,7 +460,7 @@ main(int argc, char *argv[])
 {
 	gdb_sigaction( argv[0] ); // sets progname_argv0 
 //	check_tty_012(); // 
- if(0)	dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
+ if(1)	dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
 
 	if(bool_main(argc, argv )) return 0;
 	WARN("want to get errno ...");

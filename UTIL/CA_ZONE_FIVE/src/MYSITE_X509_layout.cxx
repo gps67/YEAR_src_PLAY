@@ -22,10 +22,49 @@ using namespace CA1;
 /*!
 	Plain CTOR, sets a helpful debug name, and renames "PC"
 */
-MYSITE_X509_layout:: MYSITE_X509_layout()
-: SITE_X509_layout( "demo_site_CA_layout" )
+MYSITE_X509_layout:: MYSITE_X509_layout(
+		STR0 layout_name,
+		STR0 C_NAME
+) : SITE_X509_layout( layout_name )
 {
-	str_C_pc = "C_LAPTOP";
+	str_C_pc = C_NAME;
+}
+
+#if 0
+	if(! MYSITE_obtain_phrase(
+		buffer1 phrase; // APPEND
+		SITE_X509_tag_enum ISS_tag
+		STR0 NAME;
+	)) return FAIL_FAILED();
+#endif
+
+bool MYSITE_obtain_phrase(
+	buffer1 & phrase_utf, // APPEND
+	SITE_X509_tag_enum ISS_tag,
+	STR0 NAME
+) {
+
+	const char * phrase = NULL;
+	switch(ISS_tag) {
+	 case is_CA_ZERO:  phrase = "secret0"; break;
+	 case is_CA_ONE:   phrase = "secret1"; break;
+//	 case is_CA_ZONE:  phrase = "secret2"; break;
+	 case is_CA_ZONE:  phrase = NULL; break;
+	 case is_C_pc:     phrase = "secret3"; break;
+	 case is_C_user:   phrase = "secret4"; break;
+//	 case is_C_server: phrase = "secret5"; break;
+	 case is_C_server: phrase = NULL; break;
+	 case is_C_item:   phrase = "secret6"; break;
+	 default:
+		return FAIL("ISS_tag not recognised");
+	}
+	if(!phrase) { phrase = ""; }
+
+	phrase_utf.print("%s", phrase );
+	
+	
+	return WARN("%s",(STR0)phrase_utf);//;
+	return true;
 }
 
 /*!
@@ -43,22 +82,19 @@ MYSITE_X509_layout:: MYSITE_X509_layout()
 */
 bool MYSITE_X509_layout:: obtain_CB_for_tag(
 	obj_hold<CB_get_phrase_base> &cb_phrase,
-	SITE_X509_tag_enum ISS_tag
+	SITE_X509_tag_enum ISS_tag,
+	STR0 NAME
 ) {
-	const char * phrase = NULL;
-	switch(ISS_tag) {
-	 case is_CA_ZERO:  phrase = "secret0"; break;
-	 case is_CA_ONE:   phrase = "secret1"; break;
-//	 case is_CA_ZONE:  phrase = "secret2"; break;
-	 case is_CA_ZONE:  phrase = NULL; break;
-	 case is_C_pc:     phrase = "secret3"; break;
-	 case is_C_user:   phrase = "secret4"; break;
-//	 case is_C_server: phrase = "secret5"; break;
-	 case is_C_server: phrase = NULL; break;
-	 case is_C_item:   phrase = "secret6"; break;
-	 default:
-		return FAIL("ISS_tag not recognised");
-	}
+	// MEGA LURK
+//	str_C_pc = NAME;
+
+	buffer1 phrase; // APPEND // empty
+
+	if(! MYSITE_obtain_phrase(
+		phrase,
+		ISS_tag,
+		NAME
+	)) return FAIL_FAILED();
 
 	if(!phrase) {
 		// some server software cant handle cb_phrase
@@ -68,10 +104,41 @@ bool MYSITE_X509_layout:: obtain_CB_for_tag(
 		return PASS("MYSITE sets NONE");
 	}
 
+	/*
+		REWRITE obtain_phrase_for_key_rsa_priv
+
+			we must already be an IDX_t 
+			CXX SCRIPT looks up DB via CACHE even REMOTE
+
+		REWRITE
+
+			ITEM_KEY = { IDX = POOL.lookup( KEY ) }
+			POOL == STO_ITEM EA_ITEM_from_KEY // and SESS // ()
+
+		REWRITE
+
+			KEY = u5_idx // in local CODE_POOL ENUM
+			ITEM = C_VPN_user_laptop // ABBR //
+			user == "amd"
+			laptop == "10" // ABBR //
+			C_VPN == "C_VPN" // CA_ZONE_VPN // CA_VPN_vpn_73 //
+
+			DBID = load_ITEM_from_ether # maybe a DB 
+			EA_ITEM is DBID_LOADED
+
+		REWRITE
+
+			ITEM.get_phrase_utf8();
+			ITEM.get_phrase_utf8(buffer1 & phrase); // APPEND //
+			// SUBLEX will optimise to APPEND // same func
+
+
+	*/
+
 	FAIL("phrase '%s'", (STR0) phrase );
 
 	buffer2 buf;
-	buf.print("%s_", phrase );
+	buf.print("%s_", (STR0) phrase );
 	/* mysite_scheme-> */
 	print_part_name( buf, ISS_tag );
 

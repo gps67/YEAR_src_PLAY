@@ -12,9 +12,14 @@ using namespace CA1;
 
 
 MYSITE_CA_task::
-MYSITE_CA_task( SITE_X509_layout * _layout, SITE_X509_tag_enum _tag )
+MYSITE_CA_task(
+	SITE_X509_layout * _layout,
+	SITE_X509_tag_enum _tag,
+	STR0 CN
+)
 : CA_task(_layout, _tag)
 {
+	VALS->subject.CN = CN;
 }
 
 MYSITE_CA_task::
@@ -35,7 +40,7 @@ bool MYSITE_CA_task:: VALS_set_HERE_part1_subject()
 		This is site specific for layout_tag (which includes scheme)
 		So are all the functions here ...
 	*/
-	VALS->subject.CN	= "-UNSET-";
+//	VALS->subject.CN	= "-UNSET-";
  switch(layout_tag->tag) {
   case is_CA_ZERO:
   case is_CA_ONE:
@@ -310,7 +315,7 @@ bool MYSITE_CA_task:: MYSITE_mk_cert_from_VALS()
 	The _DEMO_ is _NOT_ realistic, not for LIVE programs,
 	but it might help debugging and things
 */
-bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
+bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag, STR0 CN1 )
 {
 //
 // Vigil Keeping by Saffie
@@ -354,10 +359,10 @@ bool MYSITE_CA_task:: MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag )
 	 	ok = set_HERE_C_server(NAME);
 	 } break;
 	 case is_C_pc: {
-	  static buffer2 cn;
-	  cn.clear();
-	  cn.print( "LAPTOP_%4.4d", 1010+N_items++ );
-	  ok =  set_HERE_C_pc(cn);
+	  // static buffer2 cn;
+	  // cn.clear();
+	  // cn.print( "LAPTOP_%4.4d", 1010+N_items++ );
+	  ok =  set_HERE_C_pc(CN1);
 	 }
 	 break;
 	 case is_C_user: {

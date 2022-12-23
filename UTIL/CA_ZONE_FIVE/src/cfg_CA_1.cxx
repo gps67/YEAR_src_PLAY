@@ -182,7 +182,7 @@ bool kf_cfg_CA_1:: late_init()
 	VALS_CA_ONE.C = "GB";
 	VALS_CA_ONE.ST = "Berks";
 	VALS_CA_ONE.L = "Reading";
-	VALS_CA_ONE.O = "CompanyWorldwide";
+	VALS_CA_ONE.O = "company_name";
 	VALS_CA_ONE.OU = "OU_for_company";
 	VALS_CA_ONE.CN = "CA_ONE_company";
 

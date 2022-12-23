@@ -375,7 +375,7 @@ class MYSITE_loaded : public obj_ref0
 {
  public:
 
-	// you wont have all of these loaded, hera and above
+	// you wont have all of these loaded, pos_in_layout and above
 
 	X509_cert CA_ZERO;
 	X509_cert CA_ONE;
@@ -475,6 +475,17 @@ class MYSITE_loader: public obj_ref0
 
 	////////////////////////////////////////////////
 
+/*!
+	load CA from its file, in its dir
+	requires scheme to also do its half of that
+
+		merge MYSITE_loader_files 
+		merge MYSITE_loaded
+		merge SITE_X509_layout * scheme
+
+	move to load CA from it's DBID
+	which needs more that "CA_ZONE" ie "CA_VPN" or "CA_vpn_96"
+*/
 class MYSITE_loader_files : public MYSITE_loader
 {
  public:

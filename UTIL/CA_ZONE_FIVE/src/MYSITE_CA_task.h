@@ -15,7 +15,11 @@ namespace CA1 {
 class MYSITE_CA_task : public CA_task
 {
  public:
-	MYSITE_CA_task( SITE_X509_layout * _layout, SITE_X509_tag_enum tag );
+	MYSITE_CA_task(
+		SITE_X509_layout * _layout,
+		SITE_X509_tag_enum tag,
+		STR0 CN
+	);
 	~MYSITE_CA_task();
  virtual
 	bool VALS_set_HERE_part1_subject();
@@ -42,7 +46,7 @@ class MYSITE_CA_task : public CA_task
 		const char * CN_ITEM
 	);
 
-	bool MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag );
+	bool MYSITE_SET_DEMO_VALUE_FOR( SITE_X509_tag_enum ISS_tag, STR0 CN1 );
 
 	bool MYSITE_mk_cert_from_VALS();
 } ;

@@ -69,6 +69,7 @@ bool MYSITE_loaded:: set_self_cb_phrase( CB_get_phrase_base * cb_phrase )
 		// you CAN change the password being used
 		if( self_key->cb_pass ) WARN("changing exising cb_phrase");
 		else WARN("KEY DIDNT HAVE AN EXISTING cb_phrase to change");
+		// set new callback (with retained data) for write out
 		self_key -> cb_pass = cb_phrase;
 	} else {
 		self_key = new EVP_P_KEY( cb_phrase );

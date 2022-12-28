@@ -2,6 +2,7 @@
 
 class BASE_t
 {
+ // BASE_t does NOT have any virtuals // so no VTBL
  public:
 	int X,Y,Z;
 	BASE_t()
@@ -13,6 +14,8 @@ class BASE_t
 
 class PLUS_t : public BASE_t
 {
+ // PLUS_t does have virtual // so it ADDS VTBL to BASE as a PREFIX 
+ // order: { VTBL BASE extra }
  public:
 	int extra;
 
@@ -57,6 +60,15 @@ PLUS_t * upcast( BASE_t * BASE )
      )	);
 }
 
+caddr_t ZERO = 0;
+
+void show( const char * name, caddr_t PTR )
+{
+	INFO("%s ADDR %p OFF %d", name, PTR, (int) (PTR - ZERO) );
+}
+
+#define shows( name ) show( #name, (caddr_t) name )
+
 int main()
 {
 	INFO("started");
@@ -64,9 +76,12 @@ int main()
 	BASE_t * BASE_one = PLUS_one;
 	PLUS_t * PLUS_two = upcast( BASE_one );
 
-	INFO("PLUS_one ADDR %p", PLUS_one );
-	INFO("BASE_one ADDR %p", BASE_one );
-	INFO("PLUS_two ADDR %p", PLUS_two );
+	ZERO = (caddr_t) PLUS_one;
+
+	shows(PLUS_one);
+	shows(BASE_one);
+	shows(PLUS_two);
+	shows(& PLUS_one->extra);
 
 	delete PLUS_one;
 

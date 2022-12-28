@@ -1,0 +1,76 @@
+# PASS # bool BASE1::tty_stty_t::tio_get() # OK
+# FAIL # bool BASE1::tty_stty_t::set_fd(int) # TODO
+# INFO # bool BASE1::tty_stty_t::show_info(STR0) # label 'fd_zero'
+   fd_zero I BRKINT   NO
+   fd_zero I IGNPAR   NO
+   fd_zero I PARMRK   NO
+   fd_zero I INPCK    NO
+   fd_zero I ISTRIP   NO
+   fd_zero I INLCR    NO
+   fd_zero I IGNCR    NO
+   fd_zero I ICRNL    YES
+   fd_zero I IUCLC    NO
+   fd_zero I IXON     YES
+   fd_zero I IXANY    NO
+   fd_zero I IXOFF    NO
+   fd_zero I IMAXBEL  NO
+   fd_zero I IUTF8    YES
+   fd_zero O OPOST    YES
+   fd_zero O OLCUC    NO
+   fd_zero O ONLCR    YES
+   fd_zero O OCRNL    NO
+   fd_zero O ONOCR    NO
+   fd_zero O ONLRET   NO
+   fd_zero O OFILL    NO
+   fd_zero O OFDEL    NO
+   fd_zero O NLDLY    NO
+   fd_zero O CRDLY    NO
+   fd_zero O TABDLY   NO
+   fd_zero O BSDLY    NO
+   fd_zero O VTDLY    NO
+   fd_zero O FFDLY    NO
+   fd_zero C CBAUD    YES
+   fd_zero C CBAUDEX  NO
+   fd_zero C CSIZE    YES
+   fd_zero C CSTOPB   NO
+   fd_zero C CREAD    YES
+   fd_zero C PARENB   NO
+   fd_zero C PARODD   NO
+   fd_zero C HUPCL    NO
+   fd_zero C CLOCAL   NO
+   fd_zero C CIBAUD   NO
+   fd_zero C CMSPAR   NO
+   fd_zero C CRTSCTS  NO
+   fd_zero L ISIG     YES
+   fd_zero L ICANON   YES
+   fd_zero L XCASE    NO
+   fd_zero L ECHO     YES
+   fd_zero L ECHOE    YES
+   fd_zero L ECHOK    YES
+   fd_zero L ECHONL   NO
+   fd_zero L ECHOCTL  YES
+   fd_zero L ECHOPRT  NO
+   fd_zero L ECHOKE   YES
+   fd_zero L FLUSHO   NO
+   fd_zero L NOFLSH   NO
+   fd_zero L TOSTOP   NO
+   fd_zero L PENDIN   NO
+   fd_zero L IEXTEN   YES
+   fd_zero VDISCARD x0F 15 CTRL-O
+   fd_zero VEOF     x04  4 CTRL-D
+   fd_zero VEOL     x00  0 NUL
+   fd_zero VEOL2    x00  0 NUL
+   fd_zero VERASE   x7F 127 DEL
+   fd_zero VINTR    x03  3 CTRL-C
+   fd_zero VKILL    x15 21 CTRL-U
+   fd_zero VLNEXT   x16 22 CTRL-V
+   fd_zero VMIN     x01  1 CTRL-A
+   fd_zero VQUIT    x1C 28 
+   fd_zero VREPRINT x12 18 CTRL-R
+   fd_zero VSTART   x11 17 CTRL-Q
+   fd_zero VSTOP    x13 19 CTRL-S
+   fd_zero VSUSP    x1A 26 CTRL-Z
+   fd_zero VTIME    x00  0 NUL
+   fd_zero VWERASE  x17 23 CTRL-W
+# FAIL # bool BASE1::tty_stty_t::stty_saner() # TODO
+# FAIL # bool stty_test1() # FAILED

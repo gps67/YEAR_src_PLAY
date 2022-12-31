@@ -49,7 +49,8 @@
 		// not NIS
 		struct servent * entry = getservbyname( (STR0) port_name, (STR0) proto );
 		if(!entry) return FAIL("No %s service port '%s'", (STR0) proto, (STR0) port_name );
-		sa.sin_port = htons(entry->s_port);
+	// 	sa.sin_port = htons(entry->s_port); // NO // already in nbo
+		sa.sin_port = entry->s_port;
 		return true;
 	}
 

@@ -55,6 +55,7 @@ struct sender_t {
 	}
 
 	bool call_fsync() {
+		return true;
 		e_print("f_");
 		if(! fd_dst.fsync() ) {
 			return FAIL_FAILED();
@@ -65,6 +66,7 @@ struct sender_t {
 	}
 
 	bool call_fdatasync() {
+		return true;
 		e_print("D_");
 		if(! fd_dst.fdatasync() ) {
 			return FAIL_FAILED();

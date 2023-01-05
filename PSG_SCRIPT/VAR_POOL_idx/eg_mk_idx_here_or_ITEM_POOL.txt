@@ -1,0 +1,14 @@
+2023-01-05 Jan Thu 00:10 # 35 #  eg_mk_idx_here_or_ITEM_POOL_/
+
+
+		eg_mk_idx_here_or_ITEM_POOL.txt
+
+
+			idx = N++
+
+				N is N items allocated in TABLE
+				idx is IDX in table
+
+
+
+

@@ -1,0 +1,284 @@
+2023-01-04 Jan Wed 19:42 # 20 #  ITEM_STO_SPEC_SESS_STEP.txt
+2023-01-04 Jan Wed 19:42 # 20 # 
+
+	ITEM_STO_SPEC_SESS_STEP.txt
+
+	ITEM
+
+		STO
+		SPEC
+		SESS
+		STEP.txt
+		CODE.HERE[^ITEM] # ITEM = ... # AUTO MK_VAR # 
+
+		 INST.field == "MATCH"
+
+		 .name == "%s" # "name" # ANYSTR #
+
+		 NAME == "ANYSTR" # VAR ANYSTR # SPEC == CODE.HERE.STR0 # VALUE
+		 # VALUE == "%s" # PARAMETER # ARGV ITEM EXPR CODE SESS STO EA
+
+
+
+		CODE_POINT == "%s" # PARAMETER from SCRIPT in SESS #
+		VALUE == "%s" # PARAMETER # ARGV ITEM EXPR CODE SESS STO EA
+		STO
+		 SCRIPT STO XPOS
+		 XPOS == "XPOS_HERE"
+		 { VARL == VALUE } // VAR +- VAL // EXPR( ARGS ) // CMNT
+		SPEC
+		 SPEC == HERE_SPEC // HERE == mk_locn // mk_idx // VAR_POOL // ITEM
+		 SCRIPT LINE
+		 SCRIPT_LINE
+		 	code_provided
+			data_is_SCRIPT PARSER == "SCRIPT_PARSER"
+				CODE { mk_idx %s %s }
+				STEP { ARGS DATA PLUS STEP }
+				DATA { TOKEN(mk_idx) ARG_STR ARG_STR } DIALECT
+			DIALECT += "{ mk_%s %s %s } # CMNT " ALIAS("idx")
+			ALIAS("u5_idx")
+			IDX("ALIAS")
+		SESS
+		STEP.txt
+		CODE.HERE[^ITEM] # ITEM = ... # AUTO MK_VAR # 
+
+			CSR == "CSR" # AUTO_VAR VAR # ETC #
+			ETC == "CSR" # CODE_VAR CSR _t # ALIAS alias
+			HERE == "HERE" # AUTO_VAR # SCRIPT_API #
+
+			ITEM == "HERE" # AUTO VAR "{ HERE_t HERE }" "_IN_SCRIPT XPOS
+			XPOS EA_XPOS { SCRIPT } ARGS STO 
+			STO == SCRIPT.XPOS.STO.API
+			STO_API == "ITEM_IDX_API" # "_t" SCRIPT ARGS DATA
+
+			SCRIPT STEP IDX_t IDX = AUTO ALLOC "{IDX_t IDX }"
+
+				FOUNTAIN
+o
+					IDX = N++
+
+						IDX_EXPR
+				SPEC 
+
+					SPEC += IMPORTED_SCRIPT
+					SPEC += SCRIPT_EXPR
+
+				EXPR
+
+					ITEM_SPEC_ITEM
+					EXPR_SPEC_EXPR += EXPLAINS
+					EXPR_SPEC_EXPR += SPEC_BYTES
+					EXPR_SPEC_ITEM += FIELD_TYPE FIELD_SPEC
+					FIELDS += FIELD
+					FIELD += VAR_NAME VAR_SPEC VAR_CODE
+
+				SCRIPT_MUX
+				
+					MY_SCRIPT MK_VAR 
+
+				SCRIPT MK_VAR ...
+
+					VAR_NAME == "VAR_NAME"
+					VAR_SPEC == "SPEC"
+					VAR_DATA == "STO_DATA"
+					STO_DATA == "STO_DATA"
+					STO_DATA += "STO_DATA"
+					STO_DATA += "STO_ALIAS"
+
+	SCRIPT_STEP
+
+		SCRIPT_VAR VAR_NAME SPEC STO_t STO;
+
+		SCRIPT STO 
+	
+	SCRIPT_STEP
+
+		WORD += "SIGNED" # MEDIA == "MUX_SCRIPT_LINE" #
+	
+	"SIGNND" == "SIGNED_VIDEO MEDIA_FILE VALUE == "path/name_ext"
+
+		FILE is the BSL video for STR0 
+
+			STR0_t VALUE == "path/name.ext"
+
+			TOKEN_STR0 "path"
+			TOKEN_STR0 "name"
+			TOKEN_STR0 "ext"
+			TOKEN_STR0 "path/name.ext" apth name ext PLUS ...
+
+		SUBLEX += "path/name.ext" # DECODE %s path name ext # PLUS #
+		PLUS += SUBLEX "%s/%s.%s" path name ext # MIME_EXT # .mp4 # EXPR
+		NAME += cident # SCRIPT STEP += NAME # NAME == "NAME" # 
+		NAME += "NAME" # SCRIPT STEP cident NAME of WHATEVER
+		WHATEVER += "ITEM" # PSG NAME_of_VAR("ITEM") #
+		PSG += ITEM "ITEM"
+		LEX += NAME "%s" # UDEF == "%s" # MATCH STR0 CT RT #
+		CT += VAR_NAME VAL_NAME
+		VAL_NAME += VAR_NAME # NAME_of_a_CONST # NAME_VALUE #
+		SAMPLE_VALUE == "ANYSTR" # MATCH EXACT STEPS IN SCRIPT EDITED 
+
+	SCRIPT_STEP
+
+		SAMPLE_VALUE == "ANYSTR" # MATCH EXACT STEPS IN SCRIPT EDITED 
+	
+	Write a story using the words in this list
+
+		PROJECT SCRIPTED DIALECT # WORDS_PROVIDED += LOAD_SCRIPT
+	
+	LOAD_SCRIPT_api
+
+		ELF_LIKE_API
+
+			ROM += ROM
+
+		OBJ_api
+
+			OBJ = EA EXPR # dereferenced OBJ_t & OBJ = EXPR #
+
+			OPTION IMPLEMENT as "{ EA_t * EA = EXPR }"
+
+			"EA_t" "%s_t" EA == "EA" // identity lex of origin
+
+			REWRITE EA from EA
+
+		TABLE[IDX] of PTR lookup STR0
+
+			lookup += CT_lookup_STR0 
+			lookup += RT_lookup_STR0 
+
+			ret_val += "STR0"
+			ret_val += "{ obj += 'STR0' }" 
+
+			VAR_POOL_lookup "STR0" CACHE_VAR
+			CACHE_VAR += UNDEFINED
+			CACHE_VAR += TOKEN_from_EXPR("STR0") # CACHED # CT_RT
+			CT_RT CT RT 
+
+			HASH_TABLE KEY VALUE
+			KEY_t ANYSTR = "KEY" "%s_t" KEY
+			IDX_t u5_idx = "IDX" # CT VAR POOL # 
+			# u5 == "u5" #
+			# EXPR "%s_t" cident VAR_NAME SPEC CODE #
+			# EXPR u5_idx_t u5_idx = CT_u5_idx INFO ...
+			# EXPR u5_idx_t u5_idx = RT_u5_idx ARGS ...
+			# TABLE[idx] of ITEM # GET EA SELF #
+
+	SCRIPT_STEP += STEP {
+		
+		STEP = SUBLEX VAR_NAME "{ VAR_TYPE += SPEC }"
+		POOL = VAR_POOL[ "POOL" ] # POOL == "ITEM_POOL" #
+		ITEM = (STR0_t) get_ITEM_STR0() # SESS += "SESS" ## ALIAS CTXT #
+
+	}
+
+
+	ABSENT_DIALECT += "word_not_found_in_CT_LIBR_list"
+	ABSENT_DIALECT += "word_found_in_CT_LIBR_list"
+	ABSENT_DIALECT += "word_not_found_in_CT_LIBR_list"
+	ABSENT_DIALECT += "word_found_in_RT_LIBR_list"
+	ABSENT_DIALECT += "word_not_found_in_IMPORTED_list"
+	ABSENT_DIALECT += "{ idx_t idx = int; // u32 i32 f32 'u8[4]' }"
+
+	typedef u8 FOUR_BYTE_t[4] ; // OPTION
+	typedef u8 BYTE_of_u32_WORD_t[4] ; // OPTION
+	BYTE_of_u32_WORD_t WORD = CT_RT_NAME // OPTION COMPILE THIS STMT
+	"{ idx = NEW_IDX u5_IDX ; // OFTEN_u5 // PRE_LOAD_TABLE_u5 // _N //}"
+
+
+	ARGV[EA_OFFS_from_EA_IDX]
+
+		SCRIPT compiles to ASM
+		SCRIPT compiles to C 
+		SCRIPT tokeises to CT_RT_CT
+		SCRIPT_USES_ARGV PSG += OBJ_TABLE
+		OBJ_TABLE_t SCRIPT_STEP_FSM_XPOS; // SEEK_t WRT DIR FILE SCRIPT_LINE
+		struct XPOS_t {
+		  u32_OFFS OFFS; // WORD == "OFFS" // LEX_NAME cident
+
+		  static SPEC = SPEC_u32_OFFS {
+			  u32_OFFS_t OFFS ; // in C
+			  LEX_NAME == "OFFS" // LEX_NAME cident
+			  VAR_SETTER from u32 OFFS // API registers VAL // CT //
+
+			  STO += "u32_lohi_t" # EA = get_EA # 
+		  }
+
+		  CLASS += WORD_t
+	//	  CLASS += WORD_PAIR_t
+		};
+
+		struct WORD += u32_idx // IDX
+
+		struct EXPR += u32_WORD // _t
+
+		PSG EXPR += VARIOUS_EXPR_AVAIL
+
+
+	MUX_SCRIPT_LINE
+
+		+= LINE_OF_TEXT MUX T A I L # PARSE # ARGV += CACHE #
+		+= LINE_OF_TEXT STREAM_BLOCK_TREE
+		+= TREE_of_SCRIPT # LINES # TEXT_of_FILE # OFFS_in_FILE #
+		+= LINES_or_BLOCK
+		+= TREE_of_TEXT_in_MODULE_as_SCRIPT
+		   TREE_of_TEXT += MODULE_as_SCRIPT
+		   MODULE += LINES # TYPE_HINT += { LINE_TYPE == "LINE_TYPE" }
+
+		LINE += ARGS SELF PSG_STEPS_in_ARGV 
+		ARGV += LINE as EXPR // XPOS //
+		XPOS += SCRIPT_FILE DIR FILE XPOS_as_OFFS // WRT SELF_XPOS("XPOS")
+		XPOS += SCRIPT_FILE
+			DIR
+			FILE
+			XPOS_as_OFFS
+			// WRT SELF_XPOS("XPOS")
+	
+	CACHE_CT_RT
+
+		CT leaves the data unaccessed
+		CT knows TOKEN == TOKENISED
+		CT knows nearest_copy is CACHED_lookup_TOKEN 
+		RT provides the exact same data api UNCALLED
+		CT_RT RT += all module is source file offs
+	
+	COMPILE SCRIPT
+
+		LINK_VAR
+
+		DATA_EXPR
+
+		ITEM_TYPE_t ITEM_SPEC = SPEC_EXPR # SPEC #
+
+		DECL Module
+	
+	IMPORT ELF_segment
+
+		IDX = lookup_known_name("known_name")
+		TABLE["known_name"]
+		WORD = elf_EXPR IDX // += '{ VAR_POOL == "VAR_POOL" }'
+		TABLE["known_name"]
+		TABLE["known_name"]
+
+		VIEW = UDEF_from_SCRIPT
+		VIEW = VIEW_from_SCRIPT 
+		VIEW = API
+		API += Inside_Running_Module
+
+			SESS += PTR_SEGMENT_in_MEM
+			SESS += SESS->TABLE("TABLE") // load_table
+
+	SIMULATE ELF SEGMENT holding TABLE
+
+		BASE0 = EA_ZERO of TABLE
+
+		Caller uses IDX = lookup "ANYSTR"
+
+		FOUR_t ARY[IDX]	# [32] is COMPILER_PICK_from_u5
+		EIGHT_t ARY[IDX]	# [32] is COMPILER_PICK_from_u5
+
+		u5_idx_t SPEC = u8_idx_t; # OPTION u8 u16 u24 u32 u48 u64 #
+		u5_idx_t IDX = u8_idx;
+
+
+		
+

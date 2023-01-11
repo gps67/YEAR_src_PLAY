@@ -1,0 +1,235 @@
+2023-01-11 Jan Wed 01:28 # 23 #  GET_PERMIT.txt
+
+	WORD_LOCK
+	TASK_LOCK _LOCK
+	TASK_STEP _LOCK
+	MY_PROOF MY_CERT_TWO.rsa.priv DIRECTLY or INDIRECTLY 
+	CACHE MY_PROOF MY_CERT_TWO.rsa.priv DIRECTLY or INDIRECTLY 
+		CACHED_AS_AGREED_upto_EOT // PRE_TELL REFETECH WAS=WAS
+	
+	proof have access to KEY_PRIV 
+
+		CACHE AGREED with REMINDER_DATA // OBJ_ADDR_and_PASS
+		EA_OBJ = SCRUB_MEM_OBJ { caddr_t EA = EXPR ;}
+	
+		EXPRS += { PTR = lookup KEY } // SELF = this //
+	
+		ENQ get_KEY_PRIV
+		ACK got_KEY_PRIV_EA _API
+		RPC_local CACHE simulates a generic remote
+		RPC_local CACHE CT KNOW
+		RPC use KEY to sign STMT from HERE 
+		RPC use KEY to decode KEY2 or DATA2
+
+		GEN MACHINE ssh_session
+		GEN MACHINE rsa_used 
+		GEN MACHINE x509_expr 
+
+	prepare OTP to send or already have
+
+		one_time_pad[u4] u4 = lookup STEP
+
+		RT accepts u48_IDX beyond u4, but has u4 in CACHE
+		RT accepts u48_EA_DATA for SCRIPT BYTE_A BYTE_B u16_AB
+		# "BYTE_B" TOKENISED as VAR_NAME or EXPR_NAME or EXPR_TEXT
+		# CODE += PSG u8_u8 u48_payload XPOS_csr_two
+
+		TABLE of OTP to send
+
+			PICK = SHEET[u4] POS_on_SHEET 
+		
+ BENCH POS_on_SHEET SHEET POS 
+ 	u4_SHEET
+	u8_POS
+	u16_POS
+	uns_POS
+	SHEET_t & SHEET = OTP_SHEET_ACCESS
+	POS_in_SHEET_t & POS_in_SHEET = INIT_ZERO // u16 // u5 // u8 // u4 //
+		SHEET[u4]
+
+			PICK = SHEET[u4] POS_on_SHEET 
+
+ PROXY OBJECT
+ 	SIMULATED with CACHE_VAR_for_REMOTE
+		REMOTE BOTH PASS FAIL PENDING
+		CACHE += REMOTE_VAR
+
+ USE_OF_UNKNOWN_PASSWORD
+
+ 	PASSWORD = RSA_KEY_PRIV // AS_BINARY NBITS
+	PASSWORD_ID = RSA_KEY_PRIV_ID
+ 
+ 	REMOTE uses the PASSWORD without telling us what it was
+	RESULT also uses TOKEN EA EXPR ARGS
+	ARGS.CPU var_two u64_EXPR DECODED SCRIPT // but not SESS
+
+	use PASSWORD to decode SECRET which FILTER sees as EA_SECRET
+	use ZERO_CRYPT_ZONE_COPY MEMCPY for MEMORY
+
+	SLACK PARKING 
+		LINE ONE
+		LINE TWO
+ 		BLOCK_ONE
+ 		BLOCK_TWO
+ 		BLOCK_ITEM ARGS
+
+		COPY_N_BYTES // expect align 64 or 32 or 16 or 8
+		 TRANSPARENT_FILTER memcpy 
+		  OPTION in_situ
+	
+	DECODE WORDS as u8_u8 u16 u32
+	DECODE WORDS as u8_u8 u48_raised u48_payload u32_payload u16_extra
+
+		on 32 BIT architecture (not u48 architecture)
+		u16_extra
+
+ OTP TABLE
+
+ 	OPCODE USING TABLE[T]
+ 	OPCODE_DATA KEY_4096 512 bytes
+ 	OPCODE_DATA KEY_2048 256 bytes
+ 	OPCODE_DATA KEY_256 64 bytes 8 words ## bitwise [u8] [b0[b2 BIT_FIELD
+ 	OPCODE_DATA KEY_128 16 bytes 2 words
+ 	OPCODE_DATA KEY_64 8 bytes 1 word // MAYBE 2
+ 	OPCODE_DATA KEY_32 4 bytes 1 word // MAYBE u24
+	USING TABLE[T]
+
+ 	TABLE[u8] prepared list of KEYS for 1 week // LOOP // PICK
+	TABLE[u32] 
+
+	BITFIELD_EXPR
+
+		u8_BIT_POS_t;
+	
+	disk order
+
+		[A[B[C[D [E[F[G[H [next // [prev [A...
+	
+	CPU order
+		u32_DBCA # we intentionally PICK low bytes first the CPU way
+		u32_ABCD
+
+		64[63 32[31 [
+
+
+ LOHI - why
+
+ 	this uses byte boundaries, PICK u8_ID
+
+ 	When we DEDOCE byte steps [ABCD[ 
+	we look at A first
+	then BYTE_B
+
+	then u48_payload = ABCD_lohi_into_CPU_word >> 16 // 1 clock cycle //
+
+	The CPU designers made the most obvious choice of having 
+	the NEXT BYTE as BYTE_A or BYTE_B in the low bits
+
+	It comes for free for when we convert u8 to and from u64_WORD
+	We expect to use BYTE_B in ARY_EIGHT opcode // LIMIT u64 for now
+	We expect to use BYTE_B in ARY_NN opcode // multiply BYTE_B by n_EIGHT
+	// CPU OPCODE { get put add sub ... } BASE[ BYTE_B * reg_nbytes_in_item ]
+
+	SO NOW we design our DATA to be LOHI instead of Network-Byte-Order,
+	we do have a SWAB SWAP_BYTES_IN_WORD as well as CPU_WORD_DATA
+
+	More that one byte order in the same word is confusing,
+	so u48_LOHI_RAISED
+
+		u64_LOHI
+		u64_HILO
+		u64_CPU
+
+		uns_LOHI
+		uns_HILO
+		uns_CPU
+
+		int_LOHI
+		int_HILO
+		int_CPU
+	
+	LOW_GRADE_128_BIT_CYPHER for MMX
+	LOW_GRADE_64_BIT_CYPHER for u64
+	LOW_GRADE_32_BIT_CYPHER for u32 // PAIR_in_EIGHT_as_u32_PAIR
+
+	LOAD WORD TO CPU # DECODE u64 or DECODE u32 // NBITS == 32 is low
+	LOAD WORD TO CPU # DECODE u64 # use OFFS as part of IV
+	BOTH_ENDS_SAME_CPU AGREE_
+	DECODE TABLE u256 32_bytes // leaves all words OPEN done already
+	DECODE BLOCK to TABLE // method unknown // retro expand //
+
+	We use that WORD = BYTE_B u8_to_u64_zero_fill 
+
+	OPTION TABLE[256] int N = 0; // int N_left = 255 // NEVER_ZERO_ALLOC
+	OPTION TABLE[256] int N = 0; // int N_left = 256 // then BYTE works
+
+		idx = N ++ 
+
+		DETECT limit u8 limit i8 limit u16 i16 limit u16_limit
+		ie INCR does NOT TEST ZERO or overflow 
+		so use ADD 1 or something ## CLEAR_REG INCR_REG # set_REG_1
+
+		TEST_u48 # NONE # TEST_i48 # enough to stay below u47
+		WORD >> 48 # ZERO means top 2 bytes zero # SIGN ?? NO M1 #
+
+	FAST TEST M1 # SIGNED INCR TEST ; ZERO means was M1
+	FAST TEST M1 # SIGNED DECR TEST ; ZERO means is NULL or IDX_ZERO
+
+	M1 is a useful alternative to ZERO
+	Sometimes we can have a FULL_PAGE no test for neither
+	That can be prepared for with MAXUNS_BYTE == M1 # 255 == M1
+	Some systems say ZERO means 256
+	SCRIPT will immediately have u16_uns for u8 or u64_WORD or u48
+	DATA_TYPE PAGE_FULL
+	DATA_TYPE PAGE_PART_FULL
+	DATA_TYPE PAGE_EMPTY_or_PART_FULL // but not yet full
+	DATA_TYPE PAGE_EMPTY_or_VOID
+	ITEM_IDX [0[256
+
+	As bytes per WORD go 1 4 8 ...
+	the first two [AB[ are very useful as OPCODE
+
+	HILO boxes will then want to get u48_payload as an int
+
+		LOAD_WORD
+		SWAP_WORD // swap bytes in word into HILO // we know we are LOHI
+		// BOTH machine types get WORD_cpu // ie for use as int uns
+		SHIFT_DOWN 16 // BOTH // u48_Paylout = u48_raised >> 16 //
+
+ DUAL GEN TREE
+
+ 	Cant easily PARSE own CODE STYLE but can GEN it
+	BOTH TEMPLATE and DATA get PARSED and CODE to MATCH
+	So lhs CODE compiles to rhs CODE 
+
+	REMOTE has predictable rhs CODE provided
+	CACHE uses provided SCRIPT pathways + fast act # CT_PRE_RUN
+
+	DUAL outcomes - STEP => PASS || FAIL # compunds
+	WAITING_FOR_RESULT USING_GUESS_ _PASS _FAIL 
+
+ PERMIT = SELF WRITTEN
+
+ 	we dont trust anyone else to write the statement we sign
+	so we must GEN it ourselves
+
+	PERMIT ACCESS as LOGIN gps67 HAT one
+	PERMIT ACCESS as NOLOGIN anon HAT "34
+	PERMIT ACCESS to PROFILE_defined_VFS # plain but per user
+	PERMIT MUX CREATE BOUNCE THROUGH # a bunch of permits in BITMAP
+	PERMIT MUX CREATE SHELL
+	PERMIT MUX CREATE VFS
+	PERMIT MUX CREATE RPC
+	PERMIT MUX CREATE VPN
+
+
+
+
+
+
+
+
+
+
+
+

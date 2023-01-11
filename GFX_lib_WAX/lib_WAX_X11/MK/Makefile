@@ -1,7 +1,7 @@
 #!/usr/bin/env make
 
 # WAX
-	## hmmm # new dependent on libs_apps
+	## hmmm # now dependent on libs_apps
 
 	CXX = g++
 	OPTIM += -g
@@ -9,6 +9,7 @@
 	# nonstandard, but makes rules easier
 	dot_EXE=.elf
 
+#	# UNUSED OPTIONS # maybe used via MK_with
 #	G_prefix=/home/gps/G/prefix
 #	LIST_PKG_CONFIG_PATH += $(G_prefix)/lib/pkgconfig/
 #	LIST_RPATH += $(G_prefix)/lib
@@ -16,11 +17,9 @@
 	PKGS += freetype2
 	PKGS += xft
 	PKGS += fontconfig
-	PKGS += libs_apps_base1
-
-	# src/IMG/
 	PKGS += libpng
 	PKGS += libturbojpeg
+	PKGS += libs_apps_base1
 
 	LINKS += -rdynamic # export all symbols - backtrace works!
 
@@ -40,18 +39,16 @@
 	S=/home/gps/YEAR/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/src
 	VPATH +=$S
 	VPATH +=$(S)/IMG
-#	VPATH +=$S/buffer
+
 	INCLS += -I$(S)
 	INCLS += -I$(S)/IMG
 
+	# to build with libs_apps base1 create this symb-link and include it
 	# a symb link to libs_apps 
 	include ../MK/MK_with_libs_apps
-# OLD	include ../MK/Makefile_libs_apps
-#	include ../MK/MK_with_libs_apps_base
-
-	# beware similarity with file in libs_apps
 
 # rebuild everything after editing ANY makefile !!
+
 	MAKES += ../MK/MK_with_libs_apps
 	MAKES += ../MK/Makefile
 
@@ -103,7 +100,7 @@
 	OBJS += X_Image.o
 
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
-#	this is ALL that we need from base1 though
+#	this was ALL that we need from base1 though
 #	OBJS += gdb_invoke.o
 #	OBJS += str0.o
 #	OBJS += str1.o

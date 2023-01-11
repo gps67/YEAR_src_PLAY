@@ -1,0 +1,83 @@
+2023-01-05 Jan Thu 00:44 # 05 #  VAR_POOL_idx/
+
+	VAR_POOL_idx.txt
+
+
+	especially preloaded fixed size tables
+
+
+	N_table
+
+		u0	N == 1
+
+		u1	N == 2
+		u2	N == 4
+		u3	N == 8
+		u4	N == 16
+		u5	N == 32
+		u6	N == 64
+		u7	N == 128
+		u8	N == 256
+
+		u12	N == 1024 * 4 // 4K
+		u16	N == 1024 * 64 // 64K
+		u24	N == 1024 * 1024 * 16 // 16M
+		u32	N == 1024 * 1024 * 1024 * 1024 * 4 // 4G
+
+		No FIXED table can be this big
+		CAN have start PORTION [0[N1[N2
+
+		u48	N == N_u48
+		u64	N == N_u64
+
+	EIGHT_t TABLE[N_table]
+
+	typedef EIGHT_t u32_u32_t; // EIGHT provides all
+	typedef EIGHT_t u16_AB_u16_HI_u8_u24
+
+OPCODE is GETTER
+	OPCODE {
+		OPCODE_AB = AB
+		TABLE_idx = HI
+	 OPTION {
+		OPCODE_E = u8_lo_of_second_u32
+		INDEX_u24 = GETTER("u8_u24_liho  >> 8")
+	 }
+	 OPTION {
+	 	NO_OPCODE_E -use- 
+		INDEX_u32 = SECOND_WORD_OF_u32_u32
+	 }
+
+		PTR_TABLE = get_TABLE_from_IDX HI // auto bind re view HI
+
+		switch OPCODE_E {
+		 break; CASE NO_OPCODE_E: // CT beyond RT value
+
+		 break; case 0: RUN SCRIPT_for_OPCODE[OPCODE_E] // PROMISE
+		 break; case 1: // PROMISE
+		 break; case 2: // REQUIRE
+		 break; case 3: // KNOW 
+		 break; case 4: // CT N==4 XS_NEXT 
+		}
+
+		SCRIPT[2] {
+			NAME { LHS = GET_PTR from TABLE[ idx ] }
+		"	TABLE = * PTR_TABLE"
+			idx = u24_idx_from_EIGHT
+			EA_ITEM = EA_ITEM TABLE idx DECODER_STATE
+			ITEM = * EA_ITEM
+			SPEC = ITEM_SPEC = [decode_PTR_to_get_SPEC]
+			SPEC = ITEM_SPEC = {decode_PTR_to_get_SPEC}
+		}
+
+	}
+
+	GET_CORE_VAL 
+	SET_CORE_VAL
+	HAVE_CORE_VAR EA_
+	CLEAR_CORE_VAL 
+
+	GET_FIELD_VAL 
+
+OPCODE_E is DATA_TYPE of u24
+

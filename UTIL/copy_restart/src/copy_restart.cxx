@@ -131,7 +131,7 @@ bool bool_main( int argc, char ** argv ) {
 	dst_dirname = "/tmp";
 
 	str0 str_move = "-move";
-	if( str_move == argv[1] )
+	if( argv[1] == str_move )
 	{
 		opt_move = true;
 	}

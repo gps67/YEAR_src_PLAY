@@ -1,0 +1,150 @@
+main(arc,arv){if(!bool_main(arc,argv,envp,SESS); // C_API possible SESS
+{
+} # SCRIPT DESC
+
+
+	PARSE ARGS {
+
+		UDEF LINE ARGV PARSE SCRIPT LIBR ...
+		UDEF += LINE argc argv	// SCRIPT CALL MACRO EXPR UDEF // LOOP
+		
+		UDEF profides OBJ_t * PTR = EXPR
+		PSG provides SUBLEX LINR DIALECT SESS
+		SESS provides this self item obj OBJ OBJ_t
+		OBJ_t speaks PSG_GEN_Phrase _t _idx _db_id_expr EXPR_t CODE; // CMNT
+		// COMMENT uses DIALECT Phrase Book runtime_INST_or_SPEC // 
+		// COMMENT uses SUBLEX Phrase Book runtime_INST_or_SPEC // 
+		// VAR SESS_VAR("ANYSTR");// %s 
+		// SESS += ANYSTR and phrase_book DB_item_obj // MIME_TYPE TEXT
+		// TEXT += ANYSTR // MATCH // PSG // TEXT // ARGV_TREE
+		// TEXT += TOKEN // MATCH // NOUT // VERB // EXPR // ITEM //
+		// ID += ID_t // LEX_TYPE == "u4_ID _t" // 
+		// SESS += "_u4" "ID" "_t" // HERE += LINE += ARGV 
+
+		// UDEF MACHINE defines PSG with STO VAR_POOL api
+		// PSG template sample("item") api VAR_POOL STO SPEC ETC
+		// ETC SELF += ATTR STATE == ARGV SCRIPT API
+		// SCRIPT += UDEF
+		// HERE += MK_new_ITEM ARGS SCRIPT
+		// %s += ARGS // CMD == SCRIPT.XPOS.as_ARGS(SESS) //
+		// CTXT == "SESS" // ALIAS "CTXT" // ALIAS "HERE" // ALIAS POOL
+		// ITEM == "ITEM_of_SPEC_t" // SPEC("ITEM") // AUTO_VAR ITEM
+		// obj == GEN("IDX") // IDX TOKEN_is_OBJ_ID EA EXPR
+		// OBT_t * OBJ // u16_u48 // PTR == "u48_payload" // AB ["u16"]
+		// DECODE u8_u8_u48 
+		// OPCODE u8_u8 u48
+		// OPCODE A_B u48 // u8_A // u8_B // LOHI //
+		// LOHI SWAB // UDEF_LIBR_api // API //
+
+#if 0
+	UDEF SAMPLE MATCH ARGS SPEC INST STO ALIAS
+
+
+		MATCH %s %s u8_A u8_B // SOFT LIMIT u32_lhs u32_rhs
+		TELL PSG API get_A get_B filter_get_EXPR 
+		FIRST ITEM LIST ...
+		each added name ... AUTO_VAR ARGS("ARG") ARG_t OBJ_t DECL
+		DECL item # by first mention # PRE_ALLOC # TOKENISER_API 
+		IDX VAR_POOL ITEM("ANYSTR") PSG_creates_parser_tokeniser
+		SPEC("ANYSTR") // BUILT_IN GET_by_TOKEN_MATCH u8_IDX // u48_max
+		DECODE u16 u48
+		DECODE u16 
+		DECODE u8 u8
+		DECODE u8 u8 u48 // u64_WORD_lohi VALUE_from_VAR("u64_WORD_lohi")
+		u64_DATA // u64_WORD_lohi VALUE_from_VAR("u64_WORD_lohi")
+		u64_WORD_lohi VALUE_from_VAR("u64_WORD_lohi")
+
+		UDEF NEW_NAME () IDX SCRIPT ITEM or FRAGMENT 
+
+			AUTO VAR // AUTO FILTER_GETTER_API ATTR_EXPR SCRIPT
+
+		// CTXT == "SESS" // ALIAS "CTXT" // ALIAS "HERE" // ALIAS POOL
+		// ITEM == "ITEM_of_SPEC_t" // SPEC("ITEM") // AUTO_VAR ITEM
+		// obj == GEN("IDX") // IDX TOKEN_is_OBJ_ID EA EXPR
+
+			whenever IDX == "IDX_t" // MACHINE SETTINGS STO SESS API
+
+			rhyme {MATCH} {ACTION} // in STREAM("%s") // MATCH // ACT
+			DECODE(u64_WORD_lohi) {
+				ABCD_EFGH
+				u16_AB
+				u48_CD_EFGH_lohi
+
+					FORTUNATELY left-to-right by_byte
+					DECODE is obvious BYTE_A BYTE_B
+					COMPILE to EA = BYTE_IN_MEM EA
+					LOHI is fast decode ABCD AB JUMP
+					IDX is HILO in DIALECT:ROLE u8_u8_u48_payload
+					HILO picks keep_aswas_lohi BYTES_from_WORD
+					HILO picks swap_hilo_lohi BYTES_from_WORD
+			}
+
+			rhyme {MATCH} {
+			}
+
+	BENCH FIRST_USE ARGV NAME TOKEN EXPR SCRIPT SPEC SESS
+
+		create VAR_POOL("anystr") // ANYSTR // MATCH HERE SCRIPT_SAYS
+		create VAR_POOL("SESS") // ANYSTR // MATCH HERE SCRIPT_SAYS
+		create VAR_POOL("CTXT") // ANYSTR // MATCH HERE SCRIPT_SAYS
+		create VAR_POOL("IDX") // ANYSTR // MATCH HERE SCRIPT_SAYS
+		create VAR_POOL("ITEM") // ANYSTR // MATCH HERE SCRIPT_SAYS
+		create VAR_POOL("N++") // ANYSTR // MATCH HERE SCRIPT_SAYS
+
+			POOL_NAME "N++" // RENAME N ALIAS // KEEP u4_idx // u48_idx
+			RENAME N ANYSTR // FILTER MATCH %s VAR_NAME
+			RENAME IDX NAME // ID_%2X // N // idx_ITEM = ALLOC N++;
+			PROVIDE IDX NAME // CT_XPOS_in_SCRIPT RT_XPOS_in_TEMPLATE // N // idx_ITEM = ALLOC N++;
+
+
+
+	TEMPLATE
+
+		FIRST_USE
+		FIRST_USE == "BENCH" // first use in LINE // as_OPCODE_NAME_STR0
+		FIRST ALSO MORE WORDS found in POOL // lower is comment text
+		USAGE :
+	BENCH FIRST_USE ARGV NAME TOKEN EXPR SCRIPT SPEC SESS
+
+		each NAME in ARGV is created as a VAR or it's own type VAR_t
+		SCRIPT world provides IDX = IDX_of_TOKEN EVAL FILTER
+		FILTER on EVAL preload PRELOAD FILTER
+		SCRIPT world provides { EA_t EA = get_EA_from_u64_word_lohi }
+		SCRIPT world provides {
+			STREAM of WORD_ALIGNED DATA
+			FILTER PARSED STREAM of WORD_ALIGNED DATA
+			MATCH PHRASE ARGS // STO += LEX // SUBLEX // PSG //
+			TEMPLATE S A M P L E // PARSED // describe DATA STO
+			STO_as_ITEM_in_MEMORY // via API OBJ_api OBJ_t
+			SAMPLE TOKEN ident { idx = lookup ANYSTR }
+			CODE_POINT = XPOS 
+				code_point_t == "u8_OPCODE u8_DATA u48_IDX"
+				DATA_POOL[u48_payload] // DECL use as IDX
+				AS_IF u48_from_u64 // SHIFT REQUIRED
+				u48_lohi_from_u64_shifted_16_bits
+				u16_u32_lohi u16 u32 lohi
+				u16_u16_u32_lohi u16 u32 lohi
+				# USING varname MATCHES FILTER LOOKUP 
+				# u8_u8 u16 u32 # good for 32 bit machines
+				# ALL data is lohi decoded from ABCD EFGH
+				# DIALECT AB CD E FGH # handwrite GET ASM #
+				# GETTER for DIALECT
+				# DIALECT AB CD E FGH # handwrite GET ASM #
+				# DIALECT BYTE_B u8 u16_lohi_in_u64_cpu
+				# BYTE ORDER LOHI #
+				# DECODE AB # u8_OPCODE u8_DATA # DIALECT
+				# DECODE ABCD #
+				# DECODE ABCD EFGH #
+				# BENCH # detect first AUTO_GEN_USE CACHE_VAR
+				# BENCH # CT_XPOS of DECL # or_useful_NEAR #
+
+
+
+				
+		}
+
+
+
+
+#endif
+	}

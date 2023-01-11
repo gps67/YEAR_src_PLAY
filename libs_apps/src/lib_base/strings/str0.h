@@ -261,6 +261,12 @@ class str0 : public GRP_lib_base
 		return operator==( str0( s ) );
 	}
 
+	//! ADDED THIS 2023 - had hoped for cast to unconst
+	bool operator==( char * s ) const
+	{
+		return operator==( str0( s ) );
+	}
+
 	//! Nice Macro - calls strcmp
 	bool operator==( const uchar * s ) const
 	{

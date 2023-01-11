@@ -15,13 +15,13 @@
 	DIR_YEAR=$(DIR_HOME)/YEAR
 	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
 
+	DIR_libs_apps =$(DIR_PLAY)/libs_apps
+
 	#
 	# I have some standard libraries installed here $(DIR_G)/prefix
 	#
 	DIR_G=$(DIR_HOME)/G
 	DIR_G_prefix=$(DIR_G)/prefix
-
-	DIR_libs_apps =$(DIR_PLAY)/libs_apps
 
 # make is clever so including early does not matter much, vars used later
 # how stuff is built, and my LIST_xxx vars
@@ -31,12 +31,6 @@
 
 	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
 	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
-#	include /absent/file
-
-#	# libs_apps_base # faulty
-#	# it does not know UNAME # build_LGX_UNAME
-#	# so put that here FOR NOW
-# DID	LIST_CPLUS_INCLUDE_PATH += include $(DIR_libs_apps)/include
 
 ifeq (1,1)
 
@@ -51,9 +45,7 @@ ifeq (1,1)
 	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
 	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
 	LINKS += $(RPATHS)
-
-	## ERRM ## "INCLS" or "INCLS" or .. what are others using ?
-
+	LINKS += $(LIBS)
 
 	# build varies on each box # LINK2 dir
 	# hostname of this BOX
@@ -86,7 +78,6 @@ ifeq (1,1)
 	LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/SM/lib/pkgconfig/
 	LIST_RPATH += $(DIR_G_prefix)/lib/
 	LIST_RPATH += $(DIR_G_prefix)/SM/lib/
-
 
 	# /tools/VPN is where openssl is
 	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/

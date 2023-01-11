@@ -122,7 +122,6 @@ expr_ident : LEX_WS expr_ident { $$ = $2; }
 expr_ident : expr_ident LEX_WS { $$ = $1; }
 expr_ident : LEX_IDENTIFIER { $$ = E1( yylval.lex_buff ); }
 
-
 BOP	: 
 	  PUNCT_MINUS
 	| PUNCT_SLASH

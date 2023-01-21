@@ -17,7 +17,13 @@
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2022.Current.v2.1.dat.gz
+
+URL="${1:-$URL}"
+
+# look here manually
+# http://psc.apl.uw.edu/research/projects/arctic-sea-ice-volume-anomaly/data
 
 BASENAME=`basename $URL`
 
@@ -38,7 +44,7 @@ DATED_file_mtime=PIOMAS_dated
  touch $LOG # wake up nfs disk
 
 
-# FUNC print dfate of file
+# FUNC print date of file
 date_r()
 {
 	# this function does nothing, other than printing the date of the file
@@ -74,8 +80,8 @@ fi
 call_curl()
 {
 	echo "# URL # $URL"
-	date_r $DATED_file_mtime 
-	echo
+	# date_r $DATED_file_mtime 
+	# echo
 	curl \
 		--remote-name \
 		--remote-time \
@@ -109,10 +115,10 @@ call_curl_and_check_log_text()
 	"
 	for FAIL_MSG in $LIST_FAILS
 	do
-		echo >&2 "# checking for # '$FAIL_MSG'"
+	#	echo >&2 "# checking for # '$FAIL_MSG'"
 		if grep "$FAIL_MSG" $LOG
 		then
-			echo >&2 "# FAIL # file not modifed since:"
+			echo >&2 "# FAIL # previous sucessful load was:"
 			date_r $DATED_file_mtime
 			return 1
 		fi

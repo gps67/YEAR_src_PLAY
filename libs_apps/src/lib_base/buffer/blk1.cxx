@@ -422,6 +422,13 @@ blk1::operator str0()
 	trailing_nul();
 	return (str0) (char *) buff;
 }
+
+blk1::operator char *()
+{
+	trailing_nul();
+	return (char *) buff; // signed
+}
+
 blk1::operator STR0() {
 
 	// call of .. is ambiguous ... looks like CTOR of str0

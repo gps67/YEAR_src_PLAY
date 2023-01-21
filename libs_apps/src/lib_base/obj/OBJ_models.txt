@@ -1,3 +1,54 @@
+// COMPILE code in CMNTS // strict MINI_MACHINE //
+
+	run CXX as ASM on MINI_MACHINE permit some UDEF EXPR
+
+		SCRIPT += CXX
+		CXX += MINI_MACHINE
+
+		uses refcounted_objects via EA_EXPR
+		uses ITEM_t * PTR
+		uses BASE_CLASS_obj0 // OPTION REFCOUNT_API("API+=PTR")
+		uses PTR = RT EXPR "{ u16_OPCODE u48_PTR }"
+		// "ANYSTR" // BIND SOURCE to DEST // CODE_POINT == "CODE_POINT"
+
+		uses EA_EXPR( u64_WORD )
+		DECODE += u16_OPCODE
+		DECODE += u48_PAYLOAD // u48_payload = u64_WORD >> 16 //
+
+		u16_AB OPCODE_AB
+		u16_CD VARNAME_idx "{ u16_IDX }"
+		u32_WORD 
+
+		u16_AB OPCODE_AB
+		u16_CD VARNAME_idx "{ u16_IDX }"
+		u32_ABCD # SHIFTED HALF WORD # WORKS_WELL #
+
+		u16_AB OPCODE_AB
+		u16_CD VARNAME_idx "{ u16_IDX }"
+		u16_OFFS_of_STR_in_POOL
+		u16_OFFS_of_STR_in_POOL
+
+		u16_AB OPCODE_AB
+		u16_OFFS_of_STR_in_POOL "{ u16_IDX }"
+		u16_OFFS_of_STR_in_POOL VAR
+		u16_OFFS_of_STR_in_POOL VALUE or EXPR or API
+
+		u64_WORD_DECODED 
+		u16_OFFS_of_STR_in_POOL "{ opcode_AB }"
+		u16_OFFS_of_STR_in_POOL "{ u16_IDX }"
+		u16_OFFS_of_STR_in_POOL "{ VAR }"
+		u16_OFFS_of_STR_in_POOL "{ VALUE }"  or EXPR or API
+		u16_OFFS_of_STR_in_POOL "{ EXPR }"
+		u16_OFFS_of_STR_in_POOL "{ PSG }" // grow your DIALECT HERE //
+		u16_OFFS_of_STR_in_POOL "{ API }"
+
+		OPCODE gets compiled, run, GEN
+
+		RUNTIME uses a wierd symbolic lookup system NAME = ANYSTR
+		RUNTIME provides IDX_from_STR0_VAR_VAL_NAME_expr
+		RUNTIME stays in an u16 world (can X8 BOUNCE_VAR 
+		OPCODE does a lot of DECODING then PACKING using MINI_MACHINE
+
 obj_ref0
 	obj_ref0 * obj; is a (ptr to a) refcounted object
 	obj_ref_js * obj; is usable as a js object in a script (expensive peers)

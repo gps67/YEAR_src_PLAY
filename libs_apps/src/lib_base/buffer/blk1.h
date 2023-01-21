@@ -427,6 +427,7 @@ struct blk1 : public GRP_lib_base
 	operator str0();
 	operator STR0(); // it is a linker of mangled name
 	operator STR0() const; // its not really const
+	operator char *();
 
 	// be careful with these
 	// I only added after comparing with str1 failed (pointer different)

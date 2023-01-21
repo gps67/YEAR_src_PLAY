@@ -161,7 +161,8 @@ bool V_section_decl:: late_init(
 
 void V_var_decl:: init0()
 {
-	flags.clear_all();
+	// flags.clear_all();
+	// NO // traits.clear_all();
 	section = NULL;
 	vartype = NULL;
 }
@@ -282,6 +283,11 @@ V_vartype_t:: V_vartype_t(
 	is_string = true;
 	is_enum = false;
 	is_trivial_subtype_of_parent_type = true;
+	if(_parent_type) {
+		traits = _parent_type -> traits;
+	} else {
+		FAIL("%s _parent_type is NULL", (STR0) name); // only root
+	}
 }
 
 ///////////////
@@ -298,8 +304,49 @@ V_vartype_t * VARS::get_V_vartype_string_parameter()
 V_vartype_t & VARS::get_V_vartype( const char * type_name_or_expr )
 {
 
+	// a quick HOME_BREW DIALECT FORM_FIELD VOCAB HERE
+	// VAR == FIELD // EDIT // SCRIPTS //
+	// VAR "{ SET VAR VALUE }" // VALUE == "%s" // CODE to GEN DIALECT
+	// VALUE "{ STR0 name }" // CODE that creates SELF in SCRIPT // EA //
+	// KEY "{ STR0 }" // " KEY %s" // DECL VAR VALUE ${1:-DEFAULT} //
+	// ${1:-"{ `ARGV` }"} // TODO test this and use this // PSG transformation rule
+	// "$1" // above is an EXPR based on "{ this ITEM = VAR_VAL ]"
+	// "typ_NAME" // idx_ITEM = lookup "NAME" // DETAILS += CTXT SESS
+	// TYPE_t NAME // CMNT // PSG CODE DECL VAR SESS STO EXPR // %s
+	// FIELD_NAME_t FIELD; // PSG DECL NAME auto declares NAME_t and PHRASE
+	// FIELD == "FIELD_NAME" // MATCH %s // ANYSTR %s //
+	// FIELD in a FORM // DIALECT = words NOUNS SPEC TEXT
+	// FIELD has EXPLAIN // AUTO_GEN EXPLAIN_t & EXPLAIN ;
+	// VALUE has EXPLAIN // GUESS // PALLETTE // BEHAVIOUR_CODE // EA_
+	// TRANSLATE needs ENUM_VALUES as CODE_asif_VAR CODE_VAR
+	// CODE_VAR // UDEF GETTER // API //
+	// DIALECT NOUN // PASS password for this service SESS // ITEM // ...
+	// ... EA OBJ SPEC TABLES STRING_POOL ITEM_IDX_AS_STR0_cident //
+	// cident is often filtered to cident_LOCAL PICK == "HERE"
+	// cident_BASH_VARNAME_in_USAGE 
+	// USAGE when cident used in SCRIPT and TABLE[KEY=="{ cident }"]
+	// cident FIELD_NAME %s // OPTION "{ cident FILE_NAME }" //
+	// OPTION "{ %s %s }" // CMNT // AUTO_PSG GEN code from MENTION _t
+	// OPTION "{ cident %s }" // AUTO_PSG DECODE STEP PARSE STEP
+	// OPTION "{ cident FILE_NAME }" // VAR_NAME == "FIELD_NAME" //
+	// SCRIPT "{ SCRIPT = { SCRIPT } }" // PRE_WRAPPED
+	//
+	// COMPILE code in CMNTS // strict MINI_MACHINE //
+
+
 	static obj_hold<V_vartype_t> typ_ROOT = NULL;
 	static obj_hold<V_vartype_t> typ_STRING = NULL;
+	static obj_hold<V_vartype_t> typ_PASSWORD = NULL;
+	static obj_hold<V_vartype_t> typ_PEM_KEY = NULL;
+
+	/*
+		confused - rework needed
+
+		"PASSWORD" should cause asterisks in form fields
+
+		move the bit fields to here
+		dont use bits on FIELD_inst only on FIELD_TYPE
+	*/
 
 	if(!typ_ROOT) {
 
@@ -315,8 +362,29 @@ V_vartype_t & VARS::get_V_vartype( const char * type_name_or_expr )
 		"Everything is a string"
 	 );
 
+	 typ_PASSWORD = new V_vartype_t(
+		typ_STRING, // parent vartype should be specified to be tidy
+		"PASSWORD",
+		"a ******** string"
+	 );
+	 typ_PASSWORD->traits.SET_is_pass();
+
+	 typ_PEM_KEY = new V_vartype_t(
+		typ_STRING, // parent vartype should be specified to be tidy
+		"PEM_KEY",
+		"a PEM KEY as a string"
+	 );
+	 typ_PEM_KEY->traits.SET_is_multi_line();
+
+
+/*
+	obj_hold is static but what it points to isnt
+
 	 typ_ROOT->ref_static();
 	 typ_STRING->ref_static();
+	 typ_PASSWORD->ref_static();
+	 typ_PEM_KEY->ref_static();
+*/
 	}
 	// Thats the static initialisation
 
@@ -336,6 +404,8 @@ V_vartype_t & VARS::get_V_vartype( const char * type_name_or_expr )
 	if( name == "" ) return *typ_STRING;
 	if( name == "STRING" ) return *typ_STRING;
 	if( name == "ROOT" ) return *typ_ROOT;
+	if( name == "PASSWORD" ) return *typ_PASSWORD;
+	if( name == "PEM_KEY" ) return *typ_PEM_KEY;
 
 	FAIL("unknown '%s'", type_name_or_expr );
 

@@ -46,6 +46,14 @@
 	//! set the port from its name string (in the "udp" or "tcp" domain)
 	bool sock_addr_ip::set_port_name_proto( str0 port_name, str0 proto )
 	{
+		// allow "2222" as a portname // OK over "9 thing" // atoi
+		// any protocol a number is a number
+		// beware of byte order by calling sub func
+		int port = atoi( (STR0) port_name );
+		if( port ) {
+			return set_port_number( port );
+		}
+
 		// not NIS
 		struct servent * entry = getservbyname( (STR0) port_name, (STR0) proto );
 		if(!entry) return FAIL("No %s service port '%s'", (STR0) proto, (STR0) port_name );

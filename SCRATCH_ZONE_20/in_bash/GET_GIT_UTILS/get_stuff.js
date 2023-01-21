@@ -11,6 +11,8 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/danginsburg/opengles-book-samples
+https://github.com/danginsburg/opengles3-book/
 https://github.com/steelbrain/node-ssh
 https://github.com/libuv/libuv
 https://github.com/basecamp/trix

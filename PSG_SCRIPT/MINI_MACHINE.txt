@@ -1,0 +1,67 @@
+2023-01-21 Jan Sat 03:49 # 44 #  MINI_MACHINE.txt
+
+	u16_AB	OPCODE
+	u16_CD	SPEC_ADDR
+	u16_EF	idx_var_t SRC
+	u16_GH	idx_var_t DST
+
+	u16_AB	OPCODE
+	u16_CD	SPEC_ADDR
+	u16_EF	idx_var_t SRC
+	u16_GH	u16_OFFS_in_STR_POOL # if not IDX # eg MINI_MACHINE tables < 64K
+
+		# jump to u16_IDX when MAX_OFFS > MAX_u16 # MONITOR in BENCH
+		# stay_with u16_OFFS when it is easy, eg 4K of 64K
+
+		# LAYER of CODE_WHEN u16 # WHEN i16 # WHEN OFFS # when IDX #
+
+u8_u8_u8_u8
+
+	MINI MACHINE per OPCODE, fits easily in u8 # maybe entire MACHINE #
+	u8 u16 u24 u32 u48 u64 LIMITS per WORD # SOFT("{ u4 }") #
+
+	CAN HAVE u64_WORD = PAIR_u32_u32_WORD # NULL OPCODE == M1 # ALIGN_EIGHT
+	CAN HAVE u64_WORD = PAIR_u32_u32_WORD # NULL OPCODE == M1 # ALIGN_FOUR
+
+		we know that all CPU's we know like u32 at HALF word address
+
+		OPCODE
+		SPEC
+		LHS
+		RHS
+
+		Requires OPCODE to use EXPR = EXPR[u8] // WRT SESS_32_CSR
+		Requires OPCODE to tell us how to process "{ RHS }"
+		ALLOW VALUE to PICK u3_u5 # value_in_u5 # value in SLOT[u5]
+		u3 { 0 - NOOP 1 THAT = SLOT[u5] ; SLOT == "SLOT" }
+		u3 { VAL = u5 = "{ u8>>3 }" }
+
+SCRIPT requires PRECISE PARSE and PRECISE uns_idx # AUTO_GROW u5 u8 u16 u24 ...
+
+	CT builtd table then GEN CODE
+	CT build first TABLE then second TABLE
+	CT roll_down_EIGHT_to_FOUR STREAM += CT_STATEMENT_KNOW_xxx
+
+
+
+Start with u16_MINI_MACHINE or with u8 ??
+
+	Create types for each of these, STRUCT_based-on_WORD // BITFIELDS //
+	Let the different types, as invoked by MACRO, GEN code switch UPTO_u16
+	RESTART encoding WORD # triggers a skip_if_half_to_ALIGN_u64
+
+	OPCODE_A (u8_u16)
+	OPCODE_A (u8_u16)
+	OPCODE_A (u8_u16)
+	OPCODE_AB
+
+
+
+u16_AB VAR_ADDR
+
+	SCRIPT HERE = lookup "{ OPCODE( AB ) }" # AB == u16_AB from WORD
+	VAR_ADDR_t & VAR = SCRIPT.lookup "{ OPCODE( AB ) }" # AB == u16_AB from WORD
+	VAR_
+	VAR_ADDR_t & VAR = lookup "{ OPCODE( AB ) }" # AB == u16_AB from WORD
+
+

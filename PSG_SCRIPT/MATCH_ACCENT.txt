@@ -1,0 +1,79 @@
+ACCENT
+ PICK
+
+	    $1
+ 	   "%s"		CORE CORE_VAL VAR_VAL EXPR $1
+ 	  "{%s}"
+ 	 "{ %s }"	PICK
+ 	 " {%s} "
+ 	" { %s } "
+
+ (OTHER)
+ MATCH
+
+ 	"{ %s %s }" // AUTO_MATCH others SP_ACCENT == PICK
+
+	# ie not need to list them all #
+	#
+
+	    $1 $2
+ 	   "%s %s"
+ 	  "{%s %s}"
+ 	 "{ %s %s }"	PICK
+ 	 " {%s %s} "
+ 	" { %s %s } "
+
+EIGHT_t
+	u16_u16_u16_u16		# four ducks in a row
+
+	u16_OPCODE
+	u16_SPEC	# TYPE of VAR and ask OPCODE for TYPE_of_VAL
+	u16_VAR_EXPR	# u8_var_u8_expr # u16_idx=N++ # TABLE[TBL]ITEM[IDX]
+	u16_VAL		# OPCODE SAYS u16_enum_val or u16_addr_in_MINI_MACHINE
+
+	u16_u48		# OPCODE VAL # PTR = VAL_deshifted # NULL TEST INCL
+	u16_i48		# OPCODE VAL # PTR = WORD >> 16 # NULL TEST INCL
+	 if_ZERO goto // simple API # MINI_MICHINE_ASM # ARM32 # AMD64 # 
+	 if_MINUS	# CMNT if u48_payload is i48_MINUS
+	 if_M1		# AUTO_GEN TEST M1_when_M # add 1 see if 0
+	 if_M1		# AUTO_GEN AVOID TEST M1 # KNOW NOT # CACHED # CT #
+	 if_PLUS	# if_PLUS_NZ # includes TEST in decision in TEST
+	 if_ZERO	# TO # HERE #
+
+	u16_u16_u32	# friendly to 32 bit machines, extra parameter
+			# DIALECT forms clusters of well known VALUES
+	
+
+ FOUR
+ 	u8_u8_u8_u8		# four ducks in a row
+
+ 	u8_u24		# OPCODE(u24)
+	u8_u8_u16
+	u16_u16
+
+			# DIALECT forms clusters of well known VALUES
+
+
+ITEM
+	SPEC_t SPEC
+	ITEM_t ITEM
+
+
+
+EIGHT_t
+	u16_AB OPCODE
+	u16_CD idx_VAR // EXPR
+	u16 EF ROM_OFFS
+	u16_GH NN_bytes
+
+EIGHT_t
+	u16_A OPCODE
+	u24_BCD VAR_EXPR
+	u32_EFGH VAL_EXPR
+EIGHT_t
+	u32_DECODED
+	u32_DECODED
+
+	u16_A OPCODE
+	u24_BCD VAR_EXPR
+	u32_EFGH ANOTHER_HALF_OPCODE

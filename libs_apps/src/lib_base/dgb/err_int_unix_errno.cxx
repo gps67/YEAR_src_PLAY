@@ -184,8 +184,9 @@ DECL(ERFKILL,	"ERFKILL")	//	132	/* Operation not possible due to RF-kill */
 #endif
 
  default:
+	// TODo // use INFO WARN or FAIL vauses recusive call
 	
-	WARN("errno %d not recognised", e );
+	e_print("# TODO # WARN # TYPE_FUNC # errno %d not recognised", e );
 	buff.print( "ERRNO%d", e );
 	return (STR0) buff;
  }

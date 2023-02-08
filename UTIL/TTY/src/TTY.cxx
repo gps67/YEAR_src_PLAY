@@ -91,7 +91,7 @@ class tty_wrap_t { public:
 
 		INFO("calling execve '%s' ...", argv[0] );
 		// tty_wrap already done dup2(0|1|2)
-		int t = execvpe( argv[0], argv, envp );
+		int t = execvpe( argv[0], argv, envp ); // USES NULL
 		if( t == -1 ) {
 			return FAIL("execve '%s' ...", argv[0] );
 		}
@@ -129,6 +129,7 @@ bool bool_main( int argc , char ** argv, char ** envp )
 	// READ STDIN - copy IN
 	// WRITE tty_wrap.tty_ptmx.fd_master // copy IN to IN
 
+	// sleep(1);
 	sleep(1);
 
 	int exit_child = 0;
@@ -137,7 +138,14 @@ bool bool_main( int argc , char ** argv, char ** envp )
 	int n = read( tty_wrap.tty_ptmx.fd_master, buff, 1024 );
 	write( 1, buff, n );
 	waitpid( pid_child, &exit_child, options );
-	INFO("waitpid exit_child %d", exit_child );
+	if( exit_child ) {
+		// this causes a recursive FAIL SEGV
+		errno = exit_child;
+		return FAIL("waitpid exit_child %d", exit_child );
+	} else {
+		INFO("waitpid exit_child %d", exit_child );
+	}
+
 
 	return PASS("OK");
 	return true;

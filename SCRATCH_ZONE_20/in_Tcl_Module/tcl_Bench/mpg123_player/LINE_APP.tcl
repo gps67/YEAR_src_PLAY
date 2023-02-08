@@ -82,8 +82,14 @@ proc RUN_MAIN {} {
 		# set global_fd {}
 	}
 
-	# ERRM # need to kill mpg321 # close w # meh
+	
+	# CODE # move this to base class # ADMIN # CODE_VECTOR # HERE # CSR #
 
+	proc	opcode_trim_CMNT line { ;# lhs optional ';' 
+		return $line ;# just dont write any comments # maybe FAST_OMIT
+	}
+
+	# ERRM # need to kill mpg321 # close w # meh
 	foreach line {
 		"LOAD file1.mp3" 
 		"LOAD file2.mp3" 
@@ -97,6 +103,21 @@ proc RUN_MAIN {} {
 		"JUMP -720"
 		"F"
 	} {
+		opcode_trim_CMNT line ;# lhs optional ';' 
+		# like forth RPN but forward notation vary PGS
+		# PSG lhs ';#' rhs # CMNT # 
+		# PSG rhs OPCODE
+		# PSG rhs OPCODE ARG
+		# PSG rhs OPCODE ARG2
+		# PSG rhs EXPR("OPCODE") # invent by "STR0" { STR0_t NAME } #
+		# PSG NAME EXPR # VARNAME_or_EXPR # SUBLEX LEX_JOIN #
+		# PSG USAGE OPCODE ARG CMNT # CMNT #
+		# opcode_trim_CMNT # RETVAL CMNT # TRIM str0 FILTER=$FILTER
+		# ALIAS "FILTER" # CMNT #
+		# PARSE "CMNT" 
+		# OMIT "CALL trim_CMNT $ARGV # ARGS from ARGV # retval "$1" #
+		# ASIS FILTER triggers on MATCH during SESS == BENCH.SESS
+		#
 		set cmd_str "
 			global global_fd
 			puts \$global_fd {$line}
@@ -118,7 +139,7 @@ proc RUN_MAIN {} {
 	set cmd {sftp mobile 2222} ;# needed -si # immediate EOF
 	set cmd {tclsh}
 	set cmd { cat -}
-	set cmd {mpg321 -R fake.mp3 }
+	set cmd {/tools/CTXT/libr/bin/mpg123 -R fake.mp3 }
 
 	global global_fd
 	set global_fd [open "| $cmd &" w+b]

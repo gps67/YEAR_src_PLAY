@@ -64,6 +64,7 @@ bool key_munger_base:: make_key_from_phrase( key_holder & key, str0 phrase_str )
 
 bool key_munger_base:: check_phrase_isnt_daft( blk1 & phrase )
 {
+	bool USED = (bool) phrase;
 	if( !phrase ) { 
 		// keep the above tests before user data is at fault
 		return FAIL("NULL pass phrase");
@@ -77,6 +78,7 @@ bool key_munger_base:: check_phrase_isnt_daft( blk1 & phrase )
 
 bool key_munger_base:: make_buffer_from_phrase( buffer2 & blk_phrase_plus, blk1 & phrase )
 {
+
 	//
 	// MD can handle NUL bytes - no problem
 	// Prevent string keys from possibly merging

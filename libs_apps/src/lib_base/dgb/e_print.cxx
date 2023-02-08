@@ -39,7 +39,7 @@ void e_perror( const char * fmt, ... )
         va_start( args, fmt );                                                  
 	e_vprint( fmt, args );
         va_end( args );                                                  
-	e_print(" %p\n");
+	e_print(" %m\n"); // %m is strerror and takes NO parameter
 }
 
 /*!

@@ -446,6 +446,31 @@ blk1::operator STR0() const // not really const
  //	return (STR0) (str0) (char *) buff;
 }
 
+/*!
+	an empty buffer is FALSE: an empty list or empty string
+	
+	arg( blk1 & phrase ) { .. HERE .. }
+	ODD BUG: gcc says EG/key_munger_base.cxx:105:13: error: conversion from ‘blk1’ to ‘bool’ is ambiguous
+105 |         if( phrase ) {
+	
+/home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/buffer/blk1.h:204:9: note: candidate: ‘blk1::operator bool() const’
+204 |         operator bool() const
+|         ^~~~~~~~
+/home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/buffer/blk1.h:428:9: note: candidate: ‘blk1::operator STR0()’
+428 |         operator STR0(); // it is a linker of mangled name
+		
+	I dont see how that is, it is clearly going to bool
+	This inline definition is probably not good enough
+	(a NULL STR0 is also FALSE - IMHO)
+	but that is my bad coding, it should 
+*/
+blk1::operator bool()
+{
+	// seems this is not inherited
+	// e_print("operator bool says nbytes_used %d", nbytes_used );
+	return nbytes_used;
+}
+
 bool blk1:: operator == ( const char * rhs ) const
 {
 	return IS_SAME == cmp( rhs );

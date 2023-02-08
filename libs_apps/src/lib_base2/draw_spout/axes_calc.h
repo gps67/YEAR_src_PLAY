@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-typedef long double flt80;
-// typedef float flt80;
+// typedef long double flt80;
+typedef double flt64;
 
 #include <string.h>
 #include <stdlib.h>
@@ -30,8 +30,8 @@ class Axis_Calc : public GRP_lib_base2_pdf
 	{
 	}
  public:
-	flt80 origin;		//<! position of surface zero on dev
-	flt80 factor;		//<! scale dev units per surface unit
+	flt64 origin;		//<! position of surface zero on dev
+	flt64 factor;		//<! scale dev units per surface unit
 	str1 name;
 
 	void set_name( str0 prefix, str0 suffix )
@@ -76,7 +76,7 @@ class Axis_Calc : public GRP_lib_base2_pdf
 		factor = _factor;
 	}
 
-	flt80 dev_from_surface( flt80 pos ) const
+	flt64 dev_from_surface( flt64 pos ) const
 	{
 #if 0
 		float t1 = pos;
@@ -89,17 +89,17 @@ class Axis_Calc : public GRP_lib_base2_pdf
 		return pos * factor + origin;
 	}
 
-	flt80 surface_from_dev( flt80 pos ) const
+	flt64 surface_from_dev( flt64 pos ) const
 	{
 		return (pos - origin) / factor;
 	}
 
-	flt80 dev_from_surface_step( flt80 step ) const
+	flt64 dev_from_surface_step( flt64 step ) const
 	{
 		return step * factor;
 	}
 
-	flt80 surface_from_dev_step( flt80 step ) const
+	flt64 surface_from_dev_step( flt64 step ) const
 	{
 		return step / factor;
 	}

@@ -134,6 +134,8 @@ struct blk1 : public GRP_lib_base
 	blk1( const blk1 & b );
 	blk1( const str0 & b );
 
+	operator bool(); // const // const made it fail with ambiguous bool STR0
+
 	/*!
 		set the buffer to an initial value
 	*/
@@ -197,16 +199,6 @@ struct blk1 : public GRP_lib_base
 	void	zap() { scrub(); }
 	void	dgb_dump(str0 msg) const;
 	void	dgb_max_str(int max, u8 * msg);
-
-	/*!
-		an empty buffer is FALSE: an empty list or empty string
-	*/
-	operator bool() const
-	{
-		// seems this is not inherited
-		// e_print("operator bool says nbytes_used %d", nbytes_used );
-		return nbytes_used;
-	}
 
 	/*!
 		realloc (down) to the exact used space

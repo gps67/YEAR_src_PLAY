@@ -126,13 +126,13 @@
 	//! get addr/port as a string for use in ftp PORT command "a,b,c,d,H,l
 	str0 sock_addr_ip::ftp_port_str()
 	{
-		unsigned int p, p1, p2;
-		p = ntohs( sa.sin_port );
+		unsigned int p, p1, p2, port;
+		port = p = ntohs( sa.sin_port );
 		p2 = p & 0xff; p>>=8;
 		p1 = p & 0xff; p>>=8;
 		static char buff[ 2 * 4 + 10 ];
 		sprintf( buff, "%d,%d", p1,p2 );
-		INFO("# ADDR # PORT STR # %s #", buff );
+		INFO("# ADDR # PORT STR # %s # port %d ", buff, port );
 		return buff;
 	}
 

@@ -11,6 +11,10 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/dbetz/xlisp
+https://github.com/audacity/audacity
+https://github.com/audacity/conan-recipes
+https://github.com/audacity/audacity-manual
 https://github.com/danginsburg/opengles-book-samples
 https://github.com/danginsburg/opengles3-book/
 https://github.com/steelbrain/node-ssh

@@ -1,0 +1,135 @@
+
+	CXX ARGV TREE
+	PSG over nested ARGV
+
+	STR0 NAME = "NAME"; // CMNT
+
+	CMD	# no args calls a custom function
+	CMD ARG1 # foreach ARGV # FILTER "ARG1" into ARG1 # decl VAR #
+	CMD ARG1 ARG2 ARG3 ARG4 and also ARG5 
+
+		each NAME creates a VAR to hold that SPEC's data
+		Compiler can use post-run SPEC to know CT SPEC
+		SCRIPT can run ASIF similar-behaviour (common subset)
+
+		each NAME creates a RT VALUE VAR (or SPEC)
+		when no UDEF beyond casual mention do this:
+
+			STR0 NAME = "NAME"; // CMNT
+
+			// try to find MODULE.NAME 
+			
+
+	DIALECT += LEXICON
+	LEXICON += "CMD"
+	LEXICON += "ARG5"
+	FILLERS += "and" "also"
+
+		first sets up call
+		shift down used args
+		repeat
+	
+	PSG += LINE_of_ARGS # well known CMD0
+
+	ticker-streamer - CMD eats up the correct number of ARGS
+	READ_HEAD slides by nargs and runs next command
+	Some CMD's know exactly how many args
+	Some CMD's take TAIL of ARG1 # or PAIRS or TRIPS or MORE
+	Advantage is no overhead, just indefinite stream of ARGS
+	Alternate is more precise, NESTED LISTS, FIXED argc
+	Alternate is one slot as nargc
+
+	{ CMD CMD ARG CMD CMD ARG -opt ARG CMD }
+	{ LIST_of_LINES 
+	 { CMD }
+	 { CMD ARG }
+	 { CMD }
+	 { CMD ARG -opt ARG } 
+	 { CMD }
+	}
+	
+	MATCH VALUE " SP %s SP "
+
+	SPOUT != SCRIBE 
+
+		paragraph word wrap
+		hyphen-ate tables
+		DIAG must be unsplit
+		DIAG with PAGE_BREAK-ABILITY
+		DIAG is BLOCK
+	
+	MINI_MACHINE
+
+		CXX inline
+		ASM inline
+		FSM layout
+	
+	TYPE TABLES
+
+xlisp.h
+/* macros to get arguments of a particular type */
+#define xlGetArgCons()          xlTestArg(xlTypeArg(xlConsP))
+#define xlGetArgList()          xlTestArg(xlTypeArg(xlListP))
+#define xlGetArgSymbol()        xlTestArg(xlTypeArg(xlSymbolP))
+#define xlGetArgString()        xlTestArg(xlTypeArg(xlStringP))
+#define xlGetArgFixnum()        xlTestArg(xlTypeArg(xlFixnumP))
+#define xlGetArgFlonum()        xlTestArg(xlTypeArg(xlFlonumP))
+#define xlGetArgNumber()        xlTestArg(xlTypeArg(xlNumberP))
+#define xlGetArgChar()          xlTestArg(xlTypeArg(xlCharacterP))
+#define xlGetArgVector()        xlTestArg(xlTypeArg(xlVectorP))
+#define xlGetArgPort()          xlTestArg(xlTypeArg(xlPortP))
+#define xlGetArgInputPort()     xlTestArg(xlTypeArg(xlInputPortP))
+#define xlGetArgOutputPort()    xlTestArg(xlTypeArg(xlOutputPortP))
+#define xlGetArgFStream()       xlTestArg(xlTypeArg(xlFileStreamP))
+#define xlGetArgUnnamedStream() xlTestArg(xlTypeArg(xlUnnamedStreamP))
+#define xlGetArgClosure()       xlTestArg(xlTypeArg(xlClosureP))
+#define xlGetArgEnv()           xlTestArg(xlTypeArg(xlEnvironmentP))
+#define xlGetArgObject()        xlTestArg(xlTypeArg(xlObjectP))
+#define xlGetArgForeignPtr()    xlTestArg(xlTypeArg(xlForeignPtrP))
+#define xlGetArgTable()         xlTestArg(xlTypeArg(xlTableP))
+
+TCLSH.h
+...
+... HERE
+...
+
+libs_apps STR0.dll lib_STR0.so -l_STR0
+
+	u8 u16_lohi u24_u8_lohi u32_lohi u48_u16_lohi u64_lohi
+	u8 u16_lohi u8_u8_u16_lohi u8_u24_lohi u32_lohi u16_u48_lohi u64_lohi
+	i8 i16_lohi u8_u8_i16_lohi i8_i24_lohi i32_lohi i16_i48_lohi i64_lohi
+	f32_x86 f64_x86 f_16_p_16 
+
+	BIT_FIELD
+		BYTE_A
+		BYTE_B
+		PAIR_AB_lohi
+		PAIR_CD_lohi // shifted // in_situ
+		QUAD_ABCD_lohi
+
+		u8_u8_u16_u32 // works well on ARM32
+		u8_u8_u16_u8_u24 // works well on ARM32
+		u8_u8_u16_u8_u8_u16 // works well on ARM32
+	
+	BIT_FIELD
+		u3_u5_u8_u16 _lohi // BYTE_A == u3_u5_lo_hi // u5_u3_bits
+
+	
+	ASM
+		u48_payload = u64_WORD >> 16
+
+			It has to happen this way,
+			even on LOHI architecture
+			because even that will want BYTE_A to be low u8
+			as low_u8 is u8_cast_from_WORD
+		
+		i48_payload = i64_WORD >> 16 // SIGNED shift
+
+			explain
+	
+	DIAG
+
+		add VAR to DIAG
+		add SPEC to DIAG // import from margin or own line summary
+
+

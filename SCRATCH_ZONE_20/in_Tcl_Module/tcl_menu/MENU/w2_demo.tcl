@@ -152,6 +152,7 @@ proc w2_demo_build {{w2 .w2}} {
 	w2_c_resized $w2_c $w2_mf
 
 	# unused TESTS
+	bind $w2_mf <MouseWheel> {puts "BIND W %W x %x y %y b %b d %d D %D a %a S %S T %T "; }
 	bind $w2_c <MouseWheel> {puts "BIND W %W x %x y %y b %b d %d D %D a %a S %S T %T "; }
 	bind $w2_c <ButtonPress-1> {puts "BIND W X %x Y %y b %b"; }
 	bind $w2_c <ButtonPress-2> {puts "BIND W X %x Y %y b %b"; }

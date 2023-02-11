@@ -1,0 +1,69 @@
+#  OBJ_ID_ARGS.txt
+
+ $node
+
+	It looks good to have a treenode as a function
+
+	set node [find_xml_obj_in_xml_tree]
+	set node2 [$node nextSibling]
+
+	but that is absurd because it creates a function for every XML node
+	So instead register one XML function and pass $node as a value to it
+
+	set node2 [ OBJ $node nextSibling ] ;# we can figure that $node is XML
+	set node2 [ XML $node nextSibling ] ;# syntax sugar ;# expect is_XML
+
+ OBJ $node
+ OBJ $node GET fieldname
+ OBJ $node SET fieldname newvalue
+ OBJ $node CALL opcode args
+ OBJ $node opcode args
+
+ 	"fieldname" gets tokenised
+
+	if fieldname is builtin to obj_binary_type ...
+	if fieldname is UDEF_extra 
+
+ GET $node fieldname
+ SET $node fieldname newvalue
+ CALL $node fieldname newvalue
+
+
+	These abbreviations make sense
+	They must match { OBJ $obj GET fieldname } ;# exactly
+	The code vectors behind the scenes in a STANDARD way (TBA)
+
+ TCL_VALUE
+
+ 	the type system is PTR1 PTR2 or something
+	it is described elsewhere - and may vary
+	the design tries to use all fields
+	the design tries to leave fields - to keep data small
+
+ OBJ $node opcode args
+
+ 	After checking for GET SET CALL the next is seen as CALL opcode
+
+ NAMESPACE::opcode $node args
+ opcode $node args
+ 
+ 	"opcode" - when is a builtin
+ 	"opcode" - when is a scripted extra
+
+ "reverse_lookup"
+
+ 	"GET" is tokenised
+ 	"fieldname" is tokenised
+ 	"opcode" is tokenised
+
+	somehow optimise the lookup,
+	can have any extra baggage on TOKEN
+	lookup USAGE on TOKEN 
+	lookup TOKEN in USAGE
+
+		usage_0
+		usage_1
+		usage_2
+		usage_3
+	
+	.

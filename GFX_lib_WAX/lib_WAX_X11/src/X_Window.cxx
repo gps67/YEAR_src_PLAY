@@ -166,14 +166,22 @@ struct X_Window_Root : public X_Window
 		DefaultRootWindow( _disp.display ),
 		_name
 	) {
-		printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
+	//	printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
+		INFO("# X_Window_Root( disp, '%s' ) -- window(%ld)", name, get_window() );
 	}
 };
 
 bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 {
 	// subscribe to be told when WM_ clicks on X button
-	XSetWMProtocols(display, get_window(), & X_Display_One:: atom_wm_delete_window, 1);
+	XSetWMProtocols(
+		display,
+		get_window(),
+	      & X_Display_One:: atom_wm_delete_window,
+		1
+	);
+
+	// return FAIL("reason");
 
 	return INFO("LURK TODO");
 }
@@ -227,6 +235,7 @@ X_Window_Top_Level::X_Window_Top_Level(
 	set_name( _name );
 	ulong col_border = BlackPixel( display, 0 );
 	ulong col_background = BlackPixel( display, 0 );
+	// create a simple window, drawable // 
 	drawable = ::XCreateSimpleWindow(
 		display,
 		RootWindow( display, 0),
@@ -239,8 +248,9 @@ X_Window_Top_Level::X_Window_Top_Level(
 	disp->add( this );
 	INFO("CTOR_ONE");
 	INFO( "window = %ld", get_window() );
-	if(! X_WMProtocols_add_WM_DELETE_WINDOW() )
+	if(! X_WMProtocols_add_WM_DELETE_WINDOW() ) {
 		FAIL_FAILED();
+	}
 }
 
 bool X_Window_Top_Level::

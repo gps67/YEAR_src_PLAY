@@ -134,7 +134,7 @@ gdb_test1: $(EXEC1)
 	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
 
 gdb_test2: $(EXEC2)
-	INGDB=1 gdb -tui --args ./$(EXEC2) $(test2_font)  P 
+	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG2) --args ./$(EXEC2) $(test2_font)  P 
 
 gdb_test3: $(EXEC3)
 	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG3) --args ./$(EXEC3)

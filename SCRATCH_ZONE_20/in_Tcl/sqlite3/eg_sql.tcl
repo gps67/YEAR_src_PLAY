@@ -37,3 +37,4 @@ set x [db1 eval {SELECT * FROM t1 ORDER BY a}]
 
 puts "x $x"
 
+db1 .dump

@@ -135,6 +135,14 @@ if(0)	disp.test1();
 
 // there is a main_one
 int main_two( argv_decoder & ARGS ) {
+	// ARGV_DECODER // _t // ARGS_t // TEMPLATE DOT // "ALIAS" // EXPR
+	// TODO(); // CMNT // ARGV_PARSER // _t // TYPES += NEW_TYPE("ARGS") // ARGV
+	// KNOW // DECL // %s_t $0 // THIS_COPDE_POINT_as_EA_EXPR
+	// PARSE // ARGV_PARSER // EA_NAME_by_EXPR_ARGV // ARGS // STR0 NAME //
+	// EXPR // OBJ.FIELD _T = "SESS.main_two.CODE_POINT("STR0")
+	// ALIAS STR0 "TYPE_CAST_STR0
+	// ARGS.on_VARS _fully_loaded
+
 	// open up a display connection
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );
@@ -167,7 +175,12 @@ int main_two( argv_decoder & ARGS ) {
 //	// create a window within the window
 
 	win1.map();
-	win1.XSelectInput( ExposureMask | KeyPressMask   | ButtonPressMask |ResizeRequest );
+	win1.XSelectInput // () 
+	  ( ExposureMask
+	  | KeyPressMask
+	  | ButtonPressMask
+	  | ResizeRequest
+	);
 	
 
 	// KEY
@@ -197,6 +210,8 @@ if(1)	disp.test1(); // what does this do ???
 	This is the basis of a C++ wrapper for lib W11 and libX11
 */
 int main( int argc, char ** argv, char ** envp ) {
+        gdb_sigaction( argv[0] ); // sets progname_argv0
+ if(1)  dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
 	WAX:: argv_decoder ARGS ( argc, argv, envp );
 	return main_two( ARGS );
 }

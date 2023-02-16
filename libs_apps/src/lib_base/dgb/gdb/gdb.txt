@@ -1,0 +1,76 @@
+2023-02-16 Feb Thu 01:15 # 55 #  gdb/gdb.txt
+
+	WANT to tap into pythons gdb API
+	when debugging gdb, in xterm --tui
+
+ LIST stack frames
+ LIST stack frames ARGS // C++ API CALL FUNC ARGS # or LAMDA CAPT
+ KNOW { TYPE_t VAR_NAME CODE_POINT USAGE } // { var_name == "VAR_NAME" }
+ KNOW type_t_of_var == "TYPE_t" // MODULE LOOKUP SCOPE //
+ GET STACK VAR  TYPE_NAME == "i64_WORD"
+ SET STACK VAR  VAR_NAME == "enum_PICK_enum_value" // TABLE=="TABLE"
+ GET FRAME[call_depth] "funcname" { filename lineno +lines +xpos seek_pos }
+ SHOW_CODE FILENAME LINENO XPOS { EA_VAR_EXPR EXPR==XPOS }
+
+ LIST stack frames ... with details ...
+
+ 	DECL function_prototype_args FIRST_nearest_SP_FRAME_ZERO 
+
+ LIST stack args
+
+ 	OUTER
+	 WELL_KNOWN _start()
+	 __libc_start_main()
+	 -?--
+	 main()
+
+ VARS _EXPR_POOL("MACRO","%s MACRO_NAME_ONE") ; // SCRIPT STEP IN PARSED ROM
+
+ 	Because we have PASS PARSE we have PRE_COMPILED loads of stuff
+
+ VARS NAME_POOL("MACRO","%s MACRO_NAME_ONE") ; // SCRIPT STEP IN PARSED ROM
+
+ 	So we compile above to CODE passed as NEARBY_AVAIL_SCRIPTS
+
+	SCRIPTS is a simple way of saying MODULE VIA API
+
+ "%s MACRO_NAME_ONE"
+
+	STR0 ANYSTR;
+
+	str1 ANYSTR_utf8; // detect CSET beyond FONT_is_latin1
+
+	PARSER_SAYS_t
+	 PARSER_SAYS; // treat as printf("%s",MACRO_NAME) // _ONE
+
+	 CODE_POINT . source_expr == "%s MACRO_NAME_ONE"; // PARSED from EG
+
+ LIST fields of SPEC
+
+ 	function_call_C
+ 	function_call_CXX
+ 	function_call_ARGV
+ 	function_call_OBJV
+
+	call_var("varname") += SOMETHING // NOUN is FUNCTION "call_name_mangled"
+
+	// SCRIPT STEP IN PARSED ROM
+
+# SP[00] # /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320/libbase.so   dgb_call_stack_t::stack_get(char const*) 
+# SP[01] # /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320/libbase.so   dgb_call_stack_t::print_call_stack(_IO_FILE*, int, int) 
+# SP[02] # /home/gps/YEAR/src/PLAY/libs_apps/build_LGX_E6320/libbase.so   dgb_print_call_stack(_IO_FILE*, int, int) 
+# SP[03] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window::check_window() 
+# SP[04] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window::get_window() 
+# SP[05] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window::X_Window(WAX::X_Window*, WAX::X_Display*, unsigned long, char const*) 
+# SP[06] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window_SubFrame::X_Window_SubFrame(WAX::X_Window*, WAX::X_Display*, unsigned long, char const*) 
+# SP[07] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window_Frame::X_Window_Frame(WAX::X_Window*, WAX::X_Display*, unsigned long, char const*) 
+# SP[08] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   WAX::X_Window_Top_Level::X_Window_Top_Level(char const*, WAX::X_Display&, WAX::A_Rectangle, int) 
+# SP[09] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   X_test_two::X_test_two(char const*, WAX::X_Display&, WAX::A_Rectangle, int) 
+# SP[10] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   main_two(WAX::argv_decoder&) 
+# SP[11] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   main() 
+# SP[12] # /lib/x86_64-linux-gnu/libc.so.6   () 
+# SP[13] # /lib/x86_64-linux-gnu/libc.so.6   __libc_start_main() 
+# SP[14] # /home/gps/YEAR_offline/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/obj/test2_xft_diagonal.elf   _start() 
+# test2_xft_diagonal.elf # STACK # ---------- 
+
+

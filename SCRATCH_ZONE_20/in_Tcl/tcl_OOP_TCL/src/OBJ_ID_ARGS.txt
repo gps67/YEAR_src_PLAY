@@ -18,6 +18,7 @@
  OBJ $node SET fieldname newvalue
  OBJ $node CALL opcode args
  OBJ $node opcode args
+ TYP $node ...
 
  	"fieldname" gets tokenised
 
@@ -43,6 +44,39 @@
  OBJ $node opcode args
 
  	After checking for GET SET CALL the next is seen as CALL opcode
+
+	ie OBJ is a valid prefix for ANY $node 
+
+ TYP $node opcode args
+
+ 	It documents better to use a named TYP as alias for "OBJ"
+
+	AUTO add a checker that checks the type_of_ $node
+	but then continue with any type
+
+	OBJ create_subclass_function TYP ;# C++ does the check ? ;# "TYP"
+
+
+ { $node == {-} }
+ { $node == {} }
+ { $node == {default} }
+
+ 	AUTO HANDLE when there is no $obj
+
+ { $node == new }
+ { $node == CTOR }
+
+ 	some special names for CTOR
+  
+ { $node == STDOUT }
+
+	some special names for well known objects
+  
+ { $node == "MYNAME" }
+
+	some special names for well known UDEF objects
+
+	ie [MK_ID] generates x1234 xFF
 
  NAMESPACE::opcode $node args
  opcode $node args

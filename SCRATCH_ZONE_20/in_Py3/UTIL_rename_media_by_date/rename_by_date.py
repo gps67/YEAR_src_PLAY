@@ -17,6 +17,7 @@
 # that includes things this year (maybe automate to make it time relative?)
 
 import os
+import stat
 import time 
 import re_cache
 RE = re_cache.re_cache()
@@ -27,8 +28,8 @@ fmt = fmt1
 
 def os_rename( filename1, filename2 ):
 		print( "mv -n", filename1, filename2 )
-		return None
 		os.rename( filename1, filename2 )
+		return None
 
 class match_filename_filter:
  def build_tails( self ):
@@ -95,12 +96,16 @@ class match_filename_filter:
  		seen = self.tail_dict[ ext ]
  	except:
  		seen = None
- 	print( "seen = ", seen, "ext = ", ext )
+ 		print( "returning seen = ", seen, "ext = ", ext )
  	return seen
 
  def get_valid_ext( self, filename ):
  	l = filename.rsplit(".",1)
- 	ext = l[-1:]
+	# l is a list # l =  ['P2110001', 'JPG'] 
+	# unless it isnt
+ 	ext = l[-1]
+ 	# print("l = ", l, "ext = ", ext )
+ 	return ext
  	
  def match_filename_uses_YEAR_MM_DD( self, filename ):
  	if RE.run( filename, self.re_YEAR_MM_DD_3 ):
@@ -193,6 +198,19 @@ for filename1 in L:
 		print("# REC #", filename1, decimal )
 		continue;
 
+	s = os.stat( filename1 ) # might FAIL if deleted since listdir (etc)
+
+	# skip dirs dev fifo symblink
+	if not stat.S_ISREG(s.st_mode):
+		print( "# SKIPPING not a file # ", filename1 )
+		continue
+
+#	# not a file includes DIR
+#	# skip dirs dev fifo symblink
+#	if stat.S_ISDIR(s.st_mode):
+#		print( "# SKIPPING dir # ", filename1 )
+#		continue
+
 	# skip if .ext not on the list
 	ext2 = filter.match_filename_ext( filename1 )
 	if ext2 == None:
@@ -200,7 +218,6 @@ for filename1 in L:
 		continue
 
 	# skip if mtime too_old or too_new
-	s = os.stat( filename1 ) # might FAIL if deleted since listdir (etc)
 	file_mtime = s.st_mtime
 	if file_mtime > time_too_new:
 		print( "#", filename1, local_str_from_time_int( fmt1, file_mtime ), "# TOO NEW" )
@@ -209,8 +226,8 @@ for filename1 in L:
 		print( "#", filename1, local_str_from_time_int( fmt1, file_mtime ), "# TOO OLD" )
 		continue
 
-	print("# ??? #", filename1 )
-	continue;
+	# print("# ??? #", filename1 )
+	# continue;
 	# compute new filename, version vn is clash from same second
 	vn_str = ""
 	vn = 0
@@ -238,6 +255,7 @@ for filename1 in L:
 	if filename2 == filename1:
 		print( "# SAME", filename2 )
 	else:
+		# func does print or call
 		os_rename( filename1, filename2 )
 
 # STAT:

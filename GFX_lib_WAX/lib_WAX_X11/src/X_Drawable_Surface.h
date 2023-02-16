@@ -15,7 +15,7 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 
 	Display * display; // refactor as X_Display
 	Drawable drawable; // caller creates drawable then this holds it
-	A_WH WH;
+	A_WH WH; // FRAME XY WH // WINDOW // PANEL // 
 
 	#if 1 // permit simple prototype sketch design
 	X_Drawable_Surface(): display(NULL), drawable(0) {}

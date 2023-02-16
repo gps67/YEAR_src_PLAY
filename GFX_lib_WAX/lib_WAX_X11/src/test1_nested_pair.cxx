@@ -319,7 +319,10 @@ bool main_loop_once( X_Display & disp, XEvent & report )
 	This is the basis of a C++ wrapper for lib W11 and libX11
 */
 
-int main() {
+int main(int argc, char ** argv) {
+        gdb_sigaction( argv[0] ); // sets progname_argv0
+ if(1)  dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
+
 	// open up a display connection
 	X_Display disp( NULL );
 	X_Window::register_root( disp, "R-O-O-T" );

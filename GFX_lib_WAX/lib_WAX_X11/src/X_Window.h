@@ -48,10 +48,10 @@ namespace WAX {
 
 
 */
-struct X_Window : public X_Drawable_Surface
+struct X_Window : public X_Drawable_Surface // X_Window is a _Drawable_Surface
 {
 	// Display * display;
-	// Drawable drawable;
+	// Drawable drawable; // Window is "drawable" // alias SURFACE 
 	// A_WH WH;
 	//
 	X_Window * parent;

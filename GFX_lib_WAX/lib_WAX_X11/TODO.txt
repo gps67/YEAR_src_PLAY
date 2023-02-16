@@ -1,0 +1,75 @@
+
+	SCRIPT 
+
+		compiled to CXX to segment.elf
+
+	SCRIPT
+
+		EM = "12pt"	// SETTER(STR0) // PARSE_VALUE("12pt")
+
+		STR0 = well_known_name("12 pt")
+		STR0 = well_known_name_from_parsing("12 pt")
+	
+	EXPR
+		lhs = rhs
+
+		MATCH MACRO EXPR_is_CONST_VALUE
+		MATCH MACRO EXPR_is_CONST_VAR
+		MATCH MACRO EXPR_is_GET_VAR
+		MATCH MACRO EXPR_is_EVAL_SCRIPT_FRAGMENT
+
+			RETVAL = lhs OP rhs
+
+			// OP follows CXX priorities
+			// OP adds UDEF syntax and known values
+			// LIBR adds EXPR is TREE of EXPR_STEP
+	
+	MAKE
+
+		OUTPUT += INPUT // make dependency // something on loop
+
+		FORWARD_NOTIFY_OF_CHANGE
+
+		INPUT.on_modify_recalc_notify += OUTPUT_VAR("OUTPUT")
+
+	
+	DIAG
+		on_modify_notify
+
+			knock_on_effects_of_lhs += rhs
+			rhs += EXPECT_TYPE // guess //
+
+		on_batch_collect
+
+			networked remote machines are a cycle away
+			merge multiple requests into SCRIPT_CODE_SEGMENT
+			GOT VAR_EXPR VALUE # NO_ALERTS #
+			WAIT_for_NEW_VALUE_AVAIL
+			WAIT_for_scheduled MAINT
+			WAIT_for_AVAIL
+			WAIT_for_MAINT
+			EDGE when ALL AVAIL
+			EDGE before DROP CACHE
+			EDGE when KEEP_CACHE
+
+
+		EM = PARSE("12_pt") # default STR0 RETVAL = SOLO_ARG_ANYSTR
+
+		EM = EM_two = EM # KNOW TRACK CURR TYPE CAST 
+
+		EM = EXPR("EM_one * 1.4") # PARSE looks like EXPR lhs "*" 1.4
+
+		
+	
+	STEP_EXPR
+
+		FSM += TABLE_ONE
+		ENUM += SOMETHINGS_t_attr_2
+
+		list of sub_steps
+		list of vars, getters and SPEC
+		list of FSM XPOS_in_SCRIPT_in_MODE // multi MODE per CODE_POINT
+		in_MODE_PARSE
+		in_MODE_EVAL	_STEP
+		in_MODE_SCAN
+

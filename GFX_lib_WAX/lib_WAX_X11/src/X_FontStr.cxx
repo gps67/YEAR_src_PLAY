@@ -49,7 +49,14 @@ using namespace WAX;
  	printf(" %-12s %s \n", name, (STR0) buf );
  }
 
-// NOTE #name is CPP for "varname"
+// NOTE #name is CPP for "varname" // %s%s varname { SYNTAX "%s_t" }
+// KMOW #name is { EXPR %s } // NAME // DESC
+// KMOW #name is { EA %s } // NAME // DESC
+// SYNTAX // PRINT_FIELD( foundry ); // %s == "foundry"
+// SYNTAX // PRINT_FIELD( field ); // %s == "field"
+// EA_LEX "fieldname" // AUTO %s == "fieldname" // LIBR += SCRIPTS DICTIONARIES
+// EG fieldname == " { FIELDNAME "foundry" } // PARSED // FROM //
+
 #define PRINT_FIELD( name ) print_field( name, #name )
 
  void

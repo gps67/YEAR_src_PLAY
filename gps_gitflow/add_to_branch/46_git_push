@@ -11,4 +11,6 @@ echo "#
 # that machine needs us to provide SOMETHING of a PASS GUEST_PASS
 #"
 
+type P || echo "WARNING PATH is \n$PATH"
+
 ask_do git push

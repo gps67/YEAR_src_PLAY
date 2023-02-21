@@ -183,7 +183,9 @@ bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 
 	// return FAIL("reason");
 
-	return INFO("LURK TODO");
+	if(! INFO("LURK TODO") )
+		WARN("INFO returned false");
+	return true;
 }
 
 // has to go after decl of X_Window_Root

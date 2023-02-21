@@ -117,6 +117,8 @@
 	EXEC2=$(PROG2)$(dot_EXE)
 	EXEC3=$(PROG3)$(dot_EXE)
 	EXEC4=$(PROG4)$(dot_EXE)
+#	gdb=gdb
+	gdb=/tools/x86_64/ccs/bin/gdb
 
 all: run_test3
 
@@ -131,13 +133,13 @@ all: run_test3
 $(OBJS): $(HDRS)
 
 gdb_test1: $(EXEC1)
-	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
 
 gdb_test2: $(EXEC2)
-	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG2) --args ./$(EXEC2) $(test2_font)  P 
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG2) --args ./$(EXEC2) $(test2_font)  P 
 
 gdb_test3: $(EXEC3)
-	INGDB=1 gdb -tui --command ../.gdb_init_$(PROG3) --args ./$(EXEC3)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG3) --args ./$(EXEC3)
 
 run_test1: $(EXEC1)
 	./$(EXEC1)

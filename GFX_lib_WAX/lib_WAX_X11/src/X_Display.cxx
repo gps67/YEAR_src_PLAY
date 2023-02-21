@@ -35,13 +35,21 @@ Atom X_Display_One:: atom_wm_state_add = 0;
 Atom X_Display_One:: atom_wm_state_remove = 0;
 
 /*!
-	create a connection
+	create a connection to an X11 server
+
+	There should only be one, but you might have a second, eg from tcl/tk
+	so this does the one-time initialisation of some constants,
+	and does not check that it is the only one
 */
 X_Display_One :: 
 X_Display_One( const char * display_name )
 : cmap( NULL ) // what is the correct C++ of doing this ?
 {
 	display = ::XOpenDisplay( display_name );
+	if(!display) {
+		FAIL("NULL display from ::XOpenDisplay(%s)", display_name );
+		return; // throw
+	}
 	cmap.late_init( display );
 	// only_if_exists == false // NULL might match NULL
 	atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
@@ -273,7 +281,7 @@ bool X_Display:: process_event( XEvent & event )
 			W2->name
 		);
 		if((Atom)event.xclient.data.l[0] == atom_wm_delete_window) {
-			INFO("WM_DELETE_WINDOW");
+			INFO("WM_DELETE_WINDOW - needs to be actioned");
 			FAIL("WM_DELETE_WINDOW");
 		} else {
 			FAIL("OTHER ClientMessage");

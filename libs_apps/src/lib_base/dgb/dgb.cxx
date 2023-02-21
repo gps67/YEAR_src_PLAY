@@ -380,6 +380,9 @@ bool fn_WARN(
 		ret_val = true;
 		FAIL_clear_error();
 	}
+	if( (NOTE[0] == 'I') && (0==strcmp(NOTE, "INFO")) ) {
+		ret_val = true;
+	}
 	if( (NOTE[0] == 'P') && (0==strcmp(NOTE, "PASS")) ) {
 		ret_val = true;
 	}

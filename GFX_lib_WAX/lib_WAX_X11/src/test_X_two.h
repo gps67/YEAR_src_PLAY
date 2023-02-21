@@ -68,23 +68,6 @@ class X_test_two : public X_Window_Top_Level
 		set_title( _name ); // second name
 	}
 
-	/*!
-	X_test_two(
-	 const char * _name,	// _dgb_ AND X11 find window by name
-	 X_Window * parent,	// child of window has no title
-	 A_Rectangle xywh,
-	 int border
-	 )
-	: X_Window_Top_Level( _name, parent, xywh, border )
-	, draw_green( *this )
-	, xywh1( 0,0, xywh.width, xywh.height )
-	{
-		xywh1.reduce2(1);
-		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_purple );
-		draw_green.set_fg( blue_col );
-	}
-	*/
-
 /*
 */
 

@@ -38,6 +38,7 @@ namespace WAX {
 	struct X_GC;
 	struct X_Draw;
 	struct X_Window;
+	struct X_Window_Root;
 	struct X_Pixmap;
 	struct X_Image;
 	struct X_Drawable_Surface;

@@ -1,0 +1,19 @@
+
+https://www-h.eng.cam.ac.uk/help/tpl/graphics/X/X11R5/Concise.html
+https://www-h.eng.cam.ac.uk/help/tpl/graphics/X/X11R5/node1.html
+
+http://www-h.eng.cam.ac.uk/help/tpl/graphics/X/X11R5/node9.html
+http://www-h.eng.cam.ac.uk/help/tpl/graphics/X/X11R5/node12.html
+
+The XLib Programming manual (have this)
+https://tronche.com/gui/x/xlib/
+
+
+get fd_x11 for select
+https://gist.github.com/vitquay1996/5c1f346e1604bf2535938c6ff31a7179
+
+
+
+GL - needed ?
+
+https://gist.github.com/keyou/94cc786e246380d5b3daa1de17378b58

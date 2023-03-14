@@ -18,6 +18,9 @@ struct A_matrix_2x2;
 }
 
 /*
+	XFT
+#include <X11/Xft/Xft.h> // XGlyphInfo
+
 	Release (AllocatedItem) requires Display * 
 	free(mem) needs TheHeap * (as global vars)
 	Either each Item must store Display (etc) 
@@ -42,46 +45,6 @@ struct A_matrix_2x2;
 	which holds the main vars that allocates items.
 	MY_XFT also holds lots of individual Items,
 	and it has to know to release them.
-
- X_Window
-
- 	There is a single Display / Screen / Visual / Drawable
-	or maybe a WIN + PIXMAP 
-
-	Not sure what to do about lots of nested widgets,
-	when it is only necessary to hold the parent window, and current inner
-	IE this is one big canvas
-
-XFT
-
-	We need XFT for the vertical label on a graph, (single item)
-	We need XFT for the diagonal line labels (rewrite then)
-	We need XFT == X11_Font for everything else
-	-so- use plain X11 most of the time (flat type)
-
-MY_XFT
-
-	holds the one Draw for the one X_Window
-	holds the list of colors
-	holds the list of fonts
-
-	holds temp vars to build fonts ??
-
-	OPTION base is class Draw
-
-	OPTION lookup["name"] 
-	pen = lookup("pen","name"); // option to build it from SCALED layout
-
-Pen
-
-	holds an uplink to MY_XFT
-	holds Draw + Font + Color
-	owns none of them !
-	
-	holds temp vars to build fonts ??
-
-
-
 
 */
 

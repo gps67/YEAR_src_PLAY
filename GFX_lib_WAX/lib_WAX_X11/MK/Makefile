@@ -99,6 +99,9 @@
 	# here for now
 	OBJS += X_Image.o
 
+	# beyond basic core
+	OBJS += X_Display_UDEF.o
+
 #	we nolonger build a few files, now with -I libs_apps/include -lbase
 #	this was ALL that we need from base1 though
 #	OBJS += gdb_invoke.o
@@ -130,7 +133,11 @@ all: run_test3
 # 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
 
 
-$(OBJS): $(HDRS)
+# editing ANY of $(HDRS) causes all $(OBJS) to be rebuilt
+# normally uncommented
+# HINT # for IDE rebuild the one that failed recently first
+# $(OBJS): $(HDRS)
+# $(OBJS): $(HDRS)
 
 gdb_test1: $(EXEC1)
 	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)

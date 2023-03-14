@@ -1,6 +1,7 @@
 #include "XFT.h"
 #include <X11/Xft/Xft.h>
 #include "X_Window.h"
+#include "X_Display.h"
 
 #include "A_matrix_2x2.h"
 
@@ -58,7 +59,7 @@ Xft_DrawCreate( X_Window & W )
 
 	Visual   *visual;
 	Colormap colormap;
-	int screen_0 = X_Display:: SCREEN_0; // another alias for 0
+	int screen_0 = X_Display_1:: SCREEN_0; // another alias for 0
 //	cant call get_screen() here because that uses draw which holds display
 //	screen_0 = get_screen();
 	screen_0 = X_Display:: SCREEN_0; // another alias for 0

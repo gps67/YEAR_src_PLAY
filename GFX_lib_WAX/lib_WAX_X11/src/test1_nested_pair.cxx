@@ -18,6 +18,7 @@
 #include "X_Window.h"
 #include "X_Draw.h"
 #include "X_Display.h"
+#include "X_Display_UDEF.h"
 
 #include "dgb.h"
 
@@ -187,7 +188,7 @@ class X_test_box_Top : public X_Window_Top_Level
 
  	// PANEL = sub_window {
 	// }; // %s == subwindow // PSG_mk_var; // mk_var_in_API_csr // csr_var //
- 	X_test_box_Sub sub_window;
+// 	X_test_box_Sub sub_window;
 
 	// PSG // DETECTS // MATCH // %s // ITEM_EXPR // SPEC == SPEC
 	// thats how PSG know to mk_var THIS_PANEL 
@@ -230,12 +231,12 @@ class X_test_box_Top : public X_Window_Top_Level
 	*/
 	X_test_box_Top( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, sub_window( "sub_window", this, xywh, border )
+//	, sub_window( "sub_window", this, xywh, border )
 	, draw_green( *this )
 	{
-		sub_window.xywh1.reduce2(1);
+	//	sub_window.xywh1.reduce2(1);
 		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
-		sub_window.draw_green.set_fg( green_col );
+	//	sub_window.draw_green.set_fg( green_col );
 		XColor blue_col = disp->cmap.Parse_Alloc( colour_spec_blue );
 		draw_green.set_fg( blue_col );
 	}
@@ -324,8 +325,15 @@ int main(int argc, char ** argv) {
  if(1)  dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
 
 	// open up a display connection
-	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+	// this is the place the derived _UDEF is mentioned
+	// to invoke the virtual code for custom behaviour
+	// that is meant to go to the X_Window _UDEF or LWW_UDEF
+	X_Display_UDEF disp( NULL );
+	if(!disp.open_display()) {
+		FAIL_FAILED();
+		return 1;
+	}
+//	X_Window::register_root( disp, "R-O-O-T" );
 
 	INFO("This is not a nested pair - as code duplicated to nested pair");
 

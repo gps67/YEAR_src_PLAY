@@ -1,6 +1,9 @@
 #ifndef X_Colors_H
 #define X_Colors_H
 
+#include <X11/Xlib.h>
+
+
 namespace WAX {
 
 /*!

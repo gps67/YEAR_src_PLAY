@@ -10,11 +10,13 @@
 
 #include "XFT.h"
 #include "X_Drawable_Surface.h"
+#include "X_Display.h"
 
 namespace WAX {
 
 /*!
 	X_Window is NOT a TOP LEVEL WINDOW
+	(X_Window_Root is, and is an X_Window)
 
 	child class must provide behavior functions
 
@@ -108,11 +110,11 @@ struct X_Window : public X_Drawable_Surface // X_Window is a _Drawable_Surface
 
 	/*!
 		call this once - register ROOT window in our list of items
-	*/
 	static X_Window * register_root(
 		X_Display & _disp,
 		const char * _name
 	);
+	*/
 
 
 /*
@@ -198,6 +200,107 @@ struct X_Window_SubFrame : public X_Window
 		child classes use this to create the object
 		generic CTOR of fields
 		NULL_parent
+
+		By now you should have upgraded to X_Display * disp_one_plus;
+
+			It's not immediately clear how ALIAS --> UDEF("ANYSTR")
+			ALIAS == "ANYSTR"
+			UDEF X_Display // triggers BASE_CLASS generic_name 
+			UDEF SUBTYPE of X_Display
+			RT { X_DISPLAY * UDEF ; // CMNT // CODE } STO RUN CODE
+			SESS STO CODE sess // INST == "sess" // CODE_POINT //
+			GEN CODE for SESS RT UDEF "sess" // %s // cident // IDX //
+			RT IDX = { IDX idx ; PAIR cident "sess" } // SCRIPT //
+			SCRIPT += { 
+			 LOCAL DIALECT script // var of TYPE // script phrase_book
+			 LOCAL RUNTIME STR nbytes text PSG {
+			  RT {
+			  	VAR_NAME "nbytes"
+				VAR_TYPE TOKEN_for_known_ITEM PGX SUBLEX SESS
+				SCRIPT {
+					RT SESS STO += "VAR_POOL[var_name] CODE"
+					RT SESS STO += "CALL EVAL ARG" HERE nbytes
+					"[var_name] CODE" {
+
+						STR0 CODE_BLOCK_t // IDX += idx
+						ADD_ATTR "var_name"
+						ADD_ATTR "IDX_t"
+						AUTO_MATCH "IDX_t" "%s_t" "LHS_SPEC DATA ARGV
+						FOUND_VAR SESS.idx("SESS.idx")
+
+					}
+
+					var_name = NEW_VAL // SET_VAR VAL
+					// { %s VAR } // { VAR var } // ALIAS %s.var
+					// { VAL %s } // nbytes // STO_API
+
+				ITEM_T == "ITEM" STO += { VARNAME VARTYPE STODATA }
+				ITEM_NAME == "VARNAME" // GEN
+				ITEM_TYPE == "VARNAME_t" // GEN 
+				hakuna mataka == "tanzania phrase"
+				ITEM_DATA == "STO_%s" // permit parameter_pcs
+				pcs_percent_s_t == "nbytes"
+				ITEM_SPEC += "nbytes_t nbytes MK_VAL // fetch_api
+				ITEM_API += ""ITEM_t" // STO.ITEM // "ITEM" //
+				ITEM_CODE += "SCRIPT"
+				ITEM_SESS += "{ SESS_t SESS }" // GEN // BENCH //
+				ITEM_BENCH += "SESS" // PICK token from POOL
+				{ SESS nbytes_t } // { nbytes_t DATA }
+				{ ALIAS DATA }
+				{ ALIAS STO }
+				{ API CALL CODE ARGS }
+				{ ARGS_PSG += "{ ITEM_T ITEM }" } // MK_VAR //
+				{ ARGS += "{ %s_t %s }" } // DIALECT lower _t
+				{ ARGS += "{ %s_T %s }" } // DIALECT UPPER _T
+				{ VAR_POOL += { %s } // PSG LEX TOKEN "%S"
+					"VAR_POOL += '{ LHS RHS } // CODE_POINT'"
+					"VAR_POOL += '{ LHS } // CODE_POINT'"
+
+					AUTO GEN { DECL_VAR SCRIPT } API += SCRIPT_API
+						// NB AUTO_MATCH_LEX_EXPR
+						// NB AUTO_MATCH PSG EXPR
+						//
+						// PSG += { AUTO_MATCH %s } 
+						// DECL += { MK_VAR GEN }
+						// PARSE_LEX += "{ lhs rhs }" // CODE_POINT
+						// CODE_POINT += SCRIPT.HERE.CODE_POINT
+						// DIALECT HERE // AUTO_DETECT LEX
+						// SCRIPT // MK_VAR // UDEF // EXPR // API
+
+					AUTO MK_VAR simply from "mention"
+						VAR_type == "VAR_t" // FROM
+
+					FROM "VAR" "%s_t" VARNAME == "{ _t %s }"
+					FROM "VAR" "%s_t" VARNAME += "{ _t %s }"
+
+						DIALECT STR0 "STR0"
+						DIALECT "{ nbytes_t nbytes }"
+						DIALECT "{ ITEM_t ITEM }"
+						DIALECT "{ item %s }" // NAME_or_VAL
+						NAME "{ item %s }" // NAME_or_VAL
+						VAL "{ idx %s }" // NAME_or_VAL
+
+
+
+				{ ARGS += "{ ITEM_T ITEM }" } // MK_VAR
+				 MK_VAR += "VAR_NAME"
+				 MK_VAR += "VAR_TYPE"
+				 MK_VAR += "VAR_STR0"
+				 MK_VAR += "VAR_DATA"
+				 MK_VAR += "VAR_VAL"
+				 MK_VAR += "VAR_STO"
+
+				 	A running SCRIPT triggers MATCH
+					SCRIPT.STEP.CMD0 == "ARGV argv[argc]"
+					MK_VAR argc argv api
+
+					A running script triggers { SCRIPT }
+					LEX cident // ITEM_NAME STR0 //
+					LEX_cident knows name_in_POOL "cident_t cident"
+					BENCH COMPILER adds _t from { %s }
+					typedef "{KEY %s } %_t ; // CMNT"
+			  }
+			 }
 	*/
 	X_Window_SubFrame(
 		X_Window * _parent,	// possibly NULL
@@ -267,6 +370,32 @@ struct X_Window_Top_Level : public X_Window_Frame
 	// Top_Level // api events //
 	// on_EVENT 
 	// on_%s
+
+};
+// ------------------- X_Window_Root -------- desktop root window
+
+/*
+	The desktop ROOT WINDOW for this display
+*/
+struct X_Window_Root : public X_Window
+{
+	virtual void event_expose( A_Rectangle & xywh )
+	{
+		INFO("UNUSED");
+		// we provide an X_Window based class wrap
+		// and it requires some virtual functions
+		// they never get called!
+	}
+
+#define NULL_parent NULL
+#define ZERO_window 0
+
+	// LURK no check on DefaultRootWindow() - see syntax
+
+	X_Window_Root(
+		X_Display * _disp, // has root_window
+		const char * _name
+	);
 
 };
 

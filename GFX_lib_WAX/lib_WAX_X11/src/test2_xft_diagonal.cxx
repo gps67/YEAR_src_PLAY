@@ -19,6 +19,7 @@
 #include "X_Window.h"
 #include "X_Draw.h"
 #include "X_Display.h"
+#include "X_Display_UDEF.h"
 #include "X_FontStr.h"
 #include "WAX_argv_decoder.h" // they are all very similar
 
@@ -62,8 +63,13 @@ int main_loop_once( X_Display & disp, XEvent & report )
 
 int main_one() {
 	// open up a display connection
-	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+//	X_Display disp( NULL );
+	X_Display_UDEF disp( NULL );
+	if(!disp.open_display()) {
+		FAIL_FAILED();
+		return 1;
+	}
+//	X_Window::register_root( disp, "R-O-O-T" );
 
 	// pick a rectangle
 	A_Rectangle xywh1( 0, 0, 500, 500 );
@@ -144,8 +150,12 @@ int main_two( argv_decoder & ARGS ) {
 	// ARGS.on_VARS _fully_loaded
 
 	// open up a display connection
-	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+	X_Display_UDEF disp( NULL );
+	if(!disp.open_display()) {
+		FAIL_FAILED();
+		return 1;
+	}
+//	X_Window::register_root( disp, "R-O-O-T" );
 
 	// pick a rectangle
 	A_Rectangle xywh1( 0, 0, 500, 500 );

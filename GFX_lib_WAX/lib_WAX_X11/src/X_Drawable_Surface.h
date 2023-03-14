@@ -7,7 +7,13 @@
 #include <X11/Xlib.h>
 
 #include "XFT.h"
-#include "X_Display.h"
+// PROBLEM IS
+// we include X_Display.h
+// it includes X_Window.h
+// it includes X_Drawable_Surface.h // and is based on it
+// so move that code to .cxx to use disp->fields
+//
+// #include "X_Display.h"
 
 namespace WAX {
 
@@ -22,22 +28,26 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	#endif
 	X_Drawable_Surface( int temp_skim ) {}
 
+/*
 	X_Drawable_Surface(
-		X_Display * _disp,	// move to keeping shared PTR 
+		Display * _display,
+	//	X_Display * _disp,	// move to keeping shared PTR 
 		Drawable _drawable,
 		A_WH _WH
 	)
-	:	display( _disp->display )
+	:	display( _display )
 	,	drawable( _drawable )
 	,	WH( _WH )
 	{
 	}
+*/
 
 	X_Drawable_Surface(
-		X_Display * _disp,	// move to keeping shared PTR 
+		Display * _display,
+	//	X_Display * _disp,	// move to keeping shared PTR 
 		Drawable _drawable
 	)
-	:	display( _disp->display )
+	:	display( _display )
 	,	drawable( _drawable )
 	,	WH( 0,0 )
 	{
@@ -51,16 +61,6 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	:	display( _display )
 	,	drawable( _drawable )
 	,	WH( _WH )
-	{
-	}
-
-	X_Drawable_Surface(
-		Display * _display,
-		Drawable _drawable
-	)
-	:	display( _display )
-	,	drawable( _drawable )
-	,	WH( 0,0 )
 	{
 	}
 
@@ -69,7 +69,11 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	*/
 	GC CreateGC()
 	{
-		if(!drawable) WARN("ZERO drawable");
+		if(!drawable) {
+			WARN("ZERO drawable");
+			DEBUG_print_stack();
+			return 0;
+		}
 		unsigned long valuemask = 0;
 		XGCValues * values = NULL;
 		return ::XCreateGC( display, drawable, valuemask, values );

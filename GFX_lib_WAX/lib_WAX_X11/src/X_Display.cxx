@@ -23,16 +23,64 @@
 
 using namespace WAX;
 
+// NB no obj_ref yet // 
+
+// static
+// X_Window_Root * root_window = 0;
+
 /*
 	each open window is a reason to stay
 */
-int X_Display_One:: reasons_to_stay = 0;
+int X_Display_3:: reasons_to_stay = 0;
 
-Atom X_Display_One:: atom_wm_delete_window = 0;
-Atom X_Display_One:: atom_wm_state = 0;
-Atom X_Display_One:: atom_wm_state_above = 0;
-Atom X_Display_One:: atom_wm_state_add = 0;
-Atom X_Display_One:: atom_wm_state_remove = 0;
+Atom X_Display_2:: atom_wm_delete_window = 0;
+Atom X_Display_2:: atom_wm_state = 0;
+Atom X_Display_2:: atom_wm_state_above = 0;
+Atom X_Display_2:: atom_wm_state_add = 0;
+Atom X_Display_2:: atom_wm_state_remove = 0;
+
+bool
+X_Display :: 
+late_init_display( X_Display * _disp )
+{
+	if(!_disp) {
+		return FAIL("NULL _disp");
+	}
+	display = _disp->display;
+	if(!display) {
+		return FAIL("NULL display");
+	}
+	cmap.late_init( display );
+
+	if(root_window) {
+		WARN("root_window already set");
+	}
+	root_window = new X_Window_Root( this, "ROOT_WINDOW");
+	if(!root_window) {
+		WARN("NULL root_window from CTOR");
+	}
+
+	atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
+	atom_wm_state = XInternAtom( display, "_NET_WM_STATE", False);
+	atom_wm_state_above = XInternAtom( display, "_NET_WM_STATE_ABOVE", False);
+	atom_wm_state_add = XInternAtom( display, "_NET_WM_STATE_ADD", False);
+	atom_wm_state_remove = XInternAtom( display, "_NET_WM_STATE_REMOVE", False);
+	return true;
+}
+
+bool
+X_Display :: 
+X_Open_Display( const char * _display_name )
+{
+	display_name = _display_name;
+	display = ::XOpenDisplay( (STR0) display_name );
+	if(!display) {
+	 return FAIL("NULL display from ::XOpenDisplay(%s)", (STR0) display_name );
+	}
+	if(!late_init_display( this )) return FAIL_FAILED();
+	return true;
+}
+
 
 /*!
 	create a connection to an X11 server
@@ -41,25 +89,13 @@ Atom X_Display_One:: atom_wm_state_remove = 0;
 	so this does the one-time initialisation of some constants,
 	and does not check that it is the only one
 */
-X_Display_One :: 
-X_Display_One( const char * display_name )
-: cmap( NULL ) // what is the correct C++ of doing this ?
+X_Display_3 :: 
+X_Display_3()
+: X_Display_2() // needs late_init on all fields
 {
-	display = ::XOpenDisplay( display_name );
-	if(!display) {
-		FAIL("NULL display from ::XOpenDisplay(%s)", display_name );
-		return; // throw
-	}
-	cmap.late_init( display );
-	// only_if_exists == false // NULL might match NULL
-	atom_wm_delete_window = XInternAtom( display, "WM_DELETE_WINDOW", False);
-	atom_wm_state = XInternAtom( display, "_NET_WM_STATE", False);
-	atom_wm_state_above = XInternAtom( display, "_NET_WM_STATE_ABOVE", False);
-	atom_wm_state_add = XInternAtom( display, "_NET_WM_STATE_ADD", False);
-	atom_wm_state_remove = XInternAtom( display, "_NET_WM_STATE_REMOVE", False);
 }
 
-bool X_Display_One :: test_list_depths()
+bool X_Display_3 :: test_list_depths()
 {
 	int screen_number = 0; // screen 1 retval NULL
 	int count_return = 0; // unchanged if NULL was returned
@@ -105,7 +141,7 @@ bool X_Display_One :: test_list_depths()
 // .. RETVAL NULL ..
 }
 
-bool X_Display_One :: guess_screen_size( A_WH & WH )
+bool X_Display_3 :: guess_screen_size( A_WH & WH )
 {
 	Screen * screen = DefaultScreenOfDisplay(display);
 	WH.w = WidthOfScreen( screen );
@@ -126,20 +162,20 @@ bool X_Display_One :: guess_screen_size( A_WH & WH )
 }
 
 
-void X_Display:: process_events_forever() // loop
+void X_Display_3:: process_events_forever() // loop
 {
 	XEvent report;
 	while (1)  {
-		/* disp. */ XFlush();
-		/* disp. */ XNextEvent( report );
-		/* disp. */ process_event( report );
-	//	INFO("reasons_to_stay %d", reasons_to_stay );
+	 /* disp. */ XFlush();
+	 /* disp. */ XNextEvent( report );
+	 /* disp. */ process_event( report );
+	 //	INFO("reasons_to_stay %d", reasons_to_stay );
 		if(!reasons_to_stay_test())
 			return;
 	}
 }
 
-bool X_Display:: process_event( XEvent & event )
+bool X_Display_3:: process_event( XEvent & event )
 {
 	X_Window * W1 = find_Window( event.xany.window );
 	X_Window * W2 = W1;
@@ -169,6 +205,11 @@ bool X_Display:: process_event( XEvent & event )
 	case KeyRelease:
 		printf("KeyRelease: ");
 	case KeyPress: {
+
+		//	// MOVE THIS TO:
+		//
+		//	W2 -> ON  event KeyPress key
+
 		int index = 0;
 		// KeySym symb = XKeycodeToKeysym( display, event.xkey.keycode, index);
 #define z_group 0
@@ -179,6 +220,7 @@ bool X_Display:: process_event( XEvent & event )
 			z_group,
 			z_level
 		);
+		// str does NOT need free() // asif in ROM
 		const char * str = XKeysymToString( symb );
 	//	e_print(" KEY Up = %d \n", Up );
 	//	e_print(" KEY KEY_Up = %d \n", XK_Up ); // 65362
@@ -346,63 +388,4 @@ bool X_Display:: process_event( XEvent & event )
 		// return 0;
 	}
 	return true;
-}
-
-void X_Display::test1()
-{
-	INFO("CALLED");
-	// pointless play code
-	int keysym = XK_KP_Add;
-
-	const char * keyname = "KP_Add"; // without the XP_prefix
-	keysym = XStringToKeysym( keyname );
-	if( keysym == NoSymbol ) {
-		keysym = XK_KP_Add;
-		printf( "# FAIL # XStringToKeysym('%s')\n", keyname );
-	}
-
-	int keycode = 0;
-	int modifiers = 0;
-	Window grab_window =  RootWindow( display, 0);
-	Bool owner_events = False;
-	int pointer_mode = GrabModeAsync;
-	int keyboard_mode = GrabModeAsync;
-
-	keycode = XKeysymToKeycode( display, keysym );
-	modifiers = XK_Alt_L;
-	modifiers = XK_Alt_R; // not a modifier ?
-	modifiers = AnyModifier;
-	owner_events = False;
-	owner_events = True;
-	grab_window = DefaultRootWindow( display );
-// return;
-
-	printf(" XKeyGrab( %s, %d, %x, %ld, %d, %d, %d ); \n",
-		"display",
-		keycode,
-		modifiers,
-		grab_window,
-		owner_events,
-		pointer_mode,
-		keyboard_mode
-	);
-
-	int t = XGrabKey(
-		display,
-		keycode,
-		modifiers,
-		grab_window,
-		owner_events,
-		pointer_mode,
-		keyboard_mode
-	);
-	if( t == NoSymbol ) {
-		printf( "# FAIL # XGrabKey(...)\n" );
-	}
-	/*
-		KEY is now active when window is not top
-		KEY is reported on "R-O-O-T" # whatever that is
-		CALL is to X_display event loop handler
-	*/
-
 }

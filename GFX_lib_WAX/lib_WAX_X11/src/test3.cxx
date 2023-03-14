@@ -66,7 +66,7 @@ int main_two( argv_decoder & ARGS ) {
 	X_Display disp( NULL );
 
 	// X_Window * X_Window_ROOT =
-	X_Window::register_root( disp, "R-O-O-T" );
+//	X_Window::register_root( disp, "R-O-O-T" );
 
 	// pick a rectangle, for initial size request
 	A_Rectangle xywh1( 0, 0, 500, 500 );

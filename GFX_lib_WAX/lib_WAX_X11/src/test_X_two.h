@@ -55,6 +55,9 @@ class X_test_two : public X_Window_Top_Level
 	X_test_two(
 	 const char * _name,
 	 X_Display & disp_,
+	 // WE need _PLUS to be ("X_Display") virtual bass class
+	 // WE need _PLUS to be ("X_Display_PLUS") virtual bass class
+	 // WE need _PLUS to be ("X_Display_One") virtual bass class
 	 A_Rectangle xywh,
 	 int border
 	)

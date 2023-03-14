@@ -3,6 +3,29 @@
 // ALL // #include <string.h>
 using namespace WAX;
 
+
+/*
+	this has to be in CXX because it uses details of X_Display
+*/
+X_Window_Root::
+X_Window_Root(
+	X_Display * _disp, // has root_window
+	const char * _name
+)
+: X_Window(
+	NULL_parent,
+	_disp,
+	0,
+	_name
+) {
+	// X_Window_Root // singleton with Display singleton //
+	if(_disp->root_window) {
+		_disp->root_window = this;
+	}
+}
+
+
+
 void X_Window::set_name( const char * _name )
 {
 	if( name ) free( (void *)name );
@@ -139,45 +162,13 @@ void X_Window:: XSelectInput_mask_one()
 //-----------------------------------------------------------------//
 
 
-/*
-*/
-struct X_Window_Root : public X_Window
-{
-	virtual void event_expose( A_Rectangle & xywh )
-	{
-		INFO("UNUSED");
-		// we provide an X_Window based class wrap
-		// and it requires some virtual functions
-		// they never get called!
-	}
-
-#define NULL_parent NULL
-#define ZERO_window 0
-
-	// LURK no check on DefaultRootWindow() - see syntax
-
-	X_Window_Root(
-		X_Display & _disp,
-		const char * _name
-	)
-	: X_Window(
-		NULL_parent,
-		&_disp,
-		DefaultRootWindow( _disp.display ),
-		_name
-	) {
-	//	printf("# X_Window_Root( disp, '%s' ) -- window(%ld)\n", name, get_window() );
-		INFO("# X_Window_Root( disp, '%s' ) -- window(%ld)", name, get_window() );
-	}
-};
-
 bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 {
 	// subscribe to be told when WM_ clicks on X button
 	XSetWMProtocols(
 		display,
 		get_window(),
-	      & X_Display_One:: atom_wm_delete_window,
+	      & X_Display_2:: atom_wm_delete_window,
 		1
 	);
 
@@ -190,10 +181,23 @@ bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 
 // has to go after decl of X_Window_Root
 
+#if 0
 /*!
 	create an internal object for the already existing root window
+
+	this is NOT an X11 thing,
+	just keeping the singleton root w_id
+	in a type, in a var,
+
+	actually not even in a var,
+	caller must do that
+
+	WHY because we might have multiple DISPLAYS open ?
+	WHY and need to set "name" at correct time
+
+	EG move { X_Window_Root * x_window_root } to Display
 	
-	no functions are here for ROOT
+	TODO functions are here for ROOT
 	no static singleton for root (TODO)
 	called once
  */
@@ -202,9 +206,12 @@ X_Window * X_Window:: register_root(
 	const char * name
 )
 {
+	WARN("DONT CALL THIS");
+	return disp.Root_Window;
 	X_Window * w = new X_Window_Root( _disp, name );
 	return w;
 }
+#endif
 
 //-----------------------------------------------------------------//
 
@@ -278,10 +285,10 @@ set_always_on_top() // _add // todo _remove + { bool toggle = off }
 	//
 	xclient.type = ClientMessage;
 	xclient.window = get_window();
-	xclient.message_type = X_Display_One:: atom_wm_state;
+	xclient.message_type = X_Display_2:: atom_wm_state;
 	xclient.format = 32;
-	xclient.data.l[0] = X_Display_One:: atom_wm_state_add;	 // _remove
-	xclient.data.l[1] = X_Display_One:: atom_wm_state_above; // _below
+	xclient.data.l[0] = X_Display_2:: atom_wm_state_add;	 // _remove
+	xclient.data.l[1] = X_Display_2:: atom_wm_state_above; // _below
 	xclient.data.l[2] = 0;
 	xclient.data.l[3] = 0;
 	xclient.data.l[4] = 0;

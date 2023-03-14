@@ -6,7 +6,7 @@
 #include "X_Window.h"
 #include "X_Pixmap.h"
 #include "X_Draw.h"
-#include "X_Display.h"
+#include "X_Display_UDEF.h"
 
 #include "X_Image.h"
 
@@ -167,8 +167,9 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 
 	png_one png1; // png2 goes to the window
 
-	X_Display disp( NULL );
-	X_Window_Top_Level::register_root( disp, "R-O-O-T" );
+	X_Display_UDEF disp( NULL );
+	if(!disp.open_display()) return FAIL_FAILED();
+//	X_Window_Top_Level::register_root( disp, "R-O-O-T" );
 
 
 	const char * filename_1 = "/tmp/filename_1.png";
@@ -305,8 +306,8 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	TJ::TJ_loader_t tj_loader;
 	TJ::scale_factors_t scale_factors;
 
-	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+	X_Display_UDEF disp( NULL );
+	if(!disp.open_display()) return FAIL_FAILED();
 
 	////////////////////////////////////////////
 

@@ -1,0 +1,203 @@
+#  AS_OBJECT.txt
+
+{
+
+EXPLAIN
+
+	OBJT_t == ITEM_t 
+
+	ITEM_t * ITEM_PTR = new CTOR_SCRIPT // in_MEM { OBJ_t Obj } //
+
+	nbytes * PTR // VAR in STO near SCRIPTS VAR_POOL ALLOC_STO_nbytes
+	nbytes * PTR
+	// VAR in STO near
+	SCRIPTS VAR_POOL
+	ALLOC_STO_nbytes
+	VAR STO SCRIPTS 
+
+PEER_MODULE
+
+	bunch of pallettes of patterns
+	CALL API BENCH PEER MODULE
+	MODULE { TUPLO } DIALECT VOCAB NOUNS VAR_POOL ATTACH_VAR_TO_SESS_via_API
+	MODULE { TYPE VAR } "{ ITEM_t ITEM }" // TOKENISED_SCRIPT_TWIGLET
+	BENCH { TYPE="TYPE" VAR="VAR" ITEM="ITEM" PSG += OBJ_idx_EA_EXPR ... }
+	MATCH CHAPTER_HEADING_PHRASES %s=='%s'MATCH DETECT local sess_val VAR
+	MATCH OBJ EA IDX OFFS and other sample peers
+	LOOKUP NAME STO_nbytes_STO
+	LOOKUP NAME STO nbytes
+	LOOKUP NAME 
+	LOOKUP IDX
+	LOOKUP EXPR EVAL_EXPR // API of SELF OBJ IDX EXPR SCRIPT LIBR
+	HERE SELF THIS IDX type_spec_and_api_libr
+	API_LIBR += "{ SESS += mk_VAR VAR_NAME }" // and then VAR_TYPE //
+	VAR_TYPE += nbytes_CXX_Object_of_registered_type_TREE_EXPR_API
+	VAR_API += CACHE 
+	VAR_API += GET
+	VAR_API += SET
+	VAR_API += NEW
+	VAR_API += DEL
+	VAR_API += API
+	VAR_API += LIBR ARGV EXPR MODULE SPEC SCRIPT MEM_alloc_OBJ u48_OBJ_EXPR
+	u48_%s_EXPR { OBJ %s } u48_DECODER u8_BYTE_A u8_BYTE_B u48_PAYLOAD 
+
+			u48_PAYLOAD += u16_u32 
+
+			METHINKS worth instanciating u16_u32
+
+				u16_u32 += CXX_u16_BITFIELD
+				u16_u32 += CXX_u32_BITFIELD
+				u16_u32 += CXX_u64_BITFIELD
+				u16_u32 += EIGHT
+
+			METHINKS "EIGHT" is u64_WORD _in_CPU in_MEM_lohi 
+
+				FEW = "VAR_NAME" in "SESS"
+
+			METHINKS intel opcode BASE + OFFS + IDX * 8 // +ADJUST
+
+			ADJUST WORD in ARGV += OFFS_in_STACK
+			ADJUST WORD in ARGV += OFFS_EXPR( u8_u8 u48 )
+			ADJUST WORD in ARGV += OFFS_EXPR( TUPLO )
+
+	TUPLO { NAME VALUE }
+	TUPLO { TYPE VAR }
+
+		TYPE_SPEC 
+		 LIBR += PHRASE 
+		 LIBR += VOCAB // LEX NOUN // LEX TOKEN // LEX_LOCAL //
+	TUPLO DONE {
+		import TUPLO // ARGS in VARS // PARSED_PROCESSED
+		optic export import api OBJ.ATTR
+		{ OPCODE V A R S } // PARSE stream to find DECL mk_VAR VAR SPEC 
+		// CALLING PSG has matched the derived var usage
+		// these described_names are COMPILED as TOKEN VAR_NAME
+	}
+
+	ADJUST WORD in ARGV += OFFS_EXPR( TUPLO )
+
+		WORD = u8_u8_u48_DECODER
+
+		WORD = u8_u8_u48_DECODER
+
+			u64_PTR_t * PTR // APPLY "{ TYPENAME VARNAME }"
+		typedef	u64_PTR_t * PTR_t ; // ALIAS 
+
+	u48_%s_EXPR { OBJ %s } 
+
+		u64_DECODER _LOHI _HILO _BITFIELD 
+	// DIALECT BITFIELDS rewrite as BITFIELD 
+
+			u64_DECODER
+			_LOHI
+			_HILO
+			_BITFIELD 
+
+		u48_DECODER
+
+			u8_BYTE_A
+			u8_BYTE_B
+			u48_PAYLOAD 
+
+		/* SPARTAN PSG 
+		 PSG += LEX 
+		 PSG += PARSE_STREAM_of_LINES _DIALECT
+		 _dialect += BITFIELD_in_EIGHT
+
+		 LIBR
+		 	EIGHT.BITFIELD as_BYTE as_BYTES // AUTO_GEN BOTH
+		 LIBR
+		 	BITFIELD NAME = ANYSTR IDX LOOKUP 
+
+	LOOKUP "{ NAME  %s }" // READ_as_RUNE_STONES_in_TEMPLATE
+	PARSE '"{ NAME  %s }"' {
+		"SINGLE_WORD_cident_or_ANYSTR_or_new_IDX" // cident_DECODER //
+		"SUBLEX" "
+	}
+
+	TOKENISE u8_u8_u48 // emphasis here on IDX = lookup( "ANYSTR")
+	// emphasis here on 
+
+	u64_PTR_t * PTR // APPLY "{ TYPENAME VARNAME }"
+
+		TUPLO knows that TUPLO "( TYPENAME VARNAME }"
+		PARSE Q2 L_BRACE SP cident SP cident SP R_BRACE Q2_or_NOT
+		tuplo_FF_in_NEAR { STR0 STR0 }
+		local_token_u8 
+		 PAGE[u8_PAGE] ITEM[u8_ITEM] 
+		 DECODE u48_PAYLOAD
+
+		 CODE_POINT HERE TEXT = "{ TYPENAME VARNAME }"
+
+	u64_PTR_t * PTR // APPLY "{ TYPENAME VARNAME }"
+
+
+
+ALLOC in STO near NEAR
+
+	DIALECT += SESSION_VAR_EXPRS SCRIPT VARS VAP_POOL EXPR DECODER
+	DIALECT += SESSION_PSG
+
+EXPLAIN { "ITEM_t" "item" }
+
+	TUPLO lhs rhs // CODE_POINT // HERE in SCRIPT // DECODE uses TABLES
+
+	KNOW_NEAR "{ TYPENAME VARNAME }"
+	KNOW_NEAR { lhs rhs PLUS ROM_OPCODE_VAL }
+
+
+
+
+EXPLAIN
+
+	nbytes * PTR == "SAME_NAME" // SAME_NAME == "PTR" // MATCH NOUNN in TEXT
+
+	global VAR_NAME += VAR_TYPE # ALIAS STR0 # NEW INSTANCE SCRIPTED VAR
+
+	mk_VAR "VAR_NAME" # AUTO_DECL "VAR_TYPE" VAR_NAME # IDX = EA_VAR # ALLOC
+USES { PATTERN } // DIALECT AUTO LEARNED THEN: { PATTERN == "PATTERN" } CODE_POINT
+	CODE_POINT EA_EXPR SESS_VAR_EA_in_SESS CODE_POINT 
+	# AUTO_ADD every new NOUN "SESS" NEW_NOUN IDX
+	# NEW_NOUN { idx = N ++ } // ALLOC idx = new_idx() // GLOBAL SESS
+	# API is a list of builtin EXPR's and API_VOCAB 
+
+ X_Window
+
+ 	There is a single Display / Screen / Visual / Drawable
+	or maybe a WIN + PIXMAP 
+
+	Not sure what to do about lots of nested widgets,
+	when it is only necessary to hold the parent window, and current inner
+	IE this is one big canvas
+
+XFT
+
+	We need XFT for the vertical label on a graph, (single item)
+	We need XFT for the diagonal line labels (rewrite then)
+	We need XFT == X11_Font for everything else
+	-so- use plain X11 most of the time (flat type)
+
+MY_XFT
+
+	holds the one Draw for the one X_Window
+	holds the list of colors
+	holds the list of fonts
+
+	holds temp vars to build fonts ??
+
+	OPTION base is class Draw
+
+	OPTION lookup["name"] 
+	pen = lookup("pen","name"); // option to build it from SCALED layout
+
+Pen
+
+	holds an uplink to MY_XFT
+	holds Draw + Font + Color
+	owns none of them !
+	
+	holds temp vars to build fonts ??
+
+
+}
+

@@ -1,3 +1,2 @@
 b main
-b WAX::X_Window::check_window() 
 r

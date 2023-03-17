@@ -42,39 +42,39 @@ class X_test_img : public X_Window_Top_Level {
 
  	X_test_img(
 		const char * _name,
-		X_Display & disp_,
+		X_Display * disp_,
 		A_Rectangle xywh,
 		int border,
-		png_one & png
+		png_one * png
 	)
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, pixmap( disp_.display, xywh.get_WH() )
+	, pixmap( disp_, xywh.get_WH() )
 	{
 		gc = CreateGC();
 		X_Image img;
-		img.create_pixmap_from_png( *disp, gc, drawable, pixmap, png );
+		img.create_pixmap_from_png( disp, gc, drawable, & pixmap, png );
 		INFO("CREATED");
 	}
 
  	X_test_img(
 		const char * _name,
-		X_Display & disp_,
+		X_Display * disp_,
 		A_Rectangle xywh,
 		int border,
-		TJ_FB_image_t & FB_image
+		TJ_FB_image_t * FB_image
 	)
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, pixmap( disp_.display, xywh.get_WH())
+	, pixmap( disp_, xywh.get_WH())
 	{
 		gc = CreateGC();
 		X_Image img;
-		img.create_pixmap_from_TJ_IMG( *disp, gc, drawable, pixmap, FB_image );
+		img.create_pixmap_from_TJ_IMG( disp, gc, drawable, & pixmap, FB_image );
 		INFO("CREATED");
 	}
 
 	void event_expose( A_Rectangle & xywh ){
 
-		X_Draw draw_green(*this);
+		X_Draw draw_green(this);
 		const char * colour_spec_green = "#00FF00";
 		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
 		draw_green.set_fg( green_col );
@@ -141,7 +141,7 @@ class X_test_img : public X_Window_Top_Level {
 		// add in other clip zone (but that also added by OS)
 
 		XCopyArea(
-			display,
+			slow_get_display(), 
 			src,
 			dst,
 			gc,
@@ -167,8 +167,9 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 
 	png_one png1; // png2 goes to the window
 
-	X_Display_UDEF disp( NULL );
-	if(!disp.open_display()) return FAIL_FAILED();
+	X_Display_UDEF disp_( NULL );
+	X_Display * disp = &disp_;
+	if(!disp->open_display()) return FAIL_FAILED();
 //	X_Window_Top_Level::register_root( disp, "R-O-O-T" );
 
 
@@ -222,7 +223,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 	// dst = src * zoom
 
  	A_WH display_WH;
-	if(!disp.guess_screen_size(display_WH)) return FAIL_FAILED();
+	if(!disp->guess_screen_size(display_WH)) return FAIL_FAILED();
 
 	float ratio = (1.0 * png1.image.width) / (0.3 * display_WH.w);
 	INFO(" ratio %5f = png1.image.width %d / (0.3 * display_WH.w %d ) ",
@@ -266,7 +267,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 	// INFO("PNG  W %d H %d ..", png1.image.width, png1.image.height );
 	// 1200 800 // 
 	A_Rectangle xywh1( 0, 0, png2.image.width, png2.image.height );
-	X_test_img win1( "png1", disp, xywh1, 0, png2 );
+	X_test_img win1( "png1", disp, xywh1, 0, & png2 );
 	win1.set_title( filename_1 );
 
 	win1.map();
@@ -287,7 +288,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 		tj_loader.FB_image.width,
 		tj_loader.FB_image.height
 	);
-	X_test_img win2( "jpg1", disp, xywh2, 0, tj_loader.FB_image );
+	X_test_img win2( "jpg1", disp, xywh2, 0, & tj_loader.FB_image );
 	win2.set_title( filename_1 );
 	win2.map();
 	win2.set_always_on_top(); // used
@@ -296,7 +297,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 
 
 	// the main loop uses a virtual on the relevent X_Window // TODO
-	disp.process_events_forever();
+	disp->process_events_forever();
 
 	return true;
 }
@@ -306,8 +307,9 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	TJ::TJ_loader_t tj_loader;
 	TJ::scale_factors_t scale_factors;
 
-	X_Display_UDEF disp( NULL );
-	if(!disp.open_display()) return FAIL_FAILED();
+	X_Display_UDEF disp_( NULL );
+	X_Display * disp = &disp_;
+	if(!disp->open_display()) return FAIL_FAILED();
 
 	////////////////////////////////////////////
 
@@ -323,7 +325,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 		tj_loader.FB_image.width,
 		tj_loader.FB_image.height
 	);
-	X_test_img win2( "jpg1", disp, xywh1, 0, tj_loader.FB_image );
+	X_test_img win2( "jpg1", disp, xywh1, 0, & tj_loader.FB_image );
 	win2.set_title( filename_1 );
 	win2.map();
 	win2.XSelectInput_mask_one(); // subscribe to Expose KeyPress etc
@@ -336,11 +338,11 @@ bool bool_main_jpg( int argc, char ** argv ) {
 	const char * filename_4 = "/tmp/filename_4.jpg";
 
 	TJ:: TJ_saver_t saver;
-	if(! saver.get_pixmap_save_as_filename( disp, win2.pixmap, filename_4 ))
+	if(! saver.get_pixmap_save_as_filename( disp, & win2.pixmap, filename_4 ))
 		return FAIL_FAILED();
 
 	// the main loop uses a virtual on the relevent X_Window // TODO
-	disp.process_events_forever();
+	disp->process_events_forever();
 
 	return true;
 }

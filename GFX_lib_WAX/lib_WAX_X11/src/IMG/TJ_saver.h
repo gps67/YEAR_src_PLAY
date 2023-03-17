@@ -19,12 +19,12 @@ namespace TJ {
 	TJ_saver_t();
 
 	bool call_Compress2(
-		TJ_FB_image_t & FB_image
+		TJ_FB_image_t * FB_image
 	);
 
 	bool get_pixmap_save_as_filename(
-		X_Display & disp, 
-		X_Pixmap & pixmap,
+		X_Display * disp, 
+		X_Pixmap * pixmap,
 		const char * filename 
 	);
 

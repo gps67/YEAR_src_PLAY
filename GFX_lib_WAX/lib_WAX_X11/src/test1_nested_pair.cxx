@@ -47,7 +47,7 @@ class X_test_box_Sub : public X_Window_SubFrame
 
 	X_test_box_Sub( const char * _name, X_Window * parent, A_Rectangle xywh, int border )
 	: X_Window_SubFrame( parent, parent->disp, /* window */ 0, _name )
-	, draw_green( *this )
+	, draw_green( this )
 	, xywh1( 0,0, xywh.width, xywh.height )
 	{
 		xywh1.reduce2(1);
@@ -224,15 +224,15 @@ class X_test_box_Top : public X_Window_Top_Level
 		constructor onto a DISPLAY
 	  X_test_box(
 		const char * _name,
-		X_Display & disp_,	X_DISPLAY can have VTBL X_Panels
+		X_Display * disp_,	X_DISPLAY can have VTBL X_Panels
 		A_Rectangle xywh,	ZERO_is_DISPLAY_SCREEN_TOP_LEFT_ZERO
 		int border
 	  )
 	*/
-	X_test_box_Top( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
+	X_test_box_Top( const char * _name, X_Display * disp_, A_Rectangle xywh, int border )
 	: X_Window_Top_Level( _name, disp_, xywh, border )
 //	, sub_window( "sub_window", this, xywh, border )
-	, draw_green( *this )
+	, draw_green( this )
 	{
 	//	sub_window.xywh1.reduce2(1);
 		XColor green_col = disp->cmap.Parse_Alloc( colour_spec_green );
@@ -310,10 +310,10 @@ class X_test_box_Top : public X_Window_Top_Level
 
 };
 
-bool main_loop_once( X_Display & disp, XEvent & report )
+bool main_loop_once( X_Display * disp, XEvent & report )
 {
-	disp.process_event( report );
-	return disp.reasons_to_stay_test(); // true if stay
+	disp->process_event( report );
+	return disp->reasons_to_stay_test(); // true if stay
 }
 
 /*
@@ -328,8 +328,9 @@ int main(int argc, char ** argv) {
 	// this is the place the derived _UDEF is mentioned
 	// to invoke the virtual code for custom behaviour
 	// that is meant to go to the X_Window _UDEF or LWW_UDEF
-	X_Display_UDEF disp( NULL );
-	if(!disp.open_display()) {
+	X_Display_UDEF disp_( NULL );
+	X_Display_UDEF * disp = &disp_;
+	if(!disp->open_display()) {
 		FAIL_FAILED();
 		return 1;
 	}
@@ -368,14 +369,14 @@ int main(int argc, char ** argv) {
 // disp->add(W)
 
 	// KEY
-	disp.test1();
+	disp->test1();
 
 /*
 	when win3 is child of win1
 	KeyPress is received
 */
 
-	disp.process_events_forever();
+	disp->process_events_forever();
 
 	return 0;
 }

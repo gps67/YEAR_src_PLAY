@@ -160,7 +160,7 @@ run_test3: $(EXEC3)
 run_test4: $(EXEC4)
 	./$(EXEC4) 
 
-lots: $(EXEC1) $(EXEC2) $(EXEC2) $(EXEC2) 
+lots: $(EXEC1) $(EXEC2) $(EXEC3) 
 	# make lots
 
 # pick up default .o.elf from MK_SUFFIXES from libs_apps

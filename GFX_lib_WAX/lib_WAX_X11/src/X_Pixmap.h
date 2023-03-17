@@ -17,12 +17,12 @@ struct X_Pixmap : public X_Drawable_Surface
 //	A_WH WH; // base class
 
 	X_Pixmap(
-                Display * _display,
+                X_Display * _disp,
  //             Drawable _drawable, // late init create will create Pixmap
                 A_WH _WH
 	);
 	X_Pixmap(
-                Display * _display,
+                X_Display * _display,
                 Drawable _drawable,
                 A_WH _WH
 	);

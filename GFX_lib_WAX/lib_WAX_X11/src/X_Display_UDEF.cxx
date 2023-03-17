@@ -1,5 +1,8 @@
 #include "X_Display.h"
 #include "X_Display_UDEF.h"
+// #include "X_ALL.h" // X_Display.cxx:#include <X11/keysym.h>
+#include <X11/keysym.h>
+
 
 using namespace WAX;
 

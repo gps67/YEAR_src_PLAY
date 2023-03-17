@@ -13,20 +13,21 @@ X_Pixmap(int d)
 */
 
 ::WAX:: X_Pixmap:: X_Pixmap(
-	Display * _display,
+	X_Display * _disp,
 //      Drawable _drawable, // late_init create will create Pixmap
 	A_WH _WH
 )
-: X_Drawable_Surface( _display, -1, _WH )
+: X_Drawable_Surface( _disp, -1, _WH )
 {
 	INFO("late init drawable set to -1");
+	FAIL("late init drawable set to -1");
 }
 
 ::WAX:: X_Pixmap:: X_Pixmap(
-	Display * _display,
+	X_Display * _disp,
 	Pixmap _drawable,
 	A_WH _WH
-) : X_Drawable_Surface( _display, _drawable, _WH )
+) : X_Drawable_Surface( _disp, _drawable, _WH )
 {
 }
 
@@ -35,7 +36,7 @@ bool
 ::WAX:: X_Pixmap::
 create( X_Window & win, A_WH _WH)
 {
-	Display * _display = win.display;
+	X_Display * _disp = win.disp;
 	Drawable _drawable = win.drawable;
 	return create( _drawable, _WH );
 }
@@ -47,11 +48,11 @@ create( Drawable _drawable, A_WH _WH)
 	WH = _WH; // should match == // already ?
 
 	int screen0 = 0;
-	int depth = DefaultDepth(display, screen0);
+	int depth = DefaultDepth(slow_get_display(), screen0);
 
 	// late_init pixmap = drawable = XCreatePixmap( ... ) // was -1 //
 	// create pixmap // errno not in value // error detect = TODO //
-	drawable = XCreatePixmap( display, _drawable, WH.w, WH.h, depth );
+	drawable = XCreatePixmap( slow_get_display(), _drawable, WH.w, WH.h, depth );
 
 	INFO("depth %d", depth ); // depth 24
 	INFO("pixmap x%lX", drawable ); // pixmap x3A00003

@@ -54,7 +54,7 @@ class X_test_two : public X_Window_Top_Level
 	*/
 	X_test_two(
 	 const char * _name,
-	 X_Display & disp_,
+	 X_Display * disp_,
 	 // WE need _PLUS to be ("X_Display") virtual bass class
 	 // WE need _PLUS to be ("X_Display_PLUS") virtual bass class
 	 // WE need _PLUS to be ("X_Display_One") virtual bass class
@@ -62,7 +62,7 @@ class X_test_two : public X_Window_Top_Level
 	 int border
 	)
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, draw_green( *this )
+	, draw_green( this )
 	, xywh1( xywh )
 	{
 		xywh1.reduce2(1);

@@ -45,28 +45,28 @@ struct X_Image
 		frame buffer must have pad32, no gap bytes_per_line, RGBA
 	*/
 	bool create_image_from_RGBA_frame_buffer(
-		X_Display & disp,
+		X_Display * disp,
 		char * image_buffer, // caller arranges to keep it alloc'd
 		A_WH _WH
 	);
-	bool call_create_ximage_from_png( X_Display & disp, png_one & png );
-	bool call_create_ximage_from_TJ_IMG( X_Display & disp, TJ:: TJ_FB_image_t & img );
-	bool get_ximage_from_pixmap( X_Display & disp, X_Drawable_Surface & pixmap );
-	bool put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t & img );
+	bool call_create_ximage_from_png( X_Display * disp, png_one * png );
+	bool call_create_ximage_from_TJ_IMG( X_Display * disp, TJ:: TJ_FB_image_t * img );
+	bool get_ximage_from_pixmap( X_Display * disp, X_Drawable_Surface * pixmap );
+	bool put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t * img );
 
 	// move to X_Drawable_Surface // ??
 
-	bool call_put_image_to_pixmap( X_Display & disp, GC gc, X_Pixmap & pixmap ); // to pixmap // to drawable might be Pixmap
-	bool create_pixmap_from_ximage( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap );
+	bool call_put_image_to_pixmap( X_Display * disp, GC gc, X_Pixmap * pixmap ); // to pixmap // to drawable might be Pixmap
+	bool create_pixmap_from_ximage( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap );
 
 	// double step through X_Image
 	// actually move AWAY so that ximage is a temp local
 
-	bool create_pixmap_from_png( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, png_one & png );
+	bool create_pixmap_from_png( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, png_one * png );
 
-	bool create_pixmap_from_TJ_IMG( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, TJ:: TJ_FB_image_t & img );
+	bool create_pixmap_from_TJ_IMG( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, TJ:: TJ_FB_image_t * img );
 
-//	bool create_pixmap_from_file( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, const char * filename );
+//	bool create_pixmap_from_file( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, const char * filename );
 
  }; // X_image
 }; // WAX

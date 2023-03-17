@@ -55,6 +55,7 @@ late_init_display( X_Display * _disp )
 	if(root_window) {
 		WARN("root_window already set");
 	}
+
 	root_window = new X_Window_Root( this, "ROOT_WINDOW");
 	if(!root_window) {
 		WARN("NULL root_window from CTOR");
@@ -121,6 +122,7 @@ bool X_Display_3 :: test_list_depths()
 
 	// 24 1 4 8 15 16 32 // no repettition default first then sorted
 	ary_of_int = XListDepths(display, screen_number, &count_return);
+	if(!ary_of_int)
 	{
 		return FAIL("RETVAL NULL");
 	}

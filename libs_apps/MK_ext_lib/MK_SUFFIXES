@@ -34,7 +34,9 @@
 
 .o.elf .o.exec: $(OBJS)
 	#
-	#    RULE: .o.elf # MK_SUFFIXES # link program
+	# MK_SUFFIXES link program RULE
+	#    RULE: .o.elf .o.exec %(OBJS)
+	#
 	#     CXX: $(CXX) 
 	#   OPTIM: $(OPTIM)
 	#  CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
@@ -42,21 +44,27 @@
 	#  YFLAGS: $(YFLAGS)
 	#    PKGS: $(PKGS)
 	#
-	#    OBJS: $(OBJS)
-	#   LINKS: $(LINKS)
-	#    LIBS: $(LIBS)
+	#    OBJS:
+	#	$(OBJS)
 	#
-	#   -@ $@
-	#   -< $<
-	#   -^ $^
+	#	-rdynamic # helps backtrace get symbols
+	#   LINKS:
+	#	$(LINKS)
 	#
-	# -rdynamic # helps backtrace get symbols
+	#    LIBS:
+	#	$(LIBS)
+	#
+	#
+	#   @  $@
+	#   <  $<
+	#   ^  $^
+	#
 	#
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
 	#
 	# NOT # strip $@
 	# list libraries used # particularly non system
-	ldd $@ | grep gps
+	ldd $@ | grep $(HOME)
 	# BUILT # $@ #
 
 # 

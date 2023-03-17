@@ -5,7 +5,9 @@
 
 #include "A_Map_W.h"
 #include "X_Colours.h"
-#include "X_Window.h" // _Root
+// #include "X_Window.h" // _Root // use STUBS
+#include "str1.h" // keeping DISPLAY
+#include "dgb.h" // FAIL
 
 # if 0
  X_Display_1 	 just the Display * display
@@ -20,10 +22,14 @@ namespace WAX {
 
 struct X_Display_1 { // : public X_Display_OBJ_TYPE // GEN "obj_ref0 * PTR //
 
-	// X_Display_3 is the basic connection to the X server.
+	// Display is the basic connection to the X server.
+	// RENAME as var_name "display" // expect SINGLETON per CTXT
+	//
 	Display * display;
 
 	static const int SCREEN_0 = 0;
+
+	Display * get_display() { return display; }; // AS_IF & BIND_TO_VAR_ro
 
 	X_Display_1( 
 		Display * _display

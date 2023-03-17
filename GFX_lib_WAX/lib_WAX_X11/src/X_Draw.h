@@ -77,20 +77,20 @@ struct X_Draw
 	
 		TODO choose syntax field = value or field(value) PICK VIEW
 	*/
-	X_Draw( X_Drawable_Surface & W )
+	X_Draw( X_Drawable_Surface * W )
 	{
-		display = W.display;
-		drawable = W.drawable;
-		gc = W.CreateGC();
+		display = W->slow_get_display();
+		drawable = W->drawable;
+		gc = W->CreateGC();
 	}
 
 	/*!
 		A Pixmap is like a Window
 	*/
-	X_Draw( X_Drawable_Surface & P, GC _gc )
+	X_Draw( X_Drawable_Surface * P, GC _gc )
 	{
-		display =  P.display; // P.display
-		drawable = P.drawable;
+		display =  P->slow_get_display(); // P.display
+		drawable = P->drawable;
 		gc = _gc; // gc = W.CreateGC();
 	}
 
@@ -162,14 +162,30 @@ struct X_Draw
 	*/
 	void XDrawRectangle( A_Rectangle xywh )
 	{
-		::XDrawRectangle( display, drawable, gc, xywh.x, xywh.y, xywh.width, xywh.height );
+		::XDrawRectangle(
+			display,
+			drawable,
+			gc,
+			xywh.x,
+			xywh.y,
+			xywh.width,
+			xywh.height
+		);
 	}
 
 	/*!
 	*/
 	void XDrawString( A_Point xy, const char * str )
 	{
-		::XDrawString( display, drawable, gc, xy.x, xy.y, str, strlen(str) );
+		::XDrawString(
+			display,
+			drawable,
+			gc,
+			xy.x,
+			xy.y,
+			str,
+			strlen(str)
+		);
 	}
 
 };

@@ -33,7 +33,7 @@ namespace WAX {
 	struct A_WH;
 	struct A_Rectangle;
 	struct X_Colours;
-	struct X_Display_One;
+//	struct X_Display_One;
 	struct X_Display;
 	struct X_GC;
 	struct X_Draw;

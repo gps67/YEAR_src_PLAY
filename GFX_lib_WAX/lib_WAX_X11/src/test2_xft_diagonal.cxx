@@ -53,9 +53,9 @@ using namespace WAX;
 class X_test_box : public X_Window
 */
 
-int main_loop_once( X_Display & disp, XEvent & report )
+int main_loop_once( X_Display * disp, XEvent & report )
 {
-	disp.process_event( report );
+	disp->process_event( report );
 	return 0;
 }
 
@@ -64,8 +64,9 @@ int main_loop_once( X_Display & disp, XEvent & report )
 int main_one() {
 	// open up a display connection
 //	X_Display disp( NULL );
-	X_Display_UDEF disp( NULL );
-	if(!disp.open_display()) {
+	X_Display_UDEF disp_( NULL );
+	X_Display_UDEF * disp = &disp_;
+	if(!disp->open_display()) {
 		FAIL_FAILED();
 		return 1;
 	}
@@ -121,7 +122,7 @@ int main_one() {
 	// win1.draw();
 	
 	// KEY
-if(0)	disp.test1();
+if(0)	disp->test1();
 
 /*
 	when win3 is child of win1
@@ -130,8 +131,8 @@ if(0)	disp.test1();
 
 	XEvent report;
 	while (1)  {
-		disp.XFlush();
-		disp.XNextEvent( report );
+		disp->XFlush();
+		disp->XNextEvent( report );
 		int t =  main_loop_once( disp, report );
 	}
 
@@ -150,8 +151,9 @@ int main_two( argv_decoder & ARGS ) {
 	// ARGS.on_VARS _fully_loaded
 
 	// open up a display connection
-	X_Display_UDEF disp( NULL );
-	if(!disp.open_display()) {
+	X_Display_UDEF disp_( NULL );
+	X_Display_UDEF * disp = & disp_;
+	if(!disp->open_display()) {
 		FAIL_FAILED();
 		return 1;
 	}
@@ -194,7 +196,7 @@ int main_two( argv_decoder & ARGS ) {
 	
 
 	// KEY
-if(1)	disp.test1(); // what does this do ???
+if(1)	disp->test1(); // what does this do ???
 
 	// has to be in the redraw
 	INFO("win1 USED");
@@ -206,8 +208,8 @@ if(1)	disp.test1(); // what does this do ???
 
 	XEvent report;
 	while (1)  {
-		disp.XFlush();
-		disp.XNextEvent( report );
+		disp->XFlush();
+		disp->XNextEvent( report );
 		int t =  main_loop_once( disp, report );
 	}
 

@@ -54,7 +54,7 @@ Xft_DrawCreate( X_Window & W )
 	}
 	INFO("CALLED");
 
-	Display  *display = W.display;
+	Display  *display = W.slow_get_display();
 	Drawable drawable = W.drawable;
 
 	Visual   *visual;

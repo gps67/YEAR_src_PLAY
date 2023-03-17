@@ -22,7 +22,7 @@ using namespace WAX;
 	X_Pixmap now holds it's own X_Display (or at least Display)
 	That is an optional extra, coming from X_Drawable_Surface
 	(which is not an X approach)
-	so we _COULD_ remove all other X_Display & disp parameter routes
+	so we _COULD_ remove all other X_Display * disp parameter routes
 
 */
 
@@ -126,7 +126,7 @@ void X_Image:: del_ximage()
 }
 
 bool X_Image:: create_image_from_RGBA_frame_buffer(
-	X_Display & disp,
+	X_Display * disp,
 	char * image_buffer, // caller arranges to keep it alloc'd
 	A_WH _WH
 ) {
@@ -135,8 +135,8 @@ bool X_Image:: create_image_from_RGBA_frame_buffer(
 	// we asked for these from png and we guess what it provided
 	int pad = 8; // bit padding per line // 32 would make sense too
 	int depth = 32; depth = 24; // of screen
-	// disp.test_list_depths(); // 24 1 4 8 15 16 32 //
-	depth = disp.Default_Depth();
+	// disp->test_list_depths(); // 24 1 4 8 15 16 32 //
+	depth = disp->Default_Depth();
 	INFO("default depth of screen 0 = %d\n", depth ); // 32
 
 	int bytes_per_line = 0; // zero means auto calc
@@ -145,8 +145,8 @@ bool X_Image:: create_image_from_RGBA_frame_buffer(
 
 	INFO("png  W %d H %d", _WH.w, _WH.h );
 	ximage = ximage = XCreateImage(
-		disp.display,
-		disp.get_Default_Visual(), // vanilla plus
+		disp->display,
+		disp->get_Default_Visual(), // vanilla plus
 		depth,          // 24 not 32
 		ZPixmap,        // RGB triplets not plane of R plane of G plane of B
 		0,              // ignore left pixels on scanline
@@ -170,18 +170,18 @@ bool X_Image:: create_image_from_RGBA_frame_buffer(
 	This is all specific to u32 RGBA and near zero gaps per line
 */
 
-bool X_Image:: call_create_ximage_from_png( X_Display & disp, png_one & png ) 
+bool X_Image:: call_create_ximage_from_png( X_Display * disp, png_one * png ) 
 {
 	expect_NULL_ximage();
 	WARN("TODO test pixelformat");
 
-	if( png.image.format == PNG_FORMAT_RGBA ) { 
+	if( png->image.format == PNG_FORMAT_RGBA ) { 
 	} else {
-		return FAIL("expected png.image.format == PNG_FORMAT_RGBA got ...");
+		return FAIL("expected png->image.format == PNG_FORMAT_RGBA got ...");
 		// mayhem follows
 	}
-	char * image_buffer = (char *)png.buffer;
-	A_WH _WH( png.image.width, png.image.height );
+	char * image_buffer = (char *)png->buffer;
+	A_WH _WH( png->image.width, png->image.height );
 
 	if(! create_image_from_RGBA_frame_buffer( disp, image_buffer, _WH ))
 		return FAIL_FAILED();
@@ -190,32 +190,32 @@ bool X_Image:: call_create_ximage_from_png( X_Display & disp, png_one & png )
 //		ximage->byte_order = MSBFirst; // 1
 
 	INFO( "ximage->data %p - SHARED", ximage->data );
-	INFO( "png.buffer   %p - SHARED", png.buffer );
+	INFO( "png->buffer   %p - SHARED", png->buffer );
 
 	return true;
 }
 
-bool X_Image:: call_create_ximage_from_TJ_IMG( X_Display & disp, TJ:: TJ_FB_image_t & img ) {
+bool X_Image:: call_create_ximage_from_TJ_IMG( X_Display * disp, TJ:: TJ_FB_image_t * img ) {
 	expect_NULL_ximage();
 	WARN("TODO get pixelformat from Display and from TJ image");
 	/*
 	*/
-	char * image_buffer = (char *) img.img_buf.buff;
-	A_WH _WH( img.width, img.height );
+	char * image_buffer = (char *) img->img_buf.buff;
+	A_WH _WH( img->width, img->height );
 
 	if(! create_image_from_RGBA_frame_buffer( disp, image_buffer, _WH ))
 		return FAIL_FAILED();
 
 	INFO( "ximage->data %p - SHARED", ximage->data );
-	INFO( "png.buffer   %p - SHARED", img.img_buf.buff );
+	INFO( "png->buffer   %p - SHARED", img->img_buf.buff );
 
 	show_image_data("created from TJ_IMG");
 	return true;
 }
 
-bool X_Image:: call_put_image_to_pixmap( X_Display & disp, GC gc, X_Pixmap & pixmap ) {
+bool X_Image:: call_put_image_to_pixmap( X_Display * disp, GC gc, X_Pixmap * pixmap ) {
 	if(!expect_PTR_ximage()) return FAIL_FAILED();
-	disp.XFlush();
+	disp->XFlush();
 	int Y_pos = 0;
 	int H16 = 16;
 	int H_remain = ximage->height;
@@ -224,8 +224,8 @@ bool X_Image:: call_put_image_to_pixmap( X_Display & disp, GC gc, X_Pixmap & pix
 	if(0)	if( H_band > H16 ) H_band = H16; // disable chunking
 		INFO("sending %d rows of %d", H_band, H_remain );
 		XPutImage(
-			disp.display,	// can move to X_Pixmap.X_Display // ??
-			pixmap.drawable, // window,
+			disp->display,	// can move to X_Pixmap.X_Display // ??
+			pixmap->drawable, // window,
 			gc,
 			ximage,
 			0,		// src_x
@@ -238,23 +238,23 @@ bool X_Image:: call_put_image_to_pixmap( X_Display & disp, GC gc, X_Pixmap & pix
 		Y_pos += H_band;
 		H_remain -= H_band;
 		// INFO("XFlush");
-		disp.XFlush();
+		disp->XFlush();
 		// break;
 	}
 	// INFO("sent");
 	return true;
 }
 
-bool X_Image:: get_ximage_from_pixmap( X_Display & disp, X_Drawable_Surface & pixmap ) {
+bool X_Image:: get_ximage_from_pixmap( X_Display * disp, X_Drawable_Surface * pixmap ) {
 	del_ximage();
 	unsigned long plane_mask = AllPlanes;
 	int format = ZPixmap;
 	ximage = XGetImage(
-		disp.display,
-		pixmap.drawable, // drawable
+		disp->display,
+		pixmap->drawable, // drawable
 		0,0, // x, y,
-		pixmap.WH.w, // width,
-		pixmap.WH.h, // height,
+		pixmap->WH.w, // width,
+		pixmap->WH.h, // height,
 		plane_mask,
 		format
 	);
@@ -262,13 +262,13 @@ bool X_Image:: get_ximage_from_pixmap( X_Display & disp, X_Drawable_Surface & pi
 	return ximage; // not NULL
 }
 
-bool X_Image:: put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t & img_tj ) {
-	img_tj.pixel_format_tj = TJPF_BGRX; // HOW ??
-	img_tj.width = ximage->width;
-	img_tj.height = ximage->height;
-	img_tj.img_buf.buff = (unsigned char *) ximage->data;
-	img_tj.img_buf.size = -1; // unknown
-	img_tj.img_buf.borrowed = true;		// it is not tj to release
+bool X_Image:: put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t * img_tj ) {
+	img_tj->pixel_format_tj = TJPF_BGRX; // HOW ??
+	img_tj->width = ximage->width;
+	img_tj->height = ximage->height;
+	img_tj->img_buf.buff = (unsigned char *) ximage->data;
+	img_tj->img_buf.size = -1; // unknown
+	img_tj->img_buf.borrowed = true;		// it is not tj to release
 	// caller must continue to loan out ximage data
 	return true;
 }
@@ -276,18 +276,18 @@ bool X_Image:: put_ximage_into_TJ_IMG( TJ:: TJ_FB_image_t & img_tj ) {
 
 // ---------------------------
 
-bool X_Image:: create_pixmap_from_ximage( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap ) {
+bool X_Image:: create_pixmap_from_ximage( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap ) {
 	if(!expect_PTR_ximage()) return FAIL_FAILED();
 	A_WH WH;
 	get_WH(WH); // ( ximage->width, ximage->height );
-	if(! pixmap.create( drawable, WH ))
+	if(! pixmap->create( drawable, WH ))
 		return FAIL_FAILED();
 	if(! call_put_image_to_pixmap( disp, gc, pixmap ))
 		return FAIL_FAILED();
 	return true;
 }
 
-bool X_Image:: create_pixmap_from_png( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, png_one & png ) {
+bool X_Image:: create_pixmap_from_png( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, png_one * png ) {
 	if(! call_create_ximage_from_png( disp, png ))
 		return FAIL_FAILED();
 	if(! create_pixmap_from_ximage( disp, gc, drawable, pixmap ))
@@ -295,7 +295,7 @@ bool X_Image:: create_pixmap_from_png( X_Display & disp, GC gc, Drawable drawabl
 	return true;
 }
 
-bool X_Image:: create_pixmap_from_TJ_IMG( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, TJ:: TJ_FB_image_t & img ) {
+bool X_Image:: create_pixmap_from_TJ_IMG( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, TJ:: TJ_FB_image_t * img ) {
 	if(! call_create_ximage_from_TJ_IMG( disp, img ))
 		return FAIL_FAILED();
 	if(! create_pixmap_from_ximage( disp, gc, drawable, pixmap ))
@@ -304,7 +304,7 @@ bool X_Image:: create_pixmap_from_TJ_IMG( X_Display & disp, GC gc, Drawable draw
 }
 
 #if 0
-bool X_Image:: create_pixmap_from_file( X_Display & disp, GC gc, Drawable drawable, X_Pixmap & pixmap, const char * filename ) {
+bool X_Image:: create_pixmap_from_file( X_Display * disp, GC gc, Drawable drawable, X_Pixmap * pixmap, const char * filename ) {
 	return FAIL("TODO");
 }
 #endif

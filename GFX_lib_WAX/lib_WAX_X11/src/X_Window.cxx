@@ -1,4 +1,6 @@
 #include "X_ALL.h"
+#include "X_Display.h" // use STUBS { display window } 
+
 // ALL // #include <stdlib.h>
 // ALL // #include <string.h>
 using namespace WAX;
@@ -15,13 +17,17 @@ X_Window_Root(
 : X_Window(
 	NULL_parent,
 	_disp,
-	0,
+	DefaultRootWindow( _disp->display ), // OBTAINED HERE // no checks
 	_name
 ) {
+	// win_root
 	// X_Window_Root // singleton with Display singleton //
 	if(_disp->root_window) {
 		_disp->root_window = this;
-	}
+	 	FAIL("_disp->root_window should be NULL, whilst CTOR replacement");
+	 } else {
+		_disp->root_window = this;
+	 }
 }
 
 
@@ -38,19 +44,12 @@ X_Window::
 	disp->del( this );
 }
 
+
 bool
 X_Window::
 check_window() // true == OK
 {
-	if(!drawable) {
-		WARN("ZERO window in '%s'", name );
-		WARN("WANT_BACKTRACK '%s'", name ); // Q1 Q2 cident SUBLEX //
-		DEBUG_print_stack() ; // 
-		// dgb_api // dgb.h // SUBDIR src/lib_base/dgb/ lib_base subdir // dgb.h 
-
-		return false;
-	}
-	return true;
+	return check_drawable();
 }
 
 /*!
@@ -64,15 +63,14 @@ X_Window(
 	Window _window,		// possibly 0 or XXXX
 	const char * _name	// usually set
 )
-: X_Drawable_Surface( _disp->display, _window )
+: X_Drawable_Surface( _disp, _window )
 , parent( _parent )
-, disp( _disp )
 , name(0)
 //	, xft_draw( *this )
 {
 	set_name( _name );
 	disp->add( this );
-	get_window(); // check
+	if(_window) get_window(); // check
 }
 
 /*!
@@ -89,18 +87,17 @@ X_Window::X_Window(
 	A_Rectangle xywh,
 	int borderwidth
 )
-: X_Drawable_Surface( parent_->disp->display, 0 )
+: X_Drawable_Surface( parent_->disp, 0 )
 , parent( parent_ )
-, disp( parent_->disp )
 , name(0)
 //, xft_draw() // requires following create()
 {
 	set_name( _name ); // _dgb_
-	ulong col_border = BlackPixel( display, 0 );
-	ulong col_background = BlackPixel( display, 0 );
+	ulong col_border = BlackPixel( slow_get_display(), 0 );
+	ulong col_background = BlackPixel( slow_get_display(), 0 );
 	INFO("Calling XCreateSimpleWindow()");
 	Window _window =::XCreateSimpleWindow(
-		display,
+		slow_get_display(),
 		parent->get_window(),
 		xywh.x, xywh.y, xywh.width, xywh.height,
 		borderwidth,
@@ -128,10 +125,9 @@ X_Window::X_Window(
 
 bool X_Window:: map()
 {
- 
 	// was above everything else, but not the focussed window
- if(0)	::XMapRaised( display, get_window() ); // worked more
- else	::XMapWindow( display, get_window() );
+ if(0)	::XMapRaised( slow_get_display(), get_window() ); // worked more
+ else	::XMapWindow( slow_get_display(), get_window() );
 	return true;
 }
 
@@ -166,7 +162,7 @@ bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 {
 	// subscribe to be told when WM_ clicks on X button
 	XSetWMProtocols(
-		display,
+		slow_get_display(),
 		get_window(),
 	      & X_Display_2:: atom_wm_delete_window,
 		1
@@ -202,12 +198,12 @@ bool X_Window:: X_WMProtocols_add_WM_DELETE_WINDOW()
 	called once
  */
 X_Window * X_Window:: register_root(
-	X_Display & _disp,
+	X_Display * _disp,
 	const char * name
 )
 {
 	WARN("DONT CALL THIS");
-	return disp.Root_Window;
+	return disp->Root_Window;
 	X_Window * w = new X_Window_Root( _disp, name );
 	return w;
 }
@@ -226,7 +222,7 @@ X_Window * X_Window:: register_root(
 */
 void X_Window_Top_Level:: set_title( const char * name )
 {
-	::XStoreName( display, get_window(), name );
+	::XStoreName( slow_get_display(), get_window(), name );
 }
 
 
@@ -235,19 +231,19 @@ void X_Window_Top_Level:: set_title( const char * name )
 */
 X_Window_Top_Level::X_Window_Top_Level(
 	const char * _name,
-	X_Display & _disp,
+	X_Display * _disp,
 	A_Rectangle xywh, // i16 // A_SCREEN_Rectangle // A_3D_TANLGE
 	int borderwidth
 )
-: X_Window_Frame( /*_parent*/ (X_Window *) NULL, & _disp, /*window*/ 0, _name )
+: X_Window_Frame( /*_parent*/ (X_Window *) NULL, _disp, /*window*/ 0, _name )
 {
 	set_name( _name );
-	ulong col_border = BlackPixel( display, 0 );
-	ulong col_background = BlackPixel( display, 0 );
+	ulong col_border = BlackPixel( slow_get_display(), 0 );
+	ulong col_background = BlackPixel( slow_get_display(), 0 );
 	// create a simple window, drawable // 
 	drawable = ::XCreateSimpleWindow(
-		display,
-		RootWindow( display, 0),
+		slow_get_display(),
+		RootWindow( slow_get_display(), 0),
 		xywh.x, xywh.y, xywh.width, xywh.height,
 		borderwidth,
 		col_border,
@@ -266,8 +262,8 @@ bool X_Window_Top_Level::
 X_Raise_Window()
 {
 	// only Raises above siblings, not WM ...
-	XRaiseWindow(display, get_window() );
-	XFlush(display);
+	XRaiseWindow(slow_get_display(), get_window() );
+	XFlush(slow_get_display());
 
 	INFO("but see XRestackWindows");
 	return true;
@@ -279,7 +275,7 @@ X_Raise_Window()
 bool X_Window_Top_Level::
 set_always_on_top() // _add // todo _remove + { bool toggle = off }
 {
-	Window win_root = DefaultRootWindow( display );
+	Window win_root = DefaultRootWindow( slow_get_display() );
 	XClientMessageEvent xclient;
 	memset( &xclient, 0, sizeof (xclient) );
 	//
@@ -293,13 +289,13 @@ set_always_on_top() // _add // todo _remove + { bool toggle = off }
 	xclient.data.l[3] = 0;
 	xclient.data.l[4] = 0;
 	XSendEvent(
-		display,
+		slow_get_display(),
 		win_root,
 		false,
 		SubstructureRedirectMask | SubstructureNotifyMask,
 		(XEvent *)&xclient
 	);
-	XFlush(display);
+	XFlush(slow_get_display());
 	PASS("CALLED TOP"); // was called not on top
 	return True;
 }

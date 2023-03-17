@@ -41,15 +41,15 @@ class X_test_box : public X_Window_Top_Level
 
 	  X_test_box(
 		const char * _name,
-		X_Display & disp_,	X_DISPLAY can have VTBL X_Panels
+		X_Display * disp_,	X_DISPLAY can have VTBL X_Panels
 		A_Rectangle xywh,	ZERO_is_DISPLAY_SCREEN_TOP_LEFT_ZERO
 		int border
 	  )
 
 	*/
-	X_test_box( const char * _name, X_Display & disp_, A_Rectangle xywh, int border )
+	X_test_box( const char * _name, X_Display * disp_, A_Rectangle xywh, int border )
 	: X_Window_Top_Level( _name, disp_, xywh, border )
-	, draw_green( *this )
+	, draw_green( this )
 	, xywh1( xywh )
 	{
 		xywh1.reduce2(1);
@@ -85,7 +85,7 @@ class X_test_box : public X_Window_Top_Level
 	   // REGEN SUBLEX can ANNOTATE up machine settings from comments
 	   // REGEN SUBLEX can ANNOTATE up machine settings from comments
 	  )
-	X_test_box( const char * _name, X_Display & _disp, A_Rectangle xywh, int border )
+	X_test_box( const char * _name, X_Display * _disp, A_Rectangle xywh, int border )
 	: X_Window_Top_Level( _name, _disp, xywh, border )
 	, draw_green( *this )
 	, xywh1( 0,0, xywh.width, xywh.height )

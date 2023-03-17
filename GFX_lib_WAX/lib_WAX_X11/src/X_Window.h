@@ -10,7 +10,12 @@
 
 #include "XFT.h"
 #include "X_Drawable_Surface.h"
-#include "X_Display.h"
+// #include "X_Display.h" // use STUBS { display window } 
+// HERE
+// #include "X_Window.h"
+// #include "X_Window_base.h" // non-recursive alternating quarrelling pair"
+// COUNTER_PAIR { Display Window } // ALIAS { display window } // etc
+
 
 namespace WAX {
 
@@ -57,7 +62,7 @@ struct X_Window : public X_Drawable_Surface // X_Window is a _Drawable_Surface
 	// A_WH WH;
 	//
 	X_Window * parent;
-	X_Display * disp;
+//	X_Display * disp;
 	const char * name; // debugging name // free never called
 
 //	Drawable get_drawable() { return drawable; } // in BASE_t
@@ -148,7 +153,7 @@ struct X_Window : public X_Drawable_Surface // X_Window is a _Drawable_Surface
 	*/
 	void XSelectInput( long event_mask )
 	{
-		::XSelectInput( display, get_window(), event_mask );
+		::XSelectInput( slow_get_display(), get_window(), event_mask );
 	}
 
 	void XSelectInput_mask_one(); // default setting // editable
@@ -172,7 +177,7 @@ struct X_Window : public X_Drawable_Surface // X_Window is a _Drawable_Surface
 
         bool call_XDestroyWindow_top() {
 
-                int t = XDestroyWindow( display, find_top_Window()->get_window() );
+                int t = XDestroyWindow( slow_get_display(), find_top_Window()->get_window() );
 		INFO("returned %d", t);
                 return true;
         }
@@ -351,7 +356,7 @@ struct X_Window_Top_Level : public X_Window_Frame
 	*/
 	X_Window_Top_Level(
 		const char * _name,
-		X_Display & _disp,
+		X_Display * _disp,
 		A_Rectangle xywh,
 		int borderwidth
 	);

@@ -41,5 +41,31 @@ partially copied file left
 	 TODO
 	 rewrite SYMB links somehow
 
+COPYOVER $d1 $d2
+
+	all of $d1/%s is copied to $d2/%s
+	currently there is no clever interpretation
+	other than that
+
+	nb d1 and d2 may need to be d1a/dir d2a/dir
+
+###########
+
+	cd audio
+COPY	wav $NAS3_a2_AUDIO
+	--> $NAS3_a2_AUDIO/wav
+COPY	wav/.   $NAS3_a2_AUDIO/wav/.
+COPY	wav/f1  $NAS3_a2_AUDIO/wav/.	only f1 into wav/f1
+COPY	wav/d   $NAS3_a2_AUDIO/wav/.	adds "d" into wav/d/ // even -d d/ 
+COPY	wav/d/  $NAS3_a2_AUDIO/wav/.	skips "d" as part of filename
+
+
+
+
+
+	the "wav" name is then repeated into the DIR that is $d2/wav
+	but a/b/c/wav is only repeated to $d2/wav
+
+	that enables absolute $d1 paths
 
 

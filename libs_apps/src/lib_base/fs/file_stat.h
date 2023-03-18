@@ -77,6 +77,20 @@ class file_stat : public GRP_lib_base
 	File_Type file_type;
 	File_Type linked_file_type;
 
+	/*
+		stat does not say "is_dir_mount_point"
+		but it does say { DEVICE INODE }
+		so we can check when a tree-walk changes DEVICE
+		DEVICE appears as an INT stat(2) says major(3) minor(3)
+
+			dev_t st_dev; // of disk
+			ino_t st_ino; // of file
+
+		THere is also the dev_c dev_b
+
+			dev_t st_rdev; // of device file
+	*/
+
 	file_stat();
 	void clear();
 	bool stat( const char * filename );

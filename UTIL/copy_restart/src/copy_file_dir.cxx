@@ -12,144 +12,49 @@
 #include <time.h>
 #include "tm_parts.h"
 
-struct sender_t {
-	fd_hold_1 fd_src;	// read from file
-	fd_hold_1 fd_dst;	// write to file
+struct sender_names_t {
 
-	u64 size_full = 0;
+	str1 src_over;
+	str1 src_name_ext;
+	str1 dst_over;
 
-	// stats
-	u64 size_sent = 0;
+	sender_names_t () {} // all default to NULL
 
-	bool re_init()
-	{
-		size_full = 0;
-		size_sent = 0;
-		fd_src.close();
-		fd_dst.close();
-		return true;
-	}
-
-	bool copy_src_name_dst_try(
-		const char * src_over,
-		const char * src_name_ext,
-		const char * dst_over
-	);
-
-	bool skip_file_named( str0 name )
-	{
-		if( name.has_prefix(".tmp.")) {
-			// INFO("SKIPPING OWN %s", (STR0) name );
-			return true;
-		}
-		if( name.has_suffix(".cpy")) {
-			// INFO("SKIPPING OWN %s", (STR0) name );
-			return true;
-		}
-		return false; // OK dont skip
-	}
-
-	bool pre_flight_checks()
-	{
-	 	return true;
-	}
-
-	bool call_fsync() {
-		return true;
-		e_print("f_");
-		if(! fd_dst.fsync() ) {
-			return FAIL_FAILED();
-		}
-		e_print("\b");
-		size_sent = 0;
-		return true;
-	}
-
-	bool call_fdatasync() {
-		return true;
-		e_print("D_");
-		if(! fd_dst.fdatasync() ) {
-			return FAIL_FAILED();
-		}
-		e_print("\b");
-		size_sent = 0;
-		return true;
-	}
-
-	
-};
-
-bool sender_t::copy_src_name_dst_try(
-	const char * src_over,
-	const char * src_name_ext,
-	const char * dst_over
- ) {
-	re_init();
-
-//	gdb_invoke(false);
-
-	if(0) {
-	INFO("src_over     %s", src_over );
-	INFO("src_name_ext %s", src_name_ext );
-	INFO("dst_over     %s", dst_over );
-	}
-
-	// dst_over must exist as a dir 
-	{
-	 file_stat dst_over_stat; // temp to this { block }
-	 if( !dst_over_stat.stat_expect_is_dir( dst_over )) {
-		return FAIL_FAILED();
-	 }
-	}
-
-	// do not copy residual files from own naming system
-	// maybe other files from other systems too
-	if( skip_file_named( src_name_ext )) {
-		INFO("SKIPPING OWN %s", src_name_ext );
-		return true;
-	}
-
-	// recompute src_name
-	buffer1 src_name;
-	if( src_over )
-		src_name.print("%s/%s", src_over, src_name_ext );
-	else 
-		src_name.print("%s", src_name_ext );
-
-	file_stat src_stat;
-	file_stat dst_stat;
-
-	// src file must exist, as a file, or as ...
-	if( !src_stat.stat( (STR0) src_name )) {
-		// it really should exist
-		return FAIL_FAILED();
-	}
-
-	// total file size
-	size_full = src_stat.st.st_size;
-
-	// warn if zero size
-	if( size_full == 0 ) {
-		WARN("CODE error forgot to stat or ZERO size file");
-		// check mtime
-		// return FAIL("CODE error forgot ot stat");
-	}
-
-	// 31 BIT warning
-	// we cope with huge files, but mention it
-	// even 2G is half the usual limit
-	if( size_full >> 31 ) {
-		float szg = size_full;
-		szg /= 1024; // K
-		szg /= 1024; // M
-		szg /= 1024; // G
-		WARN("SIZE more than 2G, %4.2fG", szg);
-	}
+	buffer1 src_name;	// src_over/src_name.ext
 
 	// get BASENAME and gen some temp names // from src_name
 	str1 dst_name_tmp;	// copy into this
 	str1 dst_name;		// timestamped final copy // name of
 
+ bool re_init (
+  const char * src_over_,
+  const char * src_name_ext_,
+  const char * dst_over_
+ ) {
+	src_over = src_over_;
+	src_name_ext = src_name_ext_;
+	dst_over = dst_over_;
+
+	src_name.clear();
+	dst_name_tmp.set_NULL();
+	dst_name.set_NULL();
+
+	if(0) {
+	INFO("src_over     %s", (STR0) src_over );
+	INFO("src_name_ext %s", (STR0) src_name_ext );
+	INFO("dst_over     %s", (STR0) dst_over );
+	// eg some_dir_one/ARTIST99/
+	// eg some_dir_or_file // same onto both
+	// eg some_dir_two/ARTIST99/
+	}
+
+	// recompute src_name // already cleared
+	if( src_over )
+		src_name.print("%s/%s", (STR0) src_over, (STR0) src_name_ext );
+	else 
+		src_name.print("%s", (STR0) src_name_ext );
+
+	// compute weird mid name and full dest name
 	// decode src_name
 	dir_name_ext src_dir_name_ext;
 	if(!src_dir_name_ext.decode_filename(src_name)) return FAIL_FAILED();
@@ -171,6 +76,7 @@ bool sender_t::copy_src_name_dst_try(
 	 (STR0)	src_dir_name_ext.name_ext
 	);
 
+	// save mid name and full dest name
 	dst_name_tmp = (STR0) buff_dst_name_tmp;
 	dst_name = (STR0) buff_dst_name;
 
@@ -178,11 +84,161 @@ bool sender_t::copy_src_name_dst_try(
 	 INFO("dst_name_tmp %s", (STR0) dst_name_tmp );
 	 INFO("dst_name %s", (STR0) dst_name );
 	}
+	return true;
+ }
+
+};
+
+struct sender_t {
+
+	file_stat src_stat;	
+	file_stat dst_stat;
+
+	fd_hold_1 fd_src;	// read from file
+	fd_hold_1 fd_dst;	// write to file
+
+	u64 size_full = 0;
+
+	// stats
+	u64 size_sent = 0;
+
+	bool re_init()
+	{
+		size_full = 0;
+		size_sent = 0;
+		fd_src.close();
+		fd_dst.close();
+		return true;
+	}
+
+	bool copy_src_name_dst_try(
+		const char * src_over,		// some_dir_one
+		const char * src_name_ext,	// some_file_or_dir
+		const char * dst_over		// some_dir_two
+	);
+
+	bool skip_file_named( str0 name )
+	{
+		// skip files ...
+		// skip mid-transfer-copies ...
+		// ...
+
+		if( name.has_prefix(".tmp.")) {
+			// INFO("SKIPPING OWN %s", (STR0) name );
+			return true;
+		}
+		if( name.has_suffix(".cpy")) {
+			// INFO("SKIPPING OWN %s", (STR0) name );
+			return true;
+		}
+		return false; // OK dont skip
+	}
+
+	bool stat_src_get_full_size( sender_names_t & names )
+	{
+		// src file must exist, as a file, or as ...
+		if( !src_stat.stat( (STR0) names.src_name )) {
+			// it really should exist
+			return FAIL_FAILED();
+		}
+
+		// total file size
+		size_full = src_stat.st.st_size;
+
+		// warn if zero size // add if is_file
+		if(( size_full == 0 ) && ( src_stat.file_type == is_file )) {
+			WARN("CODE error forgot to stat or ZERO size file");
+			// check mtime
+			// return FAIL("CODE error forgot ot stat");
+		}
+
+		// 31 BIT warning
+		// we cope with huge files, but mention it
+		// even 2G is half the usual limit
+		if( size_full >> 31 ) {
+			float szg = size_full;
+			szg /= 1024; // K
+			szg /= 1024; // M
+			szg /= 1024; // G
+			WARN("SIZE more than 2G, %4.2fG", szg);
+		}
+
+		return true;
+	}
+
+	bool pre_flight_checks()
+	{
+	 	return true;
+	}
+
+	bool call_fsync() {
+		// return true;
+		e_print("f_");
+		if(! fd_dst.fsync() ) {
+			return FAIL_FAILED();
+		}
+		e_print("\b");
+		size_sent = 0;
+		return true;
+	}
+
+	bool call_fdatasync() {
+		// return true;
+		e_print("D_");
+		if(! fd_dst.fdatasync() ) {
+			return FAIL_FAILED();
+		}
+		e_print("\b");
+		size_sent = 0;
+		return true;
+	}
+
+	
+};
+
+bool dir_over_must_exist( const char * dir_over )
+{
+	file_stat dir_over_stat; // temp to this { block }
+	if( !dir_over_stat.stat_expect_is_dir( dir_over )) {
+		return FAIL_FAILED();
+	}
+	return true;
+}
+
+
+bool sender_t::copy_src_name_dst_try(
+	const char * src_over_,
+	const char * src_name_ext_,
+	const char * dst_over_
+ ) {
+	re_init();
+
+	sender_names_t names;
+	names.re_init (
+		src_over_,
+		src_name_ext_,
+		dst_over_
+	);
+
+	// dst_over must exist as a dir 
+	 if( !dir_over_must_exist( names.dst_over )) 
+		return FAIL_FAILED();
+
+	// do not copy residual files from own naming system
+	// maybe other files from other systems too
+	if( skip_file_named( names.src_name_ext )) {
+		INFO("SKIPPING OWN %s", (STR0) names.src_name_ext );
+		return true;
+	}
+
+	if(! stat_src_get_full_size( names ) )
+		return FAIL_FAILED();
+
 
 	// if dst_name already exists, it is A COMPLETE COPY
 	// MAYBE check mtime nbytes and report mismatch
 	// or not
-	if( !dst_stat.stat_quiet( (STR0) dst_name )) {
+	if( !dst_stat.stat_quiet( (STR0) names.dst_name )) {
 		return FAIL_FAILED();
 	}
 	if( dst_stat.file_type != is_absent ) {
@@ -190,7 +246,7 @@ bool sender_t::copy_src_name_dst_try(
 		// and be happy if they match
 		// but we simply fail so the calling script does that
 		 return true;
-		 return PASS(" already exists %s", (STR0) dst_name );
+		 return PASS(" already exists %s", (STR0) names.dst_name );
 	}
 
 	switch( src_stat.file_type ) {
@@ -203,44 +259,56 @@ bool sender_t::copy_src_name_dst_try(
          case is_dir:
 	 	return FAIL("code error - really cant be dir");
 	 break;
+	 // fall through ... share
          case is_dev_c:
-	 	return FAIL("TODO %s %s", src_stat.file_type_str(), src_name_ext );
-	 break;
          case is_dev_b:
-	 	return FAIL("TODO %s %s", src_stat.file_type_str(), src_name_ext );
+         case is_fifo:
+	  {
+	  	// TODO // root
+		// uid 
+		// gid
+		// all seemed to happen OK
+		int dirfd = AT_FDCWD;
+		dev_t dev = src_stat.st.st_rdev;
+	  	mode_t mode = src_stat.st.st_mode;
+		if(mknodat( dirfd, names.dst_name, mode, dev ))
+			return FAIL("mknod( ... %s ... )", (STR0) names.dst_name );
+		return PASS("mknod( ... %s ... )", (STR0) names.dst_name );
+	  }
 	 break;
          case is_link: {
 	 	// clone the link to the same // abs or rel // the same
 		file_stat tmp_stat;
 		buffer1 link_text;
-	 	if(!tmp_stat.readlink_to_buf( src_name, link_text ))
+	 	if(!tmp_stat.readlink_to_buf( names.src_name, link_text ))
 			return FAIL_FAILED();
-		if(!symlink( (STR0) link_text, dst_name )) 
+
+		// symlink(target, linkpath); // symlink(2)
+		if(!symlink( (STR0) link_text, names.dst_name )) 
 			return FAIL_FAILED();
 		return true;
 		// note reuse of words "src" and "dst"
 		// BECAUSE src -> LINK
 		// NORMALLY when talking about symlink src => dst
-		// WANT dst_name -> link
+		// WANT names.dst_name -> link
 	 }
 	 break;
-         case is_fifo:
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("%s %s", src_stat.file_type_str(), (STR0) names.src_name_ext );
 	 break;
          case is_socket:
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("%s %s", src_stat.file_type_str(), (STR0) names.src_name_ext );
 	 break;
          case is_other:
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("%s %s", src_stat.file_type_str(), (STR0) names.src_name_ext );
 	 break;
          case is_error:
 	 default: 
-	 	return FAIL("%s %s", src_stat.file_type_str(), src_name_ext );
+	 	return FAIL("%s %s", src_stat.file_type_str(), (STR0) names.src_name_ext );
 	}
 
 
 	// open to read from src
-	if(!fd_src.open_RO( (STR0) src_name )) {
+	if(!fd_src.open_RO( (STR0) names.src_name )) {
 		return FAIL_FAILED();
 	}
 
@@ -248,14 +316,14 @@ bool sender_t::copy_src_name_dst_try(
 	// LOOK for restart
 	// open RW +- CREATE // seek zero or stat.midfile.size_part
 	u64 size_part = 0; // previous run left _part already copied
-	if( !dst_stat.stat_quiet( (STR0) dst_name_tmp )) {
+	if( !dst_stat.stat_quiet( (STR0) names.dst_name_tmp )) {
 		// stat_quiet returns TRUE when filename does not exist
 		// but it returns FALSE if some other error happens
 		return FAIL_FAILED(); // stat failed // not absent 
 	}
 	if( dst_stat.linked_file_type == is_absent ) {
 		// absent file means start copy from beginning
-		if(!fd_dst.open_RW_CREATE( (STR0) dst_name_tmp )) {
+		if(!fd_dst.open_RW_CREATE( (STR0) names.dst_name_tmp )) {
 			return FAIL_FAILED();
 		}
 	} else {
@@ -265,11 +333,11 @@ bool sender_t::copy_src_name_dst_try(
 		// .tmp is our unique filename, and it is dir or something odd
 		// must be a file
 		if( dst_stat.linked_file_type != is_file ) {
-			return FAIL("%s not is_file", (STR0) dst_name_tmp );
+			return FAIL("%s not is_file", (STR0) names.dst_name_tmp );
 		}
 		// size_part == amount already copied
 		size_part = dst_stat.st.st_size;
-		if(!fd_dst.open_RW( (STR0) dst_name_tmp )) {
+		if(!fd_dst.open_RW( (STR0) names.dst_name_tmp )) {
 			return FAIL_FAILED();
 		}
 		// TODO TEST on 32 bit CPU
@@ -397,15 +465,15 @@ bool sender_t::copy_src_name_dst_try(
 	// if there was an actual fail, this point is not reached
 
 	// clone mtime // but not perms ?? // not UID // 
-	if(!src_stat.utime_to_filename( (STR0) dst_name_tmp ) ) {
+	if(!src_stat.utime_to_filename( (STR0) names.dst_name_tmp ) ) {
 		return FAIL_FAILED();
 	}
 
-	if(! file_rename( (STR0) dst_name_tmp, (STR0) dst_name ) ) {
+	if(! file_rename( (STR0) names.dst_name_tmp, (STR0) names.dst_name ) ) {
 		return FAIL_FAILED();
 	}
 	
-	return PASS("%s", (STR0) dst_name );
+	return PASS("%s", (STR0) names.dst_name );
 }
 
 bool copy_file_dir (
@@ -426,11 +494,24 @@ bool copy_file_dir (
 }
 
 
+// the exported function .h
+// also recursive subdir 
 bool copy_src_name_dst(
 	const char * src_over,
 	const char * src_name_ext,
 	const char * dst_over
  ) {
+ 	/*
+		hmmm if it fails EPERM for the same reason 
+		retry (4 times) then abandon everything ....
+		want to move to next
+
+		if it fails EIO (not full, NFS timeout between sync ??)
+		it was supposed to be restartable, but somehow it isnt
+		shorter .wav files 
+
+		TODO check XXX before rename
+	*/
 	int loops = 4;
 	for( int i=0; i<loops; i++ ) {
 		sender_t sender;

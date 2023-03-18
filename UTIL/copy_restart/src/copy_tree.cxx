@@ -76,7 +76,7 @@ bool copy_tree(
 				 stat_item.linked_file_type_str()
 				);
 			}
-			if(!copy_tree( 
+			if(!copy_tree( // recursive HERE //
 			 (STR0) src_sub_dir,
 			 (STR0) dst_sub_dir
 			)) {

@@ -13,6 +13,7 @@ SEARCH=+/CAST
 SEARCH=+/TT
 SEARCH=+/dir1
 SEARCH=+/FAIL
+SEARCH=
 
 
 ./M "$@" | less $SEARCH

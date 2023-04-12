@@ -1,3 +1,13 @@
+	u8 
+	u64
+	u32
+	u16
+	u256 WORD 32_BYTE_WORD
+	lohi hilo cpu 
+	+= u64_cpu # ALIAS u64_lohi_cpu # API ASIF EIGHT_t # u64_WORD #
+	+= EIGHT_t u64_WORD # EIGHT BYTES in a u64_WORD # CPU_REGISTER_CAN
+	+= u32_BITFIELD_u24 # UDEF = "u32_WORD >> 8" # STEP BYTE OPCODE
+	+= u64_BITFIELD_u64 # UDEF = "u64_WORD" # BITFIELD # u24_PAYLOAD STEP BYTE OPCODE
 <stdint.h>
 	int8_t
 	uint8_t	// want uns8

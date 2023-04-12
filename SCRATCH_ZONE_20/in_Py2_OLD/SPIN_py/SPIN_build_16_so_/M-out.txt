@@ -1,0 +1,20 @@
+making libs
+[ -d ../SP_lib/. ] || mkdir ../SP_lib
+cd lib && \
+make \
+	VPATH=/lib \
+	srcdir='/libs' \
+	OPT_DEBUG='-g' OPT_OPTIM='' OPT_CSET='-DSP_MULTI_BYTE ' OPT_PIC='-fPIC' OPT_LIBNAME='osp' OPT_LIB_EXT='so' OPT_THREADS='-DSP_MUTEX_PTHREADS ' src_sp='' src_spin='/home/gps/2000/src/SPIN_py' dir_SP_lib='/home/gps/2000/src/SPIN_py/SP_lib' LINKDIRS='-L/home/gps/2000/src/SPIN_py/SP_lib' PYTHON_INCLUDE='-I/tools/2005/py/include/python2.4' \
+	-f /lib/Makefile.sub \
+	-f /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_site \
+	-f /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_lib \
+	-f /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_compile \
+	/home/gps/2000/src/SPIN_py/SP_lib/libosp.so
+make[1]: Entering directory '/home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Py2_OLD/SPIN_py/SPIN_build_16_so_/lib'
+make[1]: /lib/Makefile.sub: No such file or directory
+make[1]: /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_site: No such file or directory
+make[1]: /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_lib: No such file or directory
+make[1]: /home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_compile: No such file or directory
+make[1]: *** No rule to make target '/home/gps/2000/src/SPIN_py/SPIN_Makefiles/MK_SPIN_compile'. Stop.
+make[1]: Leaving directory '/home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Py2_OLD/SPIN_py/SPIN_build_16_so_/lib'
+make: *** [../SPIN_Makefiles/MK_SPIN_top_2:130: libs] Error 2

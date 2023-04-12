@@ -1,5 +1,5 @@
-#ifndef u64_lohi_on_HILO_H
-#define u64_lohi_on_HILO_H
+#ifndef YA_LOHI_H
+#define YA_LOHI_H
 
 #include "ints.h"
 
@@ -36,3 +36,4 @@ struct u64_lohi_t
 
 
 #endif
+

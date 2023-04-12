@@ -1,3 +1,8 @@
+Mar-23	Build JADE from some distro's diff
+
+	it didnt build, so applied diff, and it built
+	now trying to restart SPIN_py
+
 Aug-04	Rename
 
 	elem_info_pool -> dtd_tables (still cant read the dtd)

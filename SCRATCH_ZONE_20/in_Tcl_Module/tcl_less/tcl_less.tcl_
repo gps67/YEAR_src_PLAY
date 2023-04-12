@@ -7,9 +7,6 @@
 # then setup symb links so that /home/gps/ -> valid
 # and this link is also valid (soz)
 #
-# PWD
-# /home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl_Module/tcl_less
-
 	set YEAR_src_PLAY /home/gps/YEAR/src/PLAY
 
 	lappend auto_path \

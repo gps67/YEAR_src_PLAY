@@ -11,6 +11,39 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/mihaimoga/IntelliTask
+https://github.com/SimpleMobileTools/Simple-Music-Player
+https://github.com/SimpleMobileTools/Simple-Calendar
+https://github.com/SimpleMobileTools/Simple-File-Manager
+https://github.com/SimpleMobileTools/Simple-Contacts
+https://github.com/SimpleMobileTools/Simple-Notes
+https://github.com/SimpleMobileTools/Simple-Gallery
+https://github.com/SimpleMobileTools/Simple-Commons
+https://github.com/SimpleMobileTools/Simple-Dialer
+https://github.com/SimpleMobileTools/Simple-Calculator
+https://github.com/SimpleMobileTools/Simple-Flashlight
+https://github.com/SimpleMobileTools/Simple-Clock
+https://github.com/SimpleMobileTools/Simple-Voice-Recorder
+https://github.com/SimpleMobileTools/Simple-Thank-You
+https://github.com/SimpleMobileTools/Simple-Launcher
+https://github.com/SimpleMobileTools/Simple-Keyboard
+https://github.com/SimpleMobileTools/Simple-Draw
+https://github.com/SimpleMobileTools/Simple-SMS-Messenger
+https://github.com/SimpleMobileTools/General-Discussion
+https://github.com/SimpleMobileTools/simplemobiletools.github.io
+
+https://github.com/vanilla-music/vanilla
+https://github.com/VinylMusicPlayer/VinylMusicPlayer
+https://github.com/iampawan/Flutter-Music-Player
+https://github.com/naman14/Timber
+https://github.com/timusus/Shuttle/
+https://github.com/timusus/Shuttle2
+https://github.com/naman14/TimberX
+
+https://github.com/nodejs/node
+https://github.com/libevent/libevent
+https://github.com/Tonejs/Tone.js
+https://github.com/Tonejs/ui
 https://github.com/libsdl-org/SDL
 https://github.com/slint-ui/slint
 https://github.com/bellard/quickjs
@@ -53,7 +86,6 @@ http://sourceware.org/git/binutils-gdb.git
 https://github.com/oracle/binutils-gdb
 https://github.com/oracle/binutils-gdb/wiki
 https://gitlab.freedesktop.org/xorg/lib/libXaw3d
-https://github.com/nodejs/node
 https://github.com/lxc/lxd
 https://github.com/pjps/ndjbdns/
 git://thekelleys.org.uk/dnsmasq.git

@@ -10,9 +10,17 @@
 
 int main()
 {
+
+	// output:
+	//
+	//	'ONE' -->  1
+	//	'TWO' -->  2
+	//	'1 +2' -->  3	// SP was preserved
+	//	'ONE + TWO + 100' -->  103
+
 	show( ONE );
 	show( TWO );
-	show( 1+2 );
+	show( 1 +2 );
 	show( ONE + TWO + 100 );
 	
 	return 0;

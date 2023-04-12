@@ -16,7 +16,8 @@ typedef int u32_hilo;
 #define ON_HERE_USE_glibc_byteswap	25
 #define ON_HERE_USE_asm_byte_swap	26
 
-#define ON_HERE ON_HERE_USE_asm_byte_swap
+#define ON_HERE \
+	ON_HERE_USE_asm_byte_swap
 // define ON_HERE ON_HERE_USE_ntohl
 // todo // define ON_HERE ON_HERE_USE_glibc_byteswap
 // define ON_HERE ON_HERE_USE_gcc_builtin_byteswap

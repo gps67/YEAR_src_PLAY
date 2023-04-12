@@ -1,0 +1,138 @@
+2023-04-12 Apr Wed 16:13 # 38 #  CXX_COMMENTS_are_PARSED.txt
+
+ CXX_COMMENTS_are_PARSED.txt
+
+ 	CXX compiled is directly cxx code (handwritten macros)
+	CXX parsed is PSG_DATA_TREE PSG_SCRIPT_POOL in MODULE
+
+	CXX PARSED += FILE SEGMENT SPEC VAR STO 
+
+	CXX COMMENTS PARSED += MODULE STEP ITEM INFO TABLES += DIALECT
+
+	PARSE_a_bit_like_a_line_ARGV // STR0 ARGV[argc] // STR0 ALIAS_argc == "argc" //
+	DIALECT use VAR_NAME == "VAR_NAME" // or "OTHER" // ASSOC via HERE
+
+	SCRIPT is DRIFT STEP_BY_STEPS // possibly CACHED STEP // API //
+
+	SCRIPT JIT CACHE COMPILE TABLE STO.ITEM
+
+	ITEM = EXPR 
+	CALL CODE ITEM ARGS // CODE = lookup("ANYSTR") // ANYSTR == "%s" // !!!
+	MAGIC MK_VAR "%s" // bind with ANYSTR // "CODE_POINT(XPOS)" //
+	GEN works in a WAY a DIALECT using LIBR 
+	API += FEATURE LIBR SCRIPT _S // LIBR_S SCRIPT_S VAR_s A_VAR EXPR_LEX
+	LEX += EXPR_LEX // "+=" // 
+
+
+ CXX_COMMENTS_are_PARSED.txt
+ CXX_COMMENTS_are_COMPILED
+ CXX_COMMENTS_are_RUN
+ CXX_COMMENTS_are_CACHED
+ CXX_COMMENTS_are_MODULE_LOAD // _DONE //
+ CXX_COMMENTS_are_COMPILED
+ CXX_COMMENTS_are_ARGV
+
+ 	ARGV is an ARGV or WORDS on the command line SCRIPT_ARGV style
+
+ CXX_COMMENTS_are_PSG_SUBLEX += { ATTRNAME VAR } in_or_near { MODULE STEP }
+
+ 	JIT acts as the RUN_COMPILED_CODE CACHED_STO CODE_API
+	JIT_CACHE("VAR_NAME") // MACHINE { VAR_TYPE VARNAME CODE_POINT }
+	// MACHINE VAR_BIND VAR_NAME CODE_XPOS
+
+ JIT_PARSE 
+
+ 	MATCH " LHS += RHS " // TOKEN("+=") // ALIS(" += ") // ALIAS EXPR
+	MATCH " // PARSED_COMMENT // PARSED_COMMENT // SEQ // PSG //
+	PSG += SEQ
+	SEQ += " LHS += RHS " 
+	LOOKUP += CODE_AVAIL // TOKEN("+=") // ALIS(" += ") // ALIAS EXPR
+	MATCH_ARGV_of_WORDS // WORDS SUBLEX //
+	DECODE(STEP) as { SCRIPT } // BIND STEP to THIS // API CALL POINT XPOS
+	XPOS // not a CALL but a DATA_or_CALL / V_quick on_NULL use API builtin
+	XPOS == "COPDE_POINT" // creates a common ALIAS via DIALECT
+
+ SESS
+
+ 	in SESS the SCRIPT runs top to bottom, line by line, step by step
+	LINES build up a shared API of MODULE 
+	CACHE keeps a copy of every used value // or fewer // can add more
+	CACHE MODULE SEGMENT VAR_POOL STO SESS.STO
+	JIT_CACHE of JIT_PARSE does have ALL the file already,
+	JIT_CACHE TRACK RUN_THRU keep DATA_KEPT // TABLES //
+	JIT_CACHE PARSER has "just seen" CSR == "RUN_CSR" 
+	JIT_CACHE GEN // REGEN the CODE already found useful // PRE_LOAD
+
+ PRELOAD
+
+ 	Run MODULE over SESSION INIT DATA SCRIPTS // += SPEC // extra own INST
+	mk_var("SPEC") // MATCHED lhs "SPEC" // GEN += SCRIPT //
+
+ GEN VAR_NAME "SPEC"
+
+ 	Apply CACHE to this QUERY RESPONSE need "TOKEN" 
+
+ SEGMENT
+
+ 	CXX GLOBAL "alias" // { ALIAS_t ALIAS } // _t AUTO_APPLY // PICK //
+
+	SESS_GLOBAL.ALIAS
+	SESS_GLOBAL_ALIAS == "ALIAS_t" // from CODE // from INIT // from STO
+	SESS_GLOBAL_ALIAS
+
+	SEGMENT_INIT 
+	SEGMENT_SESS 
+	SEGMENT_LIBR // "LIBR" // mentioned so write_down_mention so_use_CODE
+
+	PARSER MATCH "LIBR" ON_USE recognise_as_cident_matching_IDX_or_TOKEN
+	// poss new random poss preloaded KNOW LIBR == "LIBR"
+	// UDEF breaks that "==" chain // DETECT MIS_MATCH invoke "UDEF"
+	// CODE_POINT XPOS , LIBR = get_var("LIBR") , // BENCH keeps ARGV GAPS
+	// CODE_POINT HERE { SCRIPT } // XPOS == "XPOS" // 
+
+ PARSED
+
+ 	PRECISE ARGV mixed with SCRIPT in FILES or JIT // JIT_ASIF_FILES
+	FAST MATCH "SPELLING" == "ANYSTR" // TOKEN.name // AUTO_VAR TOKEN.name
+	DIALECT += "TOKEN.NAME" { TOKEN "TOKEN" } { NAME "NAME" }
+	DIALECT += { ALIAS ANYSTR } // ANYSTR += STR0_ANYSTR // { STR0_t NAME }
+
+TODO
+
+	CXX_PARSED
+
+		COPY_OF_FILE "(SCRIPT_CXX)"
+		WEIRD_VAR_NAMES += " VAR_NAME.FIELD.subfield[ idx ] " // idx //
+		CT_RT mk_var "idx"
+
+	TOKENISER 
+
+	 EXACT_MATCH
+
+		STR == " VAR_NAME.FIELD.subfield[ idx ] " 
+
+
+ 	 PARSED_MATCH
+
+		SAMPLE = " VAR_NAME.FIELD.subfield[ idx ] " ;
+		VAL_FIELD_NUMERIC { "%d idx" }
+		SAMPLE = " VAR_NAME.FIELD.subfield[ %d ] " ;
+
+		FIND SAMPLE CIDENT IDX // IDX == "idx" 
+		// BIND_VAR IDX
+		// BIND VAL "idx"
+		// KNOW // IDX == "OTHER" // AUTO_VAR in next layer
+	
+	AUTO_VAR
+		// GEN // IDX == "OTHER" // AUTO_VAR in next layer
+		// GEN // IDX == "idx" // AUTO_VAL in next layer // is a var too
+		DIALECT += ASSOC lhs rhs // local remote // name value //
+
+	AUTO_DIAG
+		DIAG += VAR , VAR += CODE_POINT
+		PARSE
+		GEN
+		GEN PARSER !!
+		
+
+ 

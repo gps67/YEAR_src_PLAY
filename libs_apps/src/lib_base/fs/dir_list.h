@@ -28,6 +28,21 @@ class dir_reader_base : public GRP_lib_base
  public:
 
 	file_stat item;
+	dev_t stat_dot_dev;	// major(3) minor(3) of dev
+	bool item_is_dir_mount_point; // move to within file_stat
+	/*
+		if( !stat_dot_dev ) {
+			// presume . comes first and provides dev
+			// hope not .. as that might be different 
+			// then check is_dir and different dev
+			//
+			// CODE // stay within FS for find, tree_walk, etc
+			// CODE // dont follow symb links, except items ?
+			// TODO //
+			//
+			stat_dot_dev = item.st.st_rdev;
+		}
+	*/
 
 	bool skip_dot_all;	// dont even stat to see if its a dir
 	bool skip_dotdot;	// save on stat and callbacks

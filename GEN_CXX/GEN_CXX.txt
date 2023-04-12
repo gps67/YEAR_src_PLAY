@@ -1,0 +1,36 @@
+
+  GEN_CXX/
+  GEN_CXX.txt
+
+  	BUILD_CXX_TREE
+	GEN_CODE_for_MODULE
+	 TEXT_LAYOUT
+	 LINES_of_SCRIPT_or_ARGV_or_CXX_or_
+
+  	MODULE += CXX scripts in comments // PARSED_PHRASES
+	MODULE += cxx handwritten
+	MODULE += GEN { TYPE NAME } 
+	MODULE += GEN { VARNAME DATA } 
+	MODULE += GEN { NAME DATA } 
+	MODULE += GEN { NAME EXPR } 
+  
+  SEGMENT is .elf loaded
+
+  	.ROM
+	.STO
+	.ROM_CODE
+	.CODE = ROM_CODE
+
+  SESS.SEGMENT = ACTIVE_INSTANCE_OF_MODULE_t MODULE_SEGMENT; // INIT_LOAD
+
+  	simply use C++ to create the elf file, from global variables of SPEC
+
+  SEGMENT.CODE += CXX_MODULE_CODE
+
+  	C++ provides the name_mangling_system // awful as it is
+	we ignore that awful mangle but aim to write simpler labels
+	our SCRIPT uses { LOOKUP ANYSTR }
+	our SCRIPT uses { LOOKUP XPOS } HERE += { XPOS == ANYSTR }
+
+
+

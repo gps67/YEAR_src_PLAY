@@ -251,7 +251,7 @@ bool sender_t::copy_src_name_dst_try(
 
 	switch( src_stat.file_type ) {
 	 case is_absent:
-	 	return FAIL("code error - really must exist");
+	 	return FAIL("code error - already tested - really must exist");
 	 break;
          case is_file:
 	 	// stay for the rest of the function

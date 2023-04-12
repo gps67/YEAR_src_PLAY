@@ -2,13 +2,14 @@
 
 	CXX = g++
 	OPTIM = -g
-	INCLS = -I../
-	INCLS = -I../buffer
-#	INCLS = -I/tools/2000/X11R6/include
-#	INCLS = `pkg-config --libs freetype2`
-#	INCLS = `pkg-config --libs libs_Apps`
+	INCL = -I../
+	INCL = -I../buffer99
+#	INCL = -I/tools/2000/X11R6/include
+#	INCL = `pkg-config --cflags freetype2`
+#	LINK = `pkg-config --libs libs_Apps`
 
 	dot_EXE=.exec
+	# dot_EXE=.elf # newer later
 
 	# add any -D defines
 	DEFS = 
@@ -23,6 +24,9 @@
 
 # 	include ../MK/Makefile_libs_apps # OK
 	include ../MK/MK_with_libs_apps # OK - ish
+
+	PKGS += libs_apps_base1
+#	PKGS += libs_apps_base2
 
 #	HDRS += $S/A_point_plus.h
 #	HDRS += $S/X_Colours.h
@@ -61,7 +65,7 @@ ifeq (0,1)
 # include MK_SUFFIXES from MK_ext_lib
 .SUFFIXES: .cxx .c .o                                                           
 .cxx.o:                                                                         
-	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
+	$(CXX) $(OPTIM) $(INCL) $(DEFS) -c $<                                  
 endif
 
 # this adds OBJS twice via $^

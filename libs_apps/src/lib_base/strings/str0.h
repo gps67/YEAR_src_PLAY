@@ -26,8 +26,8 @@ uSTR0 uSTR0_from_STR0( STR0 s ) {
 #include "e_print.h"
 #endif
 
-	// invoke C++ cast for fprintf
-//#define STR0 (const char *)
+// each char in a str0 is NOT const // switch here // u8 chr //
+// reason is that u8 is abbreviation of u24 or u32 or u64 // 127-255 +VE //
 #define str0_const /* NOT const */
 
 
@@ -72,8 +72,7 @@ struct  buffer1;
 warning: cannot pass objects of non-POD type `class str0' through `...';
 call will abort at runtime
 
-
-
+	str0 appears in tree under GRP_lib_base
 */
 class str0 : public GRP_lib_base
 {
@@ -82,7 +81,7 @@ class str0 : public GRP_lib_base
 
 	/*!
 		This entire class is (supposed to be) a single pointer
-		that fits into a register.
+		A single word that fits into a register.
 		There must not be any other data fields, or
 		compiler added cookies.
 
@@ -287,25 +286,22 @@ class str0 : public GRP_lib_base
 /*
 	These reduce the number of (ambiguous) casts
 */
-	//! Nice Macro - calls strcmp
 	bool operator!=( const char * s ) const
 	{
 		return !operator==( s );
 	}
 
-	//! Nice Macro - calls strcmp
 	bool operator!=( const uchar * s ) const
 	{
 		return !operator==( s );
 	}
 
-	//! Nice Macro - calls strcmp
 	bool operator!=( const str0 & s ) const
 	{
 		return !operator==( s );
 	}
 
-	//! get char
+	//! get /*not_const*/ uchar & chr = str0[pos] 
 	str0_const uchar & operator[]( int pos )
 	{
 		return str[pos];
@@ -327,36 +323,36 @@ class str0 : public GRP_lib_base
 	//! Nice Macro - calls strcmp
 	int str_cmp( const str0 & s2 ) const
 	{
+		if( str == s2.str ) return 0; // NULL or "same_str"
 		if(!str) return -1;
-		if(!s2.str) return +1;
-		// return strcmp( (STR0) str, (STR0) s2.str );
-		return strcmp( STR0( str ), STR0( s2.str ) );
+		if(!s2.str) return +1; // any_actual_str > NULL
+		return strcmp( STR0( str ), STR0( s2.str ) ); // -1, 0, +1
 	}
 
 	//! Nice Macro - calls strcmp
 	int str_cmp_n( const str0 & s2, int n ) const
 	{
+		if( str == s2.str ) return 0; // NULL or "same_str"
 		if(!str) return -1;
 		if(!s2.str) return +1;
-		// return strncmp( (STR0) str, (STR0) s2.str, n );
 		return strncmp( STR0( str ), STR0( s2.str ), n );
 	}
 
-	//! Nice Macro - calls strcmp
 	bool has_prefix( const str0 & pfx ) const
 	{
 		return( 0==str_cmp_n( pfx, pfx.str_len() ) );
 	}
 
-	//! Nice Macro - calls strcmp
+	//! Macro - calls strcmp
 	bool has_suffix( const str0 & sfx ) const
 	{
 		int l1 =     str_len();
 		int l2 = sfx.str_len();
-		if( l1 == 0 ) return true;
+		if( l2 == 0 ) return true; // empty sfx is always found
+		if( l1 == 0 ) return false; // empty str cant have nonempty sfx
 		int skip = l1 - l2;
-		if( skip < 0 ) return false;
-		if( skip > l1 ) return false;
+		if( skip < 0 ) return false; // str shorter than sfx
+		if( skip > l1 ) return false; // isnt this impossible ?
 		str0 s0 = STR0( str ) + skip;
 		return (0==strncmp( STR0(s0), sfx, l2 ));
 	}
@@ -407,20 +403,20 @@ class str0 : public GRP_lib_base
 	//! point to the char before NULL at the end
 	str0 str_last() const
 	{
-		if(!str) return str0();
+		if(!str) return str0(); // that means NULL //
 		int l = str_len();
 		if(!l) return str;
 		return str_len() + str - 1;
 	}
 
-	//! Nice Macro - calls strchr
+	//! Nice Macro - calls strchr // find first ch in str || NULL
 	str0 str_chr( char ch ) const
 	{
 		if(!str) return str0();
 		return strchr( STR0(str), ch );
 	}
 
-	//! Nice Macro - calls strrchr
+	//! Nice Macro - calls strrchr // find last ch in str || NULL
 	str0 str_rchr( char ch ) const
 	{
 		if(!str) return str0();
@@ -447,42 +443,26 @@ class str0 : public GRP_lib_base
 		return IS_SAME;
 	}
 
-/*
-	//! compare - returning standardised LESS/SAME/MORE
-	IS_DIFF_t cmp ( const str0 * s2 ) const
-	{
-		if(!s2) return IS_MORE;
-		return cmp( *s2 );
-	}
-*/
 
 	//! Nice Macro - calls strcasecmp - ignores case
 	bool IS_same_AS( const str0 & s2 )
 	{
+		if( str == s2.str ) return true; // even if both NULL
+		if( !str ) return false;
+		if( !s2.str ) return false;
 		return 0 == strcasecmp( STR0(str), STR0(s2) );
 	}
 
-	//! Nice Macro - calls strcmp
+	//! Nice Macro - calls strcmp - case sensitive - as I would expect
 	bool is_same_as( const str0 & s2 ) const
 	{
+		if( str == s2.str ) return true; // even if both NULL
+		if( !str ) return false;
+		if( !s2.str ) return false;
 		return (0==strcmp( STR0(str), STR0(s2.str) ));
 	}
 
-/*
-	//! Nice Macro - calls strcmp
-	bool is_same_as( const char * s2 ) const
-	{
-		// NULL ??
-		return (0==strcmp( (STR0) str, (STR0) s2 ));
-	}
-
-	//! Nice Macro - calls strcmp
-	bool is_same_as( const uchar * s2 ) const
-	{
-		// NULL ??
-		return (0==strcmp( (STR0) str, (STR0) s2 ));
-	}
-*/
+// above are STRCMP // below is parsed use of str0 into type atoi etc
 
 	bool	as_double( double & f ) const;
 	bool	as_float( float & f ) const;

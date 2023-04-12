@@ -19,7 +19,7 @@ clean:
 	rm $N.o $N.s $N.exec
 
 test1: $N.exec
-	./$N.exec ; perror
+	./$N.exec ; perror $?
 
 $N.s: $N.cxx Makefile $(INCLS)
 	g++ -o $@ -S $(FLAGS) $<

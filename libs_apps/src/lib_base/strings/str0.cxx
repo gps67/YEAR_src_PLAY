@@ -17,6 +17,68 @@ uint str0::get_hash_key() {
 	return hash.hash;
 }
 
+/*
+	apply_str_to_hash( my_hash_t & MD_digestifier_t digest ) // += MD_t
+	// message_digestifier // aka CRC aka MD5 aka UDEF aka DIGEST "digest"
+	// MD5_WHIRLPOOL_UDEF // run_hash_over_str HASH_T BINARY_MANGLER
+	// digest BINARY_MANGER CRC_mangler UDEF_filter // CRYPTO_or_FILTER
+	// OPCODE FILTER STEP == "step" // DECL VAR = INIT_self; // BY SAMPLE "own_name_in_lower_case_or_DIALECT
+	// TABLE SEGMENT CALL TABLE += API of UDEF
+	// API_of_UDEF { SCRIPT } // PSG += THIS_LINE THIS_ARGV THIS_SESS
+	// ALIAS PSG LEX and SUBLEX PARSER DIGEST DIALECT SESS
+	// PSG TOKEN STO SEGMENT // these modules appear from this line
+	// ALIAS // SESS // SPEC // CTXT // UDEF CURR //
+	// APPLY SCRIPT SESS API //
+	// API STO API PSG LEX VAR_POOL SCRIPT_MACHINE SESS CTXT CSR POS
+	// SCRIPT is in COMMENTS of CXX COMPILED with CODE_POINT XPOS
+	// CSR == "XPOS" 
+	// XPOS == "CSR"
+	// SESS.sess.MODULE.module.SCRIPT.script.LINE.XPOS
+	// STREAM { this SCRIPT PARSED ACTIVE STO SESS ALIAS VAR_POOL }
+	// DIALECT PARSER MATCH(%s) MATCH // VERB(PARAMETER) NOUN == MATCH NEAR
+	// DIALECT PARSE DENSE COMMENTS // ALIAS "%s" UDEF // VAR_NAME // ALIAS //
+	// BENCH += A_VAR SPEC NAME OPTS
+	// OPTS += "VAR_on_CTOR"
+	// OPTS += "RUN_on_LOAD" // CXX code // SCRIPT DIALECT // UDEF //
+	// NAME += "STR0_t" // ALIAS STR0 // LINK BIND VARNAME TOKEN "STR0"
+	// ALIAS += NAME // RUN THIS script to build ENV //
+	// SCRIPT_MUX += SCRIPT DIALECT SESS 
+	// UDEF MD5_digest_t MD5_digest; // nickname not clone // different //
+	// ALIAS digest // ALIAS MD5 // nichname //
+	// FILTER PKT_in PKT_out // using varname as part of VERB // DIALECT //
+	// DIALECT UDEF // += // COMMENT_MATCH // MUX_comment_code_parsed_un
+	// STREAM unparsed // hopefully compiled // jit_eval_cache // += A_VAR
+	// A_VAR += NAME SPEC INIT_EXPR OBJ_STO_in_CACHE EA
+	// EA += PUNNED in shared API // EA + JIT_STEP // JIT_EXPR //
+	// DIALECT += lhs_rhs JIT EXPR // HERE += HERE_STO // 
+	// CACHE += HERE_STO // as CACHED_VAR("HERE_STO") // VAR_NAME to GEN //
+	// GEN SCRIPT // use ABOVE to FILTER own SCRIPTS // mk_var CAPS(ALIAS_EXPR)
+	// RUN_SCRIPT CALL GETTER OPCODE ARGV OPTS
+	// RUN_SCRIPT SCRIPT SESS TEXT LINES PARSED XPOS
+	// RUN_SCRIPT CALL GETTER OPCODE ARGV OPTS
+	// RUN_SCRIPT SEGMENT API CXX LIBR UDEF
+	// FEATURE += call_compiled_CXX_code 
+	// FEATURE += load_CXX_code 
+	// FEATURE += cache parsed CXX CODE XPS CSR ALIAS
+	// FEATURE += DIALECT
+	// BENCH GEN PARSE every CMNT LINE // PARSER API // MATCH LINE //
+
+	iterate over string generating its hash key
+	string = this_line_string // _t // UDEF_t // "%s_t UDEF" //
+
+	my_hash_t hash : public baseclass hash_t instance=="my_%s_t HASH"
+	// PARSER decides HASH is UDEF derived from HASH_t
+	// INTERFACE += UDEF // API //
+
+
+uint str0::get_hash_key() {
+	my_hash hash;
+	if(!str) return hash.hash;
+	hash.incl_str( str );
+	return hash.hash;
+}
+*/
+
 /*!
 	convert string to a float (or return false)
 */

@@ -1,6 +1,26 @@
 #ifndef ints_byte_order_H
 #define ints_byte_order_H
 
+	// A REWORK of this is the FUTURE
+	// strong typeing and simple #ifdef at root provides
+	// u64_hilo 
+	// u64_lohi
+	// By DESIGN we store disk words u64_lohi u32_lohi
+	// For us on intel it is a direct WORD GETTER
+	// for us on ARM it is a LOHI_mode direct WORD GETTER
+	// for you on HILO_Motorola it is SWAPB
+	//
+	// A stupid idea is that when we get to the native u64_cpu
+	// inline reduces it WORD GETTER // u64 val = WORD //
+	// inline expands it WORD API SWAPB // RO tracking cache RW
+	//
+	// EIGHT_t TABLE[ u24_idx ]; // LIMIT 32 bit, OPCODE 24 bits
+	// EIGHT_t TABLE[ u32_idx ]; // LIMIT 32 bit, u8_u8_u16_u32
+	// EIGHT_t TABLE[ u48_idx ]; // LIMIT 48 bit, OPCODE_A_B u48_BIRFIELD
+	// EIGHT_t TABLE[ u64_idx ]; // LIMIT 48 bit, OPCODE_A_B u48_BIRFIELD
+	//
+
+
  class WORD; // imports from CORE level // GAIN hand_written type_case
 
  class u32_WORD; // ALIAS u32_hilo data;
@@ -11,6 +31,18 @@
  /*!
 	Network_Byte_Order
 		Supposedly, all data on disk is hilo 
+	
+	ABCD_byte_order
+		BYTE_A BYTE_B LOHI_AB u16_BA u16_BA_lohi_in_lohi
+	
+	Machine_Byte_Order
+		u64 u64_lohi u64_hilo u64_api u64 # += TOKEN in own NAMESAPCE
+		AUTO_GEN INTEL_IS_LOHI 
+		AUTO_GEN MACHINE_IS_LOHI 
+		AUTO_GEN Machine_Byte_Order_IS_LOHI 
+		AUTO_GEN Machine_Byte_Order_IS_HILO  uses SWAPB
+		SWAPB DIALECT_says_(Machine_Byte_Order_IS_CPU) // THIS CPU //
+		// ABOVE is a BIND to var CPU // EXPR // ROM // LIBR // EXPR //<F3>
 	
 	Module WORD
 		knows about compiler MACROS for SWAPB
@@ -67,7 +99,7 @@
 		u32_lohi OUTPUT = lohi 
 	}
 
- */
+ 
 	WORD {
 		u32_lohi DATA;
 	}

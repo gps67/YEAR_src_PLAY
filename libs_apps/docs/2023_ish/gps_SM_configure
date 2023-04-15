@@ -1,0 +1,15 @@
+.  ./gps_SM_env
+
+cd_d_obj_gps
+
+
+../configure \
+    --prefix=$d_prefix \
+    --disable-jemalloc \
+    --with-system-zlib \
+    --with-intl-api \
+    --enable-debug \
+    --enable-optimize \
+# #
+
+

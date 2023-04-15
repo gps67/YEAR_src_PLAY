@@ -11,6 +11,7 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/gps67/YEAR_src_PLAY_PREP
 https://github.com/mihaimoga/IntelliTask
 https://github.com/SimpleMobileTools/Simple-Music-Player
 https://github.com/SimpleMobileTools/Simple-Calendar
@@ -296,6 +297,7 @@ https://github.com/google/oboe
 https://github.com/google/tink
 https://github.com/gps67/rant_o_matic_01a.git
 https://github.com/gps67/YEAR_src_PLAY
+https://github.com/gps67/YEAR_src_PLAY_PREP
 https://github.com/gpujs/gpu.js
 https://github.com/grbl/grbl
 https://github.com/groeck/lm-sensors

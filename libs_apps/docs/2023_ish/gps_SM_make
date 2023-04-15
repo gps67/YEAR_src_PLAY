@@ -1,0 +1,16 @@
+. ./gps_SM_env
+
+(
+cd_d_obj_gps
+set -x
+pwd
+ echo
+ date
+ echo
+ make -j4 all && \
+ make     "install"
+ date
+ echo "# exit code $? # SECONDS $SECONDS"
+ echo
+)2>&2 | tee -a $0.log.txt
+

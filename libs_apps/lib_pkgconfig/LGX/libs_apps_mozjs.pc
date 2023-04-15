@@ -6,12 +6,13 @@
 
 Name: libs_apps_mozjs
 Description: libs_apps uses JavaScript from mozilla
-Version: 0.2.67
+Version: 0.2.112
 
 # Requires: mozjs-67
 # Requires: mozjs-78
 # Requires: mozjs-93
-Requires: mozjs-106
+# Requires: mozjs-106
+Requires: mozjs-112
 # Requires: 
 
 # yes this is included

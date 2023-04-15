@@ -1,0 +1,71 @@
+exit 2023:
+HOW: fetching a recent mozjs source
+
+https://treeherder.mozilla.org/#/jobs?repo=mozilla-release&searchStr=spidermonke
+
+	scroll down to find "SM(+6)" 2/3 of the way along the screen
+	(x86 opt)
+
+	click on the SM,
+	and "SM(+6)" changes
+	into "SM((asan f nojit pkg tsan)"
+
+	click on pkg
+	a bottom panel appears,
+
+	the right panel has a MENU with MENU "Artifacts"
+	and Debugging"
+	click on "mozjs-112.0.0.tar.xz"
+
+	save it, (136 MB)
+	untar it,
+
+	that is the source
+	that is the binary too 
+	all file dates will be from 2 weeks ago,
+	when their version CI system checked it out, and built it
+
+see
+/home/gps/YEAR/src_build/mozjs-112.0.0/js/src/doc/build.rst
+
+	it says use "mach" not configure
+	I still use configure, so ... ?
+	it uses options that I dont know why 
+	so maybe look at a distro build to see what they do
+
+see + edit (same dir as this .txt file)
+
+	 gps_SM_env
+	 gps_SM_configure
+	 gps_SM_make
+
+Put them in $(TOP) of mozjs
+Run them in $(TOP) of mozjs
+
+	they set the install dir prefix
+	they set a build dir
+	they set a list of configure options - these must change !!
+
+		they build and run, so for the time being, why meddle
+		thet are probably outdated, and wrong biased
+
+see all MK files for "gps" and "112" and "prefix"
+
+	... logs of lots of compiling happens //
+	.. 1726 seconds worth (28 mins worth)
+
+	installed
+	$HOME/G/prefix/SM/bin/js112
+	$HOME/G/prefix/SM/lib/pkgconfig/mozjs-112.pc
+
+	prefix  $HOME/G/prefix/SM/
+	This allows you to move SM to one side,
+	so that version (112) is this dir alone
+	you may then need to cd SM/bin ; ln -s js112 js
+	and maybe even link that somewhere on yout PATH
+
+	you then need to use pkgconfig PATH + ITEM # uses mozjs-112
+	that is also in the SM prefix, 
+
+
+

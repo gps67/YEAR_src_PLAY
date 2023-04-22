@@ -524,7 +524,7 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 	{
 		if( !File ) {
 			if( !is_open()) {
-				fprintf(stderr,"file not open");
+				WARN("not open");
 				// throw "file not open";
 				return NULL;
 			}

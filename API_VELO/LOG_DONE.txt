@@ -1,0 +1,32 @@
+compile 3.4
+
+Edit > Preferences ? Modules
+
+	mod-script-pipe New
+	mod-script-pipe Enabled
+
+save as temp_open
+quit
+
+start audacity
+
+# ls  /tmp
+
+	audacity_script_pipe.from.1016
+	audacity_script_pipe.to.1016
+
+HOW:
+https://alphamanual.audacityteam.org/man/Modules_Preferences
+
+	/home/gps/YEAR/src_build/AUDIO/audacity/
+	  audacity/
+	   modules/
+	    mod-script-pipe/
+
+	     CMakeLists.txt
+	     PipeServer.cpp
+	     ScripterCallback.cpp
+	     ScripterCallback.h
+
+# 
+

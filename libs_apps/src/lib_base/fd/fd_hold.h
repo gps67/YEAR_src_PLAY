@@ -318,7 +318,9 @@ class fd_hold_1 : public obj_ref
 	int print( const char * fmt, ... );
 
 	bool open_RO( str0 filename, bool async = false );
+	bool open_RO_sync( str0 filename ) { return open_RO( filename, false ); }
 	bool open_RW( str0 filename, bool async = false );
+	bool open_RW_sync( str0 filename ) { return open_RW( filename, false ); }
 	bool open_RW_can_CREAT( str0 filename, bool async, int plus );
 	bool open_RW_CREATE_modmask( str0 filename, bool async, mode_t modmask );
 	bool open_RW_CREATE( str0 filename, bool async = false ); // TRUNCATES

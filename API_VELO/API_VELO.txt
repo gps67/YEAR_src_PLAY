@@ -1,0 +1,149 @@
+#  API_VELO/
+    API_VELO.txt
+
+    	API_audacity "VELO" // nickname
+
+		nyquist ? API ? RPC_via_MUX
+	
+	MUX_RPC
+
+		send_command TOKEN_OPCODE with ARGV // as_part_of argv[0]
+		
+
+	VELOCITY
+
+		named after a monthly night club
+
+		"VELO" "{ VELO }" { VELO } // non Q2 dialect in CXX LOGIC banks
+
+		{ no_Q2_dialect }
+		{ Q2_dialect }
+			CODE_RULES recode backslash Q2 Q2_dialect
+
+	VELO
+
+		name of API 
+	
+	API
+
+		+ STREAM	// more BASE class
+		+ MODULE	// ITEM in STREAM
+		+= ADDITION
+		+= EXTRA
+		+= CONST
+		+= ITEM
+		+= SPEC
+		+= OBJ
+		+= FUNC_ARGS // { NAME VALUE } // { CODE_POINT "VAR_NAME" }
+	
+	PARSE
+
+		{ A R G V }
+
+		SCRIPT technology puts bias on dialect ARGV_of_STR0 += PARSED
+
+		STR0 is often TOKEN , particularly when used as
+
+			{ STR0 VAR_NAME }
+			// PRE_KNOW utf8_buffer const VAR_NAME "%s"
+			// PRE_KNOW utf8_buffer VAR_NAME_builder
+			// SCRIPT reserver_word "%s" { %s } SUBLEX_name_part
+			// SUBLEX utf8_of_8859_SUBSET // SGML uses &SYMBOL_NAME;
+			// { PARSED LISP TREE from ARGV and STEPS }
+			// MINI_MACHINE // STEP( EXPR ) //
+			// VAR_MATCH is an ALIAS MATCH // invokes CODE_POINT STEP
+
+	CSR = STEPS
+
+		STEPS = PARSE SCRIPT
+		
+	
+	STEP { SCRIPT_LINE } // OK PSG upgrades that to parsed BLOCK or subline
+
+		STEP += SCRIPT_STEP "SCRIPT_LINE"
+
+	BENCH worrks by creating { mk_VAR "STEP" } { .STEP SCRIPT_LINE }
+
+		ALIAS "STEP" STEP // STEP == "STEP" // VAR == "VALUE"
+	MATCH
+		{ NAME VALUE } // those CAPS are var names
+		{ cident STR0 } // { cident_t NAME } // pushes "cident_t"
+		// if %s is VAR_NAME
+		// if %s is VALUE
+		// avail exprs in MINI_MACHINE
+		{ cident STR0 } // { STR0 VALUE } // OBJ_t * obj = EXPR //
+	
+	"%s" {
+		// SCRIPT
+	}
+
+	MODULE generates TREE_DATA for SCRIPT and ARGS
+	MODULE has full DIALECT of CONST TYPE SPEC VAR FUNC EXPR TOKENS API
+	MODULE API += PLAY_STREAM_of_DECL_OPCODE_OPTS CODE SCRIPTS
+	MODULE_API += LEX_NAME
+	MODULE_API += PSG_EXPR
+	MODULE_API += CT_RT_IDX
+
+	{ FILENAME "%s" } // CODE_POINT is NEAR HERE
+	{ FILENAME_PART "%s" } // UDEF == "UDEF"
+	{ FILENAME_EXPR EXPR } // EXPR == "EXPR" // VAR_MATCH PSG "EXPR"
+	// RT passes "SPELLING" around, and it matches UDEF or resolved_IDX
+
+	SESS.CSR4.RUN_STEP
+	// AUTO_VAR csr { ALIAS csr } // MK_OBJ in SEGMENT as COMPILED TOKEN
+	// GLOBAL_OBJECT_SCOPE += IMPORT OBJ_t from MODULE
+	// along with said MODULE
+
+	SCRIPT
+
+		https://alphamanual.audacityteam.org/man/Play
+
+
+{{Alan Bates} "The Man" } // in Whistle down the wind //
+
+	CXX
+
+		LONG_BLOCK_OF_CODE || name_of_var || VALUE || OBJV 
+	
+	OBJV
+		PARSED STR0
+	
+	STEP
+
+		https://alphamanual.audacityteam.org/man/Scripting_Reference
+
+		"OPCODE"
+		"WORD_is_SUBLEX" // EXPR might be "VAR.field.module.func" //
+
+		VAR_NAME_of_TEXT
+	
+	MATCH_VAR
+	VAR_MATCH
+
+		BENCH creates a var on complex type
+		by creating a comples type and VAR_NAME
+
+		{ STR0 VARNAME } // DECL_VAR // INTERP_PROTOTYPE_as_DECL_VAR
+
+		STR0 varname = "VAR_NAME"; // SAME_or_ADJUST_or_ALIAS_
+
+		MATCH %s(PROTO_ARGV)
+
+		BY creating a VAR of same name
+		there is no need to define the actual type
+		That then binds to the loader
+		A lot of work is done by TOKEN = ALLOC STATE_ID
+		Then IDX = loookup TOKEN
+
+STEP
+	STEP
+
+		https://alphamanual.audacityteam.org/man/Scripting_Reference
+
+		Every GUI menu option has an OPCODE
+
+INFO
+	SAMPLES .py
+	/home/gps/YEAR/src_build/AUDIO/audacity/audacity/scripts/piped-work/
+
+

@@ -1,0 +1,32 @@
+download .zip
+src_build/AUDIO/
+
+file:///home/gps/YEAR/src_build/AUDIO/nyquist/doc/home.html
+file:///home/gps/YEAR/src_build/AUDIO/nyquist/doc/part3.html#18
+
+/home/gps/.java/.userPrefs/jnyqide/prefs.tmp
+
+SAL is a musical lisp, nyquist refers to:
+
+https://commonmusic.sourceforge.net/
+https://commonmusic.sourceforge.net/cm2/doc/dict/sal-topic.html
+
+https://juce.com/
+
+XLISP:
+ init
+	./	xlisp.wks 	workspace
+	./	init.lsp	
+		argv[i].lsp	
+
+ ; comment
+
+PUNCT
+	( ) ' ` , " ;
+
+SYMBOLS_CONVERTED_TO_UPPER
+
+STRINGS
+	\\ \n \t \r \f \nnn ; octal
+
+(send obj msg a r g s )

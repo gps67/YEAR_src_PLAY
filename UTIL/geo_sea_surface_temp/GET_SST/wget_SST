@@ -1,0 +1,8 @@
+
+URL=https://climatereanalyzer.org/clim/sst_daily/json/oisst2.1_world2_sst_day.json
+
+echo "# NOTE # This worked OK but need if-modified-since-previous-download"
+. fns_DIRS
+cd_or_fail _DEL_ 
+ask_do \
+wget $URL

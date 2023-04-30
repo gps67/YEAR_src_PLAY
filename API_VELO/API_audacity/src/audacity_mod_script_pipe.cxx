@@ -3,6 +3,8 @@
 #include "buffer1.h"
 #include <unistd.h>
 // #include <sys/types.h>
+#include "dgb.h"
+
 
 
 bool 
@@ -22,6 +24,8 @@ set_filename_PAIR_to_default() {
 #endif
 	filename_READ = buff_filename_READ;
 	filename_WRITE = buff_filename_WRITE;
+	INFO("filename_READ = %s", (STR0) filename_READ );
+	INFO("filename_WRITE = %s", (STR0) filename_WRITE );
 	return true;
 }
 
@@ -40,10 +44,15 @@ audacity_mod_script_pipe::
 open_pipe()
 {
 	close_pipe();
-	fd_READ = new fd_PIPE_base();
 	fd_WRITE = new fd_PIPE_base();
-	if(!fd_READ->open_RO_sync( filename_READ )) return FAIL_FAILED();
-	if(!fd_WRITE->open_RW_sync( filename_WRITE )) return FAIL_FAILED();
+	fd_READ = new fd_PIPE_base();
+
+	// made a difference to open WRITE before READ
+	INFO("opening %s ...", (STR0) filename_WRITE );
+	if(!fd_WRITE->open_RW_sync( (STR0) filename_WRITE )) return FAIL_FAILED();
+	INFO("opening %s ...", (STR0) filename_READ );
+	if(!fd_READ->open_RO_sync( (STR0) filename_READ )) return FAIL_FAILED();
+	PASS("opened" );
 
 	return true;
 }

@@ -30,3 +30,4 @@ https://alphamanual.audacityteam.org/man/Modules_Preferences
 
 # 
 
+NO SIGN OF NYQUIST

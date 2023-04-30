@@ -11,6 +11,8 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/juce-framework/JUCE
+https://github.com/libsndfile/libsndfile
 https://github.com/gps67/YEAR_src_PLAY_PREP
 https://github.com/mihaimoga/IntelliTask
 https://github.com/SimpleMobileTools/Simple-Music-Player

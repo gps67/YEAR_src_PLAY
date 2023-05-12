@@ -221,3 +221,10 @@ echo
 	echo
 	df -h $DIR_ISO $DIR_NAS
 
+	echo -ne '\007'
+	sleep 1
+	echo -ne '\007'
+	sleep 1
+	echo -ne '\007'
+
+

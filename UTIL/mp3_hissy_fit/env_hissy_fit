@@ -16,6 +16,7 @@ var_add PATH $HOME/bin_LGX
 # really quite sad #
 
 PYTH=python2
+PYTH=python3
 
 check_exe()
 {
@@ -39,7 +40,19 @@ check_exe()
 		fi
 		exit
 	fi
-	
+}
+
+check_py_mod()
+{
+	local mod="${1:-ID3}"
+	if $PYTH -c "import ${mod}"
+	then
+		echo >&2 "# PASS # $PYTH found module $mod"
+	else
+		echo >&2 "# FAIL # $PYTH could not find module $mod"
+		exit
+	fi
+
 }
 
 check_exe PATH_TOOL || exit # actually no need - fns_var_add uses full pathname
@@ -51,8 +64,12 @@ check_exe perror || exit
 check_exe cd-discid || ask_do sudo apt install cd-discid
 )
 ## OPTIONAL # check_exe cd-discid optional to make new cddb file
-$PYTH --version
-$PYTH -c 'import ID3 ; print "PYTHONPATH found ID3"'
+
+echo >&2 "# INFO # `$PYTH --version`"
+
+# check_py_mod ID3 || exit
+check_py_mod eyed3 || exit
+
 if false
 then
 	P 

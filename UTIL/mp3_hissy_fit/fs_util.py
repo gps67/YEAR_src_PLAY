@@ -28,13 +28,13 @@ def must_be_root(reason = None):
 	if test_uid_is_zero():
 		return True
 	if reason:
-		print "# must_be_root('%s') " % reason
-	raise "Must be root - please dont run as a plain user"
+		print(( "# must_be_root('%s') " % reason ))
+	raise Exception( "Must be root - please dont run as a plain user" )
 
 def must_not_be_root():
 	if not test_uid_is_zero():
 		return True
-	raise "Must not be root - please run as a plain user"
+	raise Exception( "Must not be root - please run as a plain user" )
 
 def stat_file_or_None( filename ):
 	try:
@@ -46,21 +46,21 @@ def stat_file_or_None( filename ):
 def check_file_exists( filename, throws=False ):
 	stat = stat_file_or_None( filename )
 	if stat:
-		print "# found  #", filename
+		print(( "# found  #", filename ))
 	else:
-		print "# ABSENT #", filename
+		print(( "# ABSENT #", filename ))
 		if throws:
-			raise filename
+			raise Exception( filename )
 	return stat
 
 # upgrade with something that can call sudo
 # without lookin at syntax of provided command
 # upgrade with ... something that cant run shell command junk
 def call_system( cmd ):
-	print "# RUN # " + cmd
+	print(( "# RUN # " + cmd ))
 	ret = os.system( cmd )
 	if ret != 0 :
-		print "# EXIT CODE #" + str(ret)
+		print(( "# EXIT CODE #" + str(ret) ))
 	return ret
 
 def make_dir( pathname ):

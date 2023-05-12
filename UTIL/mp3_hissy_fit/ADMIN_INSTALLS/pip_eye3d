@@ -1,0 +1,17 @@
+ pip install eyed3
+Collecting eyed3
+  Downloading eyed3-0.9.7-py3-none-any.whl (246 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 246.1/246.1 KB 2.0 MB/s eta 0:00:00
+Collecting coverage[toml]<6.0.0,>=5.3.1
+  Downloading coverage-5.5-cp310-cp310-manylinux1_x86_64.whl (238 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.0/239.0 KB 542.0 kB/s eta 0:00:00
+Collecting deprecation<3.0.0,>=2.1.0
+  Downloading deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+Collecting filetype<2.0.0,>=1.0.7
+  Downloading filetype-1.2.0-py2.py3-none-any.whl (19 kB)
+Collecting toml
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from deprecation<3.0.0,>=2.1.0->eyed3) (21.3)
+Installing collected packages: filetype, toml, deprecation, coverage, eyed3
+Successfully installed coverage-5.5 deprecation-2.1.0 eyed3-0.9.7 filetype-1.2.0 toml-0.10.2
+

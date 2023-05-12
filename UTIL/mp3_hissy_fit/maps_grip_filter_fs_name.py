@@ -96,15 +96,15 @@ def map_plausible_ascii_alternatives( map ):
 	lst = maps_plausible_list.plausible_list()
 	for ( c1_hex, c1_vis, c2_ascii ) in lst:
 		c2 = map[ c2_ascii ]
-		# print "mapping '%s' --> '%s'" % (c1_hex, c2)
+		# print( "mapping '%s' --> '%s'" % (c1_hex, c2))
 		map[ c1_hex ] = c2
 
 def map_print_item( map, c1 ):
 	c2 = map[ c1 ]
-	print "'%s' --> '%s'" % (c1, c2 )
+	print(( "'%s' --> '%s'" % (c1, c2 )))
 
 def map_print( map ):
-	print map
+	print( map)
 	map_print_item( map, ' ' )
 	map_print_item( map, '\xEF' )
 
@@ -123,8 +123,8 @@ def get_grip_filter_fs_name_map():
 	groups = (string.ascii_letters, string.digits )
 	for strs in groups:
 	 for c1 in strs:
-		# c2 = c1.lower()
-		map[ c1 ] = c1
+	 	# c2 = c1.lower()
+	 	map[ c1 ] = c1
 	# I'd pref it if caps were kept, but ...
 	map_upper_to_lower( map )
 	# this must come after the basic A - Z
@@ -136,7 +136,8 @@ def get_grip_filter_fs_name_map():
 def grip_filter_fs_name( ustr ):
 	# this is the exported function
 	map = get_grip_filter_fs_name_map()
-	s1 = ustr.encode( "iso-8859-1" )
+	# s1 = ustr.encode( "iso-8859-1" )
+	s1 = ustr
 	s1 = s1.replace( "'", '' ) # apostraphe
 	s1 = s1.replace( "'", '' ) # apostraphe
 	s2 = '_'

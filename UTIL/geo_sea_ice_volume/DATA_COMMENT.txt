@@ -14,8 +14,42 @@
 	  I plot a blank bit to the left and to the right,
 	  so that you can extrapolate yourself.
 
-	  My guess is a day of no ice before 2030,
-	  and no day of ice after 2070
+	  My guess is a day of no ice before 2080,
+	  and no day of ice after 2150 (IDK ATM) HMM
+	  it would be good to get_VAR get_VAL get_CODE_POINT
+
+	  There appears to be a levelling off. We are actually 
+	  in a flat bit. That flatness likely an undulation,
+	  or early indication. As is some STEP_DOWN VIA TIME_LINE
+
+	  If the BLUE line went back to the middle pencil line,
+	  it would not be surprising, a gentle decline upto the precepic
+
+	  Need software to interact with graph.
+	  Seen it lots of places, crosshairs get numeric readouts
+	  SCRIPTED ON_DISPLAY("VAR_TRACK DRAW GESTURE ON_EVENT DIALECT")
+	  AUTO_BIND ARGV_ITEM_t ITEM = DECODE EA == mk_token_from_ROM_STR0
+
+	  "use of ANYSTR" // MUX can be exact or heuristic MATCH_PHRASE
+
+	  "EA" = a TOKEN of at least SPELLING in ROM
+	  "EA" = a TOKEN of at exact SPELLING in ROM VAR_POOL # _also_known_as
+
+	  VAR_NAME "EA"
+	  VAR_SPEC TOKEN
+
+	  ALIAS_NAME "EA" // actually { EA "%s" }
+	  ALIAS_EXPR "ALLOC idx = N++"
+	  ALIAS_KNOW MATCH ALLOC "idx = N++" // auto_get_CODE_POINT_EXPR
+
+
+PSG PHRASE LEX
+
+	using NAME = "{ code_fragment }" // loading SCRIPT builds API fields
+
+
+
+
 
 	The Y-axis is in units of 1000 km3
 

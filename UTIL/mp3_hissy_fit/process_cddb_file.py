@@ -1,4 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+
+# breakpoint()
 
 # mp3_hissy_fit.py # read CD-music into a tree of taged files
 # LGPL # Graham Swallow # 2007
@@ -96,7 +98,9 @@ import CDDB_File
 from maps_grip_filter_fs_name import grip_filter_fs_name
 from fs_util import *
 import fs_util
-from ID3 import *
+import dgb
+# from ID3 import *
+import eyed3
 
 
 #############################################################################
@@ -115,19 +119,29 @@ def id3_genre( id3, strng ):
 		g = id3.find_genre( strng )
 		id3.genre = g
 	except:
-		print( "Genre not recognised:", strng )
+		print(( "Genre not recognised:", strng ))
 		pass
-	print( "# GENRE #" + strng + " " + str( g ))
+	print(( "# GENRE #" + strng + " " + str( g )))
 
 #############################################################################
 
 def utf8_from_8859( str ):
-	uni = unicode( str, "iso-8859-1" )
+	uni = str( str, "iso-8859-1" )
 	utf = uni.encode( "UTF-8" )
 	return utf
 
 def utf8_from_uni( uni ):
 	utf=uni.encode( "UTF-8" )
+	# print type(uni),
+	# print( utf )
+	return utf
+	# return utf8_from_8859( str )
+
+def str_from_utf8_from_uni( uni ):
+	return uni
+	dgb.obj_type( "uni", uni )
+	utf=uni.encode( "UTF-8" )
+	dgb.obj_type( "utf", utf )
 	# print type(uni),
 	# print( utf )
 	return utf
@@ -193,7 +207,7 @@ class audio_munger:
  	WAV_dir3 = grip_filter_fs_name( self.Album.DTITLE_ARTIST )
  	WAV_dir4 = grip_filter_fs_name( self.Album.DTITLE_ALBUM )
 
- 	print( "WAV_dir4:", WAV_dir4)
+ 	print(( "WAV_dir4:", WAV_dir4))
 
  	MP3_DIR1 = WAV_DIR1
  	MP3_dir2 = "mp3_V%d" % self.lame_quality_V
@@ -230,7 +244,7 @@ class audio_munger:
  	name = self.get_grip_track_name( idx )
  	TT = self.get_TT01_of_idx0( idx )
  	# should maybe look on disk to see what is available, try both
- 	print( "self.keep_cdp_names", self.keep_cdp_names)
+ 	print(( "self.keep_cdp_names", self.keep_cdp_names))
  	if self.keep_cdp_names:
  		pathname_wav = self.WAV_DIR4 + "/" + "audio_" + TT + ".wav"
  	else:
@@ -245,7 +259,7 @@ class audio_munger:
 
  	cmd = ''
  	cmd = cmd + 'nice '
- 	cmd = cmd + "lame -h --vbr-new -V '%s' '%s' '%s'" % (
+ 	cmd = cmd + "lame -h --vbr-new -V '%s' --tt title '%s' '%s'" % (
  		self.lame_quality_V,
  		pathname_wav,
  		pathname_tmp 
@@ -258,15 +272,14 @@ class audio_munger:
  		)
  		return True
  	else:
- 		raise "command failed: " + cmd
+ 		raise Exception("command failed: " + cmd )
  		return None
 
  def get_TT01_of_idx0( self, idx ):
  	# get track number as two digits
  	return "%2.2d" % (1 + idx)
 
- def set_id3_tags( self, idx ):
-
+ def set_id3_tags_OLD( self, idx ):
  	self.need_file_names()
  	trk = self.Album.TRACK[ idx ]
  	name = self.get_grip_track_name( idx )
@@ -278,6 +291,7 @@ class audio_munger:
  		id3_title = utf8_from_uni( trk.TTITLE ) # as utf8 ...
  	else:
  		id3_title = "UNKNOWN"
+ 	print( "id3_title", id3_title )
  	if trk.TARTIST:
  		id3_artist = utf8_from_uni( trk.TARTIST )
  		# instead of "various" as DTITLE_ARTIST, I use "box-set-name"
@@ -299,11 +313,68 @@ class audio_munger:
  		# id3.genre = genre
  		id3_genre( id3, id3_genre_str )
  		id3.write()	# also called butomatically y dtor
- 		print
+ 		print()
  		print( id3 )
- 		print
- 	except InvalidTagError, message:
- 		print( "Invalid ID3 tag:", message )
+ 		print()
+ 	# except ( InvalidTagError, message ):
+ 	except InvalidTagError as message :
+ 		print(( "Invalid ID3 tag:", message ))
+
+ def set_id3_tags( self, idx ):
+ 	self.need_file_names()
+ 	trk = self.Album.TRACK[ idx ]
+ 	name = self.get_grip_track_name( idx )
+#	pathname_wav = self.WAV_DIR4 + "/" + name + ".wav"
+ 	pathname_mp3 = self.MP3_DIR4 + "/" + name + ".mp3"
+ 	pathname_tmp = self.MP3_DIR4 + "/" + name + ".mp3.tmp"
+ 	check_file_exists( pathname_mp3, True )
+ 	if trk.TTITLE:
+ 		id3_title = str_from_utf8_from_uni( trk.TTITLE ) # as utf8 ...
+ 	else:
+ 		id3_title = "UNKNOWN"
+ 	if trk.TARTIST:
+ 		id3_artist = str_from_utf8_from_uni( trk.TARTIST )
+ 		# instead of "various" as DTITLE_ARTIST, I use "box-set-name"
+ 		id3_comment = str_from_utf8_from_uni( self.Album.DTITLE_ARTIST )
+ 	else:
+ 		# most albums have single artist
+ 		id3_artist = str_from_utf8_from_uni( self.Album.DTITLE_ARTIST )
+ 		id3_comment = " # "
+ 	id3_genre_str = self.Album.DGENRE
+ 	try:
+ 		mp3file = eyed3.load( pathname_mp3 )
+ 		# when file has no id3 tags, then .tag is None 
+ 		# see lame call --tt title #
+ 		dgb.obj_type( "mp3file.tag", mp3file.tag )
+ 		dgb.obj_type( "id3_title", id3_title )
+ 		mp3file.tag.title = id3_title
+ 		mp3file.tag.album = str_from_utf8_from_uni( self.Album.DTITLE_ALBUM )
+ 		mp3file.tag.artist = id3_artist
+ 		mp3file.tag.album_artist = id3_artist
+
+		# THIS AINT WORKING
+		# TODO # YEAR #
+		# ALSO comment #
+		# ALSO genre #
+ 		print( "self.Album.DYEAR:", self.Album.DYEAR )
+ 		if self.Album.DYEAR:
+ 			mp3file.tag.year =  str_from_utf8_from_uni( self.Album.DYEAR )
+ 		else:
+ 			mp3file.tag.year =  "1999"
+			
+ 		mp3file.tag.track_num = idx + 1 # int(self.get_TT01_of_idx0( idx ))
+ 		mp3file.tag.comment = id3_comment
+ 		mp3file.genre = id3_genre_str
+ 		# id3_genre( mp3file, id3_genre_str )
+ 		mp3file.tag.save()	# also called butomatically y dtor
+ 		print()
+ 		print( mp3file )
+ 		print()
+ 	# except ( InvalidTagError, message ):
+ 	# except InvalidTagError as message :
+ 	# except Exception as message :
+ 	except TagException as message :
+ 		print(( "EXCEPTION:", message ))
 
  def check_saved_cddb_file( self ):
 
@@ -426,13 +497,13 @@ class audio_munger:
 #	fs_util.must_be_root("I prefer to call cdrecord as root")
  	ret = call_system( cmd )
  	if 0 != ret:
- 		raise "command failed: " + cmd
+ 		raise Exception("command failed: " + cmd )
  	return ret
 
  def cddb_summary( self ):
  	print( "### SUMMARY ## #" )
  	txt = self.Album.txt_cddb_summary()
- 	print( txt.get_unicode_text() )
+ 	print(( txt.get_unicode_text() ))
 
  def process_wav_to_wav( self ):
  	# copy '.' to WAV_DIR4
@@ -463,7 +534,7 @@ class audio_munger:
  			dst_wav = self.WAV_DIR4 + "/" + name + ".wav"
  			dst_inf = self.WAV_DIR4 + "/" + name + ".inf"
  		if not check_file_exists( self.MP3_DIR4 + "/", False ):
- 			print( "# NOT copied # " + src_wav )
+ 			print(( "# NOT copied # " + src_wav ))
  			continue
  		# print( "# YES copied # " + src_wav )
  		# continue
@@ -548,7 +619,7 @@ speed=8 \
 				cmd = config_settings.use_sudo_pfx + cmd
 			else:
 				fs_util.must_be_root("You might get cdda2wav: Operation not permitted. Cannot send SCSI cmd via ioctl")
-		print( "# cmd #", cmd )
+		print(( "# cmd #", cmd ))
 		ret = call_system( cmd )
 		if ret == 0 :
 			# eject before sync # persuade operator to kick the cable !
@@ -560,7 +631,7 @@ speed=8 \
 			return True
 		else:
 			# dont eject - make user wake up + do something
-			print( "command failed with exit code: %d" % ret )
+			print(( "command failed with exit code: %d" % ret ))
 			# also eject -t might need a second to load tray
 			# so leave it ready for next attempt
 		return False
@@ -574,8 +645,15 @@ speed=8 \
 
 		munger = audio_munger()
 		munger.set_lame_quality_V( 4 ) # my default
+		self.PDB_on = True
+		self.PDB_on = None  # default OFF
 
 		for arg in argv:
+
+			if arg == "--PDB":
+				# argv = argv[1:]
+				self.PDB_on = True
+				continue
 
 			# cdda2wav uses simple filenames, it provides cdinfo, so keep for now
 			# check this comand line .. review, rework all filename stuff
@@ -626,12 +704,12 @@ speed=8 \
 					argv.append( "audio.cddb" )
 					# continue
 				else:
-					raise "rip_here() died"
+					raise Exception("rip_here() died" )
 					continue
 
 
 			try:
-				print( "## ARG ##", arg )
+				print(( "## ARG ##", arg ))
 				act = self.action_map[ arg ]
 				munger.set_action( act )
 				continue
@@ -640,15 +718,6 @@ speed=8 \
 				
 
 			parser = CDDB_File.CDDB_Parser()
-			if 0:
-				# reqrite as 
-				# parser.set_sep( " / " )
-				# parser.set_utf8( self.utf8 )
-				# ...
-				# parser.parse_file( name ) ... reusable
-				sep = " / "
-				artist_title = True # else title before artist
-				parser.to_split_title( sep, artist_title )
 			parser.load_lines_from_file( arg, self.utf8 )
 			parser.parse_lines()
 

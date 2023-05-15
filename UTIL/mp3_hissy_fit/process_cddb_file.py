@@ -101,6 +101,7 @@ import fs_util
 import dgb
 # from ID3 import *
 import eyed3
+# from eyed3.core import Date
 
 
 #############################################################################
@@ -225,6 +226,14 @@ class audio_munger:
  	self.check_dir_exists( self.WAV_DIR1 ) # MUST exist
  	self.check_dir_exists( self.WAV_DIR4 ) # ONLY after wavs have been read in
 
+ def get_grip_track_year( self, idx ):
+ 	year = "1998"
+ 	try:
+ 		year = self.Album.DTITLE_ALBUM 
+ 	except:
+ 		year = "1997"
+ 	return year
+
  def get_grip_track_name( self, idx ):
  	trk = self.Album.TRACK[ idx ]
  	TT = self.get_TT01_of_idx0( idx )
@@ -242,6 +251,7 @@ class audio_munger:
  	self.need_file_names()
  	## trk = self.Album.TRACK[ idx ]
  	name = self.get_grip_track_name( idx )
+ 	year = self.get_grip_track_year( idx )
  	TT = self.get_TT01_of_idx0( idx )
  	# should maybe look on disk to see what is available, try both
  	print(( "self.keep_cdp_names", self.keep_cdp_names))
@@ -259,7 +269,16 @@ class audio_munger:
 
  	cmd = ''
  	cmd = cmd + 'nice '
- 	cmd = cmd + "lame -h --vbr-new -V '%s' --tt title '%s' '%s'" % (
+ 	cmd = cmd + "lame -h --vbr-new -V '%s' --tt '%s' --ty '%s' '%s' '%s'" % (
+ 		self.lame_quality_V,
+ 		name,
+ 		year,
+ 		pathname_wav,
+ 		pathname_tmp 
+ 	)
+ 	cmd = ''
+ 	cmd = cmd + 'nice '
+ 	cmd = cmd + "lame -h --vbr-new -V '%s' '%s' '%s'" % (
  		self.lame_quality_V,
  		pathname_wav,
  		pathname_tmp 
@@ -343,29 +362,45 @@ class audio_munger:
  	id3_genre_str = self.Album.DGENRE
  	try:
  		mp3file = eyed3.load( pathname_mp3 )
+
  		# when file has no id3 tags, then .tag is None 
+		# then tag = TAG() maybe ?
  		# see lame call --tt title #
- 		dgb.obj_type( "mp3file.tag", mp3file.tag )
- 		dgb.obj_type( "id3_title", id3_title )
+ 		# dgb.obj_type( "mp3file.tag", mp3file.tag )
+ 		# dgb.obj_type( "id3_title", id3_title )
+
+		# how does field tag know filename or object_addr
+ 		if mp3file.tag is None:
+ 			print("SETTING tag away from None")
+ 			mp3file.tag = eyed3.id3.Tag()
+ 		# mp3file.tag = eyed3.id3.Tag()
  		mp3file.tag.title = id3_title
  		mp3file.tag.album = str_from_utf8_from_uni( self.Album.DTITLE_ALBUM )
  		mp3file.tag.artist = id3_artist
  		mp3file.tag.album_artist = id3_artist
 
-		# THIS AINT WORKING
-		# TODO # YEAR #
-		# ALSO comment #
-		# ALSO genre #
- 		print( "self.Album.DYEAR:", self.Album.DYEAR )
+		# this stopped working !!
+		# it started when Date # maybe version of id3 records #
  		if self.Album.DYEAR:
- 			mp3file.tag.year =  str_from_utf8_from_uni( self.Album.DYEAR )
+ 			YYYY =  int(str_from_utf8_from_uni( self.Album.DYEAR ))
  		else:
- 			mp3file.tag.year =  "1999"
-			
+ 			YYYY =  1999
+ 		print("Setting YYYY", YYYY, "and yet NOT" )
+ 		mp3file.tag.year = YYYY
+ 		mp3file.tag.recording_date =  eyed3.core.Date(YYYY)
+# 		mp3file.tag.year =  eyed3.core.Date(YYYY)
+ 			
  		mp3file.tag.track_num = idx + 1 # int(self.get_TT01_of_idx0( idx ))
- 		mp3file.tag.comment = id3_comment
- 		mp3file.genre = id3_genre_str
- 		# id3_genre( mp3file, id3_genre_str )
+ 		# TEST # id3_comment = "HISSY_FIT_COMMENT"
+ 		# id3_comment = "HISSY_FIT_COMMENT"
+ 		# print("id3_comment",id3_comment)
+ 		# NO # mp3file.tag.comment = id3_comment # did not work
+ 		mp3file.tag.comments.set(id3_comment)
+
+ 		# print("id3_genre_str",id3_genre_str)
+ 		mp3file.tag.genre = id3_genre_str
+ 		# mp3file.tag.genre = eyed3.id3.Genre(id3_genre_str)
+
  		mp3file.tag.save()	# also called butomatically y dtor
  		print()
  		print( mp3file )

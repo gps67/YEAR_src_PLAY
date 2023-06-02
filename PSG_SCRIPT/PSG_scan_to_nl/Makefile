@@ -120,15 +120,21 @@ test1: $(PROG1) Makefile
  
 test2: $(PROG2) Makefile
 	./$(PROG2) ../test/test2.c1 2>&1 # | less
- 
+
 test3: $(PROG3) Makefile
 	./$(PROG3) ../test/test3.xml 2>&1 | less
- 
+
 ins3: $(PROG3) Makefile
 	insight --args ./$(PROG3) ../test/test3.xml 2>&1 | less
- 
-test4: $(PROG4) Makefile
-	./$(PROG4) /proc/partitions 2>&1 | less
+
+#test4: $(PROG4) Makefile
+#	./$(PROG4) /proc/partitions 2>&1 | less
+
+test4: $(PROG3) Makefile
+	./$(PROG3) ../test/test4.xml 2>&1 | less
+
+test5: $(PROG3) Makefile
+	./$(PROG3) ../test/test5.xml 2>&1 | less
 
 .mm3.csv: $(PROG1) Makefile
 	./$(PROG1) $< > $@

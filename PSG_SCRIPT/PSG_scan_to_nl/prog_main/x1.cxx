@@ -1,9 +1,17 @@
 
 #include "scan_xml_1.h"
+#include "dgb.h"
 
 int main(int argc, char ** argv_)
 {
 	u8 ** argv = (u8**) argv_;
+
+	// fork a wish script: tcl_text.tcl
+	// and redirect this (parents) STDERR to it
+	// switch off when done
+
+	if(1)  dgb_fork_stderr_to_tcl_text();
+
 	if(argc!=2)
 	{
 		printf("USAGE: %s filename\n",argv[0]);

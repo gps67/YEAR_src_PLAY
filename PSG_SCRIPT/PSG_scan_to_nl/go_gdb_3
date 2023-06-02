@@ -1,4 +1,7 @@
-./mk x1.exec
+EXEC=x1.exec
+ARG1=test/test3.xml
+
+./mk $EXEC
 
 # PATH=/tools/2000/gdb/bin:$PATH
 
@@ -8,7 +11,17 @@ T2=/home/gps/YEAR/srcPLAY//libs_apps/src/lib_play/hash
 T1=/home/gps/YEAR/src/PLAY/libs_apps/src/
 T2=/home/gps/YEAR/srcPLAY//libs_apps
 
-gdb -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
+ask_do \
+gdb \
+-tui \
+-d $T1 \
+-d $T2  \
+--command \
+ .gdbinit_3 \
+--args \
+ lib/$EXEC \
+ $ARG1 \
+#
 # insight -w -d $T1 -d $T2 --command .gdbinit_3 --args lib/x1 test/test3.xml
 # insight -nx -w  -d $T --args lib/x1 test/test3.xml
 # gdb -w --args ./x1 test3.xml

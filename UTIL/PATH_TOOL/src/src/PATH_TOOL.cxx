@@ -3,10 +3,16 @@
 #include <stdio.h>
 #include <errno.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+
 /*
 	License: GPL www.gnu.org
 	Author: Graham Swallow
 	Date: March 2005
+	Date: July 2023 # still keeping away from libs_apps # indie #
 
 
 	PATH_TOOL is useful to add dirs to PATH or LD_LIBRARY_PATH
@@ -25,6 +31,7 @@
 	-dupes: allows duplicates, needed to build command lines
 	-sep_space: use SP instead of ':', needed to build command lines
 	-for_eval: outputs VAR='newval'
+	-drop_no_dir: warn but remove absent dirs
 
 	eval `PATH_TOOL -for_eval pfx "$@"`                                     
 
@@ -46,6 +53,7 @@ void usage( const char * msg )
 	fprintf(stderr, "# PATH_TOOL list varname\n");
 	fprintf(stderr, "# PATH_TOOL FLAG -for_eval # outputs VAR=newval\n");
 	fprintf(stderr, "# PATH_TOOL FLAG -sep_space # use space as separator \n");
+	fprintf(stderr, "# PATH_TOOL FLAG -drop_no_dir # remove absent dirs\n");
 	fprintf(stderr, "# PATH_TOOL FLAG -dupes # do not eliminate duplicates \n");
 	exit(22);
 }
@@ -59,6 +67,7 @@ struct dir_list
 	int len_alloc;
 	char ** list;
 	bool dupes;
+	bool drop_no_dir;
 
 	/*!
 		constructor - init NULL
@@ -69,6 +78,7 @@ struct dir_list
 		len_alloc = 0;
 		list = NULL;
 		dupes = false; // no duplicate dirs 
+		drop_no_dir = false; // keep no_dir without checking
 	}
 
 	/*!
@@ -110,16 +120,47 @@ struct dir_list
 		len_alloc = new_len_alloc;
 	}
 
+	bool expect_is_a_dir( const char * dir ) {
+		struct stat st;
+		if(-1==::stat( dir, &st )) {
+			if( errno == ENOENT ) {
+			  fprintf(stderr,"# WARN # expected DIR got ENOENT # '%s' ", dir );
+			  }
+			else
+			  fprintf(stderr,"# WARN # stat DIR got ERRNO %d '%s' ", errno, dir ); 
+			return false;
+		}
+		mode_t m = st.st_mode;
+		if(S_ISDIR(m)) return true;
+
+		 fprintf(stderr,"# WARN # stat S_IS_DIR says NO # TODO follow links  # '%s' ", dir ); 
+		return false;
+	}
+
 	/*!
 		add dir to end of list, or leave where found
 	*/
 	void add_dir( char * dir )
 	{
+		// NB called by init_list_from_aswas
+		// sweep to find it as was
 		if( !dupes )
 			for( int i=0; i< len; i++ )
 			{
-				if( 0== strcmp( list[i], dir ) ) return;
+				if( 0== strcmp( list[i], dir ) )
+					return; // do not add_dir // 
 			}
+		if( drop_no_dir ) {
+			if( expect_is_a_dir( dir )) {
+				// is as it should be
+				// stay
+			} else {
+				// already reported
+				 fprintf(stderr,"# WARN # DROP non DIR # %s # ", dir ); 
+				// DROP so dropped from the list
+				return;
+			}
+		}
 		extend_to( len+1 );
 		list[ len++ ] = strdup( dir );
 	}
@@ -239,11 +280,13 @@ int main( int argc, char ** argv )
 	argc--;
 	argv++;
 
+	// the PATH that we are building
+	dir_list PATH_list;
+
 	// set defaults before flags
 	bool for_eval = false;
 	char sep = ':';
 	const char * sep_str_val = ":";
-	bool dupes = false;
 
 	// parse any flags
 	while( argc && argv[0][0]=='-' )
@@ -255,9 +298,13 @@ int main( int argc, char ** argv )
 		{
 			sep = ' ';
 			sep_str_val = " ";
+		} else if(0==strcmp( argv[0], "-drop_no_dir"))
+	
+		{
+			PATH_list.drop_no_dir = true; // args arent dirs
 		} else if(0==strcmp( argv[0], "-dupes" ))
 		{
-			dupes = true;
+			PATH_list.dupes = true; // args arent dirs
 		} else
 			usage("bad switch");
 		argc--;
@@ -286,8 +333,6 @@ int main( int argc, char ** argv )
 	// its OK for the var to not exist
 	char * var_val_buffer = getenv( varname );
 
-	dir_list PATH_list;
-	if( dupes ) PATH_list.dupes = true; // args arent dirs
 
 	switch(opcode) {
 	 case PFX:

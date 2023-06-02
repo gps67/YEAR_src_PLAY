@@ -1,0 +1,86 @@
+# CMNT this_file # handwritten NOTES
+# .txt this_file # handwritten NOTES
+# cd_mbz # CD Music Brainz # catalog in XML format # API #
+
+#  cd_mbz_1.CMNT.txt
+
+	cd_mbz_1
+		ADJACENT_FILE 
+#  cd_mbz_1.CMNT.xml
+
+# added STR0 ALIAS
+
+	CMNT
+
+		SAMPLE_mbz_ALBUM_INFO_XML_Parsed
+
+		That is an XML list of ATTR { NAME VALUE }
+
+		all about track_names media_names
+
+			TRACK[idx_TRACK]
+
+			THIS += "{ TRACK_t TRACK }" // PARSED CMNT //
+			CMNT += "// CMNT // P0P2 of CMNT // OFFS_POS //
+			CODE_POINT += P0 CURR XPOS
+
+			/* SCRIPT lines above create each LEX by mention */
+			/* CMNT */
+
+			TEXT += PARSED TEXT STARTING HERE // STREAM XPOS 
+			XPOS += P0
+
+			ARTIST += STR0 // ALIAS //
+			TITLE += STR0 // ALIAS // ALIAS TITLE // circular OK
+			STR0 == IDX // ALIAS idx = lookup STR0 // CODE_POINT
+
+			/* CODE_POINT
+				XPOS == OFFS // SEEK OFFS
+				PARSED SCRIPT SAYS { SCRIPT ARGS }
+				EXPECTED EVAL_EXPR == "RUN()"
+			*/
+
+-----
+ SCRIPT
+  LOCAL_LEXER
+  LIBR_LEXER
+  STR0_LEX "{ str0_t LEX }"
+  STR0_LEX "{ STR0_t ALIAS }" // ALIAS == "LEX" //
+  CSET_LEX "ALIAS CIDENT ANYSTR" // PARSED ARG in ARGV
+ SCRIPT API
+  P0P2 
+  P0
+  P2 // OPTIONALLY UNAVAIL // PARSE_FROM_P0 += API_ITEM_BEHAVIOUR_THIS
+  // ALIAS SELF // == "TUPLO { ITEM PARSED_from_P0 }"
+  // ALIAS SELF // == "{ ITEM PARSED_from_P0 }"
+  // TUPLO OPTION SKIP OBVIOUS LEX_USAGE // PAIR // TUPLO_PAIR // IDX_MUX 
+  //
+  // "{ ITEM PARSED_from_P0 }"
+  // PARSED_from_P0 // EA_EXPR == "CIDENT_str0 NAME"
+  // PARSED_from_P0 // EA_EXPR == "CIDENT NAME // "{ str0 NAME = %s }"
+  // PARSED from XPOS == CODE_POINT_XPOS // OFFS_in_FILE "{ FILE == { open FILENAME }}"
+  // VAR u24_OFFS = WORD_as_u24 WORD_EXPR
+
+  XML += PARSED_DATA // UTF8_STR0 // YACC_XML // 
+  DATA is muic brains catalog of CD_DATABASE_OF_SUBLIST CACHE
+  CACHE is SCRIPT COMPILED CALL ARGS CTXT // SESS == "CTXT"
+  ANYSTR == "{ SCRIPT }" // PARSED // PSG_AUTO FILTER == "PATTERN_MATCH" 
+  PSG_AUTO += PARSE "PATTERN_MATCH" into "{ PATTERN MATCH }" += "PLUS"
+  PATTERN += ALIAS_SCRIPT("SCRIPT") // "{ SCRIPT }" // TREE == "{ SCRIPT }"
+  // MATCH %s == FMT "{ %s }" { %s == "SCRIPT" } // VARNAME FMT 
+  MATCH += "SCRIPT" // with lookup %s //
+
+  BENCH: TRACK_of_ALBUM
+  BENCH: --API_XML // _ITEM // _EA //
+  BENCH DECODE PARSE XML_TEXT // of unknown but reasonable DB schema
+  BROWSE: VIEW LIST of OBJ // VIEW FILTERS AVAILA PICK 
+   MOST OBJ's have VIEW_as_UDEF_from_VARS
+
+  SPIN - using SP as a STREAM_PARSER // test_99_X
+  UTF8 - using scan_to_nl as STREAM_PARSER // test2 
+  STR0 - 
+  CSET - CSET.API.get_STR0_in_CSET2 FAST_WHEN_SAME
+  CSET - get_STR0_as_STR0_utf8 // _UTF8 // CACHED %s // EXPANDED %s
+----
+ LOAD TRACK += META_INFO_CD_TRACK 
+ 

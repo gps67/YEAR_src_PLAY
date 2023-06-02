@@ -1,2 +1,2 @@
 b main
-r add PATH xxx
+r -drop_no_dir add PATH xxx

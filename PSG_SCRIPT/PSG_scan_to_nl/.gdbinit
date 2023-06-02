@@ -1,3 +1,4 @@
+set auto-load safe-path /
 b main
 r test/test3.xml
 # r 0001.mm3

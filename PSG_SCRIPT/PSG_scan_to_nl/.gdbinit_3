@@ -1,4 +1,7 @@
 # b main
+b main
 b STBL::Spelling_Pool_lookup_add
+set auto-load safe-path /
 r test/test3.xml
+
 

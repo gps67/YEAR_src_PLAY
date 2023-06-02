@@ -140,7 +140,7 @@ typedef int delme;
 
 		SWAPB_DOES_SWAP via GEN_TECHNIQUE CACHED_GETTER
 		SWAPB_DOES_ASIS // _SWAPB ASIS //
-		"int_t -> "u64_WORD" -> "unsigned long"
+		int_t -> "u64_WORD" -> "unsigned long"
 
 		This code is run as ASIF_WORD direct no SWAPB used
 		That might be a STEP within a SCRIPT_of_STEPS

@@ -1,6 +1,53 @@
 #ifndef XML_DOC_H
 #define XML_DOC_H
 
+// # was 2007
+// # now 2023 # TODO reconstruct # DIALECT #
+// # API # XML_DIALECT # STO NBYTES # PLUS ADVICE EXYTA PLUS # EA ID IDX # 
+// # IDX # itdx_t # typedef # named macro # usage_api { obj_t obj }
+// # OBJ # "{ obj_t obj } # CMNT CODE_POINT # "{ CMNT CODE_POINT { SCRIPT }}"
+// BENCH // ALLOC IDX_t idx = N_ALLOCATE ++ # CODE_POINT CMNT SCRIPT # teatime #
+// BEENCH // ALLOC IDX // ALGORITHM 
+// DOC // DIARY += TEXT in CTXT with API // MK_VAR // AUTO // HINT // EG_val
+// XML // TREE_of_XML LEX == "{ ... }" // API += mk_VAR //
+// DOC doc // # 
+// DTD basic // TREE_BUILD_api xml_loader api // api += ASPECT // MERGE API //
+// API SESS LIBR STO  ALIAS NBYTES STO_t EA EXPR SCRIPT // nested text PSG API 
+// API NBYTES ALIAS CODE_POINT //
+// SEGMENT_API EA SCRIPT NEARBY SPEC OBJ EXPR ITEM EA ALIAS //
+// ALIAS SCRIPT += CODE_POINT CACHE { PRE END } 
+/* mk mention */ 
+// ALIAS SCRIPT += CODE_POINT CACHE { OBJ SPEX EXPR VAR_POOL LIBR UDEF SCRIPT } 
+
+/*
+	DIALECT must know CSET BYTE UTF8 NBYTES IDX EXPRS SEL == EXPR
+	SCRIPT CODE_POINT += STMT ARGS 
+	SCRIPT CODE_POINT += ITEM SPEC # LIBR += EXPLAIN #
+	LIBR += SCRIPT += PHRASE += " { SPEC ITEM } " // Compile name { str0_t str0 ) 
+	ITEM += EA // reminder that implements DECL SPEC SCRIPT_POOL SESS NOW IDX
+	ITEM += IDX // MERGE IDX API // API += ITEM // DIALECT // NOUN // ITEM //
+	EA += { typedef IDX_t IDX } // VAR CODE_POINT EA_ITEM IDX_ALLOC // 
+	// import ALLOC // AUTO // CODE_POINT 
+	PSG += ARGV_PSG STR0 CSET PSG DIALECT
+	DIALECT += CODE_POINT += SCRIPT TEXT EXPR ITEM NAME ALIAS EXPR STO API
+	API += STO // MERGE // same dialect // same name_space // scope //
+
+	SCRIPT += SCRIPT_LINE // place your UDEF here " { ARGV } " // CMNT //
+	CMNT += PARSE_SCRIPT_CMNT // FLAGS += "{ CSET == UTF8 }"
+
+	SCRIPT_PSG += STMT_is_ARGV // SCRIPT_STEP_ARGV // STEP // AUTO LEX 
+	SCRIPT_PSG += STMT_is_CODE_BLOCK_of_CODE // SCRIPT_STEP_STR0_NBYTES // STEP // AUTO LEX 
+	LEX += LEX_MUX += ANYSTR += STR0 += NBYTES_NAME 
+	// += ID_ATTR
+	CSET += PICK_UTF8 += API STR0 NBYTES ALIAS SPEC STO 
+	KNOW_LEX CIDENT ANYSTR COMPILED_SCRIPT ARGS 
+	COMPILED += SCRIPT DATA ARGS // ALIAS // LIBR // += FEATURE MERGE
+	
+	LEX WORD = LANG STR0 p0p2 p0p2_api += get_P0_get_P2 ZZ
+*/
+
+
+
 #include "XML_proto.h"
 #include "obj_ref.h"
 #include "obj_list.h"
@@ -22,11 +69,18 @@ namespace XML_DOC {
 
  /*!
 	T_text_frag is a virtual base class, 
+	T_text_frag is obj_ref0_t refcounted;
+
+	SCRIPT FRAGMENTS scattered in the_WILD 
+	PARSED SCRIPT CACHE // build EXPR TREE of SCRIPT API
 	
 	one_of {
 		T_elem_inst
 		T_sdata_char
 		T_text_frag 
+	 //	 UTF8 == "STR0" // compile "EXPR" to get ALIAS WITH_PUNCT
+	 //	 STR0 is T_text_frag 
+	 //	 ALIAS = CACHED TDX from STR0 // UTF8
 		T_word_ascii
 		T_word_8859
 		T_word_utf8

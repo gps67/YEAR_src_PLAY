@@ -381,14 +381,19 @@ class audio_munger:
 
 		# this stopped working !!
 		# it started when Date # maybe version of id3 records #
+		# or was it when lame set the fields # IDK #
+		# but this module is not what it should be #
  		if self.Album.DYEAR:
- 			YYYY =  int(str_from_utf8_from_uni( self.Album.DYEAR ))
+ 			YYYY_str =  str_from_utf8_from_uni( self.Album.DYEAR )
  		else:
- 			YYYY =  1999
+ 			YYYY_str =  "1999"
+ 		YYYY =  int(YYYY_str)
  		print("Setting YYYY", YYYY, "and yet NOT" )
  		mp3file.tag.year = YYYY
- 		mp3file.tag.recording_date =  eyed3.core.Date(YYYY)
-# 		mp3file.tag.year =  eyed3.core.Date(YYYY)
+ 	 #	mp3file.tag.recording_date =  eyed3.core.Date(YYYY)
+ 		mp3file.tag.recording_date =  YYYY_str # OK but as "recording_date"
+# 		mp3file.tag.year =  eyed3.core.Date(YYYY) # nowt
+# recording date is in # eyeD3 -V $FILE # but not year
  			
  		mp3file.tag.track_num = idx + 1 # int(self.get_TT01_of_idx0( idx ))
  		# TEST # id3_comment = "HISSY_FIT_COMMENT"

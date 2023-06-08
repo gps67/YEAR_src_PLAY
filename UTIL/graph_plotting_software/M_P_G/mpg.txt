@@ -1,35 +1,4 @@
 YEAR_MM_DD, miles, litres, cost, note
-2021-01-07, 106130  31.99, 38.04, Y? Full Shell BH
-2021-04-16, 106600, 29.72, 30.93, Full Tesco Shaftsbury nr priddy
-2021-04-20, 106748, 19.00, 23.12, Y Full Morrisons from priddy henge
-2021-05-03, 106936, 22.72, 27.65, Y Full Morrisons 
-2021-05-12, 107044, 15.43, 18.93, Y Full Morrisons 
-2021-06-19, 107392, 43.61, 54.38, Full Morrisons 
-2021-06-29, 107709, 40.70, 54.09, Y Tesco BH
-2021-07-01, 107790, 11.11, 13.68, ABSENT from bank morrisons
-2021-07-08, 107966, 21.01, 27.25, FULL written morrisons
-2021-07-15, 108146, 22.22, 29.04, Full Morrisons 
-2021-07-21, 108329, 20.56, 27.08, Full Morrisons 
-2021-08-17, 108649, 43.94, 57.87, Full Morrisons - reset after mot adj
-2021-08-21, 108964, 36.20, 47.68, Y Full ASDA - first usable after mot adj
-2021-09-09, 109072, 13.70, 18.04, Y Full Morr - but miles unwritten
-2021-09-28, 109300, 22.19, 34.59, 70% Full fake miles £1.56 !!
-2021-10-02, 109437, 15.46, 20.67, Y 100% Full Morrisons
-2021-10-21, 109574, 16.78, 23.44, NY 100% Full Morrisons
-2021-11-13, 109716, 32.69, 47.30, N 100% Full Morrisons handwritten
-2021-12-21, 109912, 27.58, 39.36, Y Upto incl battery charge
-2022-01-14, 110254, 44.04, 62.85, Y godalming nott
-2022-01-20, 110417, 22.37, 31.92, Y morrissons back from BH
-2022-04-14, 110518, 23.05, 37.32, Y shell 1.62 
-2022-05-22, 111077, 34.04, 55.72, Y morrissons back from drum
-2022-06-05, 111254, 23.62, 40.32, Y morrissons back from BH1
-2022-07-22, 111480, 36.38, 67.56, Y morrissons town
-2022-08-01, 111623, 17.42, 31.31, Y morrissons back from mud
-2022-08-22, 111907, 36.18, 60.31, Y morrissons back from Ex
-2022-09-08, 112165, 30.22, 50.07, Y morrissons 
-2022-11-08, 112572, 17.79, 27.88, Y morrissons 
-2022-12-23, 112652, 18.91, 28.18, Y morrissons 
-2022-12-27, 112808, 21.49, 31.74, Y morrissons 
-2023-01-06, 112983, 19.05, 27.95, Y morrissons Freda
-2023-01-22, 113177, 24.83, 35.68, Y morrissons Merlin
-2023-02-20, 113377, 27.64, 40.00, Y morrissons not full
+2023-07-03, 18028,  32.38, 49.64, Y? Full Morrisons - to Salisbury
+2023-07-04, 18259,  22.20, 33.01, Y? Full Morrisons - from Salisbury
+

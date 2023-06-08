@@ -124,16 +124,16 @@ struct dir_list
 		struct stat st;
 		if(-1==::stat( dir, &st )) {
 			if( errno == ENOENT ) {
-			  fprintf(stderr,"# WARN # expected DIR got ENOENT # '%s' ", dir );
-			  }
-			else
-			  fprintf(stderr,"# WARN # stat DIR got ERRNO %d '%s' ", errno, dir ); 
+			  fprintf(stderr,"# WARN # expected DIR got ENOENT # '%s' \n", dir );
+			} else {
+			  fprintf(stderr,"# WARN # stat DIR got ERRNO %d '%s' \n", errno, dir ); 
+			}
 			return false;
 		}
 		mode_t m = st.st_mode;
 		if(S_ISDIR(m)) return true;
 
-		 fprintf(stderr,"# WARN # stat S_IS_DIR says NO # TODO follow links  # '%s' ", dir ); 
+		 fprintf(stderr,"# WARN # stat S_IS_DIR says NO # TODO follow links  # '%s' \n", dir ); 
 		return false;
 	}
 
@@ -156,7 +156,7 @@ struct dir_list
 				// stay
 			} else {
 				// already reported
-				 fprintf(stderr,"# WARN # DROP non DIR # %s # ", dir ); 
+				 fprintf(stderr,"# WARN # DROP non DIR # %s # \n", dir ); 
 				// DROP so dropped from the list
 				return;
 			}
@@ -321,7 +321,11 @@ int main( int argc, char ** argv )
 	if(0==strcmp(opcodestr,"add")) opcode = ADD; else
 	if(0==strcmp(opcodestr,"del")) opcode = DEL; else
 	if(0==strcmp(opcodestr,"list")) opcode = LIST; else
-	 usage( "bad opcode" );
+	{
+		fprintf(stderr,"# opcode == '%s' # %s \n", opcodestr, progname );
+		usage( opcodestr );
+	 // usage( "bad opcode" );
+	}
 
 	if(!argc) usage( "missing VARNAME" );
 	char * varname = argv[0];
@@ -332,7 +336,6 @@ int main( int argc, char ** argv )
 
 	// its OK for the var to not exist
 	char * var_val_buffer = getenv( varname );
-
 
 	switch(opcode) {
 	 case PFX:
@@ -364,7 +367,6 @@ int main( int argc, char ** argv )
 			The export is only relevent when the var is new,
 			otherwise how did this process get the old value !
 			eval `PATH_TOOL -for_eval pfx "$@"`                                     
-
 		*/
 		fprintf( stdout, "export %s='", varname );
 		PATH_list.print( sep_str_val, stdout );

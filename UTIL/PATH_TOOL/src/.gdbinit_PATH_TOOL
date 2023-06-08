@@ -1,8 +1,11 @@
 # set a breakpoint at the start of main
 b main
+b 126
 
 # start the run with the ARGV provided with -args
 r
+
+#r -drop_no_dir list PATH a
 
 # r -drop_no_dir add PATH xxx
 

@@ -2,7 +2,9 @@ set -x
 export A=a:b:c
 PATH=:$PATH
 
-PATH_TOOL -drop_no_dir print PATH a
+type PATH_TOOL 
+PATH_TOOL -drop_no_dir list PATH a
+PATH_TOOL -drop_no_dir list PATH 
 PATH_TOOL add A a
 PATH_TOOL add A b
 PATH_TOOL add A c

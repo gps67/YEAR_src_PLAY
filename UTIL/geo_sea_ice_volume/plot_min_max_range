@@ -3,6 +3,7 @@ t=.
 t=tmp
 data_min=$t/tmp_plot_data_min.data 
 data_max=$t/tmp_plot_data_max.data 
+plot_log=$t/tmp_plot_log_min.data 
 
 gen_data_1() {
 	cat $data_min 
@@ -47,6 +48,7 @@ NR==1 {
 	# # # # # # # # # printf( "%9f %9f \n", $1, $2 );
 }
 ' \
+| tee $plot_log \
 | gnuplot ./plot_range
 # hardcoded pathname in plot_range too
 F1=sea_ice_vol_range.png

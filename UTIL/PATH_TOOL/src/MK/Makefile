@@ -29,5 +29,6 @@ clean:
 
 
 gdb: $(PROGNAME)
-	INGDB=1 gdb -tui --command ../.gdbinit_$(PROGNAME) --args ./$(PROGNAME) -drop_no_dir add PATH /absent/dir
+	INGDB=1 gdb -tui --command ../.gdbinit_$(PROGNAME) --args ./$(PROGNAME) -drop_no_dir list PATH a
+#	INGDB=1 gdb -tui --command ../.gdbinit_$(PROGNAME) --args ./$(PROGNAME) -drop_no_dir add PATH /absent/dir
 #	INGDB=1 gdb -tui --command ../.gdbinit_$(PROGNAME) --args ./$(PROGNAME) -drop_no_dir add PATH /absent/dir

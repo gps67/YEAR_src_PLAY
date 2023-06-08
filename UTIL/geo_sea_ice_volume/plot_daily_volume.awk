@@ -72,7 +72,9 @@ BEGIN {
 	A365=365*3
 	A365=365*5 # looks like a step down, then exponential decay to V2
 	A365=365*1
+	A365=365*1
 	A365=365*6 # looks like a step down, then exponential decay to V2
+	A365=365*4
 
 	# PICK A365 # LAST one WON #
 
@@ -399,6 +401,40 @@ function gen_pencil_data_2() {
 	VH2 = 0
 	VM2 = 0
 	VL2 = 0
+
+if (1) {
+	# DV delta value is peak to peak over 2
+	# the middle to top middle to bottom
+	DV = 17.5 / 2
+	DV = 18.5 / 2
+	DV = 18.0 / 2
+
+	# same start and end years
+	YH1 = YM1
+	YL1 = YM1
+
+	YH2 = YM2
+	YL2 = YM2
+
+	# (YM1 VM1) # to # (YM2 VM2) # manually placed line
+
+	# (YM2 VM2)
+	# YM1 is YEAR - middle line - POS 1
+	# VM1 is VOLUME - MIDDLE - POS1 # is ZERO
+
+	VH1 = VM1 + DV
+	VH2 = VM2 + DV
+
+	VL1 = VM1 - DV
+	VL2 = VM2 - DV
+
+	# (YM2 VM2)
+	# YM2 is YEAR - middle line - POS 2
+	# VM2 is VOLUME - MIDDLE - POS2 # is ZERO
+
+	# (YM1 VM1)
+
+}
 
 
 if (0) {

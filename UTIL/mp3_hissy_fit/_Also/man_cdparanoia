@@ -1,0 +1,4 @@
+. fns_ASKS
+
+ask_do_less cdparanoia --help
+ask_do_less man cdparanoia 

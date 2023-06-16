@@ -1,0 +1,33 @@
+set -x
+
+eject -t
+
+# ERROUT is very fast - intended for GUI (a fast one!)
+ERROUT="-e"
+ERROUT=""
+
+SPEED="-S 12"
+SPEED="-S 4"
+
+VERBOSE="-v"
+OUT_WAV="-w"
+BATCH="-B"
+
+TRACK="17"
+
+TRACK="${1:-$TRACK}"
+
+# NB TRACKS or TRACK # here singular
+
+# ask_do sudo \
+ask_do \
+cdparanoia \
+$ERROUT \
+$VERBOSE \
+$OUT_WAV \
+$BATCH \
+$SPEED \
+$TRACK \
+#
+TRACK0N=`printf '%2.2d' $TRACK`
+ask_do mv track${TRACK0N}.cdda.wav audio_${TRACK0N}.wav_

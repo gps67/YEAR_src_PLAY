@@ -1,0 +1,11 @@
+. ./.env
+umount_card # but not ejected
+
+echo "You have a choice of 400 K or all"
+sync
+ask_do \
+dd status=progress bs=4096 if=/dev/zero ${dev_sdb_of_card} count=100
+sync
+ask_do \
+dd status=progress bs=4096 if=/dev/zero of=${dev_sdb_of_card} 
+sync

@@ -1,0 +1,3 @@
+. ./.env
+say_do fdisk -l ${dev_sdb_of_card} | tee -a $OUT1
+

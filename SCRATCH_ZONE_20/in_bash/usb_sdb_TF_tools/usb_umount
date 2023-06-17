@@ -1,0 +1,5 @@
+
+. .env
+umount_card
+eject_card
+

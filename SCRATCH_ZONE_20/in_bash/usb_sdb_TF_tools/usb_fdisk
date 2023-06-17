@@ -1,0 +1,2 @@
+. ./.env
+say_do fdisk ${dev_sdb_of_card}

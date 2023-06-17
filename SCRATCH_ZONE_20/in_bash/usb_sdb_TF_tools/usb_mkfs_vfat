@@ -1,0 +1,11 @@
+. ./.env
+
+edit_media_label
+
+echo 
+echo this should take 12 seconds
+echo
+ask_do mkfs.fat -n $G64 -v ${dev_sdb1_of_card}
+sync
+
+eject_card

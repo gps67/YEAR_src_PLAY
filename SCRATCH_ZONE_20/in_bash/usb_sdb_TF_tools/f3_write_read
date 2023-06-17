@@ -1,0 +1,11 @@
+
+. .env
+
+if check_mounted_as_label
+then
+(
+	say_do f3write $media_me_label
+	echo >&2
+	say_do f3read $media_me_label
+) 2>&1 | tee -a $OUT1 
+fi

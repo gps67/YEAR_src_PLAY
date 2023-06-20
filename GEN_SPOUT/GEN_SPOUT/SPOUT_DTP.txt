@@ -1,0 +1,512 @@
+#  SPOUT_DTP.txt
+
+	TREE += DOC += PDF += DTP
+
+	 DTP += DTD
+	 DTP += MACROS
+	 DTP += EXPRS
+	 DTP += ITEM_ATTR _S _t create_on_mention SEGMENT_SEG
+	 DATA += VAR_POOL of SPEC 
+	 VARS += AVAR // AVAT_t // %s_t // VAR_NAME // ALIAS // AUTO // VALS
+	 VALS += MODULE.SEGMENT_STO_nbytes // LEX_JOIN // %s_%s // AUTO_MATCH //
+	 CODE += {
+	  STO.DATA == "LHS CPCODE RHS ARGS" // ARGV += ARGS_pre_mapped // SPEC
+	  STO.SPEC == "nbytes as STO ; STO_SPEC == 'STO_SPEC' || STO_nbytes"
+	  PSG.ALIAS += TUPLO FIELDS PKT_VARS 
+	  PKT.VARS += N_BYTES
+	 }
+
+	 BLOCK += LIST_of_LINES
+	 LINE += LIST_of_CSET_STEPS_and_WORDS
+	 LINE += PARSED_CSET_STEPS_and_TOKEN_POOLS 
+	 WORDS += TOKEN new_VAR_NAME 
+	 WORDS += IDX_of_TOKEN // SUB_VIEW _POOL_RULES 
+	 WORDS += OFFS_of_ITEM // NEAREST_AUTO_API // CONV well known ALIAS 
+	 WORDS += EA( ITEM ) // ES6_PLUS
+	 MODULE_SCRIPT += looks_like_ES6 // via "VALUE_in_Q2"
+	 MODULE_SCRIPT += looks_like_ES6 // PARSABLE_WORD_EDGE
+
+	 // PREFER "'{ %s }'" // FAST_MATCH_LHS %s RHS
+
+	 // REQUIRE ALL FOUND in GEN_CODE
+	 // ACCEPT ALL INTENDED in UDEF_SCRIPT // permit_OMIT //
+
+
+	 PARSER += CSET_STEP_START
+	 MATCH BYTE ASCII Q2 # GOTO got_Q2
+	 MATCH BYTE ASCII Q1 # goto got Q1
+	 MATCH BYTE ASCII SP # goto got Q1
+
+	 PARSER += CSET_STEP_PAST_P2
+	 MATCH BYTE ASCII SP # goto got Q1
+	 MATCH BYTE ASCII Q1 # goto got Q1
+	 MATCH BYTE ASCII Q2 # GOTO got_Q2
+
+	 	// the point upto here is to FUZZY MATCH a range of ROUTES
+		// the PARSER goes left to right,
+		// the entire BLOCK is already PRE_LOADED and RUNS
+
+		// OPTION complain that SPELLING_TWO was used
+		// SPELLING_ONE is silent, can be INFER_from_CODE //
+		// HERE += KNOW
+
+			// MATCH CSET_STEPS_PUNCTUATION_STEPS
+			// FSM table in VIEW of DIAG
+
+			GEN if(  STEP_BYTE == ASCII_Q2 ) GOTO_POS // STEP
+
+				STEP OPCODE Q2 POS // POS == "STEP_DEST" 
+
+			ELSE REPORT ABSENT {
+				{ SCRIPTS } // NAMED SCRIPT STEPS XPOS
+				// SCRIPTS += STEPS += CODE_POINT += STEP_OPCODE
+				{ SCRIPTS } // CODE_POINT += CODE_POINT_ITEM
+				{ SCRIPTS } // CODE_STEPS += CODE_STEP
+				{ SCRIPTS } // CODE_STEPS += CODE_STEPS
+			}
+
+			// eg STEP is associate "VAR_NAME" with EA_OBJ 
+			// AUTO_ALIAS PTR == EA_as_PTR //
+			// MENTION was "PTR_from_EA" // pair ot TYPE IDS
+
+	 PARSER += CSET_STEP_END
+
+	 	CODE to call after RHS has been seen and PARSED
+		// NB that means %s SCANNED OK // as it might
+
+	 PARSER += CSET_STEP_NEXT
+
+	 	/* ADD YOUR STUFF HERE */
+	
+	 PARSER += LIBR.PARSER 
+
+	 	PARSE_CSET_STEPS
+		PARSE_CXX_SCRIPT 
+		PARSE_ES6_SCRIPT // _SUBSET // YOU_do_YOU // plug in ES_V8
+		PARSE_SM6_OBJECT // plus in SM // we GEN ES6 or less more API
+		PARSE_DOX_STEPS  // DIALECT += "DOX" // "DOCS" "DOC" "DTP" "ITEM"
+		IDX = CSR_OFFS_in_STREAM relative to SOMETHING
+
+		PARSE_DIAG_SCRIPT
+
+		UDEF syntax resolved to PARSED_CODE_STEPS
+
+			PARSER can throw away XPOS for SPEED
+			PARSER keeps track, just a few FSM temp_states
+			MERGE all available TEMPLATES to MATCH
+			PARSED_CODE_STEPS resolves AMBIG shared route
+			USES a prepared tables of FSM_CODE_POINT
+			LINE STMT WORD TREE_CSR 
+
+			PARSER keeps XPOS for UDEF accuracy
+			PARSER has VALIDATE over STREAM
+			PARSER recommends EDIT_SOURCE TEXT to use "'{ %s }'"
+			"'{ %s }'" 
+				This is directly usable in C given FILTER
+				FILTER BACKSLASH_OPTIONS
+
+				 OPTION : treat TEXT as if it was
+					 already 
+					 fully
+					 RE_QUOTED 
+					 RT_CT QUOTING_USED is KNOWN
+
+				 OPTION : FILTER
+				  OPTION : CSET_STEPS
+				   OPTION : CSET_STEP
+				    OPTION : VAR_NAME
+
+				 OPTION : FILTER
+				  OPTION : CSET_STEPS
+				   OPTION : CSET_STEP
+				    OPTION : CSET_PUNCT_Q2
+
+			    OPTION : " CSR_BYTE == '{ u8 byte }' " ; SC(";")
+
+			    	RUN SAMPLE DATA over GEN ITEM
+				CACHE gathers ALL into AVAILABLE_CT
+				FILTER gathers ALL into AVAILABLE_RT
+
+				 when switched OFF RT must DO_IT
+				 MATCH_BYTE Q1 Q2 SP 
+				 MODEL += fireworks from counting TAB_USED
+				 OPTIM += who_cares_as_long_as_sufficent_PSG
+				 RETRO_LOGIN it_compiled_so_KNOW_CT
+				 RETRO_LOGIN it_compiled_so_KNOW_to_do_RT
+
+				 	SCRIPT == NULL // V_FAST_SWITCH
+
+					SCRIPT is CALLABLE //
+					SCRIPT is A_SINGLE_STEP //
+
+DECODE_u64 
+ u8_u8 u48_PTR
+  # MERGE CODE into surrounding environment
+  # MERGE CODE by making available a "global" local
+  # CXX and ES6 and VAR_API #
+  # VAR_API += VAR # "VAR_NAME" SPEC CT_SPEC RT_SPEC CACHE
+  # VAR_API += API # CACHE SIGN_FIRST_USE
+  # AUTO_VAR u8_BYTE_A BYTE_A u8_BYTE_B BYTE_B u48_from_BITFIELD
+  # ALIAS TYPE_BYTE_ONE VARNAME_BYTE_TWO OBJ_PTR OFFS_in_ZONE
+  # KNOWN ZOME == "ZONE" # VALUE == "VAR_NAME" // VALUE == "VALUE" // ALIAS
+  # ALIAS VAR_NAME "VAR_NAME" VALUE "VALUE" ALIAS "ALIAS
+  # HAPPY_PARSE STREAM OF STEPS ... "NAME" VALUE ... ANYSTR ANYVAL ...
+  # APPLY RULES VAR_POOL names ought to be CIDENT99 #
+  # whatever that is # evaporates # gimbles # EA_IS_IDX // IS_VAR_MENTIONED
+ 
+ DECODE u64_WORD
+  u8_u8
+  	decodes how this WORD is
+  	decodes WHAT this WORD is
+  	connects "{ ITEM = DECODE( u8, u8 ) }'" // no SC // EOLN_KNOW //
+
+		first use adds ANYSTR to lookup table
+		first use DECODES SCRIPT_from_ANYSTR to CACHED PREP_CODE
+	
+	DECODE uses DIAG which knows it already has BASE_AVAIL_PRE_GEN
+
+		we pivot a lot of logic from the base class
+		we AUTO step though ACTIONS LIST
+		ecape route VIA ROUTE 
+		CACHE += PLAY ROUTE on first USE, let CACHE EVAL it # DE-CODE
+		CODE += MINI_MACHINE_STEP
+
+		OPCODE CODE_POINT {
+		 USED_CSET_STEP goto_a_nearby_internal_state // tally_state
+		 // VARNAME require %s_%s_%s can be ALIAS_THREE
+		 SET CSR_SUB_CSR FSM_substate_tracker
+		}
+
+		OPCODE_CODE_POINT {
+		 ON_STEP_PARSED update_TREE // a builting_LOGIC to activate
+		  // detect USED so GEN INLINE and offer to RUN ove SAMPLES
+		 TELL TREE BUILDER CSR
+
+		 	add "%s == 'ITEM_NAME'" to MATCH PARSER
+
+			merge with 'ALIAS' into USAGE_API // DIALECT
+
+			SPLICE VAR as EXPR
+			 ie ITEM is a TWIG is an OBJ in scripted OBJ EXPRS
+			 ie FIELD field is a 
+			 // CAPS is variable bit, here the TYPE_NAME
+			 // lower is the fixed VAR_NAME COMPILED_TOKEN
+			 // NAME = CODE_POINT.CT_LLOKED_UP_NAME(%s)
+			 // KNOW %s will bring its own "%s" Q2
+			 // KNOW NEED TO TELL GEN into NO_Q2_YET
+		}
+	
+ SPOUT DTP
+
+ 	TREE of DTP DATA and SCRIPTS attached to MODULE.CT_RT
+
+	BLOCK
+		usually rectangular
+		possible added page break
+
+		INFO BLOCK_TYPE ... DATA ... ARGS ... EXPR
+		INFO RT_SIZE_VARS_ETC
+
+		LIST of Z_FLOW_STEPS
+	
+	Z_FLOW
+
+		STR0 which is a list of words with spaces
+		STR0 which is a list of words with PSG MATCH
+		ITEM is MULTI_PART_WORD
+
+			PUNCT_DRESSING "{ Q1 %s }" // %s is REST_OF_WORD
+			// %s NEXT_OF_WORD //
+
+			PUNCT_DRESSING "{ SP %s }" // %s is REST_OF_WORD
+			// %s TAIL_IS_REST_OF_WORD //
+
+		LIST of Z_FLOW_item
+
+	Z_FLOW_STR0_WORDS
+
+		P0P2 fragment within STREAM
+		P0N fragment within STREAM
+		P0 PARSE_START + KNOW_STUFF
+		P0 PARSE_START + KNOW_STUFF += ALL_USED_as_STR0 // NUL_BYTE
+
+		P0 == ZONE_BASE + ITEM_OFFS // ITEM == STR0_WORDS //
+	
+	ITEM = OBJECT // SPEC //
+
+		FIELD idx_TOKEN 
+		VALUE is GET_VAR IDX // via_CACHED_API //  TELL_LOOP  //
+
+		QT signal - but in CODE
+
+			event keeps lots of FIELD VALS (so what)
+
+			idle FILTER uses the same vectors
+			active FILTER uses similar but with ACTIONS_LIST
+			or CALLABLE_ARGS ; CALL += SESS
+	
+	ITEM = ELEMENT ATTS PARSED_STREAM_of_ITEMS 
+
+		ELEM += STRUCT { NAME ATTS ITEMS }
+
+	ITEM = MULTI_PART_WORD
+
+		FLAGS += WORD_EDGE_on_LHS
+		FLAGS += WORD_EDGE_on_RHS
+
+	MULTI_PART_WORD_ITEM &SDATA_glyph_name;
+
+	ITEM = WORDS &name; // WORD_EDGE
+
+	MULTI_PART_WORD_ITEM &SDATA_glyph_name;
+
+
+	BLOCK = Z_LINES
+	BLOCK = INDENTED_TEXT
+
+	CT_RT
+		stream ITEMS over MINI_MACHINE
+		collect to find P2
+		collect to PRE_GEN STEPS_LIST
+		sweep to resolve all BIND LEX
+
+		CONVERT
+		in	XML
+		out	JSON
+
+		CONVERT
+		in	TREE
+		here	TREE
+		out	TREE
+
+		CONVERT
+		in	SOURCE
+		out	KNOW list
+		out RT_TEST_to_KNOW optimised EXPRS
+		out LAZY invoke of unused EXPRS
+		RT detect UNUSED VARS # enough # keep code in # minimal
+	
+	RT
+		export API # so keep all code in usable form
+		compile CODE # weights, sample data, basic count, incl ZERO
+	
+	RT
+		cache from START
+		invalidate EXPR.is_valid # OPTIMISE NOCHAGE ALREADY_WAS
+		invalidate EXPR.LIST.ITEM.is_valid propabage
+	
+	CT
+		merge %s_%s_%s # or other SUBLEX build VAR_NAME or VAR_SPEC
+		TYPE_1234 += TYPE_52
+		TYPE_1234 += TYPE_57 with --FLAGS 
+		CTOR of CLASS inheriting
+		 applied to PRE_GEN CACHE_WORLD using PLACEBO_VAR_VAL_LINKS
+	
+
+	ZBLOCK_URL_TEXT 
+
+		can get wrapped around
+
+		often CLICK_BOX
+		often CLICK_NEAR
+	
+	BLOCK_URL_TEXT
+
+		+= BLOCK
+		+= CLICKABLE
+		+= URL
+		+= TEXT
+
+		// AUTO_GEN bALLOON_TEXT # on_HOVVER //
+	
+
+ SPOUT DTP DIAG
+
+ 	ANIMATE on_EVENT_SCRIPT = SCRIPT
+
+	ITEM_to_DRAW
+
+		ITEM_TYPE KNOW
+		ITEM_DIAG_MACROS += POOL
+		CALL_DRAW_FRAGMENT SCRIPT
+		CALL_DRAW_BIND_VAR STEP
+		GEN OPCODE with DATA
+
+	ITEM_to_CALC
+
+		CALC_EXPR
+		TELL_CODE
+		CALL_SCRIPT
+		BIND_SCRIPT
+
+			PARSER += CT TREE BUILDER
+			PARSER += RT TREE SWEEPER
+
+		CTXT += STEPS_LIST
+
+		STEP += uses VAR_NAME
+
+			makes VAR_NAME available to all own code
+			makes VAR_NAME available as in sub_SCOPE
+			makes VAR_NAME available as in shared_SCOPE
+
+				CT merge BASE classes
+				RT add in UDEF_RT_STEPS EDIT CODE
+
+				RT run UDEF code and CT optimised code
+
+		STEP += SIGNAL_LOOP_EDGE
+
+			DTOR temps
+			CTOR temps
+			ZTOR temps - reset DTOR + ZTOR
+
+			
+			NEXT i
+
+ SPOUT DTP DIAG TREE
+
+ 	DIAG += STRUCT_DIAG += FEATURES
+	DIAG += DIAG_CT_LABELS
+	DIAG += DIAG_RT_LABELS
+	DIAG += TREE_of_CODE _for_TYPES 
+	// AUTO_GEN // DIAG += TREE_of_CODE_for_TYPES // join 2 "{ %s = %s_%s }"`
+
+ COMPILED_EXPR = COMPILE( EXPR )
+
+ 	TOKENISE_PARSED_TEMPLATES
+
+	COMPLETELY_MATCH STMT_LIST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ --------------------------
+
+
+
+
+
+
+				 	
+
+			'{ %s }'
+
+	 DECODE += MATCH KEYWORD "{ %s_t STR0 }"
+
+	  struct NBYTES { u32_N ; u8 BYTES[N] }"
+ # LANG += FEATURE ## via import API LIBR SET_VAR // GET_VAR // EA // STO // SPEC
+
+ 	type_struct_t type_struct = { %s }
+	# RULE # GEN must prefilter %s "for use in '{ %s }' 
+	# RULE # PARSE # 
+	# PARSE # RULE # # 
+	# RULE # GEN must prefilter %s "for use in '{ %s }' { SCRIPT }
+	# SPEC NBYTES == "u8 BYTES[ N ] = %s" // MATCH SAMPLE // AUTO_PARSE //
+	# AUTO # PARSE # CXX in ARGV # auto "_" # DECL nbytes_t VAR_NAME;
+	# AUTO # VAR # nbytes_as_P0P2 # nbytes as P0_N # AUTO AVAIL P2 == P0 + N
+	# AUTO # VAR # SPEC == "%s" "SPEC" "${SPEC}" # VAR_NAME %s # RULES #
+	# RULE # CIDENT == "PSG.CIDENT.SPELLING" // SPELLING = { SCRIPT } //
+	# API # VAR # GAIN VAR_NAME SPEC DATA ALIAS STO module_merge
+	# MODULE # MERGE # MENTION becomes "SPELLING" #
+	# AUTO # LANG # MENTION # SPELLING CODE VAR_POOLS MODULES CT_RT
+	# AUTO find a way to import API_FUNCS eg GET_SET_VAR_API
+	# AUTO namespace SESS.CTXT "SESSION" # export u48_LOCN_ADDR u16_LOCN_SPEC
+	# AUTO # PSG # LOCN_t += i16_idx # early STEP up to u48_idx via i32
+	# AUTO # DECODE # MATCH u64_OPCODE #
+	# and FIELDS within WORD0
+	# and FOLLOWING BYTES in STREAM 
+	# and maybe later bubbles 
+	# and throught threads
+	# and YOUR_SCRIPT_HERE # += "%s" # += '%s' # " += '%s' "
+	# eg as "{ += %s }" // AUTO PSG for %s // SOLO_ARG # and its ARG_SPEC
+	# { YOUR_SCRT_HERE } #
+	# LOADER += FILTER EACH LINE # IMPLEMENT PRE_BUILT PRE_ALLOC SUB_SPEC
+	# FIITER += ARGV_of_WORDS # += JOIN_PSG_to_ENV_via_API #
+	# FILTER += ARGV_of_STR0 # available as PRE_BUILT DATA_POOL_WORDS[idx_EA]
+	# N_ALLOC += "{ idx_t idx = EXPR %s ; N = N_ALLOC ; // SO_FAR //
+	# STRO_t /* WORD_PTR */ STR0 = INIT_VAL "EXPR"
+	# KNOW # '{ %s }' EXPR # DECODE STEP joins via mention in parsable ctxt
+	# MATCH # Q2_of_PTN ; PTN == "Q2Q1_SP_EXPR_SP_Q1_Q2" || or_EXPR
+	# MATCH # "'{ %s }'" || AUTO ADD FILTER CSET_STEP_PUNCTUATION
+	## PUNCTUATION += TRIP Q2_Q1_CURLY_SP_THIS_SP_CURLY_Q1_Q2
+	## PUNCTUATION += TRIP Q1_Q2_CURLY_SP_THIS_SP_CURLY_Q2_Q1 ## WEIGHT OFF
+	## PREF # USAGE via WEIGHT # MK_VAR NEW PARTICLE # MODULE_SPEC
+
+	## LANG += PHRASE ## ACTUAL USAGE ##
+	## USAGE ## bind %s // PHRASE == "SEGMENT_of_STREAM" BLOCK_of_TEXT
+
+	## STREAM += BLOCK_of_TEXT ## DIALECT DTP_DOC_TREE_SPOUT_
+	# TREE_SPROUT #  %s_%s # TUPLO # that AUTO adds fields to TUPLE_SPEC
+	# ITEM_SPEC # IMPORT ITEM # DONE already "{ u16_idx = lookup %s }"
+	# SCRIPT_STMTS += STREAMED_via_TEXT VAR_NAME %s SAME_CHAIN
+	# SAME_CHAIN += STREAM of OPCODE__and_following_DATA
+	# SAME_CHAIN_MUX += STREAM of OPCODE__and_following_DATA
+	# DECODE u64 # u16_HILO_u46_OFFS #
+	# DECODE u64 # u16_HILO_u46_IDX #
+	# DECODE u64 # u16_HILO u46_IDX #
+	# DECODE u64 # u16_HILO BYTE_A_BYTE_B u48_PAYLOAD #
+	# += # VAL == "PAYLOAD >> 16" # AUTO_LINK VARS VAL PAYLOAD VALS
+	# VALS += ROM.TOKENISED_STR0 # CT_RT u64_in_STREAM DECODE_64 #
+	# VALS += VAR_POOL.STR0_at_IDX #
+	# VALS += IDX # 
+	# SCRIPT += PHRASE # DECL MACRO and MINI_WORLDS in MODULE #
+	# MODULE += SCRIPT # { SCRIPT } #
+	# SCRIPT += STEPS that DECL or VAR_API 
+	# STEPS += ARGV that matches TEMPLATE 
+	# SESS_WORD += TEMPLATE uses PSG_SAMPLES
+	# PSG_SAMPLE # MATCH DECL TUPLO # PARSER #
+	# PSG_SAMPLE # MATCH DECL TUPLO PARSER SAMPLE == "PSG" PSG #
+	# PSG_SAMPLE # MATCH DECL TUPLO PARSER DECL == "DECL" #
+	# VAL "ITEM_NAME" { MATCH %s } # AUTO_ADD_ATTR DECL_CSET_a1_a2_star #
+	# VAR "%s" VALS_INIT_WORLD or simpler VAL INIT INIT_VAL %s "%s" '%s'"
+	# Q1_Q2 FILTER # one of PEERS += THIS_FILTER # DECODE_OPCODE #
+	# BYTE_A BYTE_B 
+	// BYTE_A == "u8 get_BYTE_A()" // _using_ CPU_WORD_BYTE_ACCESS // API //
+	// BYTE_B == "u8 get_BYTE_B()" // _using_ CPU_WORD_BYTE_ACCESS // API //
+	// u48_OFFS == "u48 from_WORD()" // _using_ MACROS //
+	// MACROS '{ u64_WORD >> 16 }' // ALIAS // EXPR // TUPLO_WORLD //
+	// on sight of above '{ %s }' // PARSER recognises over_simplification
+	// our use of %s is more robust than most // AUTO_ADD_BACKSLASH //
+	// SUBLEX %s == "VAR_NAME" // PRE_MATCH_CACHED_MATCH_lookup_VAR_NAME //
+	// we have to use Q2_ZONE_Q2 // ZONE == "Q2_ZONE" // OMIT_Q2 EMIT_Q2
+	# OMIT_Q2 #
+	// OMIT_Q2 += OPTIONS_for_a_range_of_VIEW_PARSE
+	# VIEW += " Q2 %s Q2 "
+	# VIEW += " Q2 Q1 %s Q1 Q2 "
+	# VIEW += " Q2 Q1 '{' %s '}' Q1 Q2 "
+	# VIEW += " Q2 Q1 '{' SP %s SP '}' Q1 Q2 "
+	# VIEW += " Q2 SP Q1 '{' SP %s SP '}' Q1 SP Q2 "
+	# VIEW += PARSE CHAR_STEP all_of_these_STR0_samples # PARSE_SAMPLE
+	# SAMPLE == "SAMPLE" # DETECT_AUTO_REFLECTION EA_ROM_ITEM EXPR
+	# PARSE_SAMPLE # "STR0 matches '{ %s }'" # FLAG as inside as outside
+	# SCRIPT is DTP is PSG not XML # but a simple PSG like LINE of WORDS 
+	# SAMPLE is TEMPLATE # was simplified GEN PARSER to MATCH CSET STEPS USED
+	# SAMPLE_PSG is CXX enough maybe ES99 # MODULE_SCRIPT_LINES # DECLS #
+	# LANG += CSET_STEP # as %s as NAME_of_CSET_STEP # Q2 means "\"" #
+	# CSET_STEP == " Q1 " # PARSE EXPECT_SKIP_SP_Q1_SP # " SP Q1 SP " #
+	# ON_PARSER_SAYS_MATCH_START # on_PARSER_SAYS_MATCH_STEP #
+	# MATCH SP_Q1_SP # SP_is_placeholder_for_GAP_between_WORDS_within_Q2
+
+
+	# AUTO # FILTER "        # RULE # GEN must prefilter %s "for use in '{ %s }'
+ # early STEP up to u48_idx via i32
+ # AUTO # DECODE # MATCH u64_OPCODE # and FIELDS within WORD0 and FOLLOEING BYTES in STREAM and maybe later bubbles and throught threads
+ # AUTO # FILTER "        # RULE # GEN must prefilter %s "for use in '{ %s }'
+
+	  STO.nbytes P0P2 
+	 }

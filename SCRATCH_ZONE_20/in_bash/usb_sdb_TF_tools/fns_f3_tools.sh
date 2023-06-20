@@ -2,6 +2,7 @@
 
 log_ask_do()
 {
+	# -a LOGFILE # append
 	local A=""
 	if [ -a = "$1" ] 
 	then
@@ -9,8 +10,10 @@ log_ask_do()
 		shift
 	fi
 
+	# LOGFILE must come first # after -a
 	local file="$1"
 	shift
+
 	if yes_no RUN "$@"
 	then
 	 (

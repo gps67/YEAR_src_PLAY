@@ -1,5 +1,5 @@
 
 . .env
 umount_card
-log_ask_do -a uname -a
-# log_ask_do -a "${OUT1}" f3probe --destructive --time-ops ${dev_sdb_of_card}
+# log_ask_do -a $OUT1 uname -a
+log_ask_do -a "${OUT1}" f3probe --destructive --time-ops ${dev_sdb_of_card}

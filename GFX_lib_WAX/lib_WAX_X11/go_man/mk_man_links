@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for f in man_*
+do
+	ln -f man_man $f
+done

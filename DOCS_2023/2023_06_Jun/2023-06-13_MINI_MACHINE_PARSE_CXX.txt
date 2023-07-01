@@ -1,0 +1,40 @@
+	2023-06-13
+
+	2023_06_Jun
+	2023-06-13_MINI_MACHINE_PARSE_CXX.txt
+
+	PARSE CXX
+
+	simple subset of CXX
+	FILTER MODE JS_SUBSET
+
+		need to buildup LIBR until it works
+		then you are permitted to use those CXX codes
+		which go to a more direct C machine
+		RT of CT is not that slow when TOKENISED
+		KNOW [0[IDX_KNOWN [IDX_TWO[UDX_TWO_PLUS_N
+		if( idx < IDX_KNOW ) {
+
+			use fastest builtin table
+
+		} else
+		if( idx < IDX_TWO ) {
+
+			convert_idx_to_idx // ALLOC NEW 
+
+		} else
+		if( idx < IDX_TWO_PLUS_N ) {
+
+			idx_t & idx = idx;
+			item_t & item = item_from_array_slot[ idx ];
+
+		} else
+		if( idx < IDX_TWO ) {
+
+			convert_idx_to_idx // ALLOC NEW 
+
+		} else {
+			throw alert
+		}
+
+

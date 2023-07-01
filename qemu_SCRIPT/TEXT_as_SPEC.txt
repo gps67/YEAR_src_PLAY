@@ -1,0 +1,128 @@
+#  TEXT_as_SPEC.txt
+
+	SPEC is a tokenised INTENTION
+
+	Each CODE_POINT makes use of a nearby ITEM 
+	EA("EXPR")
+	EA("EXPR ARGS") // IMPORT ETC //
+
+	PARSE TEXT 
+	PARSE SCRIPT
+	PARSE STEP
+	PARSE ALIAS
+	PARSE VALUE // possibly a parseable VALUE eg "STR0"
+
+
+ GETTERS
+
+	u64.u48_IDX = u64 >> 16;
+	i64.u48_IDX = i64 >> 16;
+
+ DIALECT 
+
+ 	// still LOHI but now CALL_EXPR ...
+
+ BENCH
+
+ 	I have to WIND each GRAIN on a BENCH VIEW
+
+		CODE_POOL += DIAG_ITEM
+
+ SCRIPT
+
+ 	CARRY_nbytes_of_MP3_MUX mp3_nbytes
+
+	nbytes_t nbytes;
+	nbytes_t & bind_ref_to_nbytes; // expecting PTR_t PTR = i64_REGISTER
+	 
+	MINI_MACHINE is built from the LIBR_CODE_on_first_load
+
+	// that code can add EXPLAIN PICK LOHI ALWAYS /
+	// that code can add u64_WORD_LIBR LIBR = AUTO_INIT_CTOR_of_VAR
+	// EXPLAIN PICK LOHI ALWAYS /
+
+		LOHI is the opposite of NBO
+		LOHI is ideal for decode HILO
+		because first BYTE is at the tip of u64_lohi
+		when CPU_hilo apply FILTER CALL INLINE that_does_SWAP_BYTES
+
+	DUAL USE - as u8 * BYTES[nbytes]
+
+ TREE of SCRIPT_STEPS
+
+ 	LIST_of_STREAM_STEPS 
+
+		STEP AUTO u64_WORD or u64_WORD_PAIR or 
+		STEP AUTO u64_TRIP or u64_WORD_QUAD or 
+		STEP AUTO u64_TRIP
+		STEP AUTO u64_WORD_PAIR
+		STEP AUTO u64_WORD_PAIR_TRIP
+		STEP AUTO u64_WORD_PAIR_TRIP_QUAD // u64_WORD[4] // 
+
+			SCRIPT += "PAIR" // U64_u64 // u128 // bytes[16] // CLICK
+
+		STEP == "LINE_of_SCRIPT"
+		LIST == "STEP_LIST"
+		XPOS == "HERE_XPOS" // SCRIPT must MATCH
+		 LINE_ARGS == RESEMBLES(" DECL XPOS = HERE_XPOS; // CMNT ")
+		  PARSE("%s")
+		   noticed nearby reference to LOOKS_LIKE so it is XPOS
+		   XPOS is P0
+		   P2 will have to come from PARSE or PRE_PARSE
+		   Simply the end of the CXX line or where a ";" happened 
+		   or "}" or ";" or "{}" or "{" "}" "_{" "}_"
+
+		  SCRIPT PARSED from STREAM
+
+		  	compiler did all the heavy lifting
+			just need to run a BATCH each EDIT
+
+			APPLY SAMPLE DATA
+			GEN MINI_MACHINE_COMPONENTS_from_PRE_PARSE
+
+		OPCODE is i8_i8_i48
+
+
+			DIALECT i8 cause TABLE -128 0 127
+			DIALECT u8 cause TABLE -128 0 127 255
+
+			WHEN " -128 "
+			WHEN " 0 "
+			WHEN " 127 "
+			WHEN " 255 "
+
+			WHEN "-128"
+			WHEN "0"
+			WHEN "127"
+			WHEN "255"
+
+			WHEN "%d
+
+	// LOOK at SIGNED_BYTE OPCODE UNSIGNED BYTE
+	// 
+
+			PRE_PARSER might know difference between 127 255
+			[0 [-128
+			[0  -128]
+			[0  127]
+			[0 [128
+			[0  127]
+		
+		 ITEM[ i7 ]
+
+		 	AUTO_ALLOC upto FULL_PAGE_256
+			SEMI_ALLOC_manage_DIALECT_EXPR
+			POSS_MASK_i5_under_i8
+
+		 ITEM[ i8 ]
+		 ITEM[ u8 ]
+
+ ----
+
+		STEP AUTO 
+		 u64_WORD
+		u64_WORD_PAIR 
+		 u64_WORD_QUAD or 
+
+
+

@@ -1,0 +1,202 @@
+2023-06-23 #  qemu_SCRIPT.txt
+
+	A SESS is a MINI_MACHINE with SESS_API
+
+	 GETTER for XPOS in SCRIPT
+
+	  GET SET CACHE_LINK_API link_api api_link api_sess SESS AVAR  API
+
+	  AVAR { item_t item = init expr ARGV as CXX_SCRIPT }
+	  ALIAS CXX_SCRIPT 
+
+	  named_expr "{ name expr }" TUPLO_CALL_ARGV_ETC
+
+	  import ETC // AUTO_LOOKUP "expr" as "ANYSTR" //
+	  alias STR_t STR == "ANYSTR" ; 
+
+	  MODULES += MODULE	// CODE_POINT AUTO_CODE for STO_DATA_EXPR_CALL
+
+	  STO
+	  DATA
+	  EXPR
+	  CALL
+	  	ARGV == "ARGV" // argc // 
+
+		CALL_EXPR_EVAL_with_PERM_DATA_STO
+
+		PARSER += LEX += PSG += ANIM += ITEM SYNTAX 
+
+		CACHE_VAR("ANYSTR") PAIR "ANYSTR" VAR_ANYSTR 
+
+		TEST ANYSTR == "ANYSTR" // alias nickname rhyme "ANYSRT" //
+
+			PHASE_LOOP special RULES for qemu_SCRIPT_api
+
+			Range of names sample values usages cmnts 
+
+			BENCH knows "ANYSTR" as item in CACHE in SCRIPT
+			// AUTO_LOGIC // AYNSTR_in_PHRASE // MATCH "%s"
+			MATCH "AYNSTR" // AUTO_VAR in restartable SESS
+			GETTER returns ROM.ANYSTR_used_HERE XPOS in SCRIPT
+	
+	 ATTR_name
+
+	 	+= STO nbytes += SPEC lookup( "ATTR_name" )
+
+		struct NBYTES_t {
+		 u32 N;
+		 u48 N;
+		 u64 N;
+		 int N; // i31 PICK_i31_IDX
+
+		 u8 bytes[N]
+		 u64_words[BYTE_OFFS] // u32 N; // i31_IDX %s %s
+		 // i31 IDX // IDX == "%s" // MATCH // CODE_POINT //
+
+		}
+
+	SCRIPT
+
+		ITEM += STO_NBYTES
+
+			SCRIPT
+
+		KMOW { " item_t & item_ref " } // AUTO_ADD ";EOLN" // SKIP_ASIF
+		};
+	
+	AS_IF SCRIPT () {
+	 WRAP_API // SESS_eunning_SCRIPT // _in_ENV _using_LIBR
+	 API_INIT // BENCH can COMPILE DATA SPEC AS_IS EA
+	 VAR_TYPE // EA ITEM ALIAS ALIAS_EXPR EXPR_SESS_added_vars SESS ITEM
+	 VAR_NAME // "%s" // ANYSTR // PICK lookup "%s" // CODE += STEP 
+	}
+
+
+	IDX_IDX_OFFS_EXPR_T // has BEHABIOUR // import ATTACH_LIST
+
+	struct STO_nbytes {
+		// CMNT // when GEN NBYTES_48
+		// CMNT can also be ALIAS u64 i64 "{ IDX idx }" DECL_VAR_CMNT
+		// PSG_STEP_PRECOG // PREDICT_NEXT_TOKEN_as_STR0 == "STEP RECOG"
+		// PSG_STEP_as_STR0 // premade in ROM or CACHE // BENCH_SESS
+
+		get_EA_of_NBYTES() {
+		// its your DIALECT for ALIAS MATCH // CODE_POINT
+		}
+		get bytes_of_u64_words { // BITFIELD as MACRO 
+		}
+
+		GETTER VAR == "NBYTES" DATA = u48_LIMIT u48_of_i64
+		i64 is the DEFAULT for the WORLD where NBYTES_u48 is BEST
+		i48 is the DEFAULT for u48 WORLD where NBYTES_u48 is BEST // 
+		// AUTO_GEN // i64 i48_PAYLOAD_PRE_SHIFTED // i64 WORD = ALIAS
+		// ALIAS "STO_nbytes" 
+		// ALIAS "STO_name" 
+
+	}
+
+		
+AUTO RET_VAR
+RET_VAR VAR_NAME
+
+	VAR_NAME is ITEM_NAME
+
+	ITEM_TYPE is SPEC // AUTO_MK_VAR "SPEC" RECOGNISE KEY VAL 'SPEC'
+
+	READ_WORD_PAIR {
+
+		u32
+		u32
+	}
+	READ_WORD
+	 AS
+	 	u32() { return "u32"; } // PARSED(" u32 ") // PRE_GEN_CACHED
+	 	u16()
+		u8_B()
+		u8_A()
+
+		u8_A
+		u8_B
+		u16_AB_lohi // or // return "{ Lo = u8_A; }{ hi = u8_B; }""
+		i16_AB_lohi // or // return (int) sign_expand_i16 //
+		i16_AB_hilo // or // return (api) hilo_to_i16_AB // precise
+		i16_AB_hilo // or // return WORD_ASWAS // enable u32 ABCD 
+
+		DECODE u32_u32 {
+
+			AB_i16 
+			 GET AB
+			 GET i16
+			 DECODE_AB
+			 DECODE_i48 // EXPR can uase this BITSPACE
+
+		 READ u48() {
+		 	return WORD >> 16 ; // CPU_is_LOHI // alse GEN
+			// GEN : compile and run SCRIPT { WORD >> 16 }
+			// DIALECT avoiding using quotes but Q2 AUTO_ON
+			// DIALECT if str == "{ WORD >> 16 }" 
+			// lOCAL VAL // u48_shifted_payload() { return u48 ; } CMNT"
+			// PARSE has RESULT FOCUS from CACHE
+
+		DECODE_i64
+
+			u8_A
+
+			u8_B
+
+			i64_as_self
+			i64_as_u64_WORD
+
+				u64_WORD = SIGN_CAST_i64 _LOHI  _LOHI _CPU _ALIAS
+				i64_WORD
+					i64 & i64_WORD = WORD // unshifted
+					i64 & i64_WORD = WORD >> 16
+					i48 & i48_WORD = EXPR_to_DECODE
+					// VALUE assigned by CT_RT
+
+				i64_WORD
+
+			i64_emu_when_HILO // _when_CPU_is_HILO_ // or _LOHI_ //
+
+			WORD_TYPE_t u64 // AUTO KNOW IDENT  //
+
+		DECODE_i64 _using_ 
+		 }
+		}
+
+	CODE_INTO_VALUE
+
+		VALUE = WORDS >> 16
+	
+	DIAG_of_MINI_MACHINE
+
+		VIEW += "SHOW VALUE WORDS DIAG MINI_MACHINE VIEW SHOW"
+
+	CODE_GENERATOR
+
+		CACHE += OPCODE_STREAM_TEM
+
+			OPCODE can switch components of MINI_MACHINE on_off
+
+		OPCODE u64_WORD
+		OPCODE u64_WORD // but u32_CPU
+
+			OPCODE u32_WORD ABCD
+			OPCODE u32_WORD EFGH
+
+			OPCODE AB_IDX // u8_A_u8_B_u16_CD_lohi //
+			OPCODE u48_IDX // when BYTE_ORDER_CPU 
+
+			/*
+				SCRIPT implements itself by printing out
+				SCRIPT runs by printing STEPS as USED by DATA
+				 STEPS // ARGV // CALL == "STEP" // var-Merge
+				 USED // u48_IDX // OFFS_64 = ASIF_U32
+				 DATA // u64_WORD // u64_WORD_LOHI // i64 //
+				 CODE // u16_AB_of_ABCD // LIBR IMPORT of_i64_WORD
+				 DATA // get_AB_of_ABCD
+				 DATA // get_CD_of_ABCD
+				 DATA // get_ABCD_of_ABCD
+			 MODULE: .....
+			*/
+

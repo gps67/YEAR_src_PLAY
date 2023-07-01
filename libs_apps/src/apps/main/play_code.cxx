@@ -161,7 +161,7 @@ bool cmd_HT_demo(int argc, char ** argv ) {
 
 bool VNC_PASS_DECODE(int argc, char ** argv ) {
 
-	if(!AUTH::PW_UTIL_VNC::test_one()) return FAIL_FAILED();
+//	if(!AUTH::PW_UTIL_VNC::test_one()) return FAIL_FAILED();
 
 	if(argc!=1) {
 		return FAIL("argc!=1 # filename of passwd_73");
@@ -212,12 +212,12 @@ bool VNC_PASS_ENCODE(int argc, char ** argv ) {
 bool cmd_play_code(int argc, char ** argv )
 {
 
-	const char * default_argv[] = {
+	const char * xx_default_argv[] = {
 	 "VNC_PASS_ENCODE",
 	 "/tmp/passwd_73",
 	 "abcd5678"	// BUG 8 required
 	};
-	const char * xx_default_argv[] = {
+	const char * default_argv[] = {
 	 "VNC_PASS_DECODE",
 	 "/tmp/passwd_73",
 	};

@@ -1,0 +1,23 @@
+
+. .env
+media_mount=/media/gps/$G64_media_label
+
+
+[ -d $media_mount ] || ask_do mkdir $media_mount 
+
+echo "
+#
+# mount is OK but you have to be root now and later
+#
+"
+ask_do \
+mount  ${dev_sdb1_of_card} /media/gps/$G64_media_label
+echo "
+
+#
+# pmount is wrapper PERMITED user mount ... dunno you need it installing 
+#
+"
+ask_do \
+pmount  ${dev_sdb1_of_card} $media_mount
+

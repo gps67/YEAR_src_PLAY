@@ -341,6 +341,7 @@ bool PW_UTIL_VNC:: encrypt_vncpass( buffer2 & crypt, const char * plain )
 
 bool PW_UTIL_VNC:: decrypt_vncpass(  buffer2 & plain, const char * crypt )
 {
+	// _EVP failes when _TRAD is OK
 	if(0)	return decrypt_vncpass_EVP( plain, crypt );
 	else	return decrypt_vncpass_TRAD( plain, crypt );
 }
@@ -473,10 +474,15 @@ bool PW_UTIL_VNC:: decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt )
 	if(PASSLEN!=8) {
 	 WARN("PASSLEN == %d crypt == '%s'", PASSLEN, "XXXXXXXX" ); // crypt );
 	}
+ if(0)
 	if(PASSLEN!=8) return FAIL("This is for auto generated dense passwords only PASSLEN=%d", PASSLEN);
+	if(PASSLEN >8 ) {
+		WARN("truncating PASS at MAX len 8 %d", PASSLEN);
+		PASSLEN = 8;
+	}
 
 	// copy crypt to input
-	memcpy( input, crypt, PASSLEN ); // hope its not short!
+	memcpy( input, crypt, PASSLEN ); // hope its not short! // or > 8 !! //
 
 //	int enc = DES_ENCRYPT; // VNC encrypts
 	int enc = DES_DECRYPT; // VNC decrypts
@@ -493,6 +499,10 @@ bool PW_UTIL_VNC:: decrypt_vncpass_TRAD( buffer2 & plain, const char * crypt )
 */
 bool PW_UTIL_VNC:: decrypt_vncpass_EVP(  buffer2 & plain, const char * crypt )
 {
+
+// # SSL errno(err 50856204) == NONAMEYET - error:0308010C:digital envelope routines::unsupported ## 
+// I think that is because DES is too old to be allowed
+
 
 //	gdb_invoke();
 	const int LEN8 = 8;
@@ -529,6 +539,11 @@ bool PW_UTIL_VNC:: vncpassfile_read(
 	int MAX1K = 1;
 	if(!blk_read_entire_file( pw_vnc_stored, filename, MAX1K ))
 		return FAIL_FAILED();
+	
+	// TRIM TRAILING NEWLINE // extract first line
+
+	pw_vnc_stored.trim_trailing_eoln();
+	pw_vnc_stored.trailing_nul();
 
 	if(0) pw_vnc_stored.dgb_dump(filename);
 

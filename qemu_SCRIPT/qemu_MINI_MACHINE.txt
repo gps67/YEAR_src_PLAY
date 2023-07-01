@@ -1,0 +1,60 @@
+#  qemu_MINI_MACHINE.txt
+
+	QEMU
+	 BUILD a CODE_RUNNER 
+	  set CPU == "AMD64" // ARM64 // ARM32 // CXX32 
+	  set MEM == "700K" // INIT_VAL and MONITORING_APPROACH // LOG
+	  set BIOS == "PC_laptop" 
+	  set BOOT_ROOT == "LGX11_mini_distro TASK = HELD_in_ROOT STO
+	  set BOOT_ROOT == "HWDB_VIEW auto_gen BENCH_STO "
+
+	 START_THREAD 
+	  when interpreted the AMD64 laptop runs QEMU runs ARM_CODE
+
+	  	this allows our NAFF compiler to emit ARM64 OPCODES
+
+		we know it is plenty fast on pc_laptop
+		we know it will be plenty fast on droid_phone
+
+	 INTERP MINI_MACHINE uses REGISTER_ALLOC
+
+	 	CLEAR_HALF_REGISTERS
+
+			run DECODE u64_OPCODE
+			STEP u64_OPCODE_SECOND_WORD
+			STEP u32_OPCODE u32_DATA
+			STEP    _OPCODE    _DATA
+			STEP u32_OPCODE u32_DATA
+			STEP u8_u8_u16_u32 {
+
+				i48 = i32_SIGNED_WORD_EXTEND_i64
+			}
+
+			// USE of i8 gives 128 FLAGGED ITEMS
+
+			// TEST BYTE
+			// JUMP SIGN
+			// LABEL ZERO // ignore dont gen any code 
+			// LABEL SIGN // goto TOKEN_not_local_INSTANCE
+
+			SESS SIGNED_ARRAY[ i8 ]
+
+				First 128 items are STREAMED from PTR_ONE
+				NEXT 128 items are WRAPPED_UNDER ZERO
+				OPTION to not allocate ALL in PAGE
+
+		 OPTIMISE i5
+
+		 	The COMPILER sees lots of common ecpressions
+			run those at the top of the OPCODE_DECODE
+			OPTIMISE to ARM_ASM_and_FLAGS
+
+			SWAP_BYTES_64 // loaded_from__HILO into _CPU
+			SHIFT_BITFIELD // SIGNED >> 16 //
+
+			SHIFT_u16_CD_DOWN_16 // loaded from lohi
+
+	
+
+
+

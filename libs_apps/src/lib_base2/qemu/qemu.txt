@@ -1,0 +1,76 @@
+#  qemu.txt
+
+	A CXX wrap over qemu
+	so that we can RUN ARM64 near here
+	so that we can RUN ARM32 near here
+
+		GEN_ASM to acces DATA_SPEC
+		CALL ASM DATA // CTXT += SPEC //
+	
+	DECODE
+
+		u8_u24	_lohi32
+
+		u32	_OFFS _IDX _EFGH u32_plenty_for_u48
+		u32_EFGH -ALIAS- u32_WORD_TWO
+
+		u8_u8_u16_u32	_lohi
+
+		u8_u8_u48	_LOHI
+
+ # ASM that goes into QEMU #
+ # my attempt at ARM32 and ARM64
+ # that comes from CPU_PARSER_COMPILER_CACHE_BUILDER
+
+ # CACHE_BUILDER #
+
+ We are implementing a VAR_POOL using ASM_ARM_32 ASM_ARM_64
+
+ We pick 
+		u8_u8_u16_u32	_lohi
+
+ because ARM32 can do it quickly
+
+ 	The COMPILER tracks the SWAP_BYTES
+		# currently no hilo support
+
+		PRE_PARSE
+		PRE_PARE
+		PRE_RUN
+		CACHE_PRIME
+	
+	QEMU gets run in TRAIN MODE
+
+MAN DOCUMENTATION PAGE:
+https://www.qemu.org/docs/master/
+
+
+		BOOT_ROOT = usb_image to run on any QEMU box
+
+		PERMIT NET = all quite open
+		PERMIT API = all filtered
+
+	BOX is a WEB_SERVER in MID state (but that clouds every 1 min)
+
+		SERVER provides HTTPD
+		SERVER provides DOCUMENT
+		SERVER provides DRUM_ANIM
+		SERVER provides BSL_SCREENS
+
+QEMU IO 
+
+	CLIPBOARD
+	 SET 
+	 GET
+	
+	API has the client attaching to clipboard 
+	 barrierCmdCClipboard “CCLP”
+
+	KEY MOUSE GESTURE PINCH
+	 X11 names + ids
+	
+	BOX on_SIGNAL
+	 
+
+
+

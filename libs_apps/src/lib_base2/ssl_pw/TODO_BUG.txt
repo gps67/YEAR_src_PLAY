@@ -5,3 +5,7 @@ in
 		return FAIL_FAILED()
 should be ?
 	if(! ...
+
+ VALIDATE pw_vnc_stored must be <= 8 chars - else overflow
+
+ ANCIENT DES(DES3) causing SSL to reject named cypher

@@ -6,7 +6,15 @@
 TODO (competes adjusts mergers )
 
 	Tcl needs libs_apps to do DIR (so does libs_apps)
-	Py needs SPIN SPOUT
+	Py needs SPIN SPOUT C++
+	SPIN needs restart PORT_3 CSET_STR0 CXX_OBJECT V8_API
+	SPOUT needs STR0_CSET_API FONT_DRAW_ACCENTS FONT_FAKE FONT_STR0
+	ES6 needs SM V8 PLUS JSASMINE WASM # NOWASM == JSASMINE
+	JSASMINE == GEN_ES6_that_uses_INTOPS // may also reserve vars
+	COMPILE into JS STACK with INTOPS
+	CXX_SCRIPT_MODULE compiled into basic CXX for luck
+	CXX_CALL_RET_VAR # is_RECALL after EINTR or E_WOULD_BLOCK
+	CXX_CALL_RET_VAR += ERROR_STRUCT_RET_VAR is_THROW ASM
 
 Tcl uses libs_apps
 

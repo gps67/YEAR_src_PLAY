@@ -59,8 +59,8 @@
 	echo >&2 "# mutool run ../txt_2_png.js TXT # $TXT"
 
 # generate
-#	mutool run ../txt_2_pdf.js $TXT # $PDF # reminder of other functionality
-	mutool run ../txt_2_png.js $TXT # $PNG # generate PNG from TXT
+#	mutool run ../txt_2_png/txt_2_pdf.js $TXT # $PDF # reminder of other functionality
+	mutool run ../txt_2_png/txt_2_png.js $TXT # $PNG # generate PNG from TXT
 
 # view a file we did not create ?
  false && \

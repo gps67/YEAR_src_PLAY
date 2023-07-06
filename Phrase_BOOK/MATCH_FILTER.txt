@@ -1,5 +1,9 @@
 #  MATCH_FILTER.txt
 
+	LTE += https://liliputing.com/this-dirt-cheap-4g-lte-modem-on-a-usb-stick-can-be-hacked-to-run-mainline-linux/
+
+		hmmm
+
 	DECODE STREAM of OPCODE
 
 	DECODE_OPCODE

@@ -1,0 +1,219 @@
+#  MATCH_FILTER.txt
+
+	DECODE STREAM of OPCODE
+
+	DECODE_OPCODE
+
+		u8_u8 
+		i48_PAYLOAD
+
+		u8_u8
+		u16
+		u32_PAYLOAD
+
+		u8_OPCODE i24_PAYLOAD
+
+		u64_u64_
+			u8_u8_OPCODE
+			u16_MMAP_LAYERS
+			u47_PLUS
+			i48_MINUS
+			i48_PAYLOAD
+			int_ZERO // on_ZERO
+			int_M1 // on_M1 _M2 _M3 _M4 _M255
+			int_MINUS_NOW_PLUS // u48 from i47_know_u47
+			int_MINUS_NOW_PLUS // u48 from i48_know_u48_TOP_HALF
+
+	BUFFFER TYPE
+
+		BUFFER_HALF_FIRST_HALF
+		BUFFER_HALF_TOP_HALF
+
+	DECODE_OPCODE
+
+	 FORMAT
+
+	   u64_lohi_WORDS ALIGNED; // you can use u64_hi_lo_from_lo_hi_FILTER
+
+	   	on_LOAD
+
+			MATCH FILE == "lohi_data_from_file"
+			MATCH FILE == "hilo_data_from_filter"
+
+			is_hilo == "HILO_is_Network_Byte_Order" "is_HERE" "HILO"
+			is_lohi == "lohi_is_Intel_Byte_Order" "is_HERE" "LOHI"
+
+		EXPLAIN when LOHI is actually HILO folded by PARSE_ABCD
+
+			i64_DECODE_MINUS = i64_lohi bytes_of_WORD_in_stream
+
+				i8 EIGHT[ 8 ]; // 8 bytes of { i8 char }
+
+			COMPILED FROM
+				
+				get_i64_lohi() { ... }
+				get_i64_hilo() { ... }
+
+				they are INLINE MACROS // simply inline varname
+
+				GET "i64_t" GET_CPU_lohi
+
+				if "CPU_is_lohi"
+				 if "FILE_is_lohi"
+				 	LOHI_NATIVE _DIRECT _NOT("_BYTES_SWAPPED")
+				 if "FILE_is_hilo"
+				if "CPU_is_hilo"
+				 if "FILE_is_lohi"
+				 	LOHI = WORD_in_MMAP // i64 WORD;
+					// derive this from following line
+					// build PRIMARY DECODE or ASSIGN i64[stream]
+
+				 	LOHI = WORD_in_MMAP // i64 * EA_WORD;
+					HILO = BYTE_SWAP(LOHI)
+
+					AUTO present "HILO" as "HILO()"
+					AUTO present "HILO" as "MACRO()"
+					AUTO present "HILO" as "KNOWN_from_EXPR()"
+					AUTO present "HILO" as "KNOWN_from_EXPR"
+
+						CT_KNOW need_byte_swap
+						CT_KNOW need_native_not_byte_swap
+
+					BYTE_SWAP to HILO_CPUS // motorolla
+
+						SPEED_TEST BYTE_SWAP 
+
+							COMPLETELY_QUICK
+
+							FASTER_THAN_A_FUNCTION_CALL
+
+							ONE_CLOCK_CYLE
+
+								ASM BYTE_SWAP_REGISTER
+								IMPLY "CODE_POINT"
+								IMPLY "u64"
+								IMPLY "u64_as_u32_u32"
+								IMPLY "u32_u32"
+								IMPLY "u32"
+								IMPLY "i8_i24"
+								IMPLY "i64""
+								DECRY "i32""
+								NEARBY "i3_i5""
+
+					BITFIELD ...
+
+						get_VALUE_from_WORD
+						put_VALUE_into_WORD
+						bit_TRACK_through_CTOR_SCRIPT
+							ROM = CT_KNOWS
+						bit_TRACK_through_SESS_SCRIPT
+							CSR_in_ROM = "EA_WORD"
+					AUTO_EXPR += go_figure("EA_WORD")
+
+						"EA" "WORD" "i64_WORD_t REGISTER("EA")
+						EA_t EA = MK_VAR("EA")
+						// BENCH %s_t _t VAR_NAME == "EA"
+
+ DIALECT of "VAR_NAME_is_CALLABLE_ARGV_and_NBYTES"
+ DIALECT of "VAR_NAME_is_VAR""
+ DIALECT of "VAR_NAME_is_ALIAS"
+ DIALECT of "ALIAS"
+ DIALECT of "FIELDNAME"
+ DIALECT of "i64_OPCODE_DATA" // eg "i64_lohi u16_OPCODE i48_PAYLOAD"
+ DIALECT_of_BITFIELD_GETTER_CODE // PICK has a kept = GETTER_pre_call()
+
+ 	GETTER += i8_BYTE_B i8_BYTE_A # LET AUTO_GEN write # u8_BYTE_B u8_BYTE_A
+	USAGE i64_WORD = i64_cpu_t i64_DECODE_MINUS = WORD_from_FILTER_from_STREAM
+
+		MATCH_FILTER("u8_u8_i48")
+
+			u8_u8_within_LOW_BYTES A_B_loaded_LOHI
+
+				THERE IS A REAL BENEFIT of LOHI
+				simply from it's availability
+				every CPU has MACRO GETTER BYTE_A == RAW 
+				every CPU has an OPCODE to get LO byte
+				every CPU can MACRO GETTER BYTE_B
+
+		MACRO with ASM MACRO
+
+			get_BYTE_A
+			get_BYTE_B
+			get_i48_PAYLOAD() { LOHI_WORD >> 16 }
+
+				ALWAYS { LOAD_WORD SWAP_WORD }
+				APPLY every time MACRIO invoked
+				APPLY PRE_GEN CALLABLE_CODE
+				APPLY PRE_GEN INLINE_CODE
+				APPLY PRE_GEN INLINE_MACRO
+		FOLD
+
+
+			DIRECT_WORD_CARRY_THROUGH
+
+				SIGNED
+				SIGN_CHANGE
+				UNSIGNED
+				DECODE_MINUS
+				 M1
+				 -- many stop at M1 ZERO PLUS 
+				 M2 -- some go PAST M1 to M2 or more
+				 M3 -- or more -- as_used_for_USAGE
+				 M4 -- or more 
+				NO M1 FULL int_OFFS STARTS_AT_ZERO
+				_STREAM_
+				_TABLE_
+
+			DIRECT ARRAY_of_WORD
+
+				eg 32 BIT Intel has
+
+					EIGHT_t TABLE[ N_EIGHT ]
+
+					register WORD = EXPR
+					EXPR = i64 read_i
+				
+				
+
+
+				DECODE_MINUS
+
+					allow most of MINUS range to be used
+					in such a way that [uns] works
+					the SIGNED_so_DECODE_if_MINUS adds
+
+				if i64_WORD >= 0 GOTO STEP with this DATA
+				if i64_WORD == 0 GOTO NULL_RETVAL 
+				if i64_WORD < 0 DECODE_MINUS
+
+					check M1 and bunch of others
+
+					 "WORD < 0"
+					 "int_WORD < 0" // WELL_KNOWN_OPCODE_TEST
+					 "WORD > M_FEW_CT_VALUES"
+					 "WORD > M_FEW_FEW"
+					 "WORD > N_in_table" // SLOT
+					 "WORD > N_in_bytes" // OFFS += N // CSR
+
+
+
+					 "uns_WORD < N_to_check_idx"
+
+		FOLD
+
+ 	GETTER += i64 >> 16 // i48 DECODE_MINUS 
+
+				 if "FILE_is_hilo"
+
+# LANG # use "LOHI" as STR0 TOKEN = "LOHI"
+
+	compiler adds that STR0 to ROM in segment INIT_VALS
+	loader knows OFFS of SEGMENT in FILE
+	script knows STR0 SCRIPT = "NBYTES_TEXT" u8 BYTES[N_bytes] // ALIAS N
+	CT_KNOWS %s_%s N bytes ; "u8 BYTES[N_bytes]" EA_EXPR 
+	CT_knows N_bytes == 8 ; // WORD // CT_COMPILES_COMMENTS //
+	MMAP_of_i64_WORD
+	SPEC == "SEGMENT_SPEC" // IMPLIED "SEGMENT.SPEC" IMPLIED_EA_EXPR_SPEC
+	SPEC += "DECODE %s_%s eg_SEGMENT eg_SPEC" // ... continues ... //
+	// ... as LAYOUT in SPEC ... AUTO ARGS ...
+	// 

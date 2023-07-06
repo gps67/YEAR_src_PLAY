@@ -59,6 +59,27 @@ Py uses C++
 		Optimiser task is to remove function call to inline
 		GXX demonstrates it with HTON(u32_liho)
 
+		Every CXX object is a Py_Object
+		Check Py_Object is really CXX using 
+			bit in flags in type
+
+			objimpl.h mentions specific alloc CXX Init
+			need to catch ref_count_zero somewhere
+			avoid GC
+
+			object.h 
+			PyTypeObject . tp_flags
+			uses ALL 32 bits  how generous
+			? 0  - used in STABLE
+			? 1 2 3 
+			? 16
+			? 18 - used in STABLE
+			? 21 
+			? 23
+			then older API uses these in STABLE 
+			 0 HAVE_FINALISE
+			18 HAVE_VERSION_TAG
+
 	CODE_VECTOR
 
 		ideal for single stepping well crafted example data

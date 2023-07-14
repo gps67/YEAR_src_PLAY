@@ -132,12 +132,13 @@ libs: FORCE
 		VPATH=$(src_sp)/lib \
 		srcdir='$(src_sp)/$@' \
 		$(XPORT) \
-		-f $(src_sp)/lib/Makefile.sub \
 		-f $(SPIN_Makefiles)/MK_SPIN_site \
 		-f $(SPIN_Makefiles)/MK_SPIN_lib \
 		-f $(SPIN_Makefiles)/MK_SPIN_compile \
 		$(dir_SP_lib)/lib$(OPT_LIBNAME).$(OPT_LIB_EXT)
 		# ../libs/lib$(OPT_LIBNAME).$(OPT_LIB_EXT)
+
+		# -f $(src_sp)/lib/Makefile.sub \
 
 # Makefile.dep is built by SP's normal makefiles
 # it has "gcc knowledge" about include dependencies
@@ -153,11 +154,12 @@ $(SP_PROGDIRS): FORCE
 		VPATH=$(src_sp)/$@ \
 		srcdir='$(src_sp)/$@' \
 		$(XPORT) \
-		-f $(src_sp)/$@/Makefile.sub \
 		-f $(SPIN_Makefiles)/MK_SPIN_site \
 		-f $(SPIN_Makefiles)/MK_SPIN_prog \
 		-f $(SPIN_Makefiles)/MK_SPIN_compile \
 		all
+
+	#	-f $(src_sp)/$@/Makefile.sub \
 
 # build the SPIN directories
 # only difference is name of Makefile.{sub,app} and src_spin top dir

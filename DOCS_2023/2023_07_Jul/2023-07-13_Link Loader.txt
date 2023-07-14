@@ -1,0 +1,284 @@
+	2023-07-13
+
+	2023_07_Jul
+	2023-07-13_Link_Loader
+
+		load ELF segment
+		find TABLE in segment
+
+	2023-07-13_Link_Loader
+
+		ZINE ARTICLE about SPIN SPOUT DTP_simple API
+
+		BIND DTP == "DTP_simple"
+		BIND API == "DTP_API" == "DTP.API" // bounce via lookup IDX KEY
+		// BOUNCE OPTION "%s%s"
+		// BOUNCE OPTION "%s_%s"
+		// BOUNCE OPTION "%s.%s"
+		// LEXER '{ LHS MAIN RHS }' // MAIN == 'PICK("
+
+		// Q2 is inevitable
+		// Q1 is easily put in Q2_zone Q2_free_zone
+
+		ZINE ARTICLE about python_module // V3 _or_ V2 // a few prints
+
+			py_object += base("elem_INFO_ATTS_DATA")
+			py_object += field("elem_INFO")
+			py_object += field("elem_ATTS")
+			py_object += field("elem_DATA")
+			py_object += field("elem_XPOS")
+			use of C++ VTBL needs { fieldname PTR_to_OBJ }
+			{ ITEM_t * ITEM = PTR_to_OBJ }
+
+	DIALECT Q2{"remove all Q2 - or AVOID in SUB_LAYER"}
+
+		RT class definition "ANYSTR" for ITEM_NAME
+		RT class definition {
+			CLASS_NAME == "ANYSTR"
+			for_ITEM_NAME adds
+			ITEM_NAME == "ITEM_NAME"
+
+				VIEW dropping Q2 
+				VIEW show var_value
+				VIEW know var_value == "VAR_NAME"
+
+					INVOKE BENCH API MK_REF_TO_VAR
+
+		RT BASE_CLASS == "[ BASECLASS ]" // IDX by NAME // CACHED //
+		RT CLASS_ADD += "FEATURE"
+			using AVOID means FILTER always runs clean
+			using FILTER means cached KNOW_is_NULL // PTR_is_NULL
+		}
+	
+	DIALEXT JSON XML CXX SQL
+
+		CARRY and maybe PARSE SQLITE DATA
+		CARRY and maybe PARSE SQLITE CODE
+		CARRY and maybe PARSE XML SGML DOC CSV DATA PARSE_CSS
+	
+	MINI_MACHINE == "CSR"
+
+		// ANYSTR that is unique nearby within SCOPE but in TABLE
+
+
+ Revive SP_py
+  SPIN_Py
+  	Python V2 # as_was # 2_to_3
+  	Python V3 # spin_py.so # $TOP/DIR/lib_SPIN_py
+
+ SPOUT
+ 	DECL_A4 // A4_WEB_SCROLL // CSS_WEB_DTP // _A4 //
+ 	Module CSS_WEB_DTP
+	Item _A4 // Print_as_A4_PDF // ALIAS for Print_as_A4_DTP // MUX_ALL
+	MUX ITEM
+	ITEM TYPE { SPEC } // SPEC_SCRIPT //
+
+ SPEC_SCRIPT
+
+ 	DECL A4 WxH_A4_Inkjet
+
+		The A4 is intentionally an ALIAS assigned in VAR_POOL
+
+		PAGE_LAYOUT_PAGE_SIZE_as_pt // float_pt // fract_pt //
+
+			UDEF BITFIELD FRACT_SPLIT
+
+				u16_u16
+				u8_u8_u16
+				u8_u24
+				BITFIELD_32 _64 
+				pt_float // must fit on page
+ pf_float
+
+ 	FRACTION_as_fixed_float
+
+		BYTE_B_SPLITS
+		BIT_SHIFT_SPLITS <<4 
+		BITFIELD // UDEF [lo[hi // DIAG uses RUN_AS_LOHI_DIAG
+
+			WORD_LOAD ABCD as LOHI 
+
+	FRACTION_as_fixed_byte
+
+		BIND_to_BYTE_B_SPLITS
+		BYTE_and_B_SPLITS
+		ALIAS BYTE_field_accessors_and_B_SPLITS
+
+			ASM REGISTER can poke_BYTE_B or %REPLACEMENT // DIALECT
+			ASM REGISTER can SHIFT_SIGNED // top_of_word_BITFIELD
+			// LANG SHIFT_SIGNED SHIFT_UNSIGNED top_of_word BITFIELD
+			ASM MEMORY_WORD CACHE_WORD get_BYTE_in_XPOS
+
+		// DIALECT // invent ITEM asif of fictional type SPEC
+		// NAME "CSR_XPOS" invents CSR_t CSR = XPOS("{XPOS=CSR++}// 1 BYTE")
+	
+	COMPILE VAR = "%s_%s" LHS_RHS_OPCODE
+
+	STREAM_DATA
+
+		i8_BYTE _from_STREAM
+
+			class _from_stream : public BASE { BYTE_from_STREAM }
+
+		BYTE_FROM_STREAM = XPOS_and_VALUE _XPOS _PTR _STR0 _P1 _P0P2_P1
+
+			i8 i8_BYTES = XPOS_step_one_byte_u8 ++
+
+		OFFS_t OFFS == "XPOS" // see how BENCH can do this // VAR == NAME2
+			i24
+			u24
+
+			i23 i24_known_negative
+			u23 i24_known_positive
+
+			u32 u24_SHIFTED = u32_WORD >> 8
+			i32 i24_SHIFTED = i32_WORD >> 8
+
+			i8 BYTE_A // of BYTE_ABCD // GETTER BINDING
+				REGISTER_BYTE_A _SIGNED
+
+					split the unreachable extra code to two
+					put the NEW EXTRA stuff into UDEF
+
+					"_SIGNED" // "_UDEF" //
+
+				TEST_SIGN
+
+					check already done == compiler
+
+				  ASM TEST_WORD R 
+
+				  	R is A B C D P Q 
+					R += "RET_VAL"
+					R += "ALIAS" idx = lookup ("ALIAS")
+					R += "EXPR" idx = CT_RT("EXPR")
+
+				  ASM += WORD_TEST_SAYS 
+
+				  	if(E1) {
+					 KNOW += KNOW E1
+					} {
+					 KNOW += KNOW NOT E1
+					} {
+					}
+
+				  ASM += WORD_TEST_MATCH_SAYS
+
+				  	if_ZERO
+
+						EXACT MATCH
+						-DONE-
+
+					if_MINUS
+
+						MATCH_MINUS
+						-DONE-
+
+					elif_ZPLUS
+
+						MATCH_ZPLUS
+						-DONE-
+
+					if_PLUS // _and NOT ZERO
+						OFFS = u8 << 3 // each EIGHT_t
+						EIGHT_ EIGHT = TABLE[u8]
+						ITEM = ITEM_FROM_EIGHT EIGHT
+						ITEM = ITEM_FROM_EIGHT // EIGHT
+
+							AUTO_GEN CODE_POINT
+
+								ASIS_existing
+								_CODE_POINT
+
+							AUTO_GEN CODE_POINT
+
+								_XPOS == "XPOS"
+
+							HERE_GEN
+							// CODE_POINT += HERE
+
+								MUX .segment DATA
+
+
+						-DONE-
+
+
+
+// NAME XPOS("{XPOS=CSR++}// 1 BYTE")
+// KEY == "{XPOS=CSR++}// 1 BYTE"
+// KEY == "{XPOS=CSR++}" VARS PARSED VARS STEP_expr_pool
+// PATTERN IP == PC // PC++ ; 1 BYTE not 1 WORD // invokes ODD_ADDR_PARSER
+// PARSER CXX finds MATCH _ER // FILTER += PARSER //
+// PARSER_MUX // SWITCHES_in_out_on_off_USAGE
+// when applies // PARSER PATTERN PARSED_STREAM 
+// LIBR // STREAM == "PARSED_STREAM" // GEN and MATCH from API
+// every instance OBJ can be thought of as of_TYPE_u8
+// ALSO when "{ N == 256 }" -MATCH- "{ TABLE ALIAS of SPEC ITEM_TYPE }"
+// SCRIPT // TABLE += TABLE[u8] or EIGHT_t // u64_WORD //vars_name_is_type
+// u64_WORD //var_name_is_type ALIAS type name ALIAS name type // CPU_TYPE_NBIT u64_LOHI 
+// u64_LOHI // repeat i64 to match u64
+// u24_LOHI // repeat i64 to match i64_i24_u24_LOHI
+// i24_LOHI // DECODE_MINUS // TRACE_VAR_BINDING //
+// LANG += // ONE_LONG_NAME // "{ %s_t %s }" // EXPR_id("%s_t") ONE_LONG_NAME_t
+// LANG // AUTO_DETECT repeat use of MATCH_STR // ALIAS SAME_VAR //
+// LANG // AUTO_DETECT TOKENISATION of SPELLING of CIDENT99 //
+// LANG // GEN VAR = "cident99" // TOKEN for ident in dialect("cident99")
+// LANG // GEN VAR = 'dialect("cident99")'// DAMN Q2 for CXX Q1 for CXX_holding_C
+// LANG //  _Q2  CXX Q1 CXX_holding_C // PICK == "_Q2" // CXX_Q1_holding_Q2
+// LANG // 'Q1' // designed to carry Q1 payloads // '${VAR}' // '%s' // PAYLOAD
+// LANG // 'Q1' // designed to carry Q2 payloads // ARG_VAR IDENT // "'${VAR}'" // '%s' // PAYLOAD
+// LANG CXX uses '{ A R G S }' // CXX_parses_VAR_NAMES as_if_TOKEN_as_STR0
+// STR0 must be unique in VAR_POOL // otherwise CONFUSION NAME_CLASH already_represented
+// PARSE("STR0") // CIDENT(%s) IDENT(%s) TOKEN == PTR saved in TABLE[STR0]
+// SHARE OBJ += OBJ_is_SPELLING_TOKEN_for_VARNAME // "_" "VAR_NAME" //
+// STR0 == ANYSTR // ANYSTR == "ANYSTR" // use DATA == "OWN_NAME" because SCRIPT
+// STR0 == ANYSTR // ANYSTR == "ANYSTR" // use DATA == "OWN_NAME" because SCRIPT
+// "cident99" NAME = -ditto- // "SPELLING" // CSET_ASCII_PLUS
+// CSET_ASCII_PLUS += CSET_utf8
+// CSET_ASCII_PLUS += CSET_8859 _latin1 cyrillic svga_glyph 
+// CSET_ASCII_PLUS += CSET_8859_UDEF _UDEF
+// CSET_ASCII_PLUS += CSET_UDEF == "_UDEF" // MATCH "CSET_8859_UDEF" //
+// CSET_ASCII_PLUS += CSET_utf16 // is this what WIN32 did ? DIALECT += CSET
+// CSET_ASCII_PLUS += CSET_CFONT_TWO // probably utf8 over _latin1 with svga_font
+// CSET_ASCII_PLUS += CSET_latin1_alphabet
+// CSET_ASCII_PLUS += CSET_latin1_punct
+// CSET_ASCII_PLUS += CSET_latin1_cident99
+
+	STREAM of BYTES of TEXT not WORD aligned but soon PARSED("TOKEN")
+	PARSE("VARNAME")
+	PARSE("VAR_DECL")
+	PARSE("_DECL")
+	PARSE("_VAR_USE") // ALIAS "_VAR_REF" //
+
+	CMD uses ARGV upto "//" which bash sees as "$1" or ...
+	PARSER know "//" is runnable comment // MODE_SHIFT_EVAL //
+
+	UNARY => { LHS RHS OPCODE ARGS }
+	UNARY => { VAR NAME OPCODE ARGS HERE == "THIS" } // THIS == "HERE"
+	// VALUE_of_VAR is ALIAS_HERE
+	// VALUE_of_VAR is ALIAS_THIS
+	// VALUE_of_VAR is ALIAS_%s "{ STR0_SELF %s }" // use VAL as NAME
+	// VALUE_of_VAR is ALIAS_%s // use VAL as NAME // as_FOUND_in_SCRIPT
+	// RT IDX used to find CODE // TABLE("name") // retval_CODE_from_IDX
+	// DIALECT // avoid %s_%s // use %s%s // "varname" // FUSE_WORD //
+
+
+// SPELLING == "cident99"; // ROM avoids use of ASSIGN so API uses MATCHES("==")
+// COMPILER TOKEN of LEX_STR0_SPELLING in SPELLING_POOL // need CODE_POINT
+// XPOS in above line gains {
+	COMPILER
+	TOKEN
+	LEX_STR0
+	 SPELLING
+	_POOL
+	SPELLING_POOL == '_POOL("SPELLING_POOL")'
+
+		PRECISE Q1_CXX
+
+// NAME XPOS("{XPOS=CSR++}// 1 BYTE")
+
+			CSR_XPOS
+
+	DECL_A4 // A4_WEB_SCROLL // CSS_WEB_DTP // _A4 //
+
+

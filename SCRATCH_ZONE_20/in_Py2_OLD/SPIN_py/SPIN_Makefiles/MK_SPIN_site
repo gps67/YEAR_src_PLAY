@@ -5,11 +5,13 @@
 # USED AS #	include ../SPIN_Makefiles/MK_SPIN_site
 # USED AS #	make -f $(SPIN_Makefiles)/MK_SPIN_site
 
-	src_base1=/home/gps/2000/src
+#	src_base1=/home/gps/2000/src
+	src_base1=/home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Py2_OLD
 
 	# src_sp   =$(src_base1)/sp-1.3.4
-	# src_sp   =/tools/2004/xml/include/OpenSP
-	osp_prefix =/tools/2005/libs# where OpenSP was installed (/usr/local)
+	src_sp   =/home/gps/YEAR/src_build/SP/OpenSP-1.5.1_gps_build
+	# osp_prefix =/tools/2005/libs# where OpenSP was installed (/usr/local)
+	osp_prefix =/home/gps/G/prefix/SP
 	osp_INCLUDES += -I$(osp_prefix)/include/OpenSP
 	osp_LINKS += -Wl,-rpath=$(osp_prefix)/lib -L$(osp_prefix)/lib -losp
 
@@ -18,8 +20,9 @@
 	# here I am
 	SPIN_Makefiles=$(src_spin)/SPIN_Makefiles
 
-	py_base1=/tools/2005/py
-	py_vern=python2.4
+	py_base1=/tools/x86_64/py
+	# py_vern=python2.4
+	py_vern=python3.11
 	PYTHON_INCLUDE += -I$(py_base1)/include/$(py_vern)
 
 #       tcl_base1=/tools/2005/tcl # unused 8.3

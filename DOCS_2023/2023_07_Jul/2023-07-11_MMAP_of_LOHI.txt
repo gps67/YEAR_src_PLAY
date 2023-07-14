@@ -1,0 +1,58 @@
+	2023-07-11
+
+	2023_07_Jul
+	2023-07-11_MMAP_of_LOHI.txt
+
+	ROM += MMAP_ROM
+	SESS += MMAP_STO
+	ROM += MMAP_STO // PRE_GEN TABLES at CT // DECODE_DATA_IN_HEAP //
+
+	LOHI
+	 BYTE_A
+	 BYTE_B
+	 CPU_REGISTER_BITFIELDS
+
+	 	ideal for x86 _32_
+	 	ideal for x86 _64_
+	 	ideal for ARM _32
+	 	ideal for ARM _64
+	 	ideal for C for ABOVE // know CXX knows // handwritten LOHI
+	
+	 CPU_REGISTER_BITFIELDS
+
+	 	DECODE_32 _HILO_from_LOHI
+	 	DECODE_64 _HILO_from_LOHI
+
+		ideal for CPU with BYTE_SWAP_64_EA_in_TABLE
+		ideal for CPU with BYTE_SWAP_64_EA_in_TABLE
+		ideal for CPU with BYTE_SWAP_64_VALUE_in_REGISTER
+
+			because that is how BYTE_SWAP works 
+			ASM SWAP_BYTES_in_REGISTER
+
+			i32
+				use_WORD_one
+				use_WORD_two
+			i24
+				from__WORD_one
+				from__WORD_two
+			i8
+				... etc ...
+
+		ideal for CPU with BYTE_SWAP_32 EA_in_TABLE
+
+ MAD WORLD
+
+ 	PTR = P0 of PARSED EXPR // STR0 = PARSE <EXPECT> from STREAM
+ 	PTR = P2 of PARSED EXPR // that's why it is never used
+
+	OFFS_of_P0
+	OFFS_of_P2
+
+	EXPR as CODE_TREE 
+	RET_VAL of EVAL EXPR
+	RET_SPEC of EVAL EXPR
+	RET_SPEC from actual VALUE // _with_
+	
+
+

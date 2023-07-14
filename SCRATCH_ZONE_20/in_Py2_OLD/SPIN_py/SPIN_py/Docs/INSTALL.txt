@@ -189,6 +189,8 @@ NB These makefiles allow you to build several (8) parallel versions,
 and they are named to NOT coflict with SP's makefiles, whilst still
 using Makefile.sub in the SP prog dirs.
 
+++ DELETING USE of MAKEFILE.SUB ++
+
   MK_SPIN_16_so		- set OPT_DEBUG and include top_2
   MK_SPIN_top_2		- builds each subdir of /usr/src/sp
   MK_SPIN_compile	- compiler options (other than paramaters)

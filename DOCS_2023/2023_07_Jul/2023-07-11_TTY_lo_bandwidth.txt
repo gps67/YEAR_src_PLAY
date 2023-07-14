@@ -1,0 +1,374 @@
+	2023-07-11
+
+	2023_07_Jul
+	2023-07-11_TTY_lo_bandwidth.txt
+
+		TTY is high quality fast flow of PARSEABLE TEXT
+		PARSE STR0 and BUILD TABLES
+		COMPILE SCRIPTS and KNOW TABLES in ROM
+		COMPILE SCRIPTS and ALLOC TABLES in STO // SESS += STO
+		TTY_can_be _utf8 _latin1 _cyrillic_2 _utf16 _unicode_64
+		SYSTEM_OF_LOGIC += never actually use SPELLING 
+		SYSTEM_OF_LOGIC += any unique PARSED_ANYSTR_SPELLING
+		SYSTEM_OF_LOGIC += any unique SPELLING
+		i24_idx idx = lookup SPELLING in SPELLING_TABLE
+		KNOW "STR0 SPELLING = PARSE_cident_from_OFFS_in_FILE"
+		KNOW "STR0 SPELLING = PARSE_EXPR_from_OFFS_in_FILE"
+		KNOW_EXPR == "OFFS_in_FILE" // P0 of P0P2
+		PARSED_EXPR += P0P2 P0_without_P2_also_works _CT_
+		PARSED_EXPR += started_at_CSR
+
+		ROM is SEGMENT is PRE_GEN ORIGINAL_TEXT_of_SCRIPT + PLUS
+		SEGMENT += DATA += CODE_SPEC += DATA_SPEC += SESS_STO_DATA
+		SEGMENT += TEXT still in SCRIPT in ROM
+		ADDED_DATA += _VAR _NAME _SPEC _CTOR _EXPR _LIBR
+		ADDED_DATA += _TABLE _NAME _SPEC MACRO "{ EIGHT = TABLE[ IDX ] }"
+		ADDED_DATA += PARSE_TOKEN "{ EIGHT = TABLE[ IDX ] }"
+
+			OFFS_of_EXPR_in_FILE i24_ i48_ i64_ u16_ i16 u8_ i8_   _u24_OFFS u48_OFFS i64_OFFS 
+
+				u24_OFFS is 16 MB LIMIT for this encoding
+				u64_OFFS is RET_VAL from GETTER_EXPR
+				i24_in_i64 is SIGN_SHIFTED 8 or 32+8
+
+					BITFIELD in i8_i24
+					BITFIELD in i8_i24
+
+						u32_WORD
+						u32_WORD_TWO
+
+
+
+					BITFIELD in i8_i24
+
+					 i8 BYTE_A = i8_or_u8_from_BYTE_A
+					 i8_BYTE_B = i8_or_u8_from_BYTE_B
+					 i16_LOHI_AB = i16_in_situ REGISTER
+					 i16_LOHI_CD = i32 >> 16 // 
+					 i24_SHIFTED = "i32 >> 8 // LOHI_BCD"
+					 i32_WORD == i32_ABCD // CODE_MATCH //
+					 i32_ABCD == "ABCD" // maybe "EFGH"
+
+					 get_i24() { return i24_SHIFTED }
+
+		CODE_POINT is LEX at OFFS in SCRIPT then ALIAS to OBJ
+
+			as well as the SCRIPT there is a OBJ_SHEET
+
+			MODULE has OBJECT_TABLE[ i23 ]
+
+				u23 == "i24"
+				i23 is technically wrong
+				no actual check is done
+				if you want that you must FILTER_EVERY
+
+				OPCODE can transmit [i24[u23 
+				OPCODE can transmit [u24  
+				OPCODE can transmit [u23 AFTER_SIGNED_CHECK
+
+				DECODE_MINUS
+				 PICK _IDX_ _OFFS_ // BENCH_BUILTINS 
+				 // PRE_BUILD // LOAD_LIBR_of_PRE_BUILD //
+				 // MMAP of LOHI
+				is_ZERO
+				 if_ZERO_MEANS_FIRST_IDX_IDX0
+				 if_ZERO_MEANS_FIRST_IDX_NULL
+				is_UNSIGNED
+
+				u23 == "u23"
+				u23 == "i23"
+
+
+
+WEB_CLIENT_BROWSER_FAIL # TOO_SLOW ATTACKED OMIT EMIT TTY_lo_bandwidth
+# LEX_BIAS LEX_FILTER LHS_RHS # SUBRULE_idx # idx of ITEM # ALIAS OBJ #
+# UDEF DIALECT starts with "{ CODE += SCRIPT }' # ARGV[arv_SCRIPT] PTR_TO SCRIPT at IDX # VARS += "{ int_24 IDX }" CMNT += "{ 
+
+/*
+	utf8_probably
+		CSET_ENCODING == "utf8" // PROPER STR0 // CHECK // FILTER 
+		FILTER == EXACT_MATCH "SPELLING"
+		FILTER == EXACT_MATCH "IDX" // VAR ALIAS EXPR = ITEM.IDX
+		// ITEM.OBJ // ALIAS OBJ // ALIAS ITEM // MATCH SAME_or_OTHER
+	
+	SAME_or_OTHER
+
+		CT_RT CT // HERE == "THIS" // STR_MATCH "this" CXX_dialect"
+	
+	dialect_CXX 
+
+		SCRIPT.ITEM["item"] == "item" 
+
+			-- CT get_EA_as_STR0 == "item" // MATCH_TOKEN #item
+			-- #obx #item "STR0" "%s" item // VAR_NAME is the name of a type
+			// VAR_NAME is the name of a type "item" //
+			// BOUNCING REPEAT STR0 of SPELLING should be MERGED
+			// BOUNCING MACHINE STR0 uses DIALECT // dialect //
+			// VARNAME dialect == "dialect" //
+			// STR0 ANYSTR // FILTER OPTIONAL // must be STR0 //
+			// KNOW dialect is CPU_LO_HI // see reason BYTE_B of VAR
+			// CODE var_name == "STR0"
+			// CODE CALL { SCRIPTS CALLERS DATA WORKSPACE BENCH }
+			// CODE BENCH // DIAG with TEXT via PARSER of EXPR
+			// EXPR WELL_SPELLED_PRE_BUILT_CODE_TREE_and_EXPR_and_CALL
+			// EXPR CODE_TREE_and_EXPR_and_CALL // SESS += MODULE
+			// MODULE += { SCRIPT } // CODE_LAYOUT // BENCH
+	
+	BENCH
+
+		BENCH.VAR += SESS
+		// NB VARS as VAR THIS_USAGE_ONE_of_ALL_dialect
+		// VARS += VAR // AUTO_KNOW in SESS
+
+		BENCH is where AI meeds API meets BENCH meets UDEF and LIBR
+
+		this is a language where caps word API means callers_pos
+		"API" means a VAR called "API" having value "API"
+		"API" special endowment TOKEN += IDX_of_SPELLING_in_MODULE
+		SPELLING_in_MODULE
+
+			module . item
+
+				STR0 module == "module" ;
+
+					this is how idx = lookup "IDX"
+
+					idx = N ++
+
+					N == N_alloced_do_far
+
+					N == i == idx == ALIAS // builds code
+					CODE += MATCH idx as IDX
+				// "MATCH" is CODE_POINT HERE
+				// "MATCH" "IDX"
+				// "MATCH" "CODE"
+				// "PARSE" EXPR_t EXPR = PARSED CODE
+				// "CODE" SCRIPT_EXPR_t CODE
+				// "CODE" SCRIPT_EXPR_t SCRIPT // ALIAS
+				// "CODE" SCRIPT_EXPR_t _t // ALIAS // export
+				// API export import share private STO API //
+				// API var "{ STR0_t STR = " // { RHS } // ...
+
+			module . idx 
+
+				i24_idx = IDX // IDX += EXPECT_MINUS_DECODE_MINUS
+				// DECODE_MINUS
+				// varname == "VAR_NAME"
+				// register_v //
+				i24_idx = IDX ; // CMNT // THEN //
+				//
+				// ASM += test_word varname
+				// ASM += DECL_STR0 NBYTES_of_STR0
+				// ASM += ALLOC nbytes in STREAM in SEGMENT
+				// ASM CT += "KNOW i24 idx = N ++ ; // ALIAS "
+				// ASM ALIAS VAR_NAME // SPELLING "VAR_NAME" //
+				// ASM EXPR RETVAL = EVAL_EXPR EXPR ARGV OPTS
+				// ASM_EXPR i64_WORD_in_SEGMENT_at_OFFS_VAR_NAME
+				// ASM VAR NAME // track VAR_NAME SPELLINGS
+				// TOKENISER MATCH VAL IDX // EA_of_this_Object
+				// EA = "EA_of_this_object" // unique STR0 cident99
+				// STR0 EA = "EA_of_this_object"; // TOKEN
+				// FILTER SCRIPT PARSER CXX builds API or it
+				// CODE_STREAM += CODE += CODE += CALL 
+				// += CALL func
+				// += ARG name
+				// += ARG SPEG // ... TEXT ...
+				// += CIDENT_t VAR_NAME // STR0 // "ANYSTR"
+				// += SCRIPT EVAL SESS ALIAS SPEC VAR EXPR API
+			
+	the entire machine works on STR0 ANYSTR;
+	firstly it does within our code because ...
+
+		use of "unique_str_here"
+		use_of_"NAME_MANGLER" // even CXX in ELF
+		use of MERGE_ASIF_ALIAS "ANYSTR"
+		check_ok_for_use_in_CXX
+		well_it_compiled_and_ran_so_here_goes_again MATCH "STR0"
+
+		FILTER_is_cident99 // += ALSO_CALL "SCRIPT[IDENT]"
+
+ BENCH
+  thinking HOW TO make "SCRIPT[IDENT]" exist
+
+   so DECL STR0_t SCRIPT; // STR0_TABLE_NAME_is_VAR_NAME // "SCRIPT"
+   so DECL STR0_t _SCRIPT_; // UDEF_TYPE += LOCAL_SCRIPTS
+
+   We are taking advantage of HASH_TABLE_lookup_STR0 //
+ 
+ BENCH
+  MATCH
+
+  	STR0 SPELLING // STR0 AUTO_GROW STR_t AUTO_NAME_VAR = NAME_VAR
+	STR0 SPELLING = NAME_VAR;
+	STR0 SPELLING = TYPE_NAME;
+	STR0 SPELLING = MATCH_NAME;
+	STR0 SPELLING = PARSE_NAME;
+	STREAM += PARSE_and_TOKEN_and_LOOKUP_and_FETCH //
+	/*
+		STREAM += PARSE_and_TOKEN_and_LOOKUP_and_FETCH { HERE }
+
+			This multi part name %s_and_%s _and_%s
+			// ie IDX = i24 // LANGUAGE LIMIT IS DIALECT //
+			// it is also plenty,
+			// you can get i48_in_i64
+
+			As anystr which is cident99 
+			STRUCTURE LIST of words_and_fillers
+			STRUCTURE STEP of EXPR of PARSABLE_CODE
+
+			As major_var_name // WAKE BENCH += VAR_NAME
+
+			as major_func_name // VAR_NAME_FUNC_NAME
+
+			CT PRE_GEN pre-looked-up CACHED VALS
+
+				i24_IDX = i64_register; // KNOW BIT_FIELDS_MAP
+
+			EIGHT_t TABLE_SLOT_DATA {
+				i64_PLUS // i64_PLUS_t PLUS; // IN_STREAM_DATA
+				BYTE_A BYTE_B LOHI_AB i48_PAYLOAD i24_IDX
+				i24_IDX
+					BITFIELD = SIGNED // SHIFTED_OWN_COPY
+				i8_STEP
+					CODE_POINT = STEP_of_WORD i64_EA_ITEM
+			}
+
+		PARSE += {
+		}
+		TOKEN += {
+			STR0_t TOKEN = "ANYSTR"
+			STR0_t TOKEN = "cident99"
+			STR0_t TOKEN = "TOKEN"
+			STR0_t TOKEN = "TOKEN TOKEN TOKEN"
+			STR0_t TOKEN = "// TOKEN BINARY SPELLING //"
+
+			// SO STR0_t evolved from PTR_to_STR_TOKEN_SPELLING
+			STR0_t TOKEN = PARSE_TOKEN knowing DECLS
+			// recognise SPELLING // PRE_COMPILE_EXPR // TOKENISE //
+			STR0_t TOKEN = "PARSED_IDENT_in_STREAM"
+			// but OPTIONALLY P0 = P0_of_TOKEN_LEX // no_null
+			// so not STR0 but STR0_t
+
+		RT
+			CT is in the form of a EA_SPELLING of LEX with own NUL
+			CT is in the form of a EA_SPELLING of LEX without NUL
+				If you need to know EA_NEXT_STEP
+				ask CALLER for its NEXT_STEP
+				tell CALLER to assist JIT eval EXPR lookup
+				LOOKUP TABLES
+
+		RT SESS += "SESS"
+
+			TOKEN_is_KEY_in_TABLE
+			TOKEN_is_i24 // PLENTY for CODE_OPTIONS LIBR_ENCODED
+			LIMIT_is_i24 // ELSE_EMIT LIMIT_is_i64 TABLE_N
+			TABLE_N is_not i24 almost never usually about 5
+			Put that in a shared spece MODULE.SESS.TABLE
+			DECODER over u32_u32 for ARM_32 use BYTE_B
+			BUNCH of CONVERTER MATCH extract_u32_from_STREAM
+			BUNCH of CONVERTER MATCH extract_u32_from_i64_ORIG
+				only the first u32 gets BYTE_B and BYTE_A
+				code specifically GRINDS if other u32 wants it
+				that requires u32_PAYLOAD = i64 >> 32
+				or u32 * PTR = EIGHT + 4 // POS_in_EIGHT _is_4
+				// LANG created "_is_4"
+				// "byte_offs_of_i32_h"
+				// "_is_4"
+				// "_POS_in_EIGHT"
+				// "_is_4"
+
+				// LANG created "byte_offs_of_i32_h  _is_4 _POS_in_EIGHT _is_4"
+			BUNCH of CONVERTER MATCH extract_u32_from_i64_COPY
+		}
+		LOOKUP += {
+			OBJ_t * OBJ = TABLE.lookup( KEY_STR0 )
+		}
+		PRE_GEN += {
+			MATCH CXX fmt_str and some ALIAS or IMPLIED
+			MATCH 0x %2.2X 
+			"0x"
+			"%2.2X" // fmt_str = "%s" // PRE_PARSE_FMT_STRS"
+			IDX = AUTO_CALC_ATOI_PARSE_LOCAL fnt_str
+		}
+		FETCH += {
+			STR0 IDX = "0x2.2X" // NAME == "FMT_STR_for_NUMERIC"
+			OBJ_t * OBJ = LOOKUP( IDX ) ;
+		}
+		HERE += {
+			HERE_== NAME == "ANYSTR"
+		}
+	*/
+
+   	it is QUICK PRE_GEN_CACHED_VALUE "STR0"
+	it is QUICK_EXPR_STEP "{ STR0_t STR0 = '%s'; // CMN }"
+	// CXX PARSES '%s' ASIF "%s" // PUNCT_ALIAS MATCH_Q1 Q1
+	// AUTO_PARSE WORDS out of PARSE_STREAM // possibly EA_in_ROM_BUFF
+	// CODE_MATCH EXACT or PARSED
+	// EG PARSED "{ Q2 '{' SP L_I_S_T SP '}' Q2 }"
+
+				// STR0_in_ROM //
+				// SPELLING //
+				// NB these lines FROM and INTO AUTO_CODE
+				// NB PICK is BENCH VAR or something like that
+				// PICK and_all_the_rest // _API_ //
+
+				// this _MENTION_ of "_API_"
+				// created a VAR_POINT
+				// accept all HOLD_this_field as "STR0"
+				// accept all HOLD_this_field as "PARSED_STR0"
+				// accept_api_can_call_TAMPER
+				// DETECT_api_can_call_TAMPER_and_didnt
+				// OR += quietly fixed // CODE_STREAM += SCRIPT
+
+
+	LANG TRANSMISSION
+
+		TOKEN = "TEXT_SPELLING" ; // AS_STR0 utf8_probably
+	
+
+		TOKEN == "TOKEN"
+
+			All tokens do this by sibling same type
+			"TOKEN" is "OWN_NAME" self == "STR0" // += CODE
+			EVAL CODE 
+			 see ARGV as taps for STREAM_TEXT to flow
+
+	BINARY TRANSMISSION
+
+		This happens by TOKENISE("TOKEN")
+		RECOGNISE_MATCH( TOKEN ) // LANG_AI_search_for_ALIAS_OWN_NAME
+		ASCII TRANSMISSION
+	
+	utf8_SCRIPT
+
+		identifiers could have any (well_formed_utf_checked) utf8
+		ALIAS utf8 utf16 LATIN1_as_UTF8 # SAME_PAGE # MATCH STR0 #
+	
+	MATCH STR0
+
+		a hash table of STR0 enables really fast lookup
+		a cache PRE_GEN EXPR = CODE ARGS VARS STEPS
+	
+	SCRIPT EXPR CODE STEPS ARGS VARS VALS EXPRS // auto_var VAL // ...
+
+		STEPS += "CODE"
+		CODE += "STMT_LINES" TYPE_OPTS one_line_one_stmt 
+		ONE_LINE += EOLN RE_INDENT BOLN line_in_list_of_LINE // AUTO_PLURAL
+		CODE_BLOCK += LIBR_LANG_CXX_CODE_FRAGMENTS_in_STREAM
+		CODE_BLOCK += PARSER in_STREAM FRAGMENTS_in_STREAM
+		CODE_BLOCK += MODULE_and_its_LIBR
+	
+	MATCH STR0_t STR0 = "ANYSTR";
+
+		CXX CTOR VALUE CODE
+
+
+		CXX += CODE
+		MATCH += CODE
+		VALUE += CODE
+		API += CODE
+
+
+*/
+
+

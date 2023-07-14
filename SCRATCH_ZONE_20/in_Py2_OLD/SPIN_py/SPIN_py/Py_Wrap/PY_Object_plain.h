@@ -3,6 +3,7 @@
 
 struct PY_Object_plain;
 
+#include "object.h"
 #include "Python.h"
 // #include "PY_Static.h" // circular include - excludes basic types
 
@@ -24,13 +25,14 @@ struct PY_Object_plain;
 	parallel worlds, with only CAPitalisation to separate the calls.
 */
 struct PY_Object_plain
+	: public PyObject // NOT A MACRO that define ob_type
 {
  private:
 	// prevent these from existing - detect their AUTO use
 	PY_Object_plain( const PY_Object_plain & );
 	PY_Object_plain & operator=( const PY_Object_plain & );
  public:
-	PyObject_HEAD
+//	PyObject_HEAD // MACRO that define ob_type
 	;
 
 	/*!

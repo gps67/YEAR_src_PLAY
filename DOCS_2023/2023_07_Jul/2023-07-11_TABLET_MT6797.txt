@@ -1,0 +1,46 @@
+	2023-07-11
+
+	2023_07_Jul
+	2023-07-11_TABLET_MT6797.txt
+
+https://www.aliexpress.com/item/1005005638296544.html
+
+	same price 5G
+
+https://www.aliexpress.com/item/1005005622890931.html
+
+	MT6797
+	1TB FLASH
+	16GB RAM
+	WiFi
+	 2G/3G/4G
+	4GLTE
+	11.6" 2000x1200
+
+	£50  6G  128GB
+	£70 12G  512GB
+	£78 16G 1000GB
+￼
+The Mediatek Helio X20 MT6797
+
+Two fast Cortex-A72 cores are running at up to 2.3 GHz,
+four Cortex-A53 cores at up to 1.83 GHz and
+four Cortex-A53 cores at up to 1.4 GHz.
+
+All cores support 64-bit and the utilization of three clusters is supposed to improve efficiency according to Mediatek
+
+ARM Mali T880 MP4
+	four clusters (MAX 16)
+	of Midgard (4'th gen) 780 MHz
+
+https://androidmtk.com/install-xml-scatter-firmware-mediatek
+
+	SP Flash Tools
+
+https://spflashtool.com/
+
+	SP Flash Tools
+
+https://spflashtools.com/category/linux
+
+	

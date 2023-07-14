@@ -1,0 +1,46 @@
+	2023-07-13
+
+	2023_07_Jul
+	2023-07-13_ASM_info.txt
+
+https://www.youtube.com/watch?v=gfmRrPjnEw4
+
+https://cpulator.01xz.net/?sys=arm
+
+
+ARM r7 == API call[r7] // R7 == "enum _exit_"
+
+	MOV R0 , #30 ; # 30 decimal ; 0x0A #30
+	SWI 0
+
+--- 
+ASM_CXX
+	ALIAS R3 = ARM64_R24
+	ALIAS A B C D P Q
+	ALIAS C_proto 
+	ALIAS CXX_proto // more than sparse // full C++ style CXX
+
+	ASM R4 = R3
+	ASM * PTR ++ = VAL // i32_step_half_word_either _lo _hi
+	ASM RET_VAR = (i64) TABLE[ idx_word ]
+
+	MATCH_MACRO
+	"{ ASM RET_VAR = (i64) TABLE[ idx_word ] }"
+	 FIXUP ADJUST_SPACES_and_COMMENTS
+	 FIXUP ASM == "ASM"
+	 FIXUP RET_VAR == "RET_VAR"
+	 FIXUP i64 == "i64"
+	 FIXUP TABLE == "TABLE"
+	 FIXUP idx_word == "idx_word"
+	
+
+STEP_RUN SAMPLE_DATA
+
+	entire LAYER moves TOKENS around
+	cannot convert TOKEN to VALUE other than GETTER 
+	TOKEN == "NEW_TOKEN"
+
+	TRACK movement of TOKENS through MINI_MACHINE
+	resolve into COMPILED short cuts
+	(asif)
+

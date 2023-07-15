@@ -1,0 +1,317 @@
+2023-07-15 Jul Sat 13:49 # 26 #  BENCH_CD_TRACK_RACK/BENCH_CD_TRACK_RACK.txt
+
+	CXX Tcl Tk 
+
+		field_holders
+
+			STR0_t over Tcl_Object _as_String as_STR0("%s")
+
+			 NEW ITEM_EA_XPOS
+
+			 	IDX == "{ += CTXT ; // explain ' += %s' }"
+			 	IDX == "{ += CTXT ; // explain { += %s} }"
+				DIALECT Q2 " { %s } "
+				DIALECT "{ %s += %s }"
+				DIALECT { %s += %s }
+				DIALECT {" %s += %s "}
+				DIALECT {' %s += %s '} // CMNT {' // %s'}
+					%s == "CMNT" // VAR_NAME == "CMNT" //
+
+					BENCH += CMNT(" VAR_NAME == ${CMNT:-CMNT}"
+					BENCH += CMNT(" VAR_NAME == {CMNT:-CMNT}"
+						DIALECT += '$VAR or VAR'
+						ALIAS OMIT $
+						ALIAS EMIT $
+						DIALECT += PICK OMIT because EXPLAIN
+					EXPLAIN += DIAG PAIR PICK_WITH_OPTS
+
+					 WITH EMIT
+					 	STREAM OUT GLYPH "$"
+					 	STREAM OUT GLYPH ASCII_DOLLAR
+
+					 WITH OMIT
+					 	"# DROP $VAR to VAR" // CMNT
+						UDEF "{ REWRITE $VAR as VAR }"
+
+				 DIALECT '%s += %s // CMNT'
+				 DIALECT '+= %s // CMNT' // ABSENT LHS // AUTO GUESS
+				   AUTO_GUESS { LHS == HIDDEN("LHS") }
+	
+	STR0_t
+
+		CACHE TOKEN == "STR0_t"
+
+		STR0 SPELLING 
+
+			EXPLAIN += _t
+
+				"STR0_t" means ALIAS matches ALIAS Know_That("means") ALIAS_ADD == "_ADD" { += "matches" } // LEX == "%s" // APPLY MACRO
+
+		APPLY MACRO("SPELLING")
+
+			recognise NAME VALUE SPELLING UNIQUE_ID TAGS
+
+		TRACK TAGS("TAGS")
+
+			"TRACK_NAME" // instead of "value" use "VAR_NAME"
+
+		MACRO_is_VAR("VARNAME")
+		MACRO_is_VAR("SampleValue") // levels of "_"
+
+	
+	STR0 TRACK_NAME = "TRACK_NAME"; // GUESS VAR_NAME // MATCHES KNOWN VAR
+
+		Morcheeba - The Sea
+	
+	DRAW_AS
+
+		%s - %s
+			BOLN FMT BAND_NAME SP - SP TRACK_NAME EOLN
+				BOLN not actually BOLN
+				EOLN not actually EOLN
+					actually PHRASE not LINE 
+					actually EXPR not LINE 
+					PAIR_BOOK_ENDS BOLN EOLN
+					PAIR_BOOK_ENDS "(" ")"
+					PAIR_BOOK_ENDS Q2 Q2
+					PAIR_BOOK_ENDS Q1 Q1
+					PAIR_BOOK_ENDS "{" "}"
+
+						NEAR_TCL_SYNTAX
+
+							some house rules
+
+								VARNAME
+								cident99
+	cident99
+		latin1
+		utf8
+	cident99
+		a1_a2_star
+
+			a1 = a2 - "$" // VALID but discouraged
+			a1 = a2 - "-" // in_filename("-") in_varname("_")
+			DETECT += "$" += "-" // INCLUDE DROPPED
+			a1 += "[A-Z]"
+			a1 += "[a-z]"
+			a1 += "[0-9]"
+			a1 += "[_]" // USAGE as WORD_MID_JOIN // _LHS_MID_RHS
+			// CT_KONW(" MID == '_' ") // OVERLAY PARSE
+			a2 += "[#$%]" // 
+
+
+OVERLAY_PARSE
+
+	LAYER_2 DIALECT EG(" // CT_KONW{ MID == '_' } // { SYNTAX += HERE } //"
+	
+	LAYER_3 SPLIT_TO_ARGV_WHERE_SP
+
+		PICKY_PARSER demands SP // GEN 
+		FLAVOUR_PARSER expects SP // GEN 
+		FLAVOUR_PARSER likes SP // GEN 
+		YACC_GENERIC_GAP 
+
+		REQUIRES subsequent SUBLEX parser 
+		 to find LEX_EDGE other than SP
+		 to retro_CSET_PARSE_LEX_over_SP_or_GAP_or_NOGAP
+
+		PROVIDE 
+		 MATCH "(" here and ")" down some LEX on ARGV RHS
+
+		GENERATE
+		 ARGV recognised as
+		  ARG[0] == "OPCODE" 
+		  ARG[1] == "LHS_OBJ_ID"
+		  ARGV[2] == "OPCODE_MODIFIED" // repeat "=" // OPTION // PSG
+		  ARGV[3+] == "... space_for_RHS_EXPR_CODE"
+
+		  PARSER joins "..."
+
+	ARGV_PARSER
+
+		+= TEMPLATE AS_FOUND AS_USUALLY PICK_OPTS 
+
+		// PARSE above line and create an object for each CAPS eg "PICK"
+		// PARSE DIAG that line comes from // PRE_GEN // PRE_BIND //
+
+
+	  FINDS
+
+	  	COMPLETE_PARSED_LINE_WITH_CMNT_CHAIN
+		REWRITES LISTS as PHRASE ARGS within callers ARGV
+		ARGS and ARGV
+			EA_ARG0 == WORD_21_of_wider_INTENTED_CODE
+			ARG0 == "OPCODE" // PARTIAL STARTER MATCH MORE SOON
+	
+	 FINDS
+
+	 	LAYOUT may include LISTS of WORDS within ARGV // OBJV too //
+
+		"VAR_NAME"
+		VAR_NAME = get SPELLING_from_TOKENISER
+		VAR = get VAR_from_VARNAME
+		EA = "EA_VAR" // CT_KNOW_VARNAME
+		VALUE = get VALUE from VAR
+
+ CD_TRACK_RACK
+
+ 	VFS
+
+		VFS_or_Layout _STATIC_PRE_GEN_DIRS
+
+		$dir_AUDIO/mp3_v4/$subdir_ARTIST/$subdir_ALBUM/$filename_mp3_TRACK
+		$dir_AUDIO		/
+		 mp3_v4			/
+		  $subdir_ARTIST	/
+		   $subdir_ALBUM	/
+		    $filename_mp3_TRACK
+		    += PEERS
+	+=	    $filename_cddb_ALBUM
+	
+		$dir_AUDIO		/
+		 wav			/
+		  $subdir_ARTIST	/
+		   $subdir_ALBUM	/
+		    $filename_wav_TRACK
+		    += PEERS
+	+=	    $filename_cddb_ALBUM
+	+=	    $filename_png_ALBUM_COVER ASPECT == "COVER" || "ALBUM_COVER"
+
+
+ CD_TRACK_RACK
+
+ 	BROWSE TREE 
+
+	MNT_ROOT = MEDIA_STO_ZONE("%s") $dir_AUDIO		
+
+	 SUBDIR
+		 mp3_v4			
+	 SUBDIR SUBDIR
+		 $subdir_ARTIST	
+		 $subdir_ALBUM	
+	
+	 // TRACK_LIST = ITEM_LIST // ITEM is MIME_FILE or STREAMING_BLOB
+	 // STREAMABLE_BLOB by ID_of_TRACK and BLOB_OPTS // PARSE_OPTS //
+
+	DETAIL SUBDIR REASON == "ARTIST" // STRONG NOUN TYPE "BAND" //
+	// BAND_ALIAS ALIAS // 
+
+		these things can be scripted
+		sometimes CACHE EXPR makes it so
+		lots to eval first time
+		lots of direct result from repeat GET
+		can PRE_GEN when PICK=="OPT_FOUR" // CT_KNOW when is_OPT_FOUR
+		// KNOW OPT_NAME == "PICK"
+		// KNOW OPT_EXPR == "OPT_FOUR"
+		// KNOW EXPR = PICK = PICK_avail_table[ IDX ]
+		// KMNOW ID == "{ idx = lookup(%s) }" 
+			COMPILE
+			SAVE result of COMPILE in TABLE[%s]
+			KEY for IDX is SOURCE_TEXT_NORMALISED
+			 PARSE_TEXT
+			 PARSE_SOURCE_TEXT
+			 PARSE_CMNT
+			 KNOW_this_GEN_OPCODE_so_match_will_DECODE
+			 KNOW PARSER == { DECODE(%s) } // not_Q2 SUBLEX += BRACES
+	
+	BRACES
+
+		because Tcl
+	
+	BRACES
+
+		CXX_Q2 = "%s" // "{ %s }" //
+		CXX_Q2 = "%s" // '"{ %s }"' // MULTI_PARSE_gets_HERE_again
+		STMT += VIA_SOURCE_USAGE
+	
+	BRACES
+
+		NESTED stored inside not stored
+		PICK add_outer_braces == "NO" // NULL to QUESTION //
+
+		"{ and { NESTED } }' // PARSER SAW ... PHRASE ...
+
+		PSG says "{ ALL_OK }" or { OK_IF FILTER }
+		PSG_says("{ ALL_OK }")
+			PARSE_VAR_NAME_in_PHRASE("{ ALL_OK }")
+			 KNOW_Q2_USAGE in CXX land outside STR0
+			 KNOW_BRACES_USED in STR0_WRAP
+			 KNOW_NEAR_PLAIN_VARNAME("{ VAR_NAME }")
+			  ALIAS %s == "VAR_NAME"
+			 KNOW_NEAR_PLAIN_VARNAME("{ VAR }")
+			  ALIAS %s == "VAR"
+			 CT_KNOW   "ALIAS VAR = VARNAME"
+			 CT_KNOW    ALIAS VAR = VARNAME 
+			 CT_KNOW "{ ALIAS VAR = VARNAME }"
+	
+	BRACES
+
+		complex overlay of in-seperable Q2 Q1 BRACES flavours of SYNTAX
+
+		AVOID_NEED_FOR_BACKSLASH
+		AVOID_NEED_FOR_BACKSLASH_other_than_CRLF // _CRLF_and_others
+	
+	ONE_LINE_MACRO
+	ONE_PAGE_ONE_LINE_MACRO
+
+		_CRLF += _CR _LF _TAB _PARSE_GAP KEEP_INDENT
+
+		_PUNCT += _CRLF _CMT _BRACES 
+
+	
+	KEEP_INDENT
+
+		LIES - XPOS will ask KEEP_INDENT and it reply UN_KEPT
+		LIES - so the truth from a PLACEHOLDER
+		TRUTH - implement XPOS for INDENTED_BLOCK
+
+
+	DETAIL SUBDIR REASON == "ALBUM" // STRONG NOUN TYPE "ALBUM"
+
+	 TRACK_LIST TRACK S
+		    $filename_mp3_TRACK
+	    += PEERS
+	+=	    $filename_cddb_ALBUM
+	
+	$dir_AUDIO		
+	 wav			
+	  $subdir_ARTIST	
+	   $subdir_ALBUM	
+	    $filename_wav_TRACK
+	    += PEERS
+	+=	    $filename_cddb_ALBUM
+	+=	    $filename_png_ALBUM_COVER ASPECT == "COVER" || "ALBUM_COVER"
+
+	
+
+	
+
+
+
+	LAYER_2 DIALECT EG(" // CT_KONW{ MID == '_' } // { SYNTAX += HERE } //"
+
+ MIME FILE == mp3_TRACK // FILE.SPEC.mime_type_mp3 == TRUE // ISH // AVAIL //
+ MIME FILE == mp4_HOUR // FILE.SPEC.mime_type_mp4 == TRUE // ISH // AVAIL //
+ MIME FILE == mp4_SECS // probably_mp3_with_MP4_cartoon _placeholder
+ MIME_FILE == "STREAMABLE_MIME_BLOB"
+
+
+AUTO_DETECT
+ must scan all NAMES in DIR - but not necessarily STAT them
+ EXPECT_ALL_DIRS
+  with NAMES like
+  DETECT "." and ".."
+ STAT_all_NAMES // EXCL . and .. unless OPT
+  DETECT SYMB_LINK
+  DETECT HARD_LINK
+  DETECT_DIR
+  DETECT_DIR_is_MNT_POINT
+ 
+ NAMES like NAME_EXT
+  EXT = lookup(".ext") from("filename.ext") // ALIAS GREW MERGED multi_step_ext
+  DETECT_FILE TRACK.mp3 TRACK_associated_component // PRE_MANGLED_NAMES
+  DETECT STAT 
+   on_dir_is_new()
+	
+
+

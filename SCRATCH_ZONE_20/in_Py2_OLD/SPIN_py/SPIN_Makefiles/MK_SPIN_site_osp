@@ -1,0 +1,8 @@
+
+#	where osp is
+
+	src_sp   =/home/gps/YEAR/src_build/SP/OpenSP-1.5.1_gps_build
+	osp_prefix =/home/gps/G/prefix/SP
+	osp_INCLUDES += -I$(osp_prefix)/include/OpenSP
+	osp_LINKS += -Wl,-rpath=$(osp_prefix)/lib -L$(osp_prefix)/lib -losp
+

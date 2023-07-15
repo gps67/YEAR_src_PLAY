@@ -1,0 +1,30 @@
+#  API_ENQ_ACK.txt
+
+	ENQ = DIR_LIST("locn")
+	ACK = HERE_IS_A_DIR_LIST_steps_foreach
+
+	ENQ = STAT_FILE
+
+		DIFF PREV CURR
+	
+	ENQ = CHECK_DRIVE_MEDIA_CD
+	ENQ = CHECK_DRIVE_MEDIA_DVD
+	ENQ = CHECK_DRIVE_MEDIA_GPT
+	ENQ = CHECK_DRIVE_MEDIA_VFS
+
+# STYLE = API_ENQ_stream_back_ACK # FEATURE += BATCH_LATER
+# STYLE = API_get_ACK # 
+# STYLE # += on_DETECT_CHANGE # 
+# STYLE # += on_DETECT_CHANGE # ARRIVAL_of_FILE_in_DIR
+ 
+	GROW_TREE
+	_ASIF_always_was
+
+	_STEP
+	 mk_NODE
+	 mk_LEAF
+
+	 	mk_LEAF_contains_NODE
+	
+
+

@@ -1,0 +1,427 @@
+
+class sql_link : public sess_obj ITEM_t ...
+
+	api_login
+
+		API += VAR "sql_link" += THIS
+
+		username_password_settings_UDEF 
+
+			STR0 username 
+			STR0 password_plain
+			STR0 password_mashed_as_STR0 // eg VIA API RSA KEYS
+	
+	api_keys
+
+		list of situations // += DIAG += VIEW
+
+			SERVER knows the secret KEY
+
+				WELL thats expected
+				CURR secret == NULL // is_ABSENT
+				ERROR not supposed to be ABSENT
+
+		list of situations // += DIAG += VIEW
+
+			CLIENT knows the secret KEY
+
+		list of situations // += DIAG += VIEW
+
+			SERVER knows the public KEY // everyone does ?
+
+		list of situations // += DIAG += VIEW
+
+			CLIENT knows the public KEY
+
+		list of situations // += DIAG += VIEW
+
+			SERVER knows the public KEY_ID // everyone does ?
+
+		list of situations // += DIAG += VIEW
+
+			CLIENT knows the public KEY_ID // KEY_ID == KEY_HASH
+			// _as_KEY_ID // AUTO_CAST FIND_DATA RET_VAL_SPEC //
+	
+	api_call
+		
+		check_KEY_HASH_matches_EXPECTED
+		check_KEY_HASH_fastpicks_reverse_LOOKUP_by_value
+
+		REMOTE_must_prove_ownership_of_secret_by
+		_KEY_TWO_mashed == DATA_from_N_PTR
+		_KEY_TWO_clear_binary == DATA_from_N_PTR
+		_KEY_TWO_clear_string == DATA_N_PTR_from_HEAP // _P0 _N
+
+		use KEY_PAIR to see SECRET_TWO as STR0_BASE99
+
+			BASE99 is actually BASE99_pick
+			_PICK is BASE64_with modified
+			_PICK is BASE_i8_with_SEVERAL_RESERVED_VALS
+			_PICK is KNOWN_CTRT_TOKEN _from_TOKENISE("SPELLING")
+			_PICK is KNOWN_CTRT_TOKEN _from_TOKENISE_SPELLING
+
+				ONE_NAME
+				ONE("NAME") // via list of ways // i8_idx_pick 
+
+
+				LIMIT 128 PRE_KNOWN_TOKENS
+				LIMIT 127 KNOWN_TOKENS
+				OMIT 0x00 UNAVAIL_TOKEN // RESERVE_NULL_SLOT
+	
+	USE_NULL_means_ABSENT
+	USE_NULL_is_just_another_value // STDIN is IDX_ZERO esp IDX or PAGE0
+	if( i8 == 0 ) { WARN_NULL } // but remain here to use as IDX or OFFS
+	if( i8 > 0 ) { on_IS_PLUS ... }
+	if( i8 < 0 ) { on_IS_MINUS ... } 
+		KNOW("i8_TOKEN is_SIGNED") // unused so optimised away ON USE
+		TOKEN_t * TOKEN = PTR = get_MINUS_SLOT[ i8_MINUS ] 
+		// check_type PTR is "{ OBJ_t * PTR }" 
+		// check_type PTR is "{ TOKEN_t * PTR }" 
+		// check_type PTR is "{ TOKEN_t * TOKEN }" 
+		// if is_PLUS_or_ZERO PICK = TABLE[ IDX ]
+		
+		goto_NEXT
+	}
+
+ sql_link
+
+ 	CONNECT
+
+	_mysql
+	_maria_db
+	_pgsql
+	_sqlite3_via_UDEF
+
+		CONNECT TCP UDP SERVICE AUTH SSL_LINK_API
+
+	CONNECT HOST_NAME _PORT _PROXY_INFO _SERV_NAME CURR_TIME
+	CONNECT USER_NAME USER_KEY // KEY is ID of user when accessing SQL 
+
+	DATABASE STR0 // API_PERMIT
+
+	QUERY
+
+		select * from TABLE where WHERES
+
+		PRE_GEN expect COLUMN_TYPES to be NAMED ... "MATCHES"
+		PRE_GEN expect CSET_TYPES to need FITLERS
+
+		FOREACH ROW of SELECTED // maybe STREAM of SELECTED ROWS
+
+			API uses KNOWN_FIELDS to call { FUNC ARGS }
+
+				named fields 
+				shuffle callers ARGS to functions ARGS
+				API PUTS via FILTER i
+				API gets DIRECT
+	
+	RANGE of DATA LAYOUTS
+
+		PAGE of XML with DATA_INSIDE
+
+	
+		
+	
+
+
+	CONNECT HOST_NAME _PORT _PROXY_INFO _SERV_NAME CURR_TIME
+	CONNECT USER_NAME USER_KEY // KEY is ID of user when accessing SQL 
+	// ACCESS USER_PASS that unmasks KEY // possibly remotely
+	// REMOTE way of stating KEY ownership
+	// allows the REMOTE to do the KNOWING as if we knew
+	// we still have to obtain PERMIT to USE KEY_SECRET
+
+	use_KEY_SECRET_without_actually_seeing_it
+
+		remote does the using
+		we prove our PERMIT to use it
+		or simply use the prepared DATA
+
+		CACHE does LAZY_EVAL of ADD_VAL
+		CACHE_loader is bunch of steps
+
+		CTOR of smart object, loads personality modules
+		CTOR builds object from INIT0
+		LOAD does CTOR then STEPS
+
+		STMT_GROUP TRANSACTION
+
+			on_FAIL ROLL_BACK to as_found // unused atm
+
+			bunch STMT into list learned MACRO
+
+			fast STMT = MACRO_STEP_XXXX("SOURCE")
+
+				COMPILED = lookup( STR0 SOURCE_LINE )
+
+			rewrite " SOURCE " as "SOURCE" as PTR_TOKEN
+
+
+
+
+
+		I AM 
+
+
+
+
+
+
+
+		PICK
+
+			I_AM CLIENT
+			I_AM SERVER
+
+		ALSO PICK
+
+			I_AM
+			 CT COMPILING KNOWN CONST // GEN DATA KNOW VALS
+			 CT COMPILING KNOWN FIXED
+			 CT COMPILING KNOWN MOVES
+			 CT COMPILE_UPTO_CXX // GEN THAT it RUNS
+			 _SERVER
+			 _CLIENT
+
+			 	client CALLS sql over sql_link
+				CACHE avoids CALLS
+				QUICKSAND CACHE GETTER
+				QUICKSAND_L2 CACHE GETTER
+				QUICKSANE CACHE GETTERS
+				# adding more VARS in CMNT line CXX SCRIPT
+				# each NAME has first MENTION anywhere, 
+				# HERE or LINK
+
+				LOCAL_CLIENT 
+				has to track the activity of the sql_link
+				REMOTE_SERVER
+
+				SIGNAL CHANGE GONNA COME
+
+
+				client reuses prepared STMT via LIBR
+				client asks LIBR for API_ITEM_on_BENCH
+				_on_BENCH is always added default _pre_add
+				API_ITEM is KNOWN_CODE_HERE
+				API_ITEM is KNOWN_EXPR_HERE
+				API_ITEM is SCRIPT_CODE_HERE
+				API_ITEM is SCRIPT_EXPR_HERE
+
+				client attempt to predIct remote behaviour
+				client has matching compiler and source
+				client can run CT and KNOW stuff
+				client can ASIF_PREP_CODE_ at the later date
+
+					client corouting gets KNOW_LINE
+					triggers CACHE build stuff
+
+		DECODE EXPR
+
+			GETTERS
+
+			EXPR_TREE // PSG
+
+			API GET SET EVAL KNOW 
+
+
+
+			API_CHECK ACTUAL_uid 
+			API_CHECK CLAIM_uid 
+
+			PICK PIPE_PAIR NEAR_FAR
+
+			 lhs == "NEAR"
+			 rhs == "FAR"
+
+			 OPCODE += { SCRIPT }
+
+			 WHEN I know SECRET
+			 WHEN I avoid SECRET
+			 WHEN I avoid SECRET
+
+			PIPE_REMOTE /* PIPE_END */
+
+			 RSA_KEY_PRIV SERVER_KNOWS_RSA
+
+			 	// ACTUAL RSA type is UDEF_RSA 
+				// KEY_PRIV //
+
+			PIPE_LOCAL /* PIPE_END */
+
+---
+
+class RSA_SECRET : public RSA_KEY_PLUS // SECRET mans nbytes maybe PARSED
+
+	NBITS == 1024 // PICK SET_A_LEVEL //
+	RSA_TYPE == "RSA" // ALGORITM using defaults from CTXT // CRYPT_API
+
+	NBYTES += "NBYTES SP N SP BYTES"  // FRAGMENT of SOURCE to pass as SCRIPT
+	ALIAS DATA == "BYTES"
+	ALIAS NEW_NAME == "OLD_NAME"
+	/*
+		OLD_NAME == "BYTES"
+		DATA == "-ditto-" // CMNT
+		DATA == "%s " // CMNT
+
+	 TEXT_MUX
+
+	 	CXX is the DEFAULT_SCRIPT_CXX 
+
+		P0P2_t P0P2 == i64_i64_UDEF_customised
+		P0P2_t P0P2 == i48_i48_UDEF_customised
+		P0P2_t P0P2 == i32_i32_UDEF_customised
+		P0P2_t P0P2 == i24_i24_UDEF_customised
+		P0P2_32_t P0P2 == i8_i24_UDEF_customised // BASED on i32
+
+			The u32_EXPR decoded_as and returned RET_VAL
+
+				i8_lhs
+				i24_rhs
+
+			OPCODE
+
+				array[ idx -of- N ] 
+
+				"	int idx = N ++ ;	"
+
+				get_P0P2_from_EXPR
+
+					TABLE_BASE 
+
+					ITEM_TYPE_IDX_i32
+					
+					BUILTIN ITEM_TYPE %s i32_IDX _of_TOKEN
+					_of_TOKEN
+					_of_EXPR
+					_of_OPCODE_ARGS
+
+	get_NBYTES( caller_provides_PAIR & N_BYTES )
+
+		BYTES_DATA
+
+		i64_N
+		u8 * PTR == DATA == BYTES == ALIASES
+
+		EG: "{ N BYTES }"
+		EG: "{ N DATA }"
+		CT: "{ i64 N }"
+		RT: "{ i64 N }" == CT
+		CT: "{ i32 N }"
+		CT: "{ i24 N }"
+		CT: "{ i8 N }"
+		CT: "{ i8 * BYTES }" // SIGNED is a new ALIAS
+		CT: "{ i8 * DATA }" // ALIAS for BYTES
+		// draw BYTES as var not in quotes expect value == "BYTES"
+	
+	get_NBYTES( caller_provides_PAIR & N_BYTES )
+	get_P0P2
+	get_P0_Parsed_as_PTR("P0")
+	get_P0_Parsed_as_PTR("P0P2.P0") // ALIAS FULL NAME
+
+		PARSE EXPECTING("LEX_TYPE")
+		PARSE EXPECTING("LEX_TYPE CIDENT") // AUTO_JOIN _ re_export
+	
+	get_RSA_as_P0P2	_of_BYTES_of_DATA_plain_FILTER
+
+		just write the GETTER "get_P2" as CALL_FUNC_CALL
+
+			u8* BYTES[ int N ] // CXX after += FILTER
+			u8* BYTES[ int POS ] // POS == "PTR" // PTR == "POS"
+			// dialect GEN code // FILL CACHE 
+	
+	CACHE ITEM [ idx_ITEM_ ]
+		.idx_ITEM == "idx_ITEM" // OVERLOAD on == and != for CT KNOW
+		TABLE_t ITEMS = ARRAY[ IDX ] of ITEM_TYPE // AUTO_GEN // REGEN //
+	
+		u8 * PTR = EA_ITEM_as_PTR(...) // AUTO CALL ARGS MACRO GOTO ASIF
+		
+			INIT NULL ; // <== this is KEY 
+			if_NULL _then _else
+
+			if_NULL_then_NOTHING
+			if_NULL_then_RETURN_NOTHING // NOT_DONE
+			if_PTR_then_KNOW_DATA( PTR )
+			if_PTR_then_KNOW_DATA( PTR ) KNOW_SPEC(CT_RT) 
+			if_PTR_then_CALL_CODE( PTR )
+
+ CT_RT
+ 	carries the twist of the OPTIMISATION particularly for GETTERS
+
+	AUTO_GEN RT is to do the CT work using LATE_FOUND_SCRIPT
+
+		create RT steps that deduce CT knowledge
+		create RT steps that implement GETTERS
+
+		simulate CT_KNOW_VAR_SPELLING
+		simulate RT_KNOW_VAR_SPELLING // actually want LINK _IZATION 
+
+		simulate FIXED_IDX as lookup_CACHED_STR0
+
+		DECL "SPELLING" as ITEM in POOL
+
+			NB SPELLING used in random other SCOPE
+			SO using shared STR0 or XPOS
+			XPOS == "XPOS { BASE_EXPR OFFS_EXPR CALL_ARGS }"
+			// _CTXT comes from _ARGS // _VIA_IDENT
+
+		DECL "CT_FACT" at "RT_CACHE_simulating_CACHE_lookup_STR0"
+
+			POLICY to use XPOS as SPELLING
+			CT_KNOW XPOS += FIRST_MENTION_SINCE_CACHE_RESET("XPOS"
+
+ ASM
+ 	SEGMENT contains NAMED PTR or TYPE see CODE_POINTS incl XPOS
+	XPOS == "CIDENT ..." // you must PARSE_CIDENT RETVAL_P2 and SKIP_GAP_P2b
+	XPOS.CIDENT_NBYTES.N = 7 // KNOW strlen_CIDENT was 7 // CT does all own
+	XPOS.CIDENT_NBYTES.PTR = PTR // KNOW SPELLING is a PTR_caddr
+	XPOS.CIDENT_NBYTES.PTR = PTR // KNOW SPELLING is a PTR_XPOS
+	XPOS.CIDENT_NBYTES.PTR = PTR // KNOW SPELLING is a PTR_STR0
+
+	_STR0 adds expectation of own copy of STR0
+	 STR0 is quite simple to COMPILE every SCRIPT
+
+	 build_comprehensive_lookup_table
+	 build_lookup_table _with_loadable_tables
+		ROM uses i48 OFFS in MMAP
+		ROM uses i24 OFFS in MMAP // GEN restarts with i48_OFFS
+		// which is actually i64 // NOT i128 // can PACK into MMX_256
+
+
+	get_RSA_as_P0P2	_of_BYTES_of_DATA_after_FILTER
+	get_RSA_as_P0P2	_of_LINES_of_TEXT_after_FILTER
+	get_RSA_as_P0
+	
+	GET_MMAP PAGE0 PAGE_ONE LIBR_CODE_for_LEX_TYPE_CIDENT
+
+		// AUTO JOIN "LEX_TYPE_%s" CIDENT
+		// AUTO JOIN "%s_CIDENT" "LEX_TYPE"
+		// AUTO_VAR "LEX_TYPE" name of var of LEX_TYPE
+		// _CIDENT
+		// a1_a2_STAR a1 a2 // CIDENT // cident99 // 
+		// pre-set ROM or RAM CACHE over CSET_V11_t a1 _a2 CIDENT
+		// EXTRA UDEF // CIDENT == "cident_as_STR0"
+		// EXTRA UDEF // CIDENT == "{ STR0 cident }" // EXPR $1 "_" $2
+		// EXTRA UDEF // EXPR $1 "_" $2 // LEX_JOIN_in_CIDENT _99
+		// 
+		// _NUMERIC
+		// _
+
+
+		
+
+
+				array[ N ] 
+		P0P2_t P0P2 == i16_i16_UDEF_customised
+
+
+	*/
+
+
+class RSA_SECRET_RSA_PUBLIC RSA_USAGE
+
+	PICK
+	 KEY_TYPE == "RSA"
+	 KEY_AVAIL == "WHERE_YES" // ie this IS OPTIONAL UNKNOWN
+	 KEY_AVAIL == "WHERE_NO" // ie this IS OPTIONAL UNKNOWN
+	 KEY_DATA == "API_SSL_KEY_DATA_t" // OPTIONAL "_t" // VIEW += AUTO("_t")
+	 "AUTO_t" // ALIAS VAR_NAME for TYPE_SPEC_EXPR EXPR ARGV CODE ARGS

@@ -19,7 +19,8 @@ fn_BASE_rd()
 	local BASE_filename=`fn_BASE_filename "$1"`
 	local BASE_varname="${2:-VARNAME}"
 	shift 2
- 	local BASE_default="$*"
+ eval	local BASE_value="\$$BASE_varname"
+ 	local BASE_default="${*:-$BASE_value}"
 	#
 	[ -f "$BASE_filename" ] || touch "$BASE_filename" 
  	local BASE_value=`
@@ -54,7 +55,8 @@ fn_BASE_edit()
 	local BASE_filename=`fn_BASE_filename "$1"`
 	local BASE_varname="${2:-VARNAME}"
 	shift 2
- 	local BASE_default="$*"
+ eval	local BASE_var_val="\$$BASE_varname"
+ 	BASE_default="${*:-$BASE_var_val}"
 	fn_BASE_rd "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
 	fn_EDIT_var "${BASE_varname}"
 	fn_BASE_wr "${BASE_filename}" "${BASE_varname}"

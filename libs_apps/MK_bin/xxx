@@ -1,0 +1,19 @@
+#!/bin/bash
+PATH=/home/gps/bin:$PATH:/sbin/:/usr/sbin
+# pkill -TERM -o -f chrome
+lev="${1:-0}"
+logger xxx INIT LEVEL $lev
+xc
+sleep 1
+id | grep root || exec sudo "$0" "$@"
+mount
+echo '#############################################################'
+set -x
+umount -a -t cifs
+umount -f -a -t nfs
+echo '#############################################################'
+mount | grep cifs
+mount | grep nfs
+init $lev
+sudo init $lev
+logger goes

@@ -1,5 +1,8 @@
 # fns_DIRS
 
+# TODO # pushd #
+# TODO # popd #
+
 . fns_FAIL
 
 cd_or_fail() {
@@ -51,7 +54,7 @@ mkdir_FAIL() {
 	fi
 	if [ -d "$1" ]
 	then
-		fn_WARN 2 "# mkdir_FAIL # dir already exists # $1"
+		# OK # fn_WARN 2 "# mkdir_FAIL # dir already exists # $1"
 		return 0
 	fi
 	if mkdir "$1" # no ask # no -p #

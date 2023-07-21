@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. fns_FAIL
+. fns_ASKS
+yes_no_fn "${@:-ABSENT_QUESTION} "

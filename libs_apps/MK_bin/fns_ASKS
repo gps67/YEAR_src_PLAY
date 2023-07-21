@@ -1,21 +1,48 @@
 . fns_FAIL
 
+run_WARN()
+{
+	"$@"
+	t=$?
+	if [ $t != 0 ]
+	then
+		echo >&2 "# pwd # `pwd`"
+		fn_WARN $t "$@"
+#		RET_VAL from WARN #
+	fi
+}
+
+say_do()
+{
+	echo >&2 "# RUN # $* #"
+	run_WARN "$@"
+	# RET_VAL # from run_WARN
+}
+
 ask_do_fn()
 {
 	if yes_no "ASK_DO: $*"
 	then
-		"$@"
+		run_WARN "$@"
+	fi
+}
+
+ask_do_less_fn()
+{
+	if yes_no "ASK_DO: $*"
+	then
+		"$@" 2>&1 | less
 		t=$?
 		if [ $t != 0 ]
 		then
 			echo >&2 "# pwd # `pwd`"
 			fn_WARN $t "$@"
-	#		echo >&2 -ne "## FAIL-WARN $t ## "
-	#		PATH=$PATH:/tools/2000/mysql/bin # perror
-	#		perror $t
-	#		return $t
 		fi
 	fi
+}
+
+ask_do_less() {
+	ask_do_less_fn "$@"
 }
 
 yes_no_fn()

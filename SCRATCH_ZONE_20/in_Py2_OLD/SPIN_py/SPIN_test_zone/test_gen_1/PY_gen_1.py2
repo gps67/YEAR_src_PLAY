@@ -1,0 +1,7 @@
+. ../.env_test
+#	/home/gps/YEAR/src/YEAR_src_PLAY_PREP/SPIN_jade/SP_lib/ \
+#	../lib_base \
+#	${PWD}/../lib_base \
+#
+P PATH
+python2 PY_gen_1.py "${@:-test1.in}" test1.out

@@ -38,7 +38,7 @@ struct fmt_bits
 /*
 	
 */
-typedef enum Enum_Element_Type
+/* typedef */  enum Enum_Element_Type
 {
 	EL_empty,	// <BR>
 	EL_pre,		// <PRE>

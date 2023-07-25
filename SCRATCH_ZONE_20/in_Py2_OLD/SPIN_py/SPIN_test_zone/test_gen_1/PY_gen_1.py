@@ -8,7 +8,7 @@
 import sys
 from sys import stdout, stderr, argv, path
 p0 = path[0]
-path.insert(1, p0+"/../lib_base/" ) # used
+# OK # path.insert(1, p0+"/../lib_base/" ) # used
 
 
 # put the loader side of the jigsaw pieces together ...

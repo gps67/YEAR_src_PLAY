@@ -238,7 +238,7 @@ bool match_string(AppString obj, const SGMLApplication::CharString & s16)
 			printf( "\ns16= %s\n", tmp_buff.buff.buff );
 		}
 		printf( "  s8_len = %d\n", s8_len );
-		printf( "  s16.len = %d\n", s16.len );
+		printf( "  s16.len = %d\n", (int) s16.len );
 		return 0;
 	}
 	size_t i;

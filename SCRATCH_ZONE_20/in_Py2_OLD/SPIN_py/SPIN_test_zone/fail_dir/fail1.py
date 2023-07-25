@@ -1,10 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 import posix
 
 from sys import stdout, stderr, argv, path
 p0 = path[0]
+# path.insert(1, p0+"/../SP_lib/" ) # .so
 path.insert(1, p0+"/../lib_base/" ) # used
 
 from spin_eh import spin_py

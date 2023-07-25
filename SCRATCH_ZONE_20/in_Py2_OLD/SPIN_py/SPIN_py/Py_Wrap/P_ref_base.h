@@ -113,29 +113,29 @@ class P_ref_base_no_ref
 
 	bool expect_TYPE_fn(  PyTypeObject * expected ) const;
 
-	bool is_Buffer()	{ is_TYPE( &PyBuffer_Type	); }
-	bool is_CFunction()	{ is_TYPE( &PyCFunction_Type	); }
-	bool is_CObject()	{ is_TYPE( &PyCObject_Type	); }
-	bool is_CallIter()	{ is_TYPE( &PyCallIter_Type	); }
-	bool is_Cell()		{ is_TYPE( &PyCell_Type		); }
-	bool is_Class()		{ is_TYPE( &PyClass_Type	); }
-	bool is_Complex()	{ is_TYPE( &PyComplex_Type	); }
-	bool is_Dict()		{ is_TYPE( &PyDict_Type		); }
-	bool is_File()		{ is_TYPE( &PyFile_Type		); }
-	bool is_Float()		{ is_TYPE( &PyFloat_Type	); }
-	bool is_Function()	{ is_TYPE( &PyFunction_Type	); }
-	bool is_Int()		{ is_TYPE( &PyInt_Type		); }
-	bool is_List()		{ is_TYPE( &PyList_Type		); }
-	bool is_Long()		{ is_TYPE( &PyLong_Type		); }
-	bool is_Module()	{ is_TYPE( &PyModule_Type	); }
-	bool is_Range()		{ is_TYPE( &PyRange_Type	); }
-	bool is_SeqIter()	{ is_TYPE( &PySeqIter_Type	); }
-	bool is_Slice()		{ is_TYPE( &PySlice_Type	); }
-	bool is_String()	{ is_TYPE( &PyString_Type	); }
-	bool is_TraceBack()	{ is_TYPE( &PyTraceBack_Type	); }
-	bool is_Tuple()		{ is_TYPE( &PyTuple_Type	); }
-	bool is_Type()		{ is_TYPE( &PyType_Type		); }
-	bool is_Unicode()	{ is_TYPE( &PyUnicode_Type	); }
+	bool is_Buffer()	{ return is_TYPE( &PyBuffer_Type	); }
+	bool is_CFunction()	{ return is_TYPE( &PyCFunction_Type	); }
+	bool is_CObject()	{ return is_TYPE( &PyCObject_Type	); }
+	bool is_CallIter()	{ return is_TYPE( &PyCallIter_Type	); }
+	bool is_Cell()		{ return is_TYPE( &PyCell_Type		); }
+	bool is_Class()		{ return is_TYPE( &PyClass_Type	); }
+	bool is_Complex()	{ return is_TYPE( &PyComplex_Type	); }
+	bool is_Dict()		{ return is_TYPE( &PyDict_Type		); }
+	bool is_File()		{ return is_TYPE( &PyFile_Type		); }
+	bool is_Float()		{ return is_TYPE( &PyFloat_Type	); }
+	bool is_Function()	{ return is_TYPE( &PyFunction_Type	); }
+	bool is_Int()		{ return is_TYPE( &PyInt_Type		); }
+	bool is_List()		{ return is_TYPE( &PyList_Type		); }
+	bool is_Long()		{ return is_TYPE( &PyLong_Type		); }
+	bool is_Module()	{ return is_TYPE( &PyModule_Type	); }
+	bool is_Range()		{ return is_TYPE( &PyRange_Type	); }
+	bool is_SeqIter()	{ return is_TYPE( &PySeqIter_Type	); }
+	bool is_Slice()		{ return is_TYPE( &PySlice_Type	); }
+	bool is_String()	{ return is_TYPE( &PyString_Type	); }
+	bool is_TraceBack()	{ return is_TYPE( &PyTraceBack_Type	); }
+	bool is_Tuple()		{ return is_TYPE( &PyTuple_Type	); }
+	bool is_Type()		{ return is_TYPE( &PyType_Type		); }
+	bool is_Unicode()	{ return is_TYPE( &PyUnicode_Type	); }
 
 //	bool is_Code()		{ is_TYPE( &PyCode_Type		); }
 //	bool is_CursesWindow()	{ is_TYPE( &PyCursesWindow_Type	); }

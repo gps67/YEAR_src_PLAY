@@ -80,7 +80,7 @@ enum_val * enum_cls::find_by_any( PyObject * v )
 			coul;d maybe print a warning
 		*/
 		PY_Static::TypeError( cls1->cls_name.get_str() );
-		return false;
+		return NULL;
 	}
 	// maybe v is "green"
 	if( PY_Static::IS_String( v ) )

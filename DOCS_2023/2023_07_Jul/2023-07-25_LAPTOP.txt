@@ -59,6 +59,12 @@
 	
 	+
 
+	AUDIO LINE OUT 
+
+		other PCs stream to LAPTOP
+	
+
+
 	
 
 		

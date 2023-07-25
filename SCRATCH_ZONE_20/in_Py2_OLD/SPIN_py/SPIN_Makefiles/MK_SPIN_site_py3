@@ -1,0 +1,7 @@
+
+#	py_base1=/usr
+#	py_vern=python2.7
+	py_base1=/tools/x86_64/py
+	py_vern=python3.11
+	PYTHON_INCLUDE += -I$(py_base1)/include/$(py_vern)
+

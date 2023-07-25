@@ -5,16 +5,21 @@
 # USED AS #	include ../SPIN_Makefiles/MK_SPIN_site
 # USED AS #	make -f $(SPIN_Makefiles)/MK_SPIN_site
 
-	# the 1 top dir where SPIN_py is a subdir
 	src_base1=/home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Py2_OLD
 
-	# SPIN_py/ #
-	src_spin =$(src_base1)/SPIN_py
+	# the 1 top dir where SPIN_py is a subdir
+	src_base1=/home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Py2_OLD
+	# second line WON
+#	src_base1=/home/gps/YEAR/src/YEAR_src_PLAY_PREP
 
+	# SPIN_py/ #
+#	src_spin =$(src_base1)/SPIN_jade
+	src_spin =$(src_base1)/SPIN_py
 	# here I am
 	SPIN_Makefiles=$(src_spin)/SPIN_Makefiles
 
 	include $(SPIN_Makefiles)/MK_SPIN_site_py2
+#	include $(SPIN_Makefiles)/MK_SPIN_site_py3
 	include $(SPIN_Makefiles)/MK_SPIN_site_osp
 
 #       tcl_base1=/tools/2005/tcl # unused 8.3

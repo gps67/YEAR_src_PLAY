@@ -540,7 +540,7 @@ mid_gap = true;
 	bool text_utf8( PyObject * py_str )
 	{
 		char * str;
-		int len;
+		Py_ssize_t len;
 		if(!PyString_Check( py_str ))
 		{
 			return fail_reported();
@@ -570,7 +570,7 @@ mid_gap = true;
 	bool text_ML( PyObject * py_str )
 	{
 		char * str;
-		int len;
+		Py_ssize_t len;
 		if(!PyString_Check( py_str ))
 		{
 			return fail_reported();

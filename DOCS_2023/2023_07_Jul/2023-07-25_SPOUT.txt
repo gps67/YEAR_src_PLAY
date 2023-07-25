@@ -1,0 +1,200 @@
+	2023-07-25
+
+	2023_07_Jul
+	2023-07-25_SPOUT.txt
+
+
+	SPOUT += BASIC PAGE FRAMEWORK
+
+		SPOUT does the PAGE_NUMBERING
+
+			decl ITEM.page_number_as_API(int PGx8)
+
+				if page_27_B_subaddr u3_subaddr == x8
+
+	SPOUT += BASIC_PAGE_LAYOUT
+
+		GET XYWH 
+		GET PREFS
+
+		XY_POS STR0_via_CSET_FILTER 
+		dx_POS ADJ_SP_or_GAP_or_KERN
+		dy_STEP pt_CALC_from_FONTS_and_DIAGS
+		WH_DIAG // varies with PAGE_BREAK // CURR "no_break"
+
+	
+		PICK FONT
+		PICK FGBG
+		DRAW TEXT
+		MOVE_XYWH
+		CALC_XYWH
+		DRAW_LINE
+		DRAW_MISC
+
+			splines need extra points
+			MINI_MACHINE provides VARS to each DIAG
+
+	MINI_MACHINE 
+
+		provides VARS to each DIAG
+
+		provides SPEC to each VAR
+
+		provides MACRO_POOL
+
+		provides CODE_POINT_SCRIPTS_TEXT
+
+		provides API
+	
+	PAGE_BREAK
+
+		on detect PAGE_BREAK_REQUIRED_BEFORE_THIS_TEXT
+
+			go firther to get WH of this BLOCK and stuff
+
+			attempt to split no widows and orphans
+
+			PICK SPLIT POINT
+
+			share space back up page (dont)
+			share mid_block_page_break ( event )
+
+		figure out this dis-joint
+
+			set 1 lines pref extra squish, find that space from squish
+
+				implement as NO that didn't happen
+
+			set 3 lines pref overspill, leave 2, else all go
+
+				take extra lines that spill
+				allow for early break, looks nicer
+
+			start new page with mid_way_data and FONTS
+
+				double world cogs mismatch
+				nesting mismatch - but close + carry over
+	
+	SCROLL_API
+	PAGE_API
+	HEAP_API	// stream out to MMAP SUB_STREAM OFFS_ZERO_UNKNOWN
+	MMAP_API	// simpler flat array of mapped in file // 
+
+	OWNS_API
+		this process offers to release API access for a shared while
+		In exchange gets no SPIN locks required from other threads
+		for API anyway, and DATA, and SESS
+
+	DRAW CALC
+		pt72
+		dpi_409 // device specific // goes with pallette // E31 //
+		dpi_600 // laser 
+		dpi_240 // matrix // but a nice one // PICK right fonts //
+		dpi_150 // screen
+		dpi_75 // SVGA_SCREEN
+		dpi_4 // TTY_GRID _4 _3 _2 _1 _0 _MORE _UDEF _decode_MINUS
+	
+	_DECODE_MINUS
+
+		if_MINUS
+		if_ZERO_and_PLUS // early OPTION
+		if ZERO
+			always added in DEBUG MODE, so add first
+		if_ZERO_and_PLUS // NORMAL OPTION //
+			often omitted as using if_ZERO as if_NULL
+		if_PLUS
+			OFFS is not NULL
+			IDX is not M1
+			IDX_might_be_ZERO-but_only_if_programmer_said_OK
+			M1_might not_be_detected_when_UNS // _always_PLUS_ZERO
+
+	_DECODE_ADDR
+
+		if_MINUS
+
+			DECODE_MINUS_as_EVAL_EXPR
+
+				DECODE == THIS
+				MINUS == KNOW_when_NOT
+				EVAL += CODE_POINT // == as += // CT_RT //
+				EXPR += AST_CODE_POINT("{ SCRIPT }")
+				EXPR += AST_CODE_POINT("{ PHRASE }")
+				EXPR += PARSE(" TEXT ")
+				EXPR += PARSE("TEXT")
+				EXPR += PARSE("KEY")
+				EXPR += PARSE("ANYSTR")
+				EXPR += PARSE("NOT_ANYSTR") // added RULES
+
+			M1 DETECT
+
+				M2 is also recognised
+				M1_DETECT is optional
+				if_MINUS CALL solve_DECODE_MINUS
+				if MINUS CALL possible_second_FILTER
+				if_MINUS CALL report_it_was_just_MINUS_ITEM_IDX
+
+			is_ZERO
+
+				ignore is_NULL as is valid IDX // but_count ++
+
+				replace VALUE with NON_NULL 
+
+					call SAVED EXPR ARGS
+
+		if_ZERO
+
+			GEN needs to know about common TEMPLATES
+
+				ITE CASE lookup VTBL ...
+	
+	SPOUT += CURRENCY_FIELDS
+
+		as plain FMT NUMERIC with COMMAS
+
+			that requires FUNCS
+			SEND "£" to LHS of field
+			SEND 23 to PART_of_FIELD
+			SEND "," to WITHIN_FIELD // use COMMA for ","
+			SEND 123 to PART_of_FIELD
+			SEND "." to PART_of_FIELD
+			SEND 12 to PART_of_FIELD // FMT %2.2d
+
+		as PLAIN FMT expecting %s to take 1 EM "£ " "$ "  UTF8 CSET
+	
+	SPOUT += TOKENISED KEYWORDS
+
+		as STR0 in WORD_PART_CHAINS
+
+			LHS_RHS
+			A_B_C
+			WORD_PART_CHAIN // += FIRST_PART_drop_SCRIPT_prefix
+
+				first_PART
+				 require CINDENT_LEX_PART a1_a2_star STR0
+
+				next_PART
+				 require CINDENT_LEX_PART a2_a2_star STR0
+				 // SPECIAL ABSENT as form of EMPTY_STR
+
+	SPOUT += CSET_API # goes with FONT # CSET_FONT_MISC # on_MULTI_GLYPH
+	SPOUT += FONT_API # glyph interp BASE_ACCENT_MODE
+	SPOUT += TEXT_API
+	SPOUT += PAGE_API
+	SPOUT += MIME_API ## EPS BITMAPS SVG EMBED
+	SPOUT += NOTE_API # URL PAGE MISC
+	SPOUT += DATA_API
+
+	DATA_API += GEN_SPOUT_FROM_DATA
+
+	
+MUX_API
+MUX_SPOUT_API
+
+
+
+	
+
+			
+
+
+

@@ -1,0 +1,107 @@
+
+<H3> BIOS Prompt </H3><p>
+	To get here without removing that disk, press the space-bar
+	during booting, when it says Press-Any-Key within 10 seconds.
+	Options include:
+
+</P> <PRE>
+
+HELP
+MENU
+</PRE> <P>
+
+	Its important to realise that there are two levels. There is the
+	machine BIOS, which does not come from any disk, and there is an
+	IPL-BIOS which comes from the disk. You have not read the disk yet.
+	(Which is just as well, since you have removed it/one of them).
+</P><p>
+	You can set the PRI and ALT PAths from here, or you can leave
+	them and boot from a named (numbered) path. You can also do that
+	from the second stage loader, or from UNIX.
+
+</P>
+
+<H3> BIOS Commands </H3><p>
+	<CODE>SEA</CODE> or 'search', will tell you the list of devices
+	which the bios allows you to attempt to boot from. A recent copy
+	of ioscan helps, so that you KNOW which is the tape, cdrom or
+	disk. To boot an ignite tape, boot from that tape device.
+</P><p>
+	(DO NOT RUN YET) <CODE>BO ALT</CODE> or 'boot alternate', will
+	attempt to boot from the configured alternative path.  <CODE>BO
+	&devno1;</CODE> will attempt to boot from that SCSI controller,
+	that LUN device. (Dont do that, now, unless you want to)
+
+</P><H3> ALT &devno1; </H3><p>
+	The setting of the ALT PAth is not important, and may be wrong.
+	You can change it if you wish, from here, from the IPL prompt
+	or from a running UNIX.
+
+</P>
+
+<H3> BO </H3><p>
+	<CODE>BO</CODE> or 'boot', will probably offer you a choice of
+	PRI/ALT bootable paths (disks), and also a chance to 'interact
+	with the IPL'. Say 'Y' if you want to specify the -lq option later.
+	If you said <CODE>BO ALT</CODE>, you wont see the first two options.
+
+</P><PRE>
+Boot from primary - N
+Boot from alternate - Y
+Interact with IPL? - Y
+</PRE>
+
+<H3> ISL&gt; IPL Commands </H3><p>
+	That leaves you in the ISL BIOS, loaded from the disk. Again try
+	HELP and MENU.
+
+	<CODE>hpux show autofile</CODE> is like showboot, but from BIOS
+	not from UNIX. If the ALTPATH is already set, life is a tiny bit
+	easier, but it is often set to the tape (which you want to boot
+	from for ignite), or the CDROM (which you want to reinstall).
+	Commands include:
+
+</P> <PRE>
+help
+
+hpux		   # to boot as normally
+hpux show autofile # like lifcp to screen
+hpux -is boot      # boot to single user state
+hpux -lq           # boot without quorum check
+hpux -lm           # 3-38 - NO SWAP NO LVM # AVOID 
+hpux /stand/vmunix.BCKUP # for the old kernel 
+hpux .... 	   # see 2-7 for other kernels
+hpux ....          # also combinations of options
+primpath &devno1;  # permanently use different boot path
+</PRE>
+ <p>
+
+	DO NOT RUN: hpux -lm It will take you to maintenance mode, but
+	you will have to reboot, so its mostly for when you think you
+	can recover the disk and immediately reboot.
+</P><p>
+	<CODE>hpux -lq</CODE> will boot with no quorum check, which will
+	get your entire machine working. You can also add the <b>-is</b>
+	to go into single-user state, then do an <b>init 4</b>, but that
+	might be confusing if you have no reason to do so.
+</P><p>
+	If you have a second machine, up and running, try 'man hpux'
+</P><p>
+	Why is ISL also called IPL ?  The Initial Program Loader, loads
+	the Initial System Loader from disk, and then runs the ISL.
+	Its similar to the way HP-CDROMS have one printed label on the
+	media, and another label on the carton.
+
+</P>
+
+<H3> hpux -lq </H3><p>
+	Boot using 'hpux -lq', and the machine will come up cleanly
+	(presuming that disk was the only one missing, and other LVOLs
+	wont have difficulties). Otherwise add the '-is' option and figure
+	it from there.
+</P><p>
+	There will still be messages about the disk not being there,
+	but the other mirrored parts make it non-fatal.
+
+</P>
+

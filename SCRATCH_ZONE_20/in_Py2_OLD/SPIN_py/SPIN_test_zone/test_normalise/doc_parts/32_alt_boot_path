@@ -1,0 +1,12 @@
+
+<H3> Alternate Boot Path </><p>
+	As well as two mirrors, (of each of the LVOLS), there are two
+	boot tracks. If you boot without the alternate disk, hpux might
+	not notice until it tries to actives the LVM. If you boot without
+	the primary path, hpux will notice straight away.
+</P><p>
+	Find out which is the primary path by running 'showboot'. Find
+	out which is that physical disk by reading from it and checking
+	the LED. (See above).
+</P>
+

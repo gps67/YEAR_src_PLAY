@@ -31,8 +31,7 @@
 
 # NOT #	OPT_CSET=-DSP_MULTI_BYTE 
 	OPT_CSET=
-	OPT_LIBNAME=sp8-1.3
-
+	OPT_LIBNAME=osp
 
 # this is the shared .so ...
 

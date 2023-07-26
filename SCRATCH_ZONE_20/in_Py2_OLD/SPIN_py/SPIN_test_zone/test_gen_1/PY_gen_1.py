@@ -2,13 +2,17 @@
 
 # PY_gen_1.py -- Generate an HTML file from code (no input file)
 
+# options to GEN ofile
+# options to read ifile
+
 
 # why wasnt PATH finding the files ?
 
 import sys
 from sys import stdout, stderr, argv, path
-p0 = path[0]
+# OK # p0 = path[0]
 # OK # path.insert(1, p0+"/../lib_base/" ) # used
+# PYTHONPATH #
 
 
 # put the loader side of the jigsaw pieces together ...
@@ -21,13 +25,13 @@ t1 = time()
 
 # pick a file
 
-file="test1.sg"
+ifile="test1.sg"
 ofile="test1.sgm"
 if len(argv) == 2:
-	file = argv[1] 
+	ifile = argv[1] 
 else:
 	if len(argv) == 3:
-		file = argv[1] 
+		ifile = argv[1] 
 		ofile = argv[2] 
 
 
@@ -39,11 +43,12 @@ else:
 
 EH = SP_EH( "gen1" )
 
+# switch between GEN and PARSE - mildly convoluted
 # run SP over it
 # the result is placed by DocumentEnd
 # into EH.tree
 if 0:
-	files = [file]
+	files = [ifile]
 	t2 = time()
 	ret = EH.Run( files )	## the MAIN part of the program ##
 	t3 = time()
@@ -72,7 +77,7 @@ t2 = time()
 EH.dtd_line = ""
 EH.setup_HTML()
 
-# The TOP element has to be created manually
+# The TOP element has to be created manually (if not loaded)
 # WAS # ei_HTML = EH.dtd_info.get_elem_info("HTML")
 # WAS # HTML = spin_py.SPIN_elem_obj( ei_HTML, [], [] )
 HTML = EH.dtd_info.new_elem_inst("HTML")
@@ -105,7 +110,7 @@ BODY.add_attr( "background", "#DDDD77" )
 # what should happen to unknown elements
 # added via the recent elem_inst.add_elem()
 # TODO
-if 0:
+if 1:
 	NK = BODY.add_elem( "NotKnown" ) 
 	NK.add_text("This element as not pre-initialised, by the KNOWN dtd_info")
 

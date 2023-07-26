@@ -1,0 +1,27 @@
+
+. ./.set_env
+
+./.01_clean || exit
+
+ # read the messages
+ echo -n "p-r-t-c" ; read junk
+
+./.02_join || exit
+
+ # read the messages
+ echo -n "p-r-t-c" ; read junk
+
+./.03_normalise || exit
+
+ # read the messages
+ echo -n "p-r-t-c" ; read junk
+
+./.04_renumber || exit
+
+ # read the messages
+ echo -n "p-r-t-c" ; read junk
+
+ lynx $base.html  
+
+# grep CHECK disk_action_draft.html
+# tail disk_action_draft.html

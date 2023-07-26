@@ -1,0 +1,22 @@
+
+<H3> Quorum check at boot time </><p>
+	If you reboot, with a disk missing, HPUX cannot be certain that
+	the disk that works, has the proper data on it, so the LVM refuses
+	to activate the LV's. When you boot via the alternate path, it
+	suceeds in finding, loading and running the kernel, but when it
+	then activates LVM, it fails.
+</P><P>
+	If you had three equally mirrored disks (what HP calls two
+	mirror copies), and two disks vouched for each-other (ie showed the
+	same data revisions), then HPUX would believe the two, and boot
+	without the third. HPUX calls that quorum (more than half).
+</P><P>
+	Since you have two equally mirrored disks (one mirror copy), when one
+	is down, the system wont boot, unless you tell it to avoid the
+	quorum check (using hpux -lq).
+</P><P>
+	It is worth trying to see what happens when you dont type anything
+	(ie dont boot with hpux -lq), and it only takes 5 minutes, as a
+	full reboot is not necessary, it quickly drops back into IPL mode.
+</P>
+

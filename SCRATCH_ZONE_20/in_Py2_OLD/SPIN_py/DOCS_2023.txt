@@ -1,0 +1,116 @@
+Revival of spin_py
+git has the list of edits
+for Python2 few were needed
+and it works - with unknown CSET !!
+compiled asif char_16 ??
+
+ PYTHONPATH finds dirs during import module (not PATH)
+ adding a calling outer shell to set that, and pick python2 
+ currently trying python23
+
+ SPIN_py/SPIN_test_zone/etc_sgml/some_dir_catalog2
+ CATALOG /home/gps/g/prefix/share/OpenSP/HTML4.soc
+
+ 	That is required to tell SP to expect HTML4
+
+ 	That is already added from
+
+ spin_eh_base.py: top_kit.addSearchDir( "../etc_sgml" )
+ which finds CATALOG which finds some_dir_catalog2
+
+SEQUENCE of spin_py
+
+python2
+
+	the port to python3 is later
+	the port to python2 is NOW (revival not port)
+	the scripts will need 2_to_3 and testing again
+	but before 2_to_3, check they already work
+
+PYTHONPATH += ../lib_base
+
+	import sys
+	from sys import stdout, stderr, argv, path
+	p0 = path[0]
+	path.insert(1, p0+"/../lib_base/" ) # used
+
+
+	The fragment of code tells python to add $HERE/../lib_base
+	to PYTHONPATH not PATH, where it searches for import scripts and .so
+	It uses path[0] to know where the invoked script is
+
+	can this be in ../env_test.py ??
+
+	see also all_of_the_names.pth
+	/usr/local/lib/pythonX.Y/site-packages/PLUS_ALSO.pth
+	https://docs.python.org/3/library/site.html#module-site
+
+	ALSO LATER RTFM - what is a module - eg a dir with __init__.py
+	https://stackoverflow.com/questions/67631/how-can-i-import-a-module-dynamically-given-the-full-path
+
+main_script
+	#!/usr/bin/env python2
+	too late to pick python2
+
+	# add above ../lib_base/ to sys.path[list]
+	# sys.path[0] # is DIR of this script # after symblinks resolved :-)
+
+	from spin_eh import spin_py, SP_EH
+
+	#	all the config is in spin_eh
+	#	you probably want your own customised _eh per task_suite
+	#	ie for local SGML dialects, for error reporting styles, 
+	#	ie for DTD's that are UDEF you need is_BLOCK etc per element
+
+
+spin_eh.py
+spin_eh_base.py
+
+	EDITED CUSTOMISED FILE -- all the spagetti here
+
+	../lib_base/spin_eh
+
+	from spin_eh import spin_py, SP_EH
+
+		requires spin_py.so to be on module search path
+		requires libosp to be found on LD_LIBRARY_PATH or other
+		libosp.so.4 =>
+		/home/gps/G/prefix/SP/lib/libosp.so.4 
+
+		spin_py is the compiled module
+		it does its own on_IMPORT 
+		which is the minimum C bindings to CXX
+		to register the module and API
+
+	SPIN_EH sets up a self.top = spin_py.SPIN_TOP("PROGNAME")
+	SPIN_EH sets up a self.top_kit - an SP thing
+
+		output marked sections comments entities OPTIONS
+
+		where is ../etc_sgml/
+		where is ../etc_sgml/CATALOG 
+
+NB VPATH is always first in modern C++
+
+	this is a PITA, it was perfectly efficient to have VTBL half way down
+
+	it means that cast PLUS -> PLAIN adds off,
+	resulting in not the same obj, even if done auto
+
+	it requires that PLAIN -> PLUS requires check (OK)
+	but that check was previously cautiously correct
+	done at entry into that type cast parameters functions
+	done by strong type passing around
+
+	Not sure if it was used in 2003 (and before) 
+	but looking at future: option to ADD/SUB
+	option to have LEADING_PLAIN BASE_SHOE
+
+	struct PY_SHOE : PL_PLAIN_OBJECT {
+	 // now add VTBL items as FIELDS 
+	 // even SINGLE derive type as single field
+
+//	 A_V_TYPE V_TYPE; // not a pointer - but still VTYPE ? // POINTLESS
+	 A_V_TYPE * V_TYPE; // IS a pointer  
+	}
+

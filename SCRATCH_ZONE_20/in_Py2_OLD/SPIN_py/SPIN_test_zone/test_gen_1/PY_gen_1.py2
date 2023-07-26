@@ -3,5 +3,5 @@
 #	../lib_base \
 #	${PWD}/../lib_base \
 #
-P PATH
-python2 PY_gen_1.py "${@:-test1.in}" test1.out
+# P PATH
+python2 PY_gen_1.py  ABC "${@:-test1.out}"

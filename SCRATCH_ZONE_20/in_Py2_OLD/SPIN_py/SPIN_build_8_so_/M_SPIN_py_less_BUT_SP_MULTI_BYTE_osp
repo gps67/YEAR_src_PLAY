@@ -1,0 +1,4 @@
+# this rebuilds the SPIN module, without rebuilding SP
+
+unset CDPATH
+./MK_SPIN_8_so "${@:-SPIN_py}" 2>&1 | tee -a M-out.txt | less +16G

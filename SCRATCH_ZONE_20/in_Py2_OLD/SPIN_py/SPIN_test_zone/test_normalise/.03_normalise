@@ -1,0 +1,17 @@
+
+# /home/gps/g/prefix/share/OpenSP/HTML4.soc
+
+
+. ./.set_env
+. ../.env_test
+
+# normalise that file (using old pretty-printer script)
+# this is to test the pretty-printer code
+# that it is re-readable by SP, not just lynx being nice
+
+$python23 \
+./PY_normalise.py \
+ $base.h \
+ $base.ht \
+ 2>&1 | tee fa
+

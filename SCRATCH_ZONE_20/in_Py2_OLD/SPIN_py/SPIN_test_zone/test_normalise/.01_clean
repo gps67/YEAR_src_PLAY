@@ -1,0 +1,11 @@
+set -x
+base=disk_action_draft
+if true false
+then
+	rm -f $base.h
+	rm -f $base.ht
+	rm -f $base.htm_
+fi
+rm -f $base.htm_
+# symb link disk_action_draft.html
+rm -f fa fb

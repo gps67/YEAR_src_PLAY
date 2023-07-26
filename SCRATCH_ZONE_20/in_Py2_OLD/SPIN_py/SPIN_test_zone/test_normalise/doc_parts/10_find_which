@@ -1,0 +1,48 @@
+<H2> Finding which disk is which </H2><p>
+	You dont want to pull the wrong one!
+
+</P><H3> showboot </H3><p>
+	On the running system, run 'showboot' to see what is set
+	as the PRIMARY path, and what is probably the ALT-PATH (not
+	necessarily). Use ioscan -kfn to convert numbers into device names.
+</P><P>
+	Dont worry, if you ever had to do this, the HP engineer would do
+	it at the hardware level.
+
+</P><H3> ioscan -kfn </H3><p>
+
+	On the running system, (or from an archived printout), obtain
+	the output from <code>ioscan -kfn</code>. It helps you convert
+	device names to and from device numbers.
+
+</P><H3> Disk Activity LED </H3><p>
+	Supposing &c1t1d0; &nbsp; <!-- bug space after sdata migrated away
+	--> is the primary path, you want to know which disk that is.
+	Simply READ a lot from the disk, and see which light comes on,
+	and label it with a sticky tab. Be certain though.
+<PRE>
+dd if=/dev/&c1t1d0; of=/dev/null
+</PRE>
+
+<H3> Repeat for Secondary </H3><p>
+	There is no need to do this, as you shall only remove the primary.
+</P><P>
+	It is worth remembering, that the entire disk is NOT primary
+	or secondary, but that each part of the first disk is repeated
+	or mirrored on the second disk. We call them that for sanity,
+	but HPUX has no such concept. It has a selector variable to
+	pick a disk to boot from, and LVM mirroring.
+
+</P><H3> Find an LVOL </H3><p>
+	If you follow this test script, (on a different system), you
+	will need to know the name of an LVOL, so that you can check the
+	status of its PE's (Physical Extent = 4 M track, with independent
+	versioning).
+</P><P>
+	You may wish to get a list of all the LVOL's on the disk that
+	you are removing (and also check everything on that PV is mirrored!)
+</P><P>
+	vgdisplay -v /dev/vg00 will show you a list.
+
+</P>
+

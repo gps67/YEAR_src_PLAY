@@ -1,0 +1,2 @@
+. ../.env_test
+python2 fail1.py

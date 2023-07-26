@@ -4,7 +4,10 @@
 -- or I could create another copy of a DTD in a subdir --
 
 -- CATALOG  /tools/2004/xml/share/OpenSP/HTML4.soc --
-CATALOG  /tools/2005/libs/share/OpenSP/HTML4.soc
+-- CATALOG  /tools/2005/libs/share/OpenSP/HTML4.soc
+-- where OpenSP was installed into /home/gps/g/prefix
+CATALOG /home/gps/g/prefix/share/OpenSP/HTML4.soc
+
 CATALOG ldoc/catalog1
 -- CATALOG /usr/src/sp/pubtext/HTML4.soc --
 -- CATALOG /etc/sgml/sp/pubtext/HTML4.soc --

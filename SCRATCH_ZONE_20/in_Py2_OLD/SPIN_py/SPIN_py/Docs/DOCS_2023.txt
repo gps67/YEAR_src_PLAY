@@ -4,6 +4,8 @@ for Python2 few were needed
 and it works - with unknown CSET !!
 compiled asif char_16 ??
 
+	SEE CHAR_16
+
  PYTHONPATH finds dirs during import module (not PATH)
  adding a calling outer shell to set that, and pick python2 
  currently trying python23
@@ -113,4 +115,29 @@ NB VPATH is always first in modern C++
 //	 A_V_TYPE V_TYPE; // not a pointer - but still VTYPE ? // POINTLESS
 	 A_V_TYPE * V_TYPE; // IS a pointer  
 	}
+
+CHAR_16
+
+	My test data is ASCII so needs a bit of added test data
+
+	spin_misc/text_collector.h .cxx
+        void data_string(const SGMLApplication::CharString & str );
+	void data_Char( SGMLApplication::Char chr ) { ... }
+
+		It might be somewhere else completely
+		but it looks like all text could go through here
+		and I only need to put wide_char_to_utf8
+		I think Python will need new work for CSET
+		and each string type is 8859_latin1 _utf8 // _ASCII
+
+	If this is the vector, 8859_latin1 arrives as BYTE_VALUE in u16
+	and that is the same BYTE_VALUE as UNICODE, so would work
+	so try some utf8 beyond 8 bit
+
+		OH hang on
+		spin_misc/text_collector_utf8.h
+
+	It was 2 decades ago, maybe I was OK then
+
+
 

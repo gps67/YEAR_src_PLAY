@@ -2,4 +2,8 @@ YEAR_MM_DD, miles, litres, cost, note
 2023-06-03, 18028,  32.38, 49.64, Y? Full Morrisons - to Salisbury
 2023-06-04, 18259,  22.20, 33.01, Y? Full Morrisons - from Salisbury
 2023-07-02, 18522,  31.22, 43.93, Y? Full Morrisons - from Salisbury
+2023-07-31, 18703,  23.18, 31.27, Y? Full Sainsbury 
+# guess miles
+2023-08-41, 18760,   5.93, 10.31, Y? mini topup # guess miles to match following
+2023-08-06, 19105,  35.64, 49.43, Y? Full ASDA from wooden roots 
 

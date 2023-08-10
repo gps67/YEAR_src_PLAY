@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+import datetime, sys
+var = datetime.datetime.now()
+str = f'{var:%Y-%m-%d_%a}'
+print( str, file=sys.stderr )
+
+# https://realpython.com/python-f-strings/

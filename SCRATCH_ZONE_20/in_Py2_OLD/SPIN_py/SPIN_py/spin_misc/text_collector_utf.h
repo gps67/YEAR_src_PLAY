@@ -69,13 +69,23 @@ class text_collector_utf : public text_collector {
 		else if( chr < 0x800 ) {
 			char c1 = 0xC0 + (chr >> 6);
 			char c2 = 0x80 + (chr & 0x3F ); // 6 bits
-		} else { // we only do 16 bit Char
+			data_byte( '#' ); // trace shows £ was utf8 input
+			data_byte( '2' ); // and BOTH utf8 bytes were seen as 8859
+			data_byte( '(' ); // routes in routes out
+			data_byte( c1 );
+			data_byte( c2 );
+			data_byte( ')' );
+		} else if( chr < 0xFFFF) { // we only do 16 bit Char
 			char c3 = 0x80 + (chr & 0x3F); chr = chr >> 6;
 			char c2 = 0x80 + (chr & 0x3F); chr = chr >> 6;
 			char c1 = 0xE0 + (chr);
+			data_byte( '#' );
+			data_byte( '3' );
 			data_byte( c1 );
 			data_byte( c2 );
 			data_byte( c3 );
+		} else { // we only do 16 bit Char
+			data_str( "(0xFFFF)" );
 		}
 #else
 		data_char( (unsigned char) chr );

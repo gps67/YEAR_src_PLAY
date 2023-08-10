@@ -3,13 +3,14 @@
 <HTML VERSION="-//W3C//DTD HTML 4.0 Transitional//EN">
  <HEAD>
   <TITLE>
-   Mirror Disk Action</TITLE></HEAD>
+   Mirror Disk Action #2(Â)#2(£)#2(Â)#2(£)#2(Â)#2(£)#2(Â)#2(£)</TITLE></HEAD>
  <BODY BGCOLOR="#FFFFFF">
   <H4>
    DR Exercise - Mirrored Disks</H4>
   <P>
    Here is a document I wrote one evening for a friend to use in
-   their Disaster Recovery Weekend Docs as a L1 section.</P>
+   their Disaster Recovery Weekend Docs as a L1 section. Now I have
+   left my customers, I need some #2(Â)#2(£)#2(Â)#2(£)#2(Â)#2(£)#2(Â)#2(£)</P>
   <DIV CLASS="TOC">
    this gets deleted And replaced with the TOC You can enhance the
    script to do RE-numbering, by removing and numbers found in headers,
@@ -42,9 +43,9 @@
   <H3>
    Disk Activity LED</H3>
   <P>
-   Supposing c2t2d0 is the primary path, you want to know which disk
-   that is. Simply READ a lot from the disk, and see which light
-   comes on, and label it with a sticky tab. Be certain though.</P>
+   Supposing c2t2d0 #2( ) is the primary path, you want to know
+   which disk that is. Simply READ a lot from the disk, and see which
+   light comes on, and label it with a sticky tab. Be certain though.</P>
 <PRE>
  dd if=/dev/c2t2d0 of=/dev/null
 </PRE>

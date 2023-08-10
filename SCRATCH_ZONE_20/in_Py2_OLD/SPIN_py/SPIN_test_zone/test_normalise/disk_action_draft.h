@@ -5,7 +5,7 @@
 ]>
 <HTML>
 <HEAD>
-<TITLE> Mirror Disk Action </TITLE>
+<TITLE> Mirror Disk Action ££££ </TITLE>
 </HEAD>
 <BODY bgcolor="#FFFFFF">
 
@@ -14,6 +14,8 @@
 
 	Here is a document I wrote one evening for a friend to use
 	in their Disaster Recovery Weekend Docs as a L1 section.
+
+	Now I have left my customers, I need some ££££
 </>
 
 <DIV class="TOC"> 

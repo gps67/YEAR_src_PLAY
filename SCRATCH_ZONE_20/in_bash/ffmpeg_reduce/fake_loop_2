@@ -1,0 +1,145 @@
+#! /bin/bash 
+
+. fns_FAIL
+
+LIST1=`ls -1 .. | grep mp4`
+
+# TODO # get_OBJ_FIELD OBJNAME FIELDNAME
+# TODO # set_OBJ_FIELD_VALUE OBJNAME FIELDNAME VALUE VALUE_for_ABSENT_value
+# KNOW # VALUE is parameter from AVAR possibly ""
+
+
+function get_VAR() { # VAR == "VAR_NAME" # default "VAR"
+        local VAR="${1:-VAR}"
+   eval local VAL="\$$VAR"
+
+#       local VAR_name="${1:-VAR}"
+#  eval local VAL="\$$VAR_name"
+
+	printf "%s" "$VAL"
+}
+
+function set_VAR_VAL() { # VAR VAL
+	local VAR="${1:-VAR}"
+	local VAL="${2:-VAL}"
+   eval "${VAR}='${VAL}'" # added quotes
+
+#       local VAR_name="${1:-VAR}"
+#  eval "${VAR_name}='${VAR_value}'" # added quotes
+}
+
+function name1() { # CMNT
+ :
+}
+
+function obtain_VARFILESIZE_FILENAME() { # FILE_NAME
+	#
+	# INIT to DEFAULTS # better ARGV DECODER later
+	#
+	local VAR_NAME="FILE_size"
+	local FILENAME="FILE_name"
+	local BYTES_SIZE="-1" # or "0"
+
+
+	VAR_NAME="${1:-$VAR_NAME}"
+	FILENAME="${2:-$FILENAME}" # override with $1 else $FILENAME
+
+	# default -1 is good for debug absent value -1
+	# default 0 is good for skip absent files
+
+	# use $1 or $FILE_NAME or '' #
+	local FILENAME
+	FILENAME="${FILENAME:-filename}" # $ALREADY_HAS_VALUE or default VALUE
+
+	# stat printed BYTES_SIZE to stdout
+	local FMT
+	FMT=--printf="%s" # Q2 gets dropped # %s mean size ## man 1 stat
+
+	local BYTES_SIZE=`stat "$FMT" "$FILENAME"`
+
+	set_VAR_VAL "$VAR_NAME" $BYTES_SIZE
+}
+
+pwd
+
+function name2() { # CMNT
+ :
+}
+
+function obtain_FILE_SIZE() { # FILE_NAME
+	obtain_VARFILESIZE_FILENAME "FILE_SIZE" "$1"
+}
+
+
+function set_filesize() { # VARNAME FILENAME
+	obtain_VARFILESIZE_FILENAME "${1:-FILE_SIZE}" "${2:-FILENAME}"
+}
+
+fn_PASS()
+{
+	printf "# PASS # %s #\n" "$*"
+}
+
+fn_CALC()
+{
+	local RET_VAL=`echo "$*" | bc -l`
+	printf "%5.2f == fn_CALC %s\n" $RET_VAL "$*" >&2
+	printf "%s\n" "$RET_VAL"
+}
+
+function file_must_exist()
+{
+	[ -f "${1:-filemustexist}" ] || fn_FAIL "ABSENT file '$1'"
+	fn_PASS "exists # $1"
+}
+
+function ratio_file_size() { # file_in file_out # filenames
+
+	local file_in="${1:-file_in}" 
+	local file_out="${2:-file_out}"
+
+	file_must_exist $file_in
+	file_must_exist $file_out
+	
+	du -sh $file_in $file_out
+
+	set_filesize sz_in  $file_in
+	set_filesize sz_out $file_out
+
+	local RATIO
+	RATIO=`fn_CALC $sz_in / $sz_out `
+	local PCNT
+	PCNT=`fn_CALC 100 \* $sz_out / $sz_in ` # \* 100.0 # not working 1/13
+	# not float
+
+	# not float
+	printf "RATIO %5.2f\n" $RATIO
+	printf "PCNT %5.2f\n" $PCNT
+
+	# absurd route VARNAME("file_in") VIA_VAR_EXPR($1)
+	# absurd route VARNAME("file_out") VIA_VAR_EXPR($2)
+}
+
+for f in $LIST1
+do
+	file_in=../${f}
+	file_out=./${f}
+	[ -f $file_out ] || break
+
+	: echo \
+	ask_do \
+	 nice \
+	  ffmpeg 	\
+	  -i $file_in 	\
+	  -c:v libx265 	\
+	  -crf 28 	\
+	  -preset slower \
+	  -c:a copy 	\
+	  $file_out
+	#
+	ratio_file_size $file_in $file_out
+	echo
+done
+
+# ask_do nice \
+# ffmpeg -i MP4_IN -c:v libx265 -crf 28 -preset slower -c:a copy MP4_OUT 

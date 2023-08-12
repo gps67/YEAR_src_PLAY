@@ -1,0 +1,28 @@
+LIST1=`ls -1 .. | grep mp4`
+
+for f in $LIST1
+do
+	f_in=../${f}
+	f_out=./${f}
+	if [ -f "$f_out" ]
+	then
+		echo "# ALREADY GOT # $f_out"
+		continue
+	fi
+	ask_do \
+	 nice \
+	  ffmpeg 	\
+	  -i $f_in 	\
+	  -c:v libx265 	\
+	  -crf 28 	\
+	  -preset slower \
+	  -c:a copy 	\
+	  $f_out
+	#
+	du -sh $f_in $f_out
+done
+
+# ask_do nice \
+# ffmpeg -i MP4_IN -c:v libx265 -crf 28 -preset slower -c:a copy MP4_OUT 
+
+

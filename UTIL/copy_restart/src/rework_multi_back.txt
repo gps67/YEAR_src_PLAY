@@ -194,6 +194,61 @@ unsigned char *SHA512(const unsigned char *d, size_t n, unsigned char *md);
 
 void SHA512_Transform(SHA512_CTX *c, const unsigned char *data);
 
+	!! or back to libs_apps wrap on EVP !! md_calculator_base
+
+	VFS_CORE
+
+		FILE_DBID is COPY_DBID of FILE_DBID
+	
+	EVENT_QUEUE
+
+		add FILE to LOCN and process ...
+		calc MD or each MB16 16GB/16MB is 750 PARTS 
+		or put them into a BLOB
+
+		SCRIPT says COPY_RESTART_FILE_TO_DEST
+
+		SCRIPT says move FILE to ../COPIED
+
+		SCRIPT_says_THEN_reread_SHA1
+
+		SCRIPT_says_THEN_check_SHA1
+	
+	EVENT_QUEUE
+
+		copy TREE from DISK1 to DISK2
+		move TREE from DISK1 to DISK2
+
+			do as a background job
+			step by step
+	
+	PARALLEL
+
+		different NAS
+		different DISK
+		local vs remote
+		interleave two
+	
+	PRIORITISE
+
+		GUI points to QUEUE bumping
+
+		reduce throughput to 50% when it makes a difference
+
+	MESSAGE
+
+		EVENT FILE_SHA1_RESULT LOCN/FILE+SHA1
+	
+	MESSAGE includes ON_DONE message
+
+		CO_ROUTINE_YIELD_LOOP_POINT
+		CO_ROUTINE_YIELD_VALUE
+
+		MESSAGE_SAYS STEP_to_next_in_LIST
+	
+	QUEUE_LIST holds ON_DONE Message
+
+		WAIT_LESS
 
 /nfs/NAS3/mnt/HD/HD_b2/NAS3_b2_DVDS/done_del
 	can be deleted but first need to know the matching .iso's are good

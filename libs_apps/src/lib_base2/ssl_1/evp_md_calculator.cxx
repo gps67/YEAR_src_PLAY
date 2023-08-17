@@ -79,12 +79,14 @@ static /* C */ const EVP_MD * lookup_md_name_2( str0 s )
 	if(( s == "whirlpool"))	return EVP_whirlpool();
 	if(( s == "sha1")) 	return EVP_sha1();
 	if(( s == "sha256"))	return EVP_sha256();
+	if(( s == "sha512"))	return EVP_sha512();
 	if(( s == "ripemd160"))	return EVP_ripemd160();
 	if(( s == "md5"))	return EVP_md5();
 
 	if(( s == "EVP_whirlpool"))	return EVP_whirlpool();
 	if(( s == "EVP_sha1")) 		return EVP_sha1();
 	if(( s == "EVP_sha256"))	return EVP_sha256();
+	if(( s == "EVP_sha512"))	return EVP_sha512();
 	if(( s == "EVP_ripemd160"))	return EVP_ripemd160();
 	if(( s == "EVP_md5"))		return EVP_md5();
 
@@ -139,6 +141,10 @@ bool md_calculator_base::init_sha1()
 bool md_calculator_base::init_sha256()
 {
 	return init( EVP_sha256() );
+}
+bool md_calculator_base::init_sha512()
+{
+	return init( EVP_sha512() );
 }
 bool md_calculator_base::init_whirlpool()
 {

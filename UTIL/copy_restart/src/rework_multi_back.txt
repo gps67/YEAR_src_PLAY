@@ -1,0 +1,262 @@
+VFS_CRC
+
+	CRC == "sha.h" // SHA_DIGEST // nbytes == 20 // 160 bit // u20 == 2048
+	IDX = u20_IDX CRC_from_TEXT // BINARY_FILTER_MODE ASIS //
+	// MATCH // EXACT_MATCH // BLOCK_CRC BITFIELD_SIZE == u20 //
+	// "SHA_nbit SHO_nbyte " SHA_DIGEST_LENGTH " DIGEST_LENGTH 
+	// PHRASE { AUTO _PREFIX _SHA "SHA%s" _NBTYPE // AUTO PREFIX_SUBLEX
+	// "%s" "%s" "%s" "SHA" "_" _NBITS // AUTO_ALIAS == implment_as //
+	// LANG reserves __%s CIDENT99 // OPTION VFS_CDIENT_NAME //
+	// MATCH DIALECT // CIDENT means can be used as LHS or RHS MID == ALL
+	// MATCH EXACT "_%s" // obviously _%s is recognised by DECODE_MATCH ARG1
+	// LANG // explain mind_flip // ARG1 is of ANY_TYPE // ARGV1 is THIS
+	// LANG INFER get_EA ARGV1 == get_EA_THIS // CODE_POINT || DATA || BOTH
+	// DECODE u64 //
+	// DECODE LOHI // HILO saves lohi on disk // POSS by EA byte not register
+	// CODE RUNS CARRY DATA of SPEC // ACCESS BYTE_B _A _B _AB _BA _AB_BA
+	// AUTO _AB_BA == "LOHI_get_BA" // ASIF_TYPE "LOHI_REGISTER"
+	// AUTO _AB_BA == "LOHI_get_BA" // ASIF_TYPE "LOHI_REGISTER_HILO"
+	// DIAG
+	//	BYTE_A
+	//	BYTE_B
+	//	BYTE_DCBA // was LOHI
+	//	BYTE_ABCD // asif HILO // precise SPELLING _ABCS looks like "_%s"
+	// parse "BYTE_ABCD" // 
+	// DECODE BYTE_ABCD // 
+	// DIAG
+	//	LOHI_in_MEM  //
+	//
+	//	-1[a[b[c[d[4 // M1 is never K_1024 
+	//
+	//	_1_a_b_c_d_4 // M1 is minus_one N == 4
+	//
+	//	EA 0 1 2 3 _ // _ == 4 # next byte in stream //
+	//
+	// DIAG // u8_u8 u48 //
+	//
+	//	|| u8_u8
+	//      ||       || u48                     //
+	//      || u8 u8 || u48                     //
+	//      || u8 u8 || u16     || u32          //
+	//      || u8 u8 || u16_BITFIELD u32_HALF_WORD_BITFILED //
+	//
+	// OPTION ACCESS from LOHI_WORD i64_lohi // u48 is popular OPTION //
+	//
+	//	u32_HGFE
+	//	u16_DC_BITFIELD // ie SHIFTED
+	//	u16_BA_BITFIELD // ie LOW_HALF_HALF_BITFIELD
+	//	u16_BA _BA
+	//	i16_BA _BA
+	//	u8 /* AMP */ BYTE_B // REF needs to also mean OR_REGISTER_ADDR
+	//	u8 /* AMP */ BYTE_A // REF needs PATCH_OPCODE CPU_AS_IF
+	//
+	//		HGFE DCBA
+	//		       BA
+	//		        A
+	//		       B 
+	//	DC = DCBA // view of DIAG showing BYTES loaded from ABCD TEXT
+	//	DC = DCBA >> 16 // _SIGNED // _BITFIELD //
+	//	DCB = DCBA >> 8 // _SIGNED // _BITFIELD //
+	//
+	//	get_i24() { return DCB } // AUTO_CODE i32 >> 8 // 
+	//	get_u24() { return DCB } // AUTO_CODE u32 >> 8 //
+	//
+	// DIALECT MATCHES BREVITY and adds RET_VAL == " %s " source
+	// GEN also creates code to try after BEST_MATCH // EASY_MATCH_GAPS //
+	// BEST_MATCH likes "AUTO_CODE" and binds to it, following API PARSE_GEN
+	//
+	// API_FILTER += API_PARSE
+	// API_FILTER += API_GEN
+	// API_FILTER += API_FILTER
+	//
+	//
+	//	u64_WORD == HGFE_DCBA // VAR_is_MATCHING_STR "CPU_VAR_TWO"
+	//	i64_WORD += _SIGNED // any script that creates _NAME claims NAME_t
+	//	it acts as a PROTOTYPE CT_OBJ representative of EA OBJ VAL
+	//	_SIGNED brings TYPE and CODE // and_SWITCHES
+	//	
+	//		u64_HGFE_DCBA
+	//		    HGFE DCBA
+	//
+	//	EA_MEM_DIRECT access u32_BITFIELD using CPU_OPCODE_WORD_FOUR_BYTE
+	// 		generate instruction for ACCESS dta in memory
+	//
+	//		GET BITFIELD // as MEMORY_ACCESS
+	//		GET BITFIELD // as REGISTER_ACCESS
+	//
+	//	ARM32 target // use LOHI in MEMORY // DECODE MEM_BYTES LOHI
+	//
+	//		ARM requires EXACT_ALIGN_FOUR 
+	//		ARM requires EXACT_ALIGN_EIGHT 
+	//		X64 provides EXACT_ALIGN_EIGHT // ALIGN_WORD //
+	//
+	//	X32 target is C lang based
+	//	
+	//		BSWAP provides LOAD_REGISTER_FROM_LOHI
+	//			VALUE not BINDING
+	//			CODE += { u32_lohi_t * EA }
+	//			EA = PTR_to_WORD4
+	//		LOAD_WORD4_from_EA_SIGN_EXTEND_to_WORD8
+	//	OR	LOAD_WORD4_from_EA_ZERO_EXTEND_to_WORD8
+	//	OR	LOAD_WORD4_from_EA_ZERO_EXTEND_to_WORD8
+	//			VAL = * EA // add TYPE CAST POINTS // VIEW //
+	//			VALUE = HOST_FROM_LOHI VAL
+
+	// CRC_20_BIT // 2048_ITEM_HASH // sort of compressed u32 to u20_bitfield
+	// CRC_24_BIT // u24_ITEM_HASH // sort of compressed u32 to u24
+	// CRC_24_BIT // i24_ITEM_EXPR // sort of compressed u32 to u24
+
+	// COMPILER ERROR if two different string in source CLASH
+	// OPTIONAL_FIXUP "ITEM_FFFF_UDEF" // UDEF_mangles_cident_yFF
+	// KNOWN_IDX from "ITEM_FFFF_UDEF_99" // allocate  STR0 to get CRC as PTR
+	// MINI_MACHINE squishes ARRAY[ 2096 ] of OBJECT
+	// MINI_MACHINE into ARRAY[ 256 ] of CRC_STR0_TOKENISED STR0
+	// MINI_MACHINE into ARRAY[ 256 ] of OBJECT
+	// MINI_MACHINE into ARRAY[ N ] of OBJECT // u20_N // i32_N
+	// any N probably less than u20 // M1 is available as VALUE_M1
+	// BENCH += DECL_VAR "VALUE_M1" SPEC_int_const_TOKEN_for_M1
+	// BENCH DIAG manipulation creates a VAR in FRAME of WORLD
+	// MENTION of VAR creates in DIAG and in TREE
+	// DERIVED USAGE allows all sorts of COMPILED_EXPRS
+	// MINI_MACHINE VIA IDX = ARRAY[ 256 ] of u16 // CRC_of_IDX
+	// MINI_MACHINE VIA IDX = ARRAY[ u16 ] of u16 // IDX_of_CRC _or_NULL or_M1
+
+	// M1 uses a code pattern like kernel syscall returning -1 and errno
+	// Z_PLUS known RANGE_of_UNSIGNED // possibly u31
+	// Z_PLUS known RANGE_of_UNSIGNED // possibly u32 // RANGE //
+	// FULL_RANGE plus M1 // -1 [ P0 ... [ P2 // P0 == ZERO // P2 == N //
+	// N == 4 // WORD4 // u32 //
+	//
+	// u16_lohi GET_u16_lohi_at_array_slot( IDX_t IDX )
+	// u16_lohi GET_u16_lohi_at_array_slot( IDX_t IDX )
+	// 
+
+
+	//
+
+
+
+		 4[d_c_b_a]0 // M1 is minus_one N == 4
+		// PARSER SNIFFER allows local USAGE that MATCHES SCRIPT
+		// LEX_YACC says be optimistic few ROLL_BACK_UNUSED_PHRASE //
+		// LEX_YACC MATCHES using same OBJS because it builds own FSM
+		// PSG_SPEC // LEX_YACC or PUBLEX_PSG
+		// PSG_LEX // permit use of YACC inside SUBLEX
+		// EXPR STEP RET_VALS MINI_MACHINE += DECODER += DECODE //
+	//"
+gramma	// AUTO _AB_BA == "LOHI_get_BA" // ASIF_TYPE "LOHI_now_DCBA"
+	// DECODE u8_u8  //
+	// MATCHES AUTO SPLIT
+
+# define SHA224_DIGEST_LENGTH    28
+# define SHA256_DIGEST_LENGTH    32
+# define SHA384_DIGEST_LENGTH    48
+# define SHA512_DIGEST_LENGTH    64
+
+	reduce CRC_15 from CRC_64 _BITS
+	rename %s%s ORIGINAL "_xFFFF" "_x%04X" first sweep through 0000
+	rename %s%s ORIGINAL "_xFF" "_x%02X" first sweep through 00
+	rename ... through "_AB" 
+
+	COMPILER allocated fixed ones first // bug if CLASH
+	COMPILER optimistically allocates TOKENS from STR0_spelling
+	COMPILER then_tries_with_SUBLEX_SUFFIX_to_be_unique
+	COMPILER allocates TOKENS from STR0_spelling _ %s SUFFIX
+	PARSE_GEN_OPCODE {
+		ARG1 == "%s"
+	}
+	PARSE_GEN_OPCODE {
+		PHRASE = "_%s" ARG1
+	}
+	PARSE_GEN_KNOW { ARG1 == THIS }
+	PARSE_GEN_KNOW {
+		ARG1 == THIS // CT_KNOW //
+	}
+
+	SHA eats 32bit words
+
+	LBLOCK 16 // u64_u64 // u128_ALIGNED // u32_ALIGNED_OK 
+	CBLOCK 16 * 4 // BYTES_64_BLOCK
+	XBLOCK 64 - 8 // u128 u128 u128 u64 // dont know why // exit last 
+
+	SHA_256 eats 64_BYTES EIGHT_WORDS_of_EIGHT
+	// u6_idX_64 # [0 [64 # OPTIONAL [63 M1 == 63
+
+	SHA-512 eats 64 bit words // ALIGN_EIGHT
+
+int SHA512_Init(SHA512_CTX *c);
+
+int SHA512_Update(SHA512_CTX *c, const void *data, size_t len);
+
+int SHA512_Final(unsigned char *md, SHA512_CTX *c);
+
+unsigned char *SHA512(const unsigned char *d, size_t n, unsigned char *md);
+
+void SHA512_Transform(SHA512_CTX *c, const unsigned char *data);
+
+
+/nfs/NAS3/mnt/HD/HD_b2/NAS3_b2_DVDS/done_del
+	can be deleted but first need to know the matching .iso's are good
+	deleted borges as group boxset unit
+	that made it a lot faster
+	and probably less error prone
+/nfs/NAS3/mnt/HD/HD_a2/NAS3_a2_DVDS/iso_2020
+	second area to match up against
+
+WANT MD_AES per 1GB or per 0.1GB 128MB into sqlite list
+	128MB ZONE - or smaller
+	read all disk (or at least list of dirs)
+
+WANT filesize match
+	flag diffs
+
+
+	backup to disk one
+	backup to disk two
+	backup to disk three
+
+	check both for existing copy
+	dedup
+
+	check extra dirs, eg %s/iso/%s
+	check extra dirs, eg %s/iso_copied/%s
+
+	no restart on old disks
+
+	one_curr primary
+	two_prev secondary
+
+	ROOT(s)	- parameter from SCRIPT DISK1 DISK2
+	SUBROOT	- ROOT wrt DISK 
+		optional applied to ALL ROOTS and HERE
+	SUBDIR	- found by prog
+	ITEM	- no subdir only FILENAME
+
+	ROOT(s)	- parameter from SCRIPT DISK1 DISK2
+	SUBDIR	- found by prog
+	ITEM	- no subdir only FILENAME
+
+	SRC_ROOT
+	DST_MAIN
+	DST_KEPT1
+	DST_KEPT2
+	ALL_STEP # default empty
+
+	--src_ROOT %s
+	--dst_ROOT %s
+	--old_ROOT %s // upto NNN of them 
+	--old_TREE %s // different DIR layout - flatten tree ?
+
+	--sub_STEP %s // ROOT/STEPS/tree/item
+
+	--dot_ignore %s // like .gitignore
+	--ptn_ignore %s // like .gitignore pattern
+
+	EXPECT ROOT is a symb link in local ROOT or .. // follow that %s/.
+
+_KPS_
+
+	keep list of seconds { 300 60 20 5 2 }
+	uses 1 record per second, when grain == 1 sec
+	uses 1 record per minute, when grain == 1 min
+	

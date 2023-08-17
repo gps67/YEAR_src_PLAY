@@ -34,6 +34,7 @@ class md_calculator_base
 	bool init_ripemd160();
 	bool init_sha1();
 	bool init_sha256();
+	bool init_sha512();
 	bool init_whirlpool();	// 512
 
 	bool update( u8 * mem, int len );

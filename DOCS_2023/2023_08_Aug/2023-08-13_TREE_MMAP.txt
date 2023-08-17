@@ -1,0 +1,326 @@
+	2023-08-13
+
+	2023_08_Aug
+	2023-08-13_TREE_MMAP.txt
+
+	Over simple MMAP, no locks, no roll-back, 
+
+	 ASIF
+	 	KNOW ROM
+	
+	 ASIF
+
+	 	KNOW SINGLE_TASK_ACCESS # eg MEM_in_THREAD
+	
+	 EG
+
+	 	Allocate one heap for MMAP_HEAP MINI_HEAP 
+
+		ON_TREE
+
+			VAR_POOL_at_LOCN _on_TREE
+
+			// initial theme is VAR_POOL in THREAD
+			// entirely LOCK_TIME_ON
+			// compiler builds re-runnable CALL ARGV 
+			// 
+
+			// POSS // or_effect_of // TIME_SHARE_by_MINI_TASK LOCK
+			// LOCK += EDGE
+			// EDGE += ZONE // usually local == ADDED //
+			// EDGE += ZONE // usually local == ZONE // ZONE_MAIN
+			// LOGIC MAIN += ZONE_ZERO is_SELF
+
+		ON_TREE
+
+			LOCN
+			
+			 API_TREE_provides_LOCN_as_NODE
+
+			NODE
+
+			// no not node NODE, as in TREE_NODE node
+			// not NODE
+			//
+			//	BUT CAN ADD MODULE API
+			//	CODE += PROVIDER_PROVIDES += Module + API
+			//	API += MODULE Module
+			//	API += CODE_POOL += SCRIPT // += API.SCRIPT
+			//	API.SCRIPT == MODULE_API_SCRIPT
+			// GEN
+			/
+			//	API_t API = MODULE_API_EXPR // CMNT // CODE_POINT
+			//	SCRIPT == "Module.api.SCRIPT_lookup("{ SCRIPT }")
+
+		PSG DECODE "{ SCRIPT }"
+
+		 TRICK
+		  SCRIPT == "{ SCRIPT }"
+		  LOOKUP += " Q2 LEFT_CURLY SP SCRIPT SP RIGHT_CURLY Q2 "
+		  PHRASE += P0P2_of_MATCHING // TEXT * PHRASE_P0 NBYTES 
+		  // NBYTES == "RT_EXPR(P2-P0)" // OUT = GEN from COMPILER
+		  // VIRTUAL NBYTES is OPCODE (from_ROM) on DATA == "P0P2"
+		  // sufficient to recognise as VAR_NAME or similar AUTO_TYPE_t
+		  // GETTER += OPCODE // on_EVENT == "GET NBYTES"
+		  // on_EVENT == "GETTER GET NBYTES"
+		  // on_EVENT += "i48_EA_ID_EVENT" //
+		  // on EVENT == COMPILED from "GETTER GET NBYTES"
+		  // PSG ARGV is TUPLO GETTER GET NBYTES
+		  // GETTER == "GETTER" // API_GETTER_of_AVAR //
+
+			// yes TREE_NODE 
+
+		 API GETTER of AVAR
+
+		 	often found in VAR_SPOOL
+		 	often found in SCRIPT_SPOOL
+
+			WHEN_is_VAR == "SCOPE_OF Module.api.func.sub_sel
+			// sub_sel is API better than source CALL_FUNC
+			// eg during FUNC_RUN KNOW LOCK KNOW_TO_REREAD
+
+		 API_REREAD_VAR // "ASIF_FIRST_FETCH_VAR_into_CACHE"
+
+		 	in above title "ASIF_FIRST_FETCH_VAR_into_CACHE"
+			is the SCRIPT // or lines_of_in_running_SESS //
+			SESS.VAR.API
+			SESS.VAR.CACHE
+
+				the use of a sub_level_detail
+				auto triggers PARSED ASIF 
+				// ASIF DECLARED // AS GUESS ...
+				// so then place CODE there as SCRIPT_LINES
+				// SESS // SESS.API //
+
+		 API_REREAD_VAR
+
+		 	NEED API_REREAD
+
+				CT_SAYS_RUN_THIS_NOW ... SCRIPT += "{ %s }" SCRIPT
+				CT_SAYS SCRIPT += "{ SCRIPT }"
+				CT_SAYS SCRIPT += "{ SCRIPT_STEPS }"
+				CT_SAYS SCRIPT += "{ STEPS }"
+
+			STEPS += OPCODE EXPR 
+
+				EXPR += "STEP" // "{ SCRIPT_STEPS }"
+
+			EXPR += OPCODE // ROM // VARS_AVAIL //
+
+				CODE += "NBYTES = P2 - P0"
+
+				+= applies FILTER 
+				+= applies COMPILE_FILTER 
+				+= applies COMPILE_SCRIPT_FRAGMENT 
+				+= applies COMPILE_SCRIPT_PHRASE
+
+			COMPILE "{ STR0 }" // RET_VAL += lookup(STR0) 
+
+				on_ABSENT_MK_VAR
+
+				 PRE_CHECK 
+				  VALIDATE_VARNAME VAR== "STR0" || "VAR" || ALIAS
+
+				 MK_VAR "STR0" // local alias for "ANYSTR"
+				 MK_VAR "ident" // ident == "cident99"
+				 KNOW TOKEN "cident99" as
+				 "{ a1_a2_star a1 a2 }" // CODE_POINT // XPOS
+
+				 XPOS =  FILE_LINE_dx // // dx_is_BYTES 
+				 // dx_is_GLYPHS
+				 // dx_is_BYTES 
+				 // dx_is_WORD_COUNT_ONE // PARSER ARGV WORDS
+				 // dx_is_WORD_COUNT_TWO // XPOS_EXPR
+
+				 FILE_LINE_dx
+				 FILE_XPOS_STEP
+				 STREAM_STEP_HEAP_ITEM_POS
+
+				 	XPOS == ITEM_POS
+
+					 += dx_from_XPOS
+
+					 	dx == OPCODE 
+						 MATCH WORD in STREAM ARGV
+
+				XPOS_in_PARSER == KNOWN_AT_CODE_POINT
+
+					eg P1 + ARG_XPOS_from_P1
+
+				XPOS_of_ARG0_in_STR0 "{ IDENT }"
+
+					AFTER "{ "
+					KNOW dx_BYTES == STRLEN("{ ") // REPEAT
+					KNOW SCRIPT repeated use of "{ "
+					is mention of KNOWN_STR ANYSTR as VAR
+					VAR_NAME == "VAR"
+
+		 SESS is running though on_EVENT and UDEF_CALL SCRIPT
+
+		 	scheduler does TIME_SLICE sharing with outside others
+			provides simple MMAP access to MEM SESS_MEM
+
+			PEER_CLIENT regains LOCK and knows it has to run
+
+				RE_FETCH_VAR_VALUE
+
+			 -option-
+
+			 ROM_FETCH_CT_KNOWN_VALUE
+			 ROM_EVAL_CT_KNOWN_EXPR
+			 ROM_KNOW_EA_VAR_LOCKED // or_ROM //
+			 ROM_KNOW_EA_VAR_REREAD_NEEDED // or_ROM //
+
+			// yes TREE_NODE 
+
+		SESS receives COMPLETE ACCESS
+
+			LOCK += already_run_PRE_FETCH_SCRIPT
+
+			triggers GEN to do that before now
+
+			SESS_HEAP can be an MMAP page in file
+			SESS_MMAP can have TEMP area for SPLIT SESS
+
+				time slice by TASK grain
+				SESS can sequence TASKS as SCRIPT_STEPS
+				SESS releases LOCKS unloads MMAP
+				SESS DROP_TEMP KEEP_SESS SESS_NEXT
+
+		SESS_NEXT
+
+			CACHE_DROP_TEMP_VARS // erase page
+			CACHE_KEEP_KEPT_VARS // SESS_VARS
+			CACHE_KEEP_LOCK // carry over
+
+		SESS_NEXT_from_interrupted_REMOTE
+
+			RELOAD_VARS_into_CACHE
+
+
+ ROM
+
+ 	LOCK_RO is PRE_GRANTED because this is ROM
+	PERM_WR is not available here // API_to_implement_VAR
+	SPEC_CT_KNOW // ROM += SPEC_of_ROM // 
+
+ STO
+
+ 	PROVIDE_PERSISTANT_HEAP_STO for SITE // SCOPE_SITE_UDEF
+ 	PROVIDE_PERSISTANT_HEAP_STO for SESS
+	PROVIDE LOCKED_ACCESS_MODE += LOCK
+
+ MMAP
+
+ 	OUTER_FILE holds multiple HEAPS
+	INNER_FILE holds multiple HEAPS
+
+	MMAP += GROUP 
+	GROUP += GROUP
+	GROUP += HEAP
+	HEAP += SUB_HEAP
+	HEAP += DOCS
+
+	DOC += TREE_from_XML
+	DOC += TREE_from_JSON
+	DOC += TREE_from_CXX
+	DOC += TREE_from_ARGV
+	DOC += TREE_from_SCRIPT
+	DOC += TREE_NODE
+	DOC += TREE_LEAF
+
+		ALSO NODE "ATTR" == "VALUE"
+
+ MMAP_reduced
+
+ 	no holes in FILE // except OPTION to actually allocate HEAP DATA
+
+	no DEST_ADDR // accept what loader gives // but reserve extra space
+
+		APP must pass parameters to know SEGMENT BASE 
+
+			FILE PAGE // OFFS == PAGE << 12 // 4096 //
+
+			// tell COMPILER // OFFS = "{ PAGE << 12 }"
+			// tell COMPILER // OFFS =  " PAGE << 12 "
+			// tell COMPILER // OFFS =   "PAGE << 12" 
+			// tell COMPILER // OFFS =   TREE_TWIG //
+
+	no clone_PAGE_on_modify
+
+	no remap_pages_to_version # leaves double holes
+
+		cannot move pages - just use a MMAP_FILE _RW _RO
+
+	simple copy_entire_data_on_defragment_or_cache_
+
+		simple model occasionally moves stuff around
+		better model does alloc on use
+		better model does use from SCRIPT // INIT_DATA
+
+			KNOW that api_MMAP behaves as CACHE
+
+ MMAP_advanced
+
+ 	REMAP FILE_PAGE[src] as FILE_PAGE[dst]
+
+		only permit moving pages around within file
+
+		also permit VFILE += FILE_PAGE_SEGMENT _at_ADDR
+	
+ MMAP_single _simple _ZONE_FOUR
+
+ 	SEGMENT M16 u16_OFFS
+ 	SEGMENT M16 u24_OFFS
+ 	SEGMENT M16 u32_OFFS
+ 	SEGMENT M16 u48_OFFS
+
+	initially i16_OFFS limit 32K
+	upgrade i32_OFFS limit 2G
+	upgrade i48_OFFS limit 2G
+	
+	PRE_ALLOC LIST of AREA
+		AREA_A 16K	
+		AREA_B 32K	// on REGEN 
+		AREA_C 64K
+	
+	AREA_A 128K
+	AREA_C 123K
+	AREA_C 0K
+	AREA_D 0K
+
+	OBJ addresses are OFFS in SEGMENT after DECODE 
+	OCCASIONAL defragment, means first AREA
+
+		ZONE is part of DECODE
+		AREA is FAKE_AREA under OFFS 
+
+			AREA_TREE
+			ZONE_TREE
+
+		OPCODE u8_u8 with u48_PAYLOAD
+		ZONE[idx_zone] // bunch of HEAPS via OPCODE
+		HEAP[u8_heap_in_ZONE]
+		ITEM[u8_pool_in_HEAP] // some 
+		EXPR_u32 // eg OFFS in ITEM
+		u8_u24 // DECODE_u8_u24
+		u8_u8_u16 // DECODE_u32
+
+	Shared heap
+
+		FIRST 64K heap (or x8)
+		is shared between multiple HEAPS (within APP GROUP)
+		WHEN that HEAP is FULL
+		the selected HEAP_PART bounced to own HEAP
+		 retains existing OFFS within file
+		 gets immediate free of the other HEAPS
+		the selected heap, must clone itself to a new heap
+		defragments, into the stream, into new area, PRE_allocated x4
+
+		the overhead of the freelist etc is shared to CACHE
+
+
+	
+		
+
+

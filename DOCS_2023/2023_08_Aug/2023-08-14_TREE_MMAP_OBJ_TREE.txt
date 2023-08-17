@@ -1,0 +1,143 @@
+	2023-08-14
+
+	2023_08_Aug
+	2023-08-14_TREE_MMAP_OBJ_TREE.txt
+
+	FILE contains one USER HEAP (of 255)
+
+	 MOUNT process is not per-access
+
+	 	CLIENT requests "ROOT_NAME" or_TOKEN
+
+		ROOT loads a shared HEAP
+		ROOT provides an ITEM to use as ROOT
+
+			PRE_ROOT of you prefer
+			second CALL GET "ROOT"
+			ROOT == PRE_ROOT around here
+			builting default when NULL
+
+		eg VFS_FILE_TREE from NODE_is_DIR
+
+			might introduce a MOUNT_to_DIR node
+			to pick up REF to SUPER
+
+			DIR += DIR_STAT // own_name_again
+			DIR += LIST_LOCN // subdir { NAME ADDR }
+			DIR += LIST_ITEM
+
+			ITEM += ITEM_STAT
+			ITEM += ITEM_STAT_SPEC
+
+				ITEM_is_SEGMENT_that_is_COMPRESSED_DOC
+
+				 INFO_COMPRESS_ENCRYPT
+				 INFO_NBYTES_0_1_2_3
+
+				 HEAP_ROOT
+
+				 DOC_ROOT
+
+				 STR0 TABLE
+
+				 FREE_LIST
+				 ZONE_LIST
+
+				ITEM_is_COMPONENT_in_HEAP
+
+				 LOCN_DIR
+				 LOCN_ELEM
+				 LOCN_LIST_of_ITEM_as_anon_LOCN
+				 ITEM_is_LOCN _but_ITEM
+
+		EXPR
+		u8_u8 OPCODE
+		u16_u32_EXPR
+
+		EXPR
+		u8_u24
+		u8_u8_u16
+
+			OBJ_HEAD is at u24_OFFS * 8
+			OBJ_SPEC is TAGGED there
+
+			OBJ_SLOT is at u24_idx
+
+			OBJ_SLOT is at u16_idx in u8_TABLE
+
+		OPCODE
+			A_WORD = COPY_of_WORD_BYTE_A
+			CACHE A_WORD >> 4
+			if( A_WORD >> 4 ) 
+			 WAS_ZERO
+			 	decode  TABLE16[byte] 
+				goto_DONE
+			 NON_ZERO
+			 	decode TABLE256[byte]
+				goto_DONE
+
+		First 16 tables
+			only require 16 SLOTS
+			entire MODULE MINI_HEAP uses 16 areas of u24
+		BEYOND THAT
+			entire MODULE MINI_HEAP uses 256 areas of u24
+			maybe more decoding from BYTE_A
+
+		This enables entire DECODE_32 into single ITEM 
+
+			ITEM is 1 of u24 picked from WORD_ONE
+			EXPR is u24_decoded within ITEM
+
+			{ u4_HEAP u24_OFFS }
+			{ u4_HEAP u24_IDX }
+
+			{ u8_HEAP u24_OFFS }
+			{ u8_HEAP u24_IDX }
+
+		LOCN += SPEC
+		LOCN += SPEC.field
+
+			inherit from SPEC as if it was a base class
+			mutiple inherit - a bit like CXX
+
+			learn to apply this mod to all instances
+			learn to default absent values
+			learn to OMIT fields that dont apply += ANNOT
+
+		LOCN += SPEC_as_FIELD
+
+			SPEC names it's own FIELDNAME ~= SPEC_NAME
+			LOCN.NAME += OBJ
+			LOCN.NAME.field += VALUE ...
+
+		SPEC of ARRAY
+		SPEC of STRUCT
+		SPEC of ATTR
+		SPEC of NAMED_ATTR_FIELD
+		SPEC of "{ bool attr_from_type }" // if no override += REASON
+
+			SPEC brings GUI per field
+			SPEC brings DB per ITEM
+			SPEC brings EXPLAIN per ITEM
+			DB_OBJ probabyl rather 
+
+
+	MODULE is [u32] single ITEM 
+
+		REGEN defragments MODULE
+		MERGE can share MODULE_STORAGE all fit on [u32]
+	
+	SUITE += GROUP of MODULES
+	GROUP += MODULE[s]
+
+
+
+
+	 ACCESS 
+
+	HEAP
+
+	POOL_STR0
+	 regional keys
+
+

@@ -354,34 +354,36 @@ bool sender_t::copy_src_name_dst_try(
 
 	// end // size_part
 	int size_block = 1024 * 32; // 32K is DVD block size
-	static const int loops_per_sync = 1000; // 500; // 100; // 50;
+	static const int loops_per_sync = 1; // 5; // 1000; // 500; // 100; // 50;
 	if(0) size_block = 1024; // TEST slow down
-	if(1) size_block = 1024*256; // TEST slow down
+	if(1) size_block = 1024 * 4; // TEST slow down // at least FS block size
+	if(0) size_block = 1024*256; // TEST slow down
+	if(1) size_block = 1024*32; // TEST slow down
 	char buff[ size_block ];
 	int fake_stop = 5; // TEST partial copy using fixed limit progress
 	int loops_count = loops_per_sync;
-	static const int every_n_seconds = 2; // 10; // 5; // do full fsync not fdatasync
-	time_t time_last_sync; // rounded seconds
+	static const int every_n_seconds = 1; // 2; // 10; // 5; // do full fsync not fdatasync
+	time_t time_last_check; // rounded seconds
 	time_t time_last_fsync; // rounded seconds
 	time_t time_right_now; // rounded seconds
-	time_last_fsync = time_last_sync = time_right_now = time(NULL);
+	time_last_fsync = time_last_check = time_right_now = time(NULL);
 //	u64 size_sent_tide = 1024*1024; // 1 MB ~ 20 seconds 
 	u64 size_sent_tide = 512*1024; // 256 K ~ 5 seconds // ?
 	while (size_left > 0) {
 
 		time_right_now = time(NULL);
-		if( time_right_now != time_last_sync ) {
+		if( time_right_now != time_last_check ) {
 			// every changed second
-			time_last_sync = time_right_now;
+			time_last_check = time_right_now;
 			if( time_last_fsync + every_n_seconds <= time_right_now ) {
 				time_last_fsync = time_right_now ;
 				// every 5 seconds // if check within that sec
-				if(0) {
-					if(!call_fsync() )
+				if(1) {
+					if(!call_fdatasync()) 
 						return FAIL_FAILED();
 				}
 				if(1) {
-					if(!call_fdatasync()) 
+					if(!call_fsync() )
 						return FAIL_FAILED();
 				}
 			} else {

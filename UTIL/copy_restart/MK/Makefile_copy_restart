@@ -13,6 +13,7 @@
 	INCLS += -I../src/
 
 	PKGS += libs_apps_base1
+#	PKGS += libs_apps_base2
 
 	DEFS = 
 
@@ -46,6 +47,8 @@
 	PROG_OBJS += copy_file_dir.o
 	PROG_OBJS += copy_tree.o
 	PROG_OBJS += dir_reader_sorted.o
+	# move to libs_apps base2 ssl1
+	PROG_OBJS += sha_md.o
 
 	# OK # OBJS # used by MK_SUFFIXES # to build .exec or .elf
 	# OBJS must not contain PROG.o

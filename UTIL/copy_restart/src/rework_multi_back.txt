@@ -309,9 +309,16 @@ WANT filesize match
 
 	EXPECT ROOT is a symb link in local ROOT or .. // follow that %s/.
 
+ _VFS
+ _VFS_Python_SMB
+ _VFS_FTP
+ _VFS_HTTP_GET	_RANGE
+ _VFS_HTTP_POST
+
 _KPS_
 
 	keep list of seconds { 300 60 20 5 2 }
 	uses 1 record per second, when grain == 1 sec
 	uses 1 record per minute, when grain == 1 min
+
 	

@@ -1,0 +1,110 @@
+
+	decode_filename/
+	decode_filename.txt
+
+	decode_MINE_filename
+
+		_EXT == ".mp3"
+		lookup_EXT(%s)
+
+		find_sublex_STR0 // a_name_part
+
+	decode_ROOT_LOCN_ITEM_OPCODE
+
+		MUX_PSG intermixes interleaves is_ATTR("ITEM")
+
+		// ALIAS ITEM "ITEM"
+		// ALIAS ITEM "SELF"
+		// ALIAS ITEM "local_ITEM"
+		// ALIAS ITEM "refer_to_remote_ITEM"
+		// ALIAS ITEM "EXPR LIBR += LIBR_EXPR"
+		// // this stuff writes itself
+	
+
+	decode_ROOT_LOCN_ITEM_OPCODE
+
+		ROOT {
+		}
+		LOCN {
+		}
+		ITEM {
+		}
+		OPCODE {
+		}
+		LOCN_MINI_MACHINE {
+			// API //
+		}
+
+	decode_ROOT_LOCN_ITEM_OPCODE
+
+		IDX_t IDX = lookup "EXPR"
+		PSG += decode_lex_VARNAME // also _sub_zone_name
+		PSG += a1_a2_star STR0 = MATCHED "a1_a2_star" 
+		// SOURCE needs to READ SELF to pre apply this MACRO
+		// SOURCE VIEW did that as part of BATCH CT_
+		// EXPAND_MACRO "SOURCE_VIEW_xFFFF" // MINI_MACHINE
+	
+	MINI_MACHINE += FILTER += _BIND
+
+		UDEF _BIND 
+		BIND LOCN XPOS // SOURCE DIR FILE LINE_NUMBER XPOS
+	
+	XPOS += CPOS
+
+		CPOS {
+			XPOS {
+				KNOW 
+				# name parameters to build dictinary of TOKENS
+				# name parameters to ARGV
+				// CT_ ANNOTATE VARS with NAME XPOS
+				// POOL // all CODE from UDEF // data
+				KNOW FILE OFF LINE CPOS
+				// CPOS { ... TODO ... } // BYTE[cpos}
+				// BYTE_POS == i/* VAR_NAEM */ 
+				// CODE_VIEW // BENCH FILTERS on CODE_VIEW
+				// DATA VIEW // BENCH SETTINGS
+				// DATA VIEW // BENCH LIBRARY
+				// DATA VIEW // BENCH Module
+				KNOW LIBR Module ALIAS SPEC
+
+				XPOS BYTE_OFFS_FROM_BOLN_in_bytes
+				XPOS GLYPH_COUNT /* FROM BOLN */ COUNT
+				XPOS CALC_XY_of_DISPLAY // WH ETC
+
+				CPOS { utf8_glyph_count since BOLN }
+
+				DECODE "since" good_lex_edge_Y used_as_sublex
+				SAMPLE HERE == "OFFS_in_FILE" // u8 * PTR //
+				EA ADDR = BASE + OFFS
+				EA BASE = BASE + OFFS
+				EA OFFS = P1 - P0
+				EA P0 = ADDR_ZERO == "PAGE_ONE"
+
+					TOKENISE 
+					 Module_EA does the work
+					 It provides an ARGV (OBJV) of STR0
+					 It imports DIALECT from PSG and DOC
+					 DIALECT makes heavy use of KNOWN_VAR_NAME
+				EA P2 = OFFS_EOF_NEXT
+
+					// ie points just outside, next byte
+
+				EA OFFS == P2 - P1 // 
+				EA N == P2 - P0 // 
+				EA P1 == CSR_XPOS_as_OFFS // must add base
+				EA Q2 "{ SCRIPT_STEPS }"
+				// GEN OPCODE ARGS // CMNT // CODE_POINT
+				// GEN MACRO LIBR += DIALECT
+				// DIALECT += ARGV == "OPCODE ONE TWO"
+				// DIALECT += AUTO_PARSE ARGV
+				// ARGV == "OBJV"
+				//
+
+
+
+
+				"CPOS" 
+
+				KNOW SOURCE_DIR _ROOT _LOCN 
+			}
+		}

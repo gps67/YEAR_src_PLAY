@@ -415,7 +415,7 @@ bool sender_t::copy_src_name_dst_try(
 		 tm_parts tm_part;
 		 tm_part.local_from_time(time(NULL));
 
-		e_print("\r %s size_sent K x%lX size_left %7.3f M ", tm_part.str_http(), (long) (size_sent/1024), (float) size_left / (1024*1024) ) ;
+		e_print("\r %s size_sent Kx%04lX size_left %7.3f M ", tm_part.str_http(), (long) (size_sent/1024), (float) size_left / (1024*1024) ) ;
 	//	if(!loops_count) e_print("\n");
 	//	e_print("\n");
 	//	fflush(0); // e_print does not need fflush(0)
@@ -432,6 +432,13 @@ bool sender_t::copy_src_name_dst_try(
 			continue;
 		}
 		int wrote = 0;
+
+		fflush(0);
+		unsigned int HZ = 100; // sleep for 1 Hz cycle 
+		unsigned int msec = 1000 / HZ;
+		unsigned int usec  = 1000000 / HZ;
+		usleep( usec );
+
 		e_print(".");
 		wrote = fd_dst.write( buff, sz_write );
 		if( wrote != sz_write ) {

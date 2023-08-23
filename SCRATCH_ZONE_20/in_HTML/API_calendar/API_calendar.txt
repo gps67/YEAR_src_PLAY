@@ -1,0 +1,141 @@
+API_calendar/
+API_calendar.txt
+
+	https://developers.google.com/calendar/api/guides/overview
+
+	Google Calendar API overview
+￼
+	The Google Calendar API is a RESTful API that can be accessed
+	through explicit HTTP calls or using the Google Client
+	Libraries. The API exposes most of the features available in
+	the Google Calendar Web interface.
+
+	Following is a list of common terms used in the Google Calendar
+	API:
+
+
+	Event
+
+	An event on a calendar containing information such as the title,
+	start and end times, and attendees. Events can be either single
+	events or recurring events. An event is represented by an Event
+	resource.
+
+	Calendar
+
+	A collection of events. Each calendar has associated metadata,
+	such as calendar description or default calendar time zone. The
+	metadata for a single calendar is represented by a Calendar
+	resource.
+
+	Calendar List
+
+	A list of all calendars on a user's calendar list in the
+	Calendar UI. The metadata for a single calendar that appears
+	on the calendar list is represented by a CalendarListEntry
+	resource. This metadata includes user-specific properties of
+	the calendar, such as its color or notifications for new events.
+
+	Setting
+
+	A user preference from the Calendar UI, such as the user's
+	time zone. A single user preference is represented by a Setting
+	Resource.
+
+	ACL
+
+	An access control rule granting a user (or a group of users)
+	a specified level of access to a calendar. A single access
+	control rule is represented by an ACL resource.
+
+SUGGESTS
+
+	
+	https://developers.google.com/workspace/guides/get-started
+
+		it says RTFM means
+
+			https://console.cloud.google.com/workspace-api
+	
+GOOGLE like SUBLEX_SEP "-" hate "_" 
+
+The name has invalid characters.
+Enter
+	letters,
+	numbers,
+	single quotes,
+	hyphens,
+	spaces or
+	exclamation points.
+
+	// PARSE COMMA_OR
+	// parse multi word ident
+	// AUTO_REWORD_USING // MODULE COMPONENTS //
+
+location = no organisation
+
+HOW CREATE LOCN
+
+Create a Google Cloud project
+In the Google Cloud console,
+go to Menu menu > IAM & Admin > Create a Project.
+Go to Create a Project.
+In the Project Name field, enter a descriptive name for your project. ...
+In the Location field, click Browse to display potential locations for your project. ...
+Click Create.
+
+AM and Admin
+ Create Project
+ but before that do
+ Create Cloud Identity and Foundation
+
+ 	get-started says
+
+	5 steps to get started￼
+	Create a Google Cloud project for your
+		Google Workspace app,
+		extension, or
+		integration.
+
+	Enable the APIs you want to use in your Google Cloud project.
+
+	Learn how authentication and authorization works when developing for Google Workspace.
+
+	Configure OAuth consent to ensure users can understand and approve what access your app has to their data.
+
+	Create access credentials to authenticate your app's end users or service accounts.
+
+
+I want to be ME
+
+	Need to authenticate caller as OWNER of SHEET or ACCES via API
+
+	https://developers.google.com/workspace/guides/auth-overview
+
+	Looking for ADMIN to help edit own calendars
+	Looking for PUBLIC to read MY calendars
+	Looking for GROUP to read MY calendars
+	Looking for ANON to read MY calendars
+
+Create Google DEVELOPER account
+
+	popup appears on some top pages
+
+https://console.cloud.google.com/projectcreate
+
+	https://developers.google.com/workspace/guides/auth-overview
+
+https://developers.google.com/calendar/api/quickstart/js
+
+	this looks like a good place for devs
+
+	it helped ADD Calendar API to FMT-FORMAT-FMT API
+	FMT-FORMAT
+	FMT-FORMAT-FMT	PARSE "%03x" as SUBLEX_STEP
+	FMT-FORMAT-VALUE PARSE generated from "%s_x%03X"
+
+google chrome not responsing
+
+	and WAIT not happy
+	so disrupt chrome
+

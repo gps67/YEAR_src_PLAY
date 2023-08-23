@@ -1,0 +1,33 @@
+Remote Message Queue
+
+	defer EVAL until round-trip done == later
+
+	see how much EXPRS can be RESOLVED using AVAILA_DATA _or_LATER
+
+	CACHE
+
+		EVAL_WANTS_VALUE_FROM_REMOTE
+
+		EVAL_USES_TREE
+
+			EXPR_1234 uses EXPR_5678
+			EXPR_5678 helps { ... EXPR_1234 ... }
+
+		INVALIDATE_EXPR("%s")
+
+			idx_EXPR_from_STR0
+
+				lookup STR0 adds second
+
+		GETTERS_AVAILABLE
+
+		BRIDGE_GAP my_ref_your_ref
+
+			adds in THEORY
+
+	COMPILE
+
+		LAZY_eval says dont EVAL yet
+		FULL_FAST_ACTION says propagate immediately
+	
+	ZZ

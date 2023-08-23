@@ -99,7 +99,216 @@
 				// DIALECT += AUTO_PARSE ARGV
 				// ARGV == "OBJV"
 				//
+DECODE FILENAME
 
+	recognise FILENAME eg "ZOOM%04d" "%d" STR0 == "ZOOM" STR0 == "%04d"
+	DECODE by RECOGNISE or MATCH_EXACT or PARSED_SCRIPT or PARSED_DATA
+	FAST_LEX by strcmp within CIDENT
+	SUB_LEX OPCODE ONE
+	SUB_LEX OPCODE ONE TWO
+	SUB_LEX OPCODE ARGS
+	SUB_LEX ALSO_FAST_MATCH DIALECT DECODE
+
+		"%04d"
+		"%  d"
+		"%d"
+		 "04"
+		  0 - left_fill_printed_zero
+		   4 - RTFM printf field_width _exprs
+		"%04d" - TOKENISED SAMPLE VALUE
+
+		bool operator==( XPOS_TWO ) // ie cached value from EXPR // BIND
+		BIND "STR0" codes_own_XPOS as u8 * CSR == "P1" 
+		... OUT_SIDE ... // [P0 ... [P1 ... [p2 OUTSIDE ...
+		XPOS_is_FILE_OFFS {
+		//
+			FILE {
+				LOCN = DIR
+				NAME = FILENAME // ambiguous LOOP
+			}
+			OFFS {
+				i24_DECODED to { i23 u23 } == { MINUS PLUS }
+				OPTION MINUS_ZERO_PLUS // USAGE_VARIES PLUS ZERO
+				u23_PLUS_%s // i24_PLUS_means_OFFSET
+				i23_MINUS_%s // i24_MINUS_means_DECODE TOKEN EA
+				u23_PLUS_OFFS // i24_MINUS_means_DECODE
+				i23_MINUS_TOKEN
+					i24_but_already_tested_as_MINUS
+					u24_IDX_MINUS _t TOKEN
+					EDGE_CASE_BITFIELD_MODULE
+					// you never need more than u4
+					// DESIGNED into OPCODE
+					EA = EXPR ARGS
+			}
+		//
+		}
+#if 0
+	BENCH moves things around // FILES ARCHIVES SORTED TABULATED STORED
+	SCRIPT written over time, whilst also stepping BENCH
+	RECORD every STEP // REWRITE PRE_MACRO PARSED KNOWN CT_RT_STEP
+	REWRITE every STEP // get VALUE from VAR // BENCH is where this happens
+	RERUN EXPR KNOW_queued_UDEF "LIBR/Module"
+	"LIBR/Module"
+	RERUN EXPR KNOW_queued_UDEF Module
+	EA LIBR ZONE LOCN ITEM OPCODE ARGS OPTS
+
+	BENCH BITFIELD
+
+		get i64_from_i24 // ie a typical BITFIELD usage GET_VALUE
+		get i64_from_i24 // ie an import BITFIELD USAGE EXPR_GET_VALUE
+
+		DECODE u64 {
+			u8_u8 // PAIR
+			i24_L // PAIR
+			i24_R // PAIR
+		}
+
+		DECODE u64 { { u32 u32 } 
+			u8_u8 // PAIR
+			i16_L // i16_MINUS_ZERO_PLUS_shifted
+			i32_R // i32_MINUS_ZERO_PLUS_DIRECT_ACCESS_i32
+			// IE CPU uses i32 aligned access via CACHE
+			// ON SET_VAL call TELL_CACHE_of_CHANGE
+			// i16_OPOCDE
+			// i32_ITEM // or EA_EXPR that DECODE can DECODE
+			// MINUS_ZERO_PLUS // TOKEN NULL PLUS // ALIAS PLUS
+			// MORE // PLUS_but_not_ZERO ZERO_is_PLUS 
+			// sometimes // HERE // SESS // on_NULL // KNOW_NULL //
+			// KNOW_NOT_NULL is exactly same LIBR as KNOW_NULL
+			// BENCH provides NULL || VALUE_PLUS || EXPR_to_DECODE
+			// BENCH provides NULL || KNOWN_NULL //_or_not
+			// BENCH provides ITEM || KNOWN_NOT_NULL //_or_not
+		}
+
+		get_i16
+		get_i32
+		get_i48
+		get_BYTE_A
+		get_BYTE_B
+	
+	BITFIELD BENCH
+
+		as_i32_get_i24 // decode bitfield into wider word
+
+			shift left // deleting bits to the left
+		//	shift back // ditto but merge add to next OPCODE
+			shift right // deleting bits to the right
+			// aligning field with BIT0
+
+		as_i32_set_i24 // varies with already_X
+		// i24_arrives_as_i32
+
+		 ASIS {
+		 	ALLOW IDX > 24 bit upto 32_IDX_t
+
+				use CPU half word circuitry
+				CACHE READ then WRITE action
+				GEN_CODE_for_BITFIELD_GET
+
+					shift left S_L // u5 [0[32 // u6 [0[64
+					shift right S_R // u7_IDX_of_BIT_128
+					shift right S_R // u8_IDX_of_BIT_256
+					shift right S_R // u16_IDX_of_EXPR_CALC
+
+					GEN ALIGN_64 // u64_WORD //
+
+					u6_BIT_POS_in_u64_WORD
+					i8_MINUS_EXPR_BIT_POS_in_u64_WORD
+					u7_IDX_OPCODE u8_IDX_OPCODE
+
+						[MINUS_MIN[M1[ZERO[OVER[P2_OUTSIDE
+						EA_BYTE_A EXPR
+						EA_BYTE_B EXPR
+						EA_i48
+						EA_i32
+						EA_i16_BITFIELD
+						EA_i16_NAMED_i16 SIGNED
+
+						ASM EA PTR get i16 stro i64_REG
+						ASM FLAGS from TEST i64_REG
+						// or TEST_RESULT_into_REG
+						// MINUS_ZERO_MORE
+						// MINUS_ZERO_PLUS // OPTION
+						// shift_left_shift_right
+						// does SIGNED
+						// does ZERO
+						// does TEST // STATE //
+
+
+
+						MINUS_TOKEN
+						MINUS_IDX
+						MINUS_OFFS
+						 KEEP as [i8_MINUS
+						 CONV IDX = ZERO - i18_MINUS
+						 // ZERO was idx_ZERO == 0
+						 // rotated PLUS MINUS 
+						 // OPTION treat as VALUE
+						 // OPTION treat as NULL
+						 // OPTION treat as M1 _ZERO
+
+						 	a good compiler
+							can track -IDX near ZERO
+
+							CT_RT use VALUE_RE_RANGE
+
+						ZERO_TOKEN treat as MINUS_TOKEN
+						ZERO_TOKEN treat as ZERO_TOKEN
+						ZERO_TOKEN treat as NULL_TOKEN
+
+							TEST_NULL_or_M1_or
+							 FSM of PRE_BUILT
+
+					PARSE_LEX _from_SCRIPT
+					PARSE_LEX _from_ARGV
+					KNOW_LEX _from_ABOVE
+
+
+					// USE_DIRECT is a later OPTIMISER
+
+						i8_PLUS_BIT_POS
+						i8_MINUS_BIT_POS
+
+
+				GEN_CODE_for_BITFIELD_SET
+		 }
+
+SEEK i24
+
+	ALLOC_ZONE
+	SCRIPT_ZONE
+	MINUS_TOKEN_ZONE
+	MINUS_EXTRA_RT_ALLOC_ZONE
+	MINUS_UNUSED_asif_u24_ZONE // MINUS but PLUS
+
+		draw a diagram
+		a FEW M1 M2 and 20 MINUS_TOKENS
+		a FEW_MINUS_GAP for FAST ADJUST
+		MANY PLUS_technically_MINUS
+		MANY MINUS_simply_large_PLUS // u24_from_i24 // RANGE M_20
+
+SEEK u24
+
+	SEEK_i24 RANGE_M_20 // twenty minus values near zero -  items
+	DECODE
+	 ZERO
+	 ZERO_PLUS
+	 MINUS
+	  MINUS_M2
+	  MINUS_M60 // 60 items each a TOKEN alloc DOWNWARDS
+	  MINUS_but_PLUS_u24_from_i24
+
+	  	shift left
+		shift right signed or unsigned // ZERO FILL
+	
+	eg u8 gets reduced to IDX_200 but gains EXPR_56 // any number 
+
+		MACRO CODE in shift_left_right_BITFIELD_world
+
+			GET SET KNOW CACHE_CTRL
+	
+
+#endif
 
 
 
@@ -108,3 +317,42 @@
 				KNOW SOURCE_DIR _ROOT _LOCN 
 			}
 		}
+
+DECODE MIME FILENAME
+
+	SPLIT 
+	 detect no SPLIT in some way
+	 detect use of known ROOTS
+	 known TREE of STEPS
+	  add found to list
+	 known DIRS of ARCHIVE_INFO 
+	SUBLEX
+
+	 DIR
+	 	DIR is YEAR - split all files by YEAR
+		DIR is REC - activity description
+		DIR is TASK_STATE in PROJECT
+
+			AUTO %s_%s as "{ %s %s }"
+
+			REVERSE AUTO
+			anything == "VAR_NAME" // NEED_EXPR_TWO_to_be_THIS
+	 EXT
+		 .WAV 
+
+		 group .wav .mp3 
+	 ZOOM
+	 ZOOM%04d.WAV 
+
+	 	WARN get away from this filename it restarts and repeats 
+
+		FIND file on SD_32 from ZOOM2_recorder _using_OPTIONS
+
+			KPS
+			FPS
+			nchannels == { 1 2 { 2 2 } 4 } += GEN_2_FILENAMES
+
+	2023-01-31 
+
+
+

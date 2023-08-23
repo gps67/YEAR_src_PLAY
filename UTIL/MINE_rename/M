@@ -1,0 +1,22 @@
+
+##	. fns_VARS
+##	
+##	var_add \
+##		PKG_CONFIG_PATH \
+##		$HOME/G/prefix/SM/lib/pkgconfig \
+##	#
+##	
+##	# or ln -s .../mosjs-106.pc $some_other_dir/
+##	
+##	export PKG_CONFIG_PATH
+##	echo "$PKG_CONFIG_PATH"
+##	var_list PKG_CONFIG_PATH
+
+## Makefile uses
+##	LIST_PKG_CONFIG_PATH += $(DIR_G_prefix)/SM/lib/pkgconfig/
+
+
+[ -d obj ] || mkdir obj
+cd obj
+
+make -f ../MK/Makefile "$@" 

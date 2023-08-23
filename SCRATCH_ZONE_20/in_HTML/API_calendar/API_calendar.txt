@@ -139,3 +139,23 @@ google chrome not responsing
 	and WAIT not happy
 	so disrupt chrome
 
+add API to project
+
+	https://console.cloud.google.com/
+	https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=fmt-format-396721
+
+https://console.cloud.google.com/apis/credentials/consent/edit;newAppInternalUser=false?project=fmt-format-396721
+
+	EXTERNAL - uses list of USER
+
+	120 x 120 px 1MB  JPG PNG or BITMAP
+	Shown on login page [ XX XY ]
+	%X xF is u4 || PLUS is OK
+	%02X xFF is u8 || %04X xFFFF is u16
+	%03X xFFF is u12
+	%04X xFFFF is u16
+
+	add app to project
+	add user to project
+	add user to testlist
+

@@ -55,6 +55,9 @@ db_certs
 trace_*.pem
 prng_seed.dat
 
+# node_modules/ dir
+node_modules
+
 # Fortran module files
 *.mod
 *.smod

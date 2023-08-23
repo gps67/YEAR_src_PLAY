@@ -1,0 +1,4 @@
+set -x
+exec open http://localhost:8000
+
+

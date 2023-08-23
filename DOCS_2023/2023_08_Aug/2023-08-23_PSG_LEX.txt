@@ -1,0 +1,125 @@
+	2023-08-23
+
+	2023_08_Aug
+	2023-08-23_PSG_LEX.txt
+
+	Use YACC at the SUBLEX level
+
+	use different module names
+
+	 yacc_step += yacc_step
+	 yacc_step += ONE L I S T
+	 yacc_step += SEQ L I S T
+	 yacc_step += PLUS L I S T
+	 yacc_step += STAR LIST
+
+	 express dialects of phrases used surrounding decoded EXPRS
+
+	 attempt 100% MATCH systematic chaos
+	 stream 100% MATCH surrounding DOCS under CODE
+
+		BOTH DOCS filtered by CODE
+	 	BOTH DOCS about CODE // DOCS about FILTER //
+
+			presumed parent sess activifty == FILTER
+
+			 IN CODE += "/*! OXYGEN_COMMENT */"
+			 OUT DOCS view of STRUCT and FUNCS
+
+		XPOS
+
+			CSR at LOCN
+
+		DRAW
+
+			XPOS in source FILE LINE CPOS
+			XPOS in source FILE LINE CPOS_of_XPOS
+			XPOS in source FILE LINE OFFS_of_XPOS
+			XPOS in source FILE LINE ADDR_of_XPOS
+				ADDR == u64_EXPR // FILE LINE OFFS //
+
+		XPOS
+
+			FILE_LINE_OFFS
+
+				FILE { FILE }
+				LINE { LINE }
+				XPOS { OFFS_of_XPOS_wrt_BOLN }
+
+			VARIATION EXCODING
+
+				largest model = 
+
+					u8_u8 
+						var[var] // "OFFS_in_FILE_BOLN"
+						var == "FILE"
+						var == "FILE[var]"
+						var == "var" // IDX = N ++ //
+
+					u16	FILE where STUFF IS
+				||	u16	SEGMENT_where STUFF IS
+
+					u32	OFFS_in_FILE _of_XPOS_
+					_of_XPOS
+						creates a more specialised
+						variety of SUB_HERE
+
+						ATTACHES_MEANING to 
+						 OFFS_in_FILE
+
+						ATTACHES_MEANING of
+						 _of_XPOS of XPOS
+
+				SEGMENT limit 4G
+
+					this is intended for SCRIPTS
+					might even find DECODE_32
+					 u2_PICK_SEGMENT 0 1 2 3
+
+				u64_DECODED
+				===========
+					u8 BYTE_A
+					u8 BYTE_B
+					u48 u48_BITFIELD // u64_WORD >> 16
+					i48 u48_BITFIELD // i64_WORD >> 16
+					i16 i16_BA_from_lohi // ASIS lohi 
+					// but in REG always R2L_bit_numbering
+
+				u32_DECODED
+				===========
+
+					 u8_OPCODE_i24_BITFIELD
+					 // GEN "{ OFFS = u32_WORD >> 8 }"
+					 // GEN "{ OFFS = i32_WORD >> 8 }"
+					 // typedef i32 i32_WORD //
+					 // typedef u32 u32_WORD //
+					 // _WORD means // FULL WORD aligned
+					 // _BITFIELD means SHIFT REQUIRED
+					 // _BITFIELD can mean WORD _aligned _full
+					 // INTEL_CPU acknoledges that it has AX
+					 // RISC_V // as JIT code for QEMU
+
+				GEN ASM // RISC_V // as JIT code for QEMU
+
+					GEN RISC_V
+					GEN LIBR // would benefit AMD ARM RISC_V
+
+					RUN QEMU over RISK_V code
+	HOW ??				JIT run ASM // HOW
+
+
+				SEGMENT LIMIT 16_MB
+
+					 u6_OPCODE
+					 u2_SEG
+					 u24_OFFS
+					 ===
+					 u32_DECODED
+
+					 u6_OPCODE
+					 u2_SEG
+					 u24_IDX
+					 ===
+					 u32_DECODED
+
+

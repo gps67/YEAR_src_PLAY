@@ -402,6 +402,10 @@ bool bool_main( int argc , char ** argv, char ** envp )
 
 int main( int argc , char ** argv, char ** envp )
 {
+	// debugging messages go to a tcl window
+	// works but 5 tests means 5 windows to close
+	// dgb_fork_stderr_to_tcl_text();
+
 	// without ANY need, ld optimised out base1.so
 	INFO("HERE");
 	if( bool_main( argc, argv, envp ) ) 

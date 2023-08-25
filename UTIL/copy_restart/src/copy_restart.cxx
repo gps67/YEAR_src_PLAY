@@ -118,6 +118,8 @@ bool opt_move = false;
 
 bool bool_main( int argc, char ** argv ) {
 
+	dgb_fork_stderr_to_tcl_text();
+
 	set_prog_name( argv[0] ); // check this
 //	gdb_sigaction( argv[0] ); // check this
 

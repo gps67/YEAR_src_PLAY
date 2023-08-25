@@ -1,0 +1,501 @@
+
+	YES MATCH PATTERN
+	YES MATCH OTHER ;# partially decoded ; vanilla semantics OPCODES
+	NO MATCH ANY
+	NO MATCH ITEM_NAMED_PATERN2 #
+
+	ITEM OPCODE
+	GETTER of ITEM_VALUE // multi layered PICK
+
+		single layer - PICK == DONE
+		double layer - LOOK == FOUND in LHS.LIBR RHS.LIBR BOTH 
+
+		STO in CT_ETHER += CODE_POINT AVAR get_SPEC_API
+		API_is_SPEC
+
+			lookup_about "ITEM"
+			lookup_about "THIS.SPEC"
+	
+	YES CSV JSON TABLE VAR_POOL SPEC_ABILITIES
+
+		tcl cannot modify callers parameter
+		tcl cannot reach callers parameter
+
+		-- so use ITEM_NAME as VAR and request caller uses VAR_POOL --
+		-- CT_FORWARD_THROW
+
+			CT creates name "{ IDX_t & IDX = { IDX_N_t N } ++ }"
+			// BAD SYNTAX // gets seen as // KNOWN as // "{ %s }"
+			// NAME is ambiguous, used for different reasons
+			// VAR_NAME is ALSO_from_LOCAL influence DIALECT
+			// NEARBY is another word for IN_SAME_SCOPE //
+			// NEAR is not (usually) HERE
+			// NEAR is "{ /* CT_NEAR_is_HERE */ }") HERE
+			// LEXER SPLITS runs of SUB_LEX into ARGV with STITCHING
+			// When you use ITEM you pull on its STRINGS //
+			// CACHE then steps up, LOCK CT_already_knew // INFER //
+			// Parse // Phrase // IDIOM EG("int idx = { int N } ++")
+			// Parse // Phrase // IDIOM EG("int idx").API.NAMED_PHRASE
+			// PHRASE("NAME") // create "NAME" by merest MENTION
+			// PHRASE("TEXT") // CODE += Module += SCRIPT
+			// PHRASE("ARGV") // API += CODE ; API += ARGV DATA
+			// if data parses to ARG // to OBJV 
+			// for tricky DATA parameters, and LINK_to_DATA, EA
+			// my_ref == "EA_x%X" // FILTER rewire as "x%02X" // xFF
+			// API REWIRE as PICK { A B C D }
+			// A == { NAME %s } // FILTER_OUT REWRITE_FOR cident99
+			// B == { SPEC %s DATA %s } // DIALECT triggers PICK
+			// C == { SPEC %s DATA %s CODE %s } // DIALECT CALLS
+			// D == { OBJV ${INVOKING_MODULE_CODE_POINT} }
+			// D += IDX LIBR DIALEXT // LEXER // SUBLEX MATCH
+
+TODO
+ rename ZOOM123.WAV 
+ filter 
+ rewrite TOPIC == "ZOOM" ext == "wav" // ALIAS ".wav" CACHED_STEP_MATCH
+
+ Parser
+  Lexer
+   CSET
+
+   	a1_a2_star {
+
+		This is one option for AXIOM cident98
+		#define cident98 cident99 // the transformational step
+	}
+
+	gap_Q2_bookend {
+		Q2 DIALECT ... usage features BACK_SLASH_ACTION
+		AMP_BACK_Q1_CSET_GLYPHS // and GAPS
+		Q1
+		CURLIES
+		ROUND_BRACES PARENT
+		SQUARE_BRACKETS 
+		PUNCH C1 & ^ # $ | // LEX_TOKEN == "TOKEN_for_PUNCT_BYTE[BYTE]"
+		// OPTIMISED CSET LIBR //
+		// it already looksup PUNCT_DECLS_for_AMP == lookup( idx_u8 )
+		// condensed idx2 = "{ CT_lookup idx1 }"
+		// SPEC proves a bunch, or one best mapping so far
+		// SPEC uses NAME and SORT_POS 
+		// MINI_MACHINE uses first N idx_VALUE for CT_KNOWN
+		// MINI_MACHINE adds more after N idx_VALUE_at_RT // needs AVAR
+		// AVAR simply copy over first N values from ROM rom to STO
+		// 
+		PUNCH C1C2 "||" now a LEX TOKEN
+		PUNCH C1C2C3 "===" now a LEX TOKEN
+		IDENT cident99 cident98 cident ident IDENT ALIAS "{ ALIAS %s }"
+	}
+
+	ident_multi_part_lex_ident
+
+		a1_a2_star PICK REASON CODE_POINT
+		SEP "_"
+		SEP2 "." // in FILENAME not in CIDENT //
+
+	in FILENAME
+		NO_GAPS rewire_with_SEP
+		OPT MINUS avoid or rewire as SEP // "-" becomes "_" //
+	in CIDENT
+		NO_GAPS rewire_with_SEP
+		NO_MINUS PSG steals that
+	
+	MINI_MACHINE ALLOC "{ idx_t idx = idx_t N ++ }"
+	MINI_MACHINE ALLOC "{ idx = u23 N ++ }" // u11 is also available
+	MINI_MACHINE uses low_N tables for CT_POOL
+	MINI_MACHINE uses ALLOC_STO for CT_POOL + RT_POOL
+	MINI_MACHINE uses second tables for RT_POOL // DECODE must SWITCH
+	MINI_MACHINE ROM or COPY_INTO // less secure but easier //
+
+	PUNCT has it's own global ROM table u8_TOKENISED = lookup u8_C1
+	PUNCT has it's own global ROM table OBJ ACTIVE TOKEN = table u8_idx
+
+		C1 = PUNCT C1
+		idx2 = idx_of_C1 C1
+		OBJ = TABLE[ idx2 ]
+
+			NULL CHECK OBJ
+
+		idx2 = IDX_N ++ // N == "VAR_NAME_expr_N" // ALIAS N //
+
+		idx2 = get_IDX_of_ITEM_in_STO
+		OBJ = TABLE[ idx2 ]
+		ITEM == "OBJ" // multi-layer enables this to be true
+
+MATCH "true"	
+MATCH "VAR_NAME"
+PARSE "EXPR"
+
+PARSE LEX_NAME # with SUB_LEX
+
+	CAP1 CAMELCASE M_P_W IDENT a1_a2_star 
+
+		a1_a2_star 
+		CAP1
+		CAMELCASE
+		M_P_W
+		IDENT
+	
+	ALLOC_IDX_using_SORT_POS of STR0 in ROM_CT_LIST STO_RT_LIST
+
+		use LUCKY_HASH_TABLE to find OBJ_of_PUNCT
+
+			OBJ = LOOKUP C1
+	
+			
+			OBJ = LOOKUP "SPELLING"
+
+	LUCKY_TABLE
+
+		incurs COST per number of items used (CACHE)
+
+			"SPELLING"
+			C1
+			C1C2
+			"PUNCT_SPELLING"
+
+		HASH_TABLE.DECODE("EA_EXPR")
+
+			u8_u8 u16 u8_u24
+
+		HASH_TABLE DECODE STR0
+
+			OPTION OS REWIRE
+
+			Instead of STR0 use P1 
+			expect it to PARSE as a SPEC
+			eg Q2
+
+			Instead of STR0 use XPOS 
+			{ FILE OFFS }
+
+			Parsed TOKEN was found at OFFS from P0 // P1
+			Parsed TOKEN was found at OFFS from BASE_P0 // P1 // P2
+
+	BIND_LINK_THREAD
+
+		as soon as DATA is loaded it gets a u32_EA_EXPR _or_ u64_EA_EXPR
+
+		back_feed data from RT even for CT items in HEAPS
+
+		CALLER must provide an OBJ eg STR0_PLUS
+
+			ACTS as STR0 // or even STR1_VAR // or STR0_VAR //
+
+			allocate is an attribute 
+			C_pre_allocated_in_ROM_SEGMENT 
+			buffer2 allocated with testability
+			OPTION always own STR1
+
+			ACTS as PTR to OBJ
+			ACTS as LOCK LOCN or link to other LOCN # ALIAS
+
+		CALLER provides OBJ == u64_WORD[4]
+
+			SPEC
+			ROOT
+			PLUS
+			MORE
+
+		BYTES_32 per idx
+
+
+		BACK LINK idx2 = REWIRE idx1 // SPELLING or IDX //
+
+			NAME // -> SPEC <- // CODE_POINT //
+			CODE // CODE_POINT XPOS
+
+		u64_EA_EXPR = lookup STR0_SPELLING
+
+			u64 is tightly encoded // or external simpler
+
+		u12 idx_ITEM = lookup STR0_SPELLING
+			
+			VAR_POOL of 11 items // would fit un u4
+			VAR_POOL of 256 items // SPEC knows ZERO means ETC
+			VAR_POOL of 2048 items // u12 and still large POOL 
+			VAR_POOL of u8 items // FEWER
+			VAR_POOL of u8 items
+			VAR_POOL of u16_IDX items // N //
+			VAR_POOL of u23_IDX items // N //
+			VAR_POOL of u32_IDX items // N //
+			VAR_POOL of u48_IDX items // N //
+			VAR_POOL of u64_IDX items // N //
+			VAR_POOL of i12_IDX items // N // MINUS_means_CHECK
+
+		u11_idx = ALLOC_LOCAL_ITEM
+
+			we only have fifty items in CT_POOL
+
+			RT holds TABLE_2048 or TEST_N TABLE_2028
+			RT holds TABLE_2048 
+
+				TABLE_256
+				KNOW_N below 256 will have an ITEM 
+				KNOW_N above 256 needs check N
+				TABLE_2048
+				TEST_N_below_2048
+				TEST_N_above_2048
+				TABLE_2028
+
+		u8_idx_N
+
+			N = u64_N
+			if( (N>>8) == 0 ) { ... same as ... }
+			if( N < 256 ) { ... same as ... }
+
+			A 2K table of u64_EIGHT
+
+				CT_TOKEN fits_in_u8 so use TABLE
+				RT_TOKEN upto_u8 so use TABLE
+				RT_TOKEN above u8 so check_N CALL_FN
+
+			PROB:
+
+				RT within u8 zone
+
+			OPTION:
+
+				i8 decode as u7 i7_MINUS 
+
+		i12
+		i12
+		i8
+
+			u8_OPCODE i12 i12
+			u8_OPCODE lhs rhs
+			u8_OPCODE i12_lhs i12_rhs
+			u8_OPCODE
+			 i12_lhs
+			 i12_rhs
+
+		u32 OPCODE LHS RHS
+		u32 WORD_TWO
+
+
+
+
+	MINUS_means_CHECK
+	MINUS_means_INDEX
+	MINUS_means_LOOKUP
+	MINUS_means_DECODE
+	ZERO means idx_ZERO // FIRST_might_be_SPECIAL_PROTOTYPE _or_VAR_ZERO
+	ZERO means idx_PLAIN // ZERO is like PLUS
+	PLUS means idx " [ 0 [ N "
+
+		"{ %s }" rewire from " %s "
+		" A R G S "
+
+		 [	EDGE // EDGE_left
+		 0	MATCH idx_ZERO
+		 [	EDGE  // EDGE_right
+		 N	MATCH idx_NEXT
+
+
+	MATCH " A R G S " used in external Module
+
+		BIND LINK 
+		MATCHES remote CODE_POINT's TOKEN XPS " A R G S "
+	
+
+GEN C code that is some form of JSON or CXX_DATA
+
+	ELF_SEGMENT
+
+		ROM 
+	
+	MMAP_SEGMENT
+
+		STO 
+
+
+REGEN IDX tables using MANUAL RENAME / RENUMBER alternate REWIRING
+
+	VAR_NAME_STABILITY
+
+		keep the smae names for ages
+	
+	NEW_DATA_LAYOUT
+
+		all change, restart from zero
+
+		(data has keys used by script recompile everything)
+
+RE-index RE-gen RE-compile
+
+	migrate data and code forwards
+
+	gen CXX from BENCH DATA
+
+		compile SCRIPTS
+		generate DATA using MACROS
+		re-index using latest names latest idx current XPOS
+	
+	Most tables grow by APPEND
+
+		CT_KNOWN_TOKEN requires increments adds to that no RENUMBER
+
+	Some changes are RENAME
+
+		old_name new_name
+		old_XPOS new_XPOS
+	
+	Some changes are RENUMBER
+
+		old_offs new_offs
+		old_addr new_addr
+		old_idx new_idx
+	
+	Some ADDRESSES are DECODED
+
+		u8 OPCODE
+		u12 LHS
+		u12 RHS
+
+		u12 whilst in BYTE_B BYTE_A
+		-----
+		 u4_u8 
+		_BB_AAAA
+
+		u4 BYTE_B
+		u8 BYTE_A
+
+		ZONE = HERE.ZONES[ u4 ]
+		ITEM = ZONE.ITEM[ u8 ]
+	
+	u32_using_BYTE_A
+
+		u8 OPCODE OPCODE
+		u24_BITFIELD VALUE
+
+		u8 OPCODE OPCODE
+		i24_BITFIELD VALUE SIGNED
+	
+	
+ FILE
+  ZONE	i4 // " [ -8 [ 0 [ 8 "
+   ITEM	i8 // [ -128 [ 0 [ 256 
+   ITEM	i8 // [ 0x8F [ 0x00 [ 0xFF 
+
+   LOCN = ZONE.LOCN[127]
+   LOCN = ZONE.LOCN[u7]
+   LOCN = ZONE.LOCN[0]	// OPTIMISES ACTIONS and DECODE
+   LOCN = ZONE.EXPR[M7]
+   LOCN = ZONE.LOCN[i8_MINUS]
+
+ i12 is fabulous but u12 is simpler
+
+ FILE
+  ZONE	i4 // " [ -8 [ 0 [ 8 "
+  ZONE	x4 // " [ -8 [ 0 [ 8 [ 128 [ 256 "
+  ZONE	u4 // "      [ 0 [ 8 [ 128 [ 256 "
+
+   LOCN = ZONE.LOCN[256]
+   LOCN = ZONE.LOCN[u8]
+   LOCN = ZONE.LOCN[0]	// OPTIMISES ACTIONS and DECODE
+   LOCN = ZONE.EXPR[M7] // could still steal half a dozen for M1 M7
+   LOCN = ZONE.LOCN[i8_MINUS] // the other deocde is MINUS 
+
+   ITEM = ZONE[ u4 ] . ITEM[ u8 ]
+   ITEM = ZONE[ u8 ] . ITEM[ u24 ]
+
+   u32_u32
+    u32 OPCODE ONE TWO
+    u32 OPCODE LHS RHS
+
+   	{ SPEC DATA }
+   	{ DATA SPEC }
+   	{ DATA SPEC ARGS } // ARGS == SESS.ARGS // SESS is of this DECODE WORD
+	SESS is WORD in STREAM
+
+  COMPILED ARGS 
+  DECODED WORDS
+
+  	u64 ITEM_ACTION
+
+  	So take an ARGS, compile it (or pass it to COMPILED STREAM FILTER)
+	That returns an u64_CT_COMPILED ARGS with RT_PARAMETERS ARGS
+
+  	+= STREAM_DECODER
+	// keep both same PAIR line
+	+= u64_ITEM_ACTION
+	+= ARGS
+
+	ARGS is a MINI_MACHINE feature
+
+		it is an invocation of CALL ARGV
+		MINI_MACHINE adds ITEM by ITEM with CACHED SPEC
+		MINI_MACHINE builds OBJV // adds ITEM with SPEC
+
+	EVAL_SCRIPT MINI_MACHINE SCRIPT_STREAM
+
+		VAR_POOL_ONE
+
+			2048 REGISTERS or
+			CODE_POINTS
+			DATA_POINTS
+
+		VAR_POOL_TWO
+
+			unused RT
+
+		VAR_POOL_ZERO
+
+			u7_idx REGISTER 
+
+				preloaded on LOAD from FILE
+				reset on INIT into SCOPE
+
+			u7 MINUS_CTOR
+
+				copy from SAVED_VALUE_for_REGISTER
+
+			u12 OPCODE 
+
+				someone counts BITS
+				rolling payload of u12 BITFIELD
+
+			i12 BITFIELD
+
+				to convert u to i do a SHIFT PAIR
+	
+	STREAM carries OBJV
+
+	 TUPLOS come from u8_OPCODE
+
+	 	COUNT HALF WORDS
+		COUNT FULL WORDS // as PAIR of HALF_WORD
+	
+	 LAYOUT_PLUS
+
+	 	TEMPLATE = start from OPCODE
+
+		LAYER_PLUS += OPCODE ITEM EG --longarg extra
+
+		ARGV_TAIL += LIST
+
+			LIST of FILES
+			LIST of WORDS
+			LIST of PHRASES
+
+		SCRIPT is OBJV beyond ARGV
+
+			LIST of CODE_or_DATA_or_BOTH
+
+			eg closures are CT_PREPARED
+	
+	CLOSURE
+
+		VAR_NAME_LIST
+		VAR_DATA_LIST
+
+		MATCH both lists
+
+		{ NAME DATA } in STREAM
+		CALL CODE_POINT
+	
+	STRUCT += STREAM_STEP[S]
+
+		CT_STEPS append to other CT_STEPS
+
+
+

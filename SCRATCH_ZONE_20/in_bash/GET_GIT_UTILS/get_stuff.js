@@ -11,6 +11,13 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/googleworkspace/apps-script-samples
+https://github.com/googleworkspace/node-samples
+https://github.com/googleworkspace/python-samples
+https://github.com/googleworkspace/apps-script-oauth2
+https://github.com/googleworkspace/android-samples
+https://github.com/googleworkspace/md2googleslides
+
 https://github.com/mity/md4c
 https://github.com/juce-framework/JUCE
 https://github.com/libsndfile/libsndfile

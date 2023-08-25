@@ -71,7 +71,11 @@
 
 dgb: $(PROG_EXE)
 	# VPATH $(VPATH)
-	./$(PROG_EXE) $(ARGS) 2>&1 
+	INGDB=1 T gdb -tui --cd $(PWD) --command ../.gdbinit_$(PROG1) --args $(PROG_EXE) $(ARGS)
+
+#
+#
+#	./$(PROG_EXE) $(ARGS) 2>&1 
 
 # each of the .o depend on all of the .h
 $(PROG_OBJS): $(PROG_HDRS)

@@ -1,0 +1,270 @@
+#  CXX_DECODE_TEXT_DB_SCRIPT.txt
+
+	WRAP SQLITE LIBR
+	LIBR outputs to Tcl_Obj and Tcl_Obj_MYTYPE
+
+	{ NAME PTR1 PTR2 }
+	// NAME is few API_CALLABLES with SELF as name.str name.nbytes
+	// STR0_t name.str_GET() // get original buffer and trailing NUL
+	// if LANG does not provide it, we guarantee it
+	// INT_ name.str_nbytes_GET() // get original buffer and trailing NUL
+	// 
+
+	PTR1 == "SPEC"
+	PTR2 == "DATA" 
+
+	Tcl_Object is very fixed, 
+	{ NAME PTR1 PTR2 }
+	Tcl_TYPE == CXX_OBJECT_or_VARIABLE _API
+
+		Tcl_TYPE is naff, needs USES_EXTN_CXX _USES += CXX_OBJ_VAR
+
+		 CXX_OBJ {
+		 	name is ITEM_IDX_xFFFF as STR0 that hashes
+
+			u64_ONE is IDX of ITEM in CXX world an EA
+
+				ONE is CODE_POINT
+
+			u64_TWO is ... any of ...
+
+				TWO == OPCODE near CODE_POINT
+				TWO += EA_ARGV_ITEM via expr[u12]
+				TWO += EA_TEXT_ITEM via register_var[u12]
+
+			MINI_MACHINE
+
+				when not in Tcl use STR1 and HASH
+
+				build tables += ITEM AT[IDX]
+
+				u12_idx 
+				u64_EA_EXPR = EA_EXPR[u12_idx]
+
+				// u12_4096 // bytes // pairs // four // eight
+				// u64_EA_ITEM = eval(u64_EA_EXPR)
+				// use EXPR / ITEM as sample step, name change
+				// later it will follow same steps for TYPE etc
+
+				// ITEM_t & ITEM = LOCK_ACCESS("u64_EA_ITEM")
+				// CACHE means "STR0" is also STRUCT += fields
+	
+	STR0 is also STRUCT
+	create STRUCT as CXX_OBJ_STRUCT // is_a_CXX_OBJ //
+	name of THIS is STR0 // check it is unique in LOOKUP_TWO // grumble //
+	PTR1 -> SPEC
+	PTR1 -> CODE_POINT that knows SPEC of VAR
+	PTR2 -> EA_DATA_EXPR -> VAR
+
+	PTR2 = LOOKUP_ONE "ANYSTR" in TABLE is SESS.MINI_MACHINES.TABLES
+
+		VAR_POOL use HASH tables to find link to VAR_POOL_ITEM
+
+			ITEM is AVAR in VAR_POOL
+
+		AVAR NAME is ANON_INT_IDX into TABLE EXPECTED FOUND
+
+			FOUND is a feature that EXPECTED declared API for
+
+		DUPLICATE EXPR used in TREE
+
+			we search for duplicated EXPRS
+			we search for parametised EXPRS 
+			we dont search past CACHE_ALREADY_DONE // real time use
+			we do search past CACHE_ALREADY_DONE // RELOAD RETRY LOCK
+
+		VAR_POOL("SPELLING")
+
+			lookup SPELLING to get OBJ_TOKEN
+
+			OBJ_TOKEN ; derived from VIRT_STR0 as WRAPPED PLUS
+			 SPEC += obj_is_a_TOKEN // ALIAS in several SCOPES
+			 SPEC += obj_is_a_TOKEN_resolver // ALIAS USAGE //
+			 SPEC += SPEC2 // SPEC2 == "obj.SPEC" == "SPEC_xFFFF"
+
+			 OBJ_SPEC_t & SPEC = LOOKUP("SPEC") // "obj.SPEC" //
+			 STR0_t SPELLING
+			 IDX_t idx_SPELLING_in_SPELLING_TABLE
+
+		TABLE
+			local repeater of external DECL
+
+			 thislocal[u12] == lookup_u64(u64_EA_EXPR)
+			 thislocal[u12] == u64_EA_EXPR_ITEM
+
+			 val_local
+			 var_local
+			 var_global
+
+			 expr_local
+			 expr_libr
+
+			bouncing IDX through local table
+			enables use of
+
+				u4_idx
+				u8_idx
+				u12_idx 
+				u16_idx 
+				u24_idx 
+				u32_idx 
+				u48_idx 
+				u64_idx // we dont allow this
+
+				SIGNED
+
+				BITFIELD
+
+				DECODER
+
+			.
+
+		TABLE
+			
+			EIGHT_t & EXPR = EXPR[idx] // LOCK DIRECT USE //
+
+			array N of u64 // lohi aligned 8 // in MMAP
+
+			BASE = allocated for stretch N into APTR
+			BASE = N_FIXED_BLOCK_of_BYTES_within_SEGMENT
+			BASE = BASE + OFFS
+			BASE = BASE + OFFS // as EXPR
+
+		EIGHT
+
+			u64
+			u32_u32
+			u16_u16_u16_u16
+			u8_u8_u8_u8_u8_u8_u8_u8
+			u8_u8_u8_u8
+			u8_u8_u8_u8
+
+			u64_1
+			u32_2
+			u16_4
+			u8_8
+
+			u8_u24_u32
+			u8_u24_u8_u24
+			u8_u24_u8_u8_u16
+			u8_u24_u16_u16
+
+		u32
+
+			u8_u24
+			u8_u8_u16
+			u8_u8_u8_u8
+			u8_u12_u12
+
+		u64
+
+			u8_u8
+			u4_u12
+			u8_u24
+
+		TABLE[u12]
+
+			4096 items in MINI machine
+
+			20 registers
+			50 exprs
+			11 values
+
+			u8 is plenty
+			u4 is often OK
+
+		DECODE[u4] as local list TWO of u8 
+		DECODE[u8] as local list LIST_Z
+		decode[u12] as global list
+			fewer instances of larger tables
+			hash tables with 4096 slots resolving 300 items
+			compiled tokens can often fit under 256
+		DECODE[u4_u8] as 16_pages_of_256 # FILL_LOW #
+		
+		4096 * EIGHT == 32K BYTES for a MINI_MACHINE _INDEX
+		
+ DECODE u8_OPCODE
+
+ 	SINGLE BYTE
+
+	DOUBLE BYTE
+
+		u8_OPCODE
+		u8_OPCODE_
+
+		u8_OPCODE
+		u8_DATA_
+	
+	EXTRA BYTES
+
+		shift down by bytes used // or OFFS++ // or PTR++
+		stop if zero
+		restart next instruction bytes (dont cross u64 edge)
+	
+ EVAL DECODE u64 as u8_u8 u12 u12 
+ EVAL DECODE u64 as u8_u8 u8 u24 
+ EVAL DECODE u64 as u8_u8 u48_as_BITFIELD // in_SITU so u16_BITFIELD u32_WORD
+ OPTION WORD in CPU or MEMORY_WORD
+
+ FAST DECODE first byte with TABLE[u8] // u8_idx = BYTE_A
+
+  STEP_BYTE_A
+ 	
+	u8_idx = FIRST.BYTE_A
+	EIGHT_t u64_EIGHT = OPCODE_TABLE[u8_idx]
+
+	run_u64_OPCODE_from_BYTE_A
+
+		u4_DATA_OPCODE 
+
+			// T ALLOC //
+			T = A
+			T >> 4
+			zero means A is u4
+			plus means A is u8
+			// T RELEASE //
+
+		u8_idx_of_PAGE0 = BYTE_B
+
+			PAGE_0 = TABLE_PAGE_0[ u8_idx_or_PAGE0 ]
+			OFFS = u64_WORD >> 16 // NOT_SIGNED //
+
+		u48_PTR = PAGE_0 + OFFS
+
+... might make more sense BUT
+... DECODING first requires DECODE nested layer
+... maybe first [u4_OPCODE] are DATA access BUILTIN SIMPLES
+... it is beyond that when UDEF TYPES add .. or not 
+... as CT_ of SCRIPT is fully known
+
+
+
+	u8_u8 
+	CACHED_OPCODE = (ASIS) u64_EIGHT.u48_PAYLOAD // SHIFTED_16
+
+	OPCODE.is_second_PAGE
+
+	page_of_256_EIGHT
+	page_of_16_EIGHT
+
+
+
+		
+	
+		
+
+
+
+
+
+				
+
+		 }
+
+		 CXX_OBJ {
+		 	name is ITEM_IDX_xFFFF as STR0 that hashes
+
+		 	PTR1 is SPEC including the next word is DATA
+
+			PTR2 is DATA
+		 }

@@ -46,13 +46,16 @@ namespace eval ::tcl_less {
 	}
 
 	proc setup_stdin_to_text_out {} {
+		# not fantastic with CR to BOLN to overwrite
 		fconfigure stdin -blocking 0 ;# -encoding binary
 		fileevent stdin readable {
 			if {[gets stdin line] >= 0} {
 				text_out_ln - $line
+				text_out_limit_lines - 25
 			} else {
 				# RTFM says an incomplete line returns -1
-				text_out_ln - "gets returned -1"
+		#		text_out_ln - "gets returned -1"
+		# above printed twice per line # 2 of 3 #
 				if {[ eof stdin ]} {
 					fileevent stdin readable {}
 					close stdin 
@@ -82,11 +85,12 @@ namespace eval ::tcl_less {
 	#	add_item $w_MENU Name {CMDS }
 		add_item $w_File Open {text_out_ln - "opened\n"} 
 		add_item $w_File Save {text_out_ln - "saved\n"} 
+		add_item $w_File Clear { $::text_out_global delete 1.0 end }
 		add_item $w_File ---- 
 		add_item $w_File Exit exit 
 		add_item $w_Edit Cut {}
 		add_item $w_Opts verbose ;# checkbutton, toggles the global variable "verbose"
-		add_item $w_Help About {text_out_ln - help_about}
+		add_item $w_Help About { text_out_ln - help_about }
 
 		add_item $w_W2 Open {text_out_ln - "W2\n"} 
 	}

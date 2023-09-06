@@ -13,12 +13,17 @@ set dir_default /home/gps/G/G_PHOTOS/Photos_2023/DRUM_MEDIA/2023-08-18_Djemboree
 set dir_default /home/gps/G/G_PHOTOS/Photos_2023/DRUM_MEDIA/2023-08-18_Djemboree/VIDEOS/MINI
 set dir_default .
 
-set ZONE_NAME Djemboree
 set ZONE_NAME WOODEN_ROOTS
-set ZONE_NAME Iys_Salisbury
-set ZONE_NAME TANKATA
-set ZONE_NAME HansCamp
 set ZONE_NAME WOMAD
+set ZONE_NAME HCTS
+set ZONE_NAME Djemboree
+set ZONE_NAME DRUM_CAMP
+set ZONE_NAME TANKATA
+set ZONE_NAME Ernesto
+set ZONE_NAME HansCamp
+set ZONE_NAME MoGueyeSalisbury_Jan
+set ZONE_NAME IyaSako_Salisbury
+set ZONE_NAME SKYE
 
 puts ". fns_ASKS"
 
@@ -78,7 +83,8 @@ proc macro_calc_name_XY {} {
  uplevel {
  	set NAME1 $NAME
 	set NAME {}
- 	append  NAME $MS_XY "_" $NAME1
+# 	append  NAME $MS_XY "_" $NAME1
+ 	append  NAME $NAME1 "_" $MS_XY
 	# TODO # ontain time of day from file mtime use filename for YEARMMDD
 	macro_calc_name_one 
 	macro_rewrite_ext 
@@ -108,6 +114,15 @@ proc macro_calc_name_one {} {
 		puts "# ext $ext" 
 	}
  }
+}
+
+proc macro_date_from_unit_time { timestamp } {
+	uplevel "
+	foreach { YEAR MM DD hh mm ss } {[
+	 clock format $timestamp -format { %Y %m %d %H %M %S }
+	 ]} {}
+	"
+	macro_date_came_from_mtime
 }
 
 proc macro_date_from_stat_file { filename } {
@@ -159,11 +174,15 @@ proc rename_IMG_main {dir} {
 	set DD "($D$D)"
 	set DDD "($D$D$D)"
 	set DDDD "($D$D$D$D)"
+	set re_D13 "($D{10,15})"
 	set re_ext "(.*)"
 	set re_tue "(...)"
 	set re_MSXY {([MSXY][MSXY])}
+	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])_}
 
 	append re_dot_ext "\\." $re_ext
+
+	append re_HDR "(_HDR)?"
 
 	append re_zero \
 		VID_ $DDDD \
@@ -175,6 +194,8 @@ proc rename_IMG_main {dir} {
 	append re_one \
 		record $DDDD $DD $DD "_"  $DD $DD $DD $re_dot_ext
 	append re_two \
+		$re_VID_IMG $DDDD $DD $DD  "_"  $DD $DD $DD $re_dot_ext
+	append re_two_ \
 		VID_ $DDDD $DD $DD  "_"  $DD $DD $DD $re_dot_ext
 	append re_ZOOM_03d_WAV \
 		ZOOM $DDDD $re_dot_ext
@@ -183,7 +204,13 @@ proc rename_IMG_main {dir} {
 	append re_VID_YYYYMMDD_HHMMSSXX \
 		VID_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_dot_ext
 	append re_IMG_YYYYMMDD_HHMMSSXX \
-		IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_dot_ext
+		IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_HDR $re_dot_ext
+	
+	append re_myrec \
+		myrec $re_D13 $re_dot_ext
+
+# myrec1663179554257.mp3
+#      1234567890123.mp3
 	
 	# probably an iphone or something
 	# VID-20230410-WA0038.mp4
@@ -238,7 +265,8 @@ proc rename_IMG_main {dir} {
 			puts "# record BUT ext == $ext # $VID AUD or VID #"
 		}
 
-	  } elseif [regexp $re_two $f all YEAR MM DD hh mm ss ext] {
+	  } elseif [regexp $re_two $f all VIDIMG YEAR MM DD hh mm ss ext] {
+	  	puts "# re_two # $f"
 	 #	macro_date_came_from_filename ;# DONE in LOOP init
 
 	  } elseif [regexp $re_ZOOM_03d_WAV $f all DDD ext] {
@@ -253,12 +281,12 @@ proc rename_IMG_main {dir} {
 		macro_date_from_stat_file $f1
 	  	# DATE came from MTIME not from filename # done by stat above
 
-	  } elseif [regexp $re_two $f all YEAR MM DD hh mm ss ext] {
+	  } elseif [regexp $re_two $f all VID_IMG YEAR MM DD hh mm ss ext] {
 	  	# macro_calc_name_one
 
 	  } elseif [regexp $re_VID_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX ext] {
 	 #	macro_date_came_from_filename ;# DONE in LOOP init
-	  } elseif [regexp $re_IMG_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX ext] {
+	  } elseif [regexp $re_IMG_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX HDR ext] {
 	 #	macro_date_came_from_filename ;# DONE in LOOP init
 
 	  } elseif [regexp $re_VID_YYYYMMDD_WA4D $f all YEAR MM DD d4 ext] {
@@ -272,6 +300,15 @@ proc rename_IMG_main {dir} {
 		macro_date_from_stat_file $f1
 		macro_calc_name_XY
 		macro_offer_rename
+		continue
+
+	  } elseif [regexp $re_myrec $f all D13 ext] {
+		set F 1000
+		set T_1000 [expr $D13 / $F]
+		macro_date_from_unit_time $T_1000
+	        macro_calc_name_one
+	        macro_offer_set_date ;# before rename
+	        macro_offer_rename
 		continue
 
 	  } elseif [regexp $re_NEWNAME $f all YEAR MM DD hh mm ] {

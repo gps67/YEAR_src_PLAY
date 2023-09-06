@@ -1,0 +1,198 @@
+2023-08-28 Aug Mon #  CXX_MENU.txt
+
+	CALL TCL commands use TK FRAME ITEM UI on_EVENT
+
+		rework MENU MAIN CODE as CXX_calls_Tk
+		rewire as GEN TCL ARGV and CALL CMD ARGV
+
+	use_CXX_Tk // via_Tcl // SUBLEX // LEXICON // PHRASE // ITEM // EXPR //
+
+	Provide thin_wrap over into through out Tcl_Tk
+
+		match CXX_VAR Tcl_VAR via_API
+
+		// AUTO_PSG creates VARS and SPECS with EA and LIBR_of_CODE API
+		// AUTO_PSG creates API VARS SPECS with EA and LIBR_of_CODE API
+		// %s // PICK { L I S T } // AUTO_Q2 from literal LIST PICK
+		// API provides VAR of type VAR_SPEC // eg "CXX_OBJ" alias "SPELLING" // in DIALECT // AUTO_VAR MATCH "DIALECT == %s " AUTO_Q2
+		// API_Q2 AUTO_Q2 DECL ...
+		// API AUTO_Q2 // bool get_bool_option_CALLED("%s") // +VAR
+		// API_AUTO_VAR XPOS_in_ROM_of_STR0 // ARGV COMPONENT //
+
+		CXX_VAR provides API // API += FEATURE // DECL SPEC // VAR_POOL
+
+		With a mind to future RPC Remote Procedure CODE CALL ARGS
+
+		With a mind to future
+
+		 RPC
+		 Remote Procedure CODE CALL ARGS API RPC
+
+		EA
+
+		 RPC ITEM // HERE THERE CACHED RPC_EXPR //
+		 RPC_EXPR {
+		 	eg VALUE
+			eg VARIABLE
+			eg SPEC_of_LIBR
+			eg ITEM_in_Profile
+			eg SESS_WHEN // CTXT //
+			eg CALL CXX_EXPR_in_REMOTE // request
+			eg CALL CXX_EXPR_for_REMOTE // action
+			eg CALL CXX_EXPR_as_REMOTE // alias USAGE //
+			eg USE_CXX_VAR ITEM_t %s // %s == "ITEM" // AVAR //
+		 }
+
+		 GUI_ITEM
+		 gui_ button
+		 gui_ frame
+		 gui_ canvas
+		 gui_ on_EVENT API 
+		 // on mention AVAR %s via GETTER Tcl_Obj 
+
+		 tk_item_name == ".c.row_2.item_name" // claim %s item_name
+		 // AUTO_GEN // CODE += mk_AVAR "STR0" // lazy use type name as var name
+		 // TYPE_NAME "SPEC_of_ITEM" // Parsed CXX // GEN_CXX
+
+
+	CXX is whatever it can be LIBR for
+
+		object_model += Tcl_Obj_CXX_ITEM REF_ITEM_STO
+		object_model += Python_Obj_CXX_ITEM REF_ITEM_STO
+		object_model += V8_OBJ REF_ITEM_STO SPEC CODE LINKS LIBRS
+		object_model += CXX REF_ITEM_STO VAR SPEC ETC += CODE
+		object_model += C_Obj_CXX_ITEM REF_ITEM STO
+		// ALIAS ITEM_STO ITEM STO // API spells it out as new VAR_NAME
+		// VAR %s { VAR_Module SCRIPT } // SCRIPT is API
+		// API DECL VAR "{ VAR Module }" // ALIAS("%s-%s") // PAIR //
+		object_model += SpiderMonkey_Obj_CXX_ITEM REF_ITEM_STO
+		object_model += CXX_Obj_CXX_ITEM VIA STR0 ANYSTR
+
+		language_model += NEBULOUS_INDIVIDUAL 
+	
+	Here:	Tcl_Obj_CXX_OBJ // { NAME ADDR EA ITEM SPEC == PTR1 DATA == PTR2 }
+		Our WRAP_TCL is API
+		API += VAR_GETTERS // compilers caches API == "DBI" DB_GETTER
+		API += OBJ_IS CODE += CODE 
+		REF_COUNT_API += ref_incr ref_decr on_DTOR keep_hold let_go 
+		API += EXPR // compiled logic of EXPR as UDEF 
+
+		API += ITEM_TYPE Tcl_Obj_CXX_OBJ _t
+		CXX_OBJ _t += { name PTR1 PTR2 } 
+		BENCH Tcl_Obj_BITFIELDS // WORD1 u64_WORD2
+
+		API += ITEM_NAME Tcl_Obj.NAME // ANYSTR // STR0 // UTF8 // BYTE
+		API += ITEM_NAME Tcl_Obj.PTR1 // eg SPEC // as_PTR CXX_OBJ CT_
+		API += ITEM_NAME Tcl_Obj.PTR2 // eg DATA // as_PTR CXX_OBJ RT_
+
+		OBVS "{ STR0_t ANYSTR }" // REQUIRE UNIQUE as SPELLING ANYSTR
+
+		OPT WRAP_Tcl_API += API_FEATURE 
+		API_FEATURE += SEE "{ name EIGHT_ONE EIGHT_TWO }"
+		BITFIELD EIGHT_t // bytes[8] // u64_WORD_BITFIELDS
+
+			u64_WORD 
+			u64_CPU_REGISTER_OPTIONS
+			i8_BYTE_A
+			i8_BYTE_B
+			u8_BYTE_A
+			u8_BYTE_B
+
+			u16_LOHI_AB
+			u16_AB_from_LOHI
+
+			u8_BYTE_A 
+			u8_BYTE_B
+
+			u16 LOW16
+			u32 LOW32
+			u64 LOW64
+			u128 LOW128 // AKA WORD_PAIR { u64_ONE u64_TWO }
+	
+
+		expect CPU to know a lot about BITFIELD LOW_BYTES 
+		expect CPU to know a lot about << left >> right SIGNED
+
+		BITFIELD 128
+
+			u64 ONE; // WORD_ONE // LO 
+			u64 TWO; // WORD_TWO // HI 
+			u64 WORD_PAIR[2]
+
+		assoc AVAR += FIELD_NAME
+		assoc AVAR += PARSEABLE_EXPR // 
+
+
+	CXX_OBJ // ONE_of_TWO // ONE TWO OBJ_t 
+
+		name == "CXX_OBJ_x%X" // 
+		name == "CXX_OBJ_x%04X" // USAGE_xFFFF // 
+		CXX_OBJ = USAGE_xFFFF obj_idx // u16_PLUS SIGNED BITFIELDS 
+		CXX_OBJ = USAGE_xFFF obj_idx // "%03X" // CT_ IDX TOKEN u12_PLUS
+		CXX_OBJ = USAGE_xFF obj_idx // "%02X" // CT_KNOWN_INDEX // PLUS
+		CXX_OBJ = USAGE_xF obj_idx // 
+	
+	DECODE CXX_OBJ as SCRIPT STEP ARGS 
+
+		SCRIPT_STEP_ARGS
+		API += ARGV // ARGV_from_bash // ARGV_from_JSON // 
+		This STEP may have been COMPILED to ITEM // SELF == STEP //
+		{ name u64_ONE u64_TWO } // PAIR_of_EIGHT / a Bjork //
+		{ name u32_ONE u32_TWO } // on 32 bit architectures //
+	
+		{ name == "CODE_POINT_u24" // u8_opcode u24_payload // u32_WORD }
+		
+		So to be nice to 32 bit architectures
+		find mini bitfields that 
+
+		STR0 == "CODE_POINT_u24" // NAME == "STR0" // NAME == "NAME"
+		STR0 == "ANYSTR" // NAME == "CODE_POINT_u48" // u64
+		STR0 == XPOS // u32_XPOS_EXPR_compiled_from_STR0
+		u32_EXPR RETVAL is MATCH[u32_UNIQUE_PTR] // SPELLING
+		u32_EXPR RETVAL is CODE_and_DATA as EA EA_STR
+		u32 == "{ u8_opcode u24_payload }" // API MATCHES STR0 // exact
+	
+	CXX calls MK_WIN 
+
+		VAR_POOL GUI_EXPR "{ OBJ = lookup EXPR ARGV }"
+		APPLY_on_EVAL GUI_ITEM ROM_CODE_POINT 
+
+		Our CXX script keeps Layout within MINI_MACHINE
+
+		NAME == "OBJ_IDX_xF" // and a single digit to you too //
+	
+		NAME == ".win2.canvas.v_scroll_bar"
+		PTR1 == u8_u24
+		PTR2 == u8_u24	
+
+		NAME == "$VAR_NAME" // or "%s" SPELLING // of AVAR 
+		PTR1 == u8_u24
+		PTR2 == u8_u24
+
+		Tcl_Obj * SELF = CXX_get_SELF_as_Tcl_Obj(ARGS) // += CTXT
+	
+	CXX u8_u24
+	CXX u8_u8_u16
+
+	CXX u8_u8_u48
+	CXX u8_u8 u16 u32 
+	CXX u8_u8 u16 u8_u24
+	CXX u8_u8 u16 u8_u8_u16
+	CXX u8_u8 u16 u16_u16
+	CXX _SIGNED // modifier // MINUS_means_CHECK LOOKUP
+
+
+		ARM32 limits Tcl_Obj to { ADDR name FOUR FOUR }
+
+			u8_OPCODE
+			u24_VALUE
+
+
+		u24_VALUE
+
+			VALUE = { u32_WORD >> 8 }
+			SET u32_WORD = VALUE << 8 + u8_opcode
+
+			OFFS == "u24_OFFS" // BENCH AUTO FIELD of SESS
+			IDX == "u24_IDX"
+	

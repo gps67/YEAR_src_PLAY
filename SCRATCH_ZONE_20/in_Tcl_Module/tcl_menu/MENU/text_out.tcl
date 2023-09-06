@@ -10,14 +10,19 @@
 # boils down to #
 # # $text_widget  insert end  $text
 
-proc text_out {text_widget text} {
+proc text_out_get_text_widget { {text_widget {} } } {
 	# single default output text widget "-" or {} or "default"
 	if {$text_widget == "-" } { set text_widget {}} 
 	if {$text_widget == "default" } { set text_widget {}} 
 	if {$text_widget == {}} {
-	    global text_out_global
-	    set text_widget $text_out_global
+	    set text_widget $::text_out_global
 	}
+	return $text_widget 
+}
+
+proc text_out {text_widget text} {
+	# convert "-" or {} to the global default
+	set text_widget [ text_out_get_text_widget $text_widget ]
 	# add text to widget
 	$text_widget insert end $text
 
@@ -35,6 +40,18 @@ proc text_out_see_end {text_widget } {
 proc text_out_ln { text_widget text} {
 	text_out $text_widget $text
 	text_out $text_widget "\n"
+}
+
+#
+# limit the number of lines in text widget to nnn
+#
+proc text_out_limit_lines { { text_widget {} }  {lim 2000} } {
+	set text_widget [ text_out_get_text_widget $text_widget ]
+	# always seems to be lim.0 point zero
+	set nn [$text_widget index end]
+	set hi [ expr int( $nn - $lim ) - 1.0 ]
+	if { $hi <= 0 } return
+	$text_widget delete 1.0 $hi
 }
 
 #

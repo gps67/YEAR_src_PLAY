@@ -57,6 +57,9 @@ say_do()
 
 wait_for_dvd_mount()
 {
+# media_mount_line 
+# /dev/sr0 on /media/gps/VENOM_2018 type udf (ro,nosuid,nodev,relatime,uid=1016,gid=1016,iocharset=utf8,uhelper=udisks2)
+
 	# RETVAL is global var # media_mount_name #
 	# FAIL entire script if not mounted after 1 minute #
 	# OS does automount (RTFM) we just wait for that

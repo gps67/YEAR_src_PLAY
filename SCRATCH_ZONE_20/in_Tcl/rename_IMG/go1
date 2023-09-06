@@ -2,4 +2,7 @@
 
 PATH=:$PATH
 
-rename_IMG.tcl $HOME/tmp/DEMO_IMG
+# parse_argv.tcl --ZONE_NAME "HERE" A B C D
+# rename_IMG.tcl $HOME/tmp/DEMO_IMG
+rename_IMG.tcl /home/gps/YEAR/REC/ftp_mobile/rec_2022-10-23_sftp
+

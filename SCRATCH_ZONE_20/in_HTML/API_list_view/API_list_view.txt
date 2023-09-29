@@ -1,0 +1,62 @@
+#  API_list_view/API_list_view.txt
+
+	LIST of ITEM
+	ITEM is DIARY_ENTRY
+
+	YEAR MM DD TITLE ... PLUS ...
+
+		AUTO DATE = get_DATE YEAR MM DD
+		AUTO Tue = get_Tue DATE
+		AUTO get tue = get_tue Tue
+
+		/* ASIDE know parameter USAGE += TYPE += USAGE += FIELD_SPEC */
+		AUTO DATE = get_DATE 
+			/* int_YEAR */ YEAR
+			/* int_MM */ MM 
+			/* int DD */ DD
+
+	TIME_WITHIN_DAY 
+		TZ == UK
+		HH_MM == HH_MM_from_str("8pm")
+		HH_MM_len == "90 mins"
+	
+	CALENDER_LAYER
+		gps
+		gps_RSAC_DESK
+		BIRTHDAYS
+		WORK
+		PLAY
+		...
+	
+	LOCATION 
+		KNOWN RSAC
+		KNOWN ...
+		NEW { details }
+	
+	PAGE
+
+	PAGE += PAGE_HEAD_META
+
+		the meta info is inside the page
+	
+	LIST_of_ITEM
+	ITEM is DODO_ITEM
+
+		AUTO_SPLICE += MULTI_INHERIT_BASE ... each .. plus ...
+
+		ITEM += BASE + DATA
+		ITEM += PLUS + DATA
+		ITEM += UDEF + DATA
+	
+	SQL PAGE holds PARSED JSON
+	SQL PAGE holds PARSED XML
+	SQL PAGE holds PARSED CSV
+	SQL PAGE holds PARSED ARGV
+	SQL PAGE holds PARSED SCRIPT_DATA_SCRIPT
+
+	PAGE_TEXT repeats ROW fields
+
+		check them SAME or DIFF
+		allows simpler PAGE from elsewhere
+
+

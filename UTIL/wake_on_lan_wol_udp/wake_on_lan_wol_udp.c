@@ -84,7 +84,10 @@ bool is_hex_byte( const char * P , u8 & val )
 }
 
 bool is_hex_byte_colon( const char * P, u8 & val ) {
+	// hex byte is PAIR of hex digits
+	// get binary value into BYTE val
 	if( !is_hex_byte( P, val )) return false;
+	// check for colon ":"
 	if( P[2] != ':' ) return false;
 	return true;
 }
@@ -102,22 +105,27 @@ bool is_space( u8 * P )
 
 bool is_mac( const char * P, u8 * addr ) {
 
+	// convert str_mac_P("FF:FF:FF:FF:FF:FF") to binary 6-bytes addr[6]
 	if( !is_hex_byte_colon( P+0, addr[0] )) return false;
 	if( !is_hex_byte_colon( P+3, addr[1] )) return false;
 	if( !is_hex_byte_colon( P+6, addr[2] )) return false;
 	if( !is_hex_byte_colon( P+9, addr[3] )) return false;
 	if( !is_hex_byte_colon( P+12, addr[4] )) return false;
 	if( !is_hex_byte(       P+15, addr[5] )) return false;
+	// do not check that text continues with NON_HEX nor another :
 	return true;
 }
 
 bool must_be_mac( const char * mac_str )
 {
+	// convert mac_str to binary addr[6] 
 	u8 addr[6];
 	if( !is_mac( mac_str, addr )) {
+		// PARSE of MAC failed
 		printf("FAILED from %s\n", mac_str );
 		return false;
 	}
+	// debugging print // HI to LO byte order
 	if(0) printf("# OK MAC %2.2X:%2.2X:%2.2X:%2.2X:%2.2X:%2.2X from %s\n",
 		addr[0],
 		addr[1],
@@ -132,8 +140,10 @@ bool must_be_mac( const char * mac_str )
 
 bool must_not_be_mac( const char * mac_str )
 {
+	// convert mac_str to binary addr[6] 
 	u8 addr[6];
 	if( is_mac( mac_str, addr )) {
+		// debugging print // probably all zeros
 		printf("MAC %2.2X:%2.2X:%2.2X:%2.2X:%2.2X:%2.2X from %s\n",
 			addr[0],
 			addr[1],
@@ -146,6 +156,7 @@ bool must_not_be_mac( const char * mac_str )
 		printf("FAILED because it is from %s\n", mac_str );
 		return false;
 	} else {
+		// debugging print // or mac_str not binary
 		printf("# OK not MAC from %s\n", mac_str );
 		return true;
 	}
@@ -153,31 +164,26 @@ bool must_not_be_mac( const char * mac_str )
 
 bool send_wake( const char * mac_str, const char * cmnt ) {
 
-	u8 eth_addr[6];
-	if( !is_mac( mac_str, eth_addr )) {
+	// start by checking our ARG mac_str
+	// it should be a MAC like "74:d4:35:fb:3f:6f"
+	if(!must_be_mac(mac_str)) {
 		printf("FAILED is_mac('%s')\n", mac_str );
 		return false;
-	}
-	must_be_mac(mac_str);
-
-	u8 message[106];
-	u8 * message_ptr = message;
-	memset(message_ptr, 0xFF, 6);
-	message_ptr += 6;
-	for (int i=0; i<16; i++ ) {
-		memcpy(message_ptr, eth_addr, 6);
-		message_ptr += 6;
 	}
 
 	// wiki: 6 bytes of password
 	// unused option
 
+	// sock is the transmitting UDP socket
 	int sock;
+
+	// open sock IP4 UDP
 	if ((sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
 		perror("socket");
 		return false;
 	}
-
+	
+	// set sock to BROADCAST 
 	int optval = 1; // true - switch on
 	if( setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &optval, sizeof optval) < 0) {
 		perror("setsockopt SO_BROADCAST");
@@ -185,21 +191,43 @@ bool send_wake( const char * mac_str, const char * cmnt ) {
 		return false;
 	}
 
-	struct sockaddr_in addr;
+	// set broadcast address port 9
+	struct sockaddr_in dest_addr;
 //	unsigned port = 6; // ok fm2
 	unsigned port = 9; // ok fm2
-	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
-	addr.sin_port = htons(port);
+	dest_addr.sin_family = AF_INET;
+	dest_addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+	dest_addr.sin_port = htons(port);
 
-	// perror("BEFORE");
+	// check again PARSE MAC and convert max_str to 6 binary bytes
+	u8 eth_addr[6];
+	if( !is_mac( mac_str, eth_addr )) {
+		printf("FAILED is_mac('%s')\n", mac_str );
+		return false;
+	}
+
+	// build PACKET 
+	// IP4_UDP header added by SOCK
+	// 6 bytes of FF
+	// 6 bytes of MAC - repeated 16 times
+	
+	u8 packet_message[106];
+	u8 * message_ptr = packet_message;
+	memset(message_ptr, 0xFF, 6);
+	message_ptr += 6;
+	for (int i=0; i<16; i++ ) {
+		memcpy(message_ptr, eth_addr, 6);
+		message_ptr += 6;
+	}
+
+	// transmit PACKET to SEGMENT to BROADCAST dest_addr from sock
 	if (sendto(
 		sock,
-		(char *)message,
-		sizeof message,
+		(char *)packet_message,
+		sizeof packet_message,
 		0,
-		(struct sockaddr *)&addr,
-		sizeof addr
+		(struct sockaddr *)&dest_addr,
+		sizeof dest_addr
 	) < 0) {
 		perror("sendto");
 		close(sock);
@@ -216,7 +244,9 @@ int main( int argc, char * argv[] )
 {
 	if( argc == 1 ) {
 		// test call without args
-		if(!send_wake("00:15:b7:11:35:64", "M7" )) return -errno;
+	//	if(!send_wake("00:15:b7:11:35:64", "M7" )) return -errno;
+		if(!send_wake("74:d4:35:fb:3f:6f ", "fm2" )) return -errno;
+
 	} else {
 		int arg_i = 1;
 		while( arg_i < argc ) {

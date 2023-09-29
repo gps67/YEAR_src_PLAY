@@ -1,0 +1,102 @@
+#  BENCH_VIEW.txt
+
+ TILDE
+	~/YEAR/src/PLAY/PSG_SCRIPT_core_vocab_dialect_api
+
+		BENCH_VIEW.txt
+
+			3D WORKSPACE 
+
+			VIEW += XPOS
+
+			VIEW += XPOS == OFFS_in_STR0 // BYTE_POS // CPOS not CPOS
+
+			XPOS == "{ FILE [OFFS] LINE bpos }"
+
+  PARSE FILENAME 
+  PARSE TILDE_PATH_FILENAME EXPR
+
+  EXPR
+
+  	TOKENISED_SPELLING "SPELLING" SPELLING
+		TOKENISED_SPELLING
+		"SPELLING"
+		SPELLING
+	
+	CXX_EXPR
+
+		CALL RET_VAR = CXX(A,R,G,S)
+
+		(V1) RET_VAR is bad alias for RET_VAL 
+		(V2) RET_VAR is EA_EXPR _of_VAR 
+	
+	LOCALISED SPELLING
+
+		CT provides an initial dictionary from ROM
+		CT ROM // PAUSE a running SESS // RESTART_from_XPOS 
+	
+	yacc provides operator precedence for C_RULES CXX_RULES
+
+		sorts out ANY standard math operator precedence
+		without hardly any DATA_CODE
+		basically declare them in PARSE("EXPR")
+		// pointless home call ("%s") // PARAMETER matches ITSELF
+
+	CXX_EXPR
+
+		CXX_t * CXX_PTR = PARAMETER_EA_OBJ // EA_TYPE
+		EA_TYPE caddrt offs_in_file_in_dir 
+	
+	CXX_EXPR
+
+		OBJ.field // used by get_EA // used by on_FETCH_NOW //
+		CT pushback create TOKEN as EA_OBJ_ASPECT
+	
+	CXX_ASPECT
+
+		MULTI_MERGE
+		MULTI_BASE_CLASS
+		OBJ.FIELD
+		OBJ.ASPECT
+		OBJ.USAGE
+		OBJ.API .CALL FUNC_NAME A_R_G_S  { SCRIPT }
+	
+	SCRIPT
+
+		VAR_POOL
+		AVAR_POOL
+		META_VAR_POOL
+	
+	AVAR_POOL
+
+		lookup("CIDENT99")
+		lookup("ANYSTR")
+		lookup("SAMPLE_VALUE")
+	
+	AVAR_CODE_MODULE
+
+		API
+
+		ROM	
+		ROM_INIT
+		SESS
+		CACHE
+		CACHE_REMOTE
+		EXPR
+		LIBR
+		LOCK
+		EA_EXPR
+	
+	EA_EXPR
+
+		KNOW u48_PAYLOAD is /* TESTED_and_CHECKED */ 
+		is PTR_to_OBJ // of_SPEC // of_OBJ_SPEC("OBJ.SPEC")
+
+		MENTION_1234("DECL_SELF_VIA_MENTION") // on_
+
+	on_%s
+
+		PARSER MATCHES use of that, find on_EVENT on_MOUSE_MOVE 
+
+
+

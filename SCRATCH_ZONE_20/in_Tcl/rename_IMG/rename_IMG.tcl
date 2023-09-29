@@ -24,6 +24,11 @@ set ZONE_NAME HansCamp
 set ZONE_NAME MoGueyeSalisbury_Jan
 set ZONE_NAME IyaSako_Salisbury
 set ZONE_NAME SKYE
+set ZONE_NAME Freda
+set ZONE_NAME Sona_Jobarteh
+set ZONE_NAME Greenwich
+set ZONE_NAME XXX
+
 
 puts ". fns_ASKS"
 

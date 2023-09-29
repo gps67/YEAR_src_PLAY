@@ -12,6 +12,7 @@
 	INCLS += -I$S/src/PSG_Tree
 	INCLS += -I$S/src/PSG_Tree/e1
 	INCLS += -I$S/src/PSG_Tree/AFM
+	INCLS += -I$S/src/PSG_Tree/JSON
 	INCLS += -I$S/STO/
 #	INCLS += -I../buffer # get from libs_apps
 #	INCLS += -I/tools/2000/X11R6/include
@@ -24,6 +25,7 @@
 	VPATH +=$S/src/PSG_Tree
 	VPATH +=$S/src/PSG_Tree/e1
 	VPATH +=$S/src/PSG_Tree/AFM
+	VPATH +=$S/src/PSG_Tree/JSON
 	VPATH +=$S/src/STO
 
 	include ../MK/Makefile_libs_apps
@@ -31,18 +33,22 @@
 	PROG1=test1_gen_yacc
 	PROG2=test2_use_yacc
 	PROG3=test3_use_yacc
+	PROG4=test4_use_yacc_on_JSON
 
 	PROG1_exec=$(PROG1).exec
 	PROG2_exec=$(PROG2).exec
 	PROG3_exec=$(PROG3).exec
+	PROG4_exec=$(PROG4).exec
 
 	CLEAN1 += $(PROG1).o
 	CLEAN2 += $(PROG2).o
 	CLEAN3 += $(PROG3).o
+	CLEAN4 += $(PROG4).o
 
 	CLEAN1 += $(PROG1_exec)
 	CLEAN2 += $(PROG2_exec)
 	CLEAN3 += $(PROG3_exec)
+	CLEAN4 += $(PROG4_exec)
 
 	# PROG knows to add _yacc _lex
 	# MAKE still needs to know
@@ -51,16 +57,20 @@
 	#
 	e1_psg_2=AFM
 	e1_psg_3=e1
+	e1_psg_4=JSON
 
 	# logic that is in source, names of files generated, ../obj/gen_*
 	e1_gen=gen_
 	e1_left=../obj/
 	e1_file_2=$(e1_left)$(e1_gen)$(e1_psg_2)# NOSP # same logic in binary
 	e1_file_3=$(e1_left)$(e1_gen)$(e1_psg_3)# NOSP # same logic in binary
+	e1_file_4=$(e1_left)$(e1_gen)$(e1_psg_4)# NOSP # 
 	e1_lex_2=$(e1_file_2)_lex
 	e1_lex_3=$(e1_file_3)_lex
+	e1_lex_4=$(e1_file_4)_lex
 	e1_yacc_2=$(e1_file_2)_yacc
 	e1_yacc_3=$(e1_file_3)_yacc
+	e1_yacc_4=$(e1_file_4)_yacc
 
 
 	# keep files that are between 1 and 2
@@ -78,33 +88,43 @@ endif
 
 	into_lex_lex_2=$(e1_lex_2).lex
 	into_lex_lex_3=$(e1_lex_3).lex
+	into_lex_lex_4=$(e1_lex_4).lex
 	into_yacc_y_2=$(e1_yacc_2).y
 	into_yacc_y_3=$(e1_yacc_3).y
+	into_yacc_y_4=$(e1_yacc_4).y
 
 	# then run FLEX and BISON
 
 #	from_lex=$(e1_lex_2)
 	from_lex_cc_2=$(e1_lex_2).cc
 	from_lex_cc_3=$(e1_lex_3).cc
+	from_lex_cc_4=$(e1_lex_4).cc
 	from_lex_o_2=$(e1_lex_2).o
 	from_lex_o_3=$(e1_lex_3).o
+	from_lex_o_4=$(e1_lex_4).o
 
 	from_yacc_hh_2=$(e1_yacc_2).tab.hh
 	from_yacc_hh_3=$(e1_yacc_3).tab.hh
+	from_yacc_hh_4=$(e1_yacc_4).tab.hh
 	from_yacc_cc_2=$(e1_yacc_2).tab.cc
 	from_yacc_cc_3=$(e1_yacc_3).tab.cc
+	from_yacc_cc_4=$(e1_yacc_4).tab.cc
 	from_yacc_o_2=$(e1_yacc_2).tab.o
 	from_yacc_o_3=$(e1_yacc_3).tab.o
+	from_yacc_o_4=$(e1_yacc_4).tab.o
 
 	# then run FLEX and BISON generated code / add to EXE
 
 	OBJS2 += $(OBJS23)
 	OBJS3 += $(OBJS23)
+	OBJS4 += $(OBJS24)
 
 	OBJS2 += $(from_lex_o_2)
 	OBJS3 += $(from_lex_o_3)
+	OBJS4 += $(from_lex_o_4)
 	OBJS2 += $(from_yacc_o_2)
 	OBJS3 += $(from_yacc_o_3)
+	OBJS4 += $(from_yacc_o_4)
 
 	# then Module infrastructure code zones
 	# order matters - maybe put into .a to mix it up
@@ -119,6 +139,7 @@ endif
 	OBJS1 += lex_yacc_UDEF_C_EXPR_yacc.o
 	OBJS1 += lex_yacc_UDEF_CALC.o
 	OBJS1 += lex_yacc_UDEF_AFM.o
+	OBJS1 += lex_yacc_UDEF_JSON.o
 	OBJS1 += STO_E32.o
 	OBJS1 += Y_PARSE_gen.o 
 	OBJS1 += lex_yacc_LEX_START.o 
@@ -145,15 +166,22 @@ endif
 	CLEAN3 += $(from_lex_cc_3)
 	CLEAN3 += $(from_yacc_cc_3)
 
+	CLEAN4 += $(from_lex_hh_4)
+	CLEAN4 += $(from_yacc_hh_4)
+	CLEAN4 += $(from_lex_cc_4)
+	CLEAN4 += $(from_yacc_cc_4)
+
 	CLEAN1 += $(OBJS1)
 	CLEAN2 += $(OBJS2)
 	CLEAN3 += $(OBJS3)
+	CLEAN4 += $(OBJS4)
 
 # END of ASSIGNMENT STYLE STATEMENTS
 # START OF Dependency RULES
 
-all: test2
-all: test1 test2 test3
+all: test4
+# all: test2
+# all: test1 test2 test3 test4
 
 #	helpful retest dependency
 #	make the linked.exec depend on Makefile
@@ -203,13 +231,16 @@ test1: $(into_yacc_y_2)
 
 $(from_yacc_hh_2): $(into_yacc_y_2)
 $(from_yacc_hh_3): $(into_yacc_y_3)
+$(from_yacc_hh_4): $(into_yacc_y_4)
 
 # TOP does depend on a few things beyond PROG
 
 $(into_yacc_y_2): ../src/EXPRS.h
 $(into_yacc_y_2): ../src/e1.y_RULES 
 $(into_yacc_y_3): ../src/AFM.y_RULES 
+$(into_yacc_y_4): ../src/JSON.y_RULES 
 $(PROG1_exec): ../src/AFM.y_RULES 
+$(PROG4_exec): ../src/JSON.y_RULES 
 
 #
 # most nearby code want those tokens
@@ -217,14 +248,18 @@ $(PROG1_exec): ../src/AFM.y_RULES
 
 $(into_lex_lex_2): $(from_yacc_hh_2)
 $(into_lex_lex_3): $(from_yacc_hh_3)
+$(into_lex_lex_4): $(from_yacc_hh_4)
 $(from_yacc_cc_2): $(from_yacc_hh_2)
 $(from_yacc_cc_3): $(from_yacc_hh_3)
+$(from_yacc_cc_4): $(from_yacc_hh_4)
 
 $(from_lex_cc_2): $(from_yacc_hh_2)
 $(from_lex_cc_3): $(from_yacc_hh_3)
+$(from_lex_cc_4): $(from_yacc_hh_4)
 
 $(from_lex_o_2): $(from_yacc_hh_2)
 $(from_lex_o_3): $(from_yacc_hh_3)
+$(from_lex_o_4): $(from_yacc_hh_4)
 
 
 # fix
@@ -279,6 +314,26 @@ $(into_yacc_y_3): $(PROG1_exec)
 	@# ls -l1t $(e1_lex_3).lex  $(into_yacc_y_3)
 	@ ls -l1t $(e1_lex_3).lex  $(into_yacc_y_3)
 
+$(into_yacc_y_4): $(PROG1_exec)
+	#
+	# GEN
+	# RUN $(PROG1_exec)
+	# PSG $(e1_psg_4)
+	# FILE $(e1_file_2)
+	# FILE $(e1_file_2)
+	# adds _lex _yacc .lex .y 
+	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
+	# Generate .lex .y files # PSG and LEX # Tree C++ components #
+	#
+	./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_4) #
+	#
+	# Created
+	# $(into_lex_lex_4)
+	# $(into_yacc_y_4)
+	#
+	@# ls -l1t $(e1_lex_4).lex  $(into_yacc_y_4)
+	@ ls -l1t $(e1_lex_4).lex  $(into_yacc_y_4)
+
 # YACC OUTPUT files
 
 # both .hh .cc produced at same time by bison
@@ -289,6 +344,7 @@ $(into_yacc_y_3): $(PROG1_exec)
 
 $(from_yacc_hh_2): $(from_yacc_cc_2)
 $(from_yacc_hh_3): $(from_yacc_cc_3)
+$(from_yacc_hh_4): $(from_yacc_cc_4)
 
 # $(from_yacc_cc_2): $(from_yacc_hh_2)
 # $(from_yacc_hh_2): $(into_yacc_y_2 
@@ -305,6 +361,17 @@ $(from_yacc_cc_2): $(into_yacc_y_2)
 	#
 
 $(from_yacc_cc_3): $(into_yacc_y_3)
+	#
+	# BISON
+	# FROM     < $<
+	# CREATING @ $@
+	#
+	bison -d -o $@ $<
+	#
+	# CREATED @ $@
+	#
+
+$(from_yacc_cc_4): $(into_yacc_y_4)
 	#
 	# BISON
 	# FROM     < $<
@@ -345,6 +412,19 @@ $(from_lex_cc_3): $(into_lex_lex_3) $(from_yacc_hh_3)
 	# CREATED @ $@
 	#
 
+$(from_lex_cc_4): $(into_lex_lex_4) $(from_yacc_hh_4)
+	# e1_lex_4 = $(e1_lex_4)
+	# expect  "gen_e1_lex"
+	#
+	# FLEX
+	# FROM     < $<
+	# CREATING @ $@
+	#
+	flex -o $@ $(e1_lex_4).lex
+	#
+	# CREATED @ $@
+	#
+
 # CXX files
 
 # all C files get all flags
@@ -371,6 +451,19 @@ test2: $(PROG2_exec)
 test3: $(PROG3_exec)
 	# test3
 	./$(PROG3_exec) $S/test3.test
+
+test4: $(PROG4_exec)
+	# test4
+	./$(PROG4_exec) $S/test4.test
+
+dgb_PROG4: $(PROG4_exec)
+	# debug
+	# BUT STDIN < $S/test4.test
+	# errm
+	# gdb --args ./$(PROG4_exec)
+	#
+	# -tui messes stderr with same tty
+	gdb -tui --command ../.gdbinit_$(PROG4) --args ./$(PROG4_exec)
 
 dgb_PROG3: $(PROG3_exec)
 	# debug
@@ -407,6 +500,10 @@ $(PROG2_exec): $(PROG2).o $(OBJS2)
 $(PROG3_exec): $(PROG3).o $(OBJS3) 
 	# PROG3 CALC
 	g++ $(PROG3).o $(OBJS3) $(LINKS) -o $@
+
+$(PROG4_exec): $(PROG4).o $(OBJS4) 
+	# PROG4 JSON
+	g++ $(PROG4).o $(OBJS4) $(LINKS) -o $@
 
 clean: 
 	rm -f $(CLEAN1) $(CLEAN2) $(CLEAN3) 

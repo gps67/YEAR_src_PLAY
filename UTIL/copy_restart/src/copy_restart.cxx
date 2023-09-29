@@ -91,7 +91,7 @@
 		// PARSE MODE // "% "%s" // no Q2 first option second
 		}
 		MATCH "%s" ALIAS_POOL += ALIAS '"%s"' "%s" // %s // MATCH HERE
-		MATCH_HERE { IDX = LOOKUP("IDX") KNOWING += ALIAS "HERE"
+		MATCH_HERE { IDX = LOOKUP("IDX") KNOWING += ALIAS "HERE" }
 		GEN RULE name first instance after INIT_VAL
 	
 	 SCRIPT OBJECT SPEC INIT_VAL CURR_VAL AMP // APM == IDX // ALIAS from here
@@ -107,9 +107,38 @@
 		// a simple DIALECT ans VAR_POOL_KEY == "utf8_ANYSTR"; 
 		// NLP_ASPECT MATCH utf8 NAME == ANYSTR 
 		// MINI_MACHINE idx_NAME = lookup("NAME") // NAME = "LEX" // polite
-
-
+	
 	}
+
+	MINI_MACHINE to copy files 
+	to copy trees of files
+	on_EVENT
+	on_INSTALLED
+	in_ES6
+
+	EVAL(SCRIPT)
+	EVAL(LINE)
+	EVAL(STORED_EXPR)
+
+
+	PARSE(SCRIPT)
+	EVAL(SCRIPT) _in("SESS") // _in_CTXT("CTXT") // PICK "%s" // PICKED
+
+	OBJ.on_EVENT("EVENT") += ARGS
+	OBJ.on_INSTALLED // know MATCH would be "%s" "INSTALLED" NULL
+
+	technique is to use global the environment that needs no prefix
+	but use prefixes
+	so then VIEW without EXPLAINS 
+
+	is_SKIPPABLE(STR0 filename)
+
+		filename.ends_with(".cpy") // ALIAS .zap 
+		filename.starts_with(".del.") // KNOW as ALIAS .zap 
+		// KNOW do not copy, delete at end_scope, leave ASIS
+
+	
+
 
 */
 
@@ -118,6 +147,7 @@ bool opt_move = false;
 
 bool bool_main( int argc, char ** argv ) {
 
+	if(0)
 	dgb_fork_stderr_to_tcl_text();
 
 	set_prog_name( argv[0] ); // check this
@@ -125,11 +155,11 @@ bool bool_main( int argc, char ** argv ) {
 
 //	gdb_invoke(false);
 
-	const char * src_name = "/home/gps/G/RIPS/eg_rip_DVD_here/iso/"
+	const char * src_name = "~/G/RIPS/eg_rip_DVD_here/iso/"
 	"THE_DVD_DISC_1.iso";
 	const char * dst_dirname = "/nfs/NAS_ln_s/NAS3_b2_DVDS/iso";
 
-	src_name = "/home/gps/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
+	src_name = "~/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
 	dst_dirname = "/tmp";
 
 	str0 str_move = "-move";

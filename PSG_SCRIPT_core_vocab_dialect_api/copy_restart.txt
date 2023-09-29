@@ -1,0 +1,82 @@
+
+ TODO
+
+"copy_restart.txt" [Modified][New] 4 lines --100%--           4,2-8         All
+
+
+	A MINI world
+	A MINI_MACHINE
+
+		+= Module // CODE
+		+= AVAR SPEC on_EVENT
+
+
+	SESS TASK
+
+		+= TASK_takes_AGES LOGS STATE API 
+		+= INIT_DONE // now have ... // on_INSTALLED SCRIPT CALL
+	
+	SCRIPT CALL SESS CODE XPOS CODE_POINT 
+
+
+	XPOS 
+
+		+= BYTES_OFFS_in_FILE_or_SEGMENT
+		+= XPOS_within_STR0
+
+			PARSE 
+			 MATCH
+			  TEMPLATE
+			   ARGS
+
+			   EDIT_ARGS
+			   NEW_ARGS
+	
+	STACK
+
+		EA("STR0[xpos]")
+		// activates GETTER 
+		// activates AUTO_RAW // predictive guessed cache for remote
+		// compiles INVOKATION to USAGE PARSE_CIDENT_from_XPOS
+		// ie dont stop dont need NUL using CRLF INDENT XPOS
+		// STREAM PTR is temporary to INVOKE_SCOPE KEPT_DEBUG
+		// STR0 LINE = PARSE_A_LINE_get_STR0_LINE //
+		// LINE == "STR0" // DIALECT NAME from SKIM USAGE
+
+	ARGV
+
+		PHRASE
+		copy local file to remote using UDEF SCRIPT
+
+		SAMPLE SCRIPTS usually TEST SAMPLE SHOW_VAL NOW
+
+		ARGS += "STR0_SCRIPT"; // often UTF8 EN 
+
+		ARGS += "OPOCDE %s"
+		ARGS += "OPOCDE %s SCRIPT BENCH"
+	
+	DATA
+
+		WORD STREAM of STR0 within SESS // UTF8 EN
+		// BYTE_8859_8BIT_UTF8_fragment_byte // 
+
+		PARSE CIDENT // ANYWHERE AUTO_FILTER on_EVENT //
+		PARSE CIDENT // PARSE_PUNCT //
+	
+	PUNCT
+
+		ARGV uses CODE_POINT["%s"] // lookup_TABLE_or_CODE_POINT_XPOS
+		PARSE operator[] // PARSER shares definitions // local provides
+	
+	PSG
+
+		PARSE on_operator(OPERATOR,SESS)
+		PARSE on_operator(OPERATOR) // (SESS) // MK_VAR PARAMETER
+	
+	PSG
+
+		DIALECT += from PHRASE infer FILTER
+
+			allow DROP detailed implementation, just RET_VAR SELF
+
+		CACHE += VAR_NAME("%s") // API pre_filtered CIDENT98

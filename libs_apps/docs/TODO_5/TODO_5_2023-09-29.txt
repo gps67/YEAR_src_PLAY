@@ -1,0 +1,348 @@
+#	TODO_5_2023-09-29.txt
+
+ sel_fd
+
+ MINI_MACHINE %s { // CMNT // TEMPLATE // ARGS // CODE_POINT // BASE_TYPES
+
+  // AVAR %s { ... } //
+
+  // TEMPLATE // MK_TOPOC __is__ AVAR_topic // 
+  // GEN // AVAR_t AVAR [ = INITVAL ] // CODE_POINT // CT_KNOW CT_GUESS
+  // AVAR == "%s" // AVAR == "KNOW" // AVER == "GUESS" // CMNT // SCRIPT // CSR //
+  // AVAR == "XPOS" // MATCH detects "XPOS" well_known_var_name %s XPOS
+  // GEN var_t & var = EXPR //
+  // GEN var_t * var = EXPR //
+  // GEN var_t   var = EXPR // this_local_var_is_obj_scope // at_least_ADDR //
+  // GEN STRING MATCH var == "EXPR" // SAMPLE_VALUE_is_NAME_is_ADDR SPELLING
+  // SPELLING_t VAR_NAME // import SPELLING VAR_NAME // eg "EXPR_t EXPR"
+  // EXPR = RET_VAL from GET_VAL_FIRST_CALL //
+
+  // CODE SCRIPT SAMPLE_DATA_SET made out of VAR_POOL
+  // LEX_MATCH "%s_%s" _VAR _POOL // autodetect "_%s" // MATCH BIND // RT_SET_VAL
+  // LEX_MATCH "VAR_POOL" "VAR" "POOL" // use EA of original PTR_to_OBJ_FUNC
+  // AUTO_GETTER CODE_POINT 
+  // CODE_POINT { SCRIPT } // via INTERP PARSE _SCRIPT// "_%s" SCRIPT //
+  // PARSER MENTION // EA_idx_EXPR // u32_DECODED // 
+  // "%s" NOUN_NAME "ITEM" item_name lex_etc // auto_import ... ... //
+  // lex_etc VAR_NAME == "ITEM" // AUTO_MATCH "ALIAS" CIDENT_99 lex_checker
+  // UNIVERSAL_RULE "ALIAS" // EG "%s" ALIAS_ONE // VAR_NAME_is_VALUE "%s" STR0
+  // STR0 gets FILTER from API to CPU // USER_PREF CSET_8859_Latin 
+  // MATCH STR0 // "%s_%s_%s" USER PREF CSET 8859 Latin SUBLEX_EXPR
+  // EXPR can use nearby "SPELLING" as "VAR_NAME" even "VAR_NAME_of_SPELLING"
+  // NEAR this MINI_MACHINE and SESS and ... so_on
+  // every MENTION triggers AUTO_VAR make a var of that NOUN // idx = lookup STR0
+  NOUN // idx = lookup STR0 {
+  	NAME == STR0 // GEN // IS_MATCH == lookup STR0 // CSET == STR0.CSET
+  }
+  NOUN {
+  	NAME == "STR0" // where REAL THIS meets ABSTRACT
+
+	permit MK_VAR("VAR_NAME") {
+		permit EVAL_EXPR // called for you by BENCH and CACHED at EA
+		permit MK_VAR("%s") {
+		permit MK_VAR("VAR_NAME") {
+			STR0 str0 == "INIT_VAL" // MATCH KNOWN VAR 
+			VAR_t INIT_VAL == "VAR_NAME" // STR0 VAL // lamda %s //
+			// SCRIPT // lamda %s // AVAR_name "lamda" //
+			// VAL // ALIAS DATA // "XPOS_t" // AUTO_MATCH "STR0" 
+
+			GEN CXX set_var_val "VAR_NAME" "VALUE"
+			GEN CXX set_var_val "VAR_NAME"  VALUE 
+			AUTO dissolve syntax "%s" -->  %s VALUE
+			AUTO_VAR MK_VAR "CSET"
+			AUTO_CODE MK_VAR_in_FILTER_SOMEWHERE
+			AUTO_CODE SOMEWHERE treat OBJECT as API_OBJECT
+			AUTO_DATA { STR0_t  STR0 = "XPOS"; /* CMNT */ }
+			AUTO_DATA { STR0_t  STR0 = "XPOS" /* CMNT */ }
+			VIEW_CODE SKIP_SEMICOLON // PAD ";" OMIT_EMIT 
+		}
+	}
+  }
+ }
+
+
+BENCH { UPDATING_SESSION create LOCAL_SESSION EA } {
+	BENCH FILTER runs over SCRIPT building SESSION { CSR csr } { ... }
+
+		ongoing SESS
+	
+	FOREACH line in SCRIPT call CT_RUN_EXPR CODE_POINT 
+
+		SCRIPT_builtin_if_while_test_loop
+		SCRIPT_builtin_CALL_ARGS // _ARGV_t ARGV 
+
+	CODE_POINT == XPOS // usually XPOS in SOURCE of VAR_NAME MENTION XPOS
+
+		MINI_MACHINE has CSR at XPOS in TOKENISED_SCRIPT_TREE_STREAM
+
+		CT_GUESS_CSR XPOS // CENTRAL to API MATCH %s "ITEM"
+
+			MK_VAR "ITEM"
+			MK_VAR_t & ITEM = EXPR
+
+				OPTION to REBASE { MK_VAR_t STR0 /* ITEM */ } 
+				CT_KNOW CHECKED
+				CT_KNOW CIDENT "ITEM" STR0 // VAL STR0 in CSET
+				CT_KNOW CIDENT.CSET "8859" CSET_alias //
+
+
+	UTF8_FILTER_from_8859 ... // ARGS 
+	8859_FILTER_from_UTF8 ... // HOPE CSET uses API // COMPILER STEP CALL
+
+	ALIAS_8859 // AUTO_ADAPTS to USAGE by that calling this's API get_varname
+		"ISO 8859-15"
+		"West European languages (Latin-9)"
+
+
+	SCRIPT_STREAM
+
+		An entire FILE included HERE 
+		"%s" CSET_is_8859 
+		"%s" CSET_is_8859 "latin1"
+		"%s" CSET_is_8859 "latin1" "ISO 8859-1"
+		ALIAS "ISO_8859_1"
+		ALIAS "ISO_8859_for_this_TEXT" // AVAR //
+		ALIAS "ISO_8859_HERE" // EXPR ALIAS ISO_8859_for_this_TEXT //
+		ALIAS "ISO_8859_%s" // _1 PICK_LIST PICKED_from_LIST "AVAR" //
+
+ RUN_MATCHING "{ ... }" 
+ RUN_MATCHING "  ...  " 
+ RUN_MATCHING "{ _1 _2 _3 _4 _{ %d ISO_8859_HERE_tail_only }"  // _1 "1" "{ %d idx }"
+ COMPILER uses SOURCE TREE of PARSED and TOKENISED SCRIPT XPOS DGB
+ RUN_MATCHING "{ ... }" 
+		ALIAS "ISO_8859_%s _1" // AVAR //
+
+		Clearly we need a CSET value and variable
+		PICK DIALECT ADD ALIAS {
+			CSET_t & CSET = EXPR ARGV {
+
+				CSET_t * PTR = GET_PTR EXPR ARGV {
+					// MENTION ARGV // BIND VARS
+					// SOME VARS are 
+				}
+				CSET_t * RET_VAL = GET_PTR EXPR ARGV {
+					// convert to STR0_t STR0 // BENCH // 
+					// VIEW // GEN words with gaps
+			}
+		}
+ RUN_MATCHING "{ CSET }" // DECL VAR CSET // ROM compiles down to STR0 == "CSET"
+
+ 	FILTER preserves the original CSET simply by keep a record of it
+ 	FILTER can NORMALISE values but XPOS is not CPOS
+
+ CPOS == XPOS // both TYPE SPEC and DATA VALUE
+
+ CPOS = CPOS_from_XPOS XPOS // parameter NOUN "CPOS" // is_AVAR
+
+ 	CPOS is also the OFFS in FILE or SEGMENT
+ 	XPOS is also the OFFS in FILE or SEGMENT
+	CPOS == XPOS // but expect_DIALECT_CPOS_not_XPOS
+
+		SUBLEX AUTO_JOIN A_B_C_D SUBLEX_API
+
+ 	want a return type of EA_EXPR
+	which is still an EXPR
+
+	that is then processed by RET_VAL = GETTER ( NAME ) 
+	that is then processed by RET_VAL = GETTER ( ADDR ) 
+	that is then processed by RET_VAL = GETTER ( DATA ) // NAME_data //
+
+	RUN EVAL over u32_XPOS_CODE_POINT //
+	// i8_file i24_SIGNED //
+	// u8_file u24_UNSIGNED //
+	// SCRIPT FILE is limited to 16 MB // on ARM32 //
+	"u24_16_MB"
+	// SPELLING_of_XPOS = "XPOS" // easily flip { CONST STR0 }
+	// SPELLING_of_XPOS = "XPOS" // easily flip { AVAR STR0 }
+	// both import values and callables using a CODE_POINT for "XPOS"
+	// entire module can share that, via TREE_CLIMB _LEX_SPELLING
+	// u24 = lookup SPELLING // in CSET // AUTO_VAR "CSET" "{ in AVAR }"
+// ROM //
+	"u8_u24 = { u8 u24 }"
+	// SCRIPT_LINE "u8_t u8 = DECODE_u8_u24 // u8_file"
+	// SCRIPT_LINE "u24_t u24 = DECODE_u8_u24 // u24_PAYLOAD
+	// OPTION "OFFS = get u24" // u32_WORD >> 8 // 1 clock cycle // ALIAS
+	// OPTION "OFFS = PAYLOAD" // u32_WORD >> 8 // 1 clock cycle
+
+ BENCH AVAR "OFFS" // AUTO ALIAS "OFFS_t" "const char *" // get_OFFS
+ BENCH AVAR "OFFS" // AUTO ALIAS "OFFS_t" "const char * get_OFFS"
+
+ 	PARSE source line MATCH "const char *"
+ 	PARSE source line MATCH "      char *"
+ 	PARSE source line MATCH "       i8  *"
+ 	PARSE source line MATCH "get_OFFS"
+
+	MATCH assists in GEN with SAMPLE DATA or entire SCRIPT tokenised
+	MATCH SPELLING drops XPOS and is a DIALECT using CPOS 
+
+		MENTION CPOS
+		MK_VAR STR0 CPOS
+		MK_VAR_ALIAS STR0 CPOS
+		SPELLING(CSET_t latin1 ) // AVAILA_as_RT_CALL_GETTER
+		u8_u24 = SEGMENT_OFFSET // _using_u8_u24 // using u8_u8_u48
+		u16_u48 = SEGMENT_OFFSET // which are SCRIPT NAMES for VALUES
+
+		We want to run this on ARM32, optional DEFAULT
+
+			u8_t & u8 = GETTER_BYTE_A
+			u8 = "BYTE_A"
+			u24 = "u24"
+
+		AUTO SIGNED
+		AUTO UNSIGNED
+		AUTO IDX
+		AUTO OFFS
+		AUTO DECODE_WORD
+
+			u32_WORD >> 8
+			i32_WORD >> 8	// NEW DEFAULT // ARM32 //
+
+			u64_WORD >> 16
+			i64_WORD >> 16	// NEW_DEFAULT // CHECK_MINUS
+
+			u48_WORD >> 16
+			i48_WORD >> 16
+
+	XPOS i8_u8_u16_i32
+	 CHECK_MINUS
+	 is_PLUS
+	 is_ZERO // ALIAS is_PLUS // runs as if ... //
+	 is_MINUS // ALIAS OPCODE 
+
+	  u8_file = u7_file = i8_file_MINUS
+
+	  	SESSION allocates STREAM[idx=N++] 
+		STREAM is CSET
+		STREAM is STREAM
+		STREAM is MUX_TREE_API
+
+			u8_t u8 = get_u8( u32_WORD ) // on_ARM_32
+			u8_t u8 = get_u8( u64_WORD ) // on_ARM_64
+
+			ASM refer to BITFIELD == "BYTE_A"
+
+		SOURCE FILTER
+		 RUN SOURCE but in DECODE mode
+		 RUN SOURCE but in RECODE mode
+
+		 OPTION strdup name // OPTION SPELLING
+		 OPTION BYTE * name_in_text // ie _PARSED // OPTION TOKENISED
+
+		 	Compiler TOKENISES by reusing same XPOS in DECL file
+			TREE_ITEM_t ITEM = "XPOS"; // VIA SPELLING_to_CODE_POINT
+			TREE_ITEM_t ITEM = "XPOS"; // VIA SPELLING_to_DATA_POINT
+			TREE_ITEM_t ITEM = "XPOS"; // VIA SPELLING_to_DATA
+			TREE_ITEM_t ITEM = "XPOS"; // VIA SPELLING
+
+				AUTO_FIT above code where used
+				INCL where used in GEN, parse own output
+
+	////////
+		}
+
+on ARM32	
+
+ LHS_RHS_u8_u24
+
+  u8_OPCODE	outside expr "{ ARY = get_ARY() ; IDX = u24_IDX }"
+  u24_IDX	outside expr "{ IDX = get_IDX() }"
+
+ LHS_RHS_u32_u32
+
+  ARM32 PAIR LHS
+  ARM32 PAIR RHS
+
+  This could be an advanced machine architecture
+  It only needs to REFER to fields within the SESSION
+  EG running OPCODE_WORD_ONE_WORD_TWO
+  EG running OPCODE_OBJ_IDX
+
+  Run a SUBSET pivoting on i8_i24 
+  Run a SUBSET using i8_i8_i48 // OPTION CHECK i16_CD is ZERO 
+  Run a SUBSET using i8_i8_i16_i32 
+  Run a SUBSET using i8_i8_i16_i16_i16
+  Run a SUBSET using i32_i32_in_one_u64_WORD
+
+  DECODE i8_i24
+  DECODE i8_u8_i16_i32 // the promise of i32_WORD_TWO
+
+  
+----- SIGNED -----
+
+ is_PLUS
+ is_ZERO
+ is_MINUS
+
+ is_MINUS_but_actually_large_PLUS
+ is_MINUS_and_out_of_range
+ is_MINUS_and_in_RANGE
+ is_MINUS_and_is_OPCODE
+
+ is_PLUS_and_in_RANGE
+ is_PLUS_but_out_of_RANGE // ALIAS and but
+ is_ZERO_and_that_means_ACTION
+ is_ZERO_and_still_plain_PLUS_IDX // from 0
+ is_ZERO_and_means_NULL_which_means_ACTION
+
+ 	GOTO label
+	GOTO_NEXT
+	RETURN RET_VAL
+	BREAK CONTINUE RETURN OK FAIL ETC UDEF ...
+
+--------------------------------------
+
+LOCAL to MINI MACHINE
+
+	[0[N_idx
+
+	uns N_idx = (UNS) i24_PAYLAOD
+	i8_TEST BYTE_A
+	is_ZERO	// LIKE is_PLUS // GOTO is_PLUS
+	is_PLUS
+		u7_idx = (UNSIGNED) BYTE_A // RT_KNOW is_PLUS
+		CHECK u7_idx < N_idx
+	is_MINUS
+
+		[-128[M_USED[M2[M1[0[N_idx[+128 // +127 is last inside
+
+		i8 above_M_used // possibly M2 M1 // KNOW is_MINUS
+
+		check for M1
+		or
+		check for M15
+		
+		if cast i8 really i24 
+		 obtain another WORD and call that i24 
+		  i32_WORD WORD = get_i24
+		  int get_i24() { return WORD >> 8 ; }
+	
+	[-20[0[4
+
+		EIGHT_t TABLE[i8] // but CHECKS [M_used[i8[M1
+
+	int u8_OPCODE = opcode[u7_idx]
+
+Every word is tokenised // no space for DECODE from wider world // 
+
+	u7_idx_POOL
+	u23_idx_ITEM // range checked from i24 probably in i64 or i32
+
+	u7_idx_POOL // all items in POOL are OPCODE_ITEM limit 64K u16_IDX
+	u8_OPCODE 
+	u16_idx_ITEM // range check 
+
+	u7_u8_u16 \
+	 POOL \
+	 OPCODE \
+	 ITEM
+
+u64_DECODE_u64 as PAIR of u32_WORDS or i32_WORD_PAIR
+
+
+
+ 
+
+
+		
+
+

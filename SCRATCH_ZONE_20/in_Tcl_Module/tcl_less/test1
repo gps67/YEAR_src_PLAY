@@ -1,0 +1,8 @@
+date
+(
+while :
+do
+echo "`date '+%F %H:%M:%S %N' ` ++++++++++++++++++  --------------------------"
+done
+) | tcl_less.tcl
+date

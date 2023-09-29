@@ -9,4 +9,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2023-08-25, 19408,  30.71, 47.82, Y Full ASDA from High Wycombe
 2023-08-30, 19589,  15.84, 23.55, Y Full  morrissons from Coventry E10
 2023-09-04, 19936,  32.06, 47.67, Y Full  morrissons from Drum Cramp
+2023-09-11, 20172,  23.26, 34.40, Y Full  Sainsburies rom BH
 

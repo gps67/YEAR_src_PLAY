@@ -1,3 +1,113 @@
+OBJ_models.txt
+
+	NBYTES_t * OBJ = PTR // VAR == PTR // VALUE = OBJ_t a_struct
+
+	TWO API SIDES
+
+		OBJ refers to 
+		VAR_NAME
+		VAR_SPEC
+		VAR_VALUE
+
+		EXPR referes to 
+		EXPR OPCODE // CODE_POINT // XPOS // where VAR is DECL MENTION HERE
+		EXPR ITEM = ARRAY[idx] // ITEM[item] // AUTO_VAR // AVAIL // ALIAS //
+
+		MINI_MACHINE has API to update (or readonly) (or cache) (or or)
+		CODE_POINT == "OPCODE" // AUTO_ALIAS "CODE_POINT" due to USED
+		A_VAR == VAR_POOL.VAR_varname.looked_up_to_PTR
+		A_VAR.PTR == "PTR" // AUTO_REGISTER_VAR_NAME PTR // LEX MATCH
+		// LEX MATCH exact cident99 STR0 // <-- that is AUTO_LIST // ALMOST
+		// LEX MATCH TEMPLATE USAGE
+		// LEX is STRUCT is CXX_STRUCT plus USED VAR_NAME NAME_POOL("ITEM")
+		// ITEM == "%s" // STR0_t STR0 = EA_from_EXPR(ARGS) // SCRIPT
+		// EXPR == "SCRIPT_EXPR" // MATCH SPELLING then CALL EXPR // SESS
+		// SESS += a mentioned LOCN with LIBR // "LOCN" // 
+		// PHRASE += OPCODE lhs rhs // CMNT // XPOS // CODE_POINT //
+		// += OPCODE lhs rhs // CMNT // XPOS // CODE_POINT // SCRIPT //
+
+		ls_JSON FILE NAME STAT INFO // INFO = lookup NAME // STR0 //
+
+		/*
+			This is an ATOMIC DECL of IBJ_IDX 
+
+			MINI_MACHINE uses u8_idx // u24_idx // i23_idx_expr
+			DECODE i23
+
+			if IDX < 0 goto "is_MINUS"
+			if IDX == 0 goto "is_ZERO"
+			KNOW IDX > 0 goto "is_PLUS"
+
+			OPTION treat ZERO as PLUS via ZERO_or_PLUS
+
+			ZERO_or_PLUS ZERO PLUS reachable MINUS
+			// on_MINUS_EVENT("SCRIPT") // CXX_vs_ARGV_of_STR0
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("SCRIPT")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("OBJECT")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("FIELD")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("FUNCTION")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("VALUE")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("NBYTES")
+			// on_ANYSTR NBYTES TOKEN = LOOKUP("DATA")
+
+
+			compiler is writing down it's workings
+			uses TABLE = ROM_FIXED_LAYOUT obj = lookup "obj"
+			uses SCRIPT DATA = TABLE LAYOUT obj = lookup "obj"
+			uses ALIAS to MATCH "STR0"
+			// IMPLEMENT STR0 with "STR0" // LEX NAME %s STR0
+			// "{ STR0_t STR0 = (AUTO_TYPE %s }" // == PTR _VALUE
+			OPTION treat ZERO as PLUS via
+
+				MATCH "OPTION treat ZERO as PLUS"
+
+				KNOW "KNOW idx started counting at ZERO"
+				KNOW "idx_t idx = N ++" // CMNT AUTO KNOW CMNT
+				KNOW "idx_t idx = /* ALLOC */ N ++"
+
+			USAGE " OBJ_t * OBJ = PTR // CMNT "
+
+			MATCH USAGE " OBJ_t * OBJ = PTR // CMNT "
+			PSG PTR = EXPR ARGS
+
+			list_of_vars += STRUCTURE { HERE }
+			VAR_NAME == "SPELLING"
+			OBJ_NAME == "VAR_NAME" // MENTION into MINI_MACHINE
+			IDX_NAME == get_IDX_from_NAME STR0 // CHECK ANYSTR //
+
+			STRILL two usages of STR0
+			STR0 is VAR_NAME // OBJ_NAME // GETTER_API_BIND_VAR 
+			STR0 is VAR_VALUE // 
+
+			STR0 is CSR in STREAM
+			STR0 is CSR in MULTI_LINE_BUFFER
+			STR0 is XPOS STR0_from_PARSE_XPOS // VAR_NAME // CIDENT //
+
+			STR0 is as_found_in_LOCAL_VOCAB
+			STR0 is as_found_in_CALLERS_VOCAB
+			STR0 is as_found_in_VAR_POOL["VOCAB"]
+
+			IDX_t IDX; // within u24_BITFIELD // check BOUNDS 
+			// check BOUNDS on ALLOC // CT KNOW TOKEN == "TOKEN"
+			// TOKEN == "CIDENT" _t
+			// TOKEN == "FILENAME" _t
+			// local_vocab_alias %s STR0 SELF THIS STRUCT EA0 PTR
+			// %s == "{ OPCODE lhs rhs }" += CODE_POINT CMNT XPOS
+
+
+		*/
+
+		EXPR lhs
+		EXPR rhs
+
+		LIBR alloc FIELD_NAME FIELD_IDX phrase_book libr item
+		LIBR alloc FIELD_NAME FIELD_IDX phrase_book XPOS libr item this self here 
+		LOCN += NEW HERE on first MENTION
+		HERE += lhs rhs CMNT CODE_POINT PSG_TEMPLATE PSG_DATA ARGV_t
+		HERE += LOCN // HERE // SELF // LIBR // VAR_POOL("ITEM") // PSG
+
+
+
 // COMPILE code in CMNTS // strict MINI_MACHINE //
 
 	run CXX as ASM on MINI_MACHINE permit some UDEF EXPR

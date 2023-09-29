@@ -90,6 +90,8 @@ proc year_mm_after_year1_mm1 {v_year v_mm year1 mm1 } {
   year_mm_of_t year1 mm1 $t1 
   year_mm_after_year1_mm1 year2 mm2 $year1 $mm1 
   year_mm_after_year1_mm1 year3 mm3 $year2 $mm2 
+  year_mm_after_year1_mm1 year4 mm4 $year3 $mm3 
+  year_mm_after_year1_mm1 year5 mm5 $year4 $mm4 
   list_days_in_month $year1 $mm1 
   puts {}
   puts -nonewline [exec ncal -h -b -d $year2-$mm2]
@@ -97,4 +99,10 @@ proc year_mm_after_year1_mm1 {v_year v_mm year1 mm1 } {
   puts {}
   puts -nonewline [exec ncal -h -b -d $year3-$mm3]
   list_days_in_month $year3 $mm3 
+  puts {}
+  puts -nonewline [exec ncal -h -b -d $year4-$mm4]
+  list_days_in_month $year4 $mm4 
+  puts {}
+  puts -nonewline [exec ncal -h -b -d $year5-$mm5]
+  list_days_in_month $year5 $mm5 
 

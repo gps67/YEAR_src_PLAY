@@ -1,0 +1,5 @@
+this does not compile
+because it is an experimental offshoot
+with botrot
+(cant find str1.h)
+see other tree branch

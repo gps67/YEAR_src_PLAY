@@ -11,6 +11,9 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/kabouzeid/Phonograph
+https://github.com/chr56/Phonograph_Plus
+https://github.com/enricocid/Music-Player-GO
 https://github.com/googleworkspace/apps-script-samples
 https://github.com/googleworkspace/node-samples
 https://github.com/googleworkspace/python-samples

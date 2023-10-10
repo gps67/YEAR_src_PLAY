@@ -17,14 +17,28 @@ URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOM
 
 URL="${1:-$URL}"
 
+# FUNC print date of file
+date_r()
+{
+	# this function does nothing, other than printing the date of the file
+	echo >&2 "# date -r $* # `date -r $@` " # mtime
+	# atime # unknown -flag || flag( "atimea, "{ ref_time = file.atime.get() }" 
+	# date -r "$@"
+}
+
+DATED_file_mtime=PIOMAS_dated
+DATED_file_mtime=`basename $URL`
+
 if wget -N -v $URL
 then
 	echo "# PASS # might mean NOT modified"
+	date_r $DATED_file_mtime
 else
 	echo "# FAIL # $?"
 fi
 
 exit
+	###############################################################
 
 # look here manually
 # http://psc.apl.uw.edu/research/projects/arctic-sea-ice-volume-anomaly/data
@@ -47,15 +61,6 @@ DATED_file_mtime=PIOMAS_dated
  # date | tee $LOG 
  touch $LOG # wake up nfs disk
 
-
-# FUNC print date of file
-date_r()
-{
-	# this function does nothing, other than printing the date of the file
-	echo >&2 "# date -r $* # `date -r $@` " # mtime
-	# atime # unknown -flag || flag( "atimea, "{ ref_time = file.atime.get() }" 
-	# date -r "$@"
-}
 
 
 # the exit code from curl is useless for Not Modified
@@ -106,6 +111,8 @@ call_curl_and_check_log_text()
 		:
 	else
 		t=$?
+		echo >&2 "# FAIL # previous sucessful load was:"
+		date_r $DATED_file_mtime
 		return 1
 	fi
 	# 

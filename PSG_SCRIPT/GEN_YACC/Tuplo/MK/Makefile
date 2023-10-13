@@ -117,18 +117,20 @@ endif
 
 	OBJS2 += $(OBJS23)
 	OBJS3 += $(OBJS23)
-	OBJS4 += $(OBJS24)
+	OBJS4 += $(OBJS23)
+
+	# $(OBJS24)
 
 	OBJS2 += $(from_lex_o_2)
 	OBJS3 += $(from_lex_o_3)
 	OBJS4 += $(from_lex_o_4)
+
 	OBJS2 += $(from_yacc_o_2)
 	OBJS3 += $(from_yacc_o_3)
 	OBJS4 += $(from_yacc_o_4)
 
 	# then Module infrastructure code zones
 	# order matters - maybe put into .a to mix it up
-
 
 	OBJS1 += lex_yacc_LEX_PUNCT_NAME.o 
 	OBJS1 += lex_yacc_LEX_TOKEN.o
@@ -143,6 +145,8 @@ endif
 	OBJS1 += STO_E32.o
 	OBJS1 += Y_PARSE_gen.o 
 	OBJS1 += lex_yacc_LEX_START.o 
+	# OBJS1 is specific to JSON etc - rework required ...
+	# Y_PARSE is to become common to all
 	OBJS23 += Y_PARSE.o 
 	OBJS23 += EXPRS.o
 	OBJS23 += EXPRS_RETVAL.o
@@ -194,6 +198,7 @@ all: test4
 $(PROG1_exec): ../MK/Makefile
 $(PROG2_exec): ../MK/Makefile
 $(PROG3_exec): ../MK/Makefile
+$(PROG4_exec): ../MK/Makefile
 
 # SUFFIXES must be in TARGETS section
 # you can include it, when you include ../MK/Makefile_SOMETHING
@@ -275,12 +280,11 @@ unused34:
 
 $(into_yacc_y_2): $(PROG1_exec)
 	#
-	# GEN
+	# GEN 2 $@
 	# RUN $(PROG1_exec)
+	# LEFT $(e1_left)
+	# GEN_ $(e1_gen)
 	# PSG $(e1_psg_2)
-	# PSG $(e1_psg_3)
-	# FILE $(e1_file_2)
-	# FILE $(e1_file_2)
 	# adds _lex _yacc .lex .y 
 	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
@@ -296,11 +300,11 @@ $(into_yacc_y_2): $(PROG1_exec)
 
 $(into_yacc_y_3): $(PROG1_exec)
 	#
-	# GEN
+	# GEN 3 $@
 	# RUN $(PROG1_exec)
+	# LEFT $(e1_left)
+	# GEN_ $(e1_gen)
 	# PSG $(e1_psg_3)
-	# FILE $(e1_file_2)
-	# FILE $(e1_file_2)
 	# adds _lex _yacc .lex .y 
 	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
@@ -316,11 +320,11 @@ $(into_yacc_y_3): $(PROG1_exec)
 
 $(into_yacc_y_4): $(PROG1_exec)
 	#
-	# GEN
+	# GEN 4 $@
 	# RUN $(PROG1_exec)
+	# LEFT $(e1_left)
+	# GEN_ $(e1_gen)
 	# PSG $(e1_psg_4)
-	# FILE $(e1_file_2)
-	# FILE $(e1_file_2)
 	# adds _lex _yacc .lex .y 
 	# later _lex _yacc .lex .y .cc .o _yac.tab.hh 
 	# Generate .lex .y files # PSG and LEX # Tree C++ components #
@@ -463,7 +467,7 @@ dgb_PROG4: $(PROG4_exec)
 	# gdb --args ./$(PROG4_exec)
 	#
 	# -tui messes stderr with same tty
-	gdb -tui --command ../.gdbinit_$(PROG4) --args ./$(PROG4_exec)
+	gdb -tui --command ../.gdbinit_$(PROG4) --args ./$(PROG4_exec) $S/test4.test
 
 dgb_PROG3: $(PROG3_exec)
 	# debug
@@ -505,8 +509,11 @@ $(PROG4_exec): $(PROG4).o $(OBJS4)
 	# PROG4 JSON
 	g++ $(PROG4).o $(OBJS4) $(LINKS) -o $@
 
+T4: $(PROG4_exec)
+	# OK
+
 clean: 
-	rm -f $(CLEAN1) $(CLEAN2) $(CLEAN3) 
+	rm -f $(CLEAN1) $(CLEAN2) $(CLEAN3) $(CLEAN4) 
 
 
 

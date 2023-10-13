@@ -25,71 +25,39 @@
  const char * str_of_token( int tok ) {
   switch( tok ) {
   // PUNCT_ any literal strings almost
-   case PUNCT_PLUS_PLUS:	 return "++";
-   case PUNCT_MINUS_MINUS:	 return "--";
-   case PUNCT_L_PAR_PAR_R:	 return "()";
-   case PUNCT_L_SQUARE_SQUARE_R:	 return "[]";
-   case PUNCT_DOT:	 return ".";
-   case PUNCT_MINUS_GT:	 return "->";
-   case PUNCT_NOT:	 return "!";
-   case PUNCT_TILDE:	 return "~";
-   case PUNCT_STAR:	 return "*";
-   case PUNCT_SLASH:	 return "/";
-   case PUNCT_PERCENT:	 return "%";
-   case PUNCT_PLUS:	 return "+";
-   case PUNCT_MINUS:	 return "-";
-   case PUNCT_LT_LT:	 return "<<";
-   case PUNCT_GT_GT:	 return ">>";
-   case PUNCT_LT_EQUAL:	 return "<=";
-   case PUNCT_GT_EQUAL:	 return ">=";
-   case PUNCT_LT:	 return "<";
-   case PUNCT_GT:	 return ">";
-   case PUNCT_EQUAL_EQUAL:	 return "==";
-   case PUNCT_NOT_EQUAL:	 return "!=";
-   case PUNCT_EQUAL_EQUAL_EQUAL:	 return "===";
-   case PUNCT_AMP:	 return "&";
-   case PUNCT_CARET:	 return "^";
-   case PUNCT_PIPE:	 return "|";
-   case PUNCT_AMP_AMP_EQUAL:	 return "&&=";
-   case PUNCT_PIPE_PIPE_EQUAL:	 return "||=";
-   case PUNCT_AMP_AMP:	 return "&&";
-   case PUNCT_PIPE_PIPE:	 return "||";
-   case PUNCT_LT_LT_LT:	 return "<<<";
-   case PUNCT_GT_GT_GT:	 return ">>>";
-   case PUNCT_LT_EQUAL_GT:	 return "<=>";
-   case PUNCT_LT_LT_EQUAL:	 return "<<=";
-   case PUNCT_GT_GT_EQUAL:	 return ">>=";
-   case PUNCT_LT_LT_LT_EQUAL:	 return "<<<=";
-   case PUNCT_GT_GT_GT_EQUAL:	 return ">>>=";
-   case PUNCT_EQUAL:	 return "=";
-   case PUNCT_PLUS_EQUAL:	 return "+=";
-   case PUNCT_MINUS_EQUAL:	 return "-=";
-   case PUNCT_STAR_EQUAL:	 return "*=";
-   case PUNCT_SLASH_EQUAL:	 return "/=";
-   case PUNCT_PERCENT_EQUAL:	 return "%=";
-   case PUNCT_AMP_EQUAL:	 return "&=";
-   case PUNCT_CARET_EQUAL:	 return "^=";
-   case PUNCT_PIPE_EQUAL:	 return "|=";
-   case PUNCT_COMMA:	 return ",";
-   case PUNCT_L_PAR:	 return "(";
-   case PUNCT_PAR_R:	 return ")";
-   case PUNCT_L_CURLY:	 return "{";
-   case PUNCT_CURLY_R:	 return "}";
-   case PUNCT_SLASH_SLASH:	 return "//";
-   case PUNCT_SLASH_STAR:	 return "/*";
-   case PUNCT_STAR_SLASH:	 return "*/";
 
   // RW_ reserved words
-   case RW_if:	 return "if";
+   case RW_StartFontMetrics:	 return "StartFontMetrics";
+   case RW_Comment:	 return "Comment";
+   case RW_FontName:	 return "FontName";
+   case RW_FullName:	 return "FullName";
+   case RW_FamilyName:	 return "FamilyName";
+   case RW_Weight:	 return "Weight";
+   case RW_ItalicAngle:	 return "ItalicAngle";
+   case RW_IsFixedPitch:	 return "IsFixedPitch";
+   case RW_UnderlinePosition:	 return "UnderlinePosition";
+   case RW_UnderlineThickness:	 return "UnderlineThickness";
+   case RW_Version:	 return "Version";
+   case RW_Notice:	 return "Notice";
+   case RW_EncodingScheme:	 return "EncodingScheme";
+   case RW_FontBBox:	 return "FontBBox";
+   case RW_CapHeight:	 return "CapHeight";
+   case RW_XHeight:	 return "XHeight";
+   case RW_Descender:	 return "Descender";
+   case RW_Ascender:	 return "Ascender";
+   case RW_StartCharMetrics:	 return "StartCharMetrics";
+   case RW_C:	 return "C";
+   case RW_WX:	 return "WX";
+   case RW_N:	 return "N";
+   case RW_B:	 return "B";
 
   // LEX_ items have no value so return SYMBOL
    case LEX_EOLN:	 return "_LEX_EOLN_"; // print_TOKEN_name_3 //
-   case LEX_IDENTIFIER:	 return "_LEX_IDENTIFIER_"; // print_TOKEN_name_3 //
+   case LEX_WORD:	 return "_LEX_WORD_"; // print_TOKEN_name_3 //
    case LEX_WS:	 return "_LEX_WS_"; // print_TOKEN_name_3 //
    case LEX_DOUBLE:	 return "_LEX_DOUBLE_"; // print_TOKEN_name_3 //
    case LEX_INTEGER:	 return "_LEX_INTEGER_"; // print_TOKEN_name_3 //
-   case LEX_STRING:	 return "_LEX_STRING_"; // print_TOKEN_name_3 //
-   case LEX_COMMENT:	 return "_LEX_COMMENT_"; // print_TOKEN_name_3 //
+   case LEX_BOOL:	 return "_LEX_BOOL_"; // print_TOKEN_name_3 //
 
    default:
      static char as_hex[20];
@@ -115,69 +83,37 @@
   const char * lex_buff;
  }
 
-%token <tokn> PUNCT_PLUS_PLUS
-%token <tokn> PUNCT_MINUS_MINUS
-%token <tokn> PUNCT_L_PAR_PAR_R
-%token <tokn> PUNCT_L_SQUARE_SQUARE_R
-%token <tokn> PUNCT_DOT
-%token <tokn> PUNCT_MINUS_GT
-%token <tokn> PUNCT_NOT
-%token <tokn> PUNCT_TILDE
-%token <tokn> PUNCT_STAR
-%token <tokn> PUNCT_SLASH
-%token <tokn> PUNCT_PERCENT
-%token <tokn> PUNCT_PLUS
-%token <tokn> PUNCT_MINUS
-%token <tokn> PUNCT_LT_LT
-%token <tokn> PUNCT_GT_GT
-%token <tokn> PUNCT_LT_EQUAL
-%token <tokn> PUNCT_GT_EQUAL
-%token <tokn> PUNCT_LT
-%token <tokn> PUNCT_GT
-%token <tokn> PUNCT_EQUAL_EQUAL
-%token <tokn> PUNCT_NOT_EQUAL
-%token <tokn> PUNCT_EQUAL_EQUAL_EQUAL
-%token <tokn> PUNCT_AMP
-%token <tokn> PUNCT_CARET
-%token <tokn> PUNCT_PIPE
-%token <tokn> PUNCT_AMP_AMP_EQUAL
-%token <tokn> PUNCT_PIPE_PIPE_EQUAL
-%token <tokn> PUNCT_AMP_AMP
-%token <tokn> PUNCT_PIPE_PIPE
-%token <tokn> PUNCT_LT_LT_LT
-%token <tokn> PUNCT_GT_GT_GT
-%token <tokn> PUNCT_LT_EQUAL_GT
-%token <tokn> PUNCT_LT_LT_EQUAL
-%token <tokn> PUNCT_GT_GT_EQUAL
-%token <tokn> PUNCT_LT_LT_LT_EQUAL
-%token <tokn> PUNCT_GT_GT_GT_EQUAL
-%token <tokn> PUNCT_EQUAL
-%token <tokn> PUNCT_PLUS_EQUAL
-%token <tokn> PUNCT_MINUS_EQUAL
-%token <tokn> PUNCT_STAR_EQUAL
-%token <tokn> PUNCT_SLASH_EQUAL
-%token <tokn> PUNCT_PERCENT_EQUAL
-%token <tokn> PUNCT_AMP_EQUAL
-%token <tokn> PUNCT_CARET_EQUAL
-%token <tokn> PUNCT_PIPE_EQUAL
-%token <tokn> PUNCT_COMMA
-%token <tokn> PUNCT_L_PAR
-%token <tokn> PUNCT_PAR_R
-%token <tokn> PUNCT_L_CURLY
-%token <tokn> PUNCT_CURLY_R
-%token <tokn> PUNCT_SLASH_SLASH
-%token <tokn> PUNCT_SLASH_STAR
-%token <tokn> PUNCT_STAR_SLASH
 
-%token <tokn> RW_if
+%token <tokn> RW_StartFontMetrics
+%token <tokn> RW_Comment
+%token <tokn> RW_FontName
+%token <tokn> RW_FullName
+%token <tokn> RW_FamilyName
+%token <tokn> RW_Weight
+%token <tokn> RW_ItalicAngle
+%token <tokn> RW_IsFixedPitch
+%token <tokn> RW_UnderlinePosition
+%token <tokn> RW_UnderlineThickness
+%token <tokn> RW_Version
+%token <tokn> RW_Notice
+%token <tokn> RW_EncodingScheme
+%token <tokn> RW_FontBBox
+%token <tokn> RW_CapHeight
+%token <tokn> RW_XHeight
+%token <tokn> RW_Descender
+%token <tokn> RW_Ascender
+%token <tokn> RW_StartCharMetrics
+%token <tokn> RW_C
+%token <tokn> RW_WX
+%token <tokn> RW_N
+%token <tokn> RW_B
 
 %token <tokn> LEX_EOLN
-%token <tokn> LEX_IDENTIFIER
+%token <tokn> LEX_WORD
 %token <tokn> LEX_WS
 %token <tokn> LEX_DOUBLE
 %token <tokn> LEX_INTEGER
-%token <tokn> LEX_STRING
-%token <tokn> LEX_COMMENT
+%token <tokn> LEX_BOOL
 
 %type <expr> expr_ident
 %type <expr> expr

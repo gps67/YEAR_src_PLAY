@@ -9,6 +9,7 @@
 
 # LIBR uses a few namespaces
 	namespace import ::MK_ID::mk*
+	namespace import ::fd_mpg123::*
 
 	# namespace tree_walk
 	# NB # in mk_btns $cmd # cmd needs either import or absolute NS::func
@@ -27,17 +28,33 @@ namespace eval tree_walk {
 	variable btns_artists
 	variable btns_albums
 	variable btns_tracks
+	variable btns_play ;# its actually a PANEL where buttons might go
+
+	variable single_mpg123_fd
 
  proc build_three {w2} { # 3 panels # data later
+
+	variable single_mpg123_fd
+	set varname "::fd_mpg123::global_fd"
+	set varname "::tree_walk::single_mpg123_fd"
+	set $varname [::fd_mpg123::mpg123_open]
 
 	# either this or than not both tho
 	variable btns_artists
 	variable btns_albums
 	variable btns_tracks
+	variable btns_play ;# must be imported to this function
 
 	set tree_walk::btns_artists $w2.btns_artists
 	frame $tree_walk::btns_artists
 	h_pack $tree_walk::btns_artists
+
+# above works this doesn;t
+# tempting but busy
+#	set frame_var_name tree_walk::btns_artists
+#	set $frame_var_name $w2.btns_artists
+#	frame $frame_var_name 
+#	h_pack $frame_var_name
 
 	set btns_albums $w2.btns_albums
 	frame $btns_albums
@@ -46,6 +63,10 @@ namespace eval tree_walk {
 	set btns_tracks $w2.btns_tracks
 	frame $btns_tracks
 	h_pack $btns_tracks
+
+	set btns_play $w2.btns_play
+	frame $btns_play
+	h_pack $btns_play
 
 	# btns_b_text_cmd_Exit $btns_albums
  }
@@ -92,14 +113,23 @@ namespace eval tree_walk {
 	set DIR $D1/$d2/$d3
 	set LIST [glob -tails -directory $DIR * ]
 	set LIST [lsort $LIST]
+	set d4_first [lindex $LIST 0]
+
 	foreach d4 $LIST {
 		set cmd [list tree_walk::play_track $D1 $d2 $d3 $d4]
 		btns_b_text_cmd $tree_walk::btns_tracks [mk_id] $d4 $cmd
 	}
+	tree_walk::play_track $D1 $d2 $d3 $d4_first
  }
 
  proc play_track { D1 d2 d3 d4 } { # ROOT artist album track
-	puts "PLAY_TRACK $D1 $d2 $d3 $d4"
+	# we have to get $fd from somewhere
+	variable single_mpg123_fd
+	set mpg123_fd  $single_mpg123_fd
+
+	set filename [file join $D1 $d2 $d3 $d4]
+	set cmd [list fd_mpg123::play_track $mpg123_fd $filename]
+	btns_b_text_cmd $tree_walk::btns_play [mk_id] $d4 $cmd
  }
 
 
@@ -139,15 +169,19 @@ proc RUN_MAIN {} {
 	mk_text_out_global $w1 ;# uses h_pack tho
 	wm_raise $w1
 
+	# $w1 is the logfile
+	# $w2 is the tree_menu and play buttons
+
 	# the 3-panel ARTISTS   ALBUMS   TRACKS
+	# 4th panel BUTTONS
 	set w2 .w2
 	toplevel $w2
 	raise $w2
 
 	EXIT_BUTTON $w2
 
-	tree_walk::build_three $w2
-	tree_walk::set_D1 $D1
+	tree_walk::build_three $w2	;# widgets
+	tree_walk::set_D1 $D1		;# D1 artist albums tracks into widgets
 
 }
 RUN_MAIN

@@ -1,0 +1,52 @@
+#	CODE_TREE_VIEW.txt
+
+ VIEW_CODE
+
+ 	nested indented text
+	GEN details for specific OUTPUTS
+	GEN details for VIEW[udef]
+
+ TREE_CODE
+
+ 	MODULE
+	FUNCTION
+	LINE_in_BLOCK
+	LINE_in_BLOCK # PARSED_CXX_EXPR
+	LINE_in_BLOCK # PARSED_CXX_ARGV // OPCODE ARGS
+
+	PARSED_CXX
+
+		GEN needs tests to loop around
+		TCL_API for tests
+		SCRIPT_PARSER_ARGV_from_CXX
+		SCRIPT_PARSER_CXX_from_ARGV
+	
+	COMPILED TABLES
+
+		VARS_in_BLOCK
+
+		XPOS_DECL_TWIG // or retro parse backwards from ZERO PTR IDENT
+
+		KNOW_IDX_REMAPPED
+
+			"{ alloc idx = N ++ }"
+
+			ITEM == idx
+
+		KNOW SEGMENT STREAMED out of COMPILER
+
+			PREPARED BYTES
+			LOAD_at_OFFS_over_BASE
+			UNIT = 1 WORD of 4 BYTES
+			UNIT = 2 WORD of 4 BYTES // EIGHT_BYTES
+
+		CT_RT opens up COMPILER MAGIC
+
+			resolved ALIAS
+			resolved STRONG_TYPE_CHECK_REQUIRED
+			resolved STRONG_TYPE_CHECK_AVAILABLE
+
+			call prepared SCRIPT using ARGV of OBJECTS
+			call prepared SCRIPT using JSON of OBJECTS
+			call prepared SCRIPT using BOTH of ARGV JSON ...more...
+

@@ -13,18 +13,8 @@
 
 */
 
- // START Conditions - exclusive
-
-/* CXX line comment */
-%x CMNT_CPP_TO_EOLN
-
-/* C comment */
-%x CMNT_C
-
-/* CXX string */
-%x STRING_C
-
-
+ // no LEX START Conditions
+ // ns 0 nx 0 
 
 %{
 // within definitions %{ is A CODE SECTION BEGIN // like %TOP see 5.1 
@@ -139,7 +129,29 @@ int lex_return( int tok )
 
  /* LIST RW reserved word */
 
-"if"     return TOKEN(RW_if);
+"StartFontMetrics" return TOKEN(RW_StartFontMetrics);
+"Comment" return TOKEN(RW_Comment);
+"FontName" return TOKEN(RW_FontName);
+"FullName" return TOKEN(RW_FullName);
+"FamilyName" return TOKEN(RW_FamilyName);
+"Weight" return TOKEN(RW_Weight);
+"ItalicAngle" return TOKEN(RW_ItalicAngle);
+"IsFixedPitch" return TOKEN(RW_IsFixedPitch);
+"UnderlinePosition" return TOKEN(RW_UnderlinePosition);
+"UnderlineThickness" return TOKEN(RW_UnderlineThickness);
+"Version" return TOKEN(RW_Version);
+"Notice" return TOKEN(RW_Notice);
+"EncodingScheme" return TOKEN(RW_EncodingScheme);
+"FontBBox" return TOKEN(RW_FontBBox);
+"CapHeight" return TOKEN(RW_CapHeight);
+"XHeight" return TOKEN(RW_XHeight);
+"Descender" return TOKEN(RW_Descender);
+"Ascender" return TOKEN(RW_Ascender);
+"StartCharMetrics" return TOKEN(RW_StartCharMetrics);
+"C"      return TOKEN(RW_C);
+"WX"     return TOKEN(RW_WX);
+"N"      return TOKEN(RW_N);
+"B"      return TOKEN(RW_B);
 
  /* gen_LEX_RULES _eoln() AFTER RW_s */
 
@@ -157,59 +169,6 @@ int lex_return( int tok )
  /* LIST PUNCT */
  /* beware .123 float seeing PUNCT_DOT */
 
-"++"     return TOKEN(PUNCT_PLUS_PLUS);
-"--"     return TOKEN(PUNCT_MINUS_MINUS);
-"()"     return TOKEN(PUNCT_L_PAR_PAR_R);
-"[]"     return TOKEN(PUNCT_L_SQUARE_SQUARE_R);
-"."      return TOKEN(PUNCT_DOT);
-"->"     return TOKEN(PUNCT_MINUS_GT);
-"!"      return TOKEN(PUNCT_NOT);
-"~"      return TOKEN(PUNCT_TILDE);
-"*"      return TOKEN(PUNCT_STAR);
-"/"      return TOKEN(PUNCT_SLASH);
-"%"      return TOKEN(PUNCT_PERCENT);
-"+"      return TOKEN(PUNCT_PLUS);
-"-"      return TOKEN(PUNCT_MINUS);
-"<<"     return TOKEN(PUNCT_LT_LT);
-">>"     return TOKEN(PUNCT_GT_GT);
-"<="     return TOKEN(PUNCT_LT_EQUAL);
-">="     return TOKEN(PUNCT_GT_EQUAL);
-"<"      return TOKEN(PUNCT_LT);
-">"      return TOKEN(PUNCT_GT);
-"=="     return TOKEN(PUNCT_EQUAL_EQUAL);
-"!="     return TOKEN(PUNCT_NOT_EQUAL);
-"==="    return TOKEN(PUNCT_EQUAL_EQUAL_EQUAL);
-"&"      return TOKEN(PUNCT_AMP);
-"^"      return TOKEN(PUNCT_CARET);
-"|"      return TOKEN(PUNCT_PIPE);
-"&&="    return TOKEN(PUNCT_AMP_AMP_EQUAL);
-"||="    return TOKEN(PUNCT_PIPE_PIPE_EQUAL);
-"&&"     return TOKEN(PUNCT_AMP_AMP);
-"||"     return TOKEN(PUNCT_PIPE_PIPE);
-"<<<"    return TOKEN(PUNCT_LT_LT_LT);
-">>>"    return TOKEN(PUNCT_GT_GT_GT);
-"<=>"    return TOKEN(PUNCT_LT_EQUAL_GT);
-"<<="    return TOKEN(PUNCT_LT_LT_EQUAL);
-">>="    return TOKEN(PUNCT_GT_GT_EQUAL);
-"<<<="   return TOKEN(PUNCT_LT_LT_LT_EQUAL);
-">>>="   return TOKEN(PUNCT_GT_GT_GT_EQUAL);
-"="      return TOKEN(PUNCT_EQUAL);
-"+="     return TOKEN(PUNCT_PLUS_EQUAL);
-"-="     return TOKEN(PUNCT_MINUS_EQUAL);
-"*="     return TOKEN(PUNCT_STAR_EQUAL);
-"/="     return TOKEN(PUNCT_SLASH_EQUAL);
-"%="     return TOKEN(PUNCT_PERCENT_EQUAL);
-"&="     return TOKEN(PUNCT_AMP_EQUAL);
-"^="     return TOKEN(PUNCT_CARET_EQUAL);
-"|="     return TOKEN(PUNCT_PIPE_EQUAL);
-","      return TOKEN(PUNCT_COMMA);
-"("      return TOKEN(PUNCT_L_PAR);
-")"      return TOKEN(PUNCT_PAR_R);
-"{"      return TOKEN(PUNCT_L_CURLY);
-"}"      return TOKEN(PUNCT_CURLY_R);
-"//"     return TOKEN(PUNCT_SLASH_SLASH);
-"/*"     return TOKEN(PUNCT_SLASH_STAR);
-"*/"     return TOKEN(PUNCT_STAR_SLASH);
 
  /* LIST LEX */
 

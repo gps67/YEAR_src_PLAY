@@ -20,6 +20,7 @@ int main( int argc, char ** argv )
 		filename = "../test2.test";
 		filename =
 		"/usr/share/fonts/type1/urw-base35/Z003-MediumItalic.afm";
+		filename = "../test4.test";
 		// has lots of KPX and char names
 	}
 	INFO("Parsing %s", filename );

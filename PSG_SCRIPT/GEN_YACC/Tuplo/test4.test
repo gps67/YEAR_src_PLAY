@@ -1,0 +1,11 @@
+{
+	"field1": "string1",
+	"list2": [
+		1, 2, 3.3, 4
+	],
+	"field3": {
+		"f3a": nested",
+		"f3b": nested",
+		"f3c": nested",
+	}
+}

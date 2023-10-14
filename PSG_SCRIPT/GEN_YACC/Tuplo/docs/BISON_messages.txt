@@ -1,0 +1,53 @@
+BISON_messages.txt
+
+bison -d -o ../obj/gen_JSON_yacc.tab.cc ../obj/gen_JSON_yacc.y
+
+../obj/gen_JSON_yacc.y:120.14-22: warning: symbol ‘EXPR_line’ is used, but is not defined as a token and has no rules [-Wother]
+  120 | %type <expr> EXPR_line
+      |              ^~~~~~~~~
+../obj/gen_JSON_yacc.y:139.14-27: error: symbol ‘LEX_IDENTIFIER’ is used, but is not defined as a token and has no rules; did you mean ‘LEX_INTEGER’?
+  139 | expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E0( (STR0) yylval.lex_buff...
+      |              ^~~~~~~~~~~~~~
+      |              LEX_INTEGER
+../obj/gen_JSON_yacc.y:147.13-23: error: symbol ‘PUNCT_L_PAR’ is used, but is not defined as a token and has no rules; did you mean ‘PUNCT_SLASH’?
+  147 | expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
+      |             ^~~~~~~~~~~
+      |             PUNCT_SLASH
+../obj/gen_JSON_yacc.y:147.30-40: error: symbol ‘PUNCT_PAR_R’ is used, but is not defined as a token and has no rules; did you mean ‘PUNCT_SLASH’?
+  147 | expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
+      |                              ^~~~~~~~~~~
+      |                              PUNCT_SLASH
+make: *** [../MK/Makefile:384: ../obj/gen_JSON_yacc.tab.cc] Error 1
+
+So these eare mentioned in ../obj/gen_JSON_yacc.y
+
+%type <expr> expr_ident		# OK
+%type <expr> expr		# OK
+%type <expr> EXPR_line		# line 120
+%type <expr> lines		# OK
+
+...
+
+expr_ident : expr_ident LEX_WS { $$ = $1; } # OK
+expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E0( (STR0) yylval.lex_buff ); } # 139
+
+... 
+PUNCT_L_PAR is not in gen because PUNCT_ is added to _ MINUS _ MINUS
+see src/PSG_Tree/lex_yacc_LEX_PUNCT_NAME.cxx
+
+	grep PUNCT_L_PAR *
+
+src/PSG_Tree/e1/
+	lex_yacc_UDEF_C_EXPR_lex.cxx
+
+POOL_PUNCT.add_PUNCT( "--",  L2R "1", "arith postfix_decr"  );
+
+
+
+
+
+These seem to come from src/e1.y.RULES
+which refer to them but might not have (long list)
+	POOL_PUNCT.add_PUNCT( "--",  L2R "1", "arith postfix_decr"  );
+the proper solution is to get rid of e1.y.RULES and build those rules
+in a way that each LEX is detected

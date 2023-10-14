@@ -44,32 +44,7 @@ bool lex_yacc_UDEF_JSON:: add_lex_for_JSON() {
 
 #warning new code here is where you add C priority left right options
 
-	POOL_RW.add_RW( "StartFontMetrics" );
-
-	POOL_RW.add_RW( "Comment" );
-	POOL_RW.add_RW( "FontName" );
-	POOL_RW.add_RW( "FullName" );
-	POOL_RW.add_RW( "FamilyName" );
-	POOL_RW.add_RW( "Weight" );
-	POOL_RW.add_RW( "ItalicAngle" );
-	POOL_RW.add_RW( "IsFixedPitch" );
-	POOL_RW.add_RW( "UnderlinePosition" );
-	POOL_RW.add_RW( "UnderlineThickness" );
-	POOL_RW.add_RW( "Version" );
-	POOL_RW.add_RW( "Notice" );
-	POOL_RW.add_RW( "EncodingScheme" );
-	POOL_RW.add_RW( "FontBBox" );
-	POOL_RW.add_RW( "CapHeight" );
-	POOL_RW.add_RW( "XHeight" );
-	POOL_RW.add_RW( "Descender" );
-	POOL_RW.add_RW( "Ascender" );
-	POOL_RW.add_RW( "StartCharMetrics" );
-
-	POOL_RW.add_RW( "C" );
-	POOL_RW.add_RW( "WX" );
-	POOL_RW.add_RW( "N" );
-	POOL_RW.add_RW( "B" );
-
+	POOL_RW.add_RW( "JSON_RESERVED_WORD_none" );
 
 	// Names of LEX exprs that match values
 

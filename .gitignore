@@ -22,6 +22,7 @@ fb
 */ca/*
 *_lex.cc
 *_yacc.tab.hh
+*_yacc.tab.cc
 gen_e1_*
 gen_AFM_*
 */build_*

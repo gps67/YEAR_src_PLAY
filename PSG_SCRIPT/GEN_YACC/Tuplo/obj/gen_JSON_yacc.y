@@ -27,29 +27,7 @@
   // PUNCT_ any literal strings almost
 
   // RW_ reserved words
-   case RW_StartFontMetrics:	 return "StartFontMetrics";
-   case RW_Comment:	 return "Comment";
-   case RW_FontName:	 return "FontName";
-   case RW_FullName:	 return "FullName";
-   case RW_FamilyName:	 return "FamilyName";
-   case RW_Weight:	 return "Weight";
-   case RW_ItalicAngle:	 return "ItalicAngle";
-   case RW_IsFixedPitch:	 return "IsFixedPitch";
-   case RW_UnderlinePosition:	 return "UnderlinePosition";
-   case RW_UnderlineThickness:	 return "UnderlineThickness";
-   case RW_Version:	 return "Version";
-   case RW_Notice:	 return "Notice";
-   case RW_EncodingScheme:	 return "EncodingScheme";
-   case RW_FontBBox:	 return "FontBBox";
-   case RW_CapHeight:	 return "CapHeight";
-   case RW_XHeight:	 return "XHeight";
-   case RW_Descender:	 return "Descender";
-   case RW_Ascender:	 return "Ascender";
-   case RW_StartCharMetrics:	 return "StartCharMetrics";
-   case RW_C:	 return "C";
-   case RW_WX:	 return "WX";
-   case RW_N:	 return "N";
-   case RW_B:	 return "B";
+   case RW_JSON_RESERVED_WORD_none:	 return "JSON_RESERVED_WORD_none";
 
   // LEX_ items have no value so return SYMBOL
    case LEX_EOLN:	 return "_LEX_EOLN_"; // print_TOKEN_name_3 //
@@ -84,29 +62,7 @@
  }
 
 
-%token <tokn> RW_StartFontMetrics
-%token <tokn> RW_Comment
-%token <tokn> RW_FontName
-%token <tokn> RW_FullName
-%token <tokn> RW_FamilyName
-%token <tokn> RW_Weight
-%token <tokn> RW_ItalicAngle
-%token <tokn> RW_IsFixedPitch
-%token <tokn> RW_UnderlinePosition
-%token <tokn> RW_UnderlineThickness
-%token <tokn> RW_Version
-%token <tokn> RW_Notice
-%token <tokn> RW_EncodingScheme
-%token <tokn> RW_FontBBox
-%token <tokn> RW_CapHeight
-%token <tokn> RW_XHeight
-%token <tokn> RW_Descender
-%token <tokn> RW_Ascender
-%token <tokn> RW_StartCharMetrics
-%token <tokn> RW_C
-%token <tokn> RW_WX
-%token <tokn> RW_N
-%token <tokn> RW_B
+%token <tokn> RW_JSON_RESERVED_WORD_none
 
 %token <tokn> LEX_EOLN
 %token <tokn> LEX_WORD

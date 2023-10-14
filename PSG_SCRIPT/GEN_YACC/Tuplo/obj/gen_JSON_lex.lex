@@ -129,29 +129,7 @@ int lex_return( int tok )
 
  /* LIST RW reserved word */
 
-"StartFontMetrics" return TOKEN(RW_StartFontMetrics);
-"Comment" return TOKEN(RW_Comment);
-"FontName" return TOKEN(RW_FontName);
-"FullName" return TOKEN(RW_FullName);
-"FamilyName" return TOKEN(RW_FamilyName);
-"Weight" return TOKEN(RW_Weight);
-"ItalicAngle" return TOKEN(RW_ItalicAngle);
-"IsFixedPitch" return TOKEN(RW_IsFixedPitch);
-"UnderlinePosition" return TOKEN(RW_UnderlinePosition);
-"UnderlineThickness" return TOKEN(RW_UnderlineThickness);
-"Version" return TOKEN(RW_Version);
-"Notice" return TOKEN(RW_Notice);
-"EncodingScheme" return TOKEN(RW_EncodingScheme);
-"FontBBox" return TOKEN(RW_FontBBox);
-"CapHeight" return TOKEN(RW_CapHeight);
-"XHeight" return TOKEN(RW_XHeight);
-"Descender" return TOKEN(RW_Descender);
-"Ascender" return TOKEN(RW_Ascender);
-"StartCharMetrics" return TOKEN(RW_StartCharMetrics);
-"C"      return TOKEN(RW_C);
-"WX"     return TOKEN(RW_WX);
-"N"      return TOKEN(RW_N);
-"B"      return TOKEN(RW_B);
+"JSON_RESERVED_WORD_none" return TOKEN(RW_JSON_RESERVED_WORD_none);
 
  /* gen_LEX_RULES _eoln() AFTER RW_s */
 

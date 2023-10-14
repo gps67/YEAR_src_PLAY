@@ -45,16 +45,9 @@ namespace eval tree_walk {
 	variable btns_tracks
 	variable btns_play ;# must be imported to this function
 
-	set tree_walk::btns_artists $w2.btns_artists
-	frame $tree_walk::btns_artists
-	h_pack $tree_walk::btns_artists
-
-# above works this doesn;t
-# tempting but busy
-#	set frame_var_name tree_walk::btns_artists
-#	set $frame_var_name $w2.btns_artists
-#	frame $frame_var_name 
-#	h_pack $frame_var_name
+	set btns_artists $w2.btns_artists
+	frame $btns_artists
+	h_pack $btns_artists
 
 	set btns_albums $w2.btns_albums
 	frame $btns_albums
@@ -68,11 +61,53 @@ namespace eval tree_walk {
 	frame $btns_play
 	h_pack $btns_play
 
-	# btns_b_text_cmd_Exit $btns_albums
  }
 
+ # DICT # TODO #
+ # ( OVER D2 idx )
+ # ./.tcl.data_per_dir.tdb
+ # KEY_PER_APP { zone } ;# zone is k1 v1 k2 v2 ;#
+ #
+ # ./.tcl.sqlite_data_per_dir .tdb .sqlite3 .MMAP .UDEF_elf
+ # SEGMENT # NBYTES # MIME_TYPE ELF_SEGMENT 
+ # LOADER # LINK_XPOS IDX OFFS SEGMENTS NAMES VAR_POOL LANG_LOADER
+ # LOAD Python SEGMENT
+ # LOAD Tcl SEGMENT ROM CACHED NBYTES from ROM OFFS NBYTES // COPY DATA // N_Bytes // N_bytes_BOTH //
+ # BOTH _nbytes _spec_name _spec API UDEF
+ # UDEF # DECL name spec # DATA # nbytes # SPEC_t & SPEC # run_as_this
+ # UDEF # DECL name spec # DATA # nbytes # SPEC_t * SPEC # run_as_this
+ # UDEF provides SPEC for SEGMENT via elf_api
+ # ELF # LOAD_SHARED_OBJECT # RELOCATED RESOLVE _on_LOAD( API_event )
+ # API # SCRIPT provides API_event as XPOS
+ # XPOS # FILE CPOS #
+ # XPOS # FILE XPOS #
+ # XPOS # FILE EA_EXPR # EA_t & EA = EVAL EXPR with CTXT via FILTER[s]
+ # XPOS Y_LINE X_CPOS # ZERO is BOLN # X_XPOS # BYTE_POS = EVAL FILTER_FUNC XPOS
+ # XPOS XPOS # Once upon a time, everthing was one byte, one XPOS now char_bytes
+ # XPOS -SELF- # ie byte_pos is not char_pos #
+ # SPEC # MATCH # ACTIVATE MANAGE CONTROL VAR_POOL of UDEF_TYPE_SPEC _n_STO
+ # STO # nbytes in sqlite3 blob with DECODE_elf_SEGMENT _as_SQLITE_FILE
+ # STO # N BYTES ALLOC
+ # ALLOC # obj_hold<STO_NBYTES_see_SPEC>
+ # sqlite3 select item where PAIRS EXPR CXX_SCRIPT
+ # CXX_ARGV # FORK TRACK PID CXX ARGV #
+ # CXX_ARGV # FORK TRACK PID CXX ARGV # LIBR # LOAD # DECL #
+ # CXX_ARGV_ELF # FORK TRACK PID CXX ARGV # LIBR # LOAD # DECL # SPEC #
+ # CXX_ARGV_ELF # FORK TRACK PID CXX ARGV # LIBR # LOAD # DECL # SPEC # SCRIPT #
+ # CXX_ARGV_ELF # ALIAS ANYSTR # IDENT was CIDENT now ANYSTR # MATCH ANYSTR BYTES NBYTES nested_nbytes_SCRIPTED_DATA
+
  proc set_D1 { D1 } { # TREE ROOT 
-	# unused # keep ROOT #
+ 	# globs a tree to 3 levels aurtis/album/filename
+	# needs dirname_when_not_filename
+	# needs ext_mime_empty when filename
+
+	# TODO keep idx_pos_in_LIST of selected subdir || file || ___
+	# TODO incr idx_pos over LIST then maybe next dir ??
+	# TODO event mechanisms
+
+	# D1 is $dir_audio_mp3_V4 / but could also be ...
+	#       $dir_audio_wav/
+	#
 	set tree_walk::D1 $D1
 
 	set LIST [glob -tails -directory $D1 * ]
@@ -81,9 +116,6 @@ namespace eval tree_walk {
 	foreach d2 $LIST {
 		# test $item is DIR
 		set DIR $D1/$d2
-# WAS # btns_b_text_cmd $tree_walk::btns_artists [mk_id] $d2 { SCRIPT }
-# NOW # btns_b_text_cmd $tree_walk::btns_artists [mk_id] $d2 $cmd
-# it needs to be a capture # collecting the variables # closure
 		set cmd [list tree_walk::set_D1_d2 $D1 $d2]
 		btns_b_text_cmd $tree_walk::btns_artists [mk_id] $d2 $cmd
 	}

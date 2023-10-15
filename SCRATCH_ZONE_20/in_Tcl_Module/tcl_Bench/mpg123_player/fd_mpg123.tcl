@@ -53,7 +53,7 @@ namespace eval fd_mpg123 {
 
 
 	proc mpg123_on_readable { mpg123_fd } {
-		text_out_ln - "mpg123 fd READABLE"
+	#	text_out_ln - "mpg123 fd READABLE"
 
 		if {[gets $mpg123_fd OUT] > 0} {
 		#	text_out_ln - "{OUT} $OUT"

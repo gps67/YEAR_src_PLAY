@@ -2,9 +2,22 @@
 
 namespace eval ::MK_ID {
  namespace export *
+
+ # store counter N for each prefix used
+ #
+ # pfx_N(OBJ) # 10 # OBJ10 #
+ # pfx_N(PFX) # 21 # PFX21
+ # pfx_N(ONE) # 32
+ # pfx_N(TWO) # 43
+ # pfx_N(g_ITEM_) # 1
+ #
  variable pfx_N 
- # window names cannot start with an uppercase
- variable G_counter_NAME g_ITEM_ 
+
+ # single default prefix # usable as .w1.frame2.g_ITEM_123.subfield
+ # window names cannot start with an uppercase # g_ITEM_123
+
+ variable G_counter_NAME   g_ITEM_ 
+
 #  set pfx_N(G_counter_N) -1 ;# is an array ;# TODO dict
 
  proc mk_id {{pfx {}}} {
@@ -20,16 +33,16 @@ namespace eval ::MK_ID {
  } ;# it is actually a str %d idx 99
 
  proc test1 {} {
- 	puts "[mk_id PFX]"
- 	puts "[mk_id PFX]"
+ 	puts "[mk_id  PFX]"
+ 	puts "[mk_id  PFX]"
  	puts "[mk_idx PFX]"
- 	puts "[mk_id PFX]"
- 	puts "[mk_id TWO]"
- 	puts "[mk_id TWO]"
+ 	puts "[mk_id  PFX]"
+ 	puts "[mk_id  TWO]"
+ 	puts "[mk_id  TWO]"
  	puts "[mk_idx TWO]"
- 	puts "[mk_id TWO]"
- 	puts "[mk_idx ]"
- 	puts "[mk_id ]"
+ 	puts "[mk_id  TWO]"
+ 	puts "[mk_idx    ]"
+ 	puts "[mk_id     ]"
  }
 }
 

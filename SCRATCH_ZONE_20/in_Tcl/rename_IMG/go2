@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PATH=:$PATH
+
+mains.tcl a --NAME HERE b  --NAME THERE c
+
+

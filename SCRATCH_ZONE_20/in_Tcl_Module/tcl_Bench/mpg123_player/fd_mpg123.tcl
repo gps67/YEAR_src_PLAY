@@ -1,4 +1,4 @@
-
+# errm ectually it is mpg123 not mpg321 # 
 	namespace import ::MK_ID::mk*
 
 namespace eval fd_mpg123 {
@@ -7,10 +7,15 @@ namespace eval fd_mpg123 {
 	# I would prefer to pass "mpg123_fd" as token for global_fd
 
 	variable global_fd
+	variable RE_at_P_line
+	build_RE_s
+
 
 	proc mpg123_open { { mpg123_progname {} } } {
 		if { $mpg123_progname == {} } {
 			set mpg123_progname /tools/CTXT/libr/bin/mpg123 
+			set mpg123_progname mpg321 
+			set mpg123_progname mpg123 
 		}
 		set cmd "$mpg123_progname -R fake.mp3" 
 		set mpg123_fd [open "| $cmd &" w+b]
@@ -31,12 +36,9 @@ namespace eval fd_mpg123 {
 		return $mpg123_fd
 	}
 
-	proc play_track { mpg123_fd filename } {
-		mpg123_send $mpg123_fd "LOAD $filename"
-	}
-
 	proc mpg123_send {mpg123_fd line } {
 
+		text_out_ln - "# SEND # $line"
 		puts $mpg123_fd $line
 		flush $mpg123_fd
 
@@ -48,16 +50,36 @@ namespace eval fd_mpg123 {
 		# set mpg123_fd {}
 	}
 
-	#		puts \$global_fd {$line}
-	# BIND #		puts \$global_fd {$line}
+	proc mpg123_LOAD {mpg123_fd filename} {
+		mpg123_send $mpg123_fd "LOAD $filename"
+	}
 
+	proc mpg123_JUMP {mpg123_fd frames} {
+		mpg123_send $mpg123_fd "JUMP $frames"
+	}
+
+	proc mpg123_PAUSE {mpg123_fd} {
+		mpg123_send $mpg123_fd "PAUSE"
+	}
+
+	proc mpg123_GAIN {mpg123_fd gain} {
+		# percentage
+		mpg123_send $mpg123_fd "GAIN $gain"
+	}
+
+	proc mpg123_QUIT {mpg123_fd} {
+		mpg123_send $mpg123_fd "QUIT"
+	}
+
+
+	############ on_readable ############
 
 	proc mpg123_on_readable { mpg123_fd } {
 	#	text_out_ln - "mpg123 fd READABLE"
 
 		if {[gets $mpg123_fd OUT] > 0} {
 		#	text_out_ln - "{OUT} $OUT"
-			text_out_ln -       "$OUT"
+		#	text_out_ln -       "$OUT"
 			PARSE_at_line $OUT
 			set OUT "OUT: $OUT"
 		} else {

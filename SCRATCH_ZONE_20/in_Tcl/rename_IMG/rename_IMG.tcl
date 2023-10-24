@@ -28,6 +28,11 @@ set ZONE_NAME Freda
 set ZONE_NAME Sona_Jobarteh
 set ZONE_NAME Greenwich
 set ZONE_NAME XXX
+set ZONE_NAME HANS
+set ZONE_NAME FOUND
+
+# BASH # . fns_EDIT
+# BASH # fn_EDIT_var ZONE_NAME
 
 
 puts ". fns_ASKS"
@@ -170,7 +175,7 @@ proc macro_rewrite_ext {} {
 	}
 }
 
-proc rename_IMG_main {dir} {
+proc rename_IMG_dir {dir} {
 	global NAME
 
 	set L1 [list_dir $dir]
@@ -337,8 +342,8 @@ proc rename_IMG_main {dir} {
 
 if {$argc != 1} {
 	puts "# expected argc 1 got $argc"
-	rename_IMG_main $dir_default
+	rename_IMG_dir $dir_default
 	exit
 }
 
-rename_IMG_main [lindex "$argv" 0]
+rename_IMG_dir [lindex "$argv" 0]

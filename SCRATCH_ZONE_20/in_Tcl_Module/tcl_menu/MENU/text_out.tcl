@@ -10,6 +10,9 @@
 # boils down to #
 # # $text_widget  insert end  $text
 
+
+set ::global_text_out_does_puts 1
+
 proc text_out_get_text_widget { {text_widget {} } } {
 	# single default output text widget "-" or {} or "default"
 	if {$text_widget == "-" } { set text_widget {}} 
@@ -25,6 +28,9 @@ proc text_out {text_widget text} {
 	set text_widget [ text_out_get_text_widget $text_widget ]
 	# add text to widget
 	$text_widget insert end $text
+	if $::global_text_out_does_puts {
+		puts -nonewline $text
+	}
 
 	text_out_see_end $text_widget ;# see last line
 }
@@ -33,13 +39,17 @@ proc text_out_see_end {text_widget } {
 	$text_widget see end
 }
 
+proc set_text_out_does_puts {{yes 1}} {
+	set ::global_text_out_does_puts $yes
+}
+
 
 #
 # text_out $TEXT # then a trailing newline
 #
 proc text_out_ln { text_widget text} {
-	text_out $text_widget $text
-	text_out $text_widget "\n"
+	text_out $text_widget "$text\n"
+	# text_out $text_widget "\n"
 }
 
 #

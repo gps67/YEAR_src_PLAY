@@ -40,7 +40,7 @@ proc RE_append_VAR { RE_ VAR_name } {
 proc RE_append { RE_ args } {
 	variable  EXPR_for_RE
 	foreach arg $args {
-		puts "RE_append $arg"
+		puts "RE_append $RE_ $arg"
 		append EXPR_for_RE($RE_) $arg
 	}
 }

@@ -25,12 +25,27 @@ namespace eval tree_walk {
 
 	variable D1 {}
 
-	variable btns_artists
+	variable btns_artists	;# a widget frame where buttons are placed
 	variable btns_albums
 	variable btns_tracks
 	variable btns_play ;# its actually a PANEL where buttons might go
 
 	variable single_mpg123_fd
+
+ proc btns_play_rebuild { name filename } {
+
+	forget_all_packed_content $tree_walk::btns_play
+
+	variable single_mpg123_fd
+	set mpg123_fd  $single_mpg123_fd
+	
+	set cmd [list fd_mpg123::mpg123_LOAD $mpg123_fd $filename]
+	btns_b_text_cmd $tree_walk::btns_play [mk_id] $name $cmd
+	
+	set cmd [list fd_mpg123::mpg123_PAUSE $mpg123_fd ]
+	btns_b_text_cmd $tree_walk::btns_play [mk_id] PAUSE $cmd
+
+ }
 
  proc build_three {w2} { # 3 panels # data later
 
@@ -60,6 +75,8 @@ namespace eval tree_walk {
 	set btns_play $w2.btns_play
 	frame $btns_play
 	h_pack $btns_play
+
+	btns_play_rebuild NONAME NOFILE
 
  }
 
@@ -156,12 +173,10 @@ namespace eval tree_walk {
 
  proc play_track { D1 d2 d3 d4 } { # ROOT artist album track
 	# we have to get $fd from somewhere
-	variable single_mpg123_fd
-	set mpg123_fd  $single_mpg123_fd
 
 	set filename [file join $D1 $d2 $d3 $d4]
-	set cmd [list fd_mpg123::play_track $mpg123_fd $filename]
-	btns_b_text_cmd $tree_walk::btns_play [mk_id] $d4 $cmd
+	btns_play_rebuild $d4 $filename
+
  }
 
 

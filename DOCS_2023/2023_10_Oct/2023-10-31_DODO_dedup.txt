@@ -1,0 +1,30 @@
+	2023-10-31
+
+	2023_10_Oct
+	2023-10-31_DODO_dedup.txt
+
+	DEDUP
+		tree_walk _entire_fs
+		keep_info _fs_stat
+		also_info _DATA_DIGEST
+	
+	DB kept
+
+		PARSE STREAM nbytes STR0
+		LOAD SEGMENT nbytes P0P2
+
+			PRE_BUILD
+
+				several TABLES float around their own LINK
+
+			STREAM_AS
+
+				when done, compiler loads them,
+				streams SEGMENT
+				streams header
+				pass_II puts headers first then rest
+	
+	ELF SEGMENT
+
+	
+

@@ -31,6 +31,45 @@ set ZONE_NAME XXX
 set ZONE_NAME HANS
 set ZONE_NAME FOUND
 
+proc list_pop {listname itemname } {
+	upvar $listname list
+	upvar $itemname item
+	if { $list == {} } {
+		return 0
+	}
+	set item [lindex $list 0]
+	set list [lrange $list 1 end]
+	return 1
+}
+
+# push might use VAL or by_VAR # I like by_VAR except slower
+
+proc my_main {list} {
+	global ZONE_NAME
+	set seen_one 0
+	set name_one 0
+	while {[ list_pop list item ]} {
+		puts "# item # $item # list '$list' #"
+		if { $item == "--NAME" } {
+			list_pop list ZONE_NAME
+			set name_one 1
+			continue
+		}
+		if {!name_one} {
+			puts "# ERROR # I really expect --NAME zonename"
+			return 
+		}
+		set seen_one 1
+		rename_IMG_dir $item
+	}
+	if {!$seen_one} {
+		rename_IMG_dir .
+	}
+	return
+}
+
+
+
 # BASH # . fns_EDIT
 # BASH # fn_EDIT_var ZONE_NAME
 
@@ -340,10 +379,11 @@ proc rename_IMG_dir {dir} {
 	}
 }
 
-if {$argc != 1} {
-	puts "# expected argc 1 got $argc"
-	rename_IMG_dir $dir_default
-	exit
-}
+#if {$argc != 1} {
+#	puts "# expected argc 1 got $argc"
+#	rename_IMG_dir $dir_default
+#	exit
+#}
 
-rename_IMG_dir [lindex "$argv" 0]
+# rename_IMG_dir [lindex "$argv" 0]
+my_main $argv

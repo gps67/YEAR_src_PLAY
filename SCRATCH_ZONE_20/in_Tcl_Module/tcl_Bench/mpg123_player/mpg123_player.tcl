@@ -206,6 +206,7 @@ proc RUN_MAIN {} {
 	# merge multiple dir usages # eg notes about album lyrics scrapbook
 	#
 	set D1 $dir_audio_mp3_V4
+	set D1 /home/gps/audio/NAS3_a2_AUDIO_mp3_2019_TREE/mp3_tree/mp3_africa
 
 	# the main app window, and text_out panel
 	# . already exists

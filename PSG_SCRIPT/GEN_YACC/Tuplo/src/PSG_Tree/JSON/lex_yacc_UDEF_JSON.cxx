@@ -19,26 +19,29 @@ bool lex_yacc_UDEF_JSON:: build_tree_yacc() {
 bool lex_yacc_UDEF_JSON:: add_lex_for_JSON() {
 
 	/*
-		INVOKE { "e1"
+		INVOKE { "JSON"
 		 main() uses ARGV to set GEN PSG = PSG_AFM 
 		 main() uses ARGV to set GEN PSG = PSG_CALC
-		 TOKEN PSG_name // VAR = STR0("AFM") // TOKENISED_to_u64_expr
+		 main() uses ARGV to set GEN PSG = PSG_JSON
+		 TOKEN PSG_name_of_PROTOTYPE // VAR = STR0("AFM") // first alias
+		 TOKEN PSG_name // VAR = STR0("JSON") // TOKENISED_to_u64_expr
 		 // PSG.name == "AFM" // comment moves inside "TAG // CMNT"
 		 // PSG.name == "TUPLO // binary_text" // binary in text // xFF
 		 // PSG.name == "CALC" // 
 		 // PSG.name == "EXPR" // 
 		 // PSG.name == "SCRIPT" // 
+		 // PSG.name == "JSON" // 
 		}
 
 		so the TECH zone, for everything todo with GEN PSG for SCRIPT
 		so the TECH zone, and for EXPR
 		so the TECH zone, and for JSON
 
-		FONT.JSON { SAYS }
+		STO.JSON { SAYS }
 		 add_DATA_for_JSON
-	int	  glyph_width [ char_glyph_idx ] // ASCII_PLUS
-	obj *	  glyph_info( chr ) // _idx
-		  FILE_LINE_t PHRASE_FOUND = EXPR_FOUND = FACT_FOUND
+		  PARSED from STO 
+
+		 KEEP OFFS in ROM to track rerun ROM at any point
 		  
 	*/
 

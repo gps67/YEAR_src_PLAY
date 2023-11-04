@@ -25,6 +25,10 @@ extern void yyrestart ( FILE *input_file  );
 extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 // FREE BISON buffer position holder
 
+// we KNOW the NUL will be there 
+// it's OK if it is not // P0P2 instread of STR0
+// thats what this parser brings, STR0_in_P0P2
+
 #define  YY_END_OF_BUFFER_CHAR 0x00
 
 // YY:: Y_Parse_t CALLS yyparse PROVIDES SELF.TREE // _BUILDER
@@ -35,14 +39,23 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 using namespace YY;
 
+Y_Parse_t::
+Y_Parse_t()
+{
+	INFO("CTOR");
+}
+
+Y_Parse_t::
+~Y_Parse_t()
+{
+	INFO("DTOR");
+}
+
 int Y_Parse_t::
 call_yyparse()
 {
 	ret_from_yyparse = yyparse( * this ); // matches T & V
 //	ret_from_yyparse = yyparse( this ); 
- if(0)	INFO("ret_from_yyparse = yyparse( * this ) = %d",
-		(int) ret_from_yyparse
-	);
 
  if(1)
 	switch (ret_from_yyparse) {
@@ -51,7 +64,8 @@ call_yyparse()
 	 case 2: FAIL("2 means MEMORY ERROR yyparse"); break;
 	default: FAIL("%d unknown retval from yyparse", ret_from_yyparse );
 	}
-	return ret_from_yyparse;
+
+	return ret_from_yyparse; // OK0 //
 
 	// CASE 1 should be virtual to get filename, line, col, seek, SEGMENT_ID
 	// CASE 1 should report SEGMENT_ID in ROM // 
@@ -66,6 +80,7 @@ void yyerror( Y_Parse_t & psg, const char * msg )
 {
 	FAIL("Y_Parse.Name \"%s\", msg \"%s\" ", (STR0) psg.Name, msg );
 	FAIL(" get_prog_alias() says %s", (STR0) get_prog_alias() );
+	FAIL(" where is XPOS CPOS YPOS FILE LOCN %s ", (STR0) "csr_idx" );
 	// gdb_invoke(false);
 }
 
@@ -75,6 +90,31 @@ void yyerror( Y_Parse_t & psg, const char * msg )
   bool Y_Parse_t::
   buf_yy_parse( blk1 & text ) // returns when done
   {
+  	// YOU have already allocated buffer2 with loaded text and soon PADD
+	// We are not using MMAP we are using pre_know malloc and mem_copy
+	// We can use P0P2
+	// We can use STR0
+	// We can use BUFF // stream mode 
+	// We can use FILE // pre_loaded_FILE // ASCII latin1 cryllic utf8 CSET
+	// We can use XPOS // seek i24 in i8_EXPR // PICK_OPCODE[i8]
+
+  	// YOU have already loaded text
+	// we ALWAYS append a few NUL bytes
+	// which might be what MMAP makes easy
+	// alloc PAGES from HEAP of available malloc and free
+
+  	// here we are polluting the STREAM with helpful noise EOLN NUL 
+	// our own code avoids the need for the external check, provides own
+	// EOLN NUL EOF // then this added stuff // ?? ?? NUL EOF
+	// this also messes up MMAP // unless it is lenient COW PAGE_PLUS
+	// HAPPENS before end of PAGE write to area plus skids
+	// HAPPENS after end of PAGE create an extra PAGE for this NL_NUL_EOF
+	// HAPPENS after end of PAGE create an extra PAGE for this NUL_EOF
+	// HAPPENS after end of PAGE create an extra PAGE for this EOF CHECK
+	// so we load the entire file in one go // i24_world //
+
+	// CHECK in FILTER // PAGE in RANGE("VALID_RANGE") // of COMPILED PAGE_id
+	// template and manually requested 
   	text.put_byte(YY_END_OF_BUFFER_CHAR); // 
   	text.put_byte(YY_END_OF_BUFFER_CHAR); // 
   	// PRE_BOOK FULL LOCK on text holder; // just add this change //
@@ -113,7 +153,11 @@ void yyerror( Y_Parse_t & psg, const char * msg )
 	int t = yyparse();
 #else
 	// int ret_from_yyparse =
-	call_yyparse(); 
+	int OK0 = 0;
+	if( OK0 == call_yyparse() ) {
+		// OK 
+	} else {
+	}
 #endif
 	// cleans up input extras
 	// loses BISON own opinions ?

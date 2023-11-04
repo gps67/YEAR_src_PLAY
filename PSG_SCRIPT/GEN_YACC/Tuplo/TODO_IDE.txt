@@ -1,0 +1,85 @@
+#  TODO_IDE.txt
+
+	COMPILER = gcc
+	COMPILER = bison
+
+		first line is almost complete error
+		then lines with more help
+		then the quoted source line
+		then some underlines to mark the LEX 
+	
+	bison -d -o ../obj/gen_JSON_yacc.tab.cc ../obj/gen_JSON_yacc.y
+
+		ARGV | keep STDOUT keep STDERR // quota BUFF 
+	
+	IDE_fork_compiler
+
+		we can run fd_select to watch over ERROUT from COMPILER
+		we can gather the error line
+		we can parse the error line # FILE LINE XPOS CPOS BPOS
+		we can fade the copy text
+
+		INVOKE GOTO WINDOW tell it FILE LINE XPOS MESSAGES
+	
+	IDE SOURCE window view
+
+		FILE or BUFF // BASE API treates SCRIPT as STR0_in_P0P2
+		SCROLL is a virtual FILE cached entire FILE always // M*8 //
+		DESC when this was, before ... happened
+	
+	IDE MAKE RULE
+
+		%s.h	-> 	 %s.cxx
+		%s.cxx	->	 %s.o
+
+		ITEM == %s.o
+		LIST += ITEM
+
+		COMPILE using rule_found_in_makefile _from_makefile
+		BUILD command line 
+
+
+			LEX_EDGE
+			"%s.cxx"  // AUTO PARSE as "%s" ".%s" TOKENISED ".cxx"
+			LEX_EDGE
+			// we just built a huge table of TOKENISED items
+			// we provide a DECODABLE TOKEN API
+			// ".o" // used elsewhere as SAMPLE_VALUE ".ext"
+
+			LEX_EDGE
+			"%s.o" 
+				"%s"	FILENAM // no E no ".ext"
+				".o"	SUSPECT MATCH ".o" within ROM_PLUS
+			LEX_EDGE
+
+		CXX -o %s.o %s.cxx CXX_FLAGS
+		CXX -o %s.o %s.cxx CXX_FLAGS_PLUS_SITE_OPTS
+		CXX_FLAGS += "-D%s='%s' // Q1_AUTO_PARSE "'%s'"
+		// know it to mean %s must be PRE_QUOTED or RE_QUOTED
+		// heuristic // accept AUTO REQUOTE // avoid double encode
+		// heuristic // accept AUTO REQUOTE // expect pasted text
+
+
+../obj/gen_JSON_yacc.y:76.14-22: ...
+
+	FILE ../obj/gen_JSON_yacc.y
+	LINE 76
+	XPOS 14
+	XPOS_of_last_letter_of_XPOS 22
+
+	HINT /* MINI_KNOW */ IDENT spelled wrong
+	HINT /* MINI_KNOW */ PHRASE spelled wrong
+	HINT /* MINI_KNOW */ P0P2 highlighted
+
+
+../obj/gen_JSON_yacc.y:76.14-22: warning: symbol ‘EXPR_line’ is used, but is not defined as a token and has no rules [-Wother]
+
+   76 | %type <expr> EXPR_line
+      |              ^~~~~~~~~
+
+../obj/gen_JSON_yacc.y:95.14-27: error: symbol ‘LEX_IDENTIFIER’ is used, but is not defined as a token and has no rules; did you mean ‘LEX_INTEGER’?
+   95 | expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E0( (STR0) yylval.lex_buff...
+      |              ^~~~~~~~~~~~~~
+
+      ...
+.

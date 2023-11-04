@@ -16,15 +16,21 @@
 #include "str1.h"
 
 // namespace ??
-namespace YY {
-	// NOT YET
-}; // namespace
+namespace YY { /* NOT YET */ }; // namespace
 
 /*	USERS of PARSER
 	run it though this
 */
  struct Y_Parse_t {
+
+ 	Y_Parse_t();
+ 	virtual ~Y_Parse_t();
+
+ 	// this PARSER is called "PARSER" // "Y_Parse" "_t"
+ 	// this PARSER is called "FILENAME" // "TEXT_to_DATA.txt" // SCRIPT
+	// local copy of external STR0 // COMPILER moves to ROM.SEGMENT.AREA
  	str1 Name;
+
 	Y_Parse_t( str0 _Name )
 	: Name( _Name ) // entire filename or item id or any helpful default
 	{
@@ -32,11 +38,13 @@ namespace YY {
 		// You might even login by making the right enquiries
 		// Plus you get plain data parameters ARGV style OBJV
 		// STRING NUMBER OBJECT_with_added_access_filter TUPLO ARGS
+		INFO("CTOR(%s)", (STR0) _Name );
 	}
 
 	int call_yyparse();
 	int ret_from_yyparse; // 0==PASS 1==FAIL 2==ENOMEM==recursive.loop
 
+	virtual bool buf_append_NL_NUL_EOF();
 
 	bool buf_yy_parse( blk1 & text ); // 
 

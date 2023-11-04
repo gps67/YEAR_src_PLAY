@@ -277,6 +277,11 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	virtual
 	bool gen_YACC_cat_file( buffer2 & out, STR0 filename );
 
+	virtual
+	bool gen_LEX_cat_file( buffer2 & out, STR0 filename );
+	virtual
+	bool gen_OUT_cat_file( buffer2 & out, STR0 filename );
+
 	/*!
 		GEN lex and yacc files
 
@@ -303,6 +308,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_LEX_start_symbol( buffer2 & out ); // integrate LEX api
 	bool gen_LEX_RULES_eoln( buffer2 & out );
 	bool gen_LEX_RULES_ident_values( buffer2 & out );
+	bool gen_LEX_include_RULES( buffer2 & out );
 
 	// GEN // sections of YACC file
 
@@ -318,7 +324,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_YACC_type_list( buffer2 & out );
 	bool gen_YACC_precedence_list( buffer2 & out );
 	bool gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name = NULL );
-	bool gen_YACC_rules( buffer2 & out );
+	bool gen_YACC_include_RULES( buffer2 & out );
 
 };
 

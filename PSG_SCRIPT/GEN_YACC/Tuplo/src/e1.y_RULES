@@ -28,7 +28,10 @@ lines
 // USE a global PARAMETER save it
 //
 
-// EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+// RETVAL is $1 
+// RETVAL is $1 is expr
+EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+
 // EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
 
 top: lines

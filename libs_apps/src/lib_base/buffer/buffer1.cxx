@@ -26,6 +26,28 @@ bool buffer1::printf( const char * fmt, ... )
 	fprintf style functions, no overruns
 	glibc >= 2.1, C99 standard
 */
+bool buffer1::print_ln( const char * fmt, ... )
+{
+	va_list args;
+	va_start( args, fmt );
+	// false = conv_8859_to_utf8 // upgrade somehow
+	bool ok = vprint( false, fmt, args );
+	va_end( args );
+	print_EOLN();
+	return ok;
+}
+
+bool buffer1::print_EOLN()
+{
+	return put_EOLN();
+}
+
+/*!
+	maybe move to obj.printf( fmt, ... )
+
+	fprintf style functions, no overruns
+	glibc >= 2.1, C99 standard
+*/
 bool buffer1::print( const char * fmt, ... )
 {
 	va_list args;

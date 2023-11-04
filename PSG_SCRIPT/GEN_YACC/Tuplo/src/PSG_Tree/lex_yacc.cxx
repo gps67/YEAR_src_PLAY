@@ -55,6 +55,9 @@ lex_yacc::
 bool lex_yacc::
 set_PSG_name( STR0 e1, STR0 file_left ) // ("e1","../obj/gen_XXX") //
 {
+	psg_abbr = e1;
+	INFO("psg_abbr = '%s'", (STR0) psg_abbr );
+//	psg_name;
 	bool near_not_far = true;
 	if(0) near_not_far = false; // use FULL PATH NAMES
 
@@ -319,7 +322,8 @@ STR0 lex_yacc::
 lex_name_lex(
 	buffer2 & str // this is now rentrant 
 ){
-	str = lex_name; // assignment copy init 0
+	str.clear();
+	str.put(lex_name); // assignment copy init 0
 	str.put(".lex");
 	return str;
 }
@@ -480,16 +484,41 @@ print_TOKEN_name_2( // PFX _ Name // "PUNCT_COMMA"
 		return true;
 }
 
+bool lex_yacc::
+gen_YACC_cat_file( buffer2 & out, STR0 filename ) {
+	return gen_OUT_cat_file( out, filename );
+}
 
 bool lex_yacc::
-gen_YACC_cat_file( buffer2 & out, STR0 filename )
+gen_LEX_cat_file( buffer2 & out, STR0 filename ) {
+	return gen_OUT_cat_file( out, filename );
+}
+
+bool lex_yacc::
+gen_OUT_cat_file( buffer2 & out, STR0 filename )
 {
+	// NOTE // expect can place // comments before FILE
+
+	bool ok = true;
+
+	out.print_ln("// INCL // ");
+	out.print_ln("// INCL // including file '%s' //", (STR0) filename );
+	out.print_ln("// INCL // --------------- START ----------------- //");
+
 	int K_max = 32;
 	buffer2 filed;
-	if(!blk_read_entire_file( filed, filename, K_max ))
-		return FAIL("%s", filename );
+	if(!blk_read_entire_file( filed, filename, K_max )) {
+		out.print("// INCL // ABSENT FILE '%s' //\n", (STR0) filename );
+	}
 	out.put( filed );
-	return PASS("%s", filename );
+
+	out.print_ln("// INCL // --------------- END ----------------- //");
+	out.print_ln("// INCL // included file '%s' //", (STR0) filename );
+	out.print_ln("// INCL //");
+	if(ok)
+		return PASS("%s", filename );
+	else
+		return FAIL("%s", filename );
 }
 
 /*
@@ -796,6 +825,12 @@ static const char Q2 = '"';
 	print_list( out, POOL_LEX );
 	L1("");
 
+	L1(" /* INCL LEX */");
+	if(! gen_LEX_include_RULES( out ) ) {
+		// continue without INCL file
+		WARN("gen_LEX_include_RULES FAILED");
+	}
+
 	L1(". printf(\"Unknown token!\\n\"); yyterminate();");
 	L1("");
 
@@ -902,9 +937,11 @@ gen_YACC( buffer2 & out ) // all of it
 	L1("%%");
 	L1("");
 
+	L1(" /* INCL YACC */");
 	// (1) (DONE) load PSG with rules
 	// (2) (HERE) GEN text for rules from PSG tree
-	gen_YACC_rules( out );
+	gen_YACC_include_RULES( out );
+
 	L1("");
 	L1(" /* EOF */");
 	L1("");
@@ -1179,26 +1216,39 @@ gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name ){
 }
 
 bool lex_yacc::
-gen_YACC_rules( buffer2 & out )
+gen_LEX_include_RULES( buffer2 & out )
 {
- L1("// RULES ");
- L1("// RULES - I thought this was virtual overruled");
- L1("// RULES ");
-
  	// CHEAT: include a manually edited file
 	// ../src/e1.y_RULES
 
 	STR0 lhs = "../src/";
-	STR0 psg = "PSG";
-	psg = "AFM";
-	psg = "e1";
-	STR0 rhs = ".y_RULES";
-	INFO("PSG %s", psg );
+	STR0 psg = psg_abbr;
+	STR0 rhs = ".lex_RULES";
+
 	buffer1 filename;
 	filename.print("%s%s%s", lhs, psg, rhs );
+
+	if(!gen_LEX_cat_file( out, filename )) {
+		return FAIL("%s", (STR0) filename );
+	}
+
+	return true;
+}
+
+bool lex_yacc::
+gen_YACC_include_RULES( buffer2 & out )
+{
+ 	// CHEAT: include a manually edited file
+	// ../src/e1.y_RULES // filename
+	STR0 lhs = "../src/";
+	STR0 rhs = ".y_RULES";
+	buffer1 filename;
+	filename.print("%s%s%s", lhs, (STR0) psg_abbr, rhs );
 
 	if(!gen_YACC_cat_file( out, filename )) {
 		return FAIL("%s", (STR0) filename );
 	}
+
 	return true;
 }
+

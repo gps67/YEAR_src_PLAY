@@ -405,6 +405,31 @@ struct blk1 : public GRP_lib_base
 	}
 
 	/*!
+	*/
+	bool	put_CR() {
+		return put_byte( ASCII_CR );
+	}
+
+	/*!
+	*/
+	bool	put_LF() {
+		return put_byte( ASCII_LF );
+	}
+
+	/*!
+	*/
+	bool	put_CRLF() {
+		return put_2_bytes( ASCII_CR, ASCII_LF );
+	}
+
+	/*!
+	*/
+	bool	put_EOLN() {
+		return put_LF();
+	}
+
+
+	/*!
 		Cast the blk1 into a nul terminated string pointer.
 
 		The returned str0 pointer should not be held for long.

@@ -2,16 +2,52 @@ BISON_messages.txt
 
 bison -d -o ../obj/gen_JSON_yacc.tab.cc ../obj/gen_JSON_yacc.y
 
+// TODO PARSE 
+../obj/gen_JSON_yacc.y:120.14-22:
+
+	../obj/gen_JSON_yacc.y
+	:
+		120.14-22
+	:
+	warning:
+	error:
+
+	./obj/gen_JSON_yacc.y:76.14-22:
+
+		line 76
+		CPOS [ 14 ... 22 ]
+
 ../obj/gen_JSON_yacc.y:120.14-22: warning: symbol ‘EXPR_line’ is used, but is not defined as a token and has no rules [-Wother]
   120 | %type <expr> EXPR_line
       |              ^~~~~~~~~
+
+      This means that it is not defined as a RULE 
+      Using a not ndeclared RULE
+      need DECL like {
+
+EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
+
+
+      }
+
+
+
+
+
 ../obj/gen_JSON_yacc.y:139.14-27: error: symbol ‘LEX_IDENTIFIER’ is used, but is not defined as a token and has no rules; did you mean ‘LEX_INTEGER’?
   139 | expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E0( (STR0) yylval.lex_buff...
       |              ^~~~~~~~~~~~~~
+
+
+
       |              LEX_INTEGER
 ../obj/gen_JSON_yacc.y:147.13-23: error: symbol ‘PUNCT_L_PAR’ is used, but is not defined as a token and has no rules; did you mean ‘PUNCT_SLASH’?
   147 | expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
       |             ^~~~~~~~~~~
+
+
+
       |             PUNCT_SLASH
 ../obj/gen_JSON_yacc.y:147.30-40: error: symbol ‘PUNCT_PAR_R’ is used, but is not defined as a token and has no rules; did you mean ‘PUNCT_SLASH’?
   147 | expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }

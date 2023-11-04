@@ -83,6 +83,16 @@ ifeq (1,1)
 	# CLEAN1 += INTO_DONE
 endif
 
+ifeq (1,1)
+	CLEAN2 += $(into_lex_lex_3)
+	CLEAN2 += $(into_yacc_y_3)
+endif
+
+ifeq (1,1)
+	CLEAN3 += $(into_lex_lex_4)
+	CLEAN3 += $(into_yacc_y_4)
+endif
+
 	# Our CXX code PSG_udef generates PSG = FLEX + BISON
 	# use PSG_to_GEN_filenames_lex_y
 
@@ -92,6 +102,15 @@ endif
 	into_yacc_y_2=$(e1_yacc_2).y
 	into_yacc_y_3=$(e1_yacc_3).y
 	into_yacc_y_4=$(e1_yacc_4).y
+
+	gen_list += $(into_lex_lex_2)
+	gen_list += $(into_lex_lex_3)
+	gen_list += $(into_lex_lex_4)
+	gen_list += $(into_yacc_y_2)
+	gen_list += $(into_yacc_y_3)
+	gen_list += $(into_yacc_y_4)
+
+
 
 	# then run FLEX and BISON
 
@@ -183,9 +202,9 @@ endif
 # END of ASSIGNMENT STYLE STATEMENTS
 # START OF Dependency RULES
 
-all: test4
+#all: test4
 # all: test2
-# all: test1 test2 test3 test4
+all: test1 test2 test3 test4
 
 #	helpful retest dependency
 #	make the linked.exec depend on Makefile
@@ -244,6 +263,7 @@ $(into_yacc_y_2): ../src/EXPRS.h
 $(into_yacc_y_2): ../src/e1.y_RULES 
 $(into_yacc_y_3): ../src/AFM.y_RULES 
 $(into_yacc_y_4): ../src/JSON.y_RULES 
+
 $(PROG1_exec): ../src/AFM.y_RULES 
 $(PROG4_exec): ../src/JSON.y_RULES 
 
@@ -495,6 +515,7 @@ dgb_insight: $(PROG1_exec)
 	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
+	# PROG1 - GEN -
 	g++ $(PROG1).o $(OBJS1) $(LINKS) -o $@
 
 $(PROG2_exec): $(PROG2).o $(OBJS2) 
@@ -512,8 +533,18 @@ $(PROG4_exec): $(PROG4).o $(OBJS4)
 T4: $(PROG4_exec)
 	# OK
 
+CLEAN1: 
+	# clean 1
+	rm -f $(CLEAN1) 
+
 clean: 
+	# clean 
 	rm -f $(CLEAN1) $(CLEAN2) $(CLEAN3) $(CLEAN4) 
+
+clean_gen:
+	# clean_gen
+	# the generated files # list of
+	rm -f $(gen_list)
 
 
 

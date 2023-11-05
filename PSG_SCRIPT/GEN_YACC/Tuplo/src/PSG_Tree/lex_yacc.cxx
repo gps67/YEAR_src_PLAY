@@ -655,13 +655,16 @@ gen_LEX_start_symbol( buffer2 & out )
 	The PSG Tree already exists (with any adaptors for FLEX BISON)
 
 	Print out the .lex and .y files
-	Gererate them from the lex_yacc
+	Generate them from the lex_yacc
 */
 bool lex_yacc:: print_tree_as_files( ) {
 	buffer2 tmp_str;
 
 	buffer2 out_lex; // entire LEX file text
 	buffer2 out_y; // entire YACC file text
+
+	out_lex.get_space( 1024 * 8 );
+	out_y  .get_space( 1024 * 8 );
 
 	// generate 2 files
 
@@ -687,6 +690,8 @@ bool lex_yacc:: print_tree_as_files( ) {
 bool lex_yacc::
 gen_LEX( buffer2 & out ) // gen the entire files text
 {
+	out.get_space( 1024 * 4 );
+
 	L1("/*");
 	L1("  LEX file.");
 	L1("  +-------------");
@@ -751,6 +756,10 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("%%");
 	L1(" /* rules section BEGIN */"); // cannot be at BOLN
 	L1("");
+
+// C and C++ comments are always added here
+// not sure what happens in AFM JSON etc
+// probably untriggered
 
 	L1(" /* added START condition rules for comments and string */");
 	L1("");
@@ -893,6 +902,8 @@ bool lex_yacc:: gen_LEX_RULES_ident_values( buffer2 & out )
 bool lex_yacc::
 gen_YACC( buffer2 & out ) // all of it
 {
+	out.get_space( 1024 * 4 );
+
  // L1("%define api.namespace {::EXPRS}");
  // not in C
  // %define variable 'api.namespace' is not used

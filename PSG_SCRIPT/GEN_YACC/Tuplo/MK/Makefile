@@ -502,17 +502,15 @@ dgb_PROG2: $(PROG2_exec)
 	# debug
 	# BUT STDIN < $S/test2.test
 	# errm
-	gdb --args ./$(PROG2_exec) $S/test2.test
+	gdb -tui --command ../.gdbinit_$(PROG2) --args ./$(PROG2_exec) $S/test2.test
 
-dgb: $(PROG1_exec)
+dgb_PROG1: $(PROG1_exec)
 	# debug
-	gdb --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
-	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
+	gdb -tui --command ../.gdbinit_$(PROG1) --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
 
 dgb_insight: $(PROG1_exec)
 	# debug
 	insight --args ./$(PROG1_exec) $(e1_left) $(e1_gen) $(e1_psg_2)
-	e1_file_2=$(e1_left)$(e1_gen)_$(e1_psg_2)# NOSP # same logic in binary
 
 $(PROG1_exec): $(PROG1).o $(OBJS1) 
 	# PROG1 - GEN -

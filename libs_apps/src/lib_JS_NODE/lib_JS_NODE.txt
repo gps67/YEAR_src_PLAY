@@ -1,0 +1,101 @@
+/* lib_JS_NODE/lib_JS_NODE.txt */
+/*
+	LIBR of JS JS_CXX CXX_GEN_JS GEN_JS
+	LIBR_of_JS {
+	 JS_NODE {
+	 	%s
+	 }
+	}
+	 JS_NODE += { %s }
+	 JS_NODE += {
+	  INDENT %s // CMNT // AUTO_IMPORT DIALECT
+	  DIALECT CODE_POINT OBJ_NBYTES 
+	  DIALECT is WORDS_in_ARGV // LEX has split into { LEX_NAME "%s" }
+	  DIALECT is ARGV can be JS_CTXT // CTXT == UDEF //
+	  DIALECT is JS_NODE
+	  DIALECT is JS_ARGV to JS_NODE
+	  DIALECT is JS_CXX // _OBJ // 
+	  ARGV is DATA CALL_STACK.SESS.ARGV
+	  USAGE KEY ARGS HERE then { SCRIPT } 
+	  USAGE REPLAY SCRIPT_FRAGMENT // INDENTED_BLOCK
+	  USAGE "OPCODE" { 
+	  	%s // CMNT
+		}
+		// NB // WORD("OPCODE") is STR0 //
+		// TBS // LISP_from_GEN_LISP // SCRIPT == "%s" // USE_EQ2 //
+		// EQ2 // "%s" // STR0 // THIS = "%s" // THIS == "%s" //
+		// IDX // OBJ_ID_t OBJ_ID // u8_idx // u3_idx // PICK
+		// DECODE u8_u24
+		// DECODE u8_u8_u16 // with added _u32 // OFTEN _u64 //
+		// DECODE u16_u16_u16_u16 // SPECIFIC ONE_WORD_ARGV
+		// DECODE as ARGV[4] // u16_u16_u16_u16 // 
+		// DECODE u16 as u8_u8
+		// DECODE u16 as u16_BITFIELD // aligned EVEN BITFIELD
+		// DECIDE u4_u4_u4_u4 // pick[ u4_idx ] // BITFIELD // SCRIPT
+		// SCRIPT SESS // ENV += SESS // and bunch of LEX_POOL NAMES
+		// ITEM_NAME // STR0 // usually utf8 or lantin_8859 or CSET
+		// CSET += CSET_BYTE_FONT // CIDENT("CSET") // 
+		// SCRIPT builds from MENTION of STR0 in VAL_POOL
+		// each SPELLING "_VAL" picks VAR_NAME("%s") // CODE_POINT_HERE
+		// LIBR("%s") ITEM_NAME("%s") // PARSER does COMPILE ACTION //
+		// COMPILE_ACTION // GEN_JS // GEN_API // DIALECT "%s" //
+		// MESSAGE API is CALL ARGV // CODE_POINT += CALLABLE_LIBR
+		// GEN ARGV that describes situation when CALL_ARGV // SESS //
+		// lookup ARGV[ arg_0 ] // ARGV[ZERO] == "OPCODE" //
+		// DIALECT knows "OPCODE" as WELL_KNOWN_SCRIPT_NAME_VAR_NAME_ITEM_NAME
+		// DIALECT ALIAS // DIALECT ALIAS USAGE //
+		// GEN_ENV of a JS_GLOBAL_ENV_VARS
+		// GEN += ALIAS "STR0" // CIDENT // OPCODE // CODE_POINT "OPCODE"
+		// DIALECT += { VAR "%s" } // NB no need for Q1 DIALECT_ASIS
+		// TEMPLATE MK_VAR VAR_NAME == "%s" // 
+		// GEN // GEN lines of JS_NODE_CODE_preferably nicely indented
+		// GEN // GEN add_explain VIA_CODE_POINT to ROM_POS to XPOS
+		// XPOS // CSR in TEXT at WHEN // DECL %s CIDENT eg "OPCODE"
+		// XPOS == CODE_POINT // HERE // THIS_LINE // THIS_STMT //
+		// XPOS += INDENT_TEXT_XPOS // TEXT_API XPOS // ALIAS 
+		// XPOS += VAR_NAME_DECL
+		// XPOS += VAR_NAME_DECL_on_first_MENTION
+		// XPOS += XPOS_of_NAME_in_TEXT
+		// TEXT += "{ CALL ARGV }" // DIALECT Q1 
+		// TEXT += '{ CALL OPCODE ARGS CODE_POINT  }'
+		// CODE_POINT // run_EVAL_ARGV // run_EVAL_CODE_POINT // DECL %s
+		// GEN DECL a ROM EA_ITEM '{ STR0_t "%s" }' // 'VIEW' OMIT Q1 //
+		// DIALECT Q1 
+
+
+	 }
+
+*/
+/* lib_JS_NODE/lib_JS_NODE.txt */
+	 JS_NODE += { %s }
+	 JS_NODE += '{ %s }' // TOKENISES SEQ as STR0 via Q1 // CIDENT_from_ANYSTR
+	 ARGV_PARSER += Q1_USAGE // because it allows "Q2" USAGE STR0 Q2 = "Q2";
+	 GEN '{ STR0_t Q2 = "Q2"; }' // SCRIPT_PARSER MATCH "%s" "Q2" // AUTO_MK_VAR 
+	 VAR STR0_t Q2 = "Q2"; // VALUE is own name EVAL bounces VIA API as ARG
+	 VAR STR0_t Q2_percent_S_Q2 = "%s"; // VALUE is own name EVAL bounces VIA API as ARG
+	 STR0 VALUE == "Q2_PERCENT_s_Q2" // name of TOKEN for "%s" // ALIAS
+	 CIDENT SPELLING ALIAS
+		 "Q2_PERCENT_s_Q2" // name of TOKEN for "%s" // ALIAS
+		 "%s"
+	
+	 ALIAS "%s" into Q2_PERCENT_s_Q2 // RT_enable_TOKEN_to_hold_name_STR0 //
+	 CSET 
+	  CSET_UTF8
+	  CSET_8859
+	  CSET_BYTE // already PARENT class of 8859
+	  CSET_8859_latin
+	  CSET_8859_cyrillic
+	  CSET_8850_font // almost the same as _byte via TABLE SPARSE_BYTE
+	  // font can always FAIL to provide GLYPH at CSET_CHAR 
+	  // upgrade path from u8_idx_t u8_idx = xFF // ALIAS xFF_GLYPH_IDX
+	  // natural font usage char at GLYPH_IDX // FONT_fits_in_BYTE //
+	  // FONT_exceeds_byte_so_is_u64_BITFIELD // 
+	  // FONT provides GLYPH_PIXMAP // at_DPI // at_RGBG // slope //
+	  
+	  TrueType font font_2 += "
+
+
+	 VAR STR0_t Q2_percent_S_Q2 = "%s"; // VALUE is own name EVAL bounces VIA API as ARG
+
+
+

@@ -11,6 +11,9 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/audacity/audacity
+https://github.com/audacity/conan-recipes
+https://github.com/audacity/audacity-manual
 https://github.com/kabouzeid/Phonograph
 https://github.com/chr56/Phonograph_Plus
 https://github.com/enricocid/Music-Player-GO
@@ -62,9 +65,6 @@ https://github.com/libsdl-org/SDL
 https://github.com/slint-ui/slint
 https://github.com/bellard/quickjs
 https://github.com/dbetz/xlisp
-https://github.com/audacity/audacity
-https://github.com/audacity/conan-recipes
-https://github.com/audacity/audacity-manual
 https://github.com/danginsburg/opengles-book-samples
 https://github.com/danginsburg/opengles3-book/
 https://github.com/steelbrain/node-ssh

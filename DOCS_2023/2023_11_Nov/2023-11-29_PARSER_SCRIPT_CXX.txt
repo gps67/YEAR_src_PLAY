@@ -1,0 +1,166 @@
+	2023-11-29
+
+	2023_11_Nov
+	2023-11-29_PARSER_SCRIPT_CXX.txt
+
+ CXX is a lot like CPP but simpler
+
+ 	parses like C
+ 	parses like CPP
+	runs like CPU_32
+	runs like CPU_32_BITFIELDS BYTEFIELDS
+
+	SEMICOLONS ARE OUTLAWED
+	obvs not
+	CPP knowledge is required
+	CXX not stdlib almost no templates used
+	CXX could be translated to .. where sdlib is not
+	CXX brings own LIBR of CPP_code that does stuff
+	CXX to LANG2
+
+	compiler needs to run through a bunch of carefully scripted data
+	as each pathway is added, we can remember which came first
+	or build tree GEN_from_flattened_TREE // flatten uses PREPARED_CACHE
+
+	running over data makes code run down various pathways
+	that enables point_to_point detours via compiled code
+	still the same SCRIPT LINES just CT_RT or RT_JIT
+	get to C ASAP then that uses OBJ_access macros // C_STRUCT //
+
+ TABLE[ 255 ]
+
+ 	Probably use TABLE[7] but could bounce or hope or check [0[N u8_idx
+
+	TABLE[ 256 ] is candidate for TABLE[ u16_LOHI ]
+
+	CHECK
+
+		permit ARRAY[idx] without checking // maybe fully allocated
+		permit ANY_idx // limited by CPU_ARCHITECTURE_32
+		permit "{ idx < N }"
+		match "{ idx == N }"
+		complain "{ idx > N }"
+		complain "{ idx < 0 }"
+		match "{ idx == 0 }"
+		match "{ idx == -1 }"
+		match "{ idx == -2 }"
+		match "{ idx >= MINUS_LEAST }"
+		match "{ idx >= MINUS_ASIS }"
+		complain "{ idx < MINUS_LEAST }"
+
+		CALL IS_ZERO_but_treat_lie_IS_PLUS
+		CALL IS_ZERO_so_recalc_or_missing_or_CALL_SCRIPT // NULL BSENT 
+		CALL IS_MINUS_so_call_IS_MISUS_SCRIPT_MACRO
+		CALL IS_PLUS // and maybe zero
+		CALL IS_PLUS // and not zero // really not maybe // OPTION maybe
+
+ CXX_TREE
+
+ 	LIST of LINES = array of LINES
+	LINE = INDENTED LIST OF LINES 
+	LINE = ARGS possibly MULTILINE TEXT ARGS
+	ARGV[i] treat as FIELD_NAME
+
+	BRANCH {
+		BRANCH = E0 = PARSED_E0 
+		 then P0 = P2 after THIS // branch E0
+		P2 os EOLN
+	}
+
+	CPOS = BPOS = XPOS
+
+		CPOS is parsed to return the i''th char after BOLN
+		BPOS is BYTE_POS after BOLN or P0 KNOW LINE == LINE_number
+		XPOS is "{ FILE LINE OFFS }"
+		XPOS is "{ FILE OFFS_BOLN CSR }" // u8_BPOS CSR; 
+
+ FILTER
+
+ 	WALK tree left to right, in proper order, like SOURCE
+	PASS though FILTER which matches at various levels
+	NORMALISED SPELLINGS ROM uses fast bind alias with KNOW_CODE_POINT
+	CODE_POINT += LINES_of_CODE
+
+	FILTER CODE, line by line, invokes step by step, use CT cache
+	PARSER_CACHE can be as clever as it wants
+	SOURCE CACHE find normalised TEXT via recompile normaised self
+
+		ie "{ A == B }" // normalised GEN produces this
+		from "{ A==B }" // filtered NOSP GEN produces this
+		from "{A==B}" // removing outer SP
+	
+		from "%s" // actually from PARSED TWIG 
+
+		OPTION STR0 == PARSED SOMETHING from PTR_STR_then_upto_EOF
+
+		KNOW EOLN is there and is loaded // is_as_good_as_loaded
+	
+	APPLY MACRO PARAMETER NAMES for FIELDS
+
+		maybe move to initial ALIAS lines then import standard code
+
+		TABLE_N N
+		N u8_N
+
+ GEN
+
+ 	when ALLOC detects OVERFLOW the entire SEGMENT may have to be rebuilt
+	from scratch using wider setting u8_u8_u16 i8_i24 i32 i64
+	PRE_GEN a RANGE of variations UNS_INT goes the GEN 
+	They need manually code in DECODE options, just do it, DONE in i8_i24
+	DONE in i8_i8_i24
+
+ GEN FRAGMENT
+
+ 	DECL VARIABLE
+	 STACK_local
+	 HEAP_TEMP
+	 HEAP_TREE
+	 HEAP_MMAP_FILE
+	 TWIG_MACRO
+	 TWIG_TEXT
+	 SESS_LEXICON
+	 GLOBAL_LEXICON
+	 GLOBAL_VAR_POOL
+
+	 LOCN in HEAP
+	 ITEM in HEAP or outside SCOPE as callers ref
+	 ITEM in CTXT can be u32_WORD _EA_of_ITEM
+
+	 CALL FUNC( A, R, G, S )
+	 CALL FUNC( ARGS, SESS, CTXT, PLUS )
+
+	 	FUNC_PLUS acts as CACHE
+		"{ FUNC_PLUS_t * PLUS }"
+		" PLUS = PARAMETER( PLUS ) " // PLUS == 'PLUS'
+
+		Initialise FUNC_PLUS_t as unloaded
+		Initialise FUNC_PLUS_t as loaded // by loading it
+		EXPECT PLUS.SESS == SESS // in case you wanted it
+		EXPECT PLUS.CTXT == CTXT // possibly faster //
+		EXPECT PLUS.ARGS == ARGS // or is that daft //
+
+	SINGLE_VALUE_EXPR
+
+	 PTR to  RET_VAL var_val
+
+	 if is_NULL PTR .. upgrade something to non null
+	 if is_NULL PTR .. use KNOWN DEFAULT call nothing and continue
+	 if is_NULL PTR .. use KNOWN DEFAULT VALUE # EXPECTED
+	 if is_NULL PTR .. complain BAD DATA using extra ARGS for info
+
+	 CT_RT knows if PTR is in ROM or is_RO or is_RW
+	
+	 RET_VAL is OFFS -wrt- ZERO 
+	 RET_VAL is "{ ZERO OFFS }"
+	 // PARSE "{ %s }" // 
+	 // PARSE "{ %s %s }" // CIDENT CIDENT //
+
+	  u8_idx_SEGMENT_ZERO == lookup_load( u8_idx ZERO ) 
+	  i24_OFFS = i32_WORD.i24_PAYLOAD
+	  u24_OFFS = u32_WORD.u24_PAYLOAD
+
+
+
+
+ GEN

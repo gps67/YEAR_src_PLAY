@@ -1,0 +1,88 @@
+
+	Tcl_module/
+	Tcl_module.txt
+
+	DEEP TCL integration
+	but not too much, move to PY for tkinter
+
+	DEEP ARGV integration
+	ARGV script // PARSED WORD_list // OBJV_TREE // SCRIPT
+
+	although TCL is hereby (!) available
+	ARGV_SCRIPT is
+	PARSED from OPCODE 
+	PARSED into TREE
+
+	ie ARGV_SCRIPT is a form of SCRIPT // via WORDS_LIST
+
+		ARGV_SCRIPT from/via WORDS_LIST
+	
+		ARGV -is- OPCODE ARGS // ARGV[0] is OPCODE
+	
+	When TCL or CXX or PYTHON
+
+		some chance of seeing CALLABLE $OBJ
+
+		ARGV[0] is "OPCODE" is OPODE PLUS // decode is $2 or $4
+	
+	WHEN initial ARGV use of IDENT and PARSABLE_STR woth more VARS
+
+		VAR = LOOKUP "VAR"
+		EXPR = PARSE EXPR
+
+ Tcl_Module
+
+	object.field
+ 	GET OBJECT "FIELD" // upgrade SPELLING to TOKEN_USED_TO_INVOKE_GET_FIELD
+
+		on use of "{ STR0 IDENT }" // prefarable cindent98
+	
+		
+
+ 	DECL.MODULE.name
+ 	DECL.MODULE.export MODULE
+
+	MODULE_META	// CXX obj that behaves asif
+	.name
+
+ Tcl Module in NODE
+
+ 	when enabled - allow CXX elf_load
+	when untrusted - allow Tcl over untrusted SCRIPT
+	- ie to PROVIDE a module with a Tcl implementation
+
+	when used
+	from CXX - as call backs
+	from Tcl - to run over test data
+	from Tcl - to run over file data as APP
+
+	no implementing a JS module
+	just wrapping a CXX module
+	and calling it from TCL
+
+	Modules provides
+	 NAME
+	 CONST
+	 TYPE
+	 TYPE.FIELD
+	 TYPE.FUNC
+	 VAR
+	 FUNC
+	 EXPR
+	 CMNT
+	 DIAG
+	 DEBUG HELPERS
+	
+	OBJ $obj GET fieldname
+	OBJ $obj SET fieldname value
+	OBJ $obj CALL procname ARGS
+
+	CALL $FUNCFOUND $OBJ $ARGS
+
+	
+
+
+	.
+Mrs Hippy
+
+narnia business

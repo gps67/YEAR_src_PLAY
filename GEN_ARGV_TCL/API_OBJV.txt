@@ -1,0 +1,249 @@
+# API_OBJV.txt
+
+ API uses OBJV only
+ API is invoked remotely where on STR0 is available
+ API _cache  // convert STR0 to SPELLING to TOKEN to BIND_ALIAS to _EXPR //
+ API uses ARGV because SCRIPT explain does // "ARGV" // "ARGS" // "OBJV" //
+
+ THIS CODE is somehow invoked
+
+  CALL ARGS CTXT SESS // FUNC = find_func ARG0 //
+  // SPARTEN ARGV uses "="
+  // SPARTEN ARGV uses "%s" VAR_NAME is almost WELL_KNOWN_VAR 
+
+ 
+  AVAR "VAR_NAME" ... SPEC ... INIT ... TRACE ...
+
+ API.get_VAL_of_VAR(AVAR)
+ API.get_VAL_of_VAR("VAR_NAME") // VAR = lookup("VAR") // VAR = VAR_NAME
+
+eg
+
+/home/gps/YEAR/src/hidden/SCRATCH_SCRIPTS_2022/in_C++/geo_sea_ice_vol
+
+	it parses a PIOMAS file
+	loads and checks it
+	prints it out // as // D_T_V  2022-09-28  02:11:59  5.388000
+
+	so RUN_DATA_STEP "D_T_V" YEAR_mm_dd hh_mm_ss km3
+	ARG_PARSED // DTV DATE TIME VALUE // VARNAME VALUE km3 ...
+	// "D_T_V" YEAR_mm_dd hh_mm_ss km3
+	D_T_V  2022-09-28  02:11:59  5.388000
+
+		CALL API ARGV = [ list dtv date time val ]
+
+		parse that from TEXT or CALL that from API
+		TEXP = PRINT API CALL // now for later
+	
+	also MODE_START ... item ... MODE_END
+
+/home/gps/YEAR/src/PLAY/TCL_Bench/Tcl_module
+
+	TODO write a TCL_MODULE
+	TODO write a TCL_MODULE SPIN_tcl
+
+	WRAP
+
+		TCL STR <-- STR0
+		TCL STR --> STR0 # HOLD providing OBJ during use
+	
+		TCL_OBJ --> .field .func .as_obj
+	
+		lookup("STR0") -> TCL_OBJ = VAL_of_VAR "VAR_SPELLING_TOKEN"
+
+
+	MODULE.TYPE
+
+		is itself implementated as a FORM_of MODULE_usead_as_TYPE
+		a module mounted by it's hotspot as a TYPE with CONST_TYPE_VAR_FUNC
+
+	MODULE // -is-
+
+	 NAMESPACE += MODULE
+
+	 CONST
+	 TYPE VAR
+	 FUNC
+	 EXPR
+	 MACROS
+	 VIEWS
+
+	 imported
+	 exported
+	 test_extras
+	 tracing
+
+	GLOBAL_IMPORTS
+
+		the adapted environment has a bunch of
+		GLOBAL_FIELDS_in_SCOPE
+		 VAR_NAME.extra
+		 other REFLEX aspects within and about MODULE
+	
+		 prepare lots of things to add on demand
+		 prepare second list lookup depths
+		 reduce search depths, apply back to front apply last wins
+
+
+TCL_MODULE / TCL_TECH
+
+	insert TRACER into TCL stack
+
+	all specific to a single interp
+
+/tools/x86_64_src/tcl/tcl8.7a5/doc
+
+ CrtTrace.3
+
+       Tcl_Trace trace =
+       Tcl_CreateTrace(interp, level, proc, clientData)
+
+       Tcl_Trace trace = 
+       Tcl_CreateObjTrace(interp, level, flags, objProc, clientData, deleteProc)
+
+       Tcl_DeleteTrace(interp, trace)
+
+       every call within interp gets traced
+
+ TraceCmd.3
+
+ 	proc must be
+	typedef void Tcl_CommandTraceProc(
+         ClientData clientData,
+         Tcl_Interp *interp,
+         const char *oldName,
+         const char *newName,
+         int flags);
+	
+	flags is one of
+	 TCL_TRACE_RENAME
+	 TCL_TRACE_DELETE
+	 //
+	 TCL_TRACE_DESTROYED
+
+
+       ClientData XYZ = 
+       Tcl_CommandTraceInfo(
+        interp,
+	cmdName,
+	flags,
+	proc,
+	prevClientData )
+
+       int usually_TCL_OK =
+       Tcl_TraceCommand(
+        interp,
+	cmdName,
+	flags,
+	proc,
+	clientData )
+
+       void
+       Tcl_UntraceCommand(
+        interp,
+	cmdName,
+	flags,
+	proc,
+	clientData )
+
+
+
+ TraceVar.3
+
+       int 
+       Tcl_TraceVar(
+        interp,
+        varName,
+	flags,
+	proc,
+	clientData)
+
+       int
+       Tcl_TraceVar2(
+        interp,
+        name1,
+	name2,		name within array
+	flags,
+	proc,
+	clientData)
+
+       Tcl_UntraceVar(
+        interp,
+        varName,
+	flags,
+	proc,
+	clientData)
+
+       Tcl_UntraceVar2(
+        interp,
+        name1,
+	name2,		name within array
+	flags,
+	proc,
+	clientData)
+
+       ClientData
+       Tcl_VarTraceInfo(
+        interp,
+        varName,
+	flags,
+	proc,
+	prevClientData)
+
+       ClientData
+       Tcl_VarTraceInfo2(
+        interp,
+        name1,
+	name2,
+	flags,
+		...
+	proc,
+	prevClientData)
+
+	proc is called when read or written or unset
+	proc is called AFTER write // CLIP out of range values RETVAL
+
+		TCL_TRACE_READS
+		TCL_TRACE_WRITES
+		Invoke
+		TCL_TRACE_UNSETS
+
+		TCL_TRACE_ARRAY
+		TCL_TRACE_RESULT_DYNAMIC
+		TCL_TRACE_RESULT_OBJECT
+
+		TCL_NAMESPACE_ONLY
+		TCL_GLOBAL_ONLY
+
+
+ trace.n
+
+	trace add type name ops ?args?
+	trace add command name ops commandPrefix
+	trace add execution name ops commandPrefix
+	trace add variable name ops commandPrefix
+	trace remove type name opList commandPrefix
+	trace remove type name opList commandPrefix
+	trace info type name
+
+NB TCL api uses const char * NOT Tcl_Obj *
+
+	OBJV of Tcl_Obj *
+	ARGV of Tcl_Obj *
+
+	OBJV of PyObject *
+	ARGV of PyObject *
+
+	The limitation of ARGV is that it is flat and
+	it mostly contains WORD_LIST VAR_NAME
+	It is really a very flat ARGV but already an OBJV
+
+	NB ARG may be upgraded to OBJ 
+	even though both are originally INTERP_OBJECT_TYPE
+
+
+
+
+
+
+

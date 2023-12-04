@@ -1,0 +1,181 @@
+#  EVAL_ARGV_TCL.txt
+
+	GEN_ARGV
+	RUN_ARGV
+
+		LIST_in_LIST
+
+			ARGS_TREE within WORD_LIST
+
+		PARSED ARGV
+
+			ARGS_TREE 
+
+			PHRASE 
+
+				PSG "-option value"
+				PSG "PSG_MODULE"
+		COMPILED CALL
+		 EXTRA ARGS
+
+		ARGV can be "LHS .. ARGV EXTRA WORDS MORE WORDS 
+		EXTRA WORDS are simply DECL("NAME") usually cident98 or IDENT
+
+		extra words are MENTION("IDENT") // ALIAS NAME VAR_NAME SPEC_NAME
+
+			AVAR("IDENT") // VARNAME recognised "IDENT"
+
+				SAMPLE VALUE "IDENT"
+				OPTION "this" "self" "item" "obj" 
+				ALIAS "ITEM" {
+					VECTOR CALL via CALLBACK
+					PROVIDE MODULE SESS.INST VAR_POOL API
+				}
+				ALIAS "IDENT" 
+
+					stick to $0
+					avoid second ALSO
+					specific yes ALSO
+					specific yes SPELLING
+
+			ITEM_NAME as SPELLING
+			VAR_NAME as SPELLING
+			CODE_POINT as ANYSTR TEXT
+			
+		MODULE
+
+			ARGV
+
+			OBJV
+
+		ARGV is simplified SCRIPT WORDS // eg "VAR_NAME" // 
+		OBJV is ARGV_TREE // now drift meaning ARGV OBJV 
+
+		// MENTION "OBJV" create a CT CODE_POINT 
+
+			WORD refers to VALUE // BASE LOGIC
+			WORD refers to OBJ_VALUE // CXX_VALUE 
+
+		Tcl_Object * OBJV[ OBJC ] 
+
+			FG_SCRIPT is CXX // almost LISP ish //
+			BG_SCRIPT is CPP // add_punctuation compile run EVAL 
+
+
+			ALIAS OBJV ARGV // BASE_CLASS just inherited OBJV
+			// BASE_CLASS STR0 argv[argc] // SPECIAL LEX MATCH no int
+			// BASE_CLASS STR0 argv[int argc] // int int64 uns64 i16 
+			// PICK WORDSIZE for i16
+
+			// 32K PAGE of "{ IDX = u15_idx }" // PARSE
+		
+		PARSE "{ IDX = u15_idx }" // MATCH_ASIF "{ IDX u15_idx }" // 
+		PARSE "{ IDX = u15_idx }" // MATCH_ASIF "{ %s IDX %s u15_idx }" // 
+		PARSE "{ IDX u15_idx }" // MATCH_ASIF "{ IDX u15_idx }" // 
+
+			SPELLING of VAR_NAME will exactly match // or be EXPR
+			EXPR ALIAS "NAME2"
+			EXPR ALIAS "TEXT_to_PARSE" // _and_still_cident99
+				TEXT looks like a single VAR_NAME
+			EXPR ALIAS "TEXT_to_PARSE" // _TEXT_couldbe_ANYSTR'
+				TEXT uses "ANYSTR" as STRANGE_SPELLING
+			EXPR ALIAS "TEXT_to_PARSE" // _TEXT_couldbe_PARSE'
+				TEXT uses "PARSABLE" as STRANGE_SPELLING
+				TEXT parsed as "TEXT_TREE" from "TEXT"
+			EXPR ALIAS "SCRIPT" for TEXT
+				attach ALIAS %s to LOCN SCRIPT {
+					SCRIPT = "SCRIPT"
+				}
+
+
+		Py_Object * OBJV[ argc ] // ...
+		// go direct to remote val "argc" past filter
+
+			giant switch from PYTHON to TCL
+
+			but with our use of tkinter 
+			we already have both in the same space
+
+			when we call a function we provide OBJV
+
+			unlike SHELL the SESS persists // MMAP of a saved FILE
+			so a program can fork and still return modified data
+
+		STR0 Py Tcl 
+
+			Tcl has the CSET handling
+			Fast convert parameters and BULK loaders
+			Access BULK_LOADED_PAGES 
+			Obtain STR0 NEAR SCRIPT_STR0
+			 TCL_STR = TCL_STR_from_CXX_STR0 
+			  Py_STR =  Py_STR_from_CXX_STR0 
+
+			bool PY_offers_STR0( PyObject * pyobj , STR0_t STR0 );
+			Obtain STR0 NEAR SCRIPT_STR0
+			 // STR0 // used as NAME both VAR_NAME and TYPE_NAME
+			 // NEAR // a LINK to a nearby CSR_LOCN eg XPOS_of_BOLN
+			 // SCRIPT_STR0 // 
+
+			 // AUTO // KNOW //
+
+			  // XPOS_of_BOLN // BOLN = BOLN // 
+
+
+		MULTIPLE COPIES
+
+			get it wrong and you have 3 copies of TEXT
+
+				PY
+				TCL
+				STR0
+				CXX += STR0
+
+			which is a small price to pay for CACHE PRE_LOAD
+
+		EACH CPU API 
+
+			We somehow filter to remain as multiple threads on 1 CPU
+			different CPU means different MEMORY USAGE 
+			it remains within it's rules
+			same MEMORY means same CPU_GROUP means 3_of_8
+			DESIGN 1-CPU FEW_THREADS 3_of_4 7_of_8 2_of_8
+			// 3+ is rising priority // 64 in CPU GROUP of threads
+			// 2 is lowest number above 1 // vlow priority
+			// 1 is least bit bothered
+			// 0 is speifically OFF
+
+
+			use own MEM_PAGE_VAR to 
+
+			obtain EXCL_LOCK during BATCH // PRE_FETCH // CTRT
+
+			run for a while
+
+	PROVIDE 
+	PY_WRAPPED
+	TCL_WRAPPED
+	STR0_WRAPPED // maybe with HOLD providing OBJ
+
+		ref_decr
+			release the CALLERS provision
+			release LOCKS // after completion //
+			STR0 remains in CACHE as CODE_FRAGMENT_CACHE_ITEM
+
+
+
+	DECL_API
+
+		calling GEN is a lot like calling MATCH GEN_MATCH GEN PARSER
+		BENCH creates a SESS.HERE."GEN" ."PARSER" .GEN_MATCH
+
+		MK_VAR adds VAR to VAR_POOL
+		VAR_POOLS are usually shared with GLOBAL func direct to default
+
+		"VAR" not found in VAR_POOL
+		"VAR" found in VAR_POOL as VAR with ...
+		// MENTION VAR creates a named CODE_POINT that exists
+
+
+	RUN_API
+
+		API to a permanent SESS VAR ITEM

@@ -100,6 +100,7 @@ int open( const char * pathname, int flags, ... ) // mode_t mode
 	// LD PRELOAD means calling open() calls this open() from this .so
 
 	fprintf( stderr, "This is the PRE_LOAD_ONE version of open() \n");
+	fprintf( stderr, "open( '%s', /* flags */ %03o, ... ) \n", pathname, flags );
 
 	// simulating open( "filename", flags, ... ) needs VAR ARGS
 	// we lookup the original open() and call it

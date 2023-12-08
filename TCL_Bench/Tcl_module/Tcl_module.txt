@@ -79,6 +79,31 @@
 
 	CALL $FUNCFOUND $OBJ $ARGS
 
+
+	TRACERS
+
+	NAMESPACE VARIABLES
+	NAMESPACE FUNCTIONS
+	ARRAY of NAMEd VALUES
+
+
+REASON[s]
+
+	use TCL to define a PSG grammar
+	use TCL to push data through a PSG grammar reader
+	use TCL to be SCRIPT ...
+
+	The creation of PSG_TREE could include TCL integration
+	The creation of PSG_TREE could include V8_NODE integration
+
+		alternative is WASM 
+	
+	The creation of a JS_NODE module from CXX_MODULE via TCL_MODULE
+
+		it is all OBJV[ argc ] // TREE of PARSED_TEXT
+	
+			what is $VAR_NAME
+			what is  VAR_NAME // detect MATCH
 	
 
 

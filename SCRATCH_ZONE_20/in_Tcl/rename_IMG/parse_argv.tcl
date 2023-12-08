@@ -1,5 +1,7 @@
 #!/usr/bin/env tclsh
 
+set ZONE_NAME {}
+
 proc macro_POP_tail_a {top tail} {
  uplevel "
 	set $top  \[ lindex \$$tail 0 \]
@@ -15,6 +17,7 @@ proc macro_POP_tail {top tail} {
 }
 
 proc parse_argv_main argv {
+	global ZONE_NAME
 	set ARGS {}
 	# iterate over list reducing it each time
 	set tail $argv

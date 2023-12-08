@@ -1,3 +1,6 @@
+01_Intro.txt
+
+	pesky MC viewer is detecting dot something
 
 .S2 {
  .HDR {Intro}
@@ -34,7 +37,7 @@
 			# nb TCL provides platform independent funcs for /
 		}
 	
-	Like bash comments are lines that start with #
+	Like bash, comments are lines that start with #
 
 	Unlike bash, any statement on the left must be closed with ;#
 	This is mildly annoying, but you will get used to it
@@ -63,7 +66,7 @@
 
 	One strange-ness is how it uses [code] where bash uses `code`
 
-		On the on hand this is like {code in braces} 
+		On the one hand this is like {code in braces} 
 
 		but on the other hand it is NOT like C array[idx]
 
@@ -77,14 +80,110 @@
 		}
 	
 	A VERY STRANGE thing is that there are more than one parse styles.
-	It is very confusing until you realise it, but {lines_of_code}
+	Different zones, use different parsers.
+	It is very confusing until you realise it, but {LINES_OF_CODE}
 	use one parser and if {CONDITION} uses a different parser.
-	Quoted list data uses yet another (you lose newlines)
+	{ QUOTED LIST DATA } uses yet another parser (you lose newlines)
 
 	When you use {quoting braces} the text gets parsed twice.
-	The first time, the text is NOT parsed, because that is how
-	{braces} is parsed. The text result is passed as an argv parameter
-	to the "if" command, which then chooses to do it's own parse (eval).
+	The first parse does almost nothing, it picks up the text within the
+	braces, following only the minimalistic rules (backslash rules).
+
+	You can have { outer { nested braces } ... }
+	The first parse, removes the outer braces, and treats all the text
+	like bash uses 'single quotes'
+
+	The inner text is carried though the parser ASIS (almost ASIS),
+	including the { nested braces }. For an easy life, simply require all
+	pairs to be equally matched, and it will work ASIS. If not equally
+	balanced, the matching close brace will close the matching open brace.
+
+		.code {
+			if { CONDITION } {
+				block of code
+			} else {
+				multiline
+				block of code
+				multiline
+			}
+		}
+
+	This is how Tcl passes { blocks of code } to if, while and others.
+
+	The first parser, is to find the if statement and its args.
+	Each arg is parsed, and the { block } is parsed as a blob of
+	quoted text. The outer {braces} are removed, just like "TEXT"
+	or 'TEXT' but {TEXT}, and TEXT is passes as the parameter,
+	when "if" is invoked.
+
+	The if command receives its parameters, as you the programmer
+	provided them. You could even make a code block a variable.
+	As the if is invoked, all it's parameters are provided,
+	and the $block_of_code is expanded, passing the value.
+
+		.code {
+
+			set condition {
+				CONDITION
+			}
+
+			set block_of_code_one {
+				block of code
+			}
+
+			set block_of_code_two {
+				multiline
+				block of code
+				multiline
+			}
+
+			if $CONDITION $block_of_code_one else $block_of_code_two
+		}
+
+	For thosse worrying about this arrangement of PARSER and ARGS,
+	being very inefficient, that is how it used to be, back in the
+	day, before they developed optimisers. 
+
+	Those optimisers are supposed to be completely transparent,
+	and do handle a wide range of use cases, particularly
+	repeated use, or repeat calls of the same code text.
+
+	Everything in Tcl, is a string, but CODE_TEXT is _also_
+	code, seen for the second time, upgraded the first time it was 
+	run. Trust the optimiser, and report any bugs. You wont find
+	many.
+
+	The if command only runs block_two is the else case wins,
+	and then that TEXT is PARSED into a CODE_BLOCK_in_a_WORD.
+
+	It is parsed, as a list of lines, each a list of words,
+	each word can be a simple word, or a { nested braced text }.
+
+	Often DATA is provided using similar braced { TEXT },
+	the opening and closing added gaps are passed through,
+	and you may want to trim them.
+
+	Often LISTS are provided as { LIST_OF_WORDS in braces }.
+	These are usually normalised by a list handling function,
+	that invokes the LIST_from_TEXT parser, which has rules
+	that are slightly different to the LINES_of_CODE parser.
+
+	It is so natural, you will only be confused, if you never
+	noticed. Now that you ave been told, you will see when
+	to RTFM, and when to be happy.
+
+	if { CONDITION } ... uses a different PARSER. The
+	if command is invoked with some text ' CONDITION '
+	that has had the minimum of PARSE processing.
+
+	$var is still the text "$var" and [backquoted call argv]
+	also gets the square brackets passed through as plain text.
+
+	The if command, receives' CONDITION ' which it evaluates using
+	the expression evaluator, which parses using the expr PARSER,
+	then evaluates, to something that is supposed to be a bool
+
+
 
 	.code if {condition} {code_one} else {code_two}
 

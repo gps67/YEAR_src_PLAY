@@ -1,0 +1,254 @@
+
+Data credited to URL 
+I know that is a bit slack,
+but it is also very precise.
+
+The rules say "give credit" and "Creative Commons" license.
+
+SPO means South Pole Obs 
+The SPO ice data is not annual, and runs upto the join
+The MLO air flask data is also available from other stations
+The XXX ICE-CORE-DATA 
+
+https://scrippsco2.ucsd.edu/data/atmospheric_co2/icecore_merged_products.html
+https://scrippsco2.ucsd.edu/assets/data/atmospheric/merged_ice_core_mlo_spo/merged_ice_core_yearly.csv
+https://scrippsco2.ucsd.edu/assets/data/atmospheric/merged_ice_core_mlo_spo/spline_merged_ice_core_yearly.csv
+
+
+https://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo.html
+https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/daily/daily_in_situ_co2_mlo.csv
+	daily_in_situ_co2_mlo.csv = lots of missing days, stops 2 months ago
+	headers recommend using weekly or monthly as better source
+
+
+https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/weekly/weekly_in_situ_co2_mlo.csv
+
+	weekly without gaps, seems fine grained enough for smooth computations
+
+	USE THIS ONE ?
+
+
+--
+https://scripps.ucsd.edu/bluemoon/co2_400/co2_800k_zoom.png
+https://www.methanelevels.org/
+https://earth.nullschool.net/#current/wind/isobaric/250hPa/orthographic=-22.41,42.56,361/loc=29.571,28.584
+
+-- CUT FILE LINE --
+
+gps@E6320:~/YEAR/src/PLAY/UTIL/CLIMATE_LINKS/CLIMATE_DATA/SCRIPPS$ ls
+
+	daily_flask_co2_chr__ChristmasIslan_Flask.csv
+
+		FLASK += Christmas Island Flask // ALIAS_NOTICES_SUBLEX_OVERLAP
+
+			SUBLEX OVERLAP {
+	daily_flask_co2_chr__%s_Flask.csv
+	ChristmasIslan
+	%s%s Christmas Islan
+	MATCH Islan Island // make a generic rule for trunc 5 LIST_PREFIX
+	LIST all LOCAL NOUNS FILTER_MATCH_PREFIX trunc 5 {
+		That is a list, with repeats, of { { trunc 5 } Islan Island CODE_POINT }
+			every local noun is returned
+			exact similar PREFIX
+			+= or MILD FILTERED PREFIX // eg ALL_CAPS
+	
+	}
+	FOREACH ITEM of $ALL {
+	 FOREACH ITEM of $ALL {
+
+	 	KNOW_TOKENISED_DATA becomes PROTOTYPE becomes SPEC and DIALECT
+		KNOW DIALECT switches the order of "{ lhs rhs }" "{ ARG1 ARG2 }"
+		PICK "{ $2 $1 }" // SWAPPED DIALECT 
+		PICK "{ $1 $2 }" // FORWARD DEFAULT // TRUNCATE
+		// DEFAULT // TRUNCATE ARG to KNOW NULL // OPCODE NULL DEFAULT
+		// TRIGGER ALIAS EACH 
+		// PHRASE //
+
+		// ITEM_POOL // two_step_decoded_in_one_step_MATRIX
+		// VAR_POOL // VAL == ITEM // add to BASE class not provide base
+
+		ITEM == "{ LHS RHS }" or "{ RHS LHS }" or ATOM LHS RHS ALIAS
+
+LANG_CO_EXIST	+= DIALECT that MATCHES and RESONAES // FILTER
+
+			FILTER is CORE_TYPE MIME_DATA_SPEC
+
+			FILTER is MIME_DATA_SPEC CSV_FILE_on_WEB // and then some
+
+			PARSE("CSV_PLASK_5") // GRAMMA = PHASE_5
+			PARSE("CSV") // GRAMMA = PHASE_5 // in CT_SWITCH
+			FILTER_CXX_STRUCT
+
+				u64_on_u64
+				"u32_u32" u32_left u32_right // NEXT
+
+				u32_u32 lhs rhs
+				// AUTO ALIAS u32_lhs lhs // LINK_VAR //
+				// AUTO ALIAS u32_rhs rhs // LINK_VAR //
+
+				LEX-ALERT LINK_VAR
+				is alias rename lhs rhs
+
+LEX_ALERT LEX-ALERT // a #define somewhere
+				PROC LEX-ALERT LINK_VAR _local _remote
+				ALIAS _local _lhs
+				ALIAS _remote _rhs
+
+				PAIR_in_STREAM needs no PREFIX 
+				// needs DECODER_to_KNOW_STREAM_TYPE // CT_RT //
+				
+				STREAM += FIELD
+
+				FIELD += {
+				 FIELD_NAME
+				 FIELD_SPEC
+				 FIELD_DATA
+				 FIELD_CODE
+				 FIELD_Module // a MODULE from MENTION "FIELD"
+				 FIELD_Module // a MODULE from MENTION "Module"
+				}
+
+				NAME_ONLY { UNUSED }
+
+
+			MODULE is LIBR_CSV
+
+			ITEM_is_CSV_file_from_DOWNLOAD _via_PARSER
+
+			CSV_FILE _MUX_TEXT_CMNT 
+
+				PARSE 
+				 expect initial block of COMMENT_TEXT
+				 expect CSV_DATA 
+				 expect CSV_DATA of exactly same type as WAS
+				 expect field_names from CSV_FILE_SPEC
+				 
+				 STR0 WAS = "FLASK_5" // alias of this PSG
+
+				 	GENRE "FLASK_%d" // NAME -fmt_expr- ID
+
+					CSV_DIALECT CSV_SIMPLE Q2_is_COMMENT
+					PARSE_CSV_GEN_CSV _SEQ_CSV
+					PARSE_CSV_SEP_COMMA_SPACE _or_SIMILAR
+					PARSE_LEX_YEAR_MM_DD_HH_MM with DIALECT
+					PARSE_LEX_FLOAT LEX_INT LEX_IDENT
+
+				MATCH STR0 "INST_of_GROUP" "Flask_%d" 
+				MATCH STR0 "INST_of_GROUP" "INST_xFF" // MINI
+
+				 PAIR "{ Sample_Date Cx }"
+				 LINK "{ %s %s }"
+				 LINK "{ lhs rhs }"
+				 MATCH "{ $1 $2 }" // $0 == "CODE_POINT"
+				 MATCH "{ $0 $1 }" // $0 == "CT_RT RT CODE_POINT"
+				 // NOTICE 
+				 // MATCH
+				 // NOTICE // "CT_RT RT" "RT" "CT_RT"
+				 // NOTICE // "CODE_POINT" // BIND_KNOW
+
+
+
+			STRUCT -is- FIELD_LIST
+
+					BASE_CLASS VTBL.FUNCTION get_EA_from_EXPR
+					Sample Date
+					Sample Time
+					Excel Date
+					Sample Date // DATE_TIME_AS_FRACTION_of_YEAR
+					eg 1974.941 from 1974-12-10
+
+					NC, // NC means 2 3 4 5
+					FGC, // FGC means 0 4 5 9 
+					Cx
+					FIELD_DATA_TYPE PPM.99 // expect_275_PLUS
+
+	 }
+	}
+	daily_flask_co2_chr__ChristmasIslan_Flask.csv
+			}
+
+		YEAR-MM-DD "SampleDate"
+
+		CSV_COMMA_GAP // CSV ASCI_COMMA ASCII_SPACE NEXT_VAL
+
+		AUTO NEXT_VAL is NEXT += ARG1 VAL // ARG0 is probable XPOS CODE_POINT
+		"HH:MM" 
+		-ALIAS- "HH_MM" // USAGE AVAR("HH_MM") // 
+		"-ALIAS-"
+		
+		AVAR DATA_ROW PARSED from CSV FILE
+		FILE Flask
+	daily_flask_co2_isotopes_mlo.csv
+	daily_flask_co2_isotopes_spo.csv
+	daily_in_situ_co2_mlo.csv
+	merged_ice_core_yearly.csv
+	monthly_in_situ_co2_mlo.csv
+	SCRIPPS.txt
+	spline_merged_ice_core_yearly.csv
+	weekly_in_situ_co2_mlo.csv
+
+# FOREACH FILE found on WEB
+
+	WEB PAGE CSV QUOTE_NOTE
+
+		ROOT webpage
+		ORIG ORIG
+		FILE DIR/file
+		INFO INFO
+		PARSE FLASK_5 "{ Flask %d F }" 
+		
+		LOCAL GLOBAL 
+		DIALECT LANG 
+
+		FETCH PARSE CACHE ACCESS TRANSFER
+
+			PLAIN_CSV_of_TABLE /* mostly "{ T V }" timeseries
+			NOT SPARSE NOT NIL not usually
+
+		TOKEN "FLASK_5" from Flask_5
+
+			lookup CTXT.WANTS.TOKEN return WANTS("TOKEN")
+
+			-via- SPELLING
+
+	
+	CSV_DATA_FILE
+
+		as_JSON
+		as_GRID
+		as_BASE TABLE LHS RHS // get_EA() { return CODE_POINT_THIS }
+
+		as_SPEC
+	
+	SUGGEST
+
+		"{ T V }" DESC EXPR EXPR_lhs EXPR_rhs
+
+		PAGE.VIEW
+		PAGE.DATA.VIEW
+
+			SUGGEST 
+				RAW
+			SUGGEST 
+				RUN_AVG_YEAR // ie flat for YEAR over CYCLE
+				RAW
+			SUGGEST
+				ANNOT_275
+			SUGGEST
+				EXP_on_the_UP
+	
+	SUGGEST
+
+		BENCH SESS
+	
+			CREATE BENCH FEATURE
+			 V LIST of OPTIONS
+
+
+GRAPH PLOT SESS // BENCH SESS
+
+	{ SCRIPT }
+
+
+	
+

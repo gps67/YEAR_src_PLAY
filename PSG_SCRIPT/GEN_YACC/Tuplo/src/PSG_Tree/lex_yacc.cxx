@@ -1,6 +1,6 @@
 
 #include "lex_yacc.h"
-#include "Y_PARSE.h" // parameter
+#include "YY_PARSE.h" // parameter
 using namespace PSG;
 
 lex_yacc::
@@ -536,7 +536,7 @@ gen_LEX_code_start( buffer2 & out )
  L1("// gen_LEX_code_start() // headers ");
  L1("//somehow before here is stddef stdio - added by flex");
  L1("#include \"buffer1.h\"");
- L1("#include \"Y_PARSE.h\""); //
+ L1("#include \"YY_PARSE.h\""); //
  L1("using namespace YY;"); //
  if(1) {
 	put_include_yacc_tab_hh( out );
@@ -729,7 +729,7 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("// within definitions %{ is A CODE SECTION BEGIN // like %TOP see 5.1 ");
 	L1("");
 
-	// include buffer1 Y_PARSE using namespace YY
+	// include buffer1 YY_PARSE using namespace YY
 	gen_LEX_code_start( out );
 
 	// utility functions that carry return " RETVAL STRVAL" from LEX
@@ -937,7 +937,7 @@ gen_YACC( buffer2 & out ) // all of it
 	L1("%}");
 	// declare the parameter to get i// int yyparse( HERE );
 
-	gen_yyparse_parameter( out ); // see Y_PARSE.h
+	gen_yyparse_parameter( out ); // see YY_PARSE.h
 	gen_YACC_union( out );
 	gen_YACC_token_list( out );
 	gen_YACC_type_list( out );
@@ -980,7 +980,7 @@ gen_YACC_top_code( buffer2 & out )
  // NOT WORKING - to create yyparse(void*gps_client_data) //
  // then it would be local and still available to entire FSM
  //L1("  #define YYPARSE_PARAM gps_client_data ");
- L1("	#include \"Y_PARSE.h\" ");
+ L1("	#include \"YY_PARSE.h\" ");
  L1("");
  L1("          extern const char * str_of_token( int token );");
 

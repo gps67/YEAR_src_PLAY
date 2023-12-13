@@ -5,7 +5,7 @@
 #include "dgb.h"
 #include "buffer2.h" // not neded here, but good for GEN
 #include "util_buf.h" // basetype avoids IO, stat_file, alloc buff, open file,
-#include "Y_PARSE.h" // calls yyparse, move stuff there
+#include "YY_PARSE.h" // calls yyparse, move stuff there
 
 #include "STO.h"
 // #include "STO/mmap_file.h"
@@ -38,10 +38,10 @@ int main( int argc, char ** argv )
 	// QUOTA 300_K expect 8K x 100 _page_pair 
 	// ROM CODE unimited = preloaded or SITE loaded or RISK_CODE
 
-	Y_Parse_t PSG("ATM");
+	YY_Parse_t PSG("ATM");
 	// e1 is used in signals to say which PSG says what
-	// Y_Parse_t PSG(filename); // or nick_name_from_filename
-	// Y_Parse_t PSG(name_resource); // or ea_expr_as_name // name_from_
+	// YY_Parse_t PSG(filename); // or nick_name_from_filename
+	// YY_Parse_t PSG(name_resource); // or ea_expr_as_name // name_from_
 
 	// The PSG is hard coded
 	// There are a load of CACHE KNOWN STATES in the FSM tables

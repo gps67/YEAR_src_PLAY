@@ -1,4 +1,4 @@
-#include "Y_PARSE.h"
+#include "YY_PARSE.h"
 #include "dgb.h"
 #include "util_buf.h"
 #include "buffer2.h"
@@ -31,7 +31,7 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 #define  YY_END_OF_BUFFER_CHAR 0x00
 
-// YY:: Y_Parse_t CALLS yyparse PROVIDES SELF.TREE // _BUILDER
+// YY:: YY_Parse_t CALLS yyparse PROVIDES SELF.TREE // _BUILDER
 
 // https://www.gnu.org/software/bison/manual/html_node/Parser-Function.html
 // says ( this ) would work, but for unknown - need *this
@@ -39,19 +39,19 @@ extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 
 using namespace YY;
 
-Y_Parse_t::
-Y_Parse_t()
+YY_Parse_t::
+YY_Parse_t()
 {
 	INFO("CTOR");
 }
 
-Y_Parse_t::
-~Y_Parse_t()
+YY_Parse_t::
+~YY_Parse_t()
 {
 	INFO("DTOR");
 }
 
-int Y_Parse_t::
+int YY_Parse_t::
 call_yyparse()
 {
 	ret_from_yyparse = yyparse( * this ); // matches T & V
@@ -74,9 +74,9 @@ call_yyparse()
 
 // C called from yyparse(psg)
 // see Y_PARSE_gen.cxx:
-// "%%parse-param {Y_Parse_t & psg} 
+// "%%parse-param {YY_Parse_t & psg} 
 
-void yyerror( Y_Parse_t & psg, const char * msg )
+void yyerror( YY_Parse_t & psg, const char * msg )
 {
 	FAIL("Y_Parse.Name \"%s\", msg \"%s\" ", (STR0) psg.Name, msg );
 	FAIL(" get_prog_alias() says %s", (STR0) get_prog_alias() );
@@ -87,7 +87,7 @@ void yyerror( Y_Parse_t & psg, const char * msg )
 
 // METHODS
 
-  bool Y_Parse_t::
+  bool YY_Parse_t::
   buf_yy_parse( blk1 & text ) // returns when done
   {
   	// YOU have already allocated buffer2 with loaded text and soon PADD
@@ -178,7 +178,7 @@ void yyerror( Y_Parse_t & psg, const char * msg )
 
   ///
 
-bool Y_Parse_t::
+bool YY_Parse_t::
 buf_load_and_parse(		// load file then parse it, then return
    blk1 & text,			// load text from filename
    const char * filename,	// load entire file

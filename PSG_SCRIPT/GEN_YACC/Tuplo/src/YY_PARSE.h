@@ -21,17 +21,17 @@ namespace YY { /* NOT YET */ }; // namespace
 /*	USERS of PARSER
 	run it though this
 */
- struct Y_Parse_t {
+ struct YY_Parse_t {
 
- 	Y_Parse_t();
- 	virtual ~Y_Parse_t();
+ 	YY_Parse_t();
+ 	virtual ~YY_Parse_t();
 
  	// this PARSER is called "PARSER" // "Y_Parse" "_t"
  	// this PARSER is called "FILENAME" // "TEXT_to_DATA.txt" // SCRIPT
 	// local copy of external STR0 // COMPILER moves to ROM.SEGMENT.AREA
  	str1 Name;
 
-	Y_Parse_t( str0 _Name )
+	YY_Parse_t( str0 _Name )
 	: Name( _Name ) // entire filename or item id or any helpful default
 	{
 		// Now you can access the library of PSG code
@@ -58,13 +58,13 @@ namespace YY { /* NOT YET */ }; // namespace
 using namespace YY;
 
 // because of %parse-param
-// %parse-param {Y_Parse_t & psg} // PARAMETER // NB REF AMP
+// %parse-param {YY_Parse_t & psg} // PARAMETER // NB REF AMP
 // yy..( parser )
 
 
-extern	int yyparse( Y_Parse_t & parser );
+extern	int yyparse( YY_Parse_t & parser );
 // call parser.parse()
-extern	void yyerror( Y_Parse_t & parser, const char * msg );
+extern	void yyerror( YY_Parse_t & parser, const char * msg );
 // call parser.yy_error( msg )
 
 extern	bool gen_yyparse_parameter( buffer2 & out);

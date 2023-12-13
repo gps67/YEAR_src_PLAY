@@ -165,11 +165,11 @@ endif
 	OBJS1 += lex_yacc_UDEF_AFM.o
 	OBJS1 += lex_yacc_UDEF_JSON.o
 	OBJS1 += STO_E32.o
-	OBJS1 += Y_PARSE_gen.o 
+	OBJS1 += YY_PARSE_gen.o 
 	OBJS1 += lex_yacc_LEX_START.o 
 	# OBJS1 is specific to JSON etc - rework required ...
-	# Y_PARSE is to become common to all
-	OBJS23 += Y_PARSE.o 
+	# YY_PARSE is to become common to all
+	OBJS23 += YY_PARSE.o 
 	OBJS23 += EXPRS.o
 	OBJS23 += EXPRS_RETVAL.o
 # NO	OBJS2 += EXPRS_PRINTER.o

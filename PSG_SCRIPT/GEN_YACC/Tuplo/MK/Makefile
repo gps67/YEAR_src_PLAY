@@ -28,7 +28,10 @@
 	VPATH +=$S/src/PSG_Tree/JSON
 	VPATH +=$S/src/STO
 
-	include ../MK/Makefile_libs_apps
+ #	include ../MK/Makefile_libs_apps
+	include ../MK/MK_with_libs_apps
+
+	PKGS += libs_apps_base2
 
 	PROG1=test1_gen_yacc
 	PROG2=test2_use_yacc

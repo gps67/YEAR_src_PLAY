@@ -1,0 +1,416 @@
+api_locn_item.txt
+
+	api_events.h
+	api_locn_item.txt
+	EV_argv_decoder.cxx
+	EV_argv_decoder.h
+	EV_STUBS.h
+	test1.cxx
+
+nbytes = STO
+SPEC == SPEC
+DATA == struct ITEM_t ITEM { CTOR ARGS } CTXT SESS
+BENCH += {
+	FIND_A_PANEL _for_GUI_ITEM _DRAW
+	api_locn
+	api_item
+	api_SPEC
+	api_FUNC ARGV # ARGV_DECODER #
+	api_ARGV
+	api_EV += _ARGV { SCRIPT }
+	api_api {
+	 api += THIS_api // ALIAS api "$0" // COMPILE_STR0 // CALL EXPR API //
+	 api += LOCN_ITEM { SCRIPT } 
+	 api += LIST_as_STREAM $ARGV_SCRIPT { SCRIPT } { // PLUS
+	 	SCRIPT_STEP_LIST { SCRIPT }
+		SCRIPT_EVAL_TEXT { SCRIPT }
+		SESS += CTXT // CTXT is ENV_VARS in a shared MMAP_HEAP
+		SESS += CSR
+		CSR += POINT_on_GRAPH {
+			GRAPH += VAR_POOL GLOBALS SESSIONS FILES STO SPEC nbytes
+			POINT += EA_of_POINT += EA_LOCN_ITEM
+		}
+		LOCN_HERE += CSR.EA_of_CSR(CT_RT); //
+		HEAP += EA_HEAP_ITEM // ITEM += as_a_LOCN // DERIVED BASE CLASS
+		ITEM += as_a_LOCN
+		ITEM += as_an_ITEM
+		LOCN += EXPR ARGS // CTXT SESS //
+		EXPR += EXPR_LIBR // TUPLES ARGV OPCODE SESS CTXT CODE_POINT FN
+		FUNC += CODE_POINT_SCRIPT { SCRIPT }
+		XPOS += CODE_POINT_XPOS
+		CODE += "{ XPOS SCRIPT }"
+
+		SCRIPT DIALECT += STR0 -used-as- SCRIPT_CALL_STR "STR0" 
+		SCRIPT DIALECT += STR0 -used-as- SCRIPT TOKEN "%s" // STR0 //
+		// WHEN the explain for VAR is "%s" that means STR0 // CSET 
+		// CSET == STR0.CSET // VIA SESS.EXPR_for_USED_AS EXPR
+		// 
+		SCRIPT DIALECT += "{ TOKEN STR0 }" // DECODER MATCH TEMPLATE
+		SCRIPT DIALECT += "{ SPELLING STR0 }" // DECODER MATCH TEMPLATE
+		MATCH "{ %s }" // P0P2 set to PCNT_S "%s" STR0
+		MATCH "%s" // ALIAS DECODE STEP // ALIAS_DATA_STR0 //
+		ALIAS "{ STR0 }" "%s" // MATCH %s // DROP Q2 for punct glyphs
+		BOOT_STRAP language from BASIC CORE COMPONENTS add LIBR
+
+		SCRIPT DIALECT += STR0 -used-as- SCRIPT_CALL_STR "STR0" 
+		SCRIPT DIALECT += "{ SCRIPT }" // DECODE OPCODE // "{ %s }" //
+		DIALECT += DECODE "{ %s }"
+		DIALECT += DECODE " %s "
+		DIALECT += DECODE "%s"
+		DIALECT += DECODE STR0
+		DIALECT += DECODE CIDENT // CSET == "CSET_IDENT"
+		DIALECT += DECODE ARGV parameter STR0 // OBJ_xFFFF //
+		DIALECT += DECODED CODE_POINT ARGS 
+
+		// AUTO_PARSE ARGV for "--%s=%s" NAME VALUE
+		// AUTO_PARSE ARGV for "{ --%s %s }" NAME VALUE
+		// AUTO_PARSE ARGV for "{ -%s %s }" NAME VALUE
+		// AUTO_PARSE ARGV for "-%s" NAME // NOVAL // FLAG NAME ON
+		// AUTO_PARSE ARGV for "-%s" NAME // NOVAL // FLAG SETVAR VERT
+		// AUTO_PARSE ARGV for SCRIPT PUNCT // LEX_PUNCT "{" "}"
+
+		That converts STREAM to ARGV to STREAM from ITER
+
+		ITER ARGV as STREAM of ARGS or PUNCT or "STR0"
+
+			INVOKE COMPILED ARGV
+
+				CACHE has done it's JIT magic
+
+					USED_LIST
+					SPELLING USED HERE FOR EXPLAIN
+
+				MATCH_TREE has done it's PARSE ARGV
+				MATCH VAR NAME TYPE VALUE CMNT USED_LIST
+
+			MATCH PRECOMPILED PHRASES
+
+				MATCH_TEMPLATE "{ %s }" {
+				 EXACT STR "{ %s }" GOTO_MATCH
+				 SIMILAR_TO  STR "{ %s }" GOTO_MATCH // -ditto-
+
+				MATCH PARSE MATCH TEMPLATE "%s"
+				PARSE MATCH TEMPLATE "%s"
+				LEX IDENT
+				LEX VALUE
+				LEX PHRASE
+				PSG PHRASE
+				PARSED_STO_STRUCT DATA
+
+				VAR_POOL SESS CTXT += VAR FUNC EXPR CONST EXPR
+				VAR_POOL ITEM_xFFFF
+				VAR_POOL VAR_xFFFF
+				VAR_POOL FUNC_xFFFF
+				VAR_POOL EXPR_xFFFF
+
+				EA_ITEM uses an AUTO_GROW
+				IDX_t
+				TYPE_DECL "ALIAS{ u8_idx_t u8_t }"
+				OUTER is Q2
+				OUTER is "ALIAS{" "}"
+				INNER is " u8_idx_t u8_t "
+				IDENT u8_idx_t
+				IDENT u8_t 
+				}
+
+			DATA SCRIPT eg JSON
+
+				is_JSON 
+				is_ITEM
+				is STRUCT
+				is LOCN
+				is_OBJ
+				is STR0
+				is_P0P2 // segment of stream parsed
+
+			P0P2 STR // or AVAIL EXPRS to manage P0P2 _ASIF
+
+				MEDIA uses EA + BASE + OFFS
+				MEDIA uses BASE = nbytes.P0
+				MEDIA uses OFFS = nbytes.N
+				MEDIA calc P2 = P0 + OFFS // OFFS(START_NEXT)
+
+				The API calls all sorts of MACROS
+				MAYBE to PRE-COMPILE JIT 
+				convert radians to degrees and back, CACHE
+				CACHE remembers how questions were answered
+				SCRIPT of how REMOTE behaves (it publishes)
+				RET_VAL = VALID_within_SCOPE
+				RET_VAL = COMPILED_OBJ_with_varname_OBJ_xFFF
+				_xFFF is really a ZOOM u8 u12 u16 u24 
+				MINI_MACHINE limit 16 MEGA POINT HEAP
+
+					expect 3,000 per SESS
+					limit 16,000,000 per u24_LIMIT
+
+				This is required so that we live in the
+				32 bit world. We usually fit in u16,
+
+					u64_BITFIELD
+
+				For the sake of u32 machines, we provide
+				and use a u48_as_u32_u16 after u8_u8_OCODE
+
+					u8_u8_u16 u32
+
+					OPCODE ARG	// COMPILED CODE
+
+					u64 // optionally NOT aligned // IS //
+
+					u32 u32
+					u8_u8_u16 u32
+					u8_u8_u16 u32 u64
+					u8_u8_u16 u32 u64 u64
+					u8_u8_u16 u32 u64 u64
+					u8_u8_u16 u32 u64 u64 u54
+					u8_u8_u16 u32 u64 u64 u54 u54
+					u8_u8_u16 u32 EIGHT_t EIGHT[ IDX_t ] 
+					u64_IDX_t
+					u32_IDX_t
+					u16_IDX_t
+					u8_IDX_t
+
+					u16_BITFIELD u16_PAYLOAD // u5_idx //
+					u16_BITFIELD u16_PAYLOAD_SHIFTED
+					u16_BITFIELD u16_PAYLOAD_IN_BITFIELD
+
+		u5_idx
+
+			LANG DIALECT USAGE "u5_idx" is AVAIL ARG FIELD
+
+			We can ENCODE and DECODE u5 in a BITFIELD in EIGHT_t
+
+				EIGHT_t is an ALIAS
+
+					u32_u32
+
+				EIGHT_in_u32_CPU_register
+
+					u32 EIGHT; // in CPU // LOAD SAVE //
+
+
+
+
+			ENCODE u5
+			DECODE u5
+			BITFIELD in EIGHT_t
+
+				DATA can have any CXX SPEC incl BITFIELDS
+				The compiled code uses C to activate calls
+				uses C to access BITFIELDS // CXX uses <<>>
+
+		EIGHT_t TABLE [ idx ]
+
+			we have 32 local vars, VAL is an EIGHT_t
+			32_bit design uses u16 as tall ceiling, most 10
+
+			EIGHT_t & EIGHT[ u32_idx ] // C also likes [u16] [u8]
+
+			EIGHT_t & EIGHT = lookup EXPR ARGS
+			// EXPR = SCRIPT //
+			// ARGS = SCRIPT 2 //
+			// lookup = SCRIPT::STEP("lookup()") // ALIAS noargs
+			// LANG alias noargs // usually has ARGS // PARASABLE
+
+		PARSABLE ARGS
+
+			TUPLO "{ %s %s }" TUPLO lhs rhs // CODE_POINT // CMNT 
+			CMNT += KNOW ...
+
+		PARSABLE ACTIONS
+
+			but not by me here
+			behaviour match call sequence
+			or be a manually coded CACHE
+			from learned data templates
+			as used by the SCRIPTS
+			so are prepared EXPRS // or compiled code for //
+		
+
+	 }
+	}
+} // BENCH
+
+EIGHT_t += union BYTE[8]
+EIGHT_t += union PAIR[4]
+EIGHT_t += union QUAD[2]
+EIGHT_t += union WORD[1] // u64_WORD_t //
+EIGHT_t += union WORD_BITFIELDS CODE_OBJECTS
+
+
+	BTFIELDS WORD u32_u32 
+	BTFIELDS WORD u8_u24 u32 
+	BTFIELDS WORD u8_u24  {
+		CODE_POINT
+		SCRIPT
+		for DECL WORD u8_u24
+		for u8_BYTE_A
+		for u24_PAYLOAD 
+		for DECODE u3_u5 u24 
+		OPCODE says THIS is TRAY of ITEM
+		TRAY == TRAY[u3_idx] // force a new name with us %s_%s idx
+		ITEM == TRAY.get_ITEM( u5_idx ) // CXX not TXX or LISP
+	}
+
+	This EIGHT does not need to decode OPCODE
+	THat has already been done (by first EIGHT)
+	KNOW CODE_POINT and nearby that SPEC of u8_u24 is
+
+		BYTE_A_upshifted_u24 // CIDENT // IDENT // VFS_FILENAME
+	
+	ARGV[ i ] is actually an EIGHT_t
+
+		need to define ARGV_64 on u32_CODE
+
+		EIGHT_t & ARGS[ N ] 
+		EIGHT_t & ARGS[ i ] ( i ) {
+			return *(EIGHT_t *)TABLE[i]; // NULL means NULL
+		}
+	
+	SCRIPT is lots of u64_WORDS one per LEX STEP
+	LEX_SCRIPT is lots of u64_WORDS one per LEX STEP
+	always includes residual keywords and args
+	cache from JIT says FAST_MATCH %s // is u16_i48 
+
+		u16 because u8_u8
+		i48 necause i16 u32 PLUS
+		i48 necause i16 i32 TEST_SIGN
+		i48 necause i16 i32 MINUS
+
+	TUPLO // useful one
+		u8_u8_i16_i8_u24
+		WORD_ONE
+		WORD_TWO
+
+	WORD_TONE
+	WORD_ONE
+
+		u8_u8
+		OPCODE
+
+		i16
+		EXTRA
+
+	WORD_TWO
+
+		i8_u24
+		WORD_TWO
+
+	WORD_TWO
+
+		u32	// UNION all that it might be CPU REG and MEM
+		u32	// UNION all that it might be CPU REG and MEM
+
+	WORD_u64
+
+		u32_u32 // UNION all that it might be CPU REG and MEM
+
+			
+	WORD_u64
+
+		u32_u32 // UNION all that it might be CPU REG and MEM
+		u16_u48 // UNION WORD_u64
+
+		CODE_DESIGN sort of removes u48 because our u32 CPU is dumb
+		ZOOM_DESIGN double steps INDEX_u48 as DEX_u16_INDEX_u32
+
+		 EA_MEM = EA_BASE + EA_OFFS
+
+		 u48_PAYLOAD = u64_WORD >> 16 // STRONG chance C can do this
+		 u64_WORD on 32_bit is there
+
+		 u8_u8_u16_u32
+
+		 	access u48 as u16_u32
+			DECL 
+				get_u48
+				get_u16_u32
+
+					u16_OPCODE
+					u16_PAYLOAD
+
+					u32_PAYLOAD
+
+				get_u16
+				get_u32
+
+				set_u48
+				set_u16
+				set_u32
+			
+
+
+ELEC
+ TOUCH SPIDER
+ 	any ESP32 with touch pins	£8 (not VIDEO)
+	OFTEN mini_display
+	OFTEN mobile PANEL display
+	OFTEN web PANEL display
+	OFTEN web PANEL display on TABLET # but avoid touching
+	need battery || usb
+	use BT audio out
+	use jack 3.5mm out - one PWR or A2D pin
+	use jack 3.5mm in  - one D2A pin
+	14 touch pads
+	10 in one group ?
+	need LED DATA OUT
+
+	Build case with touch pads
+
+		switch MODE to SETUP navigating SCREEN
+	
+	Build LED attachment connector
+
+		place and remote access
+
+	CARD TAG 
+
+		5 pins needed
+		custom tags
+		public cards READONLY_ID
+	
+	MOB SIZE fits in PHONE WALLET
+
+		both phone and synth in same wallet
+		pair of phone and synth in pair of wallets
+
+
+	HOME_ZONE
+
+		LEDS
+		BT_SPEAKER
+		BT_MIC
+		BT_CTRL
+		MAIN SOCKET + PLUG ??
+		
+	INFINITY SCRIER
+
+		Tin foil round the rim
+
+	###############################################################
+
+u32_OPCODE_IDX
+u32_OPCODE_IDX_IDX
+
+	u8_OPCODE_A
+	u8_OPCODE_B
+	u16_CD
+
+//	 u8_IDX_C
+//	 u8_IDX_D
+
+u32_OPCODE_IDX_IDX_IDX
+
+	u8_OPCODE_A
+	 u8_IDX_B
+	 u8_IDX_C
+	 u8_IDX_D
+
+	u8_OPCODE_A
+	 u8_IDX_B
+	 u8_IDX_C
+	 u8_IDX_D
+
+
+
+

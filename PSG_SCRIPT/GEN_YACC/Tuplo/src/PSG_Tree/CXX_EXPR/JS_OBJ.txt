@@ -1,0 +1,117 @@
+	/home/gps/YEAR/src/GITS/
+	 YEAR_src_PLAY/
+	  PSG_SCRIPT/GEN_YACC/
+	   Tuplo/
+	    src/
+	     PSG_Tree/
+	      CXX_EXPR/
+
+	JS_OBJ.txt
+
+		V8
+		SM
+
+	CXX_OBJ = "{ int idx = OBJ }"
+
+	# PROVIDE("idx")
+	# USE("OBJ") # u32_idx_t obj_idx #
+	# SO OBJ means %s PARAMETER
+	# usage # used to attach PARAMETER to TEMPLATE TEXT instance
+	# usage # OBJ "OBJ" #
+	# usage # idx "idx" #
+
+	We can pass a JS OBJ around as a PTR or a JS_WORD
+
+	We can pass a CXX_EXPR as a 64_bit_WORD_holding_BITFIELDS
+	We can pass a CXX_EXPR as a 64_bit_as_WORD_PAIR // on 32 bit
+
+	CXX_DECODE_i32_i32
+	CXX_DECODE_i32_u32
+	CXX_DECODE_u32_i32
+	CXX_DECODE_u32_u32
+
+		We can live within 4G segments
+		We have a lot of 32 bit machines with 4G 
+		We have a lot of 64 bit machines with 16G 
+
+		We can PICK BYTE_FIELDS from within EIGHT
+
+			TABLE[ idx_ITEM ] .0_4_0
+			TABLE[ idx_ITEM ] .4_4_1
+
+			TABLE[ idx_ITEM ] .0_2_0
+			TABLE[ idx_ITEM ] .2_2_1
+			TABLE[ idx_ITEM ] .4_2_2
+			TABLE[ idx_ITEM ] .6_2_3
+
+			TABLE[ idx_ITEM ] .0_1_0
+			TABLE[ idx_ITEM ] .1_1_1
+			TABLE[ idx_ITEM ] .2_1_2
+			TABLE[ idx_ITEM ] .3_1_3
+			TABLE[ idx_ITEM ] .4_1_4
+			TABLE[ idx_ITEM ] .5_1_5
+			TABLE[ idx_ITEM ] .6_1_6
+			TABLE[ idx_ITEM ] .7_1_7
+
+		DECODE_i64 as
+
+			i32_i32
+			i32_u32
+			u32_i32
+			u32_u32
+
+		DECODE_i64 as
+
+			32_bit
+			32_bit
+
+		DECODE_i64
+
+			i32_WORD_ONE
+			i32_WORD_TWO
+
+		DECODE_u64
+
+			u32_WORD_ONE
+			u32_WORD_TWO
+
+	JS_OBJ * OBJ = OBJ_from_DECODE_WORD( EIGHT )
+
+	get_u16_LOHI_from_EIGHT _AB _CD _EF _GH // LOHI // IDX = u24 idx_obj
+
+		get_u16_LOHI_from_EIGHT
+		   LOHI_AB
+		   LOHI_CD
+		   LOHI_EF
+		   LOHI_GH
+		// LOHI //
+		// IDX = u24 idx_obj from u32_WORD_ONE.get_u24_payload()
+
+		multiple route to get _AB
+		_from_WORD_in_REG
+		_from_WORD_in_MEM add IDX_t IDX = u24_idx
+
+			SPEED GET
+			 { uns int }
+			 { i8 i16 i32 i64 i8_BYTE_B }
+			 _A _B_ C _D _E _F _G _H
+			 _AB_ CD _EF _GH // PER_CASE_CODE REG_or_MEM
+			 _ABCD _EFGH
+			 _BCD _FGH	// WORD_32 >> 8
+			 _ABCDEFGH
+			 _AB _CDEFGH	// WORD_64 >> 16 // UN- SIGNED SHIFT //
+	
+		SIMULATE these as JS_OBJ plain (in client)
+
+
+	u16_LOHI = ITEM[ idx ] _CD
+
+		ITEM = ITEM_BASE_ZERO = REGISTER PTR to ITEM
+		idx = REGISTER u8 u16 u32 u64 // or possibly int ??
+
+	JS_OBJ * OBJ = OBJ_from_DECODE_WORD(
+		TABLE_from_WORD_ONE
+		WORD_from_IDX
+	)
+
+ SPACE

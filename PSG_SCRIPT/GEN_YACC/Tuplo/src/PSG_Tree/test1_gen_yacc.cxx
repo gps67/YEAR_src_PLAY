@@ -66,8 +66,8 @@ bool bool_main( int argc, char ** argv ) {
 	if(( PSG_Name == "e1" )  
 	 ||( PSG_Name == "CALC" )) {
 		_PSG = new  lex_yacc_UDEF_CALC();
-		/* ASIDE VFS from API "if(LANG=="CALC")..." */
-		#if 0
+		/* ASIDE VFS from API 'if(LANG=="CALC")...' */
+#if 0
 
 		PSG_NAME is one of " AFM e1 CALC CXX ARGV_via_PSG _via_NAME PSG"
 
@@ -77,7 +77,13 @@ bool bool_main( int argc, char ** argv ) {
 		# COMPILE "VAR_NAME" as "VAR_NAME_%s"
 		# SCRIPT PERMIT "DECL VAR_NAME ..." # += CODE_POINT XPOS
 		# a TOKEN and an XPOS # OFTEN XPOS == BOLN # on_OPEN
-		# a SCRIPT_IF "if( CSR == "BOLN" ) ... # claim HERE is BOLN
+		# a SCRIPT_IF "if( CSR == "BOLN" ) ... # claim HERE is BOLN"
+
+		# OK above BOLN" "is  errpor,
+		# even when if 0
+		# because # PARSER needs to read each # line
+		# and IT finds Q2 uneven
+
 		# COMPILE # GEN "{ DECL EA_BOLN == EA_HERE }" #
 		# GROUP SCRIPT_PROVIDES_GROUP_NAME "%s" must match cident99 
 
@@ -219,7 +225,7 @@ bool bool_main( int argc, char ** argv ) {
 					provide GETTERS_PUT_API
 					provide CACHE provides COMPILE PRE_
 
-					PROVIDE "{
+					PROVIDE "{ }"
 
 
 

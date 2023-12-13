@@ -1,3 +1,48 @@
 lib_YY_parser
+lib_YY_parse/lib_Y_parse.txt
 
+	struct YY_Parse_t {
+		NAME == "PSG_YY_api" // FRACTAL AUTO api
+		// api += MODULE_DIALECT_BIAS // BIAS is COGNITIVE %s //
+	};
+
+namespace YY {
+ struct YY_Parse_t {
+ 
+ 	virtual DTOR(); // DTOR // no_args // GEN rewrites as "~YY_Parse_t()"
+
+	CTOR() { SCRIPT }
+	CTOR( MATCH ) { SCRIPT } // MATCH 
+
+ 	virtual ~YY_Parse_t(); // DTOR // no_args
+
+	// no_args but SESS.API get_SESS(&RET_VAR) 
+	// SESS_t * SESS = SESS.get_SESS() // LIST_of_near_expr_prefetch
+	// EVAL prefetch as JIT // when PICK not in known list // API
+	// 
+
+
+	str1 Name; // PSG == "AFM_font_metrics _parser" // AUTO VAR EACH BOTH NONE
+
+	~YY_Parse_t( CTOR ); // CTOR == "STR0" // PROG VALUE TYPENAME VARNAME 
+
+	// SCRIPT use "CTOR() { SCRIPT } // ARGS VAR_POOLS //
+	// CTOR(NAME) //
+	// scripted decl of CTOR(NAME) // expands to ...
+	// virtual ~TYPE_NAME(); // NO ARGS SO ARGS += API_VAR_NAME
+	//
+	// auto replace SCRIPT SUBLEX TYPE NAME TYPE_NAME NO_MATCH
+	// NO_MATCH == NULL // ie do nothing on detect NO_MATCH // fastest exit
+	
+
+ 	// BASE CLASS VTBL_TYPE_INDICATION_SYSTEM += "virtual base class in modules dialect"
+	// /* BASE_CLASS_OBJECT_INSTANCE */
+
+ };
+}
+
+namespace YY {
+ ++INDENTED_TEXT
+ /* <--- INDENT %s */ // BENCH GROW %s is P0P2 P0_N or UDEF
+}; // NAMESPACE 
 

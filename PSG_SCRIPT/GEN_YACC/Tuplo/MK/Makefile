@@ -13,6 +13,7 @@
 	INCLS += -I$S/src/PSG_Tree/e1
 	INCLS += -I$S/src/PSG_Tree/AFM
 	INCLS += -I$S/src/PSG_Tree/JSON
+	INCLS += -I$S/src/lib_YY_parse
 	INCLS += -I$S/STO/
 #	INCLS += -I../buffer # get from libs_apps
 #	INCLS += -I/tools/2000/X11R6/include
@@ -27,6 +28,7 @@
 	VPATH +=$S/src/PSG_Tree/AFM
 	VPATH +=$S/src/PSG_Tree/JSON
 	VPATH +=$S/src/STO
+	VPATH +=$S/src/lib_YY_parse
 
  #	include ../MK/Makefile_libs_apps
 	include ../MK/MK_with_libs_apps

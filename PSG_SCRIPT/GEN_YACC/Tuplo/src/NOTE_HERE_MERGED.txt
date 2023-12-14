@@ -1,12 +1,12 @@
 NOTE_HERE_MERGED.txt
 
-	Y_Parse 
-	Y_Parse is the merger of multiple topics in shared space 
-	Y_Parse += Parse_local_scope SCRIPT_DIALECT
-	Y_Parse 
-	Y_Parse += AFM Adobe Font Metrics { ... }
-	Y_Parse += CALC EXPR * e1 = PARSE_AND_RUN { ... }
-	Y_Parse += EVAL EXPR * e1 = PARSE_AND_RUN { ... } // alias deep link adj
+	YY_Parse 
+	YY_Parse is the merger of multiple topics in shared space 
+	YY_Parse += Parse_local_scope SCRIPT_DIALECT
+	YY_Parse += YY // namespace appears in filename layout
+	YY_Parse += AFM Adobe Font Metrics { ... }
+	YY_Parse += CALC EXPR * e1 = PARSE_AND_RUN { ... }
+	YY_Parse += EVAL EXPR * e1 = PARSE_AND_RUN { ... } // alias deep link adj
 	// alias deep link vary
 
  MERGED += HERE

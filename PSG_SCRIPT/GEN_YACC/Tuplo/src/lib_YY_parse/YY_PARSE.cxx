@@ -9,7 +9,6 @@
 
 // STUBS only needed within this file
 struct yy_buffer_state;
-
 extern yy_buffer_state * yy_scan_buffer ( char *base, int size  );
 extern yy_buffer_state * yy_scan_string ( const char *yy_str  );
 extern yy_buffer_state * yy_scan_bytes ( const char *bytes, int len  );

@@ -1,30 +1,153 @@
 lib_YY_parser
-lib_YY_parse/lib_Y_parse.txt
+lib_YY_parse/lib_YY_parse.txt
 
+	namespace YY {
 	struct YY_Parse_t {
-		NAME == "PSG_YY_api" // FRACTAL AUTO api
-		// api += MODULE_DIALECT_BIAS // BIAS is COGNITIVE %s //
-	};
+	}; // struct
+	}; // namespace
+
+	RUNTIME invoke Parser over TEXT
+	TEXT_IS_P0P2
+	TEXT_IS_FILE_TEXT
+	TEXT_IS_NBYTES
+	TEXT_IS_UPTO_EOLN
+	TEXT_IS_UPTO_PARSED
+
+		We do not have enough parameters for NBYTES
+		We might parse upto EOLN
+		We might parse and STOP at XPOS P2
+
+		Parser might adjust P0 XPOS P2 // CSR_Name == "XPOS"
+		FILTERED_TREE holds both original and tokenised TEXT and TREE
+		Our RT_STEP starts parsing all sorts of lefty gubbins
+		trim_left "GAPS
+		trim_left "\/* comment *\/" // GAPS += CMNT
+
+		LEX.P0 is start of LEX
+		LEX.P2 is end of LEX // actually start of RHS NEXT
+
+		STR0_is_P0P2
+		STR0_is_P0P2_TEXT_copied_into_a_temp_buffer2_with_auto_NUL_BYTE
+		IDENT_is_STR0
+		VAR_is_P0P2
+		VAR_is_P0_N
+		VAR_is_P0_Parse
+		VAR_is_P2_from_Parse
+		var_is_P3_from_Parse // next useful
+
+			we dont do this
+			instead we build a tree
+			and use internalised STR0 // CSET == "CSET"
+
+	CSET == "CSET_utf8"
+	CSET == "CSET_latin1_BYTE" // 8859 but also any byte box
+	CSET == "CSET_latin1_utf8" // DEFAULT // alias "CSET_utf8"
+	CSET == "CSET_utf8" // DEFAULT CSET_latin1_utf8
+
+		// Q2_ABSENT means MK_VAR 
+		// STR0_t CSET_latin1_utf8 = "CSET_latin1_utf8";
+
+
+LEX CLAIM	stake a claim PICK STR0_t STR0 
+LEX CLAIM	stake a claim KNOW CSET = CSET_latin1_utf8 // COMPILER_KNOWS
+LEX CLAIM	stake a claim KNOW CSET_latin1_utf8 = "CSET_latin1_utf8"
+		
+
 
 namespace YY {
  struct YY_Parse_t {
+
+ 	SPEC_NAME = "PSG_t"	// PATTERN is in TEMPLATE MATCH _t SPELLING
+ 	DATA_NAME = "PSG"	// SPELLING //
+
+ -MULTI-VIEW-
+
+ 	struct YY_Parse : public PSG_runtime {
+		SPEC_NAME = "%s_t" PSG
+		DATA_NAME = PSG
+		PSG = "%s"
+
+		INCLUDE_FUNCS_FROM_API VIA PSG_runtime
+
+			PARSE_TEXT_into_TREE
+			PARSE_TEXT_into_STREAM
+			PARSE_TEXT_kept_TEXT
+
+			CHUNK_TEXT from filename // data is in FILE
+			CHUNK TEXT from macro // data is in SOURCE DECL TREE
+			CHUNK TEXT from stream // data is in YOUR_MY_P0P2
+			CHUNK TEXT from api // data is VARIES
+			// DATA ARGV of STR0 in VAR called "{ STR0 VARNAME }"
+			// that Q2 PARSES at RUNTIME and REPEAT MENTION USAGE
+			// USAGE "{ IDENT ALIAS }" 
+			// IDENT "{ STR0 VARNAME }" // NOT_CIDENT
+			// IDENT more parsed TEXT than CIDENT // ALIAS SPELLING
+
+		ALIAS_SPELLING
+
+			"{ lhs rhs }" is local Tuplo TITLE
+			ANYSTR = Q2_STR_incl_Q2 // makes GEN and PARSE
+			ANYSTR = { SCRIPT } // eg ...
+			// "{ YY::YY_PARSE_t PSG = PSG_SPELLING }" //
+
+			All of the PARSERS have been precompiled
+			into your SESS, if you add them each gets own pfx_
+
+				COMPILE PARSER
+				add PARSER to LIST of OPTIONS
+				PICK PARSER = PICK // some sort of AUTO VAR
+
+			TOKEN_xFFF {
+				AUTO GROW TOKEN_xFFF 
+				 xF
+				 xFF
+				 xFFFF
+				 xFF_FF_FFFF // DECODE(u32) BYTE _A _B _DC
+
+				ALIAS
+				 %s_%s
+				 TOKEN_%s
+			}
+
+			IDX = DECODE FILENAME "{ lhs IDX rhs }"
+
+				IDX = INT_from_within_VAR_NAME
+				IDX = PARAMETER ("IDX") // AUTO UPTO IDX_t
+				IDX = lookup "IDX" // subst Q2_VAL_Q2
+				IDX = lookup IDX // VAL_is_CIDENT_NAME "IDX_%s"
+				lhs = JOIN_POINT_LEFT
+				lhs_P0P2 = provided on request, via API GETTER
+				// PARSER set P0 and P2 RET_VALS
+				// P0 is LEX_START
+				// P2 = P0 + N; // get_N() // CATCH VAR //
+				MATCH "N" KNOW_API "{ get_N() }" // SESS //
+				rhs = JOIN_POINT_RIGHT
+				rhs = P0P2_to_EOF
+				rhs = P0_to_EOF
+				rhs = P0_to_EOF from_CSR_onwards OUTSIDE PARSE
+
+			TOKEN = "EXPR" 
+
+				lookup TOKEN
+				parse UNIQUE SPELLING PARSED UTF8
+
+
  
  	virtual DTOR(); // DTOR // no_args // GEN rewrites as "~YY_Parse_t()"
 
+	// PSG_CTOR
 	CTOR() { SCRIPT }
 	CTOR( MATCH ) { SCRIPT } // MATCH 
 
- 	virtual ~YY_Parse_t(); // DTOR // no_args
-
-	// no_args but SESS.API get_SESS(&RET_VAR) 
-	// SESS_t * SESS = SESS.get_SESS() // LIST_of_near_expr_prefetch
-	// EVAL prefetch as JIT // when PICK not in known list // API
-	// 
-
-
 	str1 Name; // PSG == "AFM_font_metrics _parser" // AUTO VAR EACH BOTH NONE
+	// PSG = Name 
+	// PSG = "AFM"
+	// PSG = "AFM_font_metrics"
+	// AUTO ALIAS AFM Adobe // TLI USAGE ACRO_second_third // DIALECT AS
+	// AUTO AS AFM Adobe Font Metric // TLI DECL // WORD_LIST 
+	// TLI USAGE ACRO_second_third // DIALECT AS
 
-	~YY_Parse_t( CTOR ); // CTOR == "STR0" // PROG VALUE TYPENAME VARNAME 
+	// SELF = Name == "PSG" // AUTO_VAR // template from or parse into
 
 	// SCRIPT use "CTOR() { SCRIPT } // ARGS VAR_POOLS //
 	// CTOR(NAME) //

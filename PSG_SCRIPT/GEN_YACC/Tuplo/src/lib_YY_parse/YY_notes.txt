@@ -1,0 +1,113 @@
+
+ OK0 = yyparse();	// CMNT
+	//
+ 	// run PSG_Parser calls yyparse( PSG_t & PSG ) // ALIAS *
+	//
+
+	PSG is a GRAMMAR in YACC form // GEN_YACC // lib_YY_SPEC 
+	// LANG._global_var_name_in_SCOPE SCOPE var_name SCRIPTS // 
+	// YY: LIBR ITEM VARS EXPR_SCRIPT // use in CXX in PY in API
+	// API EA ITEM SPEC EXPRS VARS STO
+
+	API_LIBR "PSG" { HERE } { SCRIPT } { LIBR } { SESS } { VARS } {
+
+		API_LIBR "PSG" {
+		HERE {
+			ALIAS THIS // ROOT_SELF // EA_ITEM // EXPR // VARS // 
+			SCRIPT_HERE == XPOS {
+				XPOS += { FILE OFFS LINE_N_CPOS XPOS ALIAS }
+				XPOS += { ALIAS CSR }
+				ALIAS HERE SELF 
+				ALIAS EA EA_ADDR EA_EXPR ARGS VARS 
+				SESS VARS ARGS PSG_PHRASE_BOOK
+			}
+
+	# running ARGV SCRIPT PARSER PHRASE_BOOK /* VARS APPEAR SPEC EXPR */
+	# compiled LIBR is SPEC per ITEM 
+
+			STEPS += { ARGV } // += ALIAS ARGV OBJV // SPEC TREE 
+			STEPS += { SCRIPT } // += SCRIPT // Parsed from LOADER
+			STEPS += LIST_OF_STEPS // N == get_N() //
+			// STEPS == OBJV // N == N // LIST_N LIST N //
+	#if 0
+	/*
+			// STEPS == OBJV // N == N // LIST_N LIST N //
+			// FILTER eg COMMENT_PARSING // LIBR provides LIBR
+			// PHRASE INVOKE USAGE SCRIPT TEXT MODULE TREE
+			// SCRIPT += LIST_of_STEPS // AKA INDENTED_TEXT_TREE
+			// PSG += PSG_Phrase //
+
+	*/
+	#endif
+	LANG PSG for LIBR # SOMETHING {
+		
+		{ SCRIPT }
+		{ LIBR }
+		{ SESS }
+		{ VARS }
+		{ SCRIPT }
+		{ PHRASE }
+		{ EXPR }
+		{ EA_ITEM } // OPTION FAST FUSE EA_ITEM "{ HEAP ITEM }"
+	#if 0
+		{ ABOVE_LIST } // loaded as part of wider MMAP BRANCH
+
+		{ PHRASE } creates a "{ GEN PARSE PHRASE }"
+		{ PHRASE "{ GEN PARSE PHRASE }" }
+		{ PHRASE "%s" } // explain says so :-)
+		// STR0 used as SPELLING for TOKEN //
+		// DERIVED as ALLOC works with MMAP kept FILE //
+	#endif
+	} {
+		PSG += PHRASE
+		HEAP += load HEAP 
+		ITEM += HEAP_ITEM 
+		HEAP += LIST_N LIST N # AUTO FROM #
+		HEAP += LIST_N # AUTO MK_VARS LIST N # and other API steps
+		HEAP += TREE_Tuplos # LIBR_Tuplo # mk_OBJ "{ %s Name }" 
+		LOCN += EA_HERE // ALIAS EA_SELF EA_ITEM '{ EA_EXPR ARGS }'
+		// PSG // LEX // REPHRASE Q2 from Q1 // return TOKENISED_ITEM
+		// ADDR // ITEM = EA ; EA += ADDR // 
+		// EA // ALIAS // over simplified ALIAS // DIALECT PLURAL
+		// EA_EXPR can be DECODE(EA_BITFIELD_WORD)
+		// on u16_u48 // if OPCODE_ZERO KNOW RETURN PTR = WORD >> 16
+		// on u16_u48 // if {MATCH} KNOW can (u48_payload_in_u64_t_  PTR = WORD >> 16
+		// 
+	}
+
+	PSG += DECL TREE 
+	PSG += LIBR TREE 
+
+
+ 	note that no start point nor data is provided
+
+	The data must be provided before calling yyparse(),
+	and topped up at the end of every file or segment
+
+ yy_buffer_state * buffer =  // ONE OF
+ 	
+	extern YY_BUFFER_STATE yy_scan_buffer ( char *base, int size  );
+	extern YY_BUFFER_STATE yy_scan_string ( const char *yy_str  );
+	extern YY_BUFFER_STATE yy_scan_bytes ( const char *bytes, int len  );
+
+	extern void yy_delete_buffer(buffer);
+
+	// RTFM
+	// ALSO
+	extern void yyrestart ( FILE *input_file  );
+
+YACC can have an extra parameter or two
+LEX can too
+
+	 OK0 = yyparse(YY_Parse_t & YY_Parse); // extra option // 
+	 void yyerror( YY_Parse_t & psg, const char * msg ) //
+
+
+	https://www.gnu.org/software/bison/manual/html_node/Pure-Calling.html
+
+	%lex-param   {scanner_mode *mode}
+	%parse-param {parser_mode *mode}
+	%param       {environment_type *env}
+
+	 With C++ you can use a reference "&" instead of a pointer (same.asm)
+

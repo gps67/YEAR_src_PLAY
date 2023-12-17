@@ -1,5 +1,5 @@
-#ifndef Y_PARSE_H
-#define Y_PARSE_H
+#ifndef YY_PARSE_H
+#define YY_PARSE_H
 
 /*
 	Y_Parse _t

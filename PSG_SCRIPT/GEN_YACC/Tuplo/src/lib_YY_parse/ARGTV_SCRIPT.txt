@@ -1,0 +1,286 @@
+EIGHT {
+ u8_BYTE_A
+ u8_BYTE_B
+ u16_idx_expr
+ u16_idx_expr
+ u16_idx_expr
+}
+
+EIGHT {
+ u8_BYTE_A
+ u8_BYTE_B
+ u16_idx_expr
+ u8_BYTE_A
+ u8_BYTE_B
+ u16_idx_expr
+}
+
+MINI_MACHINE fits in u16 SLOTS
+isolated segments or shared segments
+entire MINI_MACHINE fits in u15 ITEMS EXPRS 
+entire MINI_MACHINE fits in u16 CODE_POINTS
+entire MINI_MACHINE fits in u32 CODE_POINTS but [u16] reachable
+
+ u16_EXPR_POINTS
+ u16_ADDR_POINTS
+ u16_CODE_POINTS
+ u16_DATA_POINTS
+
+i16_idx_expr
+i16_idx_expr
+
+	i16_lohi
+	 u3_u5_i8 
+
+		get_u3() { return u8_A & 0x07 }
+		get_u5() { return u8_A >> 3
+		get_16() { return i16_BA_from_lohi } // builting
+		get_13() { return get_i16() >> 3 }
+		get_18() { return i8_B }
+
+
+			THERE be hidden CHECK at CT so KNOW at RT
+			eg all 256 vectors are re-loaded from NULL
+			eg all 256 vectors are pre-loaded 
+
+			PAGE[ 8 ] ITEM [ 32 ]
+			PAGE_8_ITEM_32
+			CACHE_FULL_PAGE_256
+			CACHE_SPARSE_PAGE_256_RENUMBER // TOKENISED or IDX or IDX
+
+			MODULE_7_ITEM_31
+
+				We have imported 32 items from MODULE_7
+				and want fast abbreviated access to them [u5]
+
+				PRE_BUILT import table,
+				allocates ROM CODE_POINT [u15] // u7 //
+				allocates RAM CODE_POINT [u15] 
+				allocates IDX DATA_EXPR u15 // _PLUS
+				allocates IDX DATA_EXPR i16_MINUS 
+	
+	MINI_MACHINE
+	 merge 8 modules 4 core 4 plus
+		MODULE lives within 1 or 2 PAGES of u3
+	
+	MODULE
+
+		8 TYPES with 32 ITEMS
+
+			each PAGE guarantees ITEM_TYPE // or NULL
+
+		Each ITEM is a mini-world of u24_ADDR
+
+			
+			TABLE = TABLES[u3] [u5]
+
+			TABLE = TABLES[u8]
+			ITEM = TABLE[ u24 ]
+
+	
+
+
+
+
+	 u8_A
+	 i8_B
+
+ARGV_SCRIPT
+
+	TABLE[ u16 WORD ] // check generated ASM LOHI then OK
+	TABLE[ u15 PLUS ] // upgrade ARRAY and IDX requirements to u23_u32
+	DECODE[ i16 MINUS ] 
+
+	know_or_check ( 0 <= idx ) 
+	// KNOW because CODE is idx_xFFFF in HEAP_UPTO_u16 // UPTO_u32 // _u47
+	// KNOW because COMPILER keeps track //
+	know_or_check ( idx < N ) 
+	// FAIL TASK as ALERT_JUST_PAST_LAST // ONE_TOO_MANY // TOUCH_NEXT //
+
+	LIST_of_ITEM ... OBJV
+	idx_range( "[0[N" )  idx 
+	OBJV [ OBJC ]
+
+	LIST_of_ITEM { BRINGS_SCRIPT += "{ BRINGS }" }
+
+		Q2 ANYSTR is almost ARGV SCRIPT DATA
+
+		PARSE = DIALECT.psg with CACHE_DECODE_EXPR 
+
+	LIST_of_ITEM -as- { ITEM_t & REF_to_ITEM = ARRAY_NAME[ IDX ] ; // CMNT CALL ARGS "{ CALL ARGS PLUS SESS }"
+
+		import LIST_N 
+		DECL "{ caddr_t PTR }" {
+			get_N() {
+				return LIST_N.get_N();
+			}
+		}
+	
+	RUN MODE
+	 compiling ... to ...
+	  Q2	return LIST_N.get_N();
+	  DECL int %s 
+
+DECL_SCRIPT
+
+	USED AS
+	  DECL int %s 
+	  MATCH "{ int %s }" // print_into_C // 
+	  XPOS "{ FILE LINE CPOS XPOS }"
+
+
+ADAPTER PARSER to PARSER
+
+	write local Phrase parser
+	 and tree builder
+	 and stream twigs
+	
+	Parse entire SCRIPT from LIBR 
+	 write Module in JS 
+	 write Module in CXX
+	 write Module in ASM
+	 write Module in ARGV // each CMD line is OBJV[ N ] 
+	 write Module in LIST // each line is line is OBJV[ N ] // 
+	 // line = BLOCK_LINE[ idx ] //
+	 // line = LIST_of_LINES[ idx ] // idx == "idx_LINE_in_LIST // 
+
+	PIPE tree all pretokenised at LEX level // KNOW STUFF
+	PIPE tree all steps_in_list "ALIAS"  at LEX level // ALIAS == "STEP_LIST"
+	LANG lift patterns (from we can GEN them) 
+	 add a bit of PARSE MATCH patters
+	 add DIALECT MACRO // SCOPE_GLOBAL_VARS += AVAR //
+	 add DIALECT MACRO // EXPR AVAR += AVAR // += works on _t CT_RT
+	
+	TOKENISED_SCRIPT = ARRAY_u23_of_WORD // ...
+	TOKENISED_SCRIPT = ARRAY_u23_of_FOUR // ...
+	// u8_WORD u16_WORD u24_WORD u32_WORD // CPU has each of these FAST
+	// i8_i24_LOHI //
+
+	TOKENISED_SCRIPT = ARRAY_u23_of_FOUR // ...
+	TOKENISED_SCRIPT = ARRAY_u23_of_EIGHT // ...
+
+		our scripts only need i16_idx but AVAIL i8 i16 i32
+		our scripts need BITFIELD_chceking i24 u23 i23 i32
+		WORD collapses to i32_WORD 
+		WORD collapses to i16_WORD 
+		WORD collapses to i8_WORD 
+
+		NEED CACHE of PRE_DECODE i8_i24
+
+			REBUILD TABLE on first use
+			REBUILD TABLE on fifth use
+			REBUILD TABLE every fifth use // works on STREAMS too
+			REBUILD TABLE when stable // sync called 
+
+				collected stats optimise DECODING and USAGE
+				pre compiled expr, or ALL AVAIL expr 
+
+				PTR = (PTR_t) TABLE_ITEM[ IDX ]
+				PTR = (PTR_t) TABLE_[ IDX ]
+	
+	TOKENISED VAR_NAMES 
+	 local USAGE table "{ i8 i8_idx = lookup[ i3_idx ]; // int i3 = BITFIELD
+	 local SHARED table "{ i8 lookup[ i3_idx ] }' // CMNT here somehow
+	 local SHARED table "{ i8 lookup[ i8_idx ] }' // AVOID CONFUSION go i16
+	 local SHARED table "{ i8 lookup[ u8_idx ] }' // CMNT here somehow
+	 enum_minus {
+	 	INIT_ZERO = 0;
+		M1,	// -1
+		M2, M3, M4, // AVAIL // extend on M5+
+		M127=-127,
+		M128=-128,
+		M32K= (int) -(1024 * 32)
+		MINT.n = nbits -1 2^n 
+		M128=-128,
+	
+	SPEED for MINI_MACHINE is i8_IDX_t 
+		// no scrambling for second byte
+		// i8_idx is part of BITFIELD world
+		// only a handful of EXPRS exist for TABLE[IDX] // u7 //
+		// u7 u15 u23 u31 u47 // ONLY the products of FILTERED
+		// because we already "KNOW" idx is within u7
+		// because we already "KNOW" idx is within u7 u15 u23 u31 ///
+		// u8 u24 // u47 u63
+		// i8 i24 // u8 u24 // u47 u63
+
+			even when ROM use wider IDX_t to hold u8 in u15
+			negative IDX means LOOKUP_COMPILED_REFERENCES
+			initial MINUS VECTORS print hello
+			derive with DECODE then DEREF // use of ARRAY
+			derive with DECODE then SOMETHING // use of SCRIPT
+	
+	INTERP MINI_MACHINE WORDS
+
+		i7_i23
+
+		Test code and iterate though all pathways // AUTO_SWEEP too
+		Compile all expression forms and data used // CT_RT
+
+			u7_TABLE	decode_i24 _says _i23 _i24 _int
+			i7_OPCODE
+
+
+u3_u5 DECODE
+
+	u8 EA_TABLE_ID = u3 // know u8 is +VE because from OPCODE +VE
+	u8_idx_TABLE = get_u3(); // MACRO // or simply use u3 // VAR means FUNC
+
+		MINI_MACHINE also has FOUR and EIGHT but this is ONE BYTE
+		LOCAL TABLE gets u8 from u3 // 256 within this shared PAGE 
+		we are using 8 of 256 OBJ_id_in_MINI_MACHINE_CODE_POINT
+		we could add CALL_BETTER_GETTER
+		we could add DONT_CALL_BETTER_GETTER // use trusted ARRAY CODE
+	
+	[u3] of [u5]
+	is PICK // from ... 
+	8 PAGES of 32 ITEMS 
+
+	TABLE of 256 BYTES that remap a sparse u3_u5 to u8_idx_ITEM_N
+
+		eg FUNC1 is importing 20 symbols
+		eg FUNC2 is importing 20 symbols
+		eg FUNC3 is importing 20 symbols
+		eg FUNC4 is importing 20 symbols
+		eg FUNC_LIBR is importing 20 symbols
+		ROM condenses SPARSE to DE_SPARSE 
+		ROP build reverse table // I need names for these
+
+		dont get to do this so much with u16
+		becase typedef u15_idx IDX_t // for that SCRIPT EVAL
+		would cost 32K*2 64K 128K BYTES for trivial usage
+
+		LOW_FILL LIST_of_STEPS[u15] // i16 MINUS is DECODE not TABLE
+
+		MOST arrays GROW in pages of 256`
+
+		ALLOC ITEM in PAGES_ITEMS // auso code named it that
+
+			running compiler gets here
+			where N < u7 // u15 // u31 // BEWARE of -VE index 
+			where N < u8 // u16 // u32 // a simpler uns_idx world
+			importing LIBR brings 40 symbols
+
+			u7_idx_ITEM = i8
+			u8_idx_item_pos = u7_idx_ITEM // PARSER STEP lexers
+			// LEX u8 idx item pos u7 idx2 ITEM // idx == idx2 //
+			// CT_RT KNOW u7 fits in i8
+
+			EIGHT_t TABLE_ITEM_EXPR[ u23_item_pos ] // "u7" "%s_item_pos"
+
+
+
+
+
+
+
+
+
+
+
+	Build TREE in STRUCT_UNION_ARRAY_x_TYPES "{ x * }"
+	Build TREE in STRUCT_UNION_ARRAY_x_TYPES "{ x & }"
+	Build TREE in STRUCT_UNION_ARRAY_x_TYPES "{ x   }" // AGAP 
+	Build TREE in STRUCT_UNION_ARRAY_x_TYPES "{ BITFIELDS }"
+	 
+
+

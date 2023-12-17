@@ -1,0 +1,90 @@
+CSET_BYTE
+
+	is where the CHAR fits into a single BYTE
+	is where the GLYPH might be picked A-Z
+	can be ASCII
+
+CSET_ASCII _PLUS
+
+	_PLUS is overlay of CSET_BYTE
+	CSET_ASCII uses xFFFF to encode bitfields
+	script uses VARIABLES and a few VALUES // ASCII_CIDENT UNIQ
+	MINI_MACHINE can use ASCII_PLUS
+	so BINARY looks readable A B C 
+
+	where the GLYPH might be A-Z 0-9 a1_a2_star punct_a punct_b
+	where the GLYPH might be ASCII_GLYPH
+	where COMPILER prepares TABLE mapped // OPTIONAL SECOND REVERSED 
+	// build on demand or search for reverse lookup 
+
+
+	INPUT VAL is "Z" an ASCII glyph varname // or item name or OPCODE PUNCT
+	INTERNAL IDX is 25 // AZ is a densely packed alloc ABC from 0
+	INTERNAL IDX is 5 // fifths VAR after $0 A B C D E // @ == $0 == "@"
+
+	
+		BYTE = IDX_of_VAL
+		BYTE = VAL_of_IDX
+
+		BYTE = LHS_of_RHS
+		BYTE = RHS_of_LHS
+	
+	DATA is transferred via BASE64 or BLOB via BZ2
+	DATA is TABLE_of_EIGHT[ CSR ++ ] // use in DECL indicates ++
+	DECL "{ idx_CSR CSR }" // DECL TUPLO lhs rhs // UDEF explains
+
+OPCODE ASCII
+
+	ASCII_NUL
+	ASCII_TAB
+	ASCII_CR
+	ASCII_LF
+	ASCII_SP
+
+	ASCII_BACKSPACE
+	ASCII_DEL
+
+	a3_ASCII_GAPS SP TAB CR LF FF etc CTRLS are already GAPS ?
+	a3_ASCII_CTRL [0[32 but not above
+	a3_ASCII_x21_x30_PUNCT_A ! " # $ % ' (  ) * , - . / 
+	a3_ASCII_x30_x3A_DIGIT_09 // decimal obvs
+	a3_ASCII_x3A_x41_PUNCT_B  : ; < = > ? @
+	a3_ASCII_x40_AT
+	a3_ASCII_x41_x5B_AZ
+	a3_ASCII_x5B_x61_PUNCT_C  [ \ ] ^ _
+	a3_ASCII_x60_UNDERSCORE
+	a3_ASCII_x61_x7B_az
+	a3_ASCII_x7B_x7F PUNCT D { | } ~
+	a3_ASCII_x7F DEL
+	a3_ASCII_CTRL_DEL
+
+	a3_PLUS_x80_xFF_8bit // also incl 0xFF
+	a3_PLUS_x80_xA0_latin_CTRL // reflect x00_x20
+	a3_PLUS_xA0_NBSP // over SP
+	a3_PLUS_xA0_xFF_latin_glyphs // and a few squiggles not letters HYPENS
+	a3_PLUS_xA0_xC0_latin_punct // and a few squiggles not letters HYPENS
+	a3_PLUS_xC0_xFF_latin_letters // and a few squiggles not letters HYPENS
+	a3_PLUS_xA0_xFF_PLUS_1
+	a3_PLUS_xFF_0x00 // 0x100 from 0x00
+	a3_PLUS_xFF // 0xFF // y: // _latin_letter
+	a3_PLUS_xFF_PLUS_1 // 0x100 from 0x00
+
+	ALLOC_IDX // single data byte // BITFIELD alloc
+
+		ALLOC ZERO FIRST AND BEST AND SEPERATE @
+
+			u8 idx = u9_idx_N ++ // ALLOC 0xFF _PLUS_ONE 0x100
+
+		A-Z a-z _ 0-9 WARN_LIMIT CROSS_LINE PUNCT{_A,_B,_C,_D} 
+		A-Z a-z _ latin_letters 0-9 WARN_LIMIT CROSS_LINE PUNCT{_A,_B,_C,_D} latin_punct RESIDUE
+
+	EIGHT_t INVOKED_EXPR[ 256 ]
+
+		IDX = IDX_from_SPARSE[ BYTE ]
+		EIGHT = ARRAY_of_EIGHT[ IDX ] // max BYTE xFF 
+		DECODE_LOHI_EIGHT EIGHT
+		 u8_A
+		 u8_B
+		 u16_payload
+		 u24_BCD 
+

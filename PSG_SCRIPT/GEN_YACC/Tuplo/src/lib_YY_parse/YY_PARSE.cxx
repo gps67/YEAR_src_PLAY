@@ -6,23 +6,20 @@
 // SOME STUBS for BISON
 // see gen_e1_lex.cc
 
-typedef struct yy_buffer_state * YY_BUFFER_STATE;
-// WE get a pointer to it, from yy_scan_bytes( our_provided_text_buffer)
-// It is a file, its input buffer, yy_buf_pos - yy_ch_buf
-// yy_bs_ _lineno _column
-// yy_
-// IT also does the BUFFER MAGAZINE loading
 
-   extern YY_BUFFER_STATE yy_scan_buffer ( char *base, int size  );
-   extern YY_BUFFER_STATE yy_scan_string ( const char *yy_str  );
-   extern YY_BUFFER_STATE yy_scan_bytes ( const char *bytes, int len  );
+// STUBS only needed within this file
+struct yy_buffer_state;
+
+extern yy_buffer_state * yy_scan_buffer ( char *base, int size  );
+extern yy_buffer_state * yy_scan_string ( const char *yy_str  );
+extern yy_buffer_state * yy_scan_bytes ( const char *bytes, int len  );
 
 extern void yyrestart ( FILE *input_file  );
 // FILE * IN = fopen( filename, "r" ); // check NULL
 // yyrestart ( IN );
 // yyparse(PSG);
 
-extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
+extern void yy_delete_buffer(yy_buffer_state * buffer);
 // FREE BISON buffer position holder
 
 // we KNOW the NUL will be there 
@@ -126,7 +123,7 @@ void yyerror( YY_Parse_t & psg, const char * msg )
 	// WE ARE PROVIDING text buffer. The STATE is a malloced struct
 	// struct yy_buffer_state ... // in gen_e1_lex.cc
 
-	YY_BUFFER_STATE buffer =	// feed YY's LEX buffer with blk1 text
+	yy_buffer_state * buffer =	// feed YY's LEX buffer with blk1 text
 	#if 1
 	  yy_scan_bytes( // does malloc copy slow loop
 	#else

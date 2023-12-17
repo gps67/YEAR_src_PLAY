@@ -1,0 +1,116 @@
+
+	lib_YY_parse/
+	CSET_latin_utf8.txt
+
+	CSET_latin_8859
+	CSET_latin_8859_as_UTF8
+
+		ie the document is BYTE oriented
+
+			available values of BYTE are
+
+			[NUL [SPACE GLYPHS
+			AZ az _09 UNDERSCORE CSET_UTF8
+			CSET_BYTE following_BITFIELD
+			CSET "{ a1_a2_star a1_UTF8 a2_UTF8 }"
+				CSET
+				"{" "}"
+				a1_a2_star
+				a1_UTF8
+				a2_UTF8
+			CSET "{ a1_a2_star a1_UTF8 a2_UTF8 }" // GEN 
+			P0P2 "  a1_a2_star a1_UTF8 a2_UTF8  " // ALIAS SUBSTR
+			TREE of_P0P2() // CT_RT TOKEN to RUNTIME EVAL
+
+				TREE = PARSE P0P2
+
+			P2 is NEXT // eg rhs ...
+			NEXT is NEXT // eg rhs ...
+
+			calling PARSER got MATCH P0 = HERE ; P2 = NEXT
+
+				HERE = P0 // CT_RT GETTER
+				NEXT = P2 // CT_RT GETTER
+
+			when parsed into TREE it can be BYTE again
+			because 8859 works as IDX = BYTE ; TABLE[IDX]
+
+				CSET_BYTE
+
+			because utf8_is_parsed, we have get_u_from_P0 P2
+
+				When in struct P0P2 is wasteful P0_N or _N
+				When is STREAM_CSR_P1 = P0 ;
+				// allow drop pfx when obvious to dialect
+				P2 = CSR_P1
+
+				parse_utf8_at_CSR // a single glyph or OPCODE
+
+			EIGHT_t {
+			 u32_OPCODE
+			 u32_WORD
+			}
+
+			eh no NEXT required because "{ IDX_POS ++ }"
+
+
+				for( IDX = P0; IDX < P2; IDX ++ ) {
+				}
+				IDX = P0
+				while IDX < P2 {
+
+					PARSE_EIGHT at_IDX
+					DECODE_EIGHT at_IDX
+			
+					u64_idx_is_a_CODE_POINT
+					u16_idx_is_a_CODE_POINT _MINI_MACHINE
+					IDX_EIGHT = ARRAY_BASE[ u16_idx ]
+					u64_EIGHT = EIGHT // loaded in CPU CACHE
+
+					CODE = CODE_for_BYTE_A[ u8_A ]
+					CODE_for_BYTE_B[ "{ %s u8_B }" ]
+
+						u16_PAYLOAD = _CD_LOHI
+						EA = EA_EIGHT + 0 // u16_MEM
+
+						GOTO xFFFF in FSM
+
+							STEP = xFFFF
+
+						GOTO STEP
+
+							GOTO STEP
+							-or-
+							RUN_SECOND_HALF_NEXT
+
+
+
+				}
+
+			EIGHT_t {
+			 u16_OPCODE	_A _B 
+			 u16_NEXT	STEP_xFFFF GOTO NEXT STEP 
+			 u32_WORD	OPTIONAL DECODE as u32_entire_STEP
+			}
+
+			EIGHT_t {
+			 u16_OPCODE	_A _B 
+			 u16_NEXT	LOCN_xFFFF STEP NEXT LOCN
+			 u16_ARG1
+			 u16_ARG2
+			}
+
+			EIGHT_t {
+			 u16_OPCODE	_A _B 
+			 u16_NEXT	LOCN_xFFFF STEP NEXT LOCN
+			 u16_ACT1
+			 u16_ACT2
+			}
+
+			EIGHT_t {
+			 u32_OPCODE
+			 u16_PREV 
+			 u16_NEXT
+			}
+
+

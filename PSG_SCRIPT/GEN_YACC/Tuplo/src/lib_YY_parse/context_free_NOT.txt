@@ -1,0 +1,63 @@
+context_free_NOT.txt
+
+	a context free grammar sounds like a great thing,
+	problem is that the name is misleading.
+	What it really means is that
+
+		there is only one context
+		and the parser is context specific
+	
+	So to parse a pascal program,
+	you use a pascal lexer,
+	which wont recognise non-pascal
+	without "stealing" LEX items that resemble pascal
+
+	So if you tries to mix pascal, comments and CXX,
+	anything that looks like CXX punctuation,
+	wont be seen like other words in the comments
+	
+	This matters most for LEX
+
+	LEX (FLEX) is like a pre-processor,
+	it returns each LEX item, without any context.
+	If it is a reserved word, it is tokenised
+
+	Comments and Q2_strings work, because they are FLEX itself.
+	The entire Q2 string is returned as a "value" under a Q2 token
+	Comments may have been already disgarded by CPP or returned as VALUE
+
+
+Alternative
+
+	A recusive descent parser, simply tries all valid alternatives,
+	at the CSR XPOS, that it considers viable. The PSG calls the LEXER
+	for a specific possibility. If that did not match, a different
+	call can be made to a different function, that might see a 
+	plain space edged word, not a reserved word,
+	if you parse within comments - which is what we want to do
+
+	That can later be optimised, to look-ahead 1 token,
+	and save a lot of calls, and C stack building
+
+Writing own LEX
+
+	https://www.gnu.org/software/bison/manual/html_node/Pure-Calling.html
+
+	shows what yylex can look like (with parameters)
+
+	int
+	yylex (YYSTYPE *lvalp, YYLTYPE *llocp)
+	{
+	  …
+	  *lvalp = value;  /* Put value onto Bison stack. */
+	  return INT;      /* Return the kind of the token. */
+	  …
+	}
+
+	Same link also shows how to add parameters to .. yylex yyparse ...
+
+	%lex-param   {scanner_mode *mode}
+	%parse-param {parser_mode *mode}
+	%param       {environment_type *env}
+
+

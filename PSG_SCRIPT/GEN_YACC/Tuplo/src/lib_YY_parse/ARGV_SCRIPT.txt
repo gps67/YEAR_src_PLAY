@@ -1,3 +1,25 @@
+A really useful MINI MACHINE fits in u8
+	
+	u8 = lookup [ u3 ]
+
+	u16 = lookup( u3, u5 ) // VARS point to reachable
+
+	u16 = lookup( u8 ) // VARS point to reachable
+	u15 = lookup( u8 ) // NOTED STRONG TYPE SUBSET
+	u32 = lookup( u8 ) // VARS point to FILE_OFFS u8_u24x8
+
+	u23 = 8M x 1 idx ; 8M x EIGHT = 64MB ; 8M x DECODE = retval u64
+	u24 = 16M x 1 idx ; 16M x EIGHT = 128MB  
+
+	u31 = 2G
+	u32 = 4G
+
+More advanced machines merge into I16_BITFIELDS
+
+	u16 = lookup [ u3 ] OPTIONS
+	u16 = lookup [ u5 ] OPTIONS
+	u16 = lookup [ u8 ] FAST OPTIONS LIMITS
+
 EIGHT {
  u8_BYTE_A
  u8_BYTE_B

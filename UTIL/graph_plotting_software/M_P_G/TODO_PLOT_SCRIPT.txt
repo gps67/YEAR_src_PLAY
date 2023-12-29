@@ -1,0 +1,322 @@
+TODO PLOT_SCRIPT {
+	CT_HERE // ARGS += ARGS VARS SESS POOLS EXPR C_CALL C_CODE C_DATA CXX_DATA CXX_CODE CXX_BENCH
+}
+
+PLOT_SCRIPT {
+	API += GDI // some API that takes OBJV[OVJC] ALIAS "ITEM[idx]" // ITEM becomes %s SUBST SAMPLE VALUE REPLACEMENT
+	API += load_PARSER
+
+		ARGS
+		CFN from ARGS { SCRIPT } // AUTO solve from components
+
+		PARSE SCRIPT from LOCAL_ROM and COMPILE
+		PARSE SCRIPT from REMOTE and COMPILE and CACHE
+
+	API += load_LIBR
+
+		load Module "Module"
+		load LIBR "LIBR" // LIBR == MODULE // SAME UTF8_NAME // SAME_BYTE_latin_8859 // SAME_STR0 "STR0" // ALIAS "%s" // AUTO_Q2 // --avoid_double_Q2_add_SP
+		call COMPILED_FUNCS
+
+	API += COMPILE STEPS
+
+		CT_RT each LINE and EXPR in LINE CODE_POINT not tracked after entry
+		 if( CODE_POINT == NULL ) {
+		 	CALL_INIT_VAR_ask_for_CODE_POINT _get_XPOS as OFFS from something sensible BOLN Module SECTION
+			CALL STEP VAR GETTER SETTER GET SET GET_EA 
+		 }
+
+		PARTIAL_PAGE fill_with_NULL UPGRADE to PTR from PAGE_ITEM_EA_EXPR
+	
+	API += OPCODES
+	 OPCODE "{ set AVAR NEW_VAL }" 
+	 	i8_i8 OPCODE
+		i16_idx_POOL_ITEM_EXPR // MINUS_means_EXPR PLUS_means_IDX ZERO_means_idx_0
+
+			so shift DC down to BA and decode that as PAGE_ITEM too
+
+				Because it is an array ([u8]) SLOT is an EIGHT (or FOUR)
+
+					EIGHT_t & EIGHT = SLOT[ u16_DC ] 
+
+					u8_u8_u16_u32
+					u8_u8_u16_u8_u24
+					u8_u24_u8_u24
+					u8_i24_u8_i24
+
+						BYTE_A decode is array lookup because COMPILER prepared it
+						256 * u64_PTR = 2K
+						sizeof( u64[256] ) == 2048 // bytes
+						sizeof( u64[u8] ) == 2048 // bytes
+						sizeof( u64[u16] ) ==  64 X 1024 // items or bytes // idx or offs
+							OFFS x1 64K // options SIGNED
+							OFFS x1 32K // SIGNED // reachable limit from opcode // 
+							OFFS x8 64K // u19_512_K
+						sizeof( u64[u8] ) == 2048 // bytes
+						sizeof( u64[u16] ) == 512 * 1024 // bytes
+
+
+	--avoid_double_Q2_add_SP
+		ALIAS that matches USES LEXICON ITEM LIST AS_WAS Q2 SP BRACE_L BRACE_R_PERCENT_s _s
+		ALIAS PERCENT_s BIND ARG1 BIND USAGE in PHRASE in PSG // FSM_CODE_POINT_ pos_in_PHRASE // STREAM XPOS CODE_POINT
+
+		load LIBR "LIBR" // LIBR == MODULE // SAME UTF8_NAME // SAME_BYTE_latin_8859 // SAME_STR0 "STR0" // ALIAS "%s" // AUTO_Q2 //
+	
+	API += DRAW THIS
+	API += DRAW THAT
+	API += DRAW SESS
+	API += DRAW SIDE // SIDE_BAR // WIDGET in SIDE PANEL //
+	API += DRAW csr
+	API += DRAW XPOS // CODE_POINT // DATA_ADDR_EXPR // FILTERS += FILTER PARSER_counts_LINES_GLYPHS_XPOS_CPOS BYTE_POS_wrt_BOLN 
+	
+				MODULE += AVAR // idx_i8 // MINUS_means_CALC_FROM_VALUE // DECODE somehow // PARSER hopes to find PHRASES
+
+	decode u8_u8
+	u8_idx_POOL
+	u8_idx_ITEM
+
+		idx_POOL = decode u8_u8
+		idx_ITEM = decode u8_u8
+
+		HEAP_ITEM = lookup POOL ITEM EIGHT
+
+			MINI machine has [256] of EIGHT so 2KB per TABLE overhead, can be optimised OUT or OFF 
+			GEN VIEW NO_TABLE 
+
+				u64 WORDS[i24] // 16 MB of data at BYTE_OFFS // 128M_HEAP_of_EIGHT
+	
+	decode u8_u8 u64_BITFIELDS {
+		when DATA { ... }
+		when SCRIPT { ... }
+		when OFFS { ... }
+		when IDX { ... }
+		when MINUS { ... }
+		when MINUS_IDX { ... } // eg NAMED consts in ROM
+		when MINUS_OFFS { ... }
+		when MINUS_EXPR { ... }
+	}
+
+	API += CTOR INIT_VALS "{ VAR_NAMES }"
+	API += STEP AVAR // FSM style
+	 OPTION
+	 	REMOTE tells HERE that it is STATE_CHANGED NEW_VAL
+	 OPTION
+	 	PARSER found a ONE of ... MATCH // already TOKEN in SPELLING then LOCALS
+	 OPTION
+	 	HERE TELLS REMOTE NEW_VAL
+	 OPTION
+		... UDEF ... // often CMNT in SCRIPT WORLD // need to CATCH it from CMNT // PARSE_COMMENTS //
+
+	decode u8_u8_OPCODE {
+
+		Each MODULE has own 256 AVARs including some for SESS use
+
+		PUSH_VARS has code for each AVAR // OPTIMISED OUT // not provided
+
+			PUSH_VAR_TYPE is a primative POP_VAR INIT_VAR
+			MOVE_PUSH_VAR { like PUSH_VAR but var goes volatile reusable junked vars )
+
+
+		-OPTION-
+			idx_u8_item_in_page   = BYTE_A ; // this is LOHI
+			idx_u8_func_per_page  = BYTE_B ; // given LOHI PAGE_ITEM becomes xBBAA
+							 // so can use [u16_lohi] // i16_cpu_from_lohi_bytes
+
+		-OPTION-
+			idx_u8_func_per_page  = BYTE_A ; // given LOHI choice AB or BA 
+			idx_u8_item_in_page   = BYTE_B ; // this is actually HILO 
+
+		call_func[B] A, _item[A]
+
+			FUNC_t * func = GET_FUNC( idx_u8_func_per_page )
+			ITEM_t * item = GET_FUNC_ITEM_PTR( func, idx_u8_item_in_page )
+
+		DECODE_u8_u8_SAYS _ {
+			FUNC = get_ifx(_FUNC, idx_u8_func_per_page ) // FLEX lisp or CFN // MATCH
+			NULL means NOOP goto next step
+
+		//	ADDR would actually be a CXX CALLABLE
+			ITEM = get_ITEM_from_FUNC_and_IDX_BYTE_B
+
+				FUNC might be {
+					EIGHT_t * SLOT = @( OFFS = IDX * 8 ) // BASE = MINI_MACHINE_STO_FOUR // private variable of MINI_MACHINE "STO_FOUR"
+				}
+				PAGE might be {
+					{ const static bool is_EMPTY = FALSE } // ZERO_MEANS_256
+					{ const static bool ZERO_means_FULL = true } // ZERO_MEANS_256
+					{ const static int ZERO_means_FULL_n = 256 } // or PAGE_SIZE_ITEMS
+					{ const static int ZERO_MEANS_256_or_64K_or_FULL_N_in_same_bits _requires_ZERO_means_FULL }
+				}
+		}
+	}
+
+	DRAW_PLOT
+
+	 TIME_SERIES style data 
+	 AXIS aligned on PAGE // neater
+	 AUTO MEAN
+
+	DRAW_XPOS {
+		XPOS += FILE OFFS LINE cpos BYTE_POS_wrt_BOLN
+
+			# CLAIM LOCAL # 
+
+			DRAW {
+				SCROLL of TEXT_FILE 
+				TEXT FGBG LINES TILT FILL /* EDGES */ SHAPES TEXT
+				TEXT_WRAP // ONLY within TEXT WRAP DOCS
+				DRAW_ARRAY CSR idx P0P2 
+				DRAW CALC_IDX # nested multi bitfield lookup DECODE sequence AUTOMATED tho via PREGEN
+				DRAW XPOS withing FILE
+				DRAW XPOS withing TREE
+				DRAW_DATA does an INIT on each ITER MULTIVERSE_MAYBE_NEXT_YEAR 
+				DRAW_DATA does an STEP within SCRIPTS
+				DRAW DATA_advance_one_DATA_STEP DATA_STEP // DATA_STEP = what was parsed and eval will_be_was
+				DRAW_FSM _or_hidden_FSM visible STATE BENCH_to_BENCH via CODE_POINT COMPILED += UDEF _via_INDEX
+				DRAW_RENAME { VALUE_old VALUE_new VAR_NAME EA_EXP(ARGS) }
+				DRAW ARGS as array[ 100 ] of EIGHT // as u8_u8_u16_u32 // OCCASIOANL SIGNED BITFIELDS 
+				DRAW ARGS as array[ 100 ] of EIGHT // as i8_i8_i16_i32 // OCCASIOANL SIGNED BITFIELDS 
+				DRAW ARGS as array[ 100 ] of EIGHT // as EVAL(i8_i8_i16_i32) - ABOVE { SCRIPT } // SAME OCCASIOANL SIGNED BITFIELDS 
+
+					100 is 127 with warnings
+					256 is 265 within PAGES_of_256 
+					256 is idx_u8 of ITEM
+					265 within THIS_PAGE_of_256 xEIGHT or x8 or LOHI_u8_u8_u16_u32_or_OTHERS // MAIN USE also provides GENRE name ALL_VARIANTS
+
+					u32 architecture is good for ARM32 AMD32 BYTE_B
+					u8_u8_OPCODE
+					u16_ARG1_TYPE_SPEC // ENQ_ACK // expect ARG1_TYPE to be at least TYPE_SPEC type
+					u32_ITEM_IDX // PLUS_MATCH_EA_ITEM_ASIS_or_from_EXPR // RUNS MINI_MACHINE
+
+					CALL FUNC ARGS () {
+						provided here
+						inline moybe next year
+					}
+
+					MODULE += AVAR // idx_i8 // MINUS_means_CALC_FROM_VALUE // DECODE somehow // PARSER hopes to find PHRASES
+					MODULE += LIBR // idx_i8
+
+				INDEX of XPOS TEXT_POINT CODE_POINT ; // ALIAS mechanism is TYPE for ABBR // XPOS for CODE_POINT // CT_RT GEN CODE
+				VIEW_xFF { SCRIPT }
+				SCRIPT {
+					OK PROVIDE after DEMAND
+					GEN ASM
+					GEN MATCH STEP
+					GEN REGEN STEP
+					GEN ASM DRAW PARSE ARGV
+					GEN CT_RT ITEM CACHE INIT_CODE EXPR_LIBR_DATA_CODE; // AUTO_MULTI_LINE_within_ARGV_STREAM
+					// BENCH does auto MK_VAR ("VAR_NAME") //
+					// DECODE CODE_POINT // DECODE SESS_DATA
+				}
+				DECL_VAR("VAR_NAME") to CODE_POINT "VAR_VALUE" // VAR_VALUE = "VAR_NAME" // DECODE _as_MACRO VAR_EXPR "VAR_NAME or VAR_EXPR"
+
+					ITEM -is- HEAP[idx_ITEM] 
+
+						CHECK idx_ITEM < idx_MAX_ONE // ITEM_t P0P2 X
+
+
+						MINI_MACHINE HEAP should be [u8] 
+						MINI_MACHINE HEAP can be [u8][u8]  
+						MINI_MACHINE HEAP can be [u24]  
+						MINI_MACHINE HEAP can be [u48]  
+
+							u16_u48 
+
+								u8_u8 OPCODE
+								u48_PAYLOAD
+
+							u16_u16_u32
+
+								u32_OPCODE
+								u48_OPCODE
+								u16_OPCODE
+
+								i64_OPCODE
+								i32_OPCODE
+								i16_OPCODE
+								i8_OPCODE
+
+								i64_BITFIELDS
+								 BYTE_A // KNOW ONLY on LOHI 
+								 BYTE_B // KNOW ONLY on LOHI 
+								 load_from_LOHI_DATA // EIGHT is AMD32 largest builtin array STEP EIGHT_BYTES _in_MEM _in_VAR _load_from_CT_RT
+
+								i64_LOHI_STEP_LADDER _RIBBON _STREAM
+								i64_SEGMENT_as_STREAM // PRELOAD skips to "{ load SEGMENT eval SCRIPT }" // SAVE_SEGMENT was UDEF 
+
+							EIGHT_t WORDS[ N ] 
+
+								N (VAR_asif_FUNC)
+								N (FUNC_ASIF_VAR)
+
+									DIALECT provides messy associations 
+									DIALECT provides GETTER VAR_POOL LOOKUP TABLE SPECS LIBR EXPR
+									LIBR provides EXPR
+
+								i24_idx_expr // CT_RT DECODE_i24 from_SHIFT_JUST_DONE // or_TEST or RET_VAL_FLAGS_in_CPU
+								i32_idx_expr // ITEM in HEAP // idx_ITEM // idx_to_NBYTES // _SPEC += ITEM_TYPE ** or something **
+								i48_idx_expr // no really its u16_u48_idx_expr // DECODE u8_u8 u48_PAYLOAD //
+
+								[u32]
+								[i32]
+								i25_idx_expr // The CODE_POINT added BIT KNOW_PLUS KNOW_MINUS u24 i25 RET_VAL_t_i32 // a bit of STEP by STEP
+								i32_idx_expr // ITEM in HEAP // idx_ITEM // idx_to_NBYTES // _SPEC += ITEM_TYPE ** or something **
+								u32_idx_expr // ITEM in HEAP // CHECK_MINUS_SAYS_it_is_u32_or_i32_as_LOGIC_POINT // is_UNS //
+								u48_idx_expr // ITEM_in_HEAP
+								i48_idx_expr // is_PLUS() { ITEM_in_HEAP } else { EXPR_on_DATA _i48 } ASM TEST_WORD is_less is_ZERO is_PLUS idx_ZERO
+
+							CPU_WORD_u32
+
+								A CPU64 will find a way of optimising 
+
+									struct EIGHT_t {
+										u32_ABCD // BITFIELDS.OPCODE CPU_VAR
+										i32_ABCD // BITFIELDS.OPCODE CPU_VAR
+										u32_EFGH // after_shift // or BSWAP // or FILTER // or CRYPT //
+										i32_EFGH // after_GETTER_CACHED HERE as ALIAS
+
+										 GET() { GETTER }
+										 SET(VAL) { SETTER }
+										 GET_EA() { GETTER }
+									}
+
+									# a SEGMENT is 16 MB or 4G x8 # x8 is u35_clicked into_u32 IDX + OFFS
+									struct SEGMENT_of_EIGHTS { 
+										EIGHT_t * P0;
+									// ALIAS EXPR
+									//	EIGHT_t * P0P2;
+
+										EIGHT_t * ITEM = lookup NAME || COMPLAIN { SCRIPT }
+										
+									}
+
+							ASM
+							 GEN_ASM
+							  PARSER
+							  GEN
+
+							  COMPILE CODE run training data GEN WEIGHTED code run training data two 
+							   SPEED TESTS
+							   GOES TESTS
+							   BROWSE MODULE // LOADED
+							   GEN only for COVERAGE
+							   GEN_adds MANUAL AUTO override // SINGLE STEP EXPECTED REPLAY TRANSACTION // RESTART UPTO BACK HERE
+
+							   PARSER matches PUNCT byte by byte
+							   PARSER matches PUNCT STR0 multibyte "+=" "{ %s }"
+							   PARSER filters all SPELLING in_LEXICON // 
+							   VAR_POOL("VAR_POOL_xFF") 
+							   VAR_POOL_ITEM("VAR_NAME") 
+
+							   	OPTION VAR_NAME is already a global AVAR
+							   	OPTION VAR_NAME is BOUND to PAGE==PAGE POOL==PAGE
+
+
+
+
+
+
+			} // DRAW
+	} // DRAW_XPOS
+}
+

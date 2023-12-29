@@ -1,0 +1,39 @@
+#!/usr/bin/env gnuplot
+
+# plot 'g3' using 5:13, '' using 5:(-$15) with lines
+
+# 
+# OK # plot 'g3' using 5:($15) with lines
+
+# (pay, tax) as (k,k)
+# plot 'g3' using ($5/1000.0):($15/1000.0) with lines
+
+set xdata time
+set format x "%Y-%m"
+set timefmt "%Y-%m-%d"
+
+
+# set size 0.4,0.4
+
+# set multiplot
+
+
+# set title "elec economy 7"
+# plot 'gas_elec.csv' using 3:5 with linespoints
+# pause -1
+
+# set title "gas"
+# plot 'gas_elec.csv' using 3:4 with linespoints
+# pause -1
+
+set title "MILES"
+plot 'mpg_table.txt' using 1:2 with linespoints
+pause -1
+
+set title "P.mile failed on 5 mpg on 11"
+plot 'mpg_table.txt' using 1:11 with linespoints
+pause -1
+
+# set nomultiplot
+
+

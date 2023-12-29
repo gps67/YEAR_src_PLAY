@@ -4,7 +4,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2023-07-02, 18522,  31.22, 43.93, Y? Full Morrisons - from Salisbury
 2023-07-31, 18703,  23.18, 31.27, Y? Full Sainsbury 
 # guess miles
-2023-08-41, 18760,   5.93, 10.31, Y? mini topup # guess miles to match following
+2023-08-05, 18760,   5.93, 10.31, Y? mini topup # guess miles to match following
 2023-08-06, 19105,  35.64, 49.43, Y? Full ASDA from wooden roots 
 2023-08-25, 19408,  30.71, 47.82, Y Full ASDA from High Wycombe
 2023-08-30, 19589,  15.84, 23.55, Y Full  morrissons from Coventry E10
@@ -12,4 +12,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2023-09-11, 20172,  23.26, 34.40, Y Full  Sainsburies from BH
 2023-11-23, 20420,  35.28, 50.70, Y Full Morrissons E10
 2023-12-05, 20725,  35.06, 48.70, Y Full Tesco E10
+2023-12-27, 20955,  28.00, 38.05, Y Full Tesco E1A Fratton
 

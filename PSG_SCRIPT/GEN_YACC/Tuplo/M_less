@@ -9,4 +9,6 @@ search=+/FAIL
 search= # stay at top
 search=+/START
 
+search=+/warning
+
 ./M "$@" 2>&1 | less $search

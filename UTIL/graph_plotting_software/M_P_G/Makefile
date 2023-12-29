@@ -1,7 +1,7 @@
 N=read1
 
 test2: $N.exec 
-	./$N.exec mpg.txt
+	./$N.exec mpg.txt | tee mpg_table.txt
 	-# ./$N.exec remix.out
 	-# ./remix
 

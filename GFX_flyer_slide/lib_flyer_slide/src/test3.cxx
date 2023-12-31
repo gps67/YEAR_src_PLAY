@@ -42,7 +42,7 @@ int main_loop_once( X_Display & disp, XEvent & report )
 int main_three( argv_decoder & ARGS ) {
 	// open up a display connection
 	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+//	X_Window::register_root( disp, "R-O-O-T" );
 
 	WAX::cpu_var ft;
 	ft.test1();
@@ -69,7 +69,7 @@ if(1) {
 	A_Rectangle xywh3( 30, 250, 150, 150 );
 
 	// create a window on the display
-	X_test_two win1( "topwin", disp, xywh1, 0 );
+	X_test_two win1( "topwin", & disp, xywh1, 0 );
 
 	// TODO near here
 
@@ -93,7 +93,7 @@ if(1) {
 
 
 	// KEY
-	disp.test1();
+WARN("	disp.test1(); ");
 
 /*
 	when win3 is child of win1

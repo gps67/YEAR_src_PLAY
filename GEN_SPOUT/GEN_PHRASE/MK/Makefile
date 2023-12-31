@@ -24,6 +24,9 @@
 # 	include ../MK/Makefile_libs_apps # OK
 	include ../MK/MK_with_libs_apps # OK - ish
 
+	PKGS += libs_apps_base1
+
+
 #	HDRS += $S/A_point_plus.h
 #	HDRS += $S/X_Colours.h
 #	HDRS += $S/X_Display.h

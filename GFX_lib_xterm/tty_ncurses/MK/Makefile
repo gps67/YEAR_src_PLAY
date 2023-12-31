@@ -13,6 +13,8 @@
 #	LINKS = -L/usr/X11R6/lib -lX11
 	LINKS = -lncurses
 
+	PKGS += libs_apps_base1
+
 	# S=../src
 	S=..
 	VPATH +=$S
@@ -23,7 +25,7 @@
 	VPATH +=$S/../../STO_BYTES
 	INCLS +=-I $S/../../STO_BYTES # OK
 
-	include ../MK/Makefile_libs_apps
+	include ../MK/MK_with_libs_apps
 
 	PROG1=test_1
 	PROG1_exec=$(PROG1).exec

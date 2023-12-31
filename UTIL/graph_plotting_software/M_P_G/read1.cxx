@@ -84,10 +84,10 @@ struct line_data {
 		float d_km_100 = (d_km/100.0); // per 100 km
 		float l_100 = d_litres / d_km_100; // litres per 100 km
 		printf(" %s", datestr );
-		printf(" %6.0f +%3.0f %6.0f", miles, d_miles, next.miles );
-		printf(" %5.1f p/mile", p_per_mile );
-		printf(" %5.2f £/litre", pounds_per_litre );
-		printf(" %5.2f £/gallon", pounds_per_gallon );
+		printf(" %6.0f %3.0f %6.0f", miles, d_miles, next.miles );
+		printf(" %5.1f p_mile", p_per_mile );
+		printf(" %5.2f £_litre", pounds_per_litre );
+		printf(" %5.2f £_gallon", pounds_per_gallon );
 		printf(" %5.1f mpg", mpg );
 		printf(" %5.1f lp100", l_100 );
 		printf(" %s", next.note );

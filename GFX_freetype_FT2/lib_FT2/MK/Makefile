@@ -20,6 +20,8 @@
 	PKGS += freetype2
 	PKGS += xft
 	PKGS += fontconfig
+	PKGS += libs_apps_base1
+
 
 ifeq (1,1)
 	# these are supposed to be part of the build system
@@ -48,13 +50,15 @@ endif
 
 	S=../src
 #	# borrow some source from WAX # duplicate compile but not fork
-#	S2=../../../GFX_lib_WAX/lib_WAX_X11/src
 	YEAR_src_PLAY=../../..
 	S2=$(YEAR_src_PLAY)/GFX_lib_WAX/lib_WAX_X11/src
 
 	VPATH +=$S
 	VPATH +=$(S2)
 	INCL += -I$(S2)
+	# TODO # FIX # above fails below works # so $(INCL)
+	LIST_C_INCLUDE_PATH += $(S2)
+	LIST_CPLUS_INCLUDE_PATH += $(S2)
 
 
 #	include ../MK/Makefile_libs_apps
@@ -82,6 +86,8 @@ endif
 	OBJS += test_X_two.o
 	OBJS += XFT.o
 	OBJS += A_matrix_2x2.o
+
+	OBJS += X_Drawable_Surface.o
 
 #	# libs_apps alternatives
 #	OBJS += gdb_invoke.o
@@ -124,9 +130,15 @@ $(EXEC1): $(MAKES)
 $(EXEC2): $(MAKES)
 
 $(EXEC1): $(OBJS) $(PROG1).o
+	# EXEC1 #
+	# VPATH is $(VPATH)
+	# PKGS  is $(PKGS)
+	# INCL  is $(INCL)
+	# LIBS  is $(LIBS)
 	g++ $(PROG1).o $(OBJS) $(LIBS) -o $@
 
 $(EXEC2): $(OBJS) $(PROG2).o
+	# EXEC2 #
 	# VPATH is $(VPATH)
 	# PKGS  is $(PKGS)
 	# INCL  is $(INCL)

@@ -36,7 +36,8 @@ int main_loop_once( X_Display & disp, XEvent & report )
 int main_two( argv_decoder & ARGS ) {
 	// open up a display connection
 	X_Display disp( NULL );
-	X_Window::register_root( disp, "R-O-O-T" );
+// AUTO ?
+// X_Window::register_root( disp, "R-O-O-T" );
 
 	// recently added feature
 
@@ -48,8 +49,9 @@ int main_two( argv_decoder & ARGS ) {
 	A_Rectangle xywh2( 100, 10, 750, 750 );
 	A_Rectangle xywh3( 30, 250, 150, 150 );
 
-	// create a window on the display
-	X_test_two win1( "topwin", disp, xywh1, 0 );
+	// create a window on the display // 
+	const static int border_0 = 0;
+	X_test_two win1( "topwin", & disp, xywh1, border_0 );
 
 	// TODO near here
 
@@ -69,7 +71,9 @@ int main_two( argv_decoder & ARGS ) {
 	
 	INFO("CALLS disp.test1()");
 	// KEY
-	disp.test1();
+// FIX this used to do something - but that has moved
+// FIX commented out to compile 2023-12
+//	disp.test1();
 
 /*
 	when win3 is child of win1

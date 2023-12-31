@@ -42,10 +42,9 @@ ifeq (1,1)
 	PKG_CONFIG += pkg-config
 	PKG_CONFIG += --define-variable=TGT=$(TGT)
 
-	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
-	LIBS += `$(PKG_CONFIG) $(PKGS) --libs`
 	LINKS += $(RPATHS)
-	LINKS += $(LIBS)
+	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
+	LINKS += `$(PKG_CONFIG) $(PKGS) --libs`
 
 	# build varies on each box # LINK2 dir
 	# hostname of this BOX

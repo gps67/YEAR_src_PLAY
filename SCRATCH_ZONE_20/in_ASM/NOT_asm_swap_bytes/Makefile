@@ -11,7 +11,7 @@ c1.exec : c1.o
 	gcc -o $@ ./$<
 
 c1.o: c1.c
-	gcc -o $@ ./$<
+	gcc -c -o $@ ./$<
 
 c1.dump: c1.c
 	gcc -S c1.c -fverbose-asm -Os -o - | tee c1.dump

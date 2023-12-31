@@ -1,0 +1,51 @@
+# external users of the libs_apps code can do this:
+# include /home/gps/2005/src/libs_apps/MK_ext_lib/MK_with_libs_apps
+
+	#
+	#
+	#
+
+
+	DIR_libs_apps =/home/gps/YEAR/src/PLAY/libs_apps
+
+	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
+	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
+
+	# genre of architecture # ARM64 u48_u16_lohi TCL_PAIR SPEC DATA
+
+	TGT=WIN32
+	TGT=LGX
+
+	# build varies on each box # LINK2 dir
+	BOX=$(shell uname -n)
+
+	# all include incl.h symb-linked from one place
+	DIR_LIBS_APPS_INCL = $(DIR_libs_apps)/include
+
+	# LINK2 is the only one used
+	# LINK will confuse things
+	DIR_LIBS_APPS_LINK = $(DIR_libs_apps)/lib
+	DIR_LIBS_APPS_LINK2 = $(DIR_libs_apps)/build_$(TGT)_$(BOX)
+
+	# build up like pkg_config LIST += uses_NAME 
+#       PKG_CONFIG_dirs += $(DIR_libs_apps)/lib_pkgconfig/$(TGT)
+#       PKG_CONFIG_dirs += $(DIR_libs_apps)/lib_pkgconfig
+
+#       PKG_CONFIG_dirs += /home/gps/G/prefix/lib/pkgconfig/
+
+# TODO above # fix $(TGT) $(UNAME_n_rthing) $(build_dir)
+
+	INCL += -I$(DIR_LIBS_APPS_INCL)
+	LIBS += -L$(DIR_LIBS_APPS_LINK)
+	LIBS += -L$(DIR_LIBS_APPS_LINK2)
+	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK)
+	LIBS += -Wl,--rpath=$(DIR_LIBS_APPS_LINK2)
+
+#	LIBS += -laccts_gtk
+	LIBS += -lbase
+	LIBS += -lbase2
+	LIBS += -lgtk_text
+#	LIBS += -lmedia
+	LIBS += -lsar_plot_post
+
+

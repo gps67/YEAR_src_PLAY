@@ -1,0 +1,18 @@
+
+https://github.com/nbauers/Learn-x86-assembler
+
+	some delphi 8086 simulator
+	some 16 bit code
+
+https://www.vikaskumar.org/2006/07/06/amd64-tutorial.html
+
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+
+https://yasm.tortall.net/
+
+	YASM is NASM rewritten from scratch ? with AMD64 added
+	(NASM now has that)
+
+https://paul.bone.id.au/blog/2018/09/26/more-x86-addressing/
+
+	

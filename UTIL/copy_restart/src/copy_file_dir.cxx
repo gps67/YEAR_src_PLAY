@@ -362,7 +362,7 @@ bool sender_t::copy_src_name_dst_try(
 	char buff[ size_block ];
 	int fake_stop = 5; // TEST partial copy using fixed limit progress
 	int loops_count = loops_per_sync;
-	static const int every_n_seconds = 1; // 2; // 10; // 5; // do full fsync not fdatasync
+	static const int every_n_seconds = 3; // 1; // 2; // 10; // 5; // do full fsync not fdatasync
 	time_t time_last_check; // rounded seconds
 	time_t time_last_fsync; // rounded seconds
 	time_t time_right_now; // rounded seconds
@@ -388,7 +388,7 @@ bool sender_t::copy_src_name_dst_try(
 				}
 			} else {
 				// every second other than multiple
-				if(1) {
+				if(0) {
 					if(!call_fdatasync()) 
 						return FAIL_FAILED();
 				}

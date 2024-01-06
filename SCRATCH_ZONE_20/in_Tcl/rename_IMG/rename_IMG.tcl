@@ -53,6 +53,7 @@ proc my_main {list} {
 		if { $item == "--NAME" } {
 			list_pop list ZONE_NAME
 			set name_one 1
+			puts "# ZONE_NAME # $ZONE_NAME #"
 			continue
 		}
 		if {!name_one} {
@@ -362,7 +363,7 @@ proc rename_IMG_dir {dir} {
 
 	  } elseif [regexp $re_NEWNAME $f all YEAR MM DD hh mm ] {
 		puts "# ALREADY # $f"
-		continue
+		# continue
 
 
 	  } else {

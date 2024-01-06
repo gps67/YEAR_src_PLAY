@@ -5,7 +5,7 @@
 #
 # you must list all filename extensions used
 #
-.SUFFIXES: .cxx .c .o .so .exec .elf
+.SUFFIXES: .cxx .c .o .so .elf .exec .elf
 
 #
 # RULE: compile from .c to .o
@@ -32,7 +32,18 @@
 # .elf and .exec are the same
 # do not use .exe # leave that for WIN32
 
-.o.elf .o.exec: $(OBJS)
+# TODO # FIX # it isnt listing OBJS as dependencies
+
+# info make # 10.7 Old-Fashioned Suffix Rules
+# .o.elf .o.exec: $(OBJS) # NO rerequisites
+
+# but this isnt working either
+# %.exec: %.o $(OBJS)
+
+
+# .o.elf .o.exec: $(OBJS)
+
+%.exec: %.o $(OBJS)
 	#
 	# MK_SUFFIXES link program RULE
 	#    RULE: .o.elf .o.exec %(OBJS)
@@ -47,6 +58,7 @@
 	#    OBJS:
 	#	$(OBJS)
 	#
+	#    OPTIONS for LINKS
 	#	-rdynamic # helps backtrace get symbols
 	#   LINKS:
 	#	$(LINKS)

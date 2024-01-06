@@ -1,0 +1,138 @@
+
+file:///tools/x86_64_src/ccs/nasm-2.16.01-docs/doc/html/nasmdo12.html
+In 64-bit mode, ...
+
+	NO more segments - except ours via BASE_PTRS
+
+		FS GS would have been brill but alas not - make all ZERO
+
+	WORD SIZES names for <inttypes.h>.
+
+	STACK ALIGN
+
+	All known 64-bit platforms except some embedded platforms require that
+	the stack is 16-byte aligned at the entry to a function.
+	In order to enforce that,
+	the stack pointer (RSP) needs to be aligned
+	on an odd multiple of 8 bytes before the CALL instruction.
+
+	REGISTER NAMES
+
+	AL/AH, CL/CH, DL/DH, BL/BH, SPL, BPL, SIL, DIL, R8B-R15B
+	AX, CX, DX, BX, SP, BP, SI, DI, R8W-R15W
+	EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI, R8D-R15D
+	RAX, RCX, RDX, RBX, RSP, RBP, RSI, RDI, R8-R15
+
+		R8B - R15B	BYTE			BYTE	 u8 i8
+		R8W - R15W	WORD			PAIR	u16 i16
+		R8D - R15D	DOUBLE_WORD		FOUR	u32 i32
+		R8  - R15 	u64_WORD		WIGHT   u64 i64
+
+	AL AH AX EAX REAX A
+
+		A C D B
+	
+		SPL BPL
+
+		SI DI
+
+		R8  R9  R10 R11
+		R12 R13 R14 R15
+
+	AL/AH, CL/CH, DL/DH, BL/BH, SPL, BPL, SIL, DIL, R8B-R15B
+	AX, CX, DX, BX, SP, BP, SI, DI, R8W-R15W
+	EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI, R8D-R15D
+	RAX, RCX, RDX, RBX, RSP, RBP, RSI, RDI, R8-R15
+		R8  - R15	(default EIGHT)		EIGHT	u64 i64
+
+	In 64-bit mode, the default instruction size is still 32 bits.
+
+	When loading a value into a 32-bit register
+	(but not an 8- or 16-bit register),
+	the upper 32 bits of the corresponding 64-bit register are set to zero.
+
+		Other text says there are SIGNED options
+
+		u32 i32 from ASM_OPCODE // += immediate data
+
+	REAX is as good as EAX - could have been ALIAS but is ABI
+
+		this is (UNSIGNED_u64) 
+		this is (UNSIGNED_u32
+
+			then u48_PTR // ACTUAL ALLOCATED VALUE cant move
+
+	EIGHT WORDS[ IDX ] 
+
+TARGET ARRAY of EIGHT or FOUR or TWO or ONE // or REG // or CALC // plus_adj
+
+	ADJ makes sense for INITAL FIELDS before ARRAY // u16 probably plenty
+
+		on INTEL add ADJ
+		on ARM32 add OFFS_of_ARRAY_after_FIELDS // at end of struct
+
+
+	ADJ makes sense for BYTE PAIR FOUR within EIGHT // [0-15[16
+	ADJ makes sense for KNOWN [idx] eg [0] [1] [few]
+
+CALL PARAMETERS UNIX
+
+		RDI, RSI,
+		RDX, RCX,
+		R8,  R9
+
+	in that order. Additional integer arguments are passed on the
+
+		stack
+	
+	scratched (RAX RETVAL)
+
+		RAX,
+		R10, R11
+	
+	preserved (not listed by by elim)
+
+		     RBX,
+		R12, R13
+		R14, R15
+	
+	TWO MORE
+
+		BP SP 
+	
+	RETVAL
+
+		RAX RDX
+	
+	FLOATS
+		XMM0 .. XMM7 // ARGS
+		XMM0 XMM1 // RET_VALS
+
+		all allocated on an as-required, left to right
+		so 
+
+CALL PARAMETERS WIN64
+
+	CALL ARGS
+
+		RCX, RDX, R8, R9, 
+		stack
+	
+	FLOATS
+
+		XMM0 1 2 3
+		XMM0 - retval
+
+
+
+
+
+	struct EIGHT_t : public u64_t {
+
+		X86 has fast instruction to access an EIGHT in ARRAY
+		EIGHT FOUR TWO ONE // PAIR BYTE // avoid QUAD because stupid Intel
+
+	}; // CXX follows CPP syntax for OUTPUT but FADE with VIEW LOW_PUNCT
+	// MY_DIALEXT is ARGV over ASCII // UTF8 WORKS TOO // SIMPLE OPTION 
+	// COSTS // DECODE via GROUP //
+

@@ -499,22 +499,29 @@ gen_OUT_cat_file( buffer2 & out, STR0 filename )
 {
 	// NOTE // expect can place // comments before FILE
 
+	// NEWS // cant use // CMNT must use /* cmnt */
+
 	bool ok = true;
 
-	out.print_ln("// INCL // ");
-	out.print_ln("// INCL // including file '%s' //", (STR0) filename );
-	out.print_ln("// INCL // --------------- START ----------------- //");
+//	out.print_ln("/*");
+	out.print_ln("");
+	out.print_ln(" /* INCL */ ");
+	out.print_ln("");
+	out.print_ln(" /* INCL // including file '%s' */", (STR0) filename );
+	out.print_ln("");
+	out.print_ln(" /* INCL // --------------- START ----------------- */");
 
 	int K_max = 32;
 	buffer2 filed;
 	if(!blk_read_entire_file( filed, filename, K_max )) {
-		out.print("// INCL // ABSENT FILE '%s' //\n", (STR0) filename );
+		out.print(" /* INCL // ABSENT FILE '%s' */\n", (STR0) filename );
 	}
 	out.put( filed );
 
-	out.print_ln("// INCL // --------------- END ----------------- //");
-	out.print_ln("// INCL // included file '%s' //", (STR0) filename );
-	out.print_ln("// INCL //");
+	out.print_ln(" /* INCL // --------------- END ----------------- */");
+	out.print_ln(" /* INCL // included file '%s' */", (STR0) filename );
+	out.print_ln(" /* INCL */");
+//	out.print_ln("*/");
 	if(ok)
 		return PASS("%s", filename );
 	else
@@ -1126,6 +1133,7 @@ gen_YACC_union( buffer2 & out )
 {
 //	L1("%parse-param {SOMETYPE * parser} ");
 	L1("");
+ L1("// gen_YACC_union(outbuf) // ");
  L1(" %union {");
 // NO L1(" EXPR * expr;"); // almost
 // NO  L1(" EXPRS:: struct EXPR * expr;");
@@ -1141,6 +1149,7 @@ gen_YACC_union( buffer2 & out )
  L1("  u32 e32;"); // retval is int
  L1("  int tokn;");
  L1("  const char * lex_buff;"); // via several buffer2 ring of holders
+
  L1(" }");
 	return true;
 }
@@ -1180,14 +1189,22 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool lex_yacc::
 gen_YACC_type_list( buffer2 & out )
 {
+ bool is_e1 = true;
+ if( is_e1 ) {
+	L1("%type <expr> expr_ident");
+	L1("%type <expr> expr");
+	L1("%type <expr> EXPR_line");
+	L1("%type <expr> lines"); // 
+ } else {
  // L1("%type <unionfieldname> rulename");
-	 L1("");
+	L1("");
 	L1("%type <expr> expr_ident");
 	L1("%type <expr> expr");
 	L1("%type <expr> EXPR_line");
 	L1("%type <expr> lines"); // slight lie to bootstrap
 //	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
 //	L1("%type <tokn> BOP");
+ }
 	return true;
 }
 

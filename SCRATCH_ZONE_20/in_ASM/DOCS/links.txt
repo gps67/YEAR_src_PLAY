@@ -15,4 +15,18 @@ https://yasm.tortall.net/
 
 https://paul.bone.id.au/blog/2018/09/26/more-x86-addressing/
 
+
+https://sourceware.org/gdb/wiki/GDB%20Front%20Ends
+
+	gdb mi (maybe)
+
+	MS CODE (maybe)
+
+file:///tools/x86_64_src/ccs/nasm-2.16.01-docs/doc/html/nasmdo12.html
+
+	In 64-bit mode, the default instruction size is still 32 bits.
+
+	When loading a value into a 32-bit register (but not an 8- or 16-bit register), the upper 32 bits of the corresponding 64-bit register are set to zero.
+
+
 	

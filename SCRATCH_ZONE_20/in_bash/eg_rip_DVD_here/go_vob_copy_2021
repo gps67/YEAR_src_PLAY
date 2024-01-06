@@ -8,23 +8,37 @@
 	# calls stuff in same dir .
 	PATH=:$PATH
 
+# which NFS NAS is used - to mount # move to a parameter in DB
 # the symb link to NAS dir # varies with people # often out of reach
+# NB this is used to check that the NAS is mounted but the actual DIR is on 
+# see ./copy_iso_tree
+
 	DIR_NAS=NAS3_b2_DVDS_2021 # symb link to 
 	NAS_SCRIPT=/nfs/NAS_mount_ALL # run this to mount DIR_NAS
+
+# the device that is SCSI ROM DVD 
 # might vary with OS # the mount device
+
 	export dev_sr0=/dev/sr0
-# RETVAL globals
+
+# RETVAL globals # naff defaults that should expose unser VARS
+
 	export media_mount_name=media_mount_name
 	export dvd_name=dvd_name
 
 # MACHINE DIRS
+
 	DIR_LOG=tmp		# where the logfiles go
 	DIR_ISO=iso		# where the dvd_name_2.iso files go
+	DIR_MID=iso_prep	# iso written here first - same disk as DIR_ISO
 	DIR_DEL=done_del	# where the  go
 
+	mkdir_FAIL $DIR_MID
 	mkdir_FAIL $DIR_ISO
 	mkdir_FAIL $DIR_LOG
 	mkdir_FAIL $DIR_DEL
+
+# where the files are # NEEDS dvd_name_2
 
 # check that vobcopy is available # not done
 # vobcopy // apt install
@@ -128,15 +142,25 @@ echo
 
 	fn_EDIT_var_prompt dvd_name_2 "$dvd_name ==> "
 
-# keep volcopy output in a .tmp file named _2
+# where the files are # NEEDS dvd_name_2
 
-	VOB_LOG="${DIR_LOG}/${dvd_name_2}_vobcopy.tmp"
+	VOB_LOG="${DIR_LOG}/${dvd_name_2}_vobcopy.tmp" # vobcopy log #
+	IMG_LOG="${DIR_LOG}/${dvd_name_2}_mkiso_log.tmp"# mkisofs log
+	IMG_MID="${DIR_MID}/${dvd_name_2}.iso.tmp" # mid iso.tmp on local
+	IMG_ISO="${DIR_ISO}/${dvd_name_2}.iso"	# end .iso on local
+	IMG_NAS="${DIR_NAS}/${dvd_name_2}.iso"	# end .iso on NAS
+
+	# NB # the .iso is moved into place in an atomic action
+	# SO # copy_tree never finds a tmp named file
+	# SO # copy_tree never finds a half written file 
+	# ie # copy_tree uses stat NBYTES to copy upto there
 
 # extract the DVD using vobcopy -m
 # -m # mirror whole dvd to disk # css decrypt done here
 
 	if vobcopy -m 2>&1 | tee ${VOB_LOG} # -i $media_mount_path
 	then
+		# vobcopy used $dvd_name # we had no choice
 		echo "# OK #"
 		sync
 		:
@@ -156,6 +180,8 @@ echo
 	eject
 
 # move the dir of files (looks like a dvd tree)
+# from dvd_name to dvd_name2
+# vobcopy used $dvd_name 
 #
 # DVDVOLUME/. becomes DVD_something/.
 
@@ -167,30 +193,24 @@ echo
 
 	# DIR_IN ==  "${dvd_name_2}"
 
-	IMG_ISO="${DIR_ISO}/${dvd_name_2}.iso"	# DIR_ISO must be relative
-	IMG_LOG="${DIR_LOG}/${dvd_name_2}_mkiso_log.tmp"
-	NAS_ISO="${DIR_NAS}/${IMG_ISO}"		# IMG_ISO must be relative path
-	IMG_OUT_tmp="${IMG_ISO}_tmp"
-	IMG_OUT="${IMG_ISO}"
-
 	# dvd_name_2 # is dir where vobcopy left the tree of files
 	# this is flawed because | tee is the retcode
 	set -x
 	if mkisofs			\
 	  	-dvd-video		\
-	  	-o "${IMG_OUT_tmp}"	\
+	  	-o "${IMG_MID}"		\
 	  	"${dvd_name_2}"		\
 	  	2>&1			\
 	  	| tee $IMG_LOG
 	then
 		# rename iso_tmp # move dir/ to DIR_DEL/dvd_name_2/
-		mv "$IMG_OUT_tmp" "$IMG_OUT" # ISO file = iso/ keep
+		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
 		mv "$dvd_name_2" "$DIR_DEL" # DVD files = done_del
 		sync
 	else
 		# leave .iso as .iso_tmp # delete or repair manually
 		WARN $? "tee failed or maybe mkisofs failed"
-		mv "$IMG_OUT_tmp" "$IMG_OUT" # ISO file = iso/ keep
+		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
 		mv "$dvd_name_2" "$DIR_DEL" # DVD files = done_del
 		sync
 	fi
@@ -210,8 +230,12 @@ echo
 	then
 		# NAS failing with io errors on big transfers
 		# the entire reason for copy_restart
-		# say_do cp -p $IMG_ISO $NAS_ISO || FAIL $? cp
+		# say_do cp -p $IMG_ISO $IMG_NAS || FAIL $? cp
 		#
+		echo -ne '\007'
+		sleep 1
+		echo -ne '\007'
+		ask_do \
 		./copy_iso_tree
 	else
 		echo "# ISO not copied to NAS - you must do this later"

@@ -18,6 +18,11 @@ int main()
 	//	'1 +2' -->  3	// SP was preserved
 	//	'ONE + TWO + 100' -->  103
 
+	// means:
+	//	#item turns ONE into "ONE"
+	//	#item turns ( ONE + TWO + 100 ) into "ONE + TWO + 100" // trim
+	//	 item is multiword CXX code
+
 	show( ONE );
 	show( TWO );
 	show( 1 +2 );

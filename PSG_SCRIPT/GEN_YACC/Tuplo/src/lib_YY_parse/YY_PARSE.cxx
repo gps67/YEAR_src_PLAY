@@ -202,3 +202,7 @@ buf_load_and_parse(		// load file then parse it, then return
 	PASS("filename was %s", filename );
 	return true;
 }
+
+//bool YY_Parse_t::
+//buf_append_NL_NUL_EOF() {
+//}

@@ -1,0 +1,242 @@
+
+	// VIEW // LOW_PUNCT // FADE surrounding border { DRAW_DIAG }
+	// Q2 likes to OMIT_Q2 "{ DIAG }" 
+	// Q2 likes to PICK_Q2 "{ %s }" NAME_ZERO_ONE_TWO 
+	// CIDENT NAME_ZERO_ONE_TWO // NULL MEANS ZERO // ZERO_MEANS_IDX_ZERO
+	// CIDENT NAME_PLUS_ONE_TWO // NULL MEANS ABSENT //
+
+
+MY_DIALECT
+
+	IDX_ZERO means { "%s[0]" IDX } // PARSE_TREE { FMT SELF IDX_of_SELF
+	// VAR_NAME IDX //
+
+		MINI_MACHINE runs "VAR_NAME IDX"
+		MINI_MACHINE runs "// VAR_NAME IDX //"
+		MINI_PARSER matches "{ %s %s }" // AI token SPELLING //
+
+			IDX_ZERO
+			{ "%s[0]" IDX }
+			// CMNT_to_EOLN //
+			// CMNT_at_XPOS //
+			{
+				"%s[0]"
+				IDX
+			}
+
+			"%s"
+			"%s[0]"
+			"%s[%s]"
+			"%s[%d]"
+
+				%d is IDX
+				%s is NAME then IDX
+				%s 
+
+				ALIAS VIEW %d as %s
+				ALIAS VIEW %x as "%3X"
+				ALIAS VIEW %x as "%03X"
+				ALIAS VIEW %x as "x%03X"
+				ALIAS VIEW %x as "%s_x%03X" GROUP ITEM
+				ALIAS VIEW %x as "%s_x%03X" NAME IDX
+
+		BUILTIN ALIAS NAME // system of INTERPRETATION in DIALECT //
+
+			get_EA("NAME")
+			lookup("NAME")
+			GET_EA("%s") // FMT = GROUP[idx_ITEM] // IDX = _of_ITEM
+
+		BUILTIN PARSE DETECT USAGE
+
+			ARGV_ANYSTR // or not but some steps
+
+			PARSER accepts that PUNCT is a valid SPELLING
+			PARSER accepts that PHRASE is a valid SPELLING
+			PARSER accepts that MATCHABLE_PHRASE is a TEMPLATE
+
+			BUILD TEMPLATE ARGS + CODE EXPRS PHRASE_BOOK
+
+			USAGE = CODE_POINT of MODUILE script that describes KEY
+
+			XPOS_of_IDENT_at_FILE_LINE_CPOS // utf8 cpos
+
+				LIMIT ASCII until utf8 code written
+				LIMIT CT knows / detects ASCII_SUBSET
+				LIMIT no_euro_accents_in_cident97
+				ENABLE yes_euro_accents_in_cident97
+
+					as CSET_BYTE_ASCII // PUNCT LEX PSG
+					as CSET_BYTE_latin
+					as CSET_UTF8_latin
+					as CSET_UTF8_beyond
+
+		LEX_PSG
+
+			we bootstrap with CSET_ASCII 
+				IDENT_a1_a2
+				PUNCT_a1_a2_a3_a4
+
+				DECODE UTF8_CSR_XPOS
+
+				might_be_a1_in_some_DIALECT
+				might_be_a2_in_some_DIALECT
+				might_be_PUNCT_1_2_3_MORE_in_some_DIALECT
+
+					+ += <-> "<-->"
+
+					MORE can work with PUNCT_1 in MULTIBYTE
+					MORE can work with CT_RT SETTING
+
+			lookup BYTE
+
+				so if first byte of UTF8
+
+					FLAG saying so
+					DOUBLE_CHECK rest of UTF8_MULTI_BYTE
+					include BYTE interpretation anyway
+
+					get u32_UNICODE from UTF8
+					USAGE still mostly within latin97
+					USAGE still mostly CSET_8859_asia
+
+					 on_USE_in_TEXT ...
+					  lookup CT_RT actions values
+					  bounce via group
+
+					  	a1_in_cset_regional 
+						// ie UTF8 above BYTE
+
+					bounce ASCII by group
+
+						a1_a2_in_GAP // caller says any
+						a1_a2_in_PUNCT // TOKENISE //
+						a1_a2_in_IDENT // SPELLING //
+						a1_a2_in_VALUE // list ...
+						 VALUE INT UNS FLOAT Q2_STR 
+						 VALUE CMNT 
+						 VALUE TEXT DTP CMNT
+
+				so if looks_like_CSET_BYTE_latin // _latin 
+
+					KNOW prefilter TEXT as CSET_BYTE
+					KNOW prefilter TEXT as CSET_MULTI_BYTE
+					KNOW prefilter TEXT as LANG_USAGE
+
+				KNOW_FLAGS_FOR_[ %X ]
+
+				BYTE per CHAR then TEST_BIT or MASK_FIELD
+				BIT per CHAR
+				PAIR_per_CHAR upto 128
+				PAIR_per_CHAR upto 256
+				PAIR_per_CHAR upto 512
+				BYTE_per_CHAR upto 1024
+
+
+
+		CODE system uses FOUNDATION_DIALECT DECL_PHRASE_BOOK_LIBR
+
+			DIALECT uses KNOWN_VAR and USAGE("WELL_KNOWN_VAR_NAME")
+
+			DIALECT uses KNOWN_VAR and USAGE(
+
+				SOMETHING += "WELL_KNOWN_VAR_NAME"
+
+
+					COMPILER PRE_BUILDS 
+					LOOKUP TABLE "LEXICON"
+
+				LEXICON += "WELL_KNOWN_VAR_NAME"
+
+				USAGE += "Q2 CIDENT Q2"
+
+					CIDENT is open to be ALIASED 
+					USAGE NEAR HERE CSET_USAGE
+					USAGE NEAR HERE CSET_CVAR_NAME_FRIENDLY
+					USAGE NEAR HERE CSET_ARGV_FRIENDLY
+
+		ALIAS WELL_KNOWN_VAR_NAME
+
+			LEXICON += { "%s" WELL_KNOWN_VAR_NAME }
+			LEXICON += "{ %s WELL_KNOWN_VAR_NAME }" 
+
+				ASCII_PERCENT
+				ASCII_s
+				 %s 
+				"%s"
+				"%s%s%s" { PUNCT Q2 } { %s } { PUNCT Q2 }
+				"{%s}"
+
+		PSG TREE
+
+			PARSE DATA TREE 
+			PARSE OPTIMISER // gen YACC as loadable.so SEGMENT
+			PARSE OPTIMISER // run IMPL as CT COMPILE_CODE
+
+				IMPL behaves as LIVE data
+				IMPL behaves as CODE to compile
+
+				IMPL simply GEN's own OPCODE
+				IMPL simply RUN's own OPCODE
+
+			COMPILE 
+
+				IMPL BYTE CODE // CACHE VAR_POOL NAMES PHRASE_BOOK
+
+			PHRASE_BOOK
+
+				compiled code phrase
+					RUN_TIME
+				parsed code phrase
+					PARSE_ARGV_SCRIPT
+
+				LEXICON
+
+					DECL SCOPE CODE_POINT LEX IDENT cident97
+
+					PARSE cident97
+					PARSE lex_cset_cident97
+
+						a1_a2_star a1 a2
+
+						a1 = cset_cident97_a1
+						a2 = cset_cident97_a2
+
+						WORTH BIT_256 += DEFAULT
+
+							default
+							utf8 not ASCII
+
+						DEFAULT NOMATCH a1_a2_either
+						DEFAULT MATCH a1_a2_either
+						DEFAULT higher layer invokes this
+						so we dont decide
+
+				HIGHER LEXICON uses CSET utf8 beyond CSET BYTE
+
+					it specifically adds a function + data
+
+					MY_LEX_CSET
+						"MY_LEX" "{ %s SPELLING }"
+						PICK MY_LEX = CSET lookup %s
+
+						CSET
+
+					a1 += MY_LEX_CSET_a1
+					a2 += MY_LEX_CSET_a2
+
+						MY_LEX_CSET
+						.a1
+						.a2
+
+					PARSE lex_cset_punct_97
+
+						match "%s" // KNOW as AVAR
+						match "%s" // KNOW as ARG
+						match "%s" // KNOW as ARGV
+						match "%s" // KNOW as PARAMETER
+
+
+
+	
+
+

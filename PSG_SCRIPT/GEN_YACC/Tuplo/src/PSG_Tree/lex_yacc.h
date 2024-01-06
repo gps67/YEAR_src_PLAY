@@ -15,8 +15,8 @@ using namespace PSG;
 namespace PSG {
 class union_field_t { public: /* LEX return field YACC return field */
 
-	str1 union_field_name; // expr
-	str1 union_field_line; // EXPR * expr
+	str1 union_field_name; // expr // yacc name for field // rule name
+	str1 union_field_line; // EXPR * expr // C_DECL line of field
 
 	// LIST used in rules 
 	union_field_t(

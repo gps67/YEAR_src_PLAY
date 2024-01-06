@@ -2,8 +2,8 @@
 
 	CXX = g++
 	OPTIM = -g
-	INCLS = -I../
-	INCLS = -I../buffer
+#	INCLS = -I../
+#	INCLS = -I../buffer
 #	INCLS = -I/tools/2000/X11R6/include
 #	INCLS = `pkg-config --libs freetype2`
 #	INCLS = `pkg-config --libs libs_Apps`
@@ -25,7 +25,6 @@
 	include ../MK/MK_with_libs_apps # OK - ish
 
 	PKGS += libs_apps_base1
-
 
 #	HDRS += $S/A_point_plus.h
 #	HDRS += $S/X_Colours.h

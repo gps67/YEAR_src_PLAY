@@ -37,6 +37,11 @@ bool buffer1::print_ln( const char * fmt, ... )
 	return ok;
 }
 
+bool buffer1::print_ln()
+{
+	return put_EOLN();
+}
+
 bool buffer1::print_EOLN()
 {
 	return put_EOLN();

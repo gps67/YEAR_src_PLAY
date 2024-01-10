@@ -10,5 +10,6 @@ search= # stay at top
 search=+/START
 
 search=+/warning
+search=+/CTOR
 
 ./M "$@" 2>&1 | less $search

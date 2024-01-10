@@ -3,6 +3,8 @@
 	# S=../src
 	S=..
 
+	T=../test
+
 	CXX = g++
 	OPTIM += -g
 
@@ -150,6 +152,7 @@
 	OBJS0 += lex_yacc_LEX_PUNCT_NAME.o 
 	OBJS0 += lex_yacc_LEX_TOKEN.o
 	OBJS0 += lex_yacc_LEX_TOKEN_precedence.o
+	OBJS0 += lex_yacc_UNION.o
 	OBJS0 += lex_yacc.o
 	OBJS0 += lex_yacc_UDEF.o
 	OBJS0 += lex_yacc_UDEF_C_EXPR_lex.o
@@ -477,15 +480,15 @@ test0: $(into_yacc_y_3)
 
 test1: $(PROG1_exec)
 	# test1
-	./$(PROG1_exec) $S/test1.test
+	./$(PROG1_exec) $T/test1.test
 
 test2: $(PROG2_exec)
 	# test2
-	./$(PROG2_exec) $S/test2.test
+	./$(PROG2_exec) $T/test2.test
 
 test3: $(PROG3_exec)
 	# test3
-	./$(PROG3_exec) $S/test3.test
+	./$(PROG3_exec) $T/test3.test
 
 dgb_PROG1: $(PROG1_exec)
 	# debug

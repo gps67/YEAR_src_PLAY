@@ -5,6 +5,17 @@ using namespace PSG;
 #define OK( S ) 
 
 
+// buff is optional for TEMP1 
+// fn can return STR0 from ROM or from BUFF
+// fn { on_MATCH switch(chr) ; label = STR0 ; return label; } 
+// after inline OPTIM //
+
+// REWORK array[u8] of "STR0"
+// MMAP local ROM_SEGMENT BASE NBYTES u16_OFFS  u8_IDX
+// get_EA = BASE + OFFS
+// BASE = PAGE0 + OFFS_BASE 
+// OFFS = IDX * _1234
+
 bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 {
  const char * label = NULL;

@@ -1,0 +1,7 @@
+YY_STREAM.txt
+
+	YY_STREAM is P0P2 over buffer1 with added NL_NUL_EOF
+	YY_STREAM is P0P2 without any NL_NUL_EOF // real PARSER_to_P2
+	// we are as long as P2 comes after EOLN and it's NL BYTE
+	// unix mandates this for all text files
+	// we dont need a NUL byte // wont overwrite // overread and ignore

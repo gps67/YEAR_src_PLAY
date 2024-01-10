@@ -13,17 +13,30 @@
 	LURK: copied strings dont copy the flags!
 	(could copy the hash)
 
+	flags are in obj_ref0
+
+	CSET could be POKED into HASH u8_u24
+
+
 	FLAGS-POSS-MAYBE:
 
 		is_readonly
 		is_not_malloced_like_it_should_be // default _is_
 
+	 [u3]
+		000_unset
 		is_cset_ascii
-		is_cset_8859_9
+		is_cset_8859_latin # only 1 dialect
+		is_cset_8859_cyrillic
+		is_cset_BYTE_UDEF # mostly glyphs ASCII CTRL likely
 		is_cset_utf8
-		is_cset_UDEF_BYTE
-		is_cset_OTHER
+		is_cset_WIDE	# MS unicode
+		is_cset_OTHER 	# multi byte
 
+		OPTIONS to derive from str2 - and it provides CSET
+
+	[u2]
+		00_unset
 		is_word_edge_left
 		is_word_edge_inside
 		is_word_edge_right

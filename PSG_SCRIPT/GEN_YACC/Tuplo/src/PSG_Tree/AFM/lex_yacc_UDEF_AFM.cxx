@@ -46,6 +46,12 @@ bool lex_yacc_UDEF_AFM:: add_lex_for_AFM() {
 
 	POOL_RW.add_RW( "StartFontMetrics" );
 
+	// PARSER is ARGV of WORDS // OBJV //
+
+	// provide ACTUAL ";" as "PUNCT"
+	// its SPECIAL NAME is not for most PUNCT GLYPHS // MULTI_CHAR
+	POOL_PUNCT.add_PUNCT( ";", "L1", "semicolon_EOLN" );
+
 	POOL_RW.add_RW( "Comment" );
 	POOL_RW.add_RW( "FontName" );
 	POOL_RW.add_RW( "FullName" );
@@ -75,11 +81,12 @@ bool lex_yacc_UDEF_AFM:: add_lex_for_AFM() {
 
 	POOL_LEX.add_LEX( "EOLN" );
 	POOL_LEX.add_LEX( "WORD" );
-	POOL_LEX.add_LEX( "WS" );
+	POOL_LEX.add_LEX( "WORD_TEXT_LIST" ); // KLUDGE of NOT LINE_TAIL
+	POOL_LEX.add_LEX( "WS" ); // GAP
 	POOL_LEX.add_LEX( "DOUBLE" );
 	POOL_LEX.add_LEX( "INTEGER" );
 	POOL_LEX.add_LEX( "BOOL" );
-//	POOL_LEX.add_LEX( "FLOAT" );
+//	POOL_LEX.add_LEX( "FLOAT" ); // or AFM is INTS only
 
 	WARN("UNWRITTEN");
 	// return FAIL("UNWRITTEN");

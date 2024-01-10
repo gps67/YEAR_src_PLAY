@@ -167,7 +167,7 @@ struct p0p2 : public GRP_lib_base
 	int	N_bytes() const { return p2 - p0 ; }
 	int	blk_len() const { return N_bytes(); }
 	int	byte_len(void) const { return p2 - p0 ; }
-	int	str_len(void) const { return p2 - p0 ; }
+	int	str_len(void) const { return p2 - p0 ; } // mem_len poss NUL //
 
 	char *	str_cpy( void ) const
 	{

@@ -1,0 +1,103 @@
+info bison // not the man page fall back
+
+3.8 Multiple Parsers in the Same Program
+
+%define api.prefix {psg_}
+
+printed for YACC by "lex_yacc.cxx"
+switched off until time available to track down all psg_XXX( funcs )
+
+// FLEX // %option prefix="PREFIX"' // FLEX not BISON
+
+	// FLEX uses command line option 
+	// '-PPREFIX, --prefix=PREFIX, '%option prefix="PREFIX"''
+	// also changes lex.yy.c to lex.psg_.c
+
+	yy_create_buffer
+	yy_delete_buffer
+	yy_flex_debug
+	yy_init_buffer
+	yy_flush_buffer
+	yy_init_buffer
+	yy_flush_buffer
+	yy_load_buffer_state
+	yy_switch_to_buffer
+	yyin
+	yyleng
+	yylex
+	yylineno
+	yyout
+	yyrestart
+	yytext
+	yywrap
+	yyalloc
+	yyrealloc
+	yyfree
+
+
+
+
+Or, if both ‘%define api.pure full’ (or just ‘%define api.pure’) and
+‘%locations’ are used:
+
+	DECL == "int * randomness" // aka SELF
+
+     void yyerror (YYLTYPE *llocp, int *randomness, const char *msg);
+     int  yyparse (int *randomness);
+
+
+ int psg_lex (PSG_STYPE *yylval, PSG_LTYPE *yylloc); 
+
+	PSG_STYPE	psg_lval	LEX VAL
+	PSG_LTYPE	psg_lloc	location
+
+	psg_parse	yyparse		(DECL) BISON provides this we call it
+	psg_lex		yylex		() get next lex
+	psg_error	yyerror		(DECL,msg) report error (LOCN,DECL,msg)
+	psg_nerrs	yynerrs		count n errors
+	psg_lval	yylval		lex val UNION 
+	psg_lloc	yylloc { YYLTYPE yylloc; } { start end line col }
+	psg_char	yychar
+	psg_debug	yydebug
+
+			yytext	a buffer for each lex 
+
+ obj/gen_e1_yacc.tab.hh
+
+ 	PSG_STYPE	union of LEX_RET_VAL 
+ 	PSG_STYPE	psg_lval; exported RET_VAL
+
+/* Value type.  */
+#if ! defined PSG_STYPE && ! defined PSG_STYPE_IS_DECLARED
+
+	union PSG_STYPE
+	{
+	#line 117 "../obj/gen_e1_yacc.y"
+	    
+	  struct EXPR * expr;
+	  u32 e32;
+	  int tokn;
+	  const char * lex_buff;
+	    
+	#line 143 "../obj/gen_e1_yacc.tab.hh"
+	    
+	};
+
+--
+
+gen_e1_yacc.tab.cc:#define yyparse         psg_parse
+gen_e1_yacc.tab.cc:#define yylex           psg_lex
+gen_e1_yacc.tab.cc:#define yyerror         psg_error
+gen_e1_yacc.tab.cc:#define yydebug         psg_debug
+gen_e1_yacc.tab.cc:#define yynerrs         psg_nerrs
+gen_e1_yacc.tab.cc:#define yylval          psg_lval
+gen_e1_yacc.tab.cc:#define yychar          psg_char
+
+gen_e1_yacc.tab.hh:extern int psg_debug;
+gen_e1_yacc.tab.hh:  enum psg_tokentype
+gen_e1_yacc.tab.hh:  typedef enum psg_tokentype psg_token_kind_t;
+gen_e1_yacc.tab.hh:extern PSG_STYPE psg_lval;
+gen_e1_yacc.tab.hh:int psg_parse (YY_Parse_t & psg);
+gen_e1_yacc.y:%define api.prefix {psg_} // prefix all funcs
+
+

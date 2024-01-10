@@ -14,8 +14,11 @@ extern yy_buffer_state * yy_scan_string ( const char *yy_str  );
 extern yy_buffer_state * yy_scan_bytes ( const char *bytes, int len  );
 
 extern void yyrestart ( FILE *input_file  );
+// eg
 // FILE * IN = fopen( filename, "r" ); // check NULL
+//
 // yyrestart ( IN );
+//
 // yyparse(PSG);
 
 extern void yy_delete_buffer(yy_buffer_state * buffer);
@@ -36,15 +39,23 @@ extern void yy_delete_buffer(yy_buffer_state * buffer);
 using namespace YY;
 
 YY_Parse_t::
+YY_Parse_t( str0 _Name )
+: Name( _Name ) // debugging label eg "AFM"
+{
+	INFO("CTOR %s // PSG_NAME //", (STR0) Name); // usually the PSG Name eg "AFM"
+}
+
+YY_Parse_t::
 YY_Parse_t()
 {
-	INFO("CTOR");
+  	INFO("CTOR - no Name ");
 }
 
 YY_Parse_t::
 ~YY_Parse_t()
 {
-	INFO("DTOR");
+//	INFO("DTOR");
+	INFO("DTOR %s", (STR0) Name);
 }
 
 int YY_Parse_t::

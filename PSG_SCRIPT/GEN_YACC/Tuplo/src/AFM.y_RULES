@@ -1,5 +1,5 @@
 //
-// THIS IS AFM.y_RULES START
+// THIS IS AFM.y_RULES START ////////////////////////////////////////////////////
 //
  /*
  	StartFontMetrics 3.0
@@ -57,6 +57,6 @@ lines
 top: HEADERS
 
 //
-// THIS IS AFM.y_RULES END
+// THIS IS AFM.y_RULES END ////////////////////////////////////////////////////
 //
 

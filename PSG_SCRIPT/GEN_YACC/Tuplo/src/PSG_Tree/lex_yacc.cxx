@@ -504,11 +504,11 @@ gen_OUT_cat_file( buffer2 & out, STR0 filename )
 	bool ok = true;
 
 //	out.print_ln("/*");
-	out.print_ln("");
+	out.print_ln();
 	out.print_ln(" /* INCL */ ");
-	out.print_ln("");
+	out.print_ln();
 	out.print_ln(" /* INCL // including file '%s' */", (STR0) filename );
-	out.print_ln("");
+	out.print_ln();
 	out.print_ln(" /* INCL // --------------- START ----------------- */");
 
 	int K_max = 32;
@@ -944,7 +944,13 @@ gen_YACC( buffer2 & out ) // all of it
 	L1("%}");
 	// declare the parameter to get i// int yyparse( HERE );
 
-	gen_yyparse_parameter( out ); // see YY_PARSE.h
+	buffer2 DECL; DECL.print("YY_Parse_t & SELF" );
+	buffer2 PSG_; PSG_.print("%s_", (STR0) psg_abbr );
+
+	gen_yyparse_parameter( out, (STR0) DECL); // see YY_PARSE.h
+//	we will need prefix for lex
+//	gen_yyparse_prefix( out, PSG_ ); // see YY_PARSE.h // with trail_under
+	INFO("TODO gen_yyparse_prefix( out, PSG_ ); // TODO ");
 	gen_YACC_union( out );
 	gen_YACC_token_list( out );
 	gen_YACC_type_list( out );

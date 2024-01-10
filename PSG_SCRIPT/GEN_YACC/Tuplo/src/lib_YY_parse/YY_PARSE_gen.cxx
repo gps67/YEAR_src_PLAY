@@ -36,17 +36,25 @@ using namespace YY;
 */
 
 bool 
-gen_yyparse_parameter( buffer2 & out)
+gen_yyparse_parameter( buffer2 & out, STR0 decl )
 {
+	if( !decl ) { decl = "YY_Parse_t & psg"; }
+
 	out.printf("\n"); // blank line
 
-	out.printf("// %%parse-param { FIRST } { SECOND }\n");
+	out.printf("// PARAMETER( YY_Parse_t & PSG_PARSER )\n");
+	out.printf("// PSG_PARSER is GLOBAL_CTXT_during_active_PARSE\n");
+	out.printf("// YY_Parse_t called this with itself as PARAMETER\n");
+	out.printf("// SUBLEX PSG YY_Parse TEXT_STREAM_PROVIDER all in CTXT PARAMETER\n");
+	out.printf("// CTXT = PSG_PARSER \n");
 	out.printf("// PARAMETER { Type * Item }  // to yyerror \n");
 	out.printf("// see https://www.gnu.org/software/bison/manual/html_node/Parser-Function.html \n");
 	out.printf("// C might not complain about missing parameters \n");
 	out.printf("//\n");
 //	out.printf("%%parse-param {YY_Parse_t * parser} // PARAMETER \n");
-	out.printf("%%parse-param {YY_Parse_t & psg} // PARAMETER // NB REF AMP \n");
+//	out.printf("%%parse-param {YY_Parse_t & psg} // PARAMETER // NB REF AMP \n");
+	out.printf("%%parse-param { %s } // PARAMETER // \n", decl );
+
 
 //	out.printf("%%code provides \n{ YY_Parse_t & psg = * parser; \n } \n");
 //	out.printf("%%code requires \n{ YY_Parse_t & psg = * parser; \n } \n");
@@ -54,6 +62,14 @@ gen_yyparse_parameter( buffer2 & out)
 // none of them - all landed outside of yyparse
 
 	// out.printf("%%define api.pure full\n"); // see detailed
+
+	return true;
+}
+
+extern	bool gen_yyparse_prefix( buffer2 & out, STR0 pfx_ )
+{
+	if(!pfx_) pfx_ = (STR0) "psg_";
+	out.printf("%%define api.prefix {%s} // prefix all funcs \n", pfx_ );
 	return true;
 }
 

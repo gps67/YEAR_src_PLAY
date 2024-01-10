@@ -1,6 +1,169 @@
 lib_YY_parser
 lib_YY_parse/lib_YY_parse.txt
 
+	run YY_PARSE over TEXT get TREE_BRANCHES in HEAP
+
+	YY_PARSE run PSG SUBLEX over TEXT stream FRAG fragments
+	YY_STREAM chunks up stream of crypted blocks over page boundary
+	YY_MMAP applied PREFILTER to assist cache parse of ROM SCRIPT
+	YY_INVOKE calls EVAL over PARSED SCRIPT TREE
+	YY_TREE 
+	 uses a RAW ARGV of TEXT FRAG PHRASE WORD as_STR0 as_P0P2_in_STREAM
+	
+	YY_STREAM
+	 as_P0P2_in_TEXT {
+	 	TEXT += STREAM_containing_PARSED_TEXT
+		TEXT += INCLUDE FILE
+		TEXT += LIST of TEXT incl SCRIPT 
+		FRAG += INDENTED_ZONE {
+		 PSG += INDENTED_ZONE_as_PSG
+		 STO + NBYTES "STO" in "SPACE"
+		 STO + NBYTES "OBJ" in "SPACE"
+		  API P0P2_from_NBYTES__STO_OBJ // DUNDER JOIN GROUP EDGE
+		  // or VOID /*deduce between "{%s}" */ AUTO PARAMETER
+		  // or VOID /*deduce between "_%s_" */ _ within __ MID
+		  // or VOID /*deduce between "_%s_" */ SP within SP_ MID
+		}
+	 }
+
+	
+	YY_STREAM 
+
+	 as P0P2_in_SEGMENT
+	 as FILE in SEGMENT
+	 via DE_CRYPT FILTER as BUFFER_CHUNKS of 16K via SSL also 1K_HEADER
+
+	 	need to transfer 16KB as a complete untouched block
+		send 1K header then 16KB data // option on second channel
+		send link to present
+	
+	YY_TREE
+
+		we build using a generic EXPR tree 
+		so that it is easier to generate generic TUPLO phrases
+		specific to COPDE_POINT in MODULE
+	
+	XPOS
+
+		SEGMENT
+		CSR_P0
+		CSR_P1 // POS of CSR as OFFS
+	//	CSR_P2 // limit of parsing comes from SEGMENT
+
+	SEGMENT_for_XPOS
+
+		PROVIDE P0 of ZONE in SEGMENT
+		PROVIDE P2 of LIST[_of_ITEM]
+
+
+
+ TASKS += VIDEO JUKEBOX from MOBILE_TOKEN from URL
+
+ 	PUBLIC REQUEST to DJ incl LINKS // from LOOKUP // to remote
+	SUBSCRIBED UPLOAD of .mp4 // with_CSR_SCRIPTS
+
+		VAR_NAME XPOS_TRACK_P0P2
+
+			we dont have a choice we must count P2 
+			check every ACCESS
+			check in advance with KNOW SAME P2 as ARG_P2
+
+			if( CSR < P0 ) KNOW is_BEFORE_SEGMENT(IN=false)
+			if( CSR < P2 ) KNOW is_WITHIN_SEGMENT(IN=true)
+			if( CSR == P2 ) KNOW is_EXACTLY_OUTSIDE_EOF
+			if( P2 < CSR ) KNOW is_PAST_ZERO_OF_ALIEN_SEGMENT_AFTER_EOF
+	
+	IN_ZONE
+
+		MUX holds .mp4 request from .caller for 1 day + 1 week + precis
+		MUX holds PLAY_LIST list
+	
+		[11:47] mins in LEFT_FIELD on TOTP as them interval
+		[14:08] end LEFT_FIELD on TOTP unannounced
+		[14:15] TOTP announced
+		[17:08] Tricky
+		[19:44] TOTP accounce
+		[20:08] BLUR
+		[24:28] Take That
+		[28:06] TLC snippet
+	
+	on_VLAN
+
+		subscriber += me_on_VLAN
+
+		SESS += SESS CT_SESS_RT_SESS
+
+		permit 20GB on DJ_BOOTHE // more as OWNER // TIDE_MARKINGS
+		permit 200GB on DJ_DESK_STO
+
+		index upload 
+		.mp4 filename DIR ACCESS OWNERSHIP
+
+			without OWNERSHIP 
+			option of CRYPT so not PIRATE except to SECRET_KEY
+			hope KEY means PERMITTED
+
+			OPTION - no KEY from client, use own TAGGED PERMIT
+			KEY 
+			 NAME useful on keyring
+			 BIND PERMIT // CODE_POINT.BIND_PERMIT += PERMIT
+			 BIND FILE // str1 // own_str // CSET // asif_UTF8
+			 CSET += asif_8859 
+			  write 8859 -filter-> utf8
+			  reade 8859 <-filter- utf8
+			  on_EVENT("CHAR_from_UNICODE_beyond_CSET_ONE")
+			  on_EVENT("CHAR_from_UNICODE_ie_CSET_PLUS")
+			  on_EVENT("CHAR_from_UNICODE_ie_CSET_TWO")
+
+		MEDIA PLAY SCRIPT
+
+		 DJ_LIST
+
+		 	start_time
+			  mid_time
+			  mid_time
+			  end_time
+
+
+			 VAR_POOL CSRS (
+			  %s
+			  CSR_%s	# idx_as_name_rhs
+			  CSR[%s]	# idx as int in_range(CHECK)
+			   passing parameter CHECK weaves code
+			   CHECK_on_OK RETURN_ASAP
+			   CHECK_on_FAIL CALL_on_CHECK
+			  CSRS[%s]	# PICK { CSR CSRS } { SINGLE PLURAL }
+
+			TRACK
+
+				filename
+				mimetype _from_ext // cached compiler runs
+				GB
+				KPS
+				TIME
+
+		DJ STO
+
+			LIST of trusted STO
+
+			 can get KPS to STREAM OUT
+			 can use with PERMIT
+
+
+			 
+
+
+iso_copied/YEAR_PVR/G_to_NAS_2024/v Top_of_the_Pops_-_03_08_1995_m001tdmv_original.mp4 
+
+		MUX holds LIBR in ROM_STABLE SEGMENT P0P2_in_SEGMENT_with_CSR
+
+			SEGMENT provides API and cached fetched value P0P2
+
+			 SEGMENT_on_SEGMENT
+
+
+
+
 	namespace YY {
 	struct YY_Parse_t {
 	}; // struct

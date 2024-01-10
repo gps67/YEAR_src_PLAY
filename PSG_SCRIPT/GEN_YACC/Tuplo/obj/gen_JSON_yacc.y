@@ -47,12 +47,17 @@
 
 %}
 
-// %parse-param { FIRST } { SECOND }
+// PARAMETER( YY_Parse_t & PSG_PARSER )
+// PSG_PARSER is GLOBAL_CTXT_during_active_PARSE
+// YY_Parse_t called this with itself as PARAMETER
+// SUBLEX PSG YY_Parse TEXT_STREAM_PROVIDER all in CTXT PARAMETER
+// CTXT = PSG_PARSER 
 // PARAMETER { Type * Item }  // to yyerror 
 // see https://www.gnu.org/software/bison/manual/html_node/Parser-Function.html 
 // C might not complain about missing parameters 
 //
-%parse-param {YY_Parse_t & psg} // PARAMETER // NB REF AMP 
+%parse-param { YY_Parse_t & SELF } // PARAMETER // 
+%define api.prefix {JSON_} // prefix all funcs 
 
 // gen_YACC_union(outbuf) // 
  %union {

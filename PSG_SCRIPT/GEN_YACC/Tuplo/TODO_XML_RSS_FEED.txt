@@ -1,0 +1,268 @@
+
+	TODO_XML_RSS_FEED.txt
+
+An RSS_FEED is described in an XML ATOM (WKP)
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>jsfree.org</title>
+<link href="https://barf.bt.ht/atom.xml" rel="self"/>
+<updated>2024-01-10T19:09:01Z</updated>
+<author>
+<name>Bradley Taunt</name>
+</author>
+<id>https://barf.bt.ht,2024-01-10:default-atom-feed/</id>
+<entry>
+<title>Introducing jsfree.org</title>
+<content type="html"><h1>Introducing jsfree.org</h1> <p>2024-01-10</p> <p>Hello and welcome to jsfree.org!</p> <h2>The What</h2> <p>This site is a growing, community-driven collection of web services that work 100% without JavaScript. So if you're running older, unspported hardware or prefer to run a browser with JavaScript disabled, the services listed on this site will all work seamlessly! Pretty neat, eh?</p> <p>(My name is <a href="https://bt.ht">Brad</a> BTW - but the community is more important than the catalyst!)</p> <h2>The Why</h2> <p>The core concept behind this project is not to hate on JavaScript. JavaScript isn't evil or going to cause the internet to explode. This was merely created to help showcase web applications that work without such overheads. Some users just prefer to go JavaScript-free, similar to those who have no issue running it. I think it's fair to respect personal choice.</p> <p>So, if you feel offended by the concept of others not liking JavaScript, maybe go for a nice walk and think deeply about why something so unimportant would bother you so much. There are much better things to spend your time and energy on. Relax!</p> <h2>Get Involved</h2> <p>I'm far from an expert in the field of "all-things JavaScript-free". Consider helping me out and making this site even better!</p> <ul> <li><a href="https://lists.sr.ht/~bt/jsfree.org">Submit</a> service/category suggestions or improvements to the main website.</li> <li>Create your own JavaScript-free web service / application. (Then submit it!)</li> <li>Spread the word, so the world knows they can go JavaScript-free.</li> </ul> <p>That's all I really have to say. If you're interested in any JavaScript-free related news in the future, consider following the main <a href="/atom.xml">RSS feed</a>. Cheers!</p></content>
+<link href="https://barf.bt.ht/2024-01-10-introducing-jsfree"/>
+<id>https://barf.bt.ht/2024-01-10-introducing-jsfree</id>
+<updated>2024-01-10T10:00:00Z</updated>
+<published>2024-01-10T10:00:00Z</published>
+</entry>
+</feed>
+
+/// reformatted becomes:
+
+https://jsfree.org/atom.xml
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>jsfree.org</title>
+ <link href="https://barf.bt.ht/atom.xml" rel="self"/>
+ <updated>2024-01-10T19:09:01Z</updated>
+ <author>
+ <name>Bradley Taunt</name>
+ </author>
+ <id>https://barf.bt.ht,2024-01-10:default-atom-feed/</id>
+ <entry>
+ <title>Introducing jsfree.org</title>
+ <content type="html">
+
+  <h1>Introducing jsfree.org</h1>
+  <p>2024-01-10</p>
+  <p>Hello and welcome to jsfree.org!</p>
+
+  <h2>The What</h2>
+  <p>This site is a growing, community-driven collection of web services that work 100% without JavaScript. So if you're running older, unspported hardware or prefer to run a browser with JavaScript disabled, the services listed on this site will all work seamlessly! Pretty neat, eh?</p>
+  <p>(My name is <a href="https://bt.ht">Brad</a> BTW - but the community is more important than the catalyst!)</p>
+
+  <h2>The Why</h2>
+  <p>The core concept behind this project is not to hate on JavaScript. JavaScript isn't evil or going to cause the internet to explode. This was merely created to help showcase web applications that work without such overheads. Some users just prefer to go JavaScript-free, similar to those who have no issue running it. I think it's fair to respect personal choice.</p>
+  <p>So, if you feel offended by the concept of others not liking JavaScript, maybe go for a nice walk and think deeply about why something so unimportant would bother you so much. There are much better things to spend your time and energy on. Relax!</p>
+
+  <h2>Get Involved</h2>
+  <p>I'm far from an expert in the field of "all-things JavaScript-free". Consider helping me out and making this site even better!</p>
+  <ul>
+   <li><a href="https://lists.sr.ht/~bt/jsfree.org">Submit</a> service/category suggestions or improvements to the main website.</li> 
+   <li>Create your own JavaScript-free web service / application. (Then submit it!)</li>
+   <li>Spread the word, so the world knows they can go JavaScript-free.</li> r
+  </ul>
+  <p>That's all I really have to say. If you're interested in any JavaScript-free related news in the future, consider following the main <a href="/atom.xml">RSS feed</a>. Cheers!</p
+  </content>
+  <link href="https://barf.bt.ht/2024-01-10-introducing-jsfree"/>
+  <id>https://barf.bt.ht/2024-01-10-introducing-jsfree</id>
+  <updated>2024-01-10T10:00:00Z</updated>
+  <published>2024-01-10T10:00:00Z</published>
+  </entry>
+  </feed>
+
+  ////////////////////////////
+
+  PARSE XML expecting ATOM usage DIALECT
+
+  	SECOND PASS converts TREE leaves to VALUES_in_XML
+
+		MERGE second pass into first pass PSG 
+
+			obtain VALUE from PARSED P0P2
+
+			or from STREAM CSR to find P0P2 of VALUE_is_DATE_TIME
+
+		HEURISTIC
+
+			MATCH USAGE DATE_TIME format 
+			DIFFERS
+
+				detect consistent USAGE within TEXT
+				detect inconsistent USAGE in loose DIALECT
+
+		SPEED
+
+			not creating STR0 for everything
+			yes keeping XPOS_CSR_P1 
+			OPT keeping XPOS_PLUS_FILE_YPOS_CSET // same as FILE
+
+		SAFER
+
+			gen PSG that is safer, even when double wrap mix
+
+			gen PSG uses consistent GEN that humans dont
+	
+ FETCH RSS INDEX
+
+ 	fetch DAILY
+	fetch CHECK
+
+ CONNECT for SIGNAL
+
+ 	connect to SHARED GATEWAY (user nominates ISP as offline rep merge)
+	connect as ONLINE_CLIENT _but_unattended
+	fetch
+	 GATEWAY suggests CSR_POS date_time_vals
+	 treat received as RECEIVED
+	CHECK received against previous
+	 first load flag means OK no change
+	 first load flag means ASIF from scratch
+	 compare CSR saved, request UPDATE
+	 batch future update under PENDING
+	CHECK received against PENDING
+	 monatonic progress, decent buffer size, no D.O.S., else WARN maybe ASK
+	 process largest complete block
+	 accept OPEN START BLOCK for interactive style batch under buffer
+	 accept LINE is a STEP worth doing SOON
+	 accept LIST of LINE worth merging into EVAL from XPOS
+	  ie first PARSE inout into TREE
+	  second EVAL as much as makes sense
+	  third accept CSR moved a bit or completely or STALLED because
+
+	 Every client must have an abbreviated list of updates
+	  OPTION retain ORIGONAL SOURCE
+	  OPTION merge all requests
+	  	possibly sorted CT_RT bunches and sequences
+		usually entire SCRIPT is PARSED ans as much DATA as AVAIL
+	
+ SERVER
+
+	accept connection from connecting clients // does login ABSENT PRESENT
+ 	connect to CLIENT # NOTIFY of recent update
+ 	connect to CLIENT # NOTIFY of no change HEARTBEAT 99 seconds
+
+	VAR_NAME
+	VAR_VALUE _from_REMOTE
+	VAR_CHANGED _remote_says_changed_WHEN
+	VAR_UNCHANGED _remote_says_unchanged_upto_WHEN
+
+	 client uses UPTO 10 second patience
+	 client uses SYNC_and_SEND all // requests_REMOTE_sends_all_and_IDLE
+
+STREAM
+
+	ACTIVE 
+		incrementally uploading PAGES of DATA and SCRIPT 
+		occasionally complete set of pages enables CLOCKWORK_RELEASE
+	
+	COMPLETE set_of_pages
+	PARTIAL set_of_pages
+	COMPLETE PAGE in set
+		PARSER is interactive at LINE level
+		PARSER is BUNDLE_BATCH_COLLECTING MULTI_LINE LINE
+	
+	ASIDE
+
+		PRE_DATA can be sent to ASIDE
+		END_CODE can be run when EDGE_DETECT ZONE_BOUNDARY
+
+			TICK_TOCK
+			ZONE_CLOCK
+
+			<ZONE>
+				keep collecting until
+			</ZONE>
+			on_ZONE ZONE += TICK_TOCK_CLOCK // CT_ += //
+
+FFS_FAMILY_FILE_SYSTEM
+
+	each has own FILE space
+
+	each can add to TREE, edit their addition, might be MASK_GONE
+
+		MASK_as_GONE is recoverable delete
+		used after monthly backup
+
+			protect against loss - pre backup values are now FIXED
+			enable delete - server usually takes burden - author too
+			queue delete - aside a months of TEMPS in case of XXX
+		
+		used after daily backup
+
+			protect against LOSS - daily as_was snapshots
+			enable delete - queue delete of daily temps
+			new clients wont have to track every TEMP mid-val
+
+		each has edit perms, mostly from overlay
+
+			TREE NODE += OVERLAY from SESSION
+
+			EDIT_PERM is OVERLAY any and this time check FILTERS
+
+		admin has edit role, especially at quarter
+
+			QUARTER is like monthly but more formal version KEPT
+	
+	AQUIRED accumulated
+
+		TREE of VITAL photos from gatherings
+		TREE of NOISE from chatrooms
+
+		push back to CLIENT that provided
+		push back to CLIENT HELPER or REP or ADMIN or AUTO
+	
+	NOISE temporaries
+
+		char rooms are archived forever :-) optionally
+		admin filters each quarter, and ongoing gardening FS
+	
+	FS layout
+
+		BRANCH owner promotes own USAGE
+		CENTRAL USAGE matches / differs BRANCH USAGE
+
+		accumulated styles and temp usage and mixed half used
+	
+
+	BULK BACKUP
+	BULK TRANSFER
+
+		each house has a quarterly BULK_TRANSFER
+		already incrementally prepared
+		update IMAGE to REQUEST // ie what BULK_ITEM was // PLUS then
+		(SIGNAL_IS_COMPLETE_DATA)
+
+		each house has loads of phones
+		which DONT want BULK transfer archives
+		but actually do use SD_CACHE and WIFI BULK_ROMS
+
+			message selectively tag files as HERE or AVAIL
+			phones QUEUE fetch when in WIFI
+			requests PULLED ASAP JUMP QUEUE
+	
+	MOST COMMON
+
+		all phones are fully up to date
+		all traffic is light
+		use BASELINE + DIFFS // replacements not diffs
+
+		TELL_ME_LATER
+			in_a_meeting - 
+		POLL_ME_NOW
+			checking whilst in a meeting
+			switch AUTO_LOAD_WHEN_AVAIL on for 20 mins
+		TELL_ME_NOW
+			ON WLAN QPOS check - minimal data
+			ON WIFI queue is upto date
+			run the queue from already LOADED queue segment
+
+		expect 
+		RSS SIGNAL 
+		 VIEW avail // news just in //
+
+		MSG_SIGNAL
+		 CURR_SIGNAL is mid conversation
+			 
+
+
+
+
+
+
+

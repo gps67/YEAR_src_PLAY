@@ -98,6 +98,17 @@ bool lex_yacc_UDEF_AFM:: add_lex_for_AFM() {
 ///////////////////////////////////////////////////////////////////////////
 
 bool lex_yacc_UDEF_AFM:: add_yacc_for_AFM() {
+
+	// the original plan was to build TREE_ONE
+	// then only print out the parts used (TREE_TWO ?)
+	// or add each of these as they are USED in a rule
+	// UNION of RET_VAL from LEX and from YACC
+
+	union_field_list.lookup_add( "tokn",     "int tokn" );
+	union_field_list.lookup_add( "lex_buff", "const char * lex_buff" );
+	union_field_list.lookup_add( "expr",     "struct EXPR * expr" );
+	union_field_list.lookup_add( "e32",      "u32 e32" );
+
 	return true;
 	return FAIL("TODO");
 }

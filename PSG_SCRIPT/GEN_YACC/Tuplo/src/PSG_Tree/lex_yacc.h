@@ -107,7 +107,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
  	str1 lex_name; // gen_XXX_lex 	.lex
  	str1 yacc_name; // gen_XXX_yacc 	.y
 
- 	str1 psg_item; // gen_XXX_psg // ##_psg##_reappears##_as //
+ // ?? 	str1 psg_item; // gen_XXX_psg // ##_psg##_reappears##_as //
 
 	//	CVAR NAME str1 psg_name; // "gen_XXX" 
 	//	MATCH %s_psg NAME == "gen_XXX"
@@ -182,6 +182,11 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	LEX_TOKEN_GROUP POOL_RW;
 	LEX_TOKEN_GROUP POOL_LEX;
 	LEX_START_GROUP POOL_START;
+
+#include "lex_yacc_UNION.h"
+
+	union_field_list_t
+	union_field_list;
 
  // XXXX
 

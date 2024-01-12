@@ -1141,20 +1141,13 @@ gen_YACC_union( buffer2 & out )
 	L1("");
  L1("// gen_YACC_union(outbuf) // ");
  L1(" %union {");
-// NO L1(" EXPR * expr;"); // almost
-// NO  L1(" EXPRS:: struct EXPR * expr;");
-// NO L1(" struct EXPRS:: EXPR * expr;");
-// L1(" struct ::EXPRS:: EXPR * expr;");
-// L1(" ::EXPRS:: EXPR * expr;");
-// L1(" EXPR * expr;");
-// L1(" struct EXPR_t * expr;"); // almost
 
-// this list comes from %left <tokn> PUNCT_STAR // "token_type token"
+ union_field_list.print_lines(out);
 
- L1("  struct EXPR * expr;"); // almost // incomplete type?
- L1("  u32 e32;"); // retval is int
- L1("  int tokn;");
- L1("  const char * lex_buff;"); // via several buffer2 ring of holders
+// L1("  struct EXPR * expr;"); // almost // incomplete type?
+// L1("  u32 e32;"); // retval is int
+// L1("  int tokn;");
+// L1("  const char * lex_buff;"); // via several buffer2 ring of holders
 
  L1(" }");
 	return true;

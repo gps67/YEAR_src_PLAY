@@ -59,6 +59,9 @@ prng_seed.dat
 # node_modules/ dir
 node_modules
 
+# .vscode DIR
+.vscode
+
 # Fortran module files
 *.mod
 *.smod

@@ -72,8 +72,8 @@ in
 	# Samba=Dance
 	# Artist="Sonia"
 
-	Samba=Conga
-	Artist="Leo"
+	Samba=YME
+	Artist="Mainwaring"
 	Sess_List="_sess_1 _sess_2 "
 ;; Tuex)
 	Samba=Global_X
@@ -108,6 +108,10 @@ in
 	Samba=Global_Thu
 	Artist="Annie Parker Collective"
 	Sess_List="_sess_1 _sess_2"
+;; Fri)
+	Samba=Velocity
+	Artist="EDE TheMay AugList"
+	Sess_List="_sess_1 _sess_2"
 ;; Sat)
 	Samba=JP_Workshop
 	Artist="JP Percussion"
@@ -115,22 +119,41 @@ in
 	Samba=Emma_Rob_Skye
 	Artist="Emma Rob Skye"
 	Sess_List="_sess_1 _sess_2"
+
+	Samba=salisbury_djembe
+	Artist="Mohamed Gueye"
+	Sess_List="_sess_1 _sess_2"
+
+;; Sun)
+	Samba=salisbury_djembe
+	Artist="Mohamed Gueye"
+
+	Samba=irish
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
+	Samba=americana
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 ;; *)
 	Samba=XX
 	Artist="Artist"
-	Sess_List="_sess_1 _sess_2"
+	Sess_List="_sess_7 _sess_8"
 esac
 
 
 G=/home/gps/Gx
 G=/home/gps/G
 REC_YEAR=${G}/REC_${YEAR}
+REC_YEAR_dot_dot=${HOME}/YEAR/REC_YEAR_dot_dot
+REC_YEAR=${REC_YEAR_dot_dot}/REC_${YEAR}
 
 # user must choose where to process locally in $HOME/G/REC_YEAR/
 # must be local for speed and carry
 # G is me, you might want U
 
-dir_must_exist $REC_YEAR  # done # || FAIL #
+dir_must_exist $REC_YEAR_dot_dot  # done # || FAIL # ADMIN MUST SETUP
+cd_mkdir_FAIL $REC_YEAR  # done # || FAIL #
 # [ -d $REC_YEAR ] || FAIL
 
 # Per Month Layout in REC_YEAR/
@@ -143,7 +166,8 @@ dir_must_exist $REC_YEAR  # done # || FAIL #
 REC_WAV_Jan=${REC_YEAR}/REC_WAV_${YEAR}/REC_WAV_${YEAR_MM_Jan}
 REC_AUD_Jan=${REC_YEAR}/REC_AUD_${YEAR}/REC_AUD_${YEAR_MM_Jan}
 REC_MP3_Jan=${REC_YEAR}/REC_MP3_${YEAR}/REC_MP3_${YEAR_MM_Jan}
-REC_AUD_Jan_DONE_Jan=${REC_YEAR}/REC_AUD_${YEAR}_DONE/REC_AUD_${YEAR_MM_Jan}_
+REC_AUD_DONE=${REC_YEAR}/REC_AUD_${YEAR}_DONE
+REC_AUD_Jan_DONE_Jan=${REC_AUD_DONE}/REC_AUD_${YEAR_MM_Jan}_
 # /home/gps/G/REC_2018/REC_AUD_2018_DONE/
 
 if [ ! -d $REC_AUD_Jan/. ] 
@@ -159,6 +183,7 @@ fi
 cd_mkdir_FAIL $REC_WAV_Jan
 cd_mkdir_FAIL $REC_AUD_Jan
 cd_mkdir_FAIL $REC_MP3_Jan
+cd_mkdir_FAIL $REC_AUD_DONE
 cd_mkdir_FAIL $REC_AUD_Jan_DONE_Jan
 
 # build some filenames / strings using artist name # ${Samba}
@@ -205,12 +230,13 @@ function mk_audacity {
   NAME_PROJECT="${2:-YEAR_MM_DD_Tue_Samba_sess1}" # the name of the project in the dir
   NAME_PROJDATA="${NAME_PROJECT}_data"
   PRJ_AUD_aup="${DIR_aud}/${NAME_PROJECT}.aup"
+  PRJ_AUD_aup3="${DIR_aud}/_${NAME_PROJECT}.aup3"
   PRJ_AUD_sh="${DIR_aud}/${NAME_PROJECT}.sh"
   PRJ_AUD_data="${DIR_aud}/${NAME_PROJDATA}"
   # BE CAREFUL to not overwrite exiting file
   if [ ! -f "${PRJ_AUD_aup}" ]
   then
-	  run_mkdir "${PRJ_AUD_data}"
+	  run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
 	# indent by SP SP of .aup caused it to not be recognised
 	  cat << !EOT | tee "${PRJ_AUD_aup}"
 <?xml version="1.0" standalone="no" ?>
@@ -223,7 +249,7 @@ function mk_audacity {
 	  </tags>
 </project>
 !EOT
-
+	touch ${PRJ_AUD_aup3}
   fi # 
 
   if [ ! -f "$FILE_TXT" ]
@@ -234,7 +260,7 @@ function mk_audacity {
   
   if [ ! -f "${PRJ_AUD_sh}" ]
   then
-  	echo "ask_do audacity '${NAME_PROJECT}.aup'" > "${PRJ_AUD_sh}"
+  	echo "ask_do audacity '${NAME_PROJECT}.aup3'" > "${PRJ_AUD_sh}"
   	chmod 755 "${PRJ_AUD_sh}"
   fi
 

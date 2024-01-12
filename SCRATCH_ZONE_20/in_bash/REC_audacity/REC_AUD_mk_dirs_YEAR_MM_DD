@@ -1,0 +1,19 @@
+#
+# REC_AUD
+# REC_AUD_mk_dirs
+# REC_AUD_mk_dirs_yesterday
+
+ask_do ./REC_AUD_mk_dirs -d 2024-01-03
+exit
+ask_do ./REC_AUD_mk_dirs -d 2023-12-11
+ask_do ./REC_AUD_mk_dirs -d 2023-11-27
+ask_do ./REC_AUD_mk_dirs -d 2023-11-19
+ask_do ./REC_AUD_mk_dirs -d yesterday
+ask_do ./REC_AUD_mk_dirs -d 2023-06-06
+ask_do ./REC_AUD_mk_dirs -d 2022-11-30
+ask_do ./REC_AUD_mk_dirs -d 2019-10-01
+ask_do ./REC_AUD_mk_dirs -d 2019-09-14
+ask_do ./REC_AUD_mk_dirs -d 2019-07-31
+ask_do ./REC_AUD_mk_dirs -d 2019-07-23
+ask_do ./REC_AUD_mk_dirs -d 2019-07-30
+

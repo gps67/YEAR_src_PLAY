@@ -413,7 +413,7 @@ print_list(
 			 out.put( ' ' );
 
 			// one extra space, just in case // at least 1
-			out.put( " return TOKEN(" );
+			out.put( " return SET_TOKEN(" );
 			print_TOKEN_name_2( out, POOL, tok ); // PFX _ Name
 			out.put( ");\n" );
 		} else {
@@ -626,7 +626,7 @@ gen_LEX_lex_return( buffer2 & out )
  L1("// yylval.fieldname = UNION.fieldname ; // returned extra info for TOKEN");
  L1("// define SAVE_TOKEN  yylval.string = new std::string(yytext, yyleng)");
  L1("// define XXXX_TOKEN  yylval.lex_buff = NEXT_SLOT(yytext, yyleng)");
- L1("#define TOKEN(t)    (yylval.tokn = t)"); // and return RETVAL == t
+ L1("#define SET_TOKEN(t)    (yylval.tokn = t)"); // and return RETVAL == t
  L1("");
 
 	return true;
@@ -803,7 +803,7 @@ static const char Q2 = '"';
 	L.clear();
 	L.print("<%s>", 	"STRING_C"); // start tag
 	L.print("[^%s]*",	"\\\"" );
-	L.print("\t%s",	        "return TOKEN(LEX_STRING);" );
+	L.print("\t%s",	        "return SET_TOKEN(LEX_STRING);" );
 //	L1b(L);
 
 	L1("");
@@ -866,7 +866,7 @@ static bool gen_PTN_CODE_TOK(
 	const char * CODE,
 	const char * TOK
 ) {
-	out.print( "%s %s return TOKEN(%s);\n", PTN, CODE, TOK );
+	out.print( "%s %s return SET_TOKEN(%s);\n", PTN, CODE, TOK );
 	return true;
 }
 
@@ -1144,10 +1144,10 @@ gen_YACC_union( buffer2 & out )
 
  union_field_list.print_lines(out);
 
-// L1("  struct EXPR * expr;"); // almost // incomplete type?
-// L1("  u32 e32;"); // retval is int
-// L1("  int tokn;");
-// L1("  const char * lex_buff;"); // via several buffer2 ring of holders
+	// L1("  struct EXPR * expr;");
+	// L1("  u32 e32;");
+	// L1("  int tokn;");
+	// L1("  const char * lex_buff;");
 
  L1(" }");
 	return true;

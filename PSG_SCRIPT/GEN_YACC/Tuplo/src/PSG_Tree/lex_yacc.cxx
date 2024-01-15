@@ -9,6 +9,7 @@ lex_yacc()
 	POOL_PUNCT.PFX = "PUNCT"; // OK omit trailing _
 	POOL_RW   .PFX = "RW";   // OK omit trailing _
 	POOL_LEX  .PFX = "LEX"; // OK omit trailing _
+	opt_yywrap = false; // yywrap is (not) called at EOF
 
 	/*
 		PUNCT "+="
@@ -754,57 +755,25 @@ gen_LEX( buffer2 & out ) // gen the entire files text
 	L1("");
 	L1("/* still in definitions section */");
 	L1("");
-	L1("/* yywrap is a macro called at every end of file */");
-	L1("%option noyywrap"); // called not provided
+
+	if( opt_yywrap ) {
+	 L1("/* yywrap is a macro called at every end of file */");
+	} else {
+	 L1("/* NONE: yywrap is a macro called at every end of file */");
+	 L1("%option noyywrap"); // called not provided
+	}
+
 	L1("");
-
-
 	L1(" /* definions section END */"); // 
 	L1("%%");
 	L1(" /* rules section BEGIN */"); // cannot be at BOLN
 	L1("");
 
-// C and C++ comments are always added here
-// not sure what happens in AFM JSON etc
-// probably untriggered
-
-	L1(" /* added START condition rules for comments and string */");
-	L1("");
-	L1("\"/*\"	{");
-	L1("	BEGIN(CMNT_C);");
-	L1("	}");
-
-
-	// OR START_x_RULE_ACTION( "CMNT_C", "[^*\\n]*", "...");
-	// OPTION build REGEXP to buffer1 to STR0
-	L1("<CMNT_C>[^*\\n]*        /* eat anything that's not a '*' */");
-	L1("<CMNT_C>\"*\"+[^*/\\n]*   /* eat up '*'s not followed by '/'s */");
-	L1("<CMNT_C>\\n             yylineno++;");
-
-	buffer1 L;
-#define L1b(L) out.put( (STR0) L ); out.put("\n")
-static const char Q2 = '"';
-	L.clear();
-	L.print("<%s>", 	"CMNT_C"); // start tag
-	L.print("%c%c%c%c",	Q2, '*', Q2, '+' );
-	L.print("%c%c%c",	Q2, '/', Q2 );
-	L.print("\t%s",	        "BEGIN(INITIAL);");
-	L1b(L);
-
+	if(! gen_LEX_RULES_with_START_STEP( out ))
+		return FAIL_FAILED();
 
 	L1("");
 //	L1(" // OK that drops the CMNT text ");
-
-	L.clear();
-//	L.print("%c%s%c", Q2, "\\\"", Q2 );
-	L.print("[%c]", Q2 );
-	L.print("\t%s",		"BEGIN(STRING_C);");
-//	L1b(L);
-	L.clear();
-	L.print("<%s>", 	"STRING_C"); // start tag
-	L.print("[^%s]*",	"\\\"" );
-	L.print("\t%s",	        "return SET_TOKEN(LEX_STRING);" );
-//	L1b(L);
 
 	L1("");
 	L1("");
@@ -855,6 +824,50 @@ static const char Q2 = '"';
 	L1("// code section BEGIN // to eof // is copied through");
 	L1("// ");
 	L1("");
+	return true;
+}
+
+bool lex_yacc::gen_LEX_RULES_with_START_STEP( buffer2 & out )
+{
+
+// C and C++ comments are always added here
+// not sure what happens in AFM JSON etc
+// probably untriggered
+
+	L1(" /* added START condition rules for comments and string */");
+	L1("");
+	L1("\"/*\"	{");
+	L1("	BEGIN(CMNT_C);");
+	L1("	}");
+
+
+	// OR START_x_RULE_ACTION( "CMNT_C", "[^*\\n]*", "...");
+	// OPTION build REGEXP to buffer1 to STR0
+	L1("<CMNT_C>[^*\\n]*        /* eat anything that's not a '*' */");
+	L1("<CMNT_C>\"*\"+[^*/\\n]*   /* eat up '*'s not followed by '/'s */");
+	L1("<CMNT_C>\\n             yylineno++;");
+
+	buffer1 L;
+#define L1b(L) out.put( (STR0) L ); out.put("\n")
+static const char Q2 = '"';
+	L.clear();
+	L.print("<%s>", 	"CMNT_C"); // start tag
+	L.print("%c%c%c%c",	Q2, '*', Q2, '+' );
+	L.print("%c%c%c",	Q2, '/', Q2 );
+	L.print("\t%s",	        "BEGIN(INITIAL);");
+	L1b(L);
+
+	L.clear();
+//	L.print("%c%s%c", Q2, "\\\"", Q2 );
+	L.print("[%c]", Q2 );
+	L.print("\t%s",		"BEGIN(STRING_C);");
+//	L1b(L);
+	L.clear();
+	L.print("<%s>", 	"STRING_C"); // start tag
+	L.print("[^%s]*",	"\\\"" );
+	L.print("\t%s",	        "return SET_TOKEN(LEX_STRING);" );
+//	L1b(L);
+
 	return true;
 }
 
@@ -1188,22 +1201,21 @@ gen_YACC_token_list_POOL( buffer2 & out, LEX_TOKEN_GROUP & POOL )
 bool lex_yacc::
 gen_YACC_type_list( buffer2 & out )
 {
- bool is_e1 = true;
- if( is_e1 ) {
+/*
+	MOVED to add_yacc_for_C_EXPR()
+
+	YACC_type_list_1.add_type_rule( "expr", "expr_ident" );
+	YACC_type_list_1.add_type_rule( "expr", "expr_ident" );
+	YACC_type_list_1.add_type_rule( "expr", "expr" );
+	YACC_type_list_1.add_type_rule( "expr", "EXPR_line" );
+	YACC_type_list_1.add_type_rule( "expr", "LINES" );
+*/
+	return YACC_type_list_1.print_list( out );
+
 	L1("%type <expr> expr_ident");
 	L1("%type <expr> expr");
 	L1("%type <expr> EXPR_line");
 	L1("%type <expr> lines"); // 
- } else {
- // L1("%type <unionfieldname> rulename");
-	L1("");
-	L1("%type <expr> expr_ident");
-	L1("%type <expr> expr");
-	L1("%type <expr> EXPR_line");
-	L1("%type <expr> lines"); // slight lie to bootstrap
-//	L1("%type <e32> e32_expr"); // need to define u32 E32 instead of EXPR *
-//	L1("%type <tokn> BOP");
- }
 	return true;
 }
 

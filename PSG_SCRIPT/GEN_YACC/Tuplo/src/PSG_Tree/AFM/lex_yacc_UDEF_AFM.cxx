@@ -9,6 +9,7 @@ bool lex_yacc_UDEF_AFM:: build_tree_lex() {
 	return true;
 }
 bool lex_yacc_UDEF_AFM:: build_tree_yacc() {
+	opt_yywrap = false;
 	if(!add_yacc_for_AFM()) return FAIL_FAILED();
 	// bool add_yacc_for_C_EXPR();
 	INFO("AFM");
@@ -106,8 +107,15 @@ bool lex_yacc_UDEF_AFM:: add_yacc_for_AFM() {
 
 	union_field_list.lookup_add( "tokn",     "int tokn" );
 	union_field_list.lookup_add( "lex_buff", "const char * lex_buff" );
-	union_field_list.lookup_add( "expr",     "struct EXPR * expr" );
-	union_field_list.lookup_add( "e32",      "u32 e32" );
+//	union_field_list.lookup_add( "expr",     "struct EXPR * expr" );
+//	union_field_list.lookup_add( "e32",      "u32 e32" );
+
+//	YACC_type_list_1.add_type_rule( "expr", "expr_ident" );
+	YACC_type_list_1.add_type_rule( "expr", "expr_ident" );
+//	YACC_type_list_1.add_type_rule( "expr", "expr" );
+//	YACC_type_list_1.add_type_rule( "expr", "EXPR_line" );
+//	YACC_type_list_1.add_type_rule( "expr", "LINES" );
+
 
 	return true;
 	return FAIL("TODO");

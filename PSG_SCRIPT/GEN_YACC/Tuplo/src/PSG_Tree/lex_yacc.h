@@ -8,8 +8,8 @@
 
 #include "lex_yacc_LEX_TOKEN.h"
 #include "lex_yacc_LEX_START.h"
-
 #include "lex_yacc_UNION.h"
+#include "lex_yacc_YACC_type_list.h"
 
 #include "PSG_STUBS.h"
 
@@ -20,7 +20,11 @@ class lex_yacc_RULE { public:
 
 	str1 name;		// "expr_ident" // -> one_of_seq( tbs )
 
-	union_field_t * union_field;
+	union_field_t * union_field; // "expr" "EXPR * EXPR"
+
+		// so no need for type_rule to gen  // %type <expr> expr_ident
+		// ie merge required
+		// NALEX // gen and run //
 
 #if 0
 	enum RULE_TYPE {
@@ -55,6 +59,11 @@ class lex_yacc_RULE { public:
 
 		return FAIL("TODO");
 	}
+};
+
+class lex_yacc_RULE_list : public obj_list<lex_yacc_RULE> {
+	// as derive // obj_list<lex_yacc_RULE> rule_list;
+
 };
 
 /*
@@ -123,11 +132,32 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 
 	bool set_PSG_name( STR0 e1, STR0 file_left ); // anystr == _name_ == "../obj/gen_XXX"
 	// PSG "name" // e1 exprs E1 
-	// PSG " // e1 exprs E1 // " { SCRIPT } // where SCRIPT is PARSED_TEXT
+	// PSG " //to e1 exprs E1 // " { SCRIPT } // where SCRIPT is PARSED_TEXT
+
+	bool opt_yywrap;
+	bool set_opt_yywrap( bool opt ) { opt_yywrap = opt; return opt; }
 
 	STR0 yacc_name_y(buffer2 & str);
 	STR0 lex_name_lex(buffer2 & str);	// flex_machine_for_PSG
 	STR0 yacc_name_tab_hh(buffer2 & str);	// TOKEN_POOL lexicon;
+
+ // PFX_mylex eg ... RW_while PUNCT_SP LEX_value_str LEX_value_union
+ // UDEF_ident_C99 // or simpler subset
+ // UDEF needs these - others probably do too
+
+	LEX_TOKEN_GROUP POOL_PUNCT;
+	LEX_TOKEN_GROUP POOL_RW;
+	LEX_TOKEN_GROUP POOL_LEX;
+	LEX_START_GROUP POOL_START;
+
+	union_field_list_t
+	 union_field_list;
+
+	/*
+		
+	*/
+	lex_yacc_RULE_list
+	 rule_list;
 
 // NAME = "../obj/gen_XXX" // the filename_exts used are FIXED or GLOBAL config
 // TEXT generators:
@@ -174,18 +204,6 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
  //
 	  typedef u8 u8_idx_t;	// no loud fail at 256 tho
 	  // NO WANT u8_idx AVAIL // for varname // not typename
-
- // PFX_mylex eg ... RW_while PUNCT_SP LEX_value_str LEX_value_union
- // UDEF_ident_C99 // or simpler subset
- // UDEF needs these - others probably do too
-
-	LEX_TOKEN_GROUP POOL_PUNCT;
-	LEX_TOKEN_GROUP POOL_RW;
-	LEX_TOKEN_GROUP POOL_LEX;
-	LEX_START_GROUP POOL_START;
-
-	union_field_list_t
-	union_field_list;
 
  // XXXX
 
@@ -258,6 +276,13 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	 STR0 type_line		// EXPR * expr // ;
 	);
 
+	YACC_type_list YACC_type_list_1;
+	bool add_YACC_type_rule( STR0 T, STR0 R ) {
+		return YACC_type_list_1.add_type_rule( T, R );
+	}
+	// gen_YACC_type_list( out );
+
+
 	/*!
 		include some fragment file, verbatim
 	*/
@@ -295,6 +320,7 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_LEX_start_symbol( buffer2 & out ); // integrate LEX api
 	bool gen_LEX_RULES_eoln( buffer2 & out );
 	bool gen_LEX_RULES_ident_values( buffer2 & out );
+	bool gen_LEX_RULES_with_START_STEP( buffer2 & out );
 	bool gen_LEX_include_RULES( buffer2 & out );
 
 	// GEN // sections of YACC file

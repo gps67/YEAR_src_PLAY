@@ -3,6 +3,7 @@
 
 #include "PSG_STUBS.h"
 #include "lex_yacc.h"
+#include "lex_yacc_PICK.h"
 namespace PSG {
 
  /* OR DIFFERENTLY NAMED

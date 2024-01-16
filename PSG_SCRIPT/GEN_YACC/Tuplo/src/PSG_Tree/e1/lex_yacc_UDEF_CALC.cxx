@@ -31,6 +31,7 @@ bool lex_yacc_UDEF_CALC:: build_tree_lex() {
 	return true;
 }
 bool lex_yacc_UDEF_CALC:: build_tree_yacc() {
+        opt_yywrap = false;
 	if(!add_yacc_for_C_EXPR()) return FAIL_FAILED();
 	INFO("C_EXPR");
 	// bool add_yacc_for_C_EXPR();

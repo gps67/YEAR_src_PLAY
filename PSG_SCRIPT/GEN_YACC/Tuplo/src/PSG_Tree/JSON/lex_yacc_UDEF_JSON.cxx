@@ -9,6 +9,7 @@ bool lex_yacc_UDEF_JSON:: build_tree_lex() {
 	return true;
 }
 bool lex_yacc_UDEF_JSON:: build_tree_yacc() {
+	opt_yywrap = false;
 	if(!add_yacc_for_JSON()) return FAIL_FAILED();
 	// bool add_yacc_for_C_EXPR();
 	INFO("JSON");

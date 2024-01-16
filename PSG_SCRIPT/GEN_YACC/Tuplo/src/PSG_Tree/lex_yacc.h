@@ -6,65 +6,16 @@
 #include "obj_list.h"
 #include "buffer2.h"
 
+#include "PSG_STUBS.h"
+
 #include "lex_yacc_LEX_TOKEN.h"
 #include "lex_yacc_LEX_START.h"
 #include "lex_yacc_UNION.h"
 #include "lex_yacc_YACC_type_list.h"
-
-#include "PSG_STUBS.h"
+#include "lex_yacc_RULE.h"
 
 using namespace PSG;
 namespace PSG {
-
-class lex_yacc_RULE { public:
-
-	str1 name;		// "expr_ident" // -> one_of_seq( tbs )
-
-	union_field_t * union_field; // "expr" "EXPR * EXPR"
-
-		// so no need for type_rule to gen  // %type <expr> expr_ident
-		// ie merge required
-		// NALEX // gen and run //
-
-#if 0
-	enum RULE_TYPE {
-	 rule_ONE_OF,
-	 rule_SEQ,
-	 rule_DATA, // PSG_STRUCT _SPEC DECODER( TOKEN ) { DIAG } api
-//	 rule_ _LIST _VECT _ITEM_t api EXPRS("anystr")
-	 rule_TOKEN, // PLUS // alias explains // UDEF
-	 rule_lex_ITEM, // n_bytes probably maybe P0P2
-	 rule_NAMED, // ITEM_NAMED //
-	 rule_all_of_these_are_unwritten // at the mo //
-	};
-#endif
-
-	lex_yacc_RULE ( STR0 _name, union_field_t * _union_field )
-	: name(_name)
-	, union_field(_union_field)
-	{
-	 if(_union_field) {
-		INFO("%s RET .%s", _name, (STR0) union_field->union_field_name);
-	 } else {
-		INFO("%s RET .NULL", _name);
-	 }
-	}
-
-	bool gen_some()
-	{
-		union_field_t *
-		union_field
-		= new union_field_t( "expr", "EXPR * expr" );
-		lex_yacc_RULE * R1 = new lex_yacc_RULE( "E1", union_field );
-
-		return FAIL("TODO");
-	}
-};
-
-class lex_yacc_RULE_list : public obj_list<lex_yacc_RULE> {
-	// as derive // obj_list<lex_yacc_RULE> rule_list;
-
-};
 
 /*
 	A Tree is an entire GRAMMAR
@@ -154,7 +105,223 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	 union_field_list;
 
 	/*
+		class lex_yacc_RULE_list
+		: public
+			obj_list<lex_yacc_RULE>
+		{
+			// a rule list is an array of rule_t rule // at_IDX
+
+			// YOU MAY ADD CUSTOM CODE
+			// associated with THIS_TYPE  _idx_of_ITEM
+			// TYPE_is_TYPE_SPEC
+			//
+			// OPTIMISATION INLINE FIXED_CODE in LIBE_CODE
+			//
+			// OPTION switch to VTABLE from OBJ_t to OBJ_t
+			//
+			// OPTION switch to:
+			// 	obj_list<lex_yacc_RULE>
+			//	typedef obj_list_t obj_list; TEMPLATE("_t")
+			//	TEMPLATE "%s_t" BINDING TYPE("%s") // NEAR_LINK
+			//	ALIAS = "lookup_05_%s" TEMPLATE "%s i%s %s"
+			//	ALIAS += CODE_POINT // "lookup_05" TABLE_05 PSG"
+			//	PSG += NOUN = ITEM // _t //
+			//	SESS += LOOKUP_TABLE_SCRIPTED
+			//	PSG += LIST of PSG_FULE
+			//	struct PSG += PSG_RULE_MODULE
+			//	module RULE += RULE
+			//	RULE { SCRIPT }
+			//	A_RULE_t RULE { HERE }
+			//	A_YACC_RULE A_R_G_S
+			//	A_PHRASE A_R_G_S // SPEC LIBR CALL
+			//	A_ITEM_t item; // USAGE
+			//	EA_OBJ 
+			//	EA_EXPR 
+			//	ASSOC LHS RHS // CODE_POINT
+			//	ITEM = a_RULE for PHRASE spec
+			//	ITEM = a_ARGV for PHRASE data
+			//	ITEM += CODE_POINT SELF
+			//
+			// OPTION PICK == LIST[idx_PICK] // operator==
+			//	DIALECT ITEM_t & item;
+			//	item = PICK LIST[IDX]
+			//	MATCH entire line all ARGS
+			//	MATCH VAR_POOL item PICK LIST IDX
+			//	MATCH A R G V OBJV_t
+		 /*
+		 	COMPILER SWEEPER runs each line
+			PARSE {	MATCH A R G V OBJV_t } {
+				treat each ARG LEX as a VAR_NAME near CODE_POINT
+				explore each LEX ITEM VAR item VAR_NAME
+				recegnise well known GLOBAL or SAME_NAME USAGE
+
+				AVAR 
+					MATCH
+					A R G V
+					 A
+					 R
+					 G
+					 V
+					 CODE_POINT // _of_A_R_G_V
+					OBJV_t 
+					 CODE_POINT // _of_OBJ // SELF // THIS
+
+				PHRASE
+					ARGS += OPCODE_as_STR0
+
+					TECH += EA = lookup("XPOS")
+					 IDX + ALLOC ARRAY_
+
+				ALLOC
+					MENTION += XPOS USAGE
+					USAGE += XPOS
+					XPOS += USAGE
+					USAGE(XPOS)
+
+						Q2 XPOS Q2
+
+				SCOPE
+					LEXICON += VAR_POOL
+					LEXICON += POS_POOL LOCN "idx = N ++"
+					DIALECT += "idx = N ++" well known phrase
+					DIALECT += STR0 is unique key within MODULE
+					DIALECT += STR0 is PARSED STR0
+					FAST_METHOD use EA of STR0
+					BIND_TABLES [IDX] OBJ.IDX_2
+					BIND_TABLES [IDX] OBJ.IDX { lhs rhs }
+					USAGE DETECT DIALECT "{ LHS RHS }"
+
+					match all nodes in this pool of spellings
+
+					SCOPE MATCH ALIAS ("ALIAS")
+					SPELLING("ALIAS")
+
+			COMPILE DECL { CODE_POINT for this LOCN("HERE") }
+
+				this creation of AVAR per WORD 
+				could compile to OFFS XPOS of WORD // CT_
+
+				detect USAGE("HERE") 
+
+					AUTO_GLOBAL_SELF HERE
+					VIEW HERE
+					VIEW LOCN
+					VIEW CSR XPOS
+					VIEW THIS SELF OBJ ITEM ALIAS
+
+				detect USAGE("SELF")
+
+					VIEW %s item
+
+				detect USAGE("%s") IDENT // ANYSTR // OPTIONS
+
+					SELF "%s" // FILTERS EXPR EA_ITEM LOCN
+
+				OPTIMISE unused [idx] so lookup[STR0] unused
+
+					CT_ PRE_ KNOWN STR0 = "ROM_ADDR"
+					CT_ PRE_ KNOW NOUN STR0 == "%s"
+					CT_ PRE_ KNOW NOUN STR0 == "NOUN"
+
+					TOKENISE("NOUN") -becomes-
+					TOKENISE("%s") // COMPILER RUNS GETS .
+
+				DOT . 
+
+					everywhere is .
+					several are shared .
+					same is several XPOS // eg OFFS in FILE
+
+				NEAR HERE
+
+					line within function
+
+					SOURCE { SOURCE } // mention becomes VAR even in decl
+					SOURCE = LOOKUP "SOURCE"
+					SOURCE = CT_RT CT_ LOOKUP "SOURCE"
+
+						RET_VAR = XPOS
+
+							deduce type XPOS_t
+							some _t is AUTO_GEN
+
+						u16_u16_u32
+
+							u16_OPCODE
+							 u8_BYTE_A
+							 u8_BYTE_B
+
+							i16_EXPR_POOL
+							// eval EXPR 
+							// returns POOL
+							// ITEM is POOL
+							// default RET = INPUT
+							// check VAL vs MAX
+
+							u32_OFFS
+							i32_IDX
+							i32_EA
+							i32_EXPR
+
+					HEAP 
+					 limit u32 BYTES
+					 limit u32 IDX
+					LIBR
+					 TABLE[IDX] of CALC
+					 of_BYTE
+					 of PAIR
+					 of FOUR
+					 of EIGHT
+
+					 of u64 // is EIGHT
+					 of u32_u32 // is PAIR
+					 of_u16_u16_u32 // AUTO
+					  ALIAS OPCODE SEGMENT ITEM_EXPR
+					  u8_u24 EXPR_OPCODE EXPR_DATA
+
+					 TEMPLATE does not use second u16
+					 u16_ZERO - never switch to SEGMENT_NEXT
+
+					 u16_OPCODE
+					 u16_DATA - held in ADDR_VAL
+					 u32_WORD - u24_u8
+ USAGE u24_u8
+  DRAW CPU WORD
+  makes sense when >> 8
+  know BYTE_A directly available
+  easy BYTE_B from CPU // check compilers eg TCC //
+  u24_payload = u32_WORD >> 8 // UNSIGNED SHIFT
+  i24_payload = i32_WORD >> 8 //   SIGNED SHIFT
+  // Layout side by side UN_ SP_SP // HEURISTIC += indicates_FORMATTED side
+  // Layout simplifify after local naotations and filters and // not_SP_SP_SP
+  // got_SP_SP_SP // exact match possibly inside more _SP prob exact got_
+  // got_GAP
+  // u32_u32
+  // i32_i32
+  // u24_u8_u32
+  // u24_u8_u24_u8
+  // u24_u8
+  // u24_u8_u32
+  // u24_u8_u24_u8
+  // i24_i8 | P
+  // u24_i8 | I
+  // i24_u8 | C
+  // u24_u8 | K
+  //
+  // FROM
+  //
+  // i24_payload GET = i32 >> 8
+  // u24_payload GET = 832 >> 8
+  // i8_payload GET = GET_BYTE_A_i8
+  // u8_payload GET = GET_BYTE_A_u8
+  //
+
+
+
+		}
 		
+		lex_var_%s RULE_list
+		RULE_list_t += 
 	*/
 	lex_yacc_RULE_list
 	 rule_list;

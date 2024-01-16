@@ -1,0 +1,1 @@
+./M_test2_AFM 2>&1 | less

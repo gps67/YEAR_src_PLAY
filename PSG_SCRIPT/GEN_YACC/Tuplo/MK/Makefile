@@ -158,6 +158,7 @@
 	OBJS0 += lex_yacc_UDEF_C_EXPR_lex.o
 	OBJS0 += lex_yacc_UDEF_C_EXPR_yacc.o
 	OBJS0 += lex_yacc_UDEF_CALC.o
+	OBJS0 += lex_yacc_PICK.o
 
 	OBJS0 += STO_E32.o
 	OBJS0 += YY_PARSE_gen.o 
@@ -167,6 +168,7 @@
 	OBJS0 += lex_yacc_UDEF_$(G1).o
 	OBJS0 += lex_yacc_UDEF_$(G2).o
 	OBJS0 += lex_yacc_UDEF_$(G3).o
+	OBJS0 += lex_yacc_RULE.o
 
 	# these should not be in 0
 	OBJS123 += EXPRS_RETVAL.o

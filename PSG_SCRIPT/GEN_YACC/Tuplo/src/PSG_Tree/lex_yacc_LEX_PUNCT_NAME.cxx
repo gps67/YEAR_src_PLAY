@@ -4,6 +4,10 @@ using namespace PSG;
 
 #define OK( S ) 
 
+// create a CIDENT that includes ASCII_PUNCT
+// extend to "s" for "PERCENT_s"
+// eg to build CIDENT  // "%04X" // PERCENT_0_4_X
+
 
 // buff is optional for TEMP1 
 // fn can return STR0 from ROM or from BUFF
@@ -57,8 +61,14 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 // PAIR( 0x1D, "GS" ) 	//
 // PAIR( 0x1E, "RS" ) 	//
 // PAIR( 0x1F, "US" ) 	//
+// ABOVE ASCII_%s		// AUTO_ALIAS_prefix_under
+// BELOW ASCII_%s		// AUTO_ALIAS_prefix_under everywhere here
+
    PAIR( 0x20, "SP" )		// alias SPACE
-   // SP is both CTRL and GLYPH
+   				// SP is both CTRL and GLYPH
+// BELOW PSG_%s "L_PAR" "L_BRACE" 
+// ALIAS "BRACE_L"
+
    PAIR( 0x21, "NOT" )		// aliad bang shriek not exclamation
    PAIR( 0x22, "Q2" )		// 
    PAIR( 0x23, "HASH" )		// 
@@ -102,6 +112,12 @@ bool PSG:: print_LEX_punct_name( buffer1 & buff, u8 chr )
 
 #if 0
    PAIR( 0x61, "LOWER_a" )	// aliases ...
+   PAIR( 0x7A, "LOWER_z" )	// LETTER z ...
+
+   PAIR(  's', "s" )		// aliases ...
+   PAIR(  'd', "d" )		// aliases ...
+   PAIR(  'X', "X" )		// %04X // PERCENT_0_4_X
+   PAIR(  'x', "x" )		// remove to detect my usage
    PAIR( 0x7A, "LOWER_z" )	// LETTER z ...
 #endif
 

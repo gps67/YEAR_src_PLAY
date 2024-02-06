@@ -3,6 +3,7 @@
 
 function T1()
 {
+	echo -ne "# T1 # "
 	ls -ld $HOME/YEAR
 }
 
@@ -108,40 +109,41 @@ TOPIC_YEAR="${TOPIC}_${DATE_YEAR}"
 year=YEAR
 TOPIC_year_="${TOPIC}_${year}" 
 HOME_YEAR="${HOME}/${DATE_YEAR}"
-HOME_year_="${HOME}/${year}" # already ~/YEAR
+HOME_year="${HOME}/${year}" # already ~/YEAR
 HOME_year_TOPIC_YEAR="${HOME}/${year}/${TOPIC_YEAR}"
 
-# this is where you PATH YEAR
-ln_s YEAR_offline/ $HOME_year
-T1
+# MOVE THIS to ANNUAL SETUP SCRIPT #
 
+	# this is where you PATH YEAR
+	ln_s YEAR_offline/ $HOME_YEAR
+	# T1
 
-# update link to year change
-#cd_mkdir_FAIL ${HOME}/${DATE_YEAR} 
-cd_mkdir_FAIL ${HOME_year}
-T1
-cd
-# echo "# or KEEP YEAR => YEAR_offl/"
-# ln_s_ask "${DATE_YEAR}/" "${HOME}/$year" # YEAR -> 2020/
-# ln_s_ask "YEAR/" "${HOME}/${DATE_YEAR}/" # 2020 => YEAR -> YEAR_offl
+	# update link to year change
+	#cd_mkdir_FAIL ${HOME}/${DATE_YEAR} 
+	cd_mkdir_FAIL ${HOME_year}
+	# T1
+	cd
+	# echo "# or KEEP YEAR => YEAR_offl/"
+	# ln_s_ask "${DATE_YEAR}/" "${HOME}/$year" # YEAR -> 2020/
+	# ln_s_ask "YEAR/" "${HOME}/${DATE_YEAR}/" # 2020 => YEAR -> YEAR_offl
 
-cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
+	cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
 
-# ~/201X/ is on NAS2 # some bounces to get to it
+	# ~/201X/ is on NAS2 # some bounces to get to it
 
-# FAIL HERE
+	# FAIL HERE
 
-cd_or_FAIL $HOME
-# cd_or_FAIL ${HOME_YEAR} 
-cd_or_FAIL ${HOME_year} 
+	cd_or_FAIL $HOME
+	# cd_or_FAIL ${HOME_YEAR} 
+	cd_or_FAIL ${HOME_year} 
 
-# ~/2018/TOPIC_2018/
-cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
+	# ~/2018/TOPIC_2018/
+	cd_mkdir_FAIL ${HOME_year_TOPIC_YEAR} 
 
 # ~/2018/TOPIC_2018/TOPIC_2018_01_Jan/
-rmdir $TOPIC_YEAR_MM_Jan 2>/dev/null # if empty allows script debug
+	rmdir $TOPIC_YEAR_MM_Jan 2>/dev/null # if empty allows script debug
 # cd_mkdir_FAIL $TOPIC_YEAR_MM_Jan
-cd_mkdir_FAIL $YEAR_MM_Jan
+	cd_mkdir_FAIL $YEAR_MM_Jan
 
 # ln_s_ask $TOPIC_YEAR_MM_Jan/ TOPIC_ 
 # ln_s_ask $TOPIC_YEAR/TOPIC_ ../TOPIC_

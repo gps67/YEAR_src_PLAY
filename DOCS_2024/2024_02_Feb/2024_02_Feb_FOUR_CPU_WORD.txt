@@ -1,0 +1,120 @@
+	2024-02-06
+
+	.
+	2024_02_Feb_FOUR_CPU_WORD.txt
+
+		Mostly for u32_u32_u32_u32 in_MEM
+		Mostly for u32_u32`
+		OPTION u16[4]
+
+		eg u8_u8 u16_ZERO u32_IDX // u7 or [u8] via CALL
+		eg u8_i8 i16_MONE i32_IDX // or unused option u8_i8
+
+			simplify COMPILER by usually taking extra half step
+			the optimisation of direct use of int_BYTE_A() ?
+
+				int i8_IDX = SIGNED_WORD_BYTE_A
+
+			reduce range to u32 for u32_IDX and even u32_OFFS
+
+			simplify compiler by using u8_u8 to know SIGN of i32
+
+				u40_OFFS = u32_CLICK << 8 // 256 byte CHUNK
+
+				u8_OFFS_within_CHUNK
+
+				32 bytes *  8 == 256 bytes
+				16 bytes * 16 == 256 bytes
+				 8 bytes * 32 == 256 bytes ** PICK u32_u32
+				 4 bytes * 64 == 256 bytes ** CODE u32_u32
+			
+
+			So manage SEGMENT sizes and align at 256 bytes
+			Known multiple of 16 and of 4
+
+
+	PAIR_CPU_WORD {
+		u32_u32
+		u32_u32 u32_u32
+		u64_u64
+	}
+
+	FOUR_CPU_WORD {
+
+	// X-->	// u32_u32_u32_u32 in MEM // FOUR_4 BYTES_16 BITS 128
+		// u64_u64_u64_u64 in MEM // EIGHT_4 BYTES_32 BITS 256 FOUR_8
+
+		CPU_WORD WORD_ZERO
+
+		CPU_WORD WORD[4] // used in MERGED ARRAYS
+
+		CPU_WORD WORD_ONE
+		CPU_WORD WORD_TWO
+		CPU_WORD WORD_THREE
+		CPU_WORD WORD_FOUR
+	}
+
+
+	NEED SCRIPT ASAP and stable for long time
+
+	API += RESERVE_VAR_NAME _enable VAR_extend_via_SAME_NAME _or_SPELLING
+	ARGV ITEM += _via_DEALIECT _MATCH_SPELLING 
+	PARSE AMBIG can overlay OR BOTH 
+	USAGE SPELLING suggests DIALECT USEAGE XPOS TREEPOS
+
+		DIALECT "%s%s" not "%s_%s" maybe "{ %s%s%s LHS SEP RHS CODE_POINT }"
+		DIALECT "{ CODE_POINT }" // already IMPORTED as XPOS in code
+		DIALECT "{ %s%s%s LHS SEP RHS }" // CODE_POINT auto AVAIL
+
+	
+	COMPILER pushes SCRIPT though PRE_LOAD_PRE_RUN CACHE MINI_MACHINE
+
+	MINI_MACHINE runs STEPS from OPCODE or from EVAL via API
+	MINI_MACHINE runs STEPS 
+	MINI_MACHINE decode OPCODE runs STEPS 
+	MINI_MACHINE VAR_POOL += "ITEM" // AUTO_MK_VAR // ALSO MK_EA_EXPR
+
+
+ FEATURE INCOMPLETE
+
+
+ 	suppose FEATURE worked
+	CT_RT script provides BASE_CLASS_API that provides FEATURE_SET
+	CT_RT script provides FEATURE in FEATURE_SET via SCRIPT
+	CT_ runs SCRIPT and that can setup _RT structures
+
+		VAR_POOL += VAR of TYPE in SEGMENT at EA_EXPR_POOL
+		EA_EXPR = EA_EXPR_POOL[idx_ITEM] 
+		// idx shared with wider LIBR // load by merging TOKEN POOLS
+		// usage SCOPE and SPELLING // MATCH "{ EXACT }"
+		// MATCH "{ ALIAS }" //
+		// MATCH "{ ADJUCT }" //
+		// MATCH "{ ITEM from PHRASE }" //
+		// MATCH "{ PHRASE }" // { STR0 } // STR0 as cident "STR0" 
+	
+	Short circuit CT_RT SCRIPT during EVAL to CACHE to get default ALIAS
+
+		FEATURE is not available into _RT
+		FEATURE is addable at _RT
+		FEATURE is KNOWN at _RT _XPOS CODE_POINT += FIND_OUT
+	
+		so we need to see how much PSG we can get without FEATURE
+		that will enable use of CT_ precompiled BUILTIN BIND via TOKEN
+		that will enable use of _RT BOLT_ON BIND via TOKEN
+		that will enable use of CT_RT VAR_POOL += AVAR // new() //
+
+	Allows use of CALL to FEATURE and get FALLBACK_api
+
+		register CPU_REG_USED PICK = u32_EXPR 
+		OPTION u32_WORD = u8_u8_u16 u8_BYTE_A u8_BYTE_B u16_PAYLOAD
+		i16_IDX DECODE(i16) says u15_idx = i16_PAYLOAD // DIRECT
+		i16_IDX DECODE(i16) says u15_idx = i16_as_u16 // MACRO inline
+
+	EVAL means LOOKUP("STR0")
+
+		VAR_POOL = MODULE_SESS_SCOPE_VARPOOL
+		/* loss of _ when LEX_CHAIN is single SUBLEX drop_gap */
+
+	CACHE means LOOKUP("%s") MATCH STR0 // REQUIRE CSET_one == CSET_SAME
+
+

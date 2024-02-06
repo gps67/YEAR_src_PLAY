@@ -6,10 +6,6 @@ function T1()
 	ls -ld $HOME/YEAR
 }
 
-# setup PATH
-# load FUNCTIONS
-
-# setup PATH to find useful dirs, and to FILTER PATH ## no dupes # drop list
 
 # expect caller has PATH that works
 # including . fns_XXXX for bash
@@ -20,13 +16,7 @@ function T1()
 # technique extended to API_STREAM with STO at both sides ENQ_ACK to SYNC_EDGE
 # SYNC_EDGE is when we have all parameters, online access, cpu time, NOW
 # TIME_BAND is freom EDGE_START to EDGE_STOP // option use of LHS_RHS EDGES;
-
-# include "fns_var_add" // .sh AUTO_ADD AUTO_TRIM OMIT DIALECT OMIT
-# include FILENAME //  ~/bin_LGX # because PATH_TOOL is a binary
-
-. fns_VARS # UDEF and present on my system
-# . fns_var_add # avail for others
-
+. fns_var_add # ~/bin_LGX # because PATH_TOOL is a binary
 var_add PATH \
 	${HOME}/bin_NFS_down/HOME/bin \
 	${HOME}/bin_NFS_down \
@@ -43,8 +33,6 @@ var_add PATH \
 ##	## AUTO_DATA_SOURCE ## GET AUTH {DONE} // SUBLEX USAGE {DONE} // DIALECT
 ## }
 
-## load FUNCTIONS ## LIBR ##
-
 . fns_FAIL
 . fns_DIRS
 . fns_DATE
@@ -52,44 +40,14 @@ var_add PATH \
 . fns_EDIT
 . fns_BASE
 
-fn_DATE_show_VARS() { # V A R S # BASH function # extends LIBR for now
-
-	local VAR_LIST_ALL="
-		DATE_YEAR
-		DATE_MM
-		DATE_DD
-		DATE_Jan
-		DATE_Tue
-		TIME_HH
-		TIME_MM
-		TIME_SS
-	"
-	local VAR_LIST="${@:-$VAR_LIST_ALL}"
-	for var_NAME in $VAR_LIST
-	do
-		eval local VALUE="\$$var_NAME"
-		[ -z "$VALUE" ] && VALUE="''"
-		echo "# var_NAME # $var_NAME # $VALUE #"
-
-	done
-}
-
 # can change date -d if required #
 
 # TEST # fn_DATE_get_VARS 2020-01-15 # _get_ new values for VARS using "$@"
 
 	# fn_DATE_show_VARS 2020-01-15 # set date from ARGS
 	# fn_DATE_show_VARS 
-	# show the value we have set as current DATE
-	echo "# DATE # $DATE_year_mm_dd $DATE_Jan $DATE_Tue DATE_STAMP_VAL"
-	# echo "# TEST" fn_DATE_show_VARS DATE_year_mm_dd
-	# fn_DATE_show_VARS # ALL
-	false && \
-	fn_DATE_show_VARS \
-		DATE_year_mm_dd \
-		DATE_Jan \
-		DATE_Tue \
-	#
+	echo "# DATE # $DATE_year_mm_dd"
+	echo "# TODO" fn_DATE_show_VARS DATE_year_mm_dd
 # exit
 
 	# PWD == ~/YEAR/DOCS/
@@ -111,8 +69,7 @@ HOME_YEAR="${HOME}/${DATE_YEAR}"
 HOME_year_="${HOME}/${year}" # already ~/YEAR
 HOME_year_TOPIC_YEAR="${HOME}/${year}/${TOPIC_YEAR}"
 
-# this is where you PATH YEAR
-ln_s YEAR_offline/ $HOME_year
+ln_s YEAR_offline/ $HOME_year_
 T1
 
 

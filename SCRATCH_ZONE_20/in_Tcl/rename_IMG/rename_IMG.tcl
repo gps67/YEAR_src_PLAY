@@ -30,6 +30,7 @@ set ZONE_NAME Greenwich
 set ZONE_NAME XXX
 set ZONE_NAME HANS
 set ZONE_NAME FOUND
+set ZONE_NAME RSAC_Webber
 
 proc list_pop {listname itemname } {
 	upvar $listname list

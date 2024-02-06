@@ -1,0 +1,34 @@
+	2024-02-05
+
+	2024_02_Feb
+	2024-02-05_VPN_MUX.txt
+
+	DPU when moving VP< from box to box
+
+		add temporary redirect
+		own keys
+		invisible to outside
+		extra security surface
+		option to do this at anythim
+	
+	BPF - Berkely Packet FIlter
+	IPT - IP TABLES
+
+	CONTAINERS
+
+		kernel - so that IPT is available (monolith-II)
+		application
+		CPU threads
+		MEM MMAP
+		VFS (NFS over encrypted LAN)
+		LAN
+		VPN
+		WAN
+		MON_CTRL starter restarter signaller ...
+	
+	VPN
+		UDP as a transport layer (1548 bytes or 4.1K or 32K or 16M)
+		16M sheet [u24] segment size, allow 1K header outside SEGMENT ?
+		MUX CTRL is at every step and at END point
+
+

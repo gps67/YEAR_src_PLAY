@@ -205,13 +205,13 @@ echo
 	then
 		# rename iso_tmp # move dir/ to DIR_DEL/dvd_name_2/
 		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
-		mv "$dvd_name_2" "$DIR_DEL" # DVD files = done_del
+		mv "$dvd_name_2" "$DIR_DEL" # DVD files = iso_done_del
 		sync
 	else
 		# leave .iso as .iso_tmp # delete or repair manually
 		WARN $? "tee failed or maybe mkisofs failed"
 		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
-		mv "$dvd_name_2" "$DIR_DEL" # DVD files = done_del
+		mv "$dvd_name_2" "$DIR_DEL" # DVD files = iso_done_del
 		sync
 	fi
 	set +x

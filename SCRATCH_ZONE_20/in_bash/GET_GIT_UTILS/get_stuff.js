@@ -1,6 +1,8 @@
 PATH=$HOME/bin:$PATH
 . ~/.bashrc
 
+type GET_GIT
+
 # https://information-cascade.monday.com/
 
 # echo 'git submodule update --init # in tree-sitter/tree-sitter main'
@@ -11,6 +13,12 @@ PATH=$HOME/bin:$PATH
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+# EGS
+https://github.com/davetron5000/ghola
+#
+https://skia.googlesource.com/skia.git
+https://github.com/lvgl/lvgl
+#https://github.com/FreeRTOS/FreeRTOS-Kernel
 https://github.com/hollance/synth-plugin-book
 https://github.com/NationalSecurityAgency/ghidra
 https://github.com/nbauers/Learn-x86-assembler
@@ -526,7 +534,7 @@ https://git.zx2c4.com/WireGuard
 https://resources.oreilly.com/examples/9781565922921.git
 https://resources.oreilly.com/examples/9781565925670.git
 https://sourceware.org/git/insight.git
-# http://www.passportjs.org/docs/username-password/
+#http://www.passportjs.org/docs/username-password/
 
 #https://github.com/dlang/dmd.git
 #https://github.com/vuejs/vue.git
@@ -535,6 +543,7 @@ https://sourceware.org/git/insight.git
 #https://github.com/idea4good/lvgl
 #https://github.com/rg3/youtube-dl
 http://github.com/FreeRTOS/FreeRTOS
+https://github.com/FreeRTOS/FreeRTOS-Kernel
 #https://github.com/ribomation/DroidAtScreen1
 
 "

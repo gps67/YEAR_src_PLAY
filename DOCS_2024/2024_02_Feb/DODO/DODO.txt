@@ -1,0 +1,360 @@
+DODO/DODO.txt
+
+	spin_py
+	cset_sublex_psg
+	DODO
+	DIAG UI
+	XOX UI
+	PANEL UI += MUX_NET
+	KBD UI += TILT
+
+	KBDS += ASCII
+	KBDS += latin1
+	KBDS += Piano
+	KBDS += MIDI
+	KBDS += MIXER
+	KBDS += AUDIO MP3
+	KBDS += almost hidden popup (bootstrap)
+	KBDS += TOUCH_7
+
+	cset_sublex_psg
+
+		APP has per SESSION CSET == "CSET"
+
+		SESSION += STRUCT // sideays import along generic API // ELF
+		API += CXX_MODULE
+		CXX += CXX_SCRIPT
+		CXX += CXX_ARGV_CODE
+
+		 API += ARGV_of_OBJ
+		 OBJ += PTR_to_Obj // auto KNOW as DIALECT "D" ALIAS "Obj"
+		 // KNOW how to provice API with EA callbacks
+		 // EA_api CXX_SCRIPTED_MODULE // subset of // provides feature //
+	
+		 API += API_Obj
+		 API += API_ARGV
+		 API += API_SCRIPT
+		 API += API_API
+		 API += API_SQL // session connect parse compile call data api
+		 API += API_PKT // UDP_PKT // surprisingly error recovered
+		 PKT += MUX_API
+		 PKT += API_Parse
+		 PKT += API_Compile _Prepare _UDEF _SWEEP
+		 PKT += API_LIBR // _LINK // _ELF // _Module // _SESS
+		 PKT += API_Runtime _SESS
+		 PKT += RT_AVAR // knows about DIALECT provides AVAR
+		 PKT += RT_SPEC // actually CT_SPEC // RT_UDEF_SPEC //
+		 // "TOKENISED"
+		 // "COMPILED" 
+		 // "CT_RT RT_" // MATCH SCOPE // BIND to AVAR // %s // SPEC
+		 // "CT_RT _RT" // MATCH SCOPE // BIND to AVAR // %s // SPEC
+		 // "CT_RT CT_" // MATCH SCOPE // GEN CODE for AVER to API 
+		 // "CT_RT" // API += API_CT_RT //
+		 // "AVAR" // or "%s" // MATCH PHRASE "{ or %s }" AUTO_ARGV
+		 // "%s" // or "%s" // MATCH PHRASE "{ or %s }" AUTO_ARGV
+		 // "ANYSTR" // "%s" // MATCH PHRASE ...
+		 // ANYSTR // SPELLING VAR not "VAR" CT_RT 
+
+		 CSET u4_CSET // ASCII BYTE UTF8 PARSED // BYTE { latin1 cyrillic FONT_CSET // backup vectors throuhgh 
+
+ // CSET u4_CSET //
+ // ASCII BYTE UTF8 PARSED // utf8 with knowin subset + FONT_PART // 
+
+ // when_BYTE_uses_CSET_Latin1 // _c
+ // CSET BYTE { latin1 cyrillic atari } // ASCII //
+ // CSET_PARSED expects Latin1_uses_ASCII // sdata SGML encoding as &glyph;
+ // backup vectors throuhgh 
+
+ 		SESS += CSET that USER_PREF
+ 		SESS += CSET that DATA_USES
+ 		SESS += CSET_VARS
+ 		SESS += CSET_CODE
+		SESS += CSET_API
+
+ // cannot expect a trailing NULL // shift to ZONE_P0P2 // not even NL_near_P2
+ // can detect a trailing NL // shift to ZONE_P0P2 // += NL_near_P2 // with+= 
+
+
+ 		CSET provides Parser "MATCH" "SUBLEX" and "CSET STEP"
+		CSET provides XPOS P0P1P2 need CTXT_XPOS
+		CTXT XPOS += FILE SEGMENT ZONE P0P2 P1 == "P1_a"
+		CTXT XPOS += ZONE OFFS 
+
+		CSET Parser += {
+			ZONE ZONE
+			ZONE "ZONE"
+			P0P2 or_as P0N 
+			P0P2 or_as STR0 // P0 and PARSE upto // CLIP_EDGE_P2
+
+			CSET navigates MMAP upto P2 // HARDWIRED LIMIT
+			CSET detects presence of NL_near_P2 NUL_or_NL
+			CSET detects standard ASCII TEXT PUNCT GAP EOLN Q2
+
+			CSET += PARSED("AMP %s SEMICOLON", GLYPH_NAME )
+			// _SPELLING
+
+			PARSER can grow a TREE from TEXT P0P2("[P0[P2")
+
+			 TREE can know XPOS in TEXT as _OFFS
+			 TEXT can know TREE CT_RT provides range of INFO
+			 TEXT knows about SOURCE by CODE_POINT XPOS
+
+			 XPOS SHARED eg BOLN INDENTED_ZONE P0P2.P0 as _OFFS
+
+			CSET_STEP one of {
+			CSET_STEP glyph_in_font_one
+			CSET_STEP glyph_in_font_two
+			CSET_STEP glyph_in_font_UDEF _three
+			CSET_STEP peek_multi_step _know 
+			CSET_STEP ASCII_CTRL _GAP _EXACT _PUNCT _A1_A2_STAR
+
+			CSET provides "{ MATCH a1_a2_STAR }"
+# define a1_a2_star "a1_a2_star"
+# define a1_a2_star "\"a1_a2_star\""
+# define a1_a2_star "\'a1_a2_star\'"
+			CSET provides "{ MATCH CIDENT( a1_a2_star }" // Q2_drop
+			CSET provides "{ MATCH NUMERIC }"
+			CSET provides "{ MATCH Q2_EXPR }"
+
+			This is the point, PSG needs optimised Parser over CSET
+			This provides a BASE_CODE that does exactly the TASK
+
+			STEP MATCH
+			STEP BYTE
+			STEP BYTE_of_FEW
+			STEP P0P1_of_P1_z // creates [u4 PICK] of P1_%s 
+			GEN P1_a is XPOS into DIAG with EXTRA_DECODE("[u4]")
+			GEN P1_b is XPOS into DIAG with EXTRA_DECODE("%s")
+			 CODE_POINT += "[u4 PICK]" from "P1_%s" 
+			 TEXT_MATCH           "%s"
+			 TEXT_MATCH "%s"      "%s"
+			 TEXT_MATCH "%s"  ""  "%s"
+			 TEXT_MATCH "%s" "_" "%s"
+			 TEXT_MATCH "P1" "_" "%s"
+			 TEXT_MATCH "ALIAS_used_in_TEXT" // TOKENISED
+
+			CSET provides LOOK_INSIDE_IDENT SUBLEX
+			CSET knows that PUNCT matters // DATA
+			CSET knows that PARSE matters // CODE
+	CT_RT
+			CT_RT prepares CODE for CSET and DATA
+			CT_RT builds TABLES // for CSET and TESTSET DATA
+			CT_RT builds CACHE // 
+			CT_RT builds VOCAB for DIALECT // 
+		}
+
+DODO SLATE
+
+	write on ESP32 or KINDLE like a slate using optional BT keyboard
+
+		limited DPI
+
+		OCR
+
+		Local DATA
+
+		Connected PANEL
+	
+	DTP SLATE 
+
+		collect phrase of glyph strokes // time_gap_between_items //
+		upgrade SLIDES with TIME_LINE
+		upgrade SLIDES with FONT_TEXT_ANGLE
+		originate SLATE with DTP_DIAG
+		peck keyboard usable - as is BT keyboard on DESK LAN 
+
+		KBD keyboard is a popup // pick and peck ASCII
+		OCR keyboard is a popup // slide and OCR
+
+	DIAG SLIDES
+
+		GESTURE => LINE
+		x1 x2 x3 x4 x5 x6 x7 x8 x9 
+
+		MENU DRAW
+		search for patterns "name" with AUTO preview at SCALE
+
+		MACRO BUILD
+		LIBR UDEF using SCRIPT over FUNC_LIBR and SESS_LIBR
+	
+	DODO LIST
+
+		LIST builder
+		add badge ("badge") // badge = "badge_xFFFF"
+		// badge_FFFF == "%s_x04X "badge" idx_badge
+		// u16 idx_Obj // %s_%s idx OBJ // "{ NAME 'idx' }" "{ int IDX }"
+		// "{ IDX_t IDX }" // ... etc ...
+
+		DIAG += BADGE
+		DIAG += FEATURE
+		DIAG += ITEM
+		DIAG += ITEM_L1
+		DIAG += ITEM_L2
+		DIAG += ITEM_EXPR
+	
+
+		TREE Builder // list by list TREE STEP
+	
+	UI_DRAW
+
+		HiHi  .co.uk
+
+		SLATE_UI
+		UI_SLATE
+
+		DRAW SLIDER
+
+			CURVE from GESTURE
+			
+			 freehand drawing 
+			 jitter removed
+
+			TIME and SLIDE
+
+			 CPU intense to rewrite
+			 STEP line by line - hope simple algorithm works
+
+				u8_OPCODE LINE_START XY // u12_PAIR_XY XY
+			 	u12_4096 x
+			 	u12_4096 y
+				
+				BITFIELD u8_u12_u12 // BYTE SEQ
+				BITFIELD u12_u12_u8 // BITFIELD SEQ in WORD
+
+			field "X"
+			 GETTER = BITFIELD_GETTER
+
+			 	BITFIELD_BYTE_A u32_WORD.byte_A
+			 	BITFIELD_ONE u32_WORD.field_ONE
+			 	BITFIELD_TWO u32_WORD.field_TWO
+
+			u4_OPCODE within LIST u4_i12 
+
+				TEMPLATE i12
+				 i12
+				 u12
+				 i6_i6
+				 u6_u6
+				 i6_u6
+				 u6_i6
+				 u4_u8  // process left to right
+				 u8_u4  // logic to bind to BYTE_B and BITFIELD
+				 // options PICK from LIST 
+
+		DSL_DECODE
+
+			variable length BYTE code
+			DECODE via TABLES
+
+			DODO SLATE PEN MOTION
+
+			 STEP_PART_%s VAL // mid step step to add up to %d
+			 STEP_STEP_%s VAL // end stap step arriving at %d
+			 STEP_STOP_%s VAL // end stap step and end_slide
+			 HOLD_TIME %s VAL // gesture pause whilst up or down
+			 HOLD_TIME %s VAL // adds up // PARSE by next STEP
+			 PRESSURE VAL //
+
+			VAL u4 or u8 or u12_u12 or u24
+			ARM load u32 from unaligned bytes stream
+
+	TILT
+
+		use accel to pick zones of KBD, and zoom in
+		zoom out requires click BTN or tap or something
+		zoom in uses time or tap
+
+			show highlight
+			draw zoomed in 
+			delay to recentre if way off
+			roll to PICK then TILT to PICK
+			press key when easy
+
+		ASK for from TTGO
+
+			board quilt
+			 ESP32-S3
+			 large lcd
+			 power 
+			 tilt
+			 microphone
+
+			case
+			 PANEL
+			 touch lines
+			 1/4 in = guitar
+			 1/8 in = mic from radio mic || line || 
+			 1/8 out headphones || line
+			 LED_CHAIN +/-/D 
+			 USB to MIDI || maybe more
+			 USB from Laptop - as TTY maybe SLIP MUX 
+			 WiFi
+			 BT keyboard - fast type at desk
+			 battery switch
+ 			 PSU in            
+
+	XOX UI
+
+		touch grid layout
+		buttons += SWITCH += LED_on_strip
+		OPTION LH_BIAS on SWITH
+
+
+	SPIN_py
+
+	=== ==
+
+			u4_u4 
+			 u4_OPCODE	PICK STEP_ZONE
+			 u4_STEP 
+y
+			u4_u4 
+			 u4_OPCODE	STEP_ZONE STEP
+			 u4_STEP 	8 directions .1 .2
+
+			u4_u4
+			u4_OPCODE
+			 OPCODE_0 
+			 OPCODE_1
+			 OPCODE_2
+			 OPCODE_3
+
+			 OPCODE_4
+			 OPCODE_5
+			 OPCODE_6
+			 OPCODE_7
+			// MINUS -8 -7 -6 -5 -4 -3 -2 -1
+			 OPCODE_8
+			 OPCODE_9
+			 OPCODE_A
+			 OPCODE_B
+
+			 OPCODE_C
+			 OPCODE_D
+			 OPCODE_E
+			 OPCODE_f
+
+			u16_BIT_STEP
+
+				u8_BYTE_A == STEP_ADJUST_dx_dy
+
+				i4_i4 		-8+7 x1
+				i6_i6 		-8+7 x1
+
+
+				i4_i4 		-8+7 x1
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+

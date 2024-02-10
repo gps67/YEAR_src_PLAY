@@ -13,6 +13,9 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/espressif/esp-bsp
+https://github.com/espressif/esp-usb
+https://github.com/espressif/esp-adf
 # EGS
 https://github.com/davetron5000/ghola
 #
@@ -283,12 +286,15 @@ https://github.com/ecere/ecere-sdk
 https://github.com/ELENA-LANG/elena-lang
 https://github.com/emweb/wt
 https://github.com/erincatto/Box2D
+
+https://github.com/espressif/mbedtls
 https://github.com/espressif/arduino-esp32
 https://github.com/espressif/esp-adf-libs
 https://github.com/espressif/esp-idf
 https://github.com/espressif/esp-idf.git
 https://github.com/espressif/esp-nimble
 https://github.com/espressif/esptool
+
 https://github.com/espruino/Espruino
 https://github.com/estools/escodegen
 https://github.com/estree/estree

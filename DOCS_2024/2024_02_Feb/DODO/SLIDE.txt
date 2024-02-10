@@ -1,0 +1,62 @@
+SLIDE.txt
+
+	EG
+		(quarter of VGA) 40x12 chars 16x8 font
+		£4 2.8" 240 x 320
+	
+	EG Moto G31
+		£150 6.4" 409 ppi 2400x1080
+	other	£100 6.5         1600 x 720
+
+
+	GESTURE += SLIDE
+
+		start
+		step
+		delay
+		stop
+
+		touch
+	
+	GESTURE += IDLE
+
+		briefly between lines
+		idle between groups
+		confirm 
+		held in state
+		break smudge
+	
+	GESTURE += TILT
+
+		angle
+		tap
+		shake
+		even
+		90
+		towards
+		90 realign
+	
+	ANDROID gesture
+		...
+	FreeRTOS
+		...
+	X11
+		...
+	W32
+		...
+	Qt
+		...
+	
+
+	REPLAY
+		array of point in each gesture slide
+		LOOP replay
+	
+	Handwriting
+		faint pre-play gesture
+		play gesture list at spped S with delays T
+		accept new gesture hopefully near lead
+		play alphabet
+
+
+

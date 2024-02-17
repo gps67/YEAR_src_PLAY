@@ -13,7 +13,8 @@
 
 	DIR_HOME=$(HOME)
 	DIR_YEAR=$(DIR_HOME)/YEAR
-	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
+#	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
+	DIR_PLAY=$(DIR_HOME)/YEAR/src/PREP
 
 	DIR_libs_apps =$(DIR_PLAY)/libs_apps
 

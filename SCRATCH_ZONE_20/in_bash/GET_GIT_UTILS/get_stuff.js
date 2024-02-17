@@ -13,6 +13,8 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/lvgl/lvgl
+https://github.com/ELENA-LANG/elena-lang
 https://github.com/espressif/esp-bsp
 https://github.com/espressif/esp-usb
 https://github.com/espressif/esp-adf

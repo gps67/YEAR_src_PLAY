@@ -5,7 +5,7 @@
 #
 # you must list all filename extensions used
 #
-.SUFFIXES: .cxx .c .o .so .elf .exec .elf
+.SUFFIXES: .cxx .c .o .so .elf .exec
 
 #
 # RULE: compile from .c to .o
@@ -42,6 +42,10 @@
 
 
 # .o.elf .o.exec: $(OBJS)
+
+%.elf: %.o $(OBJS)
+	# .elf is like .exec but duplicated text
+	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
 
 %.exec: %.o $(OBJS)
 	#

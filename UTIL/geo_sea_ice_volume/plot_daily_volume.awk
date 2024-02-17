@@ -78,6 +78,8 @@ BEGIN {
 	A365=365*6 # looks like a step down, then exponential decay to V2
 	A365=365*1
 	A365=365*9
+	A365=365*4 # 6 years is smoother but 4 is nearer to 1
+	A365=365*3 # 6 years is smoother but 4 is nearer to 1
 
 	# PICK A365 # LAST one WON #
 

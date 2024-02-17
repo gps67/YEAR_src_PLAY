@@ -1,6 +1,124 @@
 
 	STO_MACHINE_bench_VAR.txt
 
+		u8_u8 EA_ITEM
+		i48_PAYLOAD_t i48_PAYLOAD; // GET_SIGN // GET_INT_VALUE
+		u48_PAYLOAD_t u48_PAYLOAD; // GET_VALUE // ALIAS "%s" //
+
+	DECODE
+		u8_u8 EA_ITEM
+
+	DECODE
+		i48 EA_ITEM
+		i16_i32 i64_LOHI_BITFIELDS WORD_ALIGNED lohi "BYTE_A(xF1)"
+		BIND lohi THIS SELF i64_lohi _but_now_in_CPU_WORD("i64")
+		{
+		KNOW PICK i8_i8_i48
+		PICK KNOW u8_u8_u48
+		...
+		}
+
+			FAST_LOAD of MERGED_SURFACES
+
+				they are intentionally chose
+				eg SPARSE ARRAY[u8_A] then this.STEP[i8_B]
+
+				SIGNED IDX as "DECODE(MINUS)" // PICK
+				SIGNED IDX as " DECODE(MINUS) " // OPTION SP
+
+				RULE_WAS "if(_i48<0) ... "
+			PICK	RULE_WAS "if(IS_MINUS(_i48 )) ... "
+			OPT	RULE_WAS "if(IS_MINUS(_i16 )) ... "
+			OPT	RULE_ADD "TEST_WORD CPU_WORD" // no SP extra
+
+			FAST_MERGE of 256_MINI_MACHINES _in_a_MINI_MACHINE
+
+				LIMIT_128 // that actually over the LIMIT
+				LIMIT_i8 // must SIGN_EXTEND from i8_to_i32
+				LIMIT_i16_in_i64
+				LIMIT_i32_in_i64
+				LIMIT_i64_in_64
+				LIMIT_i48_in_64 // simply write this code
+
+			DECODE u8_u8
+			DECODE u16
+			DECODE u32
+
+				The above BYTEFIELDS are friendly to x86
+				The above BYTEFIELDS are friendly to CPU_32_LOHI
+				ARM can do LOHI
+				YOU can do SWAPB 
+				YOU can do LIBR PARSE_ABCD_EFGH
+
+			DECODE_PARSE
+			LIBR PARSE_ABCD_EFGH
+			"%s" // CIDENT97 // the platform DIALECT at the mo UDEF
+			CSET CIDENT99.a1_a2_star // Latin1 UTF8 PLUS_FONT_PANEL
+
+			FONT_PANEL = PAGE of ITEM[xFF]
+			FONT_PANEL = PAGE of ITEM[xFF]
+			u8_256  = 256
+			PAGE of ITEM[xFF] {
+
+				i32_i32 EIGHT[ u8_256 ]
+			}
+
+			PARSE CXX ARGV
+			 eg " ; " is a SPELLING STEPPING STONE PHRASE EDGE
+			 eg " --%s "
+			 eg " -- %s "
+			 eg " -- %s %s " // --option VALUE // GAPS_DIALECT
+
+			PAGE provides any number of tables parallel PAGES
+			PAGE_PEER ORIG PEER PAGE "{ PAGE = ORIG }" // EXPR
+			PAGE provides coverage for each ENQ_ITEM_of_TABLE
+
+			We have a SPARTAN array,
+			using 5 TOKENS out of 127 // ZERO_and_128_or_i7 // i8
+
+			Easiest was is to ALLOC those 5 TOKENS to TABLE
+
+				CT_RT lookup "TEXT" 
+				CT_RT MATCH "TEXT" 
+				CT_RT PARSE "TEXT" 
+				CT_RT TOKENISE "TEXT" 
+				CT_RT STREAM "TEXT" 
+				CT_RT LIST "TEXT" 
+				CT_RT DECODE "TEXT" 
+
+			The the compiled SCRIPT will refer to VAR[a][b] 
+
+				OPTION shortcut optimisation
+				OPTION ful_step_list
+
+			OPCODE
+				DECL IDX
+				VAR_NAME
+				VAR_SPEC
+				VAR_EXPR "{ OOPS obj.expr }" // obj == var
+
+			DECL OPCODE
+
+			 i8_BYTE_A
+			 i8_BYTE_B
+			 i16_BYTE_CD 
+			 i32 BYTE_EFGH
+
+			MACROS
+
+				i16_BYTE_CD = i32_BYTE_ABCD >> 8
+				i16_BYTE_AB = i32_BYTE_ABCD <===> i32_from_i16
+
+				 WORD was loaded ABCD LOHI
+
+				 SIGN_EXTEND i16 to CPU_WORD
+
+				 	when USED within CISC as EXPR
+
+
+
+
+
 	? a single VAR is a PAGE256 range of FRAME
 	? a single VAR is a ZONE_u16 range of FRAME
 

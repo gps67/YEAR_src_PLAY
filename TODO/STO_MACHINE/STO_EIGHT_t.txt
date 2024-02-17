@@ -1,0 +1,115 @@
+BITFIELDS
+
+	BYTEFIELDS
+
+		BYTES_ABCD
+		BYTES_EFGH
+
+	BYTEFIELDS
+
+		BYTES_EFGH // mild bonus easy life
+		BYTES_ABCD
+
+		BYTES_AB
+		BYTES_CD
+
+		BYTES_A
+		BYTES_B
+
+STO_EIGHT_t.txt
+
+	Choose LOHI for (reason=see DOCS)
+
+		BITFIELD_i8 return BYTE_A
+		BITFIELD_i8_BYTE_A
+		BITFIELD_i8_BYTE_B // BUILTING FAST ACCESS // still nippy
+
+		BITFIELD_i16_BYTE_CD
+		BITFIELD_i32_BYTE_EFGH
+
+	We do actually know the EA_DATA_in_MEM 
+	We do actually move into EA_DATA_in_CPU_WORD
+
+		BYTES_ABCD
+		BYTES_EFGH
+
+	 LOHI_REQUIRED // LOCAL DESIGN STRENGTH
+
+		GET_BYTE_A
+		GET_BYTE_N
+
+	 LOHI_REQUIRED // LOCAL DESIGN STRENGTH
+
+		GET_i16_PAYLOAD
+		GET_u16_PAYLOAD
+
+		GET_i32_PAYLOAD
+		GET_u32_PAYLOAD
+
+		GET_i48_PAYLOAD // i64 remains i8_i8_i16_i32_lohi // good for i32
+		GET_u48_PAYLOAD // i64 remains in i16_i32 layout for i48
+
+		TABLE[ N_128 ] // LIMIT_128 is actually 127 // known and used
+
+		TABLE[ N_256 ] // LIMIT_256 is actually 255 or 0xFF or M1
+		TABLE[ i8_idx ] // [ -128 ... [ 0 ... 127 [ 128
+		// PARSE RULE REQUIRE SP around SP [ SP 0 SP DOT_DOT_DOT
+
+BARREL SHIFTERS
+
+	The intel has BYTEFIELD A B AB get_CD_as_i16_PAYLOAD ABCD EFGH 
+	The ARM has BITFIELD shift twice to GET bitfield
+
+		i32 i32_WORD = get_EFGH() // sign extend to i64 and TEST_WORD
+
+		ASM TEST_WORD will happen when CALC is DONE # not always tho
+
+		i32_WORD <<= shift_left
+		i32_WORD << = shift_left
+		i32_WORD >> = shift_right
+		i32_WORD >>= shift_right
+
+	The fast chips claim to do each in one clock cycle (so two)
+
+		ANY bitfield boundary (not locked to BYTES even though I am)
+		OFTEN u3 in i8_idx only PLUS items alloced
+		OFTEN i5 in i8_idx DECODE("MINUS") _DECODE_MINUS 
+	
+	The LOHI via SWAPB works
+
+		actually resolves to nothing ASIS filter
+	
+		uses SWAP_on_LOAD
+
+		uses BIT_BARREL_SHIFTER
+		to get BYTE_FIELDS
+
+		COMPILER gets PAIR of competing PHRASES
+
+			COPY_WORD src dst 
+			COPY_WORD src dst = src
+			COPY_WORD     dst = src
+
+		USAGE indicated as easiest to PARSE as ARGV_per_WORD
+
+			PUNCT == " = "
+			PUNCT == "="
+
+		operator==( const char * Q2_SPELLING ) // PTR // STR0_t 
+
+			can respond with YES to multiple SPELLINGS
+
+			"%s"
+			" %s "
+			"GAP %s GAP"
+			" GAP %s GAP "
+
+				manually CODE each of these
+				but PARSE makes it quite easy
+
+				LEX_EDGE
+				FMT_LAYOUT
+				XYZ_LAYOUT _in_GL_WORLD
+
+
+		

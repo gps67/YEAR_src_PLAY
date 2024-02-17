@@ -1,0 +1,58 @@
+DOC_AVAR.txt
+
+	COMPILER tokenises "AVAR" as u8_u8_PAGE_ITEM _lohi
+
+		on LOHI machines _lohi returns direct VAR access
+		on HILO machines _lohi requires CALC_lohi VAL from VAR
+	
+	GET_VAL( VAR )
+
+		Each AUTO_VAR can be different
+		and add behaviour from SCRIPT
+
+		i48_LAYLOAD {
+
+		 i16_PAYLOAD
+
+		 	// i16_PAYLAOD = i32_WORD_ABCD >> 16
+
+		 i32_PAYLOAD
+
+		 	// i32_PAYLAOD = i32_WORD_ABCD 
+		 	// i32_PAYLAOD = i32_WORD_EFGH
+
+			// OPTION // READ VAL FROM MEMORY
+			// OPTION // READ VAL FROM CPU_WORD
+			// OPTION // CPU_WORD USAGE 
+
+		}
+
+		MINI_MACHINE can expand but mostly lives in a few IDX
+		MINI_MACHINE can expand by MERGING with all of SCRIPT
+
+		MINI_MACHINE has ITEM[i16] as u15 and i15 
+		MINI_MACHINE has ITEM[u16] // u16 = RECALC i16 //
+
+		MINI_MACHINE has ITEM[i8] as u8 and i8 
+		MINI_MACHINE has ITEM[u8] // u8 = RECALC i8 //
+
+		MINI_MACHINE has ITEM[i8_BYTE_B] as u8 and i8 
+		MINI_MACHINE has ITEM[u8_BYTE_B] // u8 = RECALC i8 //
+	
+	TEST
+
+		CALL each GETTER
+		CALL each SETTER // but probably sets itself
+
+		expect correct i48_lohi _in_i64 _in_i32 _in_int
+
+	OFFS
+
+		EA_OBJ as EA_EXPR as IDX_EA as EA_EXPR // CT_RT //
+
+		EA_ITEM as "{ FILE OFFS }" // FILE = KNOW SESS_FILE_THREE
+
+		EA_ITEM as "{ IDX }" // idx_t idx = N ++ ; // N is N_of_IDX
+
+	
+

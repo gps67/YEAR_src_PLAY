@@ -28,42 +28,42 @@ set timefmt "%Y-%m-%d"
 
 set title "TWO MILES"
 plot 'mpg_table.txt' using 1:2 with linespoints
-pause 2
+pause 4
 
 set title "THREE PLUS"
 set yrange[000:500]
 plot 'mpg_table.txt' using 1:3 with linespoints
-pause 2
+pause 4
 
 set title "FOUR MILES END"
 # set yrange[000:500]
 plot 'mpg_table.txt' using 1:4 with linespoints
-pause 2
+pause 4
 
 set title "FIVE P mile"
  set yrange[10:50]
 plot 'mpg_table.txt' using 1:5 with linespoints
-pause 2
+pause 4
 
 set title "SEVEN pounds per litre"
 set yrange[1:2]
 plot 'mpg_table.txt' using 1:7 with linespoints
-pause 2
+pause 4
 
 set title "NINE pounds per gallon"
 set yrange[5:10]
 plot 'mpg_table.txt' using 1:9 with linespoints
-pause 2
+pause 4
 
 set title "ELEVEN mpg "
 set yrange[0:100]
 plot 'mpg_table.txt' using 1:11 with linespoints
-pause 2
+pause 4
 
 set title "THIRTEEN litres per 100 km "
 set yrange[0:10]
 plot 'mpg_table.txt' using 1:13 with linespoints
-pause 2
+pause 4
 
 
 # set nomultiplot

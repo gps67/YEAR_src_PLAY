@@ -1,0 +1,5 @@
+. ./.env
+pwd
+echo "# STASH any changes to the local stash stack"
+ask_do \
+git stash

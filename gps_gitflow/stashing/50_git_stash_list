@@ -1,0 +1,7 @@
+. ./.env
+pwd
+# ask_do \
+say_do \
+git stash list
+
+# https://opensource.com/article/21/4/git-stash

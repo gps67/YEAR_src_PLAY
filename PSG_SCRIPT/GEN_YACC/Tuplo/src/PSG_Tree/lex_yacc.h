@@ -506,6 +506,10 @@ class lex_yacc { public: // PSG in MEM STO !MMAP // this is what we are building
 	bool gen_YACC_start_rule_top( buffer2 & out, const char * top_rule_name = NULL );
 	bool gen_YACC_include_RULES( buffer2 & out );
 
+	virtual bool build_tree();
+	virtual bool build_tree_lex() = 0;
+	virtual bool build_tree_yacc() = 0;
+
 };
 
 }; // namespace

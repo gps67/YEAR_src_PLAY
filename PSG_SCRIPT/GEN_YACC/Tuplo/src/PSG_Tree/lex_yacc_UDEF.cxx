@@ -16,12 +16,6 @@ using namespace PSG;
 // lex_yacc_UDEF is a BASE CLASS with OPTS eg C_EXPR
 
 
-bool lex_yacc_UDEF:: build_tree() {
-	if(! build_tree_lex() ) return FAIL_FAILED(); 
-	if(! build_tree_yacc() ) return FAIL_FAILED(); 
-	return true;
-}
-
 bool lex_yacc_UDEF:: build_tree_lex() {
 	return FAIL("UNWRITTEN");
 	return true;

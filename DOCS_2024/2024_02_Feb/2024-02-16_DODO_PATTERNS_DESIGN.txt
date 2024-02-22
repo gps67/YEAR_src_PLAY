@@ -9,16 +9,133 @@
 
 		CPU picks one BYTE of u32_CPU_REGISTER
 
-			it always picks the LOW byte_A
+			it always is the LOW byte_A
+			it never is the HIGH BYTE_H of 8 bytes of i64
+
+		DECODING A then B // then CD then EFGH
+
+			means that A is effectively the HIGH VALUE byte
+
 			at that LO pos it is first and ironically MOST signif
 
 		PARSER can stop on 1 letter // KNOWN_BINARY_OPCODE
+
+			A
+			A B
+			AB as BA_from_LOHI
+			A B C D as DBCA_from_LOHI
+			CD as DC from ABCD or DBCA SIGNED shift 
 
 			BYTE PARSER NUMERIC TOKEN_READER
 
 			u8 u16 u32 u64
 			i8 i16 i32 i64 SIGNED
 			i4_i4_u24 i4_i4 i8_OPCODE i8_EXPR i9_CODE_POINT
+
+		CHOICE
+
+			get A from EIGHT in MEM_BYTES
+			get A from EIGHT in MEM_WORD
+			get A from EIGHT in CPU_WORD
+			get A from PREGOT in CPU_WORD
+			get B
+			get B from 
+
+			COMPILER has to explore avenues 
+
+				NONE - backtrack
+				ONE - this way
+				TWO - explore choice
+				MORE - explore choice
+
+			COMPILER CALC
+
+				CYCLES per OPCODE
+				LOOPS per LOOP
+				BYTES per OPCODE
+
+			COMPILER may also pick which it does first
+
+				my compile is a bit simpleer than that
+				option to build these proposed structures
+				for now use some TEST DATA to prepare ...
+				well explored options
+
+				my compiler can pick first working result
+				might depend on C picking how to implement that
+				just so it works, for now
+	
+		A B
+
+			We are decoding i8_i8 as BYTE_A BYTE_B
+
+			OBTAIN CD
+			OBTAIN ABCD
+			SHIFT_BITFIELD
+
+			WRITE i32_FOUR.BITFIELD_i16_DC
+
+	WHEN LOHI
+
+		allow use of "BA" 
+		allow use of "AB" 
+
+		allow use of "DC" 
+		allow use of "CD" 
+
+		allow use of "DCBA" 
+		allow use of "ABCD" 
+
+		both mean BYTEFIELD loaded from LOHI
+
+			saying ABCD reminds programmer of SEQ in MEM
+			saying DCBA reminds programmer of SEQ in WORD
+
+			avoiding DCBA means programmer knows it is reversed
+	
+	WHEN LOHI
+
+		PAIR "{ LHS RHS }" // PAIR_LHS is WORD_LO _ONE _TWO
+		PAIR "{ ONE TWO }" // human names not [0] [1] // prefer lhs rhs
+		PAIR "{ LO_ _HI }" // splice out of i64 CPU_WORD
+
+	WHY LOHI MOST CPUS
+
+		most CPU's have a load WORD from LOHI
+
+			STEP
+			MODE
+
+		most CPU's have a SWAP_BYTES_in_WORD 
+
+			NEED WORD_FOUR aligned to load word from memory
+
+		most CPU's have ACCESS to low BYTE 
+
+			even if via 2 shift steps
+
+		most cpu's have ACCES VECTOR_of_i32[ idx * 2 + 0 ]
+		most cpu's have ACCES VECTOR_of_i32[ idx * 2 + 1 ]
+
+		most cpu's have ACCES VECTOR_of_i32[ idx * 2 + 0 ] + 0 byte
+		most cpu's have ACCES VECTOR_of_i32[ idx * 2 + 0 ] + 1 byte
+
+ EIGHT
+ EIGHT_LOHI
+ FOUR_LOHI_PAIR
+ FOUR_LOHI
+ FOUR
+
+	If you dont want LOHI dont use the name EIGHT, it always is
+
+		i64_WORD = INT_from_LOHI_64
+
+		i32_WORD = INT_from_LOHI_PAIR_i32_i32
+
+ 	matches i64 but intentionally BITFIELD edges i32_i32
+
+ OTHER
+	OTHER
 
 		CODE_POINT 
 
@@ -126,6 +243,27 @@
 	
 	BYTES are read like ASCII letters ABCD EFGH TEXT PARSE MATCH FILTER
 
+ MINI_MACHINE
+
+	 i8_i8_i16_i32
+
+	 	BYTE PAIR "{ A B }"
+
+	 i8_i24_i32
+
+	 	single BYTE
+
+		a lot of MINI machines will fit
+	
+	NESTED
+
+		MERGE MINI_MACHINES into shared space
+
+			still in BYTE
+			move to BYE_PAIR
+
+
+
 
  TEXT
 
@@ -137,6 +275,8 @@
 	API_t u32_N ; u32 P0 ; ______ ; ZERO "EA == P0" ALSO "CSR == P0"
 	API_t _____ ; u32 P0 ; u32 P2 ; ZERO "EA == P0" ALSO "CSR == P0"
 	MERGE MATCH ABOVE LINES from TEXT STREAM
+
+	TEXT compiles to BINARY using VAR_NAME into IDX
 
  TEXT STREAM
 
@@ -150,6 +290,22 @@
 	https://music.youtube.com/watch?v=AgM9iv6Y0XI&si=UNxWz6i3jgdkKPRa
 
  REPL API
+
+ 	The MUX stream, is actually a REPL,
+
+		two way traffic
+		quiet times waiting for input
+		busy time process input to output
+		busy time process round trips and repeats
+		busy time computing and waiting
+		out of phase ENQ / ACK - not due to dropped PKT
+		predictive CACHE asks questions for remote
+
+		REMOTE sends QUERY to here, we PICK it
+		enact query, understand it, obtain bits of info needed
+		obtain bits of info redicted to be useful
+		preemtively ENQ_ACK those details locally
+		LOCAL cache mirrors REMOTE cache
 
  	ENQ_ACK_REPL_API
 

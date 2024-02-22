@@ -1,0 +1,5 @@
+. ./.env
+pwd
+echo "# get stashed changes back - re-applied"
+ask_do \
+git stash pop

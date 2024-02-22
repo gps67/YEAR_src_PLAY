@@ -1,0 +1,5 @@
+. ./.env
+pwd
+echo "# CLEAR ALL stashed stashes"
+ask_do \
+git stash clear

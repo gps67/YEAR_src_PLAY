@@ -1,0 +1,46 @@
+DOC_HEAP.txt
+
+	IDX_t idx = N ++ ;
+
+	N is N_IDX is "{ N_IDX_%s %s }" 
+	N is N_IDX is "{ N_IDX_%s %s }" PAGE ITEM
+	N is N_IDX is "{ N_IDX_%s %s }" LIBR ITEM
+
+		IDX_t idx = N ++ ;
+	
+	define N %s_N IS_OF("N") ISOF("idx")  | ISOF("MINUS")
+
+	i16_idx = N ++
+
+	TEST_BYTE _CACHED
+	if SIGN_ZERO
+
+		GOTO SIGN_PLUS
+	
+	if SIGN_PLUS
+
+		int idx = IDX CLIP_PLUS
+
+	if SIGN_MINUS 
+
+		int idx = CALC DECODE MINUS
+
+		UNS = CAST_to_UNS CLIP_to_BYTE
+		 -or-
+		UNS - INT + 255 // MINUS is not HIGH
+	
+	DECODE PAIR
+
+		HEAP can allocate 256 or 128 items at a time
+	
+	DECODE HEAP ADDR "{ LIBR ITEM }" or PAGE ITEM
+
+		PAGE is probably a HALF PAGE
+		PAGE is probably a FULL PAGE
+		PAGE is probably a PART PAGE [0[N_used
+
+		MINUS_ZERO_PLUS (above) [-128[0[+128 or [0[256
+	
+
+
+		

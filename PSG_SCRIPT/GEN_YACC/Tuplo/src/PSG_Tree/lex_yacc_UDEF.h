@@ -20,7 +20,7 @@ namespace PSG {
 
 class lex_yacc_UDEF : public lex_yacc { public:
 
-	virtual bool build_tree();
+// 	virtual bool build_tree();
 	virtual bool build_tree_lex();
 	virtual bool build_tree_yacc();
 

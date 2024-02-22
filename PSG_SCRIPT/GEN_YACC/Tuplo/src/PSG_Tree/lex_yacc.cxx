@@ -25,6 +25,13 @@ lex_yacc::
 {
 }
 
+// what this class does (also print?)
+bool lex_yacc:: build_tree() {
+	if(! build_tree_lex() ) return FAIL_FAILED(); 
+	if(! build_tree_yacc() ) return FAIL_FAILED(); 
+	return true;
+}
+
 /*
 	TODO
 

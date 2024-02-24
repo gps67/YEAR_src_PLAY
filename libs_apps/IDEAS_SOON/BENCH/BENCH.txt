@@ -25,10 +25,12 @@
 # CREATE DRAW_API
 
 	DRAW AVAR
+	DRAW ABOX
 
-	DRAW AVAR_ARRAY
-
-	DRAW AVAR_STRUCT
+	DRAW AVAR_IDENT // cident97 or "ANYSTR" // ALLOW_IDENT_a1_a2_star
+	DRAW AVAR_ARRAY // [0[N [P0[P2 // [ idx ] // FMT "%s[idx]"
+	DRAW AVAR_STRUCT // PARSE %s.%s" // parse ".%s" // parse %s //
+	DRAW AVAR_STRUCT // PARSE LHS.RHS" // LHS == "%s" /*;*/ RHS == %s //
 
 	DRAW AVAR_in_SCENE
 	DRAW AVAR_in_VIEW
@@ -111,8 +113,265 @@
 	CX_ALIAS pick STR when different P0P2_N_P1_OFFS_or_EA_IDX_used
 
 
+// DRAW_SPEC //
+// API SPEC //
+// SPEC //
 
 
+	MACRO AVAR_SPEC AVAR.SPEC  // SEP == "." //
+	MACRO AVAR_SPEC AVAR.SPEC  // SEP == "_" // POSS _as_WAS // parametised
+
+	MACRO PARSE 
+	PARSE MACRO
+
+		use LHS = ... RHS = ...
+		use parametised
+		use MATCH USAGE FMT
+
+// Python API //
+// TKINTER //
+// invoke TCL MODULE from Python via PARSE_ANYSTR
+// invoke TCL MODULE from Python via PARSE_ARGV_of_simple_P0P2 as_P0_N
+// the point of P0_N is that N was PARSED
+// the point of P0P2 is that N can be added to P0 // to get P2
+// SPIN_Py picks up TCL_MODULE over CXX_ _ARGV_SCRIPT processor 
+// FILTER SCRIPT_LINE_is_one_of_LIST // _INDENTED_ _TEXT_BLOCK P0P2
+// FILTER SCRIPT_LINE_is_ARGV 
+// FILTER SCRIPT_is_PARSED_PHRASE_as_ARGV // LAYERS of FILTER //
+// FILTER STREAM of PARSED TOKENS and VALUES
+// FILTER STREAM PARSE_SUBLEX_TOKEN_STREAM // LEX_EDGE level //
+// FILTER LEX_EDGE // and not_LEX_EDGE_just_SUBLEX_edge
+// LAYER EDGE = PICK { LEX_EDGE SUBLEX EDGE } // ALIAS { LEX SUBLEX }
+// TOKENISE("SPELLING") //
+// IMPORT_AVAILABLE_VOCAB_and_LOCAL_NOUNS _and_VALUES
+// SEGMENT ALLOC ITEM STR0 // include NUL // expect packed not aligned 
+// GET_N_needs_PARSE_LEX // CT_RT CT_ KNOW _RT PARSE PICK a1_a2_star //
+
+// Python // ARGV_SCRIPT_OBJ // 
+// for flexibility each ARG[idx] arrives a PAIR { SPEC DATA }
+// SPEC says "{ Python_PLUS _UDEF }"
+// SPEC says "{ _UDEF SPEC }"
+// SPEC says "{ _SPEC _DATA }"
+// add UNDER permits use of TYPENAME as a VARNAME
+// add UNDER_$s_ONE _TWO _// ... // %d _%02X  _%s "{ rename %s }"
+// each KDB_STEP is an EXPR_STEP // many compile away to nothing
+// CT_RT pre-empts EXPR // particularly when TEST_DATA helps
+
+=============================================================
+
+ API
+
+ 	try to make ARGV style calls and args
+	can have machine API ... name value ... pair stream 
+	PARSE sorts out ARGV at CT_RT
+	_RT uses placeholder VARS of_NAME of_USAGE of_CT_RT_token
+
+	recognise AVAR as P0P2 TOKEN in SCRIPT or TEXT or STREAM
+	rewrite ARGV using P0_of_P0_N 
+	rewrite ARGV using PARSE P0 to find N and P2 // use_PSG[i2]
+	[i2] [0] [1] [2] [3] // _ONE _TWO _PLUS _MORE // _MINUS _ZERO_PLUS //
+	// MATCH _ITEM_ONE as _SELF common ALIAS is _$0 except dgb or api
+
+ API
+
+ 	MENTION "AVAR" // might be AVAR // even PSG LEX TOKEN held CT_RT
+
+	SCOPE recognise well known alias for parameter "THAT near THIS"
+	on_MATCH_USAGE AVAR
+	on_IMPORT_MODULE
+
+		declare all TOKENS
+		declare api TERMS PHRASES EXPRS
+
+ PSG
+
+ 	MENTION
+	AUTO_NAME
+	AUTO_DECL
+
+		WARN or FAIL on second DECL
+		JOIN or SAME on second DECL
+
+ API PSG CXX SCRIPT
+
+ 	LIBR runs SCRIPT over DATA
+
+	LIBR gen SCRIPT_COMPILED with extra help from DATA
+	LIBR built with SCRIPT TEXT TREE // CODE_in_TREE_TWO
+	TREE_NODE
+	  NODE_TYPE_NODE_in_SCRIPT
+	  XPOS
+	  XPOS_in_FILE // OFFS in FILE
+	  XPOS_in_TREE // IDX in HEAP
+	  XPOS += SCU "{ CAN_FILND_VARS FILE TREE }"
+	  NODE_TYPE "PSG_NODE_%04X" // let NAME include FMT // NOTICE //
+	  NODE_TYPE "PSG_NODE_FFFF" // let NAME replace FMT // NOTICE //
+	  NODE_TYPE "PSG_NODE_DEFO" // let NAME replace NAME // NOTICE //
+
+	PARSER decodes ARGV when FILTER ARG_is_a_VARNAME 
+	PARSER decodes ARGV when FILTER ARG_is_a_TOKEN
+	PARSER decodes ARGV when FILTER ARG_is_a_SPELLING
+	PARSER rewrites ARGV_in as ARGV_out 
+
+		can use {" varname ARG_i }"
+		can use {" varname ARG_i }"
+		can use {" OPT_VAL KNOWN_VAL }"
+		can use {" OPT_VAL '{ CTRT CT_VAT _RT VAL }' }"
+		AUTO Q2 Q1 in BENCH GEN and GUESS COMBINE EXPRS
+
+			STEP2 = STEP1
+			STEP2 = "{ HINT '{ STEP1 }' }"
+			STEP2 = "{ HINT STEP1 }"
+
+			CT_RT CT_ '{ STEP1 = CT_STEP1_VAL }'
+			CT_RT _RT '{ STEP1 = RT_STEP1_VAL }'
+	
+	simpler MACRO goes forwards down 1 path 
+	simple MACRO searches LIST of first_wins paths
+	simple MACRO searches LIST of all_that_win paths
+	simple MACRO searches LIST using PARSE_SUBLEX_STEP _steps _STEP
+	adds extra LEX steps at CT_ runs it at CT_ gets RT_FSM
+	KNOW only check EOF at EOLN or NUL // know NL is there // RISK //
+	KNOW CHECK for EOF at LEX_EDGE // roll back within LEXER_must_do //
+
+ CHOICE
+
+ 	TOKEN_TYPE
+
+	CT_ collects all known VALUES and TYPES_USED in SCRIPT
+	CT_ starts with PARSED_TOKENISED_SCRIPT_as_TREE
+
+		PARSE_SCRIPT SCOPE EACH POOLS
+		VAR_POOL_merged += LOCAL + MODULE + GLOBAL // L2R when UDEF
+
+
+			+= EXTRA
+
+			LHS += EXTRA aways returns LHS (TODO RTFM) (WANT)
+
+			C++ says return a new WORD that is the sum
+			CXX says return a new SELF thas has been modified
+			// and will be modified by next +=
+			// ie return VAR not VAL
+			// ie VAL is VAR_NAME or TOKEN or BIND
+			// forced requirement VAL is EA_VAR of SELF
+			// OPTION declare TYP & operator+=( const TYP & rhs )
+			// STANDARD "{ return *this ; }"
+
+ BASE
+
+ 	avoid the Q2 issue by only allowing VAR_is_NAME_of_VAR
+	and by only using valid cident97_name_one // ASCII for now
+	PARSER_WARN_USAGE // WARN_UTF8_in_IDENT _CIDENT_of_func
+	PARSER_WARN_USAGE // WARN_UTF8_in_IDENT _CIDENT_of_avar
+	PARSER_WARN_USAGE // WARN_LATIN1_in_IDENT _CIDENT_of_avar
+	PARSER_WARN_USAGE // WARN_PUNCT_in_CIDENT_of_avar // trigger_REWRAP
+
+
+ ESP32
+
+	exact round trip timer
+
+	find a builtin clock that reports nanoseconds or anything
+	log XMIT with RESP_SENT_OK and _TIME_SENT
+	log PKT_IN with nano_time_when // nano_time_now
+	log PKT_OUT with nano_time_when_done // not in PKT in next one soon
+	queue set nano_time_of_PKT_was PKTID nano_time_then
+
+		parser removes " was " and generates ARGV SPEC "{ PKT WHEN }"
+	
+	if first in 1 second, or 1 sec since most recent, send ASAP
+
+		queue puts TUPLO { SET LHS RHS } into STREAM
+		queue puts DELAY_SYNC_UNTIL into STREAM
+
+			ASAP if queue novel in 1 sec
+			ASAP if queue delayed by 1/10 sec
+			ASAP_SEND if SEND called
+
+				reset queue_novel to NOW
+	
+	using 32_bit_second_time makes 1 sec easier to tick_time
+	using 64_bit_second_time makes 1 sec easier to tick_time
+	using bitfield_ms_time makes 100ms sec easier to tick_time // 10Hz
+
+	PKT MUX uses 1K data with 100 bytes headers plus extra FIELDS
+
+		EXPECT memcpy DATA_1K
+		to STREAM // a small cost // add in KNOW dest
+
+		ALLOW get_data_1K_from_PKT_IN
+		to feed DECOMPRESS_FRAGMENTED_STREAM_nbytes_CHUNK
+
+		DIRECT CHECKSUM DECRYPT EXPAND CONSUME
+
+			CHECKSUM runs over nbytes
+			DECRYPT runs over nbytes into BUFFER_one
+			EXPAND BUFFER_one to BUFFER_two // and STUCK FLAGS
+			if BUFFER_two lo_tide ; PRIORITISE drain BUFFER_two
+			 on empty and wrap_around ; reset_zero
+			 offer BUFFER_two to CONSUME
+			on BUFFER_two completly emptied ; resume EXPAND
+
+		CONSUME does nothing until EXPECTED_16M_arrived
+
+			lots of CRC checking ongoing
+			lots of PRE_BUILD to prepared STRUCT
+			CONSUME can actually CONSUME as part of EXPAND
+			then second CONSUME added later
+
+			process entire FRAME OBJECT_ARRIVED COMPLETE_OBJECT
+
+		CONSUME receives complete MUX chunks (several at once)
+
+			PRE_CONSUME retains carry_over partial chunk
+			header specified it as a nbytes_of_larger
+			transmission protocol pre_books that ahead
+
+		STREAM chunks of DATA through MUX
+
+			bridge multiple 1K packets using 
+			PARTIAL CHUNKING
+
+			complete as many CHUNKS as can per several packets
+			MUX allows diverts to quotas
+			MUX knows to offer complete CHUNKS and carry_over_last
+			MUX knows about SESSION FRAME GROUPS // LEX_EDGE //
+			EDGE _of_LEX of_NBYTES of_FRAGMENT of_COMPLETE
+
+		STREAM SYNC REQUEST
+
+			on the NEXt outgoing packet
+			on a SOON outgoing packet
+			NOT on the NEXt outgoing packet // slow down 
+			request_reply_window_5 // get 2 
+			SYNC every 5 seconds plus 5 packets
+
+			on a SPARE bit of space on an outgoing packet
+
+			do not ACK this ACK 
+			 _EVER
+			 _NEXT
+			 _DONE // on_close at EOF etc
+			 _WEEK
+			 _DAY
+			 _HOUR
+			 _MIN8
+			 _SEC9
+			 _SEC_TENTH
+			 _LESS
+			 _ASAP //
+			 
+
+			 MINI_MACHINE iterates over LISTS
+
+			 on_EMPTY
+			 is_EMPTY
+
+			 	all sent and no reply wanter
+				no_reply confirmed complete from remote
+				tell API all up to date // _DONE_
+				tell API was up to date // SYNC_POINT //
 
 
 

@@ -280,6 +280,27 @@
 
 		parser removes " was " and generates ARGV SPEC "{ PKT WHEN }"
 	
+	MEASURE ROUNT TRIP TIME
+
+		DIAG += component that might be AGES but always MIN_WIDTH
+		DIAG += step that takes (unknown time)
+		DIAG += step that happenned at STEP_EDGE time
+
+		use to then measure speed of light over 1 foot 20 foot
+		use to compare PKT reliability and distance
+		use to replace METER 
+		use to see that useless dt is 100 feet do manually
+
+	MEASUE reliability
+	MEASUE delay
+
+		stream packets out at maximum
+		stream packets out at half
+
+			now not measuring radio speed but NET speed shared use
+
+		
+	
 	if first in 1 second, or 1 sec since most recent, send ASAP
 
 		queue puts TUPLO { SET LHS RHS } into STREAM

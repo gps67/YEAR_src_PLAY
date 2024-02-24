@@ -1,0 +1,123 @@
+#  BENCH/BENCH.txt
+
+	BENCH
+	SCRIPT
+	PSG
+	TEXT
+	CALL
+	AVAR
+	SPEC
+	API
+
+# CREATE DIALOG FILTER HERE NOW via BENCH 
+
+	BENCH += PANEL
+	BENCH += PANEL X11 W32 W64 WAYLAND 
+	BENCH += VIEW
+	BENCH += VIEW PSG Layout == VIEW Layout PSG via api
+	BENCH += SESS AVAR 
+	AVAR += "{ VARS AVAR PANEL VIEW } AVAR { NAME SPEC CODE API }"
+	GETTER("%s") _GET("{ ONE { NAME SPEC CODE API }" // FADE CODE UNUSED
+	HERE { KNOW UNUSED "${VARNAME:-CODE}" } // simpler safer plenty OMIT 
+	// above line is PSG folded near { xFFF // CMNT // xFF = %02X //
+	// xFFF = IDX // IDX_t IDX = WORD_of_BITFIELDS
+
+# CREATE DRAW_API
+
+	DRAW AVAR
+
+	DRAW AVAR_ARRAY
+
+	DRAW AVAR_STRUCT
+
+	DRAW AVAR_in_SCENE
+	DRAW AVAR_in_VIEW
+	DRAW AVAR_in_PANEL
+	DRAW AVAR_in_BENCH_ITEM "{ ITEM AVAR }"
+	compile BENCH_ITEM "{ ITEM AVAR }" into BENACH.AVAR.ITEM[AVAR_IDX]
+	rewrite macro AVAR_IDX AVAR("IDX")  BENCH_ITEM "{ ITEM AVAR }"
+	// into BENACH.AVAR.ITEM[AVAR_IDX] // MATCH "%s_%s" AVAR IDX 
+	// MATCH "%s_%s" AVAR IDX // this is how PARSER builds code 
+	// creates AVAR creates IDX FMT // registers OPCODE and PARSE 
+	// SUBLEX itself applies FILTER to %s // if MATCH "%s_%s"
+	// OPCODE == ARGV[0] == "%s_%s" // MENTION paves following line_list
+	// THIS LINE is within SCROPT of INDENTED_TEXT // OPTIONAL FMT
+	// when FMT == "" desubscripe()
+	// when FMT == "%s" { RET_VAL = MATCHING_TEXT_STR0_ _as_P0P2 } //
+	// when FMT == "%s" { RET_VAL = %s _as_P0P2 } // in STREAM_SCRIPT_XPOS
+	// when FMT == "%s_%s" { MATCH so call CT_RT FILTER_MATCH FIELDS_FOUND
+	// FIELDS += MATCHING_TEXT // entire MATCHING_TEXT starting at P0 
+	// abbreviate P0P2_STREAM to P0_PARSED_STREAM // CALC_OWN_P2 // UPTO EOF
+	// MERGE_PKT_RULE // have EOF or plenty or some or more
+	// MERGE_RULE DEFRAGMENT recombine_fragments_via_transcribe
+	// MACRO on MENTION OBJ_IDX // OBJ_IDX // += OBJ // += IDX // += OPTS
+	// OPTS += CT_RT KNOW IDX when PRE_ALLOCATED into TABLE
+	// CT_RT CT_"{ idx = N ++ }" WORD_t idx = OBJ_IDX // allocated // ALLOC
+	// CT_RT _RT "{ idx = N ++ }" { SCRIPT } // ...
+	KNOW idx is ARRAY[idx] // ITEM_TYPE_WORD_PAIR // u32_u32_aligned_u64
+	// DIALECT single cident (+= heave use of "_" in SUBLEX_JOIN _DIALECT)
+	// DIALECT SUBLEX PAIR LHS RHS // SPELLING is NOUN in SPELLING_STYLE
+	// STYLE "%s%s" // OMIT_UNDERSCORE // prefers Dialect_uses_CamalCase
+	// STYLE VIEW PICK "CamelCase" "camelCase" SUSPECT_MATCH explain_FILTER
+	// EXPLAIN_FILTER camelcase has been converted TO_LOWER
+	// EXPLAIN_DIALECT camelcase has been converted TO_STR0 "camel_case"
+	// PARSE overlaps "camel" with left_remote_camel left_local_camel
+	// PARSE overlaps "case" with right_remote_case right_local_case
+	// PARSE_MACRO_REWRITE "case = RHS_as("case") // CT_RT MATCH "case" //
+	// PARSE_MACRO_REWRITE TOKENISE CT_RT MATCH "case" // CTXT re explain 
+	// verbosity grow to fill role of being running SCRIPT at LOCN
+	// verbosity repeat exact same block of text
+	// verbosity repeat COPY subset_superset FILTERED exact same block of text INFORMATION
+	// subset_superset subset superset // AUTO GEN this line // _SEEN
+	// subset means fewer PROVIDED fields fewer USED fields // NONE // POOL
+	// superset_means added extra EXPR_VARS _at_LOCN _in_WORLD _POOL
+	// subset has to use power of TOKENISATION SOME_NAME NAME=VALUE
+	// operator = has CT_RT features
+	// provide _RT features via CT_RT at CT_GEN GEN_CXX GEN_VARS
+	// API convers AVAR to DIAG
+	// DRAW one of 4 LAYOUTS // define as many as you want 4 more
+	// GEN is DRAW into SOURCE as DIAG // really basic JSON tables
+	// DIAG is a rectangle with ZOOM_STEPS DOT ARROW BOXED_ARRAY ABOX
+	// DIAG_ABOX puts VAR_NAME near top left in border of panel
+	// FILTER specially for "{" to not need "\\{" // or to GET "\\{"
+	// + //  DIAG_ABOX SP { "{" SP VARNAME SP "}" // CMNT } // PSG
+	// +----[ DIAG_ABOX ]-----------+
+	// |  DIAG
+	// +----------------------------+
+	// OPTION draw BOX_ONE use_fixed_width_SPARE_LIKE_EDITABLE_FIELD
+	// OPTION VIEW still simplifies for low DPI or narrow squish 
+	// OPTION VIEW simplifies 
+	// ARGV_SCRIPT and mention of "simplifies" treated AS_IF AVAR_for_CTRT
+	// ARGV_VAR_NAME // or any other TOKEN usable in DIALECT
+	// ANYSTR // STR0 // TEXT_P0P2 _in_STREAM //
+	// ANYSTR // CSET HASH_of_STR0 STR0_ident P0P2_STR P0_N_STR
+	// P0_N_STR { P0 N } // AUTO_ADD "STR" for SELF THIS STR0_as_
+	// COMPILE MATCH use of STR know is "AVAR { STR_P0_N_t STR }"
+	// COMPILER NUDGE "AVAR { TEXT }" // STYLE_adds_LAYOUT_that works or not
+	// COMPILER NUDGE "{ AVAR T E X T }" // percieve as ARGV[0] == "AVAR" //
+	// CT_RT CT_ KNOW ARGV[0] == AVAR // decl a_const_as_if_a_var_AVAR
+	// CONST_AVAR "%s" "PICK { AVAR CONST_AVAR AVAR _CONST  AVAR _AVAR }"
+	// PICK here we expect PICK to be an added annotation, CHOICE HIGHLIGHT
+	// DIAG += DIAG_FEATURE _FEATURE 
+	// DIAG += ABOX
+	// ABOX here means ABOX _DECL
+	// ABOX here means DIAG_ABOX _DECL
+	// LANG switches PICK as expected as XPOS as_init
+	// XPOS += "{ P0P2_ZONE_OWNER OFFS_P1 P1_as_OFFS }"
+	// COMPILER works by parsing words of ARGV
+	// COMPILER finds lots of VAR_NAME // VAR_NAME == "VAR_NAME" //
+	// OPCODE operator=={ STR } o
+
+	CX_ALIAS pick STR when different P0P2_N_P1_OFFS_or_EA_IDX_used
+
+
+
+
+
+
+
+	// TRANSCRIBE 2 way via ID == OBJ_IDX 
+	// TRANSCRIBE 1 way 
+	// 
+
+

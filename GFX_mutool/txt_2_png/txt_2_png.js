@@ -5,8 +5,8 @@
 // TODO: use better font
 
 	// font_name is unused, see font_file
-	var font_name = "Courier"
 	var font_name = "Courier-Bold"
+	var font_name = "Courier"
 
 	// last one wins
 	var font_file = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
@@ -14,7 +14,7 @@
 	var font_file = "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf"
 
 	// font_name is used, here it is the font_file
-	var font_name = font_file
+//	var font_name = font_file // commented out 2024 - as prop spaced
 
 	// point size
 	var pt_sz = 8.0
@@ -145,9 +145,9 @@
 	var page_W = glyph_dx * n_cols  + X_margin + X_margin
 	var page_H = glyph_dy * n_lines + Y_margin + Y_margin
 
-	var pixmap = new Pixmap( DeviceRGB, [0,0,page_W,page_H], false )
+	var pixmap = new Pixmap( ColorSpace.DeviceRGB, [0,0,page_W,page_H], false )
 	pixmap.clear(255)
-	var device = new DrawDevice(Identity, pixmap);
+	var device = new DrawDevice(Matrix.identity, pixmap);
 	var transform = [1,0,0,-1,0,page_H]
 	var text = new Text();
 
@@ -169,13 +169,13 @@
 
 	var rgb_one = [0,1,0] // green // 0.0 < 1.0
 	var rgb_one = [0,0,0] // black
-	device.fillText(text, transform, DeviceRGB, rgb_one, 1);
+	device.fillText(text, transform, ColorSpace.DeviceRGB, rgb_one, 1);
 
 // other stuff to draw
 //	device.strokePath(path, {
 //		dashes:[5,10],
 //		lineWidth:3,
-//		lineCap:'Round'}, transform, DeviceRGB, [0,0,0], 1);
+//		lineCap:'Round'}, transform, ColorSpace.DeviceRGB, [0,0,0], 1);
 	
 	device.close();
 	pixmap.saveAsPNG( name_png );

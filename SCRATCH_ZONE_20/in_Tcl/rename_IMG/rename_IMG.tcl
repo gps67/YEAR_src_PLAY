@@ -31,6 +31,7 @@ set ZONE_NAME XXX
 set ZONE_NAME HANS
 set ZONE_NAME FOUND
 set ZONE_NAME RSAC_Webber
+set ZONE_NAME HolyMoly
 set ZONE_NAME Tankata
 
 proc list_pop {listname itemname } {

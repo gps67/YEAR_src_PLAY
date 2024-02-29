@@ -2,6 +2,7 @@
 
 	BENCH
 	SCRIPT
+	TREE STO PSG SPEC API AVAR SESS
 	PSG
 	TEXT
 	CALL
@@ -156,6 +157,56 @@
 // add UNDER_$s_ONE _TWO _// ... // %d _%02X  _%s "{ rename %s }"
 // each KDB_STEP is an EXPR_STEP // many compile away to nothing
 // CT_RT pre-empts EXPR // particularly when TEST_DATA helps
+
+# MODULE ARGV_SCRIPT OBJECT_t
+
+	The advantage of everything is PyObject * 
+	is that scripts can run over ARGV
+	The convertion to Tcl_Obj can be via PTR1 PTR2 = "{ P0 N }"
+
+		type is ask python type of PTR1 == get_type( P0 )
+
+	The convertion to Tcl_Obj can be via PTR1 PTR2 = "{ SPEC P0 }"
+
+		nbytes is get from P0 -> as_obj -> get_NBYTES
+
+	Each PyObject might have its own cached TCL_OBJ_PTR
+
+		reclaim when PyObject is deleted
+		reclaim when memory is tight 
+	
+	JSON_PLUS
+
+		NUMERIC
+		STRING
+		FUNCTION
+		ARRAY
+		STRUCT
+
+		BITFIELDS
+		BITFIELDS_BITFIELD
+		BITFIELDS_BYTEFIELD
+		BITFIELDS_PAIR_WORDS // or other non u32 u64 stuff
+
+		generally limit ints to 32 bits
+		occasionally extend to u64 via u32_u32_lohi_aligned_64
+
+		NAMED_TYPE is STRUCT
+		NAMED_TYPE has CT__TAG "SPEC_NAME" // and sub/sup
+		NAMED_TYPE has _RT_TAG "SPEC_NAME" // and sub/sup
+
+		VALUE NUMERIC from Q2_NUMERIC_Q2
+		FIELD_NAME from Q2_anystr_Q2 // except Q2 but even that 
+		FIELD_NAME from Q1_anystr_Q1 // except Q1 but even that 
+		FIELD_NAME from anystr // no_Q2_provided_though
+		FIELD_NAME from no_Q2_name // no_Q2_provided NOT _needed
+	
+	KDB knows
+
+		each TWIG can have attached TAGS
+
+		parser looks at TAGS 
+		 as PRE parsed cache
 
 =============================================================
 

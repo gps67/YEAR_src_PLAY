@@ -1,0 +1,262 @@
+	MENTION.txt
+
+	MENTION is monster, it creates on sight, or even MENTION
+
+		# I think that means this is MK_ITEM in SESSION
+
+		#	ITEM += AUTO_ITEM of ITEM_t at EA_ITEM_EXPR
+		#	EXPR += i64_EXPR i64_WORD_t i64_BITFIELDS_t
+		#		^        ^          ^ %s_t NAMED
+		#	NAMED += i64_WORD_PAIR # i32_PAIR so why not
+		#	NAMED += i32_WORD_PAIR # i64_WORD
+		#	u8_u8 u16 i32 # u8 u8 u16 u32 // MATCH DIFF //
+		#	MATCH SPOT the DIFF LHS RHS CODE_PAGE_HINTS #
+
+		The RT_ SESS ITEM 
+		is registered on MENTION - into CODE_POINT and SESS_VAR_POOL
+
+	MENTION ITEM in TREE
+
+		CT_RT provides get_SPEC()
+
+			RAW_EIGHT i32_u32 
+			RAW_EIGHT i8_i8_i16_i32
+
+				DECODE BYTE_A BYTE_B "i16" "i32"
+
+				NOTE reuse of reserved word
+				HIDE using "_%s"
+				NOTE using "_%s"
+				ALIAS when GEN_C_CODE 
+
+				RUN CT_ TREE over TEST_DATA
+
+				MODE BUILD TABLES incl TEST_VALS few
+				MODE EVAL_EXPR and KEEP_CACHE
+
+		EA SPEC 
+
+			CT_ KNOW SPEC is at least _SPEC_MIN_ONE
+			CT_ KNOW SPEC is NOT _SPEC_MIN_ONE // or_RANGE
+			CT_ KNOW SPEC is exactly _SPEC_MIN_ONE
+			CT_says ASK_RT
+		
+		_RT
+
+			OBJ = EA_OBJ // STITCH AVAR to EA_EXPR_as_i16_IDX
+			// keep a small table of 1000 cached EXPRS
+			// alloc idx = N ==
+			// TABLE_ONE[ idx ] _is_EA_EXPR_data_EIGHT_t EIGHT_ONE
+			// TABLE_ONE[ idx ] _is_EA_EXPR_data_EIGHT_t EIGHT_TWO
+			// FILTER switches idx2 = REWRITE idx1 // detect_on_M1
+			EIGHT_t & EA_EXPR = TABLE_ONE[i16_idx] // is_PLUS
+			OBJ = EA_OBJ // STITCH AVAR to EA_EXPR_as_i64_WORD
+			OBJ_SPEC = OBJ.SPEC // as a MACRO in STREAM FILTER
+
+	i32_i32 = i8_i8_i16_i32
+
+		BENCH build ROM
+		BENCH build SESS
+		BENCH build UDEF
+		BENCH build STO
+		BENCH build SQL MMAP sqlite postgresql mariadb OPEN_SQL KEY_VAL
+		BENCH build JSON ECMASCRIPT CXX C_API ELF_API // ELF_means_C
+		// ELF_fastpascal // ELF_WIN32 // ELF_ARM32 // ELF_AMD64 
+		// ELF_delphi // ELF_asm STACK_RULES_for_ASM
+
+	MMAP TABLE ADDR
+
+	 OPCODE i8 i8
+
+		 i8_i8 BYTE_A BYTE_B // AUTO OPTS SIGNED and crazy tree STEPS
+		
+	 SEGMENT i16 
+
+	 ITEM_EXPR i32
+
+		u32_VALUE // KNOW from callers i8_i8_i16 WORD_ONE // _ONE _TWO //
+		// _TWO = u32_VALUE // = u32_WORD // ALIAS_over_WORD _over_BYTES
+		// PICK PARALLEL PATH // EIGHT_in_i64_CPU_register
+		// PICK PARALLEL PATH // EIGHT_in_i64_MEM_word
+		// PICK PARALLEL PATH // EIGHT_in_i32_MEM_word_PAIR _ONE _TWO
+		// COMPILER must expand both PATHS and PICK best
+		// or first that matches sooner // or clever CT_RT mix
+
+		u31_VAL // _PLUS_VAL // ALIAS //
+
+	 	i8_u24 // need full u24 range // prefer u23_idx accept u24_idx
+
+
+
+	i32_i32
+
+		for an easy life we set LIMIT i32 or u32 for CPU32
+
+			i8_i8_i16_i32
+
+
+
+	MENTION ITEM 
+
+			SESS_VAR_POOL += MENTION at CODE_POINT 
+
+				P0P2 NAME // STREAMED nbytes into STREAM
+				STR0 NAME // TOKENED away from STREAM
+
+			PARSE += REGEN parser from recent dialog mentions
+			PARSE += BIND AVAR to CODE_POINT and NEARBY
+
+			STO += SESS_STO
+
+				This is typical of a self rhyming entity
+
+				SESS_STO += SESS += STO += SESS_STO _CORE
+
+				SESS_STO is a STO is managed filing system
+
+				SESS_STO.VAR_POOL is _ENV with _ON_EVENTS
+
+					we have a on_MODIFY vector
+					receive as ...
+					receive as STREAM_FILTER_TOKENISED
+ EXPRS is AUTO_KNOW			receive as CT_RT SESS CODE EXPRS
+					receive as FILTER _into_ STREAM
+					receive as GOT_VAL "new_value"
+					receive as CACHE GOT_VAL SESS_NOW
+				SESS_NOW = SESS_STO.SESS_NOW
+				SESS_STO.SESS_NOW
+
+					CODE_POINT_SCOPE ...
+
+					XPOS += "XPOS {
+					// received callers original fragment
+					// applied LIST of EDITS as DIALOG
+					// FILE OFFS N //
+					// FILE OFFS P2 // P2_as_OFFS from_P0 // N
+					// FILE LINE CPOS // GET_CSET of //
+					// FILE LINE BPOS // ASCII or OFFS_N
+
+					XPOS { FILE_SEGMENT_SELECTOR LINE BPOS }
+
+ USAGE BPOS is less error_prone than parsing UTF8 or UDEF
+ USAGE BPOS is SEEK of start of ITEM ; ITEM == CIDENT ITEM
+ USAGE BPOS is KEPT is KNOW of COMPILER_TOKENISER_PASS_OVER_STREAM
+ USAGE BPOS is LIMIT_200 // u8_BPOS // ZERO_if_64K // ZERO_means_ABSENT_or_FULL
+ USAGE BPOS is u16
+ USAGE BPOS is i48 // u8_u8_u48 // i48_from_i64_WORD i48_PAYLOAD //
+ USAGE "PAYLOAD" not required, AUTO_ADDED for clarity, presume MATCH "i48"
+ USAGE BPOS is u8 u12 u16 i32 SIGNED
+ USAGE i32_t += SIGNED // _t i32_t // reason for USAGE "AUTO_ADD _t"
+ USAGE MATCH USAGE was in caps with _t spelled out _t
+ USAGE _t spelled_out_t // EXPLAIN is trivially AUTO when single STR0
+ USAGE _t spelled_out // VIEW drop _t // is_a_SIMPLIFY
+ MENTION "of a phrase" might be tricky 
+ USAGE BPOS is a BITFIELD currently a FAST_ACCESS_BYTE_u8 but edit to u4 u23 u16
+ i16 += u15_NEG
+ i16 += u15_ADD
+ i16 += i16_WORD
+
+ 	on_ZERO = on_PLUS
+ 	on_PLUS ...
+	on_MINUS...
+	on_ZERO { UDEF }
+	on_ZERO { 
+	... AUTO WRAP following TEXT
+	}
+
+
+		WHEN ZERO means NULL means FALSE means NO means ABSENT means UDEF
+		WHEN ZERO is N_COUNT
+		WHEN ZERO is N_COUNT_with_SPECIAL_ZERO // N == 256 // N = K64 //
+		WHEN ZERO_is_PICK_ITEM_ZERO // can still be upgraded to SPECIAL
+	
+	{ AUTO_WRAP _this_ABSENT_PUNCTUALTION
+	} AUTO_WRAP _this_LOCATED_PUNCTUALTION // NEARBY asked for { + }
+
+ 	on_PLUS // ACTION = ARRAY_IDX idx = BITFIELD // BITFIELD += named "idx"
+
+		// ALIAS += "%s[%d]" // "IDX = %d " // "{ %d IDX }"
+
+		u8_u8 i48
+
+		 u8_u8 likes to DECODE( i48 )
+		 
+		 	ZERO_PLUS MINUS
+
+			on_ZERO = call on_ZERO HERE NOW SESS EA_THIS
+			on_PLUS = u47 = i48 // or better CAST KNOW BITFIELD //
+			on_MINUS = call on_MINUS i48_PAYLOAD in i48_WORD i64
+			on_MINUS(i64_WORD) { SCRIPT } {
+
+				import SESS 
+				import VAR_POOL usually SESS.VAR_POOL_ONE
+
+				OPTION OFFS_PLUS IDX_MINUS
+				OPTION IDX_MINUS OFFS_PLUS
+
+				OPTION [-128 -1[0[ [128 255[256 
+				OPTION [-MAX_MINUS M1[0[ [HALF_PLUS MAX_PLUS[FULL_PLUS 
+				OPTION 0 is_PLUS // ZERO_is_PLUS 
+				OPTION 0 is_ZERO // ZERO_is_ZERO _is_NULL
+
+				HERE is_MINUS on_MINUS
+
+				i48_PAYLOAD = get_i48_PAYLOAD();
+				// { // AUTO
+				// i64_WORD >> 16
+				// } // AUTO
+				RET_VAL = // _ABOVE_ so _HERE_ // JUMP_SCORE MID
+
+			}
+
+
+ 	on_MINUS // ACTION = LOOKUP(MINUS) //
+
+
+	ON_PLUS 
+		EA_EXPR_ITEM_t & ITEM = EVAL "ARRAY[ idx ]" IDX
+		IDX_t IDX = "idx" // MENTION in SPECIFIC WAY MK_VAR "idx" //
+		IDX_t IDX = "idx" // MENTION in SPECIFIC WAY MK_VAR "IDX_t" //
+		ITEM_t & ITEM = ARRAY[ idx ] 
+
+
+
+		created on
+
+
+	MENTION is MK_ITEM("{ %s NAME }" // PARAMETER ; AVAR PARAMETER
+
+	cident or human_ident or _plausible_possible_match_
+
+		VAR_POOL = DRY { KEY VAL }
+
+		This is a VAL ; POSS as the NAME of a VAL
+
+			which has VAL = VALUE
+
+			which has EA = EA_VAL
+
+				COST += need to keep u64_WORD AVAR_EXPR per SPEC
+				COST += need to pass u64_WORD_TYPE as SPEC
+				OPTIM += KNOW "{ RET_VAL_t == i64_PTR_EXPR }"
+				OPTIM += KNOW "{ RET_VAL_t == i64_BITFIELDS }"
+				OPTIM += CONST_KNOW "{ RET_VAL_t == i64_BITFIELDS }"
+					CODE_POINT += KNOW "i64"
+					CODE_POINT += KNOW ITEM_t == "i64"
+					CODE_POINT += MATCH ITEM_t == "i64"
+
+						SINGLE LEVEL of AUTO_GUESS
+						CACHE writes code for TREE
+
+			which has SPEC = GET_SPEC(EA)
+
+				CALLER_KNOWS // receive SPEC as API supply
+				 SPEC = AVAR attches as SPEC_NAME 
+				 // MATCH ARGV0 "=" "EXPR" //
+				 // MATCH ARGV0 "=" "E", "X", "P", "R" // USAGE
+				 // USAGE ARGS as A R G S // NAME is Title Phrase
+				 // USAGE ARGV contains SUB_LIST TEMP_STREAM ITEMS
+				 // USAGE LIST_from_
+				 // USAGE 
+				 POSS CONST_AVAR SPEC
+				SCRIPT is CALLER

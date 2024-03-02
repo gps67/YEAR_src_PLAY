@@ -1,15 +1,19 @@
 N=bswap_htonl
 
+	include ./MK/MK_with_libs_apps
+	PKGS += libs_apps_base2
+
+
+
 test1: $N.exec
-	./$N.exec ; perror
+#	./$N.exec ; perror
 
-$N.s: $N.cxx Makefile ASM_byte_swap.h
+$N.o: $N.cxx Makefile ASM_byte_swap.h
 	g++ -o $@ -S -g -O2 $<
-	cat $@
 
-$N.o: $N.s
-	g++ -c -o $@ -g -O2 $<
-	objdump -dsS $@
+$N.s: $N.o
+	objdump -dsS $N.o
+	cat $@
 
 $N.exec: $N.o
 	g++ -o $@ -g -O2 $<

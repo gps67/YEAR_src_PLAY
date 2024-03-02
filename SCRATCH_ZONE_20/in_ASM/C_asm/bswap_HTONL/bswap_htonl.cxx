@@ -25,21 +25,6 @@
 // define ON_HERE ON_HERE_USE_gcc_builtin_byteswap
 // todo // define ON_HERE ON_HERE_USE_MS_byteswap_ulong
 
-#define CPU_is_LIHO 1
-#ifdef CPU_is_LIHO
-#define i32 i32_cpu_FROM_lohi_( i32 lohi ) { return lohi; }
-#define i32 i32_cpu_FROM_hilo_( i32 lohi ) { return hilo_FROM_i32_lohi(lohi); }
-
-#define i64 i64_cpu_FROM_lohi_( i64 lohi ) { return lohi; }
-#define i64 i64_cpu_FROM_hilo_( i64 lohi ) { return hilo_FROM_i64_lohi(lohi); }
-#else
-#define i32 i32_cpu_FROM_lohi_( i32 lohi ) { return hilo_FROM_i32_lohi(lohi); }
-#define i32 i32_cpu_FROM_hilo_( i32 hilo ) { return hilo; }
-
-#define i64 i64_cpu_FROM_lohi_( i64 lohi ) { return hilo_FROM_i64_lohi(lohi); }
-#define i64 i64_cpu_FROM_hilo_( i64 hilo ) { return hilo; }
-#fi
-
 
 #if ON_HERE == ON_HERE_USE_ntohl
 #include <arpa/inet.h>
@@ -49,14 +34,14 @@
 #include <byteswap.h>
 #endif
 
-inline i32 hilo_FROM_i32_lohi_( i32 lohi ) {
-	return i32 lohi_FROM_i32_hilo_( i32 lohi ); // AS GOOD AS // :-)
-}
+inline i64 byte_swap_64( i64 i64_WORD ) {
+	return __builtin_bswap64( i64_WORD );
+};
 
-inline i32 lohi_FROM_i32_hilo_( i32 hilo ) {
+inline i32 byte_swap_32( i32 WORD32 ) {
 
 #if ON_HERE == ON_HERE_USE_gcc_builtin_byteswap
-	return __builtin_bswap32( hilo );
+	return __builtin_bswap32( WORD32 );
 /*
 	movl %edi,%eax
 	bswap %eax
@@ -64,10 +49,10 @@ inline i32 lohi_FROM_i32_hilo_( i32 hilo ) {
 */
 
 #elif ON_HERE == ON_HERE_USE_MS_byteswap_ulong
-	return _byteswap_ulong( hilo );
+	return _byteswap_ulong( WORD32 );
 
 #elif ON_HERE == ON_HERE_USE_ntohl
-	return ntohl( hilo );
+	return ntohl( WORD32 );
 /*
 	uses "/usr/include/x86_64-linux-gnu/bits/byteswap.h"
 	uses __builtin_bswap32(int)
@@ -79,7 +64,7 @@ inline i32 lohi_FROM_i32_hilo_( i32 hilo ) {
 
 #elif ON_HERE == ON_HERE_USE_asm_byte_swap
 #if 1
-	return ASM_byte_swap( hilo );
+	return ASM_byte_swap( WORD32 );
 #else
 
 	// borrowed 
@@ -99,12 +84,33 @@ inline i32 lohi_FROM_i32_hilo_( i32 hilo ) {
 #endif 
 }
 
-i32 test1( i32 hilo ) {
-	return i32_FROM_i32_hilo_( hilo );
+inline u32 byte_swap_32( u32 WORD32 ) {
+	return (u32) byte_swap_32( (i32) WORD32 );
+}
+inline u64 byte_swap_64( u64 WORD64 ) {
+	return (u64) byte_swap_64( (i64) WORD64 );
 }
 
+#define CPU_is_LIHO 1
+#ifdef CPU_is_LIHO
+inline i32 i32_cpu_FROM_lohi( i32 lohi ) { return lohi; }
+inline i32 i32_cpu_FROM_hilo( i32 lohi ) { return byte_swap_32(lohi); }
+
+inline i64 i64_cpu_FROM_lohi( i64 lohi ) { return lohi; }
+inline i64 i64_cpu_FROM_hilo( i64 lohi ) { return byte_swap_64(lohi); }
+#else
+inline i32 i32_cpu_FROM_lohi( i32 lohi ) { return byte_swap_32(lohi); }
+inline i32 i32_cpu_FROM_hilo( i32 hilo ) { return hilo; }
+
+inline i64 i64_cpu_FROM_lohi( i64 lohi ) { return byte_swap_64(lohi); }
+inline i64 i64_cpu_FROM_hilo( i64 hilo ) { return hilo; }
+#endif
 
 
+
+i32 test1( i32 hilo ) {
+	return i32_cpu_FROM_hilo( hilo );
+}
 
 static i32 in_mem = 0x4321;
 
@@ -116,13 +122,13 @@ int main()
  ret = test1( ret );
  // programmers says insitu, gcc obeys & amp
  // ie & to reg not pointer to memory
- ASM_byte_swap_in_situ( in_mem );
+ ASM_byte_swap_in_situ_32( in_mem );
  in_mem++;
- ASM_byte_swap_in_situ( ret );
- ASM_byte_swap_in_situ( in_mem );
+ ASM_byte_swap_in_situ_32( ret );
+ ASM_byte_swap_in_situ_32( in_mem );
  ret--;
  // gcc optimised 4321 to 4320 // so add step
  ret = i32_FROM_i32_hilo( ret );
- ASM_byte_swap_in_situ( ret );
+ ASM_byte_swap_in_situ_32( ret );
  return ret != 0x04030201;
 }

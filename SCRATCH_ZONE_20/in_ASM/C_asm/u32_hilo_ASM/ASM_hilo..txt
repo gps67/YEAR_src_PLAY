@@ -1,0 +1,51 @@
+ASM_hilo..txt
+
+	only on __armd64__
+
+		because that is where I am
+
+	else on SPECIFIC_OTHER
+	
+	else on LOHI
+		glib _bswap
+	
+	else on HILO
+		glib _bswap but other side
+
+SEE ALSO
+
+	/home/gps/YEAR/src/PLAY/SCRATCH_ZONE_20/in_ASM/C_asm/bswap_HTONL
+
+	bswap_htonl.cxx
+
+These are CPP values which evaporate after CPP
+rewrite to use INCLDUE which does it all 
+rewrite to MY_BYTE_SWAP_ _in_SITU 
+
+#define ON_HERE_USE_ntohl               21
+#define ON_HERE_USE_gcc_builtin         22
+#define ON_HERE_USE_MS_byteswap_ulong   23
+#define ON_HERE_USE_gcc_builtin_byteswap 24
+#define ON_HERE_USE_glibc_byteswap      25
+#define ON_HERE_USE_asm_byte_swap       26
+
+#define ON_HERE \
+        ON_HERE_USE_asm_byte_swap
+
+
+also has         return __builtin_bswap64( i64_WORD );
+
+
+	The older point was that there would be a huge number of i64_cpu_from
+
+	The newer point is that there are quite few, and lohi DIRECT avail
+
+	i32 load_CPU_from_MEM_lohi( i32_LOHI * word ) { ... }
+	i32 load_CPU_from_MEM_hilo( i32_HILO * word ) { ... }
+
+	i32 save_MEM_from_CPU_lohi( i32_LOHI * word ) { ... }
+	i32 save_MEM_from_CPU_hilo( i32_HILO * word ) { ... }
+
+	tricky route via C for word_one word_two in u32_u32
+
+

@@ -1,0 +1,14 @@
+DODO_NEAR_HERE.txt
+
+	SLIDE
+	GDI as WAX as GDK_GDI WAX_GDI
+
+
+GDI - Graphs Display Interface API
+API += Module _const _type _var _used _get_EA(ITEM) _lookup(STR0)
+
+	STR0 defaults to char_byte_stream _with_added_NUL() _or_P0P2
+
+MODULE += MODULE
+
+	MODULE_txt

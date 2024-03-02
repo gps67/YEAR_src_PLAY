@@ -1,0 +1,48 @@
+GEN_PARSE.txt
+
+	GEN
+	 STR0
+	 NUMERIC
+	 CALL
+	 EXPR
+	 DECL
+	 TYPE
+	GEN_INTO
+	 C
+	 ES6
+	 ASM
+
+	 STR0 as C source that sets ROM_VAL_PTR = Q2_SOURCE_for_STR(STR0)
+
+	 	VAR_NAME = STR0_as_Q2_STR_in_C_DIALECT
+	 	VAR_NAME = STR0_as_Q2_STR_in_ES6_DIALECT
+	 	VAR_NAME = STR0_as_Q2_STR_in_BASH_DIALECT
+	 	VAR_NAME = STR0_as_Q2_STR_in_TCL_DIALECT
+	 	VAR_NAME = STR0_as_Q2_STR_in_PY_DIALECT
+	
+	PARSE
+	 either compile the source and use the RET_VAL
+	 ie compiler does the PARSE and we get the result in CVAR_temp_NAME
+	
+	PARSE
+	 or STREAM_PARSER over PSG_SUBLEX_CSET
+
+	PSG
+	 PARSE ARGV_SCRIPT
+	 PARSE CXX_SCRIPT
+	 PARSE PSG_DECL _SCRIPT
+
+	BENCH
+	 GEN output
+	 PARSE input
+
+	 for STR0 INT xFF PUNCT ARGV CXX CMNT CURR_DIALECT
+
+	GEN
+		str2 = FILTER str1	// CSET WRAP or FILTER or EDIT
+	
+	GEN
+		FILTER parse MATCH input gen output
+	
+	MATCH
+		

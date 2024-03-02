@@ -14,7 +14,8 @@
 	var font_file = "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf"
 
 	// font_name is used, here it is the font_file
-//	var font_name = font_file // commented out 2024 - as prop spaced
+	var font_name = font_file // commented out 2024 - as prop spaced
+	var font_name = "NO_font_file" // commented out 2024 - as prop spaced
 
 	// point size
 	var pt_sz = 8.0
@@ -116,7 +117,14 @@
 
 
 	// get font and metrics
-	var font = new Font(font_name)
+	var font = new Font(font_name) // WAS OK upto Jan
+	var font = new mupdf.Font(font_name) // NEW from Jan
+	// EDIT was no different both get [objext fz_font]
+	if(font) {
+		dbg_print_2( "font", font ) 
+	} else {
+		dbg_print_2( "font-NULL", font ) 
+	}
 	var gid = 32
 	var glyph_dy = 1.0
 	var glyph_dx = font.advanceGlyph(gid, 0)

@@ -1,0 +1,48 @@
+ARGV_SCRIPT
+
+	allow use of filler ASCII words with AVAR here and there
+	add MODULES LEXICON of globals and funcs
+
+	SESS will run ARGV and get PRE_LOADED_CACHE _CACHE
+
+OBJ_HEAP
+
+	1_2_3_4_8_BYTES
+
+		u8 
+		u16 
+		u24
+		u32
+
+	INT_UNS
+
+		i8
+		i16
+		u16
+		i24
+		u24
+		i32
+		u32
+	
+	IDX_OFFS
+
+		OFFS = u15_OFFS
+		IDX = u16_idx_from_i16_MINUS // other froms passible 
+	
+	LOHI_from_LOHI
+	HILO_from_LOHI
+
+		i486 swapb 
+		libc swap_bytes
+		CXX i64_LOHI_on_HILO
+		ASM1 i64_LOHI_on_LOHI
+
+		CXX i64_HILO_from_LOHI
+
+	aim for u16_idx in u32_OFFS
+	aim for u16_idx in u24_OFFS
+	aim for u16_idx in u16_OFFS
+
+	aim for u8_idx in u32_OFFS
+	aim for u8_idx in u24_OFFS
+	aim for u8_idx in u16_OFFS

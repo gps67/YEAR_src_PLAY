@@ -1,5 +1,7 @@
 	MENTION.txt
 
+	[gitnode 57239a3] MENTION is a MONSTER its an ITEMS creation
+
 	MENTION is monster, it creates on sight, or even MENTION
 
 		# I think that means this is MK_ITEM in SESSION

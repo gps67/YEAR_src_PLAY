@@ -1,9 +1,0 @@
-. ./.env
-set -x
- F="postgresql-16.0.tar.bz2"
-
-git \
- filter-branch \
- --index-filter "git rm -rf --cached --ignore-unmatch $F" \
- HEAD
-

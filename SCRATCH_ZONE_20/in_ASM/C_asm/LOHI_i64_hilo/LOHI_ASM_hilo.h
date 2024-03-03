@@ -1,6 +1,7 @@
 #ifndef ASM_hilo_H
 #define ASM_hilo_H
 
+
 // ON_HILO
 // ON_LOHI_using_BSWAP
 // ON_LOHI
@@ -207,5 +208,7 @@ inline u32  hilo_from_u32( u32 val  ) { return CALL_BYTE_SWAP_32( val ); }
 ///////////////////////////////////////////
 
 
+
+#include "LOHI_checks.h"
 
 #endif // MODULE

@@ -1,5 +1,5 @@
-#ifndef ASM_hilo_H
-#define ASM_hilo_H
+#ifndef LOHI_ASM_hilo_H
+#define LOHI_ASM_hilo_H
 
 
 // ON_HILO
@@ -10,14 +10,6 @@
 # define ON_HILO
 #else
 # define ON_LOHI
-#endif
-
-#if not defined(ON_LOHI)
-#warning "not on-LOHI"
-#endif
-
-#if not defined(__GNUC__)
-#warning "not on-GNUC"
 #endif
 
 #if not defined(__i386__)

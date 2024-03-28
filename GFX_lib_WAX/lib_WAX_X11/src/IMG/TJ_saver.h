@@ -19,6 +19,12 @@ namespace TJ {
 	TJ_saver_t();
 
 	bool call_Compress2(
+		TJ_FB_image_t & FB_image
+	) {
+		return call_Compress2( & FB_image );
+	}
+
+	bool call_Compress2(
 		TJ_FB_image_t * FB_image
 	);
 

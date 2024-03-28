@@ -19,10 +19,10 @@
 # Testfile
 
 	# default value for testing, last wins
-	TXT=test1.txt
 	TXT=test1_az.txt
 	TXT=test1.txt # SYMB_LINK dir/file where .txt file is found 
 	TXT=test1_u32_Decoder.txt # SYMB_LINK dir/file where .txt file is found 
+	TXT=test1.txt
 
 # ARGV # TXT
 
@@ -31,7 +31,7 @@
 
 # symb linked test1.txt -> USE THE SECOND NAME
 
-	[ -L $TXT ] && TXT=`readlink $TXT` ## improves filename.txt
+# OK NO #	[ -L $TXT ] && TXT=`readlink $TXT` ## improves filename.txt
 
 # FILENAME # PNG # PDF #
 

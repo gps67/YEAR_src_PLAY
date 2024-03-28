@@ -9,17 +9,13 @@
 	var font_name = "Courier"
 
 	// last one wins
+	var font_file = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 	var font_file = "/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf"
 	var font_file = "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf"
-	var font_file = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
-
-	var font_file = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
-	var font_file = "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf"
-
 
 	// font_name is used, here it is the font_file
-	var font_name = "NO_font_file" // commented out 2024 - as prop spaced
 	var font_name = font_file // commented out 2024 - as prop spaced
+	var font_name = "NO_font_file" // commented out 2024 - as prop spaced
 
 	// point size
 	var pt_sz = 8.0
@@ -27,9 +23,7 @@
 	var pt_sz = 12.0
 	var pt_sz = 14.0
 	// 
-	var pt_sz = 66.0 // this does zoom the text
 	var pt_sz = 22.0
-	var pt_sz = 36.0
 
 	function dbg_print_2( key, val ) {
 		// if(false) print( "# INFO #", key, val )
@@ -125,13 +119,6 @@
 	// get font and metrics
 	var font = new Font(font_name) // WAS OK upto Jan
 	var font = new mupdf.Font(font_name) // NEW from Jan
-	dbg_print_2( "font_name", font_name);
-// WARN // FAKE *= 4
-	pt_sz *= 4
-	pt_sz /= 4
-// FAIL there is a LIMIT somewhere near 36 *1.5 pt
-	dbg_print_2( "pt_sz", pt_sz);
-//  FAIL # still not MONO spaced # still not PT_SZ
 	// EDIT was no different both get [objext fz_font]
 	if(font) {
 		dbg_print_2( "font", font ) 
@@ -151,8 +138,7 @@
 
 	// cant find font info
 	// NO // var Y_top_to_baseline = font.ascent * pt_sz // no
-	var Y_top_to_baseline = glyph_dy * 0.77 // fudge part of em
-// NaN	var Y_top_to_baseline = font.ascent * pt_sz // 
+	var Y_top_to_baseline = glyph_dy * 0.77 // fudge
 	dbg_print_2( "Y_top_to_baseline", Y_top_to_baseline );
 
 	// surrounding margins

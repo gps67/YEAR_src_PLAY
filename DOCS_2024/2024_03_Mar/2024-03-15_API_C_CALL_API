@@ -1,0 +1,307 @@
+2024-03-15_API_C_CALL_API
+
+	2024-03-15_API_C_CALL_API
+
+
+	ANSI_C_funtion_prototypes // keep them simple // C++ gcc probably better than this 
+
+		ARGS are { ( TYPE LINK VAR NAME [init_val] ) ... // alias VAR NAME SELF // deduce and GEN RET_VAL = SELF // FOCUS unchanged is poss also // not SELF
+
+		NAME mangle is currently C++ // 
+		NAME mangle is also gtk module_type_func C // optional _with_ARGS // usually name is unique enough
+		NAME elf segment // we load from elf then use own SEGMENT ADDR EA_EXPR // we use elf_symbol_tables somethines
+
+
+	2024-03-15
+		_API_C_CALL_API
+		_API
+		_C_CALL _API
+
+		ELF_CODE_LOOKUP_FUNC_WRAP table_one = loaded_from_FILE_MMAP_HEAP_ITEM_SPEC_Module
+		ELF_CODE_LOOKUP_FUNC_WRAP table_one = {
+			_loaded
+			_from
+			_FILE
+			_MMAP
+			_HEAP
+			_ITEM_SPEC_Module
+
+				_ITEM
+					CT_RT SELF ;// OBJECT_t // ALIAS ITEM_t // ALIAS "%s_t" ALIAS // NOTE VAR USED ON RHS aas VAR_t with SPEC=CODE_POINT.ITEM.ATTR 
+					// ALIAS %s // VAR_NAME field field_name EA_ITEM "{ ITEM_t & ITEM }" // CT_RT _RT CTOR_or_LOAD_STO_to_VAR CT_STO_name "{ #NOUN ITEM }"
+					// ALIAS SELF // RT_Module_for_SPEC == SELF // CT_RT VECTOR_of_functions_and_SPEC_and_STO "{ STO %s }" // you set your_ident cident99
+					// CIDENT99 cident99 // A CT_RT _RT feature_ _CT_feature_ _AVAR_ _NBYTES_ [ field_two } [ "{ idx = N ++ }" ]
+					// PSG SCRIPT // "{ idx = N ++ i }" // KNOWN TOKEN idx_ALLOCATOR_N += CT_RT VAR_ALLOC("N") // SCOPE NAME_in_NAME ITEM NAME EA STO
+					// STO SCRIPT // {
+
+						// STO_SCRIPCT //
+					}
+				_SPEC
+
+					Module is where SCRIPT is held in DOC == SCRIPT 
+					SESS where SESS is in AVAR("IDX = LOOKUP [%s] EXPR_SCRIPT"
+
+						EXPR_SCRIPT = {
+
+							// YOUR 
+							// SCRIPT
+							// HERE
+							// to implement
+							// API
+						}
+				_API += SPEC // SPEC.API // PICK PARSE // decide to make API avar
+
+						API += AVAR("VARNAME")
+
+							MATCH VAR_NAME "VARNAME" 
+							ALIAS %s // VIA BINDING in SESS // FILTER MATCH " well_known _as %s "// _as is a noise match "_%s" CIDENT99
+							CIDENT99 cident99 = "IDENT" ; 
+							BENCH RELY on SCRIPT LIBR ROM SESS STO "_of"  _SPEC // SCRIPT matches C STR0 or AVAR or TOKENISED_renamed
+							LANGUAGE FILLER WORDS // CT_RT detects those in the CACHE that are actually called // RUN_TRACE_CACHE
+							FILTER CACHE AVAR SAMPLE_SCRIPT_NAME_FRAG 
+
+						API += PSG
+						PSG += LINE_is_ARGV_via_PARSER // filler AUTO_AVAR AVAR == "ARGV_in_a_LINE" // == "ALIAS ARGV" // operator ==
+
+							MATCHER("operator ==") { SCRIPT } HERE += FILTER "{ READ_ONLY_FILTER FILTER SESSION }" SESSION == "%s" 
+							MATCH("operator == STR0") { SCRIPT } HERE += FILTER "{ READ_ONLY_FILTER FILTER SESSION }" SESSION == "%s" 
+							MATCH("ALIAS LHS == RHS") { SCRIPT } HERE += FILTER "{ FILTER SESSION }" SESSION == "%s FILTER += PHRASE" } 
+							MATCH("ALIAS LHS == STR0") { SCRIPT } HERE += FILTER "{ READ_ONLY_FILTER FILTER SESSION }" SESSION == "%s" 
+
+						PSG += PARSE_PHRASE { SCRIPT } // CMNT // CODE_POINT CODE_POINT_HERE 
+
+							MATCH ARGV_of_LINES_PLUS
+							PLUS += UDEF
+							UDEF { SCRIPT %s } // possibly as_var_name_or_file_name "{ NOUN %s }" SPELLING += "USUALLY ITEM_TYPE "{ SPEC_t SPEC }"
+							DECODE "{ %s %s }" // CIDENT99 provided by API settable by_REMOTE or by_CODE //
+							DECODE "{ CT{ %s } %s }" // CIDENT99 provided by API settable by_REMOTE or by_CODE // LEXER likes cident97 as SAMPLE
+
+						CIDENT += a1_a2_star _a1 _a2 // CODE_POINT and SESS and PKT_STO_NBYRES P0 nbytes P2 add_nbytes_to_P1( NBYTES_t & P1 ) SCRIPT
+							_a1
+							_a2
+
+						CIDENT += XPOS
+
+							XPOS = CT_RT eval "foreach{ LINE CPOS }"  
+							XPOS = CT_RT eval "foreach{ LINE }"  
+							XPOS = CT_RT eval "foreach{ OFFS }"  // RET_VAL == OUT_VAL of_filter 
+							// AUTO SCRIPT makes AVAR out of LANG_filler_words_and_phrases
+							// AUTO API SCRIPT makes AVAR out of LANG_filler_words_and_phrases
+							// AUTO API SCRIPT makes FUNC out of LINES of ARGV of LANG_filler_words_and_phrases
+							// PARSE "CIDENT99" // SCRIPT requires cident97 PICK of CT_RT_PSG_cident99 // ALIAS NO_NAME_97 cident97
+							// cident97 is UDEF ASCII BYTES PARSED a1_a2_star _a1 _a2 _API
+							// _API += SELF.a1 CT_RT_EA_CSET ASCII
+							// NEW RULE ASCII can introduce a GAP or SPLIT_MULTI_LINE_over_SEMICOLON
+							// NEW RULE BEYOND ASCII can introduce ASCII_CTRL_MACRO_API _SEMICOLON _CMNT _EOLN ARGV_is_LINE_of_WORDS
+							
+							ARGV += LINE_of_WORDS // self PARSE confirmed by BENCH in AUTO DIAG // PARSE complete PHRASE EXPR SCRIPT ROM
+
+							each argv[i] is one of A_WORD A_SQUISH_of_SPEC 
+							match argv[i] as "CIDENT PUNCT PUNCT_PLUS" // PUNCT_PLUS += STO += array[3] of EA_EXPR_ITEM_t
+
+							// REJECT SQUISH
+							// ACCEPT SQUISH
+							// "{ TOKENISED LPAR }" "LPAR_found_at_P0" // or OPTION "P0_of_LPAR_P1_is_a
+
+							// TO GET "P1" parse past GAP to LPAR.P2 // ie NEXT XPOS.P0 = PREV_XPOS.P2 // _as_CT_RT_eVAL
+							// SCRIPT must do CODE_GEN for range of GETTERS_API // AUTO_GEN_CODE //
+							// SCRIPT PSG += PARSE_LINE
+							// PARSE_LINE += PARSE WORDS in ARGV // lookout for PUNCT within shared ARGV WORD // PARSED_WORD cident99
+							// cident99 is CSET_utf8 or CSET_8859 or CSET_api //
+							// CSET_api IDENT can be any letter of the alphabet OPTS PICK // [a-zA-Z_] // += "$" OPTION
+							// 
+
+							// "{ TOKENISED LPAR }" "RPAR_found_at_P2" // OPTIMISED ASIF "hope_for_MATCH '}' // CMNT
+							// "{ TOKENISED LPAR }" "RPAR_found_at_P2" // OPTIMISED ASIF "hope_for_MATCH '}' // CMNT
+							// "{ RPAR TOKENISED }" "RPAR_found_at_P2" // OPTIMISED ASIF "hope_for_MATCH '}' // CMNT
+
+							ARGV += XPOS in SCRIPT CT_RT nbytes_in_CIDENT99 // your cident99 can be cident_01 or _00 
+							// KNOW "VARNAME" //
+
+						VAR_POOL += AVAR NAME
+
+						 NAME STR0 
+						 NAME P0_PARSED_STR nbytes() get_P2() CT_RT get_P0() _as_XPOS relative to "{ file1 OFFS_xFFFF }"
+						 LEX NAME DECODE 
+						  already _DONE // see LINE of ARGV parsed from TEXT via PSG // TEXT == SCRIPT //
+
+						 API IMPORT requires a NUL at EOF or a NL at M1_before_EOF // file must end in a newline is UNIX expectation // CHECK ONLOAD
+
+						 	ON_FAIL 
+
+								create AVAR SCRIPT_P2 == SCRIPT.P0P2.P2 // ALIAS rewrite . as _ LIST all nounds
+									filler LANG words are created as NOUN at CT_RT ROM_IDX
+
+									CT_RT AVAR NOUN "%s" CSET_utf8_EG_latin_and_local
+
+										we permit a1_a2_star.a1 += utf8_latin_accented_ecoded_as_utf8_2_byte // or_more
+										we decode the utf8 using the first PICK LEXER a1_a2_star_utf8_parser
+
+									PICK LEXER
+
+										a1_a2_star_utf8_parser
+
+										a1_a2_star_a1 _a2 P0 == P0 ; nbytes = P0P2.nbytes() // CACHE PICK KNOW MATCH TOKENISED_EXPRS
+
+									PICK XPOS
+
+										XPOS is "{ OFFS }" { CT_RT += " FILE = FILE " } // allow same name both sides of API // 
+										XPOS is "{ OFFS }" { CT_RT += " ADD_VAR FILE = FILE " } // in C "STR0" without Q2 is NAME 
+										ITEM is ITEM_NAME // lookup NAME in TOKENISED // KEEP_A_CACHED_COPY_of_retval 
+										ITEM is EA_EXPR available to CT_RT encoded in i64_t TOKENISED_WORD_as_EA_EXPR
+
+									EA_EXPR
+
+										u8_u8_u16_u32
+
+											DECODER can do local phrases 
+											RECODER can do SIGNED from BYTE_B
+
+											i8_i8	START_HERE using [idx] for NAMED allocated PLUS // u7 within i8 //
+											u8_u8	START_OVER using [idx] for NAMED allocated PLUS UNSIGNED // u8 within u8 //
+
+											i8_u8 // AUTO_INVENT finds these //
+											u8_i8 // we fold them down to PAIR of i8 or u8
+
+										OPCODE
+										 i8_i8
+
+										SEGMENT
+										 u16_CB
+
+										OBJECT
+										 i8_u24 // if you want i24, get your own OPCODE // this is GET [ idx ] // V_P0 V_MIN V_MAX V_P2
+										 i8_OPCODE
+
+										 	DECODE i24 as u24
+										 	DECODE u24 as "{ u24_t IDX }"
+
+										 i24_PAYLOAD
+
+										  as_MINUS	{ SCRIPT }
+										  as_ZERO	{ SCRIPT }
+										  as_PLUS	{ SCRIPT }
+
+										  get_i24_PAYLOAD 
+
+										   get i32_WORD () // note use of PUNCT that does not scratch IDENT // easier to AUTO_DIAG
+
+										   	INT_t RETVAL = ((INT_t)WORD // NOTE SIGN INTERPRATATION
+
+											// check OUTER words to find leading u8
+
+												CPU can TEST SIGN of i8_IDX
+												on_MINUS(IDX) {
+													
+												}
+												on_ZERO(IDX) {
+													goto on_PLUS // special DECODE SCRIPT ability
+												}
+												on_PLUS(IDX) {
+													u7_IDX = IDX
+												}
+
+											// check OUTER words to find payload u24 or i24 or EXPR
+											// EXPR can result in "i24" or "u24"
+											// EXPR can transport as SIGNAGE BITFIELD //
+
+
+
+										   return i32_WORD >> 8
+
+										 u24_PAYLOAD
+
+										   get u24_PAYLOAD () // DECL
+										   get u32_WORD () // CALL
+
+										   	CT_RT knows SIGN math and permits PUN_SWITCHING
+										   	CT_RT knows SIGN suppression to UNSIGNED (PLAIN)
+										   	CT_RT knows HERE GEN_C_that_says_UNSIGNED_SHIFT_8_DOWN // the DECL once PRIZE
+
+												UNS_t RETVAL = ((UNS_t) WORD) >> 8
+
+										   return u32_WORD >> 8
+
+
+
+
+										XPOS is "{ FILE OFFS }" {
+											FILE = "%s" // BIND able to AVAR("FILE") or AVAR("%s",FILE) or AVAR("%s") // FILE //
+											OFFS is "{ u24 OFFS }" // limit 16MB script size // option rewrite as "{ i64 OFFS }"
+											IDX is "{ u24 IDX }" // limit 16MB heap size // option rewrite as "{ i64 IDX }"
+											LINE is %d // SCRIPT called at CT_RT at_CT 
+											DECODE 
+											 at_CT ARGV
+
+											 	OPTION ARGV[0] is OPCODE 
+											 	OPTION ARGV[0] is FIRST of ARGS
+
+												OPTION ARGV is "{ LHS RHS }" // DECODE runs over that // DIALECT is ROM
+
+												// DIALECT ROM "LHS"
+												// DIALECT ROM "RHS"
+												// DIALECT ROM "{ LHS RHS }" // DECODE ... so then HERE // OUTPUT GEN is DECL
+												// PARSER finds ARGV_style_SCRIPT // and It's precompiled MODULE SCRIPT[s]
+												// RUNTIME LHS is in_LEXICON as STR0 and lookup // STR0 from IDX
+												// RUNTIME RHS is in_LEXICON as STR0 and lookup // PARAMETER %s cident99
+												// RUNTIME OBJ is in_LEXICON as STR0 and lookup // OBJ_t * OBJ //
+												//
+												// LHS == "FILE"
+												// RHS == "%s" // AUTO_KNOW "%s" will be found by FILTER += MATCH_ARG_as("%s")
+												// %s means nothing to C
+												// %s means everything to PRINTF
+												// %s means OPTION in PARSED
+												//
+												//	a small world gets built in
+												//
+												//		DIAG
+												//
+										}
+
+										_utf8_parser
+							
+
+				_MODULE
+ DECODE_i8_i24
+
+	Inorder to run ACTION in SCRIPT
+
+		parse SCRIPT
+		decode ACTION 
+
+			GEN code that will be the CT_RT action
+			GEN C for TCC to compile into MEMORY and lookup and call
+
+		decode KNOW action
+
+			EIGHT_t TABLE[u16] 
+
+		decode FILTER LOW NUMBERS
+
+			u16_IDX = i24_IDX when " [0 idx [N " // the DECODE and ACT on "STR0" is to MATCH it YES DONE MATCH "[0 idx [N" // Q" adds SP amybe Q2_LPAR_SP
+			// PARSE "SP RPAR Q2" // near miss "GAP RPAR GAP Q2" // PARSE "Q2 L SP WORDS SP R Q2" // FILTER Q2 notices Q1 BACKSLASH CSET_STRUFF // AVOIDS //
+			// PARSE NAME 
+			// PARSE NAME SEP NAME
+			// PARSE NAME SEP NAME SEP NAME
+			// PARSE NAME SEP NAME SEP NAME SEP NAME //
+			// PARSE NAME[i] SEP[i] "[0 i [N" "{ N SCRIPT }" RETVAL = RET_E_VAL = GETTER( TABLE.N )
+			// ARGV[i] is a location with it's own DECODE CACHE but that is somehow OPTIMIESED AWAY // on_DEMAND andwer question // uncalled // unwritten
+			// on_DEMAND "{ GETTER %s }" // TOKEN = lookup SPELLING // in TABLE // 
+
+				SPELLING maintains a CACHE loop of where it is mentioned
+
+					TABLE_one SPELLING_one
+					TABLE_two SPELLING_two
+
+					_one != _two because same spelling different address or STR0, // import preloads own ?? ROM loads both ?? build to NOW //
+
+				SPELLING fudges SIGN and N_checks but may have repeats, MMAP_FILE_one MMAP_FILE_two CORE_FILE_zero
+
+					HEAP is a LOHI indexed object
+
+					it might export TABLE[256][UNS] // or any INT or UNS
+
+			if( u24_PAYLOAD >> 16 ) /* keep i64_WORD */ else on_RANGE_u16() ;
+
+
+

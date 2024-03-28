@@ -351,8 +351,8 @@ bool bool_main( int argc, char ** argv ) {
 	
 	// MERGING .jpg into .png frame (both were similar) 
 	// RENAME REFACTOR PENDING
- 	return bool_main_jpg( argc, argv );
 	return bool_main_png_jpg( argc, argv ); // both
+ 	return bool_main_jpg( argc, argv );
 }
 
 int main( int argc, char ** argv )

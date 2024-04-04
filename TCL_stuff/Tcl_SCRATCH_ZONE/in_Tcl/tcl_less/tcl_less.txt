@@ -1,0 +1,104 @@
+#  tcl_less/tcl_less.txt
+
+	tcl_less/. the_dir is a LOCN in TREE lookup["tcl_less"] {
+		ret_val = lookup("%s",LOCN_NAME) 
+		// EXPR LOCN_NAME LOCN NAME // += a ROLL of CODE // += SCRIPT
+		// CT_RT_mini_machine += FSM_ONE FSM_TWO _PLUS("%s","PLUS")
+		// CT MATCH cident99 PICK { LHS RHS BOTH EXPR IDX ... }
+		// IDX is a well_known (means IDXT_t idx = EXPR ARGS SPEC CMNT }
+		// IDX means "{ i8 idx_in_ROM _ROM_ONE { _ROM_%s cident } }"
+		// IDX means INT // DECODE_SIGNED_as_LOOKUP_in_ROM_RAM
+		// -128 [ M1 [ 0 [ idx [ N // N didn't include Mint 
+	
+	MINI_MACHINE a decision box code "{ MINUS ZERO PLUS }"
+
+		// SIGNED int KNOWN MINUS NEGATIVE 
+		// SIGNED int KNOWN ZERO
+		// SIGNED int KNOWN PLUS
+
+		// CHOICE // FOR "PICK_u7" 
+		// CHOICE // FOR "PICK_i8_MINUS" 
+
+		on_MINUS() {
+		}
+		on_ZERO() {
+			on_PLUS();
+		}
+		on_PLUS() {
+		}
+	}
+
+	decision_code_box {
+		STO {
+		 "on_MINUS_GOTO LOCN" "on_MINUS_GOTO" "LOCN"
+		  on_MINUS_GOTO LOCN AS_VAR
+
+		  	AS_VAR causes a VAR = AS_VAR("%s") // LOCN //
+			// NB sample value as name in TEST "%s" "LOCN" CMNT // CMNT_TWO
+
+			AS_VAR creates on_MINUS_GOTO as a LOCN in FSM with STATE
+			AS_VAR creates on_ZERO_GOTO as a LOCN in FSM with STATE
+			AS_VAR creates on_PLUS_GOTO as a LOCN in FSM with STATE
+
+			AS_VAR creates "AS_VAR on_%s_GOTO" // PARSED PAIR //
+
+				uses "%s" within OBJ_LEX lex = "ITEM"
+
+			AS_VAR creates "AS_VAR %s_%s_%s AS_VAR "%s" GOTO" // PARSED PAIR //
+			 lookup("%s_%s_%s LHS MID RHS")
+			 lookup("{ %s_%s_%s LHS MID RHS }") // MATCH "Q2 { SP"
+			 lookup("{ %s_%s_%s LHS MID RHS }") // MATCH "Q2 {"
+			 MATCH TRIM PARSED "{ %s }" // EXACT LOOSE ASSOC DIALECT
+
+				uses "%s" within OBJ_LEX lex = "ITEM"
+
+		}
+	}
+
+	LANG STYLE += DISPLAY_AS "return %s" or as "%s" // FILTER
+
+		FILTER SWITCH ON_OFF // M1 is more active than you expect
+		ALIAS ON = M1
+		ALIAS OFF = ZERO // this is template.attachment_point("ZERO")
+		i1 ON_OFF _as_M1_ZERO as_SIGNED is_MINUS KNOW_is_MINUS CT_RT _is_Minus
+		CTRT "is MINUS" // build cident using "%s_%s" lhs rhs //
+		CTRT "is MINUS" // build cident using "%s_%s" lhs rhs // ARGV == UNSET
+		// AUTO_ARG "{ ARGV == UNSET }" on_MATCH SCRIPT
+
+	
+// ASIDE // https://www.blackmagicdesign.com/products/davinciresolve/
+// ASIDE // DaVinci Resolve 18 // video edit linux 
+// ASIDE // MP4 jigsaw // MP3_jigsaw // STREAM_FLOW BULK_TRANSFER EOT //
+// ASIDE // MUX MP4 DECODER OBJ_SYSTEM STREAM_SYSTEM SESS_API //
+
+	BOOKMARK AUDACITY OPTS FILE XPOS // XPOS //
+	// XPOS is CODE_POINT in SCRIPT // XPOS FILE OFFS // CT_RT_XPOS
+
+	BOOKMARK AUDACITY OPTS FILE XPOS // XPOS is CODE_POINT in SCRIPT
+	// one item per byte, list of items at byte += EA_EXPR "{ LOCN LEAF }" 
+	// JUMP_STEP_LOGIC converts "EA_EXPR" to ATOM_in_LIST_in_TEMPLATE
+	// TEMPLATE += "NAME STR0" // "{ %s }" // MATCH PRECISE and SIMILAR
+	// SIMILAR means identital but with different SPELLING "%s" and "%s"
+	// KNOW is_cident97_with_builtin_tables // SOON UTF8 in cident_UTF8
+	// a1_a2_star ASCII_GLYPHS except LIST include LISTS CSET_MATCH
+	// CSET ASCII BYTE "{ ONE TWO }" UTF8 
+	// CSET cident97 // a very specific list of MATCH MINUS low_ceilings
+	// CSET DECODE is_a1 is_a2 for USAGE_AS cident98 // ANY other than cindent99
+
+	DECODE "cident99" // the generic of the generics
+	DECODE "cident98" // handler for other non99 numbers
+	DECODE "cident97" // the local DIALECT for specific PERSON or USAGE
+	DECODE "cident96" // USAGE as_ROM_TOKEN("WELL_KNOWN_STR0")
+
+	OKAY the machine will be made out of lookup tables of SPELLING
+
+	LISP ATOMS do that, and it is magical, you name it, mention it, use it
+	SPELLING"cident97_%s" // FILTER is text_adaptor one of list of PEER
+	// "%s_%s" FIXED PARAMETER_is_PAYLOAD // MACRO // unexplained ALIAS
+	// FAST_ALIAS // FAST ALIAS // ALIAS "{ %s PAYLOAD }" // _("PAYLOAD")
+
+	SCRIPT on MENTION connect AVAR via API_ONE API_TWO
+	// TWO calls ONE // TWO uses USES // SCRIPT_CALL_EVAL_CALL_API //
+
+
+

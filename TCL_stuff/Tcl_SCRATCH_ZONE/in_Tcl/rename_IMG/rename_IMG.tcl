@@ -34,6 +34,7 @@ set ZONE_NAME RSAC_Webber
 set ZONE_NAME HolyMoly
 set ZONE_NAME Tankata
 set ZONE_NAME Bognor
+set ZONE_NAME HCE_HansCamp_East
 
 proc list_pop {listname itemname } {
 	upvar $listname list

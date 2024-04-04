@@ -125,6 +125,9 @@ run_test1: $(EXEC1)
 run_test2: $(EXEC2)
 	./$(EXEC2) $(test2_font)  P # "Sample Text"
 
+gdb_test2: $(EXEC2)
+	gdb -tui --command .gdbinit_$(PROG2)  ./$(EXEC2) $(test2_font)  P # "Sample Text"
+
 $(EXEC1): $(MAKES)
 
 $(EXEC2): $(MAKES)

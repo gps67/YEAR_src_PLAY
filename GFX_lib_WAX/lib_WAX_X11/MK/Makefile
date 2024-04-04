@@ -115,13 +115,21 @@
 	PROG2=test2_xft_diagonal
 	PROG3=test_libpng
 	PROG4=test_libjpeg
+	PROG5=text_2_png
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)
 	EXEC3=$(PROG3)$(dot_EXE)
 	EXEC4=$(PROG4)$(dot_EXE)
+	EXEC5=$(PROG5)$(dot_EXE)
 #	gdb=gdb
 	gdb=/tools/x86_64/ccs/bin/gdb
+
+	EXECS += $(EXEC1)
+	EXECS += $(EXEC2)
+	EXECS += $(EXEC3)
+	EXECS += $(EXEC4)
+	EXECS += $(EXEC5)
 
 all: run_test3
 
@@ -160,6 +168,9 @@ run_test3: $(EXEC3)
 run_test4: $(EXEC4)
 	./$(EXEC4) 
 
+run_test5: $(EXEC5)
+	./$(EXEC5) 
+
 lots: $(EXEC1) $(EXEC2) $(EXEC3) 
 	# make lots
 
@@ -171,9 +182,10 @@ $(EXEC1): $(OBJS)
 $(EXEC2): $(OBJS)
 $(EXEC3): $(OBJS)
 $(EXEC4): $(OBJS)
+$(EXEC5): $(OBJS)
 
 relink: 
-	rm -f $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa
+	rm -f $(EXECS) test2 fa
 
 clean: 
-	rm -f *.o $(EXEC1)  $(EXEC2)  $(EXEC3)  test2 fa
+	rm -f *.o $(EXECS) test2 fa

@@ -17,9 +17,21 @@
 	var font_file = "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf"
 
 
+	// PROBLEM LOADING TTF
+	// The builting names work, the load from file fails
+	// it doesn't fail, it jsut doesn't change the font
+	// so times gets used (or something)
+
 	// font_name is used, here it is the font_file
 	var font_name = "NO_font_file" // commented out 2024 - as prop spaced
 	var font_name = font_file // commented out 2024 - as prop spaced
+	var font_name = "Courier-Bold" // worked but builtin
+	var font_name = "Courier" // works
+	var font_name = "Helvetica-Bold" // not proportional
+	var font_name = font_file // fails to load font from file
+	// last one wins
+	var font_name = "Courier-Bold"
+	var font_name = "Courier" // works
 
 	// point size
 	var pt_sz = 8.0
@@ -30,6 +42,7 @@
 	var pt_sz = 66.0 // this does zoom the text
 	var pt_sz = 22.0
 	var pt_sz = 36.0
+	var pt_sz = 66.0 // this does zoom the text
 
 	function dbg_print_2( key, val ) {
 		// if(false) print( "# INFO #", key, val )
@@ -126,6 +139,8 @@
 	var font = new Font(font_name) // WAS OK upto Jan
 	var font = new mupdf.Font(font_name) // NEW from Jan
 	dbg_print_2( "font_name", font_name);
+	var font_name_two = font.getName()
+	dbg_print_2( "font.getName()", font_name_two);
 // WARN // FAKE *= 4
 	pt_sz *= 4
 	pt_sz /= 4

@@ -49,28 +49,34 @@ struct homebrew_pixmap_grey_t
 
 void
 draw_bitmap( FT_Bitmap*  bitmap,
-             FT_Int      x,
-             FT_Int      y)
+             FT_Int      x0,
+             FT_Int      y0)
 {
-  FT_Int  i, j, p, q;
-  FT_Int  x_max = x + bitmap->width;
-  FT_Int  y_max = y + bitmap->rows;
+  FT_Int  dst_x1, dst_y1;
+  FT_Int  src_x1, src_y1;
+  FT_Int  dst_x2_max = x0 + bitmap->width;
+  FT_Int  dst_y2_max = y0 + bitmap->rows;
 
+ // y is zero at top
 
   /* for simplicity, we assume that `bitmap->pixel_mode' */
   /* is `FT_PIXEL_MODE_GRAY' (i.e., not a bitmap font)   */
 
-  for ( i = x, p = 0; i < x_max; i++, p++ )
+  for ( dst_y1 = y0, src_y1 = 0; dst_y1 < dst_y2_max; dst_y1++, src_y1++ )
   {
-    for ( j = y, q = 0; j < y_max; j++, q++ )
-    {
-      if ( i < 0      || j < 0       ||
-           i >= WIDTH || j >= HEIGHT )
-        continue;
+    if( dst_y1 < 0 ) continue; // skip lines off top
+    if( dst_y1 >= HEIGHT ) break; // stop at first line off bottom
 
-	// COPYING FT_Bitmap to HOMEBREW_t image_bytes
-	image.set_xy_byte( i, j, 
-	      bitmap->buffer[q * bitmap->width + p ]
+    for ( dst_x1 = x0, src_x1 = 0; dst_x1 < dst_x2_max; dst_x1++, src_x1++ )
+    {
+	if( dst_x1 < 0 ) continue; // off left next
+	if( dst_x1 >= WIDTH ) break ; // off right stop this line
+
+
+	image.set_xy_byte(
+		dst_x1,
+		dst_y1, 
+		bitmap->buffer[ src_y1 * bitmap->width + src_x1 ]
 	);
     }
   }

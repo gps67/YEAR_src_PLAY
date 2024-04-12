@@ -1,0 +1,152 @@
+#  WHAT_is_WAX.txt
+
+	see also WAX_field.txt for ASIDE NEAR HERE
+
+ WAX_FRAME is a gui_toolkit 4-verb-dialect_code_steps_libr_etc
+
+	 WAX_FRAME
+	 is a
+	 gui_toolkit
+
+	 	MODULE += import_as_BASED_ON MODULE_BASE_ONE
+
+	 MODULE
+
+	 	MODULE += FEATURE
+	
+	 4-verb-dialect_code_steps_libr_etc
+
+		 4-verb-dialect
+		 code
+		 steps
+		 libr
+		 etc
+	
+	 MODULE WAX
+
+	 	WAX += STR0 // MODULE "WAX" //
+	 	WAX += WAX.ATTR[STR0] // MODULE "WAX" // ITEM "ATTR" // ARG STR0
+		STR0 is AUTO_VAR builtin, VIEW "{ STR0_t STR0 }" , FILTER VIEW
+		EXPR is EXPR that provides API as USED and HERE and EDITED and CACHED
+		MODULE += MODULE _NAME _ALIAS THIS_loaded_MODULE_ID_as_ALIAS
+		ALIAS == "WAX" // MODULE_NAME // _NAME // %s // ALIAS //
+
+
+	WAX is X11 one_day_WIN32 WAX_64 WAX_32 GDI_X11 // GDI_WIN64 GDI_WIN32
+
+		GDI uses SPOUT
+	
+	SPOUT is SPOUT and X11 and OUT_PS OUT_cairo_subset
+
+		LOAD_FONT
+
+			brings FONT_INFO 
+			brings FONT_GLYPHS
+			brings FONT_FACTS _UDEF
+
+		SPOUT_
+			_PAPER
+			_INK
+			_PEN
+			_MACROS
+			_XY_POS
+			_GDI 
+
+		_GDI
+			COORD // MACROS over int UNS REQUIRE DIALECT_xFFFF
+
+				X_t
+				Y_t
+				XY_t
+				LIST_N_of_XY _t 
+				ITEM_uses_XY_as_EA _SELF _OBJECT _EA from IDX
+
+					ITEM_t & ITEM = LIST_N_of_XY[ IDX ]
+
+					 on_u7
+						set IDX_t u7_t
+						// _t opens up use of VOCAB as var_names
+					 on_u23
+						set IDX_t u23_t // i32 //
+
+				AUTO	 on_u24
+					  on_u64
+					  on_u32_PAIR
+					  on_u32_WORD
+					  as_u32_WORD_with_u24_PAYLOAD
+		// TODO //		  as_u32_WORD_with_u8_BYTE_B
+		// TODO //		  as_u32_WORD_BYTE_FIELDS
+		// TODO //		  as_u32_WORD_BITFIELD // DECODED
+		// TODO //		  as_u32_WORD_with_u8_BYTE_A
+
+			GDI DRAW SHAPE ARGS
+	
+ ARGS is MAGIC here, it matches "{ ... A R G S ... }"
+
+
+			MACRO TECH
+
+				DECL MACRO name ... PARSED ...
+				DECL MACRO name ... XPOS PARSE_OPTS ...
+
+				DECL.XPOS as "{ FILE OFFS }"
+				DECL.XPOS as "{ FILE LINE CPOS }"
+				DECL.XPOS as "{ XPOS CSET SESS API }"
+
+			MACRO LIBR
+
+		DOCUMENT_
+
+			MACRO LIBR
+			
+			 MACRO LIBR IMPORTED
+
+			 EXPR_POOL
+
+			ITEM LIBR
+
+			 MACRO ALIAS EXPR
+			 EXPR += DECL "{ XPOS CSET SESS API }"
+			 ITEM += EA
+
+			 EA += "{ u7_idx_HEAP u8_idx_ITEM }"
+
+				 u7_idx_HEAP
+				 u8_idx_ITEM
+
+			 EA += "u7_idx_HEAP" //
+
+// BENCH // EA += BITFIELD_from_WORD_in_CPU // BYTE_FIELD works best
+// BENCH // EA += BYTE_FIELD_from_WORD_in_CPU // builtin SIDE_EXPR 
+// BENCH // EA += BITFIELD_as_ALIAS "%s" ALIAS // tokenised EA of ALIAS of ITEM
+// BENCH // OPCODE was LHS _WORD32_ONE
+// BENCH // WORD32 is RHS _WORD32_TWO
+
+				 u7_idx_HEAP
+				 u8_idx_ITEM
+
+			EXPANDING_BITFIELD
+
+				u8_usually
+				u16_option
+				i32_option
+				i64_option
+
+			USEFUL_BITFIELD
+
+				u8_BITFIELD  _BYTE_A _
+				u8_BITFIELD  _BYTE_B_
+				u23_BITFIELD _u24_PAYLAOD
+				i24_BITFIELD _i24_PAYLAOD // i32_WORD >> 8 //
+				i16_BITFIELD _AB _CD_ EF_ GH_ ERGH_
+
+			 	
+
+			
+
+
+
+
+	X_Window & W = parameter_W
+
+

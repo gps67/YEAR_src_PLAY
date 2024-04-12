@@ -158,8 +158,12 @@ class cddb_split_title_artist:
 
 def audio_munger_get_action_map():
 	map1 = {}
+	## NORMALISE ## is broken ## 
+	## broken also in already happens in load / save / summary
+	## manually edit ?
 	L1 = [
 		"cddb_summary",
+		"cddb_normalise", 
 		"process_wav_to_wav",
 		"process_wav_to_mp3",
 		"check_saved_cddb_file",
@@ -545,6 +549,11 @@ class audio_munger:
  	txt = self.Album.txt_cddb_summary()
  	print(( txt.get_unicode_text() ))
 
+ def cddb_normalise( self ):
+ 	print( "### normalise ## #" )
+ 	txt = self.Album.txt_cddb_summary()
+ 	print(( txt.get_unicode_text() ))
+
  def process_wav_to_wav( self ):
  	# copy '.' to WAV_DIR4
  	self.need_file_names()
@@ -610,11 +619,12 @@ class munger_caller:
 		global config_settings
 		""" cddb file doesnt exist yet ..."""
 		# remove any old one, in case cdda2wav leaves it untouched
-		move_file( "audio.cddb", "audio_PREV.cddb" )
-		move_file( ".test_out_cddb", "../OLD_.test_out_cddb" )
+		move_file( "audio.cddb", "audio.cddb_PREV" )
+		move_file( ".test_out_cddb", ".test_out_cddb_PREV" )
 		if 0!=call_system( "eject -t" ):
 			call_system( "sleep 2; eject -t" )
 
+		# SUDO cdda2wav dev=... # as a multiline STR0
 		cmd = """
 %s %s \
 dev=%s \
@@ -632,6 +642,7 @@ cddbp-server=%s \
 			config_settings.cdda2wav_cddbp_server
 		)
 
+		# scratch the above, SUDO not needed ?
 		cmd = """
 %s \
 dev=%s \

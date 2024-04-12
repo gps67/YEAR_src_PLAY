@@ -1,0 +1,115 @@
+	2024-04-11
+
+	2024_04_Apr
+	2024-04-11_NFS_ARM_VBOX.txt
+
+ WASM	managed code in sandpit
+ UBOX	UNIX process as USER on VBOX
+ VBOX	UNIX machine in cloud VM 
+ VTBL	kernel FUNC IDX_of_FN_to_call
+ CT_RT 
+ 
+
+ WASM
+ 	WASM is C++ compiled into WASM with ACCESS to NBYTES from STO and ROM
+	JVM is JAVA or JOLT+=PY_PLUS  runnin managed code in a secure VBOX
+	SCRIPT is Tcl Python Java_Script JAVA3 CXX C++ tinycc_script_modules
+	MODULE is C++ loaded into { go c++ C98 Tcl Python CT_RT_SCRIPT
+	CACHE is LOACAL copy of REMOTE
+	RPCQ += RPC_Queue_API
+	# auto_global_nouns_each SPEC with AVAR_PLUS // resist "_" in name
+	# FIX # rename LHS_RHS as ALIAS_EXPR ALIAS # acts as FN STR0
+	# FN STR0 #
+	# ALIAS_EXPR ALIAS #
+	# ALIAS_EXPR EXPR #
+	# ALIAS_EXPR ALIAS_EXPR ALIAS EXPR _SELF_ _ITEM- # ITEM_EXPR
+	# ITEM IDX #
+	# EITH EA_item # e'ith # eith item # CMNT ETC # MIXIN SCRIPT DIALECT
+	# ALE STO SPEC SESS QUEUE TRAY_of_NOUNS NAME IDX STO DATA ALIAS
+	# FUNC A R G S # MENTION each ARGV[i] which is a NOUN_EXPR_ALIAS
+	# _or_SPEC # local dialects get to attach properly prefixed IMPORT VTBL
+	# VTBL #
+ UBOX
+ VBOX
+ 	
+
+ VTBL
+
+ 	UNIX sys call is VTBL[ u24_IDX_CALL_idx ] # FILTER SUBST u24 SCRIPT
+	# SCRIPT PICKS a few options that PICKED here - CT_RT some STABLE ROM
+	# SCRIPT CT_RT can upgrade a presumed behaviour with CACHE_LINE_TABLE
+	# TABLE["Name"] => /* SCRIPT using => as NON_C_PUNCT_OPERATOR_ALIAS */
+	# "{ OPERATOR => }" # as NON_C_PUNCT_OPERATOR_ALIAS */ # BECAUSE looks like arrow
+	# 
+	# "{ ASCII_ART '=>' }" # as NON_C_PUNCT_OPERATOR_ALIAS */ # BECAUSE looks like arrow
+	# "{ ASCII_ART  =>  }" # use FG_BG to 
+
+
+ 5 year theorum
+
+ 	we got five years
+
+	until ... list ...
+
+	AI sentient
+	CRISP accurately controllable from AI over DNA
+	Climte Change causes famine, HERE, NOW, 
+	HUNGER GAMES RIOTS UPRISE CHAOS WARS RUBBLE 
+	Those externalities are at the door
+	+= previously built in ways of doing things
+	+= profit += externality_prevention_cost // ie no prevent //
+	+= queued_cost // AGREE += committed_to_deliver_as_part_of_ CONSIGNMENT
+	+= future_cost += remove_CO2 from atmosphere // awful ROI BEST_is_TREE
+	+= future_delay += ATTR_OF_ITEM COST += new cost BUILT_ITEM_AS_SCRIPT
+
+ SCRIPT is WRAP_SCRIPT PARAMETERS
+
+ SCRIPT PARAMETERS
+ SCRIPT PROFILE VARS
+ SCRIPT SESSION VARS
+ SCRIPT STACK VARS // belonging to SERVICE_USER // NAME += ANYSTR DATA += AVAR
+ AVAR "Name" // SPEC += SPEC // EA_AVAR += EA_from_IDX IDX 
+ // EA_AVAR += '{ "EA" from "IDX" }'
+ // EA_AVAR += '{ "AVAR" from "IDX" }'
+ // EA_AVAR .CT_RT += '{ "VAR_NAME" from "IDX" }' // build NAME from PHRASE
+ SCRIPT is used where its own WRAP_SCRIPT or HOLD_SCRIPT
+ SCRIPT implements an object, META can do CT_RT on EA from AVAR or EXPR ARGS
+ COMPILE from REMOTE_usage_of_CACHE_or_LOCAL_that_I_provide
+ MODULE %s PROVIDES %s // AUTO MENTION '{ AVAR MODULE --VALUE %s --VAR_NAME VALUE
+ TUPLO MENTION AUTO DIALECT "{ VALUE %s }"
+	 created LIST {
+		 AVAR
+		 { NAME "VALUE" }
+		 { VALUE "%s" }
+		 { SPEC ABSENT }
+	 }
+	 PRE_FIT with CODE_HOOK
+	 += shared use of CODE HOOK uses same SESS AVAR or SCOPE or DIALECT
+	 += CODE_HOOK uses VTBL IDX
+ TUPLO MENTION AUTO DIALECT "{ VALUE %s }" created AVAR { NAME "VALUE" } { VALUE "%s" } { SPEC ABSENT }
+
+
+	FIAT bubbles METAL backup TRADE backup // COLLAPSE //
+
+
+
+ 5 years alert
+
+ 	all the other end of the world predictions must be heard
+
+	rapture as real, not a shroom story, metaphor, art
+
+all the promised reincarnations must be arrived,
+
+	messiahs
+	revelations
+	the eternal battles
+	third temples built,
+	convertion to Post-Roman Metric units ISO
+	yadda yadda
+
+ 5 year theorus
+
+ 	
+
+

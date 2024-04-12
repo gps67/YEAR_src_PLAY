@@ -1,11 +1,12 @@
-set -x
 
+# load the tray # for towers
 eject -t
 
 # ERROUT is very fast - intended for GUI (a fast one!)
 ERROUT="-e"
 ERROUT=""
 
+# maybe going fast is why the default rip failed
 SPEED="-S 12"
 SPEED="-S 4"
 
@@ -13,21 +14,45 @@ VERBOSE="-v"
 OUT_WAV="-w"
 BATCH="-B"
 
-TRACK="17"
+# PICK list of TRACKS
+TRACK="7" # no
+TRACK="9" # no
 
-TRACK="${1:-$TRACK}"
+TRACK="2" # yes
+TRACK="3" # yes
+TRACK="3" # NO
+TRACK="5" # yes
+TRACK="4" # NO
+TRACK="6" # yes
+TRACK="7" # no
+TRACK="7-17" # todo
+TRACK="8" # yes
+TRACK="10" # yes
+TRACK="11" # yes
+TRACK="12" # yes
+TRACK="13" # yes
+TRACK="14" # yes
 
-# NB TRACKS or TRACK # here singular
+TRACKS="$TRACK"
+TRACKS="4 7 3"
+TRACKS="3 5 6 7 8 15 "
+TRACKS="  5 6 7 8 15 "
 
-# ask_do sudo \
-ask_do \
-cdparanoia \
-$ERROUT \
-$VERBOSE \
-$OUT_WAV \
-$BATCH \
-$SPEED \
-$TRACK \
-#
-TRACK0N=`printf '%2.2d' $TRACK`
-ask_do mv track${TRACK0N}.cdda.wav audio_${TRACK0N}.wav_
+# TRACK="${1:-$TRACKS}" # allow $1 to be "Q2 1 2 3 Q2"
+for TRACK in  $TRACKS
+do
+
+	# ask_do sudo \
+	ask_do \
+		cdparanoia \
+		$ERROUT \
+		$VERBOSE \
+		$OUT_WAV \
+		$BATCH \
+		$SPEED \
+		$TRACK \
+	#
+	TRACK0N=`printf '%2.2d' $TRACK`
+	ls -l audio_${TRACK0N}.wav_
+	ask_do mv track${TRACK0N}.cdda.wav audio_${TRACK0N}.wav_
+done

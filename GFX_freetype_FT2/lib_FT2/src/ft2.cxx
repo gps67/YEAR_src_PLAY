@@ -4,6 +4,9 @@
 #include <math.h> // sin cos
 #include "ft2.h"
 
+// /home/gps/YEAR/src_build/FT2/ft2demos-2.10.0/src
+// ftcommon.{c,h} // and around are generic users of FT2 API
+
 // file:///home/gps/2020/src_build_2020/DTP/freetype-2.10.2/docs/reference/ft2-basic_types.html#ft_bitmap
 
 // https://www.freetype.org/freetype2/docs/reference/ft2-base_interface.html#ft_glyphslotrec
@@ -72,11 +75,13 @@ draw_bitmap( FT_Bitmap*  bitmap,
 	if( dst_x1 < 0 ) continue; // off left next
 	if( dst_x1 >= WIDTH ) break ; // off right stop this line
 
+	// bitmap get xy byte 
+	u8 pix_val_byte = bitmap->buffer[ src_y1 * bitmap->width + src_x1 ];
 
 	image.set_xy_byte(
 		dst_x1,
 		dst_y1, 
-		bitmap->buffer[ src_y1 * bitmap->width + src_x1 ]
+		pix_val_byte
 	);
     }
   }
@@ -120,6 +125,13 @@ show_image( void ) // print image as ASCII 1-9A-F anti-aliases 0 is space
 
 
 using namespace FT2;
+
+ ft2_library_t :: ft2_library_t() {
+ }
+
+ ft2_library_t :: ~ft2_library_t() {
+ }
+
 
  // static var and init
  bool ft2:: init_done = false;

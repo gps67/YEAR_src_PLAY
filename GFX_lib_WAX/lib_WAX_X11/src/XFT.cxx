@@ -305,6 +305,7 @@ alloc_items() // color angle matrix font
 	double font_size = 36; // pt
 	const char * font_name = "charter";
 	angle = +90;
+	angle = +23; // any angle works + is up l2r
 	angle = +45;
 	font_size = 18;
 	font_size =  8;
@@ -326,7 +327,7 @@ alloc_items() // color angle matrix font
 		  font_charter,	// VAR // & of PTR to //
 		  font_name,
 		  font_size,
-		& font_matrix
+		& font_matrix	// used not retained
 	))
 		return FAIL_FAILED();
 
@@ -343,11 +344,13 @@ WAX::
 MY_XFT::
 release_items()
 {
+	// OK the pen is pointers to preallocated items
+	// some thought required
 	if(!draw.draw) return FAIL("NULL draw");
-	if(! draw.Xft_ColorFree ( color_purple )) {
+	if(! draw.Xft_ColorFree ( color_purple )) { // ? pen.pen_color ?
 		return FAIL_FAILED();
 	}
-	if(! draw.Xft_FontClose( font_charter ))
+	if(! draw.Xft_FontClose( font_charter )) // ? pen.pen_font ?
 		return FAIL_FAILED();
 	return true;
 }

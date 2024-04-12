@@ -11,9 +11,10 @@
 # /home/gps/YEAR/src/GITS/YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl_Module/tcl_less
 
 	set YEAR_src_PLAY /home/gps/YEAR/src/PLAY
+	set MENU $YEAR_src_PLAY/TCL_stuff/Tcl_SCRATCH_ZONE/in_Tcl_Module/tcl_menu/MENU 
 
 	lappend auto_path \
-	$YEAR_src_PLAY/SCRATCH_ZONE_20/in_Tcl_Module/tcl_menu/MENU \
+	 $MENU \
 	;#
 
 

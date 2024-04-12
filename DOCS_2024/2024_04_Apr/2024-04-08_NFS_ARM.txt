@@ -1,0 +1,37 @@
+	2024-04-08
+
+	2024_04_Apr
+	2024-04-08_NFS_ARM.txt
+
+	DNS-320 ARM 32 bit
+
+
+
+	fun_pkg 
+
+/nfs/NAS2/mnt/HD/HD_a2/ffp_ftp/ffp.inreto.de/ffp/0.7
+
+	./arm/
+	/oabi/
+	./src/.
+
+	README.txt
+
+	use ./oab1/
+	For DNS-323 and CH3SNAS (and other OABI-based devices),
+
+	use ./arm/ 
+	For DNS-325 (and other EABI-based devices),
+
+	Copy fun_plug and fun_plug.tgz to Volume 1 and reboot. If
+	successful, the fun_plug.tgz file is unpacked (ffp directory) and
+	deleted. A telnet server is started.
+
+
+
+	    # slacker -Ui s:
+
+
+
+
+

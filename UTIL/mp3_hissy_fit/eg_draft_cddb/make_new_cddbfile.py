@@ -40,7 +40,7 @@ id_starts = words[2:-1]
 CD_TITLE = "Title"
 CD_ARTIST = "Artist"
 CD_GENRE = "misc"
-CD_YEAR = "2020"
+CD_YEAR = "2024"
 
 # not a clue
 CD_ID3="118"

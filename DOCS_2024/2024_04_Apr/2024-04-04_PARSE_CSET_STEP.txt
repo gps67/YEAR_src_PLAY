@@ -1,0 +1,183 @@
+	2024-04-04
+
+	2024_04_Apr
+	2024-04-04_PARSE_CSET_STEP.txt
+
+
+	instead do ACTION recommended by FILTER += get_out_the_house
+	FILTER += new_habit future_new_habit future_old_habbit // ANTI is DOTE
+	DOTE += "falls_into_bad_habits -from-> future_old_habit"
+	PARSE += "GAP_allow_NONE" // empty_GAP // but with inline PSG DONE
+
+	ACTION get_out_more
+	ACTION ongoing_new_habit // _ongoing means FILTER
+	ACTION do_a_task // as a repeating ongoing FILTER
+	ACTION APPROACH // plugs into API onto generic FILTER on STREAM
+	STREAM of OPPORTUNITIES to convert with ACTION
+	FILTER accumulate all TASK_LIST that float through STREAM 
+	STREAM += OPERATOR_INPUT += BENCH_CHATTER
+
+
+	GAP MATCH "{ a3_GAP STAR }" // a3_GAP += " SP TAB CR LF FF CTRL ESC "
+	a3_GAP_poss += " /* %s */ "
+	a3_GAP_poss += " // %s " // PARSE intenionally standardises GAPS
+	// MERGE_SP is clever enough to merge hypothetical GAP to NONE
+	// so now even if a GAP did turn up
+	// we would simply MATCH base_class GAP // GAP += SP TAB CRLF CMNT
+	// eg "{ SP CMNT SP }"
+	// eg "{ NOSP CMNT NOSP }" // WARN on mismatch // NOTE on mismatch // OK
+	// LOOSE_MERGE_SP_into_GAP_with_GAP_NONE
+
+	DOCUMENT += THREAD
+	DOCUMENT += ARTICLE
+	DOCUMENT += HOWTO DONE DODO
+	DOCUMENT += DODO DONE HOWTO ARTICLE SESSION DIARY_NOTES
+
+	split DOCUMENT so that is is visible from various VIEW
+	VIEW is DIARY # notes of what seen when
+	VIEW is ARTICLE is HOW_DONE SESSION_NOTE incl time lines and MINI_MACHINES
+	CODE += SUBSCRIBED to SCRIPT API // but runs local code from MAIN_ARGV
+	CODE += GEN CODE that implements MINI_MACHINE // with known limits
+
+	TREE += SCRIPT MODULE FRAGMENT_POOL LEXICONS
+	DOCS += DOCUMENT incl SHELF of DOCUMENTS and imported COPIES
+	TREE += LIST_of_LINES // at current indent maybe indent_ZERO
+	LIST_of_LINES += LIST_of_LINES // derived PSG nesting local meaning
+	LIST_of_LINES += LIST_of_LINE[idx_is_line_number_as_idx_of_ARRAY] //
+	LINE += ARGV_of_WORDS
+	LINE += ARGV_of_WORDS and EOLN_STATE_CARRY_on_indented
+	LIST_of_LINES += INDENTED LIST_of_LINES // becomes LIST_HERE
+	LINE += LIST_of_LINES
+	WORD += PARSE_BRACE_indented_text_BRACE // _GAP at end and preparse
+
+PARSE_CODE
+CSET_STEP
+
+	i8 is above ASCII
+	u7 is ASCII NULL
+//	u7 is ASCII DELL // often tested last, rarely used, using SIGN instead
+//	that would merge in u16_char_t when too late to SIGN i8 to i16
+//	so CMP_compare_PTR_i8 CSR ZERO // is_LESS is_SAME is_MORE
+	is_LESS on_MINUS
+	is_SAME on_ZERO
+	is_MORE on_PLUS
+
+	if( CSR_BYTE_0 < 0 ) goto_on_MINUS // decode_more _BYTE_is_MINUS _WORD
+	if( CSR_BYTE_0 == 0 ) goto_on_ZERO // call // goto is flexible CALL_GOTO
+	if( CSR_BYTE_0 > 0 ) goto_on_PLUS // want to use idx_0 as special
+
+	// SCOPE brings CODE_POOL 
+
+ on_ZERO() { goto STR0_at_NUL } // goto CT_RT GOTO "TOKEN" // from SCOPE
+ // like assemblers each line is a MACRO world instruction or ACTION OPCODE
+ // like assemblers there is a PC or STO_CSR_PTR // so labels: // AUTO_NAME
+ // AUTO_NAME hidden_labels // group in LEXICON with ATTR VIEW_GEN_HIDE
+ on_MINUS { // create "{ label label_scope_(%s)_on_MINUS }"
+ 	[-128 MINUS [0 ZERO [ PLUS [128
+ 	[-128 is_MINUS [0 is_ZERO [ is_PLUS [128
+ 	[ 128 is_PLUS [i16_i24_i32] // NB not aligned, at odd addr, in STREAM
+	CALL PARSE_UTF8_or_8859_or_OTHER // PARSE_CHAR_in_MULTIBYTE_CSET_with_NB
+	CODE PARSE_UTF8_or_8859_or_OTHER _from_first_byte_0
+
+		CSET_AREA CTRL_8859 // C0 == 0 + 128 // C0 + SP //
+		// OPTION use 32 special values as PARAMETERS
+		// DECODE_SPECIALS
+
+PICK a1_a2_a3_CSET_AREA
+
+	val_u8 = (u8) val_i8 // trust compiler to truncate WORD
+	val_u8 = (u8) val_i8 & 0xFF 
+	val_u8 = (u8) ZERO_SIGN_EXTEND_BYTE_to_WORD
+
+		CPU_provides this as a field_feature in bigger EXPR
+		CPU_provides this as a SIDE_EXPR use_BYTE_B_SIGNED
+		CPU_provides this as a SIDE_EXPR use_BYTE_B_UNSIGNED
+
+		WHen searching for available OPCODES
+		Find the MAIN_EXPR opcode that uses SIDE_EXPR as ARG
+		AVAIL ARG "ZERO_SIGN_EXTEND_BYTE_to_WORD()" "in_R(ONE)"
+		AVAIL ARG "ZERO_EXTEND_BYTE_to_WORD()" "in_R(TWO)"
+		AVAIL ARG "SIGN_EXTEND_BYTE_to_WORD()" "in_R(%s)"
+	
+	CALLER SUGGESTS (needs) (USES) u8_idx = (u8) i8_byte_0
+
+		OPTIMISED is going to search back in time
+		for where the SOURCE SIDE_EXPR came from
+		so can use UNSIGNED_BYTE_B
+
+		until then ZERO_EXTEND_BYTE_B_to_WORD
+
+		 PICK NEAREST
+		  i64 << 48
+		  u64 << 48
+
+		 ALIAS_WORD_into_UNS
+
+		 u64 >> 48 + 8 // shift_in_ZERO_BITS
+
+		 HAVE u64 holding u8 // at_BIT0 _as_WORD _as_UNS
+
+	CT_RT PUSH_PULL
+
+		CT_RT explores all branches, counting cyles and BYTES
+		CT_RT uses prepared queries to find BEST EDGE CASE DETECTION
+		"BEST" may be options still available in WORLD[nearby]
+		CT_RT explores by REPEATING work down different PICK worlds
+		// its a multiverse // and just as you know it // probably DROP
+		CT_RT explores and TUGS OPTIONS USED caches multi_step
+		CT_RT has own JIT explore whilst processing DATA
+		CT_RT has own JIT stand_back_from_over_specific_sample_DATA
+		CT_RT has own JIT step_up_for_very_specific_sample_DATA
+
+		MINI_MACHINE evaluates a list of EXPR found in code
+		FAST_RET_no_MATCH
+		FAST_RET_no_MATCH_WARN_or_FAIL_or_UDEF // ie caller does that
+		SLOW_RET yes_MATCH goto next PREP step
+
+		MINI_MACHINE is a CPU with a REGISTER RET_VAL 
+
+			MACRO can choose to NOT touch RET_VAL_VAR
+			MACRO exists in a different lexical plane than EXPR
+			MACRO exists in the same lexical plane as EXPR
+			MACRO can choose to USE RET_VAL_VAR_TWO // SIDE_EXPR
+
+		CT_RT
+
+			PICK BEST PATHWAY
+			PICK ONE
+			GEN code for that MINI_MACHINE in CPU_NATIVE
+			GEN code for that MINI_MACHINE in CXX or ASM_MACRO
+
+		GEN ASM in GCC
+		GEN ASM in TCC
+		GEN ASM in ASM
+		GEN ASM in JIT_now
+		GEN ASM in LLVM // ie ASM is LLVM
+		GEN ASM in LLVM // ie ASM is ARM32
+	
+	CPU
+
+		AMD_64
+		AMD_32
+		ARM_64
+		ARM_32
+		CXX_64 // an almost portable C++ subset
+		CXX_32 // an almost portable C++ subset
+		  C_64 // an almost portable C++ subset
+		  C_32 // an almost portable C++ subset
+		ESP_32 // via CXX_32 with MACRO_POOL
+
+
+
+	
+
+
+	EIGHT_ONE = lookup( i8_byte_0 ) in TABLE_ONE[ u8_byte_0 ] // FLAT IDX
+	 
+ }
+
+
+
+
+
+

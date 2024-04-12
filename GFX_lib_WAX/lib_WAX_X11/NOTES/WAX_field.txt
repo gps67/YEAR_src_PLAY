@@ -14,6 +14,8 @@
 	 WAX_FRAME is a gui_toolkit 4-verb-dialect_code_steps_libr_etc
 	 WAX_FRAME is a gui_toolkit pixel based // gap_width line_width pixel
 	 WAX_FRAME is a gui_toolkit not pixel based // SVG_to_PIX
+	 WAX_FRAME is a gui_toolkit LIBR
+	 LIBR += XFT
 
 	 There is a small DIAG difference between UNITS
 

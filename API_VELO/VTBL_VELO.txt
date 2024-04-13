@@ -1,0 +1,99 @@
+VTBL_VELO.txt
+
+ VELO
+
+ 	API that parses lines from audacity control PIPE API_REMOTE 
+
+		uses a hopeful ENQ_ACK
+		uses a TICK TOCK SYNC complete_and_flush_buffers_upto_end_point
+	
+	API that handles a basic syntax, that the fragile API currently
+	seems to use
+
+ VTBL STREAM of LOCN each can have SCRIPT UDEF PLUS
+ VTBL HEAP
+ VTBL ARGV in HEAP_WORLD 
+ VTBL IDX in HEAP // TEMPLATE finds CAPS and %s_%s and lower // OPTION NON_ALPHA
+
+ SEGMENT NBYTES ; OFFS in NBYTES ; 0 <= OFFS < N # TOKENISER PARSER MATCH TEMPLATE
+ TEMPLATE with named PARAMETERS in and around
+ "{ bool is_ref }"
+ "{ bool is_star }"
+ // BUNDLE as AVAL in HEAP in AVAR in HEAP _GET _SET _EA
+ // MINI_MACHINE // ALLOC TOKEN // KNOW ATTR about TOKEN // ATTR //
+ // PICK //
+ "{ AVAR_t avar }"
+ "{ AVAR_t & avar }"
+ "{ AVAR_t * avar }"
+
+ VTBL
+
+ 	API of CALL_FUNC with named parameters C++ style or ARGV style
+
+		PROTOTYPE { // C_DECL
+
+		 NAMESPACE = dir_steps // ABS or REL //
+		 SEGMENT == NAMESPACE SCOPED VARS and ROM CODE and TABLES
+		 MODULE = used_in_dirname
+		 MODULE = LIBR = MODULE
+		 SPEC /* OBJ and IDX from HEAP_ITEM */ spec = CODE_POINT_spec ;
+		 DECL_SPEC "%s_t" // DIALECT triggers FILTER HUNGRY for %s //
+		 DECL_AVAR SPEC NAME EA = EXPR
+		 DECL_FUNC_CALL PROTOTYPE SPEC 
+		 // GROW API // provide VAR_POOL per CIDENT ; CT_RT IDENT_STR
+		 // ANYSTR IDENT_STR KNOW 
+		 // KNOW += { spec == SPEC.spec } // DYDX VAR VALUE _is_DECL_
+
+		 OBJ_TYPE_as_EA_of_SPEC_of_OBJ
+		  EA_SPEC is EA_EXPR ARGS CTXT ETC
+		  each MENTION creates SPELLING in DIALECT
+
+		 	possibly more than one CODE_POINT SESSION_INST
+		 	possibly more than one SCOPE interpretation
+		 	possibly only one SCOPE interpretation
+
+			EACH is an OBJ that is a NOUN using ANYSTR or CIDENT97
+
+		 RET_TYPE SPEC_in_VIEW
+		 ARG_LIST [N] of ( arg_type arg_name arg_default ) 
+
+		 	defaults_start_at_ARG_idx
+
+		 CODE_BODY = ABSENT from here
+
+		 API_TYPE_ _LINUX_LIBC_STACK_USE_CXX_FUNC_ 
+
+		 	adapter for tinycc for GNU_CXX for LLVM_ASM
+
+		 	GEN PARSE RULES KNOW CACHED
+
+				sent list of PRE_LOAD values to REMOTE
+				PRE_SEND and PRE_LOAD by IMPORT preloaded LIBR
+
+		 INLINE_EXPRS_as_MACROS
+
+		 ARG is RET_VAR returned from FUNC_CALL 
+		 ARG is BINDING to RET_VAR
+
+
+		 VIEWS += VIEW and OPTIONS around DRAW_DIAG_OPTS
+
+ ARGV into CXX_FUNC
+
+ 	ARGV SCRIPT TEXT is so useful // a MODE of the PARSER
+
+	ARGV TEMPLATE can be get GET_OPTS CT_RT what is FOUND is TEMPLATED_ARGV
+
+	 AVAR(name) bind ARGV[i] or copy from ARGV_PARSER_CSR_i
+
+	 ASEG( [p0[p2 )
+		 x
+
+
+
+
+
+		 name_space type_SPEC("name") // or TOKENISED CACHED RET_VAL already
+		 // RET_VAL already // IN = A ; OUT = A ; KNOW A UNCHANGED ; //
+
+		}

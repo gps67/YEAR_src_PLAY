@@ -1,0 +1,55 @@
+
+	compiling means tokenising as part of parsing
+
+
+GEN ARGV
+GEN FUNC
+GEN PARSE ARGV // TOKENISATION done creating lots of CODE_POINTS in SOURCE
+
+	XPOS of SOURCE DECL of ITEM in LIBR
+
+		SOURCE_SEGMENT = SET_FROM_OUTSIDE
+		SOURCE_SEG_ZONE = OFFS_from_ZERO 
+		SOURCE_ZONE_ITEM = OFFS_of_ITEM_from_ZONE
+		ZONE = SOURCE_ZONE /* as_ZER0 P0 P2 P1 */
+	
+	Each ARGV in the source has LEX_EDGE P0 P2 
+
+		GETTER returns a COSTED_EXPR that does the GETTING
+
+			series of guess a PICK choices
+			all are still available - cache LRU - GET_VAL SET_VAL
+	
+	Each ARGV has TOKEN wrapped in apostraphes
+
+		used as VAR_NAME or CT_RT CONST_NAME DECL USED HERE
+
+		used as VAL_DATA xFFFF = "x00A6" 
+
+			the MINI_MACHINE can make this into a var for itself
+			u16 x00A6 = 0x00A6 # still in first byte of MINI_MACHINE
+
+			compiling means tokenising as part of parsing
+			and GEN code that CT_RT
+			SUB_SET_u16 on_EVENT("MAXINT_M31") // 5 bits in M31
+			// 6 bits in i6 in BITFIELD
+			// COST COUNTER += USE of GETTER
+			// i64_WORD <<= clear_high ;
+			// i64_WORD >>= clear_high + drop_lo_4_bits ; SIGNED ;
+			// SIGNED SHIFT is the only FLAGS that matter // TEST RET //
+			// TEST RET // compile looks to see if it has 
+			// just come from a SIGNED_SHIFT // always means down
+			// LEFT_SHIFT_is_always 
+	
+	LOHI_GETTER
+
+		LOHI_ALIGNED
+		LOHI_UN_ALIGNED // ARM cant do unaligned words // circles BITFIELDS
+
+	 BITFIELD
+
+		BITSHIFT_LEFT
+		BITSHIFT_RIGHT
+		BITFIELD_info
+	
+

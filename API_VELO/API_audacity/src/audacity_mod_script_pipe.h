@@ -18,6 +18,13 @@
 	// ON DETECT { nbytes < 20 } // WARN long word DETECT MATCH set_FGBG
 	// ON DETECT { nbytes < u24_MAX_INT } // WARN still using i64_MAX_INT
 	// client sends 100 bytes gets back 3K //
+
+ NOT TEY WORKING
+
+ 	run audacity
+	Edit / Preferences 
+	 Module
+	  mod-script-pipe
 */
 
 
@@ -36,6 +43,17 @@ class audacity_mod_script_pipe {
 	obj_hold<fd_PIPE_base> fd_WRITE;
 
  	audacity_mod_script_pipe() {
+	//	These must match what audacity is using for us
+	//	Note that I think this is a very mediocre API
+	// 	which may be usable for basis of REMOTE control API
+	//	but maybe not this mouse clicked button API
+	// NEED
+	//	MODULE of MACRO_POOL_ITEM_EXPR for VELO 
+	//	load LIST of FOUR.WAVS // TEMPLATE PAIR is asif LIST
+	//	VAR_POOL VTBL
+	//
+	//	"/tmp/audacity_script_pipe.to.1001"
+	//	"/tmp/audacity_script_pipe.from.1001"
 		set_filename_PAIR_to_default();
 	}
 

@@ -6,6 +6,43 @@
 #include "dgb.h"
 
 
+/*
+	There is one FILE_NAME_PART "audacity_script_pipe"
+	There is one FILE_NAME_PART "1016" // SAMPLE VALUE 
+	There is pair of FILE_NAME_PART "to" "from"
+	add above to get ...
+	There is PAIR of FILE_NAME
+
+		/tmp/audacity_script_pipe.to.1016 
+		/tmp/audacity_script_pipe.from.1016 
+	
+	# NB PAIR is AVAR "one" is not OPTION switch with PICK CAPS "ONE"
+	# dgb_DIAG_VIEW_of_AVAR # SCRIPT over AVAR 
+
+
+./audacity_mod_script_pipe_test.elf t1_arg1
+# INFO # int main(int, char**) # ARGV[0] './audacity_mod_script_pipe_test.elf'
+# INFO # int main(int, char**) # ARGV[1] 't1_arg1'
+# INFO # bool audacity_mod_script_pipe::set_filename_PAIR_to_default() # filename_READ = /tmp/audacity_script_pipe.from.1016
+# INFO # bool audacity_mod_script_pipe::set_filename_PAIR_to_default() # filename_WRITE = /tmp/audacity_script_pipe.to.1016
+# INFO # virtual bool audacity_mod_script_pipe::open_pipe() # opening /tmp/audacity_script_pipe.to.1016 ...
+# ---- # CLEAR() # UNIX errno(err 2) == ENOENT - No such file or directory ## 
+# FAIL # bool fd_hold_1::open_RW(str0, bool) # open /tmp/audacity_script_pipe.to.1016 2d
+# FAIL # virtual bool audacity_mod_script_pipe::open_pipe() # FAILED
+# FAIL # bool bool_main() # FAILED
+
+	This default must be the very specific correct answer, or FAIL
+
+		uses euid_t unix_user_id == 1016 // SAMPLE VALUE in TOKEN POOL
+
+		any_other clever ATTR_in_NAME "/tmp/audacity_script_pipe" "." 
+		...
+	
+	If you wanted to parametise the CTOR,
+	then do that INSTEAD of doing this
+
+*/
+
 
 bool 
 audacity_mod_script_pipe::

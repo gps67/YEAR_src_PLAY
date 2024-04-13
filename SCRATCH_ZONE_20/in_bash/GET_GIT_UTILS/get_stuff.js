@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/espressif/book-esp32c3-iot-projects
 https://github.com/mihaimoga/IntelliFile
 https://github.com/cmajor-lang/cmajor
 https://github.com/lvgl/lvgl

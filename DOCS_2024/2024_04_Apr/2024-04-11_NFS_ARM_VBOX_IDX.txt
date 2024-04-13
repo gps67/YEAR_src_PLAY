@@ -126,3 +126,17 @@
 
 		}
 
+	IDX_FFFF {
+		replace "IDX" with "%s" // Q2 sanity helps PARSER + KDB
+		replace "IDX" with "%s" // "IDX" is "ITEM_POOL_NAME"
+		replace "FFFF" with "%04X" // "IDX_t idx = /* ALLOC */ N ++ ;
+		VAR_POOL_TABLE_N -is- N is IDX_P2 IDX_XS IDX_HI_XS IDX_TOP
+		TABLE_ITEM_idx_t idx = /*ALLOC*/ TABLE_ITEM_idx_N ++;
+
+		VALUE of "FFFF" is "u48_SIX VALUE"
+		VALUE of "VALUE" is "{ i64 VAL }" // TEMP var for VIEW cache 
+		COPY of VALUE is LOCAL CACHE from REMOTE claiming PARSABLE
+		PARSE eg within LEX or ANYSTR of from CSR_in_STR0
+		PARSE "TAG_FFFF" as "%s_%04X" TAG IDX // HINT u16
+	}
+

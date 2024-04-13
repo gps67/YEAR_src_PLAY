@@ -1,0 +1,36 @@
+	2024-04-13
+
+	2024_04_Apr
+	2024-04-13_VTBL_TODO.txt
+
+	MINI_MACHINE += TODO
+	TODO LIST 
+	// TODO is OBJ("TODO") // _with_ongoing_TOKENISE_and_FILTER //
+	// LIST is OBJ("LIST") // AVAR %s ; MENTION %s ; ARGV STEPS ; //
+
+	VTBL is a MIXED_TYPE_BAG_of_TREE_DATA_TWIG_LEAF_STEM
+
+	u12_IDX_u4_STEP 
+	u16_LOHI _loader ; // DIALECT %s _%s __%s // ZONE_POOLS DIALECT SAYS
+	// u16_lohi * u8_PTR_unaligned = lo = *P++ ; hi = *P++ ; lohi = hi<<8 + lo
+	// check + is SIGN SAFE // expect u8 u16_from_lo_hi // builtin AX i16
+	// require SIGN SAFE that matches AX_i16 // MODULE provides adaptors
+	// GEN EXPR that MATCHES AX_i16_EXPR // MINI MACHINE SCRIPT ARGV SESS
+	// GETTER is == SETTER is = // CACHE can PICK nearest SOURCE
+	// COSTED_PICKER // RETAIN_EXPLAIN REGEN_self_EXPLAIN
+	//
+
+	i16_EXPR _as_u12_u4 // SWITCHING SIGN has a CT_RT COST n_clock_cycles
+
+		u12_ITEM
+		u4_STEP
+	
+	// "u12_ITEM" // SOURCE_of_u16_RETVAR 
+	// "u24_ITEM" // SOURCE_of_u16_RETVAR 
+	// "i24_ITEM_EXPR" // SOURCE_of_u32_RETVAR 
+
+	MINI_MACHINE based on u12_u4
+
+	 Puts the u4 at the low bits, in the name.
+	 Uses %s_%s LHS RHS // _u12 = u12_u4 >> 4 // u16_WORD >> 4
+

@@ -13,6 +13,23 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/zed-industries/zed
+
+https://github.com/quilljs/quill
+https://github.com/quilljs/parchment
+https://github.com/quilljs/delta
+https://github.com/quilljs/awesome-quill
+https://github.com/biomejs/biome
+https://github.com/biomejs/biome-zed
+https://github.com/OpenDingux/jzboot
+https://github.com/OpenDingux/alsa-volume
+https://github.com/OpenDingux/buildroot
+https://github.com/OpenDingux/linux
+
+https://github.com/OpenDingux/gmenu2x
+https://github.com/OpenDingux/SDL
+
+
 https://github.com/espressif/book-esp32c3-iot-projects
 https://github.com/mihaimoga/IntelliFile
 https://github.com/cmajor-lang/cmajor

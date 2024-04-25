@@ -1,0 +1,64 @@
+
+	stealth mode is offline batch
+
+	batch process a session - under one lock
+
+	where
+		LOCAL
+		CACHE
+		REMOTE
+	
+	when
+		BEFORE
+		DURING
+		AFTER
+	
+	what
+		GIT upload new and renamed and deleted : PHOTOS + notes
+	
+	what
+		GET fetch latest few # TODO branching for PEERS
+	
+	LOOP = ARCHIVE.LOOP
+
+		WHO is on subscription list for ARCHIVE
+		WHO (EACH) has FILTER PERMIT for ARCHIVE
+
+			NOLS
+			LS_TOP_ONLY // META
+			LS_ALL_TREE
+			FETCH LATEST from PREVIOUS
+
+			OPTION identical BINARY PHOTO DATA
+			will have IDENTICAL MD_SHA_ONE // as used by GIT
+			will have IDENTICAL MD_SHA_TWO // as used by OTHER
+			will have IDENTICAL MD_CRC_64 // QUICK UDEF HASH not unique
+			will have IDENTICAL MD_IDX_64 // MD is lookup_idx(idx)
+
+				TYPE CASE parameter
+				TYPE CASE ARGV_ARG_SOLO // special case for CODE_CALC
+				ADDS LAYER
+				OVER ARG1
+				ARG1 EXPECTATION SCRIPT A R G S
+
+					SOMEHOW SCRIPT itself
+					states its own DIALECT
+					states its own TYPE - is an EXPECTATION
+					as_EXPECTED SCRIPT ARGS CTXT SESS LOCALS
+
+	LOOP SAFE
+
+		ANNUAL local backup
+
+			register each media
+			DB of what where,
+			what it look likes,
+			where to find it,
+			what was there (when)
+
+
+
+
+
+
+

@@ -4,6 +4,126 @@
 
  WAX_FRAME is a gui_toolkit 4-verb-dialect_code_steps_libr_etc
 
+	 WAX_Tk 
+	 is a
+	 gui_toolkit
+
+	 	need event loop to be TCL_TK
+	 	need event loop to be libs_apps
+	 	need event loop to be UDEF
+	 	need event loop to be other // else ABSENT //
+
+		PURE SCRIPT API provides a few HELPER functions LIBR
+
+			NAMESPACE FUNC_NAME
+			NAMESPACE AVAR_NAME
+			NAMESPACE SPEC_NAME
+			NAMESPACE DATA_NAME # used as NAME of NBYTES
+			BENCH awards AVAR as NAME when SPEC_DOCS suggest SPLIT_NAME
+			BENCH knows to simplify SPLIT_NAME to NAME
+			BENCH kows that is often a SAME_ALIAS eg SAMPLE_VALUE_as_EA
+			BENCH EA = "SAMPLE" // SPELLING gets tokenised IDX exp
+			CACHE stores REV_VAL at DECODE_i32_i32 i8_i8_i16_i32
+			i8_i8_i16_i32
+			 i8_i8_OPCODE
+			 i16_HEAP _EA_EXPR = EXPAND_i16_ASIF_i16_i48
+			 	64K * 8 bytes == 512K // PAGED over FILE
+			 	64K * 8 bytes == 512K // PEER_HEAP_TWO
+			 	64K * 8 bytes == 512K // PEER_HEAP_PLUS
+			 	64K * 8 bytes * 2 == 1M // PEER_HEAP_PAIR _PAGE
+
+				so if our APP limits itself to 1000 functions
+				1000 MINI_MACHINES each 16K ACCESS to PAGE
+				SESS can have 4K_PAGE to scribble EXPRS_into
+				SESS can have 4K_PAGE to scribble EXPR_VARS_
+
+		ARGV -api- OBJV // OBJ is Tcl_Obj or PyObject or GDK_handle
+
+			by making CXX call ARGV via CACHE call OBJV on REMOTE
+			call LIBR via CACHE # ALIAS
+			get LIBR to use CACHE to call LIBR # MACRO from LIBR
+
+			OBJ = STR0 // well known STEP
+			CT_RT told seen at CSR with on_EVENT("{ OBJ = STR0 }")
+
+			ITEM STR0
+			ITEM NUMERIC
+			ITEM TOKENISED_STR0
+			ITEM TOKENISED_PARSED_STR0 ITEM CONTAINER HEAP IDX SPEC
+
+		PEER PG PEER
+
+			a group of COPY holders - currently up to date
+
+			SLOW update cycle, does not get traffic from CACHE
+			SLOW update cycle, does get ERA traffic from CACHE
+			POST ERA_DB_UPDATE _BATCH_SESSION _BULK_UPDATE_LOCK
+
+			usage is a group of PEERS uploading and managing PHOTOS
+			each subscriber can DROP queued temp material as DONE
+			each subscriber can KEEP queued temp material as VFS
+			each subscriber can UPDATE VFS rename append replace EDIT
+
+		TODO GIT_PEER_STREAM
+
+			MUX_SESS
+			 OLD
+				client has done an AUTO login 100 times
+			 NEW
+			 	slower bootstrap to SESS
+				some OPTIONAL advance PRESETS
+
+			MUX_PEER
+			GIT_PEER
+			GIT_HOST 
+			GIT_GW		GW is "PARENT" of each of group of PEERS
+			MUX_ANON
+
+				MODE PUBLIC INFO 
+				SPECIFIC mode for ANON_MODE STRANGER_MODE
+
+			MUX_to_MUX
+			
+				REQUEST 
+				 GW with GIT ARCHIVE
+				 as MUX channel with AUTH += PERMIT to LOGIN
+				 as MUX channel with AUTH += PERMIT to ARCHIVE
+
+				AUTH DIALOG ENSUES
+				 LOGIN ACCESS PERMIT PRE_QUICK_SLOW multi_factor
+				 SESSION is limited to PRE_AUTH_CHAT
+				 RSA key used can be TWIN RSA TEMP_TEMP
+				 RSA key used can be TWIN RSA TEMP_TEMP
+
+			Caller has
+			OUTER_SERVICE_ADDRESS
+			INNER_SERVICE_CHANNEL_EA_EXPR
+			SECRET_FOR_LINE
+			SECRET_PREPARED_for_MUX
+			BOOTING_SECRET_PRE_SEND_COMPONENT_SECRET // _ALSO_SEND
+
+				wrapped under a yet to receive SHA1_KEY
+				or a SHA1_KEY immediately available from NEARBY
+
+				NEARBY is an expression that waits for key
+				 QUEUE UNLOCKING until KEY available
+				 ACTION UNLOCK with KEY available // EKY // SKYE
+
+				WRAP item - LIST of ...
+
+			caller 
+			sends a single UDP packet 
+			to PEER
+
+				it requests a LINE using LINE_SECRET
+				it requests a MUX to MUX connection
+				it requests a SVC using
+
+
+
+
+
+
 	 WAX_FRAME
 	 is a
 	 gui_toolkit

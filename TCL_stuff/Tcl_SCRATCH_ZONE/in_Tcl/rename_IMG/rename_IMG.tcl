@@ -2,6 +2,8 @@
 # record20220522135748.3gpp
 # recordYYYYMMDDHHMMSS.3gpp
 
+# BUG # .ext #
+
 set dir_default Iya_Salisbury
 set ZONE_NAME Iya_Sako_Salisbury
 
@@ -35,6 +37,13 @@ set ZONE_NAME HolyMoly
 set ZONE_NAME Tankata
 set ZONE_NAME Bognor
 set ZONE_NAME HCE_HansCamp_East
+set ZONE_NAME Garden
+set ZONE_NAME Wedding_Breakfast
+set ZONE_NAME FB
+set ZONE_NAME Reading
+set ZONE_NAME Burnside
+set ZONE_NAME Godalming
+set ZONE_NAME RSAC_pressgang
 
 proc list_pop {listname itemname } {
 	upvar $listname list
@@ -233,7 +242,8 @@ proc rename_IMG_dir {dir} {
 	set re_ext "(.*)"
 	set re_tue "(...)"
 	set re_MSXY {([MSXY][MSXY])}
-	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])_}
+	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])[-_]}
+	set IMG_ {IMG[-_]}
 
 	append re_dot_ext "\\." $re_ext
 
@@ -259,7 +269,7 @@ proc rename_IMG_dir {dir} {
 	append re_VID_YYYYMMDD_HHMMSSXX \
 		VID_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_dot_ext
 	append re_IMG_YYYYMMDD_HHMMSSXX \
-		IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_HDR $re_dot_ext
+		$IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_HDR $re_dot_ext
 	
 	append re_myrec \
 		myrec $re_D13 $re_dot_ext
@@ -300,7 +310,8 @@ proc rename_IMG_dir {dir} {
 	  set ss 00
 	  set f1 "$dir/$f"
 	  # INIT M1 1999-12-31 23:59.00 ext
-	  foreach {YEAR MM DD hh mm ss ext} { 1999 12 31 23 59 00 ext } {}
+	  foreach {YEAR MM DD hh mm ss ext} { 1999 12 31 23 59 00 JPG } {}
+	  # this is where ext gets a dummy value # not overwritten #
 
 	  if {! [file isfile $f1]} {
 	  	puts "# NOT # $f1"
@@ -379,7 +390,7 @@ proc rename_IMG_dir {dir} {
 
 	  # not continue
 	  macro_calc_name_one
-	  macro_offer_set_date ;# before rename
+#	  macro_offer_set_date ;# before rename
 	  macro_offer_rename
 	  continue
 	}

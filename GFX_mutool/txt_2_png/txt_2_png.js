@@ -40,9 +40,9 @@
 	var pt_sz = 14.0
 	// 
 	var pt_sz = 66.0 // this does zoom the text
-	var pt_sz = 22.0
 	var pt_sz = 36.0
 	var pt_sz = 66.0 // this does zoom the text
+	var pt_sz = 22.0
 
 	function dbg_print_2( key, val ) {
 		// if(false) print( "# INFO #", key, val )

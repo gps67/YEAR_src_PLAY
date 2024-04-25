@@ -1,0 +1,206 @@
+# XFT_is_X11_module.txt
+
+	X11 uses XFT - it needs rotation matrix at font open function
+	SDL uses ___ - it has something
+	GL uses - TBS
+	X11 could use FT2, on APP side, transfer pixmaps to X11 server
+	WIN32 could use FT2
+	gtk_gdk uses ...
+	tcl_tk uses ...
+	Qt uses ...
+
+# lib WAX has XFT wrapper - needs refactoring
+
+	man xft suggests that EVERYTHING is repeated for Xft_DrawRect( xftd, FG, X, Y, W, H ) 
+
+/usr/include/X11/Xft
+
+	XftCompat.h
+	Xft.h
+
+# GDI is the real stressor of this multi-faced API 
+# GDI_uses_sum_of_all_dialects_when_abroad
+# DGI_ uses FT2 on OpenGL which is a tricky hassle
+# DGI_ uses FT2 on WAX_PIXMAP on X11 which is a FT2_API
+# GDI starts with a simple regular PSG_EXACT _LINT _EDIT _TEST_FRAME_COPY
+# GDI  uses FT2 on ESP32_frame_buffer_relay
+# CT_RT # INST OBJ "SELF" provides own VIEW_CODE and _SETTINGS and _%s and %s
+# INST provides STRUCT_SPEC and INSTANCE_ITEM # MACRO from PSG PHRASE # TOKEN
+# TREE TOKENISED # EA_EXPR # EVAL("EXPR") # OBJ is "{ EXPR %s }" // percent_d //
+# GDI uses XFT on X11 # a WRAP on the OBJ system calling "{ include XFT.h> }"
+# MATCH STR0 "{ include <XFT.h> }" # C API uses reduced_remote_cached
+# C API # does not exist, you have to write it, this is CXX # poss _C99_
+# V8_API #
+# V8_OBJ_t V8_OBJ /* alias OBJ ; alias JS_OBJ ; alias V8_OBJ JS_OBJ ITEM OBJ  [SELF ] */ 
+# EA_OBJ return 
+
+# PARSE NESTED #
+# PARSE "# %s" ARGV_as_STR0 _or_as_P0P2 _XPOS # UNRAVEL ARGV PARSE PUNCT
+# ALIAS_PHRASE one alternative was split at know XPOS DECL_P0P2
+# XPOS DECL_P0P2
+# XPOS FILE OFFS1 OFFS2 
+# XPOS FILE LINE CPOS NBYTES // [ P0 [ P2 // 
+# XPOS but drop data field, and generate it as cached computation
+# XPOS is FILE LINE CPOS # PARSE or TRY_PATH finds CSR == P2 // LEX_DONE
+// LEX_EDGE LEX_DONE _GAP_means_LEX_EDGE // on_EVAL send signal is_EVENT THE_LEX
+# PARSE "# %s" PARSE_THE_ARGV_SCRIPT # LANGUAGE with CURLY BRACES and ARGV DATA
+## LANG += CURLY
+## DATA += ARGV
+## SPEC += SPEC_from_above_USED_in_CALL_and_CTXT
+## SESS += RUN_all_REMOTES_requests_via_FILTER
+## SESS += SPEC MODULE IMPORT EXPORT WRAP dgb 
+## VIEW += dgb VIEW of DECL SPEC STRUCT
+## DECL += DECL_ALL_as_CXX_API basically C_API for i64 i32 i16 i8 
+## PLUS += MINUS_ZERO_PLUS on_MINUS("%s") on_ZERO() on_PLUS("%s") 
+
+
+	use of i32 i24 i16 i8 byte7
+
+		byte7 is special because it is ONE shift not two
+		BITFIELD_from LHS /* does not have to be BYTE */
+		 payload = bitfield = i32 >> bitfield_nbits_rhs // SIGNED
+		 payload = bitfield = u32 >> bitfield_nbits_rhs // UNSIGNED
+		 UNION payload = BITFIELD of i32 or i64 // CPU or MEM or 
+
+		TABLE[i16] of i32_i32 // SIGNED is a non zero LOOKUP decode
+
+ DECODE when PLUS call TABLE_PLUS[idx]
+ DECODE when ZERO call when PLUS(0) // MACRO is same as [idx_ZERO] 
+ DECODE when MINUS call lookup(MINUS_IDX_EXPR)
+
+ 	lookup could use TABLE[ N ] of PTR
+ 	lookup could use TABLE[ N ] of PTR_TWO
+ 	lookup could use TABLE[ N ] of EA_EXPR
+
+	i32 OFFS = TABLE "OFFS_of_IDX" [ IDX_t ] // IDX_PLUS IDX_ZERO_is_IDX_PLUS
+	IDX_PLUS
+	IDX_ZERO_is_IDX_PLUS
+	IDX_MINUS // is_LOOKUP BITFIELD encoded MINUS // or UNS_IDX_USAGE
+
+	i32 OFFS = TABLE "OFFS_of_IDX" [ IDX_t ] // IDX_MINUS
+
+	i32 OFFS = TABLE "OFFS_of_IDX" [ IDX_t ] // u15_IDX // i16_IDX //
+
+	"{ idx = N ++ }"
+
+		This is the name of a MINI_MACHINE_FEATURE, it is ALLOC
+
+		Using a few bitfield popular settings i8_idx u8_idx u7_idx
+ TABLE IDX [0 [N 
+ TABLE IDX MINUS M1 ZERO_is_PLUS PLUS
+
+ 	MINUS_INDEX
+
+		find out if CPU allows MINUS INDEX or not
+		YES, and WANT them,
+
+		UNSIGNED
+			[255]
+			...
+			[0]
+
+		
+
+		SIGNED
+			[127]
+			...
+			[0]
+			... // i7 actually an i8
+			[-128]
+
+			N_MINUS N_PLUS // ZERO is a plain idx 
+
+		DOUBLE_SHADOW
+
+		UNSIGNED
+			[255]
+			...
+			[128]
+		SIGNED
+			[127]
+			...
+			[0]
+			... // i7 actually an i8
+			[-128]
+
+			This table occupied 3/2 of 256
+			The UNSIGNED_HIGH page is repeated below ZERO as MINUS
+			The MINUS page is repeated below ZERO
+
+			We can have this for ROM but not sensibly
+			we must pick one or other
+	
+	PLUS index
+
+		MULTI_PAGE_FULL uses unsigned [idx] idx == page_idx item_idx
+		MINI_MACHINE is an ARRAY or HEAP_ITEM or SPEC_ITEM += MODULE
+
+		"{ idx = N ++ }"
+
+		ARRAY[ idx ] of i64
+		ARRAY[ idx ] of i32
+		ARRAY[ idx ] of i16
+		ARRAY[ idx ] of i8
+		ARRAY[ idx ] of ARRAY_ITEM_MULT // const for this ARRAY
+
+		IDX_t u8 i8 u16 i16 u32 i32 u64 i64
+		IDX_t u8 i8 u16 i16 u32 i32 u64 i64 i48_from_i64 i16_from_i64
+
+		LOOKUP_BYTE_A_as_u8
+		LOOKUP_BYTE_B_as_i64 // SIGN_FILL or ZERO_FILL
+
+
+		i32_i32
+		 BITFIELD in i64_or_i32_i32 // OPTIMISE for ARM32 //
+		 i8_i8_i16_i32 // is_a_DECODER used in MINI_MACHINE
+
+		 PLUS is TABLE
+		 MINUS is SCRIPT // might have TABLE2[idx] DATA_for_SCRIPT
+		  
+
+		RULE actual IDX may NOT be MINUS
+		RULE actual IDX when MINUS on_MINUS { DECODE(idx_MINUS) }
+		// DECODE it because it is an EXPR
+		// DECODE_i64 finds BYTE_A BYTE_B i16_payload
+// COMPILER PICK // i16 = CPU_WORD_32_shift_right_16_SIGNED
+// COMPILER PICK i64 i32 // rare CPU i16
+// MINI_MACHINE // making it more complex with a PICK SWITCHING EDGE
+// MINI_MACHINE // makes it easier with PICK SWITCHING EDGE 
+// MINI_MACHINE // SPLIT_ARRAY array_MINUS_ZERO_PLUS_of_WORD64
+// MINI_MACHINE // AUTO_GROW_HEAP M0 ZERO_is_PLUS_true idx_P2 //
+// MINI_MACHINE // if total number of objects is less than 256 in 2 ZONES
+// idx_ZERO is_ZERO or it is the idx_where_ZERO_is_found
+// eg " [M [0 [N " // like P0P2 // M_Z_N // init M == 0 // not yet exists in M1
+// "{ idx_MINUS = -- M }" // decr M before use // MAX [-256[0 // 256 is 0
+// MINI_MACHINE_FEATURE // ARRAY_PAIR MINUS PLUS _in_ONE
+// MINI_MACHINE_COMPILED_TOKENISED_i24_idx // 16 M things is a big FSM
+// i23_MINUS i8_i8_i7 // FROM_MEM from_CPU_SHIFTED_WORD i8_i8 CPU BYTE__A BYTE_B
+// i23_IDX i8_i8_u8 // 
+// i23_IDX i8_i8_i8 // D_C_B_A // H_G_F_E // H_G_F_E_D_C_B_A 
+// i8
+// 00_00_00_AA // AA is BYTE_A
+// FF_FF_FF_AA // SIGN extend BYTE_A to WORD_RETVAL // RET_VAL USE_VAL
+// 00_00_00_BB // BB is BYTE_B
+// FF_FF_FF_BB // BB is SIGNED BYTE_BB or even FORCED SIGNED // ZERO - 256 + BB
+// SOFT //
+// 00_00_00_DD // DD is BYTE_D = u32_WORD >> 24;
+// FF_FF_FF_DD // BYTE_D_SIGNED = i32_WORD >> 24;
+// BYTE_FIELDS //
+// 00_00_BB_AA // BA is WORD_32_low_u16
+// FF_FF_BB_AA // BA is WORD_32_low_i16 = CPU_SIGN_EXTEND_i16_to_i32
+// 00_00_DD_CC // DC is u32_WORD >> 16 
+// FF_FF_DD_CC // DC is i32_WORD >> 16 
+// 00_CC_BB_AA // CBA is DOUBLE_SHIFT LEFT_8_RIGHT_8_RIGHT_8
+// FF_CC_BB_AA // CBA is WORD <<= 8; i32_WORD >>= 16 ; // 16 == 8 + 8
+// 00_DD_CC_BB // DCB is u32_WORD >> 8
+// FF_DD_CC_BB // DCB is i32_WORD >> 8
+
+D_C_B_A // H_G_F_E // H_G_F_E_D_C_B_A 
+
+	MINUS 
+		
+
+ 	MINUS_BITFIELDS
+	-1 i7
+
+	

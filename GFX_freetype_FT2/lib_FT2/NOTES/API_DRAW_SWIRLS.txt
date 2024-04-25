@@ -1,0 +1,234 @@
+#  API_DRAW_SWIRLS.txt
+#
+# so yet another cairo, but also with an mcu minimalisms
+# so yet another cairo, but also with a GL minimalism # TEST_AGAINST known_lib_so
+# SDL noticed - it does not has a peer jack in the bex TEST module BUILTIN
+#
+#	I have not looked for years,
+#	but i remember their demo sprung out and ran
+#	pretty much off the peg, 
+#	maybe its because I started with the demo
+#	it USES SDL so I only had to install libsdl.so -fPIC
+#
+# API {
+#  DRAW {
+#   SHAPE ATTR { SCRIPT } // BASE_CLASS // PART_PLUS // MULTI_PLUS // TYPE_BASE 
+#   _DATA is NBYTES from STO # possibly as TABLE[idx_ITEM] GETTER EA_OBJ 
+#   _SPEC is ROM_ADDR imported as RAM_ADDR maybe MANAGED_STO from FLUID_SPEC
+#   SHAPE { SCRIPT } // OPTIONAL SHAPE ATTR
+#   LINE { SCRIPT }
+#   RECT { SCRIPT } // SCRIPT as DECL SHAPE X0X2 Y0Y2 FGBG 
+#   CIRCLE { SCRIPT } // SCRIPT as DECL SHAPE X0X2 Y0Y2 FGBG 
+#   SWIRLS { SCRIPT } // expanded below // layering to LEVELS _one _two _API
+#   API += FEATURE THEME "{ SHAPE SWITLS }" # PLUS CODE_POUNT SOURCE SCRIPT XPOS
+#   API += XPXOS
+# # XPOS += XPOS FILE OFFS
+# # XPOS += XPOS FILE LINE CPOS // or_BPOS // or_BOTH 
+#   GDI_PAINT_BRUSH_PEN_STROKE_ _API_DRAW_SWIRLS_
+#  }
+# }
+#
+# API { API_DRAW }
+# API { API_HEAP }
+# API { API_ITEM } // ALIAS OBJ INST THIS SELF THAT ITEM
+# API { API_API } // AVAR AVAL HEAP ITEM SPEC N_BYTES VFS_NBYTES _ITEM
+# API API_component_types API_feature_LIBR LIBR_components 
+# VIEW of ITEM in HEAP in VFS # AUTO_BUILD basic SCENE comonents
+#
+# MINI_MACHINE # 
+# AVAR LOCAL_CACHE_REMOTE #
+# HEAP ITEM SPEC EA_EXPR # u8_u8_u48 # UNION u32_u32 # u16_u32 # u16_BYTEFIELD
+# BITFIELD that is BYTEFIELD_aligned # and MEMORY aligned LOHI_EIGHT u64 u16 
+# BITFIELD union u64_LOHI u32_u32 #
+# IDX_i64 holding i48 SIGN_EXTEND_i48_to_i64
+# IDX_i64 holding i48 BITFIELD_MERGE_i48_to_i64 as i8_i8_i48
+# IDX_i64_WORD_as_A_B_i16_i32 # ALIAS BITFIELD by C_TYPE("i16") asif_when_in_mem
+# IDX_i64_WORD_per_BYTE_addressed # ie i64 TABLE[ IDX_t ] // N /* const */
+# EIGHT_t ITEM_as_EIGHT
+# EIGHT_t EA_ITEM_as_EA_EXPR_as_EIGHT_as_i64 # _as_MEM aligned i64_aligned
+#
+# u8_aligned in u64 - BYTE_A_is_default _BYTE_B is available BYTE_7_is_FAST
+# EIGHT.GETVAL_BYTE_7 { if_SIGNED if_UNSIGNED if_ZERO_means_NULL if_M1
+# SIGN # 
+# u8_aligned in u32 - BYTE_A_is_default
+# u8_aligned in u16 - BYTE_A is default for aligned
+# u8_aligned in u16 - BYTE_B is known BYTE_FIELD in WORD or in MEM
+# u8_aligned in u8 - likely that CPU BYTE FIELD or CPU_CACHED MEM 
+
+# u8_aligned
+# u16_aligned
+# u32_aligned
+# u64_aligned
+
+# u8_aligned
+# u8_aligned
+# u8_aligned
+# u8_aligned
+
+#
+# above was simplified for LOC_REM REMOTE_CACHE
+# above was headed
+#
+# API {
+#  DRAW {
+#   SWIRLS {
+#   }
+#  }
+# }
+
+# API {
+# ... MIXIN ... THIS FILE TAIL ASIS but ASIF_HERE
+# }
+
+# FILE_over_WIRE # TAIL_ASIS #
+
+#  NanoVG/
+#   NanoVG.txt
+
+	CAIRO provides a API_DRAW_SWIRLS
+	NanoVG provides a API_DRAW_SWIRLS
+	ghostscript provides a API_DRAW_SWIRLS
+	GEN_pdf provides a API_DRAW_SWIRLS
+	GEN_pix provides a API_DRAW_SWIRLS _on_PIXELS _FrameBuffer
+	Tk_Canvas provides a API_DRAW_SWIRLS
+	Tk_Font_loader provides a API_DRAW_SWIRLS
+	postscript_pixel_print_paint_command 
+
+	WAX provides a API_DRAW_SWIRLS
+	DIAG provides a API_DRAW_SWIRLS
+	BENCH MODULES LEXICON PARSER RUNTIME CODE_IMPL "{ OBJ += CONCEPT }"
+	DECODE "STR0" // follow ALIAS to AVAR with AVAR.SPEC
+	LAYER = SUM of all AVARS and their VALUES LHS RHS NEARBY SCRIPTS
+	# PARSE "{ ... NEARBY SCRIPTS EOLN }" # _CMNT #
+
+	PSG += DIALECTS recognise as consistently used
+	PSG += LEXICON recognise as consistently used
+	PSG += VAR_POOL recognise as consistent PSG used
+	SESS += SCOPE_START HERE SCOPE_END 
+	HERE += DRAW_SWIRLS
+	HERE += DRAW_FRAMES
+	HERE += DRAW_DIAG
+	HERE += DRAW_SPEC
+	HERE += DRAW_SPEC_INST
+	HERE += DRAW_NOTES_and_a_few_CSR_idx_vars
+//	SESS += LHS ... SCOPE_EDGE_LEFT RHS 
+//	SESS += LHS ... SCOPE_EDGE_RHS // STOP PARSE DONE COMPLETE
+//	SESS += SCOPE_EDGE_RHS_STOP // STOP // POPS SCOPE off CALL_STACK
+//	SESS += SCOPE_EDGE_LHS_START // START // PUSH SCOPE onto CALL_STACK
+// notice how lower case NLP english stray_words make no difference
+// SPELLING // UNIQUELY REPEATED // ADJUST_NONE // ADJUST_DIALECT 
+//	SESS += START SESS STOP // recognise as STEPS as ARGV
+//
+// ADVANTAGE //
+//
+//	"{ %s }" 
+//
+//	Q2 "{" SP "%s" SP "}" Q2 
+//
+//	HUNGRY for %s then pass it as %s PRINT or via_var_name("%s")
+//	AVAR Parameter // HUNGRY for VALUE_STR0 //
+//	MATCH PHRASE "STR0" "S_T_R_0" // COMPILE ALIAS LHS RHS
+//
+// GEN OPCODE == THIS DIAG _macro _opcodes_available _new_extra_OPCODE_feature
+//
+// 	DIAG = STREAM of ARGV in one LINE // EACH // PHRASES //
+//	DIAG == LIST within ARGV STREAM
+//  MENTION "DIAG"
+//  MENTION "LIST"
+//  MENTION "within" // word_padding // no OBJ_CLIENT wrote funcs on "within"
+//  MENTION "ARGV" // item_lookup // AVAR // possibly GEN_VALUES_now //
+//  MENTION "STREAM" // AVAR // class STREAM : public _t { ... } //
+//  STREAM += ARGV_WORD
+//  STREAM += ARGV_WORD_PAIR
+//  STREAM += ARGV_WORD_STEPS // ie _n_STEPS //
+//  ARGV_WORD += Q2_PUNCT_Q2 // "{" // "{ " // CACHE got that one
+//  ARGV_WORD += Q2_Phrase_Q2 // PARSE " Q2 L SP %s SP R Q2 "
+//  ARGV_WORD += MACRO_NAME("L") += ("R") += ("%s") +=("{ %s }")
+//  DIALECT Q2 wrapping Q2 simply leak out to outer Q2
+//  DIALECT +=("{ %s }") // DIALECT DELIVERATE STYLE 2 of 5
+//  DIALECT +=("%s") // DIALECT minimum wrap_asis
+//
+//
+// PARSE
+//
+//	EXACT INDENT jumps to XPOS
+//
+// XPOS
+//	FILE LINE CPOS
+//
+// CPOS
+//	u8_bytes_used_from_BOLN_to_CSR = GET_on_demand // PARSE from offs
+// CPOS
+//	u24_OFFS_in_LIBR // 16 MB or 16 M_IDX // EIGHT = u64_WORD[ u24_idx ]
+//	u24_IDX_in_LIBR // 16 MB or 16 M_IDX // EIGHT = u64_WORD[ u24_idx ]
+//	u24_EXPR_in_LIBR // JUMP_to_CODE_xFF_FFFF // STO.GOTO_VECOR // SEEK_OFFS
+//	u24_EXPR_in_LIBR // OFFS_in_FILE_xFF_FFFF // 
+//	u24_EXPR_in_LIBR // OFFS_in_FILE_xFF_FFFF // 
+//	u48_EXPR_in_LIBR // OFFS_in_FILE_in_EIGHT // 
+//	u64_EXPR_in_LIBR // OFFS_in_FILE_in_EIGHT // FULL requires KNOWS
+//	most files fit under 80 chars wide maybe 120 limit near 256 then u24
+//	
+// PARSE
+//
+//	Cognitive Psychology
+//	Cognition
+//	Decision Making
+//	Dynamics of ...
+
+// RTFM
+//
+// Sinclair, P
+// Nolan, M
+// (2022)
+// Unraveling the Synamics of Cognition and decision-Making
+// Cognitive Insight, 6(2), 122-135
+// APA - Journal
+
+// RTFM
+//
+// 2011 3D story, some books to read
+// http://nothings.org/gamedev/thief_rendering.html
+
+// Michael Abrash's Graphics Programming Black Book
+// https://github.com/jagregory/abrash-black-book
+// uses pandoc .md -> HTML or EPUB
+// uses kindlegen EPUB -> Mobi
+// https://pandoc.org/installing.html
+
+ DRAW
+
+  gen_PS 
+  gen_PS _with_PDF_features
+  gen_cairo_call
+  gen_HTML
+  gen_src_JS
+  gen_src_C
+  gen_src_SVGA
+  gen_src_NanoVG
+  gen_src_PS
+  gen_src_CXX
+  gen_src_WAX
+  gen_src_GDK
+  gen_src_GTK
+  gen_src_HTML5_CANVAS
+  gen_src_PDF_to_PIX // _via_mupdf // _via_ghostscript // _render_PAGE
+  PAGE_PRINT small_amount of PS in PANEL // GOXY FGBG VG_SHAPE FILL STROKE WIND
+
+  
+ DIAG
+  sto_SHAPE_libr // NO_NAME THIS_DIAG
+  LIBR_ink_pen_fill_or_stroke
+  DIAG_frameword
+  DIAG_furniture
+ 
+ TEXT
+  within FRAME within CANVAS
+  Page_Layout DTP_TREE
+ 
+ DTP_TREE
+  Page_Layout
+
+NanoVG 
+NanoSVG provides SVG parser into NanoVG
+
+

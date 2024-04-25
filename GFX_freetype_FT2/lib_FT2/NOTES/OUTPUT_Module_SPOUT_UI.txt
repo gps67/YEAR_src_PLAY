@@ -1,0 +1,620 @@
+OUTPUT_Module_SPOUT_UI.txt
+
+	OUTPUT_
+	Module_SPOUT_UI
+
+		OUTPUT
+		Module
+		SPOUT
+		UI
+	
+	LIBR_ITEM:: Module { module_script }
+
+		ITEM_t * ITEM = PTR_EXPR ARGS ; // CTXT CMNT CODE_POINT ROM
+
+		UDEF likes "{ %s_t }" as TYPE_NAME_of("%s")
+		UDEF likes "{ %s_t }" as TYPE_NAME("%s") // ZONE INST ADDED FIELD
+
+		RULE "DECL { %s_t } as TYPE_NAME _of_ USED_NAME("%s")
+
+			NAME_USED("%s")
+
+				PSG LEX STEP CIDENT_99 parsable_as_CIDENT99
+				// POSS SUBLEX MULTI_PART_WORD // Phrase_EXPR
+				// EXPR_in_LEX "{ a1_a2_star a1 a2 }"
+
+				// FREE_FORM_SCRIPT _finds_ Q2_STR0_Q2 PARSED
+				// TUPLO 
+					// EXPR_in_LEX
+
+					"{ a1_a2_star a1 a2 }"
+
+				// EXPR_in_LEX "{ a1_a2_star a1 a2 }"
+
+			TOKENISED
+
+				PSG_LEX_DATA_TREE // LINE_FOUND //
+
+				"{ %s %s %s }" each is VAR_NAME // 
+				
+				"a1_a2_star" /* MATCH CIDENT99 */ STR0
+
+				STR0_t * line_str = STR0; CHECK_NULL;
+
+			LEX_is_FUNC_appearing_as_Parseable_CIDENT
+
+				CIDENT in DIALECT appears as CIDENT99
+				CIDENT99 is_a_var "{ DECL }" // DECL == "%s" //
+
+				OPTION when EVAL precall FILTER
+
+					CHECK_PARSE "{ DECL }"
+					CHECK_PARSE "{ P0P2 }"
+					CHECK_PARSE "{ STR0 }"
+					CHECK_PARSE "{ USED }"
+					CHECK_PARSE "{ UDEF }"
+					CHECK_PARSE "{ SELF }"
+					CHECK_PARSE "{ ITEM }"
+					CHECK_PARSE "{ FUNC }"
+					CHECK_PARSE "{ ITEM }"
+					CHECK_PARSE "{ PICK }"
+					CHECK_PARSE "{ IDX }"
+					CHECK_PARSE "{ %s" }"
+
+			LEX_EXPECT "IDX" means "IDX_t" as TYPE_NAME "%s_t"
+
+				IDX == "IDX_t"
+
+				On MENTION CT_RT creates AVAR("IDX_t")
+				It RECOGNISES IDX as a WELL_KNOWN_NAME 
+				LEXICON("AVAR")
+				LEXICON("{ AVAR }")
+				LEXICON("{ %s }") // EXPECT UNS IDX_t NUMERIC
+				LEXICON("{ %s }") // MATCH USAGE EXPECT IDX _t
+
+			CT_RT is looking for "ARRAY[ idx ]" and similar phrases
+
+				IDX is a STRONG FEATURE with EXACT ALLOC INT
+				IDX is always UNS so that it fills a PAGE
+				SHIFTED_PAGE "{ [M ... [0 ... [ N }" P0P2
+				P0P2 is EA_as_IDX
+				P0P2 is EA_as_EXPR PARSED_SCRIPT
+				_PARSED_
+					PSG += MATH_in_SCRIPT_PHRASE
+					PSG reads "{ RULES_SCRIPT }" 
+
+						it is a small price to pay,
+						for the ROM to produce a PTR
+						or a locally unique VAR_NAME_used
+
+						RULES for NAME 
+						OPTION ANYSTR STR0 in CSET_
+						OPTION STREAM INFO on STREAM_NOTE
+				_STREAM_
+					PSG += BIND INPUT OUTPUT LOCAL REMOTE CACHE
+ +INDENT // as_good_as "_%s" //		_STREAM_INPUT_
+					 _PRE_LOAD _TREE
+				_SCRIPT_
+				 _PSG_ += ARGV 
+				 _PSG_ += TODO_JS
+				 _PSG_ += ARGV_Js
+				 _PSG  += CXX_PARSED _GEN_JS VIEW_EDIT
+
+			BENCH has a VIEW for each DIAG
+
+				LOCN += VIEW // AUTO_SET LOCN = "HERE"
+				LOCN += VIEW // AUTO_SET LOCN = "ST0E"
+				LOCN += VIEW // AUTO_SET LOCN = "P0P2"
+
+					P0P2 is better than STR0 
+					because the DATA stays over there
+					P0P2 and N are available from PARSERS
+					PARSE_API accept EA_XPOS P0P2 STREAM
+					P0 can add extra FIELDS for its ROOT
+					P0_is_PTR // P0 = EVAL EA_EXPR get_PTR
+					P0_is_IDX // P0 = EVAL EA_EXPR get_IDX
+
+					on demand
+					 OBTAIN P2 N nbytes STR0
+
+					P0 = XPOS PTR // _in_MEM _in_MMAP
+					P0 = int64 BITFIELD // WORD_64 // _u64
+					P0 = PTR
+					P2 = EVAL P0 + N // N_bytes N_idx //
+
+			BENCH deals in UNION two BASE independent types
+
+				uses same OBJ_t system
+				knows two sides PLUS
+				calls other side
+				provides API for other side to call HERE
+				PERMIT use at CIDENT99 as ANYSTR 
+				PERMIT use as STR0_as_ANYSTR // CSET 
+				PERMIT use as STR0_as_P0P2 // CSET PSG XPOS
+				PERMIT use as XPOS_as_AKEY_as_ANYSTR 
+
+			BENCH permits ANYSTR == STR0_AKEY
+
+				STR0 AKEY ; // STR0 provides STO for P0P2
+				// CT_RT STR0 += P0P2 // add object to tray
+				// "NAME" "%s" "P0P2" // _MATCH_as_SAME_ ALIASES
+				// ALIAS P0P2 //
+				// USAGE ASIF_nbytes // nbytes N BYTES //
+				// BYTES = P0
+				// nbytes = P2 - P0 // CT_RT does via GEN CALL LIST
+			
+			GEN CALL 
+
+				nbytes = P2 - P0
+				P0 = PTR
+				P2 = P0 + nbytes
+				ALIAS P0 PTR 
+				ALIAS N nbytes
+				MACRO P2 = "{ P0 + N }" 
+				MACRO P2 = P0 + N  
+
+				XPOS += ADIR // or namespace or group layer
+				XPOS += FILE // in VFS "FILENAME" // VFS_TWO
+				XPOS += OFFS // avoiding using LINE_NO //
+
+			PARSED STREAM XPOS in PSG
+
+				STREAM is MMAP of FILE from ROM // SEGMENT //
+				STREAM is SCRIPT // CT_RT already run PSG over it
+
+			PSG needs an XPOS that is can immediately PARSE from
+
+				PSG maintains TABLE of SPELLINGS
+
+				all VARS used in SCRIPT MODULE and SPEC 
+				and BENCH adds VIEW as DIAG
+
+
+				+------- DIAG ----------
+				|  DIAG 
+				+------- VIEW ----------
+				|  VIEW 
+				+------- DIAG ----------
+				|  DIAG 
+				+------- DIAG ----------
+				+------- DIAG ----------
+				+------- DIAG ----------
+
+
+			MATCH PARSED VALUE 	"{ a1_a2_star a1 a2 }"
+
+			AVAR SCRIPT_LABEL_STR0
+			LABEL_STR0
+				"{ a1_a2_star a1 a2 }"
+			PARSED
+				"{ %s %s %s }"
+				a1_a2_star
+				a1
+				a2
+				"{" "GAP" "}"
+				INTERPRET TEMPLATE AS
+
+					a1_a2_star( a1, a2 )
+
+				EXPECT
+
+					a2 = a1 + 
+
+			CIDENT99 RE_USED as { ... }
+
+				a1 = { '_' } // _%s CALLS on_NULL_NAME SCRIPT
+
+				a2 = CIDENT_99_a2 // steal from LIBR_DECL
+
+					_on_a1_ALONE( SCRIPT ) // "_" NULL_NAME
+
+					 on_NULL_NAME("ALIAS UDEF") // BIND NAME
+					 DECL MODULE MACRO LABEL called "UDEF"
+				a1_a2_star
+
+					OPTIMISED LEX PARSER in CXX 
+
+					OPTIMISED CSET ASCII BYTE UTF8 STR0
+
+				P0P2
+
+					P0 = P0_INPUT // provided PTR
+					P2 = P2_PARSED // using PTR2
+
+					CALC N = P2 - P0
+					CALC P2 = P0 + N
+
+					OPTION STORE as { P0 P2 } { P0 N } STO
+					OPTION STORE as
+						{ P0 P2 }
+
+							MACRO N = P2 - P0
+						{ P0 N }
+							MACRO P2 = P0 + N
+						STO
+							TBS MACROS for all VARS
+							EA MACROS 
+							EA_EXPR in SCRIPT
+				CALL
+
+					DECL NOUN
+					USES CODE
+
+						MENTION CIDENT 
+
+							FIRST TIME
+							AGAIN
+
+						CT_RT
+							AVAR
+
+						CT_RT
+							ALEX
+
+						CT_RT
+							EXPR // MACRO
+
+						CT_RT
+							SPEC + CODE + SCOPE
+							+ LEXICON
+							+ PHRASE_BOOKS
+							+ VAR_POOL_TWO
+
+
+					 DECL MODULE MACRO LABEL called "UDEF"
+
+				 a1_a2_plus
+				 SAMPLES and LOCALS found in ROM and LIBR
+
+					"_" // very specifically
+					"_CIDENT99" // so not _99
+					"_int_hex_base64
+
+				LEX_base_64
+
+					machine readable binary in var_name
+					may need long varnames beyond 8 chars
+					base64 with some changes
+
+					PAGE parser can do DIALECTS of BASE64
+					PAGE parser can do HEX DUMPS BASE64 ETC
+					BASE64_modified to CIDENT_99_a2
+
+						so use local var "CIDENT_99"
+						get a2() // presume MATCH
+						get a2() // presume DEFAULT
+						get a2("a2") // KNOW MATCH DONE
+
+					_allowed
+					_99 // allowed
+
+	Module_SPOUT_UI
+
+		PARSED VALUE STR0 // AKEY unique // for unique see AKEY
+			"{ a1_a2_star a1 a2 }"
+
+		OPTIONS += VIEW
+		OPTIONS += VIEW_TWO
+		OPTIONS += VIEW
+
+			VIEW_xFFFF is LOCAL AVAR holding AVAR
+
+			 PICK OPTION { LIST of LINES } // and clever MACROS
+
+				VIEW_t & VIEW = ALLOC u16 idx = N ++
+				VIEW_t & VIEW = ALLOC u16 idx = xFFFF_N ++
+				VIEW_t & VIEW = ALLOC u16 idx = VIEW_xFFFF_N ++
+
+					BENCH grows BIND VAR_NAME ALIAS ABBREV
+
+					EMIT_OMIT within LEX
+					EMIT_OMIT within PHRASE
+
+			 PARSE_SCRIPT // expect LIST of LINES
+			 PARSE_SCRIPT // expect TREE of ITEMS
+			 PARSE_SCRIPT // expect XPOS of SOURCE_SCRIPT_XPOS
+
+		VIEW += DIAG
+		VIEW += OPTS
+
+	Module_SPOUT_UI
+
+		DIAG 
+			AVAR SCRIPT_LABEL_STR0
+			LABEL_STR0
+				"{ a1_a2_star a1 a2 }"
+			PARSED
+				"{ %s %s %s }"
+				a1_a2_star
+				a1
+				a2
+				"{" "GAP" "}"
+		
+		DIAG
+
+			LIST
+			of
+			PEER
+			STR0
+
+		DIAG
+
+			annotations on ABOVE DIAG
+			COMBINE_DIAG_PLUS_EQUAL
+
+				VIEWS += VIEW // ALLOC "VIEW_xFFFF" // CT_RT u16
+				VIEW
+
+		GROW
+
+			thow STEP_UP_in_BITFIELD_WIDTH_for_HEAP
+
+				so the first _ONE _TWO _FEW 
+				then u8_idx = BITFIELD_u4 // or any other
+				then u8_idx = BITFIELD_u8
+				then u16_idx = BITFIELD_u16
+				then u32_idx = BITFIELD_u32
+				// u24_u8 // OPCODE_A u24_PAYLOAD
+				// ie unloaded de-shifted original PAYLOAD u24
+				u24_PAYLOAD = u32_WORD >> 8;
+
+		PRE KNOWN "u24_PAYLOAD"
+
+			gets PARSED as u24_PAYLOAD
+			a builtin VAR that knows stuff
+			when asked tracing the EXPR and GEN CODE to do that
+			when asked tracing the EXPR and GEN DATA for that done
+			compiled ROM uses u24_u8
+
+			i8 is an nightmare
+
+		OPTIMISE SPARSE "{ [M ... [0 ... [N }"
+
+			M is smallest valid MINUS value
+			N is the Number of PLUS items
+			N_is_ZERO is a KNOWN FLAG ("is_empty()")
+
+			ALLOCATE an array with EXACT ROM NEEDS
+
+				-7  -6 -5 -4 -3 -2 -1
+				0
+				1
+				2
+				... u8
+				... u16
+				... u24
+				... u32
+				... u48
+				... 164	// the next PHASE is "{ MINUS_ZERO_PLUS }"
+
+				PARAMETER was i64_WORD
+				IDX_t only works with u64 u48 u32 u16 u8
+				i64 is a WRAPPER that is OK with BITFIELD_DECODE
+
+		i64_BITFIELDS
+
+			friendly to u32_i32 machines // i64 with u32_payload
+
+			 WORD_ONE
+				u8_u8_u16
+				u8_u24
+
+			 WORD_TWO
+				u8_u8_u8_i8
+				u8_u8_i16
+				u8_i24
+
+			 i64_WORD_SIGN is TOP BIT LO_HI is last bit loaded
+
+			 	NB BINARY ARITHMETIC can be done LO to HI
+				without knowing INPUT SIGN until TOP
+
+					ADC - add with carry
+					BYTE += BYTE + carry_bit
+
+				ZERO_FLAGS CCF clear carry flag
+
+					ADD - add without carry - first byte
+					ADD - without carry - entire WORDS
+
+
+						compiler has list of WORDS
+						R1 += R2
+						R2 is R1_BYTE_B_signed
+						R2 is R1_BYTE_A_unsigned
+						R1 is R1_i16
+						R1 is R1_i32
+						R1 is R1_i24 as R1_i32
+						R1 is R1_i64
+						R1 is R1_i64
+
+					if CPU does not have R1_expr ...
+					CT_RT provides a LIST of AVAILABLE EXPR
+					each EXPR gets COMPILED TOPS called
+					GEN code for each MATCHED step // 
+					RE_GEN code for each MATCHED step // 
+					use counted and lock scoped IDENT
+
+
+				// for now too much to write in 1 go
+				// for soon AUTO REWRITE for PAGE MMAP HEAP 
+				// that will have PARSE DETECT 
+				//
+				... u64
+
+			ALLOCATE an array with 10 spare below and 10 above
+			SHIFT to opposite end // MEMCPY is quick enough
+
+			REALLOCATE with 
+
+	OUTPUT code that uses FT2 
+
+
+		LIBR
+		LIBR_BLIT
+
+			defines and converts and uses
+
+				RGBA
+				ARGV
+			
+			PIXMAP u32_RGBA _LOHI
+			PIXMAP u8_GREY
+			PIXMAP i8_GREY		shade of grey of M1 or M2
+	
+	DIAG
+
+		[xFF]
+
+			M_LHS - its not remaining left its LHS left
+
+			from M_LHS to M is GAP_RESERVED_BUT_UNUSED
+
+		[xE0]
+
+			M == xE0 // MINUS heap has grown to M
+
+		[0]
+			ZERO_is_PLUS 
+			ZERO_is_NULL
+			ZERO_is_UDEF // and provide CALL ZERO_is_PLUS
+
+		[idx]
+			ARRAY[idx] // RANGE "{ [0[N }" // well known TOKEN
+		[N 
+			LIMIT UPTO but not including N
+			[N] is NEXT
+
+		[N_RHS
+			from N upto N_RHS is UNUSED_UNALLOCATED _INIT_ZERO_DONE
+
+			guarantee ZERO bytes from syetm MALLOC
+			but own job to keep it FAST_ZERO
+
+		DIAG of an array (above) but the other way up
+
+		CODE that implements DIAG as a data structure
+
+		ALLOC
+		ALLOC_MINUS
+
+			SMALL TABLE with 40 SLOTS 20 used 7 MINUS
+
+			allocating new items to MINUS 
+			uses GAP already below
+			uses GAP from above
+			REALLOC TABLE and TAG for REDUCE_LATER
+
+			WIDER TABLE with 100 slots 25 minus 75 plus 50 gaps
+			expect one MEMCPY claiming all of other GAP
+			the entire NBYTES is written to FILE // MMAP does that
+			ACID would say its unstable - express that - wrap 
+
+			MINUS is probably CT intensive never RT
+			PLUS is probably CT light, a few sample values
+			IDX allows for i16_PICK u8_idx = u8_POS
+			u8_POS = i8_idx - M_LHS
+
+			[0      [(0-M_LHS) [N-0 == [N-M_LHS [N_RHS-M_LHS
+			[M_LHS  [0     [N  [N_FHR
+
+			If either M or N needs wider BITFIELD 
+
+				step up a wider BITFIELD
+				invoke from all callers using TYPE_TWO_WIDE
+				on_GROW
+
+			IDX allows for i16_PICK u8_idx =
+
+		i9_IDX
+			M_LHS = -256 
+			ADJ = POS_from_KEY_add_ADJ = (0 - M_LHS) // add_256
+
+				an entirely MINUS page grows to 256 items
+				with M_LHS of -256
+				ADJ = -M_LHS // +256
+				so an idx of -256 would have a pos of ZERO LHS
+
+				always store N in wider
+				OR 0 means FULL 256 or flag_is_empty
+				// KNOW_NOT_EMPTY ZERO_MEANS_FULL (PAGE)
+
+		i8_IDX
+			
+			LIMIT is 127 then container must grow to u8_IDX+i8_IDX
+
+			LIMIT is 256
+			LIMIT is 256 + 128 == 384
+
+				old i8_IDX can split to hold M128 ALL_MINUS
+				old i8_IDX can grow to hold M255
+
+			i16_IDX
+
+				if idx fits in a byte
+				if first_page_of_values splits to own SEGMENT
+				slower to check, but runs faster from cache
+				Unless VALUE is PTR low cache handled apart
+
+				longer list of check sign tests
+
+				SIGN_EXTEND_i16_to_i32 DETECTING SIGN
+				TEMPLATE_FEATURE MINUZ_ZERO_PLUS
+
+					on_MINUS
+					on_ZERO
+					on_PLUS
+
+				on_PLUS_LOCAL // possibly no goto
+
+					COPY = VALUE >> 8
+					if_ZERO on_PLUS_u8
+
+				on_MINUS_LOCAL // drive trains along tracks
+
+					COPY = VALUE >> 8 // signed
+					if_ZERO goto WAS_PLUS_u8
+					if_PLUS_goto WAS_PLUS_u16
+					if_MINUS {
+						NEGATE COPY
+						if_ZERO goto on_MINUS_i8
+						else goto on_MINUS_i16
+					}
+ as soon as something grow to i6
+
+ 	can relax the BYTE saving aspect of table_384
+	can retain the u8_idx side of accessing code
+	can rewrite TABLE as 2 TABLES // option ALIGN ZERO MMAP edge
+	can rewrite TABLE as 256 TABLES // STEP along PARSED_TABLE STEPS
+	can rewrite TABLE as UDEF HEAP // MMAP MANAGEMENT is UDEF from HINTS
+ 	can split PLUS and MINUS // can JOIN them !! or not
+
+
+
+
+		CODE for on_overflow_IDX, invoke wider BITFIELD
+
+			nb smaller BITFIELD code is OPTIMISED for i8 u8
+			nb wider BITFIELD code is available for i24 and u24
+			nb range of BITFIELDS available at COST
+			nb design limits available BITFIELDS and PICKS
+			all of the other convert to parameter driven one
+			or MACRO to hold i5_as_i8 KNOW += was_i5
+
+
+ ARM
+  LDRH 
+
+  	EA = BASE + OFFS
+	 BASE = R_BASE
+	 OFFS = R_OFFS
+	
+	load_u16_from_EA
+	 R_u16_PAYLOAD = *EA 
+	 R_u16_PAYLOAD = *EA x2
+	 R_u16_PAYLOAD = *EA x4
+	 R_u16_PAYLOAD = *EA x8
+
+	 converts _u16 
+	 from u16_idx_of_1248
+	 to u32_offs_of_1248

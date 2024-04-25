@@ -1,0 +1,119 @@
+YEAR_src_PLAY/SCRATCH_ZONE_20/in_C++/find_parse_name
+
+	STR0 ANYSTR 
+
+	XPOS CSR_POS_start_of_WORD
+	XPOS CSR_POS_as_P0 // SIMPLFY EXPR as this CODE_POINT_TOKEN XPOS
+	 P0
+	 P2
+	 nbytes
+	 // DIALECT return EMIT_OMIT changes GEN and PARSER 
+	 // DIALECT PARSER RULES // a1_a2_star // 
+	 as_STR0() { STR0_from_P0P2() }"
+
+
+	 CT_RT
+	 	has builtin LIBR
+	 	has loaded LIBR
+		has CODE available for PARSED_PHRASE
+		has CODE available for PARSED_EVENT_LIST 
+
+		There is often an overhead of bouncing a C_CALL through APTR
+		APTR _is_NULL // from MINUS_ZERO_PLUS KNOW _is_NULL
+		OPTION DO NOT CALL anything, OPTIMISE this as PRE_DONE
+		OPTION call on_NULL_HANDLER_one _ONE _TWO _CT_RT_VAR_NAME
+
+	CT_RT
+		RUNTIME is NOW 
+
+			our CODE is already loaded // BLOCK_DEFER_ACTION
+			our CACHE is GEN_compile_load_code
+
+				block of code 
+				loads from import MODULE
+				loads as ELF_CODE_of_LIBR
+
+		RUNTIME is PREBUILD of load_latest_archive_cache
+
+			simply a complete set of tables
+			created on_DEMAND // as create PLACE_HOLDER 
+
+		RUNTIME is SESS running a PRE_LOAD
+		RUNTIME is SESS running a ALL_LOAD_DONE "{ GOTO DONE }"
+		RUNTIME is SESS running XPOS_code_point_of_STEP
+		STEP is a LINE of SCRIPT indented then XPOS = OFFS // CSR
+		CSR requests "{ XPOS = OFFS }" // implemented as optimised
+		CXX optimised because it is CLANG GCC TCC CXX
+		CXX optimise by running a sample data call
+		CXX CT /* or JIT PRE_LOAD */ archive
+
+			so we rely on GCC being quite smart
+			so we rely on CXX being quite smart
+
+				so CXX "{ LHS = RHS }"
+				try "{ LHS = RHS }" // if permitted USAGE
+				hope LHS == "XPOS"
+				hope RHS == "OFFS"
+
+			EDIT means something
+
+				OFFS
+				OFFS_one
+				OFFS_two
+				OFFS_%s /* CIDENT99 */ // AUTO cident97
+				OFFS_%s /* CIDENT99_PART */ // AUTO cident97
+				OFFS_%s /* CIDENT_a2_plus */ // a2 is CSET_a2
+				// sweet little ALIAS "a2_PLUS"
+ PARSE LEX
+
+	# SAMPLE filename found on some media devices output file somewhere
+	# quality of MUX # OPTIONAL FILTER 
+	# 
+ 	# record20220522135748.3gpp
+	# recordYYYYMMDDHHMMSS.3gpp
+
+	scanf 
+	       int vsscanf(const char *str, const char *format, va_list ap);
+
+FILE * FILE = fopen
+
+	FILE * fmemopen(
+		void *buf,
+		size_t size,
+		const char *mode
+	);
+
+	mode "r" "w" "a" "r+" "w+" "a+"
+
+		mode = "r" // READONLY on_demand CACHED
+	
+	load_TEXT nbytes no_NULL
+
+	FILE * open_memstream(
+		char **ptr,
+		size_t *sizeloc
+	);
+
+	// TWO VARS in SEGMENT SEG
+
+		char * MEM; 
+		size_t MEM_nbytes;
+
+		// GETTER provides this //
+		size_t MEM_nbytes_M1() { reurn MEM_nbytes - 1; }
+
+	// proper INIT of BUFFER_HOLDER
+
+		MEM = NULL
+		MEM_nbytes = 0
+
+	
+	FILE * open_memstream(
+		& MEM,
+		& MEM_nbytes
+	);
+
+
+	
+
+

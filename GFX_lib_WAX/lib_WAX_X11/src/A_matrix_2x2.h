@@ -10,7 +10,8 @@ namespace WAX {
 
   struct A_matrix_2x2 {
 	FcMatrix matrix;
-	// xx xy
+	// i32 : FT_Fixed : 16.16 fraction [-32K [+32K grain 1/(64K)
+	// xx xy // fttypes.h
 	// yx yy
 
 	A_matrix_2x2();

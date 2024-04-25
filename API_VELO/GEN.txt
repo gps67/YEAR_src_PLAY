@@ -52,4 +52,113 @@ GEN PARSE ARGV // TOKENISATION done creating lots of CODE_POINTS in SOURCE
 		BITSHIFT_RIGHT
 		BITFIELD_info
 	
+ GEN VOCAB
+
+ 	GEN is producing a VERB (as a NOUN) often a FILTER
+
+	PTR to STR0
+	PTR to OBJ
+	ASSOC PTR so OBJ=lookup_PTR(PTR) ## cached possibility of PRE_DONE
+
+		rewrite u64_in_TREE
+		rewrite u64_in_HEAP
+		rewrite u64_in_CACHE_MEM
+		rewrite PTR_as_u16_TAGS_u48_PTR // u16 is u8_u8 u8_NULL_u8_idx
+		REWRITE MINI_MACHINE as LOW_CEILING u16 # WITH _WITHOUT BYTE_CEILING
+		CTRT when idx exceeds BYTE
+		CTRT when idx exceeds N // repeat at u7 # u15 u16 i16 
+
+		Basically given some OBJ store ASSOC data for it
+		Basically find way of AUTO BUILD MEM_OBJ from SCRIPT_CODE_POINT
+
+			replace STR0
+			WRAP_STR0 - storing it in TABLE and using IDX
+			SCRIPT GEN PARSE
+
+				by using twiglets that we have a strong GEN for
+				by using twiglets that we have a strong 
+
+ PSG CHIT = A PHRASE # sometimes in random text parser # sometimes SCRIPT EXPR
+
+ 	On each DECL of DIALEXT usage of USAGE USED HERE XPOS LIBR_LIBR
+
+ LIBR_LIBR  += "{ PSG CHIT }" // ARGV of WORDS
+
+ 	LIBR is the current MODULE of some future type
+
+	LIBR is the MODULE that provides LIBR data structures, API
+	API += LIBR locks AVAR SPEC FUNC HEAP STO VAR_POOL
+	VAR_POOL += AUTO mix in merge with all from LIST_of_VAR_POOL
+
+		repeat the "{ EA_OBJ = EA_KEY_of_OBJ }"
+		API DECL GLOBAL += each VAR from VAR_POOL
+
+			except when AVAR request filing as AVAR_TYPE
+
+				AVAR wishes to be invisible
+				NEED offers HIDE within LIST as XPOS
+
+					XPOS is STR0_in_ROM
+					XPOS is XPOS_plus_OFFS
+					XPOS is XPOS__TABLE_IDX _SLOT
+ LANG
+
+ 	ARGV of WORDS
+
+	 WORD is ANAME
+	 WORD is SAMPLE_VALUE
+	 WORD is ANY_STR_broken_on_SP and PRE_QUOTED
+
+	 WORD is HIDDEN, removed from ARGV, kept as CODE_POINT XPOS of parsable cident99
+	 WORD is DIALECT, KNOWN in CACHE KNOWN from REMOTE CODE from LOCAL CODE
+
+	 The point is that a server offers an API that caller can call
+	 VTBL is IDX_of_FUNC // get DECL // running GETTER works the CACHE
+	 CACHE can see during_load mode, then pick focus on DATA, on PATH_USED
+	 on_LOAD in_LOAD create_cache_for_KEY /* KEY is CODE_POINT.CIDENT.SPELLING */
+	 on_USE_CACHE CACHE_AVAR 
+	  VAR is VAR_NAME
+	  VAR is SCOPED_VAR // LOCAL STACK ARGV_ITEM_for_ARGV_STACK //
+	  VAR is OBJ_NAME
+	  VAR is AVI_NAME NAMESPACE MODULE ACLASS _CLASS FUNC PICK
+	   PICK is hiddent mechanism to remember PICK vars
+	   PICK can parse a C++ function prototype line
+	   PSG PARSE from REMOTE SCRIPT TEXT
+	   PSG PARSE from LOCAL SCRIPT TEXT
+	   PSG MATCH IDX of PRE_MATCHED CACHED LOOKUP _EXPRS
+
+	    _EXPRS is VAR_ACCESS_EXPRS as used by HEAP_CODE // SAFE_MODE //
+	    _EXPR can have ARGS += idx 
+	    _EXPR "{ ITEM_t * ITEM = lookup(EIGHT) // EIGHT = TABLE[idx] }"
+	    _EXPR "{ ITEM_t * ITEM = PTR_from_EIGHT(HERE,TABLE,IDX) }"
+
+	
+
+
+ 	every word mentioned on ARGV (can be) is
+	filler_word NAT_LANG_SLANG_NOISE anyways!
+	filler_word SLANG_NOISE anyways!
+	api_spelling
+	syntax_spelling
+	noun_spelling
+	NAT_LEX_SPELLING 'adjective_SPELLING == SPELLING(#adjective
+
+ #hashtag
+
+ 	FILTER sees as DECL #%s cident99 // cident99 AUTO appears as _99 is _97
+	CSET_STEP sees #cident as REGISTER_IDENT(#HERE,cident)
+	CSET_STEP sees #cident as TOKENISE_IDENT(#HERE,cident) // CACHED REG
+	// MENTION was enough, but needs ROM to also provide EXPLAINS
+	// MENTION is enough // API loader does some clever simple work
+	DNS_cident99 // cross multiplied no "_" on internet DNS name
+	CXX_cident99 // any CXX _cident97 a1_a2_star a1_a2
+	ARGV_a1_a2_parse // splits STREAM of TEXT into LINE of ARGV_WORDS
+
+		ie splits ARGV_WORDS using GAP as LEX_EDGE_GAP
+
+			PSG also knows LEX_EDGE
+			PSG also knows ZERO_GAP // optimise identity mapping
+
+
+
 

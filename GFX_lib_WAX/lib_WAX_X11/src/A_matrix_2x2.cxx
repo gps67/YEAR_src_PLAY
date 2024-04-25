@@ -22,7 +22,7 @@ inline double degs_from_rads( double rads )
 FcMatrixCopy (3)     - Copy a matrix
 FcMatrixEqual (3)    - Compare two matrices
 FcMatrixInit (3)     - initialize an FcMatrix structure
-FcMatrixMultiply (3) - Multiply matrices
+FcMatrixMultiply (3) - Multiply matrices "{ B2 = A * B1 }" daft way
 FcMatrixRotate (3)   - Rotate a matrix
 FcMatrixScale (3)    - Scale a matrix
 FcMatrixShear (3)    - Shear a matrix

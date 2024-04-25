@@ -14,7 +14,7 @@ typedef struct _XGlyphInfo XGlyphInfo;
 typedef struct _XftColor XftColor;
 typedef struct _XftFont XftFont;
 namespace WAX {
-struct A_matrix_2x2;
+struct A_matrix_2x2;	// matches Xft matrix to be used ASIS
 }
 
 /*
@@ -45,6 +45,10 @@ struct A_matrix_2x2;
 	which holds the main vars that allocates items.
 	MY_XFT also holds lots of individual Items,
 	and it has to know to release them.
+
+	The X11 Xft module seems to repeat stuff, eg colours. WHY ?
+	IT makes more sense to have all the non-xft items (eg colours)
+	manage them in the usual way, and use them in Xft calls
 
 */
 

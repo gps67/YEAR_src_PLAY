@@ -1,0 +1,177 @@
+#  find_parse_name/find_parse_name.txt
+
+	a utility to rename all files in this dir
+
+# dfa # dfa - in parallel
+
+	obtain list of mount points
+	filter each ramfs snap pstore nfs sda isofs
+	start a df -h on each in parallel - spin up
+	wait for all to complete and collate
+	timeout 
+
+# find
+# parse_name
+
+	a utility to sweep a tree or just this files in this dir # ORDER
+
+	a utility to notice all files in this dir
+
+	a utility to rename all files in this dir
+
+	a utility to LIST all files in this dir // QUEUE FOR_EACH SORTED_QUEUE
+
+# parse_name
+
+	# recordYYYYMMDDHHMMSS.3gpp
+	# record19991231235958.3gpp // two seconds to M3_ZERO // millenia III
+
+Each LIBR function can use whatever PARSER it wants
+Each LIBR function can be called by LIST using whatever PARSER they want
+
+	brainwashed to protest on a certain trigger
+	brainwashed to protest in a certain manner
+	brainwashed to protest over a certain domain of trigger (eg dialect used)
+
+	eg of NLP use is latinx, as said by no latin person ever
+	ie pronounce it, not in a WASP accent, but like a latin person would
+	so it is coming from somewhere else
+
+MINI_WORLD
+ LIST of
+  MINI_MACHINE EACH { MOUNT_SCRIPT STO NBYTES }
+ 
+MINI_WORLD
+ MODULE
+  COMPONENT
+   ASPECT
+   INSTANCE
+ 
+MINI_WORLD
+	IDX_t idx = STR0_from_EXPR ARGS CT_RT
+
+	CT_RT creates a CXX CLASS for "IDX_t" 
+	LIBR GEN CODE that uses "%s_t" IDX // AUTO MK_VAR from same ROOT P0P2
+	P0P2 we are now looking SUB_LEX which has been SPLIT with P0P2 
+	P0P2 is now that SUB_FIELD of { P0 == P0 ; P2 == P2 ; }
+	P0P2 += P0P2 EXPR "{ P0 == P0 ; P2 == P2 ; }" // invokes CODE_POINT 
+	invoke CODE_POINT (even is COPY LIBR CALL) 
+	COPY_LIBR_CALL 
+	+= P0P2 EXPR "{ P0 == P0 ; P2 == P2 ; }" // invokes CODE_POINT MATCH
+
+MATCH TEXT
+
+	INPUT_STREAM
+
+	STREAM_LINE == "{ P0 == P0 ; P2 == P2 ; }" // invokes CODE_POINT MATCH
+	CT_RT obtains the "{ PARSED_TEXT  _as_TREE }" // with CODE_POINT SESS
+	CT_RT creates a TWIG_for_PARSED_STREAM
+	
+		DECODE LEX
+			CT_RT creates a TWIG_for_PARSED_STREAM
+			_a TWIG_for_PARSED_STREAM
+			_a TWIG
+			_a LEAF
+			_a NOTE # _DATA is _A_NOTE in A_STREAM 
+
+		KEEP_TRACK_of_CACHED_ATTRS
+
+			SESS.CACHE.ITEM = XPOS_of_parsable_DECL_of_XPOS
+
+			 XPOS_in_FILE = { FILE XPOS }
+
+			  XPOS {
+			   PICK XPOS _ONE {
+			   	XPOS = get_XPOS(_one) { return _one ; }
+			   	FIELDS += "{ VAR_NAME = /* SPEC */ _ONE };"
+				FIELDS += "DECODE LINE_of_WORDS"
+				FIELDS += "RECODE LINE_of_WORDS"
+
+					Module offers a FILTER for PURPOSE
+					FILTER implements a DIALECT
+					FILTER merges MULTI UDEF each with iown
+						DIALECT
+					PARSE
+					 _join_multiword_with_dunders
+					 OFFER MATCH N_WORDS 
+				FIELDS += "RECODE LINE_of_WORDS"
+				 FIELD += ARGV of WORD _as_P0P2 __as_PARSED_XPOS
+				 STEP += WORD = P0P2_lex_type_u8
+				 PICK u8_idx of ROM_TABLE_ARRAY
+				FIELDS += "RECODE LINE_of_WORDS"
+				{
+					FIELDS += "RECODE LINE_of_WORDS"
+				}
+				// ALSO
+				{
+					FIELDS += "RECODE LINE_of_WORDS"
+					FIELDS += "RECODE LINE_of_WORDS"
+					FIELDS += "_of_" // UNUSED GEN {} //
+					FIELDS += "RECODE" // get_EA_HERE( ARGS )
+					 FIELDS += FIELD // the CALL LIST TECH
+					 FIELDS += "LINE" // P0 P2 nbyes NO_NUL
+					 FIELDS += "of" // unused self_optim
+					 FIELDS += "WORDS" // XPOS and COPY_STR
+
+					  WORD = STR starts at P0
+					  P0 = STR // NOT STR0 // VITAL thin LAYER
+					  STR0 = STR0_COPY_of_SUBLEX_found_by_PSG
+					  STR0 = STR0_from_PSG _of_NOUN_NAME
+					  KNOW += KDB is happy to see TABLES
+					  KNOW += LOAD_FILE_as_BULK_LOADER
+					  KNOW += LOAD_MULTI_FILE_as_DONE
+					  KNOW += READER_is_a_COMPILER_with_
+					  // KNOW PSG += MATCH EXPR ARGS //
+
+					 FIELDS += "SUB_WORDS" // WORDS += _SUB
+
+
+					  // VITAL THIN LAYER //
+					  // 
+
+					ARGS += ARG
+					ARGS += BIND to LINK_VAR # DECL AVAR ALEX
+					ALEX += cident99 // via CT_RT API
+
+					DECL += cident99
+					DECL += AVAR
+					DECL += GEN_DECL
+					DECL += cident99
+					DECL += ALIAS_EXPR // PHRASE and SUBLEX
+				}
+	#
+	#
+	# cident99 #
+	# ALIAS for cident97 # DIALECT LOCAL PSG_IDENT PARSE_a1_a2_star DIALECT
+	# REQUIRE #
+	# PROVIDE #
+	# DESCRIBE # DECL # merge as seen by CXX USER LOCALE #
+	# cident97 #
+	# ALIAS for cident99 # or via API
+	#
+	# multi_part_word # 
+	# multi_part_word # all the CamelCase parsers MERGE CSR by EXPR CSR WORLD
+	# LOOKUP part_word #
+	# KNOW is SUB_LEX_FRAG parsed P0P2 "{ CSR = P1 = P0 }"
+	# KNOW is LEX_FRAG in_TEXT_STREAM STEP "{ P1 ++ }" # INCR_XPOS
+	# XPOS is P1
+	# XPOS is P0
+	# XPOS is P0_PARSED # ie PARSED from P1 to know P2 # CODE_POINT_STRUFF
+	# XPOS is P0P2
+	# parsed P0P2 "{ CSR = P1 = P0 }"
+	# parsed P0P2 "{ CSR ++ }" "{ P1 ++ }" "{ %s ++ }" invokes_operator_++
+	# 
+	#
+
+
+					FIELDS += "LINE" // HERE //
+					FIELDS += "of" // UNUSED ABOVE //
+					FIELDS += "WORDS" // ARGV //
+				}
+				 PICK u24_idx of ROM_TABLE_ARRAY
+
+			   } // _ONE // ANY_ONE _ONE _TWO _PLUS _API _via_API
+			  } // XPOS
+
+		
+

@@ -37,9 +37,19 @@
 	# auto_path += /tools/x86_64/tcl/lib
 	#
 
-	lappend auto_path /home/gps/tcl_lib_gps_two
-	lappend auto_path $env(HOME)/tcl_lib
-	lappend auto_path $env(HOME)/YEAR/src/PLAY/TCL_stuff/Tcl_SCRATCH_ZONE/in_Tcl_Module/tcl_Bench
+
+	set in_Tcl_Module $env(HOME)/YEAR/src/PLAY/TCL_stuff/Tcl_SCRATCH_ZONE/in_Tcl_Module
+
+	# path includes all local projects
+	# so that the package is found
+	lappend auto_path \
+		/home/gps/tcl_lib_gps_two	\
+		$env(HOME)/tcl_lib		\
+		$in_Tcl_Module/tcl_Bench	\
+		$in_Tcl_Module/tcl_Bench/lib	\
+	;#
+
+
 
 # an unused proc to confirm found
 #	# TEST

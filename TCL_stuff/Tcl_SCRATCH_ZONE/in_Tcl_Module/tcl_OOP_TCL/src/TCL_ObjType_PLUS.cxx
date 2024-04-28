@@ -317,7 +317,7 @@ void TCL_ObjType_PLUS:: set_funcs_BASE()
 	dupIntRepProc      = PLUS_MYTYPE_DupInternalRepProc; // CALLS ...
 	updateStringProc   = PLUS_UpdateStringProc;
 	setFromAnyProc     = PLUS_SetFromAnyProc;
-	INFO("CALLED for class %s", name );
+	INFO("CALLED for class %s", (const char *) name );
 }
 
 

@@ -30,13 +30,13 @@ public:
 	
 	void ref_incr()
 	{
-		INFO("ref_count was %d '%s'", PTR->refCount, get_str() );
+		INFO("ref_count was %ld '%s'", PTR->refCount, get_str() );
 		if(PTR) Tcl_IncrRefCount( PTR );
 	}
 	
 	void ref_decr()
 	{
-		INFO("ref_count was %d '%s'", PTR->refCount, get_str() );
+		INFO("ref_count was %ld '%s'", PTR->refCount, get_str() );
 		if(PTR) Tcl_DecrRefCount( PTR );
 	}
 	

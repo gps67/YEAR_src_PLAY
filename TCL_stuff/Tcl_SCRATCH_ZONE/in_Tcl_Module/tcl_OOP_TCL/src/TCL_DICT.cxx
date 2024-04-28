@@ -58,7 +58,7 @@ using namespace TCL;
 			return false;
 		}
 		while(!done) {
-			int forget_pos;
+			Tcl_Size forget_pos;
 			LIST.ADD( interp, &forget_pos, KEY );
 			LIST.ADD( interp, &forget_pos, VAL );
 			Tcl_DictObjNext(&search, &KEY, &VAL, &done );
@@ -69,8 +69,8 @@ using namespace TCL;
 
 	bool TCL_DICT:: array_set( Tcl_Interp * interp, Tcl_Obj * list )
 	{
-		int pos = 0;
-		int N = 0;
+		Tcl_Size pos = 0;
+		Tcl_Size N = 0;
 		if(TCL_OK!= Tcl_ListObjLength(interp, list, &N )) {
 			return false;
 		}

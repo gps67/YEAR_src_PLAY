@@ -1,0 +1,67 @@
+
+	LIBR_OBJV_tcl_Module_so/
+	LIBR_OBJV_tcl_Module_so.txt
+
+
+	NOT a perfect module because
+
+		no safe side
+
+			todo LIBR on LIBR 
+
+				HEAP_32 provides OBJV_api
+	
+	OBJ_api { SCRIPT } {
+		
+		# we are building a MINI_MACHINE from u16_idx idx_u24 u24_idx
+		# u24_idx # 
+		# idx_u24 # 
+		# idx_t bounces TYPE_NAME via DIALECT _t_unused
+		# %s_%s # MATCH SUBLEX OPCODE LHS RHS # CODE_POINT == "XPOS"
+		# if noone asks, no XPOS required #
+		# if api uses # _ROM _api # AUTO_VAR _ROM # created on mention
+
+		# MATCH %s %s # OPCODE = CODE_POINT_get_OPCODE "OPCODE" # 
+		# STR0 is in CXX_ROM # COMPILED CONST CSET CIDENT99 EXPR NAME
+		# STR0 == "item" #
+		# STR0 == "STR0" #
+		# STR0 == "%s" #
+
+		# OBJ.SPEC == "OBJ.SPEC" 
+		# OBJ.SPEC == "OBJ_SPEC" # AUTO_SUBLEX_dot_to_underscore_etc #
+		# operator == "STR0" # ( const char * STR0 ) # PROTO_VIEW _VIEW
+		# AVAR "_DIAG" #
+		# AVAR _DIAG # AUTO_MKVAR appears from MENTION _SCOPE
+		# CODE_POINT adds PARSABLE SCRIPT
+		# DATA_SCRIPT # can invoke JIT AVAR ALLOC GETTER EXPR_EVAL
+
+		print_OBJ_NAME_as_valid_CIDENT99 $OBJ
+		print_OBJ_NAME_as_valid_CIDENT99 OBJ # bind_var OBJ "OBJ"
+		print_OBJ_NAME_as_ALIAS SPELLING ALIAS_OBJ # bind_var OBJ 
+
+			ALIAS == "ALIAS_OBJ"
+
+		# STR0 in our MINI_WORLD STR0 means "%s" # operator==(STR0_t STR0) #
+
+		#
+		# EA_AVAR_ALLOC == ALLOC_SCRIPT { SCRIPT } #
+		#
+		KNOW {
+			// appears in Tcl as a PUNCT WORD SPELLING
+			// care needed // OBJV 
+			"{ idx = N ++ }" // WELL_KNOWN_SPELLING // EXACT_MATCH
+
+			IMPORT IDX_ALLOC // get loads 
+		}
+		ALLOC {
+			idx = N ++
+		}
+
+		# 
+
+
+
+
+
+
+	}

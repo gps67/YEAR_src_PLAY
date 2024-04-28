@@ -29,7 +29,7 @@ void TCL_PTR:: print_tcl_obj( const char * str )
 //	fprintf(stderr,"tcl_obj              0x%lx\n", (long) PTR );
 	fprintf(stderr,"tcl_obj --------->   %s  %s\n", P64( PTR ), str );
 	fprintf(stderr,"tcl_obj refCount     %d\n", ref_count() );
-	fprintf(stderr,"tcl_obj bytes %4d   %s\n", PTR->length, PTR->bytes );
+	fprintf(stderr,"tcl_obj bytes %4ld   %s\n", PTR->length, PTR->bytes );
 	fprintf(stderr,"tcl_obj typePtr.name %s\n", get_type_name() );
 //	fprintf(stderr,"tcl_obj PTR1         0x%lx\n", (long) PTR->internalRep.twoPtrValue.ptr1 );
 //	fprintf(stderr,"tcl_obj PTR2         0x%lx\n", (long) PTR->internalRep.twoPtrValue.ptr2 );

@@ -90,8 +90,8 @@ bool OBJ_module:: new_OBJ_type(
 
 	const char * NAME = TYPE_PLUS -> alias_one_ABB;	// TYPE_PLUS.ABB
 
-	int obj_idx = 0;
-	int obj_idx_2 = 0;
+	Tcl_Size obj_idx = 0;
+	Tcl_Size obj_idx_2 = 0;
 	objs.NN( interp, & obj_idx ); // no lock upto ADD
 
 	Tcl_Obj * VAL = Tcl_NewObj();
@@ -112,7 +112,7 @@ bool OBJ_module:: new_OBJ_type(
 	//
 	// compute the bytes
 	buffer1 text;
-	text.print("obj_%02X_%s", obj_idx, NAME );
+	text.print("obj_%02lX_%s", obj_idx, NAME );
 
 	// copy text into bytes[length]
 	const char * S = (STR0) text; // adds NUL byte
@@ -125,7 +125,9 @@ bool OBJ_module:: new_OBJ_type(
 	// set VAL->PTR2 = TCL_LIST_over_PTR
 	objs.ADD( interp, &obj_idx_2, VAL );
 	if(obj_idx != obj_idx_2) {
-		FAIL("obj_idx != obj_idx_2 %d != %d",
+		// MULTI_THREAD has also called ALLOC
+		// skip the NN above, this is testing assert( idx == idx_2 )
+		FAIL("obj_idx != obj_idx_2 %ld != %ld",
 			obj_idx,
 			obj_idx_2);
 		// but stay
@@ -602,7 +604,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 				// 
 				TCL_LIST VECT( (Tcl_Obj*) TCL_get_PTR2( obj_id ) );
 				// DATA was objv[3]
-				int pos = 0;
+				Tcl_Size pos = 0;
 				if(!(VECT.ADD( interp, &pos, DATA ))) {
 					FAIL_FAILED();
 					return TCL_ERROR;

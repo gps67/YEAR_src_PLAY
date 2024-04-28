@@ -101,7 +101,7 @@ struct TCL_DICT
 		Tcl_DictObjRemove( interp, dictPtr(), keyPtr );
 	}
 
-	bool NN( Tcl_Interp * interp, int * intPtr )
+	bool NN( Tcl_Interp * interp, Tcl_Size * intPtr )
 	{
 	 return TCL_OK ==
 		Tcl_DictObjSize( interp, dictPtr(), intPtr );

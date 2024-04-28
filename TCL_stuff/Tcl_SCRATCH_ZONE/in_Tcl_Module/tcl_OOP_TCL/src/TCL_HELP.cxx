@@ -29,8 +29,8 @@ void print_tcl_obj( Tcl_Obj * obj, const char * str )
 //	fprintf(stderr,"\n");
 //	fprintf(stderr,"tcl_obj              0x%lx\n", (long) obj );
 	fprintf(stderr,"tcl_obj --------->   %s  %s\n", P64( obj ), str );
-	fprintf(stderr,"tcl_obj refCount     %d\n", obj->refCount );
-	fprintf(stderr,"tcl_obj bytes %4d   %s\n", obj->length, obj->bytes ? obj->bytes : "(NULL)" );
+	fprintf(stderr,"tcl_obj refCount     %ld\n", obj->refCount );
+	fprintf(stderr,"tcl_obj bytes %4ld   %s\n", obj->length, obj->bytes ? obj->bytes : "(NULL)" );
 	fprintf(stderr,"tcl_obj typePtr.name %s\n", obj->typePtr ? obj->typePtr->name : "(NULL)" );
 //	fprintf(stderr,"tcl_obj PTR1         0x%lx\n", (long) obj->internalRep.twoPtrValue.ptr1 );
 //	fprintf(stderr,"tcl_obj PTR2         0x%lx\n", (long) obj->internalRep.twoPtrValue.ptr2 );

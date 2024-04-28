@@ -148,7 +148,7 @@ struct buffer1 : public blk1 {
 // #define FMT2 __attribute__((__format__ (printf, 3, 4))) 
 
 FMT1	bool print( const char * fmt, ... );
-FMT1	bool print_ln();
+    	bool print_ln();
 FMT1	bool print_ln( const char * fmt , ... );
     	bool print_EOLN();
 FMT1	bool printf( const char * fmt, ... ); // it has fmt so printf

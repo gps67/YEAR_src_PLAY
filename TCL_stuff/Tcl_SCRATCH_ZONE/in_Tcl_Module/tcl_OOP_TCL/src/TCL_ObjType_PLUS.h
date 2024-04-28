@@ -129,13 +129,13 @@ struct TCL_ObjType_PLUS : Tcl_ObjType
 
 	TCL_ObjType_PLUS( const char * ABB )
 	{
+		name = ABB;
 		set_funcs_NULL(); 
 		set_funcs_BASE();  
 		alias_one_ABB = ABB;
 		alias_one_LONG = ABB;
 //		alias_two_ABB = NULL;
 //		alias_two_LONG = NULL; 
-		name = ABB;
 
 		has_DICT_of_KEY_VAL = false; // LEX1 no extra KEY_VAL fields
 		PTR2_is_Tcl_Obj = false;

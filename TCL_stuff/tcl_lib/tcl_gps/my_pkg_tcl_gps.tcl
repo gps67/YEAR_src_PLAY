@@ -5,6 +5,7 @@ package provide tcl_gps 0.1
 # a list of functions like this one
 
 namespace eval tcl_gps { ;# 
+	namespace export *
 
 	variable unused { initval }
 
@@ -15,5 +16,4 @@ namespace eval tcl_gps { ;#
 		return $text
 	}
 
-	namespace export *
 }

@@ -303,10 +303,10 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		TCL_REF item; // ALIAS SESS_CURR_item
 
 		// pos_in_list2 // idx == %s // pos == %s // %s == %s (...)
-		int pos; // AKA pos_in_list2 // { my_ref your_ref }
+		Tcl_Size pos; // AKA pos_in_list2 // { my_ref your_ref }
 
 		// get N from DICT
-		int N = 0;
+		Tcl_Size N = 0;
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
 
 		// ITERATE " 0 idx N " BIND " idx " " i " // %s == %s GEN
@@ -342,10 +342,10 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		bool OK = true;
 		TCL_LIST list2(interp);
 		TCL_REF item;
-		int pos;
-		int N = 0;
+		Tcl_Size pos;
+		Tcl_Size N = 0;
 		if(!NN( interp, &N )) return false; // RET_VAR probably NULL
-		INFO("NN == %d", N);
+		INFO("NN == %ld", N);
 		for(int i = 0; i<N; i++ ) {
 			GET( interp, i, item );
 			if(item) {
@@ -362,7 +362,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		// this squeezes out the NULL items, so loses obj_id [pos]
 		bool OK = true;
 
-		int N1 = 0;
+		Tcl_Size N1 = 0;
 		if(TCL_OK!=Tcl_ListObjLength(interp, pairs_list, &N1 )) {
 		       return false;
 		}
@@ -430,13 +430,13 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		}
 		if( !RET_VAL ) {
 			// NULL from Tcl_ListObjIndex means out of bounds
-			int N = 0;
+			Tcl_Size N = 0;
 			if(TCL_OK !=Tcl_ListObjLength( interp, listPtr(), &N )) {
 				FAIL("GET error Tcl_ListObjectLength\n" );
 			}
 			// is a NULL value ever possible ?
 			char msg[50];
-			snprintf(msg,sizeof(msg)-1,"GET[%d] out of range [0[%d", index, N );
+			snprintf(msg,sizeof(msg)-1,"GET[%d] out of range [0[%ld", index, N );
 		       Tcl_AppendResult( interp,
                         (char *) msg,
                         (char *) NULL
@@ -483,7 +483,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		return true;
 	}
 
-	bool NN( Tcl_Interp * interp, int * intPtr )
+	bool NN( Tcl_Interp * interp, Tcl_Size * intPtr )
 	{
 		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), intPtr )) {
 			FAIL("ADD fail Tcl_ListObjLength\n");
@@ -492,7 +492,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		return true;
 	}
 
-	bool ADD( Tcl_Interp * interp, int * intPtr, Tcl_Obj * VAL )
+	bool ADD( Tcl_Interp * interp, Tcl_Size * intPtr, Tcl_Obj * VAL )
 	{
 		// [0 .. [N
 		// ADD places VAL at POS == N_old N++
@@ -521,7 +521,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 	*/
 		}
 		
-		PASS("ADD pos == %d '%s' \n", *intPtr, Tcl_GetString(VAL));
+		PASS("ADD pos == %ld '%s' \n", *intPtr, Tcl_GetString(VAL));
 		return true;
 	}
 

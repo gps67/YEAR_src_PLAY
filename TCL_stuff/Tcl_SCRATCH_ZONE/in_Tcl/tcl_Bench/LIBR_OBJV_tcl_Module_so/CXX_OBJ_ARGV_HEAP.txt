@@ -1,0 +1,82 @@
+
+	CXX_OBJ_ARGV_HEAP.txt
+
+	_UNDER // _ANON
+	_CXX
+	_OBJ
+	_ARGV
+	_HEAP
+
+ ARGV
+
+ 	typedef int (Tcl_CmdObjTraceProc) (
+		void *clientData,
+		Tcl_Interp *interp,
+		int level,
+		const char *command,
+		Tcl_Command commandInfo,
+		int objc,
+        	struct Tcl_Obj *const *objv
+	);
+
+	ARGV as parameters in customised CTOR prototype
+
+		int objc,
+        	struct Tcl_Obj *const *objv
+
+	ARGV is often passed though or STEP_SHIFT_ARGV
+
+		objc --
+		objv ++
+	
+ FUNC
+
+ 	The CXX provider of a function 
+	is called with ARGV and some extra args
+
+ 
+ EA_ITEM _EXPR
+
+	 u8_u24
+	 u8_u8_u16
+	 u8_u8_u8_u8
+
+	 u8_u8_u16_u32
+
+ OBJ_module holds a HEAP of objects
+
+	it uses a HEAP with EA_EXPR that fit in u32_u32 or u64_u64
+	we use a PAIR of DECL of BITFIELDS_BYTE_FIELDS
+
+		u32_u32
+		u64_u64
+	
+		because Tcl_Obj provides PTR1 PTR2 
+		we support ARM32 with u32_u32
+		we support AMD64 with u64_u64
+
+		A pair of PROFILES with pick 
+
+			u8_u8_16 	u8_u8_OPCODE u16_SEGMENT
+			u8_u24		u8_EA_OPCODE u24_idx
+
+				EA_OPCODE
+			u6_u2_u8_u16
+
+					LAYER = { 0 1 2 3 }
+					u2_t u2_LAYER
+
+					u6_OPCODE _for_
+
+			u8_u8_16_u32
+			u8_u8_16_u32
+
+
+ 	it can look at Tcl_
+
+ YOUR_MODULE
+
+ 	
+
+ 	
+

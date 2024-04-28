@@ -39,15 +39,39 @@
 
 
 	set in_Tcl_Module $env(HOME)/YEAR/src/PLAY/TCL_stuff/Tcl_SCRATCH_ZONE/in_Tcl_Module
+	set as_tcl_lib $env(HOME)/YEAR/src/PLAY/TCL_stuff/tcl_lib
 
 	# path includes all local projects
 	# so that the package is found
 	lappend auto_path \
 		/home/gps/tcl_lib_gps_two	\
 		$env(HOME)/tcl_lib		\
+		$as_tcl_lib			\
+		$as_tcl_lib/tcl_gps		\
+		$as_tcl_lib/tcl_LIBR		\
+		$as_tcl_lib/tcl_Bench		\
+		$as_tcl_lib/tcl_MENU		\
 		$in_Tcl_Module/tcl_Bench	\
 		$in_Tcl_Module/tcl_Bench/lib	\
 	;#
+
+	lappend tcl_pkgPath \
+		/home/gps/tcl_lib_gps_two	\
+		$env(HOME)/tcl_lib		\
+		$as_tcl_lib			\
+		$as_tcl_lib/tcl_gps		\
+		$as_tcl_lib/tcl_LIBR		\
+		$as_tcl_lib/tcl_Bench		\
+		$as_tcl_lib/tcl_MENU		\
+		$in_Tcl_Module/tcl_Bench	\
+		$in_Tcl_Module/tcl_Bench/lib	\
+	;#
+
+# RTFM #  lappend tcl_pkgPath $D1 
+
+
+	unset in_Tcl_Module
+	unset as_tcl_lib
 
 
 

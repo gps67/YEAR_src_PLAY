@@ -61,7 +61,10 @@
 			u8_u24		u8_EA_OPCODE u24_idx
 
 				EA_OPCODE
-			u6_u2_u8_u16
+
+			u6_u2_u24	u24_PAYLOAD = u32_WORD >> 8
+
+			u6_u2_u8_u16	u16_PAYLOAD = u32 >> 16
 
 					LAYER = { 0 1 2 3 }
 					u2_t u2_LAYER
@@ -71,8 +74,60 @@
 			u8_u8_16_u32
 			u8_u8_16_u32
 
+			u8_u8 EXPR_OPCODE {
+				 SCRIPT CAN USE u64_u64 AMD64 LAPTOP
+				 SCRIPT CAN USE u32_u32 ARM32 MOBILE
+				 SCRIPT CAN USE u32_u32 ESP32 ITEM _EMBEDDED
 
- 	it can look at Tcl_
+				 SCRIPT CAN USE u8_u8_16_u32
+				 SCRIPT CAN USE u8_u8_16_u6_u2_u24
+
+				 # careful scripting to have unique BITFIELD names
+				 # TOKENISED access to SAME BITFIELD EXPR
+				 # RESOLVED as TOKEN_EXPR
+				 # 
+			}
+
+
+ 	it can look at "{ Tcl_Obj * obj }"
+	and tell that it is already upgraded
+
+ 	it can look at "{ Tcl_Obj * obj }"
+	and tell that it is still an unmodified SCRIPT_SPELLING_of_AVAR
+
+		well it is a plain Tcl_String 
+		well it is used where we hope for a plain Tcl_String VAR_NAME
+		a bit like upvar, bind_var $VAR_NAME 
+		a bit like upvar, bind_var VAR_NAME # a careful style
+		a bit like L_append var_name i t e m s
+		a bit like L_append_tail var_name items_as_a_single_list
+		# WARN if poor SPELLING # OPTION DIALECT # poor USAGE item #
+	
+
+	it can be CACHED_LOOKUP but needs USE_IN_SCRIPT_ALIAS_LOOKUP
+	often VAR_NAME == 'VAR_NAME'
+	# in TCL Q1 appears as Q1 for us to parse # we can # we do #
+	parse_Q1 mean lookup has it as a flag when TOKENISING
+
+
+
+		EA_OPCODE
+
+			u4_FIELD = u4_from_OPCODE_GET_u4 GET u4
+			u4_FIELD = u4_from_OPCODE_SET_u4 SET u4
+			u24_idx_ITEM = u24_from_u32_WORD # u32_WORD >> 8 #
+			# within EDITOR # VIEWER binds u24 # FADE FAINT #
+
+			u4_FIELD = u4_from_OPCODE_GET_u4 
+			u24_ITEM = u24_PAYLOAD
+
+	#
+
+		#
+
+			#
+	
+
 
  YOUR_MODULE
 

@@ -36,5 +36,8 @@
 package require gps_one
 package require tcl_Bench
 package require ARGV_HEAP ;# all the _EA API HEAP IDX OFFS VFS idx_u12
-package require mini_machine
-my_func ;# 
+# ARGV_HEAP #
+# ARGV_HEAP # 
+# package require MINI_MACHINE # it requires ARGV_HEAP # 
+
+	my_func ;# 

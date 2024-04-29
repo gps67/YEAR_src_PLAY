@@ -20,6 +20,17 @@ struct TCL_LIST
 	// we want LIST to be unshared
 	// we are the sole owner of LIST
 	// we cant give the list to anyone - without copy
+	// PLUS // we will LOCK_EDIT_STEP_STEP_UNLOCK // _PAUSE _SHARE_LOCK //
+	// SHARE_LOCK means they will give it on demand or on GUARANTEE MOST ALL
+	// SHARE LOCK CLOCK // TICK_TOCK every STEP // SPLICE_POINT_in_STREAM
+	// STREAM_SPLICE // WORD_PAIR is STREAM_GRAIN OPTION // _ONE _TWO //
+	// WORD_PAIR // EA_EXPR of ITEM in HEAP // DECODE_ONE_TWO //
+	//
+	// list
+	// list - Tcl_Obj * list - that is itself a LIST[N] of ITEM
+	// list
+
+
 //	TCL_REF list;
 	TCL_PTR list;
 
@@ -52,6 +63,15 @@ struct TCL_LIST
 
 	// eg PTR2 is dict, but for "safety" we have to unwrap TCP_PTR
 	// because of this, drop strong type
+	//
+	// CTOR EA_EA_SELF // NO_ARGS // release CACHES previous EA_KEPT
+	//
+	// for speed CACHE leaves all vars as they were
+	// soon enough new value prompts release old value
+	// 
+	// NOT SURE how this is invoked ?
+	// SEE (BENCH gets helpful here)
+	//
 	TCL_LIST( Tcl_Interp * _interp, Tcl_Obj ** KEPT_ITEM )
 	: list()
 	{
@@ -75,221 +95,6 @@ struct TCL_LIST
 		return true;
 	}
 
-	/*
-		OPTION keep NULL in LIST # keep IDX in VECT # api_view
-		if(setting(" keep NULL in LIST for VECT # api ")) { SCRIPT }
-
-		API here requiires caller to provide prepared storage for VAL VARS
-
-		bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
-		// GET_LIST_COPY_var my_copy_of_var [WHEN] VALUE_t VALUE; // CMNT
-		// GET_LIST_COPY_var_api {
-			my_copy_of_var
-		// PSG	[WHEN] // u64_unix_time_ u64 %s ITEM_t ITEM // PARAMETER API
-		// PSG  WHEN_t WHEN; 
-		// psg  bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
-		// psg  bool GET_LIST_COPY( interp, index, TCL_REF & RET_VAR )
-		// explain index, TCL_REF & RET_VAR // in_SESS
-		// in_SESS = in_SESS("SESS") // lookup logic 
-		// explain ALIAS in_SESS as SESSION.SESS and SESSION.API
-		// explain IDX as SELF in SESS // need at RUNTIME VAR = "%s"
-
-			STR0_t NAME; // CMNT CODE_POINT // HERE // 
-			// LOCN // VAL // %X  // %FMT STR0 str_utf8 // DIALECT
-			// DIALACT // KNIT STEP LIBR ROM // RUNTIME // SESS
-
-			bool is_NULL == mode_KEEP_IN_LIST_because_VECT
-			// that is a bool VAR in API
-			// keeping the FULL_VECT idx==idx KNOW ITEM_ID_idx
-			// VAR FULL_VECT // VECT[ ( i < N ) ]
-			// DECL in_the_line_above " ( i < N ) " // KNOWN TOKEN
-			// NAME = " ( i < N ) " // WELL_KNOWN %s #spaces_added
-
-			VALUE_t VALUE; // CMNT
-
-			for( i < N ) // PARSE { VECT_ITEM[idx] } as FOREACH
-			ITEM_t ITEM = VECT_ITEM ( idx == i )
-			ITEM_t ITEM_t ITEM = array[N] of VECT_ITEM ( idx == i )
-			DIALECT NAEM == VECT_NAME
-			VOCAB "VECT" == VECT_Name // DIALECT RHYME 
-			
-			GEN CXX SPELLING VOCAB SCRIPT DECL VAR { DECL_SCRIPT }
-			LIBR u64 u64_WORD * PTR = VAR_NAME _OR_EXPR
-			LIBR u64 PICK_ITEM = VECT_NAME[IDX]
-			LIBR FILTER EA EXPR SAFE_SCRIPT
-			STO = SESS.STO // pass the buck, auto create alias pun
-			# ie by invent varname("STO") auto_create SESS.STO
-			# explain # ALL_ABOUT "SESS.STO" # PSG WELL_KNOWN_EXPR
-			EXPR " WELL_KNOWN_EXPR " # PSG DATA_API_VECT # DIALECT
-			# DIALECT.NAME == "SESS.STO" # with STO and SPEC
-			# ON_DEMAND create API_tokens # eg my_ref_your_ref
-			# DECL VAR # VAR_type == "Tcl_Obj * VECT_PTR;
-			# DECL VAR # VAR_type == "Tcl_Obj * ITEM_NAME; // IDX
-			# IDX = VAR_in_LIST_NAME_IDX_t varname; // idx_varname
-			# VAR_NAME = "SESS.STO" DIALECT = "AUTO_DATA_CODE_SAMPLE_VALUE"
-			# ALIAS "VALUE"
-
-			GEN CXX "ANYSTR == VALUE_t VALUE = PARSE_VALUE
-			GEN CXX u64 VECT_NAME = array[N] of Item_t; // api
-			CXX u64 VECT_IDX = array[N] of Item_t; // api script
-			CXX u64 VECT_NAME = array[N] of Item_t; // api
-
-		u64 * WORD in WORD_VECT GETTER_GET
-		u64 WORD_VECT[u64] + OFFS_WITHIN_STRUCT
-		// OPTION SINGLE VALUE DATA
-		// OPTION ARRAY of VALUE DATA
-		// SESSION setting precompiled API DIALECT "{ PhraseBook }"
-
-		u64 N = N
-		u64 * 
-		u8 * EA_as_u8_star = N 
-		u64 * == u64 PTR_as_u64
-		u64_idx // ALLOC idx = N++ // ALLOC WORD[idx] VIA LANG AVAIL API
-
-		ITERATE " ( i< N ) " {
-		}
-
-		ITERATE " ( i< N ) " {
-			ITEM_t * ITEM = " VECT[ i ] " ;// ARRAY_of_WORDS
-			
-			LIBR { WORD = ALIAS = " VECT[ i ] " }
-			LIBR { WORD = ALIAS = " i " }
-			LIBR { WORD = ALIAS = " VARNAME[i] " }
-
-				VARNAME = "%s" 
-				VARNAME = "STR0_from_VAR_NAME_VECT"" 
-				VARNAME = "ITEM_NAME"" 
-			STO GEN CXX STO u32_u32 ARRAY_of_PAIR u8 N
-			STO GEN CXX STO
-
-				u32_u32 ARRAY_of_PAIR u8;
-				u64 VECT[ u64 N = X ]
-				u64 * WORD_PAIR(" u32_u32 PAIR ");
-
-				// LIBR SAYS HERE ARE SOME EXPRS INDEXED
-				// SESS SAYS DATA EXPR VARS EVAL CODE RUN
-				// CTXT SAYS RUNTIME SESSION elf_segment_var
-				// CODE SAYS " TOKEN == ANYSTR "
-				// LIBR SAYS " IDX "
-
-
-				u64 N = u64_COPY_of_VAR_somewhere;
-				u64 VARNAME_t VARNAME;
-				// of VARIETY # VARNAME = "u16_idx_MAX_N
-				// PRE_EXISTING_CODE // %s = 0x%s" %4X
-
-OUR OWN DIALECT "%4X" means " { 0x %4X } " 
-  OUR OWN DIALECT 
-   PHRASEBOOK
-     %4X
-    "%4X" means " { 0x %4X } " 
-   VIEW
-   	"xFFFF" // HINT u16 for this ITEM in POOL in MINI_WORLD
-   	"x%4X"
-
-		ITERATE " ( i< N ) " {
-		}
-
-		list2 = COPY list1 
-
-			GROW_LIST = WEARY_PRESET
-			N = STO.ROM.u64_N // KEEP u16_N as VARNAME
-			N = DATA
-			N = u64 u16_N; // pun typename into varname %s_%s
-			// u16 idx // ITERATOR _ONE // ITERATOR_TWO //
-			// STO VECT[i] // u64 i = u16_idx; 
-			// STO VECT[i]
-
-		IDENTITY
-			// u64 i = u16_idx; //
-			// BIT_CONTROL SIGNED_NESS += u64_carrying_u48_payload
-			// BIT_CONTROL u64_WORD u64_carrying_u48_payload
-			// BIT_CONTROL u64_WORD u64_carrying_u48_u16_lohi
-			// opinionated code CHOICE += "u16_lohi"
-
-		DATA_LAYER
-
-			LAYERS += DATA_LAYER MEMORY_with_Layout
-			// DIALECT _with_ %s lhs _with_ %s rhs // MEMORY LAYOUT
-
-//		( on elf_segment_copied_into_runtime %s %s )
-//		( SCRIPT gets RO API SESS gets RW API )
-
-		EXPR_MATH
-
-			OFFS = IDX * 8 // 8 is for u64_WORD VECT[N]
-			BASE = BASE_address // invent on mention
-			ADJ  = adj // OPTION pointer to ITEM=PTR or
-			ADJ  = adj // " OFFSET of FIELD in STRUCT "
-			ADJ  = adj // " OFFSET of %s in STRUCT " FIELD_NAME in MEM
-			// OPTION MEM // OPTION NOT ITEM // GEN a_point_b_VAR_NAME
-			// OPTION NAME = idx // obj_%4X // %s_%s PFX IDX //
-			// OPTION ADJ < u8 // this obj 80 bytes // OFFS < u8
-			// OPTION ADJ = COMPUTE u16_in_u64_segment
-			ADJ  = adj // OPTION pointer to ITEM=WORD=PTR or
-			ADJ  = adj // OPTION pointer to ITEM[N] // like MEM
-
-			EXPR  ITEM = VECT[ idx ] 
-
-			DECODE idx_t == "u64" // ACTUALLY it is "u64_u32"
-			// we only deliver [u32] // PLENTY in EA EXPR
-
-		SAFE MODE PERMITS
-
-			ITEM_t = idx that can be used in ITERATION
-			ITERATION = " for [0 [i [N ; idx == i ; call SCRIPT
-			SCRIPT_AVAIL_DATA
-
-			DATA is FAST_EVAL SCRIPT
-			DATA is SCRIPT_DATA_EVAL_CACHE_
-			DATA was elf_segment .bss 
-			DATA is ROM.DATA // precompiled SCRIPT MATCH CALL
-			GEN PARSE "u64_WORD" SUBLEX TOKEN "u64_N" // u64_idx
-			GEN PARSE "u64_WORD" SUBLEX TOKEN "u64_idx" // u64_N
-
-		SAFE MODE EA
-
-			EA_EXPR actually followed the SPEC of some ITEM
-			Some smaller BITFIELD_ITEM OPTION SHIFTED u48
-
-			u48_payload = CXX u64 u48_payload; // CMNT
-			u64_EXPR = CXX u64_EXPR
-
-			u64_WORD = WORD_VECT[u64] // N == u48_N // 
-			u64 u48_N = u48_payload // shifted // truncated_N_bits
-			u64_idx "{ [0 [idx[ [N }" // PARSE [0[N DIAG
-			u64_idx "{ [0 [idx[ [N }" // ALIAS "ITERATOR 0 idx N"
-
-			REQUIRE idx < N
-
-			simple FILTER point CHECK " CHECK idx < N "
-			simple FILTER point CHECK " idx < N "
-			simple FILTER point CHECK "{ idx < N }"
-			simple FILTER PARSE "{ L I S T }" eg  "{ idx < N }"
-
-			DATA DATA from { ARGV[argc] } CODE_FROM "DITTO"
-			SPEC DATA from { ARGV[argc] } CODE_FROM "-ditto-"
-			SPEC DATA from { ARGV[argc] } CODE_FROM "-see-also-"
-			
-
-		ITERATE " ( i< N ) " {
-		}
-
-		}
-
-	SO	the best STYLE is array_get with NULL values in VECT[N] as [idx]
-
-		this does require a local RET_VAR to put redult in
-		bool GET_LIST_COPY( interp,  index, TCL_REF & RET_VAR )
-		
-			TCL_REF & RET_VAR 
-
-			TCL_REF   MY_COPY = GET_LIST_COPY( 
-
-			FOREACH item in 
-
-
-	*/
 	bool GET_LIST_COPY( Tcl_Interp * interp, int index, TCL_REF & RET_VAR )
 	{
 		// this squeezes out the NULL items, so loses obj_id [pos]
@@ -483,21 +288,21 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 		return true;
 	}
 
-	bool NN( Tcl_Interp * interp, Tcl_Size * intPtr )
+	bool NN( Tcl_Interp * interp, Tcl_Size * EA_NN )
 	{
-		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), intPtr )) {
+		if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), EA_NN )) {
 			FAIL("ADD fail Tcl_ListObjLength\n");
 			return false;
 		}
 		return true;
 	}
 
-	bool ADD( Tcl_Interp * interp, Tcl_Size * intPtr, Tcl_Obj * VAL )
+	bool ADD( Tcl_Interp * interp, Tcl_Size * EA_NN, Tcl_Obj * VAL )
 	{
 		// [0 .. [N
 		// ADD places VAL at POS == N_old N++
 
-		if(!NN( interp, intPtr )) {
+		if(!NN( interp, EA_NN )) {
 			return false;
 		}
 		if(TCL_OK !=
@@ -509,7 +314,7 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 			// ERROR message already in interp //
 			FAIL("ADD fail Tcl_ListObjAppendElement\n");
 			// set some bad POS for later
-			* intPtr = -1;
+			* EA_NN = -1;
 			return false;
 
 	/*
@@ -521,11 +326,63 @@ OUR OWN DIALECT "%4X" means " { 0x %4X } "
 	*/
 		}
 		
-		PASS("ADD pos == %ld '%s' \n", *intPtr, Tcl_GetString(VAL));
+		PASS("ADD pos == %ld '%s' \n", *EA_NN, Tcl_GetString(VAL));
 		return true;
 	}
 
+/* TODO
+	https://www.tcl-lang.org/man/tcl9.0/TclLib/ListObj.html
+
+	int Tcl_ListObjAppendList(interp, listPtr, elemListPtr)
+	int Tcl_ListObjAppendElement(interp, listPtr, objPtr)
+	Tcl_Obj * Tcl_NewListObj(objc, objv)
+	          Tcl_SetListObj(objPtr, objc, objv)
+	int Tcl_ListObjGetElements(interp, listPtr, objcPtr, objvPtr)
+	int Tcl_ListObjLength(interp, listPtr, lengthPtr)
+	int Tcl_ListObjIndex(interp, listPtr, index, objPtrPtr)
+	int Tcl_ListObjReplace(interp, listPtr, first, count, objc, objv)
+
+*/
+
 	bool test(  Tcl_Interp * interp );
+/* TODO
+
+	MIMIC LIST to be done by this class ::TCL::LIST
+	It provides the API for VIEW // API_ANGLE // ASIF_api // _GET_AS_LIST
+*/
+
+	int LIST_Append_List(Tcl_Interp * interp, Tcl_Obj * elemListPtr)
+	{
+	return Tcl_ListObjAppendList(interp, listPtr(), elemListPtr);
+	}
+	int LIST_Append_Element(Tcl_Interp * interp, Tcl_Obj * objPtr)
+	{
+	return Tcl_ListObjAppendElement(interp, listPtr(), objPtr);
+	}
+	Tcl_Obj * LIST_NewListObj(Tcl_Size objc, Tcl_Obj * objv[]) 
+	{
+	return Tcl_NewListObj(objc, objv) ;
+	}
+	Tcl_Obj * Tcl_SetListObj(Tcl_Obj * objPtr, Tcl_Obj * objc, Tcl_Obj * objv)
+	{
+	return Tcl_SetListObj(objPtr, objc, objv);
+	}
+	int LIST_GetElements(Tcl_Interp * interp, Tcl_Size * EA_objc, Tcl_Obj ** EA_objv[] )
+	{
+	return Tcl_ListObjGetElements(interp, listPtr(), EA_objc, EA_objv );
+	}
+	int LIST_Length(Tcl_Interp * interp, Tcl_Size * lengthPtr)
+	{
+	return Tcl_ListObjLength(interp, listPtr(), lengthPtr);
+	}
+	int LIST_Index(Tcl_Interp * interp, Tcl_Size index, Tcl_Obj ** objPtrPtr)
+	{
+	return Tcl_ListObjIndex(interp, listPtr(), index, objPtrPtr);
+	}
+	int LIST_Replace(Tcl_Interp * interp, Tcl_Size first, Tcl_Size count, Tcl_Size objc, Tcl_Obj * objv[])
+	{
+	return Tcl_ListObjReplace(interp, listPtr(), first, count, objc, objv);
+	}
 
 
 };

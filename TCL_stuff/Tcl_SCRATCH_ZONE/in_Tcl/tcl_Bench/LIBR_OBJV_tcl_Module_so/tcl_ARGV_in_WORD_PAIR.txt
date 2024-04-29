@@ -1,0 +1,130 @@
+
+	tcl_ARGV_in_WORD_PAIR.txt
+
+	tcl_
+
+		thin module over ARGV to make it available to Tcl
+		LOCAL CACHE REMOTE
+
+			ARGV is REMOTE in MMAP BYTE_ARRAY
+			ARGV is MMAP BYTE_ARRAY in LOCAL CACHE
+
+		ARGV is itself an object, but might not be in MMAP
+		ARGV is itself an object, and might get to be in MMAP
+
+			CACHE can over_shadow a read_only REMOTE or COW
+			CACHE_Copy_On_Write PAGES in MMAP
+
+			LIBR can recommend EDITS to CACHE
+
+	ARGV_in_WORD_PAIR
+
+		ARGV is itself an ITEM but it is floating as a VALUE
+
+		That makes them good for P0P2 from parents SEGMENT_P0P2
+
+		N_BYTES += { N PTR } // ALIAS BYTES == PTR // expected noticed
+
+	
+	LIMIT_ARGV_N_4096
+
+		probably LOSE ZERO M1 M2 u12_N
+		AUTO_GROW u4_idx u8_idx u12_idx u16_idx u24_idx u32_idx
+		AUTO_GROW u4_u8_u12 u16 u24 u32 u48 u64 u128_PAIR
+			u128_PAIR is 256_BITS
+	
+		EA_ARGS = u32_EA_in_MMAP as P0 
+
+		u8_OPCODE
+			HEAP == HEAP[u2_PICK_HEAP]
+			u2_PICK += PICK_HEAP += HEAP_PLUS
+		u12_N
+		u32_EA_in_HEAP_TWO
+
+		OPCODE says {
+			HEAP_ONE
+			HEAP_TWO
+			HEAP_PLUS
+			HEAP_UDEF
+		}
+		PARSER sees "{" as ARGV[XPOS_3] 
+		PARSER sees "HEAP_UDEF" as ARGV[XPOS_7] 
+		PARSER sees "}" as ARGV[XPOS_8] 
+
+		MINI_MACHINE did not need more than u12 items in HEAP ZONE
+		ZONE += ARGV_USED_in_ROM // fits in u12 // exceeds u8 //
+		AUTO_GROW IDX P0_idx N_used // P2 = CALC //
+
+	AUTO_GROW IDX 
+
+		N_used
+		P0_idx
+
+		P2 = EXPR P0 + N 
+
+		AUTO_GROW
+
+		u4_N
+		u12_idx // ITEM_1000
+
+		u8_N
+		u24_idx // 16 M // ARRAY[idx]of WORD_PAIR
+
+			Tcl_Obj adds STR0 SPEC_MODULE
+
+				VAL = lookup KEY
+
+				VAL = getter IDX
+
+
+	u8_u8_u16
+
+		OPCODE
+	
+	u8_u24
+
+		EXPR
+	
+	NEED to MIMIC a LIST
+
+	ASIF results to LIST_EACH 
+
+		FILTER
+	
+	    create a WRITEABLE_COPY_of_OBJ
+	    listPtr = Tcl_DuplicateObj(listPtr);
+
+	    	
+
+
+
+		u12 P0_idx
+		u4_N_used // most ARGV fit in under 16 WORDS
+		u12_ITEM_4096 // AUTO CODE ARRAY[ idx ] of EA_EXPR 
+		EA_EXPR += CODE_POINT XPOS 
+		XPOS += FILE OFFS // as seen by PSG PARSER //
+		LINE_COUNTER_FOR_XPOS LINE_NUMBER
+		ARGV_TREE_ FULL_COPY // ie LOCKED known STATE XPOS += GIT_COPY
+		WHEN_SIGN FAKE_DATE_but_SEQ_MATCHES // simple linear GIT usage
+		ARGV_TREE_as_STREAM
+		_as_STREAM serialise_BATCH_XFER_of_TREE_over_STREAM_via_API
+		_API_serialise_as_XFER_REPEAT_DECL_COPY _API_XFER _COPY
+
+		STREAM_PARSER_into_ARGV_TREE_as_STREAM
+
+		P2 = CALC // TRIGGERS MACRO APPLY CALC P2 = P0 + N // _UNITS
+		P2 never used after calculating N
+		P2 often used after calculating N // CACHED_P2 on_change _N
+		_invalidate_P2 eg _drop_from_cache eg KNOW_CHANGED
+
+		u8_OPCODE
+		u8_u8_OPCODE
+		u16_FIELD
+		u32_WORD_TWO
+
+
+
+		XPOS_t CODE_POINT
+
+
+	

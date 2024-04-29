@@ -10,8 +10,12 @@ namespace TCL {
 
 struct TCL_DICT
 {
-//	TCL_REF dict;
+#if 1
+	TCL_REF dict; // we keep the ref
+#else
 	TCL_PTR dict; // caller must keep the ref
+	# warning caller must keep the ref
+#endif
 
 		// cast to ret type; // == dict.PTR
 		Tcl_Obj * dictPtr() { return dict; }

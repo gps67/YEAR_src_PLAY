@@ -1,0 +1,363 @@
+
+	tcl_OOP_TCL_use.txt
+
+namespace TCL {
+
+	TCL_PTR - is a { Tcl_Obj * PTR } - all the functions - no ref
+	TCL_REF - is a TCL_PTR and it KEEPS the refCount
+
+		TODO perf test the compiler to see that it is quick
+
+	TCL_HELP - set PTR2
+
+		these might also go to TCL_PTR
+		but what is PTR1 - is it a VOID * ?
+		but what is PTR2 - is it a Tcl_Obj * ?
+	
+
+	TCL_LIST - creates holds and uses a Tcl_NewListObj
+	TCL_DICT - creates holds and uses a Tcl_NewDictObj()
+	TCL_HASH - creates holds and uses a Tcl_InitHashTable()
+
+		BUGS just changed TCL_PTR to TCL_REF
+
+		Each of these is for use in a CXX program
+		HASH needs a lot of TODO, STR0_KEY,
+		they do not use any OOP just PTR_REF
+ unstarted	
+	TCL_PLUS_TCL2.h
+	TCL_HASH
+
+ The OOPS bootstraps up via TOKENISATION of STR0, eg "VAR_NAME"
+
+	Tcl_ObjType
+
+		This is Tcl type descriptor see generic/tcl.h
+		freeIntRepProc( ... )
+		dupIntRepProc( ... )
+		updateStringProc( ... )
+		setFromAnyProc( ... )
+	
+	The old 8.0 and before was slightly warped,
+	it has a specific direction of usage,
+	and left no room for anything else
+
+
+	NEW FROM 9.0
+	https://www.tcl-lang.org/man/tcl9.0/TclLib/ObjectType.html
+	adds ability for SOMETYPE to act like a list
+
+#if TCL_MAJOR_VERSION > 8
+    size_t version;
+
+    /* List emulation functions - ObjType Version 1 */
+    Tcl_ObjTypeLengthProc *lengthProc;       /* Return the [llength] of the
+                                             ** AbstractList */
+    Tcl_ObjTypeIndexProc *indexProc;         /* Return a value (Tcl_Obj) for
+                                             ** [lindex $al $index] */
+    Tcl_ObjTypeSliceProc *sliceProc;         /* Return an AbstractList for
+                                             ** [lrange $al $start $end] */
+    Tcl_ObjTypeReverseProc *reverseProc;     /* Return an AbstractList for
+                                             ** [lreverse $al] */
+    Tcl_ObjTypeGetElements *getElementsProc; /* Return an objv[] of all elements
+                                             ** the list */
+    Tcl_ObjTypeSetElement *setElementProc;   /* Replace the element at the indic
+                                             ** with the given valueObj. */
+    Tcl_ObjTypeReplaceProc *replaceProc;     /* Replace subset with subset */
+    Tcl_ObjTypeInOperatorProc *inOperProc;   /* "in" and "ni" expr list
+                                             ** operation Determine if the given
+                                             ** string value matches an element
+                                             ** the list */
+#endif
+
+
+
+	Tcl_ObjType - the builtin
+	TCL_ObjType_BASE : Tcl_ObjType - TODO handle BASE 9.0 no extra fields
+	TCL_ObjType_PLUS : Tcl_ObjType_BASE - REDO adds a VTBL, knows it is us
+
+ !!! confusing use of BASE PLUS !!! REDO maybe RAW EXTRA VTBL  PLUS
+
+	STRUCT_ALIAS Tcl_ObjType_plain : Tcl_ObjType 
+
+		A STRUCT ALIAS has a few API behaviours
+		It adds no extra data fields
+		It adds methods, eg REVERSE_LOOKUP_FROM_EA( THIS, THAT )
+
+		You can (and do) call it with "{ Tcl_ObjType * SELF = this; }"
+
+			SCRIPT avoids Q2 so that it can use them in C_CODE_STR0
+			ASCII CSET ASCII BYTE UTF8 CIDENT99 
+
+		CIDENT99 
+
+			permits use in C_CODE ASCII because that suits me fine
+			permits use in C_CODE UTF8 in ZLIB in CRYPT in BASE64
+
+			eg PERMIT Latin1 subset in CIDENT99
+
+				CSET_BYTE CSET_BYTE_Latin1
+
+					CSET	CSET_API
+					BYTE	FIXED 8BIT no MULTI_BYTE
+					Latin1	cyrillic 8859_Latin1 
+
+				AVAR CSET_BYTE_Latin1
+
+					ALIAS Latin1
+					ALIAS CSET 
+					ALIAS SELF
+					ALIAS BYTE
+
+					BYTE_ARRAY
+					STR0
+					P0P2
+
+				P0P2
+
+					STR0 from P0P2
+
+						MALLOC STR0 // nbytes_get_N
+						ALLOC IDX STR0 // EA_NEAR_HERE_STR0
+						sprintf buff fmt A R G S
+
+						NOTE UPGRADE "%ld" from "%d"
+						NOTE GEN and VIEW each PICK
+
+							"%d"	ABBR
+							"%ld"	EXACT
+
+							MATCH ABBR
+							MATCH EXACT
+							MATCH /* WITH_USAGE x%X */
+
+							"%X"	ABBR
+							"x%X"	EXACT
+
+							PARSE ABBR
+							MATCH ... FILTERS
+							GEN EXACT
+
+					P0P2_from_STR0_from_P0P2
+					P0P2 from P0 and PSG_CODE_POINT
+
+						PSG_CODE_POINT 
+						+= CIDENT99 _starts_here
+
+					STR0 from P0P2 converting later
+
+						LATER += never_called
+						NEVER += SWEEP LATER
+
+						USAGE MERGE LOCN += HERE
+						USAGE MERGE LOCN += EXPR_unused
+
+					API can LIST its TABLE_of_CONTENTS
+
+						so compiler optimises them
+						EXPR_POOL += EXPR
+						VAR_POOL += AVAR
+						VAL_POOL += HEAP
+						OBJ_HEAP += ARGV_ITEM
+						OBJ_HEAP += ARGV_VARS
+
+						when processing ARGV 
+						some DATA LOCKS do CHECK_LIST
+
+							save all OLD_VAL
+							save all NEW_VAL
+							EDIT into TREE
+
+							PARSE "%X"
+							GEN "x02X" // VIEW 
+
+					IDX to CIDENT
+
+						_%s
+						_%d
+						_%04X
+						_%X
+						_%x OPTION my bias to %02X
+
+						_IDX
+						xIDX
+
+						%04X
+						%02X
+
+						PARSE
+						GEN
+						HEX_DIGITS
+						FMT_FF
+						FMT_FF_FFFF
+
+						CIDENT_from_xFFFF
+
+					CIDENT = INIT_VAL = "%02X" IDX
+					CIDENT = INIT_FMT = "%s%02X%s" LHS IDX RHS
+					STREAM SUBLEX IDX_in_CIDENT
+
+						PARSE _xFFFF
+
+						 _optional leading UNDER
+
+						PARSE xFFFF
+
+						 a complete ITEM_NAME as CIDENT99
+						 ASCII for speed
+						 MMAP for PRE_DONE
+
+					 ASCII for speed
+					 MMAP for PRE_DONE
+
+
+					PARSE _xFFFF
+					
+						OPTION	PARSE xFFFF
+						OPTION	GEN xFF == "xFF"
+						ALIAS "x%02X" IDX
+						IDX = BYTE_VAL_FROM_REMOTE
+
+						 u8_idx ITEM_in_AVAR
+
+					 PARSE _xFF_%s
+
+					 	in SCRIPT VIEW as xFF
+						in STREAM VIEW as x%02X
+
+					SCRIPT mentions "xFF" once
+
+						DECL xFF x%02X
+
+						VIEW as AVAR _xFF
+						VIEW as AVAL %02X" // FF in xFF
+
+						PARSE matched _x%s as ...
+						SCRIPT provided xFF
+
+					 SESSION limits u8_idx
+					 SESSION bounces u12_idx
+
+					 	ITEM_4096
+						BITFIELD_u8_u12_u12
+
+	TODO
+		clarify sequence of BITFIELDS from sequence of source lines
+		point out we use LOHI because most CPU's use A_B_C_D A_first
+		most CPUS have get_A_of_ABCD from PTR = EXPR
+	
+	EXPR AVAIL on CPU
+
+		we provide a ARM32 MACRO with descriptions
+
+		you run it via FILTER SCANNER SWEEP STREAM
+	
+	JS_OBJ_EXPR
+
+		use EA = EA_OBJ
+		use EXPR = EA
+
+		// run those two in correct sequence
+		// build MACRO using PRE_EXPANDED_MACROS
+		
+		JS_OBJ_EXPR = EA_OBJ
+
+		 use OBJ = EA_OBJ
+
+		JS_OBJ ONE_OF {
+			JS_OBJ_STRUCT
+			JS_OBJ_ARRAY
+			JS_OBJ_NUMERIC
+			JS_OBJ_STR0
+		}
+
+		JS_OBJ ONE_OF {
+			JS_OBJ_STRUCT
+			 iterate over DECL lines of STRUCT
+			 STRUCT += FIELD // both _DECL
+			 STRUCT += FEATURE // USAGE from CODE_POINT TYPE_UDEF
+			 STRUCT += METHOD // stored by name or 
+			JS_OBJ_ARRAY
+			 ES6_ARRAY_IDX_LIST
+			 ES6_ARRAY_KEY_STR0
+			 ES6_ARRAY_WASM_BYTE_ARRAY MMAP_SEGMENT_nbytes
+			JS_OBJ_NUMERIC
+			 ES6_BASIC_TYPES_NUMERIC
+			 ES6_BASIC_TYPES_STR0
+			JS_OBJ_STR0
+		}
+
+		Object starts as "STR0" becomes "IDX"
+
+			IDX_t idx = ALLOC_CACHE _lookup_STR0
+
+			CACHE_TOKEN = idx_lookup_add STR0
+
+		COMPILER builds TABLES and they AUTO_GROW u12
+
+			u12_idx = N ++ // MATCH WELL KNOWN "..." notice u12
+
+		DECODER comes with
+
+			u8_OPCODE
+			u12_A
+			u12_B
+
+		 DECODER_u32_u32
+
+		 	u8_u8 OPCODE
+			u16 POOL
+			u32 WORD_TWO
+
+		 DECODER_u32_u32
+
+		 	u8_u24
+		 	u8_u24
+
+			extract u8_u8 split over 2 words
+			first u8 shapes packet
+			second u8 PICKS_OPCODE
+
+		 	u8_u12_u12
+		 	u8_u12_u12
+
+		STREAM_DECODER finds PAIR
+
+		 DECODER_u32
+
+		 	u8_u12_u12
+
+			u8_OPCODE 
+			 u8_u8_u16 // OPCODE += u8_u8 AVAIL += u16
+			 // += u32_WORD // NOTE WORD PAIR 
+			 u8_u8_u16 u32_WORD // OPCODE += u8_u8 AVAIL += u16 // 
+			 u8_u24_u8_u24 // WORD PAIR // OPCODE += u8_u8 
+			 u8_u12_u12 // OPCODE A B // _LHS _RHS // _OPCODE //
+			 knows is u8_u12_u12
+			 knows is u8_u12_u4_u8
+			 knows is u8_u12_u4_u8
+
+
+		AS BENCH runs each STEP in SCRIPT LINE LIST
+		AS BENCH runs each EDIT in SCRIPT LINE LIST DIAG VIEW
+
+			learn RHYME TOKENISATION
+			learn SCOPE TOKEN_RUNTIME
+			learn STYLE PSG TOKEN VALUE EA_EXPR // JS_OBJ
+
+					PARSE _YEAR_MM_DD
+
+
+
+					P0P2 from P0P2 
+
+
+
+
+
+		It adds FAKED fields, eg REVERSE_LOOKUP_FROM_EA( THIS, THAT )
+
+ 	TCL_PLUS_BASE : TCL_ObjType_PLUS 
+
+};
+

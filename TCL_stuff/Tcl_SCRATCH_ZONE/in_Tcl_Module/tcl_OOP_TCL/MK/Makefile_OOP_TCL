@@ -9,34 +9,37 @@
 #	OPTIM += -O2
 	fPIC = -fPIC
 #	OPTIM += $(fPIC)
-	INCLS += -I./
-	INCLS += -I../
-	INCLS += -I../src/
-	INCLS += -I../STO/
-#	INCLS += -I../buffer # get from libs_apps
-#	INCLS += -I/tools/2000/X11R6/include
+	LIST_CPLUS_INCLUDE_PATH += ./
+	LIST_CPLUS_INCLUDE_PATH += ../
+	LIST_CPLUS_INCLUDE_PATH += ../src/
+	LIST_CPLUS_INCLUDE_PATH += ../STO/
+#	LIST_CPLUS_INCLUDE_PATH += -I../buffer # get from libs_apps
+#	LIST_CPLUS_INCLUDE_PATH += -I/tools/2000/X11R6/include
 
-#	Tcl_prefix=/usr
-#	Tcl_prefix=/usr/local
-#	Tcl_prefix=/opt9906/tcl
-#	Tcl_prefix=/tools/2000/tcl
-#	Tcl_prefix=/tools/x86_64/tcl
-
+	# TODO check that these are tcl 9.0 
 	INCLS += -I$(Tcl_prefix)/include
 	INCLS += -I$(Tcl_prefix)/include/tcl
-#	Tcl_includes += -I$(Tcl_prefix)/include
-#	Tcl_includes += -I$(Tcl_prefix)/include/tcl
 
 	DEFS = 
+
+	PKGS += libs_apps_base1
+        PKGS += libs_apps_base2
+#       PKGS += libs_apps_uses_ssl
+#       PKGS += libs_apps_mozjs
+
 
 	# we are in $(S)/obj/
 	S=..
 	VPATH +=$S
 	VPATH +=$S/src
-#	VPATH +=$S/src/src_PLUS
-#	VPATH +=$S/src/STO
+	VPATH +=$S/src/utils
+	VPATH +=$S/src/type_plus
 
-	include ../MK/Makefile_libs_apps
+	LIST_CPLUS_INCLUDE_PATH += $(VPATH)
+
+#	include ../MK/Makefile_libs_apps
+	include ../MK/MK_with_libs_apps
+
 
 	# I want to use FAIL WARN PASS INFO from dgb.h
 	# I need to detatch that from libs_apps
@@ -50,6 +53,7 @@
 
 
 	Module=tcl_oop_tcl
+	Module_objs += TCL_ObjType_plain.o
 	Module_objs += TCL_ObjType_PLUS.o
 	Module_objs += TCL_PLUS_BASE.o
 	Module_objs += TCL_PLUS_LEX.o

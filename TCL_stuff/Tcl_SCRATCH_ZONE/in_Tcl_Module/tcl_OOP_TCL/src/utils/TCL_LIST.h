@@ -351,37 +351,49 @@ struct TCL_LIST
 	It provides the API for VIEW // API_ANGLE // ASIF_api // _GET_AS_LIST
 */
 
-	int LIST_Append_List(Tcl_Interp * interp, Tcl_Obj * elemListPtr)
+	int LIST_Append_List(Tcl_Interp * interp, Tcl_Obj * tail_list)
 	{
-	return Tcl_ListObjAppendList(interp, listPtr(), elemListPtr);
+	 return Tcl_ListObjAppendList(interp, listPtr(), tail_list);
 	}
-	int LIST_Append_Element(Tcl_Interp * interp, Tcl_Obj * objPtr)
+
+	int LIST_Append_Element(Tcl_Interp * interp, Tcl_Obj * item)
 	{
-	return Tcl_ListObjAppendElement(interp, listPtr(), objPtr);
+	 return Tcl_ListObjAppendElement(interp, listPtr(), item);
 	}
+
 	Tcl_Obj * LIST_NewListObj(Tcl_Size objc, Tcl_Obj * objv[]) 
 	{
-	return Tcl_NewListObj(objc, objv) ;
+	 return Tcl_NewListObj(objc, objv) ;
 	}
+
 	Tcl_Obj * Tcl_SetListObj(Tcl_Obj * objPtr, Tcl_Obj * objc, Tcl_Obj * objv)
 	{
-	return Tcl_SetListObj(objPtr, objc, objv);
+	 return Tcl_SetListObj(objPtr, objc, objv);
 	}
+
 	int LIST_GetElements(Tcl_Interp * interp, Tcl_Size * EA_objc, Tcl_Obj ** EA_objv[] )
 	{
-	return Tcl_ListObjGetElements(interp, listPtr(), EA_objc, EA_objv );
+	 return Tcl_ListObjGetElements(interp, listPtr(), EA_objc, EA_objv );
 	}
+
 	int LIST_Length(Tcl_Interp * interp, Tcl_Size * lengthPtr)
 	{
-	return Tcl_ListObjLength(interp, listPtr(), lengthPtr);
+	 return Tcl_ListObjLength(interp, listPtr(), lengthPtr);
 	}
+
 	int LIST_Index(Tcl_Interp * interp, Tcl_Size index, Tcl_Obj ** objPtrPtr)
 	{
-	return Tcl_ListObjIndex(interp, listPtr(), index, objPtrPtr);
+	 return Tcl_ListObjIndex(interp, listPtr(), index, objPtrPtr);
 	}
-	int LIST_Replace(Tcl_Interp * interp, Tcl_Size first, Tcl_Size count, Tcl_Size objc, Tcl_Obj * objv[])
-	{
-	return Tcl_ListObjReplace(interp, listPtr(), first, count, objc, objv);
+
+	int LIST_Replace(
+		Tcl_Interp * interp,
+		Tcl_Size first,  // first to delete
+		Tcl_Size count,	 // count to delete
+		Tcl_Size objc,	 // count to add
+		Tcl_Obj * objv[] // data to add
+	) {
+	 return Tcl_ListObjReplace(interp, listPtr(), first, count, objc, objv);
 	}
 
 

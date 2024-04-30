@@ -1,3 +1,4 @@
+#!/usr/bin/env tclsh9.0
 #!/usr/bin/env tclsh
 puts "argv0 is $argv0"
 

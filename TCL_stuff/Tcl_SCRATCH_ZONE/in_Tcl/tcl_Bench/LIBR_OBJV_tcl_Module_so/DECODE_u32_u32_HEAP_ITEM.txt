@@ -1,0 +1,82 @@
+
+	DECODE_u32_u32_HEAP_ITEM.txt
+
+		u8_u8 OPCODE
+		u16_HEAP_EXPR
+		u32_ITEM_EXPR
+
+	u16_HEAP_EXPR = u16_PAYLOAD
+	u32_ITEM_EXPR = u32_WORD_two
+	u8_u8 u8_u8 = BYTE_A_BYTE_B
+
+	There are u16 named arrays, now u16_idx
+
+	Each array has u32_EA_EXPR // OPCODE can PICK u32_idx
+
+	Each array has multi_part_key, can be WORD cache for BITFIELD
+
+		_BYTE_A is OPCODE // might set u2_from_u8
+
+		u4_u4 u8 u16 u32
+		u2_u2_u4_u8 _u16 _u32
+
+		SWITCH[ BYTE_A & 0x03 ]		u2_
+		SWITCH[ BYTE_A & 0x0C >> 2 ] 	_u2
+		SWITCH[ BYTE_A & 0xF0 >> 4 ] 	_u4
+
+		4 BANKS of OPCODE
+
+		JUMP_TABLE[4]
+		0 {
+			_u2_u2_u4_u8  // _u16 _u32
+			_00_u2_u4_u8  // _u16 _u32
+			_0_ONE
+				idx = u6
+		}
+		1 {
+			_01_u2_u4_u8  // _u16 _u32
+			_1_TWO
+				idx = u6
+			OPTION PAGE RUN from _0_ONE u1_u1_u2_u4 
+				idx = u7 
+		}
+		2 {
+			_10_u2_u4_u8  // _u16 _u32
+			_10_u6_u8  // _u16 _u32
+			_10_u6  // _unused BYTE_B OPCODE[64]
+			_WORD_32
+			_u8_u24
+			_WORD_64
+			_u8_u24_u32
+			_WORD_64
+			_u8_u8_u16_u32
+			_u8_u8_u48	// UNUSED other than u16_u32
+			M2
+				idx = u6
+				encode as i8
+				u5_unused_ASCII_PLUS_BYTE_CSET
+				// lose NBSP or reclaim // 
+				u6_PAYLOAD
+		}
+		3 {
+			_11_u2_u4_u8  // _u16 _u32
+			 M1 0xC0 .. 0xFF
+				idx = u6
+				encode as i8
+		}
+
+		BYTE_TABLE can be assembled from u2_u2_u4
+		but decoded in one lookup
+		TOKENISATION does that
+
+		BYTE_TABLE can be ABBREVIATED u6 N_USED
+		BYTE_TABLE can be EIGHT[256] or EIGHT[11]
+		FAST_LOOKUP can cache chained exprs via more TABLES
+		GUARANTEE no out of bounds because we did ALLOC // gcc
+
+
+		
+
+
+
+

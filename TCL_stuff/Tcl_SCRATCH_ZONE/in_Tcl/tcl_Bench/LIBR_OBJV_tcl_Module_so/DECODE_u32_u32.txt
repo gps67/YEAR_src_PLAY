@@ -1,0 +1,154 @@
+
+	DECODE_u32_u32.txt
+
+	We are specifying an u64 aligned u64_WORD 
+
+	We DECL u32_u32 one_two loaded LOHI // saved_LOHI loaded_LOHI
+
+		u32_one		// LO // [0] // _ZERO
+		u32_two		// HI // [1] // _M1 _ONE
+
+	one_two
+	u32_u32
+
+	We DECL STREAM as nbytes of u32_u32 // on_load_recalc_units
+	
+		EIGHT_t WORD_STEP[ IDX ]  = N_BYTES in CACHE_PACKET
+	
+	We are PRE_LOADING an FSM with addresses within the HEAPS
+
+		u12_idx		ITEM_4096  
+		u8_idx		ITEM_FF // _%s_xFF // ITEM_xFF // 
+	
+		u24_idx		HEAP_of_u24_ITEM // 16 million //
+
+		u32_idx
+		u16_u32_idx	HEAP_of_u48_ITEMS
+		u16_u32_idx_expr EXPR_u48_BITFIELDS_u8_u8_u16_u32
+
+		u8_u8		DECODE using lookup tables
+
+			CT_RT build lookup tables ahead of time
+			CT_RT fill lookup tables early from SCRIPT _INIT
+			u8_u24 means first u8 knows it is NOT u8_u8
+
+	
+	BENCH building [256] OPCODES 
+	BENCH building ROM.OPCODES.[A].here.[B].OPCODE
+
+		   (u16) 	u16_AB asif loaded from LOHI_then SWAPB 'done
+		   (u16) 	u16_BA asif loaded from LOHI
+		   u8_u8
+		u4_u4 u4_u4	its one PATTERN from _BA
+		   u4_u12	VARS16[u4] HEAP_4096_ITEM[u12]
+		      u12_ITEM
+		   u4_HEAP
+
+	BENCH
+
+		16 HEAPS of 4096 items
+		16 PAGES of 4096 BYTES
+		16 PAGES of 4096 ITEMS
+		16 PAGES of 4096 EIGHT // because AMD64 has that as its LIMIT
+		// ie EIGHT is CPU_OPCODE to get WORD of ARRAY u32_u32
+		// OPCODE can get WORD[1] _ONE _TWO BYTE_A BYTE_B 
+		// ARM32 can get BYTE_E BYTE_F  BYTE_A BYTE_B 
+	
+	u4_u12_EA		u4_HEAP u12_ITEM
+
+	u32		entire word is ADDR // readmits JOINED_PAGES
+	u32		BITFIELD word in ADDR // u12_PAYLOAD() // u4_PAGE
+
+		u8_OPCODE
+		u12_FILE
+		u12_LINE
+
+		u8_u8_OPCODE
+		u16_FILE
+		u32_XPOS	OFFS = _u32 * MULT 
+
+		FILE	u16
+				u16_PAYLOAD = u32_WORD_one >> 16
+		HEAP	u8
+				u8_idx_HEAP = u32_word_two_BYTE_A // MACRO //
+				u8_idx_HEAP = u32_word_two.get_BYTE_A() // EXPR
+				// MACRO is way for BENCH to accumulate meaning
+				// simple rewrite valid expr as CIDENT
+				// replace dots with UNDER or CAP1 or ...
+				// My DIALECT uses %s_%s LHS RHS
+
+				HEAP_PTR = get_HEAP_PTR( u8_idx_HEAP )
+
+				ITEM_PTR = HEAP_PTR->TABLE_ITEM[u24_ITEM_idx]
+				// PRUNE u24 _ ITEM _ idx //
+
+		ITEM	u24
+				u24_PAYLOAD = u32_WORD_two >> 8
+
+				OFFS = _24 * MULT
+
+				MULT 1   16 M
+				MULT 2	 32 M
+				MULT 4   64 M
+				MULT 8	128 M  <- u32_u32 ARRAY_FF_ITEM_u24
+				MULT 16 256 M
+				MULT_256 u32_SZ 4G // LIMIT ARM32 u24_u8
+				256 is a big click for placing entire SEGMENTS
+				eg HEAP[4096] of EIGHT 32K allocated at 256
+
+
+					EA_ZONE += ZONE_over_FILE_in_ROM
+					EA_ZONE += ZONE_P0P2 _OFFS_in_SEGMENT
+					EA_ZONE += EA_ZERO_P0_P2
+
+						P2 = EXPR P0 + N // BYTES ITEMS
+
+					EA_OFFS += _u24 << 8 // 4G from u24
+
+					EA_OFFS += IDX * size_of_EIGHT
+
+				MULT_1024 16G	// u34 decent size for a laptop
+				MULT 4098 64G   // u36
+
+				u32 = u32_VAL u8_SHIFT // LIMIT CALC ARM32
+
+
+				MULT u12 u36 of 4Kpages
+
+				CLICK is PAGE_EDGE [u12 * 4K PAGE] u24 16M
+
+		PAGE[ u12_EIGHT_idx ] // 32K == 4096 * 8 
+				
+
+		
+
+	u8_u24_EA
+	u32_EA		u8_HEAP u24_ITEM
+
+			HEAP[u8]
+			ITEM[u24]
+
+	u64_EA_EXPR	u8_u8_u16_u32_EXPR 
+
+			u8_u8 { SAYS }
+			HEAP[u16]
+			ITEM[u32]
+
+	u64_EA_EXPR	u8_u8_u16_u8_u24_EXPR 
+	
+	TOKENISING
+
+		The BENCH uses the fluff CORE OPCODE uses TOKENISATION
+
+			TOKEN = lookup SPELLING
+
+		Obj_t * TOKEN 
+
+			TOKEN = EA_EXPR // the lookup itself is tokeised
+
+			u8_u8_u16_u32_TOKEN
+			u8_u24_u32_TOKEN
+			u64_TOKEN
+
+
+			

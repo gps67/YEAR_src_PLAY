@@ -1,0 +1,153 @@
+
+	Tcl_because_ARGV.txt
+	Py_already_with_ARGV # TODO_api
+	MMAP_HEAP_ITEM_SPEC # and TIME_VERTION_VALUES # mobile GIT # WING #
+
+		MMAP_HEAP_ITEM_SPEC 
+		# and TIME_VERTION_VALUES ##
+		# mobile GIT # WING # SWOOP # TIME_SPAN_STEP DATE_UNVERIFIED
+		# CLAIM_DATE # TICK_TOCK nested layers with shared time tock 
+		# TICK_TOCK EXPR  /* BOLN */ CLOCK x%X /* AUTO_PRINT_WIDTH
+		# DIALECT NOTICES ADJACENT "x02X" 
+		# DIALECT ASSOCIATES it as INFO_from_ROM INFO_from_SESS
+		# DIALECT FMT "x02X" # pick 1 2 3 4 6 8 via_DECODER via_ENCODER
+		# FILTER DIALECT STREAM MINI_MACHINE STATE ARCHIVES OPTS
+		#
+
+		u32_u32
+
+		This is a hefty HEAP and uses u64_BIT_FIELDS
+
+		OBJV[ idx_obj ] -> Obj_t * item
+		OBJV[ idx_obj ] -> Obj_t & item
+		OBJV[ idx_obj ] -> Obj_t   item // VALUE when CPU_WORD ATOM_val
+
+		u64_word_t u64_WORD ; // ALIAS WORD // ALIAS %s_t WHEN_TYPE
+
+		u8_u8 u16 get_u16() { return u32_WORD >> 16 } get_u16_MACRO
+		u8_u8 u16 set_u16() { rotate_16 ; u16_AX = _u16 ; rotate_16 } SET
+		u8_u8 {
+			u8 _A	_BYTE_A // AVAR in MMAP
+			u8 _B	_BYTE_B // AVAR in MMAP
+
+			u16 _BA() _AB_loaded_LOHI _BA _BA_in_CPU_WORD
+			u16 _AB() _AB_loaded_LOHI_then_SWAPB_HILO
+			_AB_from_BA() { SWAP_BYTES_at_u32_TIME_on_load }
+		// u8_u8 knows it is part of some NEARBY u16 and u32_WORD_TWO
+		// u64_LOHI is the DECL_WORD_TYPE_u32_u32
+		// u64_LOHI is the DECL_WORD_TYPE_u8_u8_OPCODE_u48_BITFIELD
+		// u16_u48_OPCODE_PTR // u48_PTR is the real ADDR limit on u64
+		// u16_u48 is a magical thing // u32_u32 is better
+		// u16_u16_u32 is quite capable // Z_ONE_SPACE[u12]ADDR[u32]
+		// u8_u12_u12 // ITEM_4096 // AVAR_1000 // REGISTER_WORD[ u12 ]
+		// OPCODE LHS RHS // u8_OPCODE // u12_LHS //  u12_RHS //
+		// AUTO_GROW see u8_u24_u32 u16_idx u24_idx uns_idx _u32 _u64
+		// ARM32 can do u64 as _SOMEHOW but when not asked to, easier,
+		// AMD64 must now DECODE HALF_HALF as SEQUENCED or PARRALEL PAIR
+		// we lose u48 by joining and splitting again using software
+		// u32_u32 u16_u48 // u8_u8 is lo_A_B so u48_is_SHIFTED
+		// to obtain _u48 = get_u48_SHIFT_16()
+		// to obtain _u48 = SPLICE_u16_u32
+		// to obtain _u16 = BYTES_CD_as_DC
+		// to obtain _u32 = BYTES_ABCD_as_DCBA
+		}
+		u8_u8 u16 u8_u8 u16 
+		u8_u8 u16 
+		u8_u8 u16 
+
+		STREAM of u32_WORD arriving LOHI_HALF_WORD_64
+
+			ABCD EFGH  - file looks like this
+			DCBA HGFE  - BITS looks like this
+			HGFE DCBA - BITS looks like this
+
+				u8_u8 == BA PRE_LOADED_in_CPU_WORD
+
+				on HILO continue to use LOHI_in_MMAP
+				a BYTE_SWAP_WORD is just 1 OPCODE 
+				into AVAR_new_val
+				into AVAR_old_val
+
+				these exprs run in realtime and trawl results
+				MATCH happens in STREAM at XPOS
+				STREAM += BYTE_STREAM_PRE_SENT_BUFFERS
+				STREAM += SEVERAL not all labelled mk_NAME_from_IDX
+				FILTER set MK_NAME == DIALECT_MK_NAME
+
+					LIBR provides the DIALECT
+					SESS provides "{ STR0 NAME }"
+					PSG sees "{ %s %s }" and_MORE
+
+				u16_PAYLOAD = u32_WORD >> 16
+
+					u8_BYTE_A // and ALIASES
+					u8_BYTE_B // and ALIASES
+					u16 BYTE_PAIR_A_B // and ALIASES
+					ALIAS u16_DC 
+					EXPR u16_PAYLOAD 
+					FROM u8_u8_u16
+
+				u16_u16_u16_u16
+
+				PICK from 2+ TEMPLATES
+				# ONE # IN_MEMORY #
+				# TWO # IN_CPU_WORD #
+				# UDEF # IN_CACHE # 
+
+				# DECODE u32_u32 # WORD_PAIR # 
+				# DECODE u32_HALF # u32_UPPER_HALF # WORD_PAIR # 
+				# WORD_PAIR # WORD HALF HALF PAIR # 
+				# u32_word_one # ABCD
+				# u32_word_two # EFGH # LOHI_u32_PAIR # u32_u32
+				 A  B  DC  E  F HG // GEN for each required ALL
+				 DCBA BA BYTE_B BYTE_A // ALIAS A // B //
+
+				u8_u8_u16_u8_u8_u8_u8
+				u8_u8_u16_u8_u8_u8_u8
+				u8_u8_u16_u8_u8_u16
+				u8_u8_u16_u8_u24
+				u8_u8_u16_u32
+				      u32_u32
+				u8_u8_u16_u32
+				         _u32_HALF_one u8_u8_u16  _u24() 
+				         _u32_HALF_two _u32_has_ALIAS_TREE
+
+				ALIAS u32 u8_u24 += "{ _u24 = u32_WORD >> 8 }"
+				ALIAS u32 += "ABCD" "DCBA" 
+				ALIAS u32 += "u8_u8_u16" A_B_DC // LOHI_SWAP //
+				AVAIL u16 += u16_PAYLOAD_DC _BA _DC
+				AVAIL u16 += u16_PAYLOAD_CD _AB _CD // SWAPB //
+				CPU_WORD _ABCD _EFGH _u64 _AB _u16_lo_hi_bytes
+
+				u32_word_one
+				u8_BYTE_A
+				u8_BYTE_B
+				u16_BA AB_u16
+				u32_DCBA ABCD_u32 // ALIAS u8_u24
+				u8_u8 OPCODE_AB
+				u32_BITFIELD // enforce LIMIT for ARM32 200M
+				u8_u8_OPCODE // DECODE_WORD DECODE_OPCODE u8_u8
+				u16_idx_ONE // PARAMETER available idx_ONE _TWO
+				u32_word_two // ARG2 == "ITEM_u32_idx_ITEM"
+
+				u32_word_one // ARG1 == "u8_u8_u16_u32_HALF_ONE"
+				u32_word_two // ARG2 == "ITEM_u32_idx_ITEM"
+				# DECODE u16_u48 # because that is what AMD64_gives us
+
+		HILO machine must use SWAPB on load or on USE
+		LOHI BYTES in MMAP in N_BYTES XPOS STREAM_CHUNK
+
+		STREAM_CHUNK aligned to EIGHT_BYTES _per_WORD
+
+				# DECODE u16_u16_u16_u16 # why not #
+				# DECODE u8_u8 _u16 _u24 u12_BITFIELD
+				# BITFIELD u12 SHIFTED out of u32_WORD #
+				# INTENTIONAL LIMIT_u32 # PLENTY u12_BITFIELD
+				# BITFIELD [7
+				# ENOCDE u48_ADDR # u8_u8_u48 # NEED SHIFT u48
+				# ARM also stops at 48 bits ADDR leaving 16 bits
+				# u16_u48 PTR # a WORD that is an EXPR to get PTR
+				# u16_ZERO means TRADITIONAL PLAIN PTR
+				# u16_M1 means WELL KNOWN NULL but its M1
+				# 
+

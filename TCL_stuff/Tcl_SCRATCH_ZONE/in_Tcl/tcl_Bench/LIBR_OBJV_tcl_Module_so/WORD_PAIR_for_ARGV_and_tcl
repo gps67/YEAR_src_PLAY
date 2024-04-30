@@ -1,0 +1,56 @@
+
+	WORD_PAIR_for_ARGV_and_tcl
+
+	_UNDER # marks ARGV0 as next STEP in ARGV P0P2
+ P0:
+	_WORD_PAIR
+ P2_word_pair:
+	_for_
+	_ARGV
+	_and
+	_tcl
+	_EOLN # an invented GAP token speeds up EOT PARSE allows STREAM
+	# EMIT or OMIT # do not add token EOLN # PSG drop GAP # LEX_EDGE #
+ P2_line
+ P2_argv
+ P2_XPOS_of_NEXT_STEP
+
+ 	WORD_PAIR u32_u32
+
+		HEAP_ITEM[u8] // ITEM_99 // u8_idx // idx_u8 // ITEM_TWO //
+		HEAP_ITEM[u12_ITEM_1000] // ITEM_1000 // is SAMPLE _ONE
+		HEAP_ITEM[u24_ITEM_16M] // ITEM_16M // is SAMPLE _TWO
+		HEAP_ITEM[u32_ITEM_4G] // ITEM_4G // is SAMPLE _4G
+
+	WORD_ONE
+
+		u32
+		u4_u28
+		u4_u4_u24
+		u4_u4_u12_u12
+		u8_u24
+		u8_u8_u16
+
+	WORD_TWO
+	
+		u32
+		u8_u24
+		u8_u8_u16
+	
+	Many OPCODES work in single WORD_32
+
+		WORD_ONE is either NULL or OPCODE_in_WORD_32 or OPCODE_64
+
+			OPCODE_32 possible pair of small steps
+			OPCODE_64 single STEP 2 WORD expr
+
+				u8_u8 might come from WORD_2 or u8_u4 or u8_
+				u8_u8 might come from WORD_2 or u16 or ...
+
+
+		WORD_TWO is either NULL or OPCODE_in_WORD_32
+	
+			NULL_NOT_NULL
+				STEP_GAP_FOR_FILLER // SKIP_GAP
+
+		

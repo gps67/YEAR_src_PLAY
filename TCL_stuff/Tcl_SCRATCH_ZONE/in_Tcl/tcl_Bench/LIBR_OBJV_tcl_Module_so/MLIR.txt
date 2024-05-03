@@ -45,3 +45,29 @@ https://docs.modular.com/engine/get-started
 ----- ALERT ---- 
 ----- ALERT ---- To Whom it may convern
 ----- ALERT ---- 
+
+
+ (1)	This is a BYTE machine. 1 ADDR step is a single BYTE
+ (2)	This is a u64 machine, AMD64, ARM64, other
+ (3)	This is a u32 machine, ARM32, u32_u32, many things will work here
+ (2a)	ALL u64 machines are actually LIMIT u48, si u8_u8_u48 
+ (2b)	All machine have better access too BYTE_A, and the math is better 
+ (4)	We might want the first BYTE to not have a BYTE_B
+ (5)	we may need u64_aligned, ARM cant cope with unaligned, AMD can
+
+ 	So a general sweeping thing, is u8_u8_u48_LOHI
+	This contradicts network-byte-order, but has BYTE_A BYTE_B 
+	and u16_BA in low 16 bits, and can use the 1 cycle
+
+		u48_payload = u64_word >> 16
+		u16_payload = u32_word >> 16
+	
+	u8_u8 u16_payload u32_payload
+
+		u8_BYTE_A	// CPU will have this builtin
+		u8_BYTE_B	// AMD builtin // u64 << 48; u64 >> 56;
+		u16_BA		// CPU builtin or 2 shifts
+		u8_u8 // as_u16	// move u8_u8 around as u16
+		u16_payload	// byted DC or maybe HG
+		u32_payload	// WORD from MEM or 1 cycle shift >> 32
+

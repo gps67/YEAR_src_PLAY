@@ -1,0 +1,46 @@
+type_opts.tcl
+
+  enum Tcl_Obj_Field_name_VAL1_VAL2_PTR1_PTR2 { // strange name $0 //
+   // named after the struct it is
+   
+   	const char * STR0 = BYTES_up_NUL_expect_UTF8 // CSET is DIALECT.CSET
+	Tcl_Size 
+
+
+   	const char * STR0 = BYTES_up_NUL_expect_UTF8 // CSET is DIALECT.CSET
+
+		If that varies for document supplied,
+		CSET = ASCII
+		CSET = BYTE
+		CSET = UTF8
+		CSET = CSET
+		CSET = FONT	// CSET == FONT.CSET // MACRO_editable
+		FONT_CSET += FONT 
+		FONT_CSET += CSET // FONT.CSET // MACRO DECL HERE 
+		Interpretation {
+
+			SELF += CSET
+			SELF += FONT.CSET
+			SELF += FONT
+
+			ITEM += ADDR += ALIAS
+
+			ALIAS FONT FONT_CSET
+
+				GLYPH || ABSENT_RANGE
+
+					NULL means ABSENT
+					ABSENT is ABSENT_GLYPH
+					GLYPHT is GLYPHT_GLYPH
+
+				AUTO_VAR lookup filter TREE_STREAM
+
+					MATCH SPELLING ROM_USAGES
+
+						ALIAS
+						POOL
+		}
+
+ enum TCL_VAL1_PTR2 {
+  enum VAL1_VAL2_PTR1_PTR2
+ }

@@ -1,0 +1,80 @@
+
+	OBJ_module.txt
+	
+	OBJ is a plain Tcl_Obj * Obj or one of our OBJ's
+	OBJ is a CXX_TCL_OBJ // after TEST is_PLUS
+	OBJ -> typePtr is a  // TREE_NODE_in_BENCH 
+
+		All need to run the QUICK TEST,
+		so whatever parameter was knobbled,
+		that must be the same for all
+
+		BUT we immediately know our obj is ours
+		confirm it using our test
+
+		and call the VTBL to carry out the knobbled test
+		On other systems, each TYPE has it's own un_knobbled test
+
+		FAST_TEST may vary
+		bool is_PLUS_type( const Tcl_Obj * obj )
+	        bool is_PLUS_type( const Tcl_ObjType * typePtr )
+
+		  if(!typePtr) return false;
+		  return  typePtr -> dupIntRepProc == KEPT_PTR;
+
+		  get KEPT_PTR from ... OPTIONS include
+
+  PC+OFFS	  each .so has adjacent CODE and DATA BSS 
+  AVAR 		  So any function in the .so can immediately find  KEPT_PTR;
+		  by PC+OFFS almost certainly within 31bit 
+
+		  So the best way is to make it a static to OBJ_module.o
+		  and appears at ADDR_BASE + ADDR_OFFS // CT_RT_ELF OFFS known
+		  code is GET_WORD_FROM_PC_OFFS // code_within_so_data_too
+  PC+OFFS
+  CODE
+  	        typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
+		PLUS_MYTYPE_DupInternalRepProc
+
+ ClientData -> KEPT_PTR
+
+ 	OBJ_module_t * ARGV_module // ALIAS for retained_ClientData_PTR 
+
+	ARGV_module_t * ARGV_module // but we stop at BASE_CLASS OBJ_module
+
+
+
+
+
+
+	 Tcl_Obj * PTR = EA TCL_ALLOCED_STRUCT { // fixed OBJ size // 
+
+		ref_count
+		STR0_name
+		type
+		PTR1
+		PTR2
+	 }
+
+	OBJ can be a STR0 WORD == SPELLING == name
+
+		SCRIPT_LEX at several XPOS in same SCRIPT in same THREAD_GROUP
+
+		SCRIPT_LEX that needs bouncing to SCRIPT_LEX_actual
+
+		SCRIPT_LEX that needs bouncing to SCRIPT_LEX_in_SCOPE
+
+		FAST PARSE ARGV 
+		KNOW ARG by_SPELLING CT_RT_match_AVAR_in_SCOPE
+
+			AVAR is a named expr
+			AVAR is a named AVAR
+
+	OBJ can be an ALLOC OBJ_IDX = OBJ_IDX_N ++
+	OBJ can be an ALLOC EA_OBJ = OBJ = lookup STR0_OBJ_KEY
+
+	OBJ does naot have name
+
+see TCL_TYPE.txt
+
+

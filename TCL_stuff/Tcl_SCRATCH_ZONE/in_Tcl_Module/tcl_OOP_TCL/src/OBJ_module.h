@@ -11,6 +11,34 @@
 #include "TCL_PLUS_BASE.h" // remove LEX1 though !?
 namespace TCL {
 
+enum VALS_TYPE_TAG { 
+	VAL_is_UNS,
+	VAL_is_INT,
+	VAL_is_FLOAT,	 // f32 or f64 ...
+	VAL_is_BITFIELD,
+	PTR_is_Tcl_Obj,
+	PTR_is_Tcl_Obj_SPEC,	// PTR1_is_SPEC // PTR2_is_
+	PTR_is_VTBL_ZERO,	// all VTBL have a basic VTBL
+	PTR_is_VTBL_ONE,	// LIBR_one uses VTBL_one : VTBL_zero
+	PTR_is_VTBL_TWO,	// LIBR_two uses VTBL_two : VTBL_zero
+	PTR_is_C,		// UNKNOWN and OWNED by this reference
+	PTR_is_C_plus,		// KNOWN and OWNED and handled by nearby code
+};
+
+/*
+	Layouts
+
+		STR0 - AKEY of OBJ
+		PTR1 - SPEC 
+		PTR2 - DICT // which is Tcl_Obj
+	
+	Layout
+
+		STR0 - AKEY
+		PTR1 - SPEC as Tcl_Obj
+		PTR2 - 
+*/
+
 
 #if 0
 // or put this isn _PLUS
@@ -88,6 +116,15 @@ class OBJ_module
 	// LDB obj +OFFS(typePtr) DEREF TESTNULL +OFFS(magic_func_vect) DEREF
 	// if(A==B) { KNOW("is_PLUS_type") }
 	typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
+ 	/*
+		static 
+		 KEPT_PTR_type
+		 KEPT_PTR; // init_done_at init_time // = C_FUNC_ADDR
+
+		You must also repeat this in OBJ_modules.o .cxx
+
+	*/
+ static
 	KEPT_PTR_type KEPT_PTR;
 
  // OK THE WEAKNESS //
@@ -96,6 +133,11 @@ class OBJ_module
  // SO // CACHE // via nearest local pointer //
  // a sensible thing would make interp a field of _Module
 
+
+	// static // NOT static so SELF->KEPT_PTR is available
+	//
+	// NOT static so SELF->KEPT_PTR is available
+	//
 	bool is_PLUS_type( const Tcl_Obj * obj )
 	{
 		// NEED // KNOW // obj is not NULL

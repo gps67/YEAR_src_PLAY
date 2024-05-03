@@ -1,5 +1,7 @@
 #!/usr/bin/env tclsh
 
+	package require TCL_OBJ "OBJ" // all SOURCE knows
+
 # /home/gps/YEAR/src/PLAY/SCRATCH_ZONE_20/in_Tcl_Module/tcl_menu/MENU
 
 	lappend auto_path \

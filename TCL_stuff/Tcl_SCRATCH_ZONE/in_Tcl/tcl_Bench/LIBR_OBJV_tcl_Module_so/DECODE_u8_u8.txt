@@ -1,0 +1,64 @@
+DECODE_u8_u8.txt
+
+	u2_u2_u4
+	u2_u2_u4_u8 // as u8_u4_u2_u2 loaded from LOHI to CPU_WORD
+
+	lookup[ u8 ]
+
+	BUILD
+	TABLE[u8]
+	on_DEMAND
+	in_ADVANCE
+	as_ROM
+
+	SOME OPCODES will jump direct to code that does
+
+	CONST BYTE in OPCODE 
+	or u2_A = GET_BITFIELD
+
+	 INIT_ZERO
+		set u2_A _u2_BYTE_ZERO
+		set u2_B _u2_BYTE_ZERO
+		set u4 _u4_BYTE_ZERO
+	
+	 INIT BYTE
+		set u2_A _u2_BYTE
+		set u2_B _u2_BYTE
+		set u4 _u4_BYTE
+	
+	To Compile iterate through all perms,
+	upgrade each SCRIPT to COMPILED SCRIPT
+
+	on_DEMAND
+		CALL_SPLIT_u2_u2_u4 has been DONE at CT_RT
+		MACRO CALL B C D
+
+		CALL lookup_2[B] { set u2_A 0xFF }
+		CALL lookup_2[C] { set u2_B 0xFF }
+		CALL lookup_2[D] { set u4   0xFF }	
+
+
+	u16_OFFS = OFFS_of_OPCODE_CODE _MACRO_TEXT 
+
+		TREE_t * TREE = TREE_for_OPCODE[ u24 ]
+		TREE_t * TREE = TREE_for_OPCODE[ u8 ] // u16_EA_CODE is plaenty
+		TREE_t * TREE = TREE_for_OPCODE[ u6 ] // u2_u6
+	
+	FOUR_t EA_LOCN_or_ITEM[ u16 ] // 256 MACROS of 20 steps
+
+		64K * 4 == 256K for a HEAP of 64K items (lines) (CLOD)
+		CLOD code_line_or_data =~= N_TWIG + N_LEAF + N_ALSO < [u16_idx]
+
+		64K * 8 == 512K using u64_per_OPCODE
+
+		DECODE u64 itself
+		DECODE u64 as u8_u8_u48_PTR
+		DECODE u64 as u8_u8_u16_u32
+		DECODE u48_PTR as _u16_u32
+		CHOICE GET_u16 as EIGHT.u16_DC
+		CHOICE GET_u32 as EIGHT.u32_word_two
+
+		CHOICE GET_u16 as EIGHT.FOUR >> 16 ; WIDEN FOUR to WORD
+		CHOICE GET_u32 as EIGHT.u32_word_two_in_u64 >> 32
+
+		DECODE u64 as pointing to more OPCODE

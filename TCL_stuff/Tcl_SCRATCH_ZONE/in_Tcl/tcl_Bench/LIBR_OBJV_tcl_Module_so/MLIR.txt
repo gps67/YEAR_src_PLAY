@@ -1,0 +1,47 @@
+https://mlir.llvm.org/
+
+	llvm but different
+
+	mojo emits it (?llvm compiles it)
+
+mojo sits wherecompiled Pyhon would
+
+https://github.com/modularml/mojo
+
+https://github.com/modularml/mojo/blob/main/examples/notebooks/Matmul.ipynb
+
+https://docs.modular.com/engine/get-started
+
+	MAX
+
+
+
+(near Tensor)
+
+(not CUDA)
+
+
+---- ARGV ----
+
+	ARGV is a lot like Tclsh or Bash (but bash word quoting is not OK)
+	OBJV is an alias for ARGV, but do remember it starts as STR0
+
+	Python accepts objv, Tcl accepts objv, // both require SELF Obj_Type
+
+	ARGV as parameter list, looks like it will need PSG parsing
+	LEX1 seems like done, but occasionally needs special 2-in-1 {(["''"])}
+	where a SP breaks Q1_pair, and needs PSG to catch it later
+	Even with subset requirements, need to run PSG over ARGV
+
+		--k1 v1 \
+		--k2 v2 \
+		...
+	
+	ARGV + HINT // HINT +ARGV == TEMPLATE + ARGS
+
+----- ALERT ---- 
+----- ALERT ---- u16_u48 
+----- ALERT ---- u32_u32  - ARM32 mode lives here
+----- ALERT ---- 
+----- ALERT ---- To Whom it may convern
+----- ALERT ---- 

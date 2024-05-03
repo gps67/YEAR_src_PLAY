@@ -1,0 +1,4 @@
+. fns_VARS
+var_add PATH /tools/x86_64/py/bin
+
+./checker_board.py

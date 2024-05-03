@@ -5,6 +5,11 @@
 #include "TCL_MATCH.h"
 #include "buffer1.h" // buffer1 print
 
+// static in .h // not_mentioned_static HERE // so not another included.h
+// Then full mid mangled name in abs namespace // 
+// reserve some 
+	::TCL::KEPT_PTR_type ::TCL::OBJ_module::KEPT_PTR;
+
 using namespace TCL;  
 
 /*!

@@ -93,8 +93,11 @@ public:
 		return *this;
 	}
 
+// some of this stuff has misplaced itself into OBJ_module
+// more that to TCL_PTR, eg TCL_get_PTR2
 	void get_from_PTR2( Tcl_Obj * obj )
 	{
+	#warning this is mangled, redo
 		PTR = (Tcl_Obj*) obj -> internalRep.twoPtrValue.ptr2 ;
 //		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
 		// do not ref_incr
@@ -102,6 +105,7 @@ public:
 
 	void set_into_PTR2( Tcl_Obj * obj )
 	{
+	#warning this is mangled, redo
 		obj -> internalRep.twoPtrValue.ptr2  = PTR;
 //		TCL_set_PTR2( obj, PTR );
 		// do not ref_incr

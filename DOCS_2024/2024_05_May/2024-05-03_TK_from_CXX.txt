@@ -1,0 +1,127 @@
+	2024-05-03
+
+	2024_05_May
+	2024-05-03_TK_from_CXX.txt
+
+	CALL Tk from CXX
+
+	switch to tcl main event loop
+	still uses old select_says_
+	as even that was not true
+
+	Manage structures of Tk widgets though CXX behaviours
+
+		my setup for my profile
+		edit CXX_INIT/init_Tk_and_local_cache
+
+		LOCAL CACHE -> CACHE -> WLAN -> REMOTE
+
+			WLAN does tls using KEYS
+			WLAN does
+				WLAN_PKT_IN
+				WLAN_API_ENQ_ACK
+				     API_QnA
+
+		REMOTE CACHE bunches up requests to REMOTE 
+
+			CPU will quickly make all requests
+			CACHE will BATCH_SENT the list and track
+			CACHE will PROVIDE cached copy of REMOTE
+
+				option to hold this back until ACK
+				possibility that ALL fields are answered
+				possibility that MANY fields are unchanged
+				possible that ALL fields now available
+				at latest version
+				with locks CLOCKS tick_tock sync_edge_api
+
+					SYNC EDGE _api
+
+		REMOTE behind safety wall is USER FILE RORW DRIVE 
+
+			ACTION DRIVE something
+			ACTION machine in motion
+			ACTION extra admin filter provides old_val_new_val
+
+				obtaining old_val 
+				comes from a hint list provided by remote
+				fetch all of this list // hint newval NEAR
+
+			NEAR 
+			HERE
+			AVAIL
+			PRE_LOAD
+			PRE_COMPILE
+
+			ARGV script 
+			ARGV_COMPILER 	// LANG words += and
+			CT_RT tokeniser
+
+		set FIELD [OBJ $obj_id GET FIELD ]
+
+		OBJ $obj_id GET FIELD 
+		OBJ $obj_id GET FIELD AVAR_FIELD // silent MK_VAR infer mention
+
+			creates FIELD as a local variable in scope
+			fetches its value from $obj_id // obj_id_xFFFF
+			optionally binds write back pathway to sync_edge
+
+				tick_clock pernding sync_edge
+				tick_clock same one adding details
+				tick_clock the only clock is ERA_STEP_SYNC_EDGE
+
+			at end "{ tick_tock %s }" // TCL_ANYSTR // no_interp //
+
+		EVAL "OBJ.FIELD"
+
+			build ARGV above
+			find CODE that will parse and run it
+			find CODE that will run it pre_parsed
+
+			MATCH STR0
+			MATCH "ANYSTR"
+			MATCH "OBJ.FIELD"
+			MATCH EVAL "ANYSTR"
+			MATCH EVAL "%s"
+			MATCH "%s"
+			"%s"
+			%s
+
+		PSG CIDENT99 PUNCT GAP TEXT SCRIPT PDF LIBR
+
+			PSG " CIDENT_obj_name . CIDENT_fieldname "
+			PSG " CIDENT_obj_name " as LHS upto HERE CSR
+
+		CSR HERE - inherits LHS but TOKENISED AVAR
+
+			similar tricks to LOCAL - REMOTE
+			caller gets here with LHS
+			script uses NAME of LHS in this case
+			script uses PHRASE of LHS in that case
+			PSG uses . as LHS = "OBJ." // writing PUNCH shows CSR
+			PSG uses " " as LEX_EDGE_after_CIDENT // POSSIBLE STOP
+			PSG uses " " crushable_gap, for comma, Q2, etc
+
+	-
+	API_TKINTER
+
+	 _tkinter_
+
+	 	Tcl + Python + Tk + TkInter.so
+	
+	 _CXX_
+
+	 	Tcl + OBJV_api + Tk + TkInter.so
+	 	Tcl + ARGV_api + Tk + TkInter.so
+
+
+			
+
+
+
+
+			
+
+		
+
+

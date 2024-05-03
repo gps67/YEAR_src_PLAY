@@ -12,6 +12,8 @@ PLUS
 
 	Tcl_FreeInternalRepProc *freeIntRepProc;
 
+		CALL_FREE( obj )
+
 		Tcl stupidly deletes the STRING bytes[length]
 		BEFORE calling this
 
@@ -34,6 +36,8 @@ PLUS
 
 	Tcl_DupInternalRepProc *dupIntRepProc;
 
+		CALL_DUP( src, dst ) // ie COPY without STRING
+
 		copy SRC to DST
 
 		before
@@ -55,6 +59,8 @@ PLUS
 
 
 	Tcl_UpdateStringProc *updateStringProc;
+
+		CALL_UPDATE_STR0( obj ) // not even interp
 
 		create STRING bytes[length] from internal value
 

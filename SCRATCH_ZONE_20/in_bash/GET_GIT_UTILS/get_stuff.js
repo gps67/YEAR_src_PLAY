@@ -13,6 +13,10 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/modularml/mojo
+https://github.com/android/platform-samples
+https://github.com/WiseLibs/better-sqlite3
+https://github.com/ytdl-org/youtube-dl
 https://github.com/zed-industries/zed
 
 https://github.com/quilljs/quill

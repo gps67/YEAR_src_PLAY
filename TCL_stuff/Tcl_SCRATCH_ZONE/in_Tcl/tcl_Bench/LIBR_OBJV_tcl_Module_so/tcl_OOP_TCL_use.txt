@@ -1,6 +1,52 @@
 
 	tcl_OOP_TCL_use.txt
 
+        KEPT_PTR = PLUS_MYTYPE_DupInternalRepProc;
+
+		All derived types must use this C_FN
+
+
+ THIS IS A VILE TRICK
+
+ 	typePtr needs -ADJ to be classPtr
+ 	classPtr needs +ADJ to be typePtr
+
+		and that is C++ being VILE
+
+	A C approach would have VTBL after the standard Tcl_TypeObj fields
+	That could then be a VTBL object as a FIELD of the STRUCT
+
+	This is the Tcl_TypeObj_PLUS outer and CXX_within_WIDER_ALLOC
+
+		that is OK, we do the VTBL work using the TYPE_SPEC
+		the SELF OBJ is a parameter to the TYPE LIBR FUNC
+		the SELF OBJ can be found each time or once at perimeter
+
+		could still do this
+
+		C_WRAP.CXX_PLUS // has VTBL as part of CXX_PLUS field
+
+		obj -> typePtr .CAST_AS_C_WRAP .CXX_PLUS .VTBL ->[i] (CALL)
+		obj -> typePtr .CAST_AS_C_WRAP .CXX_PLUS .VTBL ->[i] (CALL)
+
+		We still need to know is_PLUS( obj -> typePtr )
+	
+	Once we have ACTUAL_PLUS_TYPE and NEAREST_BASE_PLUS_TYPE
+
+	CXX_TYPE is POINTER_to_an_MMAP_ITEM still_in_an_EA_EXPR
+	CXX_TYPE_ _ITEM
+	CXX_TYPE_ _ARGV // VAL1 == objc PTR2 == EA_OBJV
+	CXX_TYPE_ _ARGV // PTR1 == PTR_objc PTR2 == PTR_EA_OBJV
+	CXX_TYPE _VAL1_VAL2 u32_u32 or u64_u64 -r EIGHT or PAIR_EIGHT
+	TYPE_SPEC can have TYPE_SPEC_DATA N_in_ARGV fixed { 0 1 2 3 4 5 6 7 }
+	ARGV of a few WORDS in OPCODE in TYPE_SPEC CT_RT says_KNOWN_at_CT
+	KNOWN_at_CT
+	AVAIL_at_RT from DECODE_OPCODE_BITFIELDS u2_u6_u8_u16_u32
+
+	u32_u32 is EA_ITEM via NEAR_BY_TABLES on_DEMAND_CACHED_RECALC
+	u32_u32 is EA_ARGV VAL_ARGC from DECODE_FIELDS and CODE_POINT
+
+
 namespace TCL {
 
 	TCL_PTR - is a { Tcl_Obj * PTR } - all the functions - no ref
@@ -360,4 +406,11 @@ namespace TCL {
  	TCL_PLUS_BASE : TCL_ObjType_PLUS 
 
 };
+
+	Two sticks break
+
+	1---2---3---4---1
+	R---RL-LRL-LR-R-1
+	1---2e-a3e-a4-n-1
+
 

@@ -5,7 +5,9 @@
 	// LITERAL_MATCH is like LITERAL_MATCHER but shorter
 	// drop all LEX1 nonsense
 	// go directly for strcmp
-	// 
+	// PARSE LINE //
+	// MATCH LINE //
+	// STEP LINE // EVAL EXPR // RUN_CODE
 
 #include "TCL_STUBS.h"
 #include "TCL_REF.h"
@@ -23,6 +25,33 @@ namespace TCL {
 	LITERAL_MATCH * match_GET = new LITERAL_MATCH(interp,"GET");
 	// keep match_GET forever //
 	if( match_GET.matches( argv[i] ) { /+ objv[i] is "GET" +/ }
+
+	CALLER INIT_ALL
+	CALLER STEP_ONE
+	CALLER STEP_TWO
+	CALLER STEP_SCRIPT
+	CALLER STEP_EXPR
+	CALLER EXPR_STEP
+
+		STEP AVAR == OBJ // immedite rewrite as AVAR = OBJ RW or RO 
+
+		PERMIT REMOTE TO BUILD TREE of STR0 and BITFIELDS 
+
+	CALLER EVAL ARGV in SESS with CTXT and SPEC // DIALECT += NOTICE_UPPER
+ DECODE
+ AS
+	CALLER EVAL ARGV in SESS with CTXT and SPEC // DIALECT += NOTICE_UPPER
+ AS
+	CALLER
+	EVAL
+
+	EVAL ARGV // EVAL EDIT READ SANDPIT_EVAL // RUN inside SAFE_MODE //
+	READ TEXT GEN TREE LOAD SEGMENT
+
+	in SESS
+	with CTXT
+	and SPEC
+	// DIALECT += NOTICE_UPPER
 
 	When objv[i] is a const "GET" in a proc, it is a retained const
 	and normally belongs to Tcl

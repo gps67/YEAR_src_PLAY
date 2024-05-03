@@ -15,6 +15,7 @@ SEARCH=+/TT
 SEARCH=+/error
 SEARCH=
 SEARCH=+/MATCH
+SEARCH=+/CAST
 
 
 ./M "$@" | less $SEARCH

@@ -1,0 +1,202 @@
+DECODE_u2.txt
+
+	00 - LIBR_PLUS	// incl ITEM_ZERO PAGE_ZERO //
+	01 - LIBR_ONE	//
+	10 - LIBR_TWO	//
+	11 - LIBR_MINUS	// local HEAP items created PLUS not HERE
+			// LIBR_MINUS has M1 M2 and ALLOC_MINUS
+			// on_MINUS( ... )
+	
+	LIBR_HANDLER	// += u2_TWO_BITS
+
+	There are any number of TABLE[u6] of EIGHT_t
+	There are u2_HEAP_idx u6_ITEM_idx  BYTE_VALUES u2_u6
+
+		u8_BYTE_A_idx
+		u8_BYTE_B_idx
+		u8_IDX_idx // AUTO_GUESS // 
+		BYTE_VALUES u2_u6
+
+		u2_HEAP_idx
+		u6_ITEM_idx
+
+		u2_POOL_idx
+		u6_ITEM_idx
+
+		u2_LIBR_idx  == LIBR_TWO
+		u6_ITEM_idx  == LIBR_MODULE // [u2][u6] as [u8]
+
+	4 x LIBR
+	64 x Module
+	256 x AVAR
+	64K x FSM_LOCN_u16 _u16 _u24 _u32 _u8 _u12 u3_EIGHT_ITER
+	 u3_EIGHT_ITER 
+	  XPOS can be any of 8 positions
+	  WORD can be 8 byte steps
+	  WORD can be 1 eight step
+	  WORD can be u32_u32 and LOHI with it
+	  WORD can be u32_u32 and HILO with it // recommend DONT
+
+	  u6_EA_BIT_in_u64_EIGHT
+
+	  	u6 EA_BIT
+		u64 u64_WORD
+
+		BITFIELD u6_idx u7_N
+		BITFIELD u6_M u6_Z u6_N
+		u6_Z is const ZERO // to override it would RELOCATE idx_u16_ZERO
+
+		BITFIELD 
+		 u6_BIT_ZERO = u6_BITS_to_RIGHT // BELOW
+		 u6 BIT_COUNT = u6_N_BITS of BITFIELD
+		 u6 GAP_ABOVE = 64 - BIT_ZERO - BIT_COUNT
+		 u7 NN // LIM_u6 + 1 // u6_63 u7_64 // u6_idx u7_NN // 
+
+		 MAXIMUM BITFIELD is entire WORD all 64 BITS BOTH 32 BITS
+	
+	u2_LIBR_4 // _LIBR_ONE _LIBR_TWO //
+	u6_Module_64 // LIBR += Module // u6_idx AUTO_NAME DECL //
+
+	u2_u6_LIBR_Module
+	 u8_Module
+
+	 	01_LIBR_ONE
+		10_LIBR_TWO
+		00_LIBR_PLUS ==
+			u6_MODULE_idx Module_UDEF
+			u6_MODULE_idx Module_ARGV
+			u6_MODULE_idx Module_HEAP
+			u6_MODULE_idx Module_API
+			u6_MODULE_idx Module_EXPR
+			u6_MODULE_idx Module_PSG
+			u6_MODULE_idx Module_TREE
+			u6_MODULE_idx Module_DECL _SPEC
+
+		00_LIBR_ZERO ==
+		11_LIBR_MINUS
+
+	u16 {
+		u2_u6	LHS 	// LIBR_MODULE
+		u2_u6	RHS 	// VIEW_OPCODE
+
+		u8_u8_OPCODE
+		 u2_LIBR = SYSTEM_LIBR
+		 u6_MODULE = VIEW_of_64_Modules_u6_PICK
+		 u8_OPCODE = ARRAY[ u8 ] of EIGHT // 2K 
+		 u2_VIEW = VIEW_as_DIAG_BIG _as_DIAG_SMALL _as_DIAG_one _two
+		 u6_OPCODE = OPCODE_64
+
+		 u2_VIEW_idx // 1 of 4 VIEWS that that TYPE advertises		 
+		 EIGHT_t & EA_EXPR_as_EIGHT = VIEWS[u2]
+	}
+
+	u16_DC {
+
+		u16_DC = u32_DCBA >> 16 ;
+		u16_BA = u32_DCBA_BA 
+		 KNOW HAVE COPY u64_r9 = r2.u32_HALF u32_REST
+	}
+
+	MAD_STREAM {
+		we avoid splitting PAIR and keep ALIGN_64 on u32_u32
+		we permit BAD_ALIGN FIXUP_READ_WORDS
+		we stream u32_HALF_WORD and u32_REST
+		STREAM uses "easy to parse" tokens "{" "}"
+		PSG has built a TREE and we ran FILTER over it
+		SWEEP FILTER OVER TREE # ITERATOR CT_RT PRE_GEN #
+
+		THe advantage of a BYTE[u8_idx] machine
+		is that you can call every VALUE and compile what it does
+		CT_RT builds a TREE_mid_COMPILE += attach_bauble
+		CT_RT completes TREE and uses it to GEN_CODE to PARSE TREE
+		PARSE and MATCH and already KNOW SCRIPT from L to CXX
+		PROJECT is compiled into CXX (ES6_mostly)
+		CACHE reruns same SCRIPT to PRE_LOAD CT_RT tables 
+		Probably a few LAYER PHASE ERA CYCLE_STEP BATCH_LOCKS
+
+		use STREAM to PRE_LOAD
+		transfer an entire TREE
+		transfer the rest of the HEAP
+		start MINI_MACHINE
+		throw away end state
+		write_back modified MMAP DATA
+
+		TASK switch between SOLO EDIT LOCK // others held back in time
+
+		FILTER STEP
+
+		---- HALF
+		HALF ----
+		HALF HALF
+
+		WORD_PAIR	CORRECTLY ALIGNED is easy
+
+		----_WORD	MIS_ALIGN is completely OK 
+		PAIR_----	CXX array from BASE OFFS u32_ALIGNED_GET
+
+
+	}
+
+	PHRASE = WORD LIST
+
+		u8_OPCODE
+		u8_NN_WORDS 
+		u16 SEGMENT
+		u32 ADDR // u32_WORD * 8 // WORD_ALIGNED
+		u16_u32_ADDR_EXPR u16_HEAP_u32_ITEM
+
+		so LIMIT 256 ITEMS in LIST P0P2 P0_N
+		so store i9_NN in i16_i9_NN and that permits MINUS_TOKENS
+		so ARGV_LIST_9 fits in ARGV_LIST_255 // _256 flips _ZERO
+		// also VALID XPOS MATH needs to overshoot and undershoot
+		// so i16 to hold i8 and i9_FULL_256 i9_M1_M15_L_M_z_N_R
+
+		 HEAP KNOWS [u32] "{ i33 N }"  L M Z N R 
+		 HEAP KNOWS i33 L M Z N R 
+
+
+
+
+
+
+	EIGHT is a magic adaptor, that work as EA_EXPR _of_ITEM of_CODE of_PSG
+
+	 switch _u2 {
+	  EIGHT_t EA_EXPR_TABLE_u6_of_item[u2_TABLE_idx]
+	  EIGHT_t TABLE_u6_of_item[u2_TABLE_idx]
+	  EIGHT_t TABLE_u6_of_item[u6_ITEM_idx]
+	  TABLE_t TABLE = 
+	  u2_LIBR_idx ]
+	 }
+
+	PLUS = LIBR_PLUS
+	MINUS = LIBR_MINUS
+
+----------
+
+
+	00	ZERO NULL 	PLUS_ZERO	ZONE_PLUS M4 M0 Z
+	01	ONE		PLUS_ONE	M3
+	10	TWO		PLUS_TWO	M2
+	11	M1 MINUS EXTN	PLUS_THREE	M1 
+
+	00	u6	 00_00
+			 00_3F
+	01	u6	 01_00
+			 01_3F
+	10	u6	 10_00
+			 10_3F
+	11	u6	 11_00
+			 11_3F
+	   u9		100_00
+	   u9		cBB_3F
+	
+	u7 is only actually required when all 64 items are in same QUARTER
+	u7 also used then 2 quarters join
+	u8 also used then 3 quarters join
+	u9 also used then 4 quarters join and FULL
+
+	BIT_FLAG ZERO_is_empty
+	BIT_FLAG ZERO_is_Nfull 11_3F +1
+
+

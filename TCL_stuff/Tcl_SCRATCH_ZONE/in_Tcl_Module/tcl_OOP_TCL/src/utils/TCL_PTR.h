@@ -41,14 +41,14 @@ public:
 		*/
 	}
 
-	Tcl_Obj * GET_PTR() { // not a NULL one //
+	Tcl_Obj * GET_OBJ() { // not a NULL one //
 	#if 1
 		if(!PTR) {
-			FAIL("NULL");
+			FAIL("WARNING NULL Tcl_Obj should not happen");
 			return NULL;
 		}
 	#endif
-		return NULL;
+		return PTR;
 	}
 	
 	void ref_incr()
@@ -115,18 +115,18 @@ public:
 		PTR = ptr;
 		return *this;
 	}
-	Tcl_Size STR0_NN() { return GET_PTR() -> length; }
-	char * STR0_BYTES() { return GET_PTR() -> bytes; } // NULL
-	Tcl_Obj * PTR1_Tcl_Obj() { return (Tcl_Obj*) (GET_PTR() -> internalRep.twoPtrValue. ptr1 ); }
-	Tcl_Obj * PTR2_Tcl_Obj() { return (Tcl_Obj*) (GET_PTR() -> internalRep.twoPtrValue. ptr2 ); }
+	Tcl_Size STR0_NN() { return GET_OBJ() -> length; }
+	char * STR0_BYTES() { return GET_OBJ() -> bytes; } // NULL
+	Tcl_Obj * PTR1_as_Tcl_Obj() { return (Tcl_Obj*) TCL_get_PTR1(GET_OBJ()); }
+	Tcl_Obj * PTR2_as_Tcl_Obj() { return (Tcl_Obj*) TCL_get_PTR2(GET_OBJ()); }
 
 // some of this stuff has misplaced itself into OBJ_module
 // more that to TCL_PTR, eg TCL_get_PTR2
 	void get_from_PTR2( Tcl_Obj * obj )
 	{
 //	#warning this is mangled, redo
-		PTR = (Tcl_Obj*) obj -> internalRep.twoPtrValue.ptr2 ;
-//		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
+//	//	set this.PTR to obj.PTR2
+		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
 		// do not ref_incr
 	}
 

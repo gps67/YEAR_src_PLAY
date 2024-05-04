@@ -6,12 +6,13 @@
 
 namespace TCL {
 /*!
+	TCL_PTR
 	a plain Tcl_Obj *
 
 	TCP_REF is based on this, it keeps a REF
 
 */
-struct TCL_PTR {
+struct TCL_PTR { // TCL_OBJ
 
 private:
 protected: // avoid using *this = ptr // use PTR = ptr
@@ -26,6 +27,28 @@ public:
 	TCL_PTR ( Tcl_Obj * ptr )
 	: PTR( ptr )
 	{
+		/*
+			LOWEST BASE CLASS does not know if HOLD AREF or not
+			CLEANEST is ZERO_REF_EFFECT WORD_to_WORD_CPU_move
+
+			IE we expect GEN to do the ref_count_hold_ing
+			SO we ref_count_whenspecifically told to
+
+			Regreattably CTOR lacks spelling variation
+			just parameter prototype variation
+
+			HOLD OBJ as a DUMB register CALLER GEN does ref_incr
+		*/
+	}
+
+	Tcl_Obj * GET_PTR() { // not a NULL one //
+	#if 1
+		if(!PTR) {
+			FAIL("NULL");
+			return NULL;
+		}
+	#endif
+		return NULL;
 	}
 	
 	void ref_incr()
@@ -42,11 +65,11 @@ public:
 	
 	int ref_count()
 	{
-		return PTR->refCount;
+		return PTR->refCount; // ZERO_means_EMPTY so_DELETE__unmentioned
 	}
 	bool is_shared()
 	{
-		return Tcl_IsShared( PTR );
+		return Tcl_IsShared( PTR ); // errm ,,, count is 2+
 	}
 
 	~TCL_PTR ()
@@ -92,12 +115,16 @@ public:
 		PTR = ptr;
 		return *this;
 	}
+	Tcl_Size STR0_NN() { return GET_PTR() -> length; }
+	char * STR0_BYTES() { return GET_PTR() -> bytes; } // NULL
+	Tcl_Obj * PTR1_Tcl_Obj() { return (Tcl_Obj*) (GET_PTR() -> internalRep.twoPtrValue. ptr1 ); }
+	Tcl_Obj * PTR2_Tcl_Obj() { return (Tcl_Obj*) (GET_PTR() -> internalRep.twoPtrValue. ptr2 ); }
 
 // some of this stuff has misplaced itself into OBJ_module
 // more that to TCL_PTR, eg TCL_get_PTR2
 	void get_from_PTR2( Tcl_Obj * obj )
 	{
-	#warning this is mangled, redo
+//	#warning this is mangled, redo
 		PTR = (Tcl_Obj*) obj -> internalRep.twoPtrValue.ptr2 ;
 //		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
 		// do not ref_incr
@@ -105,7 +132,7 @@ public:
 
 	void set_into_PTR2( Tcl_Obj * obj )
 	{
-	#warning this is mangled, redo
+//warning this is mangled, redo
 		obj -> internalRep.twoPtrValue.ptr2  = PTR;
 //		TCL_set_PTR2( obj, PTR );
 		// do not ref_incr

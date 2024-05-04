@@ -1,0 +1,60 @@
+	2024-05-04
+
+	2024_05_May
+	2024-05-04_ARGV_over_MMAP.txt
+
+	MMAP
+	HEAP
+	ZONE
+	ARGV
+	 CSR
+
+	SESS
+	.SESS_VAR("AVAR") // promote LEX by USAGE as "AVAR"
+	// AVAR becomes %s
+	// AVAR is the SCOPE UNIQUE_NAME_STR0 "AVAR"
+	// AVAR.BENCH CT_RT MENTION XPOS INTENTION EXPLAINS
+	// EXPLAIN 
+	// AVAR becomes %s
+	// In this script wherever you see the VAL "AVAR" as CIDEN99
+	// as CSET_EXPR_NOUN_ // _unique_SPELLING // resonance means MATCH
+	// exact SPELLING used in SCRIPT // BENCH helps maintain tidy lists
+	// exact XPOS "{ LIBR FILE XPOS OFFS XPOS LINE XPOS "{ LINE XPOS }"
+	// ALIAS XPOX XPOS_t // VIEW += _t TOKENISED_PRECISE PARSED_APPROX
+	// XPOS_t APPROX_XPOS = "STR0" //
+	// CT_RT MECAHANISM // KNOW this is compiled EXPR CODE of SCRIPT XPOS
+	// CT_RT SESS CT_ _RT CT_RT_in_MODE CT_RT_as_MODE "{ idx = N ++ }"
+	// an ARGV of SCRIPT expressed as a Q2_STR0_Q2 // PSG drops RHS Q2
+	// PSG DROP Q2 enables CT_RT SESS to do it's COMPILER FILTER ACTION
+	// GEN Q2_LBRACE_SP_HERE_SP_RBRACE_Q2 // 
+	// GEN actually lets LOCAL CACHE for REMOTE ASKING_ENQ
+	// 
+	// GEN Q2_LBRACE_SP_HERE_SP_RBRACE_Q2 // 
+	// GEN
+	// Q2_LBRACE_SP_HERE_SP_RBRACE_Q2 // 
+	// yyQ2 LBRACE SP HERE SP RBRACE Q2 // ARGV from STR0 // CACHED // CT_RT
+	// FILTER detects use of CT_RT as ARGV_ZERO // CMD_OPCODE_EXPR_STR0
+	// 
+	// Q2		# PSG_STEP_PUNCT("Q2") // my local dialect defines Q2
+	// LBRACE	# LBRACE set to "{"
+	// SP		# DETECT_EXACT_PARSED_GAP_LEX_EDGE
+	// HERE		# replace "HERE" with %s # DATA_STEP_in_PSG_WORLD
+	// SP		# GEN is EXACT # PARSE is PSG with Layout ie_GEN_CXX
+	// RBRAC	# RBRACE set to ")"E
+	// Q2		# _PUNCT("Q2") # _PUNCT has proper PSG avail ARGV MMAP
+	// // 
+
+	SESS.MMAP 
+	.MMAP 
+
+	MMAP HEAP ZONE ARGV CSR
+
+		MMAP - provides nbytes and MEDIA_LABEL_found_in_INDEXED
+		HEAP - provides ALLOC IDX NBYTES OFFS EA_EXPR
+		ZONE - CALLER_PROVIDES - that's YOU saving your nbytes to DB
+		ARGV - EA_EXPR within ZONE_LIST
+		 CSR - XPOS in SCRIPT in SESS at CLOCK_WHEN
+	
+
+
+

@@ -23,8 +23,8 @@
 	DEFS = 
 
 	PKGS += libs_apps_base1
-        PKGS += libs_apps_base2
-#       PKGS += libs_apps_uses_ssl
+	PKGS += libs_apps_base2
+	PKGS += libs_apps_uses_ssl
 #       PKGS += libs_apps_mozjs
 
 

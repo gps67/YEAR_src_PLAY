@@ -32,18 +32,6 @@ namespace eval ::MK_ID {
 	incr ::pfx_N($pfx) ;# return value
  } ;# it is actually a str %d idx 99
 
- proc test1 {} {
- 	puts "[mk_id  PFX]"
- 	puts "[mk_id  PFX]"
- 	puts "[mk_idx PFX]"
- 	puts "[mk_id  PFX]"
- 	puts "[mk_id  TWO]"
- 	puts "[mk_id  TWO]"
- 	puts "[mk_idx TWO]"
- 	puts "[mk_id  TWO]"
- 	puts "[mk_idx    ]"
- 	puts "[mk_id     ]"
- }
 }
 
 # caller must somehow do

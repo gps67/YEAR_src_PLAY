@@ -1,0 +1,84 @@
+
+// everything is an idx, or EA, relative to ZERO
+// z is ZERO is 0, even when the third item in the stored array
+// Z == 0 // z is Z but not a variable
+// Z is really the first of the PLUS range, but you can interpret 0 as NULL
+//
+//
+// M1 is -1 // it does not always exist// not always named M1 // but often is
+// M2 is -2 // it exists even less // but might do
+// M is the lowest existing MINUS // for any pos V : (M <= V) && ( V < N )
+// M starts off as ZERO (there is no MINUS number)
+// M is always MINUS or ZERO never PLUS
+// 
+// M_500 is what happens when you allocate 500 FSM nodes in the MINUS region
+// M == -500 // N_MINUS = Z - M == -M
+
+// N is the number of items in the +VE side, at zero or above
+// (N - Z) is N
+
+// N is N // N_something is a different N, of the something
+// do not get confused, N_something is still a sort of N_ 
+// all the rules of P0P2 where N_P0P2 == P2 - P0 
+// (obviously with N_item and PTR_BYTE there is a multiple of BYTES_PER_ITEM)
+// N_bytes == P2-P0
+// N_item == N_bytes / bytes_per_item // or better the opposite with mult
+
+// V is a POS of an idx, plus or minus
+// M <= V // else not valid
+// V <  N // else not valud // V == N when it points just outside the valid range
+
+// X is a POS of item V, relative to the ARRAY_ADDRESS_ZERO_first_item_zero
+// Z is at '{ X == -M }'
+// if Z has not been ALLOC'd, Z is where it would be if it existed
+// as V==N has not been ALLOC'd, N is where it would be if it existed
+
+// ALLOC_PLUS: V = N ++
+// ALLOC MINUS: { M--; V = M }
+// CALC: N_PLUS == N	(N-Z)
+// CALC: N_MINUS == -M	(Z-M)
+// CALC: N_TOTAL_used == N - M
+// CALC: N_TOTAL_used == N_MINUS + N_PLUS
+
+// M_z_N is a complete thing
+
+// The above is complete system, with zero wiggle room
+// We wrap that array, in a larger array,
+// with gaps to the left and right
+// L and R are P_pos values relative to Z
+// L <= M
+// N <= R
+// L----R is either a tight or loose fit around M_z_N
+// N_gap_left == M-L
+// N_gap_right == R-N
+// N_TOTAL_used == N - M
+
+// NBIT is yet another N, with the usual properties of N
+// NBIT is the BITFIELD size used to hold P_pos
+// NBIT_plus_1 may be needed to hold N when the array is FULL
+// one fudged alternative is to store 0 and set a flag is_FULL // is_EMPTY
+// one easier alternative is use the maximum size WORD // but on 32 bit ?
+// so never a problem for u24 or i24 or i25 or u23 // all easily fit in i32
+// one easier alternative is to never fill IDX // HINT ALLOC M1
+
+// NBIT counts up, stepping when an extra bit is needed u4 u5 u6 u7 u8 u9 ...
+// NBIT impacts on NBYTE or NBIT_WORD_SIZE u8 u16 u32 u64 // als
+// NBIT impacts on BITFIELDS which as u24 or u12 or u2_u6
+
+// WRITTEN BITFIELD ORDER
+// I like to write the BYTE fields as they happen in FILE and MEM and STR0 A B C
+// I like LOHI because most CPU's have special usage of lowest 8 bits, not high
+// LOHI because you dont know it is EIGHT until you have decoded A or A_B
+// So I like to write the BYTE_fields in the order I will process them
+// u8_u8 u16 u32 // u32_u32 //
+
+// WRITTEN BITFIELD ORDER
+// I like to write BITFIELDS in the order they appear in a a register
+// eg u6_u2 is u6 in the upper bits u2 in the lower bits
+// eg u2_u6 is what the first RULE says not what the second rule says !!!
+//
+// eg u16_u48 // u8_u8_BYTE_A_BYTE_B // u48_PAYLOAD = u64_WORD >> 16 //
+
+
+// for simplicity we limit ourselves to i32_idx inside u32_array
+// we still hope for u8_idx

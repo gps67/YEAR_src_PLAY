@@ -1,0 +1,222 @@
+	2024-05-08
+
+	2024_05_May
+	2024-05-08_API_LEXICON.txt
+
+	API_ _Module 
+
+	LEXICON += PAIR animándolos encouraging += FLASH_CARD_TRANS
+
+	QUOTE CHAT_CHAT_Line_RECORD_RELAY_SEARCH_FIND_REPLAY
+
+		RELAY_and_REPLAY
+
+			mp3_stream 
+			mux_time_delay_CTRL
+			mux_CTRL 
+
+		MUX_RELAY_REPLAY
+
+			VIEW DIAG ARGS CTXT CACHE
+
+				CACHE CT_RT component for AVAR
+				PARSE CT_RT CIDENT99 // exact_match_LIBR
+				LIBR API_for_SESS
+
+					cache local
+					cache remote
+					SESS_is_CALLER_with_CT_RT_SCRIPTS
+					compile_those_scripts(); // AUTO_CACHE
+
+					symmetry
+					+ remote
+					+ local
+					+ API_layer_on_layer // each_a_filter
+
+				DIAG SCRIPTS look like
+
+				__CTOR__ and friends _OOPS_TECH_HERE ALP_ALLOC
+				__ALLOC__.api // varnames can be filenames
+				// PARSE SUBLEX GAP %s.api SP // GAP MATCHES SP TOO
+				LOAD and INITITALISE SELF from STO
+
+					SELF_is_CACHE_FILTER_over_SELF _t AVAR
+
+					_t is used to suffix %s OPTION %s_t
+					_t has VIEW with _t
+					_t has VIEW without _t
+					_t has VIEW with_nearby_AVAR_ID _t
+
+				ID u8_idx -- MINI_NACHINE
+				IDX u12_idx -- MINI_NACHINE
+				IDX u16_idx -- 
+				IDX EXPR_u16_idx -- DECODE( u16_EXPR ) 
+				IDX EXPR_u16_idx -- DECODE( u8_u8 ) 
+				IDX EXPR_u16_idx -- DECODE( u4_u12 ) u4_PICK u12_idx_ITEM
+				IDX u24_idx -- 
+				IDX u32_idx -- 
+				IDX u64_idx -- 
+
+				IDX u8_u8_u48_idx -- // ARM prefers u16_u32_PAIR
+				DECODE( u16_u32 ) 
+				 WHEN( u8_u8_u16_u32 ) // opposite of drill down drill up
+				 WHEN( u64_MATCHING_WORD ) DECODES_AS { SCRIPT }
+				 SCRIPT {
+				 	
+					 u8_u8_u16_u32_t
+					 u8_u8_u16_u32( u64_WORD_LOHI ) ;
+
+					 // ARGS += u64_WORD found in MEM PTR
+					 // ARGS += CODE_POINT // OPTION
+
+
+					// argv[argv_csr] // == u64_WORD
+					// u64_WORD ==
+					// u64_WORD_LOHI
+					// argv[argv_csr] // == u64_WORD
+
+					// DECODE WORD_at_ARGV_POS 
+					//	ARGV_POS
+					//	 i24_idx idx_item_in_HEAP_LIST
+					//	TABLE keeps idx fixed in MMAP
+					// ARGV_POS // one pointer of several
+					// TREE_LEAF _POS  // EA_ITEM EA_XPOS
+
+
+				DRAW
+
+				 	u64_WORD_LOHI _in_MEM _in_CPU
+					_in_MEM { HERE } // asif FILTER
+
+					BITFIELDS_in_u64
+					BITFIELDS_in_u64_STREAM
+					BITFIELDS_in_u64_LIST
+					BITFIELDS_in_u64_ARGV
+
+					u64_WORD_LOHI_t u64_WORD_LOHI = u64_DATA
+
+					 u8_u8_u16_u32_t
+					 u8_u8_u16_u32( u64_WORD_LOHI ) ;
+					
+
+				NEAR
+
+					AVAIL DECODE(u64_WORD_LOHI) as SCRIPT
+
+						u64_WORD _as_was _as_found
+						LOAD and STORE both do BYTE_SWAP
+						or_NEITHER_EQUAL_ZERO_UNDO_EVEN_TIMES
+
+				 	ARGV has unlimited indented BLOCKS
+
+						this list gets parsed again
+
+					ARGV _FAST_MATCH
+
+						USED %s.%s with USED_LANG_HINT
+
+							FILEBASE.api
+							FILEBASE.txt
+							FILEBASE.c
+							FILEBASE.h
+
+						LEX_NOUN_Item.api
+
+							a named resource
+							NAME == FILEBASE
+							NAME == EXPR PICK ARGS
+
+						PSG_PHRASE
+
+							LEX_used found in PSG_TEXT
+							used = "used"
+							USAGE[used]
+
+						// BENCH ALSO creates AVAR %s
+						// holds own name as value
+						// SELF as idx_SELF as EA_SELF
+						// SELF as API_and_SPEC_and_API
+
+
+
+
+
+					 // opposite of drill down drill up
+					 // DECODE( u64_stream ) // or_LIST or EXPR
+					 // PROVIDE STO when running SCRIPT
+					 // see SPEC and MODULE
+
+				 }
+ API_LEXICON += A_GAME or A_DIAG 
+
+ flashcard
+ 	animándolos
+	encouraging 
+
+	encouraging them
+
+	(dont try this at home on a ZT-P1000 with enter between 2 lines)
+	(it will print a tape label of the 2 words 2 lines)
+
+ DIAG is a flashcard
+
+	DIAG_API += "DIAG.api" // VFS uses a file to store JSON data or MMAP
+	MMAP += JSON_SUBSET
+	MMAP += HEAP_SUBSET // that ecmascript can run as ES6
+
+	API += start SESS as VIEW_DIAG EDIT_DIAG DRAW_DIAG STEP_DIAG
+	API += STEP_DIAG before_draws_LIST
+	API += STEP_DIAG after_draws_LIST // SCRIPT allows defered syntax repeats
+	API += STEP_DIAG STEP_AVAIL from SWITCH or _PICK or_EVAL or _EXPR
+	STEP_DIAG += u8_PICK
+	STEP_DIAG += ARGV[u8_ARGC] // grow_u16_u32_u64 _via_u24 via_u2
+	STEP_DIAG DECODE(u2) // SCRIPT that builds SELF in BENCH in CT_RT
+	STEP_DIAG CT_RT // const_TUPLO_expr_obj_idx_ITEM_in_HEAP_of_LIBR("CT_RT")
+	CT_RT("AVAR") // we use strict PSG rules // AVAR_t * AVAR = EXPR //
+	CT_RT("AVAR") // we use strict PSG rules // AVAR_t * AVAR = AVAR_IDENT //
+	CT_RT("%s") // CIDENT("%s") // is_AVAR() == TRUE //
+
+	PICK is_AVAR("PICK") well known PICK name for IDX or PTR to ENUM_PICK
+	VIEW shows VIEW[PICK] with OPTS[same_PICK] or OPTS[PICK_2] CT_RT FILTER
+	AVAR is PICK of AVAIL OBJ_JOIN_("SUM of ATTR")
+	AVAR is PICK of AVAIL OBJ_JOIN_("EXPR(OBJ_IDX")  as STR0"
+	STR0 everything in this SCROLL is a STR0 every LEX SUBLEX and PHRASE
+	P0P2 is much faster as there is no LEX copy
+	XPOS is even faster, can be compiled XPOS == P0 // parse_from_CSR //
+	i4_opcode
+	i12_XPOS // script is smaller than 4K in VFS CHUNK (A_FILE)
+	i12_XPOS // script is smaller than 4K in VFS CHUNK (A_PAGE)
+	i12_XPOS // script is smaller than 4K in VFS CHUNK (A_PARAGRAPH)
+
+	i4_i12
+	i4_i12_opcode_item
+	i4_i12_opcode_item_XPOS // OFFS within 4K CHUNK // IDX in a LIST[4096]
+	i4_OPCODE {
+		GET u12_PAYLOAD { return WORD >> 4 }
+		SET u12_PAYLOAD { 
+			u4_in_SITU = u16_WORD & 0x0F // == u4_PAYLOAD
+			u4_original = u4_in_SITU
+			u12_in_SITU = u12_PAYLOAD << 4
+			u16_BITFIELDS = u4_in_SITU | u12_in_SITU // BITFIELD MUX MERGE
+
+			return u16_WORD = u16_BITFIELDS // _LOHI etc
+			// above sets WORD // which will GEN_ASM ...
+
+		CT_RT matches GEN_ASM when filter finds them // DECL // USED //
+
+			TEST DATA USED // add to CT_RT
+			// try to make slip TEST DATA that only adds a few strays
+			// every ALEX is AVAR_of_ALEX_at_XPOS
+			// CT_RT does nothing // it prefers PRE_CREATE_ALL
+			// CT_RT PRE_LOAD // run SCRIPTS filter_out_lists
+			// AVAR for every ALEX //
+			// NOUN for evary ITEM //
+			// HEAP ITEM //
+			// EXPR //
+			// EXPR ARGS //
+	}
+
+
+
+
+

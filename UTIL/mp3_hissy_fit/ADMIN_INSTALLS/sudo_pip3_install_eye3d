@@ -1,0 +1,6 @@
+
+ . fns_VARS
+ var_pfx PATH /tools/x86_64/py/bin/python3
+
+ ask_do pip3 install eyed3
+ ask_do sudo pip3 install eyed3

@@ -23,7 +23,7 @@ struct L_M_z_N_R_32 {
 		 NBIT increases by 1 
 	*/
 	int NBIT; // 2 3 4 5 6 7 8 9 10 ..
-	int N_MAX;
+	int NBITS_idx_MAX; // = 0xFF; // 
 	int M_MIN;
 	int NBIT_WORD; // 2 6 8 12 16 24 32 48 64
 	int bytes_per_item; // 1 2 4 8 
@@ -34,6 +34,7 @@ static const	IDX_int Z = 0;
 	: PTR_to_ARRAY(NULL)
 	, L(0), M(0), N(0), R(0)
 	, NBIT(2)
+	, NBITS_idx_MAX(0x03) // b0011 2 bit
 	, NBIT_WORD(2)
 	, bytes_per_item(4)
 	{
@@ -56,10 +57,16 @@ static const	IDX_int Z = 0;
 
 	bool ALLOC_PLUS( IDX_int & V );
 	bool ALLOC_MINUS( IDX_int & V );
+	
+	bool get_plus_space_for( int add );
+	
+	bool grow_array();
+	bool slide_MN_left_some();
+	bool slide_left_to(IDX_int LM_gap); // gap left
 
-	bool grow_array_left() { return grow_array_is_right( false ); }
-	bool grow_array_right() { return grow_array_is_right( true ); }
-	bool grow_array_is_right( bool is_right );
+	bool grow_array_left() { return grow_array_on_right( false ); }
+	bool grow_array_right() { return grow_array_on_right( true ); }
+	bool grow_array_on_right( bool on_right );
 
 
 };

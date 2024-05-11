@@ -23,13 +23,16 @@
 # want RULE .o depends on .h
 # this makes ALL .o's dependent on ALL .h's
 
-	HDRS += ../src/M_z_N.h
+	S += ../src
+	HDRS += $S/M_z_N.h
+
+	LIST_VPATH +=$S
 
 	# after any HRDS edited, rebuild OBJS in this order
 
-	OBJS += ..M_z_N.o
+	OBJS += M_z_N.o
 
-	PROG1=M_z_N
+	PROG1=M_z_N_test
 	PROG2=M_z_N
 	PROG3=M_z_N
 	PROG4=M_z_N

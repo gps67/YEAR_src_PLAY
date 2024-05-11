@@ -2,6 +2,7 @@ PATH=$PATH:/home/gps/bin
 PATH=$PATH:/home/gps/bin/bin_one
 PATH=$PATH:/home/gps/bin_LGX
 . fns_VARS
+var_pfx PATH /tools/x86_64/py/bin
 var_add PATH /home/gps/YEAR/src/PLAY/UTIL/mp3_hissy_fit
 var_add PATH /opt/schily/bin
 var_add PYTHONPATH /home/gps/YEAR/src/PLAY/UTIL/mp3_hissy_fit/_borrowed

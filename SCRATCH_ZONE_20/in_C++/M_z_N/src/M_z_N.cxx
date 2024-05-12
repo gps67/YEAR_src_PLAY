@@ -17,6 +17,70 @@
 
 	bool
 	L_M_z_N_R_32::
+	increase_NBIT_WORD_to_hold( int NBITS ) {
+		if( NBITS <= NBIT_WORD ) {
+			WARN("this never happens");
+			return true; 
+		}
+		if( NBITS <= 8 ) {
+			NBIT_WORD = 8;
+			NBIT_idx_MAX = 0xFF;
+		} else
+		if( NBITS <= 24 ) {
+			NBIT_WORD = 24;
+			NBIT_idx_MAX = 0xFFFFFF;
+		} else
+		if( NBITS <= 32 ) {
+			NBIT_WORD = 32;
+			NBIT_idx_MAX = 0xFFFFFFFF;
+	#if 1
+		} else {
+			NBIT_WORD = 32;
+			NBIT_idx_MAX = 0xFFFFFFFF;
+			return FAIL("overflow u32");
+		}
+	#else
+		if( NBITS <= 48 ) {
+			NBIT_WORD = 48;
+			NBIT_idx_MAX = 0xFFFFFFFFFFFF;
+		} else
+		if( NBITS <= 64 ) {
+			NBIT_WORD = 64;
+			NBIT_idx_MAX = 0xFFFFFFFFFFFFFFFF;
+		} else {
+			NBIT_WORD = 64;
+			NBIT_idx_MAX = 0xFFFFFFFFFFFFFFFF;
+			return FAIL("overflow u64");
+		}
+	#endif
+		PASS("NBITS %d got %d MASK 0x%016X", NBITS, NBIT_WORD, NBIT_idx_MAX );
+
+		return true;
+	}
+
+	bool
+	L_M_z_N_R_32::
+	increase_NBIT_to_cover( IDX_int N2 ) {
+
+		if( N2 <= NBIT_idx_MAX )
+			return true;
+
+		// SOFTWARE LIMIT ARM32 u32_u32 HERE
+		// PAUSE at 32 // fail ?
+		while( ( NBIT <= 32 ) &&( N2 > NBIT_idx_MAX )) {
+		INFO("NBITS %d got %d MASK 0x%016X", NBIT, NBIT_WORD, NBIT_idx_MAX );
+			if(!increase_NBIT_WORD_to_hold( NBIT+1 ))
+				return FAIL_FAILED();
+		}
+
+		if( N2 <= NBIT_idx_MAX )
+			return true;
+		INFO("NBITS %d got %d MASK  x%016X", NBIT, NBIT_WORD, NBIT_idx_MAX );
+		return FAIL("CODE_ERROR");
+	}
+
+	bool
+	L_M_z_N_R_32::
 	get_plus_space_for( int add ) {  
 
 		// usually called with 1
@@ -62,57 +126,69 @@
 				(M - L) : (R - N )	gaps left
 			*/
 			// we are alloc_PLUS so we know ZN > 0
-			int Z = 0;
-			float MZ = -M; // Z - M // nolonger poss 0 
-			float ZN = N2; // N2 - Z;
-			assert( ZN > 0.0 );
-			double LM = gap_after * MZ / ZN;
-			new_gap_left = (int) LM;
-			INFO("gap_after %d # 0 from %d - ratio split ", gap_after, new_gap_left );
+			  int Z = 0;
+			  float MZ = -M; // Z - M // nolonger poss 0 
+			  float ZN = N2; // N2 - Z;
+			  assert( ZN > 0.0 );
+			  double LM = gap_after * MZ / ZN;
+			  new_gap_left = (int) LM;
+			  INFO("gap_after %d # 0 from %d - ratio split ", gap_after, new_gap_left );
+			} // GAP ASIS ZERO RATIO
 
+			// we have decided GAP, make it new_gap_left
 			if(!slide_left_to( new_gap_left )) 
 				return FAIL_FAILED();
 
 		} else { // not enough GAP // realloc required
+			// how much == N2 // want to pause at xFF FULL PAGE
+			// 
+			// gap_after from calc is MINUS // start new DIAG
+			// KNOW PREV DIAG //
+			//
+			// PAUSE_at_CEILING_PAGE_EDGE // xFF then xFFF then xFF_u32
+			// so when u5_PICK is used expect to create TRAY[32]
+			// array[ u5_idx ] of WORD_PAIR_ITEM_EXPR u32_u32
+			// PLUS += KNOW compiler chose u5 because u4 was FULL
+			// so 16 of 32 // average +8 // N_USED = 24 //
+			// NBIT required 5 // NBIT_idx_MAX = 31 //
 
 			// we might realloc within same NBITS
 			// we might realloc with extra NBITS
 			// typical usage get_space_for(10) 
 			// adds 20% + 20 // ROM can SHRINK shrink_wrap gap_zero
 
+			// if we cant grow space within NBITS // +1 +8 //
+			// pick a new idx_VAL_HIGH // BIND == i32_VAL // i12_VAR
+			if( N2 <= NBIT_idx_MAX ) {
+				// realloc but idx wont break NBIT
+			} else {
+				// expand NBIT computation VARS
+				if(! increase_NBIT_to_cover(N2) ) 
+					return FAIL_FAILED();;
+				// realloc with new NBIT
+				// realloc but idx wont break NBIT // after FIX
+			}
+			int idx_VAL_HIGH = N2;
+
+
 			// N2 is exact required to have space
 			int new_alloc = N2;
 
-			if( N2 < limit
+			if( NBIT_idx_MAX < N2 ) {
+				// can realloc keeping same NBITS
+			} else {
+				// must expand NBITS // jump to it's 1.2
+			}
+			INFO( "NBIT_idx_MAX %ld", (long) NBIT_idx_MAX );
 
 			// int dst = new_gap_left;
 			// int src = M;
 			// int cnt = N - M;
-			}
-
 		}
+
 
 		// Maybe space is available on the left
 
-
-		else if( L < M ) {
-			// gap on left can be shifted 3/4 to the right
-			if(!slide_MN_left_some())
-				return FAIL_FAILED();
-			assert( N2 < R );
-			V = N ++;
-			return true;
-		} else {
-			// that is an exact fit
-			// this is particularly fun when moving u8 to u16
-			// 
-			// grow_array
-			//
-			// option of at_least_ten // ie copy cost too much
-			// but slide_MN_left_some() could do a late grow_array
-			// so opt to call GROW_rather_than_COPY
-			if(!grow_array()) return FAIL_FAILED();
-		}
 
 		return FAIL("CONTINUE CODING HERE");
 
@@ -138,8 +214,9 @@
 			// now zero fill the adj gap
 			// TODO //
 
-			V = N ++;
-			return true;
+		// get_space then use space
+		//	V = N ++;
+	//		return true;
 		}
 
 		assert( L == M ); // no left gap
@@ -160,6 +237,12 @@
 
 	bool
 	L_M_z_N_R_32::
+	slide_left_to(IDX_int LM_gap) { // gap left
+		return FAIL("TODO");
+	}
+
+	bool
+	L_M_z_N_R_32::
 	grow_array() {
 
 		// other funcs might have opther args // eg get_space_for( nn )
@@ -169,15 +252,16 @@
 		
 		// old_CURR_NBITS_limit was OK for old_N
 		// new_N might be above it
-		if( NBITS_idx_MAX < new_N ) { // request grow beyond xFFFF
+		if( NBIT_idx_MAX < new_N ) { // request grow beyond xFFFF
 
 			// maybe request can be happy WITHIN NBIT_idx_MAX
 
-			if( old_N + 1 <= NBITS_idx_MAX ) {
-				new_N = NBITS_idx_MAX +1;
+			if( old_N + 1 <= NBIT_idx_MAX ) {
+				new_N = NBIT_idx_MAX +1;
 				// idx_limit not N_limit
 				// ie GROW UPTO NBIT CEILING // +1 // TODO //
-			} else
+			} else {
+			}
 		}
 		return FAIL("TODO");
 		return FAIL_FAILED();

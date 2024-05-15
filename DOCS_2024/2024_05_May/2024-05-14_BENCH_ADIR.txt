@@ -1,0 +1,51 @@
+	2024-05-14
+
+	2024_05_May
+	2024-05-14_BENCH_ADIR.txt
+
+	BENCH creates TEMP_ANON_FILES with real names in VFS
+
+		FILES NAMES unique in VFS ARENA // _in_MINI_MACHINE
+		FIELD names unique in MINI_MACHINE // or in SCOPE //
+		FILENAME FILTER "{ ASIF LHS RHS }"
+	
+	APP connects MOBILE and is ASIF VFS OBJ_JS_over_NET_via_CACHE
+
+		BENCH creates DIR for OBJ 
+
+		SESS/BENCH/LOCN/OBJ/OBJ_FF
+
+			BENCH_LOCN = BENCH/LOCN_/_%04X/_FFFF
+
+			_FFFF means "_FFFF" 
+			_FFFF means "_%04X" 
+			_FFFF means   BOTH 
+	
+	ADIR = BENCH_LOCN
+
+		ALIAS switches to GEN AVAR as "AVAR" 
+		ALIAS switches to GEN AVAR as "AVAR_%X" // _IDX as _FFF _F _FF
+		ALIAS switches to GEN AVAR as "AVAR_%04X" // _FFFF
+		PICK VIEW and GEN redraws DIAG with that new OPTION
+
+		VFS/BENCH/LOCN_/_%X 	// API uses VFS TEMPLATE PICK OPTIONS
+		VFS/BENCH/BENCH_LOCN_ARRAY/_%X 	// 
+		VFS/BENCH/BENCH_LOCN_ARRAY/%s_%X // 
+
+		GEN uses PICK to build above 
+		CT_RT uses GEN to create CACHE that need compiling
+		CT_RT calls compiler 
+		CT_RT provides JIT compiler 
+		CT_RT provides SCRIPT interp
+		CT_RT provides API ARGV and MODULE stuff
+		CT_RT uses "safe" scripts // DEFAULT GEN //
+	
+	LOCN = ADIR
+	ADIR = LOCN
+
+		both phrases are added to MATCH DECODE STEP // STEPS_AVAIL
+	
+
+
+
+

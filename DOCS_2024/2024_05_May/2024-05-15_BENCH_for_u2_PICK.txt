@@ -1,0 +1,102 @@
+	2024-05-15
+
+	2024_05_May
+	2024-05-15_BENCH_for_u2_PICK.txt
+
+		u64_EA_EXPR ARRAY[ u2 ] 
+		ARY = ARRAY [ u2 ] of u64_LOHI
+
+			LANG += "ARY" gives it a NAME, before then it existed
+			LANG += "=" has name on left, NONE on right
+	
+	We can have 4 easy layouts u2_PICK i3_PICK = 
+
+		M3 M2 M1 ZERO ONE TWO PLUS
+
+	     M4 M3 M2 M1 	// M4 == ZERO with u5_10000 as WRAP
+		M3 M2 M1 ZERO
+		   M2 M1 ZERO ONE	// i2
+		      M1 ZERO ONE TWO	// as i3, this gives us _ONE _TWO BASE
+		      M1 ZERO ONE M2
+		      M1 ZERO ONE M2 == "{ M2 M1 ZERO ONE }" surely!!
+			 ZERO ONE M2  M1
+			 ZERO ONE TWO PLUS	// u2
+			 ZERO ONE TWO M1
+			      ONE TWO THREE FOUR
+			      ONE TWO M1 ZERO
+			      ONE M2  M1 ZERO
+			      M3  M2  M1 ZERO
+			      ONE TWO M1 M2
+
+      M1 ZERO ONE TWO
+
+00 [-0] [0]      ZERO  ONE  TWO  THREE // u2 as u2
+11 [-1] [3]      ZERO  ONE  TWO  M1 // convert +3 to -3
+10 [-2] [2]      ZERO  ONE  M2   M1
+01 [-3] [1]      ZERO  M3   M2   M1
+00 [-0] [0]      ZERO  ONE  TWO  THREE // u2 as u2
+
+
+
+      // as i3, from i2, this gives us
+
+      _ONE_TWO is a NAME CONTRACT think u2_USED
+
+        _ONE
+        _TWO
+
+      BASE_CLASS
+
+        _M1
+        _ZERO
+
+		ABOVE gives 4 interpretations of u2 within i3 range
+
+		IMHO best to stay in 7 options that haze ZERO as ZERO not FOUR
+
+		M3 M2 M1 ZERO
+		   M2 M1 ZERO ONE		// i2
+		      M1 ZERO ONE TWO		// i3 = i3_from_u2_from_u2_TOP
+			 ZERO ONE TWO PLUS // PLUS means THREE also MAX_INT M1
+
+		WAYS to express that: PICK
+
+			M3 is "{ i4 -3 }"
+			M3 is "{ i4 M3 }" the ALIGN with ZERO needs +1/8 bit
+
+			M is M3 is -3
+			N is [N is [1
+			(N - M) is [4]
+
+			HIGH_VAL_is_ZERO
+			HIGH_VAL_is_ONE
+			HIGH_VAL_is_TWO
+			HIGH_VAL_is_THREE
+			HIGH_VAL_is_M1
+
+
+		M3 M2 M1 ZERO ONE TWO M1
+
+		M3 M2 M1 ZERO
+		   M2 M1 ZERO ONE
+		      M1 ZERO ONE TWO
+			 ZERO ONE TWO M1
+
+		M3 M2 M1 ZERO ONE TWO PLUS M3 M2 M1
+		M3 M2 M1 ZERO
+		   M2 M1 ZERO ONE
+		      M1 ZERO ONE TWO
+			 ZERO ONE TWO PLUS // PLUS is 11 M1 // PLUS is THREE
+			 ZERO ONE TWO M1   // looks like M1_ZERO_ONE_TWO
+
+			      ONE TWO M1   ZERO
+			          TWO M1   ZERO
+			              PLUS M3 M2 M1
+
+			                   M3 M2 M1 ZERO
+			                      M2 M1 ZERO ONE
+			                         M1 ZERO ONE TWO
+
+
+
+

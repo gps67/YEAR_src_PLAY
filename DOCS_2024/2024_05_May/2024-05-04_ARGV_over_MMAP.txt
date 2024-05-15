@@ -130,6 +130,40 @@ That idea can be "WELL_KNOWN"
 			 u2_01
 			 u2_00
 
+			 _MINUS M1
+			 _ZERO 
+			 _ONE
+			 _TWO
+
+			 _MINUS M2
+			 _MINUS M1
+			 _ZERO 
+			 _ONE
+
+			 _MINUS M3
+			 _MINUS M2
+			 _MINUS M1
+			 _ZERO 
+
+			 BASE_CLASS_i2 : CODE_POINT_picks_i2_in_i3_frame
+
+				EG a WINDOW of 4 items 
+				ON a LAYOUT of u16 items
+
+				CLASS PICK "[-32K[+32K"
+				CLASS PICK "[-64K[0
+				CLASS PICK "[-64K[0[1 // 0_is_PLUS 1_is_OUT
+
+					clearly -64K would have to lose 1
+					(a) it does
+					(b) it does not BUGS happen on_FULL
+
+			 BOVE_CLASS_i2 N_SLOTS = TOTAL_ADDRS = array_N = (N - M)
+			 BASE_CLASS_i1 [M1[0[N // N == 1 "{ -1 0 }" is_PLUS(0)
+
+			 _MINUS M1
+			 _ZERO 
+
 			 u2_PAYLOAD = HIGH - LOW // can exceed u2 // not BITSHIFT
 			 u2_PAYLOAD = ITEM - ZERO // generic ARRAY rule
 

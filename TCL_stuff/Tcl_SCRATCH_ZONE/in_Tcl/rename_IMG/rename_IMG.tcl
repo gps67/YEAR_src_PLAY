@@ -44,6 +44,7 @@ set ZONE_NAME Reading
 set ZONE_NAME Burnside
 set ZONE_NAME Godalming
 set ZONE_NAME RSAC_pressgang
+set ZONE_NAME Southbourne
 
 proc list_pop {listname itemname } {
 	upvar $listname list

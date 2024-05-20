@@ -178,8 +178,8 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 	const char * filename_3 = "/tmp/filename_3.png";
 
 	filename_1 = "/home/gps/Downloads/sea_ice_vol_zoomed_out.png";
-	filename_1 = "/home/gps/Pictures/wordle/wordle_4/Screenshot from 2022-07-06 04-42-53.png";
 	filename_1 = "/home/gps/Downloads/meme/JWST/STScI-01G7DDBW5NNXTJV8PGHB0465QP.png";
+	filename_1 = "/home/gps/Pictures/wordle/wordle_4/Screenshot from 2022-07-06 04-42-53.png";
 
 
  if(1) {
@@ -276,7 +276,8 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 //	{
 	TJ::TJ_loader_t tj_loader;
 	TJ::scale_factors_t scale_factors;
-	const char * filename_jpeg = "/home/gps/YEAR/G_PHOTOS/Photos_2022/2022-07-0X_Readipop/2022-07-08_Readipop/IMG_20210101_222232.jpg";
+#define filename_1_a "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
+	const char * filename_jpeg = filename_1;
 
 	scale_factors_t factors;
 	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );
@@ -313,7 +314,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 
 	////////////////////////////////////////////
 
-	const char * filename_1 = "/home/gps/YEAR/G_PHOTOS/Photos_2022/2022-07-0X_Readipop/2022-07-08_Readipop/IMG_20210101_222232.jpg";
+	const char * filename_1 = filename_1_a;
 
 	scale_factors_t factors;
 	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );

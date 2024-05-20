@@ -14,6 +14,8 @@ using namespace TJ;
 		hdr_FB_height = 0; // set by tjDecompressHeader3
 		req_FB_pixel = 0; // set by caller
 		K_max = 1024 * 20; // 20 MB // JWST is 6
+		K_max = 1024 * 28; // __ MB // fails on 29MB
+		K_max = 1024 * 200; // 200 MB // PNG is 30 MB
 	}
 
 	bool TJ_loader_t:: set_M_max( float M ) {

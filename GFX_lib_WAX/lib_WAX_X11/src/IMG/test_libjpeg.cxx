@@ -183,7 +183,8 @@ static void usage(char *programName)
   exit(1);
 }
 
-#define filename_1 "/home/gps/YEAR/G_PHOTOS/Photos_2022/2022-07-0X_Readipop/2022-07-08_Readipop/IMG_20210101_222232.jpg"
+#define filename_1 "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
+
 #define filename_2 "/tmp/IMG_OUT.jpg"
 
 

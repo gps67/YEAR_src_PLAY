@@ -45,6 +45,9 @@ set ZONE_NAME Burnside
 set ZONE_NAME Godalming
 set ZONE_NAME RSAC_pressgang
 set ZONE_NAME Southbourne
+set ZONE_NAME RSAC_SatinBeige
+set ZONE_NAME BH_walk
+set ZONE_NAME Readipop
 
 proc list_pop {listname itemname } {
 	upvar $listname list
@@ -170,8 +173,10 @@ proc macro_calc_name_one {} {
 		set Tue [clock format $time -format "%a"]
 		set time_str [clock format $time]
 	#	set Tue [ Tue_of_YEAR_MM_DD $YEAR $MM $DD]
-		set f2 [format "%s_%s_%s_%s_%s.%s" $VID $YEAR_MM_DD $Tue $hh_mm_ss $NAME $ext]
-		set f2 [format "%s_%s_%s_%s.%s" $YEAR_MM_DD $Tue $hh_mm_ss $NAME $ext]
+		if { $ASTR != {} } {
+			set ASTR "_$ASTR"
+		}
+		set f2 [format "%s_%s_%s_%s%s.%s" $YEAR_MM_DD $Tue $hh_mm_ss $NAME $ASTR $ext]
 		set f2 "$dir/$f2"
 	if 0 {	puts "# val_clock $val_clock"
 		puts "# time_str $time_str" 
@@ -187,10 +192,10 @@ proc macro_date_from_unit_time { timestamp } {
 	 clock format $timestamp -format { %Y %m %d %H %M %S }
 	 ]} {}
 	"
-	macro_date_came_from_mtime
+	macro_know_date_came_from_mtime
 }
 
-proc macro_date_from_stat_file { filename } {
+proc macro_know_date_from_stat_file { filename } {
  uplevel {
 	file stat } $filename { stat_field
 	#  atime, ctime, dev, gid, ino, mode, mtime, nlink, size, type, uid. 
@@ -198,18 +203,18 @@ proc macro_date_from_stat_file { filename } {
 	set fmt { %Y %m %d %H %M %S  }
 	set list [ clock format $stat_field(mtime) -format $fmt ]
 	foreach { YEAR MM DD hh mm ss } $list {}
-	macro_date_came_from_mtime
+	macro_know_date_came_from_mtime
  }
 }
 
-proc macro_date_came_from_filename {} {
+proc macro_know_date_came_from_filename {} {
  uplevel {
  	set date_came_from_filename 1
  	set date_came_from_mtime 0
  }
 }
 
-proc macro_date_came_from_mtime {} {
+proc macro_know_date_came_from_mtime {} {
  uplevel {
  	set date_came_from_filename 0
  	set date_came_from_mtime 1
@@ -235,18 +240,30 @@ proc rename_IMG_dir {dir} {
 
 	set L1 [list_dir $dir]
 
+	# each FIELD has (FIELD) # OK if no collect used
+
 	set D {[0-9]}
 	set DD "($D$D)"
 	set DDD "($D$D$D)"
 	set DDDD "($D$D$D$D)"
-	set re_D13 "($D{10,15})"
+	set re_D13 "($D{10,15})" ;# 13 DIGITS
 	set re_ext "(.*)"
 	set re_tue "(...)"
 	set re_MSXY {([MSXY][MSXY])}
 	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])[-_]}
 	set IMG_ {IMG[-_]}
 
+	
+	# A_STR added at the end just before dot_ext
+	append re_ASTR \
+		"\[_-\]?" \
+		"(\[^.\]*)"
+
 	append re_dot_ext "\\." $re_ext
+
+	append re_ASTR_dot_ext \
+		$re_ASTR \
+		$re_dot_ext 
 
 	append re_HDR "(_HDR)?"
 
@@ -256,24 +273,24 @@ proc rename_IMG_dir {dir} {
 		"-"  $DD  \
 		"_"  $DD $DD \
 		"_"  $DD \
-		$re_dot_ext
+		$re_ASTR_dot_ext
 	append re_one \
-		record $DDDD $DD $DD "_"  $DD $DD $DD $re_dot_ext
+		record $DDDD $DD $DD "_"  $DD $DD $DD $re_ASTR_dot_ext
 	append re_two \
-		$re_VID_IMG $DDDD $DD $DD  "_"  $DD $DD $DD $re_dot_ext
+		$re_VID_IMG $DDDD $DD $DD  "_"  $DD $DD $DD $re_ASTR_dot_ext
 	append re_two_ \
-		VID_ $DDDD $DD $DD  "_"  $DD $DD $DD $re_dot_ext
+		VID_ $DDDD $DD $DD  "_"  $DD $DD $DD $re_ASTR_dot_ext
 	append re_ZOOM_03d_WAV \
-		ZOOM $DDDD $re_dot_ext
+		ZOOM $DDDD $re_ASTR_dot_ext
 		# happens on ZOOM1234.WAV H2N audio recorder with .WAV
 
 	append re_VID_YYYYMMDD_HHMMSSXX \
-		VID_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_dot_ext
+		VID_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_ASTR_dot_ext
 	append re_IMG_YYYYMMDD_HHMMSSXX \
-		$IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_HDR $re_dot_ext
+		$IMG_ $DDDD $DD $DD "_"  $DD $DD $DD $DDD $re_HDR $re_ASTR_dot_ext
 	
 	append re_myrec \
-		myrec $re_D13 $re_dot_ext
+		myrec $re_D13 $re_ASTR_dot_ext
 
 # myrec1663179554257.mp3
 #      1234567890123.mp3
@@ -285,15 +302,15 @@ proc rename_IMG_dir {dir} {
 	# which could be miles away from when shot
 
 	append re_VID_YYYYMMDD_WA4D \
-		VID- $DDDD $DD $DD "-"  WA $DDDD $re_dot_ext
+		VID- $DDDD $DD $DD "-"  WA $DDDD $re_ASTR_dot_ext
 	append re_IMG_YYYYMMDD_WA4D \
-		IMG- $DDDD $DD $DD "-"  WA $DDDD $re_dot_ext
+		IMG- $DDDD $DD $DD "-"  WA $DDDD $re_ASTR_dot_ext
 	
 	# probably an iphone or something
 	# VID-20230410-WA0038.mp4
 
 	append re_SR_3D_MSZY_WAV \
-		SR $DDD $re_MSXY $re_dot_ext
+		SR $DDD $re_MSXY $re_ASTR_dot_ext
 	
 	append re_NEWNAME \
 		$DDDD "-" $DD "-" $DD \
@@ -305,25 +322,25 @@ proc rename_IMG_dir {dir} {
 
 	global ZONE_NAME
 	foreach f $L1 {
-	  macro_date_came_from_filename ;# INT default
+	  macro_know_date_came_from_filename ;# INT default
 	  set NAME $ZONE_NAME
 	  set VID VID
 	  set ss 00
 	  set f1 "$dir/$f"
-	  # INIT M1 1999-12-31 23:59.00 ext
-	  foreach {YEAR MM DD hh mm ss ext} { 1999 12 31 23 59 00 JPG } {}
+	  # INIT M1 1999-12-31 23:59.00 ASTR ext
+	  foreach {YEAR MM DD hh mm ss ASTR ext} { 1999 12 31 23 59 00 ASTR JPG } {}
 	  # this is where ext gets a dummy value # not overwritten #
 
 	  if {! [file isfile $f1]} {
 	  	puts "# NOT # $f1"
 		continue
 
-	  } elseif [regexp $re_zero $f all YEAR MM DD hh mm ss ext] {
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
+	  } elseif [regexp $re_zero $f all YEAR MM DD hh mm ss ASTR ext] {
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
 		continue
 
-	  } elseif [regexp $re_one $f all YEAR MM DD hh mm ss ext] {
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
+	  } elseif [regexp $re_one $f all YEAR MM DD hh mm ss ASTR ext] {
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
 	  	# macro_calc_name_one
 		# record # means audio #
 		if { $ext == "3gpp" } {
@@ -332,11 +349,11 @@ proc rename_IMG_dir {dir} {
 			puts "# record BUT ext == $ext # $VID AUD or VID #"
 		}
 
-	  } elseif [regexp $re_two $f all VIDIMG YEAR MM DD hh mm ss ext] {
+	  } elseif [regexp $re_two $f all VIDIMG YEAR MM DD hh mm ss ASTR ext] {
 	  	puts "# re_two # $f"
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
 
-	  } elseif [regexp $re_ZOOM_03d_WAV $f all DDD ext] {
+	  } elseif [regexp $re_ZOOM_03d_WAV $f all DDD ASTR ext] {
 	  	# DATE to come from MTIME not filename
 		if { $ext == "WAV" } {
 			set VID AUD
@@ -345,26 +362,26 @@ proc rename_IMG_dir {dir} {
 		}
 		puts "# ext is '$ext'"
 		# need to STAT file to get YEAR MM DD
-		macro_date_from_stat_file $f1
+		macro_know_date_from_stat_file $f1
 	  	# DATE came from MTIME not from filename # done by stat above
 
-	  } elseif [regexp $re_two $f all VID_IMG YEAR MM DD hh mm ss ext] {
+	  } elseif [regexp $re_two $f all VID_IMG YEAR MM DD hh mm ss ASTR ext] {
 	  	# macro_calc_name_one
 
-	  } elseif [regexp $re_VID_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX ext] {
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
-	  } elseif [regexp $re_IMG_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX HDR ext] {
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
+	  } elseif [regexp $re_VID_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX ASTR ext] {
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
+	  } elseif [regexp $re_IMG_YYYYMMDD_HHMMSSXX $f all YEAR MM DD hh mm ss XXX HDR ASTR ext] {
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
 
-	  } elseif [regexp $re_VID_YYYYMMDD_WA4D $f all YEAR MM DD d4 ext] {
+	  } elseif [regexp $re_VID_YYYYMMDD_WA4D $f all YEAR MM DD d4 ASTR ext] {
 	  	append NAME "_" $d4
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
-	  } elseif [regexp $re_IMG_YYYYMMDD_WA4D $f all YEAR MM DD d4 ext] {
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
+	  } elseif [regexp $re_IMG_YYYYMMDD_WA4D $f all YEAR MM DD d4 ASTR ext] {
 	  	append NAME "_" $d4
-	 #	macro_date_came_from_filename ;# DONE in LOOP init
+	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
 
-	  } elseif [regexp $re_SR_3D_MSZY_WAV $f all D3 MS_XY ext] {
-		macro_date_from_stat_file $f1
+	  } elseif [regexp $re_SR_3D_MSZY_WAV $f all D3 MS_XY ASTR ext] {
+		macro_know_date_from_stat_file $f1
 		macro_calc_name_XY
 		macro_offer_rename
 		continue

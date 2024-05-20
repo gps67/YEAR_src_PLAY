@@ -1,0 +1,146 @@
+DOC MUX
+
+	interleave ITEM_t 
+	interleave TEXT
+	GEN as_HTML or as_JSON or as_MUX
+	event stream is data stream
+
+DOC_MUX_event_stream
+
+	event_stream_is_text_stream_as_TWIG _ASIF_from_PSG_over_SCRIPT
+
+
+systemd-+-NetworkManager---2*[{NetworkManager}]
+        |-accounts-daemon---2*[{accounts-daemon}]
+        |-acpid
+        |-atd
+        |-avahi-daemon---avahi-daemon
+        |-blkmapd
+        |-colord---2*[{colord}]
+        |-cron
+        |-cups-browsed---2*[{cups-browsed}]
+        |-cupsd
+        |-dbus-daemon
+        |-dnsmasq---dnsmasq
+        |-fwupd---4*[{fwupd}]
+        |-gdm3-+-gdm-session-wor-+-gdm-wayland-ses-+-gnome-session-b---2*[{gnome-session-b}]
+        |      |                 |                 `-2*[{gdm-wayland-ses}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      `-2*[{gdm3}]
+        |-gnome-keyring-d-+-ssh-agent
+        |                 `-3*[{gnome-keyring-d}]
+        |-2*[kerneloops]
+        |-libvirtd---18*[{libvirtd}]
+        |-networkd-dispat
+        |-nfsdcld
+        |-packagekitd---2*[{packagekitd}]
+        |-polkitd---2*[{polkitd}]
+        |-power-profiles----2*[{power-profiles-}]
+        |-rpc.idmapd
+        |-rpc.mountd
+        |-rpc.statd
+        |-rpcbind
+        |-rsyslogd---3*[{rsyslogd}]
+        |-rtkit-daemon---2*[{rtkit-daemon}]
+        |-snapd---11*[{snapd}]
+        |-sshd
+        |-switcheroo-cont---2*[{switcheroo-cont}]
+        |-systemd-+-(sd-pam)
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-bash
+        |         |-chrome_crashpad---2*[{chrome_crashpad}]
+        |         |-chrome_crashpad---{chrome_crashpad}
+        |         |-dbus-daemon
+        |         |-dconf-service---2*[{dconf-service}]
+        |         |-evolution-addre---5*[{evolution-addre}]
+        |         |-evolution-calen---8*[{evolution-calen}]
+        |         |-evolution-sourc---3*[{evolution-sourc}]
+        |         |-2*[gjs---6*[{gjs}]]
+        |         |-gnome-calculato---3*[{gnome-calculato}]
+        |         |-gnome-session-b-+-at-spi-bus-laun-+-dbus-daemon
+        |         |                 |                 `-3*[{at-spi-bus-laun}]
+        |         |                 |-evolution-alarm---5*[{evolution-alarm}]
+        |         |                 |-gsd-disk-utilit---2*[{gsd-disk-utilit}]
+        |         |                 |-sh---nawk---sh---xclock
+        |         |                 |-update-notifier---3*[{update-notifier}]
+        |         |                 `-3*[{gnome-session-b}]
+        |         |-gnome-session-c---{gnome-session-c}
+        |         |-gnome-shell-+-Xwayland---2*[{Xwayland}]
+        |         |             |-chrome-+-2*[cat]
+        |         |             |        |-chrome---chrome---14*[{chrome}]
+        |         |             |        |-chrome---chrome-+-chrome---7*[{chrome}]
+        |         |             |        |                 |-23*[chrome---10*[{chrome}]]
+        |         |             |        |                 |-13*[chrome---13*[{chrome}]]
+        |         |             |        |                 |-8*[chrome---12*[{chrome}]]
+        |         |             |        |                 |-2*[chrome---15*[{chrome}]]
+        |         |             |        |                 |-5*[chrome---11*[{chrome}]]
+        |         |             |        |                 |-4*[chrome---14*[{chrome}]]
+        |         |             |        |                 |-chrome---17*[{chrome}]
+        |         |             |        |                 |-chrome---6*[{chrome}]
+        |         |             |        |                 |-2*[chrome---9*[{chrome}]]
+        |         |             |        |                 `-chrome---16*[{chrome}]
+        |         |             |        |-2*[chrome---8*[{chrome}]]
+        |         |             |        `-35*[{chrome}]
+        |         |             `-13*[{gnome-shell}]
+        |         |-gnome-shell-cal---5*[{gnome-shell-cal}]
+        |         |-gsd-a11y-settin---3*[{gsd-a11y-settin}]
+        |         |-gsd-color---3*[{gsd-color}]
+        |         |-gsd-datetime---3*[{gsd-datetime}]
+        |         |-gsd-housekeepin---3*[{gsd-housekeepin}]
+        |         |-gsd-keyboard---3*[{gsd-keyboard}]
+        |         |-gsd-media-keys---3*[{gsd-media-keys}]
+        |         |-gsd-power---3*[{gsd-power}]
+        |         |-gsd-print-notif---2*[{gsd-print-notif}]
+        |         |-gsd-printer---2*[{gsd-printer}]
+        |         |-gsd-rfkill---2*[{gsd-rfkill}]
+        |         |-gsd-screensaver---2*[{gsd-screensaver}]
+        |         |-gsd-sharing---3*[{gsd-sharing}]
+        |         |-gsd-smartcard---3*[{gsd-smartcard}]
+        |         |-gsd-sound---3*[{gsd-sound}]
+        |         |-gsd-wacom---3*[{gsd-wacom}]
+        |         |-gsd-xsettings---4*[{gsd-xsettings}]
+        |         |-gvfs-afc-volume---3*[{gvfs-afc-volume}]
+        |         |-gvfs-goa-volume---2*[{gvfs-goa-volume}]
+        |         |-gvfs-gphoto2-vo---2*[{gvfs-gphoto2-vo}]
+        |         |-gvfs-mtp-volume---2*[{gvfs-mtp-volume}]
+        |         |-gvfs-udisks2-vo---3*[{gvfs-udisks2-vo}]
+        |         |-gvfsd-+-gvfsd-dnssd---2*[{gvfsd-dnssd}]
+        |         |       |-gvfsd-network---3*[{gvfsd-network}]
+        |         |       |-gvfsd-smb-brows---3*[{gvfsd-smb-brows}]
+        |         |       |-gvfsd-trash---2*[{gvfsd-trash}]
+        |         |       `-2*[{gvfsd}]
+        |         |-gvfsd-metadata---2*[{gvfsd-metadata}]
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-ibus-x11---2*[{ibus-x11}]
+        |         |-nautilus---4*[{nautilus}]
+        |         |-pipewire---{pipewire}
+        |         |-pipewire-media----{pipewire-media-}
+        |         |-pulseaudio---3*[{pulseaudio}]
+        |         |-sh---ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |         |                  |-ibus-engine-sim---2*[{ibus-engine-sim}]
+        |         |                  |-ibus-extension----3*[{ibus-extension-}]
+        |         |                  `-2*[{ibus-daemon}]
+        |         |-snap-store---4*[{snap-store}]
+        |         |-snapd-desktop-i---snapd-desktop-i---4*[{snapd-desktop-i}]
+        |         |-tracker-miner-f---5*[{tracker-miner-f}]
+        |         |-2*[xdg-desktop-por---4*[{xdg-desktop-por}]]
+        |         |-xdg-document-po-+-fusermount3
+        |         |                 `-5*[{xdg-document-po}]
+        |         |-xdg-permission----2*[{xdg-permission-}]
+        |         |-xterm---mc---bash---bash---less
+        |         |-6*[xterm---mc---bash]
+        |         `-xterm---mc---bash---vi---bash---pstree
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-machine
+        |-systemd-oomd
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-thermald---{thermald}
+        |-udisksd---4*[{udisksd}]
+        |-unattended-upgr---{unattended-upgr}
+        |-upowerd---2*[{upowerd}]
+        `-wpa_supplicant
+
+

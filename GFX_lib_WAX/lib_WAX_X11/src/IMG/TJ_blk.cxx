@@ -75,6 +75,7 @@ bool TJ_blk_t:: read_entire_file( const char * filename, long K_max ) {
 	i64 filesize_max = K_max << 10; // K to units 
 	if( filesize >= filesize_max ) {
 		INFO("file %s size %Ld", filename, filesize );
+		INFO("K_max %ld", K_max );
 		return FAIL("file too big to be real, it will stress memory");
 	}
 	if(!tj_alloc( (int) filesize )) {

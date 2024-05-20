@@ -1,0 +1,170 @@
+	CPU_WORD_from_LOHI/
+	CPU_WORD_from_LOHI.txt
+
+	YES a HILO (HILO is NBO Network Byte Order)
+	will have to swapb to access LOHI, loac CPU_WORD_from_LOHI _aligned_32
+
+		2 types
+
+			RET_VAL = A_WORD // usually
+
+			IN_SITU A_WORD = A_WORD_modified_in_situ
+
+				a description of "modified" _in_situ
+
+					idx = N ++	// note get_old_val then
+					idx = -- M	// note pre_decl_pre_GET
+
+				_in_SITU means
+
+					in a specific CPU_WORD register
+					in a specific MEM_WORD MEMORY
+					in a specific VAR_EXPR VAR_EXPR_with_VARS
+
+				_EDIT means 
+
+					_SPEC of _DIAG in _TREE_ONE _TREE_TWO 
+					_DIAG _SPEC_in_STEP // mid_step or SEQ
+					_ANIM  STEP_in_SEQ // flay anim vars
+					_TEXT  STEP_in_FSM // SESS uses XY_VAR
+					_DOCS  
+					_SAMP  EG VALS("_SAMP", "+=", "_DATA")
+
+					_SPEC_of_DATA
+					_DATA_of_SPEC
+
+						field_one == "{ field_one %s }"
+						field_two == "{ field_two %s }"
+
+					 WE AUTO offer these facilities to all
+					 COMPILER traces all users of $AVAR
+					 ROM combines shared_EXPR_twig _on_TREE
+					 ROM _one _two 
+					 DECL SUBST "{ _one %s }" // switch _one
+					 DECL SUBST "{ _two %s }" // switch %s
+
+				_BENCH means shared recorded MACROS from SESS
+
+					Module_singlton CT_RT_ROM
+					CT_RT_SESS_: _DATA_of_SPEC {
+					 CTOR
+					 	_DATA_of_SPEC {
+						_SPEC_of_DATA = _CT_SPEC_of_DATA
+						/*
+							SESS has a few VAR_POOL
+							SESS has a CT_SPEC
+
+								SPEC += A_SPEC
+
+							SESS has a RT_SPEC
+
+								UDEF += A_UDEF
+
+							API in BENCH
+						*/
+						}
+					 u64_XPOS : u32_u32_lohi_with_decoder {
+
+					 	get_XPOS_as_ROM_POS = ITEM_EXPR
+
+						ITEM_EXPR is u64_lohi 
+						// in u32_u32 for ARM32 //
+						// u32_FILE // u32_EA_FILE
+						// u32_OFFS // u32_EA_FILE
+						// both can return u64_WORD
+						// both live within WORD_32
+						// added BITFIELDS of VAL_TOK
+					 }
+					}
+
+	u32_WORD_BITFIELDS
+
+		get_BYTE_A
+		get_BYTE_B
+		get_LOHI_AB // u16_from_u32_ // LIMIT low 16 bits, or dont !!
+		get_LOHI_CD // DCBA >> 16 //
+		get_u24_PAYLOAD = WORD_32 >> 8 // KNOW to do this for SIGNED
+		get_u16_PAYLOAD = WORD_32 >> 16 // KNOW to do this for SIGNED
+
+		set_AVAR_to_EXPR
+
+			EXPR == u24_PAYLOAD
+			EXPR == u16_PAYLOAD
+			EXPR == u32_WORD
+
+			EXPR == i32_WORD
+			EXPR == i24_PAYLOAD
+			EXPR == i16_PAYLOAD
+
+		get_u48_PAYLOAD = get_u48_from_u8_u8_u16_u32
+
+
+	i32_WORD_BITFIELDS
+
+		i8_BYTE_A
+		i8_BYTE_B
+		i16_BYTE_AB _lohi_remember
+		i24_WORD // i24 data in a i32_WORD // BITFIELD may be SHIFTED
+
+	L  M  z  N  R
+
+		[-128    [M        [0        [N       [+128 // so 127 inside
+
+		Our tech permits entirely MINUS PAGE
+		Our tech permits entirely PLUS PAGE
+		Our tech permits entirely SIGN PAGE
+		Our tech permits entirely M_i_N_PAGE
+
+		For fast code time, we use i8 for idx, LIMIT 127
+		For low DATA needs, ROM fits to exactly M_N 
+
+		EIGHT_t EIGHT = RET_VAL_EIGHT from CALL
+
+			ARM32 uses PAIR of registers
+			X86_32 uses AX DX PAIR of registers /// EAX EDX // u32
+
+			A is always the first WORD and D the second
+			(or whicher you pick, it is second) (A is A)
+
+		i9 DECODE_u32_u32_FIND_i9(u32_u32_t u32_u32, i9 & i9)
+
+		i32 ITEM_POS( i9_idx_t i9_idx ) { return i9_idx - L ; } // L==M 
+		i32 ITEM_POS( i9_idx_t i9_idx ) { return i9_idx - M ; } // L !//
+		i32 OFFS_of_EIGHT = sizeof(EIGHT) * ITEM_POS(i9_idx);
+		i16_i9_idx : i16 // as DECL or as MACRO // direct to "i16"
+		i8_idx = i8_BYTE_A
+		i8_idx = i8_BYTE_B
+		i9_idx = i8_idx ;// i8 is OK as an i9 // immediately
+		i9_idx = i8_idx_MAX + 1 ;// i9 is ALIAS i16 
+		i9_idx = i32_WORD _CPU_WORD _MEM_WORD
+
+			i9 ALLOC_PLUS
+			i9 ALLOC_MINUS
+
+        [-128   [0   [128
+        [8888888[8888[
+ [-256  [-128   [0   [128   [256
+ [999999[8888888[8888[999999[9
+
+			check_is_in_range( idx )
+			check_sign
+			_is_MINUS
+			_is_ZERO
+			_is_PLUS
+			_is_PLUS_and_not_ZERO // only happens AFTER compile
+
+			KNOW_ZERO_is_PLUS_not_NULL
+			KNOW_ZERO_is_NULL_not_PLUS
+
+			KNOW_ZERO_is_BOTH_NULL_and_PLUS // use a safe item for NULL
+			KNOW_ZERO_is_NULL_means_default
+			KNOW_ZERO_is_NULL_means_absent
+			KNOW_ZERO_is_NULL_means_UDEF
+			KNOW_ZERO_is_IDX_not_NULL_means_UDEF_possible_on_sealed
+
+			KNOW_MINUS_is_not_ZERO
+			KNOW_MINUS_is_not_PLUS
+			KNOW_PLUS_is_not_MINUS
+			KNOW_ZERO_is_not_MINUS
+
+

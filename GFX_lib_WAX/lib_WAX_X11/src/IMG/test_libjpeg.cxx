@@ -25,6 +25,10 @@
 #include "TJ_loader.h"
 #include "TJ_saver.h"
 
+#define filename_jpeg_in "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
+
+#define filename_jpeg_out "/tmp/IMG_OUT.jpg"
+
 using namespace TJ;
 
 /*
@@ -182,10 +186,6 @@ static void usage(char *programName)
 
   exit(1);
 }
-
-#define filename_1 "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
-
-#define filename_2 "/tmp/IMG_OUT.jpg"
 
 
 
@@ -389,7 +389,7 @@ bool bool_main(int argc, char **argv)
 				return FAIL_FAILED();
 	}
 
-	// fmt_system("m '%s'", filename_2);
+	// fmt_system("m '%s'", filename_jpeg_out);
 	return PASS("OK");
  } 
 
@@ -399,7 +399,7 @@ bool bool_main(int argc, char **argv)
 		"test2_libjpeg.elf",
 
 		filename_1,
-		filename_2,
+		filename_jpeg_out,
 		"-subsamp", "444",
 		"-q", "100",
 

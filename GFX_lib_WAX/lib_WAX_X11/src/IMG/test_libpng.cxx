@@ -28,6 +28,9 @@
 using namespace WAX;
 using namespace TJ;
 
+
+#define filename_jpeg_in "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
+
 /*
 	some classless C functions
 	so the only available fields are function parameters
@@ -276,8 +279,7 @@ bool bool_main_png_jpg( int argc, char ** argv ) {
 //	{
 	TJ::TJ_loader_t tj_loader;
 	TJ::scale_factors_t scale_factors;
-#define filename_1_a "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
-	const char * filename_jpeg = filename_1;
+	const char * filename_jpeg = filename_jpeg_in;
 
 	scale_factors_t factors;
 	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );
@@ -314,7 +316,7 @@ bool bool_main_jpg( int argc, char ** argv ) {
 
 	////////////////////////////////////////////
 
-	const char * filename_1 = filename_1_a;
+	const char * filename_1 = filename_jpeg_in;
 
 	scale_factors_t factors;
 	factors.parse_scale_value( "2/3", tj_loader.req_scale_factor );

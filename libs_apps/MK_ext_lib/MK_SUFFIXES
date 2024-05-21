@@ -15,6 +15,9 @@
 	gcc $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 .cxx.o:
+	@#echo "# CALL #" $(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
+	@#P CPLUS_INCLUDE_PATH
+	@#
 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<
 
 #

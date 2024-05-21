@@ -50,14 +50,18 @@
 	# LIST_C_INCLUDE_PATH  => C_INCLUDE_PATH
 	# where C looks for include files
 	# convert SP to :
-	C_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(LIST_C_INCLUDE_PATH))
+	C_INCLUDE_PATH+=:$(subst $(SP),$(COLON),$(LIST_C_INCLUDE_PATH))
 	export C_INCLUDE_PATH
 
 	# LIST_CPLUS_INCLUDE_PATH  => CPLUS_INCLUDE_PATH
 	# where C++ looks for include files
 	# convert SP to :
-	CPLUS_INCLUDE_PATH+=$(subst $(SP),$(COLON),$(LIST_CPLUS_INCLUDE_PATH))
+	CPLUS_INCLUDE_PATH+=:$(subst $(SP),$(COLON),$(LIST_CPLUS_INCLUDE_PATH))
 	export CPLUS_INCLUDE_PATH
+# : #
+	# added : because beforehand CPLUS_INCLUDE_PATH contained something
+	# and it merged with first item
+	# this means . is on search path at FRONT !!
 
 	# LIST_LIBRARY_PATH  => LIBRARY_PATH
 	# where C++ looks for -l libabc.a .so files

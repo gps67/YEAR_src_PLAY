@@ -35,13 +35,15 @@
 	LINKS += -L/usr/X11R6/lib -lX11
 #	LINKS = -L/tools/2000/X11R6/lib -lX11
 
-	# S=../src
-	S=/home/gps/YEAR/src/GITS/YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/src
-	VPATH +=$S
-	VPATH +=$(S)/IMG
+#	S=../src
+ 	S=/home/gps/YEAR/src/PLAY/GFX_lib_WAX/lib_WAX_X11/src
+	LIST_VPATH +=$S
+	LIST_VPATH +=$(S)/IMG
 
-	INCLS += -I$(S)
-	INCLS += -I$(S)/IMG
+	LIST_CPLUS_INCLUDE_PATH += $(LIST_VPATH)
+
+#	INCLS += -I$(S)
+#	INCLS += -I$(S)/IMG
 
 	# to build with libs_apps base1 create this symb-link and include it
 	# a symb link to libs_apps 

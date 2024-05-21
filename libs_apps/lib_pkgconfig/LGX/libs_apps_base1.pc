@@ -2,7 +2,7 @@
 # LEXER of %s pushes immediate PARAMETER REQUIRED SOMEHOW += WORD "base2"
 
 # COMMENT THESE OUT ?
-# prefix=/home/gps/YEAR/src/libs_apps
+# prefix=/home/gps/YEAR/src/PLAY/libs_apps
 # exec_prefix=${prefix}
 # libdir=${exec_prefix}/libs_apps_obj_${TGT}
 # includedir=${prefix}/include

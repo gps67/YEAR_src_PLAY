@@ -9,12 +9,13 @@
 	#
 	# easiest way is to create symb link
 	# /home/gps/ => /home/you
+	# /home/gps/ => /home/you/home_gps/ # for even more sep
 	#
 
 	DIR_HOME=$(HOME)
 	DIR_YEAR=$(DIR_HOME)/YEAR
-#	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
-	DIR_PLAY=$(DIR_HOME)/YEAR/src/PREP
+	DIR_PLAY=$(DIR_HOME)/YEAR/src/PLAY
+#	DIR_PLAY=$(DIR_HOME)/YEAR/src/PREP
 
 	DIR_libs_apps =$(DIR_PLAY)/libs_apps
 

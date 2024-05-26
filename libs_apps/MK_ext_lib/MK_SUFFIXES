@@ -83,8 +83,9 @@
 	#
 	# NOT # strip $@
 	# list libraries used # particularly non system
-	ldd $@ | grep $(HOME)
+	-ldd $@ | grep $(HOME)
 	# BUILT # $@ #
+	# OK #
 
 # 
 #

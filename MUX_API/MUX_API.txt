@@ -1,0 +1,340 @@
+	MUX_API/
+	MUX_API.txt
+
+	PEER to PEER UDP 
+	over a managed VPN
+	with login @{ localhost
+
+	Browser is behind NAT needs GW to setup L_URP_R 
+	L_URP_R 
+	L_UDP_GW_UDP_R
+	L_TCP_GW_TCL_R
+
+	CLIENT needs to run a BINARY 
+	SERVER
+	GATEWAY needed to setup calls
+
+		OPTION to remember for an hour
+		OPTION to keep_alive
+		OPTION to resume_paused // or dropped
+		OPTION to pause_resume
+
+		MODE_strangled
+
+			switch to USB_RELAY FTP_RELAY NET_BATCH_DAILY_4AM
+
+			switch to minimal AUTH and RAW signals
+
+			switch to LATERS
+
+		MODE_faint
+
+			tell user
+			list stories, instead of bulk XFER
+			TOC not XFER
+
+		MODE_direct
+
+			XFER sorted list
+			LINE QUOTA interactive
+			MODE_first_few_minutes
+			MODE_first_few_busy_minutes
+			ASK_USER exchange_TODOS
+
+	CACHE
+		LOCAL  <-->  CACHE  <-->  REMOTE
+
+			VAR_POOL("VAR_POOL")
+			VAR_NAME("VAR_NAME")
+			POOL.NAME_in_POOL("VAR_NAME")
+			POOL.NAME_in_POOL( VAR_NAME )
+			POOL.NAME_in_POOL( OBJ_NAME )
+			POOL.NAME_in_POOL( "ITEM" )
+			POOL.NAME_in_POOL(  ITEM  )
+			// VAR == "VAR" // ITEM == "ITEM" //
+
+
+			By choosing to use an automated name system,
+			we can cope with a runtime numbered tokenised system
+			ITEM_NAME == "ITEM_NAME" // NOW lookup() says "%s"
+			// SESS == SESS_NOW == NOW // strange arith in CXX land
+			// MATCH_REASON is "VIEW_RUNNING_SCRIPT"
+
+	SCRIPT
+
+		CODE has actual XPOS == "XPOS { FILE OFFS } " // TAIL ARGS VIEW
+		CODE has actual XPOS == "{ FILE OFFS }" // TOKENISED SPELLING 
+		VIEW uses ALIAS XPOS2 and explain2
+
+		Debug script using
+
+			STEP_LINE
+			STEP_INTO
+			STEP_OVER
+
+		Debug using DRAW VIEW 
+
+			VIEW keeps a list of VAR_KEPT
+			VIEW uses STREAM diagrams array diagrams TEXT diags
+			VIEW SCRIPT is VIEW TEXT
+			VIEW DATA ...
+
+		EDIT SCRIPT using spreadsheet line EXPRS
+
+			ALIAS xFFFF_NAME NAME EXPR // deambiguated to xFFFF
+
+			EDIT DIAG
+
+				move stuff around
+				add new items
+				MACRO items are themselves DIAG with OPTIONS
+
+					PICK draw_xFFFF
+					PICK OPTION.PICK_as_idx_into_PICK_LIST
+					PICK SESS..LIST = ARRAY[ idx ] of ITEM
+					 where ITEM is atleast SPEC_LIST_PARAG
+
+			EDIT SCRIPT
+
+				edit LIST of LINES
+				edit indented_blocks_of 
+					LIST of LINES
+				edit layout over DB function prototypes etc
+
+					all the joys of C++
+					some of the benefits
+
+			EDIT VFS
+
+				move dirs around diary
+
+			EDIT SESS
+
+				current BENCH tasks
+
+		BENCH LOCN
+
+			ADIR "LOCN" // in_DOT_DOT_as_LOCN_NAME
+
+			 LAYOUT
+				ADIR = "YEAR-MM-DD_ADIR" // apply filter step
+				ADIR = "YEAR-MM-DD_LOCN" // apply filter step
+				ADIR = "YEAR-MM-DD_LOCN_EXTRA" // BENCH finds
+
+
+			LOCN += is_LOCN() // CTOR 
+
+				SPEC = EXPR
+				CTOR SPEC ARGS
+
+			 AUTO
+
+			 	mkdir DOT_DOT/LOCN/.db_LOCN_HERE/
+				lookup idx_HERE = lookup DOT_DOT/LOCN
+				cache_SQLITE_idx_SPELLINGS_are_const _mostly
+
+					"SPELLING" used in SCRIPT
+					understood as ERA_IDX(era,idx) 
+
+						era might be
+						era_when_ROM_compiled CT_ERA
+						era in previous clock_step
+						era when CALL started
+						era about to be switched to
+
+				STEP CHANGED RETOKENISED REINDEXED
+
+					we mostly avoid this
+					we run ROM plus UDEF as two eras
+					we dont collect a lot of eras
+					mostly just the one
+					as all the SCRIPTS are in ROM too
+
+
+				LOAD MMAP DATA_BASE from ROM
+				DROP MMAP DATA_BASE 
+				KEEP MMAP DATA_BASE over KEPT
+				LOAD MMAP DATA_BASE from KEPT
+				SAVE MMAP DATA_BASE from KEPT as_ERA
+
+			ARGV also parses within LEX for _MULTI_PART_NAME_
+
+				MATCH _LAYOUT_SAMPLE_in_SCRIPT_
+
+					_explain_
+
+ BROWSER calls exchange central 
+
+ 	it is needed to overcome the NAT
+	it might also be ROM files updated DAILY, often unchanged
+	pause_resume is a feature that lasts for MINUTES HOURS DAYS on_SIGNAL
+	BROWSER fetches cached values right NOW
+	BROWSER uses cached values
+	because NAT is transient, that is 2 minutes, watchdog timers, on_CHANGE
+	so BROWSER will contact server after a timeout
+ -or-
+
+ 	GW acts as exchange central
+
+		RING RING you have a CALL
+
+			call them back on CALLERS_ADDR
+			# this is a characteristic of UDP via NAT
+			# one outgoing caller gets same PORT of all replies
+			# UDP_listening_port # on NAT_BOX
+
+			R calls GW to login for the day # keep_alive_udp_2_mins
+			L calls GW to_call_R
+			GW_tells_R_on_established_UDP_link
+			GW_sends_R "RING_RING" and data
+			R receives RING_RING and data and decides to ACCEPT
+	
+	GW is often trusted to check PERMITS
+
+		specific API_CHECK_PERMIT
+
+			authenticate claims
+			 DEVICE
+			 BATCH
+			 USER
+			 MODE
+			 HAT == MODE_HAT
+			 ACT == import API("API") and connect to REMOTE via API
+			 ACT = connect
+			 ACT = action
+			 ACT = END_action
+			 ACT = END_connection
+			 ACT = END_import // disconnect is enough for CACHE 
+
+	GW is there to route traffic, when there is a good ip4 available
+
+		community server
+
+			family photo tree
+			street gossip BBS
+			company access to servers
+			servers in orbit // _in_transit // _personal_pages
+			backup_over_WLAN _delayed_due_to_LAN
+			backup_over_WLAN _updated_just_then
+
+			login
+			access
+			permit check authenticate connect ping (_cloak_)
+
+		business server
+
+			laptop was fully backed up (YEAR-MM-DD HH_MM_SS)
+			laptop has local copy via ACCESS_KEYS
+			kill switch deletes ACCESS_KEYS
+			recovery means GW must ask HQ for new keys
+			laptop has topical web server in active chat mode
+			current access KEYS are per_USER per_SERV per_PAGE
+
+			on loss in TAXI, kill switch, recover latest saved DOCS
+
+			laptop can be out of comms
+			central can be out of comms // because laptop was //
+			roll_over_keys to new_system_for_today day_by_day_keys
+
+		business as usual
+
+			after recovery
+			service archive AT_WHEN // before CRYPTO_VIRUS_HIT
+			BRANCH to NOW2 (skipping abandoned BRANCH)
+			recover abandonned BRANCH - detailed work - hard graft
+			recover to manual DUMPS to re-enter as branch3
+			retro add branch3, because branch2 is working well
+
+		community access
+
+			ANON PUBLIC 
+
+				still has a SESS
+				can have been created by KNOWN_USER
+				can forget who that was
+				can drop all asofnow
+
+				we need this for PUBLIC web servers
+				we need one cookie for SESS_ID and _STATE_
+				thats how we know to not ask again each page
+
+			USER KNOWN
+
+				access
+				subscription
+				MODE action
+				SESS group
+				SESS this_SESS
+
+			USES PERMIT
+
+				auto forget // timeout // logout // etc
+				auto KEEP // db per SESS
+
+  FIREFOX or CHROME
+  WEB2
+
+  	calls local MUX_PORT.exe
+
+		that must be C++ cose from a trusted source
+		that uses DATA from previous logins
+		that listens on PORT
+
+		LIBR
+		 ES6
+
+		 	connect to MUX, login as USER, CACHE
+		 	connect to MUX, login as CACHE, USER
+
+			request UPDATE of NEWS
+
+				XFER quick index of NEWS
+				XFER priority data, ongoing drain
+
+				UPDATE tree of services and their states
+
+			lookup SERVICE USERS CERTS SESSIONS
+
+				tree caches some. queues queries for soon
+
+			connect to SERVER
+			connect to PEER_SERVER
+			connect to PEER
+
+				MUX to MUX C_to_C
+
+					authenticate remote using DB GW ANON
+	
+	local calls peer direct
+	local calls GW server
+	local calls peer direct
+
+		UDP peer to peer behind NAT
+	
+	peer calls us back
+
+		UDP peer to peer behind NAT
+		
+	
+	MUX connect, register SESS, authenticate USERS, SERVS, PERMITS, IDS
+
+		service becomes available
+
+	
+WEB PAGE
+
+	PAGE invokes ES6 invokes HTTP_API to MUX_to_service
+
+		each SERVICE might need own connection to MUX 
+		marshalled by controlling session
+	
+	PEER provides an HTTP line service,
+
+		VFS as WEB tree of files
+		API as VFS items // post SCRIPT to LOCN_that_evals_SCRIPT
+
+
+
+
+
+

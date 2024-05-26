@@ -1,0 +1,24 @@
+https://linasm.sourceforge.net/docs/instructions/cpu.php#bit
+
+	ASM explained - opcodes listed - some SIMD  - quite a lot
+	x86 and some x64
+
+LOAD_ACT_STORE( SRC, ACTION, DST )
+
+	at GEN time we run functions with MODE_GEN (ARGV style functions)
+
+	SRC and DST are builtin named EXPR
+
+	if(SRC == DST) ...
+	if(SRC.is_mem()) { /* is_mem(SRC)) */ }
+	if(SRC is WORD_ _64 _32 _16 _8 ...)
+	if(is_aiigned_32(SRC)) ...
+
+
+EG
+	i64_SHR16(SRC,DST)
+	u64_SHR16() // SRC DST are MINI_MACHINE current state named exprs
+	u64_SHR16(REG) // SRC is in CPU at (EXPR)
+	u64_SHR16(MEM) // SRC is in MEM at (EXPR) 
+	EXPR is OFFS + ARRAY[idx] // need idx < N // KNOW idx < R // R == N //
+

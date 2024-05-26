@@ -1,0 +1,411 @@
+	2024-05-22
+
+	2024_05_May
+	2024-05-22_DODO_ONGOING.txt
+
+	DODO = APIM
+	ONGOING += DONE TODO DOING ONGOING
+
+		DECL ARGV_0 "ONGOING" with TEMPLATE and ARGV
+		DIALECT_NOUN_ATTR_two += A_R_G_S
+			DIALECT_
+			_NOUN_
+			_ATTR_
+			_two += A_R_G_S
+			 _two
+			 +=
+			 A_R_G_S
+			 _A
+			 _R
+			 _G
+			 _S
+
+			 LOCAL SCOPE DIALECT _A PICK("{ u3 PICK  = N ++; CT_RT check_overflow}") of LIST("ITEM")
+			 LOCAL SCOPE DIALECT _A MATCH("{ u3 idx  = N ++ }") XPOS_in_LIST
+			 idx = XPOS_as.idx
+			 idx = u3_idx // actually u3_point_1 // u4_N // import IDX //
+			 // "{ u3 PICK }"
+			 // "{ u3 PICK = EXPR }"
+			 // "{ u3 PICK = u3_idx }" // named u3 actually u32
+			 // u32_idx is where we surf the compiler
+			 // typedef u32 u32_idx_t; // _t APPLIED // KNOWN by LANG 
+			 // u32_idx_t u32_idx; //
+			 // CPU_WORD_u32 // common CPU_API on _32 on _64
+			 // CPU_QEMU_u32 // CPU_32_QEMU _WASM _QEMU _OPCODE
+			 // CPU_UDEF_u32 // some modest implement as CXX
+			 // CPU_UDEF_u32 // from and for MY_CPU_UDEF_32
+			 // SESS_my.%s // require ARGV_i can be Q2_wrapped_LANG
+			 // "Q2" includes LAND adaptations for C C++ CXX TCL PYTHIN BASH
+			 // the bash filters are TBS, for now copy Q2_TCL_Q2
+			 // import notices it is inside SCOPE DECL of "{ u3 PICK }"
+			 // SCRIPT preloads prepassed FILTER _into_CIDENT99 _VAR_NAME
+			 // SCRIPT already guesses ITEM_TYPE_GUESS_one AVAR
+			 // PARSE "{ u3 idx }" "%s = %s" NAME EXPR
+			 // PSG ARGV sometimes words scan left to right
+			 // PSG ARGV sometimes filler words needed PUNCT
+			 // PSG ARGV sometimes filter words SPELLING_PUNCT_FILTER
+			 // DIALECT allow_long_word_chain _to_split // BOTH JOIN
+			 // DIAL uses nearest _to_split as ALIAS
+			 // ALIAS for allow_long_word_chain
+			 // ALIAS "allow_long_word_chain" 
+			 // ALIAS "_to_split" //  prefer nickname within SCOPE
+			 // ALIAS MATCH // DIALECT and USAGE can FILTER
+			 // FILTER on precision // SPELLING_ERROR //
+			 // _ERROR triggers extra monitoring FILTER request
+			 // AUTO_LOAD //
+			 // BIND SPELLING_ERROR to CODE_POINT // CAPS lower
+			 // KEEP CAPS // ignore lower // explain uses asis
+
+			 // PHRASE DIALECT
+			 // PHRASE MATCH
+			 // PHRASE BOLN INDENT 
+			 // CT_RT TOKENS for "DIALECT" "MATCH" "BOLN" "INDENT"
+			 // used so that INDENT may contain "/* COMMENT */"
+			 // used so that INDENT may contain COMMENT as STR0
+			 // STR0 == "/* COMMENT */"
+			 // DECL STEP as DECL_in_PAGE_in_ROM
+			 // CODE_POINT = XPOS // of_WHERE_COMMENT_found 
+			 // XPOS = u32_u32 {
+			 //	EXPR_SEGMENT
+			 //	EXPR_OFFSET
+			 // }
+			 // XPOS += u32_EXPR_SEGMENT
+			 // XPOS += u32_EXPR_OFFSET
+			 // EXPR is u8_CODE u24_DATA // CODE is DATA can be CODE
+			 // EXPR is u16_one_u16_two // actually [0] and [1]
+			 // _zero == [0]
+			 //
+	u32 = u16_u16	 // array[ u1 ] of u16 // WORD_32_as_u16_u16
+	u32_t u32 = u16_u16 = EXPR // DECL u32_WORD_in_MEM_or_in_CPU
+			 // u32_in_MEM _lohi
+			 // u32_in_CPU _from_lohi _from_hi_lo 
+			 // COMPILER DETECT SWAP_BYTES_SWAP_BYTES _CANCEL_EVEN
+			 // u32_MEM_lohi from CPU
+			 // u32_MEM_hilo from CPU
+			 // u32_CPU from u32_MEM_lohi
+
+			 	seek to OPTIMISE to ASM_GET_WORD_using_EXPR
+
+				for now use a REGISTER or const_VALUE_TRACKER
+				const_var_1 MODIFICATION const_var_2
+				SSA TRACKER
+
+					EDGE of VOID
+					EDGE of ROM // RET_VAL is end_val_calc
+
+				VAR TRACKER
+
+					BITFIELDS
+					NEAREST_USABLE_COPY // _COMPLETE is OK!
+					PARTIAL USABLE_COPY // _PUSH for _KEPT
+					DETECT POSSIBLE_CHANGE_SIGNAL
+					DETECT END_ERA_SYNC_EDGE
+					IGNORE seconf END_ERA_WRAP_STEP_SYNC_EDGE
+
+				SYNC_EDGE
+
+					START of steps
+					MID steps
+					END_VAL of steps
+					RET_VAL of END_VAL
+					RET_VAL of MID_VAL // fast bail
+
+				We simply list all VARS that can be changed
+
+					MODULE
+					SCRIPT
+					AVAR - in SESS
+
+				we guess outside has AVAR called SESS // BIND_to
+
+					SESS 
+
+				rebind
+
+					SESS = SESS_one // asif _two makes sense
+					_two used for MATCH _LHS _RHS
+					_SESS_One // ANYSTR_but_CIDENT99
+					_SESS_Two // ANYSTR_but_CIDENT99
+
+				_one _two
+
+					we intentionally use [1] and [2]
+					when there will only ever be [0] and [1]
+
+					this opens the field to u12_FIELD_IDX
+					_IDX_from_NAME
+
+						FIELD = u12_FIELD
+						u12 = BITFIELD_u12_FIELDNAME
+						u12_idx = lookup( STR0 )
+						// CT_RT //
+						// ENOENT // not known // STR0 
+						// ENOENT // absent // STR0 
+						// OK_ZERO // u12_FIELD is idx
+						// FAIL_M1 // u12_FIELD is M1
+						// OK_one //
+						// OK_two //
+						// u2_idx is actually i32 //
+						// u2_idx is actually i64 //
+						// OK_udef //
+
+				u2 is actually i32
+
+					00	ZERO
+					01	one
+					10	two
+					11	3	// or more when u3+
+
+		MINUS			11	M1	ALIAS FULL
+					00	ZERO
+					01	one
+					10	two
+
+		MINUS			10	M2
+		MINUS			11	M1	ALIAS FULL
+					00	ZERO
+					01	one	"{ ALIAS_one %s }"
+		PLUS			10	two
+		PLUS			11	three	ALIAS 3
+
+		PLUS			100	%d x04X u16_idx _as_u32
+
+		PICK		u1 u2 u3 u4 u5 u6 u7 u8 u12 u16 u24 u32
+
+					BASE_CLASS u0
+
+						it has no choice of VALUE
+						it has no vary of VALUE
+						it has one VALUE == UDEF
+
+					DEFAULT_VALUE is from CODE_POINT
+
+						there is no choice
+						HERE uses "VALUE"
+						HERE is XPOS and LEX_STR0 P1
+
+
+					INNATE FEATURE of u0 is that u8 exists
+
+						u1 is one more
+						u2 is more more
+
+					INNATE FEATURE is HELD in BITFIELD
+
+					INNATE FEATURE is HELD in BYTEFIELD
+
+						u8_BYTE_A
+						u8_BYTE_B
+						u16_BYTES_AB _from_lohi
+						u16_BYTES_AB _from_hilo
+						u32_BYTES_ABCD _from_lohi
+						u32_BYTES_ABCD _from_hilo
+						u64_BYTES_ABCD_EFGH _from_lohi
+						u64_BYTES_ABCD_EFGH _from_hilo
+
+						u8_one_u8_two
+						u16_one_u16_two
+						u32_one_u32_two
+		// NOT YET on WORD_u32	//	u64_one_u64_two_
+		// TBS you have to write the ARM32 handling of u64 in 2 regs
+		// we dont do that
+		// we do handle MEM arrays of u64
+		// we do handle MEM WORDS of u32_u32 // as EIGHT_BYTE //
+		// CPU_WORD_u32 _holding_u3_or_i4_MINUS // or_u4_PLUS
+		// CPU_WORD_u32
+
+
+		Running the sample data, causes GEN_ASM_GEN_C
+
+			TWIG_CXX_AVAR
+			TWIG_CXX_EXPR
+
+		Our API offers                                                
+		"{ u64_BYTES_ABCD_EFGH _from_lohi }" as SPLIT_NAME_JOIN
+		"{ MATCH %s u64_BYTES_ABCD_EFGH_from_lohi }" as MATCH_EXPR
+
+		Our CXX TYPE of PROTO
+
+			a well known ISM
+
+			the PROTO_OBJECT_of_A_CLASS
+
+				is the proto object
+				plus CT_RT initialises some vars
+
+
+
+
+ u5_window in_i8_idx
+
+ 	L          R
+	  M  z  N
+	     z
+	 [M  z [N 	// idx in AVAR
+	[0       [(N-L) // xpos in window_idx
+	[0         [(R-L) // xpos in window_idx LIMITS
+
+
+	     i 		// idx = i // xpos = i - L // L == M // usually
+	     item[i] == MEM_TABLE[xpos_as_byte_offset]
+	     xpos_as_byte_offset =
+	     xpos_as_idx_pos *
+	     MEM_TABLE_bytes_per_slot_in_MEM_TABLE_ // avail PSG usage repeat
+	               bytes_per_slot_in_MEM_TABLE_ // avail PSG usage repeat
+	     MEM_TABLE_bytes_per_slot
+
+
+
+				PARSE "{ ALIAS_one %s }"
+
+					remain hungry for resolve %s to VAL
+
+					KNOW %s must be CIDENT99 
+					// that itself triggers GUESS cident97
+
+					RECOGNISE "ALIAS" as well known ITEM
+					"{ SCOPE ITEM }" // PICK TIEM = EXPR
+					// GETTER is guessed by COMPILER
+					// GETTER is implied by GEN
+					// GETTER is spefied by GEN // HOW //
+
+
+
+
+
+
+
+
+
+
+			 // u32_CPU from u32_MEM_hilo
+			 //
+			 // array[ u2 ] of SELECT
+			 // _one == [1]
+			 // _two == [2]
+			 // _item_FILL == [3]
+
+			 // PSG ARGV sometimes  words needed
+			 LOCAL SCOPE DIALECT _A MATCH("{ u3 PICK  = N ++ } CT_RT KNOW_NO_NEED check_overflow }") of LIST("ITEM")
+		PSG += A_R_G_S
+
+
+
+	2024_05_May
+	2024-05-22_DODO_ONGOING.txt
+
+
+"{ u64_BYTES_ABCD_EFGH _from_lohi }"
+
+	MATCH JOIN_SPLIT_WORD "{  u64_BYTES_ABCD_EFGH_from_lohi }"
+	MATCH PICK "{  u64_BYTES_ABCD_EFGH _from_lohi }" // looked up
+	DECODE_MULTI_PART_WORD "{  u64_BYTES_ABCD_EFGH _from_lohi }" { //
+		/* this is PRE TEXT with lots of keywords */
+		/* in a LEXICON VAR_POOL */
+		u64_BYTES_
+		_ABCD_EFGH
+		_from_lohi
+	}" // _ makes a choice safe is we never use trailing _EDGE_ 
+
+https://nixos.org/
+
+	build script for an OS
+	like an ignite script 
+	useful for boot just for APP_SESSION_TASK_STEP
+
+		the CACHE TREE is like a decision tree, we tickle it
+		so CACHE_TREE has a way to reach all the used expressions
+		SCRIPT can add hints and CODE_POINT clarity
+	
+		the number of multiverse BOOT images, held frozen
+
+			AWAKE 
+			CALL OLD_TIME_NEW_TIME_PRE_WAKE_KNOW
+
+				OLD_TIME = u64_time_t INIT_VAL_EXPR
+				NEW_TIME = u64_time_t INIT_VAL_EXPR
+
+				// optionally defer next step until others
+				// best if we only use these 2 VARS
+				// eg to store them in the STATE of STEPS
+				// our CSR can boot into an entire OS
+				// COW from frozen image of entire OS
+				// CALL PRE_START
+					GEN("OLD_TIME_NEW_TIME_PRE_WAKE_KNOW");
+
+						that GEN a thirst for _EXPR_
+						cancel thirst for VAR unused
+						cache thirst for dgb_VAR unused
+
+							so it is used - dgb
+
+				// CALL MID_START
+				// CALL DONE_START
+
+					GOTO FOREACH ITERATOR A_STEP in A_LIST
+
+				// GEN // SAVE NEW_TIME // then uncalled so OK
+				// UNUSED // SAVE NEW_TIME 
+				// UNUSED // DONT // SAVE NEW_TIME 
+
+
+			STEP sub_era
+
+				we are dissolving era boundaries
+				we sum up all the AVARS modified in A_SET a_LIST
+				we DECL all the AVARS mentioned // SOURCE_AVAIL
+
+				within the machine, you must code carefully
+				reporting from the machine
+				accumulate a cache footprint
+				and GEN code with those features fast
+				use INTERP code for uncompiled SCRIPT
+				use COMPILER to INTERP code JIT and AOT
+				reload code ? already done SCRIPTS in LIBR_two
+
+			STEP = LIST_of_STEP
+
+				flags for YES it is INDENTED_TEXT
+				flags for YES each is INDENTED_TEXT_LINE
+				flags for YES each is INDENTED_TEXT_LINE _MULTI_LINE
+				flags for A_TREE of parsed CODE or PARSED_DATA
+
+ STEP
+ https://github.com/AlaSQL/jisons
+
+ 	PSG.GEN(JSON)
+
+	jisons is strongly influenced by bison
+
+ STEP
+ get jison
+ mkdir PREP/jison_BENCH_jison
+ run the samples
+ add own samples
+
+ STEP
+ parse PIOMAS // uses jisons // uses ZLIB // uses WGET_CACHED URL //
+
+ STEP
+ fetch FILE // uses WGET poll_for_changed // WGET does not test that at all well
+
+
+ STEP
+ L = gen_L(STEPS) 
+
+
+
+BOX_BUILDER
+https://nixos.org/manual/nix/stable/installation/multi-user
+
+	nixos
+
+		build system of listed components
+
+
+
+DODO_DOESNT
+https://google.github.io/googletest/primer.html
+
+	time to do some testing
+	IDEAS += group of tests // RUN_ALL_TESTS // not in groups ??

@@ -1,0 +1,19 @@
+	JS_BENCH/
+	JS_BENCH.txt
+
+BENCH is the local configured BENCH for this Modules development LOCN
+
+JS_BENCH is the code required to make it happen
+
+	Not JS_NODE/JS_BENCH
+
+		it exists in the client browser
+		it exists in the server NODE as LOCN_BENCH
+	
+	Probably uses some over simplistic CLASS tree
+	of objects that BENCH edits for Module
+	of PSG_ITEM_of_CODE in Module itself
+
+		PSG will need some long term stability
+
+		BENCH has API into PSG which should stabilise

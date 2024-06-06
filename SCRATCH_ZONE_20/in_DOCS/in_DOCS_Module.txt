@@ -1,0 +1,67 @@
+
+	in_DOCS/
+	in_DOCS_Module.txt
+
+ BENCH
+  add new FEATURE to LOCN
+  add new SUBDIR to LOCN
+  add new VARPOOL to LOCN
+
+  	ALIAS VAR_POOL VARPOOL {
+	 VAR_POOL {
+	 	better spelling
+		but uses multi joined words
+		so used a UDEF ALIAS over "VARPOOL"
+	 }
+	 VARPOOL {
+	 	technically look like WORD1 not list_of_joined_words -nor-PAIR
+		AUTO allocate "VAR_POOL" # and if not need EXPLAIN
+		EXPLAIN += CT_UNUSED DROP_UNCALLED_CODE # ROM += PREP_TOP_LEV
+	 }
+	 ALIAS {
+	 	PICK VIEW as "{ VAR_POOL }" 
+		ISA CIDENT ${ CIDENT99 }" // inside { no dollar }
+		ISA ALEX // multiple inherit as BASE GROUP around CODE_POINT
+		ISA AVAR // multiple merge PEERS and their EXPORTED FEATURES
+		// as "{ HEAP_TOKEN_PAIR }" BASE GROUP around CODE_POINT
+		// auto recognise ABBR for "{
+			{ u12 idx_of_HEAP } // AUTO STRETCH u15 u15 u47 u63 i64
+			{ u12 idx_of_TOKEN_in_HEAP }
+			.TOKEN -
+	 }
+	}
+
+ OPTION
+  unequal "[MININT [ M1 .. [0  [ MAXINT [
+
+   MIN WIN NT is nothing to do with here, their choice // MIN_WINT
+   our usage is MIN INT - minimum integer Min BITFIELD CODE_GEN // MIN_INT
+
+  unequal "[MININT [ M1 .. [0  [ MAXINT [
+
+  	MININT is not B_10000 
+
+	https://en.cppreference.com/w/cpp/types/numeric_limits
+
+		template<> class numeric_limits<char8_t>;
+		template<> class numeric_limits<char32_t>;
+The value of each member of a specialization of std::numeric_limits on a cv-qualified type cv T is equal to the value of the corresponding member of the specialization on the unqualified type T. 
+		std::numeric_limits<int>::digits
+		is equal to
+		std::numeric_limits<const int>::digits
+
+		For embedded, we use our own labels, plain CXX
+
+			MAX_UNS_u8 == 255
+			MAX_INT_u8 == 127
+			MIN_INT_u8 == -127 // OPTION STEAL -128 as M_borrowed
+			MIN_INT_u8 == -128
+			N_BITS_u8 == 8 // LIBR_AXIOMS_PLUS // code tag SEEN
+			SEEN "u8" // pivots against PAIR RHS "u8"
+			USED "u8" means "u47" // in i48 // in_i64 // _in_u12
+			// u5_in_u8_in_u12_in_u15_in_i16 //
+			// PLUS_ZERO_MINUS //
+
+
+
+

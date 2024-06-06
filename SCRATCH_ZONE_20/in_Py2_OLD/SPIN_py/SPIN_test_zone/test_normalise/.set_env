@@ -23,13 +23,13 @@
 
 # Where is libsp.so - if not installed spin_py.so needs to find it
 
-	add_to_var LD_LIBRARY_PATH $D0/SP_lib
+	var_add LD_LIBRARY_PATH $D0/SP_lib
 
 # Where are the scripts libraries
 
-	pfx_to_var PATH ""
-	pfx_to_var PATH $D1/base
-	pfx_to_var PATH $D1/plus
+	var_pfx PATH ""
+	var_pfx PATH $D1/base
+	var_pfx PATH $D1/plus
 
 # The document being processed
 

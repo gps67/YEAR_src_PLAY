@@ -5,7 +5,7 @@
 #
 # you must list all filename extensions used
 #
-.SUFFIXES: .cxx .c .o .so .elf .exec
+.SUFFIXES: .cxx .c .o .so .elf .exec .h
 
 #
 # RULE: compile from .c to .o
@@ -43,6 +43,17 @@
 # but this isnt working either
 # %.exec: %.o $(OBJS)
 
+
+## BELOW NOT WORKING
+
+##	%.o: %.h
+##
+##	.h.o:
+##
+##	$(OBJS): $(HDRS)
+##
+
+## ABOVE NOT WORKING
 
 # .o.elf .o.exec: $(OBJS)
 

@@ -2,6 +2,10 @@
 # record20220522135748.3gpp
 # recordYYYYMMDDHHMMSS.3gpp
 
+# BUG # _ASTR # when already had different name
+# BUG # _ASTR .mp4 => .jpg # when already had different name # slightly more serious
+# BUG # SS == 00 #
+
 # BUG # .ext #
 
 set dir_default Iya_Salisbury
@@ -48,6 +52,9 @@ set ZONE_NAME Southbourne
 set ZONE_NAME RSAC_SatinBeige
 set ZONE_NAME BH_walk
 set ZONE_NAME Readipop
+set ZONE_NAME Birthday_91
+set ZONE_NAME Aldershot
+set ZONE_NAME SuntouSusso
 
 proc list_pop {listname itemname } {
 	upvar $listname list

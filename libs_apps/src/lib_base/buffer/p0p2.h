@@ -269,6 +269,11 @@ struct p0p2 : public GRP_lib_base
 		return cmp( s ) == IS_SAME;
 	}
 
+	bool get_P0P2( p0p2 & P0P2 ) {
+		P0P2 = *this;
+		return true;
+	}
+
 };
 
 #endif

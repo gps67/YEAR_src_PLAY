@@ -25,12 +25,14 @@
 
 	S += ../src
 	HDRS += $S/M_z_N.h
+	HDRS += $S/i3_idx.h
 
 	LIST_VPATH +=$S
 
 	# after any HRDS edited, rebuild OBJS in this order
 
 	OBJS += M_z_N.o
+	OBJS += i3_idx.o
 
 	PROG1=M_z_N_test
 	PROG2=M_z_N
@@ -54,6 +56,14 @@
 
 all: run_test1
 
+# this recompiles all .o OBJS if ANY .h changes
+# a good compromise is to recompile the .o for the .h
+# and avoid making radical changes to inline functions
+
+$(OBJS): $(HDRS)
+
+gdb_test: $(EXEC1)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
 
 gdb_test1: $(EXEC1)
 	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)

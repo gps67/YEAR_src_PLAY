@@ -1,0 +1,81 @@
+
+TODO a range of types, but mostly u8_u24 and u8_u8_u16
+
+	u8_u24 OFFS_EXPR 
+
+		return u24_PAYLOAD // GETTER is FUNC 
+
+		return u24_PAYLOAD << 3 // IDX_to_ARRAY_ITEM_EIGHT // _full_word
+		return u24_PAYLOAD << 2 // IDX_to_ARRAY_ITEM_FOUR // _aligned
+		return u24_PAYLOAD << 1 // IDX_to_ARRAY_ITEM_TWO // as_OFFS
+		return u24_PAYLOAD      // IDX_to_ARRAY_ITEM_BYTE // OFS
+
+	u8_u8_u16
+
+		u16_IDX = _u16_BITFIELD // CT must know BITFIELD MATH
+		// does via MACRO GETTER //
+
+	
+	OPCODE_BYTE_ITEM // ie two byte registers PICK local[u8] // OK 
+	OPCODE_ITEM
+
+	The signedness of the BYTE is ignored,
+	or actually force CASE to u8 and alloc all of sparse ARRAY PAGE
+	use PAGE in larger SCROLL is a simple COMPAT MODE // with OPTIONS
+
+		BYTE u8_idx || i8_idx 
+		ARRAY [u8] of EIGHT _t
+
+		u8_idx = (u8_cast_byte) i8_idx
+
+
+TODO a range of types, becoming parameters in BENCH maintained BUILD tree
+
+	u8_idx
+	i8_idx
+
+		i3_idx as parameter to template
+		template is only expected to work with u8 or i8 or SUB_BYTE
+	
+	u16_idx
+	i16_idx
+
+		i12_idx as BITFIELD in OPCODE
+
+			used to select
+			PLUS ZERO MINUS
+			PEER_was_in_control_PICK_asif_BASE_CLASS_DERIVE
+
+
+	u32_idx
+	i32_idx
+
+			LIMIT u31 - soft limit, crossing will call FAIL_FAILED
+
+			errors will happen if you exceed u31
+			alias INT and UNS is the reason
+			this can be wrapped in M_z_N
+
+			that will also solve NBITS( M ) exceeding LIM_u31
+
+				which are KNOWN to WORK in UNS view
+				can also simplify need for i33
+				by using u32 for each section
+
+			MINUS_M is N_MINUS is COUNT_M
+
+				N( P0P2 ) == ( P2 - P0 )
+
+					so
+
+				P0 == M // idx_M is M is edge_item // is_MINUS0
+				P2 == 0 // (p2-p0) ==( 0 - M ) == -M // expr_cache
+
+	Programmer picks paths that lead to "{ -M }"
+	Bench can provide a rules based (strong_type_checking_CT_RT)
+
+
+	u64_idx
+	i64_idx
+
+			LIMIT u63 - soft limit, crossing will call FAIL_FAILED

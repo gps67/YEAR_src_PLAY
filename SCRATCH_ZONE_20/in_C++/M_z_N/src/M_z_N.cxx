@@ -1,7 +1,9 @@
+// #include "i3_idx.h"
 #include "M_z_N.h"
 #include <assert.h>
 #include <string.h> // memmove
 #include "dgb.h"
+
 	
 //	using namespace XYZ;
 
@@ -20,8 +22,10 @@
 	increase_NBIT_WORD_to_hold( int NBITS ) {
 		if( NBITS <= NBIT_WORD ) {
 			WARN("this never happens");
+			return PASS("OK"); 
 			return true; 
 		}
+		NBIT = NBITS;
 		if( NBITS <= 8 ) {
 			NBIT_WORD = 8;
 			NBIT_idx_MAX = 0xFF;
@@ -53,7 +57,7 @@
 			return FAIL("overflow u64");
 		}
 	#endif
-		PASS("NBITS %d got %d MASK 0x%016X", NBITS, NBIT_WORD, NBIT_idx_MAX );
+		PASS("NBITS %d of %d got %d MASK 0x%016X", NBITS, NBIT, NBIT_WORD, NBIT_idx_MAX );
 
 		return true;
 	}

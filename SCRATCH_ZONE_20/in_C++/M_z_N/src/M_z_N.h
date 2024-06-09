@@ -4,6 +4,8 @@
 // need NULL defined in
 #include "stdlib.h"
 #include "dgb.h" // INFO used
+#include "p0p2.h" // INFO used
+#include "i3_idx.h"
 
 
 // for simplicity we limit ourselves to i32_idx inside u32_array
@@ -15,10 +17,90 @@ struct L_M_z_N_R_32 {
 
 	char * PTR_to_ARRAY;
 
+/*
+	This is based on P0P2 which holds a STR0 when the NUL byte is EOF and not at the end of STR_in_STREAM_not_STR0 STREAM_ONE was STDIN for PSG
+
+	    M_z_N
+
+	    u8 STREAM_TEXT[XPOS] ;// here literally BYTE OFFS over is "{ XPOS += { FILE OFFS } "
+
+	    XPOS == OFFS of BYTE_ADDR of POS_ZERO
+
+	    	STREAM_FRAGMENT_BUFFER = nbytes_as_buffer1 // most basic dynamically malloced buffer, general expectation of TEXT
+
+		STREAM_FRAGMENT_P0P0 { P0 = EA_M(); P2 = P0 + ( N - M ); } // not the half P0 + N // why M is negative OFFS 
+
+			P0 = EA_BUFFER_
+
+			We try to write for a STREAM_FRAGMENT
+			We aim to write for a STREAM_BUFFER
+			We aim to write for a FILE_TEXT_BUFFER // STR0 becasuse we have PRE_NUL_EOF_NL_TESTED_
+
+			get_P0() returns a "{ char * PTR = get_P0() }"
+			get_P2() prefers to not be called OTHER than during INIT 
+
+			 on_INIT(' P0P2.P0 = on_INIT_get_P0(  SELF ) // optional GEN as () or ( %s ) or ( "MATCH" ) // "SPELLING" // ') // Q1_Q2 not CXX is_DIALECT
+			 on_INIT_get_P0(  SELF CTXT SESS XPOS  ) { SCRIPT } //
+			 on_INIT_get_P0() { return SELF.buffer.get_P0() } // blk1
+			 on_INIT_get_P0P2() { P0 = init_from_EA.P0 ; P2 = init_from_EA.P2 ; }
+			 on_INIT_get_P0P2() { P0P2 = init_from_FILE.P0P2 } // each P0P2 type has own get_P0P2 over BASE
+			 // VARIES with { PTR_t == "u8 * PTR" } // CT_RT says YES_DECL_as_EXAMPLE_for_PTR_t_with_NAMED_sample_USAGE
+
+
+			P0P2 = BUFFER.get_P0P2()
+			rewrite as:
+
+				book was_ok = BUFFER.get_P0P2( P0P2 ) // LANG BIND AVAR to fetch init CTOR data
+				if(!EXPR) return FAIL_FAILED(); // rewrite uses RET_VAL as BOOL and RET_VAR_PARAMETER // LANG("RET_VAR")
+				// "RET_VAR" named "VAR_NAME" or "ARG_NAME" or NULL for NO_NAME_FUNCTIONAL_UNIT //
+				
+				#define bool_was_ok bool
+				DECL bool_was_ok BUFFER.get_P0P2( P0P2 ) // LANG BIND AVAR to fetch init CTOR data
+
+
+		DIALECT under Q1Q2 contrasts with CXX looks_a_bit_like  Q1_Q2
+
+			SCRIPT uses 'Q1 TEXT Q1'
+			SCRIPT permits Q2 inside Q1
+			SCRIPT permits Q1 inside Q2
+			SCRIPT avoids REGEX backslash
+
+		DIALEXT Q1Q2 adapts to USAGE and local dialect
+
+			NOTICE
+			OBSERVE
+			MATCH Q1 STR Q1
+			MATCH Q1 ARGV Q1 
+			MATCH Q1 STR Q1 // STR0 appers as STR // allow ALIAS STR0 without expecting NUL, because REWRITE
+
+
+
+
+
+
+	    [0        [X       [(N-M)
+
+	    [P0       [P[     [P2
+	    [M[       [Z[      [N
+	    [Z[       [Z[      [(N-M)
+
+	    [M[       [Z[      [N
+	    [ [ MINUS [0[ PLUS [N
+	    [M[       [0[      [N
+	    [M[ MINUS [0[ PLUS [N
+
+	 [L [M[MINUS[0[PLUS[N [R
+
+	    [M[MINUS[0[PLUS[N
+	 [L [M[MINUS[0[PLUS[N [R
+*/
+
 	IDX_int L;
 	IDX_int M;
 	IDX_int N;
 	IDX_int R;
+
+	i3_idx in_idx;
 
 	/*!
 		 NBIT increases by 1 
@@ -35,9 +117,11 @@ static const	IDX_int Z = 0;
 	L_M_z_N_R_32( )
 	: PTR_to_ARRAY(NULL)
 	, L(0), M(0), N(0), R(0)
+	, in_idx(0)
 	, NBIT(2)
 	, NBIT_idx_MAX(0x03) // b0011 2 bit
-	, NBIT_WORD(2)
+	, NBIT_WORD(0)
+//	, NBIT_WORD(2)
 	, bytes_per_item(4)
 	{
 	}
@@ -45,6 +129,7 @@ static const	IDX_int Z = 0;
 	L_M_z_N_R_32( int bytes_per_word )
 	: PTR_to_ARRAY(NULL)
 	, L(0), M(0), N(0), R(0)
+	, in_idx(0)
 	, NBIT(0)
 	, NBIT_idx_MAX(0x00) // b0000 0 bit // SINGLE_BIT has { M1 ZERO } // u0
 	, NBIT_WORD(0)
@@ -276,12 +361,24 @@ static const	IDX_int Z = 0;
 		return EA_of_X( X_of_V( V ) );
 	}
 
-	IDX_int MAX_of_NBIT( int NBIT ) {
+	IDX_int MIN_of_INBIT( int NBIT ) { // UNSIGNED NBIT UNBIT // IN_BIT // in_BITFIELD
+		return -( 2 ^ (NBIT-1) );
+	}
+
+	IDX_int MIN1_of_INBIT( int NBIT ) { // UNSIGNED NBIT UNBIT // IN_BIT // in_BITFIELD
+		return 1 -( 2 ^ (NBIT-1) ); // ie exclude the very lowest signed value -128 has only +127
+	}
+
+	IDX_int MAX_of_INBIT( int NBIT ) { // UNSIGNED NBIT UNBIT // IN_BIT // in_BITFIELD
+		return 2 ^ (NBIT-1) - 1;
+	}
+
+	IDX_int MAX_of_NBIT( int NBIT ) { // UNSIGNED NBIT UNBIT // IN_BIT // in_BITFIELD
 		return 2 ^ NBIT - 1;
 	}
 
-	bool ALLOC_PLUS( IDX_int & V );
-	bool ALLOC_MINUS( IDX_int & V );
+	bool ALLOC_PLUS( IDX_int & V ); //! alloc idx on the PLUS side
+	bool ALLOC_MINUS( IDX_int & V ); //! alloc idx on the MINUS side
 	
 	bool get_plus_space_for( int add );
 	bool increase_NBIT_WORD_to_hold( int NBITS );

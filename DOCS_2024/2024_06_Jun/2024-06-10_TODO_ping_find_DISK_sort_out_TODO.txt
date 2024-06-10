@@ -1,0 +1,56 @@
+	2024-06-10
+
+	2024_06_Jun
+	2024-06-10_TODO_ping_find_DISK_sort_out_TODO.txt
+
+	2024-06-10
+	_TODO_
+
+		ping
+
+			somewhere was code that did a ping, using RTFM
+
+		_find_DISK_sort_out
+
+			redo from scratch -or-
+			find code on some disk somewhere
+
+
+		_disk_dedup_
+
+			shasum TEXT_in_FILE // meta of file is not protected
+
+			DB FILE_COPY_one = STR0 = "/a/file/name"
+			DB FILE_META += DATE SIZE PERM OWNS UNIX_inode_fields
+			DB FILE_shasum = SHA1_sum_in_nbytes n == 32 ish //
+
+			// less than 1024 // u6_currently //  no need over u8
+			// nbytes as HEX_DUMP
+			// nbytes as BASE64_B
+			// nbytes as ANYSTR0 // only NUL is last byte
+			// nbytes as ANYSTR // no NUL required because P0_N
+
+			// nbytes as P0P2
+			// nbytes as P0_N
+
+		_TODO.txt
+
+
+			STR_P0P2 is found at P0 _N bytes P2 is outside STR
+			P2 is next phrases P0 - or EOF_VOID_BYTE
+
+		_TODO
+			store 32 bytes of BLOB in sqlite
+			store 32 bytes of BLOB in pg_sql
+			store 32 bytes of BLOB in my_sql
+			store 16 bytes of BLOB in MMAP_HEAP_ITEM_ATTR
+
+	MMAP_HEAP_ITEM_ATTR
+
+		MMAP	- pick SESS MMAP and AREA
+		HEAP	- pick HEAP = VAR_POOL_two
+		ITEM	- pick ITEM = HEAP[ pick_idx_expr ]
+		ATTR	- CT_RT += "ATTR" ATTR_SPEC ATTR_DATA KNOW += KNOW
+	
+
+

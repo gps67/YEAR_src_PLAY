@@ -1,0 +1,192 @@
+
+	BENCH/
+	BENCH_peer.txt
+
+	A peer is an item in a LOCN 
+	a group of peers appear at LOCN
+	The SESS CTXT also has a bunch of
+
+		ANON names - sort of merged as PEERS of the ANON_SELF
+
+			ie a bit like "this" disappears, python mentions it
+
+			CXX makes it easier to see when ANON == SELF
+
+				import THE_GLOBAL_has_a_list_of_IMPORTED
+
+				 _LIBR_ANON as SELF
+
+				 	add ability to (TYPE_CAST) ITEM
+				 	add ability to TYPE_CAST( ITEM ) 
+
+					eg (STR0) str0 str;
+
+					VIEW ASIF "{ u8 * str }"
+					VIEW if prefer "{ u8 * str }" draw as
+					VIEW if prefer "{ ::std::string str }"
+					KNOW PHRASES print to buffer via filter
+
+					filter rewrites into CSET == UTF8
+					filter rewrites into CSET == BYTE_LAYIN
+					filter rewrites into CSET == BYTE_cyriilc
+					filter rewrites into CSET == CSET_BYTES
+
+						all computers are BYTE based
+						all CSETS are multiple bytes (not
+						not BITFIELD
+
+
+				import GLOBAL
+
+					an actual LANG object can act as GLOBAL
+					it must be a LANG object, or CXX_PLUS
+					it must provide storage for SESS
+					it can provide fields, funcs, names
+
+						GETTER
+						REQUIRED
+						HERE
+
+# NODE_EXTN_ITEM # must be an ES6 OBJ # no need for compiled access # A_STRUCT
+# global gets called for every (unmatched, uncached) item_name_by global
+# _item_name_provided_by_global # AVAR # FUNC #
+# FUNCTION called is given ITEM == SELF CTXT == SESS_CTXT ==
+# parsed DEFINE "{ macro expr }" # surrounding "parsed DEFINE %s # CMNT" adds
+# { macro expr } # has range of interpretations # known DUAL USE WORD #
+# 
+# ARTICLE~ GLOBAL - where is it - who provides it - can I ?
+#
+
+
+
+				import LIST_of_GLOBALS
+
+					a simple compositor is the
+					UNION of UDEF 
+					# OPTION AVOID # UDEF = UDEFS[HERE] #
+					# HERE == CODE_POINT_with_SESS_and_NOW #
+
+# ARTICLE #
+# ARTICLE # HOWTO define a GLOBAL for your USE #
+# ARTICLE #
+
+# ARTICLE #
+# ARTICLE # HOWTO avoid (ABOVE: define a GLOBAL for USE #
+# ARTICLE # HOWTO avoid USAGE_ABOVE using USAGE_DIFFERENT
+# ARTICLE # IE create a GLOBAL.AVAR and FUNCS_for_AVAR #
+# ARTICLE #
+
+# ARTICLE # AVAR for GLOBAL #
+# ARTICLE # AVAR for SCOPE # eg GLOBAL for this FUNCTION by_SPELLING_as_TOKEN
+#
+# CT_RT CT_ converts "SPELLING" to TOKEN_when_used_as_PURPOSE # CODE_POINT
+# TUPLE { XPOS STR0_from_SPELLING_TOKENISED_AS_WORD_is_EA_ITEM } 
+# EA_EXPR # varies depending on CTXT # does the LOOKUP very EFFICIENTLY
+# OK you might have to figure that, but when you do, it goes here
+# EG EA_EXPR == LOHI_u8_u8_u16_u8_u24 # # picture of bits in u64_MEM_WORD
+# EG EA_EXPR == LOHI_u24_u8_u16_u8_u8 # picture of bits in u64_CPU_BITFIELD
+
+A TOKENISED SPELLING that has then been resolved down to an _EXPR
+will contain BOTH spelling STR0 and DECODER_WHICH_SAID_ _AVAR
+
+AVAR is actually any EXPR, or CODE, or DATA
+
+	DATA	i12_idx = BITFIELD_i12_LHS
+	CODE	ITEM_TYPE ITEM = CTOR FUNCNAME i12_LHS i12_RHS
+	EXPR	CT_RT if switch CALC CALL INLINE_STMTS 
+	PAIR	LHS RHS # ARGV[idx_LHS_WORD]
+	PAIR	WORD = ARGV[idx_LHS] # AUTO HOVVER MINI_MATCH idx_LHS_WORD _LHS
+	PAIR	WORD = ARGV[idx_RHS] # AUTO SCOPE idx == idx_RHS # 
+	ALIASES	L R # bot define one as the other, both WORDS in PAIR
+
+CODE must probably be written at some MEM_ADDR
+
+	but there you find list of u64_WORD_is_CODE
+
+		MINI_MACHINE uses
+
+			u8_u8_OPCODE
+			u16_as_u4_u12_opcode
+
+			u8_u24 _LOHI // loaded from LOHI // MEM_VIEW
+			u24_u8 _LOHI // loaded from LOHI // CPU_VIEW // DBCA
+	HERE		u24_u8 _LOHI // loaded from LOHI // CPU_VIEW // HGFE //
+
+			VAR_POOL_one[ u12_idx ] // M_z_N // 
+			// although MINUS is useful it is error prone
+			// unless access via derived class of M_z_N 
+	
+	ASM in CPU_64 mode
+
+		BITFIELD - can it be a BYTEFIELD
+
+			BYTE_A SIGNED UNS _u8_A _i8_A
+			BYTE_B SIGNED UNS _u8_B _i8_B
+			LOHI_BA _u16 _i16
+
+		BITFIELD       16[15  0[	# AVAIL as BYTE_FIELD UNS INT
+		BITFIELD 32[31 16[15  0[	#
+		BITFIELD 32[31 16[15 		# AVAIL (UNS)<<32 (SIGNED)>>48
+
+		IE it is a COMMON bitfield OPERATION taking 2 clock cycles
+
+			SHIFT LEFT
+
+			 DROP all bits above TOP BIT
+			 FILL ZERO's
+			 OPTION of C FLAG - AVOID
+
+			SHIFT RIGHT
+			 SIGNED SHIFT
+			 UNSIGEN SHIFT
+
+			 OPTION of B FLAG not existing TOP BIT
+
+			   x	1100  >> 2 becomes 1111 # use TOP BIT ignore x
+			   x	0100  >> 2 becomes 0001 # use TOP BIT ignore x
+
+			 B 1 ->	1100  >> 2 becomes 1111 # B remains SIGN
+			 B 0 ->	1100  >> 2 becomes 0011 # 00 came in as PLUS
+
+			 B 1 ->	0100  >> 2 becomes 1101 # B remains SIGN
+			 B 0 ->	0100  >> 2 becomes 0011 # 00 came in as PLUS
+
+		VIEW has this scratch fragment for use as ...
+
+			 B 1 ->	1100  >> 2 becomes 0111
+			 B 1 ->	1100  >> 2 cant be 1011
+
+		DIAG can name BITFIELD bits as BITS_hgfedcba
+		DIAG can name BITFIELD bits as BITS_76543210
+
+			the letters confuse me with EIGHT
+			the digits are actually the correct bit names 
+			avoid USAGE by using SAMPLE values not DIGITS
+			digits 16 then again VIEW sample over STR0_ASCII
+			digits 16 then again VIEW sample over STR0_CSET
+
+				CSET = AVAR_CSET == CSET_BYTE_ASCII
+				CSET = AVAR_CSET == CSET_BYTE_LATIN
+				CSET = AVAR_CSET == CSET_BYTE_CYRILIC
+				CSET = AVAR_CSET == CSET_BYTE_see_SESS
+				CSET = AVAR_CSET == CSET_UTF8_multibyte
+
+			CSET_BYTE_see_SESS is also compat with OPCODE_BYTE
+
+				BYTE_VALUE_NUL is reserved for STR0
+				ALLOW_UTF8_NUL // on_EVENT can use &NUL_BYTE;
+
+
+	ES6 DATA can include BIT_PERFECT_u32_HALF_WORD
+	ES6 DATA can include BIT_PERFECT_u64 _with_BITFIELDS
+	PSG_LAYOUT
+	LEX_READER can split multi_part_lex_into_fields_for_DECODE
+	LEX_DECODE matches EA_EXPR_in_u64
+
+	u64_as_u32_u32 is ARM32 friendly - it already sees as WORD PAIR
+	u64 is ARM32 friendly - via 2 routes, u32_MEM_ACCESS u64_BITFIELD_SHIFY
+
+
+			
+
+

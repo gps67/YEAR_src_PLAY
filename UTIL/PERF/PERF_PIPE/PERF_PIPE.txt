@@ -1,0 +1,42 @@
+	PERF_PIPE/
+	PERF_PIPE.txt
+
+	PERF_PIPE 
+	is a collection of time_series_and_other values 
+	XFER through a PIPE as MUX fragments
+
+	SENDER must DECL everything
+	SENDER cam import TREE from ROM of PRE_DECLARED
+
+	TIME_SERIES
+
+		split clutch of readings
+		each happens at original sample rate - every 2 seconds
+		some never change - they are optimised out - ROM helps
+		some get extra sample rates - even spaced
+		some get extra sample rates - NOT even spaced
+
+	OCCASIONAL READING
+
+		ENQ_ACK
+	
+	CHECGED_at_ERA_EDGE
+
+		send updates to all listeners
+		roll subscription 
+
+			V_before
+			V_mid_change
+			V_after
+
+		batch adds up to SUB_STEP within ERA_STEP
+
+			a few SPIN locks needed for TRANSACTION_DURATION
+
+				promote LOCK to start of BLOCK // end too
+
+				obtain all locks in advance
+
+				process these
+
+				release locks, offer around, or retain,

@@ -1,0 +1,80 @@
+IDK
+
+	GEN_YACC MK Makefile
+
+		too complex, uses a bounce CT_RT run again now compiled
+
+		interpreter pre-runs SCRIPT recording every STEP
+
+		SSA values are SAMPLE values, over SSA variables
+
+			often actually unique SAMPLE data
+			often rename to original SAMPLE data names // _one SELF
+			often rename to original SECOND data names _two
+
+		VIEW using SAMPLE DATA and DIALECT VOCAB
+
+			sample data shows eye, data path through SCRIPT
+
+		VIEW using TEST_TWO SAMPLE DATA and DEBUG_DIALECT
+
+			ongoing no clash of merged NAMESPACE
+
+				RESOLVE AMBIGUITY
+				AVOID USAGE 
+				PROMISE wants an ANSWER
+				ENQ_ACK of LEX_NAME in SCOPE
+
+			BENCH system of naming things after SAMPLE data
+
+				after USAGE
+				after NOUN
+				after CALL
+				after ABBR
+				after ARGV // of STR0 of P0P2 of OBJV at MMAP
+
+			BENCH system of creating things as AVAR in SCOPE
+
+				Most things are actually tree_twigs
+				The smaller stuff happens in code
+
+				No safe DB here yet (ever) other than ROM
+				ROM rejects MODIFICATION
+				ERA retains ROM until DELTA # DB_WORLD #
+
+			BENCH uses ARGV of u64_PTR_to_STR0_or_EXPR
+
+				we hijack "{ u8 * ARGV_0 = ARRAY_0 }"
+				we hijack "{ u8 * ARGV_i = ARRAY_0 + i }"
+				// ANCIENT C // ARRAY_DECL_SYNTAX_C_PTR_ARY_ETC
+
+				we hijack '{ u8 * STR0 }'
+				we hijack '{ u8 * STR0_inside_OBJ() }' // inline CODE
+				This matches what Tcl and Pythin already do
+				The interpreter, converts STR0 to an OBJ_PTR
+				// Tcl_Obj * str_obj = TCL_TOKENISE_STR0( P0P2 )
+
+				// TYPE in name is figurative
+				// TYPE in ARG is adapted to usage from TYPE2
+				// TYPE2 provides usage in it's own VOCAB
+				// P0P2 is actually M_z_N
+				// P0P2 is actually P0_P2
+				// P0P2 is actually P0_N 
+				// P0P2 is actually P0_PARSE ...
+				// PARSE_CIDENT99
+				// PARSE to matching BRACE P2 // P2 is after GAP after BRACE
+				// EXTRACT as XPOS in LIST_of_XPOS // P1
+				// EXTRACT as P0P2 of TEXT_MEAT_PROV _GIVEN
+				// EXTRACT as P0P2 of TEXT_MEAT_USED
+				// eg one parser will tightly wrap { P0P2 }
+				// P0 points to "{" //
+				// P2 points to VOID_just_AFTER P1_glyph
+				// P2 is P2 after "}" P2 
+				// P2 is P2 after "}" P2 GAP ANOTHER_ARGV_WORD
+				// P2 is P2 after "}" P2 GAP CMNT EOLN
+				// PSG may have assigned this HERE to also
+				// also carry a WRAP for P0P2 # was ARGV[i]
+
+
+
+

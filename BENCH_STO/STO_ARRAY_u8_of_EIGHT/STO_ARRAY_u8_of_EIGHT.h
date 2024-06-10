@@ -5,12 +5,27 @@ namespace STO {
 // typedef u32_u32 EIGHT_t; // UNION of 2 implementations that are proven SAME
 // C uses u64 // even when u32_u32 //
 
+// typedef u32 WORD_t; // CPU specific
+   typedef u64 WORD_t; // MEM align EIGHT_t or FOUR_t // u32_u32 //
+
+
+ struct LOCK_t {
+ //	u64 LOCK_WORD; // on AMD
+ //	u32 LOCK_WORD; // on AMD
+	WORD_t LOCK_WORD;
+ };
+
 typedef u64 EIGHT_t; // compules to a single word on AMD64 // edit for CT_ARCH
 
  struct ARRAY_u8_of_EIGHT {
 
  	EIGHT_t * ARRAY[ 256 ];	
 
+	// u9 N; //
+	typedef u16 u9; 	// is_wider // BEWARE when N needs 17'th bit
+	typedef u9  u9_or_i10_or_wider; //
+	typedef u9 u8_then_1; // u9 or i10 or wider
+	// u9_N_t //
 	u8_then_1 N;
 
 	u8_idx_t
@@ -18,7 +33,7 @@ typedef u64 EIGHT_t; // compules to a single word on AMD64 // edit for CT_ARCH
 
 	 // every ARRAY has a single builtin TEMP CSR // obtain LOCK get CSR
 
-	 ARRAY_u8_of_EIGHT() {
+	 ARRAY_u8_of_EIGHT() N(0), ARRAY(NULL) {
 
 
 	 	ARRAY = MMAP_alloc( sizeof(*ARRAY) ); // I always MEMSET_ZERO
@@ -38,19 +53,24 @@ typedef u64 EIGHT_t; // compules to a single word on AMD64 // edit for CT_ARCH
 	 bool OBTAIN_LOCK( WORD_t & WORD ) { // WORD 
 	  // GLOBAL CODE LOCK
 	  	LOCK_t LOCK( WORD );
-		LOCK.use_CPU_test_and_set_mem_LOCK()
+		LOCK.use_CPU_test_and_set_MEM_lock(); // ALLOC the BIT
 		if( LOCK.LOCK_OBTAINED() ) { // else was busy
-			LOCK.sync_WORD(); // NOOP // already DONE //
+			LOCK.sync_WORD(); // NOOP // already DONE // KNOW ...
 			LOCK.register_LOCK_with_LOCK_BOX(); //
 			LOCK.STO_WORD_and_DTOR(); // already DONE // SYNC
 			return true; // LOCK obtained
 		}
-	  	if( WORD == 0 ) {
-			WORD ++;
 		} else {
+			return FAIL_FAILED(); // already reported
 		}
 	  // GLOBAL_UN_LOCK
 	 }
+
+	 bool RELEASE_LOCK( WORD_t & WORD ) { // WORD 
+	  	LOCK_t LOCK( WORD );
+		LOCK.RELEASE(); // SAME_ALLOC_BIT CT_RT CODE_POINT KNOWN BIT
+		return true;
+	 };
  };
 
  struct ARRAY_u8_of_ITEM : public ARRAY_u8_of_EIGHT {

@@ -1,0 +1,8 @@
+EIGHT_is_STR7.txt
+
+gps@E6320:~/YEAR/src/PREP/i64_LOHI/i8_i8_i16_i32$ ./test_align.exec
+
+	show_word_32 0x0000000064636261 abcd
+	show_word_32 0x0000000065646362 bcde
+	show_word_64 0x6867666564636261 abcdefgh
+	show_word_64 0x6968676665646362 bcdefghi

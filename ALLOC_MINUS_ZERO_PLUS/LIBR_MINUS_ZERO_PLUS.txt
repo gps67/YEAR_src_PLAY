@@ -1,0 +1,90 @@
+
+	ALLOC_MINUS_ZERO_PLUS/
+	LIBR_MINUS_ZERO_PLUS
+	.txt
+
+	ALLOC_	MINUS_ZERO_PLUS/
+
+	ALLOC_
+		MINUS
+		ZERO
+		PLUS
+
+		MINUS is for CT_ fixed items 
+		MINUS is for CT_ EA_OPCODE_EA_FUNC_EA_SEGMENT_OFFS_ITEM
+		MINUS is idx _EXPR as BITFIELDS # MINUS already is func not val
+		ZERO is always INIT_STATE_ZERO // guarantee from LIBR 
+		ZERO is just another PLUS
+		ZERO is NULL // SPECIAL // also M1 M2 M3 as FAST TAGS
+		ZERO_is_idx
+		PLUS is idx _idx_in_ARRAY
+		PLUS is idx _offs_in_TEXT
+		PLUS is idx _EXPR as BITFIELDS # MINUS already is
+
+		PLUS_is_RT_ALLOC of UDEF DATA
+		MINUS_is_CT_ALLOC of CODE_and_DATA
+
+		Actual CODE can put the correct EA_FUNC to call
+		in a CACHE_VAR for this AVAR's current or predicted VALUE
+		if it never changes it can be CT_ optimised out
+		if it never changes implement as AVAR # with KNOW # _API
+		EG const double PI = math.PI # CT already doing that for AVAR
+		AVAR AVAL // AVALcan be used a CONST AVAR // KNOW AVAR.CONST()
+	
+
+	 ALLOC PLUS HALFWAY
+	 ALLOC PLUS
+
+	 	"idx = N ++" // PSG matches and STRONG_BIND_ALIAS to += GAPS
+	 	"{ idx = N ++ }"
+
+		N is a tracked var, and we must take special care BITFIELD 
+		N_LIMITS 8 16 32 63
+
+			we can never allocate above u63
+
+			that is our absolyte LIMIT
+			and we are already stopping halfway
+
+			below u63, eg u12 i12 u11
+			expand to i16 // SIGNED EXPANSION
+	
+	ALLOC MINUS
+
+		SIGNED EXPANSION
+
+			i16 is i16 // avail fast CPU BYTE_FIELDS CPU_BIT_FIELDS
+			i12 is expanded to i16
+			i16 is expanded to u15 # is already 
+			i12 is expanded to u16
+			u11 is expanded to i12 # EARLY above u11 to u15
+
+			MINUS_i12_to_i32 _to_i64 // BITFIELD_WORD
+				BITFIELD_is_SIGNED
+				WORD_is_SIGNED
+
+			MINUS_to_PLUS_CONVERTER
+
+				CT_RT can allocate the first MINUS_M // _PLUS
+				M_z_N
+					mapping from idx to idx
+					CT_RT optimise _RT_EXPR
+
+ NB that is GEN enforcing a local STYLE_HUIDE
+ NB GEN rewrites your nice code in a way that you knowingly dont like
+ NB VIEW fixes that as GEN_ BACK_as_VIEW or GEN_as_ORIG GEN_as_ALIAN_VIEW
+ NB ALIAN_VIEW is _VIEW but not MINE, I am a VISITOR in THEIR local DIALECT
+ NB so I prefer to VIEW corrected but still abbreviated to my VIEW
+ SP SWITCH in DIAG_PANEL_VIEW to switch to different _VIEW # draw_redraw
+
+
+
+
+	LIBR_	MINUS_ZERO_PLUS
+
+	 ALIAS	Module _LIBR_ // special compiled link // explse complain
+	
+	 VIEW	Module %s
+	 VIEW	LIBR %s
+	 PICK	[0] == "LIBR" // or "__LIBR__" // or ...
+

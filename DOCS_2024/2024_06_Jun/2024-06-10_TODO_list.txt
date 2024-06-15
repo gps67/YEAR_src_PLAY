@@ -277,6 +277,107 @@ install this script as a convenient drop-in replacement
 	RUN_CACHED
 	RUN_SESSION
 
+ ADMIN += upgrade PC_GW to fiber
+
+ 	aliexpress + VAT is 20% extra
+
+ 	£18.32
+	NC523SFP Dual Port 10GbE SFP
+	PCI-E NIC Fiber Optic
+	10G Network Card Adapter
+	QLE-3242 593742-001
+	593715-001 593717-b21
+
+	https://www.aliexpress.com/item/1005005534869795.html
+
+	£13.49 20 M
+	£ 6.22  3 M
+
+		20 M gets from NAS4 in kitchen to PC in lounge
+		 3 M gets from PC in lounge to PC2 in lounge
+
+		 NOT laptop, they dont have this, at our price range
+		 IS DESKTOP PCI-e-X1 
+
+		 MODEL for server room, would have MANY PORT FIBER SWITCH
+	
+	https://www.aliexpress.com/item/1005006981920554.html
+
+		£83 FIBER_SWITCH_8 10G each
+
+	ROKE 2-PORT 
+
+
+		OPTIONS
+
+			SWITCH_4_2 NAS_4 	UPLINK and 1 BRANCH
+			SWITCH_4_2 PC_4 	UPLINK and 1 BRANCH
+			SWITCH_4_2 SERV_4 	UPLINK and 1 BRANCH
+
+			SWITCH_4_2 TREE_2 	NAS4   and 2 BRANCH
+
+
+		ONLY PORT_one used,
+
+			SWITCH_4_2 TREE_2 	NAS4   and 2 BRANCH
+
+			SWITCH_4_2 SERV_4 	UPLINK and 1 BRANCH
+			SWITCH_4_2 SERV_4 	UPLINK and 1 BRANCH
+
+			SWITCH_4_2 PC_4 	UPLINK and 1 BRANCH
+			SWITCH_4_2 PC_4 	UPLINK and 1 BRANCH
+
+			SWITCH_8_1 		NAS4_XXXX_PC // PC_GW_SERV //
+
+		PC -to- SWITCH_NAS
+
+		OPTION
+
+			PC_4_fiber
+			SWITCH_8_fiber
+
+	ROKE 2-PORT 
+
+		PC -to- SWITCH_NAS
+		PC -to- PC2
+
+		Guest connects to PC_FIBER_PORT_two
+		firewall_rules += IPT_QUEUE on each MOUNT_SMB_NFS_VFS
+		# after mount, module must keep STATE per VFS mounted #
+
+		PC2 -to- SWITCH_NAS 
+
+	ROKE 2-PORT 
+
+		JOIN_PAIR double bandwidth
+
+		UDP using different PORTS
+		- possible using same IP_ADDR but MUX_PAIR avoids that
+		- possible other routing, MERGED after DECODE
+	
+
+	2.5 G SWITCH_8_1
+
+		https://www.aliexpress.com/item/1005006102676363.html
+		Hisource 4 8 Port 2.5G Ethernet Switch
+		None POE Network Switch
+		with 1*10G SFP Port for IP Camera/CCTV Security
+
+		UK PLUG
+
+		one 2.5G CATX pcie
+		£7.77 PCI-e 2.5G
+		https://www.aliexpress.com/item/1005005829492101.html
+
+		7x 1G, NAS4, PC_4
+
+ TODO
+
+ 	CONSOLE PORT
+
+
+
+
 
 
 

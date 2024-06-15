@@ -1,0 +1,55 @@
+// i64_LOHI/i64_LOHI.txt
+
+
+	get_BYTE_A
+	_as_i8
+	get_BYTE_B
+	_as_i8_BYTE_A // match echo of BYTE_A //
+	_as_u8_BYTE_B // MACRO is EXPR as CT_RT CSR
+	_as_was_i8 
+	get_BYTE_PAIR_AB_as_i16
+	get_BYTE_PAIR_AB_as_u16
+	_as_i16
+	_as_u16
+	get_BITFIELD_i8_A SIGNED 
+	get_BITFIELD_u8_A
+	get_BITFIELD_i8_B SIGNED 
+	get_BITFIELD_u8_B
+	get_BITFIELD_i16_CD SIGNED 
+	get_BITFIELD_u16_CD 
+	get_BITFIELD_i32_EFGH
+	get_BITFIELD_u32_EFGH
+
+	get_BYTE_FIELD _A _B _AB _ABCD _CD _EFGH
+	get_A_FIELD NAME GETTER [ ADDR == in_WIND in CPU REG COPY_of_WORD
+	get_COPY_of_WORD
+	get_ORIG_of_WORD // get_EA //
+	get_ITEM_as_NEAR[ITEM] then OPCODE asif ITEM EXPR ARGS
+
+//	REQUIRE 
+
+		using local HEAP in MMAP pages LIMIT 
+
+		LIMIT i15 i16 u15 u16 RE_SIGNED
+		// SIGNED // UNS // LIMIT u16 // LIMIT u16 N //
+		CT_RT
+		// PLUS ZERO MINUS // already known and CALLED and DONE
+		// PLUS ZERO MINUS // already known and CALLED and TODO
+
+		COMPROMISE on using some CT_RT phrases
+		ALIAS i15 i16 // 
+		MACRO i15 i16 // but retain original SPELLING ITEM2 and as ITEM
+		DECL i15_MINUS_ZERO_PLUS _DECODER
+
+	BITFIELD CATALOGUE
+
+		u8_u24 // AUTO_WARN when MINUS FIRST_FEW_REMINDERS
+
+		u8_u8_u16
+
+		u8_u8 _within_i64
+	
+		u4_u12
+
+
+

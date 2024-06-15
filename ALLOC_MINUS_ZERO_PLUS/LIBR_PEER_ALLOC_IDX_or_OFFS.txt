@@ -1,0 +1,75 @@
+
+	LIBR_PEER_ALLOC_IDX_or_OFFS.txt
+	LIBR_PEER
+		# DIALECT picks %s_%s AXIOM SAMPLE ANYSTR // is_CIDENT // CAN_GET
+		# DIALECT speed_DIAL lookup vectors with AVAR to CACHE AVAL
+		# AVAL as AVAR_EXPR # one that uses AVAR holding AVAL 
+		# HOLD += LOCK_RO # presumed in SESS # re-requisite_SKIP_CHECK
+		# FAST SKIP_CHECK or PRE_LOAD AOT_INIT_CACHE _SESS_INIT_LIST
+		# LIST is implemented in SCRIPT CODE #
+		# GEN_provides _STREAM_of_TEXT_BLOCKS #
+		# stitched together files of TREE # basic subset simply add to
+		# STR # means STRING obtained from STREAM as P0P2_etc
+		# so my code enjoys # class for ITEM_TYPE item # TWIG
+		# TWIG # CT_ CODE_POINT # DECL_SPEC from SCRIPT # ARGS_DATA #
+		# HERE is a data item as a strongly types TUPLO # ARGV #
+		# ARGV template --OPTION %s
+		# ARGV template %c %s # %c is immediately upgraded to %s
+		# DATA_MODE FILTER get STR0 of GLYPH_NAME #
+		# DATA_MODE FILTER use ACHAR of GLYPH_LETTER_NAME #
+		# LETTER = %c 'a1_a2_CSET_TWO' # AVAR for AVAL # CT_RT_const
+		# CT_RT const # builds TABLES # metaphor
+		# CT_RT const # builds TABLES # BENCH builds TABLES # DIAG #
+		# EDIT_CT_RT # TEXT_includes_"{ CT_RT RUN_ME }" #
+
+		_or_
+		ALLOC_IDX
+		ALLOC_OFFS
+
+			IDX exact_match "{ idx = N ++ }"
+			is a well kmown phrase, used to ALLOC_IDX_NOW
+
+			 ALLOC is SPECIAL, vars get tracked. CT_RT linters
+			 CT_RT LINTER is a PSG_TREE walker FILTER CSR
+			 MINI_MACHINE is STO_LIST_of_NBYTES 
+
+			 	u8_u8_OPCODE
+				 OPTION
+				 	u8_BYTE_B = PICK "HEAP[BYTE_B]"
+					 PICK is a kludge that RET_VAL = ASIS
+
+					 RET_VAL = ASIS
+					 u8_BYTE_B = RET_VAL = ASIS = GETTER.ALIAS
+
+				ALIAS is AVAR for a CT_const AVAL_as_ALIAS
+
+					GETTER.GET_WORD_FROM_BYTE
+					GETTER.GET_WORD_FROM_BYTE_A
+					GETTER.GET_WORD_FROM_BYTE_B
+					GETTER.GET_WORD_as_SIGNED
+					GETTER.GET_WORD_as_UNSIGNED
+
+				BENCH GETTER
+
+					API_to_API
+					AVAR attach to DECL # PAIR VAR_NAME #
+					AVAR provides API of API 
+					AVAR provides API oF SPEC
+					SPEC_WALK
+					SPEC_DECL LIST
+
+
+				u16_EA_ITEM_ONE 
+			ALIAS	u16 EA_ONE
+			ALIAS	u16 EA_ONE_via_FILTER # SESS u15_idx_AVAR
+			ALIAS	u16_AVAR
+
+					AVAR is used on DIAG
+					AVAR wants to do GETTER
+
+					u8_u8_OPCODE can also contain
+
+			M AVAL_or_EXPR
+				u32 
+
+		_ALLOC_IDX_or_OFFS.txt

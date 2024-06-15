@@ -1,0 +1,73 @@
+
+	LIBR_M_N.txt
+
+	LIBR_M_N
+	LIBR_L_R // exact fit // gap avail L_M_z_N_R // L_R += ALIASES
+
+		L_R += L_R _t
+		L_R += M_N _t
+		M_N += L_R _t // when L_M_z_N_R // appears like API + API
+
+	ALIAS WRAP over MINUS_ZERO_PLUS
+	ALIAS USER of MINUS_ZERO_PLUS
+
+	REWRITES [M [0 [N 
+
+		because PTR_to_ZERO is MID_SEGMENT
+
+		by MINUS_M = (-M) 
+
+		 0	0
+		 -1	1
+		 -2	2
+		 -3	3	L == -3
+
+		 L == M == -3 // no GAP M_z_N // as_P0P2 // as_P0
+		 M == -3
+		 [-3 -2 -1 [0 [N
+		
+
+		idx_of_IDX(idx_ITEM_EXPR)
+
+			idx_out = idx_in -M // then check is NOT minus
+			cheap TEST cheap GOTO
+			 TEST DONE DURING idx_out = idx_in - M // SIGNED
+			 if MINUS { // CPU_FLAG_MINUS_from_CALC_ABOVE
+			  if OPTION_ONE {
+			  	GEN {
+				 GOTO error_off_left ; 
+				}
+			 }
+			 elif OPTION_TWO {
+				 CALL error_off_left_fn() ; 
+				 check for THROW GOTO error_off_left_THROW
+				 // that is ALIAS label THROW in FUNC
+				 // does same clearup // sets_THROW_flag
+
+
+			 }
+			 else {
+			 	// NEVER HAPPENS // nothing added HERE
+				// CALLER could know that, add THERE
+			 	// unhandled when necessary
+				// might make sense when expand u7 to u31
+				// HEAP is always half FULL
+				// we allocate i7 slots as IDX
+				// we allocate u6 slots as IDX_PLUS
+				// we have easy use of u6 slots
+				// we already passed u5 items
+
+				// A SECOND CT_RT that spills over
+				// might safely expand to i32 even u32
+				// and CPU might allow negative overflow
+				// when PTR_to_ZERO is correct :-)
+				// unchanged when LIMIT grew, EA_adjusted
+				// SAME EA_ZERO 
+				// EXTRA IDX_MINUS
+				// EXTRA IDX_PLUS // see it's EDGE detect
+				// NB we did not test PLUS LIMIT
+			 }
+
+			MINUS means range error, OFF_LEFT
+			PLUS might means range error, check for OFF_RIGHT
+			idx_out = idx_in - M

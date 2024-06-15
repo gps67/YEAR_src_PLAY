@@ -1,0 +1,187 @@
+
+	LIBR_STO/
+	LIBR_STO.txt
+
+
+	LIBR_STO is an alias for YOUR_LIBR_STO
+	when that rule is in play, it is in SCOPE
+
+	YOUR_STO has to provide API
+	YOUR_STO uses LIBR_STO_HELPER // namespace and builtin EXPRS
+
+	builtin EXPR
+	builtin PHRASE
+
+	LIBR_STO_API is what we are defining
+
+		it is a SUBSET of the AVAILABLE API
+		it can use EA_EXPR_LEXICON and EA_EXPR_PHRASE_BOOK
+
+			EA_EXPR_LEXICON 
+			+= EA_EXPR_PHRASE_BOOK
+
+		/* this PSG TEXT_to_TREE STREAM of edits 
+
+			A STREAM can come in chunks 
+			mid_words sharp page edges
+			A STREAM can collect enough chunks 
+			so NONO: mid_words sharp page edges
+
+		*/
+	
+		STO provides API += ...
+
+			SCOPE DECL AVAR SPEC CODE_for_SPEC_FUNC_IMPLEMENTATION
+
+
+		STO provides API += ... SCOPE ITEM EXPR ARG1 ARGS ARGV
+
+			ARGV becomes a wrap over ARGS which is actuall OBJV
+			ARGV_of_PTR_STR0
+			ARGV_of_PTR_OBJ 
+			ARGV_is_OBJV
+			OBJV_is_ARGV # but needing CAST STR0 from STR0 or OBJ
+			// WANT detect MATCH "ITEM.ATTR"
+			// WANT detect MATCH "ITEM.ATTR[idx]"
+			// WANT detect MATCH "ITEM.ATTR"
+
+			u8_u8_OPCODE
+
+			u16_ITEM 
+
+			u8_u24_ /* indent creates a NAMESPACE u8_u24 */
+
+			 u32_BITFIELDS_u8_u24_t u32_WORD; // ALIAS_INT
+
+		STO provides GETTER as AVAR_EDITABLE VECTOR
+
+			PICK EDIT
+			EDIT PICK
+
+			WORD_TECH BITFIELD GETTER
+
+		STO provides STO_HOLDER_API_from_STO_HOLDER
+		STO provides _API_from_STO_HOLDER
+		ALIAS provides ALIAS_ONE(%s)
+		ALIAS provides ALIAS_TWO(%s)
+
+			ALIAS_ONE(VAR_NAME)
+			ALIAS_ONE(VAR_IDX)
+			ALIAS_ONE(VAR_OFFS)
+			ALIAS_ONE(VAR_DATA) // u24_PAYLOAD 
+
+			 GETTER.get_u8
+			 GETTER.get_u24
+
+			 GETTER.get_i8
+			 GETTER.get_i24
+
+			 ALLOC_that_works_with_GETTER
+
+			 	"{ idx = N ++ }"
+				_ALLOC_ idx
+
+			 AVAILABLE_TEMPLATE:
+
+			 	"{ XPOS = OFFS; OFFS += N } "
+				_ALLOC_ XPOS 
+				_ALIAS_ P0
+				_ALIAS_ P0_N SOMEHOW_SOMEWHE_add_N_to_SCOPE
+
+			// LANG permits creation of complex ideas with MENTION
+			// PHRASE might MATCH multi_word_words 
+			// PHRASE PSG MATCH TEXT // TEMPLATE DECL in MODULE
+
+
+
+
+			_HEAP_ITEM
+
+			CT_RT can GEN _RT_CODE for DECODE_u8_u24 // VECTOR //
+			API += CALLABLE get_u8 // _as_INT _as_WORD 
+			// if CT_RT knows INT is u31 KNOW plenty for u24
+
+			argv used when ARGV_of_STR0 
+	
+	STO provides a framework for expanding idx from expanded BITFIELDS
+
+	STO provides a framework for DECODEING idx = EXPR from BITFIELDS
+
+		NB ALL CPUS write 64 bit aligned, 8 byte word aligned, u32_u32
+
+		NB ALL CPUS run 32 bit LIMIT in 64 bit BITFIELD
+
+		aligned u64 means aligned 32 // both word HALVES
+
+			// nb ARM64 can run ARM32 code
+			// nb AMD64 can run AMD32 code
+			// omit the extra prefix byte
+			// emit the extra prefix byte
+			// KNOW is u24 in i25 in i32
+			// KNOW is u23 or i24 in i32 // LIMIT PLUS
+			// KNOW is MINUS i24 or i24 // now u23 options MINUS
+			// USAGE SECOND TABLE // happens to use same EA_ZERO
+			// USAGE SECOND USAGE // know OFFS is MINUS check RANGE
+			// GEN check LIMIT when future LIMIT
+			// GEN check LIMIT when expanding LIMIT 
+			// CT_RT GROW_WORLD_in_MINI_MACHINES_POOLS
+
+		u8_u8_u16_u8_u24 // from i64_LOHI // actually u23
+		u8_u8_i16_u8_i24 // from i64_LOHI // no extra cost >> SIGNED
+		// when i24 // get u23_PLUS MINUS_i24[-u23]
+		
+			u8_u8_OPCODE
+			i16_
+			
+
+		u8_u8_u16_u8_u24 // start off GROUP of PEERS with this NAME
+
+			u8_u8	OPCODE
+			i16	BITFIELD PAYLOAD // i16_PAYLOAD //
+
+		// CT_RT  option of converting to i64_CPU_WORD
+		// CT_RT  option of converting to i64_CPU_WORD >> 32
+		// CT_RT  option of converting to i64_CPU_WORD DROP_HIGH_32
+		// CT_RT  option of converting to i32_CPU_WORD HALF 
+
+			u8_HEAP
+			i24_ITEM
+
+			// we have to SHIFT LEFT second i16
+
+		we currently stay below PLUS_LIMIT _of_SIGNED
+
+			BITFIELD always has TOP_BIT_ZERO
+			BITFIELD loses TOP_BIT_ZERO from AVAILA_BITS
+			BITFIELD_WORD_DECODER for AMD64 for CXX for ARM32
+
+		DECL AMD64 _a_lot_like_ u64_WORD i64_WORD
+		DECL AMD64 _a_lot_like_ u32_u32 u8_u24 u12_BITFIELD_as_AVAR
+		DECL ARM32 _a_lot_like_ u32_u32
+
+			BITFIELD_SETTER is CALL_FUNC_ARGS_CTXT_SESS_AVAR
+
+			u8_HEAP
+			u24_ITEM
+			u23_ITEM_idx // PLUS
+			i24_ITEM_EXPR // MINUS
+
+		ON_CPU_64 compile twice GEN twice
+
+			ABOVE for u32_HI
+			ABOVE for u32_LO
+
+			for AMD64_lohi
+			for ARM64_lohi_mode // default WHEN ... BSWAP
+
+			DIALECT += ORDER of FIELDS in BYTES and STRUCTS
+
+			 MODE: match C
+			 MODE: match HILO
+			 MODE: match LOHI
+			 MODE: match ALIAS i64_LOHI // LARGE_INT_IDX
+			 MODE: match ALIAS i32_LOHI // DEFAULT_INT__IDX
+			 MODE: match ALIAS i16_LOHI // SHORT_INT__IDX
+			 MODE: match ALIAS i8_LOHI // BYTE INT // _lohi_is_HILO
+
+

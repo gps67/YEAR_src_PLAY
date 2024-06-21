@@ -1,0 +1,106 @@
+
+	2024_ish/
+	2024_ish
+	.txt
+
+	CT_RT EDGE_ERA_EDGE // layers over EDGE_ERA
+
+	 before = VALUE_at_T[0] // T0 is the START_EDGE of "T[0]" // eval CONST used
+	 during T0 t1 T2 [ T_N == N("T") [ T_R // [ L_R ] // [L ... [R
+	 after = VALUE_at_T[N // CALLER must provide // or be RO from ROM INIT
+
+ LANG_COM says " VALUE_at( T ) " // any fool parser can see ... require LIMIT 
+
+ 	LIMITS get broken
+	and the inference code switches OFF and switches to WIDER_INT_ARRAY
+
+	We provide a BASE_CLASS for CURRENT_API_INT_WIDTHS
+
+		u7_in_i8
+		u7_in_i8_in_MINUS_ZONE_PLUS // ie count from ZERO asif y7
+		EA_ZERO + u7
+			
+			EA_ZERO can be template for 
+			EA_ALLOC_IDX "{ idx = N ++ }" // UNTYPED_ACTION //
+			// MATCH
+			EA_ALLOC_IDX 
+			MATCH "{ idx = N ++ }" // EXACT -or- SPACED_OUT
+
+BASE			EA_ALLOC
+ADDS CODE		EA_ALLOC_IDX 
+USES CODE _%s or %s		_IDX 
+USES CODE _%s or %s		_IDX STR0 // store lookup 
+
+
+	"{ idx = lookup STR0 || on_ERROR ... # // # CODE_POINT # CMNT # }"
+	"{ idx = lookup STR0 }" // technically not EXACT MATCH as corrected 
+	"{ idx = lookup STR0 || on_ERROR ... # // # CODE_POINT # CMNT # }"
+	// PARSER simplifies the added options line to PRE_CMNT 
+	// PARSER KNOWS "{ ACTION }" means "{ ACTION || ON_ERROR }"
+	// PARSER KNOWS Simplified use as ANYSTR //
+	// DIALECT is claiming first use SPECIAL ADD_ATTR( can_fail )
+	// can_fail.CT_RT.func argv0 argv // want zero cost to CLONE ARGV0
+	// RULE it is always there // NULL is PERMITTED as on_NULL &RET_VAR
+	// LEX &AVAR // permit ARGV_WORDS_to_SKIP_GAP // & AVAR &AVAR // DECL
+	// PSG ARGS += ARG // ARG == ARGV0 // ARGV == OBJV[ idx ] // is_a_LIST
+	// TYPE ALIAS is where ARGV is a LIST // so gains it's API
+	// TYPE ALIAS is where LIST can be used as an ARGV 
+	// TYPE ALIAS is where HEAP can be used as an NBYTES or N_ITEMS or idx_N
+	// ALIAS N_idx idx_N // note any 1970 would fail on forward DECL of self
+	// ALIAS N_idx idx_N // note any 1970 would pass on u31 '{ int u31 }'
+	// and that is how a CLASS is instanciated on MENTION
+	// PSG SILENT // PSG SILENT IDENT // ALIAS SILENT IDENT //
+
+	PSG_SILENT is SILENT in these SCRIPTS // literally VAR_NAME=="SILENT"
+	VAR_NAME == ITEM_NAME // VAR_NAME SPEC_NAME VALUE_NAME NAME_NAME //
+
+	TEMPLAYE has the choice of making SILENT silent
+	Usually that is just the dis-apparance of the SPELLING
+	But also the GAP_%s_GAP around it that PSG finds and PARSER
+	GAP_%s_GAP is a valid IDENT because WHAT look for "%s" as CODE or BIND
+	GAP_%s_GAP WHAT -is- TYPE_of_ITEM_found_at_XPOS // SHARED XPOS
+	GAP_%s_GAP Life is so much easier when you remove all comments
+	GAP_%s_GAP CODE so that must run on its own
+	GAP_%s_GAP CODE so that must MATCH SOMETHING that calls SCRIPT run on its own
+	// so enforce a SUBSET that fits in CALLERS LANG // PERMIT "%s" %s
+	// eg LOOK FOR %s at XPOS // FIND XPOS ASCII_PERCENT ASCII_s
+	// CSET_GLYPHNAME_%s // eg %s is UTF8 or well parsed CSET string 
+	// AVOID ANYSTR then switch over to it // mindblowing //
+	// PERMIT CIDENT99 // PREFER_CIDENT99_as_SUBLEX
+
+	// so APPLY FILTER // during PARSE completely forget GAPS //
+	// XPOS is available at all times // EXPLAIN_XPOS_PLUS adds fields
+	// XPOS += A_FIELD("FIELD_NAME") // DIALECT A_FIELD UNUSED DETECTED
+	// XPOS += SPEC_POS // CODE_POINT in a PSG DECL of MODULE //
+	// so we know to expect to be able to PARSE_LEX PARSE_PHRASE _SKIP_GAPS
+	// so AUTO_INDENT
+	// so AUTO_GAPS
+	// so AUTO_CMNT // especially reloadable PHRASES from PRE_FILTER
+	// that is a REGEN_VIRUS_VECTOR // you thought it was FILTER'ed
+	// that is how MUX splits and joins TEXT stream in TREE
+	// STREAM is the SCRIPT 
+	// PARSER FILE is SPEC_SCRIPT_CXX_ARGV // acts as a BASE_CLASS 
+	// PARSER XPOS 
+
+
+class	SPEC_SCRIPT_CXX_ARGV // acts as a BASE_CLASS 
+	: public TREE_of_TWIG
+	{
+		load API_MODULE_TREE_of_TWIG
+		load API_MODULE_TWIG_and_LEAF _and_BRANCH
+		load API_PARSER _PSG _LEX 
+	};
+
+TOKENISER at SPELLING LEVEL 
+TOKENISER at XPOS of DECL
+TOKENISER at XPOS of CALL
+TOKENISER at XPOS of USED
+
+	value stored at CODE_POINT USED
+	is a LOOKED_UP_SPELLING
+	which can be found at _CODE_POINT_where_USED
+	which can be found at _CODE_POINT_where_DECL
+	which can be found at _CODE_POINT_where_DECL_first_USED
+	which can be found at _DATA_POINT_where_DECL_current_ADDR // _A_COPY
+
+

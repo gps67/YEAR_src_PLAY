@@ -1,0 +1,84 @@
+	2024-06-19
+
+	CXX aims to be mostly like C++ without ANY std libraries
+
+		ARGV simplifies // a lot eg // AVAR_t & AVAR // AUTO_GEN
+		SCRIPT can express anything as "ANYSTR" // MATCH SPELLING
+		Repeated use of that TOKEN MATCHES and RUNS CODE
+		FAST_MATCH SAME_VAL used in LOOP
+		FAST_MATCH SAME_VAL used in PICK_code_path_LIST_and_HEAP_and_ATOM
+		ATOM is STR0
+	
+	ATOM is implied APPEARS as "this" or as PSG_SILENT
+
+		PSG_SILENT
+		PSG_IDENT // there can be only one // OR CAH THERE :-) //
+	
+	So when MATCH wants to INFER the availability of ATOM of ITEM_t_NAME
+
+		GEN uses ANYSTR = "{ PSG_SILENT }" // CLAIM NAME // in_SCOPE
+		ANYSTR = "{ CIDEN_97 }" //
+		//_99 is GENERIC //
+		//_98 is SELECTED_and_ON //
+		//_97 is SELECTED_from_GROUP_and_ON //
+		//_96 is GENERIC _SELECTED_from_GROUP_and_ON //
+		// ALIAS %s_%s NAME DECL // where DECL is ANAME_lexed_up
+	
+	STR0 ATOM // this is the pedantic correct spelling
+	STR0_t ATOM // this is the pedantic correct spelling
+	STR0 ATOM // this is the pedantic correct spelling
+	// but C_FILTER doesn't GROK it so do SIMPLER "{ _t %s_t }"
+	// DECODE ANYSTR as SCRIPT for CSR // MINI_LANG over ARGV // 
+	// HEAP in ARGV is EASY_ALLOC_to_ROM // _DROP_ROM // stays loaded //
+	// u12 idx_ITEM = u31_N ++ // RECOGNISE FORM // APPLY EXTRAS // AUTO_ADD
+	// NEED FILTER AUTO_ADD "{ idx = N ++ }" // simplest form, rhymes
+	// SPELLING and BASE_CLASS are '{ idx = N ++ }' += SINGLE_CMNT_ZONE
+	// SINGLE_CMNT_ZONE = /* ARGV */ /* "{ ARG0 ARGS }" */ += SINGLE_ITEM
+	// SINGLE_CMNT_ZONE += LIST of CMNT // upgraded ITEM into LIST //
+	// The alternate cost, is to grow_LIST with ARGV0 prefix
+	// That shares the CSS dispatcher // we MUST always provide ARGV0
+	// ARGV0 must make sense with ARGS as ARGV_skipping_0
+	// CODE promise to SKIP zero
+	// CODE promise to STEP zero
+	// CODE promise to CALL zero // on_EVAL this NODE becomes a SCRIPT
+	// we possibly JOIN ARGV and ARGS possibly making copies
+	// we possible SPLIT ARG0 ARGS // but ARGS still starts at 1 never 0
+	// ARGV gets called from a CODE_POINT XPOS in SCRIPT
+	// ARGV gets called by a CPU in a MINI_MACHINE with STACK 
+	// CPU is using the standard C API to call _on_EVAL(CXX_SCRIPT,ARGS)
+	// CPU is using the standard C API to call _on_EVAL(ARGV0,ARGS)
+	// CPU is using the standard C API to call _on_EVAL(ARGV,ARGV0,ARGS)
+	// CPU is using the standard C API to call _on_EVAL(ARGV)
+	// STACK check is builtin as ...pre_call AND post call // edge_pass
+	// EDGE_PASS // NUDGE idx by 1 over old limit // rebuild with new limit
+	// CMNT moved to
+	// CMNT moved to
+
+		SCRIPT can express anything as "ANYSTR" // MATCH SPELLING
+		SCRIPT simplifies
+
+	2024_06_Jun
+	2024-06-19_PSG_SILENT.txt
+
+	PSG_IDENT
+	PSG_SILENT
+
+		IDENT allows TEXT_MUX to "{ LOOKUP IDENT }"
+		// by declaring the above "{ %s }"
+		//
+	
+	DUAL CODE
+
+		ARGV over TCL
+		ARGV over Py
+		ARGV over CXX
+
+		ITEM = LOOKUP IDENT // this is the local syntax // no BQ //
+		// BQ // expr_retval = `run ARGV found in backquote`// on_EVAL
+		// everything is an EXPR //
+
+		By GEN_TCL over Tcl_ARGV & ARGV // special meaning of &
+
+
+
+

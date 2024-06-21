@@ -55,7 +55,10 @@ set ZONE_NAME Readipop
 set ZONE_NAME Birthday_91
 set ZONE_NAME Aldershot
 set ZONE_NAME SuntouSusso
-set ZONE_NAME Lewisham
+set ZONE_NAME Aldershot_D_80
+set ZONE_NAME BUILD_PC_x79
+set ZONE_NAME Lewisham_Train
+set ZONE_NAME WOMAD_Canaria
 
 proc list_pop {listname itemname } {
 	upvar $listname list

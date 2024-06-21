@@ -1,0 +1,105 @@
+
+ SESSION is for a LOGIN and DESK
+
+ 	USING 32G SSD as CODE and 32G SSD as DATA_CACHE // same SSD //
+	MEMORY is 64 G so can hide 32G in forever memory // ALLOC DEVICE //
+	SSD_32G += BOOT_ROOT_CERT
+	SSD_32G += DATA_for_SESSIONS _ZONE_PREP _ZONE_TAPE _COPY _COMPRESS
+
+	WHEN ROM creates a SEGMENT it updates (rebuild all but selectively)
+	all interacting with it. Notify of VAR_CHANGE ELF_EXPORT_TAG_of_TYPE
+	SPEC == TYPE_TAG == { PROTO += "{ bool = bool_main(argc,argv); }"
+
+	LANG AMBIGUOUS "bool" is it "bool_t"
+	{ // THIS VTBL of STR0_IDENT 
+	"SPEC_NAME"
+	"VAR_NAME"
+	"VALUE_NAME"
+	"ANYSTR"
+	}
+
+	Each of above are facilities available for use at CT_RT
+	"VAR_NAME" provides an API.CT_RT.call_FFFF # CT_RT lookup %s #
+
+	ASSOCIATE "VAR_NAME" with AVAR	# as_in_ meeting of cultures API
+	ASSOCIATE "SPEC_NAME" with AVAR_SPEC # CT_RT already has "AVAR" "SPEC"
+
+	LOCN += DIAG { SPELLING TOKENISED }
+
+		PARTIAL tokenisation
+		REPLACE
+		UPDATE cache to EVAL_TOKEN( token )
+
+		OBJ_t & OBJ = EVAL_TOKEN PURPOSE
+		TOKEN == item
+		PURPOSE == GETTER_GET_into_AVAR // second GETTERS PUTTER
+		 item == CSR_IDX_of_u5( i64 /* u5_P0 == 0 */ u5_P2 == u5_N
+		 i8_L == 0
+		 i8_R == N // FORWARD TWIST of LOGIC
+		 i8
+		 i8
+		 %X obj_idx HEAP32[item]
+	
+	AUTO_GROW
+		BITFIELDS u5_P0 is ZERO because EA_ZERO HERE + u5_P0 
+		EA_MATCH can auto scale up idx to WORD u8 to i64
+		OPCODE is limited to M_idx_N x1 x2 x4 x8 MULT(idx,BYTES_PER_WORD)
+
+		EA_BYTE_where P0P2 starts
+		guarantee P0P2 is contiguous
+		- conditional on TRANSACTION STEP - reversable ?
+		- conditional on LIBR_UDEF provides all necessary code
+		- conditional on SSA and CACHE and KNOW and ...
+		- conditional on seems_to_be_pages_in_a_row
+	
+	PATCH WORK
+
+		I prefer one linear 1:1 mapping
+		the entire file laid out
+		or chuncks in various MMAP
+
+		64GB gives us a 1_G x8 // 1_G x8 x16 x32 x22
+
+		memory loss from power outage 
+		would boot back as recent SYNC plus BLOCKS_LIST
+		hopefully bad sectors never happen
+		means ongoing write to SATA
+
+		MMAP does provide a PAGE hopping service
+		at relatively low cost
+
+		LINUX writes to MMAP
+		MMU calls PAGE_on_write // only first time until drop
+	
+	DB_STO IDX OFFS SEGMENT BASE PAGE_ZERO
+
+		WE tune our project to use CODE_CACHE from ROM
+		WE leave it to LINUX to keep MMAP pages in CACHE
+		WE call flush and flush_list
+		
+		ERA_STEP
+
+			ERA_EDGE ERA_END V2 is current V
+			ERA_EDGE ERA_START V0 is V0 
+
+		MID_ERA_SUB_STEP // ALIAS something
+
+			OLD_x_NEW
+			LHS_x_RHS
+
+			ERA START and END are where they are
+			ERA START and END are when they are
+
+			XPOS is several places per threads
+
+			MID STEP must characterise itself
+			eg by completion of a phase of TASK
+
+			TASK_STEP_then_declare_ERA_SUB_STEP
+
+		XPOS is CXX SCRIPT XPOS
+
+			even multithreaded is based on _THREAD _SELF _PEER
+		
+
+		 

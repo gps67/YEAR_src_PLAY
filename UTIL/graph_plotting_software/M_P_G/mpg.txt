@@ -18,4 +18,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-05-04, 21885,  31.89, 46.78, Y Full ASDA
 2024-05-14, 22090,  22.78, 33.19, Y Full Morisons
 2024-06-08, 22356,  29.97, 42.47, Y Full Morisons
+2024-06-18, 22681,  34.12, 47.32, P Full Morisons from Salisbury
 

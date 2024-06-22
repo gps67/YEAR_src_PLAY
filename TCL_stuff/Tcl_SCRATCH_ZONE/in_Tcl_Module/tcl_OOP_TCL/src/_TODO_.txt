@@ -1,3 +1,123 @@
+
+REDO
+
+	bool set_PTR2_from_CPU_WORD( // caller clears previous value ? set_NULL
+		Tcl_Obj * Tcl_Obj_SELF,	//
+		CPU_WORD_int_t CPU_WORD_int_VALUE
+	);
+
+	bool set_PTR2_from_PTR_VOID( 
+		Tcl_Obj * Tcl_Obj_SELF,	//
+		caddr_t PTR_VALUE
+	);
+
+	bool set_PTR2_from_Tcl_OBJ( 
+		Tcl_Obj * Tcl_Obj_SELF,	//
+		Tcl_Obj * TCL_VALUE	// does ref_incr // asif_SMART_PTR
+	);
+
+	... etc all of them
+
+	RETURN PASS()
+	RETURN PASS_PASSED() // ie the minimu, return true;
+	RETURN FAIL_FAILED() // ie the minimu, return false; // ASIF reported
+
+	// ASIF %s // ASIF_KNOW %s // ASIF_DONE %s // ASIF_TODO %s QUEUED
+
+
+	// cant think how I left it mid edit
+	// cant think now what it was - maybe the ABOVE will be scope API
+
+REDO
+	TCL::TCL_OBJ // ie derived from caddr_t but as single field struct
+	TCL::TCL_PTR // ie derived from caddr_t
+
+	PY::PY_OBJ
+	PY::PY_PTR
+
+	CSS::CSS_OBJ // ie derived from caddr_t but as single field struct
+	CSS::CSS_PTR // ie derived from caddr_t
+
+	API of all 3 match a TEMPLATE
+	Switch between the three, for how the API was DECL invoked
+
+	CXX as a BASE_CLASS can do that (somehow) it gets GEN to write it
+
+		ref_incr()
+		ref_decr()
+		ref_incr_then_decr()
+	
+	Calling scripts can use "OBJ_PTR.ref_incr()"
+
+		GEN MACRO -> TEXT
+		GEN CODE { TEXT }
+	
+	WORST_CASE_SCENARIO
+
+		OBJ is WRAP provided by CT_RT, a SHOE
+
+		SHOEBOX_OBJ is actually a VTBL sturct and a PTR
+
+		 TCL.STR0 == "_FFFF"
+		 TCL_PTR1 == SPEC_USED_PAIR // ie SPEC and DECL CODE_POINT
+
+		 	this is not efficient
+			but there are so few (one per class)
+			it does not matter
+			and only one PTR is needed
+			and it obeys SAFE_CODE_USED for HOLDER_of_PTR
+
+			but when not worst case scenario, C++ flies
+			GEN C flies
+	
+		WORST CASE
+		FIRST CASE
+
+			The CT_RT runs an interpreter
+			Each class gets a SHOE
+			Each class.SPEC_ALIAS gets a SHOE
+			A_SHOE can add dgb_ALIAS_one()
+			A_SHOE can add dgb_ALIAS_two()
+
+			This does SSA, 
+			TRACK_and_TRACE
+			CODE_USED - ASIF_EVAL is EVAL knowing ARGS will change
+
+			The result of EVAL SCRIPT using A_SHOE VALUES
+
+				GEN can actually do:
+				RERUN EVAL under GEN_C for ARG2_is_STR0
+				RERUN EVAL under GEN_C for ARG2_is_MATCH
+				RERUN EVAL under GEN_C for ARG2_is_NULL
+
+			CT_RT can INTERP as part of the COMPILATION process
+
+				COMPILE AS_IF EVAL - but in CT_RT MODE_GEN_C
+
+					GEN_C 
+					GEN_CXX 
+					GEN_ES6
+					GEN_ARGV_SCRIPT
+					GEN_DIAG
+
+				COMPILE now for later
+
+					NOW knows SPEC OPTIONS 
+					LATER uses code that GEN provided
+					LATER might use get_from_interp
+
+		SECOND CASE
+
+			manage CODE_GROW for range of TEST_DATA
+
+				single pathway becomes SWITCH_CASE_S
+
+				nfs_mount_ROOT breaks pattern of FS_layout
+
+				VFS_GEN is mostly on_demand
+				VFS_EXPLORE done by CT_RT
+				VFS_EXPLORE_STEP_OPTS done by CT_RT
+############
 	
 	trace_var
 	bind_C_var	u32 i32 u64 i64 f32 f64 WORD_u64_WORD

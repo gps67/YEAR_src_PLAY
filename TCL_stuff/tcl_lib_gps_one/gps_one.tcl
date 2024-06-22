@@ -1,4 +1,8 @@
 # gps_one.tcl
+
+# package require gps_one
+# then have auto_path etc for all local (gps_one) site projects
+
 #
 # found from
 #

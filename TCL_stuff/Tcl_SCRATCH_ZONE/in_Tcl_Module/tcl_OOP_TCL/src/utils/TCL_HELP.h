@@ -1,6 +1,9 @@
 #ifndef TCL_HELP_H
 #define TCL_HELP_H
 
+// #include "str0.h"
+typedef char * STR0;
+
 namespace TCL {
 
 extern void print_tcl_obj( Tcl_Obj * obj, const char * str = NULL );
@@ -8,7 +11,7 @@ extern Tcl_Obj * mk_str( const char * str );
 extern Tcl_Obj * mk_common_spelling( Tcl_Interp * interp, const char * str );
 
  inline
-STR0 * TCL_get_STR0( Tcl_Obj * obj ) { 
+STR0 TCL_get_STR0( Tcl_Obj * obj ) { 
 	return obj -> bytes; // could easily be NULL
 }
 

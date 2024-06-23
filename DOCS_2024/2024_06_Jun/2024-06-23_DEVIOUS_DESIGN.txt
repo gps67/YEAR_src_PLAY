@@ -1,0 +1,61 @@
+	2024-06-23
+
+	2024_06_Jun
+	2024-06-23_DEVIOUS_DESIGN.txt
+
+	The government says it wants to incentivise HOME solar
+
+	One way to do that, would be to pay the price difference
+	between WHOLESALE and RETAIL
+
+		HOME SOLAR sells power at WHOLESALE rate (minus costs)
+		GRID buts power at WHOLESALE rate (minus costs)
+		GRID sells power at WHOLESALE rate (plus costs)
+		HOME CONSUMER buys at RETAIL rate
+
+		HOME CONSUMER obviously gets own electricity for "FREE"
+		SOME MAD LAWS already hint at future claiming that
+		EG farms paying for own rainwater that they collect
+		It does make sense to do so, but it is absurd
+
+		MY suggested incentive, is to pay the HOME CONSUMER
+
+		GRID buys power at WHOLESALE rate (minus costs)
+		PLUS adds SUBSIDY, from WHOLESALE_to_RETAIL
+		HOME SOLAR sells power at RETAIL rate (YEYA!)
+	
+		The GRID has to do the paperwork, the GOVT audits it,
+		and pays the HOMW SOLAR directly via the GRID_COMPANY
+		but in aggregate form, computed to be worth ... should be ...
+		ZERO plays catchup, on a monthly basis, no accumulated SLIP
+	
+	BUT the GOVT cleverly realised a way to pretend to do that was:
+
+		GRID buys power at WHOLESALE rate (wants to ... anyway)
+		GRID pays out the subsidy, doesnt get it back anywhere
+		GRID buys power at RETAIL rate (by lay)
+
+
+		So of course they don't
+
+		The GRID company finds endless excuses to not buy HOME_SOLAR
+		EG we have the wrong wires to collect, only distribute
+		EG there are phasing issues going in the opposite direction
+		EG it is a STEP down not a STEP up, transformer
+
+		So there is no money to upgrade the GRID,
+		So no collect (or a lot less, and not exponential)
+
+
+	Another way is for GOVT to charge land use fees.
+
+		Agriculture gets low land tax rates
+
+		Industry gets high land tax rates
+
+		Solar farms raising 100 Million,
+		is an extra 100M before anyone buys one
+
+		Even billionaire companies have problems with rent
+	
+

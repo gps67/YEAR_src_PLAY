@@ -1,0 +1,62 @@
+	2024-06-23
+
+	2024_06_Jun
+	2024-06-23_HEAP_ITEM.txt
+
+	u8_u8_u16_u8_u24
+
+	ints would be nice
+	we provide M_N when a WIDER_BITFIELD is available
+	when EDGE_CUTS we need _IS_EMPTY and _IS_FULL carry and borrow
+	when FULL WORD BITFIELD // _FF needs _100 for N is_FULL
+	use entire WORD to know bool is_FULL 
+	extracted from BITFIELD ENTIRE_WORD_BURSTING_OVER_EDGE_CUTS
+
+u32_u32	WRITTEN for u64_CPU_WORD
+u32_u32	WRITTEN with sympathy for u32_CPU_WORD _PAIR _BITFIELDS
+Simply use BYTE_FIELDS of u32 on CPU_32
+HALF_and_HALF on u64 except GENERIC but optimising BITFIELD and BYTE_FIELDS
+BITFIELD += XPOD DECL BIT0_of_FIELD_is_at_NBITS_to_RIGHT_of_FIELD
+
+use BYTE_FIELDS of u32 on CPU_32
+u8_u8_u16_u8_u24 - DECODE( u64 ) as %s
+u8_u8_u16_u8_u24 - DECODE( u64 ) as %s
+
+ u8_u8	OPCODE
+ u16_PAYLOAD ==	u4_u12 // USED u4 as BIT0 // BIT0_is_EDGE_of_WORD _is_BASE
+ u32_PAYLOAD == u8_u24 == HEAP_EXPR // ITEM == EXPR // ITEM = HEAP ITEM
+
+u8_u8_u16_u8_u24 - DECODE( u64 ) as %s
+
+   u8_OPCODE_BYTE_A	// OPCODE knows scatterd bits eg u12 u4_u12
+   u8_OPCODE_BYTE_A	// OPCODE knows scatterd bits eg u8  _from_ u3_u5
+   u8_OPCODE_BYTE_B	// this grows from u8_u8_OPCODE_t // PICK_EXPR
+   u4_HEAP 
+ /* u32_u32 */
+  u12_ITEM		// u16_HEAP_ITEM // probably AVAR where ITEM is kept
+   u8_HEAP		// u8_u24 // u8_OPCODE u24_PAYLOAD // SHIFT and CALL
+  u24_ITEMA		// DECODE(u24) as u8_u8_u8 // _as_RGB_PIXEL //
+
+
+
+u8_u8_u16_u8_u24 - DECODE( u64 ) as %s
+
+	u8_u8	OPCODE
+	u12_u4	u4_u12 // USED u4 as BIT0 // BIT0_is_EDGE_of_WORD _is_BASE
+
+	 u4_HEAP
+	 u12_ITEM
+
+	u8_HEAP
+	u24_ITEM
+
+ u8_u8 OPCODE under a DIALECT WORD FILTER
+
+	DECODE( u8_u8_u16_u8_u24 )
+	DECODE( u64 )
+	DECODE( u32_u32 )
+	DECODE( u8_u8_OPCODE ) // from current u64
+	DECODE( u16_HEAP_ITEM_u4_u12 ) // from u64
+	DECODE( u8_u24 ... ) // BITFIELD_FUNfrom u64
+
+ 	u8_u8 

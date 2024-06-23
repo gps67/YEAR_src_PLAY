@@ -1,0 +1,21 @@
+
+	2024-06-23_HEAP_ITEM
+
+	why not .txt
+
+	u16_HEAP_ITEM {
+	 u4_HEAP
+	 u12_ITEM
+	}
+
+	OPCODE can cantain u4_bitfields
+	simply by claiming a clutch of 16 SLOTS // adjacent
+	This is M_N with M found at where CLUTCH finds ZERO
+
+	I am imposing a philosophy of i12 and u12
+	I am imposing a philosophy of u12 not i12
+	I am imposing you use M_N held in i16_or_wider
+	To provide MINUS there are RULES and M_N obeys them
+
+	This is a generic code (BASE+OFFS) (ARRAY[idx])
+

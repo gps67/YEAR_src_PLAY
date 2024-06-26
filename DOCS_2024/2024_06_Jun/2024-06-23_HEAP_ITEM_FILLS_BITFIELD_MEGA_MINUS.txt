@@ -1,0 +1,47 @@
+	2024-06-23
+
+	2024_06_Jun
+	2024-06-23_HEAP_ITEM_FILLS_BITFIELD_MEGA_MINUS.txt
+
+	We extend an i32 to i33
+	We extend an i64 to i64
+	We require an extra BIT OPT_BIT MEGA_MINUS 
+
+	We need to track every single operation
+	and track SIGN of RET_VAL and the BORROW_of_RETVAL
+
+		CARRY_of_RETVAL means
+
+			exceeded HALF
+			of one bit less
+			of ARITH UNS_and_INT // big mess
+
+		CARRY_of_RETVAL avoided means
+
+			still there - not completely disappeared
+			now_as_BORROW_ZERO_CARRY_OVERFLOW_FLAGS
+			quarter zone crossing is CPU_DETECTED
+
+			crossing QUARTER zone can be avoided
+			by SHIFT LEFT then SIGNED SHIFT RIGHT
+			by SHIFT LEFT then UNSIGNED SHIFT RIGHT
+
+			crossing quarters can also be avaoided
+			by using a FULL page of u12_IDX items
+			and looking at NULL as CACHE_SAYS_NEW_USE
+
+				FIRST_USE_EVER
+				FIRST_USE_SINCE
+				FIRST_USE_CAUSING_ANY_MODIFIED_FLAG
+				 
+
+			MMAP has attrs per page,
+			not actually in PAGE not IDX but in HEAP_MGMT
+
+
+
+			exceeded HALF
+			of one bit less
+			of ARITH UNS_and_INT // big mess
+
+

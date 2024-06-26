@@ -209,7 +209,7 @@ using namespace FT2;
 
  bool ft2 :: test1() {
  	STR0 font_file = 
-	"/usr/share/fonts/truetype/liberation2/LiberationMono-Regular.ttf";
+	"/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf";
 	INFO("using %s", font_file );
 
  	if (!face1_load_font( font_file )) return FAIL_FAILED();

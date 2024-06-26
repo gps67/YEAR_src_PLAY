@@ -1,0 +1,292 @@
+#/usr/bin/bash
+set -e # exit on first error
+set +e
+#set -x
+false # first error
+
+
+# date is today or -d yesterday or "$@"
+
+YESTERDAY="-d 2015-09-02"
+YESTERDAY="-d 2017-01-18"
+YESTERDAY="-d yesterday"
+YESTERDAY=""
+YESTERDAY="${@:-$YESTERDAY}"
+
+eval `date $YESTERDAY "+
+YEAR=%Y
+MM=%m
+DD=%d
+Tue=%a
+Jan=%b
+"`
+YEAR_MM_DD="${YEAR}-${MM}-${DD}"
+YEAR_MM_Jan="${YEAR}_${MM}_${Jan}"
+
+cmd_needed()
+{
+	if str=`type "$1"`
+	then
+		echo "# PASS # $str"
+	else
+		# fix #
+		# PASS # dir_must_exist is a function
+		# dir_must_exist() { printed }
+		# actual message on stderr
+		echo "# FAIL # cmd_needed $1 # time to write it"
+		exit 6
+	fi
+}
+
+# the eternal choices include
+# no imludes or fragile loads
+# ie remote changes, we notice
+
+. fns_DIRS
+
+# you need these
+
+cmd_needed yes_no
+cmd_needed ask_do
+cmd_needed dir_must_exist
+
+
+ask_mkdir()
+{
+	[ -d "$1" ] || ask_do mkdir -p "$1" 
+	[ -d "$1" ] && echo "# PASS # exists # $1"
+}
+
+run_mkdir()
+{
+	[ -d "$1" ] || mkdir -p "$1" 
+	[ -d "$1" ] && echo "# PASS # exists # $1"
+}
+
+Artist=Artist
+Sess_List="_sess_1 _sess_2"
+case $Tue
+in
+   XXX) :
+;; Mon)
+	# Samba=Dance
+	# Artist="Sonia"
+
+	Samba=YME
+	Artist="Mainwaring"
+	Sess_List="_sess_1 _sess_2 "
+;; Tuex)
+	Samba=Global_X
+	Artist="Greg Mayston"
+	Sess_List="_sess_1 _sess_2 _sess_3"
+	Sess_List="_sess_1"
+;; Tuex)
+	Samba=Global
+	Artist=Mixtape
+	Sess_List="_sess_1 _sess_2 _sess_3"
+;; Tue)
+	Samba=Samba
+	Artist=Beatroots
+	Sess_List="_sess_1 _sess_2 _sess_3"
+;; Tuex)
+	Samba="Samba_101"
+	Artist=Beatroots
+	Sess_List="_sess_1 _sess_2 _sess_3"
+;; Wed)
+	Samba=AfroDrum
+	Artist="Tankata_Steve"
+	Sess_List="_sess_1 _sess_2 _sess_3"
+;; Wed_)
+	# unmodified first wins so this is old dead code # sample
+	Samba=djembe
+	Artist="Hands Of Rhythm"
+	Sess_List="_sess_1 _sess_2"
+;; Thu)
+	Samba=PanYard
+	Artist="RASPO"
+	#
+	Samba=Global_Thu
+	Artist="Annie Parker Collective"
+	Sess_List="_sess_1 _sess_2"
+;; Fri)
+	Samba=Velocity
+	Artist="EDE TheMay AugList"
+	Sess_List="_sess_1 _sess_2"
+;; Sat)
+	Samba=JP_Workshop
+	Artist="JP Percussion"
+
+	Samba=Emma_Rob_Skye
+	Artist="Emma Rob Skye"
+	Sess_List="_sess_1 _sess_2"
+
+	Samba=salisbury_djembe
+	Artist="Mohamed Gueye"
+	Sess_List="_sess_1 _sess_2"
+
+	Samba=salisbury_djembe
+	Artist="Babara Bangura"
+	Sess_List="_sess_1 _sess_2"
+
+;; Sun)
+	Samba=salisbury_djembe
+	Artist="Mohamed Gueye"
+
+	Samba=irish
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
+	Samba=americana
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+;; *)
+	Samba=XX
+	Artist="Artist"
+	Sess_List="_sess_7 _sess_8"
+esac
+
+
+G=/home/gps/Gx
+G=/home/gps/G
+REC_YEAR=${G}/REC_${YEAR}
+REC_YEAR_dot_dot=${HOME}/YEAR/REC_YEAR_dot_dot
+REC_YEAR=${REC_YEAR_dot_dot}/REC_${YEAR}
+
+# user must choose where to process locally in $HOME/G/REC_YEAR/
+# must be local for speed and carry
+# G is me, you might want U
+
+dir_must_exist $REC_YEAR_dot_dot  # done # || FAIL # ADMIN MUST SETUP
+cd_mkdir_FAIL $REC_YEAR  # done # || FAIL #
+# [ -d $REC_YEAR ] || FAIL
+
+# Per Month Layout in REC_YEAR/
+#
+# ALWAYS  create these to show how the work
+# you can override with symb links,
+
+# REC_AUD # is where audacity was
+
+REC_WAV_Jan=${REC_YEAR}/REC_WAV_${YEAR}/REC_WAV_${YEAR_MM_Jan}
+REC_AUD_Jan=${REC_YEAR}/REC_AUD_${YEAR}/REC_AUD_${YEAR_MM_Jan}
+REC_MP3_Jan=${REC_YEAR}/REC_MP3_${YEAR}/REC_MP3_${YEAR_MM_Jan}
+REC_AUD_DONE=${REC_YEAR}/REC_AUD_${YEAR}_DONE
+REC_AUD_Jan_DONE_Jan=${REC_AUD_DONE}/REC_AUD_${YEAR_MM_Jan}_
+# /home/gps/G/REC_2018/REC_AUD_2018_DONE/
+
+if [ ! -d $REC_AUD_Jan/. ] 
+then
+ echo "#"
+ echo "# creating dirs for this month $YEAR_MM_Jan"
+ echo "#"
+fi
+#
+# cd is wrong but tests usable, logs that
+# cd then moves away from rel, these are all abs paths
+#
+cd_mkdir_FAIL $REC_WAV_Jan
+cd_mkdir_FAIL $REC_AUD_Jan
+cd_mkdir_FAIL $REC_MP3_Jan
+cd_mkdir_FAIL $REC_AUD_DONE
+cd_mkdir_FAIL $REC_AUD_Jan_DONE_Jan
+
+# build some filenames / strings using artist name # ${Samba}
+# will soon check they dont exist
+
+YEAR_MM_DD_Tue_Samba=${YEAR_MM_DD}_${Tue}_${Samba}
+YEAR_MM_DD_Tue_Samba_SP="${YEAR_MM_DD} ${Tue} ${Samba}"
+
+DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Samba}
+DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Samba
+DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Samba
+DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Samba}
+FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Samba}_NO_Notes.txt
+
+if yes_no create session "
+ Samba $Samba
+ Artist $Artist
+ Sess_List $Sess_List
+"
+then
+	:
+else
+	FAIL 1 not today
+fi
+
+# create AUD data and project
+
+V_ALBUM="${YEAR_MM_DD_Tue_Samba_SP}"
+V_ARTIST="${Artist}"
+V_YEAR="${YEAR}"
+
+# PRJ_AUD has to be edited during first save_as
+# because audacity will not overwrite an 0 byte file 
+# and thats when to do sess_2
+
+cd_mkdir_FAIL ${DIR_WAV}
+cd_mkdir_FAIL ${DIR_AUD}
+cd_mkdir_FAIL ${DIR_MP3}
+cd_mkdir_FAIL ${DIR_TXT}
+cd_mkdir_FAIL ${REC_AUD_Jan_DONE_Jan}
+
+function mk_audacity {
+  DIR_aud="${1:-HOME_YEAR_YEAR_MM_DD_Tue_Samba}"
+  NAME_PROJECT="${2:-YEAR_MM_DD_Tue_Samba_sess1}" # the name of the project in the dir
+  NAME_PROJDATA="${NAME_PROJECT}_data"
+  PRJ_AUD_aup="${DIR_aud}/${NAME_PROJECT}.aup"
+  PRJ_AUD_aup3="${DIR_aud}/_${NAME_PROJECT}.aup3"
+  PRJ_AUD_sh="${DIR_aud}/${NAME_PROJECT}.sh"
+  PRJ_AUD_data="${DIR_aud}/${NAME_PROJDATA}"
+  # BE CAREFUL to not overwrite exiting file
+  if [ ! -f "${PRJ_AUD_aup}" ]
+  then
+	  run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
+	# indent by SP SP of .aup caused it to not be recognised
+	  cat << !EOT | tee "${PRJ_AUD_aup}"
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="$NAME_PROJDATA" version="1.3.0" audacityversion="2.0.6" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="86.1328125000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss">
+	  <tags>
+		  <tag name="ALBUM"  value="$V_ALBUM"/>
+		  <tag name="ARTIST" value="$V_ARTIST"/>
+		  <tag name="YEAR"   value="$V_YEAR"/>
+	  </tags>
+</project>
+!EOT
+	touch ${PRJ_AUD_aup3}
+  fi # 
+
+  if [ ! -f "$FILE_TXT" ]
+  then
+	# echo -e # expand \r to 0x0D
+	echo -e "# ${YEAR_MM_DD_Tue_Samba} \r" >> "$FILE_TXT"
+  fi
+  
+  if [ ! -f "${PRJ_AUD_sh}" ]
+  then
+  	echo "ask_do audacity '${NAME_PROJECT}.aup3'" > "${PRJ_AUD_sh}"
+  	chmod 755 "${PRJ_AUD_sh}"
+  fi
+
+  sync
+  cd "${DIR_aud}"
+  pwd
+  audacity "${PRJ_AUD_aup}"
+}
+
+for sess in ${Sess_List:-""}
+do
+	# ask_do is not a fn and cant run local functions
+	if yes_no mk_audacity "${DIR_AUD}" "${YEAR_MM_DD_Tue_Samba}${sess}"
+	then
+		mk_audacity "${DIR_AUD}" "${YEAR_MM_DD_Tue_Samba}${sess}"
+	fi
+done
+
+set -x
+df -h .
+sync
+df -h
+
+# /media/H2N_SD/4CH/FOLDER01/
+# /home/gps/G/REC_2018/REC_AUD_2018_DONE/

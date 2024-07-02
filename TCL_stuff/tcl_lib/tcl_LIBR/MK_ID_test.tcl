@@ -43,9 +43,10 @@ namespace eval ::MK_ID {
 
  proc test1 {} {
  	run_ret {PFX1} {mk_id  PFX } "prefix PFX item_zero counts from ONE"
- 	run_ret {PFX9} {mk_id  PFX } "expect to fail as PFX2 is really expected"
- 	run_ret {3}    {mk_idx PFX } "prefix PFX with item count 3"
- 	run_ret {PFX4} {mk_id  PFX } "prefix PFX with item count 4"
+ 	run_ret {PFX2} {mk_id  PFX } "expect to PASS as PFX2 is really expected"
+ 	run_ret {PFX9} {mk_id  PFX } "expect to fail as PFX3 is really expected"
+ 	run_ret {4}    {mk_idx PFX } "prefix PFX with item count 3"
+ 	run_ret {PFX5} {mk_id  PFX } "prefix PFX with item count 4"
  	run_ret {TWO1} {mk_id  TWO } "prefix TWO with item count 1 - note each PFX N"
  	run_ret {TWO2} {mk_id  TWO } "prefix TWO with item count 2 - note each PFX N"
  	run_ret {3}    {mk_idx TWO } "counter TWO no PFX return idx from 1"

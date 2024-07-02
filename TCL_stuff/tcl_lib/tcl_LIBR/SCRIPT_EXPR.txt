@@ -1,0 +1,28 @@
+Tcl receives ARGV like list of STR0 words
+
+We search for comma, Q1, Q2, BQ, which may share SPELLING_COMMA
+
+We expand those few lex, via FILTER PARSE ASIF parsed from TEXT2
+
+We develop ARGV speak, under SESS, with OPTIONS
+
+	almost so every:
+	every LEX is a locn,
+	# DECODE LEX_COMMA # CT_RT callable to get_LEX get_COMMA got_COMMA
+
+PSG_PHRASE when it arrives as ARGV_of_ARGV
+
+	quickest way for a SCRIPT to do its job
+	is no preamble, require PARSER to know
+
+	on_EVENT_%s # group together # lookup %s # decode %s # KNOW_LABEL
+	on_EVENT_%s # DECL SPEC %s #
+	on_EVENT_%s # DECL AVAR %s #
+	on_EVENT_%s # DECL FUNC %s #
+	on_EVENT_%s # DECL HEAP %s #
+	on_EVENT_%s # DECL ITEM %s #
+
+	OBJV = on_EVENT_objv
+	OBJC = on_EVENT_objc
+
+	

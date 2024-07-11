@@ -245,6 +245,9 @@ int main( int argc, char * argv[] )
 	if( argc == 1 ) {
 		// test call without args
 	//	if(!send_wake("00:15:b7:11:35:64", "M7" )) return -errno;
+		if(!send_wake("b8:ca:3a:cc:64:4a", "e6320" )) return -errno;
+		if(!send_wake("22:16:4d:04:17:dd", "x79-1g" )) return -errno;
+		if(!send_wake("00:e0:4c:69:5d:c6", "x79-2g" )) return -errno;
 		if(!send_wake("74:d4:35:fb:3f:6f ", "fm2" )) return -errno;
 
 	} else {

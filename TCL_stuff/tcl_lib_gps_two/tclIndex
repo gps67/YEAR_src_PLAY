@@ -6,4 +6,4 @@
 # element name is the name of a command and the value is
 # a script that loads the command.
 
-set auto_index(say_hello_two) [list source [file join $dir gps_two.tcl]]
+set auto_index(say_hello_two) [list source [file join $dir gps_two_say_hello_two.tcl]]

@@ -2,6 +2,49 @@
 
 	pesky MC viewer is detecting dot something
 
+		heuristic scanner
+		on_INFER ... // REQUIRES // those slashes are a single word
+		no_CMNT // everything gets PARSED but in MODE MENTION SPELLING 
+	
+	heuristic filename
+
+		.txt
+	
+	specified
+
+		KNOW %s 
+		PUSH SAME
+		SEEK ADJACENTS
+
+	MATCH MIS MATCH
+
+		ASIF SAME
+		ASIF INDEPENDENT
+		on_EVENT	- eg Qt signals - or on_EVENT as_EVENT as_API
+		as_API		- 
+			translating between a list of WORLD VIEWS
+		as_API
+			picking DIALECT
+		as_API
+			FOCUS SPELLING _ONE
+			wider search around each WORLD_VIEW
+			SWEEP on DETECT
+			so that can then APPLY feature where INDICATED
+
+			template SCRIPT
+			invoking SCRIPT
+
+				ASIF_HERE
+				ASIF_NEAR
+				ASIF_SELF
+				ASIF_OTHER
+
+				_HERE __THERE NEAR FAR
+				_SELF _YOURSELF OTHER MYTHIC
+
+				_HERE _SELF
+				_NEAR _OTHER
+
 .S2 {
  .HDR {Intro}
  .P {
@@ -15,10 +58,13 @@
 
 		.CODE $b
 
-	Unlike bash and C, you cant use {a=$b} you must use {set a $b}.
-	That is interpretad as a command {set} with 2 arguments {a} and {$b}
+	Unlike bash and C, you cant use {a=$b} you must use {set a $b}. 
+	That is an ARGV interpretad as 3 ARGV WORDS. The first word on the line,
+	is the command {set} with 2 argument words {a} and {$b}
 
 		.CODE set a $b
+
+		.CODE set "VAR_NAME" $VALUE
 
 	Each word does NOT need "quotes", so "tmp" can be written as tmp
 	Sometimes this can make it quite clean, but dont worry, there is

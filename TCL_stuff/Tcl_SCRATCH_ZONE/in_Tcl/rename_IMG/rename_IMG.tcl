@@ -59,6 +59,8 @@ set ZONE_NAME Aldershot_D_80
 set ZONE_NAME BUILD_PC_x79
 set ZONE_NAME Lewisham_Train
 set ZONE_NAME WOMAD_Canaria
+set ZONE_NAME Boxing_Day_at_Rodneys
+set ZONE_NAME FOUND_on_G31_HCE
 
 proc list_pop {listname itemname } {
 	upvar $listname list

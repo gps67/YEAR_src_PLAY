@@ -48,6 +48,7 @@
 	# path includes all local projects
 	# so that the package is found
 	lappend auto_path \
+		/home/gps/tcl_lib_gps_one	\
 		/home/gps/tcl_lib_gps_two	\
 		$env(HOME)/tcl_lib		\
 		$as_tcl_lib			\
@@ -59,6 +60,7 @@
 		$in_Tcl_Module/tcl_Bench/lib	\
 	;#
 
+	# pkgPath is auto in _one # because tcl/lib
 	lappend tcl_pkgPath \
 		/home/gps/tcl_lib_gps_two	\
 		$env(HOME)/tcl_lib		\

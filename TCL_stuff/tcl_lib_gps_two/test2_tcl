@@ -16,6 +16,7 @@ show_var argv0 ;# ./test1.tcl
 # package require gps_one 0.3-0.4 ;# OK FAIL with 0.5
 # package require gps_one 0.6- ;# OK FAIL with 0.5
 package require gps_one 0.3- ;# OK with 0.5
+package require gps_two 0.3- ;# OK with 0.5
 
 say_hello_one
 say_hello_two

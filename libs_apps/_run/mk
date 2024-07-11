@@ -144,7 +144,10 @@ fi
 	jobs=4
 	jobs=8
 	jobs=1	# default is simplest
-	jobs=${JOBS:-$jobs}
+	jobs=14
+
+#	remove JOBS frm calling scripts and ignore it here #
+#	jobs=${JOBS:-$jobs}
 
 	# make -j $jobs WITH_GTK=$G -f ../MK/Makefile "$@" 2>&1  \
 	#

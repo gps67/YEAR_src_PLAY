@@ -1,0 +1,37 @@
+
+//	HTML_FORMS/
+//	HTML_FORMS.txt
+
+	ACCTS from FORMS
+	FORM LAYOUT Stack of lines // line is field // tabulations //
+
+	D_T_O_X_I_N
+	D - Drawings - salary dividend 
+	T - TAX
+	O - OUT Outgoings - money OUT
+	X - XFER transfer between accounts
+	I - IN sales INCOME - money IN
+	N - NOTES diary etc
+
+	ALL directors have to pool their d accounts in reports
+	All transactions can still tag to individual
+
+	F - FISCAL - parallel layers of categories of transaction
+
+	OPTION LAYERS
+
+		SWITCH_LAYERS for ACCTS_ _PERSONAL _EXPENSE _PURPOSE
+
+		PARALLEL sets of accounts for departments and people
+
+		OVERLAP of INDIVIDUAL ROLES
+
+	CAT
+
+	O_HOME_HELP
+	O_FOOD_RENT_BILLS
+	I_PENSION
+	I_INVESTMENT
+
+	FORMS into PDF
+

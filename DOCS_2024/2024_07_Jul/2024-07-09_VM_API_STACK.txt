@@ -1,0 +1,45 @@
+	2024-07-09
+
+	2024_07_Jul
+	2024-07-09_VM_API_STACK.txt
+
+	We have to use the C_STACK - as CXX or WIN32 or with STACK_SPI on CPU
+	We dont use the C_STACK for our SCRIPT
+	Instead we make an ARGV subsegment of a wider array
+	We hold the ALLOC_HOLD as the RUNNING FUNC holding the ARGV
+	when we return, we unravel. STACK might stay around for reuse
+
+	that is an awful thing for SECRET BUFFERS in different threads
+	but an amazing thing for SHARED BUFFERS in cooperating threads
+	CT_RT compiles it into KNOW and STEP and ... gen CT gen RT
+
+	unravel calls DTOR on ARGV and stuff in it, and NEAR it
+	ARGV_MAIN { argc argv self sess argv_main == self }
+
+		HEURISTIC PARSER
+		grows phrase areound ==
+		 argv_main == self
+		That phrase appears in a list of items
+
+	ARGV_MAIN {
+	 
+		argc
+		argv
+	}
+	self {
+		SPEC // and USAGE of ITEM // close but different
+		self // this // ITEM // OBJ // IT //
+		sess // SESS // HERE // CTXT // sess.whatever_you_need.STO
+
+		argv_main == self
+	}
+
+	STACK += a chain of FRAMES
+
+		does not need to be contiguous 
+		but didnt, since we still need to create_new_frame,
+		and CT_RT might know how to do that best
+
+
+
+

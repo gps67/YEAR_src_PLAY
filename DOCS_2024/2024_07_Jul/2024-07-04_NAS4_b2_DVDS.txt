@@ -1,0 +1,104 @@
+	2024-07-04
+
+	2024_07_Jul
+	2024-07-04_NAS4_b2_DVDS.txt
+
+	Too many charity shop ebay dvd's
+	Each read into a ISO DVD as FILES in DIRS
+
+	A years worth of unwatched DVD's QUEUED 
+	200 GB x 10 years
+
+	gps@E6320:/nfs/NAS4/b2/NAS4_b2_DVDS$ du -sh *
+
+	52G     DVDS_2010
+	119G    DVDS_2018
+	183G    DVDS_2019
+	78G     DVDS_2020
+	289G    DVDS_2021
+	328G    DVDS_2022
+	300G    DVDS_2023
+	254G    DVDS_2024
+	4.3G    DVDS_ALSO_FOUND
+	2.2G    FILM_2012
+	0       NAS3_a2_DVDS
+	0       NAS4_b2_DVDS
+	2.5M    scraps
+
+	1.6T    .
+
+
+	BENCH that deals with a LIST of items like 
+
+		NAS4_b2_DVD
+	
+	Q2 %s Q2 // NAS1_a2_DVD // GEN_NAME NAS %d _ %c %d _ DVDS
+
+		gps@E6320:/nfs/NAS_ln_s$ ls
+
+		DVDS_2021          NAS3_a2_AUDIO              NAS3_b2_DVDS
+		NAS2_a2_BAKS       NAS3_a2_AUDIO__            NAS3_b2_DVDS_2021
+		NAS2_a2_index      NAS3_a2_CUBA_on_this_disk  NAS3_b2_PVR
+		NAS2_a2_PVR_2020   NAS3_a2_DVDS               NAS4_b2_audio_
+		NAS2_b2_2021       NAS3_a2_FTP_CVS            NAS4_b2_AUDIO
+		NAS2_b2_G_KEEP     NAS3_a2_PVR                NAS4_b2_DVDS
+		NAS2_b2_PVR        NAS3_a2_YT_yyyy            NAS4_b2_REC
+		NAS3_a2_A_C_C_T_S  NAS3_b2_AUDIO_empty
+
+		gps@E6320:/nfs/NAS_ln_s$ ls -1F
+
+		DVDS_2021@
+		NAS2_a2_BAKS@
+		NAS2_a2_index@
+		NAS2_a2_PVR_2020@
+		NAS2_b2_2021@
+		NAS2_b2_G_KEEP@
+		NAS2_b2_PVR@
+		NAS3_a2_A_C_C_T_S@
+		NAS3_a2_AUDIO@
+		NAS3_a2_AUDIO__@
+		NAS3_a2_CUBA_on_this_disk@
+		NAS3_a2_DVDS@
+		NAS3_a2_FTP_CVS@
+		NAS3_a2_PVR@
+		NAS3_a2_YT_yyyy@
+		NAS3_b2_AUDIO_empty@
+		NAS3_b2_DVDS@
+		NAS3_b2_DVDS_2021@
+		NAS3_b2_PVR@
+		NAS4_b2_audio_@
+		NAS4_b2_AUDIO@
+		NAS4_b2_DVDS@
+		NAS4_b2_REC@
+
+		Press any key to conti
+
+	TODO NEED SCRIPT that gives DU_SH each bookmarked QUOTA
+
+		NAS1
+		NAS2
+		NAS3
+		NAS4
+
+		A - DISK SERIAL_NUMBER - and current contents
+		B - DISK 3.5" 2.7T FULL_72%%
+
+		part1
+		part2
+		part3
+		part4
+
+
+
+		Then disks available to ADMIN 
+		Then disks available to PUBLIC
+		// ie partition 2 of 4
+		// this NAS_BOX wants partition2
+		//
+
+		
+
+
+
+
+

@@ -7,7 +7,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2023-08-06, 19105,  35.64, 49.43, Y? Full ASDA from wooden roots 
 2023-08-25, 19408,  30.71, 47.82, Y Full ASDA from High Wycombe
 2023-08-30, 19589,  15.84, 23.55, Y Full  morrissons from Coventry E10
-2023-09-04, 19936,  32.06, 47.67, Y Full  morrissons from Drum Cramp
+2023-09-04, 19936,  32.06, 47.67, Y Full  morrissons from Drum Camp
 2023-09-11, 20172,  23.26, 34.40, Y Full  Sainsburies from BH
 2023-11-23, 20420,  35.28, 50.70, Y Full Morrissons E10
 2023-12-05, 20725,  35.06, 48.70, Y Full Tesco E10
@@ -19,4 +19,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-05-14, 22090,  22.78, 33.19, Y Full Morisons
 2024-06-08, 22356,  29.97, 42.47, Y Full Morisons
 2024-06-18, 22681,  34.12, 47.32, P Full Morisons from Salisbury
+2024-07-06, 22823,  19.18, 26.79, P Full Morisons from run around
 

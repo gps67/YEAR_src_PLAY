@@ -6,7 +6,7 @@
  2023-08-06  18760 345  19105  14.3 p_mile  1.39 £_litre  6.31 £_gallon  44.0 mpg   6.4 lp100  Y? Full ASDA from wooden roots 
  2023-08-25  19105 303  19408  15.8 p_mile  1.56 £_litre  7.08 £_gallon  44.9 mpg   6.3 lp100  Y Full ASDA from High Wycombe
  2023-08-30  19408 181  19589  13.0 p_mile  1.49 £_litre  6.76 £_gallon  51.9 mpg   5.4 lp100  Y Full  morrissons from Coventry E10
- 2023-09-04  19589 347  19936  13.7 p_mile  1.49 £_litre  6.76 £_gallon  49.2 mpg   5.7 lp100  Y Full  morrissons from Drum Cramp
+ 2023-09-04  19589 347  19936  13.7 p_mile  1.49 £_litre  6.76 £_gallon  49.2 mpg   5.7 lp100  Y Full  morrissons from Drum Camp
  2023-09-11  19936 236  20172  14.6 p_mile  1.48 £_litre  6.72 £_gallon  46.1 mpg   6.1 lp100  Y Full  Sainsburies from BH
  2023-11-23  20172 248  20420  20.4 p_mile  1.44 £_litre  6.53 £_gallon  32.0 mpg   8.8 lp100  Y Full Morrissons E10
  2023-12-05  20420 305  20725  16.0 p_mile  1.39 £_litre  6.31 £_gallon  39.5 mpg   7.1 lp100  Y Full Tesco E10
@@ -17,6 +17,7 @@
  2024-05-04  21667 218  21885  21.5 p_mile  1.47 £_litre  6.67 £_gallon  31.1 mpg   9.1 lp100  Y Full ASDA
  2024-05-14  21885 205  22090  16.2 p_mile  1.46 £_litre  6.62 £_gallon  40.9 mpg   6.9 lp100  Y Full Morisons
  2024-06-08  22090 266  22356  16.0 p_mile  1.42 £_litre  6.44 £_gallon  40.3 mpg   7.0 lp100  Y Full Morisons
- 2024-06-18  22356 325  22681  14.6 p_mile  1.39 £_litre  6.30 £_gallon  43.3 mpg   6.5 lp100  Y Full Morisons from Salisbury
+ 2024-06-18  22356 325  22681  14.6 p_mile  1.39 £_litre  6.30 £_gallon  43.3 mpg   6.5 lp100  P Full Morisons from Salisbury
+ 2024-07-06  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 

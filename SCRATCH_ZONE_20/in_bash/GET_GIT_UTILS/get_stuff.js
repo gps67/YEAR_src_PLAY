@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/Gnucash/gnucash
 https://github.com/TigerVNC/tigervnc
 https://github.com/rfbproto/rfbproto
 https://github.com/modularml/mojo

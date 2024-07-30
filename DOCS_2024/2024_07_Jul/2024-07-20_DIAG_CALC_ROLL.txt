@@ -1,0 +1,211 @@
+	2024-07-20
+
+	2024_07_Jul
+	2024-07-20_DIAG_CALC_ROLL.txt
+
+	TILL_ROLL
+	 SCROLL
+
+	 RECALC_GRAPH
+
+	 	detect LOOPS
+		detect USES
+		detect on_EVENT _EVENT _SCRIPT
+	
+	DIAG SCROLL
+	TILL_ROLL = new TILL_ROLL_t( PICK_SESS, PICK_STO, PICK_CSR )
+		PICK_SESS = SESS_0 // already works
+	
+	PANEL SCROLL_PANEL
+
+		SCOPE += push_new_SCOPE // PANEL.SCOPE += push_new SCOPE
+
+		on_EVENT PANEL_end { LEAVE_SCOPE_POP_SCOPE }
+
+		proc LEAVE_SCOPE_POP_SCOPE {} {
+			SCOPE.POP_SCOPE()
+		}
+	
+		SCOPE += VAR_POOL["%s"] as VAR_POOL_SCOPE_one("_one")
+
+	on_EVENT = EVAL_GETTER_VAR_POOL_KEY_EXPR
+
+	 CACHE_1
+		VAR_POOL == VAR_POOL["%s"] // ARG1 = STR0
+	
+	 CACHE_2
+	 	ITEM = TOKENISE_ITEM_FROM_SPELLING ARG1_STR0
+	
+	 CACHE_CT_RT_CODE_POINT
+	 	EXPR = COMPILE_or_TOKENISE "EXPR" // STR0 // SPELLING // TOKEN
+	
+
+	ITEM_POOL = new ITEM_POOL_t() // SCRIPT gets ENV VARS from STACK
+	VAR_POOL = new VAR_POOL_t() // SCRIPT gets ENV VARS from STACK
+
+	HEAP += ITEM_POOL
+
+	 u64_WORD { // ALIAS_u32_u32 // 
+		u8_u8	OPCODE
+		u16	u4_u12_HEAP_ITEM
+		u32	u32_EXPR
+	 }
+
+	 	So that means
+
+		u32_u32_WORD // ALIGNED_EIGHT // u64 // u64_lohi //
+
+		u8_u24_HEAP_ITEM // u8_HEAP u24_ITEM // 
+
+		allocating PAGES of ITEM //
+
+			idx = N ++ // ALLOC_ONE_PLUS
+			idx = -- M // ALLOC_ONE_MINUS
+
+		N++ is RET_OLD_N // its how [N] works
+		--M is RET_NEW_M // its how [M] works
+		[M [0 [N
+		[L [R
+
+			The point of [M [N is a 2 sided HEAP ARRAY
+
+			This can grow by moving M and N out to L and R
+
+			This can grow by ALLOC wider L R // COPY_OVER //
+
+			INIT_ZERO happily matches M_N_USAGE
+
+			N is 0 // PLUS side of array is UNUSED
+			M is 0 // MINUS side of array is UNUSED
+			N is u12 // MINUS side of array is UNUSED
+
+		TRANSFER or MMAP array in MMAP
+
+			[L [M [0 [N [R // i32_means_LIMIT_u31
+			[L [M [0 [N [R // i16_means_LIMIT_u12 _i12
+
+			on_EVENT IDX_ALLOC_FULL_EDGE
+
+			4096 bit patterns from u4_u12 u4_i12
+
+
+		u32_u32_WORD // WORD_64 // u64_WORD // u64_LOHI //
+		u32_4G IDX
+		u31_2G IDX // N fits in u32`
+		u24_16M IDX
+		u16_64K IDX
+		u12_4096 PICK
+		u8_256 PICK
+		u4_16 PICK
+
+	CTOR += MK_VAR AVAR ARGS
+	CTOR += MK_IDX HEAP IDX AVAR ARGS 
+
+	MINI_MACHINE
+
+	 HEAP_u16 EA_EXPR_u4_u12 _HEAP_ITEM _
+
+		16 PAGES
+		4096 ITEMS // ITEMS_per_PAGE_4096
+
+		u8_HEAP // PAGE // SEGMENT // HEAP_xFF //
+		u24_ITEM // AVAR // OPTION REPROGRAMMABLE at_idx // VOID_STAR //
+	
+		1 ENTIRE
+		64K ITEM
+	
+	HEAP_u31 // actually usable to u32 with u64_N // but didn't 
+	HEAP_u31 // _u16_u32 // _u48 // _u16 // _u32 // _u16_u16 // u8_u24 //
+	HEAP_u31 // _i32_STREAM // _u16 // _u32 // _u16_u16 // u8_u24 //
+
+	DECODE OPCODE
+
+		ALIAS %s
+	
+	DECODE OPCODE
+
+		DECL AVAR
+	
+	DECODE OPCODE
+
+		XPOS XPOS
+		XPOS adjust
+	
+	DECODE OPCODE
+
+		DECL_TYPE does not happen near here
+		DECL_TYPE SPEC == ITEM.SPEC
+
+	OPCODE ITEM.SPEC
+
+		ITEM_t * ITEM = ITEM.ITEM.get_EA_as_VOID_STAR_C_STRUCT
+	const	SPEC_t * SPEC = ITEM.SPEC.get_EA_as_VOID_STAR_C_STRUCT
+
+	OPCODE ITEM.SPEC
+
+		ITEM_t & ITEM = ITEM.ITEM.get_EA_as_VOID_STAR_C_STRUCT
+	const	SPEC_t & SPEC = ITEM.SPEC.get_EA_as_VOID_STAR_C_STRUCT
+
+	OPCODE ITEM.SPEC
+	builtin ITEM // complete with ITEM.ITEM is SELF // ALIAS %s //
+		ITEM_t & ITEM = ITEM.ITEM.get_EA_as_VOID_STAR_C_STRUCT_asref
+	const	SPEC_t & SPEC = ITEM.SPEC.get_EA_as_VOID_STAR_C_STRUCT_asref
+
+ API 
+ ITEM_t 
+ 	DIAG { BYTES_USED_IN_EXAMPLE }
+ 	DIAG { BYTES_USED_IN_SESSION }
+ 	DIAG { VIEW_with_UDEF_filters OPTS BENCH }
+
+	// u64 PTR // on this machine 
+	// u32 PTR // on mini machine 
+	// u32 IDX // on midi machine // u8_heap_u24_item // _lohi
+	// u16 IDX // on mini machine //
+	// u8 IDX // on mini machine // 256 not 4096 not 64K nor more // u16_EA
+	// u8 IDX // on byte machine // 256 not 4096 not 64K nor more // u8_EA
+
+		// u8_EA == u8_PICK // UPTO 256 options for this AVAR
+		// u8_EA == REGISTER_idx + BASE_REGISTER_ZERO 
+
+		// u32_PTR_t * PTR = ARY[idx] // idx // PTR // ARY // _asref
+		// MATCH CODE LINES // PARSE THEM as CXX // SEMICOLON_ //
+
+ 	ALIAS _PTR ; // leading_under well_known_spelling // _OBJ // _EXPR
+ 	ALIAS Tcl_Obj_PTR ; // KNOW WHAT ORIG or_not // CMNT
+ 	Tcl_Obj * Tcl_Obj_PTR ; // KNOW WHAT ORIG or_not //
+	EXPR ITEM.get_EA_as_VOID_STAR_C_STRUCT
+	EXPR ITEM.get_EA_as_VOID_STAR_C_STRUCT_asref
+
+	UDEF("get_EA") OPTIONS { SCRIPT } { SCRIPT } {
+	OPTION get_EA_of_C_STRUCT // _as_VOID_STAR // as_caddr_t //
+		return this; // SCRIPT AMBIGUITY
+		// local return is not SCRIPT return
+		// TODO: // CLAIM_CXX_PASS // ERRNO_ZERO_means_OK_PASS
+		// TODO: // CLAIM_CXX_FAIL // Tcl error // TODO integrate
+		// TODO: // CLAIM_CXX_CONTINUE //
+		// TODO: // CLAIM_CXX_BREAK //
+		// TODO: // CLAIM_CXX_RETURN //
+		// TODO: // CLAIM_CXX_THROW //
+	} { SCRIPT }
+			
+ }
+
+	
+
+
+	
+	LIBR_SPEC
+
+
+		// NEAR // SUBLEX EACH SOME NEAR DELTA_DISTANCE _GROUP
+		// DRAW // DIAG XY_one XY_two VIEW _as_XY SPEC_RULE_EXPR
+		// TYPE_t TYPE_SPEC; // BENCH creates %s VAR_NAME of %s VAR_TYPE
+		// KNOW ITEM_t ITEM; // AXIOM // LANG offers as DECL // INIT_VAL
+		// ITEM.VAR_NAME = STR0 ; //
+		// ITEM.VAR_NAME = token_from_str0 STR0 ; // CT_RT //
+
+		PAGE provides P0P2 XPOS_NEXT
+		PAGE provides FIELD_WIDTH NBIT u12 
+
+
+		

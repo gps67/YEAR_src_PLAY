@@ -1,0 +1,50 @@
+	2024-07-30
+
+	2024_07_Jul
+	2024-07-30_DIALECT_ALIAS.txt
+
+	DIALECT_xFFFF
+	DIALECT_%s CIDENT_STR0 ## BOUND TOKEN to STR0 ASIF .name
+
+
+	didn't believe it,
+	but accepted it.
+
+	
+	DIALECT %s
+	CIDENT %s
+		
+		SELF.BASE_CLASS += { HERE DECL PSG LEX }
+
+			LEX is so localised
+			the unconstrained grammar
+			must comply with { STEP u8_u8_OPCODE A_R_G_V_PLUS } {}
+	
+	INDENT_SYSTEM is py3 with gps
+	INDENT_SYSTEM is CXX with gps
+	INDENT_SYSTEM is X11 with gps
+	INDENT_SYSTEM is ARGB_32 with gps // transparent u32 RGB_u24 // RGBA
+	INDENT_SYSTEM is WIN32 with gps
+
+	ARGB 
+	RGBA u32_RGBA u24_RGB u8_A
+
+
+	is everything a questions ?
+
+	what else would it be ?
+
+
+	so meh, entropy plus practise, from scratch, again
+
+		EG THIS is consious NOW or NEAR with '%s' Q1_TAIL
+
+		Q1_TAIL = TAIL_Q1("%s", Q1_argv_one // _1 // _two = _2
+
+			sort of hope Q1 rules already applied
+			either require PREPARE PRELOAD PRE_FILTERED STR0
+			either require RUNTIME PRELOAD PRE_FILTERED STR0
+
+				as_PRE_as_you_can
+
+	

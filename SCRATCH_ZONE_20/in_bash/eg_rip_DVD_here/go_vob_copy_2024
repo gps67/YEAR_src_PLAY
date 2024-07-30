@@ -1,0 +1,257 @@
+#!/bin/bash
+
+	. fns_FAIL
+	. fns_EDIT
+	. fns_ASKS
+	. fns_DIRS
+
+	# calls stuff in same dir .
+	PATH=:$PATH
+
+# which NFS NAS is used - to mount # move to a parameter in DB
+# the symb link to NAS dir # varies with people # often out of reach
+# NB this is used to check that the NAS is mounted but the actual DIR is on 
+# see ./copy_iso_tree
+
+	DIR_NAS=NAS3_b2_DVDS_2021 # symb link to 
+	NAS_SCRIPT=/nfs/NAS_mount_ALL # run this to mount DIR_NAS
+
+# the device that is SCSI ROM DVD 
+# might vary with OS # the mount device
+
+	export dev_sr0=/dev/sr0
+
+# RETVAL globals # naff defaults that should expose unser VARS
+
+	export media_mount_name=media_mount_name
+	export dvd_name=dvd_name
+
+# MACHINE DIRS
+
+	DIR_LOG=tmp		# where the logfiles go
+	DIR_ISO=iso		# where the dvd_name_2.iso files go
+	DIR_MID=iso_prep	# iso written here first - same disk as DIR_ISO
+	DIR_DEL=done_del	# where the  go
+
+	mkdir_FAIL $DIR_MID
+	mkdir_FAIL $DIR_ISO
+	mkdir_FAIL $DIR_LOG
+	mkdir_FAIL $DIR_DEL
+
+# where the files are # NEEDS dvd_name_2
+
+# check that vobcopy is available # not done
+# vobcopy // apt install
+
+say_do()
+{
+	echo "RUNS $*"
+	if "$@"
+	then
+		: # OK
+	else
+		FAIL "$?" "$*"
+	fi
+}
+
+# mount_NAS
+
+	if [ ! -d "${DIR_NAS}/." ]
+	then
+		echo "DIR_NAS '$DIR_NAS' needs to be a dir, ie mounted"
+		ask_do $NAS_SCRIPT
+	fi
+
+	if [ ! -d "${DIR_NAS}/." ]
+	then
+		echo "DIR_NAS '$DIR_NAS' needs to be a dir, ie mounted"
+		ask_do $NAS_SCRIPT
+	fi
+
+
+wait_for_dvd_mount()
+{
+# media_mount_line 
+# /dev/sr0 on /media/gps/VENOM_2018 type udf (ro,nosuid,nodev,relatime,uid=1016,gid=1016,iocharset=utf8,uhelper=udisks2)
+
+	# RETVAL is global var # media_mount_name #
+	# FAIL entire script if not mounted after 1 minute #
+	# OS does automount (RTFM) we just wait for that
+	# set plain default # edited extracted when mounted by .. ubuntu ...
+	media_mount_name=${media_mount_name:-media_mount_name} # DEFAULT
+	# 20 attempts * 3 secs == 60 seconds
+	for attempt in 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 20
+	do
+		# if mount | grep $dev_sr0 > /dev/null
+		if media_mount_line=`mount | grep $dev_sr0` 
+		then
+			media_mount_path=`expr match "$media_mount_line" '.* on \(.*\) type'`
+			media_mount_name=`basename "$media_mount_path"`
+			# debug values #
+			echo "media_mount_line $media_mount_line"
+			echo "media_mount_path $media_mount_path"
+			echo "media_mount_name $media_mount_name"
+			return 0
+		else
+			echo $dev_sr0 not mounted
+			sleep 3
+		fi
+	done
+	FAIL 6 not mounted in time
+}
+
+get_dvd_name()
+{
+	# RETVAL global var dvd_name
+	# obtain the dvd_media_name
+	# requires FVF is mounted #
+	# caller did # wait_for_mount #
+	local ret_dvd_name=`
+		vobcopy -I 2>&1 | grep 'DVD-name:' | sed 's/.*: //'
+	`
+	# set the global var # ${dvd_name}
+	dvd_name="${ret_dvd_name:-$media_mount_name}"
+
+	# vob copy will create a subdir # avoid any clashes
+	if [ -d "$dvd_name" ]
+	then
+		echo "cant load DVD because it would clash with $dvd_name"
+		ask_do FAIL 1 "dir clash $dvd_name"
+	fi
+}
+
+echo
+echo "# SPACE AVAIL #"
+df -m .
+df -h .
+echo
+
+# dvd_name # obtained from DVD # mount point
+# dvd_name_2 # manually edited #
+
+	wait_for_dvd_mount
+	get_dvd_name
+
+# a lot of DVD's call themselves DVDVOLUME
+# and vobcopy uss that as the dirname
+# after that we can rename it, so the .sio has a good name
+# ditto for other name clashes
+# I dont check dvd_name_2 for clashes, be lucky
+
+	dvd_name_2="${dvd_name}"
+
+	fn_EDIT_var_prompt dvd_name_2 "$dvd_name ==> "
+
+# where the files are # NEEDS dvd_name_2
+
+	VOB_LOG="${DIR_LOG}/${dvd_name_2}_vobcopy.tmp" # vobcopy log #
+	IMG_LOG="${DIR_LOG}/${dvd_name_2}_mkiso_log.tmp"# mkisofs log
+	IMG_MID="${DIR_MID}/${dvd_name_2}.iso.tmp" # mid iso.tmp on local
+	IMG_ISO="${DIR_ISO}/${dvd_name_2}.iso"	# end .iso on local
+	IMG_NAS="${DIR_NAS}/${dvd_name_2}.iso"	# end .iso on NAS
+
+	# NB # the .iso is moved into place in an atomic action
+	# SO # copy_tree never finds a tmp named file
+	# SO # copy_tree never finds a half written file 
+	# ie # copy_tree uses stat NBYTES to copy upto there
+
+# extract the DVD using vobcopy -m
+# -m # mirror whole dvd to disk # css decrypt done here
+
+	if vobcopy -m 2>&1 | tee ${VOB_LOG} # -i $media_mount_path
+	then
+		# vobcopy used $dvd_name # we had no choice
+		echo "# OK #"
+		sync
+		:
+	else
+		# actually the retcode is from tee not vobcopy
+		echo "# error $? from vobcopy PRTC"
+		echo "# press CTRL-C to interrupt"
+		echo "# press return to keep going"
+		#
+		read -p "Press Return to Continue" junk
+	fi
+
+	sync
+
+# user may now change disk, mount next ...
+
+	eject
+
+# move the dir of files (looks like a dvd tree)
+# from dvd_name to dvd_name2
+# vobcopy used $dvd_name 
+#
+# DVDVOLUME/. becomes DVD_something/.
+
+
+	[ "$dvd_name" = "$dvd_name_2" ] || mv "$dvd_name" "$dvd_name_2"
+
+
+# write out DIR to ISO
+
+	# DIR_IN ==  "${dvd_name_2}"
+
+	# dvd_name_2 # is dir where vobcopy left the tree of files
+	# this is flawed because | tee is the retcode
+	set -x
+	if mkisofs			\
+	  	-dvd-video		\
+	  	-o "${IMG_MID}"		\
+	  	"${dvd_name_2}"		\
+	  	2>&1			\
+	  	| tee $IMG_LOG
+	then
+		# rename iso_tmp # move dir/ to DIR_DEL/dvd_name_2/
+		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
+		mv "$dvd_name_2" "$DIR_DEL" # DVD files = iso_done_del
+		sync
+	else
+		# leave .iso as .iso_tmp # delete or repair manually
+		WARN $? "tee failed or maybe mkisofs failed"
+		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
+		mv "$dvd_name_2" "$DIR_DEL" # DVD files = iso_done_del
+		sync
+	fi
+	set +x
+
+# copy ISO to NAS # network attached storage # 
+
+	# one more attempt to mount NAS
+	if [ ! -d "${DIR_NAS}/." ]
+	then
+		echo "DIR_NAS '$DIR_NAS' needs to be a dir, ie mounted"
+		ask_do $NAS_SCRIPT
+	fi
+
+	# copy ISO to NAS #
+	if [ -d "${DIR_NAS}/." ]
+	then
+		# NAS failing with io errors on big transfers
+		# the entire reason for copy_restart
+		# say_do cp -p $IMG_ISO $IMG_NAS || FAIL $? cp
+		#
+		echo -ne '\007'
+		sleep 1
+		echo -ne '\007'
+		ask_do \
+		./copy_iso_tree
+	else
+		echo "# ISO not copied to NAS - you must do this later"
+	fi
+
+# so-long and thanks for the space
+
+	echo
+	echo "# SPACE REMAIN #"
+	echo
+	df -h $DIR_ISO $DIR_NAS
+
+	echo -ne '\007'
+	sleep 1
+	echo -ne '\007'
+	sleep 1
+	echo -ne '\007'
+
+

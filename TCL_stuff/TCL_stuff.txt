@@ -1,0 +1,13 @@
+TCL_stuff/
+TCL_stuff.txt
+
+YEAR_src_PLAY/
+  TCL_stuff/
+
+	RTFM
+	TCL_DOCS_A_BIT_TCL_ISH
+	tcl_lib
+	tcl_lib_gps_one			always package requiregps_one
+	tcl_lib_gps_two			avoid then use
+	Tcl_SCRATCH_ZONE
+	TCL_stuff.txt

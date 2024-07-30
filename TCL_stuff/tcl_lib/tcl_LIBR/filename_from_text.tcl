@@ -11,11 +11,18 @@ proc filename_from_text TEXT {
 	# drop leading _
 	# drop trailing _
 
-	set stones {[^a-zA-Z0-9]+} ;# easier to see whats allowed NOT
+	append clist {a-z}
+	append clist {A-Z}
+	append clist {0-9}
+	append clist {ç}
+	append stones {[^} $clist {]+}
 	set stone "_"
 	regsub -all $stones $TEXT $stone TEXT
 	regsub -all "^$stone" $TEXT "" TEXT
 	regsub -all "$stone\$" $TEXT "" TEXT
+	regsub -all "$stone\\\." $TEXT "." TEXT
+	# SUBST _. with .
+	# SUBST accents with PLAIN
 	return $TEXT
 }
  

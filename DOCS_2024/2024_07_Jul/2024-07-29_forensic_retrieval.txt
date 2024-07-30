@@ -1,0 +1,135 @@
+	2024-07-29
+
+	2024_07_Jul
+	2024-07-29_forensic_retrieval.txt
+
+	If the wire has already done this,
+	then there is a small filter cost.
+	The packet was being filtered,
+	just by a different set of attributes.
+
+	EG PACKETS: Three and two halves 
+	SCHEDULE has pre-booked this packet SLATE,
+	ie a 64K block or 16M file // LIST of SECTIONS in SPEC
+
+	LINE uses source to offer a list of well known types
+	LINE advertises API.CALL func_from_lookup ARGV
+	
+		ARGV0 is func or a STR0 unique in the %s world API_NAME_ONE
+
+		ARGV is original STR) which may be STRUCT, or in MMAP
+		MMAP permits TREE build segments of TREE_NODE
+		MMAP permits HEAP - and all SPEC knows about 
+		SITE builtin
+		UDEF added
+
+		The trick is to make SITE_builtin code
+		that runs in USER mode without switching
+
+		EG add list of requests into bucket and ioctl it
+
+		EG SAFE mode code, runs in USER space, minimises SAFE_CALL's
+
+		EA = lookup EA and STR0
+
+			if EA is already resolved
+			expect EA.as_STR0_of_AVAR
+			expect EA.as_AVAR_as_TOKEN
+			expect EA.as_AVAR_as_TOKEN_AVAR
+			expect EA.as_AVAR_as_TOKEN_AVAL
+			expect EA.as_AVAR_as_TOKEN_STR0 // you set USAGE //
+			decode get_EA( EA_expr_one, CT_RT_CACHE_get_again_SESS )
+			SESS looks at CT_RT training test data
+			TEST DATA is minimal edge case and combo cases
+			TEST DATA is minimal or maximal // incl STRESS test
+
+		
+		SESS = CT_RT_CACHE_TRAINING_SESS
+		decode get_EA( EA_expr_one, CT_RT_CACHE_get_again_SESS )
+		decode get_EA EA_expr SESS // EA can be complex // own ARGV!
+
+	EXPR refers to EXPR nodes // ROM or SCRIPT // HEAP TREE NODE ATTR
+	EXPR refers to AVAR nodes
+
+	So a LINE_SCRATCH happens mid packet
+	and only destroys some of the data
+
+	because we are doing intense digest sign on the various chunks
+	we can isolate the missing packet down to a missing part of the tree
+
+	we can then request retransmit,
+	but also start threads that act on it,
+	and they will stall on GET_ABSENT_now_WAIITNG
+	which may also simply do:
+
+		on_EVENT E_WOULD_BLOCK
+		on_EVENT data_as_csr_now_available
+
+		ie that thread, sheds a resume skin,
+		then goes for the next task.
+
+		ARRAY of task might have 12 CPU threads active
+		SCHEDULER tracks a window of many times that
+		THREAD_9 might be stuck recomputing pi one more digit
+		THREAD_others still make good progress along ARRAY_LIST
+		All active threads are on adjacent ARRAY_LIST of STEPS
+		except old STEPS taking a long while, catchup planned
+
+		We do expect all steps to end, quickly
+		We must wait for missing data to be replaced // resend //
+		but when we BLOCK we do so with a PLAN, on_EVENT_s to install
+	
+replace STR0 with a WRAP_STR0
+
+	TOKEN = WRAP_STR0_with_PSG_DECL_DOC_DECL // USEF SCRIPT or SITE_SCRIPT
+
+replace STR0 with P0P2
+
+	but allow the same usage syntax
+	can use P0P2 anywhere a STR0 goes
+
+	code must be validated to comply with USAGE
+	code must be tested to accept "{ NULL == argv[0] }" // NO_SC //
+	code must be tested to accept "{ STR0 == argv[0] }" // NO_SC //
+	code must be tested to accept "{ P0P2 == argv[0] }" // cast_AVAR to P0P2
+
+	CAST essence of REF_to_AVAR from STR0 to P0P2
+
+		# so LIBR uses P0P2 or nBytes or P0_Parsed or P0_STR0
+		# but want an upgraded STR0, and P0P2 variant, and IOCTL
+		# IOCTL # u32_u32 refers to TABLE_SLOT says OFFS in SEGMENT
+		# SEGMENT # HERE_or_NEAR SEGMENT SEGMENT_in_SEGMENT _in_MMAP
+		# in_HEAP in_MMAP in_SEGMENT in_FILE
+		# in_:w
+
+
+		MERGE_ALIAS {
+			DETECT {
+				u32_u32 is a smart pointer EXPR with BITFIELD
+				u32_u32 uses u8_u8_OPCODE_DECODING
+				USAGE also provides a list of expectations
+				USAGE can get that from CALL pattern
+			}
+			STR0 {
+			}
+			P0P2 {
+			}
+		}
+	to comply with USAGE
+
+build up MMAP HEAP and MINI_MACHINE to run SAFE_MODE_BOXES 
+
+	MANAGED_CODE += {
+		JAVA
+		WASM
+		SAFE_TCL
+		DIALECT_ALIAS_of_ABOVE_with_CT_RT_stuff_happening
+	}
+
+	MANAGED_PROCESS += {
+		PERMIT CALL API_OPEN ARGV // ARG0 is often NULL
+
+		// if(!objv[0]) { on_EVEN_NULL_ARGV_0 EA
+	}
+	
+

@@ -1,0 +1,30 @@
+	2024-07-23
+
+	2024_07_Jul
+	2024-07-23_DIAG_CALC_ROLL_TCL8.txt
+
+	TCL8_from_TCL9 {
+		TREEWALK TCL9
+		on_MATCH { convert TCL9 to TCL8_GEN_TRAY } {
+			a TRAY of BENCH_STUFF and SESS_STO and UDEF
+			a BENCH of SCRIPTS and buttons and dials and MENU
+			USAGE_in_TCL8 = filter_USAGE_in_TCL9 A R G S
+			 SCRIPT { SCRIPT }
+			 TCL9 = PARSED_TCL9 = PARSE TCL9 // CACHE DONE
+			 PARSED_TCL9 = PARSE TCL9 // inline if used once
+			 GEN_TCL8 = GEN TCL8 # from current MINI_MACHINE
+			 # CT_RT can save the compiler AST and KNOW LIST
+
+		 // FILTER //
+
+		 	... do the filter that is HERE this FILTER
+
+			SWITCH MATCH TCL9
+
+			 CMD0 == dict ;# changes a lot between TCL8 and TCL9
+
+			GEN_TCL8 = PARSED_
+		}
+	}
+
+

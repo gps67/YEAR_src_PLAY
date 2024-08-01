@@ -20,4 +20,6 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-06-08, 22356,  29.97, 42.47, Y Full Morisons
 2024-06-18, 22681,  34.12, 47.32, P Full Morisons from Salisbury
 2024-07-06, 22823,  19.18, 26.79, P Full Morisons from run around
+2024-07-06, 23157,  35.96, 50.96, P Full Morisons fr 
+2024-08-01, 23301,  16.67, 23.45, P Full Morisons  
 

@@ -1,0 +1,8 @@
+DST=/home/gps/YEAR/RIPS/eg_rip_DVD_here/NAS2_b2_DVDS_2023_2024/
+DST=NAS3_b2_DVDS_2021
+DST=NAS2_b2_DVDS_2023_2024
+DST=NAS4_b2_DVDS_2024
+
+/home/gps/YEAR/src/PLAY/UTIL/copy_restart/obj/copy_restart.exec \
+iso $DST/iso
+

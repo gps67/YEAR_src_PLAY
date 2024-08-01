@@ -14,6 +14,7 @@
 # see ./copy_iso_tree
 
 	DIR_NAS=NAS3_b2_DVDS_2021 # symb link to 
+	DIR_NAS=NAS4_b2_DVDS # symb link to 
 	NAS_SCRIPT=/nfs/NAS_mount_ALL # run this to mount DIR_NAS
 
 # the device that is SCSI ROM DVD 

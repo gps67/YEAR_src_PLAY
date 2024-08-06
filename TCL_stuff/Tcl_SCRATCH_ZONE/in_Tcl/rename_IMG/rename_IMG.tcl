@@ -61,6 +61,7 @@ set ZONE_NAME Lewisham_Train
 set ZONE_NAME WOMAD_Canaria
 set ZONE_NAME Boxing_Day_at_Rodneys
 set ZONE_NAME FOUND_on_G31_HCE
+set ZONE_NAME Wooden_Roots
 
 proc list_pop {listname itemname } {
 	upvar $listname list
@@ -266,6 +267,7 @@ proc rename_IMG_dir {dir} {
 	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])[-_]}
 	set IMG_ {IMG[-_]}
 
+
 	
 	# A_STR added at the end just before dot_ext
 	append re_ASTR \
@@ -332,6 +334,17 @@ proc rename_IMG_dir {dir} {
 		
 
 	# puts "# re_one == {$re_one}"
+
+	# 2024_08_04_10_16_46.m4a
+	append re_Voice \
+		     $DDDD \
+		"_"  $DD \
+		"_"  $DD  \
+		\
+		"_"  $DD  \
+		"_"  $DD  \
+		"_"  $DD  \
+		$re_ASTR_dot_ext
 
 	global ZONE_NAME
 	foreach f $L1 {
@@ -407,6 +420,10 @@ proc rename_IMG_dir {dir} {
 	        macro_offer_set_date ;# before rename
 	        macro_offer_rename
 		continue
+
+	  } elseif [regexp $re_Voice $f all YEAR MM DD hh mm ss ASTR ext] {
+		puts "# $YEAR $MM $DD $hh $mm $ss $ASTR $ext"
+		# without any local macro the outer loop presumes ... OK
 
 	  } elseif [regexp $re_NEWNAME $f all YEAR MM DD hh mm ] {
 		puts "# ALREADY # $f"

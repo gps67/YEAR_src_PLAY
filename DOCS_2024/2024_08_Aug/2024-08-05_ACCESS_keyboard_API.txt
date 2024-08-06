@@ -1,0 +1,54 @@
+	2024-08-05
+
+	2024_08_Aug
+	2024-08-05_ACCESS_keyboard_API.txt
+
+	ACCESS via assisted technology
+
+		ASCII_and_UTF text // CSET is a TAG in DECL // CT_RT FLAG 
+		// STR_t += STR_P0P2 // STR_P0_PARSED_CIDENT99 // _a1_a2_star
+
+		ASCII_and_UTF text in readable balloon_text
+
+			ITEM.get_TEXT_as_Latin1_in_UTF8
+
+				expect a SUBSET of Latin1 in FONT
+				LIBR has a list of ALTERNATIVES
+
+				// DUH // of course we have STRUCTS
+				// API // SCRUCT += LIST of DECL_FIELD
+				// API // SCRUCT += LIST of DECL_FUNC
+				// API // SCRUCT += STREAM_as_LIST
+				// CT_RT // writes FILTER to MATCH DECL_LIST
+				// CT_RT // uses PSG bison flex
+				// CT_RT // uses PSG ALIAS
+				// CT_RT // uses PSG UDEF
+
+		 ASCII_and_Latin1_in_UTF8_in_ZLIB_in_PKT_in_CRYPT _in_CRYPT_NBYTES
+
+		MUX transfers several PKT_FRAGMENT 
+		MUX transfers several SSL_SEGMENT // 16K // 24M // ARY_EIGHT //
+		MUX transfers single _or_PAIR segment // ROM // STO // CPU
+		CPU += RAM
+		CPU += VFS_tmp
+		CPU += VFS_TAPE # ALLOC += ALLOC_1G # 4G when unsigned # u48 ALIAS
+		ALIAS u48_VFS_ADDR u64_VFS_ADDR // BITFIELD is part of WORDS
+		ALIAS u48_VFS_ADDR u16_u32_VFS_ADDR // and it is an EXPR :-)
+		ALIAS u48_VFS_ADDR u16_u32_VFS_EXPR // and it is an ADDR :-)
+
+			u8_u8_OPCODE
+			i16_ITEM 
+			i32_XPOS
+
+				uses MENTION to resolve to
+				 CACHE MENTION
+				 CACHE UNINIT AVAR
+				 CACHE on_INIT AVAR
+				 CACHE UNUSED AVAR
+				 	# so OMIT not EMIT
+
+				accent {
+				0xFF at_XY _XY  
+				}
+
+

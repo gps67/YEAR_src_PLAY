@@ -1,0 +1,56 @@
+	2024-08-05
+
+	2024_08_Aug
+	2024-08-05_ACCESS.txt
+
+	google
+		WCAG
+		WebAIM
+
+	Assistive Technology
+
+		a11y == A C C E S S I B I L I T Y
+
+		a 11 letters y
+
+		screen readers
+		braile displays
+		close captioning (SUBTITLES)
+
+		ARIA = accessible rich internet applications
+
+	COURSE for sale, its banner advert 20 MINS
+
+		https://www.youtube.com/watch?v=5BhBHxpQjBY
+		19:40 
+
+	Perceivable
+	 balloon_text
+
+	  on_HOVVER_POPUP
+	  on_OVER_KEYED # multi-device-key shift RESOLVED from TECT into API
+	  at_ITEM_on_EVENT ITEM EVENT # SESS # // nb some FILTERS block on_//
+
+	  // CMNT_to_EOLN
+	  // CMNT_over_TEXT // API requires TEXT to be known as PHRASE
+	  // TYPE_API_ needed to do NOTHING # this is an ALIAS triggering CT_RT
+	  // SPELLING_api # CMNT # STEP # ...
+	  // or_any_of_its_PEERS_in_TREE_POINT_LIST
+
+	Operable
+
+	 alternative to MOUSE
+	 keyboard_API
+	 API_buttons _dials _picks _combo_box _val_float_with_fmts emit_omit
+
+
+	Understand_able
+
+	 unser interface, information
+	 unser interface, operation
+
+	 	must be understandable
+
+	Robust
+
+

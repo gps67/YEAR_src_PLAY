@@ -1,0 +1,213 @@
+#! /bin/bash 
+
+. fns_FAIL
+
+ORIG=ORIG
+MINI=MINI
+
+# LIST1=`ls -1 $ORIG | grep mp4`
+LIST1=`(cd $ORIG; find * -type f | grep mp4)` ;# will split on SP
+
+# TODO # get_OBJ_FIELD OBJNAME FIELDNAME
+# TODO # set_OBJ_FIELD_VALUE OBJNAME FIELDNAME VALUE VALUE_for_ABSENT_value
+# KNOW # VALUE is parameter from AVAR possibly ""
+
+
+function get_VAR() { # VAR == "VAR_NAME" # default "VAR"
+        local VAR="${1:-VAR}"
+   eval local VAL="\$$VAR"
+
+#       local VAR_name="${1:-VAR}"
+#  eval local VAL="\$$VAR_name"
+
+	printf "%s" "$VAL"
+}
+
+function set_VAR_VAL() { # VAR VAL
+	local VAR="${1:-VAR}"
+	local VAL="${2:-VAL}"
+   eval "${VAR}='${VAL}'" # added quotes
+
+#       local VAR_name="${1:-VAR}"
+#  eval "${VAR_name}='${VAR_value}'" # added quotes
+}
+
+function name1() { # CMNT
+ :
+}
+
+function obtain_VARFILESIZE_FILENAME() { # FILE_NAME
+	#
+	# INIT to DEFAULTS # better ARGV DECODER later
+	#
+	local VAR_NAME="FILE_size"
+	local FILENAME="FILE_name"
+	local BYTES_SIZE="-1" # or "0"
+
+
+	VAR_NAME="${1:-$VAR_NAME}"
+	FILENAME="${2:-$FILENAME}" # override with $1 else $FILENAME
+
+	# default -1 is good for debug absent value -1
+	# default 0 is good for skip absent files
+
+	# use $1 or $FILE_NAME or '' #
+	local FILENAME
+	FILENAME="${FILENAME:-filename}" # $ALREADY_HAS_VALUE or default VALUE
+
+	# stat printed BYTES_SIZE to stdout
+	local FMT
+	FMT=--printf="%s" # Q2 gets dropped # %s mean size ## man 1 stat
+
+	local BYTES_SIZE=`stat "$FMT" "$FILENAME"`
+
+	set_VAR_VAL "$VAR_NAME" $BYTES_SIZE
+}
+
+pwd
+
+function name2() { # CMNT
+ :
+}
+
+function obtain_FILE_SIZE() { # FILE_NAME
+	obtain_VARFILESIZE_FILENAME "FILE_SIZE" "$1"
+}
+
+
+function set_filesize() { # VARNAME FILENAME
+	obtain_VARFILESIZE_FILENAME "${1:-FILE_SIZE}" "${2:-FILENAME}"
+}
+
+fn_PASS()
+{
+	printf "# PASS # %s #\n" "$*"
+}
+
+fn_CALC()
+{
+	local RET_VAL=`echo "$*" | bc -l`
+	printf "%5.2f == fn_CALC %s\n" $RET_VAL "$*" >&2
+	printf "%s\n" "$RET_VAL"
+}
+
+function file_must_exist()
+{
+	[ -f "${1:-filemustexist}" ] || fn_FAIL "ABSENT file '$1'"
+	fn_PASS "exists # $1"
+}
+
+function ratio_file_size() { # file_in file_out # filenames
+
+	local file_in="${1:-file_in}" 
+	local file_out="${2:-file_out}"
+
+	file_must_exist $file_in
+	file_must_exist $file_out
+	
+	du -sh $file_in $file_out
+
+	set_filesize sz_in  $file_in
+	set_filesize sz_out $file_out
+
+	local RATIO
+	RATIO=`fn_CALC $sz_in / $sz_out `
+	local PCNT
+	PCNT=`fn_CALC 100 \* $sz_out / $sz_in ` # \* 100.0 # not working 1/13
+	# not float
+
+	# not float
+	printf "RATIO %5.2f\n" $RATIO
+	printf "PCNT %5.2f\n" $PCNT
+
+	# absurd route VARNAME("file_in") VIA_VAR_EXPR($1)
+	# absurd route VARNAME("file_out") VIA_VAR_EXPR($2)
+}
+
+function convert_compress() { # file_in file_out # filenames
+
+	local file_in="${1:-file_in}" 
+	local file_out="${2:-file_out}"
+	local dir_out=`dirname "${file_out}"`
+	[ -d "${dir_out}" ] || mkdir -p "${dir_out}"
+
+	[ -f $file_out ] && return
+
+#	ask_do \
+#	echo \
+
+	 nice \
+	  ffmpeg 	\
+	  -i $file_in 	\
+	  -c:v libx265 	\
+	  -crf 28 	\
+	  -preset slow \
+	  -c:a copy 	\
+	  $file_out
+
+	[ -f $file_out ] || return
+
+	# best retain DATE_TIME of ORIG on FILTERED COPY # asif_BOTH #
+	touch -r "${file_in}" "${file_out}" 
+
+	# some ratio of compression
+	ratio_file_size $file_in $file_out
+	echo
+}
+
+
+for item in $LIST1
+do
+	f=$item
+	file_in=$ORIG/${f}
+	file_out=$MINI/${f}
+
+	convert_compress "${file_in}" "${file_out}"
+done
+
+
+# ask_do nice \
+# ffmpeg -i MP4_IN -c:v libx265 -crf 28 -preset slower -c:a copy MP4_OUT 
+
+exit
+
+	  -preset slower \	0.6
+	  -preset fast \	36 fps
+	  -preset slow \	 9 fps
+	  -preset slower \
+
+https://trac.ffmpeg.org/wiki/Encode/H.265
+
+	Constant Rate Factor (CRF)
+
+	Use this mode if you want to retain good visual quality and
+	don't care about the exact bitrate or filesize of the encoded
+	file. The mode works exactly the same as in x264, except that
+	maximum value is always 51, even with 10-bit support, so please
+	read the H.264 guide for more info.
+
+	As with x264, you need to make several choices:
+
+	Choose a CRF. CRF affects the quality. The default is 28, and
+	it should visually correspond to libx264 video at CRF 23, but
+	result in about half the file size. CRF works just like in x264,
+	so choose the highest value that provides an acceptable quality.
+	Choose a preset. The default is medium. The preset determines
+	compression efficiency and therefore affects encoding speed. Valid
+	presets are ultrafast, superfast, veryfast, faster, fast, medium,
+	slow, slower, veryslow, and placebo. Use the slowest preset you
+	have patience for. Ignore placebo as it provides insignificant
+	returns for a significant increase in encoding time.  Choose a
+	tune (optional). By default, this is disabled, and it is generally
+	not required to set a tune option. x265 supports the following
+	-tune options: psnr, ssim, grain, zerolatency, fastdecode. They
+	are explained in the H.264 guide.  For example:
+
+	ffmpeg -i input -c:v libx265 -crf 26 -preset fast -c:a aac -b:a
+	128k output.mp4
+
+	This example uses AAC audio at 128 kBit/s. This uses the native
+	FFmpeg AAC encoder, but under AAC you will find info about
+	more options.
+
+

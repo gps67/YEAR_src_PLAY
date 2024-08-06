@@ -56,12 +56,15 @@ set ZONE_NAME Birthday_91
 set ZONE_NAME Aldershot
 set ZONE_NAME SuntouSusso
 set ZONE_NAME Aldershot_D_80
-set ZONE_NAME BUILD_PC_x79
 set ZONE_NAME Lewisham_Train
 set ZONE_NAME WOMAD_Canaria
 set ZONE_NAME Boxing_Day_at_Rodneys
 set ZONE_NAME FOUND_on_G31_HCE
 set ZONE_NAME Wooden_Roots
+set ZONE_NAME BUILD_PC_x79
+set ZONE_NAME CAR
+set ZONE_NAME Salisbury_Babara
+set ZONE_NAME WHATSAPP
 
 proc list_pop {listname itemname } {
 	upvar $listname list

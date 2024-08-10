@@ -1,0 +1,71 @@
+IDE.txt
+
+	CREATE a TOP_DIR in VFS in HEAP_one
+	CREATE a TOP_DIR in VFS in HEAP_two
+	ON VFS create A LIST OF NAMES PLUS ... TOP_DIR ... { EA_t RA }
+	CREATE in VFS in HEAP_two ARGV mkdir VFS "/" TOP_DIR
+
+		VECTOR "TOP_DIR" 
+		VAR_NAME_is_help_in_VARNAME // ALIAS with SPIN //
+		SPIN "$s$s" ITEM NAME
+		SPIN "$s_$s" ITEM NAME
+		PSG { " LHS MID RHS " } // USAGE MATCHES "{ SP Q2 ... Q2 SP NUL}" 
+		// on_P0P2 signal "{ P2_REACHED }" // _STIUMULATE_NULL()
+	
+	CREATE PROJECT
+
+		FILE_UNDER GIT_one "{ ITEM %s }"
+
+		 REQUIRE CIDENT "%"
+		 ACCEPT "%s" parsed_LEX_as_P0P2 CIDENT99
+		 ACCEPT "%s" parsed_ANYSTR_LEX_as_P0P2 CIDENT99
+
+		 	That means:
+			 CIDENT99 == a1_a2_star a1 a2 // CSET_PATTERN %s"
+			 // %s //
+			 // CIDENT99 // CREATE AVAR in SESS in DECL_XPOS %s
+			 // XPOS // XPOS FILE %s LINE %s XPOS %s
+			 // XPOS // XPOS "{ FILE %s }" "{ LINE %s }" {" XPOS %s
+			 // CXX SCRIPT_SPEC_of_XPOS { SCRIPT }
+			 // typedef struct XPOS ARGV CTXT
+			 // CTXT is SESS and ROM and MIX from API
+			 // API DECL field %s ARGV CMNT XPOS //
+			 //
+			 //
+			 //
+
+// # MENTION of "XMNT" created a PAIR SPEC and INST at XPOS
+//
+//	mk_VAR "ARGV" in VAR_POOL // single VAR_POOL or_SEARCH_and_HINT
+//
+//	PARSER : // the : starts an indented block optionally as ARGV
+//	PARSER.MENTION == XPOS // this DECL happens at XPOS in GIT // in_ROM
+//	PARSER.MENTION == XPOS // this DECL happens at XPOS in SESS // in_STO
+//	RUNTIME.XPOS == XPOS // this DECL matches XPOS in CODE // in_ROM
+//	SESS += LIBR // that gets a FREE index rebuild as_DONE // _or_via_CACHE
+//	SESS += CACHE // all about AVAR in_MEM in_STO in_VFS_AVAR // as_THIS 
+//	AVAR += NAME %s // # LINE is "{ BOLN NAME SP percent_s EOLN }"
+//	AVAR += NAME %s // # LINE is "{ NAME SP P0 P2 EOLN }"
+//	AVAR += NAME %s // # LINE is "{ NAME SP P0P2 EOLN }" // CODE_POINT 
+//	AVAR += NAME %s // # LINE is "{ NAME SP P0P2 ... EOLN }" // CODE_POINT CMNT
+//	AVAR += TYPE_of_DECL
+//	AVAR += TYPE_of_DATA SPEC
+//	AVAR += DATA_of_DATA STO
+//	LANG += DECL // at XPOS and as "{ PSG XPOS_of_DECL_in_ROM }" // VIEW_TWO
+//	LANG += DECL // at XPOS and as "{ PSG XPOS_of_DECL_in_UDEF }" // VIEW_ONE
+
+//	AVAR += NAME %s //
+//	AVAR += NAME %s //
+//	AVAR += NAME %s //
+//	AVAR += NAME %s //
+//	.XPOS == XPOS // this DECL matches XPOS in CODE // in_ROM
+//
+//	PARSER += 
+//
+/
+			 //
+			 //
+			 //
+			 //
+			 //
+		"/" 

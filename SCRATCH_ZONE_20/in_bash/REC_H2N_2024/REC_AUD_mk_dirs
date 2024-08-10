@@ -143,6 +143,14 @@ in
 	Samba=XX
 	Artist="Artist"
 	Sess_List="_sess_7 _sess_8"
+
+	Samba=WREX
+	Artist="Artist"
+	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
+
+	Samba=READIPOP_WORKSHOP
+	Artist="Marivaldo_Paim"
+	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
 esac
 
 

@@ -1,0 +1,217 @@
+
+	ITEM.txt
+
+	"{ ITEM %s }" // MATCHES WITH ... and_just_FOUND_MATCH "{ ALIAS %s }"
+
+	on_FIRST_MENTION {
+
+		MK_VAR ARGS	// nb SESS already carries "ARGS" // it does :
+
+	}
+
+	on_SECOND_MENTION {
+
+		CACHE_KEPT as MK_VAR %s // CIDENT99 needed for PSG_LEX
+
+			// that above invokes a CT_RT CODE
+			// CODE == SCRIPT == ARGV_from_PARSER
+			// PARSER == STREAM_PARSER // P0P2 XPOS NBYTES OFFS CALC
+			// CT_RT EA = GEN("EA") // MK_VAR of same name as script
+			// ALIAS_OVERLAY // SCRIPT uses ROM TOMKEN
+			// so CT_RT _rt GEN does not print anything
+			// or CT_RT OMIT EMIT // WHY
+			// CACHE(%s) DECL "{ ITEM_t   ITEM }" // WORD_64 ITEM //
+			// CACHE(%s) DECL "{ ITEM_t * ITEM }" // or ^
+			// CACHE(%s) DECL "{ ITEM_t & ITEM }" // or ^
+
+		// ie the CACHE is completely loaded on first MENTION
+		// second third is set to NULL or NULL_as_SCRIPT 
+		// only the bean counters tick USAGE count detecting EDGE_LINE
+		// EDGE_LINE == boundary_LINE
+
+		MULTI MENTION might be the DECL 
+		MULTI MENTION might be a MENTION
+
+			as_IDENT_P0P2 // _STR_obviouly // _NOT_STR0 // N strlen
+			as_WMATCHING_STR
+	
+		CACHE_TRACKING_RD
+		CACHE_TRACKING_WR
+		CACHE_TRACKING_EA
+
+ virtual bool get_EA( EA_t & EA ) { SCRIPT } // EA = LIST[idx] // DECODE EA idx
+ // idx = u32_u32.high_half.u12_one
+ // idx = u32_u32.high_half.u12_two
+ // BYTE_B = u32_u32.low_half.BYTE_B 
+ // BYTE_A = u32_u32.low_half.BYTE_A 
+ // EA usually a CPU_VAR_but_picked_from_list
+
+ 		The code is compiled and called
+		GEN then finds nothing to do
+ 		The code is compiled and not called
+		The FUNC is NULL and remains NULL
+
+			This is a massive optimisation
+
+			Instead of calling 20 deep, and it does // return TRUE;
+			Do not call the NULL function, and return TRUE for it
+
+			When the debug mode sets FUNC to a non null SCRIPT
+			and all the 20 deep functions get called
+			it is still remarkably quick.
+
+			No SQL required a round trip
+			No CACHE _READ risked WAIT_for_FETCH
+			No CACHE _WRITE risked NEED_WRITE_PAGE
+
+		EA {
+			usually AVAR = CACHE_TRACKING_EA.VAR.NAME // .var
+			MINI_MACHINE: u32_u32_t EA_EXPR //
+			MINI_MACHINE: u8 EA_EXPR // EA = DEFAULT_ARRAY_EA  //
+	// AUTO //	// EA = DEFAULT_ARRAY_BASE + IDX * sizeof(u64_t) 
+			// ARRAY_MATH says "{ IDX_t IDX }"
+			// ARRAY_MATH says "{ ALIAS_of_IDX IDX }" // NEAT
+	// NEAT //	// IDX == "IDX" // CT_RT compiles with CONST VAR = "PRESET"
+			// IDX_t must provide BASE_CLASS of an UNSIGNED INT
+			// HERE IDX_t is u8_t // or_padded_u3 //
+			// HERE idx_field_in_struct ++
+			// ENUM idx_field_in_struct = %s // AUTO_INCR over PDG item
+
+			RETURN broadest EA_EXPR which is probably the original
+			EA_EXPR can be ALIAS of the original
+			EA_EXPR can be EXPR in SESS and CTXT and UDEF
+
+			EA_EXPR u32_u32
+			
+				u8_u24 HEAP
+				u8_u24 ITEM
+
+			EA_EXPR u32_u32
+			
+				u8_u8 _OPCODE
+				u16 PAYLOAD_t _u16
+
+				DATA i32_DATA // HIGH_HALF_of_i64
+
+
+			u32_HIGH_HALF {
+				u32 GET_FROM_CPU {
+					R2 = R1 >> 32
+			// OPTION 	R1 = R1 >> 32
+			// OPTION 	SIGNED_SHIFT to get i32
+			// FILTER	RUN each STEP with small list of SAMPLES
+			// FILTER	GEN code for calls to inline
+			// FILTER	PICK GEN CODE for SCRIPT
+			// FILTER
+			// FILTER	OMIT
+			// FILTER	EMIT "RET_VAL = MACRO GETTER_GET
+			// FILTER	EMIT "RET_VAL = CPU_REG_shifted_32"
+			// FILTER	EMIT "RET_VAL = CPU_REG >> 32 "
+			// DETECT	NEED_TO_SPLIT R2 R1
+			// DETECT	USED_ASIF_SAME R2 R1
+			// DETECT	USED_SAME R2 R1
+				}
+
+				asm {
+					GNU_ASM(" ... ")
+				}
+			}
+
+
+TEXT = TREE_XPOS as FILE.XPOS in ROM and some ARGS as bitfields in MINI_MACHINE
+
+	DECODE XPOS in a MINI_MACHINE = CSR
+
+
+		xpos is usually u11 in FILE_2K
+		xpos is usually u11 in OFFS_in_2K_FILE_2K
+		xpos is usually u11 in OFFS_in_FILE// u11 _2K
+		xpos is often i12_MINUS in += FILE// OFFS = CALC lookup MINUS
+	
+		i8_i12_i12
+
+
+					// often u8_u24
+					// often u8_u8_u16
+					// often u8_u24
+
+					// often u8_i24
+					// often u8_u8_i16
+					// often u8_i24
+
+					// often u8_u12_u12 _in_LOHI_CPU
+					// often u8_u12_u12 _in_HILO_CPU _GEN
+					// BYTE_SWAP_and_SPLIT
+					// get_field_list _all // _MAIN_LIST
+					// get_field_list _all // _THIS_as_LIST
+
+
+				// HINT u32 is in the HIGH HALF of u64_WORD
+				// CPU_WORD in SCRIPT // get_LOW_HALF_from_MEM
+				// CPU_WORD in SCRIPT // get_LOW_HALF_from_CPU
+				// CPU_WORD in SCRIPT // get_HIGH_HALF_from_MEM
+				// CPU_WORD in SCRIPT // get_HIGH_HALF_from_CP
+				// TEMPLATE AUTO VAR u7_IDX i64_idx_EXPR
+				// MACRO TABLE [%s] // get_IDX_from_EXPR _STR0
+
+
+		}
+	}
+
+		
+	u8_u8 u16 	u8_u8_u16
+		// that code introduces self as a sample value "u8_u8_u16"
+		// immediate need for _u32_REF = u64.HIGH_HALF_REF
+		// immediate need for _u32 = u64.LOW_WORD_UNIGNED_EXTENED_to_32
+		// immediate need for _u32 = u64.HIGH_WORD_shifted_down
+	u32		u32
+	u32		 u8_u8_u16
+	u32		 u8_u24
+	u32		 u8_u12_u12
+
+	u8_u8_u16	u32	// the default u32_u32 USAGE	// u32_HIGH
+	u8_u24		u32	// BYTE_A u24_PAYLOAD 		// u32_HIGH
+	u8_u12_u12	u32	// BYTE_A_BITFIELD_u12_one_BITFIEL_u12_two
+
+	u8_u8_u16	u32	// the default u32_u32 USAGE	// u32_HIGH
+
+		DECODE( u32_u32_WORD_PAIR )
+
+			OPTION EVAL u32_HIGH_HALF by doing a shift down
+			then treating as u32_HALF_in_FULL_WORD
+			then treating as u32_HALF_in_FULL_WORD_64
+			then treating as u32_HALF_in_FULL_u64_WORD
+
+		EVAL_DECODE ( u32_u32_t WORD_PAIR )
+
+			CT_RT += WORD_PAIR _and_nearby
+
+				EXPR uses IDX == BITFIELD _as_idx UNS MINUS
+
+				EXPR 
+
+
+		u8_u8_OPCODE {
+		}
+
+		// enum GETTER _RD _WR _EA KNOW_ CT_RT KNOW
+		// enum WORD_WIDTH i8 u8 i16 u16 i32 i64 i12_BITFIELD_in_i64_WORD
+		// i64 must be i64 not u64 //
+		// because enouhg is enough //
+		// all others have signed BITFIELDS and WORD_FIELDS
+		//
+		//	u12_one name of bitfield declared in GCC DECL
+		//	u12_two
+		//	i12_one
+		//	i12_two
+
+		u16_PAYLOAD {
+			u8_GET { _RD 
+			}
+			i8_GET {
+			}
+			u16_GET {
+			}
+			i16_GET {
+			}
+		}

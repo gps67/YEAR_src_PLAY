@@ -3,8 +3,12 @@
 # REC_AUD_mk_dirs
 # REC_AUD_mk_dirs_yesterday
 
-ask_do ./REC_AUD_mk_dirs -d 2024-07-31
+ask_do ./REC_AUD_mk_dirs -d 2024-08-06
+ask_do ./REC_AUD_mk_dirs -d 2024-08-04
+ask_do ./REC_AUD_mk_dirs -d 2024-08-03
 exit
+ask_do ./REC_AUD_mk_dirs -d 2024-07-16
+ask_do ./REC_AUD_mk_dirs -d 2024-01-03
 ask_do ./REC_AUD_mk_dirs -d 2023-12-11
 ask_do ./REC_AUD_mk_dirs -d 2023-11-27
 ask_do ./REC_AUD_mk_dirs -d 2023-11-19

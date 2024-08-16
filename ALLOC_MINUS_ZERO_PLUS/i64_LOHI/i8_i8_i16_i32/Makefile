@@ -13,7 +13,7 @@ test: $F.exec
 	./$F.exec
 
 $F.exec: $F.cxx
-	# $(GCC) -o $F.s -S -g $<
+	$(GCC) -o $F.s -S -g $<
 	$(GCC) -o $@ -g $<
 
 clean:

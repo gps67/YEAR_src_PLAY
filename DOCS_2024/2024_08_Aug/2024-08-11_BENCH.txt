@@ -1,0 +1,132 @@
+	2024-08-11
+
+	2024_08_Aug
+	2024-08-11_BENCH.txt
+
+EG A	MAIN WINDOW PANEL + NEAR_feature
+
+	eg EXEC ls -la ${CSR_one} # _one is actually ZERO until TWO turns up PLUS
+
+		      _one 
+		_zero _one _M2 _M1
+		_zero _one _two _three
+
+
+	SO in BENCH DIALECT the first item is called _one and might be ZER0
+
+		Create _one asif _two PLUS existsed
+
+		If none other ever used, from CODE_ZONE,
+		it might heuristically be _ZERO and not 0x01
+
+	SO avoid that by DECL _two 
+
+		[0] is now [1]
+		[2] is still [2]
+		[0] is new_NULL [0] // OPTION ZERO same as PLUS // CALL_PTR_SET
+	
+	OR take time _ONE_and_only IDX == ZERO
+
+		MINUS_ZERO_PLUS
+
+			MINUS = NEVER_because field_is_UNSIGNED_so_new_CODE_ERROR()
+	
+	STACK STEALERS
+
+		look inside PARENT stack frame = .saved_
+
+		 stack_frame.stack_frame_PREV_SAVED = parent_frame.stack_frame
+		 stack_frame.stack_frame = stack_pointer_where_PRE_SAVED // ++
+
+		look inside FULL_STACK
+
+		 guess which is TOP and STOP
+		 PARENT BP was NULL // see NULL is a vital token to use near PTR
+
+		 Recognise OS or LIBC named function _START # add each new clue
+
+		GET
+
+		 LOCAL VARS on STACK # know CODE as is in source MACROS
+
+		 register_AVAR // GEN OMIT or EMIT // { VAR_NAME VAR_TYPE DECL_XPOS }
+
+		 DRAW ELF_DECL
+		 DWARF ELF_DECL
+
+		 	c_type_t * VAR_NAME // SCOPE is function or closure
+		 	c_type_t   ARY_NAME[GUESS] // read the source tree
+	
+	OUR PRE COMPILER
+
+		we GEN the code that gets TCC compiled
+
+			NAME_MANGLING_5F
+
+			like glib_gclass_gfunc via FILTERS
+
+		GEN C_for_TCC_mulibc
+
+			fast compile slow run
+			guaranteed C not C++
+
+		GEN C_for_GCC	_with_LIBC _with_API
+
+			API provides access to LIBR 
+			API provides access to REMOTE // _via_CACHE
+			API provides access to CACHE ITEM // in SESS_VAR_POOL
+
+		GEN ASM_for_GCC
+		GEN ASM_for_LLVM
+		GEN ASM_for_WASM
+
+			compile C to WASM
+			macros use typedef 
+			macros use presumed_type
+
+		GEN ABI
+		GEN CALL ABI
+
+			C calls us with ( a, r, g, s ) and stack_frame
+
+			elf allows us to put this FUNC PTR in a var and call it
+			elf allows plain C to call us
+
+			we do not need to follow the C stack, but often do
+			nested debugs help
+
+			GEN ASM can mimic a module as a FUNCTION pointer
+
+			CALL_PTR is placed in cache var
+			CALL_PTR is placed in NULL_or_CALL_PTR
+
+			SPIN_py uses CALL_PTR with great effect
+			but it is a lot stronger if CALL_DATA is available
+
+				PUSH API_CALL_DATA = CALL_DATA 
+				POP API_CALL_DATA on return
+
+			detect return 
+
+				detect return happens much later
+				the receiver did not expect return
+				the receiver was PRE_LOAD_NEXT
+				the receiver stops, releases, exist, return
+				// ie return throw exit _CONTINUE _BREAK _RETURN
+				// just like TCL :-)
+
+				POP API_CALL_DATA on return_ing
+				// OPTIONALLY own STACK STORE for CALL_DATA
+				// not multi thread // PUSH POP forces tsl //
+
+
+			struct CALL_and_DATA {
+				CODE_POINT_t * CODE_POINT; // XPOS in SCRIPT
+				CALL_t  * CALL; // WORD_PTR CALL_t
+				DATA_t  * DATA; // WORD_PTR caddr_t
+			};
+
+
+
+
+

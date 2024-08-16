@@ -1,0 +1,55 @@
+	2024-08-13
+
+	2024_08_Aug
+	2024-08-13_ELF_RELOAD.txt
+
+	dlopen FILE_one {
+		fd = fd_from_dlopen; // delayed syntax
+		elf = list_from_dlopen_fd
+	}
+
+BENCH_PANEL_FEATURE TRIM SNAPS {
+
+	eg DIR holds some .jpg photos from a deluded camera
+	eg offer reduced resolution and better compressed files
+	eg offer archive of original for 2 days then 2 weeks 2 months saved gone
+	eg annual gone files accumulate monthly slices # VFS_MERGE_UNION
+	but VFS_MERGE_CONFLICT
+	## same name is same object, MULTI base class, on primary
+	## same name is incompattible
+	## same name is navigable with extra HINTS ## is_SPEC is_INST is_SAMPLE
+
+	/home/gps/YEAR/src/hidden/DRUM_GIT/Iya_Sako_2023_Jul/01_Sat_komandina
+
+		2023-07-01_sat_1610_23-1.jpg
+
+		3.5M 
+		I bet it compresses better on laptop than on phone
+		If so, systematic FILTER all new files,
+
+
+
+}
+
+BENCH_PANEL_FEATURE {
+ This list of man_page fn_prototype api landmarks
+
+	dlopen(3)
+	dlsym(3)
+	dladdr(3)
+	dlinfo(3)
+	dlclose(3).
+
+	dl_iterate_phdr (3)  - walk through list of shared objects
+	dladdr (3)    - translate address to symbolic information
+	dladdr1 (3)   - translate address to symbolic information
+	dlclose (3)   - open and close a shared object
+	dlerror (3)   - obtain error diagnostic for functions in the dlopen API
+	dlinfo (3)    - obtain information about a dynamically loaded object
+	dlmopen (3)   - open and close a shared object
+	dlopen (3)    - open and close a shared object
+	dlsym (3)     - obtain address of a symbol in a shared object or execu...
+	dlvsym (3)    - obtain address of a symbol i
+}
+
+

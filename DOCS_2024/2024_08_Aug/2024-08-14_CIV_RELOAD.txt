@@ -1,0 +1,152 @@
+	2024-08-14
+
+	2024_08_Aug
+	2024-08-14_CIV_RELOAD.txt
+
+	Civilisation as we wish it were, and as it is, and could be
+
+	says someone - !! should be !!
+
+	Has survived being bounced around rise_and_fall, invasion, 
+	uniquification, the unlucky number is one, or two or ...
+	// KICK_IN IDENT CIDENT99 CSET_of_REQUIRE CSET_of_ACCEPT_DIRECT
+	// CSET_of_REQUIRE 
+
+		a1_a2_star a1 a2
+
+			For me a1 and a2 are ASCII # SUBSET_OF 8859 UTF8
+			For EU a1 and a2 are Latin1 8859 # NOUN += WORDS ATTRS
+			For SU a1 and a2 are Cyrillic 8859 # NOUN += LINE WORDS
+
+			For ASIA utf8 or SPECIFIC_OTHER_CSET
+
+				a1 lists of ranges
+				a1 lists of items
+				a1 lists of items in range
+				 if CHAR is not in RANGE - skip
+				 if CHAR is in RANGE - go though the list
+
+				 expect lang to have few FONT ZONES
+
+				 	nb actual font might fall back to OK
+					{CHAR 0xFFFF} 
+
+				 expect DIALECT to invert TEST
+
+				  This filter picks IDENT_a1
+				  // If you think Latin1 accents are OK
+				  // then CIDENT can START with one // a1
+				  // maybe you also have new punct within word
+				  // but cant abide it at the start of ident
+				  // add _underscore to digits _1234
+				  // PARSER returns XPOS and N_bytes_in_char
+				  // N7 { 0 1 2 3 } { 4 5 6 7 } // N == 8
+				  // N7 == 7 == M1 // N == 7 // or_MORE recalc
+				  // N6 == 6 // never happens, currently
+				  // N5 == 5 // almost never happens
+				  // N4 == 4 // 6x3+3 == 21 // recalc ?
+				  // N3 == 3 // 6x2+4 == 16 bit
+				  // N2 == 2 // 6x1+5 == 11 bit
+
+				  IDENT_a2 += IDENT_a1 // always 
+				  IDENT_a2 += DIGITS // ID cant start with DIGIT
+				  Ident_a1 = IDENT_a1_a2 .but_not_glyphs_a2
+	
+
+		// caller must ensure ABOVE is provided
+		## LIBR has full toolkit and complete VTL_CIDENT99 {
+
+			CIDENT99 = cident_97 // ASCII LATIN UTF8 
+			CSET = CSET_UTF8_Latin1_PLUS
+			CSET_UNICODE_int
+			//	CSET_ASCII is a part of CSET_UNICODE
+			//	CSET_ASCII is common SP CR LF A B C {} "" ''
+			//	CSET_ASCII turbo charges PARSER
+			//	CSET_UTF8 still full speed P0P2 XPOS N_BYTE
+			//	CSET_BYTE is still valid for ASCII
+			//	CSET_a2 += CSET_UTF8_Latin1 // Latin1 remains
+			//	BYTE_C = *PTR ++ _i8_to_i16 // i8_to_i32 // _i63
+			//	if_MINUS goto is_MINUS {
+			// 	 // all MINUS must be resolved to A PLUS
+			// 	 u32_CHAR = UTF8_READ_CHAR_i32 } //
+			//	// somehow that includes BYTE_C and PTR
+			//	// YES this is inline being repeated here
+			//	// YES that is unique to this call // but avail
+			//	// YES that is avail to ALL NEAR // QUOTAS //
+			//	// YES quotas include CPU_THREAD // less switch
+			//	// OFF flag // every THREAD has a STOP flag
+			//	// PARK flag + STO // every THREAD has PAUSE
+			//	// PAUSE_RESUME_API // call_PAUSE // call_RESUME
+			//	Thread must be THREAD_SAVVY with a CLUTCH data
+			//	PAUSE may be a sign that the thread was wrong
+			//	RESUME may be a sign that the thread was right
+			//	RESULT so loop on next
+			//	RESULT so return and exit // release resources
+			//	RET_VAR CACHED as "ANON"
+			//	
+			//	// ON call // 
+			// PLUS is still utf8 // adds SCRIPTS
+			// is_a2(glyph)
+			// is_a1(glyph)
+			// a1 += font_of_glyphs // font_of_utf8_glyphs
+			// a1 += glyph // 
+			// font_of_glyphs += a1 += glyph // MERGE_OPTIMISE 
+			// ITEM.CLASS_SPEC +=  += font_of_char // old fashioned talk
+			// ITEM.CLASS_SPEC +=  += font_of_glyph // new_fangled
+			// above is BASE_CLASS
+			// above is GENERIC
+			// below is DERIVED_from_ABOVE
+			// below is HERE // LOCN += XPOS_of_this_CMD_NOW // BOTH
+			// LOCN += CMD // a1 += RANGE RANGE LIST RANGE_LIST
+			// LOCN += NOW // CT_RT says CT_ // so possible OPTIMISE
+			// CACHE CT_ guess_local_behaviour_PROXY_remote_behaviour
+			// CACHE CT_ _RT CT_RT 
+			// CT_RT { CT_ _RT _LIBR _SESS _CTRL }
+			// OPERATOR moves levers has CTRL over machine
+			// MACHINE must provide a CTRL for DROP_CACHE
+			// nb LOCAL can choose to ignore in safe_mode ROM_RERUN
+			// nb LOCAL CACHE did :
+			// VALUE = VALUE_Of_EXPR( EXPR ) // += XPOS CODE_POINT 
+			// EXPR += ARGV // above line gets ARGS bound from side
+			// SIDE += DECL ARGS and bunch of MACROS in DIALECT
+			// SIDE = what is a SIDE ?
+			// TREE creates TWIG as a LOCN
+			// LOCN += ITEM // in parallel dimensions
+			// VAR_ITEM
+			// IDX_ITEM = IDX_ITEM_of_VAR_ITEM( VAR_ITEM ) // Y
+			// IDX_ITEM = VAR_ITEM_as_IDX_ITEM( VAR_ITEM ) // X
+			// IDX_ITEM is an ALIAS that unravels at CXX speed
+			// IDX is usually u8 within ZONE of MINI_MACHINE
+			// u8_IDX_A = OPCODE_%s
+			// u8_ZONE_B = OPCODE_%s // OPCODE_u8_ZONE_B //
+			// TUPLO_PAIR creates a LOCN // 
+			// LHS == A
+			// RHS == B
+			// { LHS RHS } == { A B } // DIAG claim // PROOF is DIAG
+			// PROOF_is_DIAG // not it is not, have fun with login
+			// but a DIAG is worth as mach as believing the cartoon
+			// DIAG PLAUSIBLE // not an evluation, just the route
+			// those points that get used, during ACTIVITY
+			//
+
+
+			// font_of_utf8_glyphs //
+		}
+	// CSET_of_ACCEPT_DIRECT
+
+	TOPIC is
+	https://player.odycdn.com/v6/streams/c2be5aea4bb618b8e5d51d935e4e94632f392659/1989d9.mp4
+	The 238th Evolutionary Lens with Bret Weinstein and Heather Heying
+
+	He is discussing the "CIV" 
+	as an illusive set of attributes
+	Which matter more ?
+	DO they interplay? eg counterweight ?
+	What chaos would come from meddling
+
+	Stockholm syndrome is (maybe) evolved
+	so there might be evolution there !!!
+	or simply reuse of things that might make sense elsewhere
+	maybe that adds up to same logic?
+	or fluke
+

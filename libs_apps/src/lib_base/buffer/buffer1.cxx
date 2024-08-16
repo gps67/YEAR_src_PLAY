@@ -113,20 +113,20 @@ bool buffer1::putc_into_utf8_slower( int ch )
 
 	}
 	if( ch < 0x800 ) // 110. .... + 10.. .... = 11 bits
-	{
+	{ // 6x1 + 5 == 11
 		if(0) put_byte('U');
 		// 0x3F is 6 bit mask 0011 1111
 		uchar c2 = 0x80 + (ch & 0x3F); ch = ch >> 6;
 		uchar c1 = 0xC0 + (ch);
 		return put_2_bytes( c1, c2 );
-	} else if( ch < 0x10000 ) // 1110 .... + 10.. .... + 10.. ....
-	{
+	} else if( ch < 0x10000 ) // 1110 .... + 10.. .... + 10.. .... = 16 bits
+	{ // 6x2 + 4 == 16
 		if(0) put_byte('U');
 		uchar c3 = 0x80 + (ch & 0x3F); ch = ch >> 6;
 		uchar c2 = 0x80 + (ch & 0x3F); ch = ch >> 6;
 		uchar c1 = 0xE0 + (ch);
 		return put_3_bytes( c1, c2, c3 );
-	} else if( ch < 0x200000 )
+	} else if( ch < 0x200000 ) // 1111 0... // 10.6 * 3 +3 = 21 bits
 	{
 		if(0) put_byte('U');
 		if(!get_space(4)) return false;
@@ -139,7 +139,7 @@ bool buffer1::putc_into_utf8_slower( int ch )
 		put_byte( c2 );
 		put_byte( c1 );
 		return true;
-	} else if( ch < 0x4000000 )
+	} else if( ch < 0x4000000 ) // 1111 10.. // 2 + 6x4 == 26 bits
 	{
 		if(0) put_byte('U');
 		if(!get_space(5)) return false;
@@ -154,7 +154,7 @@ bool buffer1::putc_into_utf8_slower( int ch )
 		put_byte( c2 );
 		put_byte( c1 );
 		return true;
-	} else
+	} else 			// 1111 110.  + .6x5 // 31 bits
 	{
 		if(0) put_byte('U');
 		if(!get_space(6)) return false;

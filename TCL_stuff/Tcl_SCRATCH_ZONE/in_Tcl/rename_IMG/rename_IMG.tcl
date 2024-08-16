@@ -65,6 +65,7 @@ set ZONE_NAME BUILD_PC_x79
 set ZONE_NAME CAR
 set ZONE_NAME Salisbury_Babara
 set ZONE_NAME WHATSAPP
+set ZONE_NAME RSAC_HCTS
 
 proc list_pop {listname itemname } {
 	upvar $listname list

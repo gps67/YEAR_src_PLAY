@@ -128,6 +128,20 @@ in
 	Artist="Babara Bangura"
 	Sess_List="_sess_1 _sess_2"
 
+	Samba=HCTS
+	Artist="RSAC_HCTS"
+	Sess_List="_sess_1 _sess_2"
+
+	Samba=RSAC_HCTS
+	Artist="Grace_Pounds"
+	Artist="Daughter_of_the_Water"
+	Artist="Satin_beige"
+	Artist="Grant_Sharkey"
+	Artist="Zap_Comedy"
+	Artist="Lee_Switzer_Woolf"
+	Sess_List="_sess_1 _sess_2"
+	Sess_List=_${Artist}
+
 ;; Sun)
 	Samba=salisbury_djembe
 	Artist="Mohamed Gueye"

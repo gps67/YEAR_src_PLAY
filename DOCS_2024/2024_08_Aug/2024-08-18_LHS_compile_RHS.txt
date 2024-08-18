@@ -1,0 +1,77 @@
+	2024-08-18
+
+	2024_08_Aug
+	2024-08-18_LHS_compile_RHS.txt
+
+	Most CXX scripting looks like MACRO
+
+		CXX LANG calls ASM // GEN outputs ASM for it to cll
+	
+	CXX reads BYTE_B and uses in ARRAY_deref
+
+		MACRO spells it out manually
+		Other CPU must provide own ASM
+		Other LAND can provide
+
+			CHECK 0 <= IDX
+		//	CHECK 0 == IDX // ZERO_is_PLUS // vs raise NULL
+			CHECK IDX < N // then PAGE_EDGE or OVER_FLOW or EOT
+
+			// ASM
+			EIGHT_t EIGHT = ARRAY_of_EIGHT[ idx ]
+
+			RET_VAL_WORD_lhs = ARRAY_of_EIGHT[ idx ].lhs_i32
+			RET_VAL_WORD_rhs = ARRAY_of_EIGHT[ idx ].rhs_i32
+	
+	u8_u8_i16
+
+		At the top of the WORD_FOUR the SIGN is FAST and real
+
+		sign extend FOUR to EIGHT // clears WORD_HIGH to ZERO or M1
+		sign extend TWO to FOUR // clears WORD_HIGH to ZERO // or M1
+
+		what if ignores high bits, as it should for PACKED PAIR in i64
+
+			i32_i32
+
+	i32_byte_fields
+	i32_bit_fields
+
+	So with the mismatch of ASM to TASK,
+	we get a choice of 3 templates
+	we might eliminate any of the choices later - simpler predict POSS
+	we might see loop optimisations, and one_act optimisations
+
+	we could step through only the DEFAULT pathway
+	we could step through each of the TEMPLATE pathways
+	we could split onw template to USAGE variations
+
+	after a hypothetical dry run with DATA = FAKE_DATA_for_TEST_DATA
+	go for a CODE caller with DATA = FAKE_DATA_for_TEST_DATA
+	go for a CACHE builder with CHOSEN_DATA
+
+
+	SO CT_RT builds BITFIELDS and BYTEFIELDS for u8_u8_i16
+
+	AVAIL += GETTER_FFFF( i32 )
+	AVAIL += SETTER_FFFF( i32, i32 ) // POSS UNS
+
+
+	i64_CPU_WORD
+
+		ZZ
+
+	I really need to think about BASE_CLASS i32 for i64 - or GEN TWICE
+	I really need to think about BASE_CLASS i64 for i64 - or GEN TWICE
+
+	CPU_MODEL
+
+		ASM "R2.i64 = R1.i64.UNS_BYTE_B"
+		ASM "R2.i64"  "="  "R1.i64.UNS_BYTE_B"
+
+		PARSER TOKENISER SPELLING
+
+			"R2.i64" in CTX LHS
+
+
+

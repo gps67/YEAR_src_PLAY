@@ -1,0 +1,10 @@
+2024-08-17 Aug Sat 02:38 # 08 #  NOTES.txt
+
+	each CT_RT pathway generates a stream of
+
+		const int NAME = DATA;
+		const enum STRUCT.NAME = CALC_DATA_from_COUNTING
+	
+	MERGE const and duplicate
+	MERGE const and different
+	MERGE const and AVAR

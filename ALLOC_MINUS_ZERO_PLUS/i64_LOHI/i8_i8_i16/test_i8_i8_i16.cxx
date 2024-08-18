@@ -1,19 +1,86 @@
 /*
-	ARMv6 demands aligned as it interprets unaligned access !!
-	otherwise it rotates within the word!
 
-	This loads a 32 bit word from aligned and from odd address
-	prints out the u32_WORDS as ABCD or as DCBA
+	YET another attempt at BITFIELD BYTE_FIELD
 
-	IT also tests the SWAPB _32 and _64
-	by printing out FILE_TEXT_BYTES "@abcdefghijklm" more than 8 shifted
-	
-./test_align.exec
-show_word_32         0x64636261 abcd
-show_word_32         0x65646362 bcde
-show_word_64 0x6867666564636261 abcdefgh
-show_word_64 0x6968676665646362 bcdefghi
-(END)
+	SEE LOHI expectations and rhyme with x86_32 and x86_64
+
+	BYTE_A
+	BYTE_B
+	u16_PAYLOAD	AVAR_in_STO  or RUN GETTERC()
+
+	AVAR_in_STO
+		_in_MEM
+		_in_FILE
+		_in_HEAP
+		_in_API
+
+		_in_MMAP { // base class for all of above // SCRIPT INHERIT 
+
+			in_HEAP in_SEGMENT in_FILE
+
+			in_ELF
+				ROM - yes
+				STO - HOW ?
+
+			in_SCRIPT
+				CALL_ELF
+				MMAP_NOT_ELF
+
+					Merge all SEGMENTS into SEGMENTS
+
+				OUTER MMAP SEGMENT PROVIDER
+
+					OUTER += MINI_MACHINE "OUTER_MMAP_PROVIDER"
+					 VFS += actual_FS
+					 DIR += FILE // problems with 
+					 // overf amiliarity "DIR" must overlap
+					 // overlap IDENT in SCOPE //
+					 // simplest SPELLING // score = BASE + FILTERED
+					 SEGMENT == MMAP_entire_FILE
+
+					 OUTER HEAP FILE == MMAP_FILE
+
+					  SIMPLE_ROM_HEAPS are SINGLE_SEGMENT
+					  RUNTIME_STO_HEAPS are 4 segments then GC
+					  _ZONE_0	N_PAGES
+					  _ZONE_1	N_PAGES
+					  _ZONE_2	N_PAGES
+					  _ZONE_3	N_PAGES
+
+					  SESSION grows _0 _1 _2 _3
+					  OUTSIDE grows to future_avail_now
+
+					  	N_BYTES is PLENTY 
+						OUTSIDE notices activity
+						and pre-allocs PLENTY
+
+						but that also changes to
+						PLENTY_MORE
+
+						but by now, we have already
+						ALLOC SEGMENT as MMAP_REGION
+
+						MMAP_REGION is an MMAP
+						MMAP_inside_an_MMAP
+			CLASS N_PAGES {
+				const PAGE_nbytes == 4096 ;
+				int N;	// often i5 32
+				u8 * PAGE_ZERO; 
+				typedef char PAGE_BYTE[ PAGE_nbytes ];
+				// AVAIL u8 * PTR = EA_OBJECT_BASE_as_EA
+				// AVAIL contiguous pages of _4096
+				// AVAIL ANOTHER AREA
+			}
+
+			OUTER_SEGMENT_LIST
+
+			MEASURE grow SPEED
+			 BEHAVE as stats_gatherer clock all ALLOC requests
+
+			  u47 clock = SECONDS since TIME_POS_ZERO _PLUS_OFFS_11
+			  u47 clock = SECONDS since 1999_PLUS_ONE
+
+		}
 
 */
 
@@ -27,13 +94,16 @@ typedef unsigned char      u8;
 typedef unsigned int       u32;
 typedef unsigned long long u64;
 
+#include "CPU_WORD.h"
+#include "i8_i8_i16.h"
+
 #if 0
 typedef unsigned i8  u8;
 typedef unsigned i32 u32;
 typedef unsigned i64 u64;
 #endif
 
-#include "ASM_byte_swap.h"
+// #include "ASM_byte_swap.h"
 #include <byteswap.h>
 
 void show_byte( const u8 val )

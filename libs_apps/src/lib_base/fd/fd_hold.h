@@ -11,10 +11,36 @@
 
 // NO CHANGE just faster no not include the full spec
 // #include <stdio.h>
-struct _IO_FILE;
-typedef struct _IO_FILE FILE;
+// instead, get away with these two DECL_STRUCT_STUBS
+// Pointers to unexplained STRUCTS is OK upto runtime, 
+// NAMED typedef struct OBJ_from_malloc // not for MMAP
+// MMAP must use OFFS and relocate for every binary
+// MMAP starts off single user, MORE_LATER
+//
+// You could probably make the same shortcut on WIN32
+// but I am not bothered about that PORT, as long as it works
+// the only difference is the compile time, the ASM is the same
+// but the DECL must match the words used in the real <stdio.h>
+// the only one we use is "{ FILE * std_in }"
+// the only one we use is "{ FILE * std_in_out_err_ioctl_sockea_MUXt }"
+// on_Linux{ ... }
+
+	struct _IO_FILE;
+	typedef struct _IO_FILE FILE;
+
+// I dont really use FILE * //
+// you can CTOR fd_hold with a FILE*F; //  fd_hold_one(stdin) //
+
+// on_LIST = HERE.get_on_LIST_for_DTOR
+// eg close(fd) will get called for an fd // MAKE THIS A FLAG // TODO //
+// eg sync_SQL_and_complete_all_active_tasks
+// eg sync_SQL_and_prepare_to_suspend_resume _to_complete_all_active_tasks
+// but also safe suspend and never resume, possible roll_back, optimise
 
 #endif
+
+// on all architectures <stdio.h> works 
+// because handle_fd works
 
 // #include <memory.h>
 // #include <errno.h>
@@ -25,17 +51,23 @@ typedef struct _IO_FILE FILE;
 // #include <netdb.h>
 // #include <unistd.h> // close
 // #include <stdlib.h> // atoi
-#include <stdarg.h> // va_list
 // #include <fcntl.h> // O_NONBLOCK
 // #include <sys/ioctl.h>
-#include "blk1.h"
 
+#include <stdarg.h> // va_list
+#include "blk1.h" // buffers per fd side //
 
 class sock_addr_ip;
 class sock_addr_base;
 
 #if 0
 /*!
+	ERRORS and REPEAT_ABLE but interrupted calls
+
+	int ret_val = SYSCALL( A, R, G, S ) ; if( -1 == ret_val ) ...
+	// OPTION retval -1 0 PLUS // ZERO_is_PLUS // 
+	// OPTION retval NULL ptr_to_result // ZERO_is_FAIL // LOOB //
+
 	There are a bunch of conditions possible
 	recv returns >0 len == request_len
 	recv returns >0 len < request_len
@@ -212,12 +244,17 @@ enum ret_read_t
 
 	FUTURE OPTION - it would be nice to give each fd a name,
 	so that error messages make some sense
+
+	DEBUG_OPTION OBJ can have a name, because obj_ref_sub_zzz bloat
 */
 class fd_hold_1 : public obj_ref
 {
  protected:
 	int fd;
  public:
+ 	// actually I'm not using FILE * much
+	// just added this to AUTO provide for those who want it
+
 	FILE * File;
 	FILE * File_flush;
 

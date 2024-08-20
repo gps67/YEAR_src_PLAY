@@ -1,0 +1,257 @@
+	2024-08-20
+
+	2024_08_Aug
+	2024-08-20_CSR.txt
+
+	BROWSER("CSR")
+
+	CSR is a bench environment,
+	which BROWSES HEAR NEAR LIBR SESS,
+	CSR has detailed HERE access
+	CSR has retained HERE settings
+	CSR has retained NEAR cache
+
+	CSR("LIBR_ELF_so") 
+	 can browse segments and tables of symbols
+	 has an LS_API that elf likes
+	 find . -type ANY -print | gather LIST 
+	 # gather LIST # reads from STREAM_stdin to TREE in MEM as AVAR("LIST")
+	 # KNOW TYPE at least # TREE_of_ARGV # LIST of ARGS # TREE # LIST # 
+
+	CSR("VFS_twigs_for_CXX_LIBR_and_SCRIPT")
+	 has multiple("NAMED") twigs
+	 has SPEC and everything import Module brings // _as_CXX_Module //
+	
+	Module("LIBR")
+	 _as_CXX_Module
+	 _as_LIBR _registed_in_HEAP_as_ITEM
+	 _as_ITEM _not_the_module_but_a_sample_ITEM
+	 _as_Module _cont_type_var_func_samples_docs_tests_more_Modules
+
+	Module("CSR")
+	 _MENTION_ AUTO_MK_VAR ("CSR")
+
+	 	a local call to expande GEN CODE for CALLER
+		uses local parameters and temporary flags
+		stuff that LIBR might not accept as REMOTE_LOCAL
+
+		LIBR must behave asif on REMOTE
+		CACHE tries to behave asif on REMOTE // but LOCAL
+		LIBR on REMOTE might not be TRUSTED
+		LIBR on REMOTE uses FILTERED VFS
+		LIBR on REMOTE uses FILTERED VFS CACHE_UPDATE_from_LOCAL
+
+		OFTEN the roles of LOCAL and REMOTE switch for CT_RT ends
+		ALWAYS was nice, and remains as a theme
+		OFTEN LOCAL is expanded from LOCAL_or_REMOTE_setting
+			LOCAL = LOCAL_or_REMOTE_setting("LOCAL")
+
+				string ("LOCAL") is registered as AVAR
+				peer ("LOCAL") is registered as AVAR
+				as LEXICON("IDENT") // with strong recognise
+				peer ("LOCAL")
+			AVAR	alias ("REMOTE")
+				opposes PEER LEXICON("LOCAL")
+
+		REWRITE MAYBE
+
+			enum {
+				LOCAL
+				REMOTE
+			}
+
+			// no need to name the enum_group
+			// can rename alias later
+			// somehow picking without it having a name
+			// TUPLO { lhs LOCAL } 
+			// TUPLO { rhs REMOTE } 
+			// builting PAIR_OPPOSITES lhs rh
+
+		REMEMBER OPPOSITE USAGE
+
+			the same code is run on the client and the server
+
+			CT_RT /* and GEN */ uses C++ and C_inline_GCC_etc
+
+			CT_RT
+			 _of_client
+			 _of_server
+
+			 It doesn't matter as far as call_backs is concerned
+			 There is an SQL_server and a HandHeld_Client
+
+			 The CLIENT sees itself as LOCAL
+			 The CLIENT sees REMOTE as REMOTE
+
+			 The SERVER sees itself as LOCAL
+			 The SERVER sees REMOTE as REMOTE
+
+			ENQ_ACK 
+			 might take several ENQ_ACK sycles until AVAIL
+			 eg disk IO is slow, 6 second spin_up delay, etc
+			 so outstanding, unanswered ENQ is a LIST
+			 so lose track of how these CACHE items arose
+			 but keep track of these CACHE items and status
+
+
+		NESTED SESSION 
+		 TRANSACTION_GROUP _SUBSET_of_GROUP
+
+		 	OUTER_SESSION += STEP_to_new_ERA
+
+			_expect_first_full_complete_reply ENQ_ACK
+			_get_second_reply ENQ_ACK
+			_get_next_reply ENQ_ACK
+
+			_get_told_ENQ_dropped
+			_get_told_ENQ_listed as my_ref:your_ref
+
+				my_ref == LOCAL.my_ref
+				your_ref == REMOTE.your_ref
+
+					for ITEM = VALUE_in_RET_VAL
+
+						eg an u16_ENUM in CTXT_one
+						eg an u16_ENUM in CTXT_two
+						eg an u16_ENUM in CTXT_EXPR
+
+						 EXPR = _one || _two || _EXPR
+						 _EXPR = get_CTXT_from_u16(u16_expr)
+ SIMULATED CPU
+ 	x86_64
+	ARM_32
+
+	C32_LOHI
+
+		x86_32
+		but in C not ASM for portability
+		_LOHI
+
+		APP_config.h {
+		#define _is_LOHI_ 1 // true
+		#define _has_LOHI_from_HILO 1 // true // swapb
+
+			GEN + COMPILE for each COMBO
+
+				x86_64
+				ARM_32
+				  C_32
+				  C_64
+				C32_LOHI
+				C32_HILO
+
+			GEN + COMPILE for u8_u8_u16
+			GEN + COMPILE for u8_u8_i16
+			GEN + COMPILE for u32_u32
+			GEN + COMPILE for u8_u8_i16_u32
+			GEN + COMPILE for u8_u8_i16_i32
+
+				OPCODE says i_or_u i32/u32 or u_reduced
+
+				We have plenty of OPCODES
+				so defining a PAIR of OPCODES for i32 u32
+				SHORCUT DIALECT u31 FROM i32 # AUTO_HINT_AVAIL #
+				_AVAIL _USED _DTOR_LIST
+
+	esp32 uses GEN
+	GEN uses C++ VTBL to figure out best to actually GEN
+
+		get_i32_WORD_HIGH
+
+	GEN use OPTI_SEARCH
+
+		foreach suggested OPTION
+
+			GEN CODE
+			CALC TIME
+			BUILD WORLD
+
+				modest QUOTA of MEM and STO and 
+
+		get_i32_WORD_HIGH
+
+			return LIST of ROUTES # ALTERNATE OPTIONS
+
+				count how many times for TEST_DATA
+				count how many predicted times for TEST_DATA
+
+				optimise early and properly
+
+				retain options, eg get i32_HIGH from CPU or MEM
+				retain options, eg get i32_LOW from CPU or MEM
+
+				pick from CHOICES,
+				 have CPU_WORD_64 with i32 at BYTE_OFFSET
+				 have MEM_WORD_64 with i32 in BYTE_FIELD
+
+				 WORD_i32 = WORD_i64 >> 32 // 1 clock cycle
+				 WORD_i32 = *(_EA_WORD_i64 + 4) // OBVS i32
+
+				 FETCH takes 1 clock cycle 
+				 BYTES = ... or ...]
+				 GEN_GCC_ASM_TEXT ... // ALLOC REGS
+
+		SSA_tracking
+
+			The original DATA_LOCN_AVAR and VALUE
+			can have multiple copies
+			_in_MEM
+			_in_CPU
+			_in_CPU_r2
+			ALREADY SPLIT += i32_WORD_HIGH in_CPU_r3_LOW_HALF
+			+= ZERO in TOP HALF
+			+= SIGN in TOP HALF
+			+= JUNK in TOP HALF
+			+= VAR2 in TOP HALF
+
+			Each copy offers access
+			to copy asis
+			to poss copy - just needs: getter or DECR or ...
+
+			Each SSA offers KNOW_is_not_NULL
+			Each SSA offers KNOW_is_NULL
+			Each SSA offers KNOW_if_NULL - needs TEST
+
+			SSA tracking creates an FSM with PARAMETISED branches
+			a previous search has opened up the terrain
+			a current and future offers optional 
+			R2 = R1.sign_extend_i8_to_i64
+			R2 = R1.sign_extend_i16_to_i64
+			R2 = R1.sign_extend_i32_to_i64
+
+			OFFER OPTION
+
+				rotate BITFIELD to HIGH in i64
+				shift right arithmetic to BIT0 in i64
+
+			somehow those options appear on the graph
+			the pathway costs appear
+			the pathway benefits appear - eg R3 == SSA_77 in CPU
+			after this BRANCH step ...
+
+			PRE_COMPILE builds a lot of options
+			PRE_MEASURE figures COST BENEFIT after 10 char in IDENT
+
+
+
+
+
+
+
+
+
+
+
+
+
+		}
+
+		_CPU_HILO can use BSWAP and second COPY # _vs_direct_
+		I think ARM can actually run in LOHI mode - area for module OPT
+
+
+
+
+
+
+

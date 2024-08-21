@@ -1,0 +1,26 @@
+	2024-08-20
+
+	2024_08_Aug
+	2024-08-20_lxc_libvirt_docker.txt
+
+	https://www.upguard.com/blog/docker-vs-lxc
+
+		LXC is kernel in own chroot
+		LXC is NOT hardware emul, no boot from qemu
+		LXC does have namespace for UID GID 
+		multiple LXC's share same OS kernel
+		each has ... (chroot) walls ?
+
+		docker is LXC with added LIBR
+	
+	https://github.com/lxc/lxc
+
+	https://linuxcontainers.org/lxc/security/
+	
+	https://www.docker.com/
+	https://docs.docker.com/get-started/introduction/
+	https://docs.docker.com/get-started/workshop/
+
+
+
+

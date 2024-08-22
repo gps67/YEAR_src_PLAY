@@ -1,0 +1,16 @@
+#!/bin/bash
+
+(
+. fns_FAIL
+. fns_DIRS
+
+	OBJS1=mk_obj
+	mkdir $OBJS1 2>/dev/null
+	cd_or_fail $OBJS1
+
+	# cmake --prefix $HOME/prefix -G"Unix Makefiles" ..
+	cmake -DCMAKE_INSTALL_PREFIX=$HOME/prefix -G"Unix Makefiles" ..
+    # make
+
+
+) 2>&1 | tee -a $0.log

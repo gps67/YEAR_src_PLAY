@@ -1,0 +1,32 @@
+
+. ../go__fns
+
+fn_grp_url sdl \
+	https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2.tar.gz
+
+# fn_no_VPATH
+fn_unpack
+
+# exit
+
+# USELESS HERE # ?
+# fn_with_tk
+# fn_with_grp tcl
+fn_with_grp libr
+fn_with_grp util
+# fn_with_grp_all
+# fn_with_grp_LD_RUN_PATH tcl
+# fn_with_grp_LD_RUN_PATH libr
+# fn_with_grp_LD_RUN_PATH util
+fn_with_X11
+
+fn_reconfigure
+fn_configure_prefix \
+#
+# --with-cxx-main=g++ \
+
+#
+fn_make
+fn_make test
+fn_make install
+# fn_make -i install

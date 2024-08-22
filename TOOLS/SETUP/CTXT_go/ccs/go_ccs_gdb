@@ -1,0 +1,6 @@
+. go__fns
+# fn_grp_url ccs https://ftp.gnu.org/gnu/gdb/gdb-12.1.tar.xz
+fn_grp_url ccs https://ftp.gnu.org/gnu/gdb/gdb-14.2.tar.xz
+fn_unpack
+fn_configure_pfx
+fn_make all install

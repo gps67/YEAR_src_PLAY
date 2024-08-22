@@ -1,0 +1,196 @@
+#
+# /tools/2000/profile
+# probably ksh specific
+#
+# USE:
+#	. /tools/2000/profile
+#	mc
+#	NB Use for development only - not production!
+#	NB changes $EDITOR - secure use needs tight writing
+
+# where is /tools/2000
+
+	# first one wins
+	tools_2000=${tools_2000:-/tools/`uname -m`}
+	tools_2000=${tools_2000:-/tools/2000}
+
+# functions that only adds a dir to path if it isnt already there
+
+#
+# PATH_TOOL is useful from $HOME/.profile # . var_add.fns
+# 
+
+	PATH_TOOL=${PATH_TOOL:-$tools_2000/PATH_TOOL}
+	export PATH_TOOL
+
+	var_add()
+	{
+		eval `$PATH_TOOL -for_eval add "$@"`
+	}
+
+	var_pfx()
+	{
+		eval `$PATH_TOOL -for_eval pfx "$@"`
+	}
+
+	var_del()
+	{
+		eval `$PATH_TOOL -for_eval del "$@"`
+	}
+
+	var_list()
+	{
+		$PATH_TOOL list "$@"
+	}
+
+# the following two are local variations / personal prefs
+
+	# ksh on other UNIX
+	[ -z "$SECONDS" ] || set -o vi
+#	 tty -s && stty erase 
+	[ $TERM = linux ] && set -o  emacs
+	[ $TERM = xterm ] && set -o  emacs
+
+# SUN 
+if false
+then
+	var_add MANPATH /usr/man
+	var_add MANPATH /usr/dt/man
+	var_add MANPATH /usr/openwin/share/man
+fi
+
+# HP #
+if false
+then
+	var_add MANPATH /usr/share/man
+	var_add MANPATH /usr/man
+fi
+
+# Linux #
+if true
+then
+	var_add MANPATH /usr/share/man
+	var_add MANPATH /usr/man
+fi
+
+	var_add LD_LIBRARY_PATH $HOME/lib
+	var_add SHLIB_PATH $HOME/lib
+
+# arrange this list in the order you want
+# To override /usr/bin, you must clear PATH then add it back
+# First setting things that might need an override - PREFIX
+
+  grp_list=""
+  grp_list="$grp_list libs"	# freetype different from X11
+  grp_list="$grp_list ccs"	# C-compiler (gcc/make/bison/flex) JIKES
+## grp_list="$grp_list glibc"	# ldd # dont force onto LD_LIBRARY_PATH
+  grp_list="$grp_list bbox"	# ls
+  grp_list="$grp_list shell"	# tee tr ...
+# override /usr/bin/XXX
+  grp_list="$grp_list py"	# python scripting language (recommended)
+  grp_list="$grp_list tcl"	# Tcl scripting language (recommended)
+  grp_list="$grp_list pgsql"	# pgsql database
+  grp_list="$grp_list mysql"	# mysql database
+  grp_list="$grp_list fox"	# GUI # but GLU after X11
+  grp_list="$grp_list X11R6"	# 
+  grp_list="$grp_list apps"	# sniffer email ...
+
+  pfx_list="$grp_list"
+
+# Now add things to the tail of the lists
+# dupicates auto reduced
+
+  grp_list=""
+# grp_list="$grp_list glibc"	# glibc is a bootstrap issue # may break other progs
+  grp_list="$grp_list lan"	# net-snmp 
+  grp_list="$grp_list sys"	# ext2 and system utils
+# grp_list="$grp_list util"	# zip/tar/mc/lynx general utilities
+  grp_list="$grp_list tcl"	# Tcl scripting language (recommended)
+  grp_list="$grp_list ccs"	# C-compiler (gcc/make/bison/flex) JIKES
+  grp_list="$grp_list app"	# cooledit
+  grp_list="$grp_list py"	# python scripting language (highly recommended)
+  grp_list="$grp_list smb"	# 
+# grp_list="$grp_list sec"	# secure openssl, openssh,
+  grp_list="$grp_list www"	# apache web server and related things
+  grp_list="$grp_list gtk"	# gtk libraries
+  grp_list="$grp_list perl"	# perl core, maybe extra libraries
+  grp_list="$grp_list mysql"	# mysql database
+# grp_list="$grp_list smb"	# SMB - LANMANAGER-II
+#  grp_list="$grp_list xml"	# libxml2 - portable
+  grp_list="$grp_list libs"	# libs curl ?png? ?gd? 
+  grp_list="$grp_list xd640"	# fltk 486
+  grp_list="$grp_list media"	# xawtv
+  grp_list="$grp_list smb"	# 
+##  grp_list="$grp_list ccs3"	# ... gcc-3 ... moving target
+
+for grp in $pfx_list
+do
+	[ -d $tools_2000/$grp ] || continue
+	var_pfx PATH            $tools_2000/$grp/bin
+	var_pfx MANPATH         $tools_2000/$grp/man
+	var_pfx LD_LIBRARY_PATH $tools_2000/$grp/lib # ELFOS
+	var_pfx SHLIB_PATH      $tools_2000/$grp/lib # HPUX
+done
+
+for grp in $grp_list
+do
+	[ -d $tools_2000/$grp ] || continue
+	var_add PATH            $tools_2000/$grp/bin
+	var_add MANPATH         $tools_2000/$grp/man
+	var_add LD_LIBRARY_PATH $tools_2000/$grp/lib # ELFOS
+	var_add SHLIB_PATH      $tools_2000/$grp/lib # HPUX
+done
+
+# manual fixups
+
+	var_add LD_LIBRARY_PATH $tools_2000/ccs3/lib # user has to pfx to PATH
+####	var_add PATH            /tools/2001/gtk/bin # gtk 1.3 and fvwm2
+
+# /usr/ccs is the c-compilation subsystem
+# which does not have a (real) c-compiler
+# it has ar (and other things)
+# GCC/binutils has what we want and comes earlier in path
+
+##	var_add PATH /usr/ccs/bin
+
+# /usr/local/bin is generally unused
+# and might confuse you (but here it is)
+
+	var_add MANPATH /usr/local/man
+	var_add    PATH /usr/local/bin
+
+# Its nice to have a personal bin to put silly-named one-liners
+# put last on path to be sure it isn't a silly named solaris command
+
+	var_add PATH $HOME/bin
+#	var_add PATH $HOME/bin22	# tracer
+
+# I hate the openwin default editor (and console)
+# if you prefer emacs, you know what to do anyway
+
+	case "$EDITOR"
+	in
+		xedit|vi|le|emacs) : # 
+	;;	*)
+		EDITOR=vi
+	esac
+	export EDITOR
+
+export LD_LIBRARY_PATH
+export SHLIB_PATH
+export MANPATH
+
+# mc fails silently when SHELL=ksh, it has to be the full path
+# SHELL is always set anyway (?) and this might conflict with
+# utilities that have a custom SHELL, and include this file
+
+	SHELL=${SHELL:-/tools/2000/shell/bin/bash}
+#	SHELL=${SHELL:-/usr/bin/ksh}
+	SHELL=${SHELL:-/bin/bash}
+	export SHELL
+
+# NOW add in all the OLD paths (hopefully last)
+
+##	. /tools/2001/profile
+
+# EOT #

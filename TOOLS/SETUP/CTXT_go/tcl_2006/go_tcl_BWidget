@@ -1,0 +1,21 @@
+. go__fns
+# fn_grp_pkg tcl BWidget-1.7.0
+fn_grp_pkg tcl BWidget-1.8.0
+fn_unpack
+echo Copy to lib
+cd $src/..
+pwd
+find $subdir -print | cpio -pvdm $prefix/lib
+exit
+
+exit
+# exit
+# src=$src/unix
+# mkdir $obj
+# obj=$obj/unix
+fn_configure_pfx \
+--enable-gcc \
+--enable-threads \
+#
+fn_make 
+fn_make install

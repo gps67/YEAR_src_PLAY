@@ -1,0 +1,13 @@
+. ../go__fns
+URL=https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2
+fn_grp_url bbox $URL
+fn_unpack
+# fn_with_grp libr
+# NO # fn_configure_pfx
+[ -d $obj ] || \
+fn_make KBUILD_SRC=$src -f $src/Makefile defconfig
+# fn_make defconfig
+echo "# TTY TEE # fn_make menuconfig"
+# ( cd $obj ; make menuconfig )
+fn_make 
+fn_make install

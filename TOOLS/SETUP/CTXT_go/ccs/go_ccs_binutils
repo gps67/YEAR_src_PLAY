@@ -1,0 +1,17 @@
+. go__fns
+fn_grp_urldir_file ccs https://ftp.gnu.org/gnu/binutils/ binutils-2.42.tar.xz
+# fn_grp_pkg ccs binutils-2.37
+fn_unpack
+fn_with_grp gcc
+fn_with_grp $gcc10
+fn_configure_pfx
+fn_make 
+fn_make install
+
+# needed multilib in host and then in new gcc
+
+# apt install apt-file
+# sudo \
+# apt-file update
+# apt-file search bin/makeinfo
+# apt search makeinfo 

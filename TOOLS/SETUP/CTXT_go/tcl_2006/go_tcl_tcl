@@ -1,0 +1,14 @@
+. go__fns
+# fn_grp_pkg tcl tcl8.4.11
+# fn_grp_pkg tcl tcl8.5a6
+fn_grp_pkg tcl tcl8.5b3
+fn_unpack
+src=$src/unix
+mkdir $obj
+obj=$obj/unix
+fn_configure_pfx \
+--enable-gcc \
+--enable-threads \
+#
+fn_make 
+fn_make install

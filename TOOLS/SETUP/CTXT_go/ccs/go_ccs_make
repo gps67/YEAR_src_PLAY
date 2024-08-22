@@ -1,0 +1,7 @@
+. go__fns
+#n_grp_url ccs https://ftp.gnu.org/gnu/make/make-4.4.tar.lz
+fn_grp_url ccs https://ftp.gnu.org/gnu/make/make-4.4.1.tar.lz
+fn_unpack
+fn_configure_pfx
+fn_make -i
+fn_make -i install

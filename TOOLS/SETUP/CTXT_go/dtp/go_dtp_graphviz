@@ -1,0 +1,12 @@
+. ../go__fns
+URL=https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/12.1.0/graphviz-12.1.0.tar.gz
+fn_grp_url dtp $URL
+# fn_no_VPATH
+fn_unpack
+fn_with_grp dtp
+fn_with_grp libr
+fn_with_grp tcl
+fn_with_tk
+fn_configure_pfx
+fn_make 
+fn_make install

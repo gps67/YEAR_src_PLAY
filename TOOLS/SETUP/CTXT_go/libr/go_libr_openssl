@@ -1,0 +1,15 @@
+. ../go__fns
+# https://www.openssl.org/source/
+# fn_grp_pkg libr openssl-3.0.1.tar.gz
+URL=https://www.openssl.org/source/openssl-3.2.1.tar.gz
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+CON_OPTS="linux-aarch64"
+CON_OPTS="mingw"
+CON_OPTS="linux-elf"
+CON_OPTS="linux-generic64"
+CON_OPTS="" # use ./config
+fn_configure_pfx $CON_OPTS
+fn_make 
+fn_make install

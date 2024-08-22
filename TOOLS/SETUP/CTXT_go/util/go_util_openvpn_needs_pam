@@ -1,0 +1,10 @@
+. ../go__fns
+# https://swupdate.openvpn.org/community/releases/openvpn-2.5.1.tar.xz
+fn_grp_pkg util openvpn-2.5.1	# .tar.xz
+fn_unpack
+fn_with_grp libr
+fn_with_grp util
+
+fn_configure_pfx $CON_OPTS
+fn_make 
+fn_make install

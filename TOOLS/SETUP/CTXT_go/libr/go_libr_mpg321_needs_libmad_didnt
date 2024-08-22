@@ -1,0 +1,13 @@
+. ../go__fns
+# 2012 # most recent
+URL=https://sourceforge.net/projects/mpg321/files/mpg321/0.3.2/mpg321_0.3.2.orig.tar.gz
+# https://sourceforge.net/projects/mpg123/postdownload
+# it untars as dash not dot
+# and dash not underscore 
+# fn_grp_pkg libr mpg321_0.3.2.orig	# .tar.gz
+fn_grp_pkg libr mpg321-0.3.2-orig	# .tar.gz
+fn_unpack
+# fn_with_grp libr
+fn_configure_pfx
+fn_make 
+fn_make install

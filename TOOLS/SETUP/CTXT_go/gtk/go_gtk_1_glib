@@ -1,0 +1,24 @@
+. ../go__fns
+fn_grp_pkg gtk \
+	glib-2.78.0 # .tar.xz
+export CFLAGS="-g -O2"
+fn_unpack
+
+fn_meson_setup
+fn_meson_compile
+fn_meson_install
+
+exit
+fn_configure_pfx \
+#
+# --host=i586-pc-linux-gnu \
+#
+fn_make 
+fn_make install
+
+# NEED
+# pkg-config
+# meson
+# iconv
+# gettext
+# see glib INSTALL.md

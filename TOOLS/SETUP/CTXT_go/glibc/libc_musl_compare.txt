@@ -1,0 +1,8 @@
+https://www.etalabs.net/compare_libcs.html
+
+	compares
+
+		musl
+		uClibc
+		dietlibc
+		glibc

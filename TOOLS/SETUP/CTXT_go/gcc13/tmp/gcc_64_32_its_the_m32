@@ -1,0 +1,14 @@
+. /tools/x86_64/CTXT_go/go__fns
+type gcc
+gcc --version
+set -x
+rm -f *.o *.exe*
+gcc      -o a.exec64 a.c
+gcc -m32 -o a.exec32 a.c
+gcc      -o b.exec64 b.c
+gcc -m32 -o b.exec32 b.c
+for e in ./?.exe*
+do
+	$e
+done
+file *

@@ -1,0 +1,13 @@
+. ../go__fns
+# fn_FAIL  xz has been hacked # by a known contributer # pressure ?
+# exit
+# https://sourceforge.net/projects/lzmautils/files/xz-5.2.5.tar.xz/download
+# URL=https://sourceforge.net/projects/lzmautils/files/xz-5.4.6.tar.xz
+URL=https://github.com/tukaani-project/xz/releases/download/v5.6.2/xz-5.6.2.tar.gz
+fn_grp_url util $URL
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+fn_configure_pfx
+fn_make 
+fn_make install

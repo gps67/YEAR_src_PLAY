@@ -1,0 +1,9 @@
+. ../go__fns
+# http://download.savannah.gnu.org/releases/lzip/
+fn_grp_pkg util lzip-1.22
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+fn_configure_pfx
+fn_make 
+fn_make install

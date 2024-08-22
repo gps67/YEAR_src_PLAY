@@ -1,0 +1,8 @@
+. ../go__fns
+fn_grp_url util https://ftp.gnu.org/gnu/wget/wget2-2.1.0.tar.lz
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+fn_configure_pfx
+fn_make 
+fn_make install

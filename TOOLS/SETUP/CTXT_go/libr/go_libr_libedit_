@@ -1,0 +1,9 @@
+. ../go__fns
+URL=http://thrysoee.dk/editline/libedit-20160903-3.1.tar.gz
+# DEP ncurses 
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+fn_configure_pfx
+fn_make 
+fn_make install

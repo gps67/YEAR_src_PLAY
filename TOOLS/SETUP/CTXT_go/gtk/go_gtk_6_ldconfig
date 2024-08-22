@@ -1,0 +1,3 @@
+. ../go__fns
+fn_grp_pkg gtk dummy
+fn_ldconfig

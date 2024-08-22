@@ -1,0 +1,8 @@
+# http://www.multiprecision.org/mpc/
+. ../go__fns
+fn_grp_pkg gcc10 mpc-1.2.1
+fn_unpack
+fn_with_grp gcc10 # needs mpfr
+fn_configure_pfx
+fn_make 
+fn_make install

@@ -1,0 +1,13 @@
+. ../go__fns
+# https://www.mirrorservice.org/pub/OpenBSD/OpenSSH/portable/openssh-8.5p1.tar.gz
+# NB sshd is root centric not a vague util
+URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz
+fn_grp_url util $URL
+fn_unpack
+fn_with_grp libr
+fn_with_grp util
+CON_OPTS="--with-privsep-path=$prefix/var/empty"
+
+fn_configure_pfx $CON_OPTS
+fn_make 
+fn_make install

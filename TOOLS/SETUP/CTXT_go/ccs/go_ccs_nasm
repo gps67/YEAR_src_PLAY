@@ -1,0 +1,23 @@
+. go__fns
+if false
+then
+	fn_grp_url ccs \
+	https://www.nasm.us/pub/nasm/releasebuilds/2.16.02rc9/nasm-2.16.02rc9-xdoc.tar.bz2
+	echo "rename doc dir so that next IS unpacked"
+fi
+
+fn_grp_url ccs \
+https://www.nasm.us/pub/nasm/releasebuilds/2.16.02rc9/nasm-2.16.02rc9.tar.xz
+fn_unpack
+fn_configure_pfx
+# FIX # obj/config/config.h 
+# FIX # src/config/config.h 
+fn_log rm -f $src/config/config.h
+fn_make
+fn_make install
+# fn_make -i
+# fn_make -i install
+
+# edit compiler.h where it includes string.h
+# strncpy # needs include "bsd/string.h" #
+# mkdir obj/nasm-2.16.02rc9/include/ # so pl can write something there

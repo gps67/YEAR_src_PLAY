@@ -1,0 +1,11 @@
+# uses bison!
+
+. go__fns
+# SYMB LINK ~ /.src/ # fn_grp_pkg ccs doxygen-1.5.2.src
+fn_grp_pkg ccs doxygen-1.5.2
+fn_no_VPATH
+fn_unpack
+# stupid doxygen objects to --prefix=dir it needs --prefix dir # SP
+fn_configure_prefix_SP
+fn_make 
+fn_make install

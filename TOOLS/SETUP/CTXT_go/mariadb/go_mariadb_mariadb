@@ -1,0 +1,37 @@
+
+. ../go__fns
+
+fn_grp_url mariadb \
+	https://dlm.mariadb.com/3749100/MariaDB/mariadb-11.3.2/source/mariadb-11.3.2.tar.gz
+
+# https://mariadb.com/kb/en/postdownload/
+# https://dlm.mariadb.com/3749100/MariaDB/mariadb-11.3.2/source/mariadb-11.3.2.tar.gz
+
+# fn_no_VPATH
+fn_unpack
+
+# exit
+
+# USELESS HERE # ?
+# fn_with_tk
+# fn_with_grp tcl
+fn_with_grp libr
+fn_with_grp util
+# fn_with_grp_all
+# fn_with_grp_LD_RUN_PATH tcl
+# fn_with_grp_LD_RUN_PATH libr
+# fn_with_grp_LD_RUN_PATH util
+# fn_with_X11
+
+	fn_cmake_ARGS_src
+
+#	exit
+
+#	fn_reconfigure
+#	fn_configure_prefix \
+#	#
+
+#
+fn_make
+fn_make install
+# fn_make -i install

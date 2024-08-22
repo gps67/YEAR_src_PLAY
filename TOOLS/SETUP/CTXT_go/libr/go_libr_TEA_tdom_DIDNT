@@ -1,0 +1,20 @@
+. ../go__fns
+fn_grp_pkg libr tdom-0.9.3-src # .tgz
+fn_unpack
+fn_with_grp libr
+fn_with_grp tcl
+
+# this worked but it was old code revived but not reviewed
+# it picks up that TCL is actually in a different prefix tree
+fn_with_tk_sqlite3
+
+# the sqlite3 package, has a src/tea/ subdir for tclsh to build
+# almost asif another package tha works, when both src and obj pick it
+# obj does not exist, but will be made # this is after plain non-tcl build
+## src=$src/tea
+## obj=$obj/tea
+
+# runs configure in the tea/ subdir
+fn_configure_pfx
+fn_make 
+fn_make install

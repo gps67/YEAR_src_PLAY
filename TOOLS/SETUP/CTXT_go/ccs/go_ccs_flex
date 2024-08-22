@@ -1,0 +1,10 @@
+# uses bison!
+# git 
+# https://github.com/westes/flex/releases
+
+. ../go__fns
+fn_grp_url ccs https://github.com/westes/flex/files/981163/flex-2.6.4.tar.gz
+fn_unpack
+fn_configure_pfx
+# fn_make 
+fn_make install

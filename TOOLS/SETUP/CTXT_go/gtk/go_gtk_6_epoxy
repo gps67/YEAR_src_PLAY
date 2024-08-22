@@ -1,0 +1,12 @@
+. ../go__fns
+fn_grp_pkg gtk libepoxy-1.5.9
+export CFLAGS="-g -O2"
+fn_with_X11R6
+fn_with_grp libs
+fn_unpack
+
+fn_meson_setup
+fn_meson_compile
+fn_meson_install
+
+fn_ldconfig

@@ -1,0 +1,15 @@
+. ../go__fns
+# https://www.sqlite.org/download.html
+# fn_grp_pkg libr sqlite-autoconf-3360000 
+URL=https://download.savannah.gnu.org/releases/freetype/ft2demos-2.13.2.tar.xz
+fn_grp_url libr $URL
+# must have ../freetype/ -> freetype-2.13.2
+# must have ../freetype/ -> freetype-2.13.2
+# switch src and obj # but some stuff is in
+fn_no_VPATH
+fn_unpack
+fn_with_grp libr
+fn_with_grp tcl
+# fn_configure_pfx
+fn_make 
+fn_make install

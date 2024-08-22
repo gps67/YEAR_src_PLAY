@@ -1,0 +1,11 @@
+# http://isl.gforge.inria.fr/
+# 
+. ../go__fns
+# fn_grp_pkg $gcc10 isl-0.23
+gcc10=gcc13
+fn_grp_url $gcc10 https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.24.tar.bz2
+fn_unpack
+fn_with_grp $gcc10
+fn_configure_pfx
+fn_make 
+fn_make install

@@ -1,0 +1,10 @@
+. ../go__fns
+URL=https://download.qemu.org/qemu-8.2.2.tar.xz
+URL=https://download.qemu.org/qemu-9.1.0-rc2.tar.xz
+fn_grp_url emu $URL
+fn_unpack
+fn_configure_pfx
+fn_make -j 4 
+fn_make install
+
+# took 100 minutes # flawless #

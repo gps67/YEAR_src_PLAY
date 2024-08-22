@@ -1,0 +1,27 @@
+echo needs glibc-1-2-3-XXX
+
+. ../go__fns
+
+fn_grp_url emu \
+	http://prdownloads.sourceforge.net/dosemu/dosemu-1.4.0.tgz # ?download
+
+# fn_no_VPATH
+fn_unpack
+
+
+fn_with_grp libr
+fn_with_grp util
+
+fn_log type gcc
+
+fn_reconfigure
+fn_configure_prefix \
+#
+
+# needs 32 bit gcc on 64 bit system
+# not using tools gcc # todo #
+
+#
+fn_make
+fn_make install
+# fn_make -i install

@@ -1,0 +1,6 @@
+. go__fns
+fn_grp_url ccs https://ftp.gnu.org/gnu/autoconf/autoconf-2.72.tar.xz
+fn_unpack
+fn_configure_pfx
+# fn_make 
+fn_make install

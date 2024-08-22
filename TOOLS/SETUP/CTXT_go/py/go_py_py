@@ -1,0 +1,56 @@
+
+. ../go__fns
+
+# fn_grp_dir_sub py Python-3.11.3
+fn_grp_url py https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz
+# fn_no_VPATH
+fn_unpack
+
+# MESSAGE:
+# Can't locate Tcl/Tk libs and/or headers
+# SOLUTION:
+# call configure with
+# --x-libraries=${tools_2000}/tcl/lib \
+# --x-includes=${tools_2000}/tcl/include \
+# STRANGE: -these-didnt-work-
+# cmd_add LDFLAGS "-L${tools_2000}/tcl/lib"
+# cmd_add CFLAGS "-I${tools_2000}/tcl/include"
+# cmd_add CXXFLAGS "-L${tools_2000}/tcl/lib"
+# cmd_add CPPFLAGS "-I${tools_2000}/tcl/include"
+# Lib/distutils/unixcompiler.py # says -I and -L are used
+# fn_with_tk attempt the (non-)standard 
+# --with-tclconfig=$t/lib
+# --with-tkconfig=$t/lib
+# --with-tclinclude=$t/include
+# --with-tkinclude=$t/include
+#
+# USELESS HERE # ?
+fn_with_tk
+fn_with_grp tcl
+fn_with_grp libr
+fn_with_grp util
+fn_with_grp_all
+fn_with_grp_LD_RUN_PATH tcl
+fn_with_grp_LD_RUN_PATH libr
+fn_with_grp_LD_RUN_PATH util
+fn_with_X11
+
+## SOMEHOW the top bin/python has to be linked with g++
+# so that C++ modules get static init ?
+enable_optimisations=""
+enable_optimisations=--enable-optimizations
+
+fn_reconfigure
+fn_configure_prefix \
+--with-cxx-main=g++ \
+${enable_optimisations} \
+
+#
+# OLD # --with-tcltk-includes=${tools_2000}/tcl/include \
+# OLD # --with-tcltk-libs=${tools_2000}/tcl/lib \
+#
+#
+fn_make -i
+# RUN THE TK BUILD SCRIPT TO INSTALL
+fn_make install
+fn_make -i install

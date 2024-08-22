@@ -1,0 +1,64 @@
+. go__fns
+. fns_DIRS
+
+D_go=/home/gps/YEAR_offline/src/GITS/hidden/TOOLS/SETUP/CTXT_go
+
+print_var() {
+	local var_name=$1
+ eval	local var_val=\$$var_name
+ 	echo "# VAR #" $var_name "'$var_val'"
+}
+
+V_list="
+	tools_2000
+	tools_2000_ftp
+	tools_2000_src
+	tools_2000_obj
+	tools_2000_go
+" 
+for V in $V_list
+do
+	print_var $V
+done
+
+list_dirs() {
+	echo "
+		ccs
+		gcc
+		gcc11
+		gtk
+		libr
+		mariadb
+		postgresql
+		py
+		py2
+		shell
+		tcl
+		util
+	"
+	# cat $D_go/d1
+}
+
+for d in `list_dirs`
+do
+
+	
+	ln_s $tools_2000_go/$d/  $tools_2000/$d/_go
+	ln_s $tools_2000_ftp/$d/ $tools_2000/$d/_ftp
+	ln_s $tools_2000_obj/$d/ $tools_2000/$d/_obj
+	ln_s $tools_2000_src/$d/ $tools_2000/$d/_src
+	
+	ln_s $tools_2000_go/$d/ $tools_2000_src/$d/_go
+	ln_s $tools_2000_ftp/$d/ $tools_2000_src/$d/_ftp
+	ln_s $tools_2000_obj/$d/ $tools_2000_src/$d/_obj
+
+	ln_s $tools_2000_go/$d/  $tools_2000_obj/$d/_go
+	ln_s $tools_2000_ftp/$d/ $tools_2000_obj/$d/_ftp
+	ln_s $tools_2000_src/$d/ $tools_2000_obj/$d/_src
+
+	ln_s $tools_2000_ftp/$d/ $tools_2000_go/$d/_ftp
+	ln_s $tools_2000_src/$d/ $tools_2000_go/$d/_src
+	ln_s $tools_2000_obj/$d/ $tools_2000_go/$d/_obj
+
+	# break # damage limitation
+done

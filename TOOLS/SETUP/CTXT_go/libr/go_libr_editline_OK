@@ -1,0 +1,11 @@
+. ../go__fns
+URL=ftp://ftp.troglobit.com/editline/editline-1.17.1.tar.xz
+# minix version of
+# DEP ncurses 
+# fn_grp_pkg libr editline-1.17.1
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+fn_configure_pfx
+fn_make 
+fn_make install

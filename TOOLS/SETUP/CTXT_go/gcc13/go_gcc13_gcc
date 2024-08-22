@@ -1,0 +1,99 @@
+exit 1
+. ../go__fns
+
+# sudo apt install gcc-multilib # maybe 
+# installing the above led to it working
+# before it did not create crt*.o
+# after it did a pass-1-2-3-something
+
+
+#	GLIBC SAYS
+#
+#	--enable-gnu-indirect-function
+#
+
+
+	GRP=$gcc10
+	URL=https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz
+
+#	configure: error:
+#	Building GCC requires 
+#	GMP 4.2+, 
+#	MPFR 3.1.0+ and 
+#	MPC 0.8.0+.
+
+
+
+	fn_grp_url $GRP $URL
+	# fn_grp_pkg $GRP gcc-11.2.0
+#	fn_grp_pkg ccs4-$YEARMMDD $GRP
+	mkdir ${tools_2000}_obj/$GRP || echo IGNORED
+#	mkdir ${tools_2000}_obj/ccs4-$YEARMMDD || echo OK
+
+	fn_unpack
+# exit
+
+# want ccs to go first in PATH - use pfx not add 
+# ccs is binutils, make, ... and other ccs other than ccs4 compiler
+
+	fn_with_grp ccs	
+
+# problems with fixinclues picking up the /usr/include/... before /tools
+
+	fn_with_grp_all
+
+#	fn_with_grp ccs9 # use old gcc to compile new ...
+	fn_with_grp gcc13 # use old gcc to compile new ...
+	fn_with_grp gcc # use old gcc to compile new ...
+
+# put the preferred (old) compiler at the front
+
+#	var_pfx PATH $tools_2000/ccs4-$yearmmdd/bin
+#	var_pfx PATH $tools_2000/ccs9/bin
+	var_pfx PATH $tools_2000/gcc/bin
+	# last pfx added is first # last line wins
+
+# HPUX wont do gij/alien fun call asm needed
+
+	fn_configure_pfx \
+	--enable-shared \
+	--enable-threads=posix \
+	--enable-languages=c,c++ \
+	--enable-multiarch \
+	--enable-multilib \
+	--enable-gnu-indirect-function \
+#	--enable-languages=java \
+#
+	# --enable-interpreter \
+	# --enable-languages=c++,java \
+	# --enable-languages=c \
+#
+
+# so which compiler built this one ?
+# fn_log expects obj dir to exist
+
+	fn_log type gcc
+	fn_log type as
+	fn_log gcc --version
+	fn_log as --version
+
+# fn_make bootstrap || exit
+(
+	fn_make || exit # needed to build libstd++ ?? # uses obj/xcc
+)
+
+	#fn_make
+	# dont install yet
+	# ask not in fns_go # ask_do fn_make    install 
+	fn_make -i install 
+
+echo
+echo "ccache -C # clears all # run it or regret it"
+echo
+
+#fn_make install || exit
+
+	echo "#  ln -fs ccs4-$yearmmdd/ /tools/2000/ccs4"
+
+	beep_me $0 "$@"
+

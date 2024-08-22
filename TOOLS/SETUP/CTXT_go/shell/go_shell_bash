@@ -1,0 +1,36 @@
+
+. ../go__fns
+
+fn_grp_url shell \
+	https://ftp.gnu.org/gnu/bash/bash-5.2.15.tar.gz
+# fn_no_VPATH
+fn_unpack
+
+# exit
+
+# USELESS HERE # ?
+# fn_with_tk
+# fn_with_grp tcl
+fn_with_grp libr
+fn_with_grp util
+# fn_with_grp_all
+# fn_with_grp_LD_RUN_PATH tcl
+# fn_with_grp_LD_RUN_PATH libr
+# fn_with_grp_LD_RUN_PATH util
+# fn_with_X11
+
+## SOMEHOW the top bin/python has to be linked with g++
+# so that C++ modules get static init ?
+enable_optimisations=""
+# enable_optimisations=--enable-optimizations
+
+fn_reconfigure
+fn_configure_prefix \
+#
+# --with-cxx-main=g++ \
+# ${enable_optimisations} \
+
+#
+fn_make
+fn_make install
+# fn_make -i install

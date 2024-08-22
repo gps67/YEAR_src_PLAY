@@ -1,0 +1,9 @@
+. ../go__fns
+# https://zlib.net/
+fn_grp_pkg util zlib-1.2.11
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+fn_configure_pfx
+fn_make 
+fn_make install

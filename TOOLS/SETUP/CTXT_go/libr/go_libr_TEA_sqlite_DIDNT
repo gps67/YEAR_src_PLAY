@@ -1,0 +1,30 @@
+. ../go__fns
+# https://www.sqlite.org/download.html
+# fn_grp_pkg libr sqlite-autoconf-3360000 
+# TEA auto installs into tcl tree
+# tcl #
+# /tools/x86_64/tcl/lib/sqlite3.40.0
+# libr #
+# /tools/x86_64/libr/include
+# /tools/x86_64/libr/share/man
+# /tools/x86_64_src/libr/sqlite-autoconf-3400100/tea/doc/sqlite3.n
+# 
+fn_grp_pkg libr sqlite-autoconf-3400100
+fn_unpack
+fn_with_grp libr
+fn_with_grp tcl
+
+# this worked but it was old code revived but not reviewed
+# it picks up that TCL is actually in a different prefix tree
+fn_with_tk_sqlite3
+
+# the sqlite3 package, has a src/tea/ subdir for tclsh to build
+# almost asif another package tha works, when both src and obj pick it
+# obj does not exist, but will be made # this is after plain non-tcl build
+src=$src/tea
+obj=$obj/tea
+
+# runs configure in the tea/ subdir
+fn_configure_pfx
+fn_make 
+fn_make install

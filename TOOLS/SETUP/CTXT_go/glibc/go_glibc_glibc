@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#!/home/gps/prefix/bin/bash
+
+. ../go__fns
+type bash
+set -x
+GRP=ccs
+GRP=glibc
+URL=https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.xz
+fn_grp_url $GRP $URL
+fn_with_grp2 $gcc10
+fn_with_grp2 gcc
+fn_with_grp2 ccs
+if false
+then
+	fn_unpack
+	fn_configure_pfx
+fi
+# fn_make 
+fn_make -k
+fn_make install

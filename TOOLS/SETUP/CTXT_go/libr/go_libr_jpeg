@@ -1,0 +1,13 @@
+. ../go__fns
+# needs # cd $fpx/ ; ln -s share/man/
+
+
+fn_grp_pkg libr jpeg-6b
+fn_unpack
+# fn_with_grp libr
+fn_configure_pfx
+fn_make 
+
+echo ln -s share/man/ $prefix/
+
+fn_make install

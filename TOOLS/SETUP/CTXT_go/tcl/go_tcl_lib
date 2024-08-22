@@ -1,0 +1,13 @@
+. ../go__fns
+fn_grp_pkg tcl tcllib-1.21
+fn_unpack
+# exit
+# src=$src/unix
+# mkdir $obj
+# obj=$obj/unix
+fn_configure_pfx \
+--enable-gcc \
+--enable-threads \
+#
+fn_make 
+fn_make install

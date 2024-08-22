@@ -1,0 +1,10 @@
+. ../go__fns
+fn_grp_pkg gtk gobject-introspection-1.78.1
+export CFLAGS="-g -O2"
+fn_unpack
+fn_with_X11R6
+fn_with_grp libs
+
+fn_meson_setup
+fn_meson_compile
+fn_meson_install

@@ -1,0 +1,12 @@
+. ../go__fns
+# https://www.sqlite.org/download.html
+# fn_grp_pkg libr sqlite-autoconf-3360000 
+URL=https://www.sqlite.org/2024/sqlite-amalgamation-3450200.zip
+URL=https://www.sqlite.org/2024/sqlite-autoconf-3450200.tar.gz
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+fn_with_grp tcl
+fn_configure_pfx
+fn_make 
+fn_make install

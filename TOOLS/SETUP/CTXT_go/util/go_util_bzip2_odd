@@ -1,0 +1,12 @@
+. ../go__fns
+# https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+# https://www.sourceware.org/bzip2/
+fn_grp_pkg util bzip2-1.0.8
+fn_no_VPATH # do it all in $obj
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+# fn_configure_pfx
+# it is Makefile itself that in $src
+fn_make 
+fn_make install PREFIX=$prefix 

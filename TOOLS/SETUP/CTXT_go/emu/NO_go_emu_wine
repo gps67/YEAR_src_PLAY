@@ -1,0 +1,40 @@
+echo "needs X 32 bit"
+
+# https://bugs.launchpad.net/ubuntu/+source/wine1.4/+bug/944321
+# lxc is the easiest way to do the chroot.
+# http://wiki.winehq.org/WineOn64bit shows how to build just the 32 bit part;
+# http://wiki.winehq.org/BuildingBiarchWineOnUbuntu shows how to build and install a biarch 32/64 bit wine.
+
+. ../go__fns
+
+fn_grp_url emu \
+	https://dl.winehq.org/wine/source/9.x/wine-9.15.tar.xz
+
+# fn_no_VPATH
+fn_unpack
+
+
+# USELESS HERE # ?
+# fn_with_tk
+# fn_with_grp tcl
+fn_with_grp libr
+fn_with_grp util
+# fn_with_grp_all
+# fn_with_grp_LD_RUN_PATH tcl
+# fn_with_grp_LD_RUN_PATH libr
+# fn_with_grp_LD_RUN_PATH util
+# fn_with_X11
+
+fn_log type gcc
+
+fn_reconfigure
+fn_configure_prefix \
+#
+
+# needs 32 bit gcc on 64 bit system
+# not using tools gcc # todo #
+
+#
+fn_make
+fn_make install
+# fn_make -i install

@@ -1,0 +1,9 @@
+. ../go__fns
+# https://www.gnu.org.ua/software/gdbm/download.html
+# fn_grp_pkg libr gdbm-1.22 
+fn_grp_url libr https://ftp.gnu.org/gnu/gdbm/gdbm-1.23.tar.gz
+fn_unpack
+# fn_with_grp libr
+fn_configure_pfx
+fn_make 
+fn_make install

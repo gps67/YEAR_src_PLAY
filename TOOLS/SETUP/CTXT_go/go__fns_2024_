@@ -1,0 +1,1075 @@
+# . /etc/profile
+
+
+unalias rm 2>/dev/null
+unset CDPATH
+export LC_ALL=C
+hash -r
+export CONFIG_SHELL=/bin/bash
+export SHELL=/bin/bash
+
+. fns_DIRS # ln_s
+
+# tools_2000 # the top of the installed tree # has subdir grp
+# tools_2000_grp # the top of the installed tree group # PREFIX #
+
+# grp # eg "tcl" # tree per group of apps # is --prefix # needs 
+
+# subdir # name of and from tarfile # just use $src or $obj
+
+# src # the actual source TOP dir
+# obj # the actual object TOP dir 
+
+fn_list_tar_gz()
+{
+ # used when searching for tarfile
+ echo "
+	tar
+	tar.gz
+	tgz
+	tar.bz2
+	tar.bz
+	tbz
+	zip
+	tar.xz
+	tar.lz
+ "
+}
+
+fn_zcat()
+{
+	# tar does not know about all formats, so we do it
+	file="$1"
+	if [ ! -r "$file" ]
+	then
+		echo >&2 "File $file not readable"
+		return 4
+	fi
+	# tar also has flag for bzip
+	case "$file"
+	in
+		*.gz)	Z=zcat
+	;;	*.tgz)	Z=zcat
+	;;	*.bz2)	Z=bzcat
+	;;	*.bz)	Z=bzcat
+	;;	*.tbz)	Z=bzcat
+	;;	*.xz)	Z=xzcat
+	;;	*.lz)	Z="lzip -dc" # OK multiword expanded on use
+	;;	*.tar)	Z=cat
+	;;	*)	
+		echo "File '$file' not named .gz or .bz2"
+		return 1
+	esac
+	$Z - < "$file"
+}
+
+p_r_t_c()
+{
+	echo "$* ... Press Return To Continue ..."
+	read junk
+}
+
+fn_FAIL()
+{
+	# REWORK to be like fns_FAIL # currently independent of that code
+	e=$?
+	if [ "$e" == "0" ] 
+	then
+		e=1
+	else
+		perror $e
+	fi
+	echo >&2 "FAIL: $* (Exit $e)"
+	exit $e
+}
+
+FAIL() 
+{
+	fn_FAIL "$@"
+}
+
+fn_must_have_dir()
+{
+	[ -d "$1" ] || fn_FAIL must have dir $1
+}
+
+fn_cd_or_fail()
+{
+	cd "$1" || fn_FAIL cd "$1"
+	cd "$1" || echo "############# cd fail ##########"
+	pwd
+}
+
+fn_make_dir()
+{
+	[ -d "$1" ] || mkdir "$1" || fn_FAIL mkdir $1
+}
+
+fn_make_dir_p()
+{
+	[ -d "$1" ] || mkdir -p "$1" || fn_FAIL mkdir -p $1
+}
+
+fn_make_dir_p_above()
+{
+	fn_make_dir_p `dirname $1`
+}
+
+var_add()
+{
+	eval `PATH_TOOL -for_eval add "$@"`
+}
+
+var_pfx()
+{
+	eval `PATH_TOOL -for_eval pfx "$@"`
+}
+
+var_del()
+{
+	eval `PATH_TOOL -for_eval del "$@"`
+}
+
+var_list()
+{
+	PATH_TOOL list "$@"
+}
+
+cmd_add()
+{
+	eval `PATH_TOOL -sep_space -for_eval add "$@"`
+}
+
+#################################
+
+fn_setup_environ()
+{
+	# we dont know ../grp/ yet
+	#
+	# /tools/2000 # is a moving prefix, but makes sense
+	# /tools/2020/
+	# /tools/YEAR/
+	# /tools/DEMO/ # this is a good idea
+	# /tools/LIVE/
+	# /tools/CTXT/ # one day # register int * cpu_var_CTXT asm("a5");
+	# /tools/ARM9/ #
+	# /tools/ARM5/ # all visible
+	# /tools/x64/ # this is a good idea 
+	#
+	tools_2000=/tools/2000
+	tools_2000=/tools/CTXT
+	tools_2000=/tools/`uname -m` # x86_64
+
+	# you have to setup some dirs manually
+	# not auto because you need to CHOOSE not by accident
+	# src can be shared if there are no patches
+	# obj can/not be shared
+
+	tools_2000_ftp=${tools_2000}_ftp
+	tools_2000_src=${tools_2000}_src
+	tools_2000_obj=${tools_2000}_obj
+	tools_2000_go=${tools_2000}_go
+
+	fn_must_have_dir ${tools_2000_ftp} || exit
+	fn_must_have_dir ${tools_2000_src} || exit
+	fn_must_have_dir ${tools_2000_obj} || exit
+	fn_must_have_dir ${tools_2000_go} || exit
+
+	# compile with gcc13 # or ln -s gcc13/ $tools_2000/gcc
+	gcc10=gcc13
+
+	PATH_TOOL=${PATH_TOOL:-${tools_2000_go}/PATH_TOOL}
+	var_pfx PATH ${tools_2000_go}
+
+# grp #
+	# /tools/CTXT/grp/bin # eg grp == tcl
+	# each major package group has a subdir of its own
+	# this is because everything in that grp will need updating together
+	# grp == gcc10 # is gcc and gmp # not make ar ...
+	# grp == ccs9 # is gcc and gmp # not make ar ...
+	# grp == ccs # is ld and make and ... # not gcc version ccs9
+	# currently NO cross compilers are used
+	# but that would not be impossible with this layout
+
+	# downside is long PATH and LD_LIBRARY_PATH and LD_RUN_PATH 
+	# each compile _should_ find $tools_2000/$grp/{bin,lib,...} 
+	# ie --prefix $tools_2000/$grp # NOT $tools_2000
+
+# include all $PATH dirs for configure
+
+# FORCE gcc3 (which picks up libc and non mdk loader from gcc-lib/.../specs
+# NB /tools/2004/glibc/lib provides libc.so.6 and ld-linux.so.2
+
+	var_pfx PATH $tools_2000/$gcc10/bin	# prefer gcc 9
+	var_pfx PATH $tools_2000/ccs/bin	# prefer own binutils
+
+# KLUDGE: avoid /usr/lib/libc.so.6 - BUT -
+#	var_pfx LD_RUN_PATH /tools/2004/glibc/lib
+#	var_add LD_RUN_PATH /lib
+#	var_add LD_RUN_PATH /usr/lib
+# alternative to gcc -B options
+#	var_add GCC_EXEC_PREFIX /tools/2004/glibc/lib
+#	var_add GCC_EXEC_PREFIX /tools/2004/ccs4/lib
+#	export GXX="/tools/2004/ccs4/bin/g++ -B /tools/2004/glibc/lib"
+#	export GCC="/tools/2004/ccs4/bin/gcc -B /tools/2004/glibc/lib"
+#	export CC=$GCC
+
+# FORCE nm, ar, elfs, ... from the newly built ccs dir
+
+	var_pfx PATH $tools_2000/ccs/bin
+	var_add PATH $tools_2000/util/bin # lzip
+#	var_pfx PATH $tools_2000/utils/bin
+
+# p_r_t_c and any strays # overrides
+
+	var_pfx PATH ${tools_2000_go}
+
+# this is dubious
+
+	export CFLAGS=${CFLAGS:-"-g -O2"}
+	export CXXFLAGS=${CFLAGS:-"-g -O2"}
+
+# lists of more parameters
+
+	export OPT_config
+
+# gcc/ld causes executables to search this for shared objects
+# but that is switched off by -rpath
+
+# use bbox
+# not for mysql - sed loses it
+
+	# fn_use_bbox
+
+# still unset
+#
+#	grp 	# eg "ccs"
+#	$prefix # == $tools_2000/$grp
+#	subdir	# eg "bison-3.8"
+#	src	# == $tools_2000_src/$grp/$subdir
+#	obj	# == $tools_2000_obj/$grp/$subdir
+#	maybe rework as tools_2000_grp_src ...
+}
+
+########### functions ###########
+
+
+fn_INCLUDE_dir()
+{
+	if [ -d $1 ]
+	then
+		: echo "# OK # var_pfx CPLUS_INCLUDE_PATH $1"
+	else
+		echo "# FAIL # var_pfx CPLUS_INCLUDE_PATH $1 # NO SUCH DIR"
+	fi
+
+	var_pfx CPLUS_INCLUDE_PATH	$1
+	var_pfx C_INCLUDE_PATH		$1
+}
+
+fn_LD_RUN_PATH_dir()
+{
+	if false
+	then
+		# -L SPACE $dir confuses libtool
+		export CFLAGS="$CFLAGS -L$1"
+		export CFLAGS="$CFLAGS -Wl,--rpath=$1"
+	fi
+
+	var_pfx LD_RUN_PATH	$1
+	var_pfx LD_LIBRARY_PATH	$1
+	var_pfx LIBRARY_PATH	$1
+	var_pfx PATH		$1
+	var_pfx LDFLAGS		-L$1	# this wont work
+}
+
+fn_with_grp2_LD_RUN_PATH() # grp
+{
+	# build with peer grp 
+	# add grp/lib/ into runtime LD search path
+	# add other compile time stuff
+	fn_LD_RUN_PATH_dir $tools_2000/$1/lib
+}
+
+fn_with_grp2_compile() # grp is a second grp2
+{
+	# fn_with_grp2_LD_RUN_PATH "$1"
+	export CFLAGS="$CFLAGS -I$tools_2000/$1/include"	
+	fn_INCLUDE_dir			$tools_2000/$1/include
+	var_pfx PATH			$tools_2000/$1/bin
+	var_pfx PKG_CONFIG_PATH 	$tools_2000/$1/lib/pkgconfig
+}
+
+fn_with_grp2() # grp2
+{
+	# build with peer grp 
+	fn_with_grp2_compile "$1"
+	fn_with_grp2_LD_RUN_PATH "$1"
+}
+
+fn_with_grp() # grp2
+{
+	# for _go scripts that donw see the difference
+	fn_with_grp2 "${1:-grp}"
+}
+
+fn_set_grp() # grp # is a global var # grp2 is not
+{
+	grp="${1:-$grp}"
+	grp="${grp:-grp}"
+	fn_with_grp2 $grp
+}
+
+fn_with_grp_all()
+{
+	fn_with_grp2_all
+}
+
+fn_with_grp2_all()
+{
+	SUBS="
+		util
+		ccs
+		gcc
+		gcc13
+		glibc2
+		gtk
+		libr
+		mysql
+		net
+		pgsql
+		py
+		sdl
+		tcl
+		www
+		X11R6
+		boot_root_bash
+		shell
+	"
+
+	nosubs="
+		wx
+		xml
+		media
+		apps
+		shell
+		qt4
+	"
+
+	for sub in $SUBS
+	do
+		fn_with_grp2 $sub
+	done
+}
+
+
+fn_pkg_dir_from_pkg_file()
+{
+	# convert
+	# binutils-2.40.tar.xz
+	# binutils-2.40
+	for ext in `fn_list_tar_gz`
+	do
+	 echo >&2 "THIS FAILS to match when it should"
+	 echo >&2 also called when not needed
+	 if base=`expr match "$1" "\(.*\)\.$ext\$"`
+	 then
+	 	echo "$base"
+		return
+	 fi
+	done
+	echo NOMATCH
+	# 
+	set -x
+	fn_FAIL 22 "pkgfile '$1' does not end in .tgz"
+	return 1
+}
+
+print_var() {
+	local var_name=$1
+ eval	local var_val=\$$var_name
+ 	echo "# VAR #" $var_name "'$var_val'"
+}
+
+fn_grp_mk_links()
+{
+
+	V_list="
+		tools_2000
+		tools_2000_ftp
+		tools_2000_src
+		tools_2000_obj
+		tools_2000_go
+	" 
+	for V in $V_list
+	do
+		print_var $V
+	done
+
+	
+	fn_make_dir $tools_2000_go/$grp/  
+	fn_make_dir $tools_2000_ftp/$grp/
+	fn_make_dir $tools_2000_obj/$grp/
+	fn_make_dir $tools_2000_src/$grp/
+
+	# fn_make_dir tools_2000/$grp/ # only done by install # chmod ?
+	fn_make_dir $tools_2000/$grp/ # only done by install # chmod ?
+
+# 	return
+
+	local grp="$1" # already set in global grp ?
+
+	local d=$grp
+	
+	ln_s $tools_2000_go/$grp/  $tools_2000/$grp/_go
+	ln_s $tools_2000_ftp/$grp/ $tools_2000/$grp/_ftp
+	ln_s $tools_2000_obj/$grp/ $tools_2000/$grp/_obj
+	ln_s $tools_2000_src/$grp/ $tools_2000/$grp/_src
+	
+	ln_s $tools_2000_go/$grp/ $tools_2000_src/$grp/_go
+	ln_s $tools_2000_ftp/$grp/ $tools_2000_src/$grp/_ftp
+	ln_s $tools_2000_obj/$grp/ $tools_2000_src/$grp/_obj
+
+	ln_s $tools_2000_go/$grp/  $tools_2000_obj/$grp/_go
+	ln_s $tools_2000_ftp/$grp/ $tools_2000_obj/$grp/_ftp
+	ln_s $tools_2000_src/$grp/ $tools_2000_obj/$grp/_src
+
+	ln_s $tools_2000_ftp/$grp/ $tools_2000_go/$grp/_ftp
+	ln_s $tools_2000_src/$grp/ $tools_2000_go/$grp/_src
+	ln_s $tools_2000_obj/$grp/ $tools_2000_go/$grp/_obj
+
+	# break # damage limitation
+
+}
+
+fn_grp_get()
+{
+	fn_FAIL UNUSED fn_grp_get
+	# simply get an associated file (dont do this last)
+	fn_grp_url "$@"
+}
+
+fn_grp_url()
+{
+	grp="$1"
+	fn_grp_mk_links $grp
+	url="$2"
+	# 
+	urldir=`dirname $url`
+	pkgfile=`basename $url`
+	fn_grp_urldir_file $grp $urldir $pkgfile
+}
+
+fn_grp_urldir_file()
+{
+	# setup vars for 'dir' under grp, with optional subdir
+	case $#
+	in
+		X) :
+	;;	3) : # OK
+	;;	*)
+		fn_FAIL "USAGE: fn_grp_urldir_file ccs http://gnu/ binutils-123"
+		exit 1
+	esac
+
+	grp="$1"
+	urldir="$2"
+	pkgfile="$3"
+	pfxsub="${4:-$pkgfile}"
+
+	fn_set_grp "$grp"
+
+	# convert # binutils-2.40.tar.xz # binutils-2.40 #
+	# ie pkgdir is the TOP dir name # .../binutils-2.40/...
+	pkgdir=`fn_pkg_dir_from_pkg_file $pkgfile` || fn_FAIL "pkgfile $pkgfile"
+	# echo "pkgdir=$pkgdir"
+
+	fn_grp_dir_sub $grp $pkgdir $pfxsub
+
+	fn_fetch
+}
+
+fn_trim_tail()
+{
+	local all
+	local lhs
+	local rhs
+	all="${1:-allline}"
+	rhs="${2:--tailxxx}"
+	if lhs=`expr match $all "\(.*\)$rhs"`
+	then
+		# fn_var all lhs rhs
+		echo "$lhs"
+		: # OK
+	else
+		# fn_var all lhs rhs
+		echo >&2 "# WARN no match for $rhs in $1"
+		return 1
+	fi
+}
+
+fn_trim() 
+{
+	tail="${1:--tail}"
+	pkgdir=`fn_trim_tail $pkgdir $tail`
+	fn_grp_dir_sub $grp $pkgdir # $pfxsub
+}
+
+fn_grp_pkg()
+{
+	# eg fn_grp_pkg sql mysql-3.22.32
+	fn_grp_dir_sub "$@"
+}
+
+fn_grp_dir_sub() # grp  mysql-3.22.32  [subsub]
+{
+
+	# sets $subdir # mysql-3.22.32 # same as tarfile and topdir and obj
+	# USED  subdir # 
+
+	# setup vars for 'dir' under grp, with optional subdir
+	case $#
+	in
+		2) :
+	;;	3) :
+	;;	*)
+		fn_WARN 6 "\$# == $# # $* #"
+		fn_FAIL "USAGE: fn_grp_dir_sub serv2 mysql-3.22.32 [subsub]"
+		exit 1
+	esac
+
+	grp="$1"
+	subdir="$2"
+	pfxsub="${3:-$pfxsub}"
+
+	# snack needs exec_prefix
+	export prefix=$tools_2000/$grp
+	export exec_prefix="$prefix"
+	[ -n "$pfxsub" ] || prefix=$prefix/$pfxsub
+
+	var_pfx PATH            $prefix/bin
+	var_pfx LD_LIBRARY_PATH $prefix/lib
+	var_pfx LIBRARY_PATH    $prefix/lib
+	var_pfx LD_RUN_PATH     $prefix/lib
+
+	fn_set_grp $grp
+	fn_with_grp2 libr # no
+
+	# src is the actual package top dir src
+	# obj is the actual package top dir obj - does not exist yet
+	src=${tools_2000_src}/$grp/$subdir
+	obj=${tools_2000_obj}/$grp/$subdir
+
+	fn_make_dir ${tools_2000_obj}/$grp
+	fn_make_dir ${tools_2000_src}/$grp
+	fn_make_dir ${tools_2000_ftp}/$grp
+
+	log_file_name=`basename $0`.log
+	log_file_dir_1=${tools_2000_obj}/$grp		## grp not pkg
+	log_file_dir_2=${tools_2000_obj}/$grp/$subdir
+
+	log=$log_file_dir_1/$log_file_name
+
+	fn_var src obj prefix absent
+
+	# fn_log date
+	# fn_log ldd /bin/sh
+	# fn_log type gcc
+	# fn_log gcc --version
+}
+
+fn_sub_src_sub_obj()
+{
+	# both src and obj use a subdir
+	# naughty reuse of same name for sliding subdir
+	# TODO rename over_obj over_src
+	# TODO rename TOP_obj TOP_src
+	# TODO create PKG_obj PKG_src # or PKV for package_version #
+	fn_make_dir $obj
+	obj=$obj/$1
+	src=$src/$1
+	# now mkdir done by # fn_grp_mk_links()
+	fn_make_dir $obj
+	# fn_grp_mk_links()
+	# ln_s
+}
+
+fn_no_VPATH()
+{
+	# src is nice to have in one area - but lose this feature
+	# obj is architecture specific - so always build in obj for platform
+	# also bzip2 has no configure, Makefile is not created
+	[ -L $src ] || ln -s $obj $src 
+	src=$obj
+	log=$obj/$0.log
+}
+
+fn_fetch()
+{
+	# download if absent
+	tar=${tools_2000_ftp}/$grp/$pkgfile
+	if [ -f $tar ]
+	then
+		echo "# fn_fetch # already have file $pkgfile"
+	else
+		D=${tools_2000_ftp}/$grp/
+		# fn_make_dir $D # done #
+		cd $D
+		# github needs --no-check-certificate
+		wget --no-check-certificate -N "$urldir/$pkgfile"
+	#	wget -N "$urldir/$pkgfile"
+	fi
+}
+
+fn_unpack()
+{
+	# uses $subdir as tarfile name $subdir.tgz
+	if cd $src 2>/dev/null
+	then
+		: OK
+	else
+		fn_make_dir_p_above $src
+		echo "Searching for tarball ..."
+		
+		for ext in `fn_list_tar_gz`
+		do
+			tar=${tools_2000_ftp}/$grp/$subdir.$ext
+			if [ -f $tar ] 
+			then
+				echo " ... $tar ... FOUND"
+			else
+				echo " NOT $tar"
+				continue
+			fi
+			fn_cd_or_fail `dirname $src` 
+			case "$tar"
+			in
+				*.zip)	unzip -a $tar
+			;;	*)	fn_zcat $tar | tar -xvf -
+			esac
+			break
+		done
+		sync
+		[ -f $tar ] || fn_FAIL TARBALL not found
+		fn_cd_or_fail $src 
+	fi
+}
+
+export reconfigure=false
+fn_reconfigure() {
+	reconfigure=true
+}
+
+fn_var()
+{
+	echo "# fn_var # $@"
+	local var
+	local val
+	for var in "$@"
+	do
+	  eval	local val="\$$var"
+		printf >&2 "# VAR # $var # '$val' #\n"
+	done
+}
+
+fn_log()
+{
+	(
+		set -x
+		"$@"
+	) 2>&1 | tee -a $log
+}
+
+fn_with_mysql()
+{
+	fn_with_grp2 mysql
+	# grp2=mysql # under lib
+	fn_LD_RUN_PATH_dir $tools_2000/mysql/lib/mysql
+}
+
+fn_with_X11R6()
+{
+	fn_with_X11 "$@"
+}
+fn_with_X11()
+{
+	fn_with_grp_compile X11R6
+	return
+	#
+	# solaris wants
+	# -L/usr/openwin/lib
+	#
+	# HPUX doesnt come with X11.h
+	I1=/tools/2004_ftp/x11/X11R6/include
+	OPT_config_X11=--with-x_includes=$I1
+	$OPT_config="$OPT_config $OPT_config_X11"
+}
+
+fn_with_tk_sqlite3()
+{
+	# tcl 8.6 has sqlite3 in ../pkgs/.
+	# tcl 8.7 doesnt
+	t=$tools_2000/tcl
+	OPT_config="$OPT_config \
+	--with-tclconfig=$t/lib \
+	--with-tkconfig=$t/lib \
+	--with-tclinclude=$t/include \
+	--with-tkinclude=$t/include \
+	" #
+}
+
+fn_with_tk()
+{
+	return
+	t=$tools_2000/tcl
+	OPT_config="$OPT_config \
+	--with-tclconfig=$t/lib \
+	--with-tkconfig=$t/lib \
+	--with-tclinclude=$t/include \
+	--with-tkinclude=$t/include \
+	" #
+}
+
+fn_with_qt4()
+{
+	fn_with_X11
+	fn_with_grp2 qt4
+	export QTDIR=$tools_2000/qt4
+	export QTPATH="$QTDIR"
+	export QT_LIB=$QTDIR/lib
+	var_pfx PATH $QTDIR/bin
+}
+
+fn_with_libcxx()
+{
+	fn_LD_RUN_PATH_dir $tools_2000/$gcc10/lib
+}
+
+fn_with_wx()
+{
+	fn_with_gtk
+	fn_with_grp2 wx
+	fn_with_grp2 py
+	fn_LD_RUN_PATH_dir $tools_2000/$gcc10/lib
+}
+
+fn_with_gtk()
+{
+	fn_with_X11
+	fn_with_grp2 gtk
+}
+
+fn_with_sdl()
+{
+	fn_with_X11
+	fn_with_grp2 sdl
+}
+
+with_X11()
+{
+	fn_with_X11 "$@"
+}
+
+fn_make_dir_obj()
+{
+	fn_make_dir $obj
+	[ -f $log_file_dir_2/$log_file_name ] || ln \
+		$log_file_dir_1/$log_file_name \
+		$log_file_dir_2/$log_file_name
+}
+
+fn_pre_configure_src_cmd()
+{
+	# STRANGE # is in src not in obj #
+	# fn_make_dir_obj
+	# fn_cd_or_fail $obj 
+	# DONE # fn_make_dir_obj
+	fn_make_dir_obj
+	fn_cd_or_fail $src 
+	echo "running -- $*"
+	"$@"
+}
+
+fn_configure_prefix()
+{
+	fn_make_dir_obj
+
+	if [ -f $obj/config.status ]
+	then
+		return
+	fi
+	if $reconfigure || [ ! -f $obj/config.cache ]
+	then
+		: # stay
+	else
+		return
+	fi
+
+	# openssl has Configure
+	# didnt work anyway
+	CONF=$src/configure 
+	CONF2=$src/config
+	CONF3=$src/Configure 
+	[ ! -f $CONF ] && [ -f $CONF2 ] && CONF=$CONF2
+	[ ! -f $CONF ] && [ -f $CONF3 ] && CONF=$CONF3
+		
+	if true
+	then
+		fn_cd_or_fail $obj 
+	(
+		( env; P ; P PKG_CONFIG_PATH ; P LD_LIBRARY_PATH ) >$log.env
+		# sh -x \
+		# $src/configure \
+		$CONF \
+		--prefix=$prefix \
+		$OPT_config \
+		"$@" \
+		|| fn_FAIL configure failed
+	) 2>&1 | tee -a $log
+	fi
+}
+
+fn_configure_prefix_SP()
+{
+	# identical to above but --prefix $prefix # SP not = # used by doxygen
+	fn_make_dir_obj
+	
+	if [ -f $obj/config.status ]
+	then
+		return
+	fi
+	if $reconfigure || [ ! -f $obj/config.cache ]
+	then
+		: # stay
+	else
+		return
+	fi
+	if true
+	then
+		fn_cd_or_fail $obj 
+	(
+		( env; P ) >$log.env
+		# sh -x \
+		$src/configure \
+		--prefix $prefix \
+		$OPT_config \
+		"$@" \
+		|| fn_FAIL configure failed
+	) 2>&1 | tee -a $log
+	fi
+}
+
+fn_configure_pfx() 
+{
+	fn_configure_prefix "$@"
+}
+
+fn_sudo_make()
+{
+	MAKE=${MAKE:-make}
+	MAKE="sudo $MAKE"
+	fn_make "$@"
+}
+
+fn_cmake_L()
+{
+	fn_cmake_ARGS_src -L
+}
+
+fn_cmake_G_src()
+{
+	fn_cmake_ARGS_src -G "$1" 
+}
+
+fn_cmake_ARGS_src()
+{
+	fn_make_dir_obj # creates logfile link
+	fn_cd_or_fail $obj 
+	echo "# cmake $@ $src # called every time"
+	cmake "$@" $src
+}
+
+fn_meson()
+{
+	: pass
+}
+
+fn_meson_setup()
+{
+	if [ -f $obj/config.h ]
+	then
+		echo "# INFO # no reconfiure # obj/config.h already exists"
+		return
+	fi
+
+	# identical to above but --prefix $prefix # SP not = # used by doxygen
+	fn_make_dir_obj
+	
+#	if [ -f $obj/config.status ]
+#	then
+#		return
+#	fi
+
+#	if $reconfigure || [ ! -f $obj/config.cache ]
+#	then
+#		: # stay
+#	else
+#		return
+#	fi
+
+	if true
+	then
+		fn_cd_or_fail $obj 
+	(
+		( env; P ) >$log.env
+		# sh -x \
+		meson setup $obj $src	\
+		-Dprefix="$prefix"	\
+		"$@"			\
+		|| fn_FAIL meson setup failed
+		#
+
+	#	$src/configure \
+	#	--prefix $prefix \
+	#	$OPT_config \
+	#	"$@" \
+	) 2>&1 | tee -a $log
+	fi
+}
+
+fn_meson_compile()
+{
+	# TODO # TEST # -j 4 # EDITED #
+#	JOBS=""
+#	JOBS="-j 4"
+	fn_cd_or_fail $obj 
+	(
+		meson compile "$@" \
+		|| fn_FAIL meson compile "$@"
+	) 2>&1 | tee -a $log
+	t=$?
+	if [ $t = 0 ]
+	then
+		return
+	else
+		echo "## FAIL ## exit $t ## Continue? # CTRL-C or ENTER"
+		read junk
+		return $?
+	fi
+	fn_ldconfig
+}
+
+fn_meson_install()
+{
+	# TODO # TEST # -j 4 # EDITED #
+#	JOBS=""
+#	JOBS="-j 4"
+	fn_cd_or_fail $obj 
+	(
+		meson install "$@" \
+		|| fn_FAIL meson install "$@"
+	) 2>&1 | tee -a $log
+	t=$?
+	if [ $t = 0 ]
+	then
+		return
+	else
+		echo "## FAIL ## exit $t ## Continue? # CTRL-C or ENTER"
+		read junk
+		return $?
+	fi
+	fn_ldconfig
+}
+
+fn_make()
+{
+	# TODO # TEST # -j 4 # EDITED #
+	JOBS=""
+	JOBS="-j 4"
+	fn_make_dir_obj # creates logfile link
+	fn_cd_or_fail $obj 
+	(
+		MAKE=${MAKE:-make}
+		$MAKE $JOBS "$@" || fn_FAIL make "$@"
+	) 2>&1 | tee -a $log
+	t=$?
+	if [ $t = 0 ]
+	then
+		return
+	else
+		echo "## FAIL ## exit $t ## Continue? # CTRL-C or ENTER"
+		read junk
+		return $?
+	fi
+	fn_ldconfig
+}
+
+fn_qmake()
+{
+	# added for a qt3 app, which rejected - so untested
+	fn_make_dir_obj
+	fn_cd_or_fail $obj 
+	(
+		QMAKE=${QMAKE:-qmake}
+		$QMAKE "$@" || fn_FAIL make "$@"
+	) 2>&1 | tee -a $log
+	t=$?
+	if [ $t = 0 ]
+	then
+		return
+	else
+		echo "## FAIL ## exit $t ## Continue? # CTRL-C or ENTER"
+		read junk
+		return $?
+	fi
+}
+
+fn_make_i()
+{
+	fn_make -i "$@"
+	fn_ldconfig
+}
+
+fn_make_k()
+{
+	fn_make -k "$@"
+	fn_ldconfig
+}
+
+fn_make_k_install()
+{
+	fn_make_k "$@" install
+}
+
+fn_make_i_install()
+{
+	fn_make_i "$@" install
+}
+
+fn_use_bbox()
+{
+	var_pfx PATH $tools_2000/bbox/bin
+	var_pfx PATH $tools_2000/bbox/usr/bin
+ #	var_pfx PATH $tools_2000/bbox/usr/sbin
+ #	var_pfx PATH $tools_2000/bbox/sbin
+}
+
+fn_ldconfig()
+{
+	ldconfig -n $prefix/lib
+}
+
+fn_python_setup_py()
+{
+	# MAYBE # fn_with_grp2 py # should be so but dont default it here?
+	# MAYBE check that /usr/bin/python doesnt get used, warn?
+
+	fn_make_dir_obj # creates logfile link
+	fn_cd_or_fail $obj || exit
+	fn_log python setup.py "$@"
+}
+
+# call the func at the top with forward refs resolved
+
+	fn_setup_environ
+

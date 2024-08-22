@@ -1,0 +1,15 @@
+. ../go__fns
+# https://www.sqlite.org/download.html
+URL=https://www.sqlite.org/2024/sqlite-doc-3450200.zip
+fn_grp_url libr $URL
+doc_top=$prefix/share/doc/$subdir
+if [ ! -d $doc_top ]
+then
+	 fn_unpack
+	 mv $src $doc_top
+fi
+set -x
+# /usr/lib/mc/ext.d/web.sh open html \
+#
+x-www-browser file://$doc_top/index.html &
+sleep 2

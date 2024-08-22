@@ -1,0 +1,15 @@
+. go__fns
+if : false
+then
+fn_grp_url ccs https://www.doxygen.nl/files/doxygen_manual-1.9.6.pdf.zip
+fn_fetch
+fn_grp_url ccs https://www.doxygen.nl/files/doxygen-1.9.6.src.tar.gz
+fn_fetch
+fn_unpack
+fi
+fn_grp_pkg ccs doxygen-1.9.6 # drop the .src
+fn_cmake_G_src "Unix Makefiles"
+fn_cmake_L
+#fn_configure_pfx
+fn_make 
+fn_make install

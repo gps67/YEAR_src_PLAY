@@ -1,0 +1,20 @@
+. go__fns
+
+# note stupid tar name
+# 1.11.0 # 2022
+url=https://github.com/ninja-build/ninja/archive/refs/tags/v1.11.1.tar.gz
+fn_grp_url ccs $url
+fn_unpack
+exit
+
+# https://github.com/ninja-build/ninja
+# ./configure.py --bootstrap
+# cmake -Bbuild-cmake
+# cmake --build build-cmake
+# ./build-cmake/ninja_test
+
+# used by chrome V8 ? LLVM ? qemu ? #
+
+fn_configure_pfx
+fn_make -i
+fn_make -i install

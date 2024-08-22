@@ -1,0 +1,11 @@
+
+# https://gmplib.org/
+
+
+. ../go__fns
+fn_grp_url ccs https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz
+fn_unpack
+fn_with_grp $gcc10
+fn_configure_pfx
+fn_make 
+fn_make install

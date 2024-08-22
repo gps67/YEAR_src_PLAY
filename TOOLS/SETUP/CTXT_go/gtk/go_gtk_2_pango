@@ -1,0 +1,19 @@
+. ../go__fns
+# PROBS ? # fn_grp_pkg gtk pango-1.14.7
+# adding new glib then pango made it fail #
+# fn_grp_pkg gtk pango-1.14.3
+
+# USES # see README.md
+# fontconfig
+# harfbuzz
+# fribidi
+#
+fn_grp_pkg gtk pango-1.90.0
+fn_unpack
+fn_with_X11R6
+fn_with_grp gtk
+fn_with_grp libs
+
+fn_meson_setup
+fn_meson_compile
+fn_meson_install

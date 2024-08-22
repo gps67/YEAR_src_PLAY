@@ -1,0 +1,4 @@
+cd mk_obj
+make "${@}" \
+2>&1 \
+| tee -a $0.log

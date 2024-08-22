@@ -1,0 +1,24 @@
+
+https://turbovnc.org/Documentation/UltraVNC
+
+	says:
+
+	UltraVNC as server // talktalk sys filtered!
+	TurboVNC as viewer
+
+Configure UltraVNC for maximum performance
+Right-click on the UltraVNC icon at the right of the taskbar, and select "Properties"
+"Poll Full Screen" and "System HoolDll" should be checked (this is the default)
+Check the "Mirror Driver" check box, then click the "Check the mirror driver" button. It should say "Driver found. Driver version OK. Driver not activated ..." (It will be activated as soon as a viewer connects)
+Un-check "Low Accuracy (Turbo Speed)"
+Set "Max Cpu" to 90
+Click "OK"
+
+Set a VNC password
+Right-click on the UltraVNC icon at the right of the taskbar, and select "Admin Properties"
+Enter a new VNC password in the "VNC Password" box
+Click "OK"
+
+https://www.turbovnc.org/
+
+

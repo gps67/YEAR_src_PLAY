@@ -1,7 +1,7 @@
 . ../go__fns
 # https://www.sqlite.org/download.html
 # fn_grp_pkg libr sqlite-autoconf-3360000 
-URL=https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.xz
+URL=https://download.savannah.gnu.org/releases/freetype/freetype-2.13.3.tar.xz
 fn_grp_url libr $URL
 # no_VPATH is ONLY used because ft2demos needs it
 fn_no_VPATH

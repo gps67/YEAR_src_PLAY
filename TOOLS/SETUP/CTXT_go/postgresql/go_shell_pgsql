@@ -1,8 +1,11 @@
 
 . ../go__fns
 
+_16_0=16.0
+_16_0=17beta3
+v16_0=v${_16_0}
 fn_grp_url postgresql \
-	https://ftp.postgresql.org/pub/source/v16.0/postgresql-16.0.tar.bz2
+	https://ftp.postgresql.org/pub/source/${v16_0}/postgresql-${_16_0}.tar.bz2
 
 # fn_no_VPATH
 fn_unpack

@@ -1,17 +1,20 @@
 . ../go__fns
+tklib_0_8=tklib-0.8
 if false
 then
- url=http://prdownloads.sourceforge.net/tcl/tk9.0b2-src.tar.gz
- url=https://core.tcl-lang.org/tklib/attachdownload/tklib-0.8.tar.bz2
- url=https://core.tcl-lang.org/tklib/attachdownload/tklib-0.8.tar.bz2?page=Downloads&file=tklib-0.8.tar.bz2
- url=https://core.tcl-lang.org/tklib/raw/tklib-0.8.tar.bz2
+ # url=http://prdownloads.sourceforge.net/tcl/tk9.0b2-src.tar.gz
+ # url=https://core.tcl-lang.org/tklib/attachdownload/tklib-0.8.tar.bz2
+ # url=https://core.tcl-lang.org/tklib/attachdownload/tklib-0.8.tar.bz2?page=Downloads&file=tklib-0.8.tar.bz2
+ # url=https://core.tcl-lang.org/tklib/raw/tklib-0.8.tar.bz2
+
+ url=https://core.tcl-lang.org/tklib/raw/${tklib_0_8}.tar.bz2
  fn_grp_url tcl $url
  else
  	echo "CANNOT download from tcl.tk because they are clever idiots"
 	echo "so you download and save"
 fi
 
-fn_grp_pkg tcl tklib-0.8
+fn_grp_pkg tcl ${tklib_0_8}
 fn_unpack
 fn_configure_pfx \
 --enable-gcc \

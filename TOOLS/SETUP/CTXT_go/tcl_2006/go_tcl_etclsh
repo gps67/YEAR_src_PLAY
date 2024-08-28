@@ -1,9 +1,0 @@
-. go__fns
-fn_grp_pkg tcl eltclsh-1.6
-fn_unpack
-fn_with_X11
-fn_configure_pfx \
---with-tcl=$prefix/lib/ \
-#
-fn_make 
-fn_make install

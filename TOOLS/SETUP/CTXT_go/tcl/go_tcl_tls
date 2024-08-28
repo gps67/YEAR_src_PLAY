@@ -1,11 +1,6 @@
 . ../go__fns
-# https://www.youtube.com/watch?v=v3pK0dccQ38
-# fn_grp_pkg tcl tcl8.4.11
-# fn_grp_pkg tcl tcl8.5a6
-# fn_grp_pkg tcl tcl8.5b3
 url=https://core.tcl-lang.org/tcltls/uv/tcltls-1.7.22.tar.gz
 fn_grp_url tcl $url
-# 2022 # still # fn_grp_pkg tcl tcltls-1.7.22
 fn_unpack
 fn_with_tk
 fn_with_grp libr

@@ -1,15 +1,10 @@
 . ../go__fns
 . fns_DIRS
-# fn_grp_pkg tcl tcl8.4.11
-# fn_grp_pkg tcl tcl8.5a6
-# fn_grp_pkg tcl tcl8.5b3
-url=http://prdownloads.sourceforge.net/tcl/tcl8.6.13-src.tar.gz
-url=http://prdownloads.sourceforge.net/tcl/tcl9.0b1-src.tar.gz
-url=http://prdownloads.sourceforge.net/tcl/tcl9.0b2-src.tar.gz
+tcl_vern=tcl9.0b3
+url=http://prdownloads.sourceforge.net/tcl/${tcl_vern}-src.tar.gz
 fn_grp_url tcl $url
 fn_trim -src
-ln_s tcl9.0b1-src.tar.gz $tools_2000_ftp/$grp/tcl9.0b1.tar.gz
-ln_s tcl9.0b2-src.tar.gz $tools_2000_ftp/$grp/tcl9.0b2.tar.gz
+ln_s ${tcl_vern}-src.tar.gz $tools_2000_ftp/$grp/${tcl_vern}.tar.gz
 
 
 # fn_var src obj $pkgdir

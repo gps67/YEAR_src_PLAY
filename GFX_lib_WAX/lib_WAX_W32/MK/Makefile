@@ -1,7 +1,12 @@
 #!/usr/bin/env make
 
+# FAILING WITH MISSING DLL
+# libgcc_s_dw2-1.dll
+# /usr/lib/gcc/i686-w64-mingw32/10-win32/libgcc_s_dw2-1.dll
+# /usr/lib/gcc/i686-w64-mingw32/10-win32
+
 ##	CXX = g++
-	CXX=/usr/bin/i686-w64-mingw32-g++ -mwindows
+	CXX=/usr/bin/i686-w64-mingw32-g++ -mwindows 
 	OPTIM = -g
 	INCLS = -I../
 	INCLS = -I../buffer
@@ -17,6 +22,8 @@
 #	# uncomment to see used
 #	LINKS = -L/usr/X11R6/lib -lX11
 #	LINKS = -L/tools/2000/X11R6/lib -lX11
+
+# NO	LINKS += -L/usr/lib/gcc/i686-w64-mingw32/10-win32 -lgcc_s_dw2-1 #.dll
 
 	S=../src
 	VPATH +=$S

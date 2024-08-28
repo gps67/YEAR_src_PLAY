@@ -1,8 +1,0 @@
-# http://www.multiprecision.org/mpc/
-. ../go__fns
-fn_grp_url ccs https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
-fn_unpack
-fn_with_grp $gcc10 # needs mpfr
-fn_configure_pfx
-fn_make 
-fn_make install

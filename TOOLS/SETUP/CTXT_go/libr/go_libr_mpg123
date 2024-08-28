@@ -1,5 +1,5 @@
 . ../go__fns
-URL=https://sourceforge.net/projects/mpg123/files/mpg123/1.32.5/mpg123-1.32.5.tar.bz2
+URL=https://sourceforge.net/projects/mpg123/files/mpg123/1.32.7/mpg123-1.32.7.tar.bz2
 fn_grp_url libr $URL
 fn_unpack
 # fn_with_grp libr

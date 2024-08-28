@@ -997,6 +997,7 @@ fn_make()
 	# TODO # TEST # -j 4 # EDITED #
 	JOBS=""
 	JOBS="-j 4"
+	JOBS="-j 14" # 8 core 16 threads
 	fn_make_dir_obj # creates logfile link
 	fn_cd_or_fail $obj 
 	(

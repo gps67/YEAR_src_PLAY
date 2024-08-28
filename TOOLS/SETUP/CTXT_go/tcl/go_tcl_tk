@@ -1,13 +1,11 @@
 . ../go__fns
 PATH=$prefix/bin:$PATH
-url=http://prdownloads.sourceforge.net/tcl/tk8.6.13-src.tar.gz
-url=http://prdownloads.sourceforge.net/tcl/tk9.0b1-src.tar.gz
-url=http://prdownloads.sourceforge.net/tcl/tk9.0b2-src.tar.gz
+tk_vern=tk9.0b3
+url=http://prdownloads.sourceforge.net/tcl/${tk_vern}-src.tar.gz
 fn_grp_url tcl $url
 fn_fetch
 fn_trim -src
-ln_s tk9.0b1-src.tar.gz $tools_2000_ftp/$grp/tk9.0b1.tar.gz
-ln_s tk9.0b2-src.tar.gz $tools_2000_ftp/$grp/tk9.0b2.tar.gz
+ln_s ${tk_vern}-src.tar.gz $tools_2000_ftp/$grp/${tk_vern}.tar.gz
 fn_unpack
 # pick the ../unix/. subdir of src and of obj
 fn_sub_src_sub_obj unix

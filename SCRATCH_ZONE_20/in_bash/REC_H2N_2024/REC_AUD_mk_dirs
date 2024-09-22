@@ -107,6 +107,8 @@ in
 	#
 	Samba=Global_Thu
 	Artist="Annie Parker Collective"
+	Samba=RG2
+	Artist="bodhran_basics"
 	Sess_List="_sess_1 _sess_2"
 ;; Fri)
 	Samba=Velocity
@@ -165,6 +167,14 @@ in
 	Samba=READIPOP_WORKSHOP
 	Artist="Marivaldo_Paim"
 	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
+
+	Samba=Drum_Camp
+	Artist="Jose_Ferrera"
+	Artist="Klaudio_Pandeiro"
+	Artist="klaudio_Iya_John"
+	Artist="SHOW"
+	Artist="bodhran"
+	Sess_List="_upto_1959_$Artist _sess_1 _sess_2 sess_3 "
 esac
 
 

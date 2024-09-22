@@ -1,0 +1,98 @@
+vfs.txt
+
+	we need a consistent set of
+
+		behaviors
+		tree of branch of leaf
+		leaf type file
+		leaf type A_FILE
+		leaf type fifo_dev_vfs
+		leaf type A_FIFO
+		leaf type A_FIFO
+		leaf type A_FIFO
+		leaf type dev_c
+		leaf type dev_b
+		leaf type leaf_made_up_of_a_few_leaves_stitched_together
+		link type A_LINK
+		locn type A_DIR
+		locn type A_MNT
+
+// C // typedef
+enum File_Type
+{
+        is_absent,      // link to missing object // seen as A_DIR // !! ODD !!
+        is_file,	
+        is_dir,		// LOCN_not_LEAF NODE_not_ITEM LOCN_not_ITEM
+        is_dev_c,
+        is_dev_b,
+        is_link,
+        is_fifo,
+        is_socket,
+        is_other,
+        is_error        // eg  SYS ERROR
+};
+
+
+	Note that they are almost all LEAF not NODE
+        LOCN_not_LEAF { is_NODE }
+	NODE_not_ITEM { is_NODE }
+	LOCN_not_ITEM { is_NODE }
+
+	is_ITEM() { return not is_NODE() }
+	is_LEAF() { return not is_NODE() }
+	is_NODE() {
+		NODE = SELF
+		if( NODE == is_dir ) {
+			return true; // GOTO_TRUE; // pre-load translation GOTO
+		}
+		if( NODE == is_absent ) {
+			return true; // it might be, and inside most pecific Q
+		}
+	}
+
+	We are VFS_something
+	Our "caller" is LIBC opening files listing dirs seek read write
+	We are of a C++ class in a tree of classes
+	We are a C++ instance of a C++ class 
+	We are a running VFS_something // startup mode done //
+	We project a VFS with some pre-load optimisation
+	We preload ourselves from COMPILED FILE or MMAP 
+	COMPILED PRE_RUN SCRIPT gives a few SEGMENTS CODE DATA ROM STO ALIAS
+	CACHE keeps COMPILED_SCRIPT and RECYCLED_ACTIVE_SCRIPT_THREAD
+	CACHE keeps STO // PRE_LOAD by running SCRIPT over SESS
+	CT_RT runs the same script at CT and RT but with CT_RT flags set
+	CT_RT uses latest calc, DATA or NULL to recalc
+
+VFS_something
+
+	provides a TREE_of_ITEM _of_LOCN _of_ALIAS _by_NAME _CIDEN99  _VFS_IDENT_99
+	_CIDEN99 
+		Always try to remain within CINDENT99 
+		ASCII is not mullti-byte
+	_VFS_IDENT_99
+		FILENAMES contain MINUS signs // CIDENT99 doesn't
+		FILENAMES cannot contain SLASH // so no nested but can use /!//
+		UTF8_latin_letters // usable in a1_a2_star
+		UTF8_latin_font_two // ie avoid using glyphs it does not have
+		UTF8_latin // ditto but nuff said
+		UTF8_
+		UTF8_font_yes
+		UTF8_font_one
+		UTF8_font_two
+		NON_UTF_DIALECT_CSET // implicit becomes a TOKEN CSET = %s
+	
+	A DIR or LOCN does not have much information
+
+		no extra fields can be added
+		   extra fields can be added by lookup associative
+
+		shadow WRAP_DIR can be created
+		  it can exist before A_DIR is created
+		  it can exist during WRAP_ACTIVITY WRAP_SESS
+	.
+		subclass WRAP_two_DIR
+		 INIT data is LOCN / NAME / inode_stat_info 
+
+
+
+

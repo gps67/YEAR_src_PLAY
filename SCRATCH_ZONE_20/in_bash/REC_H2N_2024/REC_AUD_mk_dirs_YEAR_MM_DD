@@ -3,9 +3,10 @@
 # REC_AUD_mk_dirs
 # REC_AUD_mk_dirs_yesterday
 
-ask_do ./REC_AUD_mk_dirs -d 2024-08-06
-ask_do ./REC_AUD_mk_dirs -d 2024-08-04
-ask_do ./REC_AUD_mk_dirs -d 2024-08-03
+ask_do ./REC_AUD_mk_dirs -d 2024-09-01
+# ask_do ./REC_AUD_mk_dirs -d 2024-09-02 # TODO post MIDNIGHT timestamp of file
+ask_do ./REC_AUD_mk_dirs -d 2024-08-30
+ask_do ./REC_AUD_mk_dirs -d 2024-08-31
 exit
 ask_do ./REC_AUD_mk_dirs -d 2024-07-16
 ask_do ./REC_AUD_mk_dirs -d 2024-01-03

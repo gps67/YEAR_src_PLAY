@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/oven-sh/bun
 https://github.com/Gnucash/gnucash
 https://github.com/TigerVNC/tigervnc
 https://github.com/rfbproto/rfbproto
@@ -144,11 +145,8 @@ https://github.com/oracle/binutils-gdb
 https://github.com/oracle/binutils-gdb/wiki
 https://gitlab.freedesktop.org/xorg/lib/libXaw3d
 https://github.com/lxc/lxd
-https://github.com/pjps/ndjbdns/
-git://thekelleys.org.uk/dnsmasq.git
 https://github.com/pschatzmann/arduino-audio-tools
 https://github.com/pschatzmann/ESP32-A2DP
-https://github.com/mdn/translated-content
 https://github.com/Automattic/node-canvas
 https://gitlab.com/cairo/cairo-demos
 git@gitlab.com:cairo/cairo-demos.git
@@ -570,7 +568,9 @@ https://resources.oreilly.com/examples/9781565922921.git
 https://resources.oreilly.com/examples/9781565925670.git
 https://sourceware.org/git/insight.git
 #http://www.passportjs.org/docs/username-password/
+https://github.com/mdn/translated-content
 
+git://thekelleys.org.uk/dnsmasq.git
 #https://github.com/dlang/dmd.git
 #https://github.com/vuejs/vue.git
 #https://gitlab.com/konradp/tinydrum.git
@@ -580,6 +580,7 @@ https://sourceware.org/git/insight.git
 http://github.com/FreeRTOS/FreeRTOS
 https://github.com/FreeRTOS/FreeRTOS-Kernel
 #https://github.com/ribomation/DroidAtScreen1
+https://github.com/pjps/ndjbdns/
 
 "
 for U in $L1

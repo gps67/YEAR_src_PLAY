@@ -60,6 +60,81 @@ typedef unsigned char uchar;
 
 
 /*!
+
+	A blk1 is a struct ... AND IT IS NOT VIRTUAL
+
+		this means it is C_like
+		this means the CTOR and DTOR can be inline
+		and COPY_CTOR COPY_COPY
+		It is C++  so CTOR and DTOR rules apply
+		A GEN_C filter would need to detect when to CALL DTOR
+		using the CXX interpretation of stack DTOR
+
+		maybe add a flag - look extra re STACK_API
+
+		FEATURE += already has own 48 byte buffer, no malloc required
+		useful for IDENT filename printing numerics 
+
+		FEATURE += a bunch of API printf 
+
+	A blk1 is a struct ... with ...
+
+		uchar * buff;		// dynamic buffer
+		unsigned nbytes_alloc;	// dynamic buffer or static buffer size
+		unsigned nbytes_used;	// current fit
+	
+	It malloc owns buff (usually)
+	It cannot yet HEAP_malloc buff (TODO)
+
+		That is usually malloc owned by blk1
+		It will automatically be free'd by the DTOR
+		C++ calls DTOR when stack unwinds
+		C needs route towards EXIT
+
+		buff == NULL // INIT_NULL // nothing HELD
+
+		It is already a STRETCH buffer, that can auto_grow
+		You printf to it, it grows by calling get_space(n_bytes)
+		in leaps and bounds, so few reallocs nut not double
+
+		It does not have to be TEXT,
+		you could simply COPY a SCRIPT_ITEM_STRUCT into that memory
+
+		If you are careful and reuse the blk1 in a loop
+		it does NOT free the memory each time
+		it stays as wide as the widest so far
+
+		It
+
+	A blk1 is nbytes as a single block of memory - rename overdue
+	A blk1 is n few other vars 
+
+	A blk1 is a buffer a single block of nbytes with a csr to append
+
+	A blk1 is buffer XPOS and API get_space( a_good_guess )
+
+		get_space( must_have_or_FAIL_or_RESOLVE_PAGING_ISSUE ) // FAIL
+		get_space( a_good_guess )
+	
+	A blk1 comes with its own FAST ALLOC on STACK buffer
+	
+		uchar   buff_static[BLK1_N_STATIC]; // stack allocated
+
+
+		When the stack unwinds, the DTOR is called
+		blk1 MUST free any memory it held
+		blk1 MAY ZERO_ZAP ERASE all values to NULL // it doesn't
+
+	ALLOCA BLK1_N_STATIC _48_plus_the rest of sizeof(blk1)
+
+		BLK1_N_STATIC == 48 bytes 6 words half a TTY screen line len 80
+
+			48 is Plenty for IDENT before compounding
+			48 is Plenty for AFLOAT parsing or printing
+
+		add as many pointers as you like
+
+
 	A dynamic byte-based buffer with at least 60 (BLK1_N_STATIC) bytes.
 
 		3 WORDS BASE=buff nbytes=u32_nbytes u32_OFFS
@@ -105,6 +180,17 @@ typedef unsigned char uchar;
 	so clear() presumes it is there or needs to be added.
 	BUT a lot of code knows that it will add it later ...
 	so think about a write-phase, read-phase, move-about-moments
+
+	NB there is a race condition, NOT_thread_safe, absent_NUL
+
+		caller wants a STR0 so it calls trailing_nul()
+			that writes a nul byte to the end
+
+		illegal_second_thread
+		appends text to buffer, overwriting the last NUL
+		first thread proceeds with no NUL or random NUL
+
+		so build a ROM and run it in SESS
 
 	uchar == u8
 */

@@ -17,7 +17,7 @@
 
 // #include <errno.h>
 #include "dgb.h"
-#include "blk1.h"
+#include "buffer1.h" // printf
 #include <unistd.h>
 #include "err_int.h"
 
@@ -27,7 +27,7 @@
 const char * str_file_type( File_Type file_type )
 {
 	switch( file_type ) {
-	       case is_absent:	return "ABSENT";
+	       case is_absent:	return "ABSENT";	// WRAP += is_absent_DIR
 	break; case is_file:	return "file";
 	break; case is_dir:	return "dir";
 	break; case is_dev_c:	return "dev_c";
@@ -40,6 +40,7 @@ const char * str_file_type( File_Type file_type )
 	}
 	return "XX_ERROR_XX";
 }
+
 
 //////// file_stat
 
@@ -67,6 +68,7 @@ const char * str_file_type( File_Type file_type )
 		readlink_val.clear();
 		file_type = is_absent;
 		linked_file_type = is_absent;
+		saved_filename.clear();
 	}
 
 	/*!
@@ -131,12 +133,15 @@ const char * str_file_type( File_Type file_type )
 	}
 
 	/*!
+		TODO set saved_filename to something
 	*/
 	bool file_stat:: stat_fd( int fd )
 	{
 		file_type = is_error;
 		linked_file_type = is_absent; // is_unset
 		readlink_val.clear();
+		saved_filename.clear();
+		saved_filename.printf("fd_%x02X", fd ); // EDIT int to fd_t //
 
 		if(fd<0) return FAIL("fd<0 %d", (int) fd);
 
@@ -180,6 +185,7 @@ const char * str_file_type( File_Type file_type )
 		as indeed it is, UNIX sets errno and so on
 	*/
 	bool file_stat::stat( const char * filename ) {
+		save_filename(filename);
 		bool FAIL_if_absent = true;
 		return stat_FAIL_if_absent( filename, FAIL_if_absent );
 	}
@@ -385,20 +391,30 @@ const char * str_file_type( File_Type file_type )
 		return PASS("%s", filename );
 	}
 
-	bool file_stat:: stat_expect_is_dir(const char * filename) // accept is_link
+	bool file_stat:: expect_is_dir() // accept is_link
+	{
+		// this is why you must reset linked_file_type to is_absent
+		if( linked_file_type == is_dir ) return true;
+		INFO("%s", get_filename() );
+		return FAIL("expected is_dir got %s", str_file_type( linked_file_type ));
+	}
+	bool file_stat:: stat_expect_is_dir(const char * filename)
 	{
 		if(!stat( filename )) return FAIL_FAILED();
-		if( linked_file_type == is_dir ) return true;
-		INFO("%s", filename );
-		return FAIL("expected is_dir got %s", str_file_type( linked_file_type ));
+		return expect_is_dir();
+	}
+
+	bool file_stat:: expect_is_file() // accept is_link // FAIL with message
+	{
+		if( linked_file_type == is_file ) return true;
+		INFO("%s", get_filename() );
+		return FAIL("expected is_file got %s", str_file_type( linked_file_type ));
 	}
 
 	bool file_stat:: stat_expect_is_file(const char * filename) // accept is_link // FAIL with message
 	{
 		if(!stat( filename )) return FAIL_FAILED();
-		if( linked_file_type == is_file ) return true;
-		INFO("%s", filename );
-		return FAIL("expected is_file got %s", str_file_type( linked_file_type ));
+		return expect_is_file();
 	}
 
 	const char * file_stat:: file_type_str()

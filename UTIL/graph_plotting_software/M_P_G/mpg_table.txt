@@ -21,5 +21,7 @@
  2024-07-06  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around
  2024-07-06  22823 334  23157  15.3 p_mile  1.42 £_litre  6.44 £_gallon  42.2 mpg   6.7 lp100  P Full Morisons fr 
  2024-08-01  23157 144  23301  16.3 p_mile  1.41 £_litre  6.40 £_gallon  39.3 mpg   7.2 lp100  P Full Morisons  
+ 2024-08-25  23301 275  23576  16.2 p_mile  1.42 £_litre  6.45 £_gallon  39.9 mpg   7.1 lp100  P Full BH
+ 2024-08-29  23576 244  23820  13.2 p_mile  1.38 £_litre  6.26 £_gallon  47.6 mpg   5.9 lp100  P Full RG2
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 

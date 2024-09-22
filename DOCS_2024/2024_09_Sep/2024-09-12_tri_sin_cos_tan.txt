@@ -1,0 +1,25 @@
+	2024-09-12
+
+	2024_09_Sep
+	2024-09-12_tri_sin_cos_tan.txt
+
+	        ^	B = C sin x
+	       /|
+	      / |
+	C    /  |
+	    /   | B == O Opposite
+	   /    |
+	  /     |
+	 /      |	B = A tan x
+	<x)_____+
+	    A = Adjacent to angle
+
+			A = C cos x
+	
+
+	<x) is angle 
+
+
+	O
+
+

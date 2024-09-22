@@ -41,12 +41,17 @@ see + edit (same dir as this .txt file)
 	 gps_SM_configure
 	 gps_SM_make
 
-that wont work you need Rust at a more recent level thann ubuntu
+that wont work you need Rust at a more recent level than ubuntu
+
+	SM require 1.76 Ubuntu has 1.75 (mozjs-130)
 
 	meh
 	just copy down an old version from an old machine
 	it is all JS normal behaviour
 
+	If they were prevented from getting ahead of Ubuntu
+	they would be incentivised to get ubuntu/rust updated
+	instead it is all about them, little princes
 
 Put them in $(TOP) of mozjs
 Run them in $(TOP) of mozjs

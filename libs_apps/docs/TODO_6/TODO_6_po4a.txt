@@ -1,0 +1,4 @@
+po4a += gettext translations
+
+	maybe  slide to adjacent DTP of RTFM 
+	basic tools TeX XML DOC 

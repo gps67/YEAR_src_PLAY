@@ -14,7 +14,7 @@
 
 // #include <errno.h>
 #include "ints.h"
-#include "blk1.h"
+#include "buffer1.h"
 
 /*!
 	File_Type normalises posix/UNIX file type flags
@@ -26,7 +26,7 @@ enum File_Type
 {
 	is_absent,	// link to missing object
 	is_file,
-	is_dir,
+	is_dir,		// only LOCN all the others are LEAF
 	is_dev_c,
 	is_dev_b,
 	is_link,
@@ -72,7 +72,7 @@ class file_stat : public GRP_lib_base
  public:
 	struct stat st;
 	struct stat linked_st;
-	blk1 readlink_val; // auto set by stat (in inode anyway)
+	buffer1 readlink_val; // auto set by stat (in inode anyway) // printf
 
 	File_Type file_type;
 	File_Type linked_file_type;
@@ -81,10 +81,13 @@ class file_stat : public GRP_lib_base
 		stat does not say "is_dir_mount_point"
 		but it does say { DEVICE INODE }
 		so we can check when a tree-walk changes DEVICE
+
 		DEVICE appears as an INT stat(2) says major(3) minor(3)
 
 			dev_t st_dev; // of disk
 			ino_t st_ino; // of file
+
+		This API does not yet use { DEVICE INODE }
 
 		THere is also the dev_c dev_b
 
@@ -92,6 +95,13 @@ class file_stat : public GRP_lib_base
 	*/
 
 	file_stat();
+
+	buffer1 saved_filename;
+	bool save_filename( const char * filename ) {
+		return saved_filename.set(filename);
+	}
+	const char * get_filename() { return (STR0) saved_filename; }
+
 	void clear();
 	bool stat( const char * filename );
 	bool stat_OK_if_absent( const char * filename );
@@ -108,6 +118,8 @@ class file_stat : public GRP_lib_base
 
 	bool symlink( const char * dst, const char * src ); // src => dst
 
+	bool expect_is_dir(); // 
+	bool expect_is_file(); // 
 	bool stat_expect_is_dir(const char * filename); // accept is_link
 	bool stat_expect_is_file(const char * filename); // accept is_link // FAIL with message
 	const char * file_type_str();

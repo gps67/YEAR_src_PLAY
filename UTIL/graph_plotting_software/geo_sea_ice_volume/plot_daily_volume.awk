@@ -80,6 +80,8 @@ BEGIN {
 	A365=365*9
 	A365=365*4 # OK
 	A365=365*3 # sensible
+	A365=365*2
+	A365=365*1
 
 	# PICK A365 # LAST one WON #
 

@@ -1,0 +1,38 @@
+EG:
+	"struct stat st;" becomes STR_one of SPEC STR_ONE _t // OPERATOR SUFFIX
+	// OPERATOR APPEND // to_LIST // to_ARRAY // FILTER lhs to_RHS //
+	// SCRIPT "FILTER" found on PATH_SCRIPT_LIBR_ITEM _in_TREE
+	// LIBR_TREE_ITEM // TUPLO of OBJ_within_EIGHT_t // or BEYOND
+	// BEYOND is when derived CLASS with BASE_CLASS SESS_t // _t ZONE //
+	// DIALEXT _t // ZONE %s // PHRASE LAYOUT SPEC etc // PHRASES for AVAR
+	// API for AVAR is PHRASES is SCRIPT_LIBR_MODULE
+	// LIBR == Module_LIBR // a PRIMARY use of OWN_NAME "LIBR" as "Module_LIBR"
+	// PRE_PARSE notices common substring TRIGGER deeper search 
+	// switch PARSE_AND_SAVE mode on (always was)
+	// DEAR_DIARY // GIT as VFS over EDIT_GIT_STO // TREE_of_FILES STO 
+	// BUNCH in a BATCH // Group BUNCH of EDITS together //
+	// SAME MORE LESS DIFF MATCH MISMATCH MULTI LINK ITEM TYPE 
+
+
+
+
+#ifndef file_utils_99_glib_H
+#define file_utils_99_glib_H
+
+#include <glib.h>
+#include <glib/gstdio.h> // g_chdir
+
+struct file_utils_glib
+{
+	struct stat st;
+
+	bool chdir( const char * dir );
+	bool file_exists( const char * name );
+	bool dir_exists( const char * dir );
+	bool chdir_if_exists( const char * dir );
+
+	bool can_open_file_rw( const char * filename );
+};
+
+#endif
+

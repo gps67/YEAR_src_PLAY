@@ -117,9 +117,11 @@ bool dgb_fork_stderr_to_tcl_text()
 		fflush(0);
 		_exit( errno );
 		return false;
-	} else { // is parent
+	} else { // is parent so tell OBJ to act as_parent()
 		pipe_parent_to_child.as_parent();
+		// set process errout fd2 to the pipe
 		pipe_parent_to_child.dup2(2); // stderr
+		// fd_OBJ.dup(2) // fd2_is_errout_of_process
 	}
 
 	INFO("NB you have to press the EXIT button - after reading the closing messages");

@@ -95,7 +95,7 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 		if(drawable) {
 			return true;
 		} else {
-			WARN("ZERO drawable");
+			WARN("ZERO drawable - so printing stack");
 			DEBUG_print_stack();
 			return false;
 		}
@@ -106,7 +106,7 @@ struct X_Drawable_Surface { // base of X_Window X_Pixmap // own spin
 	*/
 	GC CreateGC()
 	{
-		if(!check_drawable()) return 0;
+		if(!check_drawable()) return 0; // GC==0 not FAIL_FAILED 
 
 		unsigned long valuemask = 0;
 		XGCValues * values = NULL;

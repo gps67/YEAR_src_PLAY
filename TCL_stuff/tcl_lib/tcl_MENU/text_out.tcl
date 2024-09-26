@@ -11,7 +11,13 @@
 # # $text_widget  insert end  $text
 
 
-set ::global_text_out_does_puts 1
+# THIS LINE MAKES tcl_less disrupt gdb by printing it twice # 1 #
+# you might want it to do that, to keep a log of error messages
+# gdb just messes up the tui
+# gdb should know about output from progs
+# set_text_out_does_puts 0 # if that is what you want
+# set_text_out_does_puts 1 # if that is what you want
+set ::global_text_out_does_puts 0
 
 proc text_out_get_text_widget { {text_widget {} } } {
 	# single default output text widget "-" or {} or "default"
@@ -28,6 +34,7 @@ proc text_out {text_widget text} {
 	set text_widget [ text_out_get_text_widget $text_widget ]
 	# add text to widget
 	$text_widget insert end $text
+	# print text to stout # not stderr # 
 	if $::global_text_out_does_puts {
 		puts -nonewline $text
 	}

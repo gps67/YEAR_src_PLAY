@@ -117,7 +117,7 @@
 	PROG2=test2_xft_diagonal
 	PROG3=test_libpng
 	PROG4=test_libjpeg
-	PROG5=text_2_png
+	PROG5=test5_text_2_png
 
 	EXEC1=$(PROG1)$(dot_EXE)
 	EXEC2=$(PROG2)$(dot_EXE)

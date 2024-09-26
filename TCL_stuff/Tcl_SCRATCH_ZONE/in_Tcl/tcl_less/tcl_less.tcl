@@ -1,5 +1,6 @@
 #!/usr/bin/env tclsh9.0
 #!/usr/bin/env tclsh
+
 # tcl_less.tcl - copy stdin to a text panel
 
         package require gps_one ;# 0.5

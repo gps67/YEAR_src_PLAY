@@ -30,12 +30,20 @@ extern void e_print( const char * fmt, ... );
 const char * colour_spec_green = "#00FF00";
 const char * colour_spec_blue  = "#0000FF";
 
+#error TODO fix me
 /*!
 	an X_test_box is a sub-widget
 
 	Its parent can be a DISPLAY or a WIDGET
 
 	It has a drawing GC
+
+		BUG - no it doesn't
+		the CTOR fails to copy
+			parent.drawable
+		to	X_Window_SubFrame.drawable
+
+		it is probably a badly worded CTOR that is missing an arg
 
 */
 class X_test_box_Sub : public X_Window_SubFrame
@@ -350,6 +358,7 @@ int main(int argc, char ** argv) {
 	*/
 
 	// create a window on the display
+	INFO("Creating win1");
 	X_test_box_Top win1( "win1", disp, xywh1, 0 );
 
 //	// create a window within the window
@@ -360,6 +369,7 @@ int main(int argc, char ** argv) {
 	INFO("Creating win3");
 	X_test_box_Sub win3( "win3", & win1, xywh3, 0 );
 
+	INFO("win1.map");
 	win1.map();
 // NO 	win3.map(); // win1 is a TOP LEVEL 3 is a sub_level
 	win1.XSelectInput_mask_one();

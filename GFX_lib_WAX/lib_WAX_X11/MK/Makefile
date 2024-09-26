@@ -39,6 +39,7 @@
  	S=/home/gps/YEAR/src/PLAY/GFX_lib_WAX/lib_WAX_X11/src
 	LIST_VPATH +=$S
 	LIST_VPATH +=$(S)/IMG
+	LIST_VPATH +=$(S)/APPS
 
 	LIST_CPLUS_INCLUDE_PATH += $(LIST_VPATH)
 

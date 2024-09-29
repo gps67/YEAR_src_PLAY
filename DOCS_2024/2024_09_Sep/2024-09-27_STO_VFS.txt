@@ -1,0 +1,106 @@
+	2024-09-27
+
+	2024_09_Sep
+	2024-09-27_STO_VFS.txt
+
+	STO holds nbytes
+	STO holds ARGV_LIST_ATOM_ATTR_EXPR_FUNC_DECL
+	DECL explains SPEC DECL CONST TYPE VAR EXPR FUNC 
+
+		we need a TEXT expr
+		that compiles to an ARGV component // ie compat_api_ARGV
+
+			ARGV_COMPONENT
+
+			 ITEM_in_HEAP
+			 HEAP_in_STO
+			 EXPR_in_ARGV
+			 DATA_in_ARGV
+			 CODE_in_ARGV
+
+			 nbytes of BLOB_BYTE[ OFFS < N ]
+	// NO //	 nbytes of BLOB_BYTE[ IDX < N ]
+
+			 typedef WORD_t;
+			 array[ N ] of WORD_t
+
+			 struct OBJ_STRUCT : public HEAP_ITEM
+
+			 i8_i8 i16 i8_i24
+
+ i8
+	ZERO_IDX
+		bool ZERO_means_NULL = false; // until you declare that
+		bool ZERO_means_PLUS = not ZERO_means_NULL
+
+		fun_fact_pair 
+		both_const // CT_RT can KNOW value of AVAR
+		one_var = false // ZERO means nothing // ZERO does not mean NULL
+		two_var = not one_var
+
+		NULL is a valuable special value, easy to test for ZERO
+		NULL means losing the first ARG in an ARGV as unreachable
+		(except by special func, eg copy_0_to_temp_copy_of_0)
+
+		for [u4] we cant afford making NULL real, so it isn't
+		for[i4] have u3_PLUS and i3_MINUS
+
+	PLUS_128
+		// zero is NULL except when NBITS < 10 // then OPTION
+		// zero is NULL specifically HERE i8_BYTE from BITFIELD_POOL
+		// EA_BITFIELD_DECODER
+		// plus is idx ; IDX = i8_PLUS //
+		// minus is api ; API_IDX = i8_MINUS //
+
+			// IDX = STO_IDX = i8_PLUS // or more 
+			// IDX = API_IDX = i8_MINUS // or more 
+
+	MINUS_128
+		// each IDX is not in the PLUS array it is in the MINUS array
+		// much the same, but DIALECT and CALC_MINUS
+		// L_Z_R // 
+		// M_Z_N // N is N on the PLUS side // M is N on the MINUS SIDE
+		// M can be ZERO // ZERO_means_there_are_ZERO_MINUS_items
+		// M must be less ZERO except when ZERO exists
+		// ZERO_means_there_are_ZERO_MINUS_items
+		// M can be M1 // from 
+		// LM_Z_NR // possibly empty zones see P0P2
+		// on_OVERFLOW grow to wider BITFIELD
+		// if it even gets near M128 expand to i16_or_something
+		// i8 i12 i16 i24 i32 i48 i64 //
+		// PAIR_i4_i4 // USEFUL_BITFIELD and PAIR lhs rhs
+
+		// PAIR_i4_i4 public NAMESPACE::PAIR_i4_i4 //
+
+		// PAIR i8_i0
+		// PAIR i7_i1
+		// PAIR i6_i2
+		// PAIR i5_i3
+		// PAIR i4_i4
+		// PAIR i3_i5
+		// PAIR i2_i6
+		// PAIR i1_i7
+		// PAIR i0_i8
+
+	[0 127[128
+
+ NAME
+ 	ITEM_t ITEM
+	NOUN_GROUP_one
+	NOUN_GROUP_two
+			 struct OBJ_STRUCT : public HEAP_ITEM
+	
+	NAME_is_DIALECT_for_AVAR_TYPE_SPEC // deduce, add rules, tokenised,
+
+ EA_BITFIELD_DECODER
+
+ 	get i8_i24 from i64
+
+	KNOW EXPR CALC TEST 
+	SAYS DECODER did a full decode to all useful VARS in SESS workspace
+
+		DECODER often prepares JUNK DATA from someone else DATA
+		DECODER does not have, but attempts a secure OPTIONS checker
+		DECODER can be told to have ASSOC_KEY
+
+

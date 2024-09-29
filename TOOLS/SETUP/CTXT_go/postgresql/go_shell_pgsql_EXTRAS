@@ -16,10 +16,18 @@ SOURCE_TGZ=https://ftp.postgresql.org/pub/source/${v16_0}/postgresql-${_16_0}.ta
 	grp=postgresql 
 	URL="$SOURCE_TGZ"
 
-
+if false
+then
 fn_grp_url $grp "$SOURCE_TGZ"
 # fn_no_VPATH
 fn_unpack
+fi
+
+PDF1=https://www.postgresql.org/files/documentation/pdf/17/postgresql-17-A4.pdf
+fn_grp_url $grp $PDF1
+fn_unpack
+
+# exit
 
 fn_grp_url $grp "$DOCS_TGZ"
 # fn_no_VPATH
@@ -34,6 +42,7 @@ fn_unpack
 # we call that to set the parameters of SOURCE not DOCS
 # it was already unpacked
 
+	exit
 
 # USELESS HERE # ?
 # fn_with_tk

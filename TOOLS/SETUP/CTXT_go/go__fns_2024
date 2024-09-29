@@ -63,6 +63,12 @@ fn_zcat()
 	$Z - < "$file"
 }
 
+say_do()
+{
+	echo "# EXEC # $* #"
+	"$@"
+}
+
 p_r_t_c()
 {
 	echo "$* ... Press Return To Continue ..."
@@ -93,9 +99,15 @@ fn_must_have_dir()
 	[ -d "$1" ] || fn_FAIL must have dir $1
 }
 
+fn_cd_or_warn()
+{
+	cd "$1" || fn_WARN cd "$1"
+}
+
 fn_cd_or_fail()
 {
 	cd "$1" || fn_FAIL cd "$1"
+	# I think fn_FAIL never returns
 	cd "$1" || echo "############# cd fail ##########"
 	pwd
 }
@@ -369,8 +381,15 @@ fn_pkg_dir_from_pkg_file()
 	# convert
 	# binutils-2.40.tar.xz
 	# binutils-2.40
-	# returned .tar.xz 
-	for ext in `fn_list_tar_gz`
+	# returned .tar.xz # STDOUT #
+
+	EXT_LIST_one="`fn_list_tar_gz`"
+	EXT_LIST_two="pdf"
+
+ # set -x
+
+	# for requires no Q2 over VAR
+	for ext in $EXT_LIST_one
 	do
 	 if base=`expr match "$1" "\(.*\)\.$ext\$"`
 	 then
@@ -379,12 +398,24 @@ fn_pkg_dir_from_pkg_file()
 		return
 	 fi
 	done
-	echo NOMATCH
+	fn_WARN 0 EXT_LIST_one "$EXT_LIST_one"
+
+	for ext in $EXT_LIST_two
+	do
+	 if base=`expr match "$1" "\(.*\)\.$ext\$"`
+	 then
+	 echo >&2 "THIS WORKS to match (nodot) $ext in $1"
+	 	echo "$base"
+		return
+	 fi
+	done
+	fn_WARN 0 EXT_LIST_two "$EXT_LIST_two"
+
+	echo NOMATCH # fake RET_VAL
 	# 
-	set -x
-	 echo >&2 "THIS FAILS to match (nodot) $ext when it should = $1"
-	 echo >&2 also called when not needed
-	fn_FAIL 22 "pkgfile '$1' does not end in .tgz"
+	# set -x
+	fn_WARN 0  "fn_pkg_dir_from_pkg_file FAILED to match (nodot) $ext in $1"
+	fn_WARN 22 "pkgfile '$1' does not end in .tgz"
 	return 1
 }
 
@@ -474,6 +505,8 @@ fn_grp_urldir_file()
 		fn_FAIL "USAGE: fn_grp_urldir_file ccs http://gnu/ binutils-123"
 		exit 1
 	esac
+
+	# GLOBAL vars from ARGV grp urldir pkgfile pfxsub
 
 	grp="$1"
 	urldir="$2"
@@ -619,7 +652,7 @@ fn_fetch()
 		# fn_make_dir $D # done #
 		cd $D
 		# github needs --no-check-certificate
-		wget --no-check-certificate -N "$urldir/$pkgfile"
+		say_do wget --no-check-certificate -N "$urldir/$pkgfile"
 	#	wget -N "$urldir/$pkgfile"
 	fi
 }
@@ -654,7 +687,7 @@ fn_unpack()
 		done
 		sync
 		[ -f $tar ] || fn_FAIL TARBALL not found
-		fn_cd_or_fail $src 
+		fn_cd_or_warn $src 
 	fi
 }
 

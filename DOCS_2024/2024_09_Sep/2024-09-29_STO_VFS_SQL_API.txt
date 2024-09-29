@@ -1,0 +1,210 @@
+	2024-09-29
+
+	2024_09_Sep
+	2024-09-29_STO_VFS_SQL_API.txt
+
+	SQL_API
+
+	postgres_api
+
+		was reading the v17 index 5.1 Table Basics
+		will need to provide GETTERS for each of those field types
+		can easily be SAME_AS CT_RT rewriter
+
+			THIS is the same as THAT
+
+				ITEM
+				THIS
+				SELF
+			 enum 
+				HERE
+				NEAR
+				NEAR HERE
+				THERE
+
+				NOWHERE
+				EVERYWHERE
+
+		STRUCT of FIELD
+		FIELD is WORD           N_ARRAY_of_BYTE_1248
+		FIELD is WORD WORD_PAIR N_ARRAY_of_BYTE_1248
+		// this is i32_i32 in action // template %s<i32,i32>
+		// %s // i32_i32_t // _t from elsewhere ? // WITHOUT!
+		// %s // i32_i32 _t // _t is extra in SESS
+		 FIELD is WORD_one // or your_ALIAS %s // usual rules apply
+		 FIELD is WORD_two // or your_ALIAS %s // usual rules apply
+		 LIBR_AVAILABLE_of_various VIEW DIALECTS
+
+		FIELD is BITFIELD
+		FIELD is BUFFER
+		// this is not SQL this is CXX // lots of one, list of other
+
+		RTFM: what does the API deliver
+
+			EG ip4_addr in STR0 or P0P2 // universal fitting HERE
+
+		integer		whole number NBITS
+		numeric		fractions
+		text		character strings
+		date		date
+		time		time_of_day
+		timestamp	{ date time } maybe as unix_time ?
+	
+
+
+
+
+
+
+
+
+
+	postgres_api
+
+	 handlers for each item_atom_quark // 3 layers of per_item_from_Module
+
+	 subtree_opcode_API_alloc_item // everything we create has a C++ mgr
+	 // ITEM_t * STRUCT_of_ITEM; // with VTBL { u32_u32_ITEM_EA_EXPR }
+
+	 	That is an EXPR that returns an EA
+	 	That is an EXPR that projects an EA as OUTPUT REL_VAL /*u64*/
+
+	
+	WHY "EA_EXPR" - because it is u32_u32_DECODED
+	WHY "u32_u32" _ DECODED // "MATCH" PUNCT VAR_NAME //
+
+		because ARM_32 will have a front row seat
+
+			PAIR of WORDS
+
+			u32_one
+			u32_two
+
+			// before zero _one _two _more
+			// eg a WRAPPING_CLASS over _CLASS gives API
+			// API is exported WRAPPING_CLASS_to_CLIENT
+			// LIBR can run on SERVER or on CLIENT
+			// DIALECT SUITS BOTH
+			// STILL MATTERS //
+			// enum _CLIENT _SERVER //
+			// enum LOCAL REMOTE //
+			// note both ends of fd_socket think SELF they are LOCAL
+			// note both ends of fd_socket think other are REMOTE
+	
+	/* GRAMMA += Phrase += simply inserting "SELF" at CODE_POINT and ARGV
+	
+
+		SELF 
+		 they
+		  are local
+		  are remote
+		  are linking_attr // ie your ATTR here // remove linked "ATTR"
+		  add linked "ATTR" as ATTR // MENTION causes MKVAR
+		  VIEW using OMIT/EMIT // patching PAIR
+		   with_OMIT {
+		   	// do nothing // EMIT nothing // PSG_PAIRS_MATCHED
+			// PSG_PAIRS_MATCHED // is an on_ATTR %s //
+			// optionally you could print the WHEN_OMIT_TEMPLATE
+			CALL on_OMIT SESS THIS
+			// SESS is a thread_specific TEMPLATE A R G S
+			// use C func( a, parameter = value, c ) // FAIL NOT LAST
+			// above feels ambiguous so - rules // Postgresql 6.1
+			// SQL says positional args must be first
+			// use C func( a, b, parameter = value= c, ... ) // YES
+
+			// RTFM and come up with a FEATURE for MINI_MACHINE
+			// much more useful when EMIT
+			// still complete the API when OMIT
+			// some INLINE_OPTIMISER has NULL_PTR
+			// if LANG cant cope with NULL, provide custom _NULL_PTR
+		   }
+		   with_EMIT {
+
+		   	EMIT pre EXEC SCRIPT { ... }
+		   	EMIT and EXEC SCRIPT {
+				SCRIPT = GEN_SCRIPT ARGS
+				// ARGS is whatever FILTER fits over ARGV
+				// NAME match is also natural APOS == ARG_POS
+				// NOUN is STR0 // there is a connected SCRIPT HERE
+				// MENTION of STR0 is a tad extreme
+				// as everything is a string
+				// as is the LANG script it came on
+
+				// POETRY_MATCH // LANG SCRIPT
+				// tag each ARGV_WORD as ALL_CAPS_or_not
+				// cleft ALL_CAPS in DIALECT as AVAR("%s")
+				// cleft all_lower in DIALECT as all_lower("%s")
+				// cleft all_lower in DIALECT as MATCH("%s")
+				// above is an AUTO_STEP of logic
+				// as_MATCH("%s") // ALIAS("%s",OTHER) //
+				// ALIAS "%s"	// Q2 STR0
+				// ALIAS '%s'	// Q1 STR0
+				// ALIAS  %s 	// RAW STR0
+				// ALIAS("%s")	// C_CALL_on_Q2_STR0 _P0P2()
+				// ALIAS("%s")	// C_CALL_but_Q1
+				// ALIAS( %s )  // CXX DIALECT VIEW // 
+				// GEN_from_PARSED //
+
+			 so use of ALL_CAPS is a MENTION and becomes AVAR
+
+			 nb LEX creates AVAR for each filler WORD in CODE_POINT
+			}
+		   	EMIT post EXEC SCRIPT { ... }
+		   }
+
+		   when_INIT { UDEF } // CT_RT GEN EMIT or OMIT INIT_ZERO
+		   when_INIT { EXPECT_INIT_ZERO }
+
+// GEN_from_PARSED //
+
+// LIBR_RE_ALLOC_FREE
+// always init_zero //
+// always fill_zero_on_exit // several times so pick BYTE or NBYTES or STREAM
+// ALL_CAPS says AVAR("ALL_CAPS")
+// ALL_CAPS says AVAR("SPELLING")
+// ALL_CAPS says AVAR("STR0") // but beware of nbytes truncated copied upto NUL
+// ALL_CAPS says MENTION("AVAR") // MENTION DEFAULT
+// ALL_CAPS says MENTION("SPEC") // MENTION SPEC_NAME // EXPR 
+// ALL_CAPS says MENTION("DECL") // MENTION ITEM_NAME // ALL_OF_ABOVE _in_HEAP
+// everything is a DECL, almost many things, pre-provided FEATURE
+//
+// COMPILE OMIT uncalled TEXT
+// COMPILE EMIT   called TEXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

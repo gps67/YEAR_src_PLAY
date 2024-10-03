@@ -8,18 +8,23 @@ lib_apps is several apps and their libraries, in one code pool.
 		WIN32, Linux, UNIX, ... it used to and shall again
 	uses
 		the Gtk GUI-Toolkit (V2, not V1)
-		the POST datafile (mapped data files) (bundled)
-		the PDFLIB library (optional - GPL usage)
-		the JavaScript implementation from Mozilla (not js2)
+	NO	the POST datafile (mapped data files) (bundled)
+	()	the PDFLIB library (optional - GPL usage)
+	()	the JavaScript implementation from Mozilla (not js2)
 	written in
 		C++
 	home pages:
-		http://www.information-cascade.co.uk
-		http://www.gps.talktalk.net
+		https://github.com/gps67/YEAR_src_PLAY
+		# YEAR-src_PLAY is an even wider libs_apps
+		# it was getting messy inside, so new experiments moved out
+		# libs_apps is one dir that is sometimes used by adjacent dirs
+		# this probably requires /home/gps/ to be a link so that
+		# /home/gps/YEAR_src_PLAY/libs_apps/ exists
+		# soz #
 	Does:
 		various things,
 		lib_base - reference counted objects, buffers, etc
-		lib_base2 - javascript, pdf,
+		lib_base2 - javascript, pdf, 
 		lib_gtk1 - a wrap on Gtk, lib_gtk2 = more specific to app
 		lib_accts - UK accounting reports over CVS files
 		lib_media - controls a linux mixer, xawtv-x11, radio, lirc, cd
@@ -31,16 +36,14 @@ License: LGPL = (Library) L-GPL = http://ftp.gnu.org/gnu/LGPL
 	(hereby, without asking) as long as you comply with the L-GPL.
 
 	NOTE: this package links against some non LGPL modules,
-	you need to be sure that you dont use them, and/or switch them off.
+	you may need to be sure that you dont use them, and/or switch them off.
 
 	If you fully comply with the spirit and letter of the source
 	side of the LGPL, I am not worried about the linking side of the LGPL.
 
-	To be safe, put your modified copy of libs_apps on your web-site,
-	and email me, so that I know about it. Then you can link static
+	To be safe, put your modified copy of libs_apps on your web-site.
+	Optionally email me, so that I know about it. Then you can link static
 	or apply DRM signatures to your binaries, or whatever troubles you.
-
-  .
 
 	To go L-GPL without this let-off, simply link your app against
 	the shared object DLL's. Any header info that is inlined,
@@ -53,24 +56,41 @@ License: LGPL = (Library) L-GPL = http://ftp.gnu.org/gnu/LGPL
 	That 'allows users to run with a adjusted DLL' if they chose,
 	or not if they want the speed. They should both work similarly!
 
-  .
-
 BUILD/INSTALL:
 
-	NEWS: you must mkdir libs_apps_obj/
-	it is now excluded, so that all executable are excluded
-	The old .tar_excl_list excluded sar_parse/* by accident. SORRY!
+	Currently the WIN32 builds are bit_rot_broken
+
+	For an easy life create /home/gps/ as a SYMB link to (...)
+	I know that is naff, but your life will be easier
+
+	Without it a few symb-links and a few makefile rules might break
 
 	you MUST create symb-links and edit the Makefiles, see docs/Build.txt
+	you will probably need to install various -dev packages
+	and or build external packages that it uses
+
+	I am moving AWAY from pdflib to use the internal SPOUT
+	but that is not done, by some code, and it is easier to
+	build with too many packages, than edit them out
+
+	SpiderMonkey is the usual beligerant self.
+	I claim to use it, but the API changed,
+	and I have not the patience to redo it.
+	Even the minimalist redo, is blocked by the fact
+	that SpiderMonkey needs the very latest rust.
+	It can run with 1.75 (which Ubuntu has)
+	it DEMANDS 1.76 (and I bet for no good reason)
+	THat too would only tak moments to add, but meh
 
 	this is not as easy as the usual configure/make, sorry,
-	but then again, if you need to make a change to a Makefile,
-	you will NOT have to repeat that change in dozens of files,
 	and I build on a non-standard prefix, which may help admins
 	of non Linux boxes (HP, SUN, AIX, ... ) and non-root users
 
 	NEWS: pkg-config can be used by clients, you edit its files.pc instead
 	edit lib_pkgconfig/* for what it USES, when linking
+
+	OLD_NEWS pkg-config is used more, with lots of pseudo rules,
+	eg libs_apps_uses_libpdf.pc 
 
 tv_rem
 	tv_rem is a tv remote to watch TV, RADIO, CD, ... 

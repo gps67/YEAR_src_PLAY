@@ -69,6 +69,11 @@ set ZONE_NAME RSAC_HCTS
 set ZONE_NAME Skye_Six
 set ZONE_NAME Ella_BH
 set ZONE_NAME Drum_Camp
+set ZONE_NAME South_Bank_Pizza
+set ZONE_NAME Dawkes
+set ZONE_NAME Sekou_Keita_Oxford
+set ZONE_NAME BH6
+
 
 proc list_pop {listname itemname } {
 	upvar $listname list

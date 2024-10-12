@@ -2,9 +2,15 @@
 
 #include <stdio.h>
 
-// #define APP_NAME_wnd_class "APP_NAME_wnd_class" // STEPS // APP_NAME edit
+#define APP_NAME "wnd_class"
+// ##_MINX # 
+
+// EDIT #define WINDOW_TITLE "Window Title"
+#define WINDOW_TITLE "SCRIPT_Window Title" 
+
+// EDIT #define APP_NAME_wnd_class "APP_NAME_wnd_class" 
+// STEPS // APP_NAME edit
 #define APP_NAME_wnd_class "wnd_class_MINX"
-#define WINDOW_TITLE "Window Title"
 
 char * window_text;
 
@@ -269,14 +275,44 @@ printf( "wnd_class( h_Instance=%X, '%s' ); \n", h_Instance, app_WND_CLASS_name )
 	}
  };
 
+ // CTOR_HELPER // DECL_MODULE LOAD_MODULE INIT_MODULE RESUME_THREAD // 
+
  struct create_window_helper // helps you create window frames outer_window
  {
 	create_window_helper()
 	{
-		init();
+		init(); // CTOR from dirty memory // DTOR to NULL INDEXES
 	}
 
+	/*!
+		const char * 		// STR0 // UTF8_and_ASCII
+		window_class_name	// APP_NAME or
+					// LIBR_NAME or
+					// WINDOW_CLASS == _NAME
+
+				aside	// The usual PREFIX_SPLITTING_MARKERS
+					// LEX_GAP += "-" += "_" -= SP_or_GAP
+					// ie a gap in a lex NOT SP 
+					// HEURISTIC += LEX_GAP += ":" /
+					// used in time
+					// used in DTE_MAC u48_as_six_bytes
+					// BYTE // as 2 hex_digits %02X // UPPER
+					// $1:$2:$3:$4:$5:$6 // HILO_or_LOHI
+					// thats a SWITCH to PICK GEN VIEW etc
+
+		WIN32 works by each APP creating their own window_class_name
+
+		multiple programs running are independent,
+		but use the same event_decoder_API on_EVENT(ARGS) SESS_CTXT
+
+		DUNNO what happens on EDIT and start a new PROCESS and WINDOW
+		GUESS
+		PREFER
+		MAYBE obtain HWND of APP_GENRE_WC_genre // already updated
+
+	*/
 	const char * window_class_name; // of special type atomic ROM no free
+	// IE the default malloc rule for STR0 might be ROM STR0 // do not free
 	// WIN32 requires a window_class _name // "window_class" "window" "app_name"
 	// ADD // wc_atom
 	HWND hwnd_parent; // ?? ROOT or WMAN _HWND
@@ -313,7 +349,17 @@ printf( "wnd_class( h_Instance=%X, '%s' ); \n", h_Instance, app_WND_CLASS_name )
 
 	void set_window_class_name( const wnd_class & window_class )
 	{
+		// The NAME has already been set in the SESS Module global CFG
+		// this is when we tell WIN32 
+		// The wnd_class cindow_class // is our GDI_API_SESS_TOKEN
+		// each LIBR declares UNIQUE WIN32_NAME_wnd_class
+		// OFFER Window_Class window_class // WIN32_LIBR //
 		// wc_atom = window_class.wc_atom;
+		// MACRO window_class.get_ClassName() { // EDIT_FOLD // 
+		//  return wc.lpszClassName; // VIEW_CODE_INLINED //
+		// VIEW_DATA_ACCESS GET class.name // class == window_class
+		// GETTER is return wc.
+		// }
 		set_window_class_name( window_class.get_ClassName() );
 		if(1) // try it
 		if( window_class.wc_atom ) {
@@ -411,9 +457,9 @@ int APIENTRY WinMain(
 	MSG msg; // local MSG
 
 	wnd_class window_class(
-		h_Instance,
-		APP_NAME_wnd_class, // "wnd_class_MINX",
-		(WNDPROC)wnd_proc
+		h_Instance,	// of the program or PID or THREAD_MUX
+		APP_NAME_wnd_class, // "wnd_class_MINX" // app name for the WND
+		(WNDPROC)wnd_proc // API connector
 	);
 	// your edits here, then
 	window_class.Register_Class();
@@ -457,8 +503,11 @@ int APIENTRY WinMain(
 
 void CenterWindow(HWND hwnd_self)
 {
-	RECT rw_self, rc_parent, rw_parent; HWND hwnd_parent;
-	hwnd_parent = GetParent(hwnd_self);
+	RECT rw_self, rc_parent, rw_parent;
+	// HWND	// handle of window // EA() { return hwnd_PICK } // EA = EXPR //
+	// PICK == hwnd_parent
+	// EA // AUTO_VAR_AS_FUNC_inline_MACROS // EA = GETTER_EXPR ARGS //
+	HWND hwnd_parent = GetParent(hwnd_self);
 	if (NULL==hwnd_parent) hwnd_parent = GetDesktopWindow();
 	GetWindowRect(hwnd_parent, &rw_parent);
 	GetClientRect(hwnd_parent, &rc_parent);

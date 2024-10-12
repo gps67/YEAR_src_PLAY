@@ -2,42 +2,38 @@
 #
 # Track frame offsets:
 #	150
-#	18758
-#	46624
-#	66543
-#	79464
-#	105219
-#	124917
-#	146678
-#	171363
-#	187229
-#	215019
-#	230166
-#	253586
-#	271362
-#	297872
+#	17072
+#	34124
+#	45085
+#	59529
+#	78116
+#	88408
+#	103133
+#	115138
+#	127418
+#	145316
+#	160047
+#	176749
 #
-# Disc length: 4626 seconds
+# Disc length: 2626 seconds
 #
 # Revision: 0
 # Submitted via: hissy_fit SCRIPT 0.1.2
 #
-DISCID=e612100f
-DTITLE=Songlines / Songlines Top Of The World 197
+DISCID=ae0a400d
+DTITLE=UK ON TRIAL / CRACK IN A BOX
 DYEAR=2024
-DGENRE=world
-TTITLE0=Sahra Halgan / Laga
-TTITLE1=Mohammad Syfkhan / Do You Have A Lover Or Not?
-TTITLE2=Ngwaka Son Systeme / Zanga Mbongo 
-TTITLE3=Leyla McCalla / Sun Without the Heat
-TTITLE4=Aguidavi Do Jeje / Na Palha do Dende
-TTITL51=David Murphy / Sean O'Duibhir a'Ghleanna
-TTITLE6=Aoife O'Donovan / Crisis
-TTITLE7=Marthe x Pilani Bubu / Imbokodo
-TTITLE8=Amsterdam Klezmer Band / On Mala
-TTITLE9=Mama Longhirn / Rowing High Rowing Low
-TTITLE10=EMEL / Souty
-TTITLE11=Mexican Institute of Sound / My America is Not Your America
-TTITLE12=Nuri / Yiri
-TTITLE13=Lonnie Holley / I am a Part of the Wonder (feat Moor Mother)
-TTITLE14=Sabri Brothers / Tanam Farsuda Jan
+DGENRE=misc
+TTITLE0=No OTIS NO
+TTITLE1=BURN baby BURN
+TTITLE2=Bring me the head of teh queen
+TTITLE3=The Golden Glow
+TTITLE4=Living Hell
+TTITLE5=My Life
+TTITLE6=Chinese Acrobat
+TTITLE7=Pangea
+TTITLE8=REDNECK
+TTITLE9=I'm Bored
+TTITLE10=Sex Attack
+TTITLE11=Girl in a BOX
+TTITLE12=Walking With The Dead

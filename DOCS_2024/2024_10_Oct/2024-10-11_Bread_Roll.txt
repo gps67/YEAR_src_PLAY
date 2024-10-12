@@ -1,0 +1,48 @@
+	2024-10-11
+	2024-10-11_Bread_Roll.txt
+
+	This is not a spreadsheet, it it more like a till roll
+
+	It is like a DB_GRID, rows and columns in a table.
+
+	With headers, and one day with a sorted tree of group sub-headings.
+
+	It is a bit like a document, that contains TABLES.
+
+	Each fragment, is a DATA_ROLL, and has a list of imports and exports
+
+	Each TABLE_ROW is iterated (after sort),
+	and a list of rules are run.
+	Variables are available
+
+		ROW_PREV
+		ROW_CURR
+		ROW_NEXT
+
+		ALIAS A_ROW = ROW_CURR
+
+		K = A_ROW.vat_rate_key # auto decl { AVAR K }
+		get_VAT_RATE_as_unit_mult( VAT_RATE, K ) || FAILED  # eg 1.20
+		A_ROW.amnt_pre_vat = ...
+
+		interpreter converts STMT to a list of mini_steps
+		interpreter2 runs over those steps
+
+	ITERATE over ROWS
+
+	INLINE_MACRO AT_END() {
+		// gets all vars from surroundings
+	}
+
+-------------------------------
+
+	GRID
+	 COL_LIST
+	 COL_SPEC
+	 ROW_LIST
+	 ROW_SPEC
+	
+	ALIAS ONE TABLE_ONE // 
+
+	Use STRUCT as a clutch of COLS of A_ROW
+

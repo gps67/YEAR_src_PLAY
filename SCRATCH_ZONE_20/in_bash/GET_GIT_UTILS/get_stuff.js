@@ -15,6 +15,7 @@ type GET_GIT
 L1="
 https://github.com/oven-sh/bun
 https://github.com/Gnucash/gnucash
+https://github.com/Gnucash/gnucash-docs
 https://github.com/TigerVNC/tigervnc
 https://github.com/rfbproto/rfbproto
 https://github.com/modularml/mojo

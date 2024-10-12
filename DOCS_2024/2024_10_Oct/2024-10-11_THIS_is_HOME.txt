@@ -1,0 +1,527 @@
+	2024-10-11
+
+	2024_10_Oct
+	2024-10-11_THIS_is_HOME.txt
+
+	THIS = THIS + THIS 
+
+		class tree theory
+
+			BOTH += LHS
+			BOTH += RHS
+			BOTH += LHS_RHS_MIX // used by PROFILE copy SETTINGS
+
+		union is not here because ambiguous
+
+			C C++ union means entire switch SPEC same nbytes
+			PSG union means merge both SPEC_MEANING _LHS_RHS
+
+			some see it as PICK either, some as MIX MERGE both
+
+				MIX MERGE two CLASS_CONCEPT 
+
+					the bad pleuralisation
+					is because it makes MENTION work
+					CLASS_CONCEPT 
+					CLASS_CONCEPTs
+					CLASS_CONCEPT_one
+					CLASS_CONCEPT_two
+					CLASS_CONCEPT_obj
+
+			C++ does have MULTIPLE inheritance
+
+				this uses the implementation
+
+				to define its behaviour
+
+				The class _two is added to _one
+				like an extra field,
+				and LEXICON imports that field to SCOPE global
+
+	SCOPE _t is SPEC of item
+	global   is AVAR_or_ITEM 
+
+		AVAR beings STO for AVAR in MMAP
+
+			lock use of PAGE_ZERO
+			lock use of PAGE_ZERO_P0 // same by MENTION PARSED
+			Parse_Phrase DECODE_WORD_PAIR_in_MEM
+
+			Plural comes from plus (latin meaning more)
+			PLUS PAIR
+	
+ LEXICON LOCAL SPELLING "PLUS"
+ LEXICON LOCAL SPELLING PLUS = "PLUS" 
+
+ 	HOW IT WORKS
+
+		AVAR PLUS = "PLUS"
+
+			I am doing this with ASCII
+			There are a dozen variations Latin1 and UTF8
+
+				latin1 has PEER cyrillic
+				UTF8 has specialisations # eg latin1_in_utf8
+				UTF8 has fonts_avail # eg latin1_in_utf8
+
+				DTP monitors FONT_ACCESS_MISSING_GLYPH _API
+
+					count faults and get round to fixing
+					provide [X] overstrike
+					also redacted overstrike
+					removes hidden
+
+			you have to update your a1_a2_star c_ident_97
+
+				LIBR is providing BYTE_DECODE
+
+					OPTIONS to limit V0V2_range_150 
+
+						156_not_256
+
+							embedded uses
+
+						16_not_256
+
+							i4 and u4 use this
+
+						5_not_256
+
+							i32_grown_to_i3
+
+			lookup SPELLING
+
+				idx1 is the "proper" TOKEN in POOL_PAGE
+				idx1 is the "cached" TOKEN in POOL_mini
+
+			lookup SPELLING LETTER
+
+				allocate vars like A B C D
+				allocate vars like STR0 by single letter
+				allocate vars like PuNCT sometimes ? MINUS
+
+				allocate M numbers skipping GLYPHS
+				so can use in same POOL
+
+				allocate M numbers following GLYPHS
+				so can use from same POOL // printable
+
+				allocate MAPPINGS of BYTES
+				allocate MAPPINGS of STR nSTR STR0 STRn STRN
+				allocate chains of mapping { WRAP MAPPING }
+
+					using the above { lhs rhs }
+					preserves the spelling of lhs of rhs
+					it bring MATCH a bit closer
+					but it is not too tricky to have plurals
+
+			MINUS_ZERO_PLUS 
+
+				Plural is PLUS
+
+
+			we can provide efficient u8_idx and i8_idx_expr
+
+				array_256_of_1_2_4_8 # BYTES_ALIGNED_SELF
+				array 256 of _1_2_4_8 # BYTES_ALIGNED_SELF
+
+					i64 aligned on i64_word_boundary
+					i32_machines might play fast and loose
+
+					ALIGNED_CPU_self_or_WORD
+
+						i16 aligned 2
+						i32 aligned 4
+						i64 aligned 8
+						i32_i32 aligned i64
+
+			we can provide cached lookup SPARSE_USE
+
+				if module imports a list that fits in u4
+				bounce those values, pre-looked up
+
+				idx2 = dense_from_sparse[ idx1 ]
+
+					idx1_SPARSE
+					idx2_DENSE
+					idx2_CACHE
+
+				idx1 = idx_actual
+				idx2 = idx_cache
+
+				idx2 = lookup idx1	// ARGV style ASM
+
+			We can parse CIDENT99 from XPOS
+
+				a1_a2_star	for SCRIPT DIALECT around XPOS
+						SCRIPT uses a1_a2_star c_ident_97
+
+				CIDENT99	C_ident_97 is local dialect
+
+				cident97	profile specifies  a1_a2
+						via edit list
+						via cache label
+
+			#
+
+
+				
+
+
+
+	i4_grown_to_i3
+	i8_grown_to_i3
+	i16_grown_to_i3
+	i24_grown_to_i3
+	i32_grown_to_i3
+	i64_grown_to_i3 # BLOCK USE of this as NOT_DEFINED
+
+		we dont have a call mechanism to discern i64 from EIGHT
+
+			or is it u64 ?
+			or was it i24 ? fully stretched to CPU_WORD_64
+
+		CT_RT uses vehicles to transport AVAL_i16_in_i64
+		CT_RT adds INFO_about_choices made
+		CT_RT uses CODE_POINT to KNOW INFO_about_choices made
+		CT_RT uses CODE_POINT to FETCH INFO_about_choices made
+		CT_RT uses CODE_POINT to COMPUTE INFO_about_choices made
+		CT_RT uses CODE_POINT to CHANGE INFO_about_choices made += STO
+		CT_RT uses CODE_POINT to FILTERED_CHANGE INFO // dont write back
+		CT_RT uses CODE_POINT to UPDATE_CHANGE INFO // do write back //
+
+		DB_FLOW uses UPDATE_CHANGES at end of LOCK write back SYNC point
+		DB_SYNC pushes UPDATES that match PATTERN to level PATTERN2
+
+			eg DB pushes back to MEM copy of DB
+
+				releases LOCK
+				nudging PEERS waiting for LOCK
+				maybe BATCH up these changes to LOCKED LIST
+
+			eg DB pushes back to MEM copy of DB
+
+
+		i32 is the GROW limit within WORD (u32 if CODE_POINT says so)
+		i64_EXPR can use i16_i32 as i48_OFFS
+		i64_EXPR can use i8_i32 as i40_OFFS upto 256 PAGES of 4G 
+
+		u8_u8_u8_i8_u32
+		u8_u8_u8_i40
+
+			where i40 provides fourth i8 as the LOW byte of i40
+			where i40 provides fourth i8 as the HIGH byte of i40
+
+
+
+
+			Upgrading within BYTE
+
+				works perfectly
+				with most CPU for embedded
+
+				let compiler and CACHE optimise access
+				let GEN pick CACHE optimised access
+
+					WORD_is_in_CPU
+					BYTE_is_BITFIELD_in_WORD_is_in_CPU
+
+						SPECIAL BYTE_A
+						SPECIAL BYTE_B # intel only
+						SPECIAL BYTE_TOP_in_HALF_WORD
+						SPECIAL BYTE_TOP_in_HALF_WORD_lo
+						SPECIAL BYTE_TOP_in_HALF_WORD_hi
+						SPECIAL BYTE_TOP_in_FULL_WORD
+
+			DECL these
+			SPELLING these "BYTE_TOP_in_HALF_WORD_hi"
+			IMPLEMENT as BITFIELD in base class
+			IMPLEMENT as ASM in CPU_PROVIDES_BYTE_B_class_feature
+
+				NULL means use BITFIELD
+				NULL means activate CACHE
+				NULL means mention AVAR
+		###
+
+				CSET += CSET_BYTE
+				CSET += latin1 // union
+				CSET += cyrillic // union
+				CSET += UTF8 // DECODES_BITS_near_PERFECTLY //8
+				CSET += CSET_i16 // WIDE_CHAR in many dialects
+				CSET += CSET_i32 // probably i24 likely unsig
+
+					+= latin1
+					+= MS_CSET_16 - RTFM SHIP ASIS
+					+= cyrilic via UTF8 mapping
+					+= CSET_japanese_SCRIPT via MS_WIDE
+
+			Upgrading to allow latin1_glyph_a1_a2_star // ie subset
+
+				common subset for a1_a2_star is
+
+					LIST of BYTE VALUES 
+
+
+
+
+	THIS
+		ITEM_t * THIS; 
+		EA_ITEM_EXPR_t THIS; // i64_DECODED_as( i64, decoder, WORD )
+
+		The decoder takes an EA_EXPR and returns an EA_EXPR
+
+		A struggling FILTER can simply carry it through
+
+		MMAP requires EA_EXPR not VOID_star_PTR
+		actual GET_EA_PTR is a second DECODE
+
+		CT_RT_FILTER_over_WORD is editable TWIG where LEAF was
+
+			i8_i8	OPCODE
+			u8_u8
+
+			i16	HEAP_ZERO_ITEM_i16
+
+				DECODE_i64
+				DECODE_i32
+				DECODE_i16_as_i4_HEAP_i12_ITEM 
+				DECODE_i16_as_i4_HEAP_i12_ITEM 
+				DECODE_i16
+				DECODE_i16_as_ITEM_i12_HEAP_i4
+				DECODE_i16_as_ITEM_i12_HEAP_i4
+				DECODE_i8
+				DECODE_i4_i4
+				DECODE_i4
+
+			i32	i8_HEAP_i24_ITEM i24_i8 i16_i16
+
+
+	HOME 
+		/home/gps/G_laptop/G_2T/G_HOME_2024/
+		/home/gps/G_laptop/G_2T/G_HOME_2024/THIS_is_HOME.txt
+
+	#	/	# AVAIL and USED # listed STEPS used
+
+		/home/gps/				$HOME
+		/home/gps/G_laptop/			G_on_laptop 
+		/home/gps/G_laptop/G_2T/		G_on_MEDIA_called_2T
+		/home/gps/G_laptop/G_2T/G_HOME_2024/	$HOME
+		
+ home_gps	/home/gps/	$HOME - $HOME_on_UNIX_FS # as ROOT 
+
+		 G_laptop/	# G on that machine on SITE
+		  G_2T/		G_2T is that MEDIA in the LAPTOP
+		   G_HOME_2024/	$HOME - set using PERMIT
+
+
+		MEDIA 
+		/home/gps/G_laptop/G_2T/		
+		/home/gps/G_laptop/G_2T/G_HOME_2024/
+		
+		/home/gps/G ->
+		/home/gps/G_laptop/G_2T/G_HOME_2024/
+
+	# # # #
+
+		repeating them is pointless
+		but it saves a lot of hassle
+		when filing tree of files
+		when referring to no_backup zone
+
+		on a shared machine G would be one of A B C D 
+		it is USER_A or %s
+
+		BENCH knows that %s may be
+		the output from a future { %02X }
+
+	# # # #
+
+
+		G_HOME_2024	// a specific vertion in streaming git trail
+				// edit backups to merge some steps // release //
+
+
+				
+
+	THIS is HOME
+
+	ADMIN@
+	ADMIN_2024@
+	BH6/
+	BMI/
+	BOUGHT@
+	BOUGHT_2024/
+	DOCS_2024_G/
+	DODO/
+	G_ADMIN@
+	Irish_Sessions/
+	YEAR_BOUGHT ->		 ../../YEAR/BOUGHT/
+
+	readlink YEAR_BOUGHT 
+	../../YEAR/BOUGHT/
+
+	tmp_2T/
+	txt_jottings/
+
+	save_all.log1
+
+		OUTPUT FROM COPY_RESTART_BENCH # needs parameters stats 
+
+		# INFO # WARN # FAIL # PASS # FMT A R G S #
+		# API fmt_FFFF A R G S # 
+		# DECL fmt_FFFF { NAME %s } { FMT[ fmt_FFFF ] }
+		# SESS EVAL ARGV ... PLUS ... # PLUS ENVP GLOBALS EXPR SCRIPT
+		# STEP SESS EVAL ARGV ... PLUS ... # XPOS ARGS # MERGE_SPELLING
+		# TRACE SESS EVAL ARGV ... PLUS ... # OMIT_ROM_CONST_MENTION
+		# EMIT DONE FMT ARGS # actually different ARGS ARGV SESS CTXT THIS
+		# lookup("%s") { 
+		#  { SCRIPT XPOS CODE_POINT STEP("%s") } += CODE_POINT
+		#  { SCRIPT XPOS CODE_POINT STEP["%s"] } += STEP_TEXT_PARSED
+		# }
+
+		# STEP_TEXT_PARSED_STEP_TEXT # ALIAS_MIRROR_MERGE #
+
+			thats a step you dont meet every day
+
+		# API #
+
+			lots of C++ encoded EXPR or STEP or AVAR and FUNC
+
+				PHRASES += PHRASE
+
+			Parser uses these prepared PHRASES,
+			for USER SCRIPT
+			for TEST DATA SCRIPT
+
+			COMPILER produces C++ to be that DATA
+
+				ARGV - a concept that makes sense
+
+				broadly speaking used by
+
+				bash
+				LISP
+				Tcl
+				exec_ARGV # with added OPTIONS parameters AVAR_STAR
+				Python_CMD_LINE_FUNC_CALL_ARGV { SCRIPT }
+				Python_CMD_LINE_FUNC_CALL_ARGV {
+				#	SCRIPT
+				#	CMD A R G S # USAGE as PIPE_RETVAR
+				}
+
+				SCRIPT has RET_VAR was `BQ_CMD A R G S`
+
+					RET_VAR_is_STDOUT_from ARGV
+
+					CT_RT IDX == XPOS_FFFF
+					CT_RT DATA(IDX=DATA)
+					CT_RT DATA(IDX==DATA) // OPTION KNOW
+
+					CODE_PATH KNOW "{ IDX == DATA }" // LEX
+
+			LIBR provides IMPLEMENTATION of API
+
+				API += LIBR_for_API_two
+				API += LIBR_for_API_one
+				API += LIBR_for_API_UDEF
+				API += LIBR_for_API_ZERO
+				API += LIBR_for_API_NULL
+				API += LIBR_for_API_GROW_N
+				API += LIBR_for_API_lookup_name_type_state
+				# even its _mood
+			
+			API is C++ virtual TREE produced by GEN_CODE
+
+				we need to GEN_CXX
+				we need to JIT_CPP
+				we need to JIT_TCC #
+				we need to JIT_GCC # 
+				we need to JIT_GXX # 
+				we need to JIT_ASM # SCRIPT_ASM_to_ASM #
+
+			JIT system used is AOT PLUS
+
+				PLUS learns in RT
+				adds DATA to SESS 
+				calls ARGV in SESS # SESS.CTXT is NULL
+				# unmentioned PARAMETER was there as NULL
+				# or other TOKEN for STOLEN_TOKEN_in_own_MMAP
+
+			AOT cache preload jit ...
+
+				GEN CXX
+				COMPILE CXX -> C++ -> WASM 
+				COMPILE CXX -> C++ -> LIBR.so // .dll
+				
+				LOAD LIBR_so
+			
+				CALL FUNC
+
+				// SESS += SESS // way before
+				// way before this func was called
+				// MENTION makes that clearer
+				// SILENT is there but INIT_NULL
+				// SCOPE is an OPTION 
+				// SESS.CSR1_XPOS.SCOPE += BLOCK_LOCAL_arond_XPOS
+
+				// NAS DA //
+				// . //
+
+
+
+				.
+
+ DIALECT
+ 	MENTION AVAR_STAR implies AVAR exists (if its on the list)
+	ENV_VAR HOME USER 
+
+
+		arry[ N ] of ITEM_EIGHT_BYTE
+
+		union ITEM_EIGHT_BYTE u64 i64_lohi and others_via_ALIAS
+		{
+			i16 i16_fmt_FFFF; // single name BITFIELD_WIDTH
+			i16 i16_fmt_FFFF; // single name { BITFIELD_WIDTH ... }
+			i32 i24_fmt_FF_FF_FF; // %s
+			i32 i32_fmt_FF_FF_FF_FF; // %s // PROFILE PRINT_as PICK
+			i48 i48_fmt_FF; // %s // %02X //
+	SPELLING ALIAS	i48 i48_fmt_FMT; // %s // %02X // PARSE_IDX_from_ITEM_NAME
+			i64 i64_fmt_FF_FF_FF; // %s
+			i64_lohi _lohi;
+			i64_lohi CPU_WORD; // ie VALUE_in_REGISTER // EA_WORD //
+
+			CPU += REGISTERS ALLOCATED by SESS_running_SCRIPT
+
+				multiple packets accumulate payloads
+				eg XFER all resources, THEN run
+				LIBR makes list of FUNCS and VARS avail 
+
+					API += import_API_list_of_DECLS
+						
+						prepared by running
+							test script data
+
+	RUNNING SCRIPT 
+		to COMPILE script
+
+
+		}
+
+
+
+
+
+	THIS_is_HOME.txt
+
+	 /home/gps/G/G_HOME_2024
+
+	 	PRIVILEDGE to set HOME on some VFS or MEDIA PLATTER
+	
+		TICKET for USE is PROFILE_SNAPSHOT XPOS
+
+		SESS.PROFILE.XPOS_FFFF MEDIA LOCN ITEM LINE CPOS OFFS
+	
+
+
+
+

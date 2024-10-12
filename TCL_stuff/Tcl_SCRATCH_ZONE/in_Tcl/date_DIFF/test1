@@ -1,0 +1,12 @@
+
+test_is_older()
+{
+	say_do \
+	./date_diff_is_older.tcl $1 $2
+}
+
+test_is_older a                      b
+test_is_older date_diff_is_older.tcl b
+test_is_older date_diff_is_older.tcl days_diff_2021_.tcl
+test_is_older days_diff_2021_.tcl    date_diff_is_older.tcl
+test_is_older date_diff_is_older.tcl date_diff_is_older.tcl

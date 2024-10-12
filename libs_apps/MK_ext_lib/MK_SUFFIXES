@@ -5,7 +5,7 @@
 #
 # you must list all filename extensions used
 #
-.SUFFIXES: .cxx .c .o .so .elf .exec .h
+.SUFFIXES: .cxx .c .o .so .elf .exec .exe .dll .h
 
 #
 # RULE: compile from .c to .o
@@ -60,6 +60,43 @@
 %.elf: %.o $(OBJS)
 	# .elf is like .exec but duplicated text
 	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
+
+%.exe %.exec: %.o $(OBJS)
+	#
+	# MK_SUFFIXES link program RULE
+	#    RULE: .o.elf .o.exec %(OBJS)
+	#
+	#     CXX: $(CXX) 
+	#   OPTIM: $(OPTIM)
+	#  CFLAGS: $(CFLAGS) # errm not ENV(CFLAGS) # used by CC etc
+	# LDFLAGS: $(LDFLAGS)
+	#  YFLAGS: $(YFLAGS)
+	#    PKGS: $(PKGS)
+	#
+	#    OBJS:
+	#	$(OBJS)
+	#
+	#    OPTIONS for LINKS
+	#	-rdynamic # helps backtrace get symbols
+	#   LINKS:
+	#	$(LINKS)
+	#
+	#    LIBS:
+	#	$(LIBS)
+	#
+	#
+	#   @  $@
+	#   <  $<
+	#   ^  $^
+	#
+	#
+	$(CXX) $(OPTIM) -o $@ $< $(OBJS) $(LINKS) $(LIBS) 
+	#
+	# NOT # strip $@
+	# list libraries used # particularly non system
+	-ldd $@ | grep $(HOME)
+	# BUILT # $@ #
+	# OK #
 
 %.exec: %.o $(OBJS)
 	#

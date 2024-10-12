@@ -1,29 +1,35 @@
 #!/usr/bin/env make
 
-# FAILING WITH MISSING DLL
-# libgcc_s_dw2-1.dll
-# /usr/lib/gcc/i686-w64-mingw32/10-win32/libgcc_s_dw2-1.dll
-# /usr/lib/gcc/i686-w64-mingw32/10-win32
-
 ##	CXX = g++
 	CXX=/usr/bin/i686-w64-mingw32-g++ -mwindows 
 	OPTIM = -g
 	INCLS = -I../
 	INCLS = -I../buffer
-#	INCLS = -I/tools/2000/X11R6/include
+
+#	project does not use any packages .ATM.
 #	INCLS = `pkg-config --libs freetype2`
 #	INCLS = `pkg-config --libs libs_Apps`
 
-	dot_EXE=.exec
+	dot_EXE=.exec	# this still works for WINE
+	# dot_EXE=.exe# traditional different from UNIX
 
 	# add any -D defines
 	DEFS = 
 
-#	# uncomment to see used
+#	# uncomment to see used # not WINE
+#	INCLS = -I/tools/2000/X11R6/include
 #	LINKS = -L/usr/X11R6/lib -lX11
 #	LINKS = -L/tools/2000/X11R6/lib -lX11
 
-# NO	LINKS += -L/usr/lib/gcc/i686-w64-mingw32/10-win32 -lgcc_s_dw2-1 #.dll
+# YES create the symb link
+# which is the same as putting all DLL's on the PATH somewhere. dot
+# the dir and the name will change with different distributions
+# GCC auto requires it, no args added,
+
+#	DLL_DIR=/usr/lib/gcc/i686-w64-mingw32/10-win32
+	DLL_DIR=/usr/lib/gcc/i686-w64-mingw32/13-win32#/libgcc_s_dw2-1.dll
+	DLL_FILE=libgcc_s_dw2-1.dll
+	DLL_FULL=$(DLL_DIR)/$(DLL_FILE)
 
 	S=../src
 	VPATH +=$S
@@ -61,7 +67,8 @@
 ##	OBJS += e_print.o
 
 #	PROG1=test1
-	PROG1=hello
+ #	PROG1=hello
+	PROG1=hello_1
 	PROG2=test2
 
 	EXEC1=$(PROG1)$(dot_EXE)
@@ -81,12 +88,11 @@ endif
 # see .o.exec in MK_SUFFIXES
 # it should not hijack things but it does
 
-$(EXEC1): $(OBJS)
-$(EXEC2): $(OBJS)
-
 $(OBJS): $(HDRS)
 
-run_test1: $(EXEC1)
+run_test1: $(EXEC1) 
+	ls -l
+	ls -ld $(EXEC1)
 	# EXEC1 == $(EXEC1)
 	# DIR_libs_apps == $(DIR_libs_apps)
 	#
@@ -94,6 +100,31 @@ run_test1: $(EXEC1)
 
 run_test2: $(EXEC2)
 	./$(EXEC2) # "GEN_DOC GEN_PS GEN_SVG"
+
+ifeq (0,1)
+# only on WIN32 # this entire build is WIN32
+$(EXEC1): gcc_dll
+$(EXEC2): gcc_dll
+endif
+
+gcc_dll: $(DLL_FILE)
+	# gcc_dll # rule used #
+
+$(DLL_FILE): ../MK/Makefile
+	#
+	# The .exe needs $(DIR_FILE)
+	#
+	# ask_do does not work perfectly under less
+	# but it does work
+	#
+	ask_do ln -sf $(DLL_FULL)
+
+# without gcc.dll this is the message
+#
+# wine ./hello.exec
+# 0024:err:module:import_dll Library libgcc_s_dw2-1.dll (which is needed by L"Z:\\home\\gps\\YEAR\\src\\PLAY\\GFX_lib_WAX\\lib_WAX_W32\\obj\\hello.exec") not found
+# 0024:err:module:LdrInitializeThunk Importing dlls for L"Z:\\home\\gps\\YEAR\\src\\PLAY\\GFX_lib_WAX\\lib_WAX_W32\\obj\\hello.exec" failed, status c0000135
+# make: *** [../MK/Makefile:101: run_test1] Error 53
 
 ifeq (1,0)
 # we no-longer link it - the MK_SUFFIXES .o.exec does
@@ -106,4 +137,4 @@ $(EXEC2): $(OBJS) $(PROG2).o
 endif
 
 clean: 
-	rm -f *.o $(EXEC1)  $(EXEC2)  test2 fa
+	rm -f *.o $(EXEC1)  $(EXEC2) $(DLL_FILE) test2 fa

@@ -1,0 +1,307 @@
+TODO: junk bench_panel, go to gtk_text, as one thing
+TODO: folding MENU ALT_M fades after 5 minutes # spinning plates
+THEN: bench_panel is some LAYOUT of DIR/DIR/TEXT eg FLATLIST VFS_DIRLIST
+
+BENCH is literally a central window, some global keys,
+BENCH takes a few global keys
+BENCH is also A TSR, HOTKEY wakes up with popup zoomable
+BENCH has CURR.SESS.CURR.STO.ZONE // a HEAP for everything
+BENCH has CURR.SESS.CURR.STO.NEST // a LAYER with a ZONE and WRAP rules
+
+// LANG // UPPERS means AVAR or MENTION // custom MENTION mk_CONCEPT mk_AVAR
+// we want our gestures to means something // NAMESPACE_CODE_is_SEMANTIC
+// and the XYWH signales to be DATA // CODE_POINT //
+// AI simply hooks up AVAR_needs_STO
+// AI simply hooks up STO_needs_DECL_AVAR_MENTION // loop //
+// DATA_t CODE_POINT then UDEF "AVAR" // VAR_NAME == "AVAR" // KNOW generic
+// KNOW is required to guess "AVAR" actively seeks "{ VAR_NAME }"
+// AVAR == "MENTION" // that nudge is enough to ctustalise a DECISION POINT
+// this is KNOT on the pathway // where DECL AVAR was MENTIONED or not
+
+BENCH will have to be a WMAN aware using the old desktop API
+
+	XYWH BORDER_FEATURES_and_OPTIONS WID "WID_NAME" "_FFFF" // AUTO AVAR
+
+		open_window_using_LIB_WAX
+		INITIAL LAYOUT
+
+		MAIN_WINDOW
+		MENU_BAR
+		MAIN_PANEL
+		STATUS_LINE
+
+		KEYS_LIST GLOBAL_KEYS_LIST
+		GLOBAL_KEYS_LIST_y
+		GLOBAL_KEYS_LIST( ARGS += SAVED_STATE += CALC_UPDATE )
+
+		eg ALT_L EXEC T mc dir1 dir2 OPTIONS
+
+			OPTIONS += test and set OPTION in mc file "ARGV"
+
+			eg pause_after_program_ends 
+			vs need to press CTRL_O to get VIEW of output from CMD
+
+		eg ALT_Y POPUP ALT_Y 
+
+			register POPUP ALT_Y
+			 += keyboard_script_or_value // code characteristics
+			 += on_KEY_PRESSED
+			 += on_KEY_ALT_Y // could source choice to here
+			 // Parse "ALT" "Y" "Alt + Y" "ALT_Y
+			 // KEY_NAMES are imported here as FAMILIAR NAMES
+			 // Alt is a Modifier key
+			 // SHIFT_KEY CTRL_KEY SHIFT CTRL R_SHIFT R_CTRL //
+			 // Alt Alt_Gr // MODIFIERS // ALSO ...
+			 // STAND_ALONE_COMMAND_KEYS"
+			 // WINDOWS_KEY // MENU_KEY // %s_KEY // AUTO simplify
+			 // Ins Del Home End Page_Up Page_Down // PRINTSCR
+
+ explain
+ 	Alt_Y += MENTION
+ 	Alt_Y += RHYME with LIBR_ITEM _because_SAME_or_NEAR 
+	Alt_Y += GLOBAL_KEY("%s") // whatever GRAB_KEY needs to describe KEY
+	// KEY may use LIBR code to sequence keystrokes or own SCRIPT ARGV API
+
+	The ARGV message is prepared and sent to POPUP
+
+		CODE gets on_EVENT ARGS and SESS
+
+		SESS includes an ARGV but we dont always pass it
+		everything is accessible via some SESS.curr_ARGV // hold a few
+		// ARGV_curr_argv == SESS.STACK_FIVE_STACKTOP_ARGV
+		// compiler turned EXPR into a single IDENT
+		// SUBLEX STEPS MULTI_WORD_IDENT
+
+	BENCH SETTING
+
+		Y Laptop	Y is your command ALIAS
+				laptop is ITEM_from_PICKLIST
+
+	PICKLIST {
+	 try_to_keep_LIST_sorted_by_DATE
+	 FILENAME YEAR-MM-DD_FIELNAME
+
+	 	DECODE spots YEAR MM DD FILENAME
+	 	DECODE spots FILENAME_is_STR0
+	 	DECODE spots FILENAME_is_P0P2
+
+ inline optimise
+
+ 	get_STR0_from_P0P2
+
+		check that *P2-1 == ASCII_NUL // the 0 in STR0
+		// A STR0 into P0P2 into STR0 //
+		// A STR0 from P0P2 via buffer1 // attrs_of_STR0
+		// I want to replace STR0 with P0P2
+		// job done when rest of LIBE uses P0P2
+
+		const char * CSTR = "Mem in elf segment ROM with NUL"
+
+			so that is how we will store our lists
+			GCC C compiler 
+
+		if so P0 is a candidate for STR0
+
+			compiled added "STR0" 
+			OPTIONALLY as SHARED or SPLIT appended to DATA_SEGMENT
+			compiler has assembled TABLES of STR0 in ROM
+			thread running elf wont have write permit to ROM
+			REMOTE is asking us to CALL on_EVENT STEP
+			STEP += DATA_STEP
+			STEP += CODE_STEP
+			CODE += CODE_LIBR // we implement CORE using own code
+			API += LIBR_CALL ARGV // in_SESS //
+			// in_SESS // AUTO PARSE // in_ SESS // SCRIPTS
+			// eg AVAR has GETTER can have fine detailed PICK_A_B
+
+		if( P0P2_ends_in_NUL } it_is_already_a_STR0 possibly_multi_NUL
+
+	MULTI_NUL - using STR0 as BYTES
+
+		each field has collapsed to a NUL
+		that still gives each FIELD a CODE_POINT_in_SCRIPT
+
+			CODE_POINT_for_field_is_P0_when_it_was_FIELDNAME
+
+		or NULL_STR gets merged into common single NUL
+
+			only one LOCN
+			many FIELD could arrive LIST_CTXT_SCOPE
+
+				CTXT is a second SESS
+				CTXT.field_ctxt
+				SESS.field_sess
+				CTXT == SESS
+				SESS == SESS
+
+			on_SHORT_CIRCUIT COMPILER_GETTER
+				CTXT == SESS
+
+			PICK from above this one because
+				EXPLAIN += REASON // += a text in LANG
+
+	EXACT_MULTI_NULL - loading SPELLING as nstr
+
+		LIST of STR0
+
+			loaded as the TEXT of each STR then a NUL byte
+
+			the list gets sorted each YEAR
+
+				and USER has defined and provided TABLES
+
+				LIBR.ROM is C compiled
+
+		LIST_of_P0P2
+
+			P0P2 is the SPAN of some_ARGV_segment
+
+			P0P2 makes it SIMPLE_OFFS XPOS_OFFS
+			XPOS is TEXT_STR0 + XPOS_OFFS
+			N_IDX is P2-P0 as_IDX // P0_t P0 int N_idx
+			// idx = N ++ //
+			// idx=N++ //
+			// N++ //	The BASIC ALLOC of an item IDX
+			// IDX++ // IDX is index_pos_of_ITEM_in_ARRAY[IDX]
+			// IDX is also a GENRE with LIBR // 
+			NBYTES is P2-P0
+
+		LIST_of_ITEMS in SORTED order by NAME then_NAME_then THEN
+
+			ON VERSION MINOR or even trivial
+
+				regenerate all TABLES in ROM from SOURCE
+
+			build from scratch
+
+				start recod
+				clear SESS and restart then == NOW
+
+				run the CTOR SCRIPT TREE
+				run the training data for PURPOSE
+				PURPOSE == BUILD_WORLD_for_SESSION_and_STO
+				PURPOSE == BUILD_WORLD_for_STO
+				PURPOSE == BUILD_WORLD_for_SESSION
+				PURPOSE == BUILD_WORLD_for_SESSION_and_STO
+
+			// STO_SESSION is a RECORDED list of STEPS
+			// STO_SESSION is a RECORDED DATA as NBYTES as STO
+			// LOOKUP elfname // ABSENT // ENOENT //
+			// LOOKUP elfname // DETAIL // "NAME" -> i64_VALUE
+
+		MMAP of a SEGMENT in a FULLY_LOADED_SET_OF_FILES
+
+			C_ENUM_STYLE_PARSER
+
+			PARSER must supply a TREE "PHRASE_TREE"
+
+			ENUM_is_a_list_of_VALUES_and_a_few_extra_named_things
+			ENUM_N is only over N_values
+			ENUM_N is over N_values_and_several_more
+
+			DESIGN is_MINUS
+			DESIGN is_ZERO treat_as_is_PLUS _is_IDX
+			DESIGN is_PLUS is IDX u7_idx
+			//
+			// u7_ u15_ u31_ u63
+			// i8  i16  i32  i64
+			//
+			// i0 u1 u2 u3 u4 u5 u6 u7
+			// i1 i2 i3 i4 i5 i6 i7 i8
+			//
+			// i0 occupies no DATA so when does it come into SCOPE
+			// ALIAS i0 with TOKEN_WITHOUT_DATA
+			// TOKEN == CODE_POINT.lookup("TOKEN") //
+			// CODE_POINT.KNOW ... write what you know ...
+
+			// i4 i12 i24 i48 //
+			// COMMON TEMPLATE //
+			// INDEPENDENT_CODE //
+
+			// i32_i32 // HIGH_HALF is easily signed
+			// i32_i32 // in_SITU__HALF is signed when ...
+			// word_extend_i32_to_i64 // RECORD WHEN
+			// word_extend_i16_to_i32 // RECORD WHEN
+			// word_extend_i8_to_i16 // RECORD WHEN
+			// retain original_modified_GROW_history
+			// RECORD WHEN snapshot of all STO
+			// STO can do an optimised snapshot
+			// each session can be considered one huge transaction
+			// RECORDING ALL TRANSACTIONS or added DATA + SCRIPTS
+	
+	USING P0P2 permits the attachment of the original SCRIPT
+	and use P0P2 from P0_N
+
+		P0 = P0_OFFS_in_FILE // PAGE_0.P0 // STACK beyond
+
+			NEST BEYOND is when you have optimised
+			but every HOUR you can UPDATE all those concerned
+	
+	Now STR0 is a fixed thing that the C compiler does
+
+		Often str0 is held in a table of translated STR0
+
+		INDEX is PRE_BUILT but comes with BUILD_CODE
+
+	If we can have a STR0 that has no definition other than
+
+		ALIAS_P0P0 // STR0 is ALWAYS P0_N as P0P2
+
+			THe N is extra PAYLOAD to carry
+			Always a choice of N_WORDS_of_i64
+			// i32_i32 //
+			// i8_i8 OPCODE
+			// i16_as_i4_i12_HEAP_ITEM // or_EXPR
+			// HEAP gives COMPILER own TREE_BRANCH_LAYOUT
+			// HEAP can be SCRIPTED to other HEAP 
+			// GROW tells HEAP to STEP_UP_to_GROW
+			// We iterate through the API_CALLED_CODE
+
+	SCRIPT
+	 ARGV
+	 ARG0 == CMD
+	  CMD == SYNC_EDGE at CODE_POINT // all in the 1 word
+	 ARGS += CODE_POINT when it isn't above (or NULL)
+
+	ARGV += on_EVENT_RECORD SYNC_EDGE_OPEN ... SYNC_EDGE_SHUT
+
+		each ARGV can have own SCOPE with MINI_VARS
+
+		AVAR_field += { NAME STEPS_WITHIN_ZONE }
+		AVAR_field += { NAME STEPS_WITHIN_ZONE_OPEN_SHUT }
+		AVAR_field += { NAME STEPS_WITHIN_OPEN_SHUT_ZONE }
+
+
+		
+
+
+
+
+	laptop is ITEM_from_PICKLIST
+	}
+
+
+
+	// AUTO AVR with those named options
+	// each is "VAR_NAME" and SSA_ID_of_CURR AVAL in SESS VIEW_4
+	// All views are subject to PROFILE and even SCRIPT for that VIEW
+	// AUTO AVAR_FIELD AVAR==VIEW AVAL=="VIEW_4" //
+	// leans to this second component first was "WID"
+	// WID == "WID" == AVAL == "VIEW_4"
+	// KNOW ITEM mentioned in GROUP_ONE GROUP_TWO SCOPE_VIEWS
+	// SCOPE_VIEW is SCOPE VIEW
+	// VIEW is COMPONENTS in LANDSCAPE of USER running CODE in SESS
+	// VIEW_ACTION is LEXICON ALIAS for VIEW completely different SCOPE
+	// ACTION LIST ITEM on_EXPR ARGS call on_EXPR_vector with ARGS in SESS
+	// called function gets the "right" to access
+	// well it gets the access method, so pre-need permit (CT_RT CT)
+	// This THREAD is USER on DESKTOP working with BENCH // TRIM_TREE_SESS
+	// This THREAD is running DECODE_u32_u32_ARGV_SCRIPT_and_STO
+	// This THREAD is running SCRIPT i64_STEP
+	// VARIABLE_WORD_COUNT in PHRASE_and_OPCODE
+	// UNIVERSAL DECODE_i64 reserving 4 ROOT NODES 256_NODES
+	// UNIVERSAL DECODE_i64 reserving 4 ROOT NODES 256_ITEMS
+	// get list of FOUD WORDS or P0P2 /* and EXPECT N == FOUR */ /* NEST */
+
+	// 
+

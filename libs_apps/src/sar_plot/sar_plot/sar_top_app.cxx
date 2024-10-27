@@ -142,7 +142,45 @@ bool sar_top_app::fill_menu_bar()
 
 // zero size causes no call to set usize
 
-sar_top_app::sar_top_app( TOPAPP_Holder_gtk * holder, const char * first_file )
+#if 1
+// the point is - bench_top_app is producing an error message
+// we can make the same message by if 0 dropping this CODE
+//
+// libs_apps/src/apps/main/sar_plot.cxx:34:
+//  undefined reference to
+//  `sar_top_app::sar_top_app(APPS::TOPAPP_Holder_gtk*, char const*)'
+//
+// collect2: error: ld returned 1 exit status
+//
+// basically says this function was not provided or defined
+// but it was referenced, eg FILE_LINE sar_plot.cxx:34:
+// expected prototype is 
+//
+//  `sar_top_app::sar_top_app(
+//	APPS::TOPAPP_Holder_gtk*,
+//	char const*
+//  )'
+//
+// that confirms that "APPS::" is AUTO_NEST LOCN RESOLVED_TYPENAME
+// it says it was resolved, and got "APPS::" from "{ using namespace APPS; }"
+//
+// 	FUTURE CODE STYEL USAGE
+// 	FUTURE CODE STYEL USAGE
+//
+//	using namespace ZONE; // let G++ resolve name in namespace // HOW
+//	// then avoid using namespaces wherever possible // always using DECL
+//
+// 	FUTURE CODE STYEL USAGE
+// 	FUTURE CODE STYEL USAGE
+//
+// the SOURCE CODE prototype in the .cxx code_provider
+// CXX_HEADER_FUNCTION_with_BODY
+// actual prototype is
+
+sar_top_app::sar_top_app(
+	TOPAPP_Holder_gtk * holder,
+	const char * first_file
+)
 : TOPAPP_Task_Window_Major( holder, "Sar Plot", 0, 0, first_file, false )
 {
 	use_standard_layout();
@@ -254,6 +292,7 @@ sar_top_app::sar_top_app( TOPAPP_Holder_gtk * holder, const char * first_file )
  // Start program with the About BOX
 	if(0)  C_menu_help_about( NULL, this );
 }
+#endif
 
 void sar_top_app::layout_selected_time( time_t t1 )
 {

@@ -64,7 +64,7 @@ class TOPAPP_Task_Window_Minor : public TOPAPP_Task_gtk
 	//! the main window
 	obj_hold<w_win_top>	main_window;
 
-	//! the main window
+	//! the main_area of the main window // ir app_area ?
 	obj_hold<w_vbox>	main_area;
 
 	//! the empty or full menu bar
@@ -76,7 +76,7 @@ class TOPAPP_Task_Window_Minor : public TOPAPP_Task_gtk
 	//! h_box for now
 	obj_hold<w_hbox>	status_bar;
 
-	//! retain the file selector dialog
+	//! retain the file selector dialog // or make this LIBR_global only 1
 	obj_hold<w_file_sel>	filesel;
 
 	//! the selected filename

@@ -1,0 +1,4 @@
+# VAR_OBJS_bench
+
+	OBJS_bench += bench_top_app.o
+	OBJS_bench += bench_panel.o

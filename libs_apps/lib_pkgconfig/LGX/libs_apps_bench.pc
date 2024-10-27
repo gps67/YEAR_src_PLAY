@@ -1,0 +1,17 @@
+
+prefix=/home/gps/YEAR/src/PLAY/libs_apps
+exec_prefix=${prefix}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}
+includedir=${prefix}/include
+
+Name: libs_apps_bench
+Description: libs_apps - bench += bench_gui // _gtk _WAX _gui
+Version: 0.1.3
+
+Requires: \
+	libs_apps_bench_gui \
+
+Libs: 
+Cflags:
+
+

@@ -1,0 +1,18 @@
+	2024-10-18
+	2024-10-18_STO_HEAP_ITEM.txt
+
+	STO brings its own namespace
+	YOU can fork and rewrite
+
+	GROW_u7_u15_u23_u31_u63 {
+	// ALSO _12 "{ i4_i12 i4_HEAP i12_ITEM }"
+
+	"{
+		 i4_i12		OPCODE "This is a %s" "i4_i12"
+
+		 i4_HEAP	DECODE AVAR i4_HEAP = EXPR
+		 i12_ITEM	DECODE AVAR i12_ITEM = EXPR
+	 }"
+	}
+
+

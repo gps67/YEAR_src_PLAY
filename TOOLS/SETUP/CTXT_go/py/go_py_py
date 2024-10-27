@@ -1,8 +1,18 @@
 
+# docs needs 
+# * `Sphinx <https://pypi.org/project/Sphinx/>`_
+# * `blurb <https://pypi.org/project/blurb/>`_
+# * `python-docs-theme <https://pypi.org/project/python-docs-theme/>`_
+# make venv # see Doc/README.rst
+# make html
+
+
+
 . ../go__fns
 
 # fn_grp_dir_sub py Python-3.11.3
-fn_grp_url py https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tar.xz
+# fn_grp_url py https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tar.xz
+fn_grp_url py https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tar.xz
 # fn_no_VPATH
 fn_unpack
 
@@ -26,8 +36,8 @@ fn_unpack
 #
 # USELESS HERE # ?
 fn_with_tk
-fn_with_grp tcl
-fn_with_grp libr
+fn_with_grp tcl		# TKINTER
+fn_with_grp libr	# ncurses # but not used in 3.12 ?
 fn_with_grp util
 fn_with_grp_all
 fn_with_grp_LD_RUN_PATH tcl
@@ -38,12 +48,15 @@ fn_with_X11
 ## SOMEHOW the top bin/python has to be linked with g++
 # so that C++ modules get static init ?
 enable_optimisations=""
-enable_optimisations=--enable-optimizations
+enable_optimisations=--enable-optimizations # PGO LTO # build link #
+# training workload # run on image with instrumentation
+enable_pydebig=--with-pydebug
 
 fn_reconfigure
 fn_configure_prefix \
 --with-cxx-main=g++ \
 ${enable_optimisations} \
+${enable_pydebug} \
 
 #
 # OLD # --with-tcltk-includes=${tools_2000}/tcl/include \

@@ -1,0 +1,20 @@
+total 44
+-rw-rw-rw- 1 gps gps  968 Aug 25  2010 fa3
+-rw-rw-rw- 1 gps gps  555 Aug 25  2010 M
+drwxrwxrwx 2 gps gps 4096 Dec  9  2012 _old
+-rw-rw-rw- 1 gps gps   19 Aug 25  2010 rad_1.cxx
+-rw-rw-rw- 1 gps gps 2111 Dec  9  2012 rad_1.h
+-rw-rw-rw- 1 gps gps 6563 Dec  9  2012 rad_1_unix.cxx
+-rw-rw-rw- 1 gps gps 4219 Nov  4  2011 rad_1_unix_OLD_V4L1.cxx
+-rw-rw-rw- 1 gps gps 2049 Aug 25  2010 rad_1_win32.cxx
+-rw--w--w- 1 gps gps 1424 Aug 25  2010 radio_scan.cxx
+
+	I now access TV and RADIO online, not via PCI nor USB
+
+	The above code BLOCKS during OPEN of absent card.
+	Again I want to fix that, but have no rig to test it,
+	other than it sucessfully fails to open an absent card
+
+	tv_rem.exec shows that in action
+	This is probably dead code, that I must never change,
+	maybe edit out

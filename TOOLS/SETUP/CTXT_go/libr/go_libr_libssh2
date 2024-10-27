@@ -1,6 +1,7 @@
 . ../go__fns
 # https://www.libssh2.org/download/
-URL=https://libssh2.org/download/libssh2-1.11.0.tar.xz
+# URL=https://libssh2.org/download/libssh2-1.11.0.tar.xz # Mar 19 ?
+URL=https://libssh2.org/download/libssh2-1.11.1.tar.xz # Oct 16
 fn_grp_url libr $URL
 fn_unpack
 fn_with_grp libr

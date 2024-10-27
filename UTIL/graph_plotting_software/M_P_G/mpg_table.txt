@@ -27,5 +27,6 @@
  2024-09-26  24080 273  24353  11.8 p_mile  1.35 £_litre  6.13 £_gallon  51.8 mpg   5.5 lp100  P Full BH Hinton
  2024-10-03  24353 253  24606  13.1 p_mile  1.29 £_litre  5.85 £_gallon  44.6 mpg   6.3 lp100  P Full iMorrissons from BH
  2024-10-08  24606 177  24783  13.5 p_mile  1.29 £_litre  5.85 £_gallon  43.3 mpg   6.5 lp100  P Full iMorrissons from BH
+ 2024-10-15  24783 162  24945  14.8 p_mile  1.30 £_litre  5.90 £_gallon  39.9 mpg   7.1 lp100  P Full iMorrissons from BH
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 

@@ -1,4 +1,4 @@
-NAME=same_name
+NAME=same_name_AVAR_FUNC
 
 test: $(NAME).exe
 	./$<

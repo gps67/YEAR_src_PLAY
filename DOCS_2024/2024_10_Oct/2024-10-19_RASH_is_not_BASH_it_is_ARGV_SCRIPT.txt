@@ -1,0 +1,185 @@
+	2024-10-19
+
+	2024_10_Oct
+	2024-10-19_RASH_is_not_BASH_it_is_ARGV_SCRIPT.txt
+
+	DECODE_u8_u8
+
+		SCRIPT filters all 2 BYTE PHRASES eg "%s"
+
+		%s
+		$1 $2 ... 
+		$$ $? $. ...
+		$A $B $C ...
+		$a $b $c ...
+		$_ $__ 
+
+		MATCH in a slightly different alignment
+
+		$A1
+
+		 A1
+		 Z9
+
+		We are not avidly reserving BYTE_PAIR PERCENT ASCII_s
+		but when it is available, it makes the MINI_MACHINE real
+
+		After that, you can sweep over the unused ranges of ALLOC
+		using a TABLE_u8_of_u8 # ALIAS MAPPING 
+		ANSWER knowing about BOTH layers ONE with SCATTERED PAIRS
+		TWO with FILL_left_to_RIGHT _skipping_reserved
+
+		This is MINI_MACHINE ettiquette [ BA_i16_lohi ]
+		operator[]( size_t idx ) // i32_idx // CAST to ANY_of_this_list
+		operator[]( i64_ idx ) // i64_idx // OOPS PICK LIST_ITEM %s i64
+		operator[]( i32_ idx ) // i32_idx // 5 in LIST so i4 upto 7
+		operator[]( i16_ idx ) // i16_idx // 8 in LIST AUTO GROW
+		operator[]( i8_ idx ) // i8_idx // u7_idx // PICK i6 of 32 //
+		operator[]( size_t idx ) // i32_idx
+		operator[]( size_t_ idx ) // i32_idx 
+		you have 256 NOUNS with SPEC and as much DATA as you bring STO
+
+
+	OFF BY ONE -- POWERS of TWO
+
+		u7_BITFIELD in i8 after i1_is_MINUS
+		i8_BITFIELD in i8 using i1_is_MINUS
+
+			This literal statement introduces TWO pathways
+
+			i1 u7
+			i1_i8 // MINUS when is_MINUS == 1 == TRUE 
+			i1_u8 // HIGH_HALF when is_HIGH_HALF == 1 == TRUE 
+
+				here we have created u8_idx
+
+					KNOW is_HIGH_HALF // _RHS_HALF_
+					KNOW is_RHS_HALF // _HIGH_HALF_HI
+					KNOW is_LHS_HALF // LOW_HALF LO
+
+		[-128       [-64        [0        63[64      127[128
+		[0        63[64      127[128                 255[256
+
+		[-8         [-4         [0         3[4         7[8
+		[0         3[4         7[8        11[12       15[16
+
+		MATCH DECL BITFIELD
+
+		KNOW call_so_FIX_SIGN_and_JUMP_HALF_DROP_HALF
+
+		 i8_idx.on_MINUS() { // $1 == i8_is_MINUS //
+		 	u7_idx		// 
+			i8_idx_MINUS_	// 
+		 }
+		 i8_idx.on_ZERO() { PRE_ROUTE i8_idx.on_PLUS() }
+		 i8_idx.on_PLUS() {
+
+			u7_PAYLOAD = i8_BYTE & 0x7F // MASK OFF TOP BIT
+			u7_idx = u7_PAYLOAD =  BITFIELD_MAGIC // i8_BYTE & 0x7F
+
+			lookup ITEM = LOOKUP[ u7_idx ]
+		 }
+
+		BITFIELD.is_at_BIT_6 // excludes SIGN bit but not my SIGN bit
+		BITFIELD.is_at_BIT_7 // includes SIGN bit // so act on SIGN
+		BITFIELD.nbits
+		BITFIELD.nbits_shift
+
+
+	BASH is based around ARGV
+	Functions name their args $1 $2 ...
+	$0 is open for special usage
+	$0 == "arg0_cmd0_the_name_of_this_function"
+
+	UNIX did (ARGV to) ARGV FORK_EXEC_ARGV_ENVP_PID_INFO
+
+		INFO += PID 
+		INFO += NEW_PID as told to PARENT_process
+		INFO += API_SAYS_BUNCH_OF_STUFF
+		INFO += PPID as told to CHILD_process
+
+	UNIX has a few tricks for its own self-defined hoops
+
+		fork()
+
+			caller is THIS_THREAD_PROCESS
+			A second running copy of THIS_THREAD_PROCESS
+			is created. Completely identical,
+			except for the return value from fork()
+			and getpid(2) == "{ pid_t pid }"
+
+			The PUNCT Q2 L_CURLY SP %s_t %s CURLY_R Q2
+			PUNCT SEQ { // $1 == "pid" // $2 undefined
+			 if $2 undefined
+			  // so give $2 a VALUE that it did not need to provide
+			 else
+			  // $2 == "ALIAS" // or whatever AUTO_TYPE VALUE
+			  // make it so: "ALIAS" can be used where $2 was
+
+				Q2 L_CURLY SP
+				FMT %s_t $1 // 
+				SP
+				FMT %s $2 // using second usage as NAME
+				SP CURLY_R Q2
+
+			ARGS "pid" "pid" 
+
+		exec()
+
+		get_env()
+		set_env()
+
+ GEN produces SP precision, and we need it
+ PARSE extends this to GAP detection
+
+ PUNCT rewrites PHRASE into a parrallel ARGV
+
+ 	ACTUAL DATA ARGV_one	
+ 	ADDED SCRIPT_n_DATA ARGV_two
+
+	eg if( bool_expr ){ SCRIPT }
+	"if("
+		requires additional "if" "(" # from ROM
+
+	"){"
+		requires additional ")" "{" # from ROM
+
+ PUNCT rewrites PHRASE with a second ARGV of STEPS
+
+	ARGV_one is actually SEGMENT of callers ARGV # and it is FIXED
+	ARGV_two_EXTRA += added SEGMENT of HEAP holding LIST of EXTRAS
+	ARGV_two is prebuilt, or is built right now and cached, complete copy
+
+		That simplifies what SCRIPT has to do
+		It accepts that ARGV is FILTERED
+		It treats it as plain ARGV
+
+		CT_RT does half the PRE_LOAD to ROM_STO_INIT_VALS
+		PRE_LOAD /* DEMAND_MEMSET_ZERO ACCEPT_PROOF_of_ASIF_from_IDE */
+		// rewrite CLAIM as PROOF as ALLOC USAGE of TOKEN for purposes
+
+		CTOR_DTOR_SCOPE_RULES_OK
+
+ 	the sequencing along the EXPANDED ARGV
+
+		SCRIPT knows that it is on liquid ground
+		SCRIPT does refer to ROM_ARGV // ROM_WORDS_TEXT 
+		SCRIPT does refer to SESS_ARGV
+		SCRIPT knows that it is on liquid ground
+	
+	SCRIPT gets PARSED into WORDS found in ARGV _one _two _BOTH
+
+		Output ARGV is after FILTER, PARSED view of ARGV_one
+
+			CALL MACRO creates a second ARGV_two
+
+			MACRO can use SCRIPT knowledge
+			and make a PRE_PARSED entry point into inlined SCRIPT
+
+			got PRE_PARSED_ARGS // so not really ARGV but ...
+
+			some sort of SNIPPET "... NAME DATA ..." in ARGV
+			Parser pushes Q2_dot3_SP aside during analysis
+
+
+

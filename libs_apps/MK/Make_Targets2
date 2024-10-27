@@ -13,6 +13,7 @@
 ##	LIB11=base
 ##	LIB21=base2
 ##	LIB33=gtk_text
+##	LIB_7=bench
 ##	LIB34=media
 ##	LIB35=accts_gtk
 ##	LIB36=sar_plot_post
@@ -42,10 +43,12 @@ RUN_INCL_PATH=$(TOP)/_run_dox/_incl_path
 LINKLIB11=`$(PKG_CONFIG) _into_base1 $(PKGS) --libs`
 LINKLIB21=`$(PKG_CONFIG) _into_base2 libs_apps_base1 --libs`
 LINKLIB23=`$(PKG_CONFIG) _into_base2_gtk libs_apps_base1 --libs`
+# _base2 # += _bench_gui # via gtk_text LIB33
 LINKLIB33=`$(PKG_CONFIG) libs_apps_base2 --libs`
 LINKLIB34=`$(PKG_CONFIG) libs_apps_base2 --libs`
 LINKLIB35=`$(PKG_CONFIG) libs_apps_base2 --libs`
 LINKLIB36=`$(PKG_CONFIG) libs_apps_base2 --libs`
+LINKLIB37=`$(PKG_CONFIG) libs_apps_base2 --libs`
 
 WITHLIB11=`$(PKG_CONFIG) libs_apps_base1 --libs`
 WITHLIB21=`$(PKG_CONFIG) libs_apps_base2 --libs`
@@ -54,6 +57,7 @@ WITHLIB33=`$(PKG_CONFIG) libs_apps_gtk_text --libs`
 WITHLIB34=`$(PKG_CONFIG) libs_apps_media --libs`
 WITHLIB35=`$(PKG_CONFIG) libs_apps_accts_gtk --libs`
 WITHLIB36=`$(PKG_CONFIG) libs_apps_sar_plot_post --libs`
+WITHLIB37=`$(PKG_CONFIG) libs_apps_bench --libs`
 WITHLIB3635=`$(PKG_CONFIG) libs_apps_accts_gtk libs_apps_sar_plot_post --libs`
 
 # INCLS += `$(PKG_CONFIG) _into_base2 --cflags`
@@ -77,6 +81,7 @@ LINK_SO_FROM += $(RPATHS)
 	IMP34 = lib$(LIB34)_implib.a 
 	IMP35 = lib$(LIB35)_implib.a 
 	IMP36 = lib$(LIB36)_implib.a 
+	IMP37 = lib$(LIB37)_implib.a 
 
 	DLL11 = lib$(LIB11).$(DLL)
 	DLL21 = lib$(LIB21).$(DLL)
@@ -85,6 +90,7 @@ LINK_SO_FROM += $(RPATHS)
 	DLL34 = lib$(LIB34).$(DLL)
 	DLL35 = lib$(LIB35).$(DLL)
 	DLL36 = lib$(LIB36).$(DLL)
+	DLL37 = lib$(LIB37).$(DLL)
 
 	# lib archive libNAME.a
 	LAR11 = lib$(LIB11).a
@@ -94,6 +100,7 @@ LINK_SO_FROM += $(RPATHS)
 	LAR34 = lib$(LIB34).a
 	LAR35 = lib$(LIB35).a
 	LAR36 = lib$(LIB36).a
+	LAR37 = lib$(LIB37).a
 
 
 # link one DLL against another:
@@ -117,6 +124,9 @@ $(IMP35) : $(DLL35)
 	#
 
 $(IMP36) : $(DLL36)
+	#
+
+$(IMP37) : $(DLL37)
 	#
 
 ifdef WIN32
@@ -193,6 +203,7 @@ $(PROG6_EXE): $(DEPS) $(makes) $M/Makefile
 $(PROG7_EXE): $(DEPS) $(makes) $M/Makefile
 $(PROG8_EXE): $(DEPS) $(makes) $M/Makefile
 $(PROG9_EXE): $(DEPS) $(makes) $M/Makefile
+$(PROG0_EXE): $(DEPS) $(makes) $M/Makefile
 
 program1: $(PROG1_EXE)
 program2: $(PROG2_EXE)
@@ -203,6 +214,7 @@ program6: $(PROG6_EXE)
 program7: $(PROG7_EXE)
 program8: $(PROG8_EXE)
 program9: $(PROG9_EXE)
+program0: $(PROG0_EXE)
 
 $(LAR11): $(OBJS_lib11)
 $(LAR21): $(OBJS_lib21)
@@ -211,6 +223,7 @@ $(LAR33): $(OBJS_lib33)
 $(LAR34): $(OBJS_lib34)
 $(LAR35): $(OBJS_lib35)
 $(LAR36): $(OBJS_lib36)
+$(LAR37): $(OBJS_lib37)
 
 $(DLL11): $(OBJS_lib11)
 $(DLL21): $(OBJS_lib21)
@@ -219,6 +232,7 @@ $(DLL33): $(OBJS_lib33)
 $(DLL34): $(OBJS_lib34)
 $(DLL35): $(OBJS_lib35)
 $(DLL36): $(OBJS_lib36)
+$(DLL37): $(OBJS_lib37)
 
 # tried trick with -whole archive
 # but maybe produce static .os for static linking ?
@@ -243,12 +257,14 @@ $(DLL33): $(DLL11)
 $(DLL34): $(DLL11)
 $(DLL35): $(DLL11)
 $(DLL36): $(DLL11)
+$(DLL37): $(DLL11)
 
 $(DLL23): $(DLL21) 
 $(DLL33): $(DLL23)
 $(DLL34): $(DLL23)
 $(DLL35): $(DLL23)
 $(DLL36): $(DLL23)
+$(DLL37): $(DLL23)
 
 $(DLL21): $(IMP_js)
 $(DLL35): $(IMP_js)
@@ -290,14 +306,14 @@ $(PROG1_EXE): $(PROG1).o $(DLL35)
 
 $(PROG2_EXE): $(PROG2).o $(DLL36)
 	#
-	# PROG2 SAR_PLOT
+	# PROG2 SAR_PLOT now GTK_texT
 	# linking $@
 	#
 	$(CXX) $(OPTIM) -o $@ $(PROG2).o $(WITHLIB36) $(WITHLIB23)
 
 $(PROG3_EXE): $(PROG3).o $(DLL33)
 	#
-	# PROG3 GTK_TEXT
+	# PROG3 GTK_TEXT now Sar_Plot
 	# linking $@
 	#
 	# should not need # # $(WITHLIB23)
@@ -357,7 +373,7 @@ $(PROG8_EXE): $(PROG8).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21)
 	#
 	$(CXX) $(OPTIM) -o $@ $(PROG8).o $(OBJS) -L. $(WITHLIB21) -l$(LIB33) -l$(LIB35) -l$(LIB21) -l$(LIB11) $(LIBS)
 
-$(PROG9_EXE): $(PROG9).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21)
+$(PROG9_EXE): $(PROG9).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21) $(DLL36) 
 	#
 	# $@
 	# linking PROG9 tv_vol
@@ -368,6 +384,24 @@ $(PROG9_EXE): $(PROG9).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21)
 	-cp -p $@ $@_
 	-cp -p $@ /home/gps/bin2/$@_
 	-cp -p $@ /home/gps/bin2/
+
+$(PROG0_EXE): $(PROG0).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21) $(DLL37) 
+	#
+	# $@
+	# linking PROG0 $@
+	#
+	$(CXX) $(OPTIM) -o $@ $(PROG0).o $(OBJS) $(WITHLIB37) $(WITHLIB34) $(WITHLIB21) $(WITHLIB11) $(LIBS) $(LX11)
+	#
+	# @# $(CXX) $(OPTIM) -static -o $@ $(PROG0).o $(OBJS) -L. -l$(LIB34) -l$(LIB11) e_print.o
+	-cp -p $@ $@_
+	-cp -p $@ /home/gps/bin2/$@_
+	-cp -p $@ /home/gps/bin2/
+
+# MAKE PHASE #
+# deps EXE4 += LIBR_base2_ += LIBR_gui_bench
+# 
+# make TARGETS: NEEDED_BEFORE_FROM
+# make INTO: FROM
 
 # info make, How to Use Variables, Automatic Variables
 
@@ -404,6 +438,9 @@ $(LAR35): $(OBJS_lib35)
 	$(AR) -cuUrs $@ $?
 
 $(LAR36): $(OBJS_lib36)
+	$(AR) -cuUrs $@ $?
+
+$(LAR37): $(OBJS_lib37)
 	$(AR) -cuUrs $@ $?
 
 
@@ -460,6 +497,10 @@ $(DLL35): $(OBJS_lib35)
 $(DLL36): $(OBJS_lib36)
 	$(LINK_SO_FROM) $(OBJS_lib36) $(LINKLIB36) $(LINKS) $(LINK_SO_TAIL) # SAR_PLOT_POST
 
+#
+$(DLL37): $(OBJS_lib37)
+	$(LINK_SO_FROM) $(OBJS_lib37) $(LINKLIB37) $(LINKS) $(LINK_SO_TAIL) # SAR_PLOT_POST
+
 endif
 
 
@@ -512,7 +553,12 @@ clean_lib_36:
 	$(RM_rf)  $(LAR36) 
 	$(RM_rf)  $(DLL36)
 
-clean_lib_all: clean_lib_11 clean_lib_23 clean_lib_21 clean_lib_33 clean_lib_34 clean_lib_35 clean_lib_36
+clean_lib_37:
+	$(RM_rf)  $(OBJS_lib37)
+	$(RM_rf)  $(LAR37) 
+	$(RM_rf)  $(DLL37)
+
+clean_lib_all: clean_lib_11 clean_lib_23 clean_lib_21 clean_lib_33 clean_lib_34 clean_lib_35 clean_lib_36 clean_lib_37
 
 clean_exe: clean_lib 
 	# causes re-link of .a and .exe
@@ -525,6 +571,7 @@ clean_exe: clean_lib
 	$(RM_rf)  $(PROG7_EXE)
 	$(RM_rf)  $(PROG8_EXE)
 	$(RM_rf)  $(PROG9_EXE)
+	$(RM_rf)  $(PROG0_EXE)
 	$(RM_rf)  tv_vol_
 
 clean_o:
@@ -537,6 +584,7 @@ clean_o:
 	$(RM_rf)  $(PROG7).o $(PROG7_EXE)
 	$(RM_rf)  $(PROG8).o $(PROG8_EXE)
 	$(RM_rf)  $(PROG9).o $(PROG9_EXE)
+	$(RM_rf)  $(PROG0).o $(PROG0_EXE)
 
 clean0: clean_lib clean_exe clean_o clean_lib_all
 	$(RM_rf) $(OBJS)

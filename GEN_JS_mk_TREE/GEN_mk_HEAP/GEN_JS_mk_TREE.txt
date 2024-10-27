@@ -1,0 +1,141 @@
+
+	GEN_JS_mk_TREE
+	GEN_JS_mk_TREE.txt
+
+	GEN_JS_mk_HEAP { # see nearby file.txt
+
+		# a bunch of HASH_TABLE ARRAY STRUCT COLLECTION and UDEF
+		# and the HEAP they live in #
+		# uses i16_IDX # LIMIT because that is a bitfield 
+		# uses u15_idx_LIMIT with u15_in_i16 #
+		# MINUS_ZERO_PLUS # three XPOS or IDX or ... INT_SUB_RANGE
+		# INT_SUB_RANGE is [0 [7 u3_idx ZERO_is_NULL_THEN_DEFAULT
+		# INT_SUB_RANGE has AVAR MINUS_%s # ALLOC idx = N ++ # 
+ ==> DECL ART ==>		
+		# ALLOC idx = N ++ # ALLOC_PLUS
+		# ALLOC idx = -- idx_MINUS # ALLOC_MINUS
+	
+	# // uses ARGV SP_not_GAP cmnt_is ARGV WORD "#"
+	# // CMNT ARGV // PARSE SUBLINE ; PHRASE = ARGV_within_CMNT
+	# // CMNT ARGV // PARSE SUBLINE ; PHRASE = ARGV_within_CMNT FILTER_DONE
+	# // ARGV TREE // # PARSER is very HUMAN READABLE about its AUTO_DECL
+	# // GEN JS_DECL_for_A_ROW_from_TABLE_%s { SCRIPT } // DECL CODE SCRIPT
+	# // GEN BENCH for all your GEN requirements // hold a LINE_of_ARGV
+	# // GEN BENCH for all your GEN requirements // hold a LIST_of_LINE
+	# // GEN BENCH for all your GEN requirements // hold a LINE_of_DECL
+	# // GEN BENCH for all your GEN requirements // hold a LINE_of_DECL_Parsed
+	# // GEN PARSE_DECL // PSG but every LEX has single SP as GAP
+	# // GEN PUNCT_ECL // PSG above += every LEX has SUBLEX_JOIN as GAP
+	# // ie "=is=" becomes acceptable as PUNCT that uses IDENT from nearby
+	# // ie "== is" became "=is=" # SCRIPT SETUP constructs or PRE_LOADS
+	# PRE_LOAD # SETUP # STO
+
+		CT_RT is going to provide GEN_JS GEN_CXX GEN_Py
+
+		CT_RT has a cacheable if_NULL_call_init_from_NULL
+
+			running this a early CT_RT looped gives PRE_LOAD
+
+			SCRIPT is not self_hosting
+			so it does not have to GEN itself
+			but it is available as CONST_COPY
+			but it is available as CONST_AVAR # evolve CAN write
+			but it is available as AVAR_COPY # local copy then edit
+
+			SCRIPT is GEN from BENCH += SCRIPT from CXX_SCRIPT
+
+				CXX_SCRIPT is self_hosting 
+				CXX_SCRIPT is REGEN from CORE
+				CXX_SCRIPT is HUMAN READBALE ASM LOGIC
+				CXX_SCRIPT is PARSED_TEXT_of_PHRASES
+				CXX_SCRIPT is from PARSED_TEXT SELF
+
+				TREE += LIST_of_PHRASES # UNDENTED_TEXT # MUX DTP
+				# LIST_of_LINES # common PHRASE
+				# LIST_of_INDENTED_LINES # common PHRASE
+				# LIST_of_INDENTED_TEXTS # common PHRASE
+				# LIST_of_EXPR # common PHRASE # enter LIBR NOUN
+				TREE = LIST_of_PHRASES_from_PARSED_TEXT
+				# LEX MATCH PARSED_TEXT # sto as "PARSED_TEXT"
+				# sto as P0P2 or n_STR # LIMIT_127_bytes
+				# sto as P0P2 or n_STR # LIMIT_127_cpos # 
+				# that is CSET parsing UTF8 at XPOS #
+				# you might need to create array u7  of i16
+				# you might need to create func for u7_idx
+				# you might need to create func for i8_MINUS
+				# you might need to create func for i8_ZERO
+
+				# LEX MATCH %s # use as P0P2 == "PARSED_TEXT"
+				CXX_SCRIPT += TREE
+
+
+	}
+
+	GEN_JS is to write FUNC DECODE_ARGV_into_DECL_LIST
+
+	 GEN_JS is to write FUNC DECODE_
+	 _ARGV_into_DECL_LIST
+
+	 	USING_i64_ARGV
+
+		DECODE_i64( i64 copy_of_VALUE ) {
+
+		# TRANSMIT DECL_TYPE STRUCT LIST of FIELDS and FEATURES
+		# LINES =is= LIST of
+		# LEX # PUNCT enables IDENT_REWRITE "==" "is" "BOTH == "=is="
+		# MATCH # SPELLING
+		# MATCH # PHRASE == ARGV # COMMENT_POINT_is_CMNT_POINT # ALIAS
+		# "This Line Intentionally Blank"
+
+		i8_i8 OPCODE		# GUESS KNOW "OPCODE" from "%s_%s" .rhs
+		i16 i16_PAYLOAD		# PARSE PREFER ".field" via PUNCT_IDENT
+		i32 i32_PAYLOAD		# SUBLEX into PHRASE # ADJUSTS #
+
+		import LOCAL_MODULE_LIBR_NAME
+		import LOCAL_LIBR_NAME_XREF_LINK_DATA
+		import "%s"	# Q2_percent_s # PRECISE ALIAS SPLICE Q2_PERCENT_s #
+		DECL LEX Q2_percent_s == "%s"
+			LEX Q2_percent_s == Q2 "%s" Q2
+			DECL Q2 "\"" # ASCII_Q2_as_Q2_C_STR # for CONCAT
+			# any return type that works as a STR eg STR_P0P2 
+			# or_nSTR_255 #
+			# or_P0P2
+			# or_nbytes _as_STR_P0P2 or_as_P0_N 
+			# here comes an ALLOC %s into i64_EA_EXPR _PTR_to_ITEM
+			# or OPCODE _u4_HEAP_u12_ITEM as_i16
+			# as_i16 { 
+			#
+			#	i16_%s = EXPR # SCRIPT is familiar with "EXPR"
+			#	i16_%s = PHRASE(" P0P2_of_PARSED_PHRASE ")
+			#	i16_%s = PHRASE(" PLUS_of_PARSED_PHRASE ")
+			#	// PLUS += "P0P2" // AUTO P0P2_%s //
+			#	SELF OPTIMISING CODE_POINT_FACTS # OMIT EMIT #
+			#	every new ITEM is a LOCN_to_track_access
+			#	SCRIPT can splice in instrumentation
+			#	CACHE can PRE_LOAD STO from DATA ALLOC nbytes
+			#	ALLOC STRUCTS_and_friends_as_ITEM_in_HEAP
+			#	HEAP = UDEF
+			#	ALLOC MMAP PAGES
+			#	HEAP += MMAP SEGMENT # OPTIONS += GATHERED #
+			#	GATHERED is important SPLICE meaning PICK WEIGHT
+			#	PICK_WEIGHT PICK WEIGHT # all bring "global.%s"
+			#	global += local # local AVAR global bind EA_ITEM
+			#	LOGIC EA_ITEM = i64_EA_EXPR
+			#	i64_EA_EXPR += i8_i8_i16_i32 #
+			#	i8_i8_i16_i32 += AUTO PARSED LIST of BITFIELDS #
+			#	CINDEN99 "i8" += USED as SUBLEX
+			# CT_RT MENTION "i8" MENTION "SUBLEX" 
+			# LEX_BIND_FIELD_NAME each end every ALEX found on PAGE
+			# LEX_as_SUBLEX # AUTO_WEIGHT count_underlines
+			# PARSE_SUBLEX += MATCH entire VAR_NAME "i8_i8_i16_i32"
+			# PARSE_SUBLEX += MATCH OPTION found in SCRIPT LIBR_LOCN_XPOS
+			# entire VAR_NAME "i8_i8_i16_i32"
+			# SUBLEX VAR_LIST "i8 i8 i16 i32" # also a TCL LIST :-)
+			# SP used as ARGV_GAP # DETECT when GAP_not_SP #
+			# AUTO SUBLEX # LIST of WORDS in a PHRASE and an ARGV
+
+			# }
+
+
+		}
+

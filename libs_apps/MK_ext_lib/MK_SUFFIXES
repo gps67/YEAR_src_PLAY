@@ -64,6 +64,7 @@
 %.exe %.exec: %.o $(OBJS)
 	#
 	# MK_SUFFIXES link program RULE
+	#	@: $@
 	#    RULE: .o.elf .o.exec %(OBJS)
 	#
 	#     CXX: $(CXX) 

@@ -1,0 +1,138 @@
+	2024-10-27
+	2024-10-27_MAKER.txt
+
+	makefile text follows patterns of phrases
+
+		VAR_OBJS_files
+		replace files with "%s" with LIBR_NAME_one
+		eg
+			bench_gui
+
+
+		VAR_OBJS_bench_gui // a makefile with many lines like
+
+			OBJS_bench_gui += FILENAME.o
+			OBJS_bench_gui += bench_FEATURE.o // TEMPLATE to MATCH
+			FEATURE += _top_app // ie _bench_gui _top_app
+			// these two objects are one group with many moons
+	# if 0
+			FEATURE += _top_app //
+			ie _RET_VAR = bench_gui + _top_app _as_sequence
+			ie _RET_VAR = bench_gui + _top_app 
+			_as_sequence just made it complicated near detail
+			_sequence might be 
+	OPCODE is a template cmd or even ARGV template via SCRIPT
+			ALLOC_NEW_INIT_ZERO
+			ALLOC_NEW_INIT_DATA
+			FOCUS = CSR relaying THIS
+
+		OBJS_bench += S(OBJS_bench_gui)
+		// += FILENAME.o // eg imported from lib_link
+
+	Module bench +=
+	Module bench_gui
+
+	Module bench +=
+	Module bench_sto
+
+	Module bench +=
+	Module bench_ARGV_and_TREE
+
+			ARGV is how TREE can be serialised
+
+			TREE is how ATOM_or_LIST_or_TREE unfurls
+
+
+
+	Module bench_gui
+
+	
+	THIS is tokenised as SPELLING
+	THIS must remain a plain STR0 - maybe LANG CSET required as catalyst
+
+	a_plain_STR_in_CSET_DEFAULT_as_P0P2:
+
+		SUBLEX of own function name or macro name or IDENT_USED
+		MENTION creates each of those vars
+
+	a_plain_STR_in_CSET_DEFAULT_as_P0P2:
+	a_plain _STR _in _CSET _DEFAULT _as _P0P2 ; // ARGV PHRASE // SUBLEX
+
+		a_plain _STR _in _CSET _DEFAULT _as _P0P2 
+
+			a_plain
+				_STR
+			_in
+				_CSET_DEFAULT
+			_as
+				_P0P2 
+
+			STEP += CALL FOCUS CMD ARGS
+
+			// decidedly not the same thing, equally sonic
+	
+	_CSET_DEFAULT
+
+		_CSET + _DEFAULT + _CSET_DEFAULT
+
+			your choice where to place filters
+	
+	MATCH _%s using NAME is soon already in INDEX # ROM 2 pass COMPLETE AOT
+	MATCH _%s using NAME as lookup
+
+		idx = lookup P0P2
+
+		these are raw central MINI_MACHINE CPU vars
+		(it all words in MEMORY just fine)
+
+		P0P2 is a very specific _P0P2 which hints at it
+		P0P2 is the very specific _P0P2 of this "_CSET_DEFAULT"
+		P0P2 is the very specific _P0P2 of this "ALIAS for _CSET_DEFAULT"
+		P0P2 is the very specific _P0P2 of this "ALIAS" // 
+		P0P2 is "_DEFAULT" // a 2 way connector, pull, push
+		API fetch_send_lists_of_values_and_some_ARGV_SCRIPT
+		MY_REF_x_YOUR_REF
+
+			we build short lists of items we look for
+			data valuess fall into USAGE_GROUP with LIST of items
+			If in doubt, implement as a Module
+			DECL AVAR with local_scope_MODULE_AVAR
+
+				OPTION ALIAS ALIAS_%02X
+
+					they are all one group
+					and any of them MATCH ALIAS
+
+					worked examples
+					will only have 3 or 4 competing groups
+					for open namespace // ie NOW 
+
+	# endif
+
+STREAM PARSER
+STREAM PRINTER
+STREAM contains unmentioned stuff we KNOW 
+STREAM KNOWER
+
+	Indented lines of ARGV
+
+	CURLIES used like Tcl around nested indented TEXT LINES as A_WORD
+
+		A_WORD is EA_EXPR 
+
+			running EA_EXPR
+			sets several variables (any number 0 1 2 3 )
+			fetches CODE_POINT to get MINI_SCRIPT or MACRO
+
+		MINI_MACHINE is a collection of AVAR and SESS and CSR
+		MINI_MACHINE has CODE_POINT and eval
+		MINI_MACHINE has SAFE_STEP and ENABLED_STEP_API
+		-for-now-we-write-all-the-code-and-only-use-PRE_LOAD
+
+			
+		RUN a list of STEPS 
+
+			each STEP is a C like step in a SCRIPTED world
+			eg VAR2 = VAR1.field2
+			eg THIS = VAR1
+			eg SELF = THIS // via Module ALIAS LIBR load SHELF

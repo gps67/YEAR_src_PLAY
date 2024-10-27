@@ -14,6 +14,7 @@
 	PROG7=wclient
 	PROG8=play_code
 	PROG9=tv_vol
+	PROG0=bench
 
 ##	LIB11=base
 ##	LIB22=base2
@@ -31,6 +32,7 @@
 	PROG7_EXE = $(PROG7)$(dotEXE)
 	PROG8_EXE = $(PROG8)$(dotEXE)
 	PROG9_EXE = $(PROG9)$(dotEXE)
+	PROG0_EXE = $(PROG0)$(dotEXE)
 
 	TEST_FILE_PDB1 = /tmp/dpb_sar_test.odb
 
@@ -98,6 +100,9 @@ gdb8: $(PROG8_EXE)
 	# and can make the ./_run/.gdbinit_$(PROG8) more generic
 	#
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG8) --args $(PROG8_EXE) $(TEST_FILE8)
+
+gdb0: $(PROG0_EXE)
+	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG0) $(PROG0_EXE)
 
 gdb9: $(PROG9_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG9) $(PROG9_EXE)
@@ -169,5 +174,8 @@ test8: $(PROG8_EXE)
 
 test9: $(PROG9_EXE)
 	$(PROG9_EXE) $(TEST_FILE9)
+
+test0: $(PROG0_EXE)
+	$(PROG0_EXE) $(TEST_FILE0)
 
 

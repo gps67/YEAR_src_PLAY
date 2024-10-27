@@ -1,0 +1,168 @@
+	2024-10-16
+
+	2024_10_Oct
+	2024-10-16_GEN_Parse_ARGV_SCRIPT.txt
+
+	ARGV
+	ARGV_SCRIPT
+	PSG LEX # hash comment still recorded in parallel ARGV_with_CMNT
+
+	PSG to provide some hand crafted BENCH_on_DIAGS
+	DIAG += CURRENT_VIEW_V_of_HEAP _contents_via_VIEWER_for_TABLE_TYPE
+
+	FILE += Parsed SCRIPT
+	FILE += Parsed DATA
+	FILE += MIME_FILE self_identifying_as_PDF with OPTIONS
+	FILE += MIME_FILE
+	FILE += SCRIPT _and_
+
+// I need to actually run this document
+
+	RHS completely defines a MIME_FILE
+	RHS completely is an ARGV_SCRIPT
+
+		ARGV at runtime
+	FILE += MIME_FILE  _self_identifying _as_PDF with_OPTIONS
+
+	FILE += MIME_FILE
+	_self_identifying
+	_as_PDF with_OPTIONS
+		_as_
+		PDF
+		_with_OPTIONS
+		_with
+		_OPTIONS // AUTO_MKVAR to receive parameter ARG in ARGV
+
+		OPTIONS == some item in SESS owned by USER
+		AVAR will develop PERMIT to API 
+		Compiler can proced with BOTH paths true false 
+
+	The first word in now COMMAND "MIME_FILE"
+	it needs it's ROM updated to MATCH this USAGE and run this MACRO line 
+
+		I like CAPS_is_AVAR 
+		lower case words are ignored
+		although for every LEX a var is created // ON DESK_CURRENTLY
+		they can be iterated over 
+		they have been iterated over 
+		now KNOW stuff
+		now HAVE LINR 
+		now HAVE DATA STO # create concept (noun) DATA then again STO
+		# that encourages using LEX_DIRECT # %s # STR0_as_P0P2
+		# _P0P2 is the preferred name for STR0 # then ALIAS_XPOS_nbytes
+		# ALIAS nbytes.ZONE
+		# ALIAS nbytes.XPOS
+		# ALIAS nbytes.XPOS_P0
+		# ALIAS nbytes.XPOS_P2
+		# ALIAS nbytes.N # BYTES obv
+		# ALIAS "char" as naieve # CSET unknown ETC
+		# ALIAS "{ const char * BYTES; }"
+		# ALIAS "{ const char BYTES[i24_N]; }" // SAMPLE picks DIALECT
+		# MENTION "i24_N" # "N" is a powerful ATOM as a coomplete name
+		# MENTION "i24_N" # "i24" is a unique PICK from peer_list_of_i24
+		# MENTION "i24_N" # BIND all that SPEC and ALLOC and STO to i32
+		# i32_as_BITFIELD_PAYLOAD # ie normalised ie SHIFTED to BIT0
+
+		# DIAG [7[6[5[4[3[2[1[0
+
+			BITFIELDS within i32
+
+				already friendly for ARM_32
+				just need to load LOHI
+				I dont know how that is set or switched or used
+
+				LOAD_i32_WORD_lohi # into_CPU_REG
+
+ LOAD REG_32 from MEM_WORD # _ALIGNED_32 _32_low _32_high 
+ LOAD_i32_WORD_lohi # into_CPU_REG
+
+ MMAP ZONE
+
+ 	CODE is quite happy provided it gets MMAP_ZONE
+	CODE never reads or writes outside ZONE # allow FAIL_UPTO_NUL # ADD_NUL
+	When we stop using STR0 we will be left with P0P2 or variant nbytes
+	P0P2_MMAP_ZONE actually P0_N // u31_N N; 
+
+ Q can N and N() coexist ?
+ 
+
+		# DIAG  [7[6[5[4[3[2[1[0	\
+			[7[6[5[4[3[2[1[0	\
+			[7[6[5[4[3[2[1[0	\
+			[7[6[5[4[3[2[1[0	\
+			# EOT of ARGV DIAG ... HERE # EOLN #
+			# GAP_CMNT_EOLN
+			# SP_CMNT_EOLN # <=-CHOICE-= # _one # _MATCH
+
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+			[7[6[5[4[3[2[1[0
+
+		# that encourages not using SUBLEX_JOIN #
+
+	FILE += MIME_FILE self_identifying_as_PDF with OPTIONS
+
+
+	ARGV
+	ARGV_SCRIPT
+	PSG LEX # hash comment still recorded in parallel ARGV_with_CMNT
+
+		CT_RT FILTER 
+
+			mostly do nothing 
+			PARSE_CMNT_line_using_HASH_in_PUNCT_SUBLEX_PSG_CMNT
+
+			this is a hidden world, in plain view, eg ALIAS.
+
+				VAR_NAME is scripts local ALIAS for OBJECT_one
+				VAR_NAME is scripts local ALIAS for OBJECT_two
+				VAR_NAME is scripts local ALIAS for OBJECT_%s
+
+ CSET
+ a1_a2_stayyr
+ LEX IDENT c_idcent_99 -ALIAS-> cident97 // _M1 is local OTHER than SELF
+ LEX IDENT c_idcent_97 -AVAR-> cident97 // _M26 is CIDENT99 is ... CXX DECL
+ LEX IDENT cidcent97 -AVAR-> cident97 // same spelling looks like FOLD still AVAR
+ # ie there KNOW something and ASIF BIND_as_AVAR_via_GETTER
+ ASIF # well known USAGE "ASIF" // Q2 makes it plain ST0 or plain P0P2
+ # BOTH P0P2 and STR0 need CSET and CTXT ... LANG ... FONT ... USAGE
+ BIND_as_AVAR_via_GETTER
+ SUBLEX # attach  GENRE "SUBLEX" to AVAR SUBLEX on surface of SCROLL
+
+ Local is sending a SCROLL to Remote
+ we run on both simultaneously
+ but then compiler resolves all MACROS and gets a minimum EA_EXPR
+
+		const IDX idx_of_nbytes_in_segment_one
+
+			SEGMENT segment_one
+			# there is no SEGMENT_two #
+			# not yet # += AUTO_FLIP logic suggested by MACRO
+			# log all attempts to call API API_UNUSED API_%s
+			# block and replace with obvious absence # ENOENT #
+			# ENOENT == "" #
+			# EOT == true # STAPLE NOTICE MENTION CODE_POINT
+			# so code is somewhere near ENOENT_EOT_true
+			# that is an intersection %s_%s_%s
+			# LOCN += IDEA from NEAR in SESS which has CTXT
+			# CTXT == SESS.CTXT # staple CODE_POINT # CODE_POINT #
+			# CODE_POINT # AUTO voiced because need LEX so DECL LEX
+			# compiler and BENCH expr over DIAG # KMOW CODE_POINT.%s
+			# %s # mention on this line staples to LIBR_ITEM_EXPR
+			# it does resolve to ITEM
+			# or it promised to behave as sum of parts of ITEM
+			# and that modularity can be filtered - via CODE
+
+
+
+	2024-10-16_GEN_Parse_ARGV_SCRIPT.txt
+
+
+	A handwritten PSG produces BISON SCRIPT from PSG_ARGV_SCRIPT
+

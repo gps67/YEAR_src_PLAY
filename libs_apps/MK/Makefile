@@ -20,6 +20,7 @@
 	LIB34=s_apps_media
 	LIB35=accts_gtk
 	LIB36=sar_plot_post
+	LIB37=bench_gui
 
 	# libs_apps_media.so
 
@@ -371,6 +372,7 @@ endif
 	makes += $M/VAR_OBJS_media
 	makes += $M/VAR_OBJS_play
 	makes += $M/VAR_OBJS_demo
+	makes += $M/VAR_OBJS_bench
 	makes += $M/Make_Targets2
 #	makes += $M/Make_Targets_install
 #	makes += $M/Make_exports
@@ -483,6 +485,7 @@ endif
 ifeq ($(WITH_GTK2),1)
 	SubDirs += lib_play/grid_gtk
 	SubDirs += lib_accts/accts_gtk
+	SubDirs += lib_bench/bench_gui
 endif
 	SubDirs += lib_play/js_scan
 	SubDirs += lib_accts/accts_js
@@ -649,6 +652,8 @@ endif
 ifeq ($(WITH_GTK2),1)
 	OBJS_lib23 += $(OBJS_base2_gtk)
 	OBJS_lib33 += $(OBJS_gtk_text)
+	OBJS_lib37 += $(OBJS_bench) 
+	# move to another libr
 endif
 	OBJS_lib34 += $(OBJS_media)
 	OBJS_lib35 += $(OBJS_accts)
@@ -671,6 +676,7 @@ endif
 ##	PROG7=wclient
 ##	PROG8=play_code
 ##	PROG9=tv_vol
+##	PROG0=BENCH
 
 ####	#### TEMP building without GTK - only js_many can stay!
 ####	#### TEMP building without GTK - really I dont understand why
@@ -687,6 +693,7 @@ endif
 	LOTS2 += $(PROG7_EXE)
 	LOTS2 += $(PROG8_EXE)
 	LOTS2 += $(PROG9_EXE)
+	LOTS2 += $(PROG0_EXE)
 
 	LIST_LIB_A += lib$(LIB11).a
 ifeq ($(WITH_GTK2),1)
@@ -694,12 +701,14 @@ ifeq ($(WITH_GTK2),1)
 	LIST_LIB_SO += lib$(LIB35).$(DLL)
 endif
 	LIST_LIB_A += lib$(LIB36).a
+	LIST_LIB_A += lib$(LIB37).a
 	LIST_LIB_A += lib$(LIB33).a
 	LIST_LIB_A += lib$(LIB34).a
 	LIST_LIB_A += lib$(LIB21).a
 
 	LIST_LIB_SO += lib$(LIB11).$(DLL)
 	LIST_LIB_SO += lib$(LIB36).$(DLL)
+	LIST_LIB_SO += lib$(LIB37).$(DLL)
 	LIST_LIB_SO += lib$(LIB35).$(DLL)
 	LIST_LIB_SO += lib$(LIB33).$(DLL)
 	LIST_LIB_SO += lib$(LIB34).$(DLL)

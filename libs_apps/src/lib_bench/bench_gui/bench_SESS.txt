@@ -1,0 +1,62 @@
+bench_SESS {
+
+	SESS += USER login profile
+	SESS += LIBR loaded // enable PRE_LOADED
+	SESS += SESS_STO // DEFAULT_HEAP += LOADED_HEAP
+	HEAP += SESS_HEAP_FF // outer HEAP is just another within PORTFOLIO
+
+		TREE is NOW_LOADED
+
+	HEAPS of 1 2 4 8 BYTES_in_KEY
+	HEAPS of 1 2 4 8 BYTES_in_VAL
+
+		i64 * PTR_EIGHT = EA_ARRAY_ITEM( u8 )
+		i64 * PTR_EIGHT = EA_ARRAY_ITEM( u7 )
+		i64 * PTR_EIGHT = EA_ARRAY_ITEM( i8 )
+		i64 * PTR_EIGHT = EA_ARRAY_ITEM( 0 - i8_idx_MINUS )
+
+		0 - idx_MINUS 
+
+			this grows the array forwards
+			when the idx is going down M1 M2 ,,. M
+
+		256 + idx_MINUS
+
+			reinterpret i8 as u8
+			grow_unsigned_AL_to_REAX
+
+		IDX_ZERO + idx_MINUS
+
+			IDX = P0 
+			copy P0P2 to IDX0_IDX2 P for POS or PTR
+			some strong typing needed
+			but applies to .h and its TEMPLATE TEXT
+
+			ie NEGATIVE index is negative WRT some ZERO
+
+			if CPU cannot do that, IDX_CALC can
+
+			we are committing to i16_idx GROW 8 16 32 24
+
+		We ususally use int_idx
+
+ OPCODE
+
+ 	i8_i8_OPCODE {
+		basically an counter idx=N++ of OPCODE_DECLS
+		each mentions own META so no need to rewrap
+		then CT_RT moves LIST to grouped_filtered_list
+
+		basically this PAGE SCRIPT is here ...
+	}
+
+	i4_i12 { 8 HEAPS of 2048 ITEM }
+
+	i16_EF { 8 HEAPS of 2048 ITEM }
+	i16_GH { 8 HEAPS of 2048 ITEM }
+
+	}
+
+		
+}
+

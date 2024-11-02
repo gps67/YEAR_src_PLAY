@@ -1,0 +1,193 @@
+	2024-10-30
+
+	2024_10_Oct
+	2024-10-30_MEANING_SWITCH.txt
+
+	_ON_OFF {
+
+		bool is_on = true; // but false_pending_switch_on_CTOR_2_step
+
+	 CTOR {
+
+	 	is_on( false ) // because CTOR_2_STEP_a_PRE_VALUE
+
+		// CODE_POINT += expecting_pending_to_edge  
+
+		/*
+			A THING is something that IS, a NOUN, it_EXISTS
+
+				so by default ITEM it_exists == is_on
+
+					the very essence of object life
+					is SCOPE
+
+						ITEM_comes_into_SCOPE
+						AVAR_comes_into_SCOPE
+
+						 CODE_POINT says
+						  AVAR has on_update_api
+						  on_SCOPE_START
+						  on_SCOPE_STEP
+						  on_SCOPE_STOP
+						  on_SCOPE_CTOR
+						  on_SCOPE_DTOR
+						  on_SCOPE_XREF
+
+				so by default ITEM is_in_SCOPE == is_on
+
+					that is a trait that can be replaced
+					that is a trait that can be switched
+					that is a trait that can be NULL
+
+						// the PTR concept is everywhere
+						// the REF concept x2
+
+					SWITCH { bool is_IN_SCOPE == "true" }
+
+						// again default is ON
+
+				ALL users of PTR agree that NULL means on_NULL_INIT
+
+				on_NULL_INIT
+
+					is_on = INIT_VAL_true //  init from NULL
+					// NB dont call on_VAR_changed_VAL
+					// because this is INIT_true first value
+					// setting to 1 will require a CPU_STEP
+					// ASM_STEP _SET_MEM_WORD_to_i8 //
+					// alias SIGNED_BYTE // lower text upper AVAR
+
+
+					option of an inline function
+					that does nothing
+					and compiler notices
+					ZERO_OVERHEAD // via GEN // use PTR //
+
+						but that REQUIRES INIT_ZERO_DONE
+
+						If there is any PRE_INIT_ZERO
+						If there is NONE // RANDOM_from_STACK
+						WE actually REPLY on INIT_ZERO
+
+				void *memset(void *s, int c, size_t n);
+
+					memset(
+					void *	EA_this, // adjust i8 * PTR //
+					int	BYTE_VALUE,
+					int	N = nbytes; // compiler reduces
+					);
+
+
+			A NULL is clearly NOT. 
+			A NULL is an ABSENT_OPTIONAL_ITEM _SEE_CODE_POINT
+
+			CODE_POINT is here an XPOS within this PARSED TEXT
+			SESS = import SESS from CT_RT // ZERO_OVERHEAD // SESS 
+			CSET_ == SESS.CT_RT.get.CSET _from_SESS_CT_RT // CALL
+			// AUTO += looks_like_AVAR _at_CXX_API //
+
+			// AUTO += acts_like_CALL_Cxx_prototype  _at_CXX_API //
+			// DIALECT += NAME("AVAR") // %s
+			// DIALECT += NAME(%s") // ("AVAR") // %s //
+			// DIALECT += CALL(%s") // ("FUNC") // %s //
+			// CLASS of this line // pattern matching finds RULES
+			// can have a precise LEX, particularly in ASCII
+			// TRANSLATE_TABLES from TEXT_USED //
+			// C has a literal C mindset // STR0 ends in NUL 
+			// OPTIONALLY_MORE_BYTES // AUTO FUNC "%s"
+			// AUTO FUNC "OPTIONALLY_MORE_BYTES"
+			// nbytes_N_UNKNOWN // might even be 0 or MAX_INT
+			// SPECIAL DETECT within i20 of ZERO_ADDR_ZERO _i64
+		*/
+		// CODE_HERE //
+
+	 		is_on = INIT_VAL = true; // PHRASE BOOK += PHRASE
+
+	 } // CTOR
+	 ~_ON_OFF() { // DTOR //
+	 	// 
+		// is_on = false // to comply NN_leave_memory clears to NULL
+		// DEFER to process exit, which ZEROS out memory
+		// ONGOING_to_CACHE SWITCH_ON_OFF
+		// ONGOING FILTER set_to_ASIF_unchanged // so optimise out
+		// ONGOING FILTER set_to_ASIF_no_action // so optimise out
+		// ONGOING FILTER set_to_ASIF_opposite
+		// ONGOING FILTER set_to_ASIF_action // so optimise inlineo
+
+		on_switch_ON() { SCRIPT }
+		on_switch_OFF() { SCRIPT }
+		on_switch_TO(VAL) { SCRIPT } 
+
+		on_CTOR_FALSE
+		on_CTOR_TRUE
+
+		on_CTOR_NULL // KNOW recycled memory is already NUL_BYTES
+		on_CTOR_ITEM // KNOW_NOT_NULL as just tested PTR from CTOR
+
+			may be an extra PTR being saved as i64_WORD
+
+			API_SAYS += "{ DECL i64_WORD }'
+
+			{ MATCH %s "DECL" }
+			{ MATCH %s  DECL  } // KNOW CODE FILTER SAID ...
+			// then DECL is AVAR which is centrally useful
+			// AUTO EXPAND DECL "{ i64 i64_WORD == INIT_VAL }"
+			// INIT_VAL_NUL 
+			// INIT_VAL_TODO_pending_TODO // CT_RT too
+			// INIT_VAL PRELOADED //
+			// eg MMAP page loaded comes into SCOPE //
+			// API_ASIF_PRE_LOADED_FROM_CRYPTED_STO_of_SESS
+			// entire_HEAP is crypted or via MMAP_decrypt_page
+			// 
+
+
+		on_switch_TO(VAL) { // SCRIPT
+			if( VAL ) {
+				on_switch_ON() { SCRIPT.on_SWITCH_to_ON_SCRIPT }
+			} else {
+				on_switch_ON() { SCRIPT.on_SWITCH_to_OOFF_SCRIPT }
+			}
+		}
+
+	 } // DTOR
+	 } // _OF_OFF
+
+#if 0
+
+ API_PRESS_CODE
+
+ 	it looks like a CALL but it also provides { CODE }
+
+		_PRESS_CODE_from_here_into_API for CALL
+		_PRESS_CODE_MACRO _is_a-_sort_of_a_macro
+
+			// declaring code 
+			// using long winded function names
+			// never actually calling them
+			// because that is what GEN has for us
+			//
+
+		SO the TREE_TEXT_SCRIPT
+
+			does its various deeds, runs SCRIPT
+			CALL_FUNC
+			DECL_FUNC
+
+				all in one source
+
+		BUT PRE_COMPILED LIBR
+
+			WE compile our own LIBR and get compiled_C 
+			
+				NAME_MANGLER // if not C++
+
+		WHEN NOT OUR OWN CODE must run in SANDBOX
+
+			TEXT -> PSG -> TREE -> CT_RT -> GEN_CXX
+
+
+ 	it looks like a CALL but it also provides { SCRIPT }
+
+		on_switch_ON() { SCRIPT.on_SWITCH_to_ON_SCRIPT }
+
+#endif

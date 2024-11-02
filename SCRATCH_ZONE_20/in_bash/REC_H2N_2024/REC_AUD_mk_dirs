@@ -175,6 +175,15 @@ in
 	Artist="SHOW"
 	Artist="bodhran"
 	Sess_List="_upto_1959_$Artist _sess_1 _sess_2 sess_3 "
+
+	Samba=RSAC_HOT_STEP_BOOT_LEG
+	Artist="Satin_Beige"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
+;; *)
+	Samba=XX
+	Artist="Artist"
+	Sess_List="_sess_7 _sess_8"
 esac
 
 

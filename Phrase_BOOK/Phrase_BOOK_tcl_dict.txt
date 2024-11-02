@@ -1,0 +1,109 @@
+
+	Phrase_BOOK_tcl_dict
+
+	Everything in Tcl is readonly_const except variables
+
+		and except side effects done by code or by OS
+	
+	So when you edit a tree, you name the variable that holds it
+
+		TCL then modifies the tree_that_is_dict,
+		and returns a new object with shared branches
+
+		man dict.h // Tcl only 1 //
+
+	dict
+		append DICT_VAR k1 v1 ... k2 v2 ... k3 v3 ...
+		create         k1 v1 ... k2 v2 ... k3 v3 ... // VAL not VAR
+		exists DICT_VAR k1 ... k2 k3
+		filter DICT_VAL ... // usually returns KV list as DICT
+		                  key key_glob_pattern // pick keys match bool
+		                  script { kname vname } { SCRIPT } // return 0 1
+		                  value glob_key_name glob_2 glob_3
+		for { KEY_VAR_NAME VAL_VAR_NAME} $DICT_VAL SCRIPT
+		get $DICT_VAL K1 k2 K3 // get k1.k2.k3 // nested dict
+		getdef $DICT k1 k2 3 .. default
+		getwithdefault "$@" { return getdef "$@" } // allow sDECL same
+		incr DICT_VAR key [increment]
+	
+	info $DICT_VAL // RTFM
+
+	keys $DICT_VAL key_glob_1 glob_2 ...
+		
+	lappend $DICT_VAR key _ V_A_L_U_E_S
+
+	map { AKEY AVAR } DICT_VAR SCRIPT
+
+	merge DICT_VAL_1 DICT_VAL_2 ... // the save as AVAR // last wins
+
+	remove $DICT_VAR k1 ... key key key 
+
+	replace $DICT_VAR k1 v1  ... k2 v2 ... k3 v3 ...
+
+	set $DICT_VAR k1 k2 k3 ... value // DICT.k1.k2.k3 = VALUE
+
+ MACRO DICT_VAL $DICT_VAR
+
+ 	dict command properly distinguishes between $DICT and $DICT_VAR
+ 	set DICT [DICT_as_LISTY_RETVAL _probably_from_lookup_VAR_get_VAL]
+ 	set DICT_VAR $DICT // eg create or VAR_FETCH
+ 	$DICT and $DICT_VAR
+
+OPTION k0 v0 is .VAR_NAME $VAR_NAME // or a LIST of useful keys to find VAR
+
+	so then every DICT kas k0
+	k0 is first because in .order.of_DECL
+	v0 is UDEF key to find DICT_VAR in MINI_MACHINE
+
+USAGE
+	clone some functinality in C++
+	clone some functinality with TCL_DICT
+
+	WHY? GEN might GEN plain TCL source without .so just 9.1 or something
+	(curr 9.0b2) ooo TCL_LIB_2.0 
+
+API
+       #include <tcl.h>
+       
+       Tcl_Obj * Tcl_NewDictObj()
+       int Tcl_DictObj Get(interp, dictPtr, keyPtr, valuePtrPtr)
+       int Tcl_DictObj Put(interp, dictPtr, keyPtr, valuePtr)
+       int Tcl_DictObj Remove(interp, dictPtr, keyPtr)
+       int Tcl_DictObj Size(interp, dictPtr, sizePtr)
+       int Tcl_DictObj First( // interp, dictPtr,
+
+	struct API_Tcl_DictObj_Module {
+
+	Tcl_Interp  interp;    // errrm
+	Tcl_Obj * dictPtr;     // dict - dictionary
+			dict
+	Tcl_Obj * searchPtr;   // 
+			PTR_to_SEARCH
+	Tcl_Obj * * keyPtrPtr; // 
+	Tcl_Obj * * 
+			PTR_to_KEY
+	//
+	Tcl_Obj * valuePtrPtr; // 
+			PTR_to_VAL
+	int * donePtr;     // 0 means RUNNING 1 means DONE
+			PTR_to_BOOL_DONE
+
+
+	};
+
+	)
+       Tcl_DictObj Next(searchPtr, keyPtrPtr, valuePtrPtr, donePtr)
+       
+       Tcl_DictObj Done(searchPtr)
+       
+       int
+       Tcl_DictObj PutKeyList(interp, dictPtr, keyc, keyv, valuePtr)
+       
+       int
+       Tcl_DictObj RemoveKeyList(interp, dictPtr, keyc, keyv)
+
+VIA API
+
+	
+
+

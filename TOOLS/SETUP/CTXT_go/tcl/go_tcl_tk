@@ -1,6 +1,8 @@
 . ../go__fns
 PATH=$prefix/bin:$PATH
 tk_vern=tk9.0b3
+tk_vern=tk9.0
+tk_vern=tk9.0.0
 url=http://prdownloads.sourceforge.net/tcl/${tk_vern}-src.tar.gz
 fn_grp_url tcl $url
 fn_fetch

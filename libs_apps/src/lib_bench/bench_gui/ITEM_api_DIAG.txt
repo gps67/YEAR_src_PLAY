@@ -1,0 +1,19 @@
+
+	ITEM_api_DIAG
+
+	obj_hold<str2> filename ; // str2 is shared SPELLING as str2
+
+		XPOS_N_bytes
+
+			const char * STR0 = filename.get_as_STR0();
+			// AUTO extra parameters from per-thread cork-board
+
+		CORK_BOARD
+
+			SESS.FEATURE_using_DIAG_cork_board
+
+			SESS.FEATURE_uses_AVAR_of_TYPE_SPEC
+	
+	file_open( filename )
+	main_window->show();
+	//

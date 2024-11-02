@@ -1,0 +1,92 @@
+	2024-10-27
+	2024-10-27_STREAM_PAIR.txt
+
+	STREAM of i64, maybe arriving one at a time call_STEP( i64_STEP )
+
+	MATCH LHS RHS
+
+		LHS STREAM of ARGV STEPS
+		RHS STREAM of ARGV STEPS
+
+	MATCHER 
+
+		SESS.AVAR.CSR_LHS = LHS	// ABCD
+		SESS.AVAR.CSR_RHS = RHS // EFGH
+	
+	PARSE by example,
+
+		gives lattitude to local parser
+		LIBR_TEXT provides PARSE_ARGV_and_SUBLEX
+		Each SAMPLE VALUE and PUNCT (whatever) 
+
+			ignore PUNCT
+			repeat PUNCT
+			resolve PUNCT
+			api_PUNCT
+
+		SAMPLE
+
+			"SESS.AVAR.CSR_RHS"
+
+			EA_EXPR NESTED_STRUCT_FIELD NIDO_NESTON
+
+			"AVAR"
+			"SESS.AVAR.CSR_RHS"
+
+			"Jan 20 Tue 23:59"
+
+			Running the training data,
+			creates a large number of PARSE_CHAR STEPS
+			CIDENT_EDGE lex_edge
+			 "lex"
+			 "edge"
+			 "%s_%s" _lex _edge
+			PARSE_EDGE
+
+				SP
+				GAP
+				EOLN
+				EOT
+					
+				"HERE" after first Q2
+				"HERE" upto second Q2
+				"HERE" CIDENT97 a1_a2_star a1 a2
+
+		MODIFIED EA_ITEM when ARGV_one ARGV_two // or side ARGV
+
+
+
+
+		MATCH_STEP LHS RHS
+
+			take one complete i64_STEP and run it
+			MATCH LHS RHS (instead of run it)
+			MATCH_OK 
+			MATCH_hmmm
+			MATCH_NO
+	
+	CALL_FOUR_WORD
+
+		CMD OPCODE
+		LHS
+		RHS
+		CODE_POINT
+
+	DECODE i64
+
+		i8_i8_CMD // _OPCODE
+		i4_i12_LHS
+		i4_i12_RHS
+		i4_i12_CODE_POINT
+
+	4096_ITEMS 16_HEAPS
+	16_HEAPS 4096_ITEMS
+
+	 item[idx_item]
+	 heap[idx_heap]
+
+	 	16 x 4096
+		   x EIGHT // BYTES_in_i32_i32_LOHI
+
+
+

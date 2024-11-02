@@ -5,8 +5,13 @@
 # BUG # _ASTR # when already had different name
 # BUG # _ASTR .mp4 => .jpg # when already had different name # slightly more serious
 # BUG # SS == 00 #
+#
+# so LOSE multiple photos taken in same minute
 
 # BUG # .ext #
+
+puts "ASTR and lose MP4 to JP"
+# fn_ask_do exit
 
 set dir_default Iya_Salisbury
 set ZONE_NAME Iya_Sako_Salisbury
@@ -72,7 +77,10 @@ set ZONE_NAME Drum_Camp
 set ZONE_NAME South_Bank_Pizza
 set ZONE_NAME Dawkes
 set ZONE_NAME Sekou_Keita_Oxford
+set ZONE_NAME RSAC_Satin_Beige
 set ZONE_NAME BH6
+set ZONE_NAME GU7_lunch
+
 
 
 proc list_pop {listname itemname } {

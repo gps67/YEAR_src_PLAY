@@ -652,6 +652,7 @@ fn_fetch()
 		# fn_make_dir $D # done #
 		cd $D
 		# github needs --no-check-certificate
+		# now not working # lets encrypt not valid ?
 		say_do wget --no-check-certificate -N "$urldir/$pkgfile"
 	#	wget -N "$urldir/$pkgfile"
 	fi

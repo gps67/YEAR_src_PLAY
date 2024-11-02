@@ -2,12 +2,13 @@
 # REC_AUD
 # REC_AUD_mk_dirs
 # REC_AUD_mk_dirs_yesterday
+./REC_AUD_mk_dirs -d yesterday
+
+exit
 ask_do ./REC_AUD_mk_dirs -d 2024-10-01
 ask_do ./REC_AUD_mk_dirs -d 2024-10-02
 
 vi ./REC_AUD_mk_dirs 
-./REC_AUD_mk_dirs -d yesterday
-exit
 ask_do ./REC_AUD_mk_dirs -d 2022-11-30
 ask_do ./REC_AUD_mk_dirs -d 2019-10-01
 ask_do ./REC_AUD_mk_dirs -d 2019-09-14

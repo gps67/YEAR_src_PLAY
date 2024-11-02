@@ -26,7 +26,9 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-08-29, 23820,  23.32, 32.11, P Full RG2
 2024-08-15, 24080,  24.32, 32.11, N ABSENT GUESS
 2024-09-26, 24353,  23.97, 32.34, P Full BH Hinton
-2024-10-03, 24606,  25.79, 33.19, P Full iMorrissons from BH
-2024-10-08, 24783,  18.57, 23.90, P Full iMorrissons from BH
-2024-10-15, 24945,  18.45, 23.93, P Full iMorrissons from BH
+2024-10-03, 24606,  25.79, 33.19, P Full Morrissons from BH
+2024-10-08, 24783,  18.57, 23.90, P Full Morrissons from BH
+2024-10-15, 24945,  18.45, 23.93, P Full Morrissons from BH
+2024-10-29, 25178,  26.34, 34.16, P Full Morrissons from BH GU
+
 

@@ -1,0 +1,46 @@
+
+	HEAP_ITEM_ARGV_SCRIPT_PHRASE_BOOK.txt
+
+	HEAP
+	_ITEM
+
+	_ARGV_SCRIPT
+	_PHRASE_BOOK
+
+	.txt
+
+	TEMPLATE
+	 PICK one of "{ i8 i16 i32 i64 }" // MORE LATER
+	 KNOW one of "{  , i8 i16 i32 i64 ,  )"
+
+	 	STR0 is what actually appeared in Q2_VALUE_STR0
+		 "{  , i8 i16 i32 i64 ,  )"
+		  {  , i8 i16 i32 i64 ,  )
+		 "{ line , line ,         line }"
+		    ,      i8 i16 i32 i64 ,  
+	
+	 KNOW DECL
+	 KNOW DECL "SPEC=LIST_of_4_ITEM_SPEC"
+	 KNOW DECL "NAME="i8 i16 i32 i64" // no added outer SP // FILTERED
+
+	 WELL_KNOWN IDX_BITFIELDS_Module // part of MODULE //
+	 	from IDX_BITFIELDS_Module import * // part of MODULE //
+	 	from IDX_BITFIELDS_Module import * as ITEM.%s // NAME
+	 	from IDX_BITFIELDS_Module import * as STRUCT_of_FIELD.%s // NAME
+	 	from IDX_BITFIELDS_Module import * as UNION_of_FIELD.%s // NAME
+	
+	ARGV_SCRIPT uses PUNCT to rewrite PUNCT_NAME_PUNCT
+
+		PUNCT "(%s" -> "(" %s
+
+			%s can be CT_RT KNOWN PRELOADED
+	
+		PUNCT rewrites ARGV into a new TRIG re_grafted where old one was
+
+ Tcl_LEX_TEXT_PARSE
+
+ 	{*}
+
+		/tools/x86_64/tcl/share/man/mann
+		 tile = Tcl.n
+		 cat $file | groff -c -Tlatin1 -mandoc |less -R 

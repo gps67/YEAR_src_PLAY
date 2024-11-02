@@ -1,4 +1,4 @@
-#!/usr/bin/env tclsh
+#!/usr/bin/env tclsh9
 #!/tools/x86_64/tcl/bin/tclsh
 # using absolute tcl path to test that it is used
 # when properly installed the default PATH found one should have sqlite3

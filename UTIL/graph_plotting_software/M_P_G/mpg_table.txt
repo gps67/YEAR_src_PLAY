@@ -25,8 +25,11 @@
  2024-08-29  23576 244  23820  13.2 p_mile  1.38 £_litre  6.26 £_gallon  47.6 mpg   5.9 lp100  P Full RG2
  2024-08-15  23820 260  24080  12.4 p_mile  1.32 £_litre  6.00 £_gallon  48.6 mpg   5.8 lp100  N ABSENT GUESS
  2024-09-26  24080 273  24353  11.8 p_mile  1.35 £_litre  6.13 £_gallon  51.8 mpg   5.5 lp100  P Full BH Hinton
- 2024-10-03  24353 253  24606  13.1 p_mile  1.29 £_litre  5.85 £_gallon  44.6 mpg   6.3 lp100  P Full iMorrissons from BH
- 2024-10-08  24606 177  24783  13.5 p_mile  1.29 £_litre  5.85 £_gallon  43.3 mpg   6.5 lp100  P Full iMorrissons from BH
- 2024-10-15  24783 162  24945  14.8 p_mile  1.30 £_litre  5.90 £_gallon  39.9 mpg   7.1 lp100  P Full iMorrissons from BH
+ 2024-10-03  24353 253  24606  13.1 p_mile  1.29 £_litre  5.85 £_gallon  44.6 mpg   6.3 lp100  P Full Morrissons from BH
+ 2024-10-08  24606 177  24783  13.5 p_mile  1.29 £_litre  5.85 £_gallon  43.3 mpg   6.5 lp100  P Full Morrissons from BH
+ 2024-10-15  24783 162  24945  14.8 p_mile  1.30 £_litre  5.90 £_gallon  39.9 mpg   7.1 lp100  P Full Morrissons from BH
+ 2024-10-29  24945 233  25178  14.7 p_mile  1.30 £_litre  5.90 £_gallon  40.2 mpg   7.0 lp100  P Full Morrissons from BH GU
+# SHOW2 0000-00-00,      0,  0.00,  0.00, 
+ # SKIPPING # d_miles < 1 # 
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 

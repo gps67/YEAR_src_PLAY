@@ -1,5 +1,9 @@
 . ../go__fns
-fn_grp_pkg tcl tcllib-1.21
+# fn_grp_pkg tcl tcllib-1.21
+pkg_vern=tcllib-2.0
+url=https://core.tcl-lang.org/tcllib/uv/$pkg_vern.tar.bz2
+fn_grp_url tcl $url
+fn_fetch
 fn_unpack
 # exit
 # src=$src/unix

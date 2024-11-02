@@ -202,7 +202,7 @@ class mix_slider : public w_scale_fix
 {
 	static const bool slide_horiz = true;
 	static const bool slide_vert  = false;
-	//! hold own pointer to ready opened mixed
+	//! hold own pointer to ready opened mixer
 	mixa * mixer;
 	str1 linename;
 	int vol_dev;

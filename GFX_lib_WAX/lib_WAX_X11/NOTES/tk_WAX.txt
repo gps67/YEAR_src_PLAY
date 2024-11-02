@@ -1,0 +1,62 @@
+	tk_WAX.txt
+
+	GUI Toolkit
+
+	 VLIST_of_BUTTONS _SCROLLED
+	 	// _SCROLLED added a chapter to VLIST story
+		// mention on command line creates AVAR // which binds to AVAR
+
+	
+	 Layout pretends to draw the entire PANEL with INK switched off
+
+	 	temptation to run 2 things 2 times
+		OPTION single source but CT_RT provides
+		CMD0 CALC
+		CMD0 DRAW
+
+		The drawing apparatus is optimised to CALC and not DRAW.
+		The inline of the drawing aparatus quickly does nothing
+
+			inline at CT_LOOP gets to the code
+
+		PANEL_DRAWING
+		 gc // graphics context // drawing context // pen // ink
+		 static const bool CALC_only_do_not_DRAW = true; // _lhs
+		 static const bool CALC_only_do_not_DRAW = false; // _rhs
+		 static const bool DRAW = ! CALC_only_do_not_DRAW; // LOGNOT
+		 if( CALC_only_do_not_DRAW ) { // CALC
+		 	CALC 
+
+		 } elif( DRAW ) {
+		 	CALC 
+			DRAW
+		 }
+	
+	CALC -> CALC_Layout
+
+		Each shape has a STEP or a LIST_of_XYZ_POS
+
+			STEP is WORD on LINE in TEXT
+			STEP is LINE on PAGE in TEXT
+
+				pre_claim extra height
+				Y = baseline
+				X = XPOS.X
+				late_claim extra height
+
+				KERN_LHS = NUL
+
+			LOOK EACH_GLYPH
+			 GLYPH = get_GLYPH from LOOP
+			 	
+				INFO_GLYPH <- repeat CACHED starting NOW
+
+		EACH_GLYPH	X += step to drawspot # 
+		EACH_GLYPH	draw_glyph X Y 
+		EACH_GLYPH	X += glyph_width // += extra // -= step_to_drawspot
+
+				
+
+		EACH_GLYPH	X += step to drawspot
+		DRAW		draw_text X Y 		
+

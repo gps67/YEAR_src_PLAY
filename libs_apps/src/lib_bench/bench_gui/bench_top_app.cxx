@@ -19,8 +19,10 @@ using namespace BENCH;
 
 bench_top_app::~bench_top_app()
 {
-	e_print("~bench_top_app();\n");
+	e_print("~bench_top_app(); // DTOR(app_top) //\n");
 	// e_print_set( NULL );
+	// actually _above_ might be _top_ // so relay bounce thru
+	//
 }
 
 // void bench_top_app::file_save( str2 * _filename, bool compressed )
@@ -165,11 +167,12 @@ bench_top_app::bench_top_app(
 		main_window->show();	// main_window has no pack to call show()
 	} else {
 		filename = new str2( "" );
-		main_window->show();	// main_window has no pack to call show()
-		C_menu_file_open( NULL, this );
+		main_window->show();	// main_window has no pack to call show
+ // easy	// helpful open_file for blank init empty // annoying auto
+ if(0)		C_menu_file_open( NULL, this );
 		// C_menu_file_save_as( NULL, this ); // this KILLS files!
 	}
 
  // Start program with the About BOX
-	if(1)  help_about();
+	if(0)  help_about();
 }

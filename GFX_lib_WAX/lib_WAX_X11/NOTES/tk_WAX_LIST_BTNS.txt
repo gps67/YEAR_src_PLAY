@@ -1,0 +1,64 @@
+
+	tk_WAX_LIST_BTNS.txt
+
+		NB at the moment i could use gtk sooner
+		and improve the base2 wrap on gtk
+		and develop bench_gui a bit
+		so before WAX - all of that
+
+	LIST of BUTTONS
+
+		default VLIST 
+
+			expant to widest
+			limit to something
+			limit to review_choice
+
+		XYWH_CLICKABLE
+
+			ITEM on CANVAS looks like a BTN rectangle
+			ALSO TK_%s WAX
+			set WAX WAX_FF
+
+			 M1 is standin for SELF OTHER ALTA DEFAULT
+
+			 	M1 -1 DEFAULT 
+
+		CLICK 
+
+			on_CLICK() .. += SESS += ROM += API
+
+
+		BALLOON
+
+			on_get_balloon
+			on_get_balloon_text
+
+	
+	API_SCROLL
+
+		TALL panel has V_SCROLL
+
+	
+	API_PAPER
+
+		expand to COMMON_WIDTH_of_PARENT
+		expand PARENT to match SELF
+
+		TEXT ZERO_TOP_LEFT
+		SPOUT ZERO_BOTTOM_LEFT
+
+		LINE_by_LINE baseline font_sz leading_advance dy
+	
+	MINI_MACHINE
+
+		+= AVAR(%s)
+		+= AVAR("SPELLING")
+		+= AVAR(SPELLING) // creates AVAR as STR_P0P2 
+		// NAME becomes GENERIC_SAMPLE of ACTIUAL_INSTANCE
+
+
+
+
+
+

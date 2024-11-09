@@ -1,0 +1,35 @@
+
+	libs_apps/src/lib_base/io_csv/
+
+		io_dir.txt
+	
+	io is a bunch of ZLIB wrappers, SOCK_API, 
+
+		open
+		close
+
+	io is a FILE as a stream of lines
+
+		buffer1 line_in_shared_buffer
+
+	XPOS LINE_NUMBER bpos
+
+		CSET parser can shorten each word, but not stretch
+		eg converting UTF8 to Latin1
+
+	line_buffer is not a stretch buffer (even though it is)
+	line_buffer is a stretch buffer (keep OFFS as XPOS)
+
+		can poke NUL and overwrite with shorter (eg trim)
+
+		all line disappears on switch to next line
+
+		MOVE TO P0P2 -or- keep XPOS as LINE_bpos -or- FILE_OFFS
+	
+	CT_RT is doing a sequence of SPELLING and TOKENISATION and BIND_AVAR_EXPR
+
+		FIRST_SPELLING_POOL uses STR0 as lookup
+		we
+
+		
+

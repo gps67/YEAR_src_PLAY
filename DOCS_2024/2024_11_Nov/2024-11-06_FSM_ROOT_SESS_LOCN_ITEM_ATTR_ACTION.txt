@@ -1,0 +1,188 @@
+	2024-11-06
+	2024-11-06_FSM_ROOT_SESS_LOCN_ITEM_ATTR_ACTION.txt
+	
+	FSM
+
+	 ROOT_SESS_LOCN_ITEM_ATTR_ACTION 	# HAND_PLACED_ITEM
+	_ROOT_SESS_LOCN_ITEM_ATTR_ACTION_	# AUTO ALIAS KNOWN_FOR
+
+		DIALECT leaves a trail of AUTO_CHECKS
+
+			runs the builtin SCRIPT PARSER of P0P2 _CACHE
+
+			build SOURCE_CODE_TREE
+
+				uses AUTO ALIAS GROUP_LAYER
+
+				AUTO	ALIAS
+				AUTO	GROUP
+				AUTO	LAYER
+
+			provide LIBR via Module 
+
+				brings own LIBR of FSM # PRE_BUILT # RE_BUILT
+				brings own LIBR of CACHE of AVAR
+				brings own LIBR of CACHE of AVAR_REMOTE
+
+				On a good day, we can PREDICT RET_VAL == VALUE
+				On a code_fail, we can throw via BOUNCE_POINT
+
+				BOUNCE_POINT == SESS.on_SOMETHING(ARGS)
+				# using C++ types in ARGS # STRONG TYPE #
+				# THEN UDEF # add feature to class AVAR of same name
+				THEN OPTION AS_VAR "UDEF"
+				THEN OPTION OF_TYPE("UDEF_t")
+
+					Parser looks at VALUE and knows
+					AUTO_DECL_on_MENTION _t
+	
+	i4_i12
+	i16_HEAP_ITEM_idx // i4_i12_HEAP_ITEM // AUTO_MATCH //
+
+		i64 ITEM_in_EIGHT; // the complex is the VAR_NAME 
+		// The type_name is "i64" // UNION i64_EIGHT_ALIGNED_BYTES
+		// The type_name is "i64" // UNION i32_i32
+		// The type_name is "i64" // UNION i8_i8_i16_i32
+
+	ASM get_i4_from_i16_in_REGISTER
+
+		CPU_WORD 
+		MEM_WORD
+
+		MEM_ADDR
+		CPU_ADDR # why not? lets have u24 registers u8_CURRENT u4_idx
+
+			CPU_ADDR _by_NAME _by_TOKEN _by_INLINE_EXPR
+
+			SESS applies EXPR to SESS PLUS ETC
+			SESS updates SESS_STO 
+			SESS updates DATA_STO 
+			SESS updates HEAP_ITEM
+	
+			KNOW ALIAS REGISTER_NAMED "R4"
+
+				EG i386 and AMD64
+				OR ARM32 ARM64
+
+				DECODE LIST includes bunch of exported
+				DECODE LIST includes bunch of not exported
+
+				VAL can be an ALIAS with SUB_EXPR
+
+				eg i8 BYTE_B
+				eg u8 BYTE_B
+
+				eg i8 BYTE_A
+				eg u8 BYTE_A
+
+		ADDR_from_TOKEN {
+
+			register R4 // ALLOC_REG set it to R2
+
+			TOKEN can be repeatedly looked up
+			until RET_VAL_is_INPUT_UNTOUCHED // optimise out //
+
+			MACRO applies RETRY until UNCHANGED
+			TRY_one = PARSE PHRASE
+			TRY_one = PARSE SUBLEX PHRASE
+
+			multi pass is a thing 
+			RET_VAL can be a modified SESS CALL_MACROS
+			switch RET_VAL_decode {
+			 case FAIL_FAILED errrm += AVAR("WHEN_ERROR_DETECTED")"
+			 case FAIL_FAILED errrm += AVAR("REASON")"
+			 case PASS_RETVAL RETVAL += RETVAL KNOW_POOL KNOW_DONE
+			 ...
+			 }
+
+			 ATTR += KNOW_malloc needs free
+			 ATTR += KNOW_refcount needs decr
+			 ATTR_of_AVAR not of AVAL found there
+			 ATTR_of_AVAR and of AVAL found there
+			 ATTR_of_AVAL += const_char_star_ROM_P0P2
+			 ATTR_of_AVAL += const_char_star_ROM_STR_STR0
+			 ATTR_of_AVAL += const_char_star_ROM_STR_P0P2
+
+			 ROM means locks are simpler, ROM is VFS
+		}
+
+		ROOT_RING TOKEN {
+
+			EG a github server needs to be open_SSH2 
+
+				internal team, each with own login
+				alias some other server, manually reserved
+
+				chroot for the DATA
+				_VFS_CHROOT is ext4 (limited quota)
+				-VFS_du_sh charged at USAGE_of_QUOTA
+
+					QUOTA AUTO reallocates
+					and at that time notifies SESSION
+					which reports it in the CURR totals
+
+				SHELL is git_shell
+				SHELL needs PROG_LIST
+				EXEC needs SHELL
+				EXEC needs lib_dll_so_
+				EXEC needs data tables
+				EXEC needs SOCKET_via_API
+
+
+					build
+
+				MOUNTED_AS_MEDIA GIT_HUB_VFS _VFS_CHROOT
+
+					split
+
+				MOUNTED_AS_MEDIA // VFS_ROOT is chroot
+
+				_GIT
+				_HUB
+				_VFS 
+				_VFS_CHROOT
+			 
+			}
+		}
+
+
+
+
+
+	# aside # parse ARGV into MULTI_PART_WORD_using_SEP #
+	# input ARGV of STR0_now_spelling_now_AVAR_name #
+	# STR0_as_P0P2_t STR_P0P2 = P0P2_from_NBYTES #
+	#
+	# FILTER reduce_PUNCT_to_SP_ONE #
+	#
+	# MATCH SUBLEX_SEP_PHRASE { SCRIPT } 
+	#	SCRIPT = SESS.SCRIPT # PRE_LOAD and CACHE and ACT_AS_STO
+	#
+	# STO # ACT_as_STO #
+	#
+	#	PARAMETER SCRIPT_VAR_NAME _SPELLING
+	#	PARAMETER list_of_adjectives_for_TYPE_SPEC_DECL  _SPELLING
+	#	ALIAS PARAMETER PRE_LOADED_MATCHING_VALUE
+	#	IE OK FROM {
+	#
+	#		VAR_NAME
+	#
+	#		VAR_TYPE
+	#
+	#		VAR_DATA_STO
+	#
+	#		CTRT { SCRIPT } #
+	#	{	# NO_DATA_JUST_TOKENISED_CONSTANT # eg "ASCII_SP"
+	#	{	# CMNT # CODE_POINT #
+	#	{	# TOKENISATION at CODE_POINT with CMNT # compiler tells a story
+	#	{	# } # L_BRACE "{" # BRACE_R "}" # ALIAS R_BRACE AUTO
+	# AUTO	# ALIAS R_BRACE = BRACE_R # CONST ASSIGN is also MATCH == #
+	# == useful because readonly # other than ref_count_when_used _UN_LOCK
+	# 
+	#		X
+	#	}
+	#	}
+	#
+	#
+
+

@@ -30,7 +30,8 @@ Version: 0.1.2
 Requires: \
 	libs_apps_mysqlclient \
 	libs_apps_base1 \
-	_into_base2
+	_into_base2 \
+	ft2
 
 # Requires: _into_base2 libs_apps_base1
 

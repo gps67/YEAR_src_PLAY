@@ -1,0 +1,120 @@
+
+	tk_WAX_BTNS.txt
+
+	VLIST of buttons
+	STRETCH to width of widest
+	LIMIT stretch to AVAL or EXPR_AVAL
+
+	+--
+	|
+		 |
+		-+
+	
+	FIRST
+	  sort out 
+	    gtk forms CRUD
+	    gtk reports
+	    gtk tree list
+
+	    	merged from peer groups
+
+	THEN
+	  replace
+	    WAX forms CRUS
+	  	SPOUT
+		SVG_OUT
+
+	  
+	PYRAMID 4 4 3 3 ... 3 ...
+
+		4 3 2 1
+		  3 2 1
+		    2 1
+		      1
+		      = 4 + 3 + 2 + 1 == 10
+	
+
+		  3 2 1
+		    2 1
+		      1
+		      = 3 + 2 + 1 == 6
+	
+
+		    2 1
+		      1
+		      = 2 + 1 == 3
+
+		      1
+		      = 1
+		
+		TOTAL == 1 		=	1
+		TOTAL == 1 + 3 		=	4
+		TOTAL == 1 + 3 + 6 	==	10
+		TOTAL == 1 + 3 + 6 + 10 ==	20
+
+		TOTAL ==20 == 4 + 4 + { 12 }
+		{ 12 } == 3 3 3 3
+
+			IDK
+	
+	ASM_i64
+
+		...
+	
+	BUTTON
+
+		raised border
+		 effect is lowered membrane 
+
+		on_CLICK
+		on_HOVVER
+		on_BALLOON_wants_better_SELF
+		on LIBR_USED_ASIF %s // SPELLING // CODE_POINT ATR_P0P2
+	
+	P0P2_shared_TEXT_within_STREAM
+
+		instead of STR0
+		instead of STR_P0P2
+		instead of STR_nbytes
+		instead of STR_NUL_STR_NUL // can grok that from here // API_ //
+
+	restrict DEREF to CODE_POINT even with PRE_LOAD
+
+		XPOS += { P0 (P2-P0) }
+
+	DESKTOP_GTK
+
+		import GNOME_DESKTOP_API _vnnn_recent
+
+			minimal layer is an inevitability
+
+ longbottom
+ 	is bessie mate
+		when 
+
+		UNKNOWN
+			RIP reported dead // alaternative //
+		WELLKNOWN
+			OOP here he is
+
+ FOOTSTEP
+ _of_LIFE
+  	crusader profits
+
+
+ BUTTON
+ 	BUTTON
+		XYWH
+		on_click()
+
+			show_as_BUSY
+				SOMETHING
+			show_as_EASY
+				SOMETHING
+
+
+
+
+
+
+

@@ -82,6 +82,31 @@ fn_DATE_show_VARS() { # V A R S # BASH function # extends LIBR for now
 	# fn_DATE_show_VARS 2020-01-15 # set date from ARGS
 	# fn_DATE_show_VARS 
 	# show the value we have set as current DATE
+	# lots of ASCII
+	# lots of WORD_ALIGNED
+	# KNOW SEEK is already WORD_ALIGNED
+	# because it is based on UNIT_WORD_i64 # OPTION u32_u32 CPU_WORD_i64
+	# following DATA_SCRIPT is within " # CMNT " // SPELLING_SP_AROUND
+	# SP_AROUND " %s " ALIAS SP_ITEM_SP ALIAS SP_PHRASE_SP ALIAS SP_UDEF_SP
+	# SP_AROUND " %s "
+	#
+	# ALIAS SP_ITEM_SP 
+	# ALIAS SP_PHRASE_SP 
+	# ALIAS SP_UDEF_SP
+	#
+	# PARSE VAR_NAME using SUBLEX # AUTO_WRAP # ARGV_DIALECT SCRIPT_DIALCET
+	# TEXT P0P2 SPEC_and_STO_t tree_one # solo_optimises_out zero  one_ _PLUS
+	# ZERO optimises OUT
+	# ONE represents SELF and
+	# TWO is a pre_build of all MACROS in LIBR
+	# it exists in a VAR_POOL with its own unique name STR0 in CSET in SESS
+	#
+	# LANG creates a location where a few chunks of code co-exist in LIBR
+	# TEXT_from_TREE ROOT # EXPR { ROOT SESS LOCN ITEM ATTR ACTION }
+	#
+	# ASCII_SP ASCII_HASH ASCII_SP CMNT # then try GAP which might include ""
+	# eg ("%s") # DIALECT permits use of VALUE as STR0 as is locally matched
+	#
 	echo "# DATE # $DATE_year_mm_dd $DATE_Jan $DATE_Tue DATE_STAMP_VAL"
 	# echo "# TEST" fn_DATE_show_VARS DATE_year_mm_dd
 	# fn_DATE_show_VARS # ALL

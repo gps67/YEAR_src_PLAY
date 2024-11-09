@@ -86,7 +86,8 @@ bool dgb_fork_stderr_to_tcl_text()
 	//	 "/SCRATCH_ZONE_20/in_Tcl_Module"
 	//
 	fflush(0);
-	pipe_to_child pipe_parent_to_child;
+	pipe_to_child
+	 pipe_parent_to_child;
 	if( !pipe_parent_to_child.open_pipe() ) return FAIL("open_pipe");
 	int pid_child = fork(); 
 	if( pid_child == -1 )

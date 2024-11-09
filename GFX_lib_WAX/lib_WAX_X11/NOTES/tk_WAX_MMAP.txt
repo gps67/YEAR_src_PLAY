@@ -1,0 +1,98 @@
+
+	tk_WAX_MMAP.txt
+
+	MMAP is not GUI but it is Module 
+	MMAP is THREAD and MMAP
+	MMAP is OPTION PAGE0 and P0P2 // P0P2 does it all // via nbytes
+	MMAP is OPTION ENTIRE_FILE
+	MMAP is VFS_OPTION_SYNC_THEN
+	AUTO followup on VOLATILE_at_point_of_SYNC so T0 is ANCIENT
+	AUTO followup on VOLATILE_at_point_of_SYNC so T2 is NEAR_FUTURE
+	AUTO [T0 [T1 [T2 // times of ERA checkpoint at T0 at T2 currently T1
+	AUTO SESS at T1 // option ROM deduces is ROM
+
+ MMAP PIXMAP
+
+ 	see pgn_one.h
+	see u32_RGBA_t PIXEL;
+	see array[ X_Y ] of u32_RGBA_t PIXEL; // padding within unrounded W H
+
+ MMAP_PERSIST_MMAP
+
+ 	load HEAP into files // u4_u12 HEAP_ITEM_i4_i12
+
+		MMAP FILES at 64K steps or 4G steps or ...
+
+		Mostly going for nested IDX 
+		(need to MMAP somewhere - need PLAN for entire APP or LIBR )
+	
+	FILE has magic 8 BYTES MMAP_0123 // kiteral BYTES 0 1 2 3
+
+		MAGIC MMAP_0123 // _and_then 7 NUL bytes
+		MAGIC MIME_u16 // u4_u12_HEAP_ITEM
+
+ i4_HEAP
+ 	8_HEAP_PLUS
+ 	8_HEAP_MINUS
+ i12_ITEM
+ 	2048_ITEM_PLUS
+ 	2048_ITEM_MINUS
+
+ bool ZERO_means_PLUS = true; // ZERO is most common IDX_PLUS
+
+ u4_HEAP means that i4_HEAP can return loads, even u8_HEAP or i64_EXPR_HEAP
+
+ 	i8_i8_OPCODE
+	i16_HEAP_ITEM
+	i32_WORD_HALF_TWO
+
+u16 must align witing WORD 
+
+	CANNOT PERMIT single word read over two words
+	CAN but losing some lock benefit or something
+	SO simply provide with ALIGNED_64_MEMORY
+
+
+	although we are trying to be u32 friendly
+	we insist on i64 alignments, i32_i32 as an ALIAS
+
+	Our BIAS is i64 but almost as quick on i32_i32
+	because we are not using i48. ARE using i16_i32
+
+ i4_i12_HEAP_ITEM
+
+ 	FULL_PAGE_of_ITEM is efficient CODE_CALL
+ 	PART_PAGE_of_ITEM is optimistic CODE_CALL
+
+		individually updated HEAP_ITEM
+
+		PAGED HEAP 0000
+		PAGED HEAP 0001 // INDEX when AUTO_GROW_HEAP
+		PAGED HEAP 0010 // DATA_starts_in_PAGE_TWO
+		PAGED HEAP 0011 // nbytes_of_DISK_RESERVED_USED_
+		PAGED HEAP 0100 // nbytes_of_DISK_RESERVED_USED_
+		PAGED HEAP 0101 // nbytes_of_DISK_RESERVED_USED_
+	
+	SESS.Module has an initial HEAP of ITEM and EXPR_ITEM
+
+		i16_IDX = i4_i12_HEAP_ITEM 
+
+			Module uses 3 PAGES of 2048 of 4096
+
+			Module actually provides,
+			and exports back up tree in wider BITFIELDS
+			as i16_IDX from HEAP_of_2048_ITEMS // MINI_MACHINE
+
+	i4_is_8_MINUS_8_PLUS
+
+		Our MINI_MACHINE cohabits with others in wider SCOPE
+
+		We are one HEAP of i12_IDX items and their STO
+
+		WE fit in i32, so 2G LIMIT , beyond 1G use i48_LIMIT
+
+			KNOW i16 is u15 += i16_MINUS
+			on_u15_PLUS()
+		//	on_i16_ZERO() // if CT_RT does not short circuit it
+			on_i16_MINUS()
+

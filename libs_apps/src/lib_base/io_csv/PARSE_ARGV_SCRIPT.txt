@@ -1,0 +1,180 @@
+
+	PARSE_ARGV_SCRIPT.txt
+
+	ARGV_SCRIPT is a mix of ASCII_GAP ARGV and PSG_SCRIPT
+	ASCII_GAP is PARSER.LEXER.CSET_READER.ASCII_GAP
+	ASCII_GAP is ASCII_SP _TAB _CR _LF _FF _or_CALL_FN == XPOS MATCH
+
+	ARGV is a SUBSET that works well for data and for IDX and STRUCT
+	ARGV STEPS in ARGV[i=idx++] // AUTO_INCR 
+	"//" is actually a command name
+	"//" closes previous phrase ; // starts new phrase
+	"//" == CMD0 is actually a command name
+	and can trigger PRE_REGISTERED signals
+	eg ASCII_SP == "ASCII_SP" // invention by belief // by mention //
+
+		That is defined in some include "bits/ASCII_chars.h"
+
+		Which defines every spelled out ASCII GLYPH or ASCII_NAME
+
+		PLUS a layer of ALIAS and USAGE Q1=="'" Q2=='"' KNOW
+		GROUP USAGE ; GROUP PUNCT ; _PUNCT ASCII_chars
+		static const char ASCII_QUOTE_SINGLE = '\'';
+
+		Then a list of ALIAS and nickname_ID idx_obj_by_STR0
+
+		STR0 can carry near binary but it stops at the first NUL
+		GEN must know to avoid NUL unless mentioned as "NUL"
+		KNOW can list these matching rules and go further
+		APPLY FILTER "OPEN" or_MENTION_to_AUTO_EXIST_OPEN_IDLE_RPC
+		APPLY FILTER to TEXT to OPEN it
+		APPLY FILTER to TEXT to READ it
+		APPLY FILTER to TEXT to Parse it
+		APPLY FILTER to TEXT to compile it
+	
+	PUNCT_in_ARGV_SUBLEX
+
+		FLEX and BISON are great but they should be one Parser
+
+		CSET is a CODERS extra worry but that is at XPOS in SCRIPT
+
+		SCRIPT is P0_nbytes as P0_N CSET=CSET_u3 one_of_eight
+
+			LEVEL of matching depth "{ SCRIPT == P0P2 _in_CSET }"
+			// a basic type "P0P2" a complex var "_in_UPPER" 
+			
+			ARGV_SEGMENT and_TEXT_in_ARGV // SPELLING
+
+		GLOBAL_VAR == one_on_first_name_terms
+
+			LOCAL BIAS claims usage of "ALIAS" for "PURPOSE"
+			REMOTE BIAS doesnt know "KNOW"
+			REMOTE BIAS guessed LANDSCAPE as VAR_POOL("LANDSCAPE")
+			MACRO REMEMBER holds MACRO_SPELLING FROM INTO
+			AUTO SPELLING ...
+	
+	SCRIPT Parsed as STREAM of TOKENS and ITEMS and UDEF
+
+		i64_STAND_ALONE_WORD
+		i64_i64_WORD_PAIR
+		i64_i64_i64_PHRASE
+		i64_ARGV // ie each WORD is an ARGV
+		i64_ARG = ARGV[ i ] // LINE is ARGV of WORDS CMNT // PAGE_of_LINES
+	Bison YACC --outputs-=> FSM that Parses ARGV_as_TEXT_in_STREAM_in_PAGE
+	Bison YACC --outputs-=> TREE accumulated over STREAM
+
+		bison does all the heavy lifting
+		and generates a FSM - Finite State Machine
+		a graphs with lots of lines connecting nodes, C_CODE_STEPS,
+
+		bison parses stream OPTION "PAGES" 1.5K packet payload
+
+			1600 bytes
+			 200 words each 8 bytes
+
+		bison parses SCRIPT and maps it into ARGV
+		sometimes with the PUNCT MATCH AUTO // so nothing to save HERE
+
+	bison keep P0P2
+
+		CSR_has_a_MINI_MACHINE_running_this_SCRIPT
+
+		SCRIPT uses entire TREE as "{ P0P2 }" // AUTO ALIAS // P0_N
+
+		XPOS is FILE_OFFS of TOKEN in STREAM 
+		P2 is outside of this LEX or PHRASE
+		bison FSM parsing over ARGV_CHAIN_SEGMENT finds
+
+			ADJUST FEATURE using DATA
+
+		Even if we dont have the TEXT of the SCRIPT we get it as SCRIPT
+
+			MATCH RECEIVED PHRASE with PREPARED PHRASE
+			MATCH PHRASE_DETECTED /* %s */ { SCRIPT }
+
+		SOURCE_FSM is STATE_MACHINE
+
+			at_NODE hungry for TEXT WORD
+			compiled WORD came from XPOS in SCRIPT
+			ARGV is a list of PUNCT and NAMES and CMNT and TEXT
+			ARGV[i] can be A_LEAF or A_NODE 
+			A_LEAF += A_NODE but FILTER as_if is A_LEAF
+
+				A_LEAF is a complex aggregate
+				built from many parts
+
+			A_NODE += A_LEAF // every node is its own identity leaf
+
+			  DIR_NAME is a FILE_NAME _of_a_DIR _ALIAS
+
+		PHRASE
+		ARGV is NN PAIR of ... NAME DATA ...
+		i32_i32
+
+			i4_i12_OPCODE
+			i4_i12_ITEM_EXPR
+			i32_WORD_TWO
+
+		u3_u11	HEAP ITEM
+		i4_i12	CALL EXPR // HEAP = CALL ; ITEM = EXPR ; do_CALL ;
+
+		u2
+			BOX_ZERO
+			BOX_ONE
+			BOX_TWO
+			BOX_MORE
+
+		u6
+			ITEM_64	// PLUS
+			EXPR_64 // MINUS
+
+ PLUS MINUS // ZERO is an OPT_IN // treat as CMD0 or LIST_TOP_ITEM
+
+ 	uses CPU_WORD to know early kept as FLAG for SCOPE
+
+	uses 2 shifts to extract BITFIELD and sign extend to HALF or FULL
+
+		shift top bit to top of CPU_WORD
+		shift shifted bottom bit to botton of CPU_WORD += SIGNED
+		+= UNSIGNED is exactly as quick
+	
+	BUT THEN PLUS overflows it's HALF limit
+	AND THEN MINUS donates some space
+	OR_EVEN L_z_R  M_z_N		<<========= M_z_N  <<=========
+	
+	We are using a STRONG_TYPED system,
+	where each ITEM is supposed to MATCH
+
+	uses 32_PLUS
+	uses 32_MINUS
+			
+	
+	+64
+	---------
+	+63
+	+62
+	...
+	+2
+	+1
+	+0
+	---
+	-1		M1
+	-2		M2
+	---
+	-32
+	-33]
+	-63
+	-64
+	---
+	-65]
+
+
+	L_M_z_N_R
+	+= OPTIONS uses idx i16 // ROM lives under own ceiling VAR is STO is RW
+
+	uses 32_PLUS
+	uses 32_MINUS
+			
+
+
+

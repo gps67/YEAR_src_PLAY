@@ -14,11 +14,12 @@
 #	LIST_PKG_CONFIG_PATH += $(G_prefix)/lib/pkgconfig/
 #	LIST_RPATH += $(G_prefix)/lib
 
-	PKGS += freetype2
 	PKGS += xft
 	PKGS += fontconfig
 	PKGS += libpng
 	PKGS += libturbojpeg
+#	PKGS += freetype2
+#	PKGS += libs_apps_base2
 	PKGS += libs_apps_base1
 
 	LINKS += -rdynamic # export all symbols - backtrace works!
@@ -158,6 +159,12 @@ gdb_test2: $(EXEC2)
 
 gdb_test3: $(EXEC3)
 	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG3) --args ./$(EXEC3)
+
+gdb_test4: $(EXEC4)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG4) --args ./$(EXEC4)
+
+gdb_test5: $(EXEC5)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG5) --args ./$(EXEC5)
 
 run_test1: $(EXEC1)
 	./$(EXEC1)

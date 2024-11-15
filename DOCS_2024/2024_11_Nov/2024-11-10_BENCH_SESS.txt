@@ -1,0 +1,121 @@
+	2024-11-10
+	2024-11-10_BENCH_SESS.txt
+
+	BENCH is a WORK in progress
+	SESS += BENCH_SESS 
+
+		create a field called "BENCH_SESS"
+		create a binding - BENCH_SESS supplied via AVAR // OPTION API
+
+			sometimes BIND_AVAR is a massive short cut
+			sometimes BIND_AVAR is a filtered pipeline connection
+
+			GETTER comes in various flavours
+			GETTER REMOTE_AVAR_via_CACHE
+
+				CODE_POINT = CALLER_of_this_MACRO.CODE_POINT
+				CODE_POINT_t * CODE_POINT = 
+				 CODE_POINT_from_XPOS( CALLERS_CODE_POINT__XPOS )
+ twisted phrase
+	CODE_POINT_from_XPOS( CALLERS_CODE_POINT__XPOS )
+
+	CALLERS_CODE_POINT__XPOS {
+		SUBLEX_field_XPOS_P0_as_FILE_OFFS {
+			obtain FILE from NEARBY_SESS_MAGNET_SAYS_
+			lookup ATTR in VAR_POOL KNOW_FILE_is_FILE_one
+			lookup ATTR in VAR_POOL KNOW_FILE_is_FILE_two
+			lookup ATTR in VAR_POOL KNOW_FILE_is_FILE_FEW
+			lookup ATTR in VAR_POOL KNOW_FILE_is_FILE_MORE
+
+			CONVEY that using i64_BITFIELDS // BYTE_fields too
+			CONVEY that using i64_OPCODE_ARGS
+
+			on_CALL PHRASE_ARGS_ETC // RET_VAL is in CALL_PALLETTE
+
+				TRACKER_on_AVAR // log_all_API_ACTIONS
+
+
+		}
+		CALLERS_CODE_POINT__XPOS {
+			_CALLERS
+			_CODE_POINT
+			_XPOS 
+		} {
+			this has been resolved down to single CONST EXPR
+				"CALLERS_CODE_POINT__XPOS"
+			and CT_RT has asked SUBLEX to deconstruct the VAR_NAME
+				"ITEM"
+			and CT_RT has asked SUBLEX to deconstruct the VAR_NAME
+				"ONE_TWO_THREE"
+
+			_CALLERS_CODE_POINT_XPOS means a field in ROM 
+
+				_CODE_POINT means CODE_POINT
+
+					caller invoked this MACRO or inline
+					the _CODE_POINT is the callers XPOS
+
+					KNOW_CALLER_PROVIDES_XPOS via_AVAR
+
+				_XPOS means XPOS
+
+				// the KEY SEL is AVAR("_XPOS") // etc
+
+				CT_RT has CODE_POINT as CSR in TEXT
+
+					Parse Phrase
+
+				i8_i8 OPCODE
+				i8_libr_u3 // 8 reserved slots in first BYTE
+				i8_item_i8 // +127 // -128 // M_z_N // M128 idx127
+				i8_item_i8 // +127 // -128 // M_z_N // N == M
+
+		SESS arranges for DIALECT to be loaded in DECODE_i64
+
+			SESS provides NBYTES for STO_SESS and extras from heap
+			MMAP provides managed PAGE and HEAP_PTR interleave
+
+			RT test if MMAP or ADDR 
+			NB MMAP means OFFS EXPR wrt NAMED_XPOS PAGE_ZERO
+
+		SCOPE switches in SESS_LIBR_LIST_8
+
+			i64_WORD LIBR_LIST[u3] = idx = N ; N += dn ; dn==8;
+
+				rolling_scrolling_u3 can start at any N
+				when compressed into u8
+				but we are using DECODE_BYTE to obtain u3
+				and we are using TABLE[u8] for ALL
+
+
+		}
+	}
+	
+
+			LOCAL REMOTE = LHS RHS
+				LOCAL = LHS
+				REMOTE = RHS
+
+PAIR PTR SPEC
+
+	First word is PLAIN PTR and is used as ITEM_t ** PTR
+	GET_SPEC(HALF) 
+	GET_SPEC(PAIR_POINTER_HALF_VALUE)
+		i64 * HALF_PTR;
+		i64 * half_SPEC_as_DECODE_i64 // a few dialects coexist
+
+i64_DIALECT
+
+	i8_i8_OPCODE // 1 extra step CPU_WORD_from_BITFIELD_i_8_0 // 8]7 0]
+	i8_i8_OPCODE // 1 extra step CPU_WORD_from_BITFIELD_i_16_8 // BYTE_B_i
+	u8_u8_OPCODE // possible that CPU does this // BYTE_B_u // 
+
+	GEN call to inline GETTER for BITFIELD i8_i8_i16_i32
+	GEN call to inline GETTER for BITFIELD i32_i32 // HALF WORDS on CPU64
+	GEN call to inline GETTER for BITFIELD i64_i64 // PAIR OF WORDS
+
+	GEN prepared C DECL and USE and CALL // KNOW NEED C_inline_optimiser
+	MACRO produces something that GCC or GXX can optimise
+	SOURCE_PRINT can DEMO CALL with SAMPLE CALL VALLUES
+	// MANUAL CLOGS for side effects // PAUSE REPORT API_has_SET_VAR
+	// DEBUG // "AVAR" // 

@@ -15,11 +15,13 @@ endif
 # draw_base
 # draw_spout
 ifeq ($(WITH_SPOUT),1)
-#	OBJS_base2 += spout_ctxt.o
-	OBJS_base2 += spout_PAGE_base.o
-	OBJS_base2 += spout_base.o
-	OBJS_base2 += spout_pen_base.o
-	OBJS_base2 += spout_styles.o
+	// this is the OLD SPOUT not GEN_SPOUT in the sandpit
+	// used by rep_run of ACCTS // that needs porting to new SPOUT
+	// that requires _js out of its madness // trust evaporated //
+	OBJS_base2 += spout_PAGE_base.o # CURR PAGE and FILE atts
+	OBJS_base2 += spout_base.o 	# empty 2020
+	OBJS_base2 += spout_pen_base.o	
+	OBJS_base2 += spout_styles.o	# extend to WAX styles // bgfg //
 endif
 
 

@@ -1,0 +1,36 @@
+
+	NAMING STUFF
+	
+	// IDEN must be mostly BYTE TEXT STREAM API _segment
+	// SYNC fastest circuit with slow side prings // roundtrip loop
+	// PKT_IN causes TASK_FORK
+	// TASK is like a process, it has UID GID ETC and QUOTA
+	// TASK starts off as thread group CTRL controlled
+	// TASK_api == CTRT_as_API
+	// API // %s_api // as CTRL_API_NAME _SELECTOR
+	//
+
+	// a1_a2_star a1 a2 // is CIDENT_99 
+	// CT_RT is two parallel CT and RT
+	// CT writes_and compiles_LIBR //
+	// WE limit ourselves to C or CXX or UDEF
+	// Your UDEF might be UDEF_CXX_BASIC
+	// 
+	// Q is this possible: LEX as PSG_bison
+	// ! // 
+
+	// SI UNITS //
+	// WORD CHAIN as ARGV L2R WORDS
+	// WORD_is_really_COMPLEX_MULTI_LINE _indented_TEXT _TEXT
+	// WORD_is_LIST
+	// WORD_is_LIST_of_LINES_of_ARGV_WORDS
+	// { treat {} as Q1 as TCL does, it is magic al
+	// NEED REQUOTE Q1_Q2 // also_does_PARENTH // BRACES _INDENTED TEXT
+	// FILTER Q1_Q2 starts with the BYTES in the TEXT
+	// AN ANCIENT RULE - is that if a program is "8-bit-clean"
+	// and chunks of the original text are passed around eg as P0P2 or STR
+	// STR_to_EOLN // for a data interpreter it can process multiline
+	// STR_to_EOLN // after Parse has found ARGV_nested 
+
+	2024-12-31_IDEN
+	NAMING STUFF

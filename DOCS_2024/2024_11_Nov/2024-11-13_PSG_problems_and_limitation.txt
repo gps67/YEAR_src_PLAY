@@ -1,0 +1,223 @@
+	2024-11-13
+	2024-11-13_PSG_problems_and_limitation.txt
+
+	bison and flex are great but ...
+
+	MULTI_LEX returns several MATCHING EXPRS
+
+		EXPR includes a HINT to why PARSER sees SPELLING
+
+		SPELLING is a limitation.
+		We TOKENISE as much as we can, "{ TOKEN = lookup SPELLING }"
+
+		CT_RT runs STR0 == "{ TOKEN = lookup SPELLING }"
+		 CT_ attempt to get to RET_VAL with avail ARGS
+		 RT_ attempt to get to RET_VAL with avail ARGS
+
+		In both cases, hope some simple MACRO expandion works.
+		Without CACHE it runs a tiny bit faster,
+		because the CODE TOKENISES and passes as TOKEN in ARGV
+
+	TOKEN_in_ARGV
+
+		ARGV comes with its own MINI_HEAP
+
+		SHARE_PEER_GROUP_MINI_HEAP ACCES_ia_ALIAS("%s")
+
+			AUTO DECL ALIAS = STR_P0P2 
+	
+	STRING_in_TEXT
+
+		TEXT == FILE_SEGMENT // MMAP_entire_FILE // default // += 16MB
+		FILE = TEXT // PAGE_ZERO is a THEME in LIBR_one // me :-)
+		// LIBR_one == SELF // for when we are non-zero, nor idx_0
+		// LIBR_zero == SELF // for when we are zero, or idx_0
+
+		const idx_0 = new_object( 0 ) // CACHE_AVAR // non_null 
+	
+	FIELD in OBJECT
+
+		ITEM.api {
+			CALL EXPR ARGS SESS CTXT
+			// if there is no SESS at CT_RT 
+			// PICK resolve using RESERVED_LIST
+			// LIST this API uses these words
+			// LIST this VLP uses these words
+
+			RT instance of a CT template
+			GROUP = OBJ_ADMIN_TREE_of_ITEM_TYPE
+		}
+
+		REMOTE_ITEM.api {
+			SIMUL ITEM_api = mk_API "ITEM.api"
+			// AUTO ITEM_api = TOKENISE "ITEM.api"
+			// AVAR("ITEM_api") // SEE_ALLSO-ADJUST_to_cident_98
+		}
+
+		RPC_DATA_ADJUST {
+			We use a SIMUL_CACHE_of_ABSENT_REMOTE
+
+				NB REMOTE remains ABSENT
+				even though we are providing REMOTE _via_api
+
+			LIST of features
+
+				TREE of Module_Components
+				TREE_of_Module_LIBR_one // this 
+				// SELF_one because SELF_zero is is use
+				// expect EXPR uses "{ ADDR = BASE + OFFS }"
+				//
+				TREE_of_Module_SESS_AVAR // and other stuff
+				ITEM = lookup ( "ITEM" ) // note SP_exact
+		}
+	 OBJECT_is_OOP_STRUCT _DECL_in_Module _USAGE
+
+	 	add "FIELD" to FIELD_LIST // CPU_WORD_i32
+	 	add "FIELD" to FIELD_LIST // MEM_WORD_i32
+	 	add "FIELD" to FIELD_LIST // MEM_WORD_i8 _BYTE
+
+			_BYTE adds itself as a MENTION to ARGV_PHRASE 
+	
+	i32_EXPR is i8_HEAP i24_ITEM
+	i32_EXPR is i12_HEAP i24_ITEM
+
+		COMPILER sometimes chhoses to FORGET a debugging TABLE
+
+			TABLE is necessary, code wont build without UNIT_YESYS
+			DECL_rarely_used_item // push aside to ZONE for sleepers
+			DECL_idx_of_anyname // ie name rarely used
+			DECL_idx_of_IDENT // since WHN ? CT_RT_sess_avar_dot
+
+			ROM does not need that debugging TEXT segment
+			when it is available later, or of generic nature
+
+			TABLE is there, just over there, ask_again // API_2
+
+				API_TWO is for when API_ONE didn't MATCH
+				API_TWO is chain of similar TREE node steps
+
+			HEAP_i24_of_ITEM // HEAP[ u24 ] of i64_ITEM
+
+				ITEM might be DECODE_i64
+				ITEM might be PTR_i64
+				ITEM might be OFFS_i64
+				ITEM might be BASE_i64
+
+					takes a few vars to gather and form here
+					CTOR streams lots of mini_steps
+					that cen be processed in SESS
+
+	i64_LOCAL_REMOTE_OPCODE_EXPRS // that fit in i64
+	i64_LOCAL_REMOTE_OPCODE_EXPRS // that alloc as i64 // u8_u8_u16_u32ZZ
+
+ limitations
+  bison and flex
+
+  	a unique LEX_TYPE 
+  	a unique LEX_TYPE IDENT
+
+		that is easier in a specific strict lang where LEX_TYPE IDENT
+	
+	LOGIC_FUDGE
+
+		IDENT " DECL RW_else = RW_else // CMNT " 
+		IDENT " DECL ARGS // CMNT "
+		PHRASE "//" CMNT
+		PHRASE  //  CMNT // slash slash gets specific acces via API
+		// end phrase ARGS // end SUB_LIST within SUBLEX
+		MATCH
+		PATH MATCH each FSM match is added to FSM_TREE
+
+		PAIR ARGV_DATA ARGV_SPEC // possibly different ary[idx]
+		// eg one uses SPARSE_DECODE_BITFIELDS
+
+WORKS by adding an extra STEP in the DECL tree
+
+	PARSE_ARGV
+	COMPILE_ARGV
+	RUN_ARGV
+	STEP_ARGV
+	dgb_ARGV
+
+	So that gives three objects
+
+		PARENT AVAR BASE creates SESS AVAR from LIST
+
+		ARGV_DATA
+		ARGV_CODE_POINT // file offs table idx
+
+	reduce stream to basic MINI_MACHINE exprs, with odd syntax
+
+		WORD is LIST 
+		WORD is WORD
+		WORD is WORD IDENT // cident99 // FILTER to get there
+	
+	ARGV_DATA 
+
+		_one
+		_SELF but in some other HEAPS HEAP
+		_two _SELF but first multiple
+		_UDEF UDEF is a template system
+	
+	ARGV_SPEC
+
+		DECODE(i64) from ARGV_SPEC
+
+			it is a function of idx
+			can return DEFAULT_for_TABLE
+
+				NULL_means_ASIS_AUTO_IMPLEMENT
+				NULL_means_ABSENT_FAIL
+				NULL_means_ABSENT_CREATE // above
+				NULL_means_ALREADY_EXISTS // idx_0 M1 base
+
+		ARGV_SPEC might be NULL
+
+			default find SPEC for ITEM_TYPE
+
+			-or-	means the EXPR has been resolved
+			-or-	means the EXPR needs to be resolved
+			// ie carried as ${AVAR} or ${AVAR_NAME}
+			// ha! VAR_NAME == "AVAR_NAME" 
+			// ha! VAR == AVAR
+			// TODO figure out this surface texture feature
+			// the name of the VAR_NAME variable
+			// start with default, prism NAME with TEMP_IDX
+--------
+
+LEX
+	get_P0
+
+		how to get LEX to suggest this token ?
+		how to get PSG to match anywhere // sort of on-demand
+
+	fn_LEX_EDGE_P0
+
+		P0 = XPOS
+	
+	fn_LEX_EDGE_P2
+
+		P2 = XPOS // next items P0 is prev item P2 // OPTION gap too
+		nbytes = X2 - X0
+
+DIAG
+	annotations
+	switch A / B
+	animate STEP
+	highlight annotation
+
+PARSE
+	use an extra CXX decoder
+	add GAP between all PSG tokens, with P0P2
+	add DETECT PRECISE SP_GAP
+
+
+
+
+
+
+
+	
+
+
+

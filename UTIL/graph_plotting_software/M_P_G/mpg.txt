@@ -30,5 +30,6 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-10-08, 24783,  18.57, 23.90, P Full Morrissons from BH
 2024-10-15, 24945,  18.45, 23.93, P Full Morrissons from BH
 2024-10-29, 25178,  26.34, 34.16, P Full Morrissons from BH GU
+2024-11-12, 25413,  26.53, 34.67, P Full Morrissons from BH
 
 

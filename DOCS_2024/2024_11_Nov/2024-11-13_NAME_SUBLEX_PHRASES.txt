@@ -1,0 +1,32 @@
+	2024-11-13
+
+	2024_11_Nov
+	2024-11-13_NAME_SUBLEX_PHRASES.txt
+
+	PHRASE %s_%s_%s
+	as_LIST %s _ %s _ %s
+	as_LIST %s ${SEP} %s ${SEP} %s
+
+		SEP is visible at CT as "_"
+		SEP is visible at CT_sample_XXXX as ", "
+		SEP is visible at CT_sample_XXXX
+		as ", "
+		as "COMMA SP"
+		as " COMMA SP " // fast MATCH IDENT surrounded by SP
+		as " COMMA_SP " // CT_RT MATCH IDENT surrounded by SP
+
+		The CODE that gets written,
+		does check it's own SYNTAX,
+		does it's own PARSE of TEXT STREAM_PAGE _SEGMENT _STREAM_PKT
+
+	
+	SUB_LEX re-applies SUB_LEX over each fragment SUB_LEX_EXPR
+	EXPR adds other nearby API // mostly done with import_Module
+	BIND FAST
+
+		The CT_RT has a JIT even for single use
+		This works because we CACHE every item with own copy_one
+		CACHE retains a copy of P0P2_TEXT_P0P2
+		CT_RT work on same TREE detected by PARSER
+		VARIOUS difference CT RT var_name var_data var_identity
+

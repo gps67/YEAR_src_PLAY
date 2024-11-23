@@ -269,10 +269,10 @@ void PLUS_FreeInternalRepProc(
 		WARN("( obj -> bytes ) - mis thought it would be NULL"); 
 		// tcl actually deletes bytes BEFORE calling
 	}
-	if( TCL_get_PTR1( obj )) {
+	if( TCL_get_PTR1_as_void( obj )) {
 		WARN("( obj -> PTR1 ) - should be NULL by now"); 
 	}
-	if( TCL_get_PTR2( obj )) {
+	if( TCL_get_PTR2_as_void( obj )) {
 		WARN("( obj -> PTR2 ) - should be NULL by now"); 
 	}
 	if( obj -> typePtr ) {

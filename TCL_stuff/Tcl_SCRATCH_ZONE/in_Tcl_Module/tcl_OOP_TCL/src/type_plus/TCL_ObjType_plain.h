@@ -27,7 +27,8 @@ namespace TCL {
 
 	void set_funcs_NULL()
 	{
-	 #if 0
+	 #if 0	
+	 	// RTFM Tcl_ObjType
 		Tcl_FreeInternalRepProc *freeIntRepProc;
 		Tcl_DupInternalRepProc *dupIntRepProc;
 		Tcl_UpdateStringProc *updateStringProc;
@@ -38,6 +39,10 @@ namespace TCL {
 		updateStringProc = NULL;
 		setFromAnyProc = NULL;
 	#if TCL_MAJOR_VERSION >= 9
+		// Tcl has awarded itself an extra field mechanism
+		// and claimed it for itself, but how do you use it for yours ?
+		// There is some OPTIMISATION JOY when using the AS_LIST shimmer
+		// TODO lucky you
 	#endif
 
 	}

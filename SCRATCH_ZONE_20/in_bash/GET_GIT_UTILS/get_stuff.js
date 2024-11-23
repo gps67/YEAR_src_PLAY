@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/frectonz/pglite-fusion
 https://github.com/ecere/sdk.git 
 https://github.com/oven-sh/bun
 https://github.com/Gnucash/gnucash
@@ -583,6 +584,7 @@ http://github.com/FreeRTOS/FreeRTOS
 https://github.com/FreeRTOS/FreeRTOS-Kernel
 #https://github.com/ribomation/DroidAtScreen1
 https://github.com/pjps/ndjbdns/
+https://LIST_END.com/OVER/DONE
 
 "
 for U in $L1

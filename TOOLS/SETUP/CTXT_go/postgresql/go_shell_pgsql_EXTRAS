@@ -7,6 +7,7 @@
 _16_0=16.0
 _16_0=17beta3
 _16_0=17.0
+_16_0=17.2
 v16_0=v${_16_0}
 
 # DOCS are only avail in .gz nor bz2

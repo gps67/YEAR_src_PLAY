@@ -1,0 +1,11 @@
+	2024-11-19
+	2024-11-19_M1_suggests_ZERO-is_SPECIAL.txt
+
+	Use of M1
+	suggests that ZERO means NULL means UNSET
+
+	because 0 was set AFTER M1
+
+
+
+

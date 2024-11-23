@@ -13,6 +13,7 @@
 # fn_grp_dir_sub py Python-3.11.3
 # fn_grp_url py https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tar.xz
 fn_grp_url py https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tar.xz
+fn_grp_url py https://www.python.org/ftp/python/3.14.0/Python-3.14.0a2.tar.xz
 # fn_no_VPATH
 fn_unpack
 

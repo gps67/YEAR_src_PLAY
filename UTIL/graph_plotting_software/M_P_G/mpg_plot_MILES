@@ -5,8 +5,8 @@ set format x "%Y-%m"
 set timefmt "%Y-%m-%d"
 
 set title "MILES"
-plot 'mpg.txt' using 1:$2/8000 with linespoints
-# plot 'mpg.txt' using 1:2 with linespoints
+# plot 'mpg.txt' using 1:$2/8000 with linespoints
+plot 'mpg.txt' using 1:2 with linespoints
 # pause 4
 # pause 1000
 pause -1

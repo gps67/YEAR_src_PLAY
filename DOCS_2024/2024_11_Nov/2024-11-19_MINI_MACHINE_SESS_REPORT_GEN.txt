@@ -1,0 +1,92 @@
+	2024-11-19
+	2024-11-19_MINI_MACHINE_SESS_REPORT_GEN.txt
+
+	Editing the report scripts
+
+	Editing the CSV data files
+
+	Archive using YEAR_MM_DD somehow
+	eg mtime of FILE
+	eg git_time 
+
+
+ 2 focus - us here -- them there
+
+ 	there is no conflicting overlap
+	but out editing here
+	and their editing there
+	seems to happen in time sequences not of clock OR of clock
+
+	basically each file claims it's version
+	and if that branches between 2 users
+	they BOTH should merge
+	(IDK maybe a diamond shape)
+
+	until then there are independent chains of files
+	our files are over here
+	their files are over there
+	there is very little overlap
+
+	THIS IS A GUIDING PRINCIPAL 
+	2 independent things in a shared space
+
+	each has own GIT chain of events
+	both jump V1_V2 all mid-edits // OPTI_DIFF //
+
+REPORT
+
+	foreach ...
+	group by ...
+	sort by ... // by group AUTO into list
+	row_of_sums
+	col_spec_wants_running_totals
+	col_spec_gives_running_total
+	col_spec_gives_item_value
+	col_spec_gives_OTHER confusing IGNORE here but FOLLOW on_CALL
+
+REPORT
+	various ACCTS reports
+
+		CASH_BOOK
+		ACCT_EACH
+		SUMS_YEAR
+
+		ASSETS
+
+		INCOME
+
+CSV_DATA
+
+	CRUD where R is above REPORTS
+
+	CXX base used a set of SPEC_DECL just like a SCHEMA
+
+	the WORK_FLOW of creating ESTIMATE then rolling into ACTUAL
+
+	checking nothing lost nor gained just better facts
+
+	git then checkpoints daily
+
+		possibly presumes a file for each line
+
+		a file for each TABLE // maybe TABLE.SUBSET
+			
+			must be sorted by PRIMARY KEYS not DBID
+			must be sorted by DBID not PRIMARY KEYS
+
+				list at [LINE] OFFS to XPOS of BOLN
+
+				need to sweep line to get each OFFS not M1
+
+
+	.
+
+
+
+
+
+
+		
+
+
+

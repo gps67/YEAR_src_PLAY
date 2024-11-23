@@ -341,7 +341,7 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 		// magic opinion Pages == 2
 		PS.DOC_ARGS.pages = 2;
 
-		PS.DOC_ARGS.DOC_Title = "SET DOC Title";
+		PS.DOC_ARGS.DOC_Title = "ABC_SUMMARY";
 		PS.DOC_ARGS.DOC_Creator  = "SPOUT";
 		PS.DOC_ARGS.DOC_Creator_version  = "-1";
 
@@ -377,7 +377,7 @@ class test_SPOUT :public test_SPOUT_base // : public obj_ref
 
 		if(!list_end( /* PAGE.page_wh, PAGE.page_no */ )) return FAIL_FAILED();
 
-		PS.comment("This is a comment");
+		PS.comment("This is a modified comment");
 		PS.times_ptsz( 20 );
 
 		PS.setrgbcolor( PS.PAGE.rgb.set_green() );

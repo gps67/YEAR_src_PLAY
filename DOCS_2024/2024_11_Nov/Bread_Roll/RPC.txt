@@ -1,0 +1,515 @@
+
+
+	LOCAL
+	CACHE
+	REMOTE
+	SCRIPT	# either side can replace with their own
+	SCRIPT	# I only run SCRIPTS in my LIBR where they are pre-compiled
+	SCRIPT	# I also run SCRIPTS from my LIBR where they are pre-parsed
+
+	SECURITY # outer layer is a VPS node at registered address
+	RISK "NOT" actaul
+
+	USAGE WE are server REMOTE is client
+	USAGE WE are client REMOTE is server
+	USAGE WE are CACHE REMOTE is predictable // ie DB_UPDATES and all DONE
+
+		client server subscription login model
+
+			Your client has registered with you, got login
+
+			on device OWN_PHONE_NUMBER
+			on device our app behaving well
+			on device fake our app behaving well or badly or not
+			accessing service, soon login,
+
+			Can place some COOKIE and DB
+			service API is HTML_WEB_2_PLAIN # no WASM yet
+
+			on device AT_A_SITE_LAN_LOCN // via PROXY 
+			on device AT_A_SITE_LAN_LOCN // ie from VISITOR VLAN NAT
+			on device AT_A_LIBRARY_PC // AT_A_FRIENDS_HOUSE // AT_WORK //
+	
+		login TECH_ADMIN
+		login SUBSCRIBER
+		login STAFF // ALIAS from this MENTION
+		login EDITOR // NEXT ITEM IN LIST or STREAM
+
+
+	RPC on both sides
+	STREAM RPC
+	CACHE collects batches keeps_tracks_pending
+
+		REMOTE does not have to OBEY and retain any CACHE at all
+		REMOTE does CACHE_4096 - which is more that we need, obvs
+		REMOTE can RESUME CACHE_4096 - which is where we were at_TPOS
+
+	DOS RECOVERY
+
+		we are trying to be
+
+			EFFICIENT
+			FAST
+			MEANINGFUL
+			MMAP_READY
+			NET_FRIENDLY
+
+			UDP_DOS_RECOVERY
+
+		LIBR gives us it's take on TCP alternatives, ie SAFE RESEND
+
+			INET says that missing UDP packets can turn up 2 MINS
+			Our INET says 1 second is a long time
+			Our INET says 1 round trip is a long time
+
+			The CACHE and UPDATE messages,
+			can be copied and predicted locally.
+
+			So a thousand CLAIM_AREF_to_AVAR 
+			So a thousand EXPRS around AVAR are easily IDX coded
+			OUR_REF
+			YOUR_REF
+
+			MY_REF YOUR_REF
+
+				CLONE them to be the same
+
+			MY_REF YOUR_REF
+
+				MY_REF = lookup YOUR_REF
+				SPELLING = MY_REF
+
+
+			REF is one of
+			i8 i16 i32 i64 // not i48 yet other than WIDER_CPU_WORD
+
+			OPCODE get SIGN_of_BITFIELD
+			OPCODE get _BITFIELD i4 // as VAR_ALIAS_NAME_ALIAS
+			OPCODE get _BITFIELD u3 // complete_list_in_side_LIST
+
+			// the use of SIDE_LIST extends the[i16] space
+			// by moving all leaf tokens to HEAP_two.get_EA(EA_EXPR)
+			// SIMPLEST is "{ return EA_EXPR }"
+			// IDENTITY FILTER SAME_but_ADJUSTED V1_V2 _MID_
+			// The second FSM is an extra (MAIN) { EIGHT ITEM[u8] }
+			// ALIAS EIGHT u8[8] -or- i8[8] -or- i32_i32 //
+			// START on ODD // PICK i32_i32 // SIGNED // CPU_32
+			// STRATEGY: dont decide a step earlier unless expect
+			// EVALUATED by being APPLIED picking 
+
+			BITFIELD 
+				i4
+				i12
+
+	DECODE_i64
+
+		i32_i32
+		 i32_HIGH // still on CPU_MEM_lohi
+		 i32_HALF // might use a pair of registers, several MEM_WORDS
+		 // imagine being able to address CPU_REG - done by CODE_POINT
+		 // The C compiler might look ahead and see i32_HIGH used
+		 // Our GEN_C decodes some BITFIELDS first or on first use
+		 // BATCH extract all BITFIELDS to STACK_MEM alloca
+		i8_i8_i16_i32 
+		_i8_i24
+
+	VOID *BLOB_ADDR = alloca(BLOB_SIZE); // never NULL might crash if XS
+
+		_ADDR is SP before NBYTES
+	
+	Fragmented stream
+
+		Each brach of the tree has own buffer1 
+
+			LIBR_idx ==> LIBR
+
+		MUX stream mixes various sources, 
+		EACH with own MMAP layout
+
+		ADDR = BASE + OFFS
+		BASE = PAGE_ZERO _of_SEGMENT // NULL means NULL
+
+		OFFS = PLUS PLUS_or_ZERO ZERO // ZERO means OFFS_ZERO
+		OFFS = PLUS PLUS_or_ZERO ZERO // ZERO means IDX_ZERO
+		OFFS = ARRAY_calc_OFFS_of_IDX = NBYTES_per_ITEM * IDX
+		OFFS = ARRAY_calc_OFFS_of_IDX = NBYTES_per_EIGHT * POS
+
+			IDX = POS
+			agree ZERO and UNIT STEP and HEAP_GOSSIP // LOCAL
+
+		OFFS = STRUCT_know_OFFS_of_FIELD // possibly got it just now
+		OFFS += offs_within_field // ALIAS XPOS within 4_WORD_WORD u5
+		OFFS i8 i16 i32 
+		OFFS u3 of_EIGHT // EIGHT objects
+		OFFS u5 of_EIGHT // 32 TOKENS for AVARS // export 32 have i32
+
+		i16_i16_i24_i8
+		u15_u15_u23_i8
+
+		SO to PRE_ALIGN the extraction (from decrypt filter_in_situ)
+		the remote needs to ask MMAP_PROVIDER if_OK_to_use ZONE
+		ie shared ALLOC with SIDE_LISTS_for_OWN_VARS
+		export as ZONE_VARS OWN_VARS VARS_one VARS_two VARS
+		SCOPE under ZONE brings confusing overlaps
+		SCOPE use to all alloc IDX from 0 # similar task
+
+RISC-V
+https://en.wikichip.org/wiki/risc-v/registers
+Calling Convention
+
+	LOOKS WORTH BORROWING ARGV is x10 to x17 eight_words
+	i128 RISC-V // 128 BITS 
+	i64_i64 // DECODE SPLITS i64_HIGH i64_HALF // TWO_WORDS _one _two //
+	PAIR_or_MORE
+	_PAIR i64_i64 
+	_MORE i64_i64_to_explain_MORE // uses IMPORT_HEAP_MODULE
+
+	OTOH a proper STACK is the next necessity
+
+		FAULT with present
+		is SHARING user editable DATA with RO_NOX_JSR_JUMP_RETURN_ADDR
+		write with ea in now hijacked stack returning to hackers ASM
+	
+	OTOH entirely UDEF means follow standard x1 is RA_RET_ADDR 
+
+
+ARRAY_IDX_OFFS_EXPR
+
+
+5-bit Encoding (rx)	3-bit Compressed Encoding (rx')	Register	ABI Name	Description	Saved by Calle-
+0	-	x0	zero	hardwired zero	-
+1	-	x1	ra	return address	-R
+2	-	x2	sp	stack pointer	-E
+3	-	x3	gp	global pointer	-
+4	-	x4	tp	thread pointer	-
+5	-	x5	t0	temporary register 0	-R
+6	-	x6	t1	temporary register 1	-R
+7	-	x7	t2	temporary register 2	-R
+8	0	x8	s0 / fp	saved register 0 / frame pointer	-E
+9	1	x9	s1	saved register 1	-E
+10	2	x10	a0	function argument 0 / return value 0	-R
+11	3	x11	a1	function argument 1 / return value 1	-R
+12	4	x12	a2	function argument 2	-R
+13	5	x13	a3	function argument 3	-R
+14	6	x14	a4	function argument 4	-R
+15	7	x15	a5	function argument 5	-R
+16	-	x16	a6	function argument 6	-R
+17	-	x17	a7	function argument 7	-R
+18	-	x18	s2	saved register 2	-E
+19	-	x19	s3	saved register 3	-E
+20	-	x20	s4	saved register 4	-E
+21	-	x21	s5	saved register 5	-E
+22	-	x22	s6	saved register 6	-E
+23	-	x23	s7	saved register 7	-E
+24	-	x24	s8	saved register 8	-E
+25	-	x25	s9	saved register 9	-E
+26	-	x26	s10	saved register 10	-E
+27	-	x27	s11	saved register 11	-E
+28	-	x28	t3	temporary register 3	-R
+29	-	x29	t4	temporary register 4	-R
+30	-	x30	t5	temporary register 5	-R
+31	-	x31	t6	temporary register 6
+
+
+C_CALL
+
+	The multi layer STACK is an ABI marvel, and constraint
+
+	But we are not in a CPU,
+	we are in a CXX_xFF CALL_FRAME
+
+	We also follow the OBJV tradition
+
+		If we alloy ARGV to if case repeat avar ARGV 
+
+			ARGV_SCRIPT
+
+		Heap is like an ARGV, but used as STRUCTS and ARRAYS and STRS
+
+			HEAP ITEM
+
+		Within HEAP get LOCAL OPCODE to implement
+
+			CALLER_IS_SESS
+			CALLER_IS_REMOTE
+			CALLER_IS_SELF
+			RESERVE_FOUR_for_ZERO
+
+			/*
+				alternate interp
+
+				WRAP_STEP_ADDR 0 NEXT
+				PRW_PADDING 256-4
+
+				STEP
+				/	ARRAY_BASE
+				0 1 2 3 /
+				0 1 2 3 0 1 2 3 4 5 6 7 8
+
+
+				So by having a HEADER
+				the BODY is pushed out of ALIGN _ment
+				eg it does not align with [256] but 4 away
+
+				ALSO
+				SO ITEM_FOUR must be _ZERO as a local _PEER
+				SO ITEM_FOUR must be working for _ZERO as 
+
+				alternat design
+
+				PAIR of LAYERS // single STREAM //
+
+				 HEAP_one
+				 	STEP
+				 HEAP_two
+				 	ARRAY
+
+				WORD_PAIR
+				i8_i8		MINUS_ZERO_PLUS BYTE_B _LOHI
+				i16_i16		i8_i8_OPCODE i4_i12_HEAP_ITEM
+				i32_i32		ARM_32 ESP_32 X86_32
+				i64_i64		ARM_64 AMD_64
+				i128_i128	RISC_V must use 2 registers
+
+				LOHI
+				BYTE_A BYTE_B is left to right ALWAYS
+				_on_DISK
+				_in_FILE
+				_in_LINE
+				_in_MEMORY
+				_in_BYTES_LEFT_TO_RIGHT
+
+				They might be aligned or not
+
+				IRONY 
+				DECODE BYTE_A and act on it
+				is effectively making it the highest value
+				according to the rules of SORT
+				within the CPU_WORDS
+
+				We do LOHI because (historically) when
+				you do long addition, you add up the units,
+				then the tens, then the hundreds columns.
+
+				The CPU had to do that one byte at a time
+				left to right, carrying the CARRY or BORROW
+				flags, for the correct number of bytes.
+
+				When the letters are loaded into the CPU_WORD
+				the bits are good within the BYTE but  jumbled
+				BYTES in the WORD
+
+				ABCD EFGH // CPU_WORD loaded from MEM_HILO
+				GHFE DCBA // CPU_WORD loaded from MEM_LOHI
+
+				This really does not work, sometimes carefully,
+				because we learned to WRITE the unit last,
+				after the big numbers. Do the MATH right to
+				left, READ the BYTES left to right.
+
+				This then clicks, because look at how CPU's
+				expanded. All the fine semsors are at the LO
+				end. BYTE_A and BYTE_B can be used in ASM opodes
+				allowing complex addressing, simply by byte
+
+				No CPU has it's BYTE_A detector up at bit 119
+
+				HILO -vs- LOHI is a bit like a train pulling
+				carriages of BYTES, filling up the WORD by
+				dragging them all up the word
+
+				On the other side each BYTE arrives in stream
+				and rolls INTO the BYTE positions,
+				unfortunately that is then viewed the way we
+				view numbers, which is the wrong specs
+
+				DIAG_LIBR brings edge case test cases
+
+					WORD = CPU_WORD_where_i32_is
+					SHIFT WORD LEFT 8 
+					set BYTE_A = from_GET_BYTE( XPOS ++ )
+					// ++ of XPOS is complex
+					// we want it to be CPU_WORDi
+					// _two = _one
+					// one ++
+					// retval = * _two
+
+				ON CPU_64 one register is carrying two i32_VAL
+
+				GET_HIGH
+				GET_HALF
+
+				ON_CPU_32 
+				HALF_one	aligned x8 step_EIGHT // LO
+				HALF_two	sub_aligned_BYTES_FOUR // HI
+
+				CPU_32 also aligns everything to i64
+				RISK_V aligns to i128 (i64_i64_PAIR)
+
+					DROP_SPLIT
+					HALF_one = BITFIELD_HALF_one // LO
+					HALF_two = BITFIELD_HALF_two // HI
+
+				Todays CPU's plough CRYPTO math, one word
+				at a time, probably XMMX FPU handwritten code
+
+				Crypto uses software for BIT_FIELDS over i64
+				BITFIELDS can focus on GENERAL registers 
+
+
+				HILO would 
+
+
+
+			*/
+
+		
+
+		
+ RPC CACHE BATCH
+
+ 	A bunch of local requests come in,
+	and we cant answer them, until ENQ_ACK_CIRCUIT
+	so we stack up all the questions, and on_DONE
+	and wait to collect some more
+
+	The a PAUSE in the local machine, 
+	more has been found, buffers have grown
+
+	Make a batch
+	ask all questions need to ask
+	volunteer data that we found useful
+	and think you have not cached
+	Prioritise - send it all
+	Prepare BATCH 
+	 it uses MUX to take advantage of multiple tasks lists
+	 eg divide a file into 16 ZONES and sent them over
+	 KNOW compressed then crypted then queued
+	 KNOW sent over UDP packet frames
+	 KNOW have 15 other threads, if this one gets stuck
+	 KNOW have spare bandwidth later to realign all 16 channels
+	 KNOW actually have 2T to transfer, and this is TURBO FLOOD
+	 SYNC every MEGABYTE but also spread out SYNC per CHANNEL per SECOND
+	 SYNC remote every MINUTE // CHECKPOINT // writes to SQL META
+	 // PREDICTIVE SYNC before MEGABYTE before MINUTE WORK_to_2_seconds
+	 SYNC remote every MEGABYTE // CHECKPOINT // writes to SQL META
+
+	 DENIAL_OF_SERVICE
+
+	 a cut line is one thing but scrambled is tricky to detect
+	 as we are UDP we do not have TCP to do this for us
+	 and what it does might make sense
+	 so does this
+
+	 The difficulty is promptly requesting a replacement
+	 for a lost or damaged packet, but not cry-wolf for late-not-lost,
+
+	Until PKT is received, it is preserved, to be re-transmitted
+
+	If the going is heavy seas, NOISE, we can split the PKT down
+	to quarter, hoping that corrupts smaller packets, and some get through.
+
+	That is the clue - sequence. A Bit of noise in the middle,
+	suggests retransmit that. The indicator is later segments.
+
+	Queue these up, until the end of INPUT.
+	Whilst we have more INPUT, parse it for CTRL_messages.
+	When it is empty, flush all noticed, 
+	FILTER through last EVAL opportunity
+	like Makefile, from it to OUT
+
+	NOISE on LINE
+		see above
+	
+	CONGESTION or DOS
+		prioritise, defer, per-empt, more CPU per PKT,
+
+	QUEUE SHARE
+		QUOTA_AND_BANDWIDTH_AND_ERRFAIL_INFO // USAGE //
+		prioritise, and queue settles into new trot
+	
+	SLA_4_SECONDS
+		BATCH frequency
+
+ CHANNEL
+
+ 	channel received DATA
+
+ 	channel received NUDGE SYNC
+ 	channel received ACTUAL SYNC
+	//
+	// OPTION flag NO_DELTA_since_nudge
+	//
+
+	EG GIGABIT is 100 MB per second // 100 mega byte // say 44
+	if we are transmitting 1K at a time
+	100 000 KBYTE 
+
+	 75,000 PKT per second
+	 // this is a challenge
+
+	 EG 155 Mbit per second download
+	 15 M_BYTE per second
+
+	 10 million packets per second !!!
+
+	 	Maximum delay until declared LOST == 2 SECONDS
+		unless DoD says there are backlogs
+
+		DETECT OUTAGE of SEVERAL PKT_IDS 
+
+			noise on line
+			switching to second route
+			odd outage
+
+			measure average delays variance moods
+
+			REQUEST OLDEST FIRST
+
+	
+ QOS could compete an early ACK against a bulk_XFER
+
+	CIRCUIT prioritises ENQ_ACK 
+
+		takes first 32K of each request or resp
+		takes first BATCH_URGENT_27K
+		takes first BATCH_BACKGROUND_MB for slow processing
+
+	NUMBERS seems off, 32K -vs- 16 MB
+
+		SQL RELAY bounces between checkpoints
+		multiple channels causes overlap of NET CPU lumpiness
+		alloc resources over 16 threads
+		alloc resources over 16 channels (no thread 0.001)
+
+		FAST_FOCUS channel
+		QUICK repair of oldest broken slow stream to catch up
+		RE_ADJUST to limit horizons at this GW API point
+		RE_ADJUST to given quotas, some fairness, some average, spare
+
+	 This might turn out to be a bunch of variable. What is the RTT
+
+	 	When a hole is being repaired, the other threads do not stop,
+		but an added load is applied, with priority to this task.
+		We can only jump the output queue, the input queue is mostly
+		hungry.
+
+	PKT DoS - There may be a lot of rogue PKT
+
+		each has to be checksummed and passworded
+		if untrusted look at IP_ADDR and history
+		escalte the de-trust process
+
+	PKT DoS - A good PKT trying to get in
+
+	 We CAN aasume that mostly we have fixed connections,
+	 not Hogwarts Staircases. Quite quick these days. In sequence
+
+ CACHE REMOTE
+
+ 	double guesses it's values
+	has a mechanism for JUMP_VALUE_BACK_OR_FORWARD_to_OTHER
+	REMOTE can misbehave and get different value
+	REMOTE can misbehave and not cache item // MISS
+	REMOTE can behave and HIT cache item
+

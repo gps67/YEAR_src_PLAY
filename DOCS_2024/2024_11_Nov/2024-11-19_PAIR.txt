@@ -1,0 +1,54 @@
+	2024-11-19
+	2024-11-19_PAIR.txt
+
+	CODE_POINT
+	 PAIR
+	  LHS
+	  RHS
+
+	 more surrounding details emerge
+
+	 u32_u32
+
+	  WORD_HIGH	u16_OPCODE u16_SELF
+	  WORD_HALF	lhs_rhs
+
+	  LHS SELF RHS
+	  SELF LHS RHS
+
+	  DECODE_u16_SELF {
+
+	  	DECL u4_u12_HEAP_ITEM_SELF
+
+			64K ITEMS in our mini world
+			most use 200 ALLOC_ITEM_IN_TREE
+
+				idx = N ++ ; // ALLOC //
+
+
+			u8_idx 
+			u16_idx 
+			u32_idx 
+			u64_idx 
+
+			u7_idx
+			u15_idx
+			u31_idx
+			u64_idx
+
+			u3_idx	// i4_is
+			u11_idx
+			u23_idx
+			u48_idx
+
+			u4_idx	// EXPECT PACK u4 into u8 
+
+
+	  }
+
+	  u8_u8_u16 CODE_POINT_PAIR 
+
+	   u4_u12_LHS
+	   u4_u12_RHS
+
+

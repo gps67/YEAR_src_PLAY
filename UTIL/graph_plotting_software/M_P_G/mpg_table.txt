@@ -18,18 +18,18 @@
  2024-05-14  21885 205  22090  16.2 p_mile  1.46 £_litre  6.62 £_gallon  40.9 mpg   6.9 lp100  Y Full Morisons
  2024-06-08  22090 266  22356  16.0 p_mile  1.42 £_litre  6.44 £_gallon  40.3 mpg   7.0 lp100  Y Full Morisons
  2024-06-18  22356 325  22681  14.6 p_mile  1.39 £_litre  6.30 £_gallon  43.3 mpg   6.5 lp100  P Full Morisons from Salisbury
- 2024-07-06  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around
+ 2024-07-01  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around
  2024-07-06  22823 334  23157  15.3 p_mile  1.42 £_litre  6.44 £_gallon  42.2 mpg   6.7 lp100  P Full Morisons fr 
  2024-08-01  23157 144  23301  16.3 p_mile  1.41 £_litre  6.40 £_gallon  39.3 mpg   7.2 lp100  P Full Morisons  
  2024-08-25  23301 275  23576  16.2 p_mile  1.42 £_litre  6.45 £_gallon  39.9 mpg   7.1 lp100  P Full BH
  2024-08-29  23576 244  23820  13.2 p_mile  1.38 £_litre  6.26 £_gallon  47.6 mpg   5.9 lp100  P Full RG2
- 2024-08-15  23820 260  24080  12.4 p_mile  1.32 £_litre  6.00 £_gallon  48.6 mpg   5.8 lp100  N ABSENT GUESS
+ 2024-09-15  23820 260  24080  12.4 p_mile  1.32 £_litre  6.00 £_gallon  48.6 mpg   5.8 lp100  N ABSENT GUESS
  2024-09-26  24080 273  24353  11.8 p_mile  1.35 £_litre  6.13 £_gallon  51.8 mpg   5.5 lp100  P Full BH Hinton
  2024-10-03  24353 253  24606  13.1 p_mile  1.29 £_litre  5.85 £_gallon  44.6 mpg   6.3 lp100  P Full Morrissons from BH
  2024-10-08  24606 177  24783  13.5 p_mile  1.29 £_litre  5.85 £_gallon  43.3 mpg   6.5 lp100  P Full Morrissons from BH
  2024-10-15  24783 162  24945  14.8 p_mile  1.30 £_litre  5.90 £_gallon  39.9 mpg   7.1 lp100  P Full Morrissons from BH
- 2024-10-29  24945 233  25178  14.7 p_mile  1.30 £_litre  5.90 £_gallon  40.2 mpg   7.0 lp100  P Full Morrissons from BH GU
- 2024-11-12  25178 235  25413  14.8 p_mile  1.31 £_litre  5.94 £_gallon  40.3 mpg   7.0 lp100  P Full Morrissons from BH
+ 2024-10-29  24945 233  25178  14.7 p_mile  1.30 £_litre  5.90 £_gallon  40.2 mpg   7.0 lp100  Y Full Morrissons from BH GU
+ 2024-11-12  25178 235  25413  14.8 p_mile  1.31 £_litre  5.94 £_gallon  40.3 mpg   7.0 lp100  Y Full Morrissons from BH
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 

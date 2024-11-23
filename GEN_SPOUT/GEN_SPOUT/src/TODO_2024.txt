@@ -1,0 +1,265 @@
+
+	GEN_PS must parse AFM or something (eg use FT2's metrics)
+	so struct FONT_ += name += AFM_metrics
+	maybe use PSG to parse AFM into a loadable binary (segment||struct)
+
+		PSG load AFM from FILE
+		STO MMAP STO of AVAR // expr HEAP[parent].lookup("%s")("field")
+
+LANGUAGE MUST HAVE
+ability to convert STR0 to IDX to HELD_DATA_re_STR0
+
+	C_PROVIDES STR0	
+
+		const P0P2_t STR0 = "STR0"; // P2_is_Q2 //
+
+			DIALECT PRE_FILTER via DIAG // see ASCII ART below
+
+				get GCC to also allocate a second WORD per STR0
+
+				that i32_WORD
+				that i32_WORD_PAIR
+				that i64_WORD
+
+				Every STR0 just added i32_i32_PAIR
+
+					and there find:
+
+						SPELLING = P0
+						SPELLING = ELSEWHERE _P0
+
+					ask CT_RT what it KNOWS
+
+						MATCH("AVAR")
+						MATCH("SPELLING")
+
+					create LOCAL idx = lookup SPELLING
+					create LOCAL EA = found idx += SESS
+
+				but until we do that in CXX we dont in C
+				we can use lookup_must_exist
+				as the backup plan
+
+					i16_idx_HEAP_ITEM
+
+					Heap provides 64K items
+					all adressble with i16
+
+					32K item PLUS CARRIED_item
+					32K_and_CARRIED_item
+
+						ZERO_MEANS_ZERO
+						ZERO_MEANS_FULL
+
+						 a "1" with ZERO_WORD
+
+			FSM_PLUS += _STATE += AVAR
+
+
+		That is the SINGLE ADDED IDX // ZERO_means_FULL //
+
+		[------------+------------+----------+...
+		[-32K        [0        MAX[32K    LIM[64K
+		[------------[----------[-[--------[-[...
+		[------------[                       [---
+		[------------[0                      [64K
+		[------------[                       [---
+		[-32K--------[---------[-[32K--------[...
+		[            [0          [-----------[---
+		[            [0          [-----------[---
+		[            [0          [-----------[---
+		[------------[---------[-[---------[-[...
+		[-32K        [0      [MAX[32K     LIM[64K
+		[------------[---------[-[---------[-[...
+
+
+		LIM = 2**N - 1
+		FULL is one more for the PAGE as a FULL_PAGE
+
+			particularly when no spare top bit
+
+				
+		FULL is FULL, but we are running at 200 objects per mini_Tree
+
+			most common is x1 
+			individual ALLOC happens a lot
+
+			idx = N ++ // check quota before // FAIL HERE
+
+			simply allocate an item in the MAIN_POOL
+
+				i16 * i64_MY_VAR = LOAD_PTR_from_
+				_ARRAY_ITEM_at_idx
+
+			We get EA_of_WORD
+			We get PTR_to_WORD
+
+
+			A dozen mini_trees is 2400 items in 32K heap
+
+		OPTIONS
+		OPTIONS of switching to PAGE_ITEM_u8_u8
+		OPTIONS of i16 i8_i8 i4_i12 // SHIFT DOWN from TOP
+		OPTIONS of i16 u15 i16_MINUS 
+
+		The HEAP ITESELF is an object with some values,
+		it might use a shadow representative at "@"
+		We can also randomly allocate ASCII letter names
+
+			HEAP of i64_WORD
+
+			HEAP of { i64_WORD[ 4 ] } // 32 bytes
+
+				OPTION of more than a WORD
+				eg SPEC + DATA + ALSO + PLUS
+
+				eg STR0 + TOKEN
+
+			or SEACH HEAP1 for STR0 get idx_EXPR || NULL
+			SEACH HEAP2 idx_EXPR || NULL
+
+
+						
+
+			DIALECT FILTER via DIAG // see ASCII ART below
+
+			DIALECT FILTER provides "P2_is_Q2" {
+
+			 // "STR0" // ASCII_ART _DIAG //
+			 // Q2 S T R 0 Q2 // P2_is_Q2
+			 // P0 is EA S in ABOVE 
+			 // P2 is EA Q2 // the one AFTER P0
+			 // there is no NUL that you might expect from STR0
+			 // you get one with C_STR0 not CXX_P0P2
+			 // Parse_LEX_from_FSM_STATE_ZERO // always a good guess
+			 // PARSE_CSET_from_SUBLEX_CSET_BYTE_STEP_FSM
+			 // AUTO JUMP TABLE from LIST_of_CALLABLES
+			 // ie an advanced FSM machine // write "C" along paths
+			 // reverse engineer ORIGINAL CODE_POINT FILE_OFFS
+			 // OFFS is faster than parsing and counting LINES
+			 // OFFS is only for trusted access // FILE_OFFS //
+			 // P0P2_OFFS_wrt_FILE P0P2 FILE // TYPE "{ OFFS P0 }"
+			 // TYPE "{ OFFS VARNAME }"
+			 // TYPE "{ OFFS APOS }" // XPOS but OFFS in FILE
+			 // TYPE "{ OFFS BPOS }" // XPOS FILE LINE_OFFS_of_BYTE
+			 // TYPE "{ OFFS CPOS }" // XPOS FILE LINE CHAR_COUNT //
+			 // OFFS == CPOS // after
+			}
+
+		const char * STR0 = "STR0"; // C_CORE is that decl usage ROM_STR
+
+			I would expect the C compiler to then
+			padd with NUL bytes upto WORD_ALIGN
+
+			I would expect STR0 to be WORD_ALIGNED
+
+			I would expect GCC to PAD_with_NUL_when_ALIGN_8
+
+		OPTION SINGLE_BYTE_NUL_STARTS_NEXT_WORD
+		OPTION SECOND_BYTE_NUL_STARTS_NEXT_WORD_usually_ending_emptystr
+		OPTION TOKEN_ISE "" // ALIAS "EMPTY_STR" //
+
+			eloquent_genocide
+			NULL_STR
+			EMPTY_STR
+			""
+		ALIAS
+			-
+			OMIT_ABSENT_ITEM
+			EMIT_FUTURE_ITEM
+
+		STR0 may be shared (ROM) and
+		STR0 ptr_is_part_way_along_same_script_just_earlier
+		STR0 ptr_check_at_EOS_that_it_is_within_OWN_ZONE
+
+			compliance check and expectations
+
+			WHEN WORD_ALIGNED
+			WHEN WORD_ALIGNED malloc
+			WHEN WORD_ALIGNED obtained_EA
+			WHEN WORD_ALIGNED obtained_EA_from_API_
+			WHEN BYTE_ALIGNED obtained_EA_from_API_XPOS_in_FILE
+
+			expectation: SCRIPT == SCRIPT
+
+			requires local_copy_of_SCRIPT
+			provides SCRIPT_Parser _provider
+
+			provides FILTER_SCRIPT API at XPOS
+
+			DECL NAME USAGE_TYPE_ USAGE_ARGV ACTIVE_DIALECT
+
+		ANSWER is a SPEC that says the STR0 are listed in sequence
+
+			if you missed the idx_count you can ask
+
+				idx = lookup STR0
+
+				CT_PASS_TWO ALREADY EXISTS "idx" // MATCH //
+				CT_PASS_ONE WAITING_TO_EXIST "idx" // MATCH //
+				 PRIOR alloc "AVAR" init_NULL UDEF_CTOR ATTACH
+				  FIRST_CTOR had allocated AVAR but no VALUE yet
+				  SCOPE says when TEXT gets matched to ITEM
+				  EA_PTR says is_still_NULL // waiting //
+				  // waiting for item to arrive //
+
+			We rely on both REMOTE and LOCAL that idx match
+
+				simply write out AVAR_idx "AVAR(i8_idx)"
+
+					CT_RT tell item that it is called %s
+
+					it then starts to collect instances
+					MATCH("AVAR")
+					USAGE("AVAR_idx")
+					USAGE("TOKENISED AVAR_idx # CMNT")
+
+					CODE_POINT += USES_CMNT_as_AVARVAL
+		AVARVAL
+		 R0
+
+			a VAL that is being returned from a CALL in R0
+			a VAR that is R0_RET_VAL
+			# SUB_LEX CLAIM "RET" # return RET_VAL;
+			# SUB_LEX CLAIM "VAL" # RET_VAL = VAL // ALSO_FPU"
+			# SUB_LEX CLAIM "RET_VAL" # RET_VAL = VAL // FPU_OPTS
+			# FPU_OPTS RET_VAL FPU_NAMED_TABLE_ITEM
+
+		AVARVAL
+		 f64_in_FPU _TABLE_0 // ZERO_PICKS_RECOMMENDED DEFAULT
+		  XMMS MACHINE
+
+		  	This is going to have to wait for DIAG
+			XMMS machine is where DIAG explains CXX
+			CT_RT says registers are currently allocated WITH
+
+				we really dont know
+				but if C does every OPCODE to a CPU_WORD
+				then it will be a CPU_WORD // aka register //
+				we provide our own [0][1][2][3] DECODER
+				we run at CT_RT so CT is real PREP_VAL
+
+
+
+			if you reverse engineer parsed BYTE_for_BYTE 
+			Find a number of NUL bytes and count that as a word
+			multiple_NUL might be adjusted for ALIGN_4 _8 _1
+			the rest is a word each // BABEL //
+
+ :POINT: language
+
+ 	
+
+
+	SPOUT needs to also do
+
+		PS -> pdf
+		SVG
+		HTML_canvas
+		X11_pixmap -> png | jpg | xxx
+		gdk gtk
+		W32_drawable
+		GL_thing
+		SDL2
+		SVGA_framebuffer
+

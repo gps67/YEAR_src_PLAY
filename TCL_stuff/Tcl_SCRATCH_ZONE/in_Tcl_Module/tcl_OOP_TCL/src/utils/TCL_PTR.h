@@ -2,6 +2,7 @@
 #define TCL_PTR_H
 
 #include "TCL.h"
+#include "TCL_HELP.h"
 
 
 namespace TCL {
@@ -117,16 +118,16 @@ public:
 	}
 	Tcl_Size STR0_NN() { return GET_OBJ() -> length; }
 	char * STR0_BYTES() { return GET_OBJ() -> bytes; } // NULL
-	Tcl_Obj * PTR1_as_Tcl_Obj() { return (Tcl_Obj*) TCL_get_PTR1(GET_OBJ()); }
-	Tcl_Obj * PTR2_as_Tcl_Obj() { return (Tcl_Obj*) TCL_get_PTR2(GET_OBJ()); }
+	Tcl_Obj * PTR1_as_Tcl_Obj() { return TCL_get_PTR1_as_Tcl_Obj(GET_OBJ()); }
+	Tcl_Obj * PTR2_as_Tcl_Obj() { return TCL_get_PTR2_as_Tcl_Obj(GET_OBJ()); }
 
 // some of this stuff has misplaced itself into OBJ_module
-// more that to TCL_PTR, eg TCL_get_PTR2
+// more that to TCL_PTR, eg TCL_get_PTR2_as_Tcl_Obj
 	void get_from_PTR2( Tcl_Obj * obj )
 	{
 //	#warning this is mangled, redo
 //	//	set this.PTR to obj.PTR2
-		PTR = (Tcl_Obj*) TCL_get_PTR2( obj );
+		PTR = (Tcl_Obj*) TCL_get_PTR2_as_Tcl_Obj( obj );
 		// do not ref_incr
 	}
 

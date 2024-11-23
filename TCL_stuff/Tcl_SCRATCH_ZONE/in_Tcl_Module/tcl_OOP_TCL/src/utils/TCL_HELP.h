@@ -2,9 +2,21 @@
 #define TCL_HELP_H
 
 // #include "str0.h"
-typedef char * STR0;
+typedef const char * STR0;
 
 namespace TCL {
+
+/*
+	TCL does not define a pair of VAL1 VAL2
+	BUT we can use PTR1 and PTR2 and typecast them as int
+	actual word_size must match PTR
+*/
+// #define VAL_t long
+// typedef unsigned long VAL_t; 
+typedef long VAL_t; 
+// ALIAS PTR_as_UNSIGNED_t
+// ALIAS PTR_as_LONG_t
+// ALIAS PTR_as_LONG_t
 
 extern void print_tcl_obj( Tcl_Obj * obj, const char * str = NULL );
 extern Tcl_Obj * mk_str( const char * str );
@@ -27,12 +39,24 @@ void * TCL_get_PTR2_as_void( Tcl_Obj * obj ) {
 
  inline
 Tcl_Obj * TCL_get_PTR1_as_Tcl_Obj( Tcl_Obj * obj ) { 
-	return (Tcl_Obj *) TCL_get_PTR1( obj );
+	return (Tcl_Obj *) obj -> internalRep.twoPtrValue .ptr1 ;
 }
 
  inline
 Tcl_Obj * TCL_get_PTR2_as_Tcl_Obj( Tcl_Obj * obj ) { 
-	return (Tcl_Obj *) TCL_get_PTR2( obj );
+	return (Tcl_Obj *) obj -> internalRep.twoPtrValue .ptr2 ;
+}
+
+// - as VAL_t
+
+ inline
+VAL_t TCL_get_VAL1_as_VAL_t( Tcl_Obj * obj ) { 
+	return (VAL_t) obj -> internalRep.twoPtrValue .ptr1 ;
+}
+
+ inline
+VAL_t TCL_get_VAL2_as_VAL_t( Tcl_Obj * obj ) { 
+	return (VAL_t) obj -> internalRep.twoPtrValue .ptr2 ;
 }
 
 // USED or NOT // ??
@@ -51,18 +75,6 @@ void TCL_set_PTR2( Tcl_Obj * obj, void * PTR ) {
 	obj -> internalRep.twoPtrValue .ptr2 = PTR ;
 }
 
-/*
-	TCL does not define a pair of VAL1 VAL2
-	BUT we can use PTR1 and PTR2 and typecast them as int
-	actual word_size must match PTR
-*/
-// #define VAL_t long
-// typedef unsigned long VAL_t; 
-typedef long VAL_t; 
-// ALIAS PTR_as_UNSIGNED_t
-// ALIAS PTR_as_LONG_t
-// ALIAS PTR_as_LONG_t
-
  inline
 void TCL_set_VAL1( Tcl_Obj * obj, VAL_t VAL ) { 
 	TCL_set_PTR1( obj, (void *) VAL );
@@ -76,15 +88,14 @@ void TCL_set_VAL2( Tcl_Obj * obj, VAL_t VAL ) {
 
  inline
 VAL_t TCL_get_VAL1( Tcl_Obj * obj ) { 
-	return (VAL_t) TCL_get_PTR1( obj );
+	return (VAL_t) TCL_get_PTR1_as_void( obj );
 }
 
  inline
 VAL_t TCL_get_VAL2( Tcl_Obj * obj ) { 
-	return (VAL_t) TCL_get_PTR2( obj );
+	return (VAL_t) TCL_get_PTR2_as_void( obj );
 }
 
-#undef VAL_t
 
 // this was private, seems useful
 extern
@@ -113,5 +124,6 @@ const char * TCL_get_type_name( Tcl_Obj * obj ) {
 }
 
 }; // namespace
+#undef VAL_t
 #endif
 

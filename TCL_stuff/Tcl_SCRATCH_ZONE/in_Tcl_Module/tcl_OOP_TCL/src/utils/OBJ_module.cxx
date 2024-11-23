@@ -97,7 +97,10 @@ bool OBJ_module:: new_OBJ_type(
 
 	Tcl_Size obj_idx = 0;
 	Tcl_Size obj_idx_2 = 0;
-	objs.NN( interp, & obj_idx ); // no lock upto ADD
+	// idx = N ++ ; // ALLOC // claim LOCK on NN until return
+	objs.NN( interp, & obj_idx ); // obj_idx = MODULE.TCL_LIST_objs.NN
+	// if(TCL_OK!=Tcl_ListObjLength( interp, listPtr(), EA_NN )) { FAIL }
+
 
 	Tcl_Obj * VAL = Tcl_NewObj();
 	if(!VAL) return FAIL("NULL VAL");
@@ -128,6 +131,11 @@ bool OBJ_module:: new_OBJ_type(
 
 	// set VAL->typePtr = TYPE_obj_2X
 	// set VAL->PTR2 = TCL_LIST_over_PTR
+	// 
+	// objs is a list of all objs
+	// it holds a ref, and searches over list
+	// class OBJ_module { TCL_LIST objs; ...
+	//
 	objs.ADD( interp, &obj_idx_2, VAL );
 	if(obj_idx != obj_idx_2) {
 		// MULTI_THREAD has also called ALLOC
@@ -512,7 +520,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 			// convert obj_id to LIST
 			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
 				// get PTR2 into LIST without touching ref_count
-				TCL_LIST LIST( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+				TCL_LIST LIST( TCL_get_PTR2_as_Tcl_Obj( obj_id ));
 				print_tcl_obj( (Tcl_Obj*) obj_id, "obj_id" );
 				print_tcl_obj( (Tcl_Obj*) LIST.list, "LIST with bad refcount" );
 				int pos = 0;
@@ -527,7 +535,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 			// convert obj_id to LIST
 			if( obj_id -> typePtr == decoder->TYPE_DICT ) {
 				// get PTR2 into DICT without touching ref_count
-				TCL_DICT DICT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+				TCL_DICT DICT( TCL_get_PTR2_as_Tcl_Obj( obj_id ));
 				print_tcl_obj( (Tcl_Obj*) obj_id, "obj_id" );
 				print_tcl_obj( (Tcl_Obj*) DICT.dict, "DICT with bad refcount" );
 				int pos = 0;
@@ -587,7 +595,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 	//  gdb_invoke(false);
 	//  gdb_break_point();
 				// get PTR2 into LIST without touching ref_count
-			TCL_LIST VECT( (Tcl_Obj*) TCL_get_PTR2( obj_id ));
+			TCL_LIST VECT( TCL_get_PTR2_as_Tcl_Obj( obj_id ));
 			print_tcl_obj( obj_id, "obj_id");
 			print_tcl_obj( VECT.listPtr(), "VECT.listPtr()");
 			TCL_REF RET_VAL;
@@ -607,7 +615,7 @@ CXX_PROTO_T( OBJ_OBJ, OBJ_module * decoder )
 			if( obj_id -> typePtr == decoder->TYPE_VECT ) {
 				// obj_id is id of obj AND also obj holder itself
 				// 
-				TCL_LIST VECT( (Tcl_Obj*) TCL_get_PTR2( obj_id ) );
+				TCL_LIST VECT( TCL_get_PTR2_as_Tcl_Obj( obj_id ) );
 				// DATA was objv[3]
 				Tcl_Size pos = 0;
 				if(!(VECT.ADD( interp, &pos, DATA ))) {

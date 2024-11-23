@@ -16,6 +16,8 @@
 
 
 
+// want WIDTH to be a field variable // currently CAPS_CONST
+
 // #define WIDTH   640
 // #define HEIGHT  480
 
@@ -24,9 +26,11 @@
 
 
 /* origin is the upper left corner */
+// image is a static local variable
 
 struct homebrew_pixmap_grey_t
 {
+	// want WIDTH to be a field variable // currently CAPS_CONST
 	unsigned char image_bytes[HEIGHT][WIDTH];
 
 	void set_xy_byte(
@@ -51,14 +55,22 @@ struct homebrew_pixmap_grey_t
 /* Replace this function with something useful. */
 
 void
-draw_bitmap( FT_Bitmap*  bitmap,
+draw_bitmap( FT_Bitmap*  bitmap, // But it is a BYTE-map a PIXMAP 
              FT_Int      x0,
              FT_Int      y0)
 {
+  FT_Int  bitmap_width = bitmap->width; // used a LOT
+  FT_Int  bitmap_height = bitmap->rows; // used to calc max
   FT_Int  dst_x1, dst_y1;
   FT_Int  src_x1, src_y1;
-  FT_Int  dst_x2_max = x0 + bitmap->width;
-  FT_Int  dst_y2_max = y0 + bitmap->rows;
+  FT_Int  dst_x2_max = x0 + bitmap_width;
+  FT_Int  dst_y2_max = y0 + bitmap_height;
+
+  if( dst_x2_max > WIDTH ) dst_x2_max = WIDTH ;
+  if( dst_y2_max > HEIGHT ) dst_y2_max = HEIGHT ;
+
+  INFO("CALLED (%d,%d) (%d, %d) ", x0, y0, bitmap_width, bitmap_height );
+  // once per glyph // (int)
 
  // y is zero at top
 
@@ -68,15 +80,15 @@ draw_bitmap( FT_Bitmap*  bitmap,
   for ( dst_y1 = y0, src_y1 = 0; dst_y1 < dst_y2_max; dst_y1++, src_y1++ )
   {
     if( dst_y1 < 0 ) continue; // skip lines off top
-    if( dst_y1 >= HEIGHT ) break; // stop at first line off bottom
+    if( dst_y1 >= dst_y2_max ) break; // stop at first line off bottom
 
     for ( dst_x1 = x0, src_x1 = 0; dst_x1 < dst_x2_max; dst_x1++, src_x1++ )
     {
 	if( dst_x1 < 0 ) continue; // off left next
-	if( dst_x1 >= WIDTH ) break ; // off right stop this line
+	if( dst_x1 >= dst_x2_max ) break ; // off right stop this line
 
 	// bitmap get xy byte 
-	u8 pix_val_byte = bitmap->buffer[ src_y1 * bitmap->width + src_x1 ];
+	u8 pix_val_byte = bitmap->buffer[ src_y1 * bitmap_width + src_x1 ];
 
 	image.set_xy_byte(
 		dst_x1,
@@ -152,7 +164,7 @@ using namespace FT2;
 	}
 	// LOCK HERE?
 	if(!FT2_OK( FT_Init_FreeType( &library ))) {
-		return FAIL("FT_Init_FreeType(&libr)");
+		return FAIL("FT_Init_FreeType(&library)");
 	}
 	init_done = true;
 	PASS("FT_Init_FreeType");
@@ -167,7 +179,7 @@ using namespace FT2;
 	// LOCK
 	init_done = false;
 	if(!FT2_OK( FT_Done_FreeType( library ))) {
-		return FAIL("FT_Done_FreeType(&libr)");
+		return FAIL("FT_Done_FreeType(&library)");
 	}
 	PASS("FT_Done_FreeType");
 	return true;
@@ -210,7 +222,7 @@ using namespace FT2;
  bool ft2 :: test1() {
  	STR0 font_file = 
 	"/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf";
-	INFO("using %s", font_file );
+ //	INFO("using %s", font_file );
 
  	if (!face1_load_font( font_file )) return FAIL_FAILED();
 	// VALID FT_Face face // face

@@ -141,6 +141,10 @@ endif
 	export PKG_CONFIG_LIST
 	# openssl 3.0 #
 	PKG_CONFIG_LIST += /tools/VPN/lib/pkgconfig
+	PKG_CONFIG_LIST += /tools/x86_64/dtp/lib/pkgconfig
+	PKG_CONFIG_LIST += /tools/x86_64/libr/lib/pkgconfig
+	PKG_CONFIG_LIST += /home/gps/G/prefix/lib/pkgconfig
+	# freetype2.pc
 	PKG_CONFIG_LIST += .
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)/$(UNAME)
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)
@@ -460,6 +464,7 @@ endif
 ##	RPATHS += -Wl,--rpath=$(ABS_O) 
 ##	RPATHS += -Wl,--rpath=$(prefix_one)/lib 
 	RPATHS += -Wl,--rpath=$(ABS_TOP)/lib 
+	RPATHS += -Wl,--rpath=/tools/x86_64/libr/lib
 	RPATHS += -Wl,--rpath=. 
 # this works with icpc
 	# RPATHS += -Wl,--rpath=/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64

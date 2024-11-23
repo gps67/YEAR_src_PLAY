@@ -1,0 +1,127 @@
+TCL_9 
+changes the edge of
+
+   TYPE DECL
+
+	an opening for UDEF modules
+
+	a nuisance from LIB_TCL
+
+	I bet it doesn't help us,
+	more daft design
+	Their emergant behaviour machine is hard to grok
+	RTFM and WRAP and done
+
+		WANT 
+
+		 DECODE_TYPE( Tcl_Obj * obj )
+
+		MACRO
+		  is_shared()
+		  is_unshared() 
+
+		  NULL_TYPE 
+		  NULL_TYPE _usually_STR0 SPELLING already tokenised
+
+		STEPS // argv word by word // no MULTI LINE yet
+		 "ITEM" ITEM
+
+		LADDER { ... "ITEM" ITEM ... }
+		n_count
+		parse_upto_END_TOKEN EOLN SEMICOLON next_CMNT
+
+		TREE
+		OK UDEF LOCN.LEX patterns 
+		LOCN.LEX.LEX_STEP
+		LOCN.LEX.LEX_SPELLING
+		LOCN.LEX.LEX_AVAR
+		LOCN.LEX.LEX_ALIAS_BIND_API
+
+	Remember that Tcl_Obj's are supposed to be READ_ONLY
+
+		anything that changes a shared Tcl_Obj
+		creates a new Tcl_Obj to exist with that copy
+
+		the old item remains unchanged
+		the new item already available
+		but possibly available to shimmer_properly
+
+		now it is an unshared Tcl_Obj
+		and there is no crystalisation moment
+		no wave collapse that sets OLD_COPY in STONE
+
+		dict_tree is probably better than this
+		to build arbitrary lookup LOCN LEAF in HEAP_LINK
+
+		Tcl_Obj may not vary in value,
+		but it can optimise itself.
+		
+			NICEST to start with Tcl_Obj_TYPE == NULL 
+			so available for grab
+			probably from a STR0 in the SCRIPT
+
+			It might be ALREADY shared with several MENTION
+
+			OPTION P0_nbytes
+			OPTION P0P2 
+			OPTION P0_and_parse_C_IDENT_99  // UDEF profile 
+			OPTION P0_and_parse_VFS_IDENT // PUNCT within FILENAME
+			// above has NUMBER of DIFFERENT SIMILARS
+			// group uses_DASH_within_YEAR_MM_DD_etc
+			// and user can claim this, get "-", and "%02d" "%4d"
+
+			PREV_WORD_IN_ARGV // lexer is ARG_i
+
+		{
+			ZONE // lexer is argv[csr++] 
+			// WELL_KNOWN_VAR_NAME_PHRASE "[csr++]"
+			// P0 = csr ;; csr ++ ;; P2 = csr ;
+			// As we have taken a SINGLE STEP
+			// "{ CSR_i = csr ++ ; }"
+			// if 1 // TUGS_TENSION MERGE_LINE // JOIN LINE //
+			// CMNT out because repeating already applied default
+			// if 1 // THIS_LINE //
+
+			Parse into ATOMIC_DONE {
+				P0 = csr
+				csr ++
+				P2 = csr
+				return P0 // and "P0" "P2" "csr"
+			}
+
+			// That is a step along FSM PATH to PARSE_INPUT
+			// ATOMIC_DONE is hint about thread_safe_somehow
+			// CLAIM is all vars inside, particularly "csr"
+			// CLAIM of "P0" and "P2" are BIND_VAR_PARAMETER_RETVAL
+			// XPOS_of_ITEM = P0
+			// XPOS_NEXT = P2
+			// XPOS_PREV // NOT_AVAIL_unless_you_have_PREV_P0P2
+		}
+			SYNC
+
+			NEXT_WORD_IN_ARGV // lexer is ARG_i
+
+			OLD_COPY = NEW_COPY
+
+
+		MATCH TEMPLATE
+			Parse into ATOMIC_DONE {
+			 DECL P0 P2 csr ATOMIC_DONE 
+			 MATCH these steps against other templates too
+			 GEN this output
+			 MATCH it later
+			 ADJUST after EDIT or REFUSE _or_RESOLVE_ADJUSTED
+			/* TEXT ... LINES of ARGV CMNT PLUS */
+				P0 = csr
+				csr ++
+				P2 = csr
+				return P0 // and "P0" "P2" "csr"
+			}
+
+			Parse into ATOMIC_DONE {
+				P0 = csr
+				csr ++
+				P2 = csr
+				return P0 // and "P0" "P2" "csr"
+			}
+

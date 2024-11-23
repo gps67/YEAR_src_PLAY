@@ -34,6 +34,8 @@ int main_loop_once( X_Display & disp, XEvent & report )
 }
 
 int main_two( argv_decoder & ARGS ) {
+
+
 	// open up a display connection
 	X_Display disp( NULL );
 // AUTO ?
@@ -96,6 +98,7 @@ int main_two( argv_decoder & ARGS ) {
 	This is the basis of a C++ wrapper for lib W11 and libX11
 */
 int main( int argc, char ** argv, char ** envp ) {
+	if(1)  dgb_fork_stderr_to_tcl_text(); // only when gdb is in use ?
 	WAX:: argv_decoder ARGS ( argc, argv, envp );
 	return main_two( ARGS );
 }

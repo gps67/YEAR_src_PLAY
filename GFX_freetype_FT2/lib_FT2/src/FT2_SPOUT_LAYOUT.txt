@@ -1,0 +1,29 @@
+2024-11-21 Nov Thu 06:02 # 55 #  FT2_SPOUT_LAYOUT.txt
+
+	SPOUT outputs PS
+	It needs to know AFM font metrics
+
+	It should Parse an AFM file,
+	but it might also simply ask FT2.
+
+	We stop short of actually printing,
+	we calc the layout,
+	and shuffle items around page breaks, multi column, obstacles
+
+	We could also go via dvi fonts, but this is postscript's own world
+
+
+	DIAG needs FT2 to draw text
+	+= kerning_yes
+
+	BOOK retains DIVERT for each PAGE
+	a Lot of files, but swapped out memory, accessed three times,
+	VFS re-maps SEGMENT to file to ITEM in heap
+
+	P0P2 is "{ BASE OFFS NBYTES }" ...
+
+	BASE = LOCN FILE /* PAGE_ZERO */
+
+	OFFS = ask elf for ... // get & NBYTES from elf // back //
+
+	

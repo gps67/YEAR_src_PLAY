@@ -1,0 +1,116 @@
+	2024-11-19
+	2024-11-19_MICRO_COURSE_d.txt
+
+		self 
+
+	MICRO_COURSE
+	is a personally tailored course for 1 person
+	then it is a set of parameters for others
+	then it AUTO_rewrites keeping IDX_TABLES or SWITCH_NOW_TO_NEW_DEFAULT
+
+		that changes all numbers but no names
+
+		the above rule is tricky to impose
+
+		but quite easy if you follow the guideline
+
+		as presented by GIT_RELEASE
+
+			all incements and variants are possible
+			one actual tracked then and now
+
+			limited store, need to retain DIFFS to get here and ..
+			MD5 of 
+			MD_SHA_of
+			V1_V2 PAIR {
+			 DIAG
+			}
+			DIAG += EA_EXPR V1 // as a TYPE_CAST_get_EA //
+			EXPR += CT_RT stuff
+			EXPR += EXPR stuff
+			EXPR += ARGV stuff
+			EXPR += ITEM stuff
+			EXPR += ITEM_PROXY_ALIAS_USAGE stuff
+
+				This crosses the line between ... and ... or even ...
+				OPCODE 
+				DECODE
+
+				//	FIeld_Name // SUB_LEX_analysis
+				// in_ROM // of_ROM // ancient cultures surviving
+				ALIAS_ARGS
+				ALIAS_ALIAS // catches tugs along semantics line
+				ALIAS_one // _one == ARGV[1] //
+				ALIAS_one_two //_two == ARGV[2] //
+				ALIAS_ALIAS //_zero == ARGV[0] // CMD_ITSELF //
+				ALIAS_UDEF //_UDEF == ARGV[3++] // idx = N ++ ; //
+				// ; // ends EXPR_TWIG CODE_FLOW continues
+				// lhs = (EXPR) // (EXPR) has no LHS //
+				// RETVAL = EXPR // CODE_POINT obtains RETVAL
+				// limited levels of optimisation
+				// click to RETVAL
+
+
+
+// CT_RT wants to track who asked for MENTION and any_possible_PARSE
+// any_possible_PARSE
+// any_probable_PARSE
+// step_ahead_MACRO OPTIMISATION // uses builtin SESS_Landscape and SELF_api_provision
+// step_ahead_MACRO OPTIMISATION // SELF_api_PROVISION
+// PROVISION is where we write the script that runs the API
+// If we can be bothered to implement the VFS - there it is
+// shared SESS VFS can be STO varying by 20K 2GB 4T per year
+// 20K -vs- 4T // both use same indexing tools, with different parameters
+// 20K fits in i16
+// 4T already fills (K_M_G_T) 2.10.10.10.10 bits // 42_bits // 48 bits
+// more binary math # DIAG #
+// i48_8.10.10.10.10 // 256 T // LIMIT 245 T // can have exactly FULL as PAGE
+// i16_i48 // u8_BYTE_A u7_BYTE_B i48_PAYLOAD=i64_WORD >> 16 SIGNED_SHIFT
+// 
+// PROVISION ALIAS { SCRIPT }
+// SCRIPT uses API
+// SCRIPT docks with API as DEBUG exercide, DIAG_DATE_get_MINI_MACHINE_STO_ASIS
+// avoiding too many git versions
+// outsiding extra branches // steps between V1 V2 //
+//
+// API_CONTRACT
+// you might have a technology that goes here
+// and find yourself writing your own OSS replacement
+// API_CONTRACT describes both sides of contract
+// LIBR needs a coherent V2 with MD5
+// MD5 is a module that tries to stop you using MD5
+// openssl probably provides the code
+// MD5 prefers to offer MD_SHA // MD5 might also offer TLS
+// TLS uses MD5 to check for correct checksum
+// TLS uses SHA_message_digest
+// MATCH LHS RHS CODE_POINT PLUS
+// POOL = "POOL"
+// POOL = VAR_POOL_called(POOL)
+// AVAR = "AVAR"
+// AVAR = POOL(AVAR)
+// THIS IS A UNARY EXPR "{ LHS = POOL( RHS ) }" // LHS==RHS by_name
+// THIS IS A UNARY EXPR "{ POOL( LHS ) }" // LHS == SELF // absent ARGV //
+// BITFIELD_PROOF
+// CALC STEPS with CHECKS // at_CT // OPTION at_RT
+// SELF = CODE_POINT_SELF.GETTER_GET()
+
+
+//
+
+				ALIAS_ALIAS
+
+				ITEM can be of shared group type ALIAS
+				TYPE_NAME used as VAR_NAME
+				// only READER can see SEMANTIC //
+				// then KNOW and HOW //
+
+				PAIR SIDE SPLIT by ALIAS_ALIAS
+				still has same semantics, just unchecked
+				so if it makes sense,
+				in your language
+				in your dialect
+
+
+				ALIAS_ARGS
+
+

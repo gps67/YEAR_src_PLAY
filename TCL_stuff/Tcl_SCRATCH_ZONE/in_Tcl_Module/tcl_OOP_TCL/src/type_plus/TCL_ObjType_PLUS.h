@@ -23,9 +23,22 @@ typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
 
 
 // PTR to this function is the actual KEPT_PTR
-// it is available as a PC relative ELF address
+// ELF gives this VALUE as the address of the compiled C code for the function
+// it cannot be undefined, without FAIL ing at module load time, or EXE load
+// it is available as a PC relative ELF address, ie no MEM_BASE required, PC
+// but that puts the stress on the CODE_as_const_DATA
+// and a stupid back_jump, rather than jump_to // 
 // it may or may not be stored in CLientData->kept_PTR
 // which might be faster, than the ELF symbol WRT PC, or other
+//
+// the choice of this function is that it is carried by obj -> type ->.func
+// also that now we know it is one of OUR TYPE we can ask_it_its_type
+// 
+// we do then have to do that task COPY dst = src 
+// each TYPE_SPEC will need it's own COPY OBJECT 
+// IDK 
+//
+
 extern "C" 
 void
 PLUS_MYTYPE_DupInternalRepProc( Tcl_Obj *src, Tcl_Obj *dst );
@@ -220,7 +233,7 @@ struct TCL_ObjType_PLUS : TCL_ObjType_plain
 
 	void TCL_set_PTR2_incr( Tcl_Obj * INST, Tcl_Obj * P2 )
 	{
-		Tcl_Obj * old_val = (Tcl_Obj *) TCL_get_PTR2( INST );
+		Tcl_Obj * old_val = TCL_get_PTR2_as_Tcl_Obj( INST );
 		if( P2 ) Tcl_IncrRefCount( P2 );
 		TCL_set_PTR2( INST, P2 );
 		if( old_val ) {
@@ -241,7 +254,7 @@ struct TCL_ObjType_PLUS : TCL_ObjType_plain
 inline // TCL_HELP
 void TCL_set_PTR2_decr_NULL( Tcl_Obj * INST )
 {
-	Tcl_Obj * old_val = (Tcl_Obj *) TCL_get_PTR2( INST );
+	Tcl_Obj * old_val = TCL_get_PTR2_as_Tcl_Obj( INST );
 	TCL_set_PTR2( INST, NULL );
 	if( old_val ) {
 		Tcl_DecrRefCount( old_val );

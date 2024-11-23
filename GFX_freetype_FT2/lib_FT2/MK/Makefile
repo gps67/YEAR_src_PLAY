@@ -52,13 +52,23 @@ endif
 #	# borrow some source from WAX # duplicate compile but not fork
 	YEAR_src_PLAY=../../..
 	S2=$(YEAR_src_PLAY)/GFX_lib_WAX/lib_WAX_X11/src
+	S3=$(YEAR_src_PLAY)/GFX_lib_WAX/lib_WAX_X11/src/APPS
+
+# /home/gps/YEAR/src/PLAY/GFX_lib_WAX/lib_WAX_X11/src/APPS
+
+# /home/gps/G_laptop/G_2T/G_HOME_2021/tmp_tmp/t_git/
+#	YEAR_src_PLAY/GFX_lib_WAX/lib_WAX_X11/src/APPS/test_X_one.h
 
 	VPATH +=$S
 	VPATH +=$(S2)
+	VPATH +=$(S3)
 	INCL += -I$(S2)
+	INCL += -I$(S3)
 	# TODO # FIX # above fails below works # so $(INCL)
 	LIST_C_INCLUDE_PATH += $(S2)
+	LIST_C_INCLUDE_PATH += $(S3)
 	LIST_CPLUS_INCLUDE_PATH += $(S2)
+	LIST_CPLUS_INCLUDE_PATH += $(S3)
 
 
 #	include ../MK/Makefile_libs_apps

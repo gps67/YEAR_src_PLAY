@@ -170,8 +170,11 @@ int main(int argc, char ** argv )
 	// these work correctly on AMD_64
 	// 
 	// USING ALPHABET in 4 bytes of WORD_32
-//	const u8 * str = (const u8 *) "@abcdefghijklm";
+#if 1
+	const u8 * str = (const u8 *) "@abcdefghijklm";
+#else
 	const u8 * str = (const u8 *)  "abcdefghijklm";
+#endif
 	const u8 * str_1 = str + 1;
 	const u8 * str_2 = str + 2;
 	// str_0 is aligned _1 _2 NOT

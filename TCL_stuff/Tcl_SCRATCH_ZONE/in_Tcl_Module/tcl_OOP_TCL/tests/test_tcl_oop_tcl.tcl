@@ -74,7 +74,7 @@ proc fn3 {} {
 	# todo LOAD from PATH search, or TRAX("purpose")
 	# todo LOAD from PATH search, or TRAX("TCL_CXX_MODULE tcl_oop_tcl")
 	# search PATH for %s.so file(s) { .so .db .rc .sess }
-	puts "# FAIL # can find module without ../obj/filename.so"
+	puts "# KNOW # load ../obj/tcl_oop_tcl.so optical"
 	load ../obj/tcl_oop_tcl.so optical
 #	load tcl_oop_tcl.so optical
 
@@ -86,7 +86,9 @@ if 0 {
 	puts [OBJ - LIST_ALL_OBJ_TYPE]
 }
 
+	puts "# ==== # test_VECT #"
 	test_VECT ;# want to see ARGV0 typePtr
+	puts "# ==== # test_DICT #"
 	test_DICT ;# second call # see not LEX 1 ified
 
 if 1 {

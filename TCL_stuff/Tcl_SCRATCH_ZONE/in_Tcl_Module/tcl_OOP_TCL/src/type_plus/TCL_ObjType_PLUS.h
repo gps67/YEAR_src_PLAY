@@ -37,6 +37,17 @@ typedef Tcl_DupInternalRepProc * KEPT_PTR_type;
 // we do then have to do that task COPY dst = src 
 // each TYPE_SPEC will need it's own COPY OBJECT 
 // IDK 
+// to find out what ... does RTFM Tcl_ObjType
+// and also the new TCL9 stuff
+// 
+//  /tools/x86_64/tcl/_src/tcl9.0.0/doc/ObjectType.3 
+//  /tools/x86_64/PREFIX/ bin lib share doc
+//  /tools/x86_64/TOOLS // bin lib share doc
+//  
+//  I prefer that when Tcl is needed, to use an exact tcl/bin and it's tcl/lib
+//  lots of symb links back to PREFIX means specific is 1 step away
+//  Actually few LOOKUP_SO_PROVIDER
+//
 //
 
 extern "C" 

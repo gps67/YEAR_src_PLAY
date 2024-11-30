@@ -180,6 +180,11 @@ in
 	Artist="Satin_Beige"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
+	Samba=DrumWhisperer
+	Artist="Iya Sako"
+	S="_sun_sofa"
+	Sess_List="${S}_sess_1a ${S}_sess_2a  ${S}_sess_3a ${S}_sess_4a"
+
 ;; *)
 	Samba=XX
 	Artist="Artist"

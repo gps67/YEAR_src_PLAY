@@ -17,6 +17,7 @@ struct ERROR_t; // ERRRM_H
 // NB // LOHI // see explain LOHI
 
 i64 get_i8_BYTE_A( i64 REG_VAL ) {
+	return -1;
 }
 
 struct i32_BITFIELDS {

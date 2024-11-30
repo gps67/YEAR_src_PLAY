@@ -42,6 +42,85 @@ struct line_data {
 	}
 
 	bool line_in_line( char * buff ) {
+		// FMT starts here
+		// create a TREE of SPEC // needs to provide API_LISTS
+		// PICK individual TYPES 
+		// and add SUBTYPE // *
+		// and add_NAME "%s" for AVAR( ARGV1 ) // ambiguous argv[1] 
+		// NUMERIC _doube _float _fixed_32_USAGE __USAGE int str
+		// NUMERIC preferred range [0 [30
+		// NUMERIC preferred range [0 [30  [30K 
+		// NUMERIC IDX aligned to ARRAY[N] of _1_2_4_8_BYTES
+		// ARRAY [ N ] of WORD_TYPE_1_2_4_8_t // OMIT _t // EMIT _t
+		// WHY = IDX_grow_to_u15 _or_N _N_check_DONE
+		// we MUST "{ check: 0 <= idx < N }"
+		// using ":" to split TEXT into TWO at ":" // CALC_P0P2 
+		// STEP_CSR_to_nect_LEX_or_GAP //
+		// GAP 
+		// SET SESS.CSR_one.XPOS.P0 = .CSR_one.XPOS.P0 
+		// CXX compiler will find something for ABSENT.feature_field_EXPR
+		// _ // "_" overwrites "." // AVOID_REPEATS ABSORB // MERGE
+		// _ // "_" overwrites "." // AVOID_ABSENT ABSENT // PROVIDE
+		// PROVIDE STO for a Modules AVAR for A_CONST
+		// the compiler has already scanned all the STR0 exprs
+		// output includes VAR_POOL several FSM machines with FSM_VARS
+		// VARS should be allocated from Module_VARS_ROM_CONSTS
+		// COMPILER may infer whatever it likes from it's own GEN
+		// turbo compilers SET_OPTION_WITHIN_COMMENT // parse comments
+		// AVAR NUMERIC double const readonly
+		// AVAL NUMERIC double const readonly // AVAL // ERA_EDGE on change
+		// ERA_EDGE on AVAL_CHANGED // ie recompile test distribute now
+		// ERA_SCOPE_VAR_POOL_one // usually and _two // default AUTO //
+		// DEFAULT AUTO USEFUL // edit SETTINGS add_OPTION_DONT USEFUL
+		// that might be a sublevel of useful, nested zones
+		// Module sees the world as a CXX SCRIPT or ARGV or ARGV_SCRIPT
+		// that means YOUR APP or LANG behaves like ARGV_SCRIPT_THREE
+
+
+
+		// EXPR
+		// PREDICT KNOW will be able NEXT_P0P2.P0 = HERE.P2
+		// GEN a specific CSV parser for SCANF
+		// this one works for MPG_CSV
+		// as would sqlite, reload from SOURCE, tcc style
+		// keeps PROJECT_TASK_BACKUP as diff on SQL_LOAD_DUMP
+		// FIELD TYPE NAME idx_in_ARGV
+		// YEAR MM DD
+		// float decimal hex etc with preferred widths eg "0x%04d" // NEEDS LEX EDGE eg SP //
+		// convert each RET_VAL into an i64_ITEM // waste but easy if simple POINTER to N_BYTES of SESS_HEAP_idx_OBJ_is_NAMED_DOUBLE_with_some_ATTRS
+		/*
+		#ifdef CT_RT_PHASE_xFF
+		ITEM_t_HERE ITEM : TRAY_ITEM_BASE {
+			//
+			// PICK // GEN code then does it's stuff
+			// TRAY_one_ITEM_BASE 
+			// TRAY_two_ITEM_BASE 
+			// difference is how items are allocated
+			// eg ROM will never delete
+			// eg MALLOC needs FREE
+			// eg MMAP_ALLOC_system_two // for ITEM into HEAP within SESS_AVAR
+			// 
+			// SCRIPT
+
+			nested_sub_class
+			struct MEM_OBJ_CACHE : MEM_OBJ_BASE_TYPE { // moderately expensive 
+			// lots of shared code and instant upgrade
+
+				// i64_WORD
+				// i8_i8_OPCODE
+				// i16_HEAP_ITEM i4_HEAP i12_ITEM
+				// i8_i24
+s
+			}
+
+			LIST of FIELD 
+			 NAME
+			 NAME_as_idx // if not IDX in FIELDS
+			 TYPE
+
+		} ;
+		#endif
+		*/
 		clear();
 		static const char * fmt = "%d-%d-%d, %f, %f, %f,%n";
 		int pos = 0;

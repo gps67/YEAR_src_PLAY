@@ -1,0 +1,12 @@
+
+	NFS not granting group access
+
+	so created user with that name and id on server (a laptop)
+	needed /etc/shadow too
+	was primary group, not side list
+
+	then group access seemed to work a charm
+	without looking I'd guess
+	laptop_NFS_server checks validity of user could be in group
+
+	OK for limited LAN group of laptops each

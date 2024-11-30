@@ -95,7 +95,7 @@ bool OBJ_module:: new_OBJ_type(
 
 	const char * NAME = TYPE_PLUS -> alias_one_ABB;	// TYPE_PLUS.ABB
 
-	Tcl_Size obj_idx = 0;
+	Tcl_Size obj_idx = 0; // idx of NEXT_idx from ALLOC // ALIAS NN //
 	Tcl_Size obj_idx_2 = 0;
 	// idx = N ++ ; // ALLOC // claim LOCK on NN until return
 	objs.NN( interp, & obj_idx ); // obj_idx = MODULE.TCL_LIST_objs.NN
@@ -136,7 +136,7 @@ bool OBJ_module:: new_OBJ_type(
 	// it holds a ref, and searches over list
 	// class OBJ_module { TCL_LIST objs; ...
 	//
-	objs.ADD( interp, &obj_idx_2, VAL );
+	objs.ADD( interp, &obj_idx_2, VAL ); // obj_idx_2 is where added == NN-1
 	if(obj_idx != obj_idx_2) {
 		// MULTI_THREAD has also called ALLOC
 		// skip the NN above, this is testing assert( idx == idx_2 )

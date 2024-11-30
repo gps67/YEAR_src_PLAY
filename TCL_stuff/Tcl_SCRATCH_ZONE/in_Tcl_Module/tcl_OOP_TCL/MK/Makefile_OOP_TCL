@@ -117,8 +117,10 @@ test: $(Module).so
 $(Module_objs): $(Module_hdrs)
 
 $(Module).so:  $(Module_objs)
-	# LINKS adds the libs_apps .so
-	# LINKS does not refer to libtcl.so that comes from loading EXE
+	# 
+	# LINKS .so #
+	# $@
+	# 
 	g++ -g -shared -o $@ $(Module_objs) $(LINKS)
 
 .cxx.o:

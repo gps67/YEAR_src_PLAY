@@ -1,0 +1,75 @@
+BIT ORDER - GCC
+
+ SIGNED
+ 	it's just a shift to the left
+	signed jump to the right
+		drop down to level 0
+		and its a SIGNED SHIFT
+	if( idx < 0 ) {
+		CALL_on_MINUS idx CODE_POINT SESS STACK has named SLOTS
+
+			BENEFIT - on_MINUS() is a reserved word
+
+				RESERVED_IN_USE
+
+					MEANS KNOW is_MINUS // V_CPU_FLAG // S
+					MEANS KNOW is_RECENTLY_MINUS // B //
+					// C != B // ALWAYS
+					// C == B // NEVER or both ZERO
+					// C == B == 1 // OPERATOR_LIST //
+					// C == B == 0 // MINUS_ZERO_PLUS // ASIS
+			COST - on_MINUS() must be provided
+
+				OPTION NULL is COMMON USAGE of DIAG
+				CACHE NULL == NOT_YET_FETCHED
+
+				OPTION NULL means EMPTY_LIST
+				OPTION NULL means CALL_on_NULL()
+
+					that then reports the error
+					we add a few parameters 
+					to the error message INFO pool
+
+			PROVIDE
+
+				CALL
+				on_MINUS()
+				ARGV
+				SESS.CTXT
+
+				VAR CTXT = SESS.CTXT
+				VAR CTXT = SESS.CTXT.VAR_POOL.CTXT
+				VAR_POOL = CTXT.VAR_POOL
+				VAR_POOL = SESS.CTXT.VAR_POOL
+
+				Module declares
+				EXPR_RET_VAL CTXT = SESS.CTXT.VAR_POOL.CTXT
+				// add "CTXT" EA( SESS.CTXT )
+				// CXX tracks parameters via nested CALL ARG
+				// SO add "CTXT" SESS.CTXT // EA( ) // added
+				SESS.CTXT.VAR_POOL(" CTXT ") = // ARGV PARSE
+				SESS.CTXT ; // PUNCT
+
+				CALL provides
+				CMD0
+				ARGV
+				CTXT
+				SESS
+
+				CPU provides
+				PTR_to_SPEC // one per thread
+
+				MACRO provides 
+#pragma reverse_bitfields on
+
+
+
+
+				
+
+
+	}
+
+ SIGNED SHIFT
+
+union BYTE i8

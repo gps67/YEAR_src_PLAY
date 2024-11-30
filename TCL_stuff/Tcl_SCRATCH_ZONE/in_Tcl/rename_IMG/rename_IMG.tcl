@@ -80,6 +80,8 @@ set ZONE_NAME Sekou_Keita_Oxford
 set ZONE_NAME RSAC_Satin_Beige
 set ZONE_NAME BH6
 set ZONE_NAME GU7_lunch
+set ZONE_NAME Iya_Sako_Salisbury
+set ZONE_NAME BH6
 
 
 

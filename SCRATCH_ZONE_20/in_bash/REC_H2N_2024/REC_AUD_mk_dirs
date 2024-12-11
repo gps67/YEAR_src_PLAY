@@ -43,6 +43,7 @@ cmd_needed()
 # ie remote changes, we notice
 
 . fns_DIRS
+. fns_EDIT
 
 # you need these
 
@@ -148,13 +149,14 @@ in
 	Samba=salisbury_djembe
 	Artist="Mohamed Gueye"
 
+	Samba=irish_sessions
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
 	Samba=americana
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Samba=irish_sessions
-	Artist="Fishermans_Cottage"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 ;; *)
 	Samba=XX
 	Artist="Artist"
@@ -322,10 +324,16 @@ function mk_audacity {
 
 for sess in ${Sess_List:-""}
 do
+	export \
+	SESS_name="${YEAR_MM_DD_Tue_Samba}${sess}"
+	# fn_EDIT_var_prompt EDIT SESS_name "EDIT SESS_name"
+	# fn_EDIT_var        EDIT SESS_name
+	echo "SESS_name == '$SESS_name'"
+	fn_EDIT_var SESS_name 
 	# ask_do is not a fn and cant run local functions
-	if yes_no mk_audacity "${DIR_AUD}" "${YEAR_MM_DD_Tue_Samba}${sess}"
+	if yes_no mk_audacity "${DIR_AUD}" "${SESS_name}"
 	then
-		mk_audacity "${DIR_AUD}" "${YEAR_MM_DD_Tue_Samba}${sess}"
+		mk_audacity "${DIR_AUD}" "${SESS_name}"
 	fi
 done
 

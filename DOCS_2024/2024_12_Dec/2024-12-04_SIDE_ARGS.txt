@@ -1,0 +1,18 @@
+	2024-12-04
+	2024-12-04_SIDE_ARGS.txt
+
+	Two faces for a CALL ABBREV and EXACT_ARGV_in_MULTIPLINE
+
+	CALL fn_EDIT_var $VAR_NAME
+
+	EDIT_var SESS_name	# OPTION exit script # OPTION retval NOW
+
+	lookup $VAR_NAME 
+
+		get EXPLAIN
+		get EXPLAIN_Prompt 
+		get EXPLAIN_%s
+		FILTER %s_%s EXPLAIN %s
+
+
+

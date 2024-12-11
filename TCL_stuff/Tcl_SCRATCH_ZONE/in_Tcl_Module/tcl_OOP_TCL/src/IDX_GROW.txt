@@ -1,0 +1,66 @@
+IDX_GROW.txt
+
+	BITFIELDS permit any number of BITS in FIELD
+	These can then be SHIFTED into place as
+	i8 i16 i32 i64
+ALIAS	i8_BYTE_A i8
+	i8_BYTE_B
+	i16_BA // what it looks like loaded (opposite in file or buff)
+	i16_DC // SHIFTED_down_to_be_at_ZERO _SIGNED_SHIFT // delivered in i32
+
+	CPU has STEP_DECODE_i64
+
+
+	i8 i16 i32 i64 // on_ARM32_doing_register_pair_PTR_one_PTR_two
+
+	DECL array N of _1_2_4_8 // i8 i16 i32 i64 
+
+	AUTO_GROW
+	AUTO_GROW LOW BIT COUNT
+
+		// i0 // CONST ABSENT
+		i1 
+		i2
+		i3
+		i4
+		i5
+		i6
+		i7
+		u7	<--= u7 [0[128 // upgrade at 100 to u15 
+		i8
+
+		u15
+		i16
+		i16_MINUS
+		i16_ZERO
+		i16_PLUS // u15
+
+		u31
+		i32
+		i32_MINUS
+		i32_ZERO
+		i32_PLUS
+
+		u63
+		i64
+		i64_MINUS
+		i64_ZERO
+		i64_PLUS
+
+
+		as N approaches 127
+		as N crosses 127 into 128 FAKE_SIGN
+
+			AUTO GROW to WIDER_WORD i9_MINUS_and_not_i8
+			AUTO GROW to WIDER_WORD i9_MINUS_and_maybe_i3_in_i15
+			AUTO GROW to WIDER_WORD u15 via i8_in_i16 // WIDER_WORD
+
+		// so been watching since 64
+
+	[ IDX ] is a position in the WOED_LIST // GROW_STEP 
+
+		idx_as_P0
+		idx_as_P1
+		idx_as_P2
+
+

@@ -1,0 +1,212 @@
+	2024-12-05
+	2024-12-05_PARSE_CXX_ARGV_TREE.txt
+
+	PARSE_CXX
+	PARSE_C
+	PARSE_cxx_2000 // yes the date is FAKE
+	PARSE_cxx_1999 // yes the date is M1 == Y2K_M1 // Y2K_ZERO
+
+		Y2K_M1
+		Y2K_ZERO
+		Y2K YEAR-MM-DD // time defaults to 00:00 can edit asif 12:00
+		// SIDE_ARGS // SESS.CTXT += SIDE_ARGS
+
+		METHOD:
+
+		READER of ITEM_FIELD_DATE knows TIME was NOT stored
+
+		 CODE_POINT:
+			NOT == LEX_LANG_NEGATE_USAGE_WITH_DOCS
+
+
+
+CODE_POINT CODE_POINT
+CODE_POINT XPOS += FILE SEEK CACHE and VARS and EXPR
+CODE_POINT IP += ELF_FILE ELF_CODE_SEGMENT _CPU _SEEK CACHE and VARS and EXPR
+
+	_CPU is a precompiled CXX builtin
+	_CPU is a CXX source
+	_CPU is a ASM_MINI_MACHINE_of_API_of_CPU_64_LOHI
+	_CPU is a ASM_MINI_MACHINE // AMD_64_with_FPU_and_GEN
+
+		My expectation, is that the SITE will pre-process all code
+		My hope is that PARSE SCRIPT tells us loads
+		EG FPU has a configurable share of a named CPU_FPU _CAP_ABILITY
+		CAP_ABILITY == CONFIG_SETTINGS // of this SCRIPT itself // ROM_one
+		We have lists of CPU instructions that we use
+		We have lists of CPU instructions in LIBR_TODO
+		we have TEST_RIG_BENCH for CACHE_ALLOC CACHE_WEIGHT
+		we have TEST_DATA_BENCH for TEST_DATA // see how MENTION became AVAR
+		OBJECT_t TEST_DATA : LIBR_Module_TASK_ACTION_VAR_POOL {
+		// BASE_CLASS == VAR_POOL_of_some_SPECIFIC_type
+		// UDEF derived types, add some CT_RT PRE_ALLOCATED AVARS
+		// Module_CT_RT TASK_TEST TEST_DATA 
+		// Module_CT_RT avar TASK_TEST avar TEST_DATA 
+		// Module_CT_RT avar TASK_TEST 
+		// Module_CT_RT avar TEST_DATA 
+		// Module_CT_RT avar SESS
+		// Module_CT_RT LEX_POOL // lookup_table == ROM_one %s
+		// %s == "LEX_POOL.as_AVAR" // ASIF("LEX_POOL.as_AVAR()")
+
+			FIRST THING TO INSTALL
+
+				ITEM
+				ITEM()
+
+			ALSO DETECT_EITHER_USAGE
+
+				on first use as "%s" // PARSED NAME //
+				on first use as "%s" // PARSED EXPR //
+				on first use as "%s" // PARSED LIST //
+				on first use as "%s" // PARSED TREE //
+				on first use as "%s" // PARSED CODE //
+				on first use as "%s" // PARSED CSET //
+				on first use as "%s" // PARSED DATA //
+				on first use as "%s" // PARSED ARGV //
+				on first use as "%s" // PARSED API //
+
+			LEXICON // %s == "LEX_POOL.as_AVAR" 
+			// without need for OPEN_BRACE // CODE_STATE_GROWS
+			// SCOPE acts ASIF { SCOPE } // { WITHOUT_BRACES }
+			// MATCH something near INDENTED_TEXT Parser
+			// and by that MENTION AVAR Parser = CODE_AND_STO_AND_
+			// _and_CACHE += VAR_POOL("SPELLING")
+			// _and_CACHE += LRU_idx_of_5_in_POOL
+			// ASIF("LEX_POOL.as_AVAR()")
+			// "LEX_POOL.as_AVAR()"
+			//  LEX_POOL.as_AVAR() 
+			//  LEX_POOL.as_AVAR 
+			// "LEX_POOL.as_AVAR"
+
+// 5_in_POOL becomes idx_0 = N ; N += 5 ; N_check_for_overflow(); 
+// 5_in_POOL becomes i16_idx_0 = N ; N += 5 ; N_check_for_overflow(); 
+// i16_idx_4 == i16_idx_0 + 4 // LANG (PARENTH_NEEDED) // LANG NOT_NEEDED
+// that compiles down to NOTHING // NOT NEEDED - do_notohing() //
+// do_nothing() can expand to dgb_IMLINED_NOOP_so_GEN_nothing() //
+// DEBUGGER auto zooms through 
+
+//	somehow GCC expands inline N_check_for_overflow
+//	KNOW that CT has reserved [5] 
+//	KNOW that RT can ask for [more] 
+
+		SYSTEM_one { "SPELLING"
+
+		 PARSE SUBLEX
+		 PARSE PHRASE
+		 PARSE BITFIELDS
+
+		 MATCH SPELLING -> VALUE
+		 MATCH SPELLING -> ACTION VALUE
+		 MATCH SPELLING -> BINARY_SCRIPT // leave HLA in there
+
+
+			VAR_POOL // well known import // 
+			idx_item = lookup SPELLING
+			VAR_POOL.lookup( ITEM ) // ITEM_must_be_a_SPELLING
+			// LIBR accepts CODE_FRAG_MENT_as_P0P2_as_STR_SPELLING
+			// XPOS FILE OFFS
+			// OPTION PROVIDE TABLE LIST += LINE
+			// OFFS_t OFFS_of_BOLN // ALIAS BOLN //
+
+		}
+		SYSTEM_two {
+
+			ALLOC [0[16 registers
+
+			xmm15 == xmm%d IDX // [0[16
+
+			FORCED_ALLOC is when CXX_allocs 0 1 2 for itself
+			So we allocate those last and each call calls check_space
+			CT_RT runs check_space at CT and uses that
+			CT_RT runs check_space at RT for NEW ALLOCS 
+
+			"SSE" sets the limit
+
+			see also ABI for Intel C and C++ CALL_STANDARDS
+
+			We then divvy up the even WIDER REG POOL
+			we can only access 16 from here
+			we can easily use more from other CPU_OPCODES (idk)
+
+			So 5 for you
+			So 4 for you
+			So 3 for you
+			So 4 for CALLER passing 4 parameters
+			So 14 for CALLER passing 14 parameters
+
+				requires OBTAIN_ALLOC of all the above
+
+				they each move out of the way
+				backup to restore
+				save to mem to fetch later
+				CACHE HERE
+
+			So we have 5 for our Module when it is active
+			So we have 5 for our TASK housed within CPU
+			So we have 5 for our CACHE housed within CPU then MEM
+
+			CT_RT also plays out the KNOW stuff in BITMAPS SESS
+
+				SCOPE END R15
+				SCOPE AVAR R15 // AVAR == "%"
+
+			CACHE
+
+				claim any IDX for a while
+				track USAGE INIT == UNSET //  NEEDS_INIT_NULL
+				track USAGE INIT == UNSET_and_NEEDS_INIT_NULL
+
+		}
+
+		// { // }
+		// }
+	of_API
+	of_CPU_64_LOHI
+
+// ALTERNATIVE to INTEL / ARM CPU is openCL on GPU
+
+XMM
+
+	128 BIT XMM 
+	part of SSE extension docs
+	SSE - Stremaing SIMD extension // probably OPCODE FULL
+	SIMD -single instruction multiple data
+
+	BYTE[16]
+	PAIR[8]
+	FOUR[4]
+	_i64[2]
+
+	_f32[4]
+	_f64[2]
+
+SSE
+	A += b 
+	A = A + B 
+	// beyond SSE get C = A + B
+
+AVX128 - is SSE - is faster on old AMD64
+AVX512
+
+	XMM[16] - 128 bit -  is the lower halves of
+	YMM[16] - 256 bit
+	ZMM[16] - 512 bit
+
+	XMM[16] - 128 bit                         i64 i64
+	YMM[16] - 256 bit                 i64 i64 i64 i64
+	ZMM[16] - 512 bit i64 i64 i64 i64 i64 i64 i64 i64
+
+
+
+ EACH YMM16_t is 256 bits // XMM16_is_low_128 bits
+
+	f32[8]	// 32 bytes 256 bits
+	f53[4]  // 32 bytes 256 bits
+
+---
+	NO NOT NEW WEB_GL - not on my ubuntu - old
+	SO USE OTHER older openGL - which ALSO uses WSGL / GLSL
+---
+
+WEBGL openGL GLSL ESSL 
+https://en.wikipedia.org/wiki/OpenGL_Shading_Language

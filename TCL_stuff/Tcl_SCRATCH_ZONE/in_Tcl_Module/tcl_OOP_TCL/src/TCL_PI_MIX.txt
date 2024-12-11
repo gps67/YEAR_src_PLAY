@@ -1,0 +1,156 @@
+
+one TCL type per Python Type
+
+	only within Module
+	LOCAL obj 
+	REMOTE API
+
+		API_provider
+
+			ITEM_SPEC_CODE_POINT
+
+			SESS provides loads of 
+
+				Tcl_Obj	- and REGISTERED_ITEM_TYPES
+				Py_Object - 
+
+CRYPTO_PACKAGE _runtime_STEP
+
+	WRAP nbytes as BY_NAME and BY_IDX using_name_space_HEAP_ITEM
+
+		u4_HEAP
+		u12_ITEM
+	
+		i4_EXPR
+		i12_EXPR
+
+			There is a DISADVANTAGE of using SIGNED
+			and that is the BITFIELD SHIFTS SIGN_FILL_from_BIT_POS
+
+			sign extend BIT_b of REGISTER_one
+
+			speed test BITFIELD_GET _SET _ZERO _init_M1 _TEST
+	
+	WRAP with KEY_5 of local VAR_POOL under _info()
+
+		_info() {
+			RET_VAL is a list of info_items or_tree_node in SESS
+			SESS is not in RET_VAR but it was what was used
+			SESS is not in CALL ARGV but is available anyway
+
+			LIST += SESS
+			LIST += ITEM
+			LIST += any word used in script, check for smudged
+			SMUDGED += PUNCT_in_EXPR "script," PARSE_DIALECT
+
+	I N F O  { reserved for use as LOGGING_MACRO } 
+
+			return += ret_INFO( "EA_ITEM_EXPR = get_EA_ITEM_of(ITEM)" )
+			CT_RT says VALUE is AVAILABLE as STR0 along with CSET
+			CT_RT says VALUE is AVAILABLE as P0P2 along with CSET
+			CT_RT says VALUE is AVAILABLE as BUFF along with CSET
+			CT_RT says VALUE is AVAILABLE as STEP along with XPOS
+
+				initially we are at C STR0 in ROM
+
+					readonly
+					STR0
+					ELF_SEGMENT_OFFS_XPOS_of_STR0
+
+						compiler prepared TEXTS
+						with NUL 
+						with BYTES_PAD
+						# ALWAYS_NUL # OFTEN_MEMSET #
+
+				usually when holding SPELLING in_CSET as (u8*)
+			
+
+			// EA_EXPR_COMPONENT
+			// idx -wrt- VAP_POOL_two
+			// idx -wrt- VAP_POOL_idx idx_VAR_POOL_in_HEAP
+			// we are re-enabling the concept of pointer
+			// with added BASE
+			// ADDR = BASE + OFFS
+			// ADDR = BASE + _1_2_4_8_times_IDX
+			// OFFS = OFFS_of_FIELD(STRUCT_name,field_name)
+			// OFFS = OFFS_of_ARRAY_SLOT( _1_2_4_8, IDX )
+			// ITEM = EA("ITEM")
+
+		}
+	
+	_1_2_4_8 : ASM_BYTES_PER_ARRAY_SLOT _extended_to_u7
+
+		USAGE u7 { unusual usage specific on_PLUS }{
+		USAGE u8 { on_PLUS becomes on_ITEM // PTR // EA_EXPR // IDX // }
+		usage i32_i32 get_ROM_item_for_builtin_ENUM_ITEM {
+			retval i64_or_i32_i32 // A -or- A B //
+			// on a LOHI architecture // see WHY //
+			// one comes along the stream buffer XPOS before _two
+			// so LOHI when i64_TWO_ONE_from_LOHI //
+			// TEST compiler to see GOT which, MATCHES EXPECTED
+
+			i32_one
+			i32_two
+
+// aside Tcl Looks like that on ARM32 
+// ARM32 PTR is i32 // u32_ALIAS //
+// ARM54 PTR is i64 // OPTION i32_i32_in_CPU_REGISTER
+// DATA SEQUENCE _one _two
+// VIEW SEQUENCE _two _one // WHEN in SINGLE i64_WORD // when_in_BIT_ORDER
+// TEXT as P0_N // PARSE_returns_TOKEN_and_P0P2_USED // OK_AS_P0_N // Parsed_N
+// WORD_one is the LOW_HALF of u64_CPU_REGISTER // ALIAS to LIKE_WISE //
+// WORD_two is the HIGH_HALF of i64_CPU_REGISTER // AUTO_TRAIL_SIGN_EDGE_STEPS
+//
+// WORD_two is the HIGH_HALF of u64_CPU_REGISTER // ALIAS to WITHIN //
+// WORD_two is the HIGH_HALF of u64_CPU_REGISTER // ALIAS to BEYOND //
+// but you also get an allocated STRING or NULL and ref_count amd_admin
+// ITEM_TYPE_SPEC_CTOR_BIND( "%s" _ONE _TWO ) CMNT SCRIPT CMNT // 
+
+
+			i32_lo == i32_one
+			i32_hi == i32_two
+
+			i64_VALUE_TWO_ONE_t // self_writing_CIDENT_as_SUBLEX
+			i64_VALUE_TWO_ONE // the bits are drawn in a register 
+			// 7 6 5 4 3 2 1 0 // BIT_%d // RIGHT_to_LEFT_HI_to_LO
+
+			i86_64 LIBR array_N of _1_2_4_8  _words _bytes
+			i64_WORD as i32_WORD_one i32_WORD_two {
+			 API PROVIDE ASM and SCRIPTED for SPELLING
+			 API PROVIDE Module CONST SPEC AVAL AVAR FUNCS GLOBALS
+			 API GLOBAL AVAR appears when in SCOPE
+			 API PROVIDER fills in STRUCT_FORM with callables
+			 API PROXY_VALUE MY_REF YOUR_REF
+
+			 YOUR_REF {
+			 	MY_REF ITEM
+				YOUR_REF OBJ_ITEM
+				API provides LOOKUP to get SUMMARY
+				API SAFE_CALL REMOTE_CALL VIA_STREAM
+			 }
+			}
+
+		}
+	}
+
+	THE SEARCHING C++ COMPILER
+
+		C++ does not search much
+		It does a lot more than it used to
+		AUTO += AUTO var_type when it's obviously bounced as NAME
+
+		GEN can do the search, and then deploy C++ code
+	
+	API that each BENCH brings to SESS under THREADDED ROLL_BACK_ABLE_STEPS
+
+		API appears as AVAR in SCOPE ; and others
+
+
+	TODO: HMRC LPA 
+	TODO: HEAP_ITEM i4_i12 // ONE or TWO SHIFTS // last one SIGNED
+
+	REWIRE: this is extracting two bitfields getting two results
+	REWIRE: PROVIDE two bitfields 
+	REWIRE: FILTER GROW_BITFIELD_idx i8_i16_i32_i64
+	REWIRE: FILTER ALIAS_BITFIELD // same _idx // RENAME //
+

@@ -13,75 +13,24 @@
 puts "ASTR and lose MP4 to JP"
 # fn_ask_do exit
 
-set dir_default Iya_Salisbury
-set ZONE_NAME Iya_Sako_Salisbury
-
-set dir_default Tankata_workshop
-set ZONE_NAME Tankata
-
-set dir_default /home/gps/YEAR/G_MOB/ftp_mobile/G_PHOTOS/Photos_2023/Photos_Family/2022-02-14_Photos/Emma_Rob_Skye/2018_2019_Emma_Skye_pix
-set dir_default /home/gps/G/G_PHOTOS/Photos_2023/DRUM_MEDIA/2023-08-18_Djemboree/AUDIO
-set dir_default /home/gps/G/G_PHOTOS/Photos_2023/DRUM_MEDIA/2023-08-18_Djemboree/VIDEOS/MINI
+set dir_default "/currently/unused/"
 set dir_default .
 
+# all these photos were taken at an  event
+# event_name ZONE_NAME
 set ZONE_NAME WOODEN_ROOTS
 set ZONE_NAME WOMAD
 set ZONE_NAME HCTS
 set ZONE_NAME Djemboree
 set ZONE_NAME DRUM_CAMP
 set ZONE_NAME TANKATA
-set ZONE_NAME Ernesto
 set ZONE_NAME HansCamp
 set ZONE_NAME MoGueyeSalisbury_Jan
 set ZONE_NAME IyaSako_Salisbury
-set ZONE_NAME SKYE
-set ZONE_NAME Freda
-set ZONE_NAME Sona_Jobarteh
-set ZONE_NAME Greenwich
-set ZONE_NAME XXX
-set ZONE_NAME HANS
-set ZONE_NAME FOUND
-set ZONE_NAME RSAC_Webber
-set ZONE_NAME HolyMoly
-set ZONE_NAME Tankata
-set ZONE_NAME Bognor
-set ZONE_NAME HCE_HansCamp_East
-set ZONE_NAME Garden
-set ZONE_NAME Wedding_Breakfast
-set ZONE_NAME FB
-set ZONE_NAME Reading
-set ZONE_NAME Burnside
-set ZONE_NAME Godalming
-set ZONE_NAME RSAC_pressgang
-set ZONE_NAME Southbourne
-set ZONE_NAME RSAC_SatinBeige
-set ZONE_NAME BH_walk
-set ZONE_NAME Readipop
-set ZONE_NAME Birthday_91
-set ZONE_NAME Aldershot
-set ZONE_NAME SuntouSusso
-set ZONE_NAME Aldershot_D_80
-set ZONE_NAME Lewisham_Train
-set ZONE_NAME WOMAD_Canaria
-set ZONE_NAME Boxing_Day_at_Rodneys
-set ZONE_NAME FOUND_on_G31_HCE
-set ZONE_NAME Wooden_Roots
-set ZONE_NAME BUILD_PC_x79
-set ZONE_NAME CAR
-set ZONE_NAME Salisbury_Babara
-set ZONE_NAME WHATSAPP
-set ZONE_NAME RSAC_HCTS
-set ZONE_NAME Skye_Six
-set ZONE_NAME Ella_BH
-set ZONE_NAME Drum_Camp
-set ZONE_NAME South_Bank_Pizza
-set ZONE_NAME Dawkes
-set ZONE_NAME Sekou_Keita_Oxford
-set ZONE_NAME RSAC_Satin_Beige
-set ZONE_NAME BH6
-set ZONE_NAME GU7_lunch
+
 set ZONE_NAME Iya_Sako_Salisbury
 set ZONE_NAME BH6
+set ZONE_NAME border_line
 
 
 

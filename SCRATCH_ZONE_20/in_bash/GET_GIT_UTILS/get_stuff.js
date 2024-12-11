@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/samizdatco/skia-canvas
 https://github.com/frectonz/pglite-fusion
 https://github.com/ecere/sdk.git 
 https://github.com/oven-sh/bun

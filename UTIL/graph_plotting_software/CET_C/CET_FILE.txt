@@ -1,0 +1,13 @@
+It has a strange layout
+YEAR/src/PLAY/UTIL/graph_plotting_software/CET_C/
+readlink CET_datafile -> GET_CET/cetdl1772on.dat
+CET_datafile
+CET.txt
+GET_CET
+GET_CET/cetdl1772on.dat
+M
+M_clean
+MK
+M_less
+obj
+src

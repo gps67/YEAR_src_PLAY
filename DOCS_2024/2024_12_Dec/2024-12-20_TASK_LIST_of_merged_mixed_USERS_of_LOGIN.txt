@@ -1,0 +1,137 @@
+2024-12-20
+2024-12-20_TASK_LIST_of_merged_mixed_USERS_of_LOGIN.txt
+
+OUR SECRET_used_by_LOGIN_for_TASK
+
+	User is recognised on PC as LOGIN_USER with WORK_MODE
+
+	There was an outer door, uften left unlocked
+
+		4 digit or adjacent letters
+
+		option of a necklace magnet wristband
+
+		option of a wired in personal records reception
+
+			long springy belt to lanyard
+			works with desk chair and standing up
+			otherwise need a proximity NFC to belt radio mobile
+
+		option of a lanyard with barcode to scan_slot (not cam)
+		option of a lanyard with cheap_store_not_cpu
+		option of a lanyard with cheap_store_and_cpu #  like bank card
+
+		user approaches open workstation
+		tap in - options of invoke login or just habit
+		tap in - and claim workstation - switch screens to your login
+		tap in - claim share of workstation - multiple on shift
+
+		USAGE HERE - SINGLE LOGIN running BENCH running own apps
+		USAGE HERE - SINGLE LOGIN running BATCH running own apps
+
+		TASK_TYPE DTP_GEN_HTML_CACHED_STATIC_DYNAMIC_DEMO
+
+			DEMO means provide DEMO DATA
+			DEMO may COPY to own SANDPIT
+
+			eg from FILENAME.tex
+			GENERATE FILENAME.pdf
+			GENERATE FILENAME.html
+			GENERATE anything that says it depends on ASIF modified
+
+				run those paragraphs
+				which usually generates a RECEIPT of work done
+
+
+			make OUTPUT files for entire project
+
+				limit focus to WHERE_WORKING_THIS_MORNING
+				limit focus to WHERE_WORKING_RIGHT_NOW
+				_list_of_cases_
+
+		TASK LOGIN 
+		DAILY_LOGIN
+		FULL_START_WORKSTATION
+		BENCH knows how to do that on this SCREEN PAIR laptop+wide_screen
+
+			pick who
+			pass outer 4 digit thing
+			pick who with OPTIONS WORD_MODE = DAILY_LOGIN_FULL_START_WORKSTATION
+
+ ENCRYPTED DISKS - 256 bit
+
+ 	This results in more than a single layer of encryption
+	but does try to keep the CPU workload down,
+	particularly for MCU_32_no_cache
+
+	So the VFS will do one decrypt (encrypt) on every file held in VFS.
+	So to read that entire file, we could have a per-file key
+	to read MMAP pages something cleverly similar, one key per file
+
+	WE can also involve a second key, in the preparation of the MAIN_KEY.
+
+	Ultimately we do the decrypt ourselves, using some API_LIBR_CRYPTO,
+	so that means we need to know the actual secret key, used.
+
+	eg CRYPTO: METHOD AES_FOUR_with_4096_byte keys
+	eg CRYPTO: METHOD AES_FOUR_with_256_byte keys
+	eg CRYPTO: METHOD AES_FOUR_with_32_byte keys	<- PICK
+	eg CRYPTO: METHOD AES_FOUR_with_256_bit keys	<- SAME 256 == 32 * 8
+	eg CRYPTO: METHOD AES_FOUR_with_1024_bit keys	<- 
+	eg CRYPTO: METHOD AES_FOUR_with_2048_bit keys
+	eg CRYPTO: METHOD AES_FOUR_with_4096_bit keys
+
+	KEY_one = secret_KEY_one_used_in_CRYPTO 
+	KEY_two = secret_KEY_two_used_in_CRYPTO
+	With this we dont need the
+
+
+
+
+WORK_MODE
+	personal login
+	admin of APP_one
+	admin of APP_two
+	group of DESKTOP_IO_PORTS_PC_KBD_SCN_MOUSE_USB_EXTRAS
+
+		desktop gets permit to use USB
+		/media/$USER/$VFS_one_USB_NTFS_LABEL/ # ROOT MEDIA
+
+	focus_TASK_FFFF_helpful_alias_text # get_FFFF_of_alias(ALIAS)
+	focus_TASK_FFFF_helpful_alias_text # get_FFFF_of_alias(ALIAS)
+	# return ALIAS.get_u15_idx # _FFFF # fmt_04X
+
+		need forum to pick best C_IDENT IDENT "fmt_04X"
+
+			fmt_04X		PERFECT
+
+			fmt_4X		ALIAS
+			fmt_04X		PERFECT
+			fmt_X		MINIMALIST
+			fmt_x		ALIEN
+
+			fmt_PERCENT_04X
+
+			// DIALECT adds _ around("%") ALSO("%%")
+			// C does not interpret PERCENT
+			// FMT does
+			// SUBLEX manually adds "_" around PERCENT
+			// SUBLEX that comes with AUTO LEX_EDGE_GAP_UNSERLINE
+			// SUB_LEX ASCII_UNDERLINE _as_SUBLEX_GAP
+			// SUB_LEX GAP is not a gap it is _ 
+			// SUB_LEX_GAP_DETECT += SPECIAL "_" at BEGIN
+			// SUB_LEX_GAP += "_" // CIDENT99 a2 includes _
+			// SUB_LEX_GAP += "-" // DATE used in filename is OK
+			// BUT "-" looks like math operator between 2 words
+			// AMBIG // WEGHT look_for_YEAR_MM_DD_in_native
+			// CERTAIN "YYYY-MM-DD" // FILENAME
+			// CERTAIN "YYYY_MM_DD" // VAR_NAME
+			// USAGE: of course you can request FMT2 UDEF
+			// USAGE as applied by CT_RT and in SAFE_ZONE
+			// 
+
+	
+
+
+
+

@@ -1,0 +1,60 @@
+	2024-12-15
+	2024-12-15_WEB_SSH_TLS_VFS_API_SQL_.txt
+
+	_WEB
+	_SSH
+	_TLS
+	_VFS
+	_API
+	_SQL
+
+	Web is important, but so it TLS, and IP4, and COMMS
+
+	TCL has a tlsbundled
+
+	Tcl - merge same spelling - hijack that Tcl_Obj into TOKEN
+
+		STR0 = from_P0P2
+
+		TYPE = Module_one_TREE_ITEM_SPEC _as_SPELLING
+		// ATOM became LIST ARG0 ARG1 ...
+		// ATOM become LIST ARG0 // STOP CMD0 with no args
+
+		TYPE = Module_HEAP_ITEM_FIELD_EXPR
+		TYPE = see_CODE_POINT() // obtains XPOS and nearest PRESET
+		PRESET CODE_POINT XPOS TYPE HEAP_ITEM
+
+			HEAP = PICK_HEAP[idx_HEAP]
+
+			 ANON_LIST_TO_PICK_FROM
+			 [0] an_ITEM
+			 [1] an_ITEM
+			 [2] an_ITEM
+			 [N] BEYOND_END_OF_ARGV // ARGV_N == ARGV_argc //
+
+		TYPE {
+			STR0 is IDENT 
+			STR0 is SPELLING
+			STR0 is ANYSTR
+
+			PTR1 = EA_OBJ_1
+			PTR2 = i64_OPTION used as ARG into CMD0
+
+		OPCODE_on_Tcl_Obj	CALL that function NOW
+
+		STR_SPEC_one_two	
+			unlimited number of SPEC (ie memory is the limit)
+			but all using a few TUPLO templates
+			some use GLOBALS
+	
+	BEHIND_TREE_of_NAMESPACE is tepid
+	GLOBAL is bold
+
+			an_ITEM decides it wants to make a name for itself
+			it reserves its own SPELLING 
+
+			this works because first-come-first-served
+			this works because ONE namespace of this SITE
+		}
+
+

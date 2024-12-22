@@ -22,7 +22,8 @@ rm -f $PNG
 cat_file_one() 
 {
 #	sed 1d $CSV | awk -F ',' '{print $3}' | tee /tmp/log1.txt > /dev/null
-	sed 1d $CSV 
+	sed 1d $CSV # MACRO cat_FILE_remove_first_line
+	# CXX MACRO # S1 == $CSV # MATCH_HERE_CODE_POINT #
 }
 
 cat_file_year_val() 

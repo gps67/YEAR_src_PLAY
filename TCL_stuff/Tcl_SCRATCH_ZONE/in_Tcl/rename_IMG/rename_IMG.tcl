@@ -29,8 +29,8 @@ set ZONE_NAME MoGueyeSalisbury_Jan
 set ZONE_NAME IyaSako_Salisbury
 
 set ZONE_NAME Iya_Sako_Salisbury
-set ZONE_NAME BH6
 set ZONE_NAME border_line
+set ZONE_NAME BH6
 
 
 
@@ -59,7 +59,7 @@ proc my_main {list} {
 			puts "# ZONE_NAME # $ZONE_NAME #"
 			continue
 		}
-		if {!name_one} {
+		if {!$name_one} {
 			puts "# ERROR # I really expect --NAME zonename"
 			return 
 		}

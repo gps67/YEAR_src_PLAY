@@ -110,11 +110,17 @@ in
 	Artist="Annie Parker Collective"
 	Samba=RG2
 	Artist="bodhran_basics"
-	Sess_List="_sess_1 _sess_2"
+	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
+	#
+	Samba=READIPOP_AGM_Hootenannay
+	Artist="Readipop AGM Hootenannay"
+	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
+
 ;; Fri)
 	Samba=Velocity
 	Artist="EDE TheMay AugList"
 	Sess_List="_sess_1 _sess_2"
+	
 ;; Sat)
 	Samba=JP_Workshop
 	Artist="JP Percussion"

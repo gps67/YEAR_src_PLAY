@@ -1,0 +1,126 @@
+
+	AGENT
+	PROVIDER
+
+	AGENT
+	PROVIDER
+
+		PROVIDER	// but actually bounces via AGENT to PROVIDER
+		AGENT		// the adapter_api_AGENT_to_get_PROVIDER
+		PROVIDER	// of_SERVICE of_DATA of_RESOURCE
+
+	PROVIDER
+	
+		AGENT
+
+	PROVIDER
+
+		ACTUAL_PROVIDER	// SUB_LEX_has_a_GROK_on_DIALECT_PAIR
+		// eg adjectinve noun
+		// eg verb noun
+		// eg lhs_rhs // and either can be SELF_as_lhs ...
+
+		PROVIDER	// OUR THIN FILTER LAYER
+		AGENT		// LIBR provides API for various
+		PROVIDER	// UDEF_provides_API_for listed
+	
+	VFS mount - or not -
+	VFS cache - even when disconnected
+	VFS agent - we supply VFS TREE of files as PARAMETER passed through
+	VFS_PROVIDER
+	VFS_CONSUMER
+
+	SERVICE
+
+		PROVIDER
+
+			API_DECL
+			API_AVAR
+			API_RELAY += TRANSPARENT_FILTER _or_thin_layer
+
+		PROVIDER
+
+			AGENT to actual PROVIDER over RELAY as SESS
+
+			XDR_RPC // GEN from SUBSET
+			RPC_XDR
+			RPC_buffers // SPEC of PKT_IN // needs to be CALLED
+			RPC_CACHED // this is usefil // REPLACE with UDEF_in_SITU
+			UDEF_in_SITU += MEANS UDEF must PROVIDE all ASKABLE
+			// OPTION LINK requires no ABSENT ITEMS
+			// OPTION FAST use of NON_NULL
+			// OPTION KNOWN NEVER_NULL
+			// OPTION KNOWN NEVER_NULL_meaning_ABSENT
+			// OPTION KNOWN PROPER NULL_meaning_ABSENT
+			// OPTION KNOWN NEVER_MINUS
+			// OPTION KNOWN ALWAYS_MINUS
+			// OPTION DETECT DETECT_MINUS
+
+
+ PROVIDER VIA SECOND PROVIDER // UDEF // LIBR // NAME // IDX = N ++ 
+
+
+	AGENT
+	PROVIDER
+
+ 	IDX_t idx = (UNS) N ++ // ALLOCATOR for IDX("AVAR")
+
+		u31 is ideal on CISC COMPILER_32 CPU has i32 from i64
+
+		GETTER
+		COMPILER is the MINI_MACHINE FSM_CXX_DECODER
+
+			GEN C for tinycc
+			GEN C for gcc
+			GEN C for llvm
+			GEN CXX for TASK
+			GEN_CXX DECL_FSM
+			GEN_CXX FSM DECL_FSM
+			GEN_CXX FSM FSM_DECL
+
+			GEN CXX 
+			ASM CXX // COMPILE CXX_ARGV to C++ to WASM 
+			RUN CXX 
+
+		FSM_CXX _DECODER // _CT_RT ENCODER DECODER // DECL DONE //
+
+			Not exactly an FSM but very similar
+			LOCN += LOCN_from_CSR // a fundamental
+
+			ENCODE
+
+				printf( "%s_%04X", name, idx )
+
+			DECODE
+				scanf_2( "%s_%04X", name, idx )
+			// if STR == "%s_04X" return MATCH_VAR_NAME
+			// Q2_VAR_NAME 
+			// Q2_VAR_NAME _ANYSTR
+
+				scanf_2( "%s_%04X", name, idx )
+
+			// if FMT_STR == "%s_04X" { ... }
+				
+				if have pair FMT DATA // CODE_POINT
+
+			// DECODE_ARGV // Parse_ARGV
+			// if DATA == STR // KNOW ALWAYS IS
+			// if STR == "%s_04X" 
+
+ DETAIL FOCUS
+
+ 	this increases texture exped
+ 	this increases useful optimisations
+ 	this increases time per line // would automate at some point
+	// manually writing next layer onto generics
+	// reduce to direct then VIEW_VARS
+
+	HANDFUL of BASIC SHAPES in HEAP with SPEC and SPELLING
+
+	only grows where used, option to inline deduce PREP_CXX
+
+
+
+	AGENT
+	PROVIDER
+

@@ -199,6 +199,150 @@ using namespace SPOUT;
 
 	GEN_PS
 	GEN_Document // _t _pdf
+
+	#if 0
+		class test_SPOUT_base 
+		: public obj_ref
+
+			PTR_to_OBJ 
+			REF_to_OBJ // eg idx_OBJ
+			REF_COUNT_of_OBJ // ie ref_count or
+			REF_KEPT_of_OBJ // during SESS
+			// accumulate BATCH of UPDATED VALUES
+
+			OPTION ref_count
+			OPTION ref_keep
+			OPTION GC_mark_as_active
+			OPTION report all external edits as on_CHANGE
+			OPTION report on_CHANGE to SELF # if NO_CHANGE return OK;
+			OPTION report on_CHANGE to SELF # if NO_CHANGE WARN_CALLER
+			OPTION LOG BOTHERED_for_NO_CHANGE_count
+
+		OPTION obj_ref_counted_base // single BIND counts to 1 // 
+		 OPTION DEBIND
+
+		 SPOUT is GEN_PS 
+		 SPOUT is GEN_STO_PARSE_RUN _Module
+
+		 	_Module provides TEMPLATE for Module
+		 	_Module provides TEMPLATE for USAGE // in_SAMPLE
+
+		 SPOUT helps to prepare PAGE
+		 SPOUT helps to prepare DTP PAGE BLOCK Z_TEXT LAYOUT PHRASE ITEM
+		 SPOUT helps to prepare DIAG for BLOCK
+		 SPOUT helps to prepare FOTO for BLOCK //
+		 // labels borders ballons index_use // AUTO_ADJUST_TO_FRAME //
+
+		 AUTO_ADJUST _to_FRAME
+
+		 	OPTION transparent borders
+		 	OPTION transparent main_area
+
+			OPTION stretch_SELF_TO_FRAME
+			OPTION scroll_SELF_within_FRAME // slightly used added
+
+			OPTION change internal layout to suit FRAME
+			OPTION enquire what does it mean to suit FRAME
+			eg FRAME wants to resize to 100% SCREEN 
+			eg FRAME wants to task track in SESSION
+
+		REQUIRE LEX - to WORK as EXPECTED
+		REQUEST LEX - triggers BENCH to search for LEX PROVIDERS
+		SUGGEST LEX - triggers LIBR which claims all LEX USAGE
+		PROVIDE LEX - LIBR provides LEX via API
+
+			CT_RT architecture
+			short-circuits N nested layers
+			but that list of layers is available in CT_RT _NOW
+
+			SECOND SCAN over TEXT 
+			now using full PSG VIEW
+
+				ironically it works near blind
+				it is basically quick with locks and threads
+
+			USAGE ARGV "{ PROVIDE LEX }"
+
+				note how "ARGV" was applied to following "DATA"
+				and DATA is ITEM, ARGV_of_ITEM_PHRASE_ITEM
+
+		API LEX
+
+			most of the time it is strong typing
+			LEX_SPELLING is unique # OPTION is_unique_spelling
+			LEX_SPELLING is confused # OPTION is_repeat_spelling
+			// accidental alias but independent before confusion
+			// AUTO_MERGE resolves a MINI namespace as an FSM //
+			// we go for full separation of namespaces
+			// we got our outer namespace as a tagged_this_year
+			// within that we call stuff what we like, ASCII, utf8
+			// CSET_BYTE _ASCII _LATIN _UTF8 _UTF8_FONT_one_latin
+			// CSET CIDENT99 // RTFM // 
+
+			MATCH SPELLING
+
+				FILTER can BIND to UC_lc 
+				FILTER can BIND to ALIAS tree
+
+				exact match
+
+				P0_N	// current design // P0 may be API_P0
+				P0_P2	// MAGNET_MATCH P0_N from P2 = P0+N
+				STR	// uses P0_N
+				STR0	// requires second copy with a NUL
+
+			MATCH SPELLING ANYSTR // P0_N_STR _CSET _from_SESS
+
+				STR must now contain CSET
+				STR may direct use of MMAP_stream_FILE
+
+				CT_RT uses XPOS += DIR FILE OFFS
+				CT_RT uses XPOS += DIR FILE LINE CPOS // glyph
+				CT_RT uses XPOS += DIR FILE LINE BPOS // byte
+
+				i64 {
+				 opcode "{ XPOS += DIR FILE LINE BPOS }"
+				 MINI_MACHINE buffer OFFS_in_FILE_of_BOLN CPOS
+				 FLAG AVAR as updated_but_no_NEW_VAL
+				 FLAG AVAR as ZAP_OLD_VAL // forgotten API
+
+				 	on_DELETE OLD_VAL 
+					on_RELEASE AVAR("OLD_VAL")
+					on_LOG_ALL_EDITS_before_MERGE_EDITS
+					on_LOG_ALL_EDITS_after_MERGE_EDITS
+
+					// _one // STREAM
+					// _two // MMAP_FILE // unaligned
+					_VFS unnaligned_TEXT_in_HEAP_of_FILES
+					_VFS_FILE_SEGMENTS eg ISO in ISO_in_EXT
+
+				 opcode "{ XPOS += DIR FILE LINE BPOS }"
+
+				  XPOS
+
+				  DIR
+				  FILE
+
+				  LINE		u23 or switch up
+
+				  BPOS		127 or switch to _two
+
+	MACRO 
+		OFFS_of_LINE
+		OFFS_of_LINE_plus_BPOS
+
+		EDGE_CHECK
+		OFFS_of_NEXT_LINE // or OUTSIDE or LINE_P2
+		
+		P0 = OFFS_of_LINE // add_weight interpret as P0 of P0P2
+		P2 = OFFS_of_EOF // add_weight interpret as P2 of P0P2
+
+
+				}
+
+
+		
+	#endif
 */
 class test_SPOUT_base // : public obj_ref
 {

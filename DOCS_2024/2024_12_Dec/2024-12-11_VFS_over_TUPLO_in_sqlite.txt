@@ -1,0 +1,14 @@
+	2024-12-11
+	2024-12-11_VFS_over_TUPLO_in_sqlite.txt
+
+	Trigger a Python get_LIST
+	Trigger a sqlite get_LIST
+
+	trigger on_CHANGE( CHANGE ) // into tree_under_python
+	trigger on_CHANGE( CHANGE ) // into sqlite
+	trigger on_CHANGE( CHANGE ) // into CACHE
+
+	CACHE LIST unchanged since atime
+	register CACHE for changes,
+
+

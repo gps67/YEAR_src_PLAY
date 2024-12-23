@@ -1,0 +1,17 @@
+. ../go__fns
+URL=https://nodejs.org/dist/v22.12.0/node-v22.12.0.tar.gz
+fn_grp_url js $URL
+# fn_no_VPATH
+fn_unpack
+fn_with_grp js
+fn_with_grp libr
+fn_configure_pfx \
+--debug \
+--debug-node \
+--gdb \
+--shared-openssl \
+--shared \
+
+fn_make 
+fn_make install
+

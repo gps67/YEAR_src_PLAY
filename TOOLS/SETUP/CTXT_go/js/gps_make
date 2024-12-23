@@ -1,0 +1,17 @@
+. fns_VARS
+var_del PATH \
+ /tools/x86_64/py/bin \
+ /tools/CTXT/py/bin \
+#
+
+type python
+type python3
+
+(
+NCPU=12
+NCPU=4
+set -x
+nice make -j ${NCPU}  && make install
+#
+
+) 2>&1 | tee -a $0.log

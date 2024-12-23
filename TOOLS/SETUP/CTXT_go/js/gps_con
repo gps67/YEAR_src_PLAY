@@ -1,0 +1,24 @@
+. fns_VARS
+var_del PATH \
+ /tools/x86_64/py/bin \
+ /tools/CTXT/py/bin \
+#
+
+type python
+type python3
+
+# default build is staic - no v8 abailable
+
+(
+./configure \
+--prefix=$HOME/G/prefix/node \
+--debug \
+--debug-node \
+--gdb \
+--shared-openssl \
+--shared \
+
+#
+# --shared-libuv \
+
+) 2>&1 | tee -a $0.log

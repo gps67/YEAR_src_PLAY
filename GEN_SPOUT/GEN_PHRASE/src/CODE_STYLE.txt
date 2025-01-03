@@ -1,0 +1,113 @@
+#! RTFM 
+#  CODE_STYLE.txt
+
+IDEA
+SEED
+CORE
+ITEM
+	STR0 get_env( STR var_NAME );
+
+		STR0 var_VALUE = get_env( var_NAME );
+
+		if( !var_VALUE ) KNOW_ABSENT;
+		if(  var_VALUE ) KNOW_AVAIL; // _PRESENT _CACHED _KEPT
+
+		return var_VALUE;
+	
+	 vool get_env( STR varname, STR0_AVAR GOT ); // API providing RO AVAR.VALUE
+		STR0 var_VALUE = /*self.*/ get_env( var_NAME );
+		AVAR_GOT = var_VALUE;
+		return var_VALUE;
+
+	LIVE makes STR0 available for the duration of this CALL
+
+		that stepecifically does NOT include HYBERNATED
+		and also those enquiries not work a packet exchange
+		simply put a marker RECALC on any change
+		RECALC_on_demand
+	
+	SESS has bunch of CACHED CACHE_ABLES
+
+		STEP is an optimistic list of STEPS 
+		LOCKS need mid way are guessed listed and obtained and released
+		LOCKS run STEP for an INSTANT
+		for NEW_VALUES see slow_ripple of STEP // of_THIS_STEP
+
+
+	TODO RPC
+
+		XDR as ARGV of STR0
+		PARSED "{ lookup %s }" 
+		KNOW_TODO # CACHE sometimes KNOW_DONE TODO
+
+
+		TOKEN is "KNOW TODO TOKEN"
+		CCALL lookup ARG_one # there is no _two yet
+	
+SESS_STEP
+
+	There are 2 parallel layers
+
+		what we want and predict
+	at_best SPIN LOCK
+		LOCK granted for SPIN_LOCK_DURATION
+		DATE WRITE
+		LOCK release
+	at_best QUEUED_LOCK
+		LOCK granted LOCK_to_QUEUE_for
+		// OPTION for LIST of LOCKS to be granted at once
+		// OPTION CALLER is our SCHEDULER running BATCH first STEP
+		// OPTION running BATCH second STEP_LIST
+		... // 1 sec CPU
+		DATE WRITE
+		... // 1 sec CPU
+		LOCK release
+
+		`
+	at_best_QUEUED_LOCK_POOL
+
+		it just happens that we have independent DATA ZONES
+		and different tasks work on different places
+		particularly within this MACRO CALL joining tables
+
+		NEED LIST OF LOCKS AVAILABLE
+
+		what values came back
+		what actually happened 
+
+	LOCK USAGE CYCLES
+
+		keep a few items locks for a while
+
+		keep LOCKS over 2 min pause
+
+		keep locks for the DAY
+		but condensed down to BATCH_TAPE_for_DAY
+
+			already merged overwrites
+
+	
+	GIT DIFF 
+
+		lose detail when merging into higher V.1.2.3
+
+		eg SECOND
+		eg DAY
+		eg MONTHLY
+		eg ANNUAL
+		eg BEFORE
+		eg AFTER
+	
+	  	ONE_VALUE two EDGES
+
+		LEFT_VALUE_RIGHT
+		EDGE_VALUE_EDGE
+
+	   T0_V2_T2
+	V1_T0_V2_T2_V3
+
+		TWO_VALUES_one_EDGE
+
+		ONE_EDGE_TWO
+
+

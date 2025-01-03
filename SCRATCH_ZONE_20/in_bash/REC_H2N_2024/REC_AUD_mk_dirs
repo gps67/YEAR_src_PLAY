@@ -81,11 +81,11 @@ in
 	Artist="Greg Mayston"
 	Sess_List="_sess_1 _sess_2 _sess_3"
 	Sess_List="_sess_1"
-;; Tuex)
-	Samba=Global
-	Artist=Mixtape
-	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Tue)
+	Samba=RSAC 
+	Artist=NYE
+	Sess_List="_sess_1 _sess_2 _sess_3"
+;; Tuex)
 	Samba=Samba
 	Artist=Beatroots
 	Sess_List="_sess_1 _sess_2 _sess_3"
@@ -115,6 +115,10 @@ in
 	Samba=READIPOP_AGM_Hootenannay
 	Artist="Readipop AGM Hootenannay"
 	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
+
+	Samba=irish_sessions
+	Artist="OLOP"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 ;; Fri)
 	Samba=Velocity

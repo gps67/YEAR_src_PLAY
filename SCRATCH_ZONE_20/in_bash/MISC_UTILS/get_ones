@@ -1,0 +1,112 @@
+# exit
+PATH=$PATH:/var/TV/get_iplayer/:/home/gps/G/PVR/var_TV_scripts/get_iplayer/
+# cd /home/gps/2016/PVR_2016
+D1=`date +/home/gps/%Y/PVR_%Y`
+D1=/var/TV/PVR/FETCH
+cd $D1 || ask_do mkdir $D1
+cd $D1 || exit
+pwd
+# http://www.bbc.co.uk/iplayer/episode/b062vqcx/the-outcast-episode-1
+MODES=flashhigh
+MODES=$MODES,hlshigh
+MODES=$MODES,flashaachigh
+MODES=$MODES,flashaaclow
+MODES=$MODES,flashaacstd
+MODES=$MODES,hlsaacstd 
+
+# INFO: Try using --modes=dvflow,dvfxhigh,dvfxsd,hvfxhigh,hvflow,hvfhigh,hvfxsd
+MODES=dvflow
+#MODES=$MODES,dvfxhigh
+MODES=$MODES,dvfxsd
+#MODES=$MODES,hvfxhigh
+MODES=$MODES,hvflow
+#MODES=$MODES,hvfhigh
+MODES=$MODES,hvfxsd
+
+oldD_A() {
+ [ -d logs ] || mkdir logs
+ echo $0 $*
+ get_iplayer 	\
+	--nopurge	\
+	--subtitles	\
+	--modes=$MODES	\
+	--pid=$1	\
+	--pvr-queue	\
+ 2>&1 | tee logs/log_get_$1.log
+#
+#--modes=flashhigh,hlshigh,flashaachigh,flashaaclow,flashaacstd,hlsaacstd \
+#--pid=b063d5q5 \
+}
+
+## web queue
+# comment Windrush: Movement of the People -  (queued: Mon Feb 18 02:37:23 2019)
+# force 0
+# fps25 0
+# metadata generic
+# pid m0002pkp
+# subtitles 1
+# thumb 1
+# type tv
+
+
+D_A() {
+ [ -d logs ] || mkdir logs
+ echo $0 $*
+ get_iplayer 	\
+	--subtitles	\
+	--pid=$1	\
+	--pid-recursive	\
+	--pvr-queue	\
+ 2>&1 | tee logs/log_get_$1.log
+#
+#--modes=flashhigh,hlshigh,flashaachigh,flashaaclow,flashaacstd,hlsaacstd \
+#--pid=b063d5q5 \
+}
+
+# D_A b06n32k7 cuffs1
+# exit
+
+E() {
+	if yes_no DOWNLOAD "$@"
+	then
+		set -x
+		Ex "$@"
+		set +x
+		echo "Exit code $?"
+	fi
+}
+Ex() {
+	# echo "$@"
+	local E1='https*://www.bbc.co.uk/iplayer/episode/\([^/]*\)$' 
+	local E2='https*://www.bbc.co.uk/iplayer/episode/\([^/]*\)/$' 
+	local E3='https*://www.bbc.co.uk/iplayer/episode/\([^/]*\)/.*$'
+	# programmes/ doesnt work - it is the website for future shows ?
+	local E4='https*://www.bbc.co.uk/programmes/\([^/]*\)$'
+	local E5='https*://www.bbc.co.uk/programmes/\([^/]*\)/.*$'
+	local E6='https*://www.bbc.co.uk/iplayer/episodes/\([^/]*\)/.*$'
+	ID1=`expr match "$1" "$E1"` \
+||	ID1=`expr match "$1" "$E2"` \
+||	ID1=`expr match "$1" "$E3"` \
+||	ID1=`expr match "$1" "$E4"` \
+||	ID1=`expr match "$1" "$E5"` \
+||	ID1=`expr match "$1" "$E6"` \
+||	return 1
+	echo "ID1 = '$ID1'"
+	D_A "$ID1"
+}
+E https://www.bbc.co.uk/iplayer/episode/p036g8bq/elizabeth-r-1-the-lions-cub
+E https://www.bbc.co.uk/iplayer/episode/p036g8bw/elizabeth-r-2-the-marriage-game?seriesId=unsliced
+E https://www.bbc.co.uk/iplayer/episode/p036g8c1/elizabeth-r-3-shadow-in-the-sun?seriesId=unsliced
+E https://www.bbc.co.uk/iplayer/episode/p036g8c5/elizabeth-r-4-horrible-conspiracies?seriesId=unsliced
+E https://www.bbc.co.uk/iplayer/episode/p036g8c9/elizabeth-r-5-the-enterprise-of-england?seriesId=unsliced
+E https://www.bbc.co.uk/iplayer/episode/p036g8cf/elizabeth-r-6-sweet-englands-pride?seriesId=unsliced
+exit
+
+E https://www.bbc.co.uk/iplayer/episode/p00z8bp6/brazil-with-michael-palin-1-out-of-africa
+E https://www.bbc.co.uk/iplayer/episode/p08fkgr8/the-luminaries-series-1-1-fingerprint?seriesId=p08fkfpb
+E https://www.bbc.co.uk/iplayer/episode/p08fkgty/the-luminaries-series-1-2-the-place-you-return?seriesId=p08fkfpb
+E https://www.bbc.co.uk/iplayer/episode/p08frmg3/the-luminaries-series-1-3-leverage?seriesId=p08fkfpb
+E https://www.bbc.co.uk/iplayer/episode/p08frmt6/the-luminaries-series-1-4-the-other-half?seriesId=p08fkfpb
+E https://www.bbc.co.uk/iplayer/episode/p08frn6q/the-luminaries-series-1-5-paradox?seriesId=p08fkfpb
+E https://www.bbc.co.uk/iplayer/episode/p08frnb7/the-luminaries-series-1-6-the-old-moon-in-the-young-moons-arms
+exit

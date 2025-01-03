@@ -35,5 +35,6 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-11-26, 25745,  18.28, 24.07, Y Full Morrissons SP BH
 2024-12-13, 25953,  26.70, 35.43, Y Full ASDA
 2024-12-18, 26143,  20.99, 27.85, Y Full Morrissons from BH
+2024-12-27, 26364,  24.07, 31.94, Y Full Morrissons from BH
 
 

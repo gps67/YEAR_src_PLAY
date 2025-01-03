@@ -95,6 +95,16 @@
 	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$(sub))
 #	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
 
+# WELL THIS WONT WORK - it is Tcl Module
+# NEED dgb_invoke # NEED FLAG # FAST STOP # FAST_KNOW_MOVE #
+# NEED gdb=/tools/x86_64/ccs/bin/gdb
+#	db=/tools/x86_64/ccs/bin/gdb
+	db=gdb
+
+gdb_test1: $(EXEC1)
+	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
+
+
 
 .SUFFIXES: .o .cxx .so .exec .h
 

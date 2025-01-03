@@ -1,0 +1,98 @@
+
+	TCL_notes.txt
+
+	tcl9 -> PICK # have to ALIAS to specific A_DIR A_LOCN
+	tcl9.0.0/ is sample filename 
+
+RTFM tcl9/generic/tcl.h
+
+Interesting list of types
+
+#define TCL_ARGV_CONSTANT       15
+#define TCL_ARGV_INT            16
+#define TCL_ARGV_STRING         17
+#define TCL_ARGV_REST           18
+#define TCL_ARGV_FLOAT          19
+#define TCL_ARGV_FUNC           20
+#define TCL_ARGV_GENFUNC        21
+#define TCL_ARGV_HELP           22
+#define TCL_ARGV_END            23
+
+
+	typedef void * ClientData;
+
+typedef struct Tcl_Obj {
+    Tcl_Size refCount;          /* When 0 the object will be freed. */
+    char *bytes;                /* This points to the first byte of the
+                                 * object's string representation. The array
+                                 * must be followed by a null byte (i.e., at
+                                 * offset length) but may also contain
+                                 * embedded null characters. The array's
+                                 * storage is allocated by Tcl_Alloc. NULL means
+                                 * the string rep is invalid and must be
+                                 * regenerated from the internal rep.  Clients
+                                 * should use Tcl_GetStringFromObj or
+                                 * Tcl_GetString to get a pointer to the byte
+                                 * array as a readonly value. */
+    Tcl_Size length;            /* The number of bytes at *bytes, not
+                                 * including the terminating null. */
+    const Tcl_ObjType *typePtr; /* Denotes the object's type. Always
+                                 * corresponds to the type of the object's
+                                 * internal rep. NULL indicates the object has
+                                 * no internal rep (has no type). */
+    Tcl_ObjInternalRep internalRep;
+                                /* The internal representation: */
+} Tcl_Obj;
+
+SUB_LEX eg Tcl_ObjType
+
+ *----------------------------------------------------------------------------
+ * The following structure represents a type of object, which is a particular
+ * internal representation for an object plus a set of functions that provide
+ * standard operations on objects of that type.
+ */
+
+typedef struct Tcl_ObjType {
+    const char *name;           /* Name of the type, e.g. "int". */
+    Tcl_FreeInternalRepProc *freeIntRepProc;
+                                /* Called to free any storage for the type's
+                                 * internal rep. NULL if the internal rep does
+                                 * not need freeing. */
+    Tcl_DupInternalRepProc *dupIntRepProc;
+                                /* Called to create a new object as a copy of
+                                 * an existing object. */
+    Tcl_UpdateStringProc *updateStringProc;
+                                /* Called to update the string rep from the
+                                 * type's internal representation. */
+    Tcl_SetFromAnyProc *setFromAnyProc;
+                                /* Called to convert the object's internal rep
+                                 * to this type. Frees the internal rep of the
+                                 * old type. Returns TCL_ERROR on failure. */
+#if TCL_MAJOR_VERSION > 8
+    size_t version;             /* Version field for future-proofing. */
+
+    /* List emulation functions - ObjType Version 1 */
+    Tcl_ObjTypeLengthProc *lengthProc;
+                                /* Return the [llength] of the AbstractList */
+    Tcl_ObjTypeIndexProc *indexProc;
+                                /* Return a value (Tcl_Obj) at a given index */
+    Tcl_ObjTypeSliceProc *sliceProc;
+                                /* Return an AbstractList for
+                                 * [lrange $al $start $end] */
+    Tcl_ObjTypeReverseProc *reverseProc;
+                                /* Return an AbstractList for [lreverse $al] */
+    Tcl_ObjTypeGetElements *getElementsProc;
+                                /* Return an objv[] of all elements in the list */
+*/
+    Tcl_ObjTypeSetElement *setElementProc;
+                                /* Replace the element at the indicies with the
+                                 * given valueObj. */
+    Tcl_ObjTypeReplaceProc *replaceProc;
+                                /* Replace sublist with another sublist */
+    Tcl_ObjTypeInOperatorProc *inOperProc;
+                                /* "in" and "ni" expr list operation.
+                                 * Determine if the given string value matches
+                                 * an element in the list. */
+#endif
++-- } Tcl_ObjType;
+

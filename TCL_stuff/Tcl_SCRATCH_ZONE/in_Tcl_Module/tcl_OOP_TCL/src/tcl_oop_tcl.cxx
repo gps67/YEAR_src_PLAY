@@ -50,10 +50,12 @@ TRUSTED MODULE
 using namespace TCL;
 
 extern "C"
+
 // int Optical_Init( Tcl_Interp *interp )
 // NO // int MODULE_NAME_CAP1 ##_Init( Tcl_Interp *interp )
 // OK // MODULE_INIT( Optical ) // Optical_Init
 // NO // MODULE_INIT( MODULE_NAME_CAP1 ) // MODULE_NAME_CAP1_Init
+
 MODULE_INIT( Optical )
 {
 
@@ -91,6 +93,8 @@ MODULE_INIT( Optical )
 	// progname_argv0 = // where gdb_invoke wants it
 	// "/tools/CTXT/tcl/bin/tclsh";
 	set_prog_name( Tcl_GetNameOfExecutable() );
+ if(1)	INFO("set_prog_name( Tcl_GetNameOfExecutable() == %s)",
+		Tcl_GetNameOfExecutable() ); // /usr/bin/tclsh
 //	set_prog_name( "STUPID_CTXT_NAME" );
 
 #if 0
@@ -106,8 +110,8 @@ MODULE_INIT( Optical )
 	if( TCL_OK != declare_OBJ_functions( interp, decoder ))
 	 return TCL_ERROR;
 
-	int exact = 0;
-	Tcl_PkgRequire(interp, "PLUS", "0.1", exact);
+	int opt_exact = 0;
+	Tcl_PkgRequire(interp, "PLUS", "0.1", opt_exact);
 	// clientData for a Package means what ??? // OBJ_module ??
 	// that is the clientData for the function
 	// how to get for the package - would be slow //

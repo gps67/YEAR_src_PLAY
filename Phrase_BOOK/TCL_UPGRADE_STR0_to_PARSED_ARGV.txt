@@ -1,0 +1,107 @@
+
+	TCL_UPGRADE_STR0_to_PARSED_ARGV
+
+	TCL		CXX is different, so we need a common core
+	UPGRADE		(1) type NULL PTR1 NULL PTR2 NULL // NAME = VALUE //
+	STR0		(1) STR0 -is- tcl_str_one (2) STR0 AVAR = "STR0"
+	to
+	PARSED		PARSE(str_one) // type_name type == "str" name == "one"
+	ARGV		ARGV[argc]  started as argv[argc]
+
+		we keep local "argc"
+		we soon rename as "ARGS_N" locally "N" OPTIONALLY "ALIAS"
+
+			ie in a community of arrays
+			get_N() = RET_VAL from ARGS_N[ name_of_specifc_array ]
+
+				"ARGS_N = array[ AVAR_N ]"
+
+					mention "AVAR_N" 
+					implies "AVAR_N" already defined, maybe
+
+			DECL
+				A_VECTOR_of
+				A_POOL where 
+				A_LOOKUP_STR // as STR_N N_bytes
+
+ STRANGE RESONANCE with 2 MEANINGS
+
+ 	N_bytes
+	often means
+	N
+
+ 	N_bytes
+	is supposed to mean
+	struct += N += bytes += ALIAS N_bytes N bytes USAGE N for both
+
+	"AVAR"
+	is supposed to mean
+	AVAR.N
+	AVAR.bytes
+	AVAR.as_N_bytes
+
+ TCL_UPGRADE_STR0_to_PARSED_ARGV
+
+
+	TCL immediately produces its basic STR0 with ITEM_HEAD
+
+		TCL permits you to upgrade ITEM_HEAD with or without STR
+
+			TCL uses ITEM_HEAD to hold N_STR0
+	
+	TCL then passes this as a VALUE PARAMETER wherever it goes
+
+		refcounting does all the work
+	
+	Any C code (in this direct model) can, and should rewire ITEM_HEAD
+
+		values are SPELLING - well test as so if you follow rules
+		values are not SPELLING - possible second or third original
+
+		if you follow a few rules, a few tests have shown ONE is it.
+
+		Basically you have to use that WORD within a processed
+		script function, and it probably helps if that WORD
+		is also a valid IDENT of a simple ASCII subset
+
+		Then Tcl compiles the function, well tokenises it,
+		and it also wants to have single unique STR0
+		with many refs to it.
+
+		Noone can ever guarantee that this TCL internal tokenisation
+		happened. Maybe multiple modules, dont share lookup SPELLING
+		tables. 
+
+		So far, I have NEVER seen TCL provide anything other
+		than a plain type==null STR0, and I ALWAYS upgrade
+		those items to type=type_UDEF and again TCL has never
+		complained, nor reclaimed them. I have never had to call CTOR
+		more than once on the few tests I ran
+
+		Non C code cannot (yet) rewrite the ITEM_HEAD,
+		but there are cases where a STR0 can get interpreted as a LIST.
+		And sucessful attempt, will have Tcl itself, rewrite the
+		ITEM_HEAD for type_LIST and usr PTR1 and PTR2 for itself.
+
+		That is always a possibility, but I never thought of testing
+		for use as a list, and seeing the upgrade of an upgrade,
+		switching between types
+
+		STR0 is never modified, with those switches, but
+		the ITEM_HEAD is passed trhough a daft Tcl design.
+		The need is to tell the old owner of this ITEM,
+		that it needs to generate STR0 and let go of PTR1 and PTR2
+
+		Then the new owner of this ITEM, is asked to upgrade it.
+		We only go down this route, if we see ITEM is already a LIST.
+		One plausible way, would be to 
+		obtain a second new ITEM that points to the ITEM held as ORIGINAL
+
+		Basically TOKENISATION works as SPELLING.
+
+		Basically Tcl and this HACK co-exist well
+
+ RTFM Tcl_Obj.h
+ /tools/x86_64/tcl/_src/tcl9.0.0/generic/tcl.h
+				 
+

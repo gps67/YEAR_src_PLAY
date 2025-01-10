@@ -1,0 +1,22 @@
+#!/bin/bash
+
+. fns_ASKS
+
+say_do ./parse_argv.tcl a b c
+say_do ./parse_argv.tcl d e f --ZONE_NAME asd
+say_do ./parse_argv.tcl g h i --ZONE_NAME 
+
+exit
+
+./parse_argv.tcl a b c
+# ZONE_NAME 
+# ARGS { a b c }
+gps@x79:~/G/rename_IMG$ ./parse_argv.tcl a b c --ZONE_NAME asd
+# --ZONE_NAME asd # requested
+# ZONE_NAME asd
+# ARGS { a b c }
+gps@x79:~/G/rename_IMG$ ./parse_argv.tcl a b c --ZONE_NAME 
+# FAIL # MISSING ARG 
+# ZONE_NAME 
+# ARGS { a b c }
+gps@x79:~/G/rename_IMG$

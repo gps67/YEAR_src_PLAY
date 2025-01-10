@@ -31,6 +31,11 @@ set ZONE_NAME IyaSako_Salisbury
 set ZONE_NAME Iya_Sako_Salisbury
 set ZONE_NAME border_line
 set ZONE_NAME BH6
+set ZONE_NAME RSAC_NYE
+set ZONE_NAME XMAS_Wed
+set ZONE_NAME Tue_BH6
+set ZONE_NAME Wed_BH6
+set ZONE_NAME Mon_EVE
 
 
 
@@ -325,7 +330,7 @@ proc rename_IMG_dir {dir} {
 	  set ss 00
 	  set f1 "$dir/$f"
 	  # INIT M1 1999-12-31 23:59.00 ASTR ext
-	  foreach {YEAR MM DD hh mm ss ASTR ext} { 1999 12 31 23 59 00 ASTR JPG } {}
+	  foreach {YEAR MM DD hh mm ss ASTR ext} { 1999 12 31 23 59 00 aztr JPG } {}
 	  # this is where ext gets a dummy value # not overwritten #
 
 	  if {! [file isfile $f1]} {

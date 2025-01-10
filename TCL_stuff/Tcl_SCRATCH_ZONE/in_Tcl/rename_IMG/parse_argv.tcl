@@ -2,41 +2,63 @@
 
 set ZONE_NAME {}
 
-proc macro_POP_tail_a {top tail} {
- uplevel "
-	set $top  \[ lindex \$$tail 0 \]
-	set $tail \[ lrange \$$tail 1 end \]
- "
+proc POP_ARG_ARGV {up_arg0 up_argv} {
+	upvar $up_arg0 arg0
+	upvar $up_argv argv_tail
+	set N   [ llength $argv_tail ]
+	if { $N < 1 } {
+		return 0; # FALSE no more data
+	}
+
+	set arg0  [ lindex $argv_tail 0 ]
+	set argv_tail [ lrange $argv_tail 1 end ]
+	return 1; # true
+
+	if { $N < 2 } {
+		if { $N == 0 } {
+			puts "GOT N $N"
+			return 0; # false
+		}
+		if { $N == 1 } {
+			puts "GOT N $N"
+			return 0; # false
+		}
+	}
+	puts "GOT N $N" ; # NOISE"
+	set arg0  [ lindex $argv_tail 0 ]
+	set argv_tail [ lrange $argv_tail 1 end ]
+	return 1; # true
 }
 
-proc macro_POP_tail {top tail} {
-	upvar $top up_top
-	upvar $tail up_tail
-	set up_top  [ lindex $up_tail 0 ]
-	set up_tail [ lrange $up_tail 1 end ]
-}
-
-proc parse_argv_main argv {
+proc parse_argv_main tail_argv {
+	# argv is parameter to func # same value as global argv
+	# ALTERNATIVELY # proc parse_argv_main { argv } { SCRIPT }
+	# OUTERMOST gets "{ %s }" # WRAPPED in CURLIES
 	global ZONE_NAME
 	set ARGS {}
 	# iterate over list reducing it each time
-	set tail $argv
-	while {{} != $tail} {
-		macro_POP_tail arg tail
+	# so give it a rename as "tail_argv" whats left of it
+#	set tail_argv $argv
+	while {[ POP_ARG_ARGV arg tail_argv ]} {
 		# show step by step through argv
-		# puts "arg $arg tail { $tail }"
+		# puts "arg $arg tail_argv { $tail_argv }"
 
 		if { $arg == "--ZONE_NAME" } {
-			macro_POP_tail val tail
+			if {![ POP_ARG_ARGV arg_val tail_argv ]} {
+				puts "# FAIL # MISSING ARG "
+				break
+			}
+			# POP_ARG_ARGV arg_val tail_argv
 			global ZONE_NAME
-			set ZONE_NAME $val
+			set ZONE_NAME $arg_val
 			puts "# --ZONE_NAME $ZONE_NAME # requested"
 		} else {
 			lappend ARGS $arg
 		}
-	}
+	 }
+	
 	puts "# ZONE_NAME $ZONE_NAME"
-	puts "# ARGS $ARGS"
+	puts "# ARGS { $ARGS }"
 }
 
 parse_argv_main $argv

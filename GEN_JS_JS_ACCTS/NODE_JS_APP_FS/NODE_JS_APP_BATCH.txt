@@ -1,0 +1,166 @@
+
+	SCRIPT MODE - PARSE ARGV then split_UPPER_lower
+
+		FILTER is an OPTION that can be tagged onto ATTR or CACHE
+
+	BATCH - TICK_BATCH_TOCK
+
+		SYNC EDGE TICK and TOCK are BEGINNING and END of BATCH
+
+		ALL LOCK used WILL be released on completion 
+		ANY roll-back must be provided by PROVIDER or ARCHIVER
+		LIST LOCK WILL be needed to start - to comply with PROMISE LIST
+
+		QUOTA BATCH {
+
+			NICE_CPU_FILLER 
+
+				alternative is a CPU_THREAD idle
+				ready for instant pounce
+
+				loss is CPU_THREAD could have been used
+
+					temperature QUOTE envelope TODO
+
+				gain is IDLE CPU_THREAD
+				loss is MUST_SAVE_ALL_REGS_to_save CPU_SESS pid
+
+			RATE relative Intel_CORE-2 Duo 
+			where it is already MULTIPLE of 1GHz eg 2.4 GHz x 4 core
+
+				Intel has 2 threads per CORE
+				Linux tries to keep PAIR together 
+				Linux tries PAIR 2 threads from GROUP - hope so
+
+			So 1.0 seconds of this CPU is 9.6 GHzS
+
+				We actually expect to get 1/4 of the machine
+				this is a major app, or tool on that data
+
+				We expect 3/4 is often available
+				We expect 2/4 is often available
+				We can use > 1 - second CPU or second machine
+
+				we can think twice about smaller CPU's
+				ie allocate smaller tasks
+				so less latency waiting for complete PREV THIS
+				then after interrupt resume Q_NICE
+				smaller tasks first # keep DURATION below 1
+
+		}
+
+		TASK_GRAIN
+		TIME ACCOUNTING as a way of breaking a task down
+
+			GEN template
+			TRACK USAGE CT_RT
+			PREDICT TASK_GRAIN from TEST DATA
+
+				Currently we do this ahead of time
+				OPTIONALLY you can do it live
+				with the first data driving the code
+
+				AOT CT_RT CT_over_TEST_DATA 
+				CT_RT _over_TEST_DATA
+				_GEN_FSM_for_CT_incl ARG_one ARG_two 
+				_RUN_FSM for RT_STEP RET_one RET_two
+
+			TASK_GRAIN
+				We pre-guess the metrics LIBR pretends to guess
+				we learn from STATS_FASTS
+
+			
+			FLINT	sum	1	# N # still a float but INT
+			FLT	sum_1_N	N	# ALIAS for above N #
+			FLT	sum	X	# SUM_X
+			FLT	sum	X*X	# SUM_X_squared
+
+			STATS receives a stream of X 
+				updates sum_1_N
+				updates sum_X
+				updates sum_X_squared
+
+			# EACH of above takes 1 X X*X without mention
+			# by not mentioning it it is easier
+			# option of SIMD
+			# above is a layer[idx_layer] #
+			# MULTI_WORD SIMD = X [N_MULTI]
+			# MULTI SIMD CPU_THREAD MULTI_SIMD_per_processor
+
+			STAT_COPY _to_somewhere 3 FLT
+			FADE_FACTOR 0.9	# now N is not INT FLINT is FLOAT FLT
+
+		TASK_GRAIN
+			TEST_DATA produces a collection of SAMPLE TASK GRAINS
+			LIVE_DATA records EACH_GRAIN and searches for MATCH
+
+				ZERO_but_detected_N_times
+
+				ATOM_TASK 
+				MINI_TASK 
+				MACRO_TASK 
+
+				CALL_TASK 
+				LIST_TASK # might break loop on FLAG
+				SLOW_TASK
+				MAIN_TASK
+
+		TASK_GRAIN_FULL
+			smaller tasks might be near-atomic
+			smaller tasks might be near-GRAIN_LOCK SPIN_LOCK
+			larget tasks might be SECOND_GRAIN // LOCK_API API_LOCK
+
+		TASK_CHAIN_LIST
+			can set a flag and stop at next convenient locn
+			like a flickering LOCK holding LIST
+			pause and "release" then "reclaim" and resume
+			easier when LOGIC says STEP DONE
+
+		BATCH_QUEUE
+			split input queue into parallel task list
+			start N_THREADS - or not
+			obtain another PROCESSOR for MINI task
+			obtain another PROCESSOR for MAIN task
+
+		SCHEDULER has MIX of MULTI_CORE in LAYOUT on this CPU
+			2 MAIN
+			4 MINI
+		SCHEDULER has 16 or 32 or 256 or 4096 cores
+			ASSIGN 3 to 
+
+		CODE creates TASK of TASK_GRAIN onto SPECIFIC_QUEIE_LIST 
+
+			DESIGN says take 4 TASKS
+			DESIGN says take 4 THREADS
+
+	CPU_THREAD is it's own TOKEN
+
+		PREF_TASK_GRAIN MINI_MAIN
+		currently assigned to process 
+		PRE_FETCH done - 100% CPU for this STEP
+
+		TASK-book-pre-load for next STEP
+
+			send request to CODE
+			CACHE can answer lots of Q's
+			something unexpected would block
+			something   expected would block
+
+				create a list of blocking request 
+				MODEL send ENQ wait for ACK
+
+			lookahead also fetches other things, not stuck on first
+			resume on ACK_VAL
+
+
+
+	NODE_JS_APP_FS/
+	NODE_JS_APP_FS.txt
+
+	Running some basic wrap over node_js HTTP
+	Might be PY_FLASK but it is JS_NODE
+
+	JS_NODE
+	- web server with loads of HTTP_REQUEST.on_HEAD_ATTR_VAL
+	- OPTION queue all on_NOTIFIER into BATCH
+

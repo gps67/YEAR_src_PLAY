@@ -1,0 +1,12 @@
+. ../go__fns
+URL=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10040/ghostscript-10.04.0.tar.gz
+fn_grp_url dtp $URL
+fn_no_VPATH
+fn_unpack
+fn_with_grp dtp
+fn_with_grp libr
+fn_with_grp tcl
+fn_with_tk
+fn_configure_pfx
+fn_make 
+fn_make install

@@ -1,0 +1,31 @@
+
+#  NODE_JS_APP_FS.txt
+
+	APP has an API for files on the server # load / save
+	APP has an API for login
+	APP has an API for APP
+
+	SAVE
+	PREVIEW
+	PUBLISH
+	PRINT
+	EMAIL
+	BACKUP
+
+# EG JS_ACCTS
+
+	per user accounts
+	per year file management
+
+# EG JS_PLOT
+
+	per user WORK_BENCH
+	files fetched from INET # cached # 32K CSV
+	files PARSED by BENCH code
+	file read as CSV # compressed crypted
+	MMAP_DATA from CSV JSON
+
+	TIME_SERIES_ARRAY_and_ITEM_DECL # T0 T2 dt DESC XREF XPOS_DECL
+
+	TV_LIST 
+	TV_LIST _now_as_SPLINES _or_SOMETHING

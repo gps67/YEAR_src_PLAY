@@ -1,0 +1,119 @@
+	VFS_FUSE 
+
+		can project 4K SCRIPT into ARGV by creating file for it
+
+		{ MAGIC WRAP
+
+			EIGHT_t.h
+
+				typedef EIGHT_t i64; 
+
+				typedef EIGHT_t i32_i32; // ASIS //
+				typedef EIGHT_t i32_u32; // ASIS //
+				typedef EIGHT_t u32_i32; // ASIS //
+				typedef EIGHT_t u32_u32; // ASIS //
+
+				typedef EIGHT_t u31_u31; // u31_A u31_B // AS_IS
+				typedef EIGHT_t u31_i31;  // actually i32
+				typedef EIGHT_t i31_u31;  // VIA_ASIS //
+				typedef EIGHT_t i31_i31;  // VIA VIA //
+
+			AVAR.h
+				AVAR %s 
+				AVAR SOMETYPE %s 
+				SOMETYPE AVAR %s 
+
+			DECODE_i64.h
+
+				i8_i8 i16 i8 i24
+
+ALL SIGNED
+
+	ALL i4 signed 
+	When used in BITFIELD SIGNALLING
+	it switches on our MACRO
+	if_ZERO GEN "on_ZERO 
+
+	TEST CPU_WORD
+
+
+		  MAGIC WRAP }
+
+	Parse ARGV
+
+		SUB_LEX_of_ARGV_idx {
+		 MATCH CAPS lower Cap1 
+		 MATCH SUB_LEX %s_%s $1 $2 // PSG notices $1 $2 asking for ARGS
+		}
+
+		SUB_LEX_of_ARGV_idx {
+		 MATCH "=" POSS_EQUALS 
+		 MATCH "==" POSS_EQUALS_EQUALS
+		 MATCH SUB_LEX %s_%s $1 $2 // PSG notices $1 $2 asking for ARGS
+		}
+
+		SUB_LEX_of_ARGV_idx {
+		 MATCH LHS = RHS 
+		 MATCH = += -= *= ETC // XPOS ETC is magic gateway to ETC full_list_of_PLUS_EQUALS
+		 { LIST { A a B b C c } }
+		 { LIST { A B C D E F G } } // EIGHT_t
+		 MATCH "==" POSS_EQUALS_EQUALS
+		 MATCH SUB_LEX %s_%s $1 $2 // PSG notices $1 $2 asking for ARGS
+		}
+
+	STO_API
+
+		QUOTA per SERVICE
+
+			SERVICE: service QUOTA: quota
+			TYPE: name 
+			TYPE: name tail
+			ARGV_TAIL: ARGV
+			MATCH PHRASE AVAR = EXPR
+			MATCH EXPR ARGV_TAIL  /* BENCH_has_fitting_OPTIONS */
+			PARSE_ARGV += PUNCT CORE_PARENTH_DOT_PUNCT
+			PUNCT CORE_PARENTH_DOT_PUNCT {
+				PUNCT
+				CORE
+				PARENTH
+				DOT
+				PUNCT 
+				ETC {
+				 KNOW PUNCT_t  CORE_PARENTH_DOT_PUNCT 
+				 AVAR PUNCT_t  CORE_PARENTH_DOT_PUNCT {
+
+					PUNCT {
+					PUNCT.ETC {
+
+				 CTOR " CORE_PARENTH_DOT_PUNCT "
+
+					 CORE
+					 	A PUNCT is a GLYPH or two
+						ASCII_PUNCT is default
+						,./<>>?;:'@#~[{]}=+-_)(*&^%$£"!¬
+					 PARENTH
+					  { ZONE } 
+					  ( EXPR )
+					  ( TYPE_CAST ) // MENTION MAGIC exists
+					 DOT
+					  DOT .
+					  COMMA ,
+					  etc_list_of_pairs "$@"
+					 PUNCT 
+
+				 AVAR PUNCT_t  CORE_PARENTH_DOT_PUNCT {
+
+					} // PUNCT.FIELD
+					} // PUNCT
+
+				 } // AVAR	
+				}
+				
+			}
+
+			QUOTA = get_QUOTA( EXPR_for_HERE )
+			QUOTA = get_QUOTA( EXPR_for_ITEM )
+			QUOTA = get_QUOTA( EXPR_for_LOCN )
+			QUOTA = get_QUOTA( EXPR_for_LOCN )
+
+		QUOTA_

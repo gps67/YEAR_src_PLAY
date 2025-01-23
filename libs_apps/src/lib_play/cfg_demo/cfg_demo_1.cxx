@@ -375,7 +375,7 @@ bool kf_cfg_demo_1:: save_file( const char * filename )
 
 	buffer2 blk_in;
 	if(!V_file.save_into_buffer( blk_in )) return FAIL_FAILED();
-	if(!blk_write_to_file( blk_in, filename ))
+	if(!blk_write_to_file( blk_in, filename )) return FAIL_FAILED();
 
 	RAND_add_blk(blk_in); // add some randomness to early pool
 	// TODO write seed_file_write_soon()

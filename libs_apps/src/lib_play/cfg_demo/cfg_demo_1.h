@@ -38,7 +38,20 @@
 		USER_LOGIN
 		PASS_PHRASE_to_RSA_priv_one
 		PASS_PHRASE_to_RSA_priv_two // binary obtained from PERMIT
-		PASS_PHRASE_is_PRNG_key_blob // 
+		PASS_PHRASE_is_PRNG_key_blob // as it should be // the key used
+		PASS_PHRASE_to_PRNG_key_blob // soft password over hard key
+		PASS_PHRASE_to_EDITED_by_REMOTE_using_AUTO_DECODE
+
+			PHRASE = JOIN STRS over NL or over NUL or COMMA // here
+			PHRASE_ONE
+			PHRASE_TWO
+			PHRASE_AVAR
+			PARSE_PHRASE add , in case that helps use_NUL is OPTION
+
+		We are NOT the must secure algorithm,
+		but we are the drawing one
+		need to expand protocols acessable
+
 
 		USER_PROFILE
 		.permits["STR0"]
@@ -176,6 +189,32 @@ struct sql_link_MySQL;
 using namespace VARS;
 
 namespace CFG_DEMO {
+/*!
+	kf_cfg_demo_0 base class to load a CFG file and hold its settings
+
+	That job is already done by        
+
+		V_file_decl 
+		 V_file ;
+	
+	So we IMPORT that as a field and use its buffer1 functions
+
+		save OPTIONS to file
+		load OPTIONS from file
+		hold OPTIONS in tree
+	
+	class kf_cfg_demo_1 : kf_cfg_demo_0 {
+
+		// now add mysql_db_connect_parameters HOST PORT PASS CERT
+		// now add pgsql_db_connect_parameters HOST PORT PASS CERT
+		// now add sqlite_db_connect_parameters FILE // HOST USER LOCN
+
+	kf_cfg_demo_0 base class += V_file and load/save to/from buffer1
+
+		entire config gets held in single blk1
+		GROW_buffer uses malloc/free for memory NOT MMAP
+		GROW_MMAP 
+*/
 struct kf_cfg_demo_0 : public obj_ref0 // move this to V_file as base
 {
 	V_file_decl V_file;

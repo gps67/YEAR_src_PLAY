@@ -119,7 +119,7 @@ int main(int argc, char ** argv )
 	show_word_32( w1,  "w1 - u32_from_P0+1" );
 	show_word_32( w2,  "w2 - u32_from_P0+2" );
 
-	u64 * q0 = (u64*) p1;
+	u64 * q0 = (u64*) p0;
 	u64 * q1 = (u64*) p1;
 	u64 * q2 = (u64*) p2;
 	// q1 = p1 // cast ITEM_t from u32_MEM_WORD to u32_u32_MEM_PAIR // u84

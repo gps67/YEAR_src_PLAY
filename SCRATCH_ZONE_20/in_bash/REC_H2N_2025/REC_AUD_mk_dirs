@@ -120,6 +120,10 @@ in
 	Artist="OLOP"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
+	Samba=salsa_calls
+	Artist="rueda"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
 ;; Fri)
 	Samba=Velocity
 	Artist="EDE TheMay AugList"

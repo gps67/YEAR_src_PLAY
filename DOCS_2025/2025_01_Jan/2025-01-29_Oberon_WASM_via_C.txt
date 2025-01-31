@@ -1,0 +1,87 @@
+	2025-01-29
+	2025-01-29_Oberon_WASM_via_C.txt
+
+	We can build a makefile that GEN WASM_LIBR.oberon
+
+		we hope that the Oberon_TO_C works to our needs
+		else
+			PARSE_Oberon 
+			BUILD_TREE
+			GEN_CXX // we may or may not be able to have VTBL
+			RPC_API // that is our patch_table LIBR of callables
+			CACHE_LOCAL_REMOTE_API
+
+			 each VIEW of CACHE provides own CODE
+			 LIBR provides PROTOTYPE BASE_CLASS SAMPLE_CODE
+			 LIBR seeks to PROVIDE under its NAMESPACE or OUTSIDE
+			 LIBR provides all the OPCODES that all the CACHES need
+			 LIBR LAYER REMOTE_CLIENT LOCAL_PROVIDE
+
+			 // client / server // 
+			 // server / client // 
+
+		// local  / remote //
+		// remote / local  //
+
+
+			COMPILE_CXX_to_WASM
+
+				has limits of embedded
+				and of container
+
+			LOAD WASM_LIBR into WEB_BROWSER_SESSION_per_PAGE
+
+				_per_PAGE
+				_per_BROWSER
+				_per_SCRIPT // within browser
+				_per_SCRIPT // outside browser
+
+			LOAD WASM_JNI via gcj project
+
+				API Loader uses PARSED normalised ALIAS
+
+					ie we have to assist to make IDX
+					then get a simpler life GEN_ACTION
+
+			LOAD WASM_JAVA via gcj project
+
+				it uses a fraction of a large runtime
+				and we somehow have a generous quota 
+
+	somehow += paid for using COUNTER nbytes nitems stats and gatherers
+
+				somewhere there already is a micro java runtime
+				we include a subset of LIBR and trace what is used
+				GRAIN += Module_API
+
+					THIS_DATA_TEXT COMPILED
+					JNI into JAVA into CXX into WASM
+
+ And Wirth is the Module man
+
+ I prefer { braces } instead of BEGIN ... END 
+
+ I am now used to "{ ITEM_t & ITEM = EXPR }" // with ref_count OBVS
+
+ I completely recognise CONST TYPE VAR FUNCTION and IMPORT EXPORT LISTS
+
+ HEAP_ITEM Module %s ...
+
+ 	HOW CAN ARGV be split into LINES // it cant  - not in normal ARGV world#
+
+	ARGV as TREE of ARGS
+	ARGV as TEXT of WORDS // tokenised SPELLING PUNCT
+
+		PUNCT)
+		PUNCT )	// this gives somewhere for CSR to point to
+		// GEN can tag each CODE_POINT with YOUR_TAG_MY_VAL //
+		// CACHE figures out GEN or PARSE and TREE DATA or EVAL
+
+		SYMBOL TABLE picks up only those cases found in the SOURCE
+		and then in the test data. Test data usually flags as VOID
+		FILTER to protect test data from going into the tables source 
+
+		We specifically tag fields to be CACHE_COMPILED_and_KEPT
+		TOKENISED_SPELLING_POOL += "PUNCT)"
+
+

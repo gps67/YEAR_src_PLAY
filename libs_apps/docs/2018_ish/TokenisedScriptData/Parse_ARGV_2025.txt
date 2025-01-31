@@ -1,0 +1,174 @@
+
+	Parse_ARGV_2025.txt
+
+	SPELLING of IDENT ANYSTR // STR0 stops at first NUL or P2 
+
+	PUNCT 
+	 "(ITENT" 
+	 " ( IDENT "
+	 " IDENT } " // ARGV IDENT " } " 
+	 " a1 IDENT "
+	 "    IDENT a2 " // a2 may be CSET_PICK_LIST or STR0_PICK_LIST
+	 " Q2 { SP %s SP } Q2 "
+	 " Q1 { SP %s SP } Q1 " // leave Q2 AVAIL
+	
+	PARSE_LEX PUNCT_a1
+
+		a1 might be KNOWN and use mere advanced local parser SPEC
+		a2 might be KMOWN with PRE_LOAD VALUES
+
+		PAIRS
+			PARSED_PAIR a1 a2	// KDB sees DECL a1 a1_t
+			PARSED_PAIR " { " " } " // a1_t += lookup( " { " ) 
+			PARSED_PAIR " ( " " ) " // a2_t += lookup( " ) " )
+			PARSED_PAIR " [ " " ] " // a1 "[" a2 "]" // CONST
+			PARSED_PAIR " /* " " */ " // a1 = "/*" a2 = "*/" _STR0
+			PARSED_PAIR " <> " " </> " // HTML_PLACEHOLDER XML
+			PARSED_PAIR " <xml> " " </xml> " // LEX_MAGIC folds
+
+			PARSE_WEIGHT // HEURISTICS LIVE HERE
+			STYLE_WEIGHT
+
+				GROUP_ITEM GROUP ITEM
+
+				 BASE_CLASS_CALL("CTOR") += ARGS AVAIL
+
+				 SESS.CURR_ARGV // list of words or trees
+				 SESS.ARGV_STACK // layers of CALL // 
+
+					notice a habit
+					notice a repeated wrong spelling 
+					fast track confirm thinking
+					add_WEIGHT eg_CODE_POINT
+
+						AUTO uses SPELLING_CODE_POINT
+						and counts how often it is used
+						putting it in GROUP_TYPE
+
+
+			PARSED_PAIR itself, knows to consider
+
+			OBVIOUS
+				a1      a2 // DETECT STRICT USAGE or not
+				a1 SP1  a2 // DETECT STRICT USAGE or not
+				a1 GAP  a2 // DETECT STRICT USAGE or not
+			
+			TYPICAL
+				a1 IDENT
+				   IDENT a2
+
+			SOMETIMES
+
+				a1 a1 a1 *
+			
+			UNUSUAL
+				a2 IDENT
+				   IDENT a1
+
+
+	CODE_POINT
+	LIBR Module 
+	// define module_one Module_B3
+
+
+	AUTO_KNOW same OBJ_IDX_as_OLD_VAL // as_NEW_VAL 
+	AUTO_UPGRADE XPOS_CODE_POINT_BOLN _OLD_VAL _NEW_VAL
+
+	AUTO_ARGV from SCRIPT
+
+		we do a lot of LISP style ARGV TREE work
+
+		we can try LAZY eval and persistant CONST values
+
+		LAZY - even when pushed 1 step carry the EXPR that CALLED THAT
+		CONST - _OLD_VAL was the BIZ upto MOMENT then _NEW_VAL
+		SWEEP all objects and upgrade them. their ref to and use of _VAL
+		ie a NAMED CONST has changed
+		so we named the new one NAME_same_vertion_NEW_VAL
+
+		we do a lot of ASM 
+		bootstrap requires a first setup GEN GXX and LOAD and EVAL
+		point is we did the GEN 
+
+ API
+
+ 	You are running on a remote server
+	They offer this service, running your code in a sandpit
+	They offer this service, running their code OPTIONALL in a sandpit (Y)
+
+	We are the server we help LIBR PROVIDE
+	VAR_POOL 
+	CACHE VAR_POOL
+
+		There is a core thread that holds everything UDEF
+		(WE) IT PROVIDES HEAP_ITEM and VAR_POOL and LIBR
+		(ALL) our modules are GEN_CXX GXX
+
+	GXX
+
+		GXX is my name for C++
+		ie a NAMED CONST has changed
+		so we named the new one NAME_same_vertion_NEW_VAL
+
+		we do a lot of ASM 
+		bootstrap requires a first setup GEN GXX and LOAD and EVAL
+		point is we did the GEN 
+
+		CXX is wanted for a hybrid SCRIPT_ARGV MINI_MACHINE
+		GXX can also be LLVM but C++ is closer so GXX
+	
+	MAKE
+
+		RECIPE
+
+			configure "${ARGV}" // P0P2 in ROM FILE
+			configure "ARGV" // P0P2 in ROM FILE // AMBIGUOUS // . //
+			make clean
+			make
+			make docs_of_some_sort
+			make install
+
+		RECIPE
+
+			maiantain TREE of OSS lib/pkgconfig/NAME.pc
+
+			pkg-config RTFM here
+
+		RECIPE
+
+			edit ../MK/Makefile 
+
+				The one provided must be a local copy, edit it
+
+				if absent use P0P2 from ROM_VFS
+		
+			make test5_gdb
+
+		BENCH
+		PROVIDE
+		PEER_NOUN // not-indented
+
+			VFS_STO api = VFS_STO_api // for CURR MODULE
+			// learn PARSER to split %s_%s to use SP1 or perhaps GAP
+			// WEIGHT perhaps
+
+				PARSER looks around for recent use of "perhaps"
+				Finds nowhere before last 5 lines
+				// defer buffers to end of func of unit of module
+			PROVIDE LIST "make test5_gdb" // placeholder for
+
+				PLACEHOLDER for much stronger parser
+				one simple repeated jingo phrase
+				becomes a unique LABEL
+				until NEW_USE found and gets ADJUST_DERIVE_LEARN
+				SAME_SPELLING_but_INDEP_so_RESOLVE
+				RESOLVE using VAR_POOL for DIALECT
+
+					DIALECT_LEXICON_VAR_POOL
+
+					TRUST "_" and use it ASIF_SP1
+
+				DIALEXT "%s_%s" // OPTINALLY LIST of JOINED
+				DETAIL "_" += '{ %s "_" }'
+
+

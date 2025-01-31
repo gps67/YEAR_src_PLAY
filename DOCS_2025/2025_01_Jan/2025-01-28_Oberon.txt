@@ -1,0 +1,98 @@
+	2025-01-28
+	2025-01-28_Oberon.txt
+
+	A small CPU OS and COMPILER in Modula-2 
+	Oberon is DIALECT growing out of Pascal_Modula_2_Oberon
+
+	Wirth died 2024-01-01 and now we get to look at his work
+	(it was always visible, but now is a good time)
+
+	https://people.inf.ethz.ch/wirth/ProjectOberon/PO.System.pdf
+
+
+ PROJECT
+
+ 	ARM32 using i4_i12 as entire world
+ 	ARM32 using i4_i12 as CACHED footprint
+
+		eg SCOPE has i4_PAGES each of i12_ITEM
+		ie allow slack language that still picks up same loop
+
+			i12 => u12 on_PLUS
+			i12 => u12 on_ZERO
+			i12 => i32 idx = 256 + i12
+
+			MULTI RET_VAL_CASES
+
+				local VAR_POOL and local idx in that
+				Module ... 
+
+	but why u4_u12 when u16 is OK
+
+ MAKE DVD for COVER
+
+ 	Oberon for desktop AMD64
+ 	Oberon for desktop AMD64 running QEMU asif ARM64
+ 	Oberon for DEDROID_TV ARM64 running 8GB - rebuild BOOT
+
+
+	https://people.inf.ethz.ch/wirth/ProjectOberon/PO.System.pdf
+	suggests
+	https://people.inf.ethz.ch/wirth/Oberon/Oberon07.Report.pdf
+	http://www.inf.ethz.ch/personal/wirth/FPGA-relatedWork/RISC.Arch.pdf
+
+	https://people.inf.ethz.ch/wirth/Oberon/Oberon07.Report.pdf
+	The Programming Language Oberon
+	2016
+	https://people.inf.ethz.ch/wirth/FPGA-relatedWork/RISC.pdf
+	The Design of a RISC Architecture and its Implementation with an FPGA
+	2015
+
+	http://native.oberon.org/
+	http://native.oberon.org/repository/tools/UsbStick.Tool
+
+ORB.Mod.txt
+
+CONST // 
+    (* class values*)
+
+      Head* = 0;
+
+      Const* = 1;
+      Var* = 2;
+      Par* = 3;
+      Fld* = 4;
+      Typ* = 5;
+      SProc* = 6;
+      SFunc* = 7;
+      Mod* = 8;
+
+CONST versionkey* = 1; maxTypTab = 64;
+    (* class values*) Head* = 0;
+      Const* = 1; Var* = 2; Par* = 3; Fld* = 4; Typ* = 5;
+      SProc* = 6; SFunc* = 7; Mod* = 8;
+
+    (* form values*)
+      Byte* = 1; Bool* = 2; Char* = 3; Int* = 4; Real* = 5; Set* = 6;
+      Pointer* = 7; NilTyp* = 8; NoTyp* = 9; Proc* = 10;
+      String* = 11; Array* = 12; Record* = 13;
+
+  TYPE Object* = POINTER TO ObjDesc;
+    Module* = POINTER TO ModDesc;
+    Type* = POINTER TO TypeDesc;
+
+    ObjDesc*= RECORD
+      class*, exno*: BYTE;
+      expo*, rdo*: BOOLEAN;   (*exported / read-only*)
+      lev*: INTEGER;
+      next*, dsc*: Object;
+      type*: Type;
+      name*: ORS.Ident;
+      val*: LONGINT
+    END ;
+
+    ModDesc* = RECORD (ObjDesc) orgname*: ORS.Ident END ;
+
+
+
+

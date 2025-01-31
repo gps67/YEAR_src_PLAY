@@ -1,0 +1,241 @@
+	2025-01-27
+	2025-01-27_TASK_SESS_MINI_MACHINE_PICK_i4_i12.txt
+
+		i64
+
+		i8_i8 i16_one i16_two i16_three
+
+			i8_i8_OPCODE
+			i4_i12_one
+			i4_i12_two
+			i4_i12_three
+
+		i16 // BITFIELD shifted down to zero SIGNED
+
+			SIGNED is a SIGN
+
+			eg on_PLUS() { inline_array_get idx }
+			eg on_ZERO() { inline_on_PLUS() // idx = idx } // NULL
+			eg on_MINUS() { funCALL() i16_MINUS i4_MINUS i12_MINUS }
+
+		i4_i12
+			i4_HEAP
+			i12_ITEM
+
+			idx_u4 has an unreachable half
+			idx_u4 _FROM_ idx_i4 
+
+				REQUIRE MASK_OFF_SIGN_BITS_ABOVE_TOP
+				REQUIRE remain in CPU WORD PICKED u16_WORD
+				REQUIRE MASKED in CPU WORD MASKED u16_WORD
+				REQUIRE MASKED in CPU WORD SIGNED i16_WORD
+
+			OPTION DETECT = CPU can  do IDX negative
+			OPTION DETECT = CPU can  do OFFS negative
+
+			OPTION DETECT = CPU cant do IDX negative
+			OPTION DETECT = CPU cant do OFFS negative
+
+			BITFIELD_b2b0_32_00 // HALF_one
+			BITFIELD_b2b0_64_00 // %02d //
+			BITFIELD_b2b0_64_16 // i48_PAYLOAD // or packing space
+			BITFIELD_b2b0_16_00 // PAIR_BA _from_LOHI _BYTE_PAIR
+			BITFIELD_b2b0_16_08 // BYTE_B
+			BITFIELD_b2b0_08_00 // BYTE_A
+			BITFIELD_b2b0_16_16 // i16_ZERO -ALIAS-UNION- i8_i8
+			BITFIELD_b2b0_32_16 // i16_one
+			BITFIELD_b2b0_64_32 // HALF_two
+			BITFIELD_b2b0_48_32 // i16_two
+			BITFIELD_b2b0_64_48 // i16_three
+			BITFIELD_b2b0_64_16 // 
+
+			BYTE_A and BYTE_B come first on LOHI DATA
+			you must set your CPU to load from LOHI
+			how can I GCC signal that?
+			ifdef ... read_swapb ... swapb_write
+
+		i4_i4_i4_i4
+		u4_u4_u4_u4
+		u4_u4_u4_u4
+
+			FN A B C 
+
+				RA = RB << RC
+				RA = RB << C * 4 // limit BITFIELDS multiple 4
+
+			OP RA _B2 _B0	// B2 = B2*4 ; B0 *= 4
+
+				B2 = 4 * _B2
+				B0 = 4 * _B0
+
+
+				BW = 64
+
+				S_L = BW - B2 
+				if NZ:
+					RA <<= S_L
+
+				S_R = S_L + B0
+				if NZ:
+					RA >>= S_R SIGNED
+
+		i4_i6_i6
+
+			FN B2 B0 
+
+				BW = 64
+
+				S_L = BW - B2
+				if NZ:
+					RA <<= S_L
+
+				S_R = S_L + B0
+				if NZ:
+					RA >>= S_R SIGNED
+
+
+				
+
+
+
+	2025-01-27_TASK_SESS_MINI_MACHINE_PICK_i4_i12.txt
+
+	2025-01-27
+
+	_TASK			DOCS
+	_SESS			2025-01-27 sometime_pm
+
+		when you dont know something
+		simply state AVAR "{ ITEM_t * ITEM_PTR = EXPR ; }" EXPR NULL
+
+	_MINI_MACHINE
+
+	_MINI_MACHINE
+		our invention is a PTR without a PTR
+		we are managed code and MUST be contained
+		OPTION THERE - CODE_ALL_TRUSTED
+		OPTION THERE - CODE_ALL_UN_TRUSTED // LANG += keep _ SPELLING
+		OPTION THERE - CODE_MIX_of_UN_and_TRUSTED // LANG += keep _ SPELLING
+
+			this is a RISK surface
+
+				one simplification
+
+					NO_UNTRUSTED_CODE_is_run
+
+				two simplification two
+
+					NO_PICK_SETTINGS_LOADED_FROM_PROFILE
+
+			normal C programmers never have to worry about this
+			their application is running,
+			their profiles are loaded
+			their silhouette is DEFINED in ITEM in HEAP with LIBR
+
+				"their silhouette"
+					created as NAME_PHRASE
+
+
+				We are providing a namespace MATCH that includes an SP1
+				
+				This is advantaged by SPELLING and SPELLING"
+
+					links to TOKEN_FINDER
+					somehow ASIF PRE_FOUND
+
+						CACHE += PRE_FOUND
+						PRE_FOUND += SPELLING 
+						// in all its various forms
+						// INCL WRAP PUNCT SPELLING Q2
+
+	_MINI_MACHINE
+
+		_one 
+			DECODE(filename)
+
+			2025-01-27_TASK_SESS_MINI_MACHINE_PICK_i4_i12.txt
+
+			TASK
+			SESS
+			MINI_MACHINE
+			PICK i4_i12 LIBR_EXPR // I am always using "_" // NEAR
+			i4_i12 // i8_i8 i16_one_i16_two_i16_HEAP_ITEM
+
+				AMBIG LANG surrounds both cases at same time
+				UNION LANG defived from USAGE 
+
+				BIT_FIELD_NAME 
+
+					_1 _2 _3
+
+				ALIAS
+					_one _two _3
+
+
+			GEN_PHRASE
+			GEN_PARSE_PHRASE
+
+		_two
+
+			DECODE(filename)
+			DECODE_i64 // with acces to SESS and LIBR and HEAP and 
+
+			JIT it to a PARSED phrase - still in SCRIPT or ARGV_SCRIPT
+
+			DECODE_ARGV //
+			DECODE_ARGV_as_CODE //
+			DECODE_ARGV_as_DECL //
+			DECODE_ARGV_as_DATA //
+			DECODE_ARGV_as_SESS //
+
+				at the entrance to the CALL
+				an EXTRA PARAEMTER
+				an EXTRA is added to SESS_DATA += SESS
+
+				PROVIDE must supply SESS
+				In C it is implied to be a PTR
+				In MINI_MACHINE PTR is actually an IDX
+				and knowledge of the TYPE
+				to get ITEM_t * ITEM_PTR = SESS;
+				operator * in C++ gives us the interpreter
+
+					the thing we want interpreted
+					is a thing that C++ provides 
+					operator * 
+
+					ITEM_t * ITEM = operator * ( ITEM_t * PTR )
+					 if( ! PTR ) { FAIL("NULL PTR"); }
+					 return PTR;
+
+ FLEXI_i_LANG "{ ITEM_t * ITEM }" // C dialect already considers the * DONE
+ FLEXI_i_LANG "{ ITEM_t & ITEM }" // this is offered as a NEAR AVAIL 
+ FLEXI_i_LANG "{ ITEM_t   ITEM } /* ALLOC_on_STACK */" // MATCH CODE_POINT
+ FLEXI_i_LANG "{ ITEM_t   ITEM } /* ALLOC_in_STRUCT */" // MATCH CODE_POINT
+ FLEXI_i_LANG "{ ITEM_t * ITEM_PTR }" // C_DEFAULT_COMPLETE_hoping_for_ABBREV
+ FLEXI_i_LANG "{ ITEM_t * ITEM_PTR }" // C_DEFAULT_COMPLETE_hoping_for_ALIAS
+ FLEXI_i_LANG "{ ITEM_t * ITEM }" // C_DEFAULT_PICK PICK
+ FLEXI_i_LANG "{ ITEM_t * PTR }"
+
+			DECODE_ARGV // as a STO_ARGV_POOL // index is WORDS
+
+				SEGMENTS of ARGV may be arbitrary BLOB
+				somehow we guarantee NUL immediately AFTER BLOB
+				ususally then exteneded to WORD
+				ususally then exteneded to WORD_MULT 
+				PAIR TRIP QUAD FIVE WORD_%d // REUSE same syntax and resulting LEX
+				accidental alias of NAME in 2 layers or SCOPE
+
+			ALIAS %s
+			ALIAS    
+
+
+
+ TELESCOPE DATA 
+ DATA GROW
+			.txt
+
+	_PICK
+	_i4_i12
+	.txt
+
+------------

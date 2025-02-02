@@ -1,6 +1,8 @@
 #ifndef lex_yacc_UDEF_H
 #define lex_yacc_UDEF_H
 
+// PSG _UDEF
+
 #include "PSG_STUBS.h"
 #include "lex_yacc.h"
 #include "lex_yacc_PICK.h"

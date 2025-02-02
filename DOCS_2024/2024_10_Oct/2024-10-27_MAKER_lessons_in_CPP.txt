@@ -1,9 +1,0 @@
-	2024-10-27
-	2024-10-27_MAKER_lessons_in_CPP.txt
-
-	I was not linking in -lbench_gui 
-	so reference to CTOR was undefined 
-
-
-
-

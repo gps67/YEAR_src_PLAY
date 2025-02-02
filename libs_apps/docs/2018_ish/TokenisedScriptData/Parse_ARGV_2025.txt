@@ -170,5 +170,22 @@
 
 				DIALEXT "%s_%s" // OPTINALLY LIST of JOINED
 				DETAIL "_" += '{ %s "_" }'
+ RESOLUTION
+
+ 	when inference is smaller than resolution STOP inforring
+
+		OK that is a starter order of magnitude
+		OK edge detect might notice enough to guess rest
+		OK guess the rest is only to eound the edges and steps
+
+		OK when the TWIST of interpretation goes wrong
+		OK detect LIMIT and what to stop at and_then_value
+	
+	when TWIST is too distant from initial data indicates
+
+		LIMIT REACHED _ISH
+
+
+
 
 

@@ -7,7 +7,8 @@ then
 fi
 
 fn_grp_url ccs \
-https://www.nasm.us/pub/nasm/releasebuilds/2.16.02rc9/nasm-2.16.02rc9.tar.xz
+https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/nasm-2.16.03.tar.xz
+# OK # https://www.nasm.us/pub/nasm/releasebuilds/2.16.02rc9/nasm-2.16.02rc9.tar.xz
 fn_unpack
 fn_configure_pfx
 # FIX # obj/config/config.h 

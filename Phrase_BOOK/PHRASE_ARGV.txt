@@ -1,0 +1,17 @@
+PHRASE_ARGV.txt
+PARSE_ARGV
+
+	eg a safe_box client wants to run exec something 
+	firstly LEXER builds an ARGV CSET and BACKSLASH_SHELL_PARSING_LEX
+	secondly PUNCT might find multi-part-words
+	secondly "//" or even "#" of "#.*" or perhaps "|" ... Q2 Q1 Q_back 
+
+	generic -abc --long_name --with_arg ARG 
+
+	CMD0 triggers specific parse
+	find DIRS ... -long_name ARG ... # -print is option
+
+	sudo 
+
+
+

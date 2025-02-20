@@ -96,6 +96,16 @@ typedef struct Tcl_ObjType {
                                  * Determine if the given string value matches
                                  * an element in the list. */
 #endif
-+-- } Tcl_ObjType;
+} Tcl_ObjType;
+
+/* Abstract List functions */ // EG //
+typedef int (Tcl_ObjTypeReplaceProc) (
+	Tcl_Interp *interp,
+        struct Tcl_Obj *listObj,
+	Tcl_Size first,
+	Tcl_Size numToDelete,
+        Tcl_Size numToInsert,
+	struct Tcl_Obj *const insertObjs[]
+);
 
 

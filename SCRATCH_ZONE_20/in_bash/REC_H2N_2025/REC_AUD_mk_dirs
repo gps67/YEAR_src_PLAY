@@ -81,11 +81,11 @@ in
 	Artist="Greg Mayston"
 	Sess_List="_sess_1 _sess_2 _sess_3"
 	Sess_List="_sess_1"
-;; Tue)
+;; Tuex)
 	Samba=RSAC 
 	Artist=NYE
 	Sess_List="_sess_1 _sess_2 _sess_3"
-;; Tuex)
+;; Tue)
 	Samba=Samba
 	Artist=Beatroots
 	Sess_List="_sess_1 _sess_2 _sess_3"
@@ -159,15 +159,22 @@ in
 	Sess_List="_sess_1 _sess_2"
 	Sess_List=_${Artist}
 
+	Samba=RSAC_WITS
+	Artist="3_clicks_left"
+	Artist="Tiger_Mendoza"
+	Artist="Missing_The_Scene"
+	Sess_List="_sess_1 _sess_2 _sess_3 _sess_4 _sess_5"
+	Sess_List=_${Artist}
+
 ;; Sun)
 	Samba=salisbury_djembe
 	Artist="Mohamed Gueye"
 
-	Samba=americana
+	Samba=irish_sessions
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Samba=irish_sessions
+	Samba=americana
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 

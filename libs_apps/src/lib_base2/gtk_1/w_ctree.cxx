@@ -151,6 +151,7 @@ void w_ctree::late_init( int n, int treecol, const char * titles[] ) // LATE not
 	strs.re_init( n );
 	ncol = n;
 	init();
+	expanded = 1;
 	w =  gtk_ctree_new_with_titles(
 		ncol,
 		treecol,

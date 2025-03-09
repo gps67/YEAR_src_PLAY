@@ -305,7 +305,8 @@ endif
 	# also -DDEBUG might matter
 
 	#	WITH_JS_SM=1
-		WITH_JS_SM=0
+	#	WITH_JS_SM=0 # needs fixing
+		WITH_JS_SM=1 # fixing
 
 	# WITH_JS is now unused, use WITH_JS_SM
 		WITH_JS=0
@@ -483,7 +484,12 @@ endif
 # each of these are added to VPATH 
 # each of these SHOULD have make run locally there !
 
+	# all the others are OUR SubDirs with our CODE
+	# this is smuggled in here to be before -I LIST
 	SubDirs += /usr/include
+
+	# add your dirs to this list
+	# add your COMPILED.o to the list
 
 	SubDirs += apps/main
 	SubDirs += lib_play/hash

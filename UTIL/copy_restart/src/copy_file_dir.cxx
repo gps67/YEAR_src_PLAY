@@ -340,6 +340,26 @@ bool sender_t::copy_src_name_dst_try(
 		if(!fd_dst.open_RW( (STR0) names.dst_name_tmp )) {
 			return FAIL_FAILED();
 		}
+
+		/*
+			 in case of flock, simply go on to next file
+			 but errm FAIL causes FAIL or retry ?
+		*/
+
+		/* flock */
+		if(!fd_dst.flock_EX()) { // obtain EXCL lock on WR file
+			sleep( 3 );
+			if( opt_lock ) { // default true
+				return true; // so it does not retry
+				return FAIL_FAILED();
+			} else {
+				WARN("continuing without flock(file)");
+			}
+		}
+		// flock gets dropped on close, or CTRL-C or ...
+		//	sleep( 10 );
+
+
 		// TODO TEST on 32 bit CPU
 		// seek both src and dst to size_part
 		if(!fd_dst.seek_SET_64( size_part )) { // must match fd_dst

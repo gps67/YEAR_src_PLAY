@@ -4,15 +4,6 @@ set +e
 #set -x
 false # first error
 
-preview=true # inefficent even when builtin # proper place holder #
-
-if $preview
-then
-	echo YES preview is $preview
-else
-	echo NO preview is $preview
-fi
-
 
 # date is today or -d yesterday or "$@"
 
@@ -34,7 +25,7 @@ YEAR_MM_Jan="${YEAR}_${MM}_${Jan}"
 
 cmd_needed()
 {
-	if str=`type "$1"` 2>&1
+	if str=`type "$1"`
 	then
 		echo "# PASS # $str"
 	else
@@ -43,69 +34,20 @@ cmd_needed()
 		# dir_must_exist() { printed }
 		# actual message on stderr
 		echo "# FAIL # cmd_needed $1 # time to write it"
-		return 6
 		exit 6
 	fi
 }
 
 # the eternal choices include
-# no inludes or fragile loads
+# no imludes or fragile loads
 # ie remote changes, we notice
 
 . fns_DIRS
 . fns_EDIT
 
-# TODO LIBR of debugging BASH scripts or zsh or ksh or ash # TODO common subset
-
-dgb_var_dst_src() # lhs=rhs #
-{
-	eval $1="\$$2" # set LHS_VAR_NAME RHS_VAR_VALUE
-	return
-
-	# VAR_NAMES may NOT contain SP
-	local DST_NAME="${1:-DST_NAME}"
-	local SRC_NAME="${2:-SRC_NAME}"
-
-#	eval $DST_NAME="\$$SRC_NAME" # usually SCOPE GLOBAL VAR_name
-	eval $1="\$$2" # 
-}
-dgb_var()
-{
-	local VAR_name="UNSET" # LOCAL #
-	local VAR_value="UNSET" # LOCAL #
-
-	for VAR_name in "$@"
-	do
-		dgb_var_dst_src VAR_value "$VAR_name"
-		echo "$VAR_name=$VAR_value"
-		continue
-
-		eval local VAR_value="\$$VAR_name"
-		echo "VAR_name $VAR_name # $VAR_value"
-	#	echo "${VAR_name} = $VAR_value"
-
-		local lhs="UNSET"
-		dgb_var_dst_src lhs "$VAR_name"
-		echo "VAR_value=$lhs"
-
-		echo
-		echo "$VAR_name=$VAR_value"
-		echo
-	done
-}
-
-
-
-# you need these # tell user if absent , tell if found
-# PARALLEL LINES # abbrev is sometimes CPU_WORD_64 or VALUE_true # BOOL # 
-# PARALLEL LINES # abbrev is MACRO for _one _two _udef _libr_item_expr _EXPR
-#
-# these scripts need these commands or script functions or files
-#
-
+# you need these
 
 cmd_needed yes_no
-cmd_needed cmd_not_found
 cmd_needed ask_do
 cmd_needed dir_must_exist
 
@@ -124,91 +66,90 @@ run_mkdir()
 
 Artist=Artist
 Sess_List="_sess_1 _sess_2"
-Theme=""
 case $Tue
 in
    XXX) :
 ;; Mon)
-	# Stage=Dance
+	# Samba=Dance
 	# Artist="Sonia"
 
-	Stage=YME
+	Samba=YME
 	Artist="Mainwaring"
 	Sess_List="_sess_1 _sess_2 "
 ;; Tuex)
-	Stage=Global_X
+	Samba=Global_X
 	Artist="Greg Mayston"
 	Sess_List="_sess_1 _sess_2 _sess_3"
 	Sess_List="_sess_1"
 ;; Tuex)
-	Stage=RSAC 
+	Samba=RSAC 
 	Artist=NYE
 	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Tue)
-	Stage=Samba # varname used to be Samba=Samba
+	Samba=Samba
 	Artist=Beatroots
 	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Tuex)
-	Stage="Samba_101"
+	Samba="Samba_101"
 	Artist=Beatroots
 	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Wed)
-	Stage=AfroDrum
+	Samba=AfroDrum
 	Artist="Tankata_Steve"
 	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Wed_)
 	# unmodified first wins so this is old dead code # sample
-	Stage=djembe
+	Samba=djembe
 	Artist="Hands Of Rhythm"
 	Sess_List="_sess_1 _sess_2"
 ;; Thu)
-	Stage=PanYard
+	Samba=PanYard
 	Artist="RASPO"
 	#
-	Stage=Global_Thu
+	Samba=Global_Thu
 	Artist="Annie Parker Collective"
-	Stage=RG2
+	Samba=RG2
 	Artist="bodhran_basics"
 	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
 	#
-	Stage=READIPOP_AGM_Hootenannay
+	Samba=READIPOP_AGM_Hootenannay
 	Artist="Readipop AGM Hootenannay"
 	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
 
-	Stage=irish_sessions
+	Samba=irish_sessions
 	Artist="OLOP"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Stage=salsa_calls
+	Samba=salsa_calls
 	Artist="rueda"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 ;; Fri)
-	Stage=Velocity
+	Samba=Velocity
 	Artist="EDE TheMay AugList"
 	Sess_List="_sess_1 _sess_2"
 	
 ;; Sat)
-	Stage=JP_Workshop
+	Samba=JP_Workshop
 	Artist="JP Percussion"
 
-	Stage=Emma_Rob_Skye
+	Samba=Emma_Rob_Skye
 	Artist="Emma Rob Skye"
 	Sess_List="_sess_1 _sess_2"
 
-	Stage=salisbury_djembe
+	Samba=salisbury_djembe
 	Artist="Mohamed Gueye"
 	Sess_List="_sess_1 _sess_2"
 
-	Stage=salisbury_djembe
+	Samba=salisbury_djembe
 	Artist="Babara Bangura"
 	Sess_List="_sess_1 _sess_2"
 
-	Stage=HCTS
+	Samba=HCTS
 	Artist="RSAC_HCTS"
 	Sess_List="_sess_1 _sess_2"
 
-	Stage=RSAC_HCTS
+	Samba=RSAC_HCTS
 	Artist="Grace_Pounds"
 	Artist="Daughter_of_the_Water"
 	Artist="Satin_beige"
@@ -218,53 +159,47 @@ in
 	Sess_List="_sess_1 _sess_2"
 	Sess_List=_${Artist}
 
-	Stage=RSAC_WITS
+	Samba=RSAC_WITS
 	Artist="3_clicks_left"
 	Artist="Tiger_Mendoza"
 	Artist="Missing_The_Scene"
 	Sess_List="_sess_1 _sess_2 _sess_3 _sess_4 _sess_5"
 	Sess_List=_${Artist}
 
-	Stage=Salisbury
+	Samba=salisbury_Drum_
 	Artist="Babara Bangura"
-	T="jagba_H1N" # Theme # name of play #
-	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
+	Sess_List="jagba__sess_1 jagba__sess_2 jagba__sess_3 jagba__sess_4"
 
 ;; Sun)
-	Stage=salisbury_djembe
+	Samba=salisbury_djembe
 	Artist="Mohamed Gueye"
 
-	Stage=irish_sessions
+	Samba=irish_sessions
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Stage=americana
+	Samba=americana
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Stage=salisbury_H2n
+	Samba=salisbury_djembe
 	Artist="Babara Bangura"
 	Sess_List="_sess_1 _sess_2"
-	T1="djagba" # 
-	T2="kei_key" # 
-	T3="dinodon" # Theme # name of play #
-	T="$T2"
-	Sess_List="${T}_sess_1 ${T}_sess_2 ${T}_sess_3 ${T}_sess_4"
 
 ;; *)
-	Stage=XX
+	Samba=XX
 	Artist="Artist"
 	Sess_List="_sess_7 _sess_8"
 
-	Stage=WREX
+	Samba=WREX
 	Artist="Artist"
 	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
 
-	Stage=READIPOP_WORKSHOP
+	Samba=READIPOP_WORKSHOP
 	Artist="Marivaldo_Paim"
 	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
 
-	Stage=Drum_Camp
+	Samba=Drum_Camp
 	Artist="Jose_Ferrera"
 	Artist="Klaudio_Pandeiro"
 	Artist="klaudio_Iya_John"
@@ -272,29 +207,20 @@ in
 	Artist="bodhran"
 	Sess_List="_upto_1959_$Artist _sess_1 _sess_2 sess_3 "
 
-	Stage=RSAC_HOT_STEP_BOOT_LEG
+	Samba=RSAC_HOT_STEP_BOOT_LEG
 	Artist="Satin_Beige"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Stage=DrumWhisperer
+	Samba=DrumWhisperer
 	Artist="Iya Sako"
 	S="_sun_sofa"
 	Sess_List="${S}_sess_1a ${S}_sess_2a  ${S}_sess_3a ${S}_sess_4a"
 
 ;; *)
-	Stage=XX
+	Samba=XX
 	Artist="Artist"
 	Sess_List="_sess_7 _sess_8"
 esac
-	Theme="${Theme:-THEME}"
-
-dgb_var \
-	Stage	\
-	Artist	\
-	Sess_List	\
-	Theme \
-#
-
 
 
 G=/home/gps/Gx
@@ -341,20 +267,20 @@ cd_mkdir_FAIL $REC_MP3_Jan
 cd_mkdir_FAIL $REC_AUD_DONE
 cd_mkdir_FAIL $REC_AUD_Jan_DONE_Jan
 
-# build some filenames / strings using artist name # ${Stage}
+# build some filenames / strings using artist name # ${Samba}
 # will soon check they dont exist
 
-YEAR_MM_DD_Tue_Stage=${YEAR_MM_DD}_${Tue}_${Stage}
-YEAR_MM_DD_Tue_Stage_SP="${YEAR_MM_DD} ${Tue} ${Stage}"
+YEAR_MM_DD_Tue_Samba=${YEAR_MM_DD}_${Tue}_${Samba}
+YEAR_MM_DD_Tue_Samba_SP="${YEAR_MM_DD} ${Tue} ${Samba}"
 
-DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Stage}
-DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Stage
-DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Stage
-DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Stage}
-FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Stage}_NO_Notes.txt
+DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Samba}
+DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Samba
+DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Samba
+DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Samba}
+FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Samba}_NO_Notes.txt
 
 if yes_no create session "
- Stage $Stage
+ Samba $Samba
  Artist $Artist
  Sess_List $Sess_List
 "
@@ -364,11 +290,9 @@ else
 	FAIL 1 not today
 fi
 
-# still here answer was Y
-
 # create AUD data and project
 
-V_ALBUM="${YEAR_MM_DD_Tue_Stage_SP}"
+V_ALBUM="${YEAR_MM_DD_Tue_Samba_SP}"
 V_ARTIST="${Artist}"
 V_YEAR="${YEAR}"
 
@@ -383,9 +307,8 @@ cd_mkdir_FAIL ${DIR_TXT}
 cd_mkdir_FAIL ${REC_AUD_Jan_DONE_Jan}
 
 function mk_audacity {
-  # local # all these vars
-  DIR_aud="${1:-HOME_YEAR_YEAR_MM_DD_Tue_Stage}"
-  NAME_PROJECT="${2:-YEAR_MM_DD_Tue_Stage_sess1}" # the name of the project in the dir
+  DIR_aud="${1:-HOME_YEAR_YEAR_MM_DD_Tue_Samba}"
+  NAME_PROJECT="${2:-YEAR_MM_DD_Tue_Samba_sess1}" # the name of the project in the dir
   NAME_PROJDATA="${NAME_PROJECT}_data"
   PRJ_AUD_aup="${DIR_aud}/${NAME_PROJECT}.aup"
   PRJ_AUD_aup3="${DIR_aud}/_${NAME_PROJECT}.aup3"
@@ -394,10 +317,7 @@ function mk_audacity {
   # BE CAREFUL to not overwrite exiting file
   if [ ! -f "${PRJ_AUD_aup}" ]
   then
-# OLD AUDACITY DATA DIR
-#	run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
-# used to import parameters
-	run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
+	  run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
 	# indent by SP SP of .aup caused it to not be recognised
 	  cat << !EOT | tee "${PRJ_AUD_aup}"
 <?xml version="1.0" standalone="no" ?>
@@ -416,7 +336,7 @@ function mk_audacity {
   if [ ! -f "$FILE_TXT" ]
   then
 	# echo -e # expand \r to 0x0D
-	echo -e "# ${YEAR_MM_DD_Tue_Stage} \r" >> "$FILE_TXT"
+	echo -e "# ${YEAR_MM_DD_Tue_Samba} \r" >> "$FILE_TXT"
   fi
   
   if [ ! -f "${PRJ_AUD_sh}" ]
@@ -434,7 +354,7 @@ function mk_audacity {
 for sess in ${Sess_List:-""}
 do
 	export \
-	SESS_name="${YEAR_MM_DD_Tue_Stage}_${sess}"
+	SESS_name="${YEAR_MM_DD_Tue_Samba}${sess}"
 	# fn_EDIT_var_prompt EDIT SESS_name "EDIT SESS_name"
 	# fn_EDIT_var        EDIT SESS_name
 	echo "SESS_name == '$SESS_name'"

@@ -127,13 +127,23 @@ class JS1 : public j_cx
 	void   set_priv( JSObject * obj, void * ptr )
 	{
 		// this should be the ONLY vector ?
-		JS_SetPrivate( obj, ptr );
+	//	JS_SetPrivate( obj, ptr );
+// https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples/blob/esr115/docs/Migration%20Guide.md
 
+	//	JS::PrivateValue() - where void * is ptr is held
+	//	JS::SetReservedSlot() - where That JS item is held
+		const int slot_idx_obj = 1;
+		JS_SetReservedSlot(obj, slot_idx_obj, JS_PrivateValue(ptr));
 	}
 	void * get_priv( JSObject * obj )
 	{
-		return JS_GetPrivate( obj );
+		const int slot_idx_obj = 1;
+		return JS_GetMaybePtrFromReservedSlot<void>(obj, slot_idx_obj);
+	//	return JS::GetMaybePtrFromReservedSlot<void>(obj, slot_idx_obj);
+
+	//	return JS_GetPrivate( obj );
 	}
+
 };
 
 }; // NAMESPACE

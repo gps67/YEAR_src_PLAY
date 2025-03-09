@@ -2,3 +2,23 @@
 
 	OBJS_bench += bench_top_app.o
 	OBJS_bench += bench_panel.o
+
+# BENCH is meant to be a UDEF SCRIPT compiled # 
+# BENCH is an outside PEER project under PREP or PLAY
+# BENCH will develop layers like VFS SQL_LIBR 
+
+# TOPAPP #
+# HOLDER # SESS_holds_BENCH #
+# SESS # this Module in SESS as _one and _two and _PTR
+
+	# API declares STUBS
+	# that = this = new bench_top_app( holder, CTOR_ARGV );
+
+	# BENCH exists as a few WINDOW_FRAME over UDEF_top_app or _PANEL
+	# PANEL #
+
+
+
+
+	
+

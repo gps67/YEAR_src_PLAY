@@ -144,6 +144,7 @@
 
 // extern
 bool opt_move = false;
+bool opt_lock = true; // ie need lock
 
 bool bool_main( int argc, char ** argv ) {
 
@@ -162,10 +163,22 @@ bool bool_main( int argc, char ** argv ) {
 	src_name = "~/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
 	dst_dirname = "/tmp";
 
-	str0 str_move = "-move";
-	if( argv[1] == str_move )
-	{
-		opt_move = true;
+	while( argv[1][0] == '-' ) {
+
+		str0 str_move = "-move";
+		if( argv[1] == str_move )
+		{
+			opt_move = true;
+			argv ++;
+			argc --;
+		}
+
+		str0 str_no_lock = "-no_lock";
+		if( argv[1] == str_no_lock )
+		{
+			opt_lock = false;
+		}
+
 	}
 
 

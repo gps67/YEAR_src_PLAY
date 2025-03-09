@@ -35,6 +35,7 @@
 //
 #include <sys/ioctl.h>
 #include <sys/un.h>
+#include <sys/file.h> // flock
 
 #endif
 
@@ -277,10 +278,68 @@ static inline int get_IPPROTO_ICMP()
 	*/
 	bool fd_hold_1::do_fcntl( int & ret, int F_CMD, struct flock * lock )
 	{
+		// this would be for regions within the file
 		return FAIL("No support for flock"); // no need yet
 	}
 
 	/*!
+		RTFM 2 flock - LOCK_UN unlock
+	*/
+	bool fd_hold_1::flock_UN()
+	{
+		int oper = LOCK_UN; // UNLOCK
+		int t = ::flock( fd, oper );
+		if( t == 0 ) {
+			return PASS("FLOCK UN");
+		}
+		if( t == -1 ) {
+			return FAIL("FLOCK UN");
+		}
+		return FAIL("flock should return 0 or -1"); // CODE_ERROR
+	}
+
+	/*!
+		RTFM 2 flock - LOCK_SH shared lock
+	*/
+	bool fd_hold_1::flock_SH()
+	{
+		int oper = LOCK_SH; // SHLOCK
+		oper |= LOCK_NB; // NON blocking - do not wait for lock 
+		int t = ::flock( fd, oper );
+		if( t == 0 ) {
+			return PASS("FLOCK SH");
+		}
+		if( t == -1 ) {
+			return FAIL("FLOCK SH");
+		}
+		return FAIL("flock should return 0 or -1"); // CODE_ERROR
+	}
+
+	/*!
+		RTFM 2 flock - LOCK_EX exclusive lock
+	*/
+	bool fd_hold_1::flock_EX()
+	{
+		int oper = LOCK_EX; // EX LOCK
+		oper |= LOCK_NB; // NON blocking - do not wait for lock 
+		int t = ::flock( fd, oper );
+		if( t == 0 ) {
+			return PASS("FLOCK EX");
+		}
+		if( t == -1 ) {
+			return FAIL("FLOCK EX");
+		}
+		return FAIL("flock should return 0 or -1"); // CODE_ERROR
+	}
+
+
+	/*!
+		verb_noun // ATTR FEATURE SUBNAME_EXPR_PHRASE_as_IDENT_TAIL
+		 get close_on_exec
+
+		noun_verb // OPTION OOP ITEM.verb() // DIALECT_item_step //
+		item_step
+		step_item // ALIAS //
 	*/
 	bool fd_hold_1::get_close_on_exec( bool & closes )
 	{
@@ -1044,7 +1103,7 @@ http://www.on-time.com/rtos-32-docs/rtip-32/reference-manual/socket-api/ioctlsoc
 		fd = ::open( filename, flags, modmask );
 		if( fd == -1 )
 		{
-			return FAIL( "open %s %od", (STR0) filename, flags, modmask );
+			return FAIL( "open %s %o %o", (STR0) filename, flags, modmask );
 		}
 		return true;
 	}

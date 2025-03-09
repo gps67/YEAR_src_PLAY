@@ -118,6 +118,23 @@ bench_top_app::bench_top_app(
 {                                  
 //	compress = TRUE;
 
+/*
+	There is a lot of work to do, eg W_x_H XY WH XYWH
+	profile or cache memory or visual recall 
+	this is probably called from a file browser
+	so is likely to be a Module or APPLET or LIBR for MIME type
+	SESS for guest in SAFE mode
+
+	EG every PANEL is a DOCUMENT MIME FILE DISPLAY or WRAP
+	EG .txt .md .pdf .png .sh .ext
+	EG DESKTOP is more then a PANEL EG VFS_BROWSER with several CSR VIEW
+	EG BENCH is multiple panels VARS DIARY_LOGS multi-task-each-replay
+	EG REPLAY EDIT_LIST attach AVR to GUI_SAID_LAYOUT_TEMPLATE_SESS_STO
+	EG SPEC is CXX or LIBR_CLASS_FUNC_ext_C // ext is ARGV_DECODED _C
+	EG Cant use VTBL and choose not to use STDLIB 
+	EG need to to build without glib // ESP32 // hash HT now usable
+*/
+
  // QUIT button
 #ifdef QUITBTN
 	has_btn_quit = true;

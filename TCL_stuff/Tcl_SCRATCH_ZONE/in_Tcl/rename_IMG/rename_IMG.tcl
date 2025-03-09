@@ -37,6 +37,8 @@ set ZONE_NAME Tue_BH6
 set ZONE_NAME Wed_BH6
 set ZONE_NAME Mon_EVE
 set ZONE_NAME RSAC_WITS
+set ZONE_NAME Babara_Bangura
+set ZONE_NAME BH6_Christchurch
 
 
 

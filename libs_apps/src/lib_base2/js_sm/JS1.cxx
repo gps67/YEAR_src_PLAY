@@ -177,6 +177,15 @@ void fail( const char * str )
 #if 0
 // COPY+PASTE from cook book or tutorial
 static JSClass x_global_class = { "global", JSCLASS_GLOBAL_FLAGS, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub, JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, NULL, JSCLASS_NO_OPTIONAL_MEMBERS };
+
+static constexpr JSClass klass = {
+    "MyClass",
+    JSCLASS_HAS_PRIVATE | JSCLASS_HAS_RESERVED_SLOTS(2) | JSCLASS_BACKGROUND_FINALIZE,
+    &class_ops,
+    ...
+    the point is
+	    | JSCLASS_HAS_RESERVED_SLOTS(2) | 
+};
 #endif
 
 

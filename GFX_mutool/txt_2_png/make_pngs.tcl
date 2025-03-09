@@ -4,7 +4,7 @@ proc make_png_from_txt { file_png file_txt } {
 
 #	puts "make_png_from_txt $file_png $file_txt "
 
-	exec </dev/tty >/dev/tty 2>/dev/tty ask_do txt_2_png/txt_2_png.sh $file_txt 
+	exec </dev/tty >/dev/tty 2>/dev/tty ask_do ../txt_2_png/txt_2_png.sh $file_txt 
 	
 }
 

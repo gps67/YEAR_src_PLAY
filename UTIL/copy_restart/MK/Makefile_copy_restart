@@ -69,6 +69,9 @@
 
 	PROG_HDRS += $(PROG1).h
 
+default: exe
+	# default done 
+
 dgb: $(PROG_EXE)
 	# VPATH $(VPATH)
 	INGDB=1 T gdb -tui --cd $(PWD) --command ../.gdbinit_$(PROG1) --args $(PROG_EXE) $(ARGS)

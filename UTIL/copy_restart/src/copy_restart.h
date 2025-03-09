@@ -1,5 +1,6 @@
 
-extern bool str_move;
+extern bool opt_move;
+extern bool opt_lock;
 
 extern
 bool copy_file_dir( const char * filename, const char * dirname );

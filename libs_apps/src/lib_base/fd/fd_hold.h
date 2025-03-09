@@ -326,6 +326,11 @@ class fd_hold_1 : public obj_ref
 	bool do_fcntl( int & ret, int F_CMD, long arg );
 	bool do_fcntl( int & ret, int F_CMD, struct flock * lock );
 
+	// untested on MINGW
+	bool flock_SH(); // shared // RTFM man 2 flock
+	bool flock_EX(); // exclusive // RTFM man 2 flock
+	bool flock_UN(); // unlock - release lock
+
 	bool get_close_on_exec( bool &closes );
 	bool set_close_on_exec( bool closes );
 

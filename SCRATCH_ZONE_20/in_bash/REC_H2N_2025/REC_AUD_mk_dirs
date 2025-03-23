@@ -230,6 +230,11 @@ in
 	T="jagba_H1N" # Theme # name of play #
 	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
+	Stage=Retreat
+	Artist="Uncertainty_of_Pensions"
+	T="Jackie_Doe" # 
+	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
+
 ;; Sun)
 	Stage=salisbury_djembe
 	Artist="Mohamed Gueye"

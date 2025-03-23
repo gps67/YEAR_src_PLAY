@@ -170,15 +170,18 @@ namespace VARS {
 //	bool TEST_enc_B64()	{ return traits.TEST_enc_B64(); }
 //	bool SET_enc_B64()	{ return traits.SET_enc_B64(); }
  //	bool TEST_do_not_save()	{ return traits.TEST_do_not_save(); }
-//	bool SET_do_not_save()	{ return traits.SET_do_not_save(); }
+ //	bool SET_do_not_save()	{ return traits.SET_do_not_save(); }
  //	bool TEST_is_pass()	{ return traits.TEST_is_pass(); }
-//	bool SET_is_pass()	{ return traits.SET_is_pass(); }
-//	bool SET_is_multi_line() { return traits.SET_is_multi_line(); }
+ //	bool SET_is_pass()	{ return traits.SET_is_pass(); }
+ //	bool SET_is_multi_line() { return traits.SET_is_multi_line(); }
  //	bool TEST_is_multi_line() { return traits.TEST_is_multi_line(); }
 
 	bool TEST_do_not_save()	{ return vartype->traits.TEST_do_not_save(); }
 	bool TEST_is_pass()	{ return vartype->traits.TEST_is_pass(); }
 	bool TEST_is_multi_line() { return vartype->traits.TEST_is_multi_line(); }
+	bool SET_do_not_save()	{ return vartype->traits.SET_do_not_save(); }
+	bool SET_is_pass()	{ return vartype->traits.SET_is_pass(); }
+	bool SET_is_multi_line() { return vartype->traits.SET_is_multi_line(); }
 
 	V_var_decl();
 

@@ -1,0 +1,171 @@
+#!/bin/bash
+#
+# PIOMAS_fetch WGET
+#
+# fetch the data file
+# if it has been modified
+# since previously # ie fs layout copy kept
+# OPTION # calc YEAR from 20 days ago
+# BUT # they also have problems with Dec into Jan # even skip
+
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2022.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2024.Current.v2.1.dat.gz
+URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2025.Current.v2.1.dat.gz
+
+URL="${1:-$URL}"
+
+# FUNC print date of file
+date_r()
+{
+	# this function does nothing, other than printing the date of the file
+	echo >&2 "# date -r $* # `date -r $@` " # mtime
+	# atime # unknown -flag || flag( "atimea, "{ ref_time = file.atime.get() }" 
+	# date -r "$@"
+}
+
+DATED_file_mtime=PIOMAS_dated
+DATED_file_mtime=`basename $URL`
+
+if wget -N -v $URL
+then
+	echo "# PASS # might mean NOT modified"
+	date_r $DATED_file_mtime
+else
+	echo "# FAIL # $?"
+fi
+
+exit
+	###############################################################
+
+# look here manually
+# http://psc.apl.uw.edu/research/projects/arctic-sea-ice-volume-anomaly/data
+
+BASENAME=`basename $URL`
+
+
+# VARIABLE DATED_file_mtime
+#
+# you can use the ACTUAL file
+# you can use your own dated file
+# it is touched for last sucessful download
+# web fetch if modified since ...
+
+# DATED_file_mtime=$BASENAME
+DATED_file_mtime=PIOMAS_dated
+
+# date_r $DATED_file_mtime
+ LOG=$0.log
+ # date | tee $LOG 
+ touch $LOG # wake up nfs disk
+
+
+
+# the exit code from curl is useless for Not Modified
+# both return OK 0
+# missing file does return non zero
+# so resort to grep
+# Feb got:
+# curl: (2) The requested URL returned error: 404 Not Found
+# other fails might be internet down, DNS fail, filename error, EINTR, ...
+
+#
+# nb every year the previous year remains un-modified
+# you would error after 5 weeks
+#
+# maybe libcurl or tcl-php-script node?
+
+if type curl > /dev/null 
+then
+	:
+else
+	# type curl # curl prints to stdout # errors to &2
+	echo >&2 "# FAIL # curl not found"
+	exit 1
+fi
+
+call_curl()
+{
+	echo "# URL # $URL"
+	# date_r $DATED_file_mtime 
+	# echo
+	curl \
+		--remote-name \
+		--remote-time \
+		--time-cond $DATED_file_mtime \
+		-v \
+		--fail \
+		--fail-early \
+		"$URL" \
+	 2>&1 | tee $LOG \
+	 > /dev/null
+	 # exit code not helpful
+}
+
+call_curl_and_check_log_text()
+{
+	if call_curl 
+	then
+		:
+	else
+		t=$?
+		echo >&2 "# FAIL # previous sucessful load was:"
+		date_r $DATED_file_mtime
+		return 1
+	fi
+	# 
+	# note that Not Modified is considered a FAIL
+	# you might want to PASS but FAIL # did work no new data file available
+	# 
+	LIST_FAILS="
+		Not.Modified
+		404.Not.Found
+		curl:.(.*)The.requested.URL.returned.error: 
+	"
+	for FAIL_MSG in $LIST_FAILS
+	do
+	#	echo >&2 "# checking for # '$FAIL_MSG'"
+		if grep "$FAIL_MSG" $LOG
+		then
+			echo >&2 "# FAIL # previous sucessful load was:"
+			date_r $DATED_file_mtime
+			return 1
+		fi
+	done
+
+	# curl sets the local file timestamp to the remote
+	touch -r $BASENAME $DATED_file_mtime
+	# tell user again for no good reason
+	ls -l $BASENAME $DATED_file_mtime
+	# show the logfile
+	cat $LOG
+	echo  Downloaded
+	date_r $DATED_file_mtime
+	exit 0
+}
+
+call_curl_and_check_log_text
+
+# unreached
+exit
+	
+# set -x
+# echo exit $?
+# OK but # [ -f $BASENAME ] && touch -r $BASENAME $DATED_file_mtime
+# [ -f $BASENAME ] && touch -r $BASENAME $DATED_file_mtime
+# PIOMAS.vol.daily.1979.2018.Current.v2.1.dat.gz
+
+exit
+################
+# ./PIOMAS_fetch
+
+# curl is /usr/bin/curl
+# URL # http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
+# date -r PIOMAS_dated # Sun  4 Aug 18:28:58 BST 2019 
+
+< HTTP/1.1 304 Not Modified
+# date -r PIOMAS_dated # Sun  4 Aug 18:28:58 BST 2019

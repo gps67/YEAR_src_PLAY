@@ -1,6 +1,0 @@
-2021-06-28  13.516  # DAY
-2021-12-18  13.600  # DAY
-2022-05-30  13.5829 # average for 3 years
-1980-06-xx  24.087 # average for 3 years
-
-

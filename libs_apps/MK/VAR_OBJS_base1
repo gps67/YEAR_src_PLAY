@@ -117,7 +117,7 @@ endif
 	# maybe the answer is some virtual functions (_save_,_load_)
 	# that allows build within base1, use with base2 _encrypt_
 	# TODO put it back later OK
-	OBJS_base2 += var_tree.o # cfg_file_var_tree
+	OBJS_base1 += var_tree.o # cfg_file_var_tree
 	OBJS_base2 += var_tree2.o # cfg_file_var_tree
 # time
 	OBJS_base1 += time_calc_zone.o

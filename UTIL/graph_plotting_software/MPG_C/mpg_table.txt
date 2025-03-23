@@ -38,7 +38,9 @@
  2025-02-04  26364 175  26539  15.5 p_mile  1.36 £_litre  6.17 £_gallon  39.9 mpg   7.1 lp100  Y Full
  2025-02-12  26539 191  26730  13.9 p_mile  1.36 £_litre  6.17 £_gallon  44.2 mpg   6.4 lp100  Y Full
  2025-02-22  26730 131  26861  16.5 p_mile  1.35 £_litre  6.13 £_gallon  37.2 mpg   7.6 lp100  Y Full xs sainsburys
- 2025-02-24  26861 184  27045  12.7 p_mile  1.36 £_litre  6.18 £_gallon  48.5 mpg   5.8 lp100  Y Full Mor
+ 2025-02-24  26861 184  27045  12.7 p_mile  1.36 £_litre  6.18 £_gallon  48.5 mpg   5.8 lp100  Y Full Morissons
+ 2025-03-11  27045 197  27242  15.7 p_mile  1.36 £_litre  6.17 £_gallon  39.4 mpg   7.2 lp100  Y Full Morissons
+ 2025-03-13  27242 190  27432  14.2 p_mile  1.36 £_litre  6.17 £_gallon  43.4 mpg   6.5 lp100  Y Full Morissons
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 

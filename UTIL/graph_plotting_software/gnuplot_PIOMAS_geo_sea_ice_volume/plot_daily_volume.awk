@@ -81,9 +81,10 @@ BEGIN {
 	A365=365*4 # OK
 	A365=365*3 # sensible
 	A365=365*2
-	A365=365*2
 	A365=365*1
 	A365=365*3 # sensible
+	A365=365*1
+#	A365=365*2
 
 	# PICK A365 # LAST one WON #
 
@@ -97,7 +98,8 @@ BEGIN {
 #	P_9 = 0 # pencil lines
 	P_max = 1
 	P_min = 1
-	P_mid = 0 # plot midyear avg
+	P_mid = 1 # mid is within numeric year # close to blue
+	P_mid = 0 # plot midyear avg(matches blue at YEAR.50)
 	P_avg = 1 # plot rolling day 365 average
 
 	# remove old files to avoid making it look OK when not
@@ -176,6 +178,7 @@ function get_filename_data_gz()
 	F="PIO/PIOMAS.vol.daily.1979.2022.Current.v2.1.dat"
 	F="PIO/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat"
 	F="PIO/PIOMAS.vol.daily.1979.2024.Current.v2.1.dat"
+	F="PIO/PIOMAS.vol.daily.1979.2025.Current.v2.1.dat"
 	return F
 }
 function Q1( str ) {
@@ -215,9 +218,14 @@ function flush_year_end() {
 
 function line_in( year, year_frac, day, vol ) {
 
+	# IE( year_frac, vol ) for each days text line
+	#
+	# we use year to detect new year (jan-1st) and flush line
+	# fortunately MIN and MAX are months away from 0101
+
 	# process the line of data, into ALL hungry filters
 	# this function is a does-it-all monster
-	# it find the PEAK and LOW values
+	# it finds the PEAK and LOW values
 	# it scrolls the averaging windows
 	# that should be split out and rewritten # TODO #
 	# slightly specific to PIOMASS #
@@ -225,6 +233,8 @@ function line_in( year, year_frac, day, vol ) {
 	fmt_3 = "%.4f"
 	fmt_3 = "%.3f"
 	if( year_curr != year ) {
+	 # start of a new year
+	 # flush MIN MAX
 	 if( year_curr != -1 ) flush_year_end()
 	 year_curr = year
 	 year_min_vol = vol

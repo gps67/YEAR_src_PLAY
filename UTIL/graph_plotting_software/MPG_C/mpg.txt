@@ -39,7 +39,9 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-02-04, 26539,  19.95, 27.07, Y Full
 2025-02-12, 26730,  19.63, 26.64, Y Full
 2025-02-22, 26861,  16.03, 21.62, Y Full xs sainsburys
-2025-02-24, 27045,  17.24, 23.43, Y Full Mor
+2025-02-24, 27045,  17.24, 23.43, Y Full Morissons
+2025-03-11, 27242,  22.75, 30.87, Y Full Morissons
+2025-03-13, 27432,  19.92, 27.03, Y Full Morissons
 
 
 

@@ -1,0 +1,21 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 74.114.88.224:80...
+* Connected to psc.apl.uw.edu (74.114.88.224) port 80 (#0)
+> GET /wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat.gz HTTP/1.1
+> Host: psc.apl.uw.edu
+> User-Agent: curl/7.81.0
+> Accept: */*
+> If-Modified-Since: Wed, 05 Apr 2023 20:39:05 GMT
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 304 Not Modified
+< Date: Fri, 05 May 2023 18:36:57 GMT
+< Server: Apache
+< TT-Server: t=1683311817596091 D=2396
+< Last-Modified: Wed, 05 Apr 2023 20:39:05 GMT
+< ETag: "13cb9-5f89cc878f3b5"
+< Accept-Ranges: bytes
+< 
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+* Connection #0 to host psc.apl.uw.edu left intact

@@ -159,6 +159,8 @@ echo
 # extract the DVD using vobcopy -m
 # -m # mirror whole dvd to disk # css decrypt done here
 
+if yes_no call vobcopy
+then
 	if vobcopy -m 2>&1 | tee ${VOB_LOG} # -i $media_mount_path
 	then
 		# vobcopy used $dvd_name # we had no choice
@@ -173,6 +175,9 @@ echo
 		#
 		read -p "Press Return to Continue" junk
 	fi
+else
+	echo "NOT CALLED"
+fi
 
 	sync
 

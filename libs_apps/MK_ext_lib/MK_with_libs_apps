@@ -81,7 +81,7 @@ ifeq (1,1)
 	LIST_RPATH += $(DIR_G_prefix)/SM/lib/
 
 	# /tools/VPN is where openssl is
-	LIST_PKG_CONFIG_PATH += /tools/VPN/lib/pkgconfig/
+	LIST_PKG_CONFIG_PATH += /tools/x86_64/libr/lib/pkgconfig/
 
 endif
 

@@ -467,6 +467,8 @@ int main(int argc, char ** argv )
 		str1 filename;
 
 		Argv_scanner argv_scanner( argc, argv );
+		dgb_fork_stderr_to_tcl_text(); // needs X11
+
 
 		argv_scanner.register_program_name();
 		// gdb_sigaction( argv[0] ); // sets progname_argv0

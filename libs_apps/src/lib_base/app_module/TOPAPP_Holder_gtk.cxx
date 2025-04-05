@@ -30,6 +30,18 @@ call_gtk_or_glib_init(int * p_argc, char *** p_argv)
 
 
 bool TOPAPP_Holder_gtk::
+call_glib_init(int * p_argc, char *** p_argv)
+{
+	STEP("HERE");
+	if( ! g_not_gtk ) {
+		WARN("GTK -vs- GLIB, still here!");
+	}
+	WARN("TODO glib_init - does itself");
+//	/*VOID*/ glib_init(); // p_argc and P-argv unused
+	return true;
+}
+
+bool TOPAPP_Holder_gtk::
 call_gtk_init(int * p_argc, char *** p_argv)
 {
 	STEP("HERE");

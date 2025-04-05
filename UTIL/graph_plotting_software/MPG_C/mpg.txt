@@ -42,6 +42,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-02-24, 27045,  17.24, 23.43, Y Full Morissons
 2025-03-11, 27242,  22.75, 30.87, Y Full Morissons
 2025-03-13, 27432,  19.92, 27.03, Y Full Morissons
+2025-03-13, 27611,  20.02, 26.37, Y Full Morissons
 
 
 

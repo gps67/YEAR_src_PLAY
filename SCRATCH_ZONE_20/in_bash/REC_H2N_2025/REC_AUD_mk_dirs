@@ -243,10 +243,6 @@ in
 	Artist="Fishermans_Cottage"
 	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
-	Stage=americana
-	Artist="Fishermans_Cottage"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
-
 	Stage=salisbury_H2n
 	Artist="Babara Bangura"
 	Sess_List="_sess_1 _sess_2"
@@ -255,6 +251,10 @@ in
 	T3="dinodon" # Theme # name of play #
 	T="$T2"
 	Sess_List="${T}_sess_1 ${T}_sess_2 ${T}_sess_3 ${T}_sess_4"
+
+	Stage=americana
+	Artist="Fishermans_Cottage"
+	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 ;; *)
 	Stage=XX

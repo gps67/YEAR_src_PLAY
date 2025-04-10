@@ -41,10 +41,9 @@
  2025-02-24  26861 184  27045  12.7 p_mile  1.36 £_litre  6.18 £_gallon  48.5 mpg   5.8 lp100  Y Full Morissons
  2025-03-11  27045 197  27242  15.7 p_mile  1.36 £_litre  6.17 £_gallon  39.4 mpg   7.2 lp100  Y Full Morissons
  2025-03-13  27242 190  27432  14.2 p_mile  1.36 £_litre  6.17 £_gallon  43.4 mpg   6.5 lp100  Y Full Morissons
- 2025-03-13  27432 179  27611  14.7 p_mile  1.32 £_litre  5.99 £_gallon  40.6 mpg   6.9 lp100  Y Full Morissons
+ 2025-03-31  27432 179  27611  14.7 p_mile  1.32 £_litre  5.99 £_gallon  40.6 mpg   6.9 lp100  Y Full Morissons DATE WRONG
+ 2025-04-06  27611 271  27882  14.5 p_mile  1.33 £_litre  6.04 £_gallon  41.6 mpg   6.8 lp100  Y Full Morissons DATE GUESS PICK
+ 2025-04-08  27882 179  28061  14.7 p_mile  1.32 £_litre  5.99 £_gallon  40.6 mpg   6.9 lp100  NO Full Morissons MISSING
 # SHOW2 0000-00-00,      0,  0.00,  0.00, 
  # SKIPPING # d_miles < 1 # 
-# SHOW2 0000-00-00,      0,  0.00,  0.00, 
- # SKIPPING # d_miles < 1 # 
-# SHOW2 0000-00-00,      0,  0.00,  0.00, 
- # SKIPPING # d_miles < 1 # 
+ # SKIPPING # COMMENT ## # 2025-04-08, 27741,  20.02, 26.37, NO Full Morissons MISSING

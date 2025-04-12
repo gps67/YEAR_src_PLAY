@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# hardlink this file to "man_WHATEVER"
+# its cheaper than a symb link (1 inode)
+# add any MANPATH you think you might need
+
+# set -x
+name=$0
+name=`basename $name`
+
+mid=""
+rhs="rhs"
+
+if rhs=$(expr match "$name" 'man_.*_\(.*\)')
+then
+        if mid=$(expr match "$name" 'man_\(.*\)_.*')
+	then
+		case $mid
+		in
+		xxx) 
+		;; k) mid="-k"
+		;; a) mid="-a"
+		esac
+	fi
+else
+	if rhs=$(expr match "$name" 'man_\(.*\)')
+	then
+		: # PASS
+	else
+		FAIL
+		exit
+	fi
+fi
+
+exec man $mid $rhs

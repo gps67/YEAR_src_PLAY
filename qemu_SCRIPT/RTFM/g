@@ -1,0 +1,9 @@
+man -k qemu | gawk '{
+
+ {
+	man_1 = "man_" 
+	man_2 = "man_" $1
+ 	SECTION = $2
+	print("ask_do ln", man_1, man_2 )
+ }
+}'

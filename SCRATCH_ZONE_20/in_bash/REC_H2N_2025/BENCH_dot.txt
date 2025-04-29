@@ -1,0 +1,105 @@
+
+	BENCH_dot.txt
+
+	STARTUP CMD_LINE INVOKE mk_EXE CALL ARGV // reuse $0 as alias "%s.abc"
+
+	BENCH is a UDEF compiled binary that can figure out its own
+	configuration for DIAG // you draw features on board, 
+	MENTION AUTO import LIBR:MENTION 
+	MENTION AUTO import LIBR:ITEM where ITEM == MENTION USAGE operator==
+
+		C or C++ does a lot of CALL_FUNC_MATCH_ARGS
+
+			C DECL tells us parameter names
+			C CORE gives us STACK_FRAME_ARGS_LOCALS_and_RET_VAR
+
+				for very little cost you can add
+				RET_VAR 
+				RET_VAL
+
+				with some work you can manipulate symbols in PSG
+				when RET_VAR is WORD_32 or WORD_64 
+				when RET_VAR is BIT_FIELD // B2B0 // draw R2L
+				when RET_VAR is BYTE_FIELD // B2B0 esp 32]...0]
+
+		// B2B0 esp 32]...0]
+		// 32 ] ... 0 ] // ... is encouraged and matched as ...
+		/// ... is a SEGMENT RANGE or SEGMENT XPOS in LIST ... N_LIST
+		// N_LIST // POINTER XPOS and N // when VALID // SHARED_WORDS
+		// N_LIST // need half a dozen ITEMS in ARGS_LIST
+		// STACK interpret N_ARGS 
+
+	CT_RT
+
+		CT_RT can run CTOR SETUP SCRIPTS without modifying DB_CORE
+		CT_RT can then forget all side effects and re-run on demand
+		CT_RT can PRE_RUN SCRIPTS using TRACER_ARGV_AVAR_ITEMS
+
+			WORD = ARGV_STEP
+			WORD = CACHED ARGV_TREE_ITEM // with added info //
+
+			WORD = CONST_mentioned_in_SCRIPT_at_XPOS
+
+			WORD = AVAR _mentioned_in_SCRIPT_at_XPOS // USAGE +=
+
+
+		CT_RT offers a CODE_LINES that might be relevent to USAGE FILTER
+		CT_RT_FILTER is FILTER eg ...
+		CT_RT_FILTER is LEXER eg SUB_LEX_and_PSG // LEX is SUB already
+		CT_RT_FILTER is LEXER eg LEX_and_PSG // LEX is SUB already
+	
+	AUTO GUESS SESS CTOR_SETUP
+
+		NULL means take default interpretation
+		NULL means take default action
+
+		bench . # fork_exec PROC that wakes up bench to new SOCKET
+		bench . # often list FILES and offer MIME actions and NOTES
+
+	AUTO GUESS SESS BENCH CTOR_SETUP is LIST_of_MIME_FILE _or_UDEF
+
+		_UDEF_MIME_FILE
+		eg .pdf means set viewer = PROFILE.MIME.EXE_for_PDF
+		eg .script means set viewer = viewer_as_SCRIPT_RUNNER
+
+			+ SCRIPT is BUILTIN_CPU_WORD_ASM_STEPS
+			- SCRIPT is WELL_KNOWN SAFE SCRIPTS to config MIME
+			* WE PROVIDE LIBR * caller USES LIBR * SAFER *
+	
+	AUTO LIST of FILE of MIME // LIST of LOCN // LIST of UDEF
+
+		UDEF OS_inode_types FILE DIR DEV_C DEV_B FIFO UNIX_SOCKET
+
+		UNIX_SOCKET to VFS_FIFO
+
+			fd = open ...
+			fd.is_readable
+			fd.is_writable
+			fd.read IO_BUFFER_16K // ssl data size // or 1MB //
+
+				16K == 2 ^ 14 // quick // same as SSL // 0.5K
+			   x	 4  == 2 ^  2 // 4 BANKS of SPLIT SEGMENTS
+			   ==	64K == 2 ^ 16 // prefer 1MB == 2 ^ 20
+
+
+			  -or-	 1MB == 2 ^ 20 // CACHE PAGE covers WORLD
+			  -or-	16MB == 2 ^ 24 // pre-fetch work area
+
+		u0 see CODE_POINT XPOS
+		u1 [0[2
+		u2 [0[4
+		u3 [0[8
+		u4 [0[16
+		u5 [0[32
+		u6 [0[64
+
+		u3_01234567_bitpos_of_highest_bit_set
+		LIMIT u8_K // 256K //
+		LIMIT u8_4K // 1M // causes gaps to align at 4K boundaries
+
+
+		u6_idx_of_highest_bit_set eg 63
+		u6_idx_of_highest_bit_set eg 14 // 64K buffer in 4K pages
+
+
+	

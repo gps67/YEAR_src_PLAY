@@ -44,6 +44,10 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-03-13, 27432,  19.92, 27.03, Y Full Morissons
 2025-03-31, 27611,  20.02, 26.37, Y Full Morissons DATE WRONG
 2025-04-06, 27882,  29.60, 39.34, Y Full Morissons DATE GUESS PICK
-2025-04-08, 28061,  20.02, 26.37, NO Full Morissons MISSING
+2025-04-08, 28144,  26.31, 34.97, Y Full Morissons found
+2025-04-13, 28369,  23.08, 30.90, Y Full Poole
+2025-04-24, 28494,  14.70, 19.10, Y Full Moriwsons
+2025-04-26, 28791,  28.87, 37.50, Y Full Moriwsons from BH Yeovil
+
 
 # 2025-04-08, 27741,  20.02, 26.37, NO Full Morissons MISSING

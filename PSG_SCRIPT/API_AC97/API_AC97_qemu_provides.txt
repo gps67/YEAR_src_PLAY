@@ -1,0 +1,100 @@
+
+	API_AC97/
+	API_AC97_qemu_provides.txt
+
+	qemu provides a modern PC based on some  traditional HW_API
+
+		or does it ? 
+		IE silent placeholder NULL > /dev/null
+
+	qemu provides a modern PC based on some  traditional HW_API
+
+		sound_card_plays_N_stereo_8_TRACK
+
+			3_BIT_FIELD
+			4_BIT_SIGNED FIELD
+
+			u3_idx_TRACK
+			i4 expr_TRACK
+
+				8 TRACK
+				8 EXPR that eval into i4_RET_VAL
+				16 EXPR TWIG_NULL_LEAF
+				16 EXPR EXPR_NULL_ITEM // NULL_is_IDX_ZERO
+				16 EXPR EXPR_NULL_ITEM // NULL_is_UBSEBT_UPSET
+
+
+					FIRST decode SIGN
+
+						// NOOP do not GEN placeholder
+						// dont test here // ignore //
+						is_ZERO so call NOOP || on_ZERO
+						// returning OK SIOMEHOW MEANS
+						// ZERO_is_PLUS 
+
+						is_PLUS so INLINE_EVENT SCRIPT
+
+						CT_RT INLINE ...
+						CT_RT INLINE RET_VAL = EVAL_i64
+
+							hope i64 works as LIBR
+
+						EVAL i24_i8_i16_i8_i8
+						DECODE i24_i8_i16_i8_i8
+						DECODE i16 as i4_i12 ALIAS
+
+
+						is_MINUS so on_EVENT SCRIPT
+						is_MINUS so on_EVENT SCRIPT
+						i4_RET_VAL
+
+					SECOND decode SIGN
+
+						u3_idx
+						i4_PLUS // ZERO-is_PLUS
+						i4_MINUS
+						u3_idx
+						i4_MINUS
+
+
+			Actually uses GROW_IDX technology
+			that enables a focus on HEAP_ITEM in N_BYTES_of_SPEC
+
+				SPEC is BYTE_STREAM_DECODER and its TREE_SPEC
+				TREE_SPEC_t TREE_SPEC; // mk_MENTION
+
+		sound_card_provides_8_Track_44 KHz
+
+			15 streams in and out
+			16 PCM audio channels
+			RATE SWITCHES 6 - 192 Khz
+			MIME_LIBR
+
+		AC97_Connector
+
+		HD_Audio
+		 https://en.wikipedia.org/wiki/Intel_High_Definition_Audio
+
+		PC_DESK_SIDE
+		 https://en.wikipedia.org/wiki/Intel_High_Definition_Audio
+		 OUT 7.1 surround sound 
+		 IN 4 input channels 
+		 	front_panel_jack_as_INPUT %d // u2 = { 0 1 2 3 ] 
+		 	rear_panel_jack_as_INPUT %d // -2 -1 0 1 
+		 	rear_panel_jack_as_INPUT %d  // i2 // M2 M1 0 1 //
+
+		The point of INPUT is A_to_D // INPUT STREAM BUFFER 
+
+			SAMPLE_RATE 192 kHz 
+			SAMPLE_RATE 44 kHz 
+			SAMPLE_RATE 8 kHz // phone line 64 kbit 8 KPS i8_BYTE
+			SAMPLE_RATE 32 kHz // PICK STRETCHED_A2D_CHIP //
+			ENERGY BATTERY and HEAT // used by SAMPLE_RATE
+
+		LEX_MERGE 
+		LEX_JOIN LHS "_" RHS CODE_POINT says "_" // CT_RT snapshot
+
+			IDENT is multi_part_word 
+			DECODE SEQ MATCH ALEX 
+
+

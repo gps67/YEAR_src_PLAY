@@ -1,0 +1,176 @@
+
+	RPC.txt
+
+	even if we do most of our own RPC API via CACHE
+	we want to off an API that resembles XDR RPC
+
+	rpc/xdr.h
+	https://datatracker.ietf.org/doc/html/rfc4506 - xdr
+	https://datatracker.ietf.org/doc/html/rfc1050 - rpc
+
+	/usr/src/linux-hwe-6.8-headers-6.8.0-52/
+	 include/
+	  linux/
+	   sunrpc/
+	    xdr.h
+
+gps@E6320:/usr/src/linux-hwe-6.8-headers-6.8.0-52$ locate xdr.h
+/tools/x86_64_src/gcc11/gcc-11.2.0/fixincludes/tests/base/rpc/xdr.h
+/tools/x86_64_src/gcc13/gcc-13.2.0/fixincludes/tests/base/rpc/xdr.h
+/tools/x86_64_src/gcc14/gcc-14.2.0/fixincludes/tests/base/rpc/xdr.h
+/tools/x86_64_src/glibc/glibc-2.39/include/rpc/xdr.h
+/tools/x86_64_src/glibc/glibc-2.39/nis/nis_xdr.h
+/tools/x86_64_src/glibc/glibc-2.39/sunrpc/rpc/xdr.h
+/usr/include/tirpc/rpc/xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-52/include/linux/nfs_xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-52/include/linux/lockd/xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-52/include/linux/sunrpc/xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-57/include/linux/nfs_xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-57/include/linux/lockd/xdr.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-57/include/linux/sunrpc/xdr.h
+/usr/src/linux-hwe-headers/include/crypto/aes.h
+
+/tools/x86_64_src/glibc/glibc-2.39/include/rpc
+
+rpc_xdr (3t)         - XDR library routines for remote procedure calls
+xdr (3)              - library routines for external data representation
+xdr_accepted_reply (3) - library routines for remote procedure calls
+rpc_soc (3t)         - "library routines for remote procedure calls"
+xdr_array (3)        - library routines for external data representation
+xdr_authunix_parms (3) - library routines for remote procedure calls
+xdr_bool (3)         - library routines for external data representation
+xdr_bytes (3)        - library routines for external data representation
+xdr_callhdr (3)      - library routines for remote procedure calls
+xdr_callmsg (3)      - library routines for remote procedure calls
+xdr_char (3)         - library routines for external data representation
+xdr_destroy (3)      - library routines for external data representation
+xdr_double (3)       - library routines for external data representation
+xdr_enum (3)         - library routines for external data representation
+xdr_float (3)        - library routines for external data representation
+xdr_free (3)         - library routines for external data representation
+xdr_getpos (3)       - library routines for external data representation
+xdr_inline (3)       - library routines for external data representation
+xdr_int (3)          - library routines for external data representation
+xdr_long (3)         - library routines for external data representation
+xdr_opaque (3)       - library routines for external data representation
+xdr_opaque_auth (3)  - library routines for remote procedure calls
+xdr_pmap (3)         - library routines for remote procedure calls
+xdr_pmaplist (3)     - library routines for remote procedure calls
+xdr_pointer (3)      - library routines for external data representation
+xdr_reference (3)    - library routines for external data representation
+xdr_rejected_reply (3) - library routines for remote procedure calls
+xdr_replymsg (3)     - library routines for remote procedure calls
+xdr_setpos (3)       - library routines for external data representation
+xdr_short (3)        - library routines for external data representation
+xdr_string (3)       - library routines for external data representation
+xdr_u_char (3)       - library routines for external data representation
+xdr_u_int (3)        - library routines for external data representation
+xdr_u_long (3)       - library routines for external data representation
+xdr_u_short (3)      - library routines for external data representation
+xdr_union (3)        - library routines for external data representation
+xdr_vector (3)       - library routines for external data representation
+xdr_void (3)         - library routines for external data representation
+xdr_wrapstring (3)   - library routines for external data representation
+xdriinfo (1)         - query configuration information of DRI drivers
+xdrmem_create (3)    - library routines for external data representation
+xdrrec_create (3)    - library routines for external data representation
+xdrrec_endofrecord (3) - library routines for external data representation
+xdrrec_eof (3)       - library routines for external data representation
+xdrrec_skiprecord (3) - library routines for external data representation
+xdrstdio_create (3)  - library routines for external data representation
+
+
+
+xdr_accepted_reply (3) - 
+xdr_rejected_reply (3) - 
+xdr_callhdr (3)      - 
+xdr_callmsg (3)      - 
+xdr_replymsg (3)     - 
+
+
+rpcsec_gss (3t)      - "GSS-API based authentication for RPC"
+berkeley_db5.3_svc (1) - Berkeley DB RPC server
+berkeley_db_svc (1)  - Berkeley DB RPC server
+callrpc (3)          - library routines for remote procedure calls
+rpc_soc (3t)         - "library routines for remote procedure calls"
+endrpcent (3)        - get RPC entry
+getrpcent (3t)       - get RPC entry
+getrpcbyname (3)     - get RPC entry
+getrpcbyname_r (3)   - get RPC entry (reentrant)
+getrpcbynumber (3)   - get RPC entry
+getrpcbynumber_r (3) - get RPC entry (reentrant)
+getrpcent (3)        - get RPC entry
+getrpcent_r (3)      - get RPC entry (reentrant)
+getrpcport (3)       - get RPC port number
+getrpcport (3t)      - get RPC port number
+grpck (8)            - verify integrity of group files
+grpconv (8)          - convert to and from shadow passwords and groups
+gssd (8)             - RPCSEC_GSS daemon
+key_decryptsession (3) - interfaces to rpc keyserver daemon
+key_encryptsession (3) - interfaces to rpc keyserver daemon
+key_gendes (3)       - interfaces to rpc keyserver daemon
+key_secretkey_is_set (3) - interfaces to rpc keyserver daemon
+key_setsecret (3)    - interfaces to rpc keyserver daemon
+registerrpc (3)      - library routines for remote procedure calls
+rpc (3)              - library routines for remote procedure calls
+rpc (3t)             - library routines for remote procedure calls
+rpc (5)              - RPC program number data base
+rpc.gssd (8)         - RPCSEC_GSS daemon
+rpc.idmapd (8)       - NFSv4 ID <-> Name Mapper
+rpc.mountd (8)       - NFS mount daemon
+rpc.nfsd (8)         - NFS server process
+rpc.sm-notify (8)    - send reboot notifications to NFS peers
+rpc.statd (8)        - NSM service daemon
+rpc.svcgssd (8)      - server-side rpcsec_gss daemon
+rpc_clnt_calls (3t)  - library routines for client side calls
+rpc_clnt_auth (3t)   - library routines for client side remote procedure call...
+rpc_clnt_create (3t) - "library routines for dealing with creation and manipu...
+rpc_gss_get_error (3t) - "Get error details"
+rpc_gss_get_mech_info (3t) - "Get Quality of Protection information for a sec...
+rpc_gss_get_mechanisms (3t) - "Get installed mechanisms"
+rpc_gss_get_principal_name (3t) - "Get a principal name"
+rpc_gss_get_versions (3t) - "Get supported protocol version"
+rpc_gss_getcred (3t) - "Get authorization information for an RPC request"
+rpc_gss_is_installed (3t) - "Query for the presence of a security mechanism"
+rpc_gss_max_data_length (3t) - "calculate maximum data size"
+rpc_gss_mech_to_oid (3t) - "Convert a mechanism name to a GSS-API oid"
+rpc_gss_qop_to_num (3t) - "Convert a Quality of Protection name to number"
+rpc_gss_seccreate (3t) - "create a security context using the RPCSEC_GSS prot...
+rpc_gss_set_callback (3t) - "Register a security context creation callback"
+rpc_gss_set_defaults (3t) - "set service and quality of protection"
+rpc_gss_set_svc_name (3t) - "Associate a GSS-API service principal with an RP...
+rpc_gss_svc_max_data_length (3t) - "calculate maximum data size"
+rpc_svc_reg (3t)     - library routines for registering servers
+rpc_secure (3t)      - library routines for secure remote procedure calls
+rpc_svc_calls (3t)   - library routines for RPC servers
+rpc_svc_create (3t)  - library routines for the creation of server handles
+rpc_svc_err (3t)     - library routines for server side remote procedure call...
+rpc_xdr (3t)         - XDR library routines for remote procedure calls
+rpcbind (3t)         - library routines for RPC bind service
+rpcbind (8)          - universal addresses to RPC program number mapper
+rpcclient (1)        - tool for executing client side MS-RPC functions
+rpcdebug (8)         - set and clear NFS and RPC kernel debug flags
+rpcgen (1)           - an RPC protocol compiler
+rpcinfo (8)          - report RPC information
+setrpcent (3)        - get RPC entry
+sss_rpcidmapd (5)    - sss plugin configuration directives for rpc.idmapd
+svcgssd (8)          - server-side rpcsec_gss daemon
+
+
+        int callrpc(
+         char *host,		// HOSTNAME
+         unsigned long prognum,	// IDX //
+         unsigned long versnum, // IDX //
+         unsigned long procnum, // IDX //
+         xdrproc_t inproc,	// encode PARAMETERS
+         char *in,		// parameters to encode
+         xdrproc_t outproc,	// decode 
+         char *out		// decoded // caller provides bytes called sets
+        );
+
+		beware timeouts
+
+	https://datatracker.ietf.org/doc/html/rfc4506 - xdr
+	https://datatracker.ietf.org/doc/html/rfc1050 - rpc
+
+

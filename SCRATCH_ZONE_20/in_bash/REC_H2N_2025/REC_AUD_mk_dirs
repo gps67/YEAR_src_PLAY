@@ -135,6 +135,15 @@ in
 	Stage=YME
 	Artist="Mainwaring"
 	Sess_List="_sess_1 _sess_2 "
+
+	Stage=Retreat
+	Artist="Ma_Bessie"
+
+	Stage=Pwnica
+	Artist="Limpopo_Groove"
+
+	T="$Artist" # 
+	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 ;; Tuex)
 	Stage=Global_X
 	Artist="Greg Mayston"
@@ -230,9 +239,20 @@ in
 	T="jagba_H1N" # Theme # name of play #
 	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
+	Stage=Lyndhurst
+	Artist="Heather_Jayne_and_the_Red_Shoes"
+
 	Stage=Retreat
 	Artist="Uncertainty_of_Pensions"
-	T="Jackie_Doe" # 
+
+	Stage=Lyndhurst
+	Artist="The_Cohen_Perry_band"
+
+	Stage=Retreat
+	Artist="Rufus_Ruffcut"
+
+
+	T="$Artist" # 
 	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
 ;; Sun)
@@ -241,7 +261,6 @@ in
 
 	Stage=irish_sessions
 	Artist="Fishermans_Cottage"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 	Stage=salisbury_H2n
 	Artist="Babara Bangura"
@@ -254,7 +273,27 @@ in
 
 	Stage=americana
 	Artist="Fishermans_Cottage"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
+
+	Stage=Retreat
+	Artist="Mayor_and_James"
+
+	Stage=irish_sessions
+	Artist="Fishermans_Cottage"
+
+	Stage=Retreat
+	Artist="David_Gray_n_John_Dusty_Dunsterville"
+
+	Stage=Lyndhurst
+	Artist="Funk_Nexus_with_Paul_Glover"
+
+	Stage=Retreat
+	Artist="HybridPIG"
+
+	Stage=JollyDarity
+	Artist="JollyDarity"
+
+	T="$Artist" # 
+	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
 ;; *)
 	Stage=XX

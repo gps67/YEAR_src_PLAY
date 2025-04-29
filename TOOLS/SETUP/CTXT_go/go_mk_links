@@ -23,6 +23,7 @@ done
 
 list_dirs() {
 	echo "
+		gcc15
 		ccs
 		gcc
 		gcc11

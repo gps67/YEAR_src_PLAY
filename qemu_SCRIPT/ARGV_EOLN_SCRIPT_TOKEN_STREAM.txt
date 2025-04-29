@@ -1,0 +1,108 @@
+
+	ARGV_EOLN_SCRIPT_TOKEN_STREAM.txt
+
+		ARGV
+		EOLN
+		SCRIPT
+		TOKEN
+		STREAM
+
+	OPTION pre parse argv line from TEXT ; parse multi_line_argv_tree
+
+		TREE_of_ARGV
+
+			LINE_of_ARGV // can be SEGMENT of LINE ; LINE
+			LINE_of_ARGV relays of ITEMS in Parsed_Phrase_from_TEXT
+
+	OPTION LINE is SEGMENT of STREAM 
+
+		STREAM_of_ARGV_STEP // ITEM or LIST_of_ARGV or TREE
+
+		SYNC_EDGE never arrives,
+		SYNC_FLUSH does many times per batch step
+
+--
+	ZONE_HEAP_ITEM using i8_idx or other for 
+
+		grow_idx_nbits
+
+		DETECT past low half.
+
+			eg u3 of i4
+			increments into negative
+
+			OPTION OPTIMISER
+			OPTION shift u3 upto bit 30 just below bit 31 sign bit
+			OPTION shift u3 upto bit 7 where bit_8_is_SIGN_bit
+
+ 2's complement MATH
+
+
+	detect and decide on ZERO first
+
+		on reason is that JNZ or JZ is 1 cycle and leaves flags
+
+		_ZERO test_says_is_zero
+		_PLUS test_says_is_zero_or_PLUS
+		_MINUS test_says_is_MINUS
+	
+		OPTION CT does not even test for zero, need zero_or_plus
+
+			OPTION EMIT test anyway and interrupt BAD_NULL_TOWN
+
+				KNEW OTHERWISE except apparently not
+
+			OPTION OMIT test anyway and interrupt BAD_NULL_TOWN
+
+				KNOW OTHERWISE and cutting corner # KNOW KNOW #
+
+		OPTION CT does test for zero, need to AVOID zero_or_plus
+
+			on_NULL
+			on_ABSENT
+			on_UNSET
+			on_FAST_FULL_picks_PATHWAY_one // _ZERO
+			on_SLOW_DATA_picks_PATHWAY_two // ARGS += DATA "alias"
+
+		_PLUS means ZERO or PLUS 
+		_PLUS avail from TEST_WORD // test_byte_B // CAST into BYTE_A
+		_PLUS avail from test_bit u6_63 -is- TOP_BIT
+		_PLUS_avail_from_CALC_idx or CALC_OFFS
+
+			RET_VAL CT_RT FRAMES
+
+			 adds a bit of inefficiency
+			 but comes with a wealth of options
+			 building CT structures even at RT
+			 TODO more RT at CT
+			 TODO more CT at RT // CACHE compiling action plan
+
+ MINUS_ZERO_PLUS
+
+ 	CT KNOW ZERO_is_just_another_PLUS # the most common one
+ 	CT KNOW ZERO_might_have_RT_optimise (OFFS due to IDX is also ZERO)
+
+		0000
+		0...
+		1...
+
+ MINUS_ZERO_PLUS NULL here means TAKE_DEFAULT_ACTION
+ MINUS_ZERO_PLUS NULL here means SKIP_OPTIONAL_ACTION
+ MINUS_ZERO_PLUS NULL here means OK_NULL_DATA_PROVIDED
+ MINUS_ZERO_PLUS NULL here means FAIL_NULL_PTR_BANNED // KNOW_NOT_NULL //
+ MINUS_ZERO_PLUS NULL here means no offset from SELF // IDX is default item or
+ MINUS_ZERO_PLUS NULL here means ZERO just another PLUS // ITEM_ZERO //
+ MINUS_ZERO_PLUS PLUS u7_idx or u15_OFFS
+ MINUS_ZERO_PLUS PLUS  
+ MINUS_ZERO_PLUS MINUS 
+ MINUS_ZERO_PLUS MINUS M1 M2 M3 
+ MINUS_ZERO_PLUS MINUS M_z_N // need to check M <= idx_MINUS
+
+ M_z_N
+ L_z_R
+   z_N
+		
+	ARGV_TREE
+
+
+

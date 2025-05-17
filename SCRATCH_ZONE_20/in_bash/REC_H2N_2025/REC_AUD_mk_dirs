@@ -123,7 +123,7 @@ run_mkdir()
 }
 
 Artist=Artist
-Sess_List="_sess_1 _sess_2"
+Sess_List="_1 _2 _3 _4"
 Theme=""
 case $Tue
 in
@@ -134,7 +134,6 @@ in
 
 	Stage=YME
 	Artist="Mainwaring"
-	Sess_List="_sess_1 _sess_2 "
 
 	Stage=Retreat
 	Artist="Ma_Bessie"
@@ -142,34 +141,29 @@ in
 	Stage=Pwnica
 	Artist="Limpopo_Groove"
 
+	Stage=Table
+	Artist="YOKOS"
+
 	T="$Artist" # 
-	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 ;; Tuex)
 	Stage=Global_X
 	Artist="Greg Mayston"
-	Sess_List="_sess_1 _sess_2 _sess_3"
-	Sess_List="_sess_1"
 ;; Tuex)
 	Stage=RSAC 
 	Artist=NYE
-	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Tue)
 	Stage=Samba # varname used to be Samba=Samba
 	Artist=Beatroots
-	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Tuex)
 	Stage="Samba_101"
 	Artist=Beatroots
-	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Wed)
 	Stage=AfroDrum
 	Artist="Tankata_Steve"
-	Sess_List="_sess_1 _sess_2 _sess_3"
 ;; Wed_)
 	# unmodified first wins so this is old dead code # sample
 	Stage=djembe
 	Artist="Hands Of Rhythm"
-	Sess_List="_sess_1 _sess_2"
 ;; Thu)
 	Stage=PanYard
 	Artist="RASPO"
@@ -178,24 +172,19 @@ in
 	Artist="Annie Parker Collective"
 	Stage=RG2
 	Artist="bodhran_basics"
-	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
 	#
 	Stage=READIPOP_AGM_Hootenannay
 	Artist="Readipop AGM Hootenannay"
-	Sess_List="_ _sess_1 _sess_2" // XERO is MENTION  _one _two ...
 
 	Stage=irish_sessions
 	Artist="OLOP"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 	Stage=salsa_calls
 	Artist="rueda"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
 ;; Fri)
 	Stage=Velocity
 	Artist="EDE TheMay AugList"
-	Sess_List="_sess_1 _sess_2"
 	
 ;; Sat)
 	Stage=JP_Workshop
@@ -203,19 +192,15 @@ in
 
 	Stage=Emma_Rob_Skye
 	Artist="Emma Rob Skye"
-	Sess_List="_sess_1 _sess_2"
 
 	Stage=salisbury_djembe
 	Artist="Mohamed Gueye"
-	Sess_List="_sess_1 _sess_2"
 
 	Stage=salisbury_djembe
 	Artist="Babara Bangura"
-	Sess_List="_sess_1 _sess_2"
 
 	Stage=HCTS
 	Artist="RSAC_HCTS"
-	Sess_List="_sess_1 _sess_2"
 
 	Stage=RSAC_HCTS
 	Artist="Grace_Pounds"
@@ -224,20 +209,15 @@ in
 	Artist="Grant_Sharkey"
 	Artist="Zap_Comedy"
 	Artist="Lee_Switzer_Woolf"
-	Sess_List="_sess_1 _sess_2"
-	Sess_List=_${Artist}
 
 	Stage=RSAC_WITS
 	Artist="3_clicks_left"
 	Artist="Tiger_Mendoza"
 	Artist="Missing_The_Scene"
-	Sess_List="_sess_1 _sess_2 _sess_3 _sess_4 _sess_5"
-	Sess_List=_${Artist}
 
 	Stage=Salisbury
 	Artist="Babara Bangura"
 	T="jagba_H1N" # Theme # name of play #
-	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
 	Stage=Lyndhurst
 	Artist="Heather_Jayne_and_the_Red_Shoes"
@@ -253,7 +233,6 @@ in
 
 
 	T="$Artist" # 
-	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
 ;; Sun)
 	Stage=salisbury_djembe
@@ -264,21 +243,13 @@ in
 
 	Stage=salisbury_H2n
 	Artist="Babara Bangura"
-	Sess_List="_sess_1 _sess_2"
 	T1="djagba" # 
 	T2="kei_key" # 
 	T3="dinodon" # Theme # name of play #
 	T="$T2"
-	Sess_List="${T}_sess_1 ${T}_sess_2 ${T}_sess_3 ${T}_sess_4"
-
-	Stage=americana
-	Artist="Fishermans_Cottage"
 
 	Stage=Retreat
 	Artist="Mayor_and_James"
-
-	Stage=irish_sessions
-	Artist="Fishermans_Cottage"
 
 	Stage=Retreat
 	Artist="David_Gray_n_John_Dusty_Dunsterville"
@@ -292,43 +263,42 @@ in
 	Stage=JollyDarity
 	Artist="JollyDarity"
 
+	Stage="Fishermans_Cottage"
+	Artist=americana
+
+	Stage="Fishermans_Cottage"
+	Artist=irish_sessions
+
 	T="$Artist" # 
-	Sess_List="${T}__sess_1 ${T}__sess_2 ${T}__sess_3 ${T}__sess_4"
 
 ;; *)
 	Stage=XX
 	Artist="Artist"
-	Sess_List="_sess_7 _sess_8"
 
 	Stage=WREX
 	Artist="Artist"
-	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
 
 	Stage=READIPOP_WORKSHOP
 	Artist="Marivaldo_Paim"
-	Sess_List="_sess_1 _sess_2 sess_3 sess_4"
 
-	Stage=Drum_Camp
+	Stage=Drum_Cam
 	Artist="Jose_Ferrera"
 	Artist="Klaudio_Pandeiro"
 	Artist="klaudio_Iya_John"
 	Artist="SHOW"
 	Artist="bodhran"
-	Sess_List="_upto_1959_$Artist _sess_1 _sess_2 sess_3 "
 
 	Stage=RSAC_HOT_STEP_BOOT_LEG
 	Artist="Satin_Beige"
-	Sess_List="_sess_1a _sess_1b sess_2a sess_2b"
 
+	# Location=Salisbury
 	Stage=DrumWhisperer
 	Artist="Iya Sako"
 	S="_sun_sofa"
-	Sess_List="${S}_sess_1a ${S}_sess_2a  ${S}_sess_3a ${S}_sess_4a"
 
 ;; *)
 	Stage=XX
 	Artist="Artist"
-	Sess_List="_sess_7 _sess_8"
 esac
 	Theme="${Theme:-THEME}"
 
@@ -388,14 +358,19 @@ cd_mkdir_FAIL $REC_AUD_Jan_DONE_Jan
 # build some filenames / strings using artist name # ${Stage}
 # will soon check they dont exist
 
+# switched Stage and Artist
+
 YEAR_MM_DD_Tue_Stage=${YEAR_MM_DD}_${Tue}_${Stage}
 YEAR_MM_DD_Tue_Stage_SP="${YEAR_MM_DD} ${Tue} ${Stage}"
 
-DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Stage}
-DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Stage
-DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Stage
-DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Stage}
-FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Stage}_NO_Notes.txt
+YEAR_MM_DD_Tue_Artist=${YEAR_MM_DD}_${Tue}_${Artist}
+YEAR_MM_DD_Tue_Artist_SP="${YEAR_MM_DD} ${Tue} ${Artist}"
+
+DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Artist}
+DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Artist
+DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Artist
+DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Artist}
+FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Artist}_NO_Notes.txt
 
 if yes_no create session "
  Stage $Stage
@@ -412,7 +387,7 @@ fi
 
 # create AUD data and project
 
-V_ALBUM="${YEAR_MM_DD_Tue_Stage_SP}"
+V_ALBUM="${YEAR_MM_DD_Tue_Artist_SP}"
 V_ARTIST="${Artist}"
 V_YEAR="${YEAR}"
 
@@ -460,7 +435,7 @@ function mk_audacity {
   if [ ! -f "$FILE_TXT" ]
   then
 	# echo -e # expand \r to 0x0D
-	echo -e "# ${YEAR_MM_DD_Tue_Stage} \r" >> "$FILE_TXT"
+	echo -e "# ${YEAR_MM_DD_Tue_Artist} \r" >> "$FILE_TXT"
   fi
   
   if [ ! -f "${PRJ_AUD_sh}" ]
@@ -478,7 +453,7 @@ function mk_audacity {
 for sess in ${Sess_List:-""}
 do
 	export \
-	SESS_name="${YEAR_MM_DD_Tue_Stage}_${sess}"
+	SESS_name="${YEAR_MM_DD_Tue_Artist}${sess}"
 	# fn_EDIT_var_prompt EDIT SESS_name "EDIT SESS_name"
 	# fn_EDIT_var        EDIT SESS_name
 	echo "SESS_name == '$SESS_name'"

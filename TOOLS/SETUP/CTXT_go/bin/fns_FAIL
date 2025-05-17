@@ -1,0 +1,113 @@
+# fns_FAIL
+
+fn_is_not_decimal() {
+	if fn_is_decimal "$@"
+	then
+		return 22
+	else
+		return 0
+	fi
+}
+
+fn_is_decimal()
+{
+	if [ $# == 0 ]
+	then
+		return 1
+	fi
+	if [ "$1" == '' ]
+	then
+		return 1
+	fi
+
+	expr match "$1" '^[0-9]*$' > /dev/null
+}
+
+SLEEP_FAIL() {
+
+	local errn=22
+	local sleeps=22
+
+	if fn_is_decimal "$1"
+	then
+		sleeps="$1"
+		shift
+	else
+		echo >&2 "# WARN # you should pass sleeps to FAIL as second arg"
+	fi
+
+	if fn_is_decimal "$1"
+	then
+		errn="$1"
+		shift
+	else
+		echo >&2 "# WARN # you should pass $? to FAIL as first arg"
+	fi
+
+	fn_FAIL_TEXT $errn "$@" # print the messages
+
+	echo >&2 "# SLEEP $sleeps"
+	sleep $sleeps
+	exit $errn
+}
+
+fn_FAIL_TEXT() {
+	local errn=$? # might be 0, force to actual error number 
+	if fn_is_decimal "$1"
+	then
+		errn="$1"
+		shift
+	else
+		if [ $errn == 0 ] 
+		then
+			echo >&2 "# WARN # you should pass $? to FAIL as first arg"
+			errn=22
+			echo >&2 "# WARN # not errn 0 # errn $errn"
+		else
+			echo >&2 "# NOTE # you should pass $? to FAIL as first arg"
+			echo >&2 "# NOTE # used \$?"
+		fi
+	fi
+	echo -n >&2 "# FAIL # $errn # $* # "
+	perror $errn
+	return $errn
+}
+
+fn_FAIL() {
+	fn_FAIL_TEXT "$@"
+	local errn="$?"
+
+	exit $errn
+	# $1 should be errno - or should errno be errno ?
+	echo >&2 "# FAIL # FAIL SHOULD HAVE EXITED "
+	sleep 2
+	return 1
+}
+
+FAIL() {
+	local errn=$?
+	if fn_is_decimal "$1"
+	then
+		errn="$1"
+		shift
+	fi
+	fn_FAIL "${errn}" "$@"
+	# fn_FAIL "$*i # errno==$errn" # IS THIS REAL SYNTAX ??
+}
+
+fn_WARN() {
+	local errn=$?
+	if fn_is_decimal "$1"
+	then
+		errn="$1"
+		shift
+	else
+		echo >&2 "# WARN # you should pass $errn \$? to WARN as first arg"
+	fi
+	echo >&2 "# WARN # $errn # $* # "
+	return 1
+}
+
+fn_PASS() {
+	echo -n >&2 "# PASS # ok # $* # "
+}

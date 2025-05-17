@@ -1,6 +1,8 @@
 . ../go__fns
 # https://www.sqlite.org/download.html
+URL=https://www.sqlite.org/2025/sqlite-autoconf-3490200.tar.gz
 URL=https://www.sqlite.org/2024/sqlite-doc-3460100.zip
+URL=https://www.sqlite.org/2025/sqlite-doc-3490200.zip
 fn_grp_url libr $URL
 doc_top=$prefix/share/doc/$subdir
 if [ ! -d $doc_top ]

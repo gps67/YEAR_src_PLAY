@@ -1,0 +1,178 @@
+# fns_DIRS
+
+# TODO # pushd #
+# TODO # popd #
+
+. fns_FAIL
+
+cd_or_fail() {
+	cd_or_FAIL "$@"
+}
+
+cd_or_FAIL() {
+	if [ $# != 1 ]
+	then
+		fn_WARN 0 "cd_or_FAIL usually takes 1 arg - $*"
+	fi
+	if cd "$1" > /dev/null 
+	then
+		echo "# CD # $(pwd)"
+		: # OK # might have used $CDPATH though
+	else
+		local errn=$?
+		errn=6 # BASH is broken # it returns 1 ENOPERM - ENOENT
+		fn_FAIL $errn cd $1
+	fi
+}
+
+cd_if_can()
+{
+	if [ -d "$1/." ]
+	then
+		if cd "$1" > /dev/null
+		then
+			echo "# CD # $(pwd)"
+		else
+			fn_WARN 0 "cd $1 - exists but failed"
+		fi
+	fi
+}
+
+dir_must_exist() {
+	[ -d "$1" ] || fn_FAIL "$?" "dir_must_exist $1"
+}
+
+file_must_exist() {
+	[ -f "$1" ] || fn_FAIL "$?" "file_must_exist $1"
+	echo "# PASS # $1 # exists"
+}
+
+mkdir_FAIL() {
+	if [ $# != 1 ]
+	then
+		fn_WARN 2 "mkdir_FAIL usually takes 1 arg - $*"
+	fi
+	if [ -d "$1" ]
+	then
+		# OK # fn_WARN 2 "# mkdir_FAIL # dir already exists # $1"
+		return 0
+	fi
+	if mkdir "$1" # no ask # no -p #
+	then
+		: # OK
+	else
+		fn_FAIL $? "mkdir '$1'"
+	fi
+}
+
+dir_OK_mkdir_FAIL() {
+	local FN=dir_OK_mkdir_FAIL
+	if [ $# != 1 ]
+	then
+		fn_WARN 2 "$FN usually takes 1 arg - $*"
+	fi
+	if [ -d "$1" ]
+	then
+		# OK # fn_WARN 2 "# $FN # dir already exists # $1"
+		echo -n "# INFO # $FN # "
+		ls -ld "$1"
+		return 0
+	fi
+	if ask_do mkdir -p "$1" # no ask #
+	then
+		: # OK
+	else
+		fn_FAIL $? "mkdir '$1'"
+	fi
+}
+
+cd_mkdir_FAIL() { # api top
+	if [ $# != 1 ]
+	then
+		fn_WARN 0 "cd_mkdir_FAIL usually takes 1 arg - $*"
+	fi
+	if cd "$1" > /dev/null 2>&1
+	then
+		echo "# CD # $(pwd)"
+		: # OK # might have used $CDPATH though
+	else
+		if mkdir "$1" # no ask # no -p #
+		then
+			cd_or_FAIL "$1"
+		else
+			fn_WARN 0 "mkdir '$1'"
+			ask_do mkdir -p "$1"
+			cd_or_FAIL "$1"
+		fi
+	fi
+}
+
+
+OPTHERln_s_tail() {
+	:
+}
+
+ln_s_tail() {
+	# always DST SRC 
+	# OPTION DST SRC adk_do sudo
+	[ $# -ge 2 ] || fn_FAIL 22 "ln_s_ask dst src # got $# args # $@"
+	local dst="$1"
+	local src="$2"
+	[ "$dst" = "ask_do" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$src" = "ask_do" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$dst" = "sudo" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$src" = "sudo" ] && fn_FAIL 22 "USAGE" "$@"
+	shift
+	shift
+	# tail $@ is now ask_do sudo
+	[ "$src" = "-" ] && src=.
+	[ "$src" = "." ] && src=`basename "$dst"`
+	if [ ! -L "$src" ]
+	then
+		if [ -d "$src" ]
+		then
+			fn_WARN 22 "dir $src exists where link to $dst would go"
+			return
+
+		elif [ -x "$src" ]
+		then
+			echo -e "# ln_s deleting NON LINK # "
+			ls -lad "$src"
+			# INTERACTIVE # rarely along error path #
+			ask_do rm "$src" 
+		else
+			: # did not exist
+		fi
+		echo "# ln_s creating # $src"
+		echo "# pwd === $(pwd)"
+		echo "# NEW ==> $dst"
+		say_do \
+		"$@" ln -s "$dst" "$src"
+		return
+	fi
+	local txt="$(readlink $src)"
+	if [ "$txt" != "$dst" ]
+	then
+		rm "$src" 2> /dev/null
+		echo "# ln_s changing $src"
+		echo "# DIR === $(pwd)"
+		echo "# OLD ==> $txt"
+		echo "# NEW ==> $dst"
+		"$@" ln -s "$dst" "$src"
+		return
+	fi
+	echo "# ln_s keeping # $src => $dst"
+	return 0
+}
+
+ln_s() {
+	ln_s_tail "$@"
+}
+
+ln_s_ask() {
+	ln_s_tail "$@" ask_do
+}
+
+ln_s_ask_sudo() {
+	ln_s_tail "$@" ask_do sudo
+}

@@ -45,10 +45,7 @@
  2025-04-06  27611 271  27882  14.5 p_mile  1.33 £_litre  6.04 £_gallon  41.6 mpg   6.8 lp100  Y Full Morissons DATE GUESS PICK
  2025-04-08  27882 262  28144  13.3 p_mile  1.33 £_litre  6.04 £_gallon  45.3 mpg   6.2 lp100  Y Full Morissons found
  2025-04-13  28144 225  28369  13.7 p_mile  1.34 £_litre  6.09 £_gallon  44.3 mpg   6.4 lp100  Y Full Poole
- 2025-04-24  28369 125  28494  15.3 p_mile  1.30 £_litre  5.91 £_gallon  38.7 mpg   7.3 lp100  Y Full Moriwsons
- 2025-04-26  28494 297  28791  12.6 p_mile  1.30 £_litre  5.91 £_gallon  46.8 mpg   6.0 lp100  Y Full Moriwsons from BH Yeovil
-# SHOW2 0000-00-00,      0,  0.00,  0.00, 
- # SKIPPING # d_miles < 1 # 
-# SHOW2 0000-00-00,      0,  0.00,  0.00, 
- # SKIPPING # d_miles < 1 # 
- # SKIPPING # COMMENT ## # 2025-04-08, 27741,  20.02, 26.37, NO Full Morissons MISSING
+ 2025-04-24  28369 125  28494  15.3 p_mile  1.30 £_litre  5.91 £_gallon  38.7 mpg   7.3 lp100  Y Full Morissons
+ 2025-04-26  28494 297  28791  12.6 p_mile  1.30 £_litre  5.91 £_gallon  46.8 mpg   6.0 lp100  Y Full Morissons from BH Yeovil
+ 2025-05-06  28791 315  29106  13.6 p_mile  1.30 £_litre  5.90 £_gallon  43.3 mpg   6.5 lp100  Y Full Morissons from BH Sherbourne
+ 2025-05-10  29106 251  29357  12.2 p_mile  1.29 £_litre  5.85 £_gallon  48.0 mpg   5.9 lp100  Y Full Morissons from BH Sherbourne

@@ -1,0 +1,14 @@
+
+TODO_APPS_EJBCA
+
+TODO_APPS
+	/tools is not for apps but apps need app_platform
+	/tools/x86_64/app_EJBCA/
+
+LGPL2-ish
+
+_EJBCA
+_SignServer
+_BouncyCastle
+
+	https://docs.keyfactor.com/ejbca/latest/

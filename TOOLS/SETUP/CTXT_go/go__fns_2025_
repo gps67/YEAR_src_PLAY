@@ -5,14 +5,10 @@ unalias rm 2>/dev/null
 unset CDPATH
 export LC_ALL=C
 hash -r
-export CONFIG_SHELL=/bin/bash
-export SHELL=/bin/bash
-
-
-# PATH=$PATH:/tools/armv5tel_go/bin
+export CONFIG_SHELL=/bin/sh
+export SHELL=/bin/sh
 
 . fns_DIRS # ln_s
-
 
 # tools_2000 # the top of the installed tree # has subdir grp
 # tools_2000_grp # the top of the installed tree group # PREFIX #
@@ -186,10 +182,14 @@ fn_setup_environ()
 	tools_2000_obj=${tools_2000}_obj
 	tools_2000_go=${tools_2000}_go
 
-	fn_must_have_dir ${tools_2000_ftp} || exit
-	fn_must_have_dir ${tools_2000_src} || exit
-	fn_must_have_dir ${tools_2000_obj} || exit
-	fn_must_have_dir ${tools_2000_go} || exit
+	fn_must_have_dir ${tools_2000_ftp}/ || exit
+	fn_must_have_dir ${tools_2000_src}/ || exit
+	fn_must_have_dir ${tools_2000_obj}/ || exit
+	fn_must_have_dir ${tools_2000_go}/ || exit
+	fn_must_have_dir ${tools_2000_go}/bin/ || exit
+	
+	# need PATH_TOOL and ...
+	PATH=$PATH:${tools_2000_go}/bin
 
 	# compile with gcc13 # or ln -s gcc13/ $tools_2000/gcc
 	gcc_old=gcc_old ;# manually create symb link
@@ -1030,50 +1030,12 @@ fn_meson_install()
 	fn_ldconfig
 }
 
-set_CPU_COUNT_J()
-{
-	export CPU_COUNT_J=1
-	export CPU_COUNT_J=$( nproc )
-}
-
-decr_CPU_COUNT_J() # specifically by 1 when SMP
-{
-	echo "CPU_COUNT_J=$CPU_COUNT_J"
-	CPU_COUNT_J=$(( $CPU_COUNT_J - 1 ))
-	# < fails when -lt works # redirects stdin # \<
-	# avoid -j 0
-	[ $CPU_COUNT_J -lt 1 ] && \
-		CPU_COUNT_J=1
-	echo "CPU_COUNT_J=$CPU_COUNT_J"
-}
-
-junk() # specifically by 1 when SMP
-{
-	# SIDE EFFECT set this GLOBAL variable
-	
-	F=/proc/cpuinfo
-	CPU_COUNT_J=$(
-		grep "processor" $F | tail -1 | gawk '{ print $3 }'
-	)
-	CPU_COUNT_J=$(
-		grep -c "processor" $F 
-	)
-	CPU_COUNT_J=$(
-		nproc
-	)
-
-}
-
 fn_make()
 {
 	# TODO # TEST # -j 4 # EDITED #
 	JOBS=""
 	JOBS="-j 4"
 	JOBS="-j 14" # 8 core 16 threads
-	JOBS="-j 3"
-	set_CPU_COUNT_J # to N_CPU
-	decr_CPU_COUNT_J # specifically by 1 when SMP
-	JOBS="-j $CPU_COUNT_J"
 	fn_make_dir_obj # creates logfile link
 	fn_cd_or_fail $obj 
 	(

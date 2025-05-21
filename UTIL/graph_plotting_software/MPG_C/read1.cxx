@@ -9,8 +9,13 @@
 // typedef int bool;
 
 
+struct line_data { // CSV_SCHEMA CSV_LINE_DATA P0P2_t P0P2
 
-struct line_data {
+	// DB: MPG_C // database of petrol used milage when maybe where
+	// 2025-04-13, 28369,  23.08, 30.90, Y Full Poole
+	// YEAR_MM_DD COMMA_in_CSV - milage %s litres_E10 %f pounds %F<F3>
+
+
 	int year;
 	int mm;
 	int dd;
@@ -233,3 +238,167 @@ int main( int argc, char ** argv )
 
 
 }
+// --EOT--
+#if 0
+// man 3 printf OUTPUT_CHANNEL FMT_STR 
+// STR -vs- STR0 // KNOW can use STR0 as implementation of STR
+// AVAR_STR_one SPEC STR_one AVAR_one
+// ARGV each mention creates AVAR at that CODE_POINT XPOS is also TPOS
+// TPOS is an EA of TREE_TWIG_or_LEAF // TWIG holds XPOS // LEVEL_UP XPOS //
+// XPOS becomes an imported AVAR from LIBR into SESS ...
+// TREE // NOT SECURE but UDEF IDX and STR_P0P2 STR_STR0 
+// AVAR = STR // VALUE == STR // == SAME_EA or SAME_EA_EXPR MATCH_ALIAS_EA
+// AUTO PTR * & // use a precise match of CXX syntax // small list of tricks
+// pragma tell GCC to see this as a MACRO NAME ARGS GET_RET_VAL_from_EXPR
+// EXPR // PSG_TREE SPEC INST DECL XPOS // EXPR_TREE // EXPR_STRUCT // PSG_ABC
+// PSG_LEX // We re-apply PSG within LEX as PARSE_LEX // FSM FSM_POS XPOS
+// PSG_LEC LEX in PSG // I'd prefer LEX is always a1_a2_star_UTF8 a1 a2
+// a1 // ASCII A-Z a-z     _ // APPLY _%s then it is all a2 // a2_plus a2
+// a2 // ASCII A-Z a-z 0-9 _ // PLUS is STAR but at least one 
+// STAR permits ZERO // build FSM for this as DIAG
+// glyph && is_IDENT_a2 // WEIGHT and HINT from TEXT found
+// AUTO apply DIALECT // click to USWD //
+
+// FMT
+// %*X width hex_val // FFF_width == 3
+// MAGIC calling operator==(lhs,rhs) permits the 
+// MAGIC calling operator==(/* lhs==this , */ rhs ) const  permits break const
+
+	LHS == THIS
+	RHS == THAT
+	OP_CODE == "operator==" 
+	PARSE "{ LHS == RHS }"
+
+	CT_EXPR 
+	RT_EXPR 
+
+	CT_KNOW
+	RT_KNOW
+
+	LHS == CT
+	RHS == RT
+
+	XPOS is P0P2
+	XPOS is ARGV  GAP LHS GAP == GAP RHS GAP // GAP_ZERO_is_OKAY // PUNCT //
+	XPOS is PARSER_CSR_one = lookup (one)
+	CT_RT batch writes PSG_LEX from DECL and USED
+
+	PSG LHS == RHS
+	LHS_t LHS
+	RHS_t RHS
+	SPELLING == // original 
+	SPELLING operator== // made_into_C_IDENT special_case_C++_IDENT
+	HEAP_ITEM operator== // Probably AVAR acting as A_CONST_VAL AVAL
+
+	CMP( LHS, RHS ) // OPTS
+
+		is_SAME // PUS is same EA // 
+	//	is_DIFF // not is_SAME
+		is_LESS
+		is_MORE
+	
+	EA_EXPR from decode_i64
+
+		write a bunch of BITFIELD MACROS
+		using UNIQUE_SPELLING as EXACT_MATCH_STR
+		eg N_BYTES read_write_api /* ROM */ 
+	
+	<- NESTED CODE IN DATA ->
+
+		use the locally sourced LIBR .o ELF_CODE.o.LIb.LIBR.o
+		ELF.o // VFS_already presents N_BYTES ELF_SEGMENT as AFILE.o
+		SPEC_t SPEC += SPEC_EXPR // decode i64 i8_i8 i16_i32(PICK_SPEC()))
+		SPEC_t SPEC += SPEC_EXPR // decode i64 i8_i8 i16_i32(AVAR)
+		SPEC_t SPEC += SPEC_EXPR // decode i64 i8_i8 i16_i32(LOCN)
+		SPEC_t SPEC += SPEC_EXPR // decode i64 i8_i8 i16_i32(ITEM)
+		SPEC_t SPEC += SPEC_EXPR // decode i64 i8_i8 i16_i32(EXPR)
+		SPEC_t SPEC += LIBR_LIBR // SPEC_LIBR // ASIF_DATA // WHEN_ACTN
+
+		SPEC_t AVAR_NAME
+
+			A STRONG THEME is %s_%s LEX_JOIN LEX_SPLIT LEX_EDGE
+			MATCH %s_%s_%s // etc // INTERLEAVE // LABEL NAME DATA //
+
+	ANY_STR
+	ANYSTR
+
+		lookup(ANYSTR) // avoid lex split, since KNOW own DECL HERE
+
+			RET_VAL = lookup(anystr)
+
+		ANYSTR is N_BYTES P2 == P0 + nbytes // glue point cost gain
+
+			N_BYTE
+			N_BYTES
+			N_bytes
+			n_bytes
+			nbytes
+
+			BYTES
+			PTR_to_BYTES
+			EA_EXPR += "{ BASE P0 }"
+			EA_EXPR += "{ BASE P0 SPEC_t SPEC  }"
+			EA_EXPR += "{ BASE P0 SPEC_t SPEC  } ..."
+			EA_EXPR += "{ DIALECT  _two }" // NULL %s LHS // _two //
+			EA_EXPR += "{ XPOS_t  CODE_POINT }"
+			EA_EXPR += "{ BASE P0 }"
+
+		XPOS + nbytes + BYTES_VALUES
+
+			CODE_POINT
+				SCRIPT
+				 LINE
+			HEAP_ITEM
+				EA
+				EA_EXPR
+			LOCN_ITEM
+				DIAG // GEN FSM to DECODE i64
+			EA_as_NAME
+			NAME_for_EA
+
+			NAME_as_ANYSTR
+			ANYSTR_as_NAME
+
+		DATA is N_BYTES 
+
+			DECODE SEGMENT_DATA as FILE_MIME_TYPE
+			ELF_Layout
+			EXE_ASM
+			PAGES_of_SAMPLE_VALUE_POOL
+			MIME_TYPE_png
+			MIME_TYPE_pdf
+			MIME_TYPE_cxx
+
+		EA_as_ZONE_HEAP_ITEM_EXPR_ACTION 
+
+			LANG TAGS adds extra grip to DIALECT
+			CSV LAYOUT // MUX CSV_TABLES // single data_set //
+			COMPLEX OBJECT LAYOUT based on lookup(%s) TABLES
+			unlimited FIELD_VARS as long as all unique
+			or MATCH_EXACT
+			or MATCH_ALIES
+			or MATCH_CMP_RET_VAL enum  is_LESS is_SAME is_MORE
+			or MATCH_CMP_RET_VAL enum 
+			-PICK->
+			is_LESS
+			is_SAME
+			is_MORE
+			is_M1
+			is_SIGN_FFFF
+			is_DECODE_i64
+				i8_i8
+					BYTE_A
+					BYTE_B
+
+					PAIR_AB_BA // in LOW BITS of CPU_WORD
+					QUAD_i32 // half half , high half
+					EIGHT_i64 // _LOHI hightest is lowest
+
+						because comes first A B of 8
+						because DRAW ABCD EFGH
+						because DRAW DCBA HGFE
+						because DRAW HGFE DCBA
+
+
+#endif
+

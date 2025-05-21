@@ -18,7 +18,7 @@
  2024-05-14  21885 205  22090  16.2 p_mile  1.46 £_litre  6.62 £_gallon  40.9 mpg   6.9 lp100  Y Full Morisons
  2024-06-08  22090 266  22356  16.0 p_mile  1.42 £_litre  6.44 £_gallon  40.3 mpg   7.0 lp100  Y Full Morisons
  2024-06-18  22356 325  22681  14.6 p_mile  1.39 £_litre  6.30 £_gallon  43.3 mpg   6.5 lp100  P Full Morisons from Salisbury
- 2024-07-01  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around
+ 2024-07-01  22681 142  22823  18.9 p_mile  1.40 £_litre  6.35 £_gallon  33.7 mpg   8.4 lp100  P Full Morisons from run around // DIALECT actually used absent GAP until ZERO "{ COMMA SP1 NOT ... }"
  2024-07-06  22823 334  23157  15.3 p_mile  1.42 £_litre  6.44 £_gallon  42.2 mpg   6.7 lp100  P Full Morisons fr 
  2024-08-01  23157 144  23301  16.3 p_mile  1.41 £_litre  6.40 £_gallon  39.3 mpg   7.2 lp100  P Full Morisons  
  2024-08-25  23301 275  23576  16.2 p_mile  1.42 £_litre  6.45 £_gallon  39.9 mpg   7.1 lp100  P Full BH
@@ -49,3 +49,5 @@
  2025-04-26  28494 297  28791  12.6 p_mile  1.30 £_litre  5.91 £_gallon  46.8 mpg   6.0 lp100  Y Full Morissons from BH Yeovil
  2025-05-06  28791 315  29106  13.6 p_mile  1.30 £_litre  5.90 £_gallon  43.3 mpg   6.5 lp100  Y Full Morissons from BH Sherbourne
  2025-05-10  29106 251  29357  12.2 p_mile  1.29 £_litre  5.85 £_gallon  48.0 mpg   5.9 lp100  Y Full Morissons from BH Sherbourne
+ 2025-05-19  29357 391  29748  11.6 p_mile  1.35 £_litre  6.13 £_gallon  52.7 mpg   5.4 lp100  Y Full Station Rip Off from BH SE3 Sherbourne
+ 2025-05-19  29748 172  29920  10.7 p_mile  1.28 £_litre  5.80 £_gallon  54.1 mpg   5.2 lp100 2025-05-19, 29920,  14.45, 18.45`,Y Full Morissons FLEX Palindrome

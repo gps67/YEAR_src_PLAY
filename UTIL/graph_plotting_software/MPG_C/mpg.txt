@@ -19,7 +19,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-05-14, 22090,  22.78, 33.19, Y Full Morisons
 2024-06-08, 22356,  29.97, 42.47, Y Full Morisons
 2024-06-18, 22681,  34.12, 47.32, P Full Morisons from Salisbury
-2024-07-01, 22823,  19.18, 26.79, P Full Morisons from run around
+2024-07-01, 22823,  19.18, 26.79, P Full Morisons from run around // DIALECT actually used absent GAP until ZERO "{ COMMA SP1 NOT ... }"
 2024-07-06, 23157,  35.96, 50.96, P Full Morisons fr 
 2024-08-01, 23301,  16.67, 23.45, P Full Morisons  
 2024-08-25, 23576,  31.35, 44.49, P Full BH
@@ -50,3 +50,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-04-26, 28791,  28.87, 37.50, Y Full Morissons from BH Yeovil
 2025-05-06, 29106,  33.10, 42.93, Y Full Morissons from BH Sherbourne
 2025-05-10, 29357,  23.79, 30.62, Y Full Morissons from BH Sherbourne
+2025-05-19, 29748,  33.70, 45.46, Y Full Station Rip Off from BH SE3 Sherbourne
+2025-05-19, 29920,  14.45, 18.45`,Y Full Morissons FLEX Palindrome

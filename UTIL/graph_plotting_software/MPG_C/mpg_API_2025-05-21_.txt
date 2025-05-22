@@ -1,0 +1,59 @@
+
+	mpg_API_2025-05-21_.txt
+
+	SCRIPT LANG is using this code as its API
+	LIBR_mpg provides BIND_VAR_POOLS LOCAL_CACHE_REMOTE
+
+	LIBR_csv is PICK local_csv_simple
+
+		P0 = P0
+		P1
+		P2 == P0 + nbytes // require EA_ARITH_BASE_OFFS_PTR_
+
+		{ N = nbytes ; BYTES = P0 } // type cast explain // 
+
+		// CT_RT guarantees INIT_ZERO INIT_COPY LOCK_STEP SYNC EDGE
+
+		C++ compiler checks that source does provide API item
+		C++ picked the correct FUNCS to LOAD and ACTIVATE
+		API called CTOR LOCK COPY STEP TELL CALL ARGV DTOR
+		
+		The BASE_CLASS of the API provided is sufficient AS_IS
+		IT presumes magic functions already have RET_VAL for REQ_ENQ
+		ENQ_ACK {
+
+			ENQ_ACK is a round trip packet
+			ENQ_ACK has PEER group and ID
+
+			HEAP_IDX_t HEAP = EXPR; // PSG EXPR lhs
+			HEAP_IDX_t HEAP = EXPR; // PSG EXPR lookup "EXPR" 
+			ITEM_IDX_t ITEM = EXPR; // PSG_EXPR lookup "%s"
+
+			HEAP_IDX_t HEAP = EXPR; // PSG_EXPR rhs
+			ITEM_IDX_t ITEM = EXPR; // PSG_EXPR lookup "%s"
+
+			ID_t ID = HEAP_ITEM( HEAP, ITEM )
+
+				SPEC ID_t : public BASE_CLASS_of_ITEM
+				SPEC ID_t : public BASE_CLASS_of_EA_ITEM
+
+					ID is itself an ITEM a PTR AVAR
+					ID_in_CACHE call it ID
+					ID_get_EA_of_ITEM(ARGS)
+					ID_get_STO_of_ID _if_not_i32_i32
+					int_idx_grow 
+
+					 BUILTIN idx_GROW
+
+					 idx_GROW_u7_u15_u31_u63_BITFIELD
+
+
+			FSM is a fantastic CODE transfer as data table
+			EVAL STEP // STEP STEP // MULTI STEP MACROS SCRIPTS //
+
+			
+
+
+		}
+
+		{ N = nbytes ; BYTES = P0 } // type cast explain // 

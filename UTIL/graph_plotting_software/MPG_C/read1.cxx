@@ -216,6 +216,7 @@ int main( int argc, char ** argv )
 
 		if( buff[0] == '#' ) {
 			printf(" # SKIPPING # COMMENT ## %s", buff );
+			printf("##\n" );
 			continue ; 
 		}
 

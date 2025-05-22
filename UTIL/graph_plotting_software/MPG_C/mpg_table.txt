@@ -50,4 +50,8 @@
  2025-05-06  28791 315  29106  13.6 p_mile  1.30 £_litre  5.90 £_gallon  43.3 mpg   6.5 lp100  Y Full Morissons from BH Sherbourne
  2025-05-10  29106 251  29357  12.2 p_mile  1.29 £_litre  5.85 £_gallon  48.0 mpg   5.9 lp100  Y Full Morissons from BH Sherbourne
  2025-05-19  29357 391  29748  11.6 p_mile  1.35 £_litre  6.13 £_gallon  52.7 mpg   5.4 lp100  Y Full Station Rip Off from BH SE3 Sherbourne
- 2025-05-19  29748 172  29920  10.7 p_mile  1.28 £_litre  5.80 £_gallon  54.1 mpg   5.2 lp100 2025-05-19, 29920,  14.45, 18.45`,Y Full Morissons FLEX Palindrome
+ 2025-05-19  29748 172  29920  10.7 p_mile  1.28 £_litre  5.80 £_gallon  54.1 mpg   5.2 lp100  Y Full Morissons FLEX Palindrome
+ # SKIPPING # COMMENT ## # 2025-05-22, 30092,  14.45, 18.45, N FAKE receipt to track bug near eof
+##
+ # SKIPPING # COMMENT ## # how could you do this to me barry # I'm over here Bev # Spec Savers #
+##

@@ -1,0 +1,5 @@
+. ../go__fns
+. fns_ASKS
+
+ask_do_less pip install sphinx
+ask_do_less pip install sphinx_rtd_theme

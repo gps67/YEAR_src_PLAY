@@ -1,0 +1,25 @@
+
+	LOCAL_REMOTE
+
+	L <--> CACHE <--> LOCAL <--> REMOTE
+	L <=> CACHE <=> LOCAL <=> REMOTE
+
+	L -> CACHE
+	  -> LOCAL -> REMOTE
+
+	  <- LOCAL <- REMOTE
+	L <- CACHE
+
+
+	REMOTE does not want to run anyones code
+	CACHE reduces it as much as can be
+	REMOTE repeats that, but has HINTS_TABLE from CACHE
+	FILTER expand all MACROS when CAN and SHOULD
+	FILTER expand all MACROS not RT SESS actually active with REQ_ENQ_ACK
+	FILTER BATCH # AVOID EDITS here # sort of a marker # has_ATTR
+	BATCH FILTER
+
+	STRONG L_R dialect lhs_rhs local_remote 
+
+
+

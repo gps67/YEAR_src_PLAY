@@ -2,18 +2,31 @@
 
 proc make_png_from_txt { file_png file_txt } {
 
-#	puts "make_png_from_txt $file_png $file_txt "
+	puts "# TCL # make_png_from_txt $file_png $file_txt "
 
 	exec </dev/tty >/dev/tty 2>/dev/tty ask_do ../txt_2_png/txt_2_png.sh $file_txt 
 	
 }
 
-set list [glob 2*.txt]
-set list [lsort $list]
-foreach file_txt $list {
+# ARGV_ because intention is in_SITU edit #
+# EDIT_ARGV_ITEM # SPLICE OLDVAL_new_val # like GIT_SWITCH
+proc ARGV_edit_file_ext { file_ext ext_old ext_new } {
+	# WARN # will subst .txt ANYWHERE in filename #
+	# WANT add $ to expr .$ext_old
+	regsub .$ext_old $file_ext .$ext_new ;# RET_VAL #
+}
 
+set list [glob *.txt]	;# list all .ext_old files on VFS_DOT
+set list [lsort $list]  ;# sort list for sanity
+foreach file_txt $list { ;# foreach file_txt in list 
+
+	# TODO # avar_edit_filename_ext_1_to_ext_2 file_ext 
+	# ARGV edit_file_ext ext_old ext_new
 	# this wont make sense if it isn't png, eg jpg
-	set file_png [regsub .txt $file_txt .png]
+	#
+	set file_png [ ARGV_edit_file_ext $file_txt txt png  ]
+# OLD #	set file_png [regsub .txt $file_txt .png]
+
 	# get mtime of file_txt
 	set t1 [file mtime $file_txt ]
 	# s1 unused # for debugging
@@ -24,6 +37,8 @@ foreach file_txt $list {
 
  #	puts "$file_txt $s1 ;# NO PNG"
 
+	# set t1 [file mtime $file_txt ]
+	# got t1 = mtime of file_txt
 	# get t2 = mtime of file_png
 	if {[catch { file mtime $file_png } t2  ] } {
 		# file mtime threw # eg no such file (yet)

@@ -19,6 +19,10 @@ struct line_data { // CSV_SCHEMA CSV_LINE_DATA P0P2_t P0P2
 	int year;
 	int mm;
 	int dd;
+
+	// Tue Feb // lib_base/time/tm_parts{ .cxx .h }
+	//
+
 	float miles;
 	float litres;
 	float cost;
@@ -45,6 +49,7 @@ struct line_data { // CSV_SCHEMA CSV_LINE_DATA P0P2_t P0P2
 		printf(" %s", note );
 		printf("\n");
 	}
+
 
 	bool line_in_line( char * buff ) {
 		// FMT starts here

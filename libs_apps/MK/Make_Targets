@@ -67,13 +67,17 @@
 	## TEST_FILE8 = HT_main
 
 
+# GEN produces this file
+# OPTS "{  --command ${GDB_INIT_FILE_%s) }" // %s PURPOSE // FILENAME %s //
+# OPTS "{  --command $(TOP)/_run/.gdbinit_$(PROG1}b) }" 
+# OPTS "{  --command $(TOP)/_run/.gdbinit_$(PROG1b) }" 
 
 
 
 gdb1: $(PROG1_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1) $(PROG1_EXE)
 
-gdb1b: $(PROG1_EXE)
+gdb1b: $(PROG1_EXE) // accts_nwe
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) $(PROG1_EXE)
 
 gdb2: $(PROG2_EXE)

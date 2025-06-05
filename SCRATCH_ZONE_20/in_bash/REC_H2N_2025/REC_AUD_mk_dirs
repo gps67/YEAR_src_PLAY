@@ -186,6 +186,18 @@ in
 	Stage=Velocity
 	Artist="EDE TheMay AugList"
 	
+	# didn't work nice idea # use foreach to iterate over SP list
+	# single item works fina as list_of_one
+
+	Stage=Velocity
+	Artist="GracePounds JessTuthill WilswoodBuoys"
+	
+	Stage=Velocity
+	Artist="GracePounds_JessTuthill_WilswoodBuoys"
+
+	Stage=DELME
+	Artist=TEST_DELOK
+	
 ;; Sat)
 	Stage=JP_Workshop
 	Artist="JP Percussion"
@@ -268,6 +280,7 @@ in
 
 	Stage="Fishermans_Cottage"
 	Artist=irish_sessions
+	Artist=americana
 
 	T="$Artist" # 
 
@@ -370,7 +383,10 @@ DIR_WAV=${REC_WAV_Jan}/tmp_WAV_${YEAR_MM_DD_Tue_Artist}
 DIR_AUD=${REC_AUD_Jan}/$YEAR_MM_DD_Tue_Artist
 DIR_MP3=${REC_MP3_Jan}/$YEAR_MM_DD_Tue_Artist
 DIR_TXT=${DIR_MP3}/Notes-${YEAR_MM_DD_Tue_Artist}
-FILE_TXT=${DIR_TXT}/${YEAR_MM_DD_Tue_Artist}_NO_Notes.txt
+FILE_TXT=${dir_txt}/${YEAR_MM_DD_Tue_Artist}_NO_Notes.txt
+
+# rm list
+#  
 
 if yes_no create session "
  Stage $Stage
@@ -405,12 +421,14 @@ function mk_audacity {
   # local # all these vars
   DIR_aud="${1:-HOME_YEAR_YEAR_MM_DD_Tue_Stage}"
   NAME_PROJECT="${2:-YEAR_MM_DD_Tue_Stage_sess1}" # the name of the project in the dir
-  NAME_PROJDATA="${NAME_PROJECT}_data"
+  NAME_PROJEXT_DATA="${NAME_PROJECT}_data"
   PRJ_AUD_aup="${DIR_aud}/${NAME_PROJECT}.aup"
   PRJ_AUD_aup3="${DIR_aud}/_${NAME_PROJECT}.aup3"
   PRJ_AUD_sh="${DIR_aud}/${NAME_PROJECT}.sh"
-  PRJ_AUD_data="${DIR_aud}/${NAME_PROJDATA}"
-  # BE CAREFUL to not overwrite exiting file
+  PRJ_AUD_data="${DIR_aud}/${NAME_PROJEXT_DATA}"
+  PRJ_trim_sh="${DIR_aud}/${NAME_PROJECT}_trim.sh"
+ 
+  # BE CAREFUL to not overwrite existing file
   if [ ! -f "${PRJ_AUD_aup}" ]
   then
 # OLD AUDACITY DATA DIR
@@ -421,7 +439,7 @@ function mk_audacity {
 	  cat << !EOT | tee "${PRJ_AUD_aup}"
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="$NAME_PROJDATA" version="1.3.0" audacityversion="2.0.6" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="86.1328125000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss">
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="$NAME_PROJEXT_DATA" version="1.3.0" audacityversion="2.0.6" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="86.1328125000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss">
 	  <tags>
 		  <tag name="ALBUM"  value="$V_ALBUM"/>
 		  <tag name="ARTIST" value="$V_ARTIST"/>
@@ -443,6 +461,45 @@ function mk_audacity {
   	echo "ask_do audacity '${NAME_PROJECT}.aup3'" > "${PRJ_AUD_sh}"
   	chmod 755 "${PRJ_AUD_sh}"
   fi
+  
+  if [ ! -f "${PRJ_trim_sh}" ]
+  then
+	run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
+
+	cat - >>  "${PRJ_trim_sh}" <<!EOT
+  ls -l 
+  ask_do rm    "${PRJ_AUD_aup}" # {DIR_aud}/{NAME_PROJECT}.aup"
+  ask_do rm    "${PRJ_AUD_aup3}" # "{DIR_aud}/_{NAME_PROJECT}.aup3" # _ TEMP
+# ask_do rm    "${PRJ_AUD_sh}"   # "{DIR_aud}/{NAME_PROJECT}.sh" # run audacity FILE
+  ask_do rmdir "${PRJ_AUD_data}" # "{DIR_aud}/{NAME_PROJEXT_DATA}" # rmdir
+  ask_do rm    "${PRJ_trim_sh}"  # "{DIR_aud}/{NAME_PROJECT}_trim.sh"
+!EOT
+
+  	chmod 755 "${PRJ_trim_sh}"
+  fi
+ 
+  # BE CAREFUL to not overwrite existing file
+  if [ ! -f "${PRJ_AUD_aup}" ]
+  then
+# OLD AUDACITY DATA DIR
+#	run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
+# used to import parameters
+	run_mkdir "${PRJ_AUD_data}" # used when blank old format loaded
+	# indent by SP SP of .aup caused it to not be recognised
+	  cat << !EOT | tee "${PRJ_AUD_aup}"
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="$NAME_PROJEXT_DATA" version="1.3.0" audacityversion="2.0.6" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="86.1328125000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss">
+	  <tags>
+		  <tag name="ALBUM"  value="$V_ALBUM"/>
+		  <tag name="ARTIST" value="$V_ARTIST"/>
+		  <tag name="YEAR"   value="$V_YEAR"/>
+	  </tags>
+</project>
+!EOT
+	touch ${PRJ_AUD_aup3}
+  fi # 
+
 
   sync
   cd "${DIR_aud}"

@@ -52,5 +52,6 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-05-10, 29357,  23.79, 30.62, Y Full Morissons from BH Sherbourne
 2025-05-19, 29748,  33.70, 45.46, Y Full Station Rip Off from BH SE3 Sherbourne
 2025-05-19, 29920,  14.45, 18.45, Y Full Morissons FLEX Palindrome
+2025-05-28, 30200,  26.34, 33.64, Y Full Morissons FLEX from BH Sherborne
 # 2025-05-22, 30092,  14.45, 18.45, N FAKE receipt to track bug near eof
 # how could you do this to me barry # I'm over here Bev # Spec Savers #

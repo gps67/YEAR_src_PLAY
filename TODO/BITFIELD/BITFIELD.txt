@@ -1,0 +1,66 @@
+
+	BITFIELD/
+	BITFIELD.txt
+
+	This is CPU dependent
+	On x86_64 I am using C++ to do the work
+	On ARM_64 I am using CPU_64_lohi_word_in_lohi_mem
+	on ARM_32 I am using C++ to do the work // glibc mostly swapb
+	on x86_32 I am using C++ to do the work // glibc mostly swapb
+
+	on CPU_64 I am using C++ // and probabaly _lohi and x86_64 
+	on CPU_32 I am using C++ // and probabaly _lohi and qemu_ARM
+
+	USING VAL  so FUNC( VAL ) // is an inline ASM not GLOBAL FUNC(WORD)
+	// TODO BENCJ ASM lines as inline functions // gcc clang SCRIPT CT_RT
+	USING VAL not GLOBAL FUNC(WORD)
+	USING OOP not GLOBAL FUNC(ITEM)
+	
+	WORD_64
+
+	i8_i8_i16_i32_	// BYTES in MEM
+	i32_i16_i8_i8 	// BITS in CPU_WORD
+
+	WORD_32
+	
+	i8_i8_i16	// BYTES in MEM
+	i16_i8_i8 	// BITS in CPU_WORD
+
+
+ GEN
+ 	GEN can GEN_and_GRAFT a TWIG to TREE_OUT _csr
+
+ RTR
+ 	Banana Pi board
+	ARM 1.8 GHz x4
+	ETH 2.5G x4
+	SPF 10G x2
+	ETH 1G x1
+	USB ...
+	SIM ...
+	WIFI ... module
+	RAM 8G
+	FLASH 256M
+	SSD eg 32G eg 2T
+
+	Acts as router and as encrypting gateway
+NOT	Acts as UDEF_CODE_BOXES
+
+	EG receives SPF from UP_STREAM UP_TREE
+	EG holds 4 NAS drives each 2.5G or 4 switches that hold 7 drives
+
+	 £6 5 port 1G switch = only 1G UP - would suit 100M x4 with full lag
+
+**	£25 5 port 2.5G switch = with 10G SPF x2 - perfect with UK plug
+**	£32 8 port 2.5G switch = with 10G SPF x2 - perfect with UK plug
+	~   https://www.aliexpress.com/item/1005007937984776.html
+
+		K0802WS £32 <-- looks like a decent switch for future 2.5G
+		K0502WS £23
+	
+	£24 8 port 1G 2 port 10G_eth += POE
+	    looks like kettle plug socket
+	    not spf but 10G eth
+	    NOT 2.5G only 1G
+	    https://www.aliexpress.com/item/1005007476774523.html
+

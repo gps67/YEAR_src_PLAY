@@ -1,0 +1,44 @@
+RPC_STREAM.txt
+
+	STREAM PAIR L_QUERY -> R # WAIT # L <- R_RESPONE
+
+	BENCH will have more labels than WAIT
+	pending RESPONSE to QUERY
+
+	STREAM is a more ongoing
+	BATCH COMPLETE stays complete even when next BATCH is started
+	SWEEP is ALIAS for FLUSH # and then SEND # note later
+	SWEEP relays and merges optionally restarts also queues for later
+
+	RPC_PROTO includes helper features 
+	RPC_PROTO provides queues and threads
+
+	BATCH_EDGE START
+
+	 send { DECL FUNC } to REMOTE
+	 send ( CALL ARGV } to REMOTE
+	 sync_soon
+
+	BATCH_EDGE STOP APPROACHING // ie treat as require STEP EDGE SOON
+	BATCH_EDGE STOP // ACTUAL // APPROACHING released //
+
+	PRC_PROTO keeps a STACK of this THREAD in SCRIPTS and fds to threads
+	ALLOC_FREE favours nested blocks, indented text, stack scope zones
+
+	Every ITEM has a ref_count to itself, DTOR_on_ZERO
+	Every ALLOC has a ref_count of 1, and REF_refcount of TEMP_LIST
+	DEFER ALLOC_FREE until entire HEAP is SCRATCH_BUILT
+
+		BULK ERASE is evaporate irrelevent ref_counts
+		BULK ERASE requires track relevent ref_counts
+		BULK ERASE called after tell_all_on_DTOR_list_to_PRE_DTOR
+
+	ATTR MMAP update steps required
+
+		MMAP allows all sorts of experimental double writes
+		so that MMAP can survive a list of crash varieties
+
+		 PAUSE is not a crash, but it PROVIDES the CACHE TECH
+		 CACHE over SESS does a series of RESTART back one STEP
+
+		 I dont do these yet: ROLL_BACK to START

@@ -734,7 +734,7 @@ fn_with_X11R6()
 }
 fn_with_X11()
 {
-	fn_with_grp_compile X11R6
+	fn_with_grp2_compile X11R6
 	return
 	#
 	# solaris wants

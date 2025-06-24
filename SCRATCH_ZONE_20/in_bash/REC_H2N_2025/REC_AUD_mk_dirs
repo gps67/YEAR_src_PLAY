@@ -123,7 +123,7 @@ run_mkdir()
 }
 
 Artist=Artist
-Sess_List="_1 _2 _3 _4"
+Sess_List="_1 _2 _3 _4 _5"
 Theme=""
 case $Tue
 in
@@ -243,6 +243,9 @@ in
 	Stage=Retreat
 	Artist="Rufus_Ruffcut"
 
+	Stage=Salisbury
+	Artist="Iya_Sako_Fe"
+
 
 	T="$Artist" # 
 
@@ -281,6 +284,9 @@ in
 	Stage="Fishermans_Cottage"
 	Artist=irish_sessions
 	Artist=americana
+
+	Stage=Salisbury
+	Artist="Iya_Sako_Here_Foli"
 
 	T="$Artist" # 
 

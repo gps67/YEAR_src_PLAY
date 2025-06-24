@@ -7,7 +7,94 @@ YEAR_src_PLAY/
 	RTFM
 	TCL_DOCS_A_BIT_TCL_ISH
 	tcl_lib
-	tcl_lib_gps_one			always package requiregps_one
+	tcl_lib_gps_one			TCL package require gps_one
 	tcl_lib_gps_two			avoid then use
 	Tcl_SCRATCH_ZONE
 	TCL_stuff.txt
+
+	tcl_lib_gps_one
+
+	TCL
+	 package
+	  require
+	   gps_one
+	
+	TCL ARGS # syntax binds the parsed ARGV to TEMPLATE
+	OPTION TEMPLATE already has ARGV table, or ts own MINI_MACHINE
+
+	TEMPLATE ARGS
+
+		Often an ARG appears as a NAMED ITEM but is really wallpaper
+
+		Conversely, a CONST "IDENT" is a candidate for refined ITEM
+
+			ITEM = WORD
+
+			 WORD + ITEM 
+
+		WORD at that LOCN at that XPOS gets own IDENTITY += AVAR
+
+		WORD.AVAR is as common as IDENT and every WORD_at_XPOS
+
+			Most of those are lang noise eg lower
+			Flag no AVAR for lower # except LIST
+
+				Parse LIBR happened before this TREE SWEEP
+				Parse LIBR and this FILTER is an OPTION
+
+				Several components VAR_POOL lookup("IDENT")
+				these are passed over at EDGE_MID_BATCH_EDGE
+				strong type detect - add to - never changed
+
+	
+	ARGV WORD
+
+	 Parser is not 100% ARGV 
+	 Parser uses ARGV a lot
+
+	 	SCRIPT - LINES - WORDS # indented_blocks
+	
+	WORD starts as P0P2 in SCRIPT 
+	WORD gains its own identity - carrying its own EA_idx
+	SCRIPT.ARGV_WORD_POOL
+
+	SCRIPT is ZONE PTR_LEN in # as 
+	SCRIPT is SCRIPT PTR_LEN within SESS_CTXT[i3]
+
+	 ON_ZERO_MECHANISM: CT_RT PICK TEST_SIGN of IDX # SESS_CTXT = ARY[idx]
+	 u2_PLUS { 0 1 2 3 } _ZERO _one _two _idx # idx needs followup
+	 i3_MINUS { M1 M2 -3 -4 } # L_z_R # M_z_N #
+
+	triggers
+
+
+	JS_TCL
+
+		TCL command primatives and ES6_Object primatives
+		We do want to run JS primatives - if not WASM
+		we parse Tcl badly but almost - OK subset
+		CXX LIBR provides to Tcl
+		CXX LIBR provides to JS from WASM
+		CXX LIBR provides to JS from GEN_JS
+
+		We provide a tray of AXIOMS
+		We make them linked across platforms
+		we can provide compiled into Tcl
+	
+	Parse_ARGV_SCRIPT
+
+		PUNCT PUNCT_MIX PUNCT_CLUSTERS
+	
+		WORD_Q2_VALUE # and USAGE found within TEXT
+		WORD_Q1_VALUE # PRE_PARSE later # Parse_Q1_NOW
+		WORD_backslashed_VALUE # TEXT like above # BFS names incl SP
+		WOND_VALUE_in_CSET
+		CSET += ALPHA_UPPER_lower
+		CSET += DIGITS
+		CSET += PUNCT # ASCII_PUNCT #
+		CSET += SPLICE_CSET_CHAIN # permit CSET to change mid word
+		CSET += SPLICE_CSET_CHAIN # resolved_into_UTF8 # i16 i32 i64_z
+	
+	Parse_CSV_into_ARGV # += CMNT # += more than ARGV += built around ARGV
+
+		

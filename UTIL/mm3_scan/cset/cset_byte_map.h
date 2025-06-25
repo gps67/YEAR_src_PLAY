@@ -60,7 +60,7 @@ public:
 // :XFS2:sibling crystal:
 // :FS_LOCN:	//LIBR/[]/LIBR_(92)//CLASS//dgb//dgb_print_str
 
-	void	dgb_print_str( char * str )
+	void	dgb_print_str( const char * str )
 	{
 		fprintf( dgb_fd, "%s", str );
 	}
@@ -101,7 +101,7 @@ public:
 		for( i=0; i < 16; i++ )
 		{
 	//		fprintf( dgb_fd, " [ %1X_ ]", i );
-			fprintf( dgb_fd, ":", i );
+			fprintf( dgb_fd, ":" );
 			for( j=0; j < 16 ;j++,k++ )
 				dgb_print_byte( k );
 			fprintf( dgb_fd, " :\n" );

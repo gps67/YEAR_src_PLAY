@@ -1,2 +1,4 @@
 Makefile:53: warning: ignoring prerequisites on suffix rule definition
+g++ -g -I./scan_nl -I./map_file -I./own_str -I./dbg -I./cset -I./p0p2 -I./mm3_file -o scan_mm3.o -c scan_mm3.cxx
+g++ -g -o scan_mm3.exec misc.o map_file/map_file.o mm3_file/mm3_file_scan.o mm3_file/mm3_file_data.o mm3_file/mm3_file_tbl.o scan_mm3.o
 make: *** No rule to make target '0102.mm3', needed by '0102.csv'. Stop.

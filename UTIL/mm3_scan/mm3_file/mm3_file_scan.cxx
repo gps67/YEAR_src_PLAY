@@ -27,6 +27,7 @@ bool mm3_file_scan::open_file( u8 * filename )
 		dgb.fmt("File %s does not end in NL\n",filename );
 		return 0;
 	}
+	return true;
 }
 
 // scan for a returned decimal int
@@ -48,7 +49,7 @@ bool mm3_file_scan::scan_int( int & i)
 // being constant the word isn't returned
 // after the word, the buffer must not contain a longer word
 // using strange AZaz here not AZaz09 ?? - make it a parameter?
-bool mm3_file_scan::scan_word( u8 * word)
+bool mm3_file_scan::scan_word( const u8 * word)
 {
 	u8 * P0;
 	here_start( P0 );
@@ -384,7 +385,7 @@ int q_no = 0;
 	}
 */
 
-	char * MM_Names[1+12+0] = {
+	const char * MM_Names[1+12+0] = {
 		"Zero",
 		"Jan", "Feb", "Mar",
 		"Apr", "May", "Jun",

@@ -36,6 +36,9 @@ void cell_base::prints()
 
 	bool cell_date::set_str0(str0 s) {
 		cache_clear();
+		if(s=="-") 
+			e_print("expected date got dash '%s'", (STR0) s);
+		e_print("set_str0 '%s'", (STR0)s);
 		return date.set_year_mm_dd( s );
 	}
 	void cell_date::set_date( date_glib _date ) {

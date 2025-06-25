@@ -8,10 +8,12 @@
 // #include "map_file.h"	// mmaps in file (readonly)
 // #include "own_str.h"	// own_str
 
+// 2025-06-24 // kludged const char * warnings # borrowed dgb_print
+
 #include "mm3_file_tbl.h"
 #include "mm3_file_scan.h"
 
-int main(int argc, u8 ** argv)
+int main(int argc, char ** argv)
 {
 	if(argc!=2)
 	{

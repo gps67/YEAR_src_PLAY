@@ -67,21 +67,38 @@ class table : public obj_ref_js {
 
 		EG The 'CAT' table has a ""dotdot" column.
 		Previously it could be any name.
+
+		REWRITE all LOCN dotdot rows are somehow different
+		OPTION one shadow DATA row and another lookup name
+		OPTION this DATA row and KNOW is_LOCN_not_LEAF _TWIG_not_LEAF
+
+		group = lookup attr "dotdot"
+		group = lookup col_name "dotdot" # get col_spec
+		group_by_col = lookup_col "dotdot" # get col_spec PICK EXPR
+
+		// col_spec_tree // group_spec // overlap
+
 	*/
 	obj_hold<col_spec>	group_spec;
 
 	/*!
-		The column which is describes this row.
+		The column which describes this row.
 		This selector is used to expand 'key' into
-		'key-desc' in group headings.
+		'descr' as used in 'key-desc' in group headings.
+		REQUIRE KEY
 	*/
 	obj_hold<col_spec>	desc_spec;
 
 	//! an array of 'type-spec' of each column
 	obj_list<col_spec>	col_specs;
 
+	//	col_specs[idx_col] describe each column
+	//	col_specs[idx_col].name 
+
 	//! the column that is the preferred tree_column
 	obj_hold<col_spec>	col_spec_tree;
+
+		// col_spec_tree // group_spec // overlap
 
 	//! the column that is the preferred sort column (usually same as tree)
 	obj_hold<col_spec>	col_spec_sort_1;
@@ -92,8 +109,12 @@ class table : public obj_ref_js {
 	//! hash table of the col_specs by name
 	HT_specs		col_map;	// hash table
 
+	//	col_spec _COL_SPEC = col_map.lookup(name) or similar
+
 	//! array of row data instances
 	obj_list<row_inst>	rows_list;
+
+	//	// THIS IS ALL THE DATA as a brief LIST of ROWS // emun is brief
 
 	//! hash table of rows by key field
 #if 1

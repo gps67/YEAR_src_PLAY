@@ -87,6 +87,15 @@ class cell_str1 : public cell_base
 	virtual bool set_str0(str0 s) ;
 };
 
+enum enum_CELL_STATE {
+	cell_state_UNSET = 0,
+	cell_state_VALID,
+	cell_state_RECALC,
+	cell_state_STRING, // eg "-" "default"
+	cell_state_NULL, // ie 0L as PTR
+	cell_state_EMPTY, // ie ""
+};
+
 class cell_date : public cell_base_scalar
 {
 	friend class col_spec_date;

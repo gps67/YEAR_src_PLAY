@@ -31,9 +31,9 @@ struct map_file : public dgb_print
 	u16 fd_size;	/* file length */
 	char * page0;	/* mmapped */ /* NOT alloc'ed */
 
-	int map_in_file( u8 * filename, int wwritable );
-	int map_in_file( char * filename, int wwritable ) {
-		return map_in_file( (u8 *) filename, wwritable ); }
+	int map_in_file( const u8 * filename, int wwritable );
+	int map_in_file( const char * filename, int wwritable ) {
+		return map_in_file( (const u8 *) filename, wwritable ); }
 	int remap( void );		/* eg after grow file */
 	int sync( void );		/* calls fsync() */
 	void unmap( void );		/* unload file */

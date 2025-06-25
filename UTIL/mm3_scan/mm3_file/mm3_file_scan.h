@@ -97,8 +97,8 @@ class mm3_file_scan
 
  //	void print_transaction(a_trans & t);
 
-	bool scan_word( u8 * word);
-	bool scan_word( char * word) { return scan_word( (u8 *) word); }
+	bool scan_word( const u8 * word);
+	bool scan_word( const char * word) { return scan_word( (const u8 *) word); }
 	bool scan_int( int & i);
 	bool scan_crlf( void );
 	void p0p2_start( p0p2 & P0 ) {  P0.p0 = P0.p2 = S.P ; }

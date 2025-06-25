@@ -35,7 +35,7 @@ class mm3_file_tbl : public mm3_file_data
 		fprintf( stdout, "\n" );
 	}
 
-	char * mk_img( int year, int mm, int dd, char * cat );
+	const char * mk_img( int year, int mm, int dd, char * cat );
 	void print_transaction_tbl(a_trans & t);
 	void print_transfer(a_trans & t);
 	void print_transfer_tbl(a_trans & t);

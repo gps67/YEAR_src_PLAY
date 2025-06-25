@@ -34,12 +34,12 @@ public:
 	void	print_chr( u8 c1 ) 	{ dgb_print_chr( c1 ); }
 	void	chr( u8 c1 ) 		{ dgb_print_chr( c1 ); }
 
-	void	dgb_print_str( char * str )
+	void	dgb_print_str( const char * str )
 	{
 		fprintf( dgb_out, "%s", str );
 	}
 
-	void	dgb_printf( char * fmt, ... )
+	void	dgb_printf( const char * fmt, ... )
 	{
 		va_list ap;
 		va_start(ap, fmt);
@@ -47,7 +47,7 @@ public:
 		va_end(ap);
 	}
 
-	void	dgb_fmt( char * fmt, ... )
+	void	dgb_fmt( const char * fmt, ... )
 	{
 		va_list ap;
 		va_start(ap, fmt);
@@ -55,7 +55,7 @@ public:
 		va_end(ap);
 	}
 
-	void	fmt( char * fmt, ... )
+	void	fmt( const char * fmt, ... )
 	{
 		va_list ap;
 		va_start(ap, fmt);

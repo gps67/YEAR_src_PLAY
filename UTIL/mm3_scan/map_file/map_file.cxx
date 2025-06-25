@@ -31,7 +31,7 @@ int map_file::sync( void )
 	return errno;
 }
 
-int map_file::map_in_file( u8 * ufilename, int wwritable )
+int map_file::map_in_file( const u8 * ufilename, int wwritable )
 {
 	char * filename = (char *) ufilename;
 	writable = wwritable;
@@ -134,7 +134,7 @@ int map_file::grow_file( u16 new_size )
 		perror("WRITE");
 		return errno;
 	}
-	remap();
+	return remap();
 }
 
 int map_file::test1( void )

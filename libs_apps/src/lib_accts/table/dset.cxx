@@ -68,6 +68,8 @@ bool data_set::file_save( str0 filename, bool compressed ) // AKA save_file
 {
 	if( ! filename ) return FALSE;
 
+	if( compressed ) WARN("compressed");
+
 	io_csv_out io;
 	if( !io.open( filename, compressed ) ) return FALSE;
 

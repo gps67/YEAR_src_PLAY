@@ -7,6 +7,160 @@
 #include "buffer2.h"
 // DONE // #include "dgb.h"
 
+#if 0
+/*
+	XPOS CSR_one; // = XPOS_in_SCRIPT _of_Parser // PSG does work //
+	PSG_XPOS_of_CSR _CSR_one _one _CSR1_
+
+		PSG Parser of CSET found at XPOS in NESTED_TEXT
+		XPOS LIBR LOCN FILE FILE_MIME_EXT _ADJ TAR_FILE  BYTE_ZONE
+		BYTE_ZONE P0P2 over STREAM
+
+			debug keep P0P2 as OFFS from ZERO
+			splice split packets of 1K aligned 1K
+			splice QUOTAS_GIVEN_USED MMAP zones
+			SWEEP i4 around LOCN // LOCN has 1 EA so i4 is EXTRA
+		 DIAG
+			[-8 ... -1 [0 ... 7 [ 8
+		 DIAG
+		 	[8] -NEXT- # outside #
+
+				[32] _ITEM_OUTSIDE
+				[31] ITEM	# ARM has 32 registers
+
+				[16] _NEXT ITEM OUTSIDE or BYTES
+				[15] ITEM	# ARM has 16 registers
+				...
+				[8] ITEM
+
+				[7] ITEM	# EIGHT has 8 BYTES pick NEARBY 100 items
+				[6] ITEM	# LOCN has 8 ITEMS and EXPRS each a i64_WORD
+				[5] ITEM	# OPCODE can decode i32_i32_from_lohi_MEM _ALIGN_8
+				[4] ITEM
+
+	_idx %d		[3] ITEM	# our use of u2 in GROW system persists
+	_two		[2] ITEM
+	_one		[1] ITEM
+	BASE_ZERO ->	[0] ITEM	# ZERO is PLUS in a symmetrical universe
+
+			[-1] CODE	# MINUS is as man OPTIONS # grow for either
+			[-2] CODE
+			[-3] CODE
+			[-4] CODE
+
+				[-5] CODE
+				[-6] CODE
+				[-7] CODE
+				[-8] CODE
+
+	// SPLICE layers ALIAS is like a DECL LIBR mid_stream
+	// protocol sends DECL and NBYTES down STREAM
+	// DECL must be transmitted within the STREAM
+	// GEN_PARSE DECL // PSG of CXX DECL // simple subset of C++ ASM
+
+	// DECL LIBR mid_stream //
+	// PRE_BUILD on both sides of GEN_Parse //
+
+
+	Parser needs to report XPOS in FILE hence LINE CPOS BPOS
+
+		Parser reports errors, using XPOS in TEXT_PAGE _LINES
+		SESS is an invisible parameter
+		SESS has a single threaded which is THIS_THREAD
+		SESS has PEER_GROUP_multi_thread
+		(1) because parallel path search // 
+		(2) because clutch of FEATURE // list them here //
+
+		Thread does not have to be CPU thread, it can be PICK_ENUM
+
+			BENCH USER places ENUM_LIST_one ENUM_ITEM_one
+			BENCH USER places ENUM_LIST_two ENUM_ITEM_two
+
+			ITEM might be SAMPLE_VALUE _used_as_IDENT _EXPR
+
+			Parallel explore all cases of ENUM against USAGE
+
+		Parser reports errors, using XPOS and ACTUAL VALUE TEXT
+
+			CT_RT has parallel list of ideas for ITEM_VALUE
+
+				NAME is a valid ITEM_VALUE
+				NUMERIC "3.14e1" is a valid ITEM_VALUE
+					retain original SPELLING
+
+			CALL stack may have ARGV that called this ARGV
+
+				MINI_MACHINE has DEBUG features
+
+				 eg Parse GCC error lines
+				 eg Parse WARN error lines
+				 eg DIAG of SESS # MULTI_PATH #
+
+
+	Parser has built a TREE and passed that via STREAM
+
+		CT_RT has parsed all of ROM and run the SETUP and test
+		CT_RT can MMAP ROM completely, and leave it unloaded pre calc
+		STREAM_to_MMAP loads MMAP from STREAM
+		STREAM_to_MMAP loads nbytes of nested BYTE_ZONE and SPEC
+		DECODE STREAM to build MMAP and it's new backing file
+		OPTION VFS backing file GEN 
+		OPTION no backing file
+		MMAP from STREAM
+
+	READ_HEAD reads 1 byte NO_ALIGN_BYTE of UTF8 seq of bytes of CSET
+	Parse CSET {
+	 // expect LOOP CALL this indented text , block of code
+	 // PUNCT , MEANS "indented_text" gets and AUTO MENTION
+
+	 LOADED_UTF8 _LIMIT_to_Latin1 _to_FONT_of_LANG
+
+	 CSR_t & CSR = EXPR = "// CSR += SELF //"
+
+	 	DUMB Parser sees SP1  '"' '/' '/'  SP1
+	 	DUMB Parser sees SP1  Q2 '/' '/'  SP1 # ASCII_SLASH
+	 	DUMB Parser sees SP1 '"//' SP1
+	 	DUMB Parser sees SP1 '//' SP1
+	 	DUMB Parser sees SP1 // SP1 
+		DEEP Parser list ABOVE // ALIAS MORPH // == '//' == "//" // CMNT
+		// CMNT multiplexing CODE in comments in text or SCRIPT
+		// SCRIPT CT_RT notices they have common CACHE SAME SPELLING
+		// SPLICE layers ALIAS is like a DECL LIBR mid_stream
+		// AUTO add Q1 if that helps simplfy or exact it
+		// LEX_one is "Q2 slash slash _CMNT // becomes HINT USAGE _CMNT
+
+	 XPOS of CSR // SELF == CSR // SELF += CSR // CSR += SELF //
+
+
+	 // stent // use UTF encoding longer than necessary
+	 // most UTF8 parsers will simply decode an 8 bit BYTE CSET LANG
+	 // the parser looks at the bits in the frame
+	 // the parser doesnt look at the bits in the data
+	 // why should it, it delivers that BITFIELD of UNICODE
+	 // when CHAR is decoded, u16 is reduced to i16, u7_i8
+	 // We can OCCUPY UNICODE and UTF8 to match external API
+	 // Particularly Latin1 UNICODE == latin BYTE _one _two _idx %d
+	 // ABOVE LINE MATCH ... one _two _idx %d _IDX // IDX is a LANG feature
+	 // builtin IDX //
+	 // builtin is a Module LIBR loaded as "builtin"
+	 // ALIAS "idx_t idx = CPU_WORD = IDX_of_LEX_builtin" IDX
+	 // LEX IDX // keys have this as a property // "AVAR" // idx_AVAR_one
+	 // idx_AVAR_one // ALLOC AVAR_of_OBJ
+	 // IDX is all of the above things, provided by SESS // CODE_POINT IDX
+	 // XPOS of DECL of IDX // use AVR for AVAL at LOCN in DIAG ALIAS
+	 // ALIAS GETTER GET_as_TYPE_STR_IDEN_SPELLING // P0P2 as STR // gen STR0
+	 // CT_RT sweeps over DATA surface, GEN DECL for each found
+
+	 XPOS of CSR // SELF == CSR // SELF += CSR // CSR += SELF //
+	 BANCH can PICK from that list, and APPLY where USED
+	 SWEEP with that PICK over possibly FIXED TEXT SCRIPT CT_RT
+
+
+	}
+
+*/
+#endif
+
 namespace ACCTS {
 
 /*!
@@ -297,10 +451,12 @@ bool table::check_field_names( int argc, char ** argv )
 
 	if( argc != col_specs.N() )
 	{
+		int line_no = 9999;
 		// const char * tablename = (STR0) name->str;
 		const char * tablename = (STR0) * name;
-		FAIL("wrong number of fields in table %s expected %d got %d\n",
+		FAIL("wrong number of fields in table %s line %d expected %d got %d\n",
 			tablename,
+			line_no,
 			col_specs.N(),
 			argc
 		);
@@ -431,6 +587,9 @@ row_inst * table::find_row_add_fake( str0 key )
 
 		It would be easier to extend_to( nc )
 		then overwrite key_pos
+
+		That might also tight MALLOC get_space_predicting_actual 
+		CT_RT may even alloc EXACTLY GEN_C STO
 	*/
 	int n = col_specs.N();
 	for(int i = 0; i < n; i++ )
@@ -470,7 +629,7 @@ bool table::csv_line_in( io_csv_accts * csv ) // strings belong to caller
 	if( ! name->is_same_as( argv[0] ))
 	{
 		ok = FALSE;
-		fprintf(stderr, "FAIL: tablename %s does match '%s' \n",
+		fprintf(stderr, "WARN: tablename %s does match '%s' \n",
 			(STR0) *name,
 			(STR0) argv[0]
 		);
@@ -484,6 +643,10 @@ bool table::csv_line_in( io_csv_accts * csv ) // strings belong to caller
 		TODO: allow MERGE load_file where number of fields differ,
 		or even the order of the fields is different. (That requires
 		more code, list of pos of field).
+
+		TODO: instead us a fixed list of col_names[idx] - just add rows
+		That is for data from GEN_DATA for MODEL eg BUDGET predicts 12 monthly numbers
+		that data is in named files or buffers, read from another file, with/out headlines
 	*/
 
 	if( ncol == 0 )
@@ -539,16 +702,17 @@ bool table::csv_line_in( io_csv_accts * csv ) // strings belong to caller
 	r = find_row_add_fake( argv[key_pos] );
 	if(!r)
 	{
+		// return FAIL_FAILED();
 		e_print("csv_line_in() new row failed\n");
 		return FALSE;
 	}
 	// DONE // r->key = key;
 	// DONE // add_row( r );
 
-	for(int i = 0; i < argc; i++ )
+	for(int i = 0; i < argc; i++ )		// set each data field in row
 	{
-		col_spec * spec = col_specs[i];
-		spec->set_from_csv( r, argv[i] );
+		col_spec * spec = col_specs[i];	// KNOW strong opinion about expected SPEC
+		spec->set_from_csv( r, argv[i] ); // NEED context eg DATE_TAX DATE_PAY is VALUE is "-" or ...
 	}
 
 

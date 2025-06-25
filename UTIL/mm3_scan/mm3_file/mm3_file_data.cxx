@@ -101,7 +101,7 @@ bool cat_list::lookup_key( own_str & k, int & pos ) {
 	}
 	return FALSE;
 }
-char * cat_list::key_to_desc( own_str & k ) {
+const char * cat_list::key_to_desc( own_str & k ) {
 	int pos;
 	if(lookup_key( k, pos )) 
 		return list[pos]->desc.str;

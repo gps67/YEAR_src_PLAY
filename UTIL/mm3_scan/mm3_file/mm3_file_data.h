@@ -165,7 +165,7 @@ class cat_list
 	cat_list( void );
 	bool add_cat( own_str & abb, own_str & d );
 	bool lookup_key( own_str & k, int & pos );
-	char * key_to_desc( own_str & k );
+	const char * key_to_desc( own_str & k );
 };
 
 class vat_list

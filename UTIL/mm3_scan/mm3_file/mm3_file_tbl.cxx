@@ -25,10 +25,10 @@ void decl_tbl(
 	printf("%s, %s\n", name, fields );
 }
 
-char * mm3_file_tbl::mk_img( int year, int mm, int dd, char * cat )
+const char * mm3_file_tbl::mk_img( int year, int mm, int dd, char * cat )
 {
 	struct stat st;
-	char * absent = "-";
+	const char * absent = "-";
 	//////// image file name
 	char fname[90];
 	char fnameb[90];

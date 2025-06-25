@@ -206,6 +206,84 @@ public:
 	}
 
 	/*
+		--load-saveAs f1 f2 
+	*/
+	bool match_cmd_arg_arg( str0 cmd, str0 cmd_desc, str1 & arg1, str1 & arg2 )
+	{
+		if( cmd != (STR0) argv[0] ) return false;
+
+		str0 argdesc = "2args";
+		str0 arg; // temp
+
+		if( argc < 1 ) { // cmd itself
+		 argc = 0; // already is
+		 arg = ""; // const
+		 on_usage_error();
+		 return FAIL("CODE ERROR expected %s arg arg // %s // got ''",
+			(STR0) cmd,
+			(STR0) argdesc
+			);
+		}
+		// remove cmd from argv
+		argc--;
+		argv++;
+
+		// check for absent arg
+		// should commit to eating the two words
+		if( argc < 2 ) {
+		 str0 arg_1 = "NULL_A";
+		 str0 arg_2 = "NULL_B";
+
+		 if( argc > 0 ) arg_1 = argv[0];
+		 if( argc > 1 ) arg_2 = argv[1];
+
+		 arg = ""; // const
+		 on_usage_error();
+		 return FAIL("expected %s %s 3 args got %d // %s %s",
+			(STR0) cmd,
+			(STR0) argdesc,
+		 	argc,
+			(STR0) arg_1,
+			(STR0) arg_2
+			);
+		}
+
+		// check against --next-flag-where-arg-should-be
+		arg = argv[0];
+		if( arg.has_prefix("--") ) {
+		 // leave --flag on argv
+		 on_usage_error();
+		 return FAIL("expected %s arg // (got %s) // %s",
+			(STR0) cmd,
+			(STR0) arg,
+			(STR0) argdesc
+			);
+		}
+		// remove arg
+		argc--;
+		argv++;
+		arg1 = arg;
+
+		// check against --next-flag-where-arg-should-be
+		arg = argv[0];
+		if( arg.has_prefix("--") ) {
+		 // leave --flag on argv
+		 on_usage_error();
+		 return FAIL("expected %s arg // (got %s) // %s",
+			(STR0) cmd,
+			(STR0) arg,
+			(STR0) argdesc
+			);
+		}
+		// remove arg
+		argc--;
+		argv++;
+		arg2 = arg;
+
+		return true;
+	}
+
+	/*
 		--load-load-save f1 f2 f3
 	*/
 	bool match_cmd_arg_arg_arg( str0 cmd, str0 cmd_desc, str1 & arg1, str1 & arg2, str1 & arg3 )
@@ -465,6 +543,8 @@ int main(int argc, char ** argv )
 	{
 
 		str1 filename;
+			str1 filename2;
+			str1 filename3;
 
 		Argv_scanner argv_scanner( argc, argv );
 		dgb_fork_stderr_to_tcl_text(); // needs X11
@@ -540,8 +620,21 @@ int main(int argc, char ** argv )
 				continue;
 			}
 
-			str1 filename2;
-			str1 filename3;
+			if( argv_scanner.match_cmd_arg_arg(
+				"--load-saveAs-quit",
+				"normalise the csv but into a second file",
+				filename,
+				filename2
+			))
+			{
+				then_do_grid = false;
+			obj_hold<data_set> dset1 = new data_set();	
+			if( !dset1->file_load( filename ) ) return 1;
+			if( !dset1->file_save( filename2, false ) ) return 1;
+			return 0;
+				continue;
+			}
+
 			if( argv_scanner.match_cmd_arg_arg_arg(
 				"--load-load-save",
 				"merge two into third",

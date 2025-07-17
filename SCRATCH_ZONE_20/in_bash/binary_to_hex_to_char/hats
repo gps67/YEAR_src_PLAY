@@ -1,0 +1,50 @@
+#!/bin/bash
+
+UNHEX=/home/gps/YEAR/src/PLAY/SCRATCH_ZONE_20/MISC_UTILS_2006/un_hex/unhex.exec
+
+cat_TEXT_one() { # GEN SCRIPT for BC list of BYTES in BINARY BYTE HEX_PAIR
+	# KNOW can run on a line by line basis
+	# TELL LINE is META or SCRIPT_LINE # XPOS and ROM COPY in MMAP
+	# the SOURCE is abailable for everything in LIBR # upto ALIAS # PTR #
+	# TELL obase=16
+#	# TELL ibase=2
+#	# SCRIPT_LINE is a NUMBER in BASE_2 currently single BYTE
+#	# 01101110 # 
+#	UNINDENT to keep output text simpler
+
+echo '
+obase=16 /* output base 16 */
+ibase=2  /* input base 2 */ /* set it last */
+
+01101110 /* a number in BINARY  */
+01101111 /* an 8 bit BYTE in BINARY */	
+01101110 /* a number is a complete EXPR so print it out */
+00100000 /* pasrsed from binary printed into HEX */
+01100010 /* each on a line of its own */
+01101001 /* bc is its own RTFM thing */
+01101110
+01100001
+01110010
+01111001
+'
+	# that is GEN TEXT_one as a function
+	# call cat_TEXT_one as often as you need #
+	# eh show input and output along command pipeline
+}
+
+echo "# hats # bc runs TEXT_one, converts BINARY BYTE to HEX PAIR to ASCII"
+echo "# hats # UNHEX converts HEX BYTES to ASCII_strings"
+echo "# hats # CSET ASCII # man ascii #"
+echo "# cat_TEXT_one # ready for # | bc #" // USE_TEXT_one_AS_SCRIPT
+echo "# TEXT_one # GEN prints SCRIPT ready for bc"
+cat_TEXT_one 
+
+echo "cat_TEXT_one | bc ; echo"
+cat_TEXT_one | bc; echo 
+
+echo '# cat_TEXT_one | bc | $UNHEX ; echo # SP or newline useful'
+cat_TEXT_one | bc | $UNHEX
+echo	# to complete WORD to LINE
+echo	'#'  # CMNT and blank line
+
+

@@ -10,7 +10,9 @@ b dyn_array_index_error
 # r ../samples/rpt1.csv
 # r  --load-save-quit ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
 # r  ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
-r  ~/2000/A_C_C_T_S/PRIV_samples/0910.csv
+# r  ~/2000/A_C_C_T_S/PRIV_samples/0910.csv
+
+r
 
 #
 # easy invoke with:

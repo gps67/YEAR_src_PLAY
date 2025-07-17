@@ -1,9 +1,16 @@
 b main
+set breakpoint pending on
 b dyn_array_index_error
+# b date_glib::set_year_mm_dd
+b /home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/time/date_glib.cxx:49
+
+
 # r --run-reports ../samples/0102.csv
 # r --run-reports ../samples/0203.csv
 # r  ../samples/0102.csv
 # r  ../samples/0203.csv
 # r  --load-save-quit ../samples/0102.csv
 # r  --load-save-quit ../samples/0203.csv
-r ../samples/rpt1.csv
+# r ../samples/rpt1.csv
+# r --load-saveAs-quit /tmp/2025_2026_BH6_edit.csv /tmp/2025_2026_BH6_edit_norm.csv
+

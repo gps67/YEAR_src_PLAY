@@ -54,6 +54,8 @@
  2025-05-28  29920 280  30200  12.0 p_mile  1.28 £_litre  5.81 £_gallon  48.3 mpg   5.8 lp100  Y Full Morissons FLEX from BH Sherborne
  2025-06-07  30200 270  30470  12.6 p_mile  1.28 £_litre  5.81 £_gallon  46.2 mpg   6.1 lp100  Y Full Morissons card from BH Sherborne
  2025-06-24  30470 321  30791  12.6 p_mile  1.31 £_litre  5.95 £_gallon  47.2 mpg   6.0 lp100  Y Full Morissons FLEX from BH 
+ 2025-07-02  30791 175  30966  13.1 p_mile  1.31 £_litre  5.95 £_gallon  45.4 mpg   6.2 lp100  Y Full Morissons FLEX from BH 
+ 2025-07-08  30966 303  31269  10.2 p_mile  1.10 £_litre  4.98 £_gallon  48.6 mpg   5.8 lp100  Y Full TESCO FLEX BH
  # SKIPPING # COMMENT ## # CMNT
 ##
  # SKIPPING # COMMENT ## # how could you do this to me barry # I'm over here Bev # Spec Savers #

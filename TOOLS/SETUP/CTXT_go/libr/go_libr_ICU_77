@@ -1,0 +1,11 @@
+. ../go__fns
+URL=https://github.com/unicode-org/icu/archive/refs/tags/release-77-1.tar.gz
+# download # untar # move wrapped dir out # edit this file # no configure
+URL=https://github.com/unicode-org/icu/archive/refs/tags/icu-release-77-1.tar.gz
+fn_grp_url libr $URL
+fn_unpack
+# fn_with_grp libr
+fn_configure_pfx
+exit
+fn_make 
+fn_make install

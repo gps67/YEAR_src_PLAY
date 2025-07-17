@@ -32,7 +32,7 @@ class cell_base : public obj_ref
 	void cache_clear() {}
 
 /*
-	virtual bool set_str0(str0 s) {
+	virtual bool sET_STR0(STR0 S) {
 		return FALSE;
 	}
 	virtual str2 * get_str2() { 

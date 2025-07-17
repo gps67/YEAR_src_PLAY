@@ -8,6 +8,8 @@
 # OPTION # calc YEAR from 20 days ago
 # BUT # they also have problems with Dec into Jan # even skip
 
+# set a default URL # always edit file each year #
+
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2019.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2020.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2021.Current.v2.1.dat.gz

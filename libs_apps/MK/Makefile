@@ -456,7 +456,8 @@ else
 	# GDB = INGDB=1 /tools/2000/ccs/bin/insight
 	# SuSE is /usr/X11R6/bin/insight, try PATH
 	# GDB = INGDB=1 insight --cd $(PWD)
-	GDB = INGDB=1 T gdb -tui --cd $(PWD)
+	# GDB = INGDB=1 T gdb -tui --cd $(PWD)
+	GDB = INGDB=1 T gdb -tui --cd $(PWD) 
 endif
 
 # rpath is where linux/posix finds the shared libraries

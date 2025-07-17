@@ -1,0 +1,8 @@
+. ../go__fns
+URL=https://archive.xfce.org/xfce/4.20/fat_tarballs/xfce-4.20.tar.bz2
+fn_grp_url libr $URL
+fn_unpack
+# fn_with_grp libr
+fn_configure_pfx
+fn_make 
+fn_make install

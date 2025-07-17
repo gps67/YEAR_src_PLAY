@@ -37,15 +37,21 @@
 	TEST_FILE_PDB1 = /tmp/dpb_sar_test.odb
 
 	TEST_FILE1e = $(TOP)/PRIV_samples/0102.csv
-#	TEST_FILE1b = $(TOP)/PRIV_samples/0203.csv
+#	TEST_FILE1_dash = $(TOP)/PRIV_samples/0203.csv
 	TEST_FILE1d = $(TOP)/PRIV_samples/0304.csv
 	# TEST_FILE1 = $(TOP)/PRIV_samples/0405.csv
 	# TEST_FILE1e = $(TOP)/PRIV_samples/0506.csv
 	# TEST_FILE1f = $(TOP)/PRIV_samples/0708.csv
-	TEST_FILE1 = $(TOP)/PRIV_samples/0910.csv
-	TEST_FILE1 = /nfs/dws330/home/dws/BH6/2025-06-13_CSV/2025_2026_BH6_edit.csv
-	TEST_FILE1b = /tmp/2025_2026_BH6_edit.csv
-	TEST_FILE1b2 = /tmp/2025_2026_BH6_edit_norm.csv
+	# TEST_FILE1 = $(TOP)/PRIV_samples/0910.csv
+	# TEST_FILE1 = /nfs/dws330/home/dws/BH6/2025-06-13_CSV/2025_2026_BH6_edit.csv
+	TEST_DIR1 = /nfs/dws330/home/dws/BH6/DWS_2025_copied/2025_CSV/YEAR_MM_DD_CSV
+	TEST_FILE1_dash = $(TEST_DIR1)/2025_2026_BH6_dash.csv
+	TEST_FILE1_norm = $(TEST_DIR1)/2025_2026_BH6_norm.csv
+
+	TEST_FILE1 = $(TEST_FILE1_dash)
+	# TEST_FILE1_norm = /tmp/accts_test1.csv
+
+	#TEST_FILE1_norm = /tmp/2025_2026_BH6_edit_norm.csv
 
 	# TEST_FILE1 = $(TOP)/samples/rpt1.csv
 	TEST_FILE1c = $(TOP)/PRIV_samples2/1112.csv
@@ -81,8 +87,14 @@
 gdb1: $(PROG1_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1) $(PROG1_EXE)
 
-gdb1b: $(PROG1_EXE) // accts_nwe
-	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) $(PROG1_EXE)
+gdb1b: $(PROG1_EXE)
+	# touch $(TOP)/_run/.gdbinit_$(PROG1) 
+	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	# T returns so no more make lines
+
+
+	# NOT $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	# ls -ldi $(PROG1_EXE) $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 
 gdb2: $(PROG2_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG2) $(PROG2_EXE)
@@ -124,11 +136,11 @@ test1a: $(PROG1_EXE)
 #	-cd $(TOP)/mm3_scan ; make
 
 test1b: $(PROG1_EXE)
-	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1b) $(TEST_FILE1b2)
+	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 	false
-	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1b2)
-	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1b2)
-	@# $(PROG1_EXE) $(TEST_FILE1b)
+	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
+	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
+	@# $(PROG1_EXE) $(TEST_FILE1_dash)
 
 test1c: $(PROG1_EXE)
 	# CH reports debugging target
@@ -147,9 +159,9 @@ test1: $(PROG1_EXE)
 	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1)
 	$(PROG1_EXE) $(TEST_FILE1)
 	@#
-	@# $(PROG1_EXE)  --load-save-quit $(TEST_FILE1b)
-	@# $(PROG1_EXE) --run-reports $(TEST_FILE1b)
-	@# $(PROG1_EXE) $(TEST_FILE1b)
+	@# $(PROG1_EXE)  --load-save-quit $(TEST_FILE1_dash)
+	@# $(PROG1_EXE) --run-reports $(TEST_FILE1_dash)
+	@# $(PROG1_EXE) $(TEST_FILE1_dash)
 
 test2: $(PROG2_EXE)
 	$(PROG2_EXE) $(TEST_FILE2)

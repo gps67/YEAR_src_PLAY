@@ -3,6 +3,12 @@
 
 # tcl_less.tcl - copy stdin to a text panel
 
+	lappend tcl_pkgPath /tools/x86_64/tcl/lib/tcl_lib_gps_one
+	lappend tcl_pkgPath /tools/x86_64/tcl/lib/
+	lappend tcl_pkgPath /home/gps/YEAR/src/PLAY/TCL_stuff/tcl_lib
+	# none of that is working
+	puts $tcl_pkgPath
+
         package require gps_one ;# 0.5
 
 # hmmm # gdb -tui -p 1234 # complains NOT_A_TTY # errout !! #

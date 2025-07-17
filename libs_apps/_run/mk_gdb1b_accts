@@ -1,0 +1,3 @@
+
+	CSV=2025_2026_BH6_edit.csv
+	./mk gdb1b # $CSV 

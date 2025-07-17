@@ -43,8 +43,8 @@
 
 # an unused proc to confirm found
 #	# TEST
-	proc show_path {} {
-		puts "show_path"
+	proc x_show_path {} {
+		puts "show_path - who calls this"
 		global auto_path
 		foreach step $auto_path {
 			puts "# auto_path += $step"

@@ -1,0 +1,254 @@
+MAKE_PACKAGE_BENCH.txt
+
+ HOWTO make a tcl package
+
+ BENCH make tcl package "gps_one"
+
+ 	$HOME/tcl_lib/
+ 	$HOME/tcl_lib/actually_anyname/
+ 	$HOME/tcl_lib/TCL_LIB_package_NAME/
+
+		OPTION use DIR_NAME different from package_NAME
+		 VFS
+		  DIR_NAME alias PACKAGE_NAME
+
+	GEN
+
+		
+
+ FORM
+
+  DIAG from WAREHOUSE_CATALOG_ITEM_WEB_VIEW
+
+  	PHRASE WEB_VIEW
+
+		lines of SCRIPT
+		LIBR of SCRIPT
+	
+	MEDIA += ITEM MEDIUM_as_MIME_type_FILE_in_VFS
+
+		_MP3 DATA as nbytes in MMAP and LOAD_COPY
+
+			sometimes RPC provides STO_FILE
+
+				eg %s.mp3 in STO += STOS += APP_voice_note
+
+					USAGE
+					 VOICE_NOTE
+					  _MP3
+
+		STO QUOTA += MP3 files for LIBR_POOL_of_VOICE_NOTE
+		  
+
+		  	consultant description of description
+
+			LIMIT Nurse plays message over SLATE
+
+			USAGE MOBILE_PHONE VOICE_NOTE_TO_SELF
+
+			SELF is MMAP HEAP POOL ITEM LAYOUT SPEC
+			SPEC += include FEATURE_DECL_INIT_SCRIPT.h
+
+	// MATCH BOTH from EITHER //
+
+		STO QUOTA += MP3 files for VOICE_NOTE
+
+			VOICE_NOTE is an MP3 BLOB with NAME_META_INFO
+
+			META at CT_RT CT_
+			INFO at CT_RT _RT
+			NAME at CT_RT CT_ HERE_LOCN_is_SELF _RT
+	
+	DIALECT += "SELF"
+
+		SELF has a dozen ALIAS SELF self Self 
+		SELF this that THAT HERE LOCN ITEM OBJ NAME_from_SPEC
+		
+		ALIAS VAR_NAME
+		VAR_NAME // MENTION as AVAR is enough to create CT_RT AVAR
+		STO.LINKER_of_AVAR_known_as_SPELLING // SUB_LEX
+		STO.LINKER_of_AVAR_known_in_PHRASE // PSG_PHRASE
+
+	rename on usage as to_lower // a list of rules // filter_can_reject //
+
+		RECOVER REJECTED PHRASE from SESS 
+
+			SESS may or may not be concurrent THREADS
+			SESS can be paused and stopped
+			SESS running SCRIPT ARGV
+
+				SCRIPT has already been picked by LINKER
+				SCRIPT is being RUN already being COMPILED
+				COMPILED can be DONE by adding COMPILE_STEP
+				INCOMPLETE_STEP SHOW and WAIT
+				QUEUED with TICKET of CALC_SOON
+
+		LAZY SCRIPT
+
+			CODE is hardwired to find PAUSE_POINT
+			LAZY is when CHECK confirms CALC_LATER // CACHE_SPELLING
+			LAZY is FAST for next EVAL // was not clocked for hunger
+			when CHECK confirms CALC_LATER // CACHE_SPELLING
+			when CALC_LATER is NOW() { run SCRIPT with ARGS SESS }
+			run means START and HINT_PHASE_load_queues_from_LIST
+			HINT_PHRASE "PRE_LOAD" 
+			KNOW PHRASE LIBR LAZY_SCRIPT
+
+			register callback notification
+			PROVIDE templated API GETTERS // _and_SETTERS ARGV
+
+		VERY LAZY SCRIPT
+
+			STEP = BATCH
+			STEP = FILE
+			STEP = LINE
+			STEP = XPOS // WORD and PHRASE
+			STEP = i64 // i32_i32 // MEM_PAIR_lohi CPU_PAIR_L_R
+
+			Run a single STEP and carefilly count a STEP_edge
+			OPTION disconnect COUNTER into GEN // HMMM ///
+
+			RUN a LIST_of_STEP_upto_EDGE_NOW
+			OPTION TIME_at_XPOS into _EDGE // 
+
+		SECOND_QUOTA
+
+			The STEP_LIST above, found a bunch of stuff to do
+			The CACHE has sorted it to DATA_LAYOUT
+			There is now a bunch of TASKS in QUEUES waiting to be RUN
+			TRHEADS encourages CALLER to queue up a LIST of STEP
+			TRHEADS accepts request as a logged transaction
+			// NEED [P0[P2 of STREAM // EIGHT_t STEP_at_ITX = &
+			// C++ // & // invokes SELF //
+			// C++ // & // invokes PTR_to_ITEM // SELF = ITEM //
+			// text in CMNT USED "SELF = ITEM" // MATCH APPLY
+			CALLER to queue up a LIST of STEP
+
+			This is a BATCH system.
+			It has mini_match and recursives 
+			It has ENQ_ACK_CYCLE // BATCH_PHASE "{ EVAL STEP }"
+			Q2 dialect meets " // SELF = ITEM // " // SP1_two likes
+			SP1_one = ROM SPELLING of ASCII_SPACE // OPTION CHECK_ONLY_1
+			SP1_two = UDEF // COMPILED SCRIPT running in safe mode
+
+			SAFE_API provices LIVE_DATA
+
+				USER can load BLOBS into our MMAP
+				and we PROVIDE MMAP that does that
+
+				UDEF provides SPEC of LIBR_UDEF
+
+			LIBR_UDEF
+			LIVE_DATA
+			UDEF_CODE
+			LIBR_CODE
+			API_CALL_VECTORS
+			API_DATA_FILTERS
+
+	LIBR agrees to MMAP ROM_TEXT and SESS_DATA
+
+		LIBR += SPEC of everything involved
+
+		// here it becomes a mecano set // BENCH over DIAG and TABLES
+
+		LIBR += VAR_POOL_LOOKUPS
+
+		 MINI_MACHINE uses a common TREAD_POOL // idx = N ++ // ALLOC
+
+
+LAZY SCRIPT MMAP HEAP_ITEM SPEC CODE DATA
+LAZY SCRIPT Tcl_Obj
+LAZY SCRIPT Python_Obj
+LAZY SCRIPT V8_Obj
+LAZY SCRIPT SM_Obj // gjs extension is a TODO // match API // TODO //
+ARGV_SCRIPT fn_call_args_one // ARGV SESS // ARGV no_SESS //
+ARGV_SCRIPT fn_call_args_two // ARGV SESS STO XPOS ENV SCOPE
+ARGV_SCRIPT_SCOPE ARGV[0] is this function script and invoke
+
+	naive cmd0 == ARGV[0]
+
+		take ARGV[0]
+		eval it in CALL_CTXT // DECODE_i64_STEP _to_get_CMD0
+
+		return a callable (incl a paused closure with list of temp vars
+
+		LIBR CACHE i64_MMAP_ADDR_EA_EXPR
+		EA_EXPR
+		 decode i32_i32
+
+COMPILE_SCRIPT
+
+	LIBR updates its GEN_ELF_SEGMENT LIBR.ROM LIBR.STO LIBR.CODE
+	LINK renames %s.%s as %s_%s and checks still unique in both worlds
+
+COMPILE_SCRIPT
+i32_BITFIELD_in_WORD_PAIR // eg in MEM_32 // LOHI always around here
+i32_BITFIELD_in_HALF_PAIR // ie in i64 // ASM C C++ // HIGH_HALF // HALF_WORD
+
+	ARGV is built of i64_STEP // and sometimes fooled to WRAPPED_XMIT
+
+	DONE
+	DOING
+	NOT_STARTED
+	QUEUED
+
+STREAM WRAPPED
+XMIT WRAPPED
+
+	We want to ALLOC a block of N_WORDS in ARGV
+	We are building ARGV in BENCH
+	We defer actual ALLOC until BATCH_EDGE_PHASE
+
+		PHASE_EDGE
+	 	INIT_PHASE
+		SESS PHASE // STEP == SESS == LIST_of_STEPS_for_PRE_LOAD
+		DTOR PHASE
+
+		STREAM_PHASE
+		STREAM_CHUNK_PHASE
+	
+	We are overlapping STEP += STEPS TRANSACTION 
+
+	WE add STEP by STEP to STREAM
+	MID-WAY triggers on_QUEUE_TIDE_MARK ...
+	MID-WAY triggers on_QUEUE_TIME_MARK ...
+
+		That might require a nested SCOPE to go back one level
+		and park the SESS in the sensible state from back then
+
+		We dont do that yet,
+		we wait for all of SEGMENT before running BATCH P0P2
+		we accept early answers, sometime PRE_LOAD early
+		we accept later answers, on_EVENT does the work
+
+		REPL as a form of BATCH
+		EDIT causes REGEN of all REPORTS # on as needed basis
+		BENCH runs a slow make every 10 seconds # NOTHING TO DO #
+		BENCH REGEN all MID_TEXT but not TOP_TEXT
+		BENCH GEN NOW_TEXT into VFS // gen pdf and view
+
+
+STEPS_for_PRE_LOAD
+
+	We do not have to wait for all SCRIPT to complete
+	we can start ENQ_ACKS before PAUSE_POINT
+	we queue them to know which to send first
+	we do simple merges NESTED idx ALLOC
+
+	we wait for all SCRIPTS to PAUSE // WAITING FOR PAUSE QUIET //
+	we sort and join and prioritise
+	we send all at once // QUEUE defers until next layer decides
+
+	our peers also reach QUIESCENCE with their data to send
+	we all have OPTIONS for PRIORITY by being told AVAILA_QUOTA
+	we queue upto QUOTA and attempt to keep at FILTERED SPEED QUOTA
+
+	we accept responses
+	we track missing packets
+	we track missing ENQ_ACK # mostly sum of all temps upto BATCH
+	we can rephrase if REMOTE asks us to #
+	SPECIFIC HEAP_ITEMS near LOCN
+	ENQ_ACK REQUIRE // DEMAND // REQUIRE // PROVIDE // ENQUIRE
+	ENQ_ACK enquire += OPTION may be repeat requests that CACHE knows 
+	ENQ_ACK PROVIDE
+	ENQ_ACK API - BATCH PHASE EDGE

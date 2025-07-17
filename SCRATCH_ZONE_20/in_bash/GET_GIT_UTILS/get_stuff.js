@@ -13,6 +13,27 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://gitlab.gnome.org/GNOME/gjs
+
+https://github.com/GNOME/gnome-keyring
+https://gitlab.gnome.org/GNOME/atk.git
+https://gitlab.gnome.org/GNOME/gdk-pixbuf.git
+https://gitlab.gnome.org/GNOME/glib.git
+https://gitlab.gnome.org/GNOME/glib-networking.git
+https://gitlab.gnome.org/GNOME/gtk.git
+https://gitlab.gnome.org/GNOME/pango.git
+https://gitlab.gnome.org/GNOME/pygobject.git
+#https://github.com/GNOME/gnome-alsamixer
+https://github.com/midi2-dev
+https://github.com/midi2-dev/MIDI2.0Workbench
+https://github.com/midi2-dev/AM_MIDI2.0Lib
+https://github.com/midi2-dev/tusb_ump
+https://github.com/midi2-dev/ni-midi2
+https://github.com/midi2-dev/bl-midi2-rs
+https://github.com/midi2-dev/usbMIDI2DescriptorBuilder
+https://github.com/midi2-dev/AmeNote_Protozoa
+
+
 https://github.com/adaltas/node-csv
 https://github.com/vercel/next.js
 https://github.com/samizdatco/skia-canvas
@@ -122,7 +143,6 @@ https://github.com/libuv/libuv
 https://github.com/basecamp/trix
 https://github.com/swig/swig
 https://github.com/v8/v8
-https://gitlab.gnome.org/GNOME/gjs
 https://github.com/mozilla-spidermonkey/spidermonkey.dev
 https://github.com/intel/hyperscan
 https://github.com/PCRE2Project/pcre2
@@ -214,7 +234,6 @@ https://github.com/rrthomas/psutils
 git://sourceware.org/git/bzip2.git
 https://git.tukaani.org/xz.git
 
-https://github.com/GNOME/gnome-keyring
 https://github.com/kivy/buildozer
 https://github.com/kivy/kivy
 https://github.com/google/flatbuffers
@@ -558,13 +577,7 @@ https://gitlab.freedesktop.org/libevdev/libevdev.git
 https://gitlab.freedesktop.org/libinput/libinput
 https://gitlab.freedesktop.org/mesa/demos.git
 https://gitlab.freedesktop.org/mesa/mesa.git
-https://gitlab.gnome.org/GNOME/atk.git
-https://gitlab.gnome.org/GNOME/gdk-pixbuf.git
-https://gitlab.gnome.org/GNOME/glib.git
-https://gitlab.gnome.org/GNOME/glib-networking.git
-https://gitlab.gnome.org/GNOME/gtk.git
-https://gitlab.gnome.org/GNOME/pango.git
-https://gitlab.gnome.org/GNOME/pygobject.git
+
 https://gitlab.kitware.com/cmake/cmake
 https://git.netfilter.org/libnetfilter_queue/
 https://git.savannah.gnu.org/cgit/freetype/freetype2.git/NO
@@ -580,7 +593,6 @@ git://thekelleys.org.uk/dnsmasq.git
 #https://github.com/dlang/dmd.git
 #https://github.com/vuejs/vue.git
 #https://gitlab.com/konradp/tinydrum.git
-#https://github.com/GNOME/gnome-alsamixer
 #https://github.com/idea4good/lvgl
 #https://github.com/rg3/youtube-dl
 http://github.com/FreeRTOS/FreeRTOS

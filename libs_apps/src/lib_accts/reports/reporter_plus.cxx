@@ -75,8 +75,35 @@ bool reporter_plus::TRANS_is_tax_layer()
 	if(! CAT._key->str) return false;
 	uchar c1 = CAT._key->str[0];
 	switch( c1 ) {
-	 case 'T': return true;
-	 case 'I': return true;
+	 case 'T': { // old 2 letter system T9 was a TAX
+		uchar c2 = CAT._key->str[1];
+		switch( c2 ) {
+		 case 0: // is the "T" TAX category
+		 case '_':  // is a "T_%s" TAX item
+		 case '0': 
+		 case '1': 
+		 case '2': 
+		 case '3': 
+		 case '4': 
+		 case '5': 
+		 case '6': 
+		 case '7': 
+		 case '8': 
+		 case '9': 
+		 {
+			PASS("CAT._key->str = '%s' means TAX", CAT._key->str );
+		 	return true;
+		 }
+
+		 case 'a': 
+		 case 'A':
+			 return true; // true; //
+			 return PASS("TA means TAX"); // true; //
+		}
+		return false; // not tax layer; //
+		PASS("CAT._key->str = '%s' starts with T but not T9  NOT TAX", CAT._key->str );
+	 	return false;
+	 }
 	 default:  return false;
 	}
 	/*
@@ -92,9 +119,30 @@ bool reporter_plus::TRANS_CAT_is_Income()
 	if(! CAT._key) return false;
 	if(! CAT._key->str) return false;
 	uchar c1 = CAT._key->str[0];
+	uchar c2 = CAT._key->str[1];
 	switch( c1 ) {
-	 case 'I': return true;
-	 case 'i': return true;
+	 case 'I': 
+	 case 'i': {
+	 	switch(c2) {
+		 case 0: 
+		 case '_':
+		 case '0': 
+		 case '1': 
+		 case '2': 
+		 case '3': 
+		 case '4': 
+		 case '5': 
+		 case '6': 
+		 case '7': 
+		 case '8': 
+		 case '9': 
+			return true;
+		 	return PASS("CAT '%s' is INCOME", CAT._key->str );
+		}
+	 	return false;
+		INFO("CAT '%s' is NOT income", CAT._key->str );
+	 	return false;
+	 }
 	 default:  return false;
 	}
 	/*
@@ -218,7 +266,8 @@ void reporter_plus::do_vat_calc()
 
 		NB STRANGE MATH ACTION
 	 */
-	if( CAT._key->str[0] == 'T' ) { 
+	if( TRANS_is_tax_layer() ) {
+//	if( CAT._key->str[0] == 'T' ) { 
 	// if( (* CAT._key == "H1" ) ) {
 		// ADD TAX TO SOME REPORT ?? //
 		// acct_amnt( HW_ACCT, RPT._amnt_pre, '-' );

@@ -288,6 +288,9 @@ in
 	Stage=Salisbury
 	Artist="Iya_Sako_Here_Foli"
 
+	Stage=irish_sessions
+	Artist="Fishermans_Cottage"
+
 	T="$Artist" # 
 
 ;; *)

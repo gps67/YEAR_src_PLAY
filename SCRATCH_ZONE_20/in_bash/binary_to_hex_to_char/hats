@@ -47,4 +47,10 @@ cat_TEXT_one | bc | $UNHEX
 echo	# to complete WORD to LINE
 echo	'#'  # CMNT and blank line
 
+echo '# cat_TEXT_one | bc | $UNHEX | od -cx'
+cat_TEXT_one | bc | $UNHEX | od -cx
+echo	# to complete WORD to LINE
+echo	'#'  # CMNT and blank line
+
+
 

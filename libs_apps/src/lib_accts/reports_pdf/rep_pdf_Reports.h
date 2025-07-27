@@ -14,11 +14,15 @@ using namespace ACCTS;
 class rep_pdf_VatTrack : public rep_pdf_0
 {
  public:
-	rep_pdf_VatTrack( pdf_ctxt & _pdf, data_set * _dset, str0 filenamepdf )
+	rep_pdf_VatTrack(
+		pdf_ctxt & _pdf,	// PDF_GEN_CTXT_SESS
+		data_set * _dset,	// dset CSV_ACCTS //
+		str0 filenamepdf	// ACCTS_REPORT_NAME.pdf // VAT_TRACK
+	)
 	: rep_pdf_0(
-		_pdf,
-		_dset,
-		filenamepdf
+		_pdf,		// GEN_PDF_mid_SESS
+		_dset,		// CSV_ACCTS_DATA_as_DSET
+		filenamepdf	// VFS_FILENAME.pdf // as STR0 // AKEY //
 	)
 	{
 	}

@@ -89,7 +89,10 @@ gdb1: $(PROG1_EXE)
 
 gdb1b: $(PROG1_EXE)
 	# touch $(TOP)/_run/.gdbinit_$(PROG1) 
-	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args \
+	$(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
+	# $(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
+	# $(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 	# T returns so no more make lines
 
 
@@ -128,6 +131,9 @@ gdb9: $(PROG9_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG9) $(PROG9_EXE)
 
 test1a: $(PROG1_EXE)
+	$(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
+
+junk_was_test1a:
 	$(PROG1_EXE)  --load-save-quit $(TEST_FILE1)
 	$(PROG1_EXE)  --run-reports $(TEST_FILE1)
 	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1)
@@ -136,6 +142,7 @@ test1a: $(PROG1_EXE)
 #	-cd $(TOP)/mm3_scan ; make
 
 test1b: $(PROG1_EXE)
+	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
 	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 	false
 	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)

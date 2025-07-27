@@ -18,6 +18,22 @@ namespace PDF_GEN {
 
 class pdf_pen_base;
 
+struct pdf_WH_t {
+	float W;
+	float H;
+
+	pdf_WH_t()
+	: W(0)
+	, H(0)
+	{
+		// INIT NULL gets complex when f64 is invoked
+	}
+	void FLIP_WH() {
+		float T = W; W = H; H = T;
+	}
+};
+typedef pdf_WH_t  WH_t; // proper naming arguments // press go //
+
 //!	
 /*!
 	pdf_base is the base class of your PDF document generator
@@ -71,7 +87,8 @@ class pdf_base : public pdf_base0
 	*/
 	Mode mode;
 
-	void goto_mode( Mode m );
+	bool goto_mode( Mode m );
+	bool goto_mode_none();
 
 	void unset_current_pen( pdf_pen_base * pen )
 	{
@@ -84,15 +101,18 @@ class pdf_base : public pdf_base0
 	}
 	void set_current_pen_fn( pdf_pen_base * pen );
 
+	pdf_WH_t page_WH;
 	/*!
 		device units - 72 *
 	*/
-	float page_width;
+	// float page_width;
+	#define page_width page_WH.W
 
 	/*!
 		device units - 72 *
 	*/
-	float page_height;
+	// float page_height;
+	#define page_height page_WH.H
 
 	/*!
 		pdf_base has had PDF_CTXT available for pen creation ETC,
@@ -107,7 +127,7 @@ class pdf_base : public pdf_base0
 	virtual bool run_wrapped_report() = 0;
 
 
-	void open_file(
+	bool open_file(
 		str0 filename,
 		str0 title,
 		str0 author,
@@ -115,10 +135,16 @@ class pdf_base : public pdf_base0
 	);
 	void close_file();
 
+	// A£ is an external const but PDF might have its own pixel point 
+	bool set_WH_A3( pdf_WH_t & WH_A3 ); 
+	bool set_WH_A4( pdf_WH_t & WH_A4 ); 
+
 	bool page_open;
-	void begin_page();
-	void begin_page_a4();
-	void begin_page_a4_landscape();
+	bool begin_page_WH( pdf_WH_t WH );
+	bool begin_page();
+	bool begin_page_a4();
+	bool begin_page_a4_landscape();
+	bool begin_page_a3_landscape();
 	// start new page ONLY if required
 	void now_need_page()
 	{

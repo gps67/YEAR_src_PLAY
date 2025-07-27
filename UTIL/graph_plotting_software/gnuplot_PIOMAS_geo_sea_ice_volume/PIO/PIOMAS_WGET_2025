@@ -18,6 +18,7 @@ URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOM
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2023.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2024.Current.v2.1.dat.gz
 URL=http://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2025.Current.v2.1.dat.gz
+####https://psc.apl.uw.edu/wordpress/wp-content/uploads/schweiger/ice_volume/PIOMAS.vol.daily.1979.2025.Current.v2.1.dat.gz
 
 URL="${1:-$URL}"
 

@@ -91,10 +91,18 @@ class rep_pdf_0 : public PDF_GEN::pdf_base
 	obj_hold<pdf_pen_draw> fill_titles_small;
 	obj_hold<pdf_pen_draw> fill_totals;
 
-	obj_hold<pdf_pen_text> pen_titles;
-	obj_hold<pdf_pen_text> pen_titles_small;
-	obj_hold<pdf_pen_text> pen_normal;
-	obj_hold<pdf_pen_text> pen_subtots;
+// HOLD is a PTR or a REF or a SYNTAX REWRAP
+#define	HOLD_pdf_pen_text obj_hold<pdf_pen_text>
+
+//	obj_hold<pdf_pen_text> pen_titles;
+//	obj_hold<pdf_pen_text> pen_titles_small;
+//	obj_hold<pdf_pen_text> pen_normal;
+//	obj_hold<pdf_pen_text> pen_subtots;
+
+	HOLD_pdf_pen_text pen_titles;
+	HOLD_pdf_pen_text pen_titles_small;
+	HOLD_pdf_pen_text pen_normal;
+	HOLD_pdf_pen_text pen_subtots;
 
 	dyn_array<sub_tot_spec>	subtotals;
 

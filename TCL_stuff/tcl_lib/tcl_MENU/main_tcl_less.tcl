@@ -49,6 +49,14 @@ namespace eval ::tcl_less {
 		# not fantastic with CR to BOLN to overwrite
 		fconfigure stdin -blocking 0 ;# -encoding binary
 		fileevent stdin readable {
+ # error reading "stdin": invalid or incomplete multibyte or wide character
+ #    while executing
+ # "gets stdin line"
+ # adding this catch stopped tcl_less from doing anything much
+ # even updating its menu when mouse over
+ # but running not in pipe was OK manually ??
+
+		 if {[catch {
 			if {[gets stdin line] >= 0} {
 				text_out_ln - $line
 				text_out_limit_lines - 25
@@ -62,6 +70,13 @@ namespace eval ::tcl_less {
 					text_out_ln - {## EOF TODO WAIT LESS ##}
 				}
 			}
+		 } retvar evars]} {
+			puts stderr "# FAIL # TCL_LESS # $retvar $evars"
+			text_out_ln - "# FAIL # TCL_LESS # $retvar $evars"
+					fileevent stdin readable {}
+					close stdin 
+					text_out_ln - {## EOF TODO WAIT LESS ##}
+		}
 		#	update idletasks
 		}
 	}

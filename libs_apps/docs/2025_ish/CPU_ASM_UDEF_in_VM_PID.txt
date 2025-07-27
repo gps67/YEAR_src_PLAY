@@ -1,0 +1,115 @@
+CPU_ASM_UDEF_in_VM_PID.txt
+
+	This is one of our security models
+	Inside this CONTAINER is
+	HACK_ATTEMPT to escape CONTAINER
+
+	The CPU manufacturers have SAFE_BOX_CONTAINER_PID
+
+		PID is a CPU_THREAD
+
+		 It has MMAP and can ask for more
+		 It has CODE for CPU_64
+		 It has CODE for CPU_32
+		 It has MEMORY for DATA
+		 It has STACK
+
+		 It has gcc inline ASM 
+
+		 can fork a new PID
+		 can exec a VFS_ELF_FILE # ROM_in_VFS
+
+		 can ask libc for VFS and networking
+		 can ask SWI for OS and outside of CONTAINER
+
+		 brick by brick enable FILTERED libc 
+		 OR switch it all off, and vector via REM_VFS
+		 API uses PKT queues so an extra MEM COPY used
+		 API uses LOCAL REMOTE for CPU_DIRECT API
+		 CACHE knows more, can abstract either
+
+		 can run CPU like crazy
+		 98% of that CPU's instructions
+		 MMAP provide API to access MMAP 
+		 MMAP provide API to switch MMAP 
+		 MMAP provide API to provide MMAP SEGMENTS
+
+	
+	LOADED SEGMENTS
+
+		we permit UNIX actions via LINUX API
+
+			native code calls C API LIBR uses ASM JSR or JSR_SWI
+
+				JSR	jump to subroutine
+				SWI	software interrupt
+
+			glibc provides libc
+			libc provides libc
+
+				gcc provides INLINE_ASM
+				gen ASM for JSR ADDR_one _EXPR _VAL
+
+				 ADDR_one = EA_ FUNC_CODE_API_ADDR 
+
+				  ADDR = BASE + OFFS
+
+				  OFFS = CODE_XPOS_OFFS _aka_GOTO_ADDR
+
+				  OFFS = EVAL EXPR of "LABEL" in LANG PSG CXX
+				  LANG PSG ARGV_PY_CALL
+				  LANG PSG ARGV_Tcl_CALL
+				  LANG PSG ARGV_OBJV_CALL 
+				  LANG PSG ARGV_SCRIPT
+				  LANG PSG ARGV_SCRIPT API
+				  LANG API ARGV ENVP
+				  ENVP is alias for LOCAL_lookup_LABEL "ENVP"
+				  (LOCN acting as LABELLED_ITEM)
+				  (ITEM += FIELD for LOCN)
+
+		we intercept SYSCALL at PID level
+
+			by providing the VFS into that container
+
+				NFS TREE and CSR_XPOS indexes
+				bind_dir
+				symb_link dir 
+				text_lookup_filter ENQ_ACK CT_RT PRE_LOAD
+
+			PRE_LOAD
+
+				goal is to be already loaded
+				goal to KNOW that before asking
+				goal is nearest route using SCRIPT EXPRS
+				goal is via complex CT_RT MINI_MACHINE_XPOS_SESS_ITEM
+
+				goal need SCRIPT to be run at CT_RT _RT
+
+			RUN_CALC
+
+				PRE_LOAD is the result of a few steps
+				and available as FAST_LOAD from ROM_POS
+				ROM_POS
+				STO_POS
+			EA +=	ZONE FILE SEGMENT BUFFER OFFS
+			EA +=	ZONE FILE SEGMENT BUFFER += SELF
+
+
+
+			by providing the VFS into that container
+
+				bundle of FILES in a ZIP file or VFS_two
+
+			we provide the same API - but differently
+
+				CACHE PRE_LOAD PRE_CALC KNOW
+
+			we provide the same API - but differently - EG -
+
+				LOCAL += 
+
+
+		we intercept SYSCALL at PID level
+
+			by being the KERNEL running BPF_SCRIPT
+

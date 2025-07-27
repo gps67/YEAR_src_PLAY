@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-main()
+int main()
 {
 	int i = 0;
 	int * p = &i;
@@ -9,7 +9,8 @@ main()
 	{
 		c1 = i >> 8;
 		c2 = (char) i;
-		printf( "%c%c", c1, c2 );
+		if(c1) printf( "%c", c1 );
+		printf( "%c", c2 );
 	}
-	exit(0);
+	return 0;
 }

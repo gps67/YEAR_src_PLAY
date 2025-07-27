@@ -67,7 +67,8 @@ bool fork_xpdf_page( str0 filename, int pageno )
 #else
 //	cmd.print("xpdf %s %d&", (STR0) filename, pageno );
 //	cmd.print("mupdf %s %d&", (STR0) filename, pageno );
-	cmd.print("mupdf -r 120 %s %d&", (STR0) filename, pageno );
+//	cmd.print("mupdf -r 120 %s %d&", (STR0) filename, pageno );
+	cmd.print("mupdf-gl -r 120 %s %d&", (STR0) filename, pageno );
 #endif
 //	blk1 & p1 = (blk1&) cmd;
 //	blk1 p1b;

@@ -1,0 +1,27 @@
+BENCH_PANEL.txt
+
+	SCRIPT must define the BENCH_PANEL
+	LIBR provides all the components and some vars
+	SCOPE resolves SPELLING_TOKEN to LABEL_ITEM_in_SCOPE
+	BENCH_PANEL has
+
+		TOP_LEVEL_WINDOW_FRAME_HOLDER
+		TOP_LEVEL_WINDOW_FRAME Title FGBG X11_idx
+		Menu_Bar Menu_NAME Menu_File Menu_Help 
+		MAIN_AREA is a SOFT device for use in OUTER_FRAME
+		MAIN_AREA is surrounded and wrapped by others in MAIN_AREA
+		MAIN_AREA is X11_Widget requesting CLIPPING
+
+			XYWH or XY0_XY2
+
+			X  P0P2
+			Y  P0P2
+	
+	GUI BORDER gets its own XYWH BBOX
+
+	SCRIPT and OPTS build MAIN_PANEL
+	ARGV and purpuse build PANEL
+
+	STR_SWITCH layout case _one { SCRIPT_one } _two { SCRIPT_two }
+		
+

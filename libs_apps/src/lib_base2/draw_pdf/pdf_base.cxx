@@ -38,18 +38,23 @@ pdf_base::pdf_base( pdf_ctxt & ctxt )
 /*!
 	open file and set title/author/...
 */
-void pdf_base::open_file(
+bool pdf_base::open_file(
 	str0 filename,
 	str0 title,
 	str0 author,
 	str0 creator
 )
 {
-	if( -1== PDF_open_file( pdf, (STR0) filename ))
+	if( -1== PDF_open_file( pdf, (STR0) filename )) {
+		FAIL("PDF_open_file(pdf,'%s'", (STR0) filename );
+		return false;
 		throw "open_error";
+		// lands well when throw called within gdb
+	}
 	PDF_set_info( pdf, "Creator", (STR0) creator );
 	PDF_set_info( pdf, "Author", (STR0) author );
 	PDF_set_info( pdf, "Title", (STR0) title );
+	return true;
 }
 
 /*!
@@ -96,47 +101,111 @@ void pdf_base::now_need_landscape( bool _landscape )
 	if(page_open) end_page();
 
 	if( _landscape )
-		begin_page_a4_landscape();
+		begin_page_a3_landscape();	// go big
+	//	begin_page_a4_landscape();
+	//	begin_page_a4(); // default portrait 
+	//	OPTION A4_A4 LHS_RHS // apply rule to A4_PAGE_L _L _R ALIAS
+	//	USES a4_% _height _width 
+// ./src/lib_base2/draw_spout/spout_PAGE_base.cxx:void spout_PAGE_base::begin_page_a4_landscape()
 	else
-		begin_page_a4();
+		begin_page_a4();		// go home
+
+	// figure out print a3 on a4 printer // with borders and gaps
+	// eg split a3_Landscape to a4_Portrait_LEFT_side _RIGHT_
+	// eg zoom down a3_Landscape to a4_landscape_at_ZOOM_HALF
+	//
+}
+
+bool pdf_base::set_WH_A4( pdf_WH_t & WH_A4 ) {
+	WH_A4.H = a4_height;
+	WH_A4.W = a4_width;
+	return true;
+}
+
+bool pdf_base::set_WH_A3( pdf_WH_t & WH_A3 ) {
+	WH_A3.H = a3_height;
+	WH_A3.W = a3_width;
+	return FAIL("TODO a6");
+	return true;
 }
 
 /*!
 	get a4 sizes and call PDF begin page
 */
-void pdf_base::begin_page_a4_landscape()
+bool pdf_base::begin_page_a3_landscape()
 {
+	pdf_WH_t WH_A3; 
+	set_WH_A3( WH_A3 ); 
 	landscape = true;
-	begin_page();
+	begin_page_WH(WH_A3);
+	return true;
 }
 
 /*!
 	get a4 sizes and call PDF begin page
 */
-void pdf_base::begin_page_a4()
+bool pdf_base::begin_page_a4_landscape()
+{
+	pdf_WH_t WH_A4; 
+	set_WH_A4( WH_A4 ); 
+	landscape = true;
+	begin_page_WH(WH_A4);
+	return true;
+}
+
+/*!
+	get a4 sizes and call PDF begin page
+*/
+bool pdf_base::begin_page_a4()
 {
 	landscape = false;
-	begin_page();
+	pdf_WH_t WH_A4; 
+	set_WH_A4( WH_A4 ); 
+	begin_page_WH(WH_A4);
+	return true; // OK
 }
 
 /*!
 	get a4 sizes and call PDF begin page
 */
-void pdf_base::begin_page()
+bool pdf_base::begin_page()
 {
+	pdf_WH_t WH;
 	if( landscape )
 	{
-		page_width = a4_height;
-		page_height = a4_width;
+		WH.H = a4_height;
+		WH.W = a4_width;
 	} else {
-		page_width = a4_width;
-		page_height = a4_height;
+		WH.W = a4_width;
+		WH.H = a4_height;
 	}
-	if( page_open ) return; // possible set dims just before next page
-	PDF_begin_page( pdf, page_width, page_height );
+
+	return begin_page_WH( WH );
+}
+
+/*!
+	get a4 sizes and call PDF begin page
+*/
+bool pdf_base::begin_page_WH( pdf_WH_t WH )
+{
+	page_WH = WH;
+	if( landscape )
+	{
+		page_WH.FLIP_WH();
+		// page_width = a4_height;
+		// page_height = a4_width;
+	} else {
+		// PORTRAIT is the DEFAULT home printer
+		// page_width = a4_width;
+		// page_height = a4_height;
+	}
+
+	if( page_open ) return true; // possible set dims just before next page
+	PDF_begin_page( pdf, page_WH.W, page_WH.H );
 	page_open = true;
 	axes_set();
 	on_page_top();
+	return true; //	void looks clean code - but lacks detailed error mgmt
 }
 
 /*!
@@ -169,27 +238,18 @@ void pdf_base::close_file()
 	PDF_close( pdf );
 }
 
-
-/*!
-	each drawing call, goes to its required mode,
-	which might be a continuation of the previous mode,
-	or it might end that mode, causing a draw request
-	for all the previous motions/actions.
-*/
-void pdf_base::goto_mode( Mode m )
+bool pdf_base::goto_mode_none()
 {
-	// If PDF is already in that mode return immediately.
-	if( m == mode ) return;
-
+	Mode old_mode = mode; mode = mode_none;
 	// go from mode X to mode none
-	switch( mode ) {
+	switch( old_mode ) {
 	 case mode_none:
-	 break;
-	 case mode_line:
-		PDF_stroke( pdf );
 	 break;
 	 case mode_fill:
 		PDF_fill( pdf );
+	 break;
+	 case mode_line:
+		PDF_stroke( pdf );
 	 break;
 	 case mode_both:
 		PDF_fill_stroke( pdf );
@@ -207,6 +267,29 @@ void pdf_base::goto_mode( Mode m )
 		// PDF_fill( pdf );
 	 break;
 	}
+	return true;
+}
+
+
+/*!
+	each drawing call, goes to its required mode,
+	which might be a continuation of the previous mode,
+	or it might end that mode, causing a draw request
+	for all the previous motions/actions.
+
+	Notice that there is no caller to return FAIL info to
+	The present caller is a new task flushing the old task BATCH SWEEP
+	But no SWEEP just goto_mode( mode_none )
+	Mostly unconnected events, when run do nothing, and are done
+*/
+bool pdf_base::goto_mode( Mode m )
+{
+	// If PDF is already in that mode return immediately.
+	if( m == mode ) return true;
+
+	// go from mode X to mode none
+	goto_mode_none();
+	// if(!goto_mode_none()) return FAIL_FAILED ;
 
 	// go from mode none to mode m - setup new/current styles
 	mode = m;
@@ -214,17 +297,17 @@ void pdf_base::goto_mode( Mode m )
 	 case mode_none:
 	 break;
 	 case mode_line:
-		style_settings->flush_line();
+		style_settings->flush_line();	// APPLY CACHE QUEUED STYLE
 	 break;
 	 case mode_fill:
-		style_settings->flush_fill();
+		style_settings->flush_fill();	// APPLY CACHE QUEUED STYLE
 	 break;
 	 case mode_both:
 		style_settings->flush_line();
 		style_settings->flush_fill();
 	 break;
 	 case mode_text_fill:
-		style_settings->flush_text();
+		style_settings->flush_text();	// APPLY QUEUED STYLE LIST
 		style_settings->flush_line();
 		style_settings->flush_fill();
 	 break;
@@ -235,6 +318,7 @@ void pdf_base::goto_mode( Mode m )
 		style_settings->flush_fill();
 	 break;
 	}
+	return true;
 }
 
 /*!

@@ -1,5 +1,13 @@
 b main
 b dyn_array_index_error
+b PDF_GEN::pdf_base::begin_page_WH
+b pdf_base::begin_page_WH
+b begin_page_WH
+b run_pdf_vat_track
+b run_reports
+b ACCTS::data_set::file_save
+b data_set::file_save
+b file_save
 # r --run-reports ../samples/0102.csv
 # r --run-reports ../samples/0203.csv
 # r --run-reports ../samples/0304.csv
@@ -11,18 +19,4 @@ b dyn_array_index_error
 # r  --load-save-quit ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
 # r  ~/2000/src_PRIV_Company/PRIV_samples/0708.csv
 # r  ~/2000/A_C_C_T_S/PRIV_samples/0910.csv
-
 r
-
-#
-# easy invoke with:
-#
-#                                                                              
-# INGDB=1 \
-# /tools/2005/gdb/bin/insight \
-# --command .gdbinit_bug5 \
-# accts
-#
-
-
-

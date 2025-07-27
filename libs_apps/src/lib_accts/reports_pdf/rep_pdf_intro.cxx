@@ -7,6 +7,8 @@
 
 #include "rep_pdf_Reports.h"
 
+#define as_landscape true
+
 using namespace ACCTS; // defining its contents
 
 /*!
@@ -63,7 +65,7 @@ bool rep_pdf_Cash_Cat::intro()
 	flt80 h = pen->get_line_height_v();
 	// y_pos += h*2;
 
-	str0 title = "Default Title: Information Cascade Ltd";
+	str0 title = "Default Title: Some ACCTS";
 	if(info.fetch_row( STR0_title ))
 	{
 		title = str0( info._value );
@@ -129,7 +131,8 @@ bool rep_pdf_Cash_Cat::intro()
 		"group",			// key name
 		"amnt_closing",	// summing total
 		// true,			// landscape
-		false,	// portrait,
+		as_landscape,
+		// false,	// portrait,
 		true,	// full_key_path
 		-1,	// interior_depth - zero means infinite
 		// true puts the GREEN node at the top
@@ -150,7 +153,7 @@ bool rep_pdf_Cash_Cat::intro()
 		STR0_VatSum,		// display table "VatSum" (prepared)
 		STR0_date_tax,		// split/regroup by col "date_tax"
 		STR0_turnover,		// TOTAL = sum of col "turnover"
-		false,
+		as_landscape,	// 
 		false,	// full_key_path
 		1,	// interior_depth - top plus single
 		true,	// interleave
@@ -166,7 +169,8 @@ bool rep_pdf_Cash_Cat::intro()
 		STR0_cat,
 		STR0_turnover,		//	total per node
 		// true,			// landscape
-		false,	// portrait,
+		// false,	// portrait,
+		as_landscape,	// 
 		true,	// full_key_path
 		0,	// interior_depth - single
 		false,	// true,	// interleave

@@ -103,6 +103,13 @@ bool run_reports( str0 filename_csv, str0 filename_CH1_archive_csv )
 
  // return 0;
 
+	#define filename_csv_norm "/tmp/filename_csv_norm"
+	INFO("SAVE %s", filename_csv_norm );
+	if( !dset1->file_save( filename_csv_norm, false ) ) return false;
+	INFO("DONE %s", filename_csv_norm );
+
+ // 
+
 	dir_name_ext file_named_X( filename_csv );
 	file_named_X.ext = "html";
 	file_named_X.mk_full_path_name();

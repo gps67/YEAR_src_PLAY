@@ -87,13 +87,30 @@
 gdb1: $(PROG1_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1) $(PROG1_EXE)
 
+gdb1a: $(PROG1_EXE)
+	$(GDB) \
+	--command \
+		$(TOP)/_run/.gdbinit_$(PROG1) \
+	--args \
+		$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
+
 gdb1b: $(PROG1_EXE)
 	# touch $(TOP)/_run/.gdbinit_$(PROG1) 
-	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args \
-	$(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
-	# $(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
-	# $(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
-	# T returns so no more make lines
+	$(GDB) \
+	--command \
+		$(TOP)/_run/.gdbinit_$(PROG1b) \
+	--args \
+		$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
+	# gdb needs --args ARGS # above l ine is the ARGV
+	# --run_reports is to become --normalise SRC DST # SRC.2
+	# $(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args \
+	# $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	# T GDB starts an xterm running GDB
+	# T returns OK # so proceed with next MAKE line #
+	# GDB seems to be OK with this, it has its own xterm TTY
+	# tcl_less # continues until EXIT is pressed # feeds from STDERR #
+	# so no more make lines - dont write them - it confuses everyone
+	# ie after the T GDB 
 
 
 	# NOT $(PROG1_EXE) --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
@@ -131,7 +148,7 @@ gdb9: $(PROG9_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG9) $(PROG9_EXE)
 
 test1a: $(PROG1_EXE)
-	$(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
+	$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
 
 junk_was_test1a:
 	$(PROG1_EXE)  --load-save-quit $(TEST_FILE1)
@@ -142,11 +159,11 @@ junk_was_test1a:
 #	-cd $(TOP)/mm3_scan ; make
 
 test1b: $(PROG1_EXE)
-	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
 	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_dash)
 	false
-	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1_norm)
-	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_norm)
+	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
+	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_dash)
 	@# $(PROG1_EXE) $(TEST_FILE1_dash)
 
 test1c: $(PROG1_EXE)

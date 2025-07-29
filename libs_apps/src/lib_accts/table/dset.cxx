@@ -117,6 +117,11 @@ bool data_set::file_save( str0 filename, bool compressed ) // AKA save_file
 
 		// common first column
 		str0 tbl_name = tbl->get_name()->sget();
+		INFO("tbl '%s'", (STR0) tbl_name );
+		if(! (STR0) tbl_name ) {
+			WARN("NULL TABLE NAME");
+			continue;
+		}
 		int tbl_name_w = strlen( tbl_name );
 
 		// OUTPUT column headers

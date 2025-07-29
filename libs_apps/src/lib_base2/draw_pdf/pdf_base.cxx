@@ -125,7 +125,9 @@ bool pdf_base::set_WH_A4( pdf_WH_t & WH_A4 ) {
 bool pdf_base::set_WH_A3( pdf_WH_t & WH_A3 ) {
 	WH_A3.H = a3_height;
 	WH_A3.W = a3_width;
-	return FAIL("TODO a6");
+	WH_A3.H = a2_height;
+	WH_A3.W = a2_width;
+	WH_A3.FLIP_WH();
 	return true;
 }
 
@@ -170,7 +172,7 @@ bool pdf_base::begin_page_a4()
 */
 bool pdf_base::begin_page()
 {
-	pdf_WH_t WH;
+#ifdef _SHOW_OLD_CODE
 	if( landscape )
 	{
 		WH.H = a4_height;
@@ -179,8 +181,10 @@ bool pdf_base::begin_page()
 		WH.W = a4_width;
 		WH.H = a4_height;
 	}
+#endif _SHOW_OLD_CODE
 
-	return begin_page_WH( WH );
+	// copy value of WH from current page SESS // complete BATCH STEP //
+	return begin_page_WH( page_WH );
 }
 
 /*!
@@ -188,6 +192,14 @@ bool pdf_base::begin_page()
 */
 bool pdf_base::begin_page_WH( pdf_WH_t WH )
 {
+	// OPTION NULL_WH means reuse CURR value //
+	// OPTION CHECK TOKENISED SPELLING // CHOICES and AVAIL_DATA OPTS
+	// on_DETECT "{ LHS = RHS }" called when MATCH_SAME_SELF
+	// MATCH MULTI SAME // we are all SELF THIS THAT HERE LOCN CSR IDX
+	// MATCH MULTI USAGE of "IDX" incl as "idx" incl as "i8_idx"
+	// SUB_LEX_PLAIN "i8 _ idx -- because of C "{ i8 BYTE }" // PICK i8
+	// PICK i8 i16 i24 i32 i48 i64 // ALIAS i9 += i32 // ENTIRE BASE WORD
+
 	page_WH = WH;
 	if( landscape )
 	{
@@ -200,6 +212,7 @@ bool pdf_base::begin_page_WH( pdf_WH_t WH )
 		// page_height = a4_height;
 	}
 
+	INFO("W %f H %f", page_WH.W, page_WH.H );
 	if( page_open ) return true; // possible set dims just before next page
 	PDF_begin_page( pdf, page_WH.W, page_WH.H );
 	page_open = true;

@@ -31,6 +31,11 @@ struct pdf_WH_t {
 	void FLIP_WH() {
 		float T = W; W = H; H = T;
 	}
+	bool PRINT_WH(buffer2 & buf, const char * fmt_WH = 0 ) {
+		if(!fmt_WH) fmt_WH = "{ %f %f }";
+		buf.print(fmt_WH, W, H );
+		return true; // goto_RET_OKAY_ZERO _OKAY_ZERO
+	}
 };
 typedef pdf_WH_t  WH_t; // proper naming arguments // press go //
 

@@ -1,11 +1,20 @@
 b main
+r
 set breakpoint pending on
 b dyn_array_index_error
-# b date_glib::set_year_mm_dd
-b /home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/time/date_glib.cxx:49
+b PDF_GEN::pdf_base::begin_page_WH
 b run_pdf_vat_track
-
-
+b run_reports
+b ACCTS::data_set::file_save
+b rep_html::opens_titles
+b rep_html::opens
+info breaks
+# b data_set::file_save
+# b file_save
+# b pdf_base::begin_page_WH
+# r --run-reports ../samples/0102.csv
+# b date_glib::set_year_mm_dd
+# b /home/gps/YEAR/src/PLAY/libs_apps/src/lib_base/time/date_glib.cxx:49
 # r --run-reports ../samples/0102.csv
 # r --run-reports ../samples/0203.csv
 # r  ../samples/0102.csv
@@ -14,4 +23,4 @@ b run_pdf_vat_track
 # r  --load-save-quit ../samples/0203.csv
 # r ../samples/rpt1.csv
 # r --load-saveAs-quit /tmp/2025_2026_BH6_edit.csv /tmp/2025_2026_BH6_edit_norm.csv
-r
+

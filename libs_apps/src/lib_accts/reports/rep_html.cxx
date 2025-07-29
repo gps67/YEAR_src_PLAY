@@ -12,6 +12,12 @@
 using namespace ACCTS;
 
 ///////////
+//	TODO	//	write as JSON load_me.js // trust as SCRIPT // DATA //
+///////////
+
+///////////
+//	HERE	//	write as HTML document with sections subtotals etc
+///////////
 
 bool run_html_Cash_Cat( ACCTS::data_set * dset, str0 filename )
 {
@@ -105,6 +111,7 @@ bool rep_html::opens( str0 filename, str0 title )
 	fd.print("  <META NAME='GENERATOR' CONTENT='%s'>\n",
 		(STR0) generator );
 	fd.print("<STYLE type=\"text/css\">\n");
+	fd.print("\n"); // BLANK_LINE surrounds BLOCK
 	fd.print(
 		" TH              { background: yellow } \n"
 		" TH.th2          { background: #E0D0E0 } \n"
@@ -114,6 +121,7 @@ bool rep_html::opens( str0 filename, str0 title )
 		" TR:hover        { background: #C0C0C0 } \n"
 		" TR.show_sums    { background: #C0F0C0 } \n"
 	);
+	fd.print("\n"); // BLANK_LINE surrounds BLOCK
 	fd.print("</STYLE>\n");
 	fd.print(" </HEAD>\n");
 	fd.print("<BODY>\n");
@@ -132,6 +140,7 @@ bool rep_html::closes()
 
 bool rep_html::opens_titles( str0 filename )
 {
+	INFO("HERE");
 	str0 title = "Default Title: Information Cascade Ltd";
 	if(info.fetch_row((str0)"title"))
 	{

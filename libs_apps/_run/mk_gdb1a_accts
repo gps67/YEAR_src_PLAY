@@ -1,0 +1,10 @@
+
+#	TODO
+	CSV="${CSV:-2025_2026_BH6_edit.csv}" # Q2_AUTO # pre-dash-filter #
+	CSV="${CSV:-2025_2026_BH6_edit.csv}" # Q2_AUTO # pre-dash-filter #
+	export CSV # line exists as BOOL GEN_TEXT_OF_ARGV_LINE
+	# OPTION do not export BUT do require continuation of local SCOPE
+	# 
+#
+	set -x
+	./mk gdb1a # $CSV 

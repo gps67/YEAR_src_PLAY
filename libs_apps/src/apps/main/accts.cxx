@@ -100,15 +100,18 @@ bool run_reports( str0 filename_csv, str0 filename_CH1_archive_csv )
 	*/
 	str1 filename_html;
 	str1 filename_pdf;
+	str1 filename_csv_norm;
 
- // return 0;
+	dir_name_ext file_named_norm( filename_csv );
+	file_named_norm.ext = "csv"; // csv2 //
+	file_named_norm.name.print("_NORM");
+	file_named_norm.mk_full_path_name();
+	filename_csv_norm.set( file_named_norm.full_path_name );
 
-	#define filename_csv_norm "/tmp/filename_csv_norm"
-	INFO("SAVE %s", filename_csv_norm );
-	if( !dset1->file_save( filename_csv_norm, false ) ) return false;
-	INFO("DONE %s", filename_csv_norm );
+	INFO("SAVE %s", (STR0) filename_csv_norm );
+	if( !dset1->file_save( (STR0) filename_csv_norm, false ) ) return false;
+	INFO("DONE %s", (STR0) filename_csv_norm );
 
- // 
 
 	dir_name_ext file_named_X( filename_csv );
 	file_named_X.ext = "html";

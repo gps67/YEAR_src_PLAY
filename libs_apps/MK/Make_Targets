@@ -100,7 +100,8 @@ gdb1b: $(PROG1_EXE)
 	--command \
 		$(TOP)/_run/.gdbinit_$(PROG1b) \
 	--args \
-		$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
+		$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+	#
 	# gdb needs --args ARGS # above l ine is the ARGV
 	# --run_reports is to become --normalise SRC DST # SRC.2
 	# $(GDB) --command $(TOP)/_run/.gdbinit_$(PROG1b) --args \
@@ -147,8 +148,14 @@ gdb0: $(PROG0_EXE)
 gdb9: $(PROG9_EXE)
 	$(GDB) --command $(TOP)/_run/.gdbinit_$(PROG9) $(PROG9_EXE)
 
-test1a: $(PROG1_EXE)
+test_1a: $(PROG1_EXE)
 	$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
+
+test_1b:
+	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+
+test_1c: $(PROG1_EXE)
+	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_dash)
 
 junk_was_test1a:
 	$(PROG1_EXE)  --load-save-quit $(TEST_FILE1)
@@ -159,7 +166,6 @@ junk_was_test1a:
 #	-cd $(TOP)/mm3_scan ; make
 
 test1b: $(PROG1_EXE)
-	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 	$(PROG1_EXE)  --pdf-vat-track $(TEST_FILE1_dash)
 	false
 	@# $(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)

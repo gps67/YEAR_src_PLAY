@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/X11Libre/xserver
 https://gitlab.gnome.org/GNOME/gjs
 
 https://github.com/GNOME/gnome-keyring

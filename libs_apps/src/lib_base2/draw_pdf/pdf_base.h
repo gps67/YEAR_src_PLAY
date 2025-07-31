@@ -19,8 +19,8 @@ namespace PDF_GEN {
 class pdf_pen_base;
 
 struct pdf_WH_t {
-	float W;
-	float H;
+	double W; // C STACK converts it to double 
+	double H;
 
 	pdf_WH_t()
 	: W(0)
@@ -29,11 +29,12 @@ struct pdf_WH_t {
 		// INIT NULL gets complex when f64 is invoked
 	}
 	void FLIP_WH() {
-		float T = W; W = H; H = T;
+		double T = W; W = H; H = T;
 	}
 	bool PRINT_WH(buffer2 & buf, const char * fmt_WH = 0 ) {
 		if(!fmt_WH) fmt_WH = "{ %f %f }";
 		buf.print(fmt_WH, W, H );
+		buf.print("{ %f %f }", W, H );
 		return true; // goto_RET_OKAY_ZERO _OKAY_ZERO
 	}
 };
@@ -141,13 +142,16 @@ class pdf_base : public pdf_base0
 	void close_file();
 
 	// A£ is an external const but PDF might have its own pixel point 
-	bool set_WH_A3( pdf_WH_t & WH_A3 ); 
 	bool set_WH_A4( pdf_WH_t & WH_A4 ); 
+	bool set_WH_A3( pdf_WH_t & WH_A3 ); 
+	bool set_WH_A2( pdf_WH_t & WH_A2 ); 
 
 	bool page_open;
 	bool begin_page_WH( pdf_WH_t WH );
 	bool begin_page();
 	bool begin_page_a4();
+	bool begin_page_a3();
+	bool begin_page_a2();
 	bool begin_page_a4_landscape();
 	bool begin_page_a3_landscape();
 	// start new page ONLY if required

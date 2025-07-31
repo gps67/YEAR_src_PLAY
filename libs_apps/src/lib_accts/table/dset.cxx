@@ -66,6 +66,7 @@ bool data_set::file_load( str0 filename )
 */
 bool data_set::file_save( str0 filename, bool compressed ) // AKA save_file
 {
+	INFO("filename '%s'", (STR0) filename );
 	if( ! filename ) return FALSE;
 
 	if( compressed ) WARN("compressed");
@@ -159,6 +160,9 @@ if( tbl->col_specs[c]->is_hidden ) continue;
 		io.eoln(); 
 	}
 	if( !io.close() ) return FALSE;;
+	INFO("HERE");
+	INFO("filename '%s'", (STR0) filename );
+	return PASS("filename '%s'", (STR0) filename );
 	return TRUE;
 }
 

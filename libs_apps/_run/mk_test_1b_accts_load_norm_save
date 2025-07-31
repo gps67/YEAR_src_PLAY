@@ -1,0 +1,34 @@
+#
+# $(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
+#
+./mk test_1b "$@"
+#
+# ARGV "$@" is never used by my Makefiles to pass through to test progs
+# CALL /* progname */ "$@" # mixture of styles C BASH C++ ARGV[0] was progname
+# ARGV[0] is opportunity for caller to ask for prog to behave as PROG_NAME
+# ARGV_ZERO === PROG_NAME # ie is same thing or shares common feature
+# USAGE dimension with common feature gets activated and GEN code for it
+# LIBR FEATURE USED WORK_BOOK VAR_POOL += WORD_BOOK NOUN PSG_EASY_LANG
+# _EASY_ is _SIMP_ as in you could implement this yourself in 2 days
+# so it has dumb behaviour and might need clever LOCK everything CACHE WRAP
+# CACHE_WRAP # this command file macro does a normalise
+# NORM is NORMALISE like TRANSPARENT_FILTER like API_FEATURES
+# NORM has a go at making it human readable by aligning grid columns XPOS_LINE
+# NORM did a merge_sort of XFER and TRANS and ran SCRIPTS in FILTER_NORMALISE
+# so now date arder, using DATE_PAY not DATE_TAX nor DATE_DIARY_IDX_as_ITEM
+# LIBR provides SPEC STO provides HEAP.lookup( EXPR ) // DECL USED EXPR = ITEM 
+# EA_ITEM # means a switchable range of reachables # EA_EXPR # of_EXPR of_ITEM
+# EA_of_ITEM # HOME ZONE HEAP HEAP SPEC ITEM { EXPR ARGS } #
+# SCRIPT provides a specific # local_STO_HEAP # sub_zone_for_ITEM_and_LIBR
+# SCRIPT split into SPEC and STO but STO does provide SPEC via API and CACHE
+# CACHE appends onto API and CACHE CALLER is CACHE_of_OOP_ITEM_in_local_STO
+# ENTIRE STO is never under MMAP # because PRIVACY SECURITY EXPLAIN TRANSLATE
+# ENTIRE STO is under MMAP # secure process uses MMAP over /dev/secure_MMAP
+# SECURE_MMAP # is PLAIN_TEXT over a SECURE_DEV # except PICK slower alternative
+# SECURE_MMAP # is PLAIN_TEXT over a SECURE_DEV # for 1 second # or better api
+# TRACKED API # QUOTA # PERMIT # get_KEY # use_KEY # send_KEY # pick_KEY #
+# API PARALLEL # FN OBTAIN_KEY # FN PICK_KEY # SCRIPT #
+# KEY = $1 # if_so KNOW ARGV STEP KNOW NEXT STEP #
+# NORM = load_norm_save
+
+

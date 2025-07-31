@@ -1,0 +1,112 @@
+C provides	i64 as IDX
+C provides	i64 as BITFIELDS // and all manner of CODEX within CPU_WORD_i64
+C provides	i64 as PTR
+		_PTR = _i64 // 
+
+
+ EFFECT SWITCH
+
+  WAS
+  	PTR
+
+  NOW
+  	PTR_one as_WAS maybe nolonger available - or ASSOC_LIST
+	PTR_two to SPEC_STO_N_BYTES # SPEC can come from SESS eg cache[100]
+
+		API ALLOC
+		API PTR
+		API NBYTES
+		API SPEC
+
+		SPEC comes from CODE_POINT DECL "{ SPEC ITEM }"
+		C "{ int idx_SPEC }" 
+		C "{ int idx_ITEM }"
+
+			
+
+	i32_i32 PAIR_t
+
+MINI_MACHINE strongly BYTE oriented i32_WORD_PAIR CPU_32
+
+  CPU_32 and BYTE OPTIONS i8 u8 u7 BITFIELD_WITHIN_BYTE
+
+  	NB confusion of u8 when i8 also wanted
+	SO jump early to u15 in i16 // via u9 // via u8_via_i16
+	GROW switches i8_idx to i16_idx to i32 then i32_i32
+	GROW FILE_of_4G
+	GROW 32,000 of them // or handful in heap of i16_idx ITEMS[idx]
+
+	LANG ITEM = ITEMS[idx]	// SUBLEX MATCH LEX USAGE for ARRAY of %s PLURAL
+	LANG ITEM = ITEM[idx]	// LEXICON DIALECT SIMPLE // abrupt %s direct
+	// CODE_POINT brings interpretation of usage %s as %sS // SUBLEX
+	// PSG_SUBLEX PARSE is all about that sort of DIALECT point
+	// FAST_BIND create ITEMS[idx] as ALIAS for ITEM[idx]
+	// BOTH MATCH the TEMPLATE for WORD_64 WORDS[N_WORDS] // IDX //
+	// BOTH MATCH the TEMPLATE for WORD_64 WORDS[N_BYTES] // IDX //
+	// OPTION x8 as 3 bits // ABSENT PRESENT // OMIT EMIT // PICK //
+
+  MMAP DATA in HEAP ITEM SPEC N_BYTES ALIGNED_i64 ALIGNED_1K _4K _PAGE
+
+  	VFS expands STO into CACHE each field is available as VFS PATH
+  	VFS tokenises STO into CACHE each field is available as EA_EXPR
+	VFS uses CT_RT MINI_MACHINE VIEW of DATA // EDIT optins
+
+  VIEW DATA PANEL 
+  EDIT DATA MODEL means DATA_STO
+  VIEW EDIT PANEL
+  EDIT EDIT BENCH
+
+	MMAP HEAP ITEM ALLOC SPEC N_bytes # ALIGNED # avoid PAGE align
+
+	Without PAGE align, one process can read anothers shared PAGE data
+	Actually it is the running process acting as some sort of trusted ROOT
+	When we cant do that, we must avoid shared pages, files must be aligned
+	When files are NOT 4K aligned, we can load them into our MMAP as FILE
+	VFS is the MMAP trick that puts ideas into FORMS VFS FILES and DEVS
+	VFS_DEV is a P0P2 but it might be a SEGMENT in a SEGMENT cloned MMAP
+	VFS_DEV is a MMAP of a FILE all aligned to 4K
+
+	MINI_MACHINE uses 
+
+		array [ IDX ] of BYTE | PAIR | FOUR | EIGHT ]
+
+		ITEM = ITEM_POOL[ i8_idx ] // i8_MINUS means on_EVENT
+		ITEM = ITEM_POOL[ u8_idx ] // KNOW BYTE to be PLUS not MINUS
+		ITEM = ITEM_POOL_PLUS[ i8_idx_PLUS ] // u7
+		ITEM = ITEM_POOL_MINUS[ i8_idx_MINUS ] // i8_MINUS
+
+			with i8_i8_DECODE we can PICK "{ i64 ARRAY[u8] }"
+
+
+		i8 x 256	 256
+		i16 x 256	 512
+		i32 x 256	1024
+		i64 x 256	2048
+		i64 x 256 x2	4096
+
+			Parallel PAIR of ARRAYS grow in 4K pages of 256 IDX
+			Reason for side by side is ... ?
+			Benefit of shared PAGE is GROW then ALTERNATE
+			Benefit of shared PAGE is GROW then SPLIT
+			Benefit of shared PAGE is SAVE SPACE when TOTAL < 64K
+
+		i64 x 256	2K
+		i64 x u9	4K
+		i64 x u10	8K
+		i64 x u11	16K
+		i64 x u12	32K
+		i64 x u13	64K
+		i64 x u14	128K
+		i64 x u15	256K
+		i64 x u16	512K
+
+
+		i64 x 512   	4096
+
+
+			OPTION share a PAGE LIMIT HALF
+			unaligned_few_bytes HALF page BOTH HALVES ARRAY
+
+		64K x 8 
+
+	

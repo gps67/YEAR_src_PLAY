@@ -59,7 +59,7 @@ namespace eval ::tcl_less {
 		 if {[catch {
 			if {[gets stdin line] >= 0} {
 				text_out_ln - $line
-				text_out_limit_lines - 25
+				text_out_limit_lines - 2500
 			} else {
 				# RTFM says an incomplete line returns -1
 		#		text_out_ln - "gets returned -1"

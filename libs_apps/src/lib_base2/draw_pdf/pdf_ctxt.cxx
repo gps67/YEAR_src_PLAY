@@ -31,6 +31,8 @@ pdf_ctxt::~pdf_ctxt()
 		is taken by the PDF_new2 function, but who cares
 	*/
 	static err_info ei;
+#warning why static err_info ei; why not in pdf_ctxt
+
 
 /*!
 	constructore - PDF_new2()
@@ -58,6 +60,7 @@ bool pdf_ctxt::run_wrapped_report( pdf_base * report )
 	return report->run_wrapped_report();
 }
 
+#define ERR( word ) case PDF_##word: m2 = "##word"; break;
 /*!
 	this is copied from the documentation
 	it does the job, but still doesnt quite fit C++
@@ -73,32 +76,32 @@ bool pdf_ctxt::run_wrapped_report( pdf_base * report )
 void custom_errorhandler(PDF *p, int type, const char *msg)
 {
 	err_info *ep;
-	const char * m1 = "";
-	if (type == PDF_NonfatalError)
-		m1 = "NON-";
-	fprintf(stderr, "# PDF: %sFATAL: %s\n", m1, msg); 
+	const char * m2 = "PDF_ERROR_TYPE_NUMBER NOT_in_LIST";
 	switch (type) {
-		case PDF_NonfatalError:
-		/* The error handler may return after a non-fatal exception. */
-			return;
-
-		case PDF_MemoryError:
-		case PDF_IOError:
-		case PDF_RuntimeError:
-		case PDF_IndexError:
-		case PDF_TypeError:
-		case PDF_DivisionByZero:
-		case PDF_OverflowError:
-		case PDF_SyntaxError:
-		case PDF_ValueError:
-		case PDF_SystemError:
-		case PDF_UnknownError:
+		ERR( NonfatalError )
+		ERR( MemoryError )
+		ERR( IOError )
+		ERR( RuntimeError )
+		ERR( IndexError )
+		ERR( TypeError )
+		ERR( DivisionByZero )
+		ERR( OverflowError )
+		ERR( SyntaxError )
+		ERR( ValueError )
+		ERR( SystemError )
+		ERR( UnknownError )
 		default:
-			ep = (err_info *) PDF_get_opaque(p);
-			PDF_delete(p);
-			THROW_dgb_fail("PDF error");
-			longjmp(ep->jbuf, 1);
+		WARN("no case for type %d", type );
 	}
+	if( type ==  PDF_NonfatalError ) {
+		INFO("# PDF: %s: %s", m2, msg); 
+		return;
+	}
+	FAIL("# PDF: %s: %s", m2, msg); 
+	ep = (err_info *) PDF_get_opaque(p);
+	PDF_delete(p);
+	THROW_dgb_fail("PDF error");
+	longjmp(ep->jbuf, 1);
 }
 
 

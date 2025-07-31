@@ -109,6 +109,7 @@ void pdf_base::now_need_landscape( bool _landscape )
 // ./src/lib_base2/draw_spout/spout_PAGE_base.cxx:void spout_PAGE_base::begin_page_a4_landscape()
 	else
 		begin_page_a4();		// go home
+		begin_page_a2();		// go home
 
 	// figure out print a3 on a4 printer // with borders and gaps
 	// eg split a3_Landscape to a4_Portrait_LEFT_side _RIGHT_
@@ -125,9 +126,12 @@ bool pdf_base::set_WH_A4( pdf_WH_t & WH_A4 ) {
 bool pdf_base::set_WH_A3( pdf_WH_t & WH_A3 ) {
 	WH_A3.H = a3_height;
 	WH_A3.W = a3_width;
-	WH_A3.H = a2_height;
-	WH_A3.W = a2_width;
-	WH_A3.FLIP_WH();
+	return true;
+}
+
+bool pdf_base::set_WH_A2( pdf_WH_t & WH_A2 ) {
+	WH_A2.H = a2_height;
+	WH_A2.W = a2_width;
 	return true;
 }
 
@@ -168,10 +172,40 @@ bool pdf_base::begin_page_a4()
 }
 
 /*!
-	get a4 sizes and call PDF begin page
+	get a3 sizes and call PDF begin page
+*/
+bool pdf_base::begin_page_a3()
+{
+	landscape = false;
+	pdf_WH_t WH_A3; 
+	set_WH_A3( WH_A3 ); 
+	begin_page_WH(WH_A3);
+	return true; // OK
+}
+
+/*!
+	get a2 sizes and call PDF begin page
+*/
+bool pdf_base::begin_page_a2()
+{
+	landscape = false;
+	pdf_WH_t WH_A2; 
+	set_WH_A2( WH_A2 ); 
+	begin_page_WH(WH_A2);
+	return true; // OK
+}
+
+/*!
+	keep page_WH
 */
 bool pdf_base::begin_page()
 {
+	if(( page_WH.W <= 0 ) 
+	|| ( page_WH.H <= 0 )) {
+		FAIL("page_WH %f %f", page_WH.W, page_WH.H );
+		set_WH_A4( page_WH ); 
+	}
+
 #ifdef _SHOW_OLD_CODE
 	if( landscape )
 	{
@@ -181,7 +215,7 @@ bool pdf_base::begin_page()
 		WH.W = a4_width;
 		WH.H = a4_height;
 	}
-#endif _SHOW_OLD_CODE
+#endif // _SHOW_OLD_CODE
 
 	// copy value of WH from current page SESS // complete BATCH STEP //
 	return begin_page_WH( page_WH );

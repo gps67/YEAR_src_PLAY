@@ -1,5 +1,9 @@
 #!/bin/bash
 #
+# TODO # Use their Python scripts, use their various data points
+#
+# https://psc.apl.uw.edu/research/projects/arctic-sea-ice-volume-anomaly/data/model_grid
+#
 # PIOMAS_fetch WGET
 #
 # fetch the data file

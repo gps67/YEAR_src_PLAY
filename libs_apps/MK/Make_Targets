@@ -45,10 +45,17 @@
 	# TEST_FILE1 = $(TOP)/PRIV_samples/0910.csv
 	# TEST_FILE1 = /nfs/dws330/home/dws/BH6/2025-06-13_CSV/2025_2026_BH6_edit.csv
 	TEST_DIR1 = /nfs/dws330/home/dws/BH6/DWS_2025_copied/2025_CSV/YEAR_MM_DD_CSV
+	TEST_DIR1 = samples/2025_CSV/YEAR_MM_DD_CSV
+	TEST_FILE1_edit = $(TEST_DIR1)/2025_2026_BH6_edit.csv
 	TEST_FILE1_dash = $(TEST_DIR1)/2025_2026_BH6_dash.csv
 	TEST_FILE1_norm = $(TEST_DIR1)/2025_2026_BH6_norm.csv
 
-	TEST_FILE1 = $(TEST_FILE1_dash)
+# KLUDGE
+	# TEST_FILE1_dash = $(TEST_FILE1_edit)
+	# TEST_FILE1_edit = $(TEST_FILE1_dash)
+
+	TEST_FILE1 = $(TEST_FILE1_edit)
+	# TEST_FILE1 = $(TEST_FILE1_dash)
 	# TEST_FILE1_norm = /tmp/accts_test1.csv
 
 	#TEST_FILE1_norm = /tmp/2025_2026_BH6_edit_norm.csv

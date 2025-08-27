@@ -95,13 +95,14 @@ bool help_ACCT::get_specs()
 	spec_initbal = (col_spec_amnt*) tbl ->must_get_col_spec( "amount" );
 	spec_desc    =                  tbl ->must_get_col_spec( "desc" );
 	spec_end_bal = (col_spec_amnt*) tbl ->must_get_col_spec( "amnt_closing" );
+
+	spec_initbal -> is_summable = true;
+	spec_end_bal -> is_summable = true;
+
 	if(!spec_key    ) return FALSE_dgb_fail("NULL spec_key");
 	if(!spec_initbal) return FALSE_dgb_fail("NULL spec_initbal");
 	if(!spec_desc   ) return FALSE_dgb_fail("NULL spec_desc");
 	if(!spec_end_bal) return FALSE_dgb_fail("NULL spec_end_bal");
-
-	spec_initbal -> is_summable = true;
-	spec_end_bal -> is_summable = true;
 
 	return true; // optimistic
 }
@@ -118,6 +119,7 @@ bool help_ACCT::fetch_data( row_inst * row )
 	_key   = spec_key     -> get_str2_for_edit( row );
 	_desc  = spec_desc    -> get_str2_for_edit( row );
 	         spec_initbal -> get_amnt( row, _initbal );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 
@@ -171,6 +173,7 @@ bool help_CAT::fetch_data( row_inst * row )
 	_key    = spec_key     -> get_str2_for_edit( row );
 	_desc   = spec_desc    -> get_str2_for_edit( row );
 	_dotdot = spec_dotdot  -> get_linked_row( row );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 
@@ -200,6 +203,7 @@ bool help_REF::fetch_data( row_inst * row )
 	_key    = spec_key     -> get_str2_for_edit( row );
 	_desc   = spec_desc    -> get_str2_for_edit( row );
 	_dotdot = spec_dotdot  -> get_linked_row( row );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 
@@ -229,6 +233,7 @@ bool help_ERA::fetch_data( row_inst * row )
 	_key    = spec_key     -> get_str2_for_edit( row );
 	_desc   = spec_desc    -> get_str2_for_edit( row );
 	_dotdot = spec_dotdot  -> get_linked_row( row );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 
@@ -258,6 +263,7 @@ bool help_VAT::fetch_data( row_inst * row )
 	_key    = spec_key   -> get_str2_for_edit( row );
 	_desc   = spec_desc  -> get_str2_for_edit( row );
 	          spec_rate  -> get_percent( row, _rate );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 
@@ -284,6 +290,7 @@ bool help_INFO::fetch_data( row_inst * row )
 {
 	_key    = spec_key     -> get_str2_for_edit( row );
 	_value   = spec_value    -> get_str2_for_edit( row );
+	if(!_key) return FAIL("NULL _key for row");
 	return true; // optimistic
 }
 

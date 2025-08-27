@@ -1,0 +1,90 @@
+parse_attribute.TXT
+
+	line_first uses SP1 when line_data uses fmt %7d
+
+	This can change, even if that is unlikely
+	EG GEN filters SP_MANY_to_TAB # plausible
+
+	It is likely from USAGE %s ( SP %s } *
+	So is reliable, 98% USED but without knowing BENEFITS nor RULES
+
+ PSG
+
+ 	Advanced dialog will use YACC and SUBLEX possibly FLEX syntax
+
+		GEN FLEX
+		GEN FSM_in_C using a DECODE TABLE
+
+			CSET receives A_CHAR in STREAM of A_CHAR
+
+			PARSER seeks to do the CSET itself
+			or use a simple get_char
+
+			DECODE(XPOS_CPOS++) 
+			DECODE(XPOS++) 
+
+			USAGE is mostly ASCII 
+			USAGE is detect_UTF8
+			USAGE is FILTER_8859_LATIN
+			USAGE is FILTER_8859_CYRILLIC
+			USAGE is FILTER_BYTE_in_FONT
+
+				FONT provides drawable glyphs
+				FONT provides UDEF drawable glyphs
+				FONT provides CTRL ASCII_SPACE ASCII_TAB
+
+				simple usage enables a FAST decoder
+
+ WHY not use SIMD registers on ARM and on INTEL and C_CODE on other
+ // GEN might itself then compile C_CODE to non-SIMD STACK_ARGS_or_LOCAL
+ // eg // movaps // FOUR_f32 as i128 to XMMS register
+ // GEN BITFIELD = worst case 
+ // eg // movhlps // PAIR_f32 maybe i64 from XMMS_1_i64_HI ro XMMS_2_i64_LO
+ // i64 == quadword i16[4] // ALIGN i64
+		
+ DECODE CSET 
+
+ 	see above list of CSET technologies
+	we are ASCII_UTF8_LATIN_PLUS
+
+		inline calls LINKED_FUNCTION at mid_way point
+
+		TEL demands ALIGN 32 BYTES ?
+
+AMD64 stack must be aligned 16 (32 64 on some ABI) (2 words 128 bits)
+GCC and CLANG and INTEL and COMMUNITY might use SIMD for speed ... decode
+Data Transfer Instructions (SSE)
+
+https://docs.oracle.com/cd/E26502_01/html/E28388/eojde.html
+
+		GEN adds a parameter, set it in CT_RT STACK
+
+		  A5 A4 A3 A2 A1 A0 RTN SFP L0 L1 ... [ LN 
+
+
+			avoid MALLOC for speed
+			but behave ASIF using PRE_ALLOC FRAME_2_4_2_N
+
+			PRE_ALLOC WORD[6]
+			
+
+				We are using WIN32 four word ARGS R1 R2 R3 R4
+				but the actual names are in .. LIST
+
+				CALLER sets up this space above max alloca
+				CT_RT writes into 4 WORDS nearest SFP
+				STACK_GROWS UP_or_DOWN // adjust LANGUAGE MACRO
+
+				A5 A4 A3 A2 A1 A0 // API puts 6 ARGS to STACK
+				-- -- A3 A2 A1 A0 // API puts 4 ARGS to REGS
+				-- -- -- -- A1 A0 // FUNC uses 2 ARGS
+
+			WORD = RET_ADDR	// warning CODE as DATA in USER SPACE
+			WORD = OLD_SFP_ADDR // i326 style
+
+
+
+		label: // somewhere in function
+
+
+

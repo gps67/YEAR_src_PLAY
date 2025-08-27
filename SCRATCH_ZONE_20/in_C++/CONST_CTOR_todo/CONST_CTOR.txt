@@ -1,0 +1,74 @@
+
+ SYSTEM_one
+
+ 	Run SCRIPTS over DATA 
+	GEN CODE_TO_COMPILE 
+	GEN DATA_TO_STO
+
+	snapshot ROM += make it readonly += make it const
+
+	C++ CONST CTOR can compile and run at compile2 time to make INIT_VAL
+
+		PRE_LOAD INIT_VALUE
+		ASIF_LOAD CTOR // CT_RT loops GEN CC EVAL 
+	
+	_one
+
+		PREPARE STO
+		RELEASE ROM
+
+ SYSTEM_two
+
+ 	_two
+		GEN C++ that does likewise with specific number of cycles
+
+		RTFM document it, samples, etc
+
+ RTFM
+
+ 	INIT_VAL = call_compiled_function(ARGS)
+
+		I would go further, and RUN SCRIPTS over DATA GEN STO and ROM
+
+		RTFM for rules about when ROM is ROM
+		RTFM for rules about when ROM is used in ARGS in CTOR at _RT
+	
+	ALLOC_VAR += CT_RT 
+
+	DIALECT - SCRIPT -vs- C++ -vs- C -vs- LISP_MINI_MACHINE
+
+		parallel systems, eg AST C and latest C++
+		API uses a common subset to provide a bunch of AXIOMS MACROS
+		LIBR provides LIBR_FEATURE_LIST # eg LIST of of 1 LIBR_as_TREE
+		# ALSO ITEM LIST ITEM # option to have an ARGV or an ATOM #
+		# LISP parallel # semantic 
+
+ SAMPLE from _one
+
+ 	C means probably C++ but without stdlin and without CONST_CTOR_CALL
+	EVAL that C (compile and run) to produce STO and GEN CODE with values
+	GEN C with INIT_VAL from STO build ROM ... adds feature_list of CT_RT
+
+		That is the main app code
+
+		ALSO CTOR code also TEST code also EDIT code
+
+ 	BENCH edits SCRIPT and DATA
+	GEN C but probably CXX and compile and run
+
+	GEN C (again CXX) and compile and run
+
+ EXAMPLE of CONST trouble:
+
+ 	an object is CONST but it has an optional CACHE
+	eg Tcl_Obj has an N_BYTES STR0 - but optionally
+	ie it can be converted from STR to NULL to STR
+	without changing the object at all - fully const but not const
+
+	EG The ref count to Obj could be kept outside the object 
+	(eg an entire list of OBJ, sweep the list count the refcount)
+	passing the Obj to a function, temp adding it to a queue list
+
+	In some concept, the object is wrapped on a tray.
+	The tray is very variable, it has RefCOunt and STR0
+	the object is very CONST

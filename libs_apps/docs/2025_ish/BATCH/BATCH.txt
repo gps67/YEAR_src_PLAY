@@ -1,0 +1,147 @@
+BATCH
+.txt
+
+	LOTS of QUEUED STEPS many ready to run
+
+	SESS experiences lots of AVAR edit set NEWVAL // NEW_VAL_EXPR
+
+	This can be called in a few ways
+
+		USER_has_pressed_OK_DO_IT("OK_DO_IT") ALIAS("OKAY_DOIT")
+		ACTION_FORM(FORM) {
+		 LOAD_FORM_SPEC_ _CT_RT_LOADER.PRE_LOADER // make space ZERO
+		  CODE_POINT = XPOS_CODE_POINT = CODE_POINT_xpos // PARSER_NOW
+		  CODE_POINT = XPOS from NEAR PARSER_SOON
+		  PROGRAMMER SUGGESTS CODE_POINT.SCOPE.ITEM
+		  PROGRAMMER SUGGESTS CODE_POINT.SCOPE.ITEM_EXPR
+
+		  	NAME = Name
+			BEHAVIOR = LIBR_FF_STYLE_FF
+			 u3_LIBR
+			 u5_HEAP // ALIAS u5_PAGE
+			 u7_ITEM // u7_PLUS_Table_one // i8_MINUS_TABLE_two
+			 i8_ITEM // i8_MINUS_TABLE_two // HIGH_HALF ASIF (u8)_i8
+			 i8_ITEM_EXPR // ALIAS i8_ITEM /* LANG TRUNC */
+		 LOAD SPEC DATA // SPEC = TREE of PSG_DECL and PSG_DATA_PARSED
+		 PSG_DATA is no the PSG it is the variables and PICKS of the FSM
+		 FSM_DATA can be elf segment from C and LD "{ N_BYTES var_name }"
+		 VAR_TYPE is at least a SPEC with N_Bytes and a few HOTSPOTS
+		 HOT_SPOT[0] is L_M_z_N_R at_bpos(z) = ( z - L ) = -L
+		 DIAG ALIGN an AXIS with 0 at z # L M MINUS z PLUS N R #
+		 OFFS_ZERO_on_DIAG // _P0P2_on_TIME_LINE _as_OFFS_in_WORDS_unx8
+		 # unx8 means multiply it by 8 to get as_OFFS_in_BYTES # FROM_
+		 # L M MINUS z PLUS N R #
+		  [L .. [M  [0 .. [N .. [R
+
+		  	eg
+			L = -64
+			R = +64
+
+			M = -05 // M5 M4 M3 M2 M1 // 
+			N = +43 // EXTRA INFO ABOUT USAGE NULL_MEANS_IDX_ZERO
+
+			u5 is [32]
+			u6 is [64]
+			u7 is [128]
+			u8 is [256]
+
+			// ABSENT means ZERO means IDX_ZERO might be special
+			// eg ARGV[0] is CODE running this ARGV phrase
+			// or ARGV[0] is TEXT requesting TEXT and_whos_asking
+
+		}
+
+ BATCH PRE PACKED
+
+ 	PRE_LOAD entire 128MB INDEX into MEM	# tag PAGE range with ATTR
+ 	PRE_LOAD entire 987MB TOTAL into MMAP	# ATTR KEEP_in_MEM DROP_SOON
+
+	BRANCH WEIGHT 128MB for INDEX of HEAP then its data // BOTH in MMAP
+	BRANCH WEIGHT 987MB for BULK STORAGE jpeg SHARED HEAP PEER GROUP
+
+	load all BATCH into MMAP and MEM because it fits in 8MB complete
+	OK actually a 20WORD META held for this on asif fd of MMAP
+	That header points out ROOT and OPTS - we need an ELF on WIN32
+	
+		ROOT_ZERO	POINTS to ADDR ZERO not NODE ZERO !! soz
+		ROOT_SPEC	explains LAYOUT of HEAP_NBYTES
+		ROOT_WORD	POINTS to ROOT NODE
+
+ BATCH RE ACTIVATED
+
+ 	PRE_LOAD via MMAP and sneaky read request all ! blocks till complete
+
+	VFS_BEHAVE_ON_WLAN_FAIL 
+	+ be patient continue script it is a blocking call or subscription
+	+ be patient let PROVIDER BLOCK it's what we asked for
+	+ be patient but do something else so QUEUE RESTART SIGNAL MECHANISM
+	+ be patient on_EVENT("DATA_AVAILABLE") // after a drought //
+	+ be patient on_EVENT("DATA_AVAILABLE") // after a .2 sec pause //
+	+ be patient on_EVENT("DATA_AVAILABLE") // after 2 mins of reading form
+
+	SESSION BROKEN ROLL BACK
+	ASIF never ran
+	MAYBE some consequence
+	MAYBE CANT ROLL BACK - DONE is DONE
+	MAYBE COST was TIME MMAP GONE DOSH
+
+	ROLL back session
+
+		CENTRAL SERVER 
+		has outsourced the task via a QUEUE to a CPU // and MMAP and VFS
+
+		BATCH knows it has to be able to ROLL BACK or DOCUMENT DONE
+		OLD val = ask KEPT_ORIGINAL_FILE for EXPR
+		NEW val = ask SESS_MODIFIED_MMAP for EXPR
+		log the change
+		repeat for SWEEP
+
+		NOTE how OLD_val cannot be provided HERE
+		SO it must be returned as an EXPR to ask KEPT_FILE
+		That will actually get run, RET_VAL returned, RCP_REPLY arrive
+	
+
+
+
+	
+
+
+
+ BATCH PRE PACKED Layout
+
+	ABOVE 16MB we split into CPU and MEM and STO
+	ABOVE 16GB we allocate DISK SPACE to STO as STREAM 
+	ABOVE 16GB we ask CACHE to sort it all out
+	BELOW 16GB we ask CACHE to sort it all out
+	BELOW 16MB we ask MEM to sort it all out # u24_OFFS u24_WORD_unx8
+
+		16 MB * 8 = 128 MB from u24_BITFIELD_one
+		16 MB * 8 = 128 MB from u24_BITFIELD_two
+	==	32 MB * 8 = 256 MB as two_pages _ONE_TWO
+	==     256 MB * 8 =   2 GB as ARRAY[IDX] of MMAP_4K STRIPE_1MB 
+
+		1MB = u20 # the intel 8080 1MB LIMIT # with added 64 K 
+		16MB = u24_idx # UNIT_BYTE UNIT_IDX UNIT_EIGHT # pieces of eight
+		24MB = u24_idx # BYTE_FILE_LIMIT EIGHT_BYTE_FILE_LIMIT
+
+			u27 = u24 << 3 // but note ALIGN RESOLVE CLICK EIGHT
+
+		Note that _TWO ALIASES each IDX as u8 and i8_MINUS
+
+_ONE
+	1K = 128 * 8
+_TWO
+	1K = 128 * 8
+	OPTION idx_two_b = 128 + idx_two_a
+	OPTION idx_two_b =          idx_two_a // KNOW _a is signed
+	OPTION idx_two_b = (i8)     idx_two_a // RE_CAST_BYTE_SIGN_u8_TO_i64
+	OPTION idx_two_b = (i8)(u8) idx_two_a // RE_CAST_BYTE_SIGN_u8_TO_i64
+
+
+ 	We can transfer all of BATCH before starting, it fits in 64G
+ 	We can transfer all of BATCH fits in 2G
+
+
+		
+	
+

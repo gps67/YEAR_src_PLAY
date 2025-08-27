@@ -3,6 +3,9 @@
 # REC_AUD_mk_dirs
 # REC_AUD_mk_dirs_yesterday
 
+ask_do ./REC_AUD_mk_dirs -d 2025-08-10 # sun
+ask_do ./REC_AUD_mk_dirs -d 2025-08-11 # https://gethappyo.co/dashboard/courses/phobias
+ask_do ./REC_AUD_mk_dirs -d 2025-08-10 # https://gethappyo.co/dashboard/courses/procrastination/courses-happyo-procrastination-5
 ask_do ./REC_AUD_mk_dirs -d 2025-06-11
 ask_do ./REC_AUD_mk_dirs -d 2025-05-20
 ask_do ./REC_AUD_mk_dirs -d 2025-04-19

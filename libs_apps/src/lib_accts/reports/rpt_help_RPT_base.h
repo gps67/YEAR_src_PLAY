@@ -45,6 +45,7 @@ class help_RPT_base : public help_TX_base
 	*/
 	bool fetch_data( row_inst * row )
 	{
+		return FAIL("BASE_CLASS_is RPT not original data");
 		e_print("help_RPT_base::fetch_data()\n");
 		return FALSE;
 	}

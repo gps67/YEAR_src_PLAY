@@ -1,0 +1,306 @@
+In ASM there are styles that use the C flag to mean ERROR
+
+In ASM there are styles that use the Z flag to mean OK_ZERO_ERRORS
+
+In KERNEL there are styles that use the M1 VALUE to mean M1 /* see errno */
+In KERNEL option that errno is cleared every time, or keep until err_mgmt_reads_it
+As ERROR_MANAGEMENT ERROR_HANDLER we read and clear errno
+As ERROR_MANAGEMENT ERROR_HANDLER we read and claim errno NOT_YET clear errno
+DEFER command adds to a queue waiting for TOKEN with USAGE # hence ACTION #
+Sensible questions to ask and answer are: // RPN hats on // MID_FIX LISP
+PRE_PARSE WORKS when caller lets server provide compiled C code
+ELF API CPU_DETECTION QEMU_WRAPS_ARM32 _multi_API_one_plus
+
+	GEN ARM_32
+	GEN_CPU_32_lohi
+	GEN_CPU_32_hilo_handling_lohi
+	GEN_CPU_32_lohi_in_a_HILO_BOX
+
+		lose DIRECT access to the i32_MEM_WORD i29_000
+
+		EIGHT_t ARRAY_OF_EIGHT[ i29_IDX ]
+
+		ASM sort of always imples that "ARRAY_of_EIGHT" is a PTR
+		ASM uses ARRAY_P0 = LIBR_PROVIDE_PTR_to_ALIGN_8_BYTE
+		ASM uses ARRAY_P0 = LIBR_PROVIDE_WORD_PTR_to_ALIGN_8_BYTE
+
+			That is how CPU's work,
+			even if you only ask for 2 bytes
+			the electronics fetches all 8 BYTES
+			(16 if you straddled the WORD boundary)
+
+			It is still worth asking for i16_BITFIELD _BYTE_ALIGNED
+	
+	BYTE_ALIGNED is itself a MINI_MACHINE. It holds bunch of concepts
+
+		MEM_WORD is i64 align 8 EXPECT "{ PTR & 7 == 0 }"
+		CPU_reads_MEM_WORD
+
+	PARSE
+		MEM_WORD is i64 align 8 EXPECT "{ PTR & 7 == 0 }"
+		MEM_WORD is i64 align 8 EXPECT "{ TEXTs }"
+		MEM_WORD is i64 align 8 EXPECT "{ %s }"
+
+		It is hard to see when "TEXT" is "AVAR"
+		It is easier to see that %s is GET_STR0 _of_ EXPR_as_STR0
+		EXPR_as_STR0 # PRE MENTION create and offer this
+		EXPR.EXPR_as_STR0.CALL( "{ STR0 = (STR0) EXPR }" )
+
+		EXPR.EXPR_as_STR0.CALL( "{ STR0 = (STR0) EXPR }" )
+		lhs.CALL( "{ STR0 = (STR0) EXPR }" ) // ARGS // SESS // STACK //
+	
+	ASM 
+		ABCD_PQ is a powerful model
+		but when it is both the caller and the current
+		tripping over eachothers toes
+
+		STACK_FRAME provides SPILL SPACE for SCOPE
+		SCOPE tries to be minimalist but includes all of LIBR
+		SCOPE can search for SPELLING in parallel hypothetical PRE_RUN
+		TASK is a CODE_DOME CITY parallel accessing DATA
+		DATA has locks and can take care of itself
+		THREAD can obtain WIDE_SWEEPING LOCKS as "SESS" being "RUNNING"
+		DOING("DOING") += RUNNING += SESS_DOING
+
+	TASK
+
+		TASK uses a list of ITEMS USED
+
+			PL_S converts ITEM to ARRAY # MENTION locate PROVIDE
+			"{ ITEMS USED }" is "{ SPECS ITEM }" // LIST of ITEM
+
+		THREAD_GROUP does not exist - use GLOBAL
+		THREAD_DATA // each thread in CPU gets own R15 // DATA_for_PID
+		MMAP_RULES // THREAD_PAGE is outside MMAP PRIMARY ZONE
+		MMAP_ZONE MMAP_PRIMARY_ZONE USERS world view MMAP provides
+
+		TASK_loves_MULTI_THREADING
+
+			keeps same memory in CPU CACHE
+			same CODE
+			same TABLES
+			same DATA
+
+			QUEUE_of_TASK
+
+			 you can jump the queue
+			 it is offered by PROVIDER as OPTION JUMP_QUEUE
+
+			 split task to chunks, add them to TODO list Q75
+			 release a bunch of threads
+			 weigh up the branches PICK PLAN
+			 PLAN SWEEP left to right do 10% of tasks in each Q
+			 PLAN SWEEP doing 10% x1 x2 x3 x4 means 30% DONE
+
+			 UNIT GRAIN matters
+			 AI collates stats about predicting GRAIN
+			 CODE_POINT COMMENT TAGS /* FINE GRAIN */
+			 CODE_POINT COMMENT TAGS /* FULL GRAIN */
+			 CODE_POINT COMMENT TAGS /* PAGE GRAIN */
+			 CODE_POINT COMMENT TAGS /* BULK GRAIN */
+
+			 UNIT QUOTA provides
+			 CPU_THREAD provided to SESS of APP
+			 CPU_THREAD_traffic_shaper_API
+
+			 	accelerate from 3 to 7 for 30 seconds
+				decellerate from 7 to 1 for 30 seconds
+
+				WE can ignore the request and do our own thing
+				WE can do our own thing and return the results
+				STOP at end of GRAIN
+				STOP mid GRAIN expecting immediate RESUME
+				STOP mid GRAIN expecting DELAYS for QUOTA
+				STOP mid GRAIN expecting KEEP or DROP // 
+				STOP mid GRAIN expecting new instructions 
+				PAUSE reevaluate fast exit route DOIT RESUME
+
+				STREAM leads to RPN style being parsed and RUN
+
+				REPL "DOIT" applies to text on left
+				REPL "RESUME" matches PAUSE outer SCOPE
+				and all the text to the left RESUMES_CPU
+
+			QUOTA provides CPU_THREAD shaping
+			
+				We basically do whatever we would do anyway,
+				but the task is broken down to smaller framents
+
+			TASK can do thread USAGE
+
+				Our task is to drain the 6 queues we hold
+				Our approach is to empty Q1 with all threads
+				SWEEP left to right
+				SWEEP_MORE is a follow up sweep zone
+
+					after Q1 has been emptied
+					prioritise it 
+					batch up 10 items per thread
+					SPEED gain one thread reuses 10 times
+					immedaitely next batch of 10 to empty
+
+					keep running but start LOOP DETECT
+
+				Limit SWEEP_MORE to 1 THREAD
+
+					until all queues have been emptied once
+					all threads to next SWEEP
+
+				SWEEP left to right
+				SWEEP WIDE or FOCUS
+
+					If all 7 threads eat Q1
+					there wont be any LOOP benefit
+
+					If 1 thread works through Q1
+					it gets LOOP benefit // CACHE CPU MEM //
+
+					So 1 CPU per QUEUE // WIDE //
+					Then 2 THREADS for MAIN QUEUE
+					Then 2 secs per Q 
+					Permit Q extra 0.2 SEC
+
+					SUSPENDED THREAD is a SCHEDULING THING
+
+	SUSPENDED THREAD is a SCHEDULING THING
+
+		It is BATCH OPTIMISED to FREEZE a thread using own PID_SCHED
+
+		Simply suspend the task mid flow, pre-emptive
+
+		That will stretch any LOCKS_HELD over time,
+		so we use a LOCK_POOL intended for this USAGE
+		ie WIDE_LOCK is to a handful of related objects 
+		so not on outside ITEMS even though in shared heap
+		so need CONVERT PTR to PAGE to OWNER_of_PAGE BASE PG BYTE_in_PG
+
+		THREAD_SCHED manages 7 CPU threads
+		THREAD_SCHED manages 70 TASK threads
+
+		Direct CPU_THREAD to Q1 take one and prep and START EVAL
+		Direct CPU_THREAD that on_DONE loop on a similar task
+		ie one that uses the same REGISTERS and CODE
+
+ RET_VAL _C_FLAG
+
+ 	_Z_FLAG means "EXACT"
+
+		exact MATCH
+		exact EQUAL
+		exact DONE
+		exact READY
+
+	_C_FLAG means "OVERFLOW"
+
+		OPTION look at overflow FLAG
+		OPTION use C flag because Z80 has it
+		OPTION invent X_FLAG for exception // indicated or thrown
+		OPTION use C_FLAG_DECODE to detect X_FLAG
+
+		The "true meaning" of ASM flags comes from subtraction
+
+		The "true meansing" of subtraction is sometime N_ITEM
+
+		N = P2 - P0 // of P0P2 // P0 <= P2 // ALWAYS else ERROR
+		N = B - A // of P0P2 // N items from A to B // B - A //
+
+		B - A 
+		 +VE B > A	how many bytes from A to B
+		 ZERO B == A	zero bytes left B is P2 outside NOT P1_LAST
+		 -VE B < A	ERROR or B comes before A OPTION B left of A
+
+		 CMP A B	N = B - A
+		 +VE A < B	N exists
+		 ZERO A == B	N ZERO EMPTY sort of doesnt exist
+		 -VE A > B	N MINUS is ABSTRACTION see on_MINUS for CALL
+
+		
+	ASM FLAG SIGN WORD BITFIELDS
+
+		BITFIELDS is a software API that likes i32_i32
+		BYTEFIELDS is an inline_ASM software API that likes i32_i32
+		WORD is FULL_WORD on i64_lohi
+		WORD is HALF_WORD for i32 on CPU_64
+		HALF_WORD is CPU_WORD on CPU_32 //
+		 HALF_HALF
+		 HIGH_HALF // always MEM_LOHI around here
+	
+	DOME semantics
+
+		Lots of things exist under the dome
+		Like a busy city, every building is LIT and active
+		Like a WORKSHOP BENCH every TOOL is ready to go
+
+		Functional programming has a DOME the size of the function
+		Procedural programming has a DOME the size of the BATCH
+
+		SCOPE DOME can introduce DOMES all the way down (1 up)
+		DOME_SCOPE can introduce whatever you can conjour up
+	
+	CPU STACK CALL API
+
+		FFP is an obvious contender
+		TODO RTFM
+
+		OPTION PRE_ALLOC soft_space within this function
+		UNION of the ARGV needed
+
+		CALLER can provide a SPILL_ZONE_AREA
+		CALLED uses that space # in LIBR style # as LOCAL!
+	
+		OPTION WIN32 API ABI is ...
+		OPTION ABCD_PQ API is A B C D P Q
+		OPTION MINI_MACHINE uses R12_for R_THREAD
+		OPTION MINI_MACHINE uses R11_for R_THIS
+		OPTION MINI_MACHINE R_THREAD -> LIBR_one_thread_globals
+
+			LIBR_one_thread_globals
+
+			Every thread gets 8K space
+
+				R_THREAD + CT_CONST_OFFS_of_8K_SPACE
+
+			LIBR_one_thread_globals // 8K space // SPEC
+
+				DATA bounced through PTR can be in PLAIN HEAP
+
+		MINI_MACHINE get EA of LIBR_one_thread_globals.
+
+			probably keeps it in R_TEMP_4
+			probably get it with R_TEMP_4 = get_EA_8K R_THREAD
+			 CT_RT knows R_THREAD
+			 C++ knows inline get_EA_8K(...) 
+
+			 NEED CXX to know what C doesn't
+
+			  AVAR_t & AVAR = *PTR; // easy theme
+			  AVAR_t * PTR = EA R_THREAD -> UDEF_8K . AVAR_EXPR
+			  AVAR_t & AVAR = R_TEMP_4
+
+		STACK CALL RET_VAL
+
+			R_A == RET_VAL // at SAME_SELF level === //
+			C_FLAG 
+			 SET_C_FLAG
+			 CLEAR_C_FLAG
+			 IF_C_FLAG
+
+			C_FLAG tracking
+
+			CMP P1 P2
+			+VE	P1 > P2
+			ZERO	P1 == P2
+			-VE	P1 < P2
+
+		 EA_EXPR_
+
+		 	ASM deals with PHRASES with reachable ITEMS
+			PSG material in MMAP HEAP ITEM SPEC
+			ROM SPEC gets to CT_RT GEN source
+			UDEF SPEC gets to CT_RT CACHE
+
+
+
+
+	
+

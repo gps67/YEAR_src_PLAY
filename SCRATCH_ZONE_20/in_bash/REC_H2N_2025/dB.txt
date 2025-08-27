@@ -1,0 +1,12 @@
+https://cvp.com/pdf/mg206c_manual.pdf
+
++3dB is a doubling
+
++  4   dB is DESK LINE level
+   0   dB is BASS DRUM sound level
+   0   dB is 0.775 V
+-  7.8 dB is LINE and PHONO
+- 10   dB is LINE and PHONE
+- 30   dB is speech
+- 40   dB is MIC level
+- 50   dB is bird

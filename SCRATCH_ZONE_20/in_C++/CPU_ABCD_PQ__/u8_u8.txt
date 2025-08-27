@@ -6,6 +6,34 @@
 	 u8_hi = idx_of_PAGE // within SEGMENT
 	 u8_lo = idx_of_ITEM // within PAGE
 
+	SEGMENT_u8_u8_MULT_t
+	
+	i8_EXPR_PAGE
+	i8_EXPR_ITEM
+	i8_EXPR_MULT_as_TOKEN  # 1 2 4 8 # EXPR[i8] { ARGS } # [idx]
+
+	MULT can come from XPOS of something (eg ARRAY_NAME) (eg ITEM_TYPE)
+	XPOS has an VIEW_EXPR for each USAGE_MENTION # CODE_USAGE
+	XPOS creates a SEARCH_SEQUENCE or _LIST
+	XPOS_ATTR where ATTR is GETTER_ALIAS_ATTR ie EXPR_two gives EXPR_one
+	_one = lookup _two
+	_two is i8 i8_PLUS i8_ZERO i8_MINUS # _is_IDX # is_FUNC_or_FURTHER
+
+	CODE_POINT goes through MACRO processor # and GEN_POINT #
+	CODE_POINT steps forward and says MULT = 8 # 2K of 4K
+	MINI_MACHINE uses MMAP_PAGE of 4K two halves 2K_2K IDX_STO
+	STO is anything that works in 2K
+
+	BUT expand to contiguous pages of 4K, *in*2K*STEPS*
+	Second ARRAY can share first page at OFFS
+	First half page of SEGMENT_two jumps out to 8K when 2K reached
+	SPARSE_MMAP_PAGE UNLOAD_PAGE ZERO_OVER_PAGE <==- SECURE-ISH
+	
+	[u16] as [i8][i8] and [u8][u8]	# FIXED u8 LIMIT # GROW_u7_u15_u31_u63
+	PAGE can be of 1K bytes of EIGHT[u7] # 1K of i8_MINUS_SLOTS #
+	Each PLUS SLOT can be EIGHT_t EIGHT = i64_BASE_OFFS_EXPR # i64_VALUE
+	Each MINUS SLOT can be CALLABLE
+
 	SEGMENT_u16_t
 
 	

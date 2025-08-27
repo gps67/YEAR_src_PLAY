@@ -3,6 +3,7 @@
 #include "date_glib.h"
 #include "dset.h"
 
+	// MINUS is always non_zero //
 
 #include "w_widget0.h"
 //# #include <gtk/gtk.h>
@@ -21,6 +22,98 @@
 #include "dir_name_ext.h"
 #include "fork_progs.h"
 #include "dgb_fail.h"
+
+/*
+	obj_hold<data_set> dset1; // A LIST of TABLES with accts fields
+	io_csv_accts io1( dset1 ); // A PARSER and LOADER to XMIT DATA
+
+	obj_hold<data_set> dset1;       
+	// UDEF can PROVIDE data_set_plus dset1 // API_BASE_CLASS_of_ITEM
+	// UDEF can PROVIDE MESSAGE ROUTING // CALL %s with ARGV of PSG
+	// PSG adds itself to UDEF as the SCOPE ITEM ( "PSG" )
+	// PSG = PSG_csv_accts // CSV brings CMNT_LINE and MUX WORD ARGV
+	// ie both side DSET and CSV_of_TREE
+	// handle common AVAR dset1 = data_set_accts
+	// API provides layer wrap layer of CALL EVAl EXPR in SESS
+	// CAPS is a VAR // but to not be the _t BASE form, require IDENT "AVAR"
+	// UDEF can establish CSV provider of a PRE_TOKENISED_STREAM
+	// UDEF is some 20_digit_id_parse_cobol_data_as_name_as_data
+	// UDEF DECL _parse_cobol_data_as_name // _as_data
+	// UDEF CT_RT runs TEST_BENCH at what is considered CT time
+	// UDEF CT_RT runs GEN then runs TEST_BENCH at becomes CT time
+	// LAZY provides tree of dependencies flags WAVE of PRE_LOAD
+	// LAZY is key to CACHE and LEARN and PRE_LOAD and to TOKENISE_SPELLING
+	// ITEM is TOKENISED SPELLING //
+	// ITEM is ITEM is state of MID_instability // LAZY_LOCK available // 
+	// individual COL_SPEC will cause VIRTUAL STR_P0P2 
+	// ITEM.as_STR_P0P2 ... RET_VAR ... API RET_FLAG OK_FAIL
+	// ASM RET_FLAGS // OPTION ALWAYS FLAG_V means exception FLAG C ...
+	// FLAG_C_means_throw as FAIL_FAILED // file dir not open // FAILED //
+	// FLAG_C_used as part of COMPARE // MATCH uses CMP_FLAGS // :-)
+	// CMP_FLAGS // is a specific interpretation of CMP A B // ASIF B - A
+	// if A < B // B - A is positive non zero
+	// if A == B // B - A is zero // OPTIONALLY_POSITIVE never _PLUS
+	// if A > B // B - A is negative // negative is always non_zero
+	// ASM jump if FLAGS_SAY  nC C , C+nZ C+Z , nZ Z
+	// nC C 
+	// C+nZ C+Z 
+	// nZ Z
+	// FUN DAY with fishbone patterns CPU ASM expectation - qemu or PREP
+	// API provides Q+A , can we use CMP_FLAGS , _BUILTIN_
+	// _BUILTIN_ = CMP_FLAGS // OPTION FOLD ITEM_t ITEM to %s //
+	io_csv_accts io1( dset1 ); 
+
+ DSET
+
+	data_set is a DSET of a list of NAMED TABLES
+	obj_hold<data_set> dset1;       
+
+ io1
+
+	io_csv_accts io1( dset1 ); CTOR IO_Parser stopped waiting for data
+	io1.load_line( "TABLE ARG1 ARG2 ..." ) // no EOLN required
+	io1.load_file( P0P2_LINE_TEXT ) // API likes STR_P0P2
+	io1.load_line( P0P2_LINE_TEXT ) // API likes STR_N_bytes_UTF8 
+	API forces no choice UTF8
+	API accept claim that API_REQUESTED can deliver UTF8 *if*required*
+
+	CALLER lists the COL_NAME // PARSER can OMIT SIDE_EMIT KEPT_TEXT_as_DATA
+	CALLER requests LOAD_FILE as MID part of STREAM // after headers
+
+	CALLER uses second HIGHER API that calls BASE_CLASS_API with WRAP
+	CALLER provides ( "TABLE ARG1 ARG2 ..." ) // io1.load_line( STR ) //
+	// STR0_UTF8 // strongly typed CSET // happens when you look // or not
+	// STR_P0P2 // ALIAS P0P2_from_N_bytes // SAMPLE XPOS COPY # uses ORIG 
+	// ROM_ORIG // EA_EXPR is detectable as ROM_ORIG //
+	// The interpreted list of FEATURE , when run , shuffles down text ,
+	
+	API allows caller to use ARGV from LINE_of_TEXT
+	API allows caller to use ARGV from OBJV
+	API allows caller to use ARGV from LIST_of_STR0
+
+		LIMIT line length 64K
+		FORMAT to 76 or something
+		FORMAT to 300 then provider sends random NL as heartbeat
+
+		LIMIT line length 4096 # 4000 actually M96 are MINUS_TOKENS
+		i4_i12
+
+		convert i12 to u12
+		is_PLUS - already u11
+		is_MINUS - CHECK M96 { already i12 token of M96 or M1 ) {
+			CODE_CHECK_is_MINUS
+			QUENCH_SIGN_BIT
+			MASK_OFF_SIGN_EXTEND_BITS // do AND with ignore SIGN
+
+			SHIFT_REGISTER_LEFT 4 = sizeof i4
+			SHIFT_REGISTER_RIGHT 4 = total done above OPTION R2_nbits
+
+
+		}
+
+
+ 
+*/
 
 #define default_CH1_archive_csv "tmp_CH1_archive.csv"
 

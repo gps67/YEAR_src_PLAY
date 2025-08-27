@@ -1,0 +1,36 @@
+
+	SPIN_THRU_view_upto_SESS.txt
+
+	_PREV { 0, 1, 2, 3, 4, ... } array[ IDX ] of HEAP_IDX
+	_NEXT { 0, 1, 2, 50, 15, 22, 3, 4, } # HEAP_ implied as SESS.HEAP ITEM
+	_ITEM is VAR_POOL 
+
+
+When TYPE gets there first, it claims "VAR_POOL" without "_t"
+USAGE VAR_POOL as TYPE // as MACRO_returning_TYPE //
+
+When SESS finds HERE, it claims "VAR_POOL" without "_t"
+IT it is reject_because DIALECT does not permit SAME_NAME invoke AUTO_ADJ_NAME
+
+
+https://www.google.com/search?q=Mamady+Keita%3A+Traditional+Rhythms+of+the+Mandingue
+	1H video https://youtu.be/KzKJjj8LAWQ
+	4:32 call sounded vocally
+
+That then requires runtimes that cant cope with SAME_NAME
+and who like _t because of the simplicity
+but also like to claim PRIORITY_in_LEX "TYPE_NAMED_AVAR"
+
+BENCH can then off a fall_back EA_EXPR of "AVAR" as HEAP_LOCN_ITEM
+
+	everything is a LOCN
+	After several steps,
+	you are at LOCN
+
+	OPTION PERMIT multiple LAYERS to catch a ride with this USED_XPOS_CODE_POINT
+	OPTION PERMIT multiple LAYERS to catch a ride with this USED_XPOS
+		_CODE_POINT is thie SCRIPT from LIBR running in SESS
+		_SESS provides "{ SESS _SESS }" // _t // WHY _%s
+		"{ _SESS_t SESS ; }"
+
+

@@ -19,7 +19,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2024-05-14, 22090,  22.78, 33.19, Y Full Morisons
 2024-06-08, 22356,  29.97, 42.47, Y Full Morisons
 2024-06-18, 22681,  34.12, 47.32, P Full Morisons from Salisbury
-2024-07-01, 22823,  19.18, 26.79, P Full Morisons from run around 
+2024-07-01, 22823,  19.18, 26.79, P Full Morisons from run around // DIALECT actually used absent GAP until ZERO "{ COMMA SP1 NOT ... }"
 2024-07-06, 23157,  35.96, 50.96, P Full Morisons fr 
 2024-08-01, 23301,  16.67, 23.45, P Full Morisons  
 2024-08-25, 23576,  31.35, 44.49, P Full BH
@@ -60,6 +60,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-07-20, 31539,  24.14, 31.84, Y Full Morissons FLEX from BH 
 2025-07-25, 31707,  16.44, 21.68, Y Full Morissons FLEX from BH 
 2025-08-02, 31894,  18.17, 23.97, Y Full Morissons FLEX from BH links
-2025-08-13, 32069,  15.01, 19.80, Y Full Morissons FLEX from BH
 # CMNT
 # how could you do this to me barry # I'm over here Bev # Spec Savers #

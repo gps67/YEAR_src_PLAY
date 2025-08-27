@@ -13,6 +13,9 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+git://git.jedsoft.org/git/slang.git
+git://git.jedsoft.org/git/slxfig.git
+https://github.com/jedsoft/slcurl
 https://github.com/X11Libre/xserver
 https://gitlab.gnome.org/GNOME/gjs
 

@@ -1,4 +1,5 @@
 # see _nwa
+set breakpoint pending on
 b dyn_array_index_error
 b PDF_GEN::pdf_base::begin_page_WH
 b pdf_base::begin_page_WH
@@ -6,9 +7,11 @@ b begin_page_WH
 b run_pdf_vat_track
 b run_reports
 b ACCTS::data_set::file_save
+b ACCTS::reporter_plus::do_vat_calc
 b data_set::file_save
 b file_save
 b main
+b col_spec::get_str2_for_display
 # r --run-reports ../samples/0102.csv
 # r --run-reports ../samples/0203.csv
 # r --run-reports ../samples/0304.csv

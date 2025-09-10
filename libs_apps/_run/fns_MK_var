@@ -25,11 +25,15 @@
 		export TGT=${TGT:-i586} # no JS headers
 	}
 
+	fn_MK_var_ABOX() {
+		export ABOX=${ABOX:-`uname -n`}	# ABOX name of build system
+	}
+
 	fn_MK_var_OBJ_dirname() {
 		fn_MK_var_TGT
+		fn_MK_var_ABOX
 
-		local HOST_NAME=`uname -n`
-		export OBJ_dirname="${OBJ_dirname:-build_${TGT}_${HOST_NAME}}"
+		export OBJ_dirname="${OBJ_dirname:-build_${TGT}_${ABOX}}"
 
 		# experimental python has own subdir (base obj_ref differs)
 		# the alternative is a pair of objects that refer other
@@ -55,6 +59,7 @@
 		dir_must_exist $ABS_TOP 
 
 		[ ! -z "$TGT" ] || fn_FAIL 22 TGT is $TGT unset
+		[ ! -z "$ABOX" ] || fn_FAIL 22 ABOX is $ABOX unset
 		[ ! -z "$ABS_OBJDIR" ] || fn_FAIL 22 ABS_OBJDIR is $ABS_OBJDIR unset
 	}
 

@@ -1,0 +1,156 @@
+	2025-09-09
+	2025-09-09_SPQR_ROT_8.txt
+
+	SPQR_ROT_8
+
+	  PQRS
+	  	= SPQR ROT 8 RIGHT
+	  SPQR
+	  	= PQRS ROT 8 LEFT
+	
+	ABCD_PQRS
+
+	  CPU_32
+
+	    ABCD
+	    	Handwritten inline C function for get_BITFIELD("BYTE_B")
+		// and CXX can PRE_LOOKUP ("BYTE_B")
+		// actually already had that from TOKEN_SPELLING_USAGE
+
+	    PQRS
+	    	THEME ABCS is system and LIBR
+		THEME PQRS is theme and BYTE 
+
+	
+	 
+
+	   CPU_64
+
+	   	i32_lohi = ABCD // DRAW BITFIELD D_C_B_A //
+	   	i64_lohi = ABCD_EFGH // DRAW BITFIELD i64_HILO //
+
+			HILO is the order of the bits in the DIAG
+			DRAW in human digits to units
+
+	   	PQRS = ABCD_PQRS << 32 ; an AXIOM BUILTIN HALF of CPU WORD
+
+			after that you can individual BIT addressable
+
+				i24 is PLUS_8 MB and MINUS_8M_DECODED
+
+				i8_i24
+				i24_i8
+	
+	DECODE_i32
+
+				i8_i24
+				i24_i8
+	
+	DECODE_ABCD		| ABCD
+	DECODE_PQRS		|      EFGH // 
+	REPHRASE EFGH as PQRS // and EFGH becomes SILENT // alias PQRS P Q R S
+	DECODE_ABCD_PQRS	| ABCD EFGH
+
+	Like CPU design DECODE_ABCD_EFGH has diverse designs
+
+	CPU_64 is a CORE feature
+
+		LIBR must provide code that works for CPU_32
+		WORD_64 is the CORE feature
+		 CPU_64 is popular
+		 CPU_32 is i32_i32 // BITFIELDS dont cross the HALF_LINE
+		 LIBR is i32_i32
+
+		 SWITCH i64_as_i32_i32_in_MEM
+		 SWITCH i64_as_i32_i32_in_CPU _in_R5R6 _lhs_rhs
+	
+	DECODE_64
+
+		i8_i8 OPCODE A B
+
+		i16_CD
+
+		i32_EFGH
+	-aka-	i32_PQRS PQRS	
+	
+	CPU with += 2 regs LHS and RHS 
+
+		CPU_64
+			2 regs LHS and RHS
+			but initially the HIGH 32 bits were ZERO or SIGN
+		-or-
+			2 regs LHS and RHS
+			both holding CPU_STEP_i64 // usually one DATA item
+
+			DECODE(i64_CPU_STEP)
+
+		CPU_32
+			2 regs LHS and RHS
+
+		CPU_WORD
+
+	LOHI is a CORE feature
+
+		i32_i32_LOHI
+
+		CPU_32
+		CPU_64
+
+		CODE_DEVICE = CT_RT pick CPU_32_running_CPU_64 // mostly i32_i32
+		CODE_DEVICE = CT_RT pick CPU_64_running_CPU_64 // LOHI obvs!
+
+	HILO must byte_swap_on_load
+
+	int byte_swap_on_load( i64_LOHI_t * PTR = EA_i64_lohi() )
+
+	converting AVAR to AVAR(args)
+	 AVAR is a field in a STRUCT holding AVAL usually i64_BITFIELD
+	 AVAR is a function takes ARGS returns ASM_LEVEL_RET_VAL_NEEDED
+	 WORD LIMIT AVAR is PAIR_i32_i32_on_CPU_32
+	 WORD LIMIT AVAR is PAIR_i32_i32_on_CPU_32_on_CPU_64
+
+	 	we require this extra step
+		as one day there will be 
+		LIBR_ASM_WORD_HEAP
+
+			We use a primate CORE remotely
+			We CACHE it // OPTION COMPLETELY
+	 INLINE_RET_VAL
+	
+	BITFIELD
+
+		MATCH ROT_8 LHS rotate 8 left # OPCODE += rotate += 8 += left
+
+		SPARE CPU_REGS can hold old copies new copies of PQRS
+
+		PQRS is clearly i32 loaded from LOHI
+
+		so S is BYTE_A and is usable in EXPR_LIST 
+		
+			BENCH also has a guide to building and finding EXPR
+			BENCH uses 
+	
+	LOHI means there is a BUCKLE here BYTE_B is a popular CPU_feature
+
+	The BUCKLE is that PQRS is probably ABCD aligned -4 // HIGH so PQRS
+
+
+
+	SPQR_ROT_8
+
+
+	All thats needed ...
+
+	she dreams of a free world
+	he dreams of a free house
+	and farm and mountain and ...
+
+	Just get them 10 yards outside, locks changed, shouting loudly,
+	and the state will take them away, forever, and it's all yours.
+
+	... temptation ...
+
+
+
+
+

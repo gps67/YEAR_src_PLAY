@@ -56,10 +56,12 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-06-07, 30470,  26.57, 33.98, Y Full Morissons card from BH Sherborne
 2025-06-24, 30791,  30.91, 40.46, Y Full Morissons FLEX from BH 
 2025-07-02, 30966,  17.54, 22.96, Y Full Morissons FLEX from BH 
-2025-07-08, 31269,  28.32, 31.02, Y Full TESCO FLEX BH
+2025-07-08, 31269,  28.32, 31.02, Y Full TESCO FLEX BH X-NO-X
 2025-07-20, 31539,  24.14, 31.84, Y Full Morissons FLEX from BH 
 2025-07-25, 31707,  16.44, 21.68, Y Full Morissons FLEX from BH 
 2025-08-02, 31894,  18.17, 23.97, Y Full Morissons FLEX from BH links
 2025-08-13, 32069,  15.01, 19.80, Y Full Morissons FLEX from BH
+2025-08-29, 32272,  20.37, 26.66, Y Full Morissons BB from BH
+2025-09-07, 32453,  16.50, 21.60, Y Full Morissons FLEX BH
 # CMNT
 # how could you do this to me barry # I'm over here Bev # Spec Savers #

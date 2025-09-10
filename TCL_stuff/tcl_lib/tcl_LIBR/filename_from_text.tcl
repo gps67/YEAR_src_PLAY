@@ -5,11 +5,21 @@
 # list of ASCII from accented
 # list of TEXT from PUNCT
 
-proc filename_from_text TEXT {
+proc filename_from_text args {
+	set TEXT "$args" ;# JOIN WORDS with "_" # via SP
+	# NB TEXT is a line of words with SP in GAP
+	# NB ARGV is a parseable sequence going into SUB_LEX mode
+	# so eg word("DOT") phrase(" LHS DOT RHS ") # ignor outer SP1
+	#
+	# CSET SUBSET # eg C_ident_97 or CFS_CSET_one
+	#
 	# anything that isnt plain ASCII glyphs # multichar # is a stone
 	# the output stone is "_"
+	# merge multiple
 	# drop leading _
 	# drop trailing _
+	# if now EMPTY return EMPTY # WITH A FLAG
+	# many callers will not check RET_VAL was TRUE or FAIL use ""
 
 	append clist {a-z}
 	append clist {A-Z}

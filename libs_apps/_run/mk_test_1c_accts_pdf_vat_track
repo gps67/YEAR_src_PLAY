@@ -1,4 +1,4 @@
 #
 # $(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
 #
-./mk test_1a
+./mk test_1c

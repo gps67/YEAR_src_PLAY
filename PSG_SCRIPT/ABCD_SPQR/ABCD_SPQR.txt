@@ -1,0 +1,120 @@
+
+ PQRS
+
+	is going to be a popular DIALECT
+
+		P Q R S are 4 bytes with cute names
+		DECODE PQRS get P Q PQ RS PQR QRS PQRS
+
+		Use these letters instead of EFGH
+		Use other names inplace of ... PQ
+
+	LOHI A B C D
+	LOHI P Q R S
+
+		LOHI places the first BYTE_A in the low 8 bits
+		LOHI is good because BYTE_A is usable in all CPUS
+
+			even those without BYTE_A have
+
+			 BYTE to WORD SIGN FILL
+			 BYTE to WORD ZERO FILL
+
+			BYTE_B is easy with 2 shifts
+
+		i8_in_i32	(WORD_32 << 16) >> 24_sign_fill
+		i8_in_i32	(WORD_32 << 16) >> 24_zero_fill
+	
+	PSRQ
+	 SRQP
+	  RQPS
+
+		HILO places the most important BYTE in BYTE_A
+		HILO is natuarally i8_i24
+		LOHI is 
+	
+
+	SPQR 	- actually this only happens with HILO !!! (rats! it was ace)
+	 PQRS	- because ABCD becomes DCBA
+	  QRSP	- because PQRS becomes SRQP
+
+	PSRQ	- this is what actually happens - tad naff
+	 SRQP	- so maybe this is a design for HILO systems
+	  RQPS
+
+	  	ANYWAY the BYTE_A in LOHI is actually the most dominat BYTE !!
+		ROT_8 moves it from BYTE_A to BYTE_D (or _H) the topmost
+		ROT_8 then leaves
+
+			i8_A
+			i24_DCB  
+
+			i8_HEAP
+			i24_ITEM
+
+		That then dissolves into i32 HEAP_ITEM
+
+		It also dances with the incompattible DCB_HI A_LO
+		i24_HIGH_ITEM i8_ITEM_LOW
+
+	i+i	NB also i8_i24 masks the i24 keeping the i8 sign
+	i+i	NB also i24_i8 masks the i8 keeping the i24 sign
+
+		i32_in_i64 ABCD = i64_WORD >> 32 SIGNED
+
+		typedef i32_in_i64 i64 // SIMPLEST STEP DOWN
+
+
+	we are writing a NETWORK CPU that runs REMOTE code LOCALLY
+
+	one filter says NO, do not run REMOTE code here
+	one layer says OK, carefull run REMOTE code here
+
+	That layer provides one a few AXIOMATIC methods and many STYLES
+	We think we can allow remote code to run in a CLOSED BOX SANDPIT
+	using some SANDPIT QUOTA and proactive TUNE_ING and SLA
+
+		CLOSED BOX 
+		 PID
+		 THREAD
+		 HOLDS_PERMIT
+		 HOLDS_ID_and_maybe_proof
+
+		 	login granted one proof of ID # gave me correct secret
+		 	login granted one proof of ID # has_access_to_SECRET_KEY
+
+				SECRET_KEY = RSA.priv
+
+			non RSA (and its key-pair-peers)
+
+				SECRET_KEY = STO.nbytes //-aka- N_BYTES
+
+				eg 4096 bits is 512 bytes
+				eg  256 bits is  32 bytes
+				eg   64 bits is   8 bytes
+
+			USAGE - both ends know nbytes_SECRET_KEY
+
+				32 bytes is plenty for local traffic
+			
+			MUX USAGE - LIBR encrypts every book in CACHE
+
+				even when original is clear_text !!
+				option to use a quicker CHANNEL
+				option to submit to blanket DECODE each WORD
+
+			CRYPT over each WORD in DATA
+
+				MMAP and VFS and CRYPT_FS with do that per 4K
+
+				key for the page = lookup( page_number )
+				key for the WORD = KEY_per_LAYER 
+
+				ie there are only a dozen active KEYS
+				few is dozen
+				u1 u2 u3 u4 u5 u6 u7
+				u7 u11 u15
+
+				u7 u15 u31 u63
+				i8 i16 i32 i64
+					

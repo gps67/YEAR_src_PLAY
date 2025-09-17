@@ -13,6 +13,10 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://gitlab.com/freepascal.org/fpc/source.git
+https://gitlab.com/freepascal.org/fpc/documentation.git
+https://gitlab.com/freepascal.org/fpc/website.git
+https://gitlab.com/freepascal.org/lazarus/source.git
 git://git.jedsoft.org/git/slang.git
 git://git.jedsoft.org/git/slxfig.git
 https://github.com/jedsoft/slcurl

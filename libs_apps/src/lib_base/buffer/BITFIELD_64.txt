@@ -1,0 +1,33 @@
+BITFIELD_64.txt
+
+	i64_CPU_WORD
+	 i64_LOHI 
+	  i64_MEM_WORD
+	  i64_WORD_in_MEM
+
+	ALIAS for SAME i64_BITFIELD 
+	MATCH ENTIRE_i64
+
+	MATCH ENTIRE_CPU_WORD
+
+i32_i32
+
+	The way we optimise for i32_i32
+	is to get the C compiler to handle i64_LOHI
+
+	"{ i64 as_cpu_word }" // on CPU_64
+	"{ i64 as_cpu_pair }" // on CPU_32
+	"{ i64 as_fpu_BITFIELD }" // on CPU_32 // as STO_VAL as TMP_COPY
+
+	i64_t _i64_WORD = i32_i32_LOHI // PREF ALIGN i64
+
+ALIGN i64 EIGHT_BYTES
+ALIGN i32 FOUR_BYTES
+ALIGN i16 PAIR_BYTES
+ALIGN i8 EACH_BYTE
+ALIGN i1 EACH_BIT // from any distance + [ 0 - 7 ]
+ALIGN i1 EACH_BIT // BASE + OFFS + B2B0 // within i32 OFFS_x8 [0+4] ENABLE
+ALIGN i1 EACH_BIT // BASE + OFFS + B2B0 // within i64 OFFS_x8 [0+0] REQUIRE
+ALIGN i1 EACH_BIT // BASE + OFFS + B2B0 // within i64 OFFS_x8 [0+4] MATCH FAST
+
+

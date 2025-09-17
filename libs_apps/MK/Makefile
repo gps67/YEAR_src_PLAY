@@ -445,7 +445,7 @@ else
 	# http://ccache.samba.org/ftp/ccache/
 	## CXX = ccache g++ #			#
 	# CXX = g++ #			#
-	CXX = say_do g++ -O2 -g -fPIC #			# WRONG but CURRENT
+	CXX = say_do g++  -g -fPIC #			# WRONG but CURRENT
 	# CXX = say_do g++ #			#
 #	CXX = RUN4 g++ #			#
 #	CXX = RUN4 I icpc -g -debug all #			#

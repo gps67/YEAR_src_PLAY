@@ -12,7 +12,11 @@ run_WARN()
 	fi
 }
 
-say_do()
+say_do() {
+	say_do_fn "$@"
+}
+
+say_do_fn()
 {
 	echo >&2 "# RUN # $* #"
 	run_WARN "$@"

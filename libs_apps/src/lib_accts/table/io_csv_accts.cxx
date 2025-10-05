@@ -32,7 +32,7 @@ io_csv_accts::~io_csv_accts()
 */
 bool io_csv_accts::got_line_1()
 {
-	if(0)	print_fields();
+	if(1)	print_fields();
 	if( !nfield ) return FALSE;
 	char * tblkey = fields[0];
 	table * tbl = NULL;

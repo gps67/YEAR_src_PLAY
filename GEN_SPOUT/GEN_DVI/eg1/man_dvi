@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# man_dvi
+
+ MAN_PAGE_FILE=groff.7.gz
+ MAN_PAGE_FILE=groff
+# groff -c -Tlatin1 -mandoc $MAN_PAGE_FILE | less -R
+set -x
+ man -Tdvi $MAN_PAGE_FILE > TEMP.dvi 
+ dvitype TEMP.dvi | less 

@@ -141,6 +141,7 @@ struct amnt_t : public GRP_lib_base
 /*!
 	convert to string value
 */
+
 	str0 get_temp_str() const
 	{
 		char asap[20];

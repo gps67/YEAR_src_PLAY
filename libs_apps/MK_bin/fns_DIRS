@@ -12,7 +12,7 @@ cd_or_fail() {
 cd_or_FAIL() {
 	if [ $# != 1 ]
 	then
-		fn_WARN "cd_or_FAIL usually takes 1 arg - $*"
+		fn_WARN 0 "cd_or_FAIL usually takes 1 arg - $*"
 	fi
 	if cd "$1" > /dev/null 
 	then
@@ -33,7 +33,7 @@ cd_if_can()
 		then
 			echo "# CD # $(pwd)"
 		else
-			fn_WARN "cd $1 - exists but failed"
+			fn_WARN 0 "cd $1 - exists but failed"
 		fi
 	fi
 }
@@ -68,7 +68,7 @@ mkdir_FAIL() {
 cd_mkdir_FAIL() { # api top
 	if [ $# != 1 ]
 	then
-		fn_WARN "cd_mkdir_FAIL usually takes 1 arg - $*"
+		fn_WARN 0 "cd_mkdir_FAIL usually takes 1 arg - $*"
 	fi
 	if cd "$1" > /dev/null 2>&1
 	then
@@ -79,11 +79,37 @@ cd_mkdir_FAIL() { # api top
 		then
 			cd_or_FAIL "$1"
 		else
-			fn_WARN "mkdir '$1'"
+			fn_WARN 0 "mkdir '$1'"
 			ask_do mkdir -p "$1"
 			cd_or_FAIL "$1"
 		fi
 	fi
+}
+
+dir_OK_mkdir_FAIL() {
+	# CALLER wants $1 to be a dir # find it, create it, fail
+	# require $1 # dir = $1
+	if [ $# != 1 ]
+	then
+		fn_WARN 0 "dir_OK_mkdir_FAIL usually takes 1 arg - $*"
+	fi
+	local dir_PREV=$PWD
+	if cd "$1" > /dev/null 2>&1
+	then
+		: # OK # might have used $CDPATH though
+		echo "# dir_OK # $(pwd)" 
+		# cd $dir_PREV
+	else
+		if mkdir "$1" # no ask # no -p #
+		then
+			cd_or_FAIL "$1"
+		else
+			fn_WARN 0 "mkdir '$1'"
+			ask_do mkdir -p "$1"
+			cd_or_FAIL "$1"
+		fi
+	fi
+	cd $dir_PREV
 }
 
 
@@ -92,10 +118,15 @@ OPTHERln_s_tail() {
 }
 
 ln_s_tail() {
+	# always DST SRC 
+	# OPTION DST SRC adk_do sudo
 	[ $# -ge 2 ] || fn_FAIL 22 "ln_s_ask dst src # got $# args # $@"
 	local dst="$1"
 	local src="$2"
-	[ "$src" = "ask_do" ] && fn_FAIL 22 "ln_s_ask dst src # got $# args # $@ # HINT use - or . for src "
+	[ "$dst" = "ask_do" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$src" = "ask_do" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$dst" = "sudo" ] && fn_FAIL 22 "USAGE" "$@"
+	[ "$src" = "sudo" ] && fn_FAIL 22 "USAGE" "$@"
 	shift
 	shift
 	# tail $@ is now ask_do sudo
@@ -103,17 +134,24 @@ ln_s_tail() {
 	[ "$src" = "." ] && src=`basename "$dst"`
 	if [ ! -L "$src" ]
 	then
-		if [ -x "$src" ]
+		if [ -d "$src" ]
 		then
-			echo -ne "# ln_s deleting NON LINK # "
+			fn_WARN 22 "dir $src exists where link to $dst would go"
+			return
+
+		elif [ -x "$src" ]
+		then
+			echo -e "# ln_s deleting NON LINK # "
 			ls -lad "$src"
-			rm "$src" 2> /dev/null
+			# INTERACTIVE # rarely along error path #
+			ask_do rm "$src" 
 		else
 			: # did not exist
 		fi
 		echo "# ln_s creating # $src"
-		echo "# DIR === $(pwd)"
+		echo "# pwd === $(pwd)"
 		echo "# NEW ==> $dst"
+		say_do \
 		"$@" ln -s "$dst" "$src"
 		return
 	fi

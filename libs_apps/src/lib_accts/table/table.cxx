@@ -808,7 +808,7 @@ str2 * table::get_key_of_row( row_inst * row )
 {
 	if(!key_spec) {
 		static obj_hold<str2> no_key_str = new_str2_static( "KEY-NO-SPEC" );
-		gdb_invoke();
+if(0)		gdb_invoke();
 //		gdb_break_point();
 		return no_key_str;
 	}

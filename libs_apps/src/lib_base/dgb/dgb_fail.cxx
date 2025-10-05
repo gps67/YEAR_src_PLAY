@@ -34,8 +34,8 @@ dgb_fail_base::dgb_fail_base( const char * _msg )
 	msg = _msg;
 
 	// tell the trace logs
-	e_print( "EXCEPTION: %s\n", msg );
-	fprintf( stderr, "EXCEPTION: %s\n", msg );
+	e_print( "# !!!! # EXCEPTION: %s\n", msg );
+	fprintf( stderr, "# !!!! # EXCEPTION: %s\n", msg );
 	fflush(0);
 
 	// gdb
@@ -49,9 +49,12 @@ dgb_fail_base::dgb_fail_base( const char * _msg )
 	} else {
 		/*
 			IF gdb has already been activated
-			(eg by running from gdb, or from some other
-			gdb_invoke()), stop at this break_point
+			eg by running from gdb, or from some other
+			eg gdb_invoke(),
+			stop at this break_point
 			(and all future break points).
+
+			REQUIRE export INGDB=notnull // 
 		*/
 		char * ingdb = getenv( "INGDB" );
 		if( ingdb )

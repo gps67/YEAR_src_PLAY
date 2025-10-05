@@ -13,6 +13,9 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/uxebu/embedjs
+https://github.com/uxebu/bonsai
+https://gitlab.com/freepascal.org/lazarus/lazarus.git
 https://gitlab.com/freepascal.org/fpc/source.git
 https://gitlab.com/freepascal.org/fpc/documentation.git
 https://gitlab.com/freepascal.org/fpc/website.git

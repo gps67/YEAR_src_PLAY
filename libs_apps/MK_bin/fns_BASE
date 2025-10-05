@@ -46,8 +46,10 @@ fn_BASE_wr()
 
 	[ -f "$BASE_filename" ] || touch "$BASE_filename" 
 	grep -v "^${BASE_varname}[ 	]" "${BASE_filename}" > "${BASE_tempfile}"
-	mv "${BASE_tempfile}" "${BASE_filename}"
-	echo "${BASE_varname} ${BASE_value}" >> "${BASE_filename}"
+	# mv "${BASE_tempfile}" "${BASE_filename}"
+	echo "${BASE_varname} ${BASE_value}" > "${BASE_filename}" \
+	|| FAIL $? $PWD ${BASE_filename} 
+	
 }
 
 fn_BASE_edit()
@@ -70,6 +72,19 @@ fn_BASE_incr()
  	local BASE_default="${*:-0}"
 	fn_BASE_rd "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
 	((${BASE_varname}++))
+	fn_EDIT_var "${BASE_varname}"
+	fn_BASE_wr "${BASE_filename}" "${BASE_varname}"
+}
+
+fn_BASE_decr()
+{
+	# mostly for INCR_on_error_ DECR
+	local BASE_filename=`fn_BASE_filename "$1"`
+	local BASE_varname="${2:-VARNAME}"
+	shift 2
+ 	local BASE_default="${*:-0}"
+	fn_BASE_rd "${BASE_filename}" "${BASE_varname}" "${BASE_default}"
+	((${BASE_varname}--))
 	fn_EDIT_var "${BASE_varname}"
 	fn_BASE_wr "${BASE_filename}" "${BASE_varname}"
 }

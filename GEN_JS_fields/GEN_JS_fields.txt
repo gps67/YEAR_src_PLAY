@@ -1,0 +1,131 @@
+GEN_JS_fields/
+GEN_JS_fields.txt
+
+	<input>
+	<label>
+	<select>
+	<textarea>
+	<button>
+	<fieldset>
+	<legend>
+	<datalist>
+	<output>
+	<option>
+	<optgroup>
+
+
+ yet another EG_SPAWN of libs_apps via GEN_JS but mostly scratch scripts
+
+ 	single C++ file 
+
+	 IMPORT_to_MONOLITH
+
+	 	on_CODE_LOAD_enable_and_NOW
+
+		 DESC_TOKEN = "on_CODE_LOAD"
+
+		 	it is one of a PEER_GROUP with one_PICK as ALIAS
+
+			SCRIPT use ALIAS
+
+	 DECL // this is not run until the linked MAIN is called
+	 bool bool_main( ARGS ) // ARGS += ARGV += SESS += API.SESS.CTXT 
+
+
+ C_RUN
+
+ 	C++ calls all constructors in statics before calling main()
+	dlopen does the same on_CODE_LOAD 
+
+		this is itself a way of coding
+
+		this is a way of getting some INIT_DLL_on_LOAD_CODE
+		GEN write this in to PRE_LOAD some DATA but not in the CTOR
+		GEN uses those as OUTER WRAP layers beyond reach of SCRIPT
+		GEN could easily write there, and helps YOU do and LIBR
+	
+	C REQ C++ done all its stuff, presumed INIT_ZERO and PRE_LOAD_CACHE_seg
+
+		C++ initialisation order will be left to right, not layers
+		getting it all done means that EDGE_DONE DONE_EDGE EDGE_NEXT
+		+= BUILTIN_TABLES have been preloaded with BIOS TABLES
+		-EDGE-
+		 switch to INIT_LIST from GEN
+		 switch to INIT_LIST from LIBR
+		 switch to INIT_LIST from APP
+		 switch to INIT_LIST from SESS
+		 -EDGE- is above -EDGE- with an edge sandwich
+
+		  Between two steps is an invisible zero-size step
+		  The entire STEP has been towards making INIT_DONE
+		  PRE_LOAD_DONE is in the future, this is C++_DONE
+		  // SP1 permits " C++_DONE " // NOTICE OPTION ALERT non_ident
+		  // FILTER finds ++ which is not C_ident_99 a2 // a1 // a1 a2
+
+		STEP_one
+		 KNOW main called us to be bool_main(ARGS) += OPTS
+		  AUTO OPTS += ARGV += GLOB += SESS += XPOS
+		  AUTO gen all the code to pack unpack C inline done here
+		  AUTO GEN knows next gcc uses inline_ASM _via_MACROS
+		  MACRO is a plain TEXT substitution but written as a FUNC
+		  INLINE_ASM is "{ i64 SWAP_BYTES( i64 INPUT )"
+		  INLINE_ASM += ASM("ASM{ swapb in_situ_register }") 
+		  # NOTE ABOVE CLAIMED "ASM" outside of "ASM{ inside }"
+		  # ASM C CXX CCC #
+		  # There is C there is C++ there is CCC # TODO stdlib #
+		  # There is TP7 FPC GNU_DIALECT TEX_PASCAL LAZ
+		 
+
+		STEP_two
+		 STEP_one itself was built by CT_RT as a list of STEP
+
+		  as CT_RT experienced a SESS as it happened
+		  the pattern may be skewed or biased
+
+		  as CT_RT runs a lot of test data , then all again
+		  it catches PRE_LOAD flattens all STBL to SORTED layers
+		  so build non_sorted, GEN_sorted, GEN_for_PRELOAD
+
+		  OPTION PRE_LOAD means loading memcpy into place
+		  this would overwrite the MMAP file
+		  MMAP file can be TEMP to permit a large FILE QUOTA
+		  MMAP_FILE can be relocated during gap between STEP_EDGE
+
+		 -EDGE-
+		 # all steps done
+		 # calc RET_VAL # calc perf_stats # 
+		 # STATE ALL_DONE # both vocal and FSM
+		 -EDGE-
+		
+	bool_main(ARGS)
+	 call_step_prep_zero(ARGS) // ARGS holds SESS STATE CSR // DECODE
+	 call_step_list_one(ARGS) 
+	 call_step_list_two(ARGS)
+	 // C now has a C++ like INIT DONE //
+
+	 buffer2 out; // replaces XMLT_TREE_STREAMER_TEXT_buff
+	 out.print("<HTML>")
+	 out.print("<BODY>")
+
+	 // STACK // would have start_ELEM("FORM")
+	 ROOT_OVER = LIBR_ROOT_OVER_with_doctype_utf8_see_profile_GET()
+	 UDEF = ROOT_OVER.get_default_UDEF_for_ROOT() // SESS CSR XPOS
+	 HTML = ROOT_OVER.add_ROOT("HTML", UDEF) // or NULL for AUTO
+	 HEAD = HTML.add_ELEM("HEAD")
+	 BODY = HTML.add_ELEM("BODY")
+	 FORM = BODY.add_ELEM("FORM")
+
+	 LABEL_FIELD = FORM.add_ELEM("INPUT") // TEXTAREAauto Q2 ?auto Q2 ?auto Q2 ?auto Q2 ?auto Q2 ?
+	 LABEL_FIELD.add_ATTR( "for", "field_name") // field_name
+	 LABEL_FIELD.add_TEXT( "Prompt for your first name") // 
+
+	 INPUT_FIELD = FORM.add_ELEM("INPUT") // TEXTAREAauto Q2 ?auto Q2 ?auto Q2 ?auto Q2 ?auto Q2 ?
+	 INPUT_FIELD.add_ATTR( "type", "text") // auto Q2 ?
+	 INPUT_FIELD.add_ATTR( "id", "field_name") // field_name
+	 INPUT_FIELD.add_ATTR( "name", "field_name") // field_name
+
+	 	# storing firstname in field_name
+	
+
+
+

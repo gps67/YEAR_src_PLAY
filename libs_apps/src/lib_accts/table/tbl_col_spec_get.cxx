@@ -7,7 +7,8 @@ namespace ACCTS {
 
 str2 * str_NULL_ROW()
 {
-	static obj_hold<str2> nullstr = new_str2_static("NULL-ROW");
+	static obj_hold<str2> nullstr = new_str2_static("");
+//	static obj_hold<str2> nullstr = new_str2_static("NULL-ROW");
 	return nullstr;
 }
 
@@ -62,6 +63,7 @@ str2 * col_spec::get_str2_for_csv( row_inst * row )
 
 str2 * col_spec_amnt::get_str2_BASE( row_inst * row )
 {
+	if(!row) return str_empty();
 	if(!row) return str_NULL_ROW();
 
 	obj_ref * ptr = get_obj( row );
@@ -112,6 +114,7 @@ str2 * col_spec_str2_key::get_str2_BASE( row_inst * row )
 str2 * col_spec_str2_key::get_str2_for_csv( row_inst * row )
 {
 	obj_ref * ptr = get_obj( row );
+	if(!ptr) return str_NULL_ROW();
 	// assert( type ptr is str2
 	str2 * s2 = (str2*)ptr;
 	if( s2->has_prefix( (str0) "#-" ) )

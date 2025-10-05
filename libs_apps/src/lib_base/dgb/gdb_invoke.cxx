@@ -649,7 +649,7 @@ bool gdb_off = TRUE;
 void gdb_break_point()
 {
 	if(gdb_off) {
-		STEP("true(gdb_off);");
+		STEP("true == gdb_off - so no pause");
 		return;
 	}
 

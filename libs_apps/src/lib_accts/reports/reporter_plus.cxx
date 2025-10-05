@@ -176,7 +176,8 @@ void reporter_plus::do_vat_calc()
 	if( RPT._vat )
 	{
 		VAT.fetch_data( RPT._vat );
-		k = VAT._key->str[0];
+		if( VAT._key->str)
+			k = VAT._key->str[0];
 	}
 	else
 	{

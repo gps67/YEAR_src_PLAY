@@ -15,18 +15,18 @@
 # READABLE 2016-05-29T16:59:57
 # TIMEZONE untested will convert to own TZ out and back
 #
-# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
-# DATE_STAMP="-d ${DATE_STAMPVAL}"
+# DATE_STAMP_VAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
+# DATE_STAMP="-d ${DATE_STAMP_VAL}"
 
 # TODO #
 # docs_diag_fmt_letters_for_date_print_field( "%Y" )
 #  print a DIAG that looks like
 #	
-# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
+# DATE_STAMP_VAL=`date "+%Y-%m-%dT%H:%M:%S"` # OK (one word) (NO TZ or ...)
 # TODO # libs_apps uses same VAR_NAME_POOL # expr( VAR_NAME ) # TOKEN str
 # NAME_POOL( VAR_NAME ) #
 # POOL_NAME( #DEFAULT_DIALECT_VAR_POOL(DATE_TIME_field_names 
-# DATE_STAMPVAL=`date "+%Y-%m-%dT%H:%M:%S"` { # expands to 
+# DATE_STAMP_VAL=`date "+%Y-%m-%dT%H:%M:%S"` # recompute from NOW 
 # WHY # is not %2.2m %2.2d %2.2H %2.2M %2.2S 
 # EDIT "T" "join("T") # printf "%s" "T" # printf "%s" mk_item_join(" ") 
 # code_gen _join("${OUTPUT_STR0}") 
@@ -67,32 +67,72 @@
 # I know you dont think this will happen at midnight
 # but cron started your cron-job - when exactly ?
 
-fn_DATE_zap_STAMP()
-{
-	unset DATE_STAMPVAL DATE_STAMP
+fn_DATE_set_DATE_STAMP_VAL() { 
+
+	# EG #
+	# EG # fn_DATE_set_DATE_STAMP_VAL
+	# EG # fn_DATE_set_DATE_STAMP_VAL -d yesterday
+	# EG # fn_DATE_set_DATE_STAMP_VAL -d 
+	#
+	# call date #
+	#  to interpret ARGS 
+	#  to print "DATE_STAMP"
+	#
+	# pass ARGS to date "$@"
+	## ARGS absent means NOW
+	## "$@" melts away to nothing
+	# -d yesterday #
+	# -d $DATE_STAMP # from previous _get_ or DB lookup
+	# -d whatever_date_accepts #
+	# "$@" repeats the "-d yesterday" provided
+	#
+	# in all cases clean up to this specific output FORMAT
+	# DATE_STAMP _VAL WHEN is "$@" date's parsable TIME
+	# DATE_STAMP _VAL STR0 is GNU date's preferred format
+	export DATE_STAMP_VAL=`date "$@" "+%Y-%m-%dT%H:%M:%S"` 
+	#
+	# the rest of this script uses DATE_STAMP_VAL 
 }
 
-fn_DATE_get_STAMP_yesterday()
+fn_DATE_zap_STAMP()
+{
+	# echo >&2 fn_DATE_zap_STAMP 
+	unset DATE_STAMP_VAL DATE_STAMP
+}
+
+fn_DATE_set_STAMP_yesterday()
 {
 	fn_DATE_zap_STAMP
 	fn_DATE_get_STAMP -d yesterday
 }
 
-fn_DATE_use_STAMPVAL()
+fn_DATE_get_STAMP_yesterday()
+{
+	fn_WARN 0 "CALLED fn_DATE_get_STAMP_yesterday"
+	fn_DATE_set_STAMP_yesterday
+}
+
+fn_DATE_use_STAMP_VAL()
 {
 	# any args forces recompute to those args
-	[ $# == 0 ] || unset DATE_STAMPVAL
+	# absent arg forces recompute from 
+	[ $# == 0 ] || unset DATE_STAMP_VAL
+
 	# args should be nothing or -d yesterday or GNU sensitive
-	[ -z "${DATE_STAMPVAL}" ] && \
-	export DATE_STAMPVAL=`date "$@" "+%Y-%m-%dT%H:%M:%S"` 
+	[ -z "${DATE_STAMP_VAL}" ] && \
+	fn_DATE_set_DATE_STAMP_VAL "$@"
+
+ # EG #	echo "# DATE_STAMP_VAL # $DATE_STAMP_VAL #"
+ # EG #	# DATE_STAMP_VAL # 2024-02-06T10:50:12 # GNU date likes this
+
 }
 
 fn_DATE_get_STAMP()
 {
 	# GNU-ism date -d probably bbox variations
 	[ $# == 0 ] || [ $1 == "-d" ] || set -- "-d" "$@"
-	fn_DATE_use_STAMPVAL "$@"
-	export DATE_STAMP="-d ${DATE_STAMPVAL}"
+	fn_DATE_use_STAMP_VAL "$@"
+	export DATE_STAMP="-d ${DATE_STAMP_VAL}"
 }
 
 fn_DATE_use_STAMP()
@@ -100,7 +140,7 @@ fn_DATE_use_STAMP()
 	# allow either VAR to be used to trigger new value
 	# any args force recompute
 	[ $# -gt 0 ] && fn_DATE_get_STAMP "$@"
-	[ -z "${DATE_STAMPVAL}" ] && fn_DATE_get_STAMP
+	[ -z "${DATE_STAMP_VAL}" ] && fn_DATE_get_STAMP
 	[ -z "${DATE_STAMP}" ] && fn_DATE_get_STAMP
 }
 
@@ -114,7 +154,7 @@ fn_DATE_plus_str()
 fn_DATE_get_VARS()
 {
 	# args can be yesterday # auto 
-	# [ $# == 0 ] || unset DATE_STAMPVAL
+	# [ $# == 0 ] || unset DATE_STAMP_VAL
 	fn_DATE_use_STAMP "$@" 
 
 	# DATE_ABC will come back with the terminals TZ NOW
@@ -142,13 +182,13 @@ eval `fn_DATE_plus_str "
 
 fn_DATE_use_VARS()
 {
-	[ $# == 0 ] || unset DATE_YEAR DATE_STAMPVAL
+	[ $# == 0 ] || unset DATE_YEAR DATE_STAMP_VAL
 	[ -z "${DATE_YEAR}" ] || return
 	fn_DATE_get_VARS "$@"
 }
 
 # debugging # after yesterday is sticky until -d now
-# but want to include harmlessly multiple times - retaining old DATE_STAMPVAL
+# but want to include harmlessly multiple times - retaining old DATE_STAMP_VAL
 #
 # OOPS "$@" is picking up the parent scripts args
 # if you want to specify the date do so with an arg
@@ -157,11 +197,12 @@ fn_DATE_use_VARS()
 #
 # fn_DATE_use_VARS "$@"
 #
+fn_DATE_zap_STAMP
 fn_DATE_use_VARS 
 
 # fn_DATE_get_VARS yesterday
 # fn_DATE_get_VARS 
-# fn_DATE_get_VARS now
+fn_DATE_get_VARS now
 
 # name=name
 # year_mm_dd="${DATE_YEAR}-${DATE_MM}-${DATE_DD}"

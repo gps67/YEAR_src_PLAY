@@ -1,0 +1,82 @@
+TREE_MEANS/
+TREE_MEANS.txt
+
+	TREE_SPEC { // a local SCOPE // a MINI world // SHARED_VAR_POOL // SIDE
+
+	LOCN {
+		LOCN += ITEM // dialect_one
+		ITEM += ATTR // dialect_one
+		ITEM += CALL_ARGV //  // dialect_two after _one // POST EVENT //
+		// TIME_TRAVEL comes from RE_RUN knowing SPOILERS //
+		// PREP CACHE //
+		// PRE_LOAD // %s += SUBLEX IDENT %s_%s 
+		// SUBLEX // IDENT // LHS MID="%s_%s" RHS // MID="_" MID="%s_%s"
+		// LATE DECL ADJUST change DECL of "MID" // RETRO APPLY TO XPOS
+		// RETRO APPLY NEW RULE OLD TIME // trigger update pre_load
+	}
+
+	PRELOAD {
+		// RETRO APPLY NEW RULE OLD TIME //
+		// trigger update pre_load //
+		// TUPLO into NLP // IDENT // C_98 // VFS_UTF8
+		// VFS_CSET
+		// VFS_8859
+		// VFS_UTF8
+		// VFS_ASCII // then use base64 for date in filename LZO too
+		// VFS_UTF8 VFS_DIALECT += C_IDENT_99 += C_ident_97 
+		// VFS_UTF8 VFS_DIALECT += dash-in-date-in-filename 
+		// FILTER VFS_CSET C_LANG MAP_FIXED MAP_FLEXY 
+		// FLEXY += XY_TECH // += GUI // += ASM_DRAW // += C_ident_97 
+	}
+
+	FLEXY {
+		A FLEX is an XPOS += "{ LOCN FILE LINE CPOS OPTS }"
+		A FILE is a SCOPE += "{ LOCN FILE OFFS }"
+		A GROW is a NUMERIC that used to fit in an i8 if not 3 of em
+		A GROW is now i8_i8 with a few of those bits for data, ROM
+
+			BITFIELDS += i1 // b2b0 // BIT b0 // b2 == b0 alias
+			PICK 0
+			PICK 1
+
+		PICK 0
+			u8_from_i8 be overlay union
+		PICK 1
+			u8_from_i8_PLUS
+			u8_from_i8_PLUS =
+			u8_from_u7
+
+	}
+
+	FLEXY {
+		FLEX += STR_P0P2 in DIAG
+		XY += where to place FLEX in DIAG
+		XY += TEXT_FLOW_API += HOW_TO_BE_A_LEX
+		XY += IDENT_DIALECT // currently VFS_8859_ASCII
+		XY += IDENT_DIALECT // currently VFS_UTF8_ASCII
+		XY += IDENT_DIALECT // currently VFS_UTF8_Latin1
+		XY += IDENT_DIALECT // currently VFS_UTF8_Latin1_ASCII
+
+		The point about ASCII is that it remains exactly ASIS
+
+		As soon as you touch the SIGN bit hit FORK in the ROAD
+
+		 Heuristics give us likelyhood of UDEF_CSET_FONT
+		 GROW SWITCHES to i16 IDX_i16 == i16_IDX // RHYME // FILTER
+	}
+
+	FLEXY += SPELLING {
+		TOKENISED_SPELLING as STR_P0P2 // no need for NUL // nbytes OK
+		KNOW P2 = P0 + nbytes // builtin feature of P0P2 // KDB //
+		OPTION STR_STR0 is a SECOND VALUE for same SELF STR_P0P2
+		-- DIVIDE --
+		STR_STR0 SELF
+		STR_P0P2 SELF
+		-- DIVIDE --
+		TOKEN += EA_EXPR_in_i64 A B CD EFGH
+		LIBR has a full LIBR of DECODE_i32_i32
+	}
+
+		
+
+	}

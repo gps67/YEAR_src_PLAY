@@ -1,5 +1,8 @@
 #include "tbl_cell_base.h"
 
+// to print amnt
+#include "buffer2.h"
+
 namespace ACCTS {
 
 // -- cell_base
@@ -90,13 +93,32 @@ void cell_base::prints()
 		str2_display_cached = NULL;
 		return amnt.set( s );
 	}
+
 	str0 cell_amnt::get_str0() {
 		if( str2_display_cached ) return *str2_display_cached;
-		return amnt.get_temp_str() ;
+#warning this is for amnt to do itself
+	static	buffer2 buf;
+		buf.clear();
+
+		amnt.get_nocurr_str( buf );
+                return buf;
+
+		// it is still a CSV to be parsed
+		// so £ and (GBP) and not used
+
+		amnt.get_curr_str( buf );
+		buf.print("(GBP)");
+                return buf;
+                double d = amnt.pence;
+                d = d / 100.0;
+                buf.printf( "%.2f", d );
+                return buf;
+	//	return amnt.get_temp_str() ;
 	}
 	str2 * cell_amnt::get_str2() {
 		if( !str2_display_cached )
-			str2_display_cached = new str2( amnt.get_temp_str() );
+			str2_display_cached = new str2( get_str0() );
+	//		str2_display_cached = new str2( amnt.get_temp_str() );
 		return str2_display_cached;
 	}
 	void cell_amnt::set_amnt( amnt_t _amnt )

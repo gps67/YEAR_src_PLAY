@@ -1,4 +1,5 @@
 # . go__fns_2025
+# man nproc
 
 set_CPU_COUNT_J() # MINUS 1 usually 
 {

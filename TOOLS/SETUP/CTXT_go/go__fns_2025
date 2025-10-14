@@ -1038,7 +1038,7 @@ set_CPU_COUNT_J()
 
 decr_CPU_COUNT_J() # specifically by 1 when SMP
 {
-	echo "CPU_COUNT_J=$CPU_COUNT_J"
+	echo "CPU_COUNT_J=$CPU_COUNT_J # defore DECR"
 	CPU_COUNT_J=$(( $CPU_COUNT_J - 1 ))
 	# < fails when -lt works # redirects stdin # \<
 	# avoid -j 0

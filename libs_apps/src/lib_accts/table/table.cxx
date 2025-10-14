@@ -568,9 +568,13 @@ row_inst * table::find_row_add_fake( str0 key )
 {
 	row_inst * r = find_row( key );
 	if(r) return r;
-	if(0) e_print("find_row_add_fake(%s[%s])\n",
+	if(1) INFO("NAME[KEY]  %s[%s])",
 		(STR0) *name,
 		(STR0) key );
+	
+//	gdb_break_point();
+//	if( *name == "VAT") gdb_invoke();
+#warning putting VAT before TRANS fixes a multi-same-null-key add
 
 	// Number all rows by their input suquence, could sort by it ...
 	// TODO - write a col_spec for the counter field in each row

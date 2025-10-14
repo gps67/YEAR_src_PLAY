@@ -1,5 +1,5 @@
 . go__fns
-fn_grp_urldir_file ccs https://ftp.gnu.org/gnu/binutils/ binutils-2.44.tar.xz
+fn_grp_urldir_file ccs https://ftp.gnu.org/gnu/binutils/ binutils-2.45.tar.xz
 # fn_grp_pkg ccs binutils-2.37
 fn_unpack
 fn_with_grp gcc

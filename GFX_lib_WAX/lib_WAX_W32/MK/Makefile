@@ -80,6 +80,8 @@ ifeq (0,1)
 # include MK_SUFFIXES from MK_ext_lib
 .SUFFIXES: .exe .exec .cxx .c .o                                                           
 .cxx.o:                                                                         
+	# PKGS: $(PKGS) #
+	# OPTIM: $(OPTIM) #
 	$(CXX) $(OPTIM) $(INCLS) $(DEFS) -c $<                                  
 endif
 
@@ -95,6 +97,8 @@ run_test1: $(EXEC1)
 	ls -ld $(EXEC1)
 	# EXEC1 == $(EXEC1)
 	# DIR_libs_apps == $(DIR_libs_apps)
+	#
+	file ./$(EXEC1)
 	#
 	wine ./$(EXEC1)
 

@@ -18,6 +18,7 @@
 
 	GRP=gcc15
 	URL=https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
+	URL=https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.xz
 
 #	configure: error:
 #	Building GCC requires 
@@ -35,6 +36,9 @@
 
 	fn_unpack
 # exit
+
+	# m32 multilib pfx but want add last
+# no	fn_INCLUDE_dir /usr/include/x86_64-linux-gnu
 
 # want ccs to go first in PATH - use pfx not add 
 # ccs is binutils, make, ... and other ccs other than ccs4 compiler
@@ -72,6 +76,12 @@
 	# --enable-interpreter \
 	# --enable-languages=c++,java \
 	# --enable-languages=c \
+	# --enable-multiarch \
+	# --enable-multilib \
+	# --disable-multiarch \
+	# --disable-multilib \
+
+	# sudo apt install gcc-multilib g++-multilib
 #
 
 # so which compiler built this one ?
@@ -82,15 +92,20 @@
 	fn_log gcc --version
 	fn_log as --version
 
+#	CPU_COUNT_J=1
+
+
 # fn_make bootstrap || exit
-(
+
 	fn_make || exit # needed to build libstd++ ?? # uses obj/xcc
-)
+
 
 	#fn_make
 	# dont install yet
 	# ask not in fns_go # ask_do fn_make    install 
-	fn_make -i install 
+#	fn_make -k 
+	fn_make || exit
+	fn_make install 
 
 echo
 echo "ccache -C # clears all # run it or regret it"

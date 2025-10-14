@@ -158,7 +158,7 @@ gdb9: $(PROG9_EXE)
 test_1a: $(PROG1_EXE)
 	$(PROG1_EXE)  --run-reports $(TEST_FILE1_dash)
 
-test_1b:
+test_1b: $(PROG1_EXE)
 	$(PROG1_EXE)  --load-saveAs-quit $(TEST_FILE1_dash) $(TEST_FILE1_norm)
 
 test_1c: $(PROG1_EXE)

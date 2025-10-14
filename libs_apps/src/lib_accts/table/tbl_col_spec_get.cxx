@@ -114,13 +114,14 @@ str2 * col_spec_str2_key::get_str2_BASE( row_inst * row )
 str2 * col_spec_str2_key::get_str2_for_csv( row_inst * row )
 {
 	obj_ref * ptr = get_obj( row );
+	if(!ptr) INFO("null from get(obj)row)");
+	if(!ptr) return str_empty();
 	if(!ptr) return str_NULL_ROW();
 	// assert( type ptr is str2
 	str2 * s2 = (str2*)ptr;
 	if( s2->has_prefix( (str0) "#-" ) )
 	{
-		static obj_hold<str2> s2_dash = new str2("-");
-		s2 = s2_dash;
+		s2 = str_dash();
 	}
 	return s2;
 }
@@ -137,6 +138,7 @@ str2 * col_spec_link::get_str2_BASE( row_inst * row )
 	// assert( type ptr is row
 	row_inst * r = (row_inst *) ptr;
 	if(!r) return str_dash();
+
 	// r is a row in tbl2, get its keyfields display string
 	// presuming its key is a suitable str2_for_display (LURK)
 	table * tbl2 = get_linked_table();

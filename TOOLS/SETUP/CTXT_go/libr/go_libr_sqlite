@@ -5,6 +5,7 @@ URL=https://www.sqlite.org/2024/sqlite-amalgamation-3450200.zip
 URL=https://www.sqlite.org/2024/sqlite-autoconf-3450200.tar.gz
 URL=https://www.sqlite.org/2024/sqlite-autoconf-3460100.tar.gz
 URL=https://www.sqlite.org/2025/sqlite-autoconf-3490200.tar.gz
+URL=https://www.sqlite.org/2025/sqlite-autoconf-3500400.tar.gz
 fn_grp_url libr $URL
 fn_unpack
 fn_with_grp libr

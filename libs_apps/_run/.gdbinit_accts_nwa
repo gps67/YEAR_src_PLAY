@@ -25,3 +25,5 @@ b rep_html::opens
 # r  --load-save-quit ../samples/0203.csv
 # r ../samples/rpt1.csv
 # r --load-saveAs-quit /tmp/2025_2026_BH6_edit.csv /tmp/2025_2026_BH6_edit_norm.csv
+b get_obj
+B table::find_row_add_fake

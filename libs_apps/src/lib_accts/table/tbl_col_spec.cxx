@@ -71,10 +71,11 @@ void check_tbl_null( col_spec * spec, row_inst * row )
 }
 
 /*!
+	get the CELL ITEM at this COL_SPEC of ROW_inst
 */
 obj_ref * col_spec::get_obj( row_inst * row )
 {
-	// fprintf( stderr,"col_pos == %d\n", col_pos );
+	// INFO( "col_pos == %d\n", col_pos ); // ncols == etc // [0] is
 	if( !tbl ) check_tbl_null( this, row );
 	return row->cells[ col_pos ];
 }
@@ -433,7 +434,7 @@ row_inst * col_spec_date::get_linked_row( row_inst * row )
 	cell_date * cell = (cell_date *) get_obj( row );
 	if(!cell)
 	{
-		e_print("ERROR cell SHOULD NOT BE NULL in %s\n", __PRETTY_FUNCTION__ );
+		FAIL("cell SHOULD NOT BE NULL");
 		row->prints();
 	}
 	obj_hold<str2> year_mm; year_mm = cell->get_YEAR_MM();
@@ -730,7 +731,7 @@ w_widget0 * col_spec_img_id::mk_edit( row_inst * row )
 		static obj_hold<str2> s2_null  = new_str2_static( "EDIT" );
 		s2 = s2_null;
 	}
-	// e_print("img_id:mk_edit called\n");
+	// INFO("img_id:mk_edit called\n");
 	return new spec_img_edit_btn( this, row, s2 );
 }
 }; // NAMESPACE

@@ -3,10 +3,11 @@
 
 . ../go__fns
 type bash
-set -x
+# set -x
 GRP=ccs
 GRP=glibc
 URL=https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.xz
+URL=https://ftp.gnu.org/gnu/glibc/glibc-2.42.tar.xz
 fn_grp_url $GRP $URL
 fn_with_grp2 $gcc10
 fn_with_grp2 gcc

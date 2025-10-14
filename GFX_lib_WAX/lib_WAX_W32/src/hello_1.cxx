@@ -16,6 +16,11 @@ void CenterWindow(HWND hWnd);
 struct obj_ref_t {
 	virtual ~obj_ref_t() {}
 	obj_ref_t() {ref_count = 0;}	// maybe demand an extra loop allocator ?
+	obj_ref_t( obj_ref_t & RHS )
+	: ref_count( RHS.ref_count )
+	{
+	}
+
 	int ref_count;
 
 	void ref_incr() {
@@ -44,14 +49,16 @@ struct obj_ref_t {
 		obj->ref_count --;
 		if( obj->ref_count == 0 ) {
 			// protect against tree loops
+			// place a NULL in callers AVAR = obj = NULL
+			// but first keep obj_1 for a while
 			// ensure PTR left as NULL
-			obj_ref_t * obj_2 = obj;
-			obj = NULL;
-			// OPTION // not inline from here //
-			// OPTION // THREE calls per DTOR!
-			obj_2 -> on_ref_count_zero(); // add CTXT here ?
-			if( obj_2-> ref_count == 0 ) {
-				delete obj_2; // call two DTORs inefficient
+			obj_ref_t * obj_1 = obj;
+			obj = NULL; // write CALLERS PTR_to_obj now NULL
+			// CALL on_EVENT ref_count_ZERO // adjust IDENT lower
+			obj_1 -> on_ref_count_zero(); // add CTXT here ?
+			// CALL delete obj // because on_ZERO didn't save it
+			if( obj_1-> ref_count == 0 ) {
+				delete obj_1; // call two DTORs inefficient
 				// that also deletes memory
 				// not same for MMAP tree
 				// which W_t never is
@@ -59,6 +66,9 @@ struct obj_ref_t {
 		}
 	}
 	// OK instead of ref_hold<T> use these
+	// 
+	// obj_ref_t * ptr2 = new_some_object_from_RPC
+	// bool set_ptr(obj_ref_t *& ptr2, obj_ref_t * obj) {
 	static
 	bool set_ptr(obj_ref_t *& ptr2, obj_ref_t * obj) {
 		if(!obj) return set_NULL( ptr2 );
@@ -366,7 +376,7 @@ https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowl
 	void set_window_class_name( const wnd_class & window_class )
 	{
 		if( window_class.wc_atom ) {
-			window_class_name = (const char *)  window_class.wc_atom;
+			window_class_name = (const char *)  (long long) window_class.wc_atom;
 			// CAST // putting a smaller INT inside a larger INT
 			// CAST // BUT it is NOT a (const char *)
 		} else

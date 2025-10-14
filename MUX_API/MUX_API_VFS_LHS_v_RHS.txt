@@ -1,0 +1,376 @@
+MUX_API_VFS_LHS_v_RHS.txt
+
+	MUX_API
+	VFS
+	LHS_v_RHS
+	LHS_FILTER_RHS // 2-way filters exist! uses shared DATA in CACHE KEYS
+
+	eg VFS checksums compresses encrypts
+	 LHS = FILTER RHS
+	  VFS projects LHS PRESS // PRESS is compressed and encrypted files
+	  VFS projects RHS CLEAR // CLEAR is plain_text_readable 
+	  // CLEAR not stored , is openly available , ...
+
+	  RHS = FILTER LHS
+
+	   DECL plain_text_readable = PLAIN = plain_text_readable // VIEW repeat
+
+	    TEMPLATE SAME_FIELD $1 $5 // MATCH STR == "plain_text_readable"
+
+ ALTERNATIVE STORY
+
+ 	LHS = DECRYPT RHS
+	LHS.  ENCRYPT => RHS // using KEYS and API_FILTER_CHANNEL
+
+	fd is nowadays replaced with _CHANNEL // API_FILTER_CHANNEL_t fd //
+
+	fd.set_on_EVENT( N_BYTES_t DATA ) // _ means PTR is available with N
+
+DOCS PRNG is a Pseudo Random Number Generator
+
+	an ENTROPY  Random Number Generator
+	an PSEUDO  Random Number Generator
+
+	 ENTROPY is genuine RANDOM from some LAVA_LAMP and WIND_SPEED gatherers
+	 PSEUDO happens every time you use the same START_KEYS and METHODS
+
+	 A crossover, would be to record ENTROPY as a SECRET,
+	 and transfer a COPY, to remote who has the name N_BYTES
+	
+		N_BYTES
+		 i64_N
+		 i48_EA_EXPR_PTR // traditionally a PTR in MEM //
+		 // global single MEM
+
+	Simply XOR-ing the RANDOM N_BYTES is a strong CRYPT
+	That is WEAK because ... it might be weak, it could be watertight
+	Reusing stream segments, because it is expensive to gen NEW
+	ALWAYS GEN NEW from managed parameters // continuous KEY update
+	FRAME records changes of keys in AVAR
+	FRAME_EDGE adds specific events before and after KEY
+	FRAME_EDGE adds LIMIT // HORIZON LIMIT // events before and after KEY
+
+
+------------------------
+
+GDB_dgb API_dgb
+
+	GDB from start
+	GDB from attach
+	GDB from console
+	DGB from RPC_dgb
+
+	GDB_over_RPC
+	GDB_over_RPC_attach _tls _who 
+	GDB_over_RPC
+
+	
+
+GDB LIBR provides CODE that draws DIAG of libr ITEM
+
+
+------------------------
+
+DESIGN METAPHOR
+
+
+	Each estate is a sealed unit copy of a PC drive
+	OPTION MMAP_FILE_between_FILES // MMAP is weird as BLOCK_in_FILE
+
+	QEMU boots an external TEMP_OS _WIN64 _NT _LINUX _UDEF
+	QEMU_SETUP creates above as copy of ROM - or intermeshes the pages
+	MMAP_SETUP interleaf MMAP LIST_of_MODIFIED_PAGES NEWVAL_old_VALUE
+	LING_USAGE in_line_above VALUE NEWVAL // as AVAR names
+
+MUX_API_VFS_LHS_v_RHS.txt
+
+	MUX_API
+	VFS
+	LHS_v_RHS
+	LHS_FILTER_RHS // 2-way filters exist! uses shared DATA in CACHE KEYS
+
+	eg VFS checksums compresses encrypts
+	 LHS = FILTER RHS
+	  VFS projects LHS PRESS // PRESS is compressed and encrypted files
+	  VFS projects RHS CLEAR // CLEAR is plain_text_readable 
+	  // CLEAR not stored , is openly available , ...
+
+	  RHS = FILTER LHS
+
+	   DECL plain_text_readable = PLAIN = plain_text_readable // VIEW repeat
+
+	    TEMPLATE SAME_FIELD $1 $5 // MATCH STR == "plain_text_readable"
+
+ ALTERNATIVE STORY
+
+ 	LHS = DECRYPT RHS
+	LHS.  ENCRYPT => RHS // using KEYS and API_FILTER_CHANNEL
+
+	fd is nowadays replaced with _CHANNEL // API_FILTER_CHANNEL_t fd //
+
+	fd.set_on_EVENT( N_BYTES_t DATA ) // _ means PTR is available with N
+
+DOCS PRNG is a Pseudo Random Number Generator
+
+	an ENTROPY  Random Number Generator
+	an PSEUDO  Random Number Generator
+
+	 ENTROPY is genuine RANDOM from some LAVA_LAMP and WIND_SPEED gatherers
+	 PSEUDO happens every time you use the same START_KEYS and METHODS
+
+	 A crossover, would be to record ENTROPY as a SECRET,
+	 and transfer a COPY, to remote who has the name N_BYTES
+	
+		N_BYTES
+		 i64_N
+		 i48_EA_EXPR_PTR // traditionally a PTR in MEM //
+		 // global single MEM
+
+	Simply XOR-ing the RANDOM N_BYTES is a strong CRYPT
+	That is WEAK because ... it might be weak, it could be watertight
+	Reusing stream segments, because it is expensive to gen NEW
+	ALWAYS GEN NEW from managed parameters // continuous KEY update
+	FRAME records changes of keys in AVAR
+	FRAME_EDGE adds specific events before and after KEY
+	FRAME_EDGE adds LIMIT // HORIZON LIMIT // events before and after KEY
+
+
+------------------------
+
+GDB_dgb API_dgb
+
+	GDB from start
+	GDB from attach
+	GDB from console
+	DGB from RPC_dgb
+
+	GDB_over_RPC
+	GDB_over_RPC_attach _tls _who 
+	GDB_over_RPC
+
+	
+
+GDB LIBR provides CODE that draws DIAG of libr ITEM
+
+
+------------------------
+
+DESIGN METAPHOR - one laptop per estate - adjust as required
+
+
+	Each estate is a sealed unit copy of a PC drive
+	OPTION MMAP_FILE_between_FILES // MMAP is weird as BLOCK_in_FILE
+
+	QEMU boots an external TEMP_OS _WIN64 _NT _LINUX _UDEF
+	QEMU_SETUP creates above as copy of ROM - or intermeshes the pages
+	MMAP_SETUP interleaf MMAP LIST_of_MODIFIED_PAGES NEWVAL_old_VALUE
+	LING_USAGE in_line_above VALUE NEWVAL // as AVAR names
+	...
+
+	Each MINI_MACHINE gets accidentally customaised
+	and those settings need to be used to generate it's reports
+	so we regretfully have to keep a copy of the OS
+	These are legacy PC's from people running one_LAPTOP per account
+	These are legacy PC's from people running one_DISK_DRIVE per account
+	These are legacy PC's from people running one_QEMU_on_VFS_DISK_DRIVE
+	To resilve this regret we switch to a latest_OS_running_compat_FILES
+	If that is _NT or _WIN64 or _WIN32 use a ROM image and overlay VFS
+	also lock out upgrade requests as no_route_to_host or silent
+
+	SPIN_DISK_PACK
+
+	 FILE_is_DISK_image // often .iso or ext4 or.cow or qemu_vfs
+	 QEMU VFS vfs_DEVICE_in_a_FILE
+	 QEMU VFS vfs_TREE_in_a_tar_FILE // or_OTHER _cpio _zip _tar 
+	 QEMU VFS vfs_TREE_in_a_vfs_FILE // or_OTHER .twig .leaf .node .tree
+	 using VFS to convert NAME to IDX to FD to API
+
+	 VFS is actually a simple API model, readdir, stat_file, open_file, MK
+	 convert NAME to IDX happens within readdir, idx is inode_idx or AVAR
+
+	 API allows REMOVE to put values into AVAR
+
+	 	obviously that is not allowed, except ...
+
+		API gived a block of memory at MMAP to REMOTE as buffer
+		API provides POKE functions of all sorts
+		API finds "AVAR" at OFFS of ITEM at IDX
+
+			idx = i8_idx = i8_idx_ITEM
+			idx = i16_idx = i16_idx_ITEM
+			idx = i32_idx = i32_idx_ITEM
+			idx = i64_idx = i64_idx_ITEM
+			# IDX /OFFS meaning stopped at about i48
+			# BITFIELDS_within_i256 # CRYPTO_256 # 32_BYTES #
+			# BITFIELDS i2K # MEM is CACHED # 256 bytes
+			# BITFIELDS i64K # 8K bytes or 1_2_4_8 attached to IDX
+			# OVERLAY 1_2_4_8 # _8 overlays _1 zone first page
+			# OVERLAY 1_2_4_8 # _i2 "PICK { 1 2 4 8 }" // [0 1 2 3]
+			# GEN i2_PICK_LIST_IDX "PICK { 1 2 4 8 }"
+			# GEN i2_PICK_LIST_IDX "PICK { 1, 2, 4, 8 }" // C USED
+			# CONTEXT i64K bits 8K bytes # 4K PLUS page 4K_MINUS
+
+			MMX makes a chunk of HIGH_ADDR_SPACE with own OFFS
+			ie for each milestone device
+			create a DIAG where it is the only MMX
+			count up the BYTES (TODO)
+
+			idx = i128_idx = i128_idx_ITEM
+			idx = i256_idx = i256_idx_ITEM
+
+			idx = i8_idx = i8_idx_ITEM
+
+MUX_API_VFS_LHS_v_RHS.txt
+
+	MUX_API
+	VFS
+	LHS_v_RHS
+	LHS_FILTER_RHS // 2-way filters exist! uses shared DATA in CACHE KEYS
+
+	eg VFS checksums compresses encrypts
+	 LHS = FILTER RHS
+	  VFS projects LHS PRESS // PRESS is compressed and encrypted files
+	  VFS projects RHS CLEAR // CLEAR is plain_text_readable 
+	  // CLEAR not stored , is openly available , ...
+
+	  RHS = FILTER LHS
+
+	   DECL plain_text_readable = PLAIN = plain_text_readable // VIEW repeat
+
+	    TEMPLATE SAME_FIELD $1 $5 // MATCH STR == "plain_text_readable"
+
+ ALTERNATIVE STORY
+
+ 	LHS = DECRYPT RHS
+	LHS.  ENCRYPT => RHS // using KEYS and API_FILTER_CHANNEL
+
+	fd is nowadays replaced with _CHANNEL // API_FILTER_CHANNEL_t fd //
+
+	fd.set_on_EVENT( N_BYTES_t DATA ) // _ means PTR is available with N
+
+DOCS PRNG is a Pseudo Random Number Generator
+
+	an ENTROPY  Random Number Generator
+	an PSEUDO  Random Number Generator
+
+	 ENTROPY is genuine RANDOM from some LAVA_LAMP and WIND_SPEED gatherers
+	 PSEUDO happens every time you use the same START_KEYS and METHODS
+
+	 A crossover, would be to record ENTROPY as a SECRET,
+	 and transfer a COPY, to remote who has the name N_BYTES
+	
+		N_BYTES
+		 i64_N
+		 i48_EA_EXPR_PTR // traditionally a PTR in MEM //
+		 // global single MEM
+
+	Simply XOR-ing the RANDOM N_BYTES is a strong CRYPT
+	That is WEAK because ... it might be weak, it could be watertight
+	Reusing stream segments, because it is expensive to gen NEW
+	ALWAYS GEN NEW from managed parameters // continuous KEY update
+	FRAME records changes of keys in AVAR
+	FRAME_EDGE adds specific events before and after KEY
+	FRAME_EDGE adds LIMIT // HORIZON LIMIT // events before and after KEY
+
+
+------------------------
+
+GDB_dgb API_dgb
+
+	GDB from start
+	GDB from attach
+	GDB from console
+	DGB from RPC_dgb
+
+	GDB_over_RPC
+	GDB_over_RPC_attach _tls _who 
+	GDB_over_RPC
+
+	
+
+GDB LIBR provides CODE that draws DIAG of libr ITEM
+
+
+------------------------
+
+FULL TEXT
+DESIGN METAPHOR
+
+	Each estate is a sealed unit copy of a PC drive # INCL OS
+	Each Estate is a DIR with ACCTS_DIARY and bench # NO OS inside
+
+		TREE includes the latest REPORTS in PDF format
+		TREE includes CODE that runs latest REPORTS in OS format
+		TREE REQUIRE ability to run C++ programs written by UDEF
+		TREE REQUIRE ability to run ARGV_SCRIPS programs written by UDEF
+		TREE REQUIRE API provides ARGV_SCRIPT_LIBR that does PDF CSV etc
+	
+	Over time a few OS copies are required, in a frozen state
+
+		The easiest way to do this is VFS combine LAYERS
+		ROM + USEF + USER + SESS
+		SESS provides CPU access within MINI_MACHINE via ASM in ABOX
+		QEMU permits a safety net around SESS_on_CPU
+		QEMU running _NT in a firewalled standalone VBOX
+
+		ADMIN creates an OS_IMAGE to clone each time
+
+			ADD BOX_NAME BOX_INFO CONFIG_PROFILE
+
+		ADMIN predicts LOGIN_USER MOUNT_VFS_UDEF VFS_USER_STO_
+
+			each estate has a nickname unique within the decade
+			VFS namespace archive provides this eg "BH6"
+			VFS knows this might be shared with people roles topics
+			BH6 sharers must agree on VFS layout NAMES_USED
+			BHS becomes unique in MODE viewing one person
+			BH6 gets blurred when milti dimentional 
+			BHS then relies on each ITEM has HEAP_ITEM 
+			 i8_HEAP // 128 active // 128 alias or expr or wrap
+			 i24_ITEM // 16 million items in MINI_MACHINE world
+
+			 ROT_8 // as_well_as_lohi this is ROT_8 i8_HI_i24_lo
+			 SFT_8 // as_well_as_lohi this is SFT_8 i24_hi_i8_lo
+
+			 DECL_ABCD but suggest ROT_8 to ADCB from 32_MEM_lohi
+			 HEAP_A
+			 ITEM_BCD
+
+
+	OPTION MMAP_FILE_between_FILES // MMAP is weird as BLOCK_in_FILE
+
+	QEMU boots an external TEMP_OS _WIN64 _NT _LINUX _UDEF
+	QEMU_SETUP creates above as copy of ROM - or intermeshes the pages
+	MMAP_SETUP interleaf MMAP LIST_of_MODIFIED_PAGES NEWVAL_old_VALUE
+	LING_USAGE in_line_above VALUE NEWVAL // as AVAR names
+	AVAR NEWVAL += of_SPEC SPEC // ALIAS AVAR_SPEC // all this is AUTO
+	AUTO_SCRIPT STREAM of CT_RT STEPS _and_PSG_LAYOUT with SUBLEX
+	OPTION DIALECT %s_%s
+	OPTION DIALECT %s%s%s LHS "_" RHS // AUTO recognises this usage LHS RHS
+	OPTION DIALECT %s%s // to match 2 expands to 3 // match MID == "" //
+	OPTION "" {} '' first_byte_is_NUL PTR_is_NULL nbytes==0
+
+	# PHRASE_BOOK # int nbytes; i8 * PTR; // PTR provides GETTER
+
+		GETTER is also SETTER also DEFER also PRE_CALC also UDEF
+
+		GETTER provides
+
+			ASM_load_register_from_PTR
+
+				load i64_CPU_WORD_in_reg_i0 // i0 means KNOWN
+				// KNOWN means CT_RT on_request GUESS
+				// BENCH catches that, left as initial logic
+				// BENCH expands locally held and recent used
+				// BENCH brings up VIEW of ITEM in MEM
+				// BENCH brings up VIEW of MMAP in MEM
+
+				load i64_CPU_WORD_i8 // 32 is a lot // no MMX here
+		PRE ALLOC GPR /* as STR */ _i8_idx // later convert IDX to STR
+		PRE ALLOC GPR /* as IDX */ _i8_idx // MMX via filters
+
+			MINI_MACHINE gets a few registers
+			GCC gives itself all of them 
+			GCC 
+
+				

@@ -6,8 +6,11 @@ URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.9p2.tar.gz
 URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.0p2.tar.gz   
 # p2 is p1 inside
 URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.0p1.tar.gz   
+# and now
+URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.1p1.tar.gz   
 fn_grp_url util $URL
 fn_unpack
+# exit
 fn_with_grp libr
 fn_with_grp util
 CON_OPTS="--with-privsep-path=$prefix/var/empty"

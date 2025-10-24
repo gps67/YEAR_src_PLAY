@@ -11,6 +11,7 @@
 	OBJS_base1 += stbl_spelling.o	 # tokeniser
 	OBJS_base1 += word_splitter.o	 # argv # see proto_parse_base
 	OBJS_base1 += align_val.o	 # none left center right
+	OBJS_base1 += amnt_t.o		 # add no_comma for CSV
 
 # glib # plus the scattered stuff
 #	OBJS_base1_glib += g_rrr.o		# glib # see also g_rrr_gtk.o

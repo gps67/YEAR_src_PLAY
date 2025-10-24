@@ -1,0 +1,81 @@
+GEN_ASM_CPU/
+GEN_ASM_CPU.txt
+
+	avoiding qemu 
+	avoiding llvm
+	liking ARGV_is_OBJV // kind_of // DIALECT adds lots of AVAIL_EXPR near
+
+	following CPU // starting with typical INT REG STACK INT
+
+
+ in other words
+
+ 	4-CORE
+ 	4-CPU
+ 	2-CPU_DUO-4-CORE_THREAD
+
+	 basically some silicon heads at Intel
+	 designed a CPU with two brain halves sharing one outside
+
+	 somehow their PLAN is "hyper-threading" 2 threads 1 bus
+	 the design uses 2-sides multi-tasking for a bunch of local devices
+	 cpu device might be a FPU_UNIT
+	 cpu device might be a XMM_UNIT
+
+	 	XMM is MMX and +1 the next evolution
+		XMM is a hardware layout, such as the AMD64 with_options
+		XMM is ROM_PROFILE + UDEF_PROFILE
+		ROM_PROFILE
+		 ARM_32_MODE
+		 X86_32_MODE
+		 X86_16_MODE_absent
+		 ARM_64_MODE
+		 X86_64_MODE
+		MMX += XMM // new values old name // SCOPE RULE MATCH and GEN
+		MMX is 8 registers
+		EACH register is 128 bits
+		Number of i256_fields in MMX
+
+			| ROW[N_row]
+			+----[0]------------------
+			| 
+			+----[1]------------------
+			|
+			+----[2]------------------
+			|
+			+----[3]------------------
+
+https://docs.oracle.com/cd/E18752_01/html/817-5477/eojdc.html
+		.
+	.
+	https://en.wikipedia.org/wiki/MMX_(instruction_set)
+	AMD_64_Athlon // lacks SSE
+	Extended MMX instructions = Pentium III SSE
+
+https://en.wikipedia.org/wiki/MMX_(instruction_set)
+
+MMX
+	8x 64bit
+	1_2_4_8 ints
+
+XMM
+	16x 128_bit
+
+YMM
+	16x 256_bit
+
+
+AVX
+	Q1 2011 intel
+	later AMB Bulldozer
+
+
+MINUS_ZERO_PLUS
+	
+
+	i256	crypto_line_256_bit crypto_block _256
+	i256	i256 // NUMERIC INT SIGNED MINUS_ZERO_PLUS
+	i256	QUAD_i64_i64_i64_i64 WORD_one_two_3_4
+	i128	PAIR i64_i64 WORD_one_two // see also CODE_POINT WORD_xpos 
+	i64
+

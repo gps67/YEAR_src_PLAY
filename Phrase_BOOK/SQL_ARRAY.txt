@@ -1,0 +1,19 @@
+
+	SQL has ARRAY[N] of int/float/str/str(3)
+
+	MMAP might want to mimic that, as it allows UNION of SQL_READY data
+	MMAP and mysql | postgres | oracle | UDEF
+	MMAP and sqlite 
+
+	CREATE TABLE TBL (C1 int ARRAY[3], C2 varchar(5) VARARRAY[4]);
+
+		NB CSET_BYTE
+
+			varchar(5) is not 5 glyphs in UTF8 
+			varchar(5) is <=5 glyphs in UTF8 overflow byte_pos_5
+
+			CONVERT STR_UTF8 to STR_BYTE(5)
+
+				on_OVERFLOW
+				on_OVERFLOW_mid_UTF8 
+

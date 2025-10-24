@@ -65,5 +65,4 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-09-07, 32453,  16.50, 21.60, Y Full Morissons FLEX BH
 2025-09-28, 32694,  25.57, 34.24, Y Full Morissons FLEX BH
 2025-10-07, 32899,  20.31, 27.20, Y Full Morissons FLEX BH
-# CMNT
-# how could you do this to me barry # I'm over here Bev # Spec Savers #
+2025-10-07, 33072,  16.68, 22.33, Y Full Morissons FLEX BH

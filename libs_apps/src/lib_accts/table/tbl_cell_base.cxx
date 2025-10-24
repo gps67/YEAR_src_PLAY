@@ -100,7 +100,7 @@ void cell_base::prints()
 	static	buffer2 buf;
 		buf.clear();
 
-		amnt.get_nocurr_str( buf );
+		amnt.get_csv_str( buf );
                 return buf;
 
 		// it is still a CSV to be parsed

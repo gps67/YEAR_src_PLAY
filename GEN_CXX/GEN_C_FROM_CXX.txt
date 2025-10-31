@@ -1,0 +1,101 @@
+GEN_C_FROM_CXX.txt
+
+		PRE_WRITE_BORROW_GXX
+
+			write immediately in C++
+			write SOON in CXX into C++
+			write SOON in CXX into C
+
+			The key areas are already covered
+			VTBL in MMAP is not allowed CXX DECL -> GXX_DECL
+
+		GXX can be CLANG
+
+			The point is you cant write C++ as a varname
+			So I write GXX meaning gxx the gnu_gcc_cxx cxx compiler
+			Some RTFM work in parallel for CLANG inline ASM
+
+			TODO reserve CPU_WORD[idx] as thread_local_incl_store
+			this requires ALL loaded DLL's to be specially compiled
+			this requires API to save_load our register correctly
+
+			TODO reserve YMM i64_i64_i64_i64 as SESS_PTR_0_1_2_3
+
+				OPTION LOHI D B C A // RTFM the HW seq
+
+		C is an extra task to complete - a burden
+
+			doable on a feature by feature basis
+			doable as C_from_CXX 
+
+			MMAP uses DECL_ASM	from CXX
+			MMAP uses DECL_C 	from CXX
+			MMAP uses DECL_GXX 	from CXX
+			MMAP uses DECL_CXX 	from CXX
+
+		DECL_SPEC
+
+			UNION - with NEED_TO_KNOW
+			STRUCT
+			ARRAY
+			WORD
+			CPU_WORD
+			MEM_WORD
+			BITFIELD_in_WORD
+			BITFIELD_in_WORDS	TODO i32_i32 on CPU32
+			BITFIELD
+			float_double f16 f32 f48 f64 
+			DECODE_i64
+			 i8_i8
+			 i16
+			 I32
+
+	GEN_C
+
+		ITEM_NAME
+		 module	// namespace limit 1 depths for now // +1 +2 +3
+		  class
+		   ITEM_NAME
+
+		 We use own alternative to VTBL
+
+		 	KNOW_SPEC = SPEC
+
+		alias module = VFS_TREE_STEPS _LIBR _MODULE 
+		alias module = VFS_TREE_STEPS _LIBR _NAMESPACE _MODULE
+
+	C is required to PROVIDE GEN C
+
+	_FFFF using BITFIELDS
+
+		VAR_NAME can be ROM
+
+
+		OBJ_ADDR often IDX 
+	
+	RECENT IDX
+		idx_%s
+	RECENT IDX
+		PUSH SCOPE LAYER - close one start new - as_was at NEXT_EDGE
+		EDGE NEXT_EDGE arriving right now -- flush before then
+		FSM PATH WAYS pause until next edge
+		as REAWAKE on EDGE UPTO then WHEN
+		as REAWAKE on EDGE UPTO_EDGE
+		as REAWAKE on EDGE END_EDGE
+		as REAWAKE on EDGE GAP_EDGE
+		as REAWAKE on EDGE NEXT_EDGE
+	
+	GEN_TP7 - not until you PROVIDE it
+	GEN_TCC - OPTION WITH ASM 
+	GEN_GCC - with ASM and -o2 
+	GEN_GXX - with ASM with C++ not too much stdlib with MMAP
+
+	GEN_CXX - script that calls PRE_LOAD PRE_COMPILE CT_RT examined code
+	GEN_ASM - GCC does ASM - ASM does ASM
+
+		FFI
+
+	GEN_ARGV_SCRIPT
+	GEN_CXX_SCRIPT
+	GEN_API_HEADERS
+

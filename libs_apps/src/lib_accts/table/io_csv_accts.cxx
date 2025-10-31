@@ -30,7 +30,7 @@ io_csv_accts::~io_csv_accts()
 
 	Generic CSV does not HAVE to have header lines (chaos tho)
 */
-bool io_csv_accts::got_line_1()
+bool io_csv_accts::got_1_line()
 {
 	if(1)	print_fields();
 	if( !nfield ) return FALSE;

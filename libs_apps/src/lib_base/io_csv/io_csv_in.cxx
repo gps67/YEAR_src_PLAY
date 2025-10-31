@@ -229,7 +229,7 @@ bool io_csv_in::load_line( char * line )
 			}
 		}
 	}
-	got_line_1();
+	got_1_line();
 	return TRUE;
 }
 
@@ -263,7 +263,7 @@ void io_csv_in::got_blank_line()
 /*!
 */
 // VIRTUAL
-bool io_csv_in::got_line_1()
+bool io_csv_in::got_1_line()
 {
 	return TRUE; // continue
 }

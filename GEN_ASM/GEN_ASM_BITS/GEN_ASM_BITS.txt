@@ -1,0 +1,219 @@
+GEN_ASM_BITS/
+GEN_ASM_BITS.txt
+
+	(1) DATA_BITS (+) i256 (+) i256[ u7 ] // [128] //
+	(2) gcc inline function that is the ASMS reason why
+
+	(2) += gcc inline ASM
+	(2) += psg_TREE_edit
+	(1) += ARRAY[ N_PAGES ] of PAGE_of_128_WIDE_WORD_256
+	(1) += i256 // 32 bytes same as KEY_SIZE_32_BYTES 
+
+	// BITFIELD_256 { i64[4] } // EACH AUTO NAME %s
+	//
+	// i64[4]	ZERO ONE TWO THREE
+	// i32[8]	idx_i3 %s_idx_i3 
+	// i16[16]	idx_i4 i4_idx_%s NAME_one // from HERE is _one _two 
+	//  i8[32]	idx_i5 
+
+
+
+
+
+FROM
+	glibc provides SWAPB that reduces down to nothing
+
+		SWAP_BYTES in GPR_A _1_2_4_8
+
+		uses gcc 'C' inline function as a MACRO
+
+			thats what we are going to do
+
+		UNARY_FUNC_xFFFF
+
+		int_32 FUNC( int_32 ARG1 ) { ASM_in_SITU( ARGV ) return ARG1 }
+
+		 require procedural style 
+
+		 	ARG1 = filtered( ARG1 )
+			return ARG1
+
+		 REQUIRE inline_amp_AVAR uses CPU_ALLOC_REG_a is _AVAR
+
+		 	SWAP_BYTES( t_1248 & CPU_WORD )
+
+		 PROVIDE IN_SITU_EA_AVAR to FUNC
+
+		 	pascal and others have
+
+			 IN
+			 OUT
+			 IN_OUT
+
+			C has
+
+			 ITEM_t * PTR
+			 ITEM_t & PTR
+			 CPU_WORD & PTR
+
+			C++ provides PTR is actually i8i8_i16_i32
+
+		 i8i8_i16_i32
+		 i8i8_i16_i8_i24
+		 i8i8_i16_i8i8_i16
+
+
+		  OPTIMISER_27
+
+			i32_i32
+			MEM_WORD
+		  	CPU_WORD
+
+			CPU has excellent cache and can access the data in MEM
+			GEN code where IN_SITU is MEM_WORD at EA_ADDR
+
+			AVAR_TECHNOLOGY have an API for AVAR and CT_RT 
+
+			 i32 in an i64 world
+
+			 	CACHE fetches i64
+				ACCESS splices i32
+				CPU living in a 32_bit world
+
+			 BITFIELD_0300_i3 in an i64 word in a i32 world 
+			 i3_in_i8 backed by TABLES
+
+			 	i3_in_i8
+				i8_in_i64 B2B0_08_00 
+				i8_in_i64
+
+				i32_i32 // exists // has API required for GEN
+
+				ALIGN_64 // TOKEN="ALIGN" XPOS "%s_%s" _64
+				_64 MENTIONS MEM_WORD_64_ALIGN_64_in_64
+				_64 MENTIONS MEM_WORD_64_ALIGN_64_in_32_32
+				_64 MENTIONS MEM_WORD_64_ALIGN_64_in_64
+				_64 MENTIONS MEM_WORD_64_ALIGN_64_in_128
+				_64 MENTIONS MEM_WORD_64_ALIGN_64_in_256
+
+			REGISTER_ALLOC tracks CTOR_DTOR triggers RELEASE_REG
+			 
+
+	i256 = i64 A,B,C,D // LO HI
+		SIMD_SAYS 
+		 i64[4]
+		 i32[8]
+		 i16[16]
+		 i8[32]
+
+		 i128[2]
+		 i256[1] // or ADJUST name[0] to NAME // or use ZERO to PICK_VIA
+
+	BITFIELD_of_i256
+		 	use BOTH to access the two HALF words in i64 in i256
+		 u2 x i64 	 4 x WORD_64
+		 u3 x i32 	 8 x WORD_32
+		 u4 x i16 	16 x PAIR_16
+		 u5 x i8 	32 x BYTE
+
+		 Each WORD_256 holds 32 bytes of TEXT in a STREAM
+		 simply plough through the page (bulk optimised)
+		 maybe repeat with a second KEY over 4096
+
+		 EACH WORD_256 holds 32_BYTE_OBJECT EIGHT[4]
+
+		 	i8_i8_i16_i8_i24 [4]
+
+		 OPTION
+		  4 x EIGHT
+		  2 x PAIR_EIGHT_EIGHT
+		  1 x FOUR_EIGHT_EIGHT // _EIGHT_EIGHT 
+		 256 x EIGHT is 64 x WIDE_WORD_256
+		 
+	
+	MMAP page of 4096 is
+		u12 x  i8	4096 x  1
+		u11 x i16	2048 x  2
+		u10 x i32	1024 x  4
+		 u9 x i64	 512 x  8
+		 u8 x i128	 256 x 16
+		 u7 x i256	 128 x 32 // ARRAY[ u7 ] of i256 // ALIGNED //
+		 u7 x i256	 128 x 32 // <=== MMAP page = WORD_256[128]
+
+		 PAGE = ARRAY[ u7 ] of i256
+
+		 128 x WORD_256 per MMAP_PAGE
+
+		 	ie when the page is accessed
+			we load and decrypt the page
+			all 128 wide_words get decrypted and loaded and locked
+
+		WANT MMAP_SWITCH_STEP
+
+			a simple LOAD_ON_DEMAND
+			is a form of MMAP_SWITCH_STEP
+
+				before the CPU_attempted to read page
+				the page was [NOT_YET_AVAILABLE]
+
+				this meaning is assigned by caller
+				(when I say PQR I mean STU_2)
+				(when I say _one I mean _EDITED)
+
+				the PAGE load is made as part of ACCESS of PAGE
+				we PERMIT R RW X by SCRIPT to SEGMENT
+
+					that happened on open() and decrypt()
+					PERMIT is actually held by AGENT_ME
+	
+	MMAP doubles required file size in 2 files possibly move between
+
+		PAGE has ORIG DATA in FILE1
+		OPEN RW copies ORIG to BACK
+		DONE RW copies NEW_ORIG to KEEP -via-queue
+		OPEN R loads page_from_CURR_file
+
+	file_PREV
+	file_CURR MMAP_CURR is live it can corrupt - but is shared within threa
+	file_NEXT
+
+	FILE_CURR
+	FILE_BACK and _TEMP and _ALSO in VFS 
+
+		VFS and MMAP
+
+			need to move pages between files
+			simple: mmap to second then unmap from first
+
+		SYNC EDGE is a hassle
+
+			we really want a round trip SYNC_EDGE
+			to confirm when a MUX time has been reached
+			this can be held up by irrelevent MUX channels
+			so the threading groups in ways and mixes
+
+			we provide a regular SYNC_EDGE with T_WHEN_IDX_SEEK
+			TECH i64 = VALUE for idx_in_BATCH // i48_OFFS_in_FILE
+			 i32_time_in_decade_i32_idx_in_BATCH
+
+			GATE_TALLY_TRACKER
+
+				every ENQ_ACK has itself as an ID
+				every leaf is given a TEMP idx within SECOND
+
+		ROUND_TRIP says abc received but not replied
+		ROUND_TRIP says STREAM upto T1 received (other streams not)
+L
+ZZ
+
+
+
+ ZONE_HEAP_ITEM
+
+ LETTER to NSIB offers V_CODE also asks for
+
+		 u6 x i16
+		u12 x i8
+		u12 x i8
+		u12 x i8
+

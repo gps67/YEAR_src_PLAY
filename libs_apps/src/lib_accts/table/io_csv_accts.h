@@ -8,7 +8,7 @@ namespace ACCTS {
 class data_set;
 
 /*!
-	io_csv_in reads CSV lines and io_csv_accts::got_line_1 sends
+	io_csv_in reads CSV lines and io_csv_accts::got_1_line sends
 	them to the dset
 */
 class io_csv_accts : public io_csv_in
@@ -20,7 +20,7 @@ class io_csv_accts : public io_csv_in
 	~io_csv_accts();
 
  virtual
-	bool got_line_1();
+	bool got_1_line();
 };
 }; // NAMESPACE
 

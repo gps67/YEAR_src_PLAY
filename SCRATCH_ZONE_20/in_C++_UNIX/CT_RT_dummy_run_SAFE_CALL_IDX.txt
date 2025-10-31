@@ -1,0 +1,258 @@
+CT_RT_dummy_run_SAFE_CALL.txt
+
+	There is no such thing as a SAFE_CALL to PRE_LOAD
+
+	We require that it is never called IRL by the REMOTE_SUBSCRIBER_AGENT_FOR_USER
+
+	CONCEPT: SAFE_CALL has a SCRIPTED_VECTOR where DONE_CALL was_in_hidden
+
+		eg test drive the UDEF code in a sandpit
+		monitor each SCRIPT for ACTUAL_CXX_USED and for ACTUAL_C_INVOKED
+
+			LIST of C_CALL_DONE
+	
+	CONCEPT: CALL_DONE // looks like RET_VAL is already known
+
+	CONCEPT:	SCRIPT STACK FRAME COMPNENTS DIAGS
+
+	ITEM_t ITEM = KEY_ITEM = " CONCEPT:	SCRIPT STACK FRAME COMPNENTS DIAGS"
+
+		PARSE STR = ARGS_upto_eoln # as yet unparsed
+
+		The CODE_POINT XPOS      = X_POS
+		The CODE_POINT TREE_XPOS = T_POS
+
+			on first MENTION "X_POS" AUTO MK_VAR "X_POS"
+			// BENCH "X_POS" is noticed same TOKEN_SPELLING
+			// BENCH KEPT_XPOS == "X_POS" // anything else %s
+			// PARSE MATCH -above- rerun it to get its XPOS
+			// PREPARE MATCH -rerun-of-script-same-code_point
+			// ADJUST MATCH CPOS of "XPOS" STR_P0_P2
+			// DIALECT P0_OFFS // P2 = P0 + P0_offs // OFFS FROM P0
+			
+
+			popped though creation to existance
+	
+	DISTRIBUTED DIARY
+
+		TIME_LINE TPOS // f64_ms i64_ms milli seconds since 1999 // 2000 = 0 +1
+	
+	SCRIPT AUTO DECL %s_%s TYPENAME VARNAME // explain SP_0 JOIN_0
+
+
+	SUB_LEX smudges inwards in_to SUBLEX_PHRASE A_B_C 
+
+		MINI_MACHINE searches ASCII // OK with utf8 OK with 8859 ASCII
+
+			search "A_B_C" find "A" find "B" find "C"
+			search "A_B_C" 
+
+				find "A"
+				find "_" as JOIN.JOIN_USED // TOKENISE :-)
+				find "B" // VAR_POOL NAME_POOL item "B"
+				find "C" // STR_P0P2 // STR_NUL // STR
+				// STR_P0P2 = STR_CSET_P0_P2_N_BYTES
+				// CT_RT picks N_BYTES because DIALECT_PREFER
+				// CT_RT picks P0_nbytes because DIALECT_PICK
+				STR = "C" = CSET_P0_nbytes += EXTRA
+				STR += EXTRA
+				EXTRA += get_CSET get_P0 get_nbytes get_XPOS
+				EXPTRA += XPOS = CSR_POS "{ i8 * PTR }"
+				"{ i8 * PTR }"
+				EXPTRA += XPOS = CSR_POS SCOPE_OFFFS_wrt_ZERO
+ CONCEPT			// ZERO OFFS ITEM // SPEC //
+ 				move SPEC from CMNT to CT
+				decl SPEC on both ends of CALL
+	
+	CALL
+
+		END <--> CALL <--> END
+
+	RPC CALL via CACHE
+
+		CACHE
+			expected that CALL
+			expected this CALL
+			expected      CALL / DIALECT STEP EMIT_OMIT THIS_THAT
+
+		PRE_LOAD
+		PRE_CALL
+
+			A = lookup "A" // CT_RT created A_as_TOKENISED_SPELLING
+			B = lookup "B" // CT_RT adds NAME_ALIAS B_SPELLING
+			C = lookup "C" // CT_RT upgrades SPELLING to TOKEN if 
+
+		PRE_LOOKUP "A" to get the nearest copies of "A" 
+		PRE_LOOKUP "A" to get the token A
+
+			A is created in THIS script
+			A == "A" // TRUE // 
+			A == "A_%02X" // MATCH // $1 as %02X // ALIAS %X //
+			SIMPLIFY will focus on obtaining idx
+			SIMPLIFY will focus on not needing to obtain idx
+			EMIT_OMIT track "%02X"
+			EMIT_OMIT track  %02X  // CXX can do this - it is wierd
+			EMIT_when_OMIT can still be EMIT GEN CODE to setup cache
+			GEN INIT_CODE // PRE_CHECK it into INIT_DATA // DATE
+			OMIT %s HELPS SIMPLIFY
+
+				OMIT has not deleted that item + code (it has)
+				OMIT simply does not mention it here
+				OMIT knows that it is fully explained by DECL
+
+	"{ i8 * PTR }"
+
+		char * PTR_STREAM // YES char_in stream_of_char
+		char * PTR // YES char_in_STREAM
+
+		PROVIDE P0_LIMIT_EDGE = P0_of_PTR
+		REQUIRE P2_LIMIT_EDGE = P2_of_PTR
+		PROVIDE P0 as controlled PTR for THREADS to MOVE sometimes
+		We simply flush every line, PTR can move be moved then
+
+			GC is for after
+			ALLOC is for a while
+			ALLOC_GROW = GROW // META LANG claims this line
+			// other scripts might see and ignore
+			// PARSE and FOGRET
+
+	SUB_LEX smudges upwards in PHRASE
+
+		TYPENAME
+		TYPE_NAME
+		TYPE NAME
+
+
+
+
+		NAME_t Name // AUTO_MK_VAR in a CAP1_NAME_Scope // CAP1_Land
+		// OPTION NOT /* CAP1_Land (above) */ so PICK == "CAPS"
+		 PICK_LIST CAPS Cap1 UPPER lower
+		 PICK_OPTS JOIN_JOIN SPLIT_GAP // %s%s%s LHS MID RHS
+		 // LHS == "%s" // MATCH AVAR $0 $1 %s %d _one _two 
+		 // LHS == "LHS" // MATCH AVAR $0 $1 %s %d _one _two PICK "LHS"
+		// TUPLO "{ LHS MID RHS }" // AUTO ADD CMNT CODE_POINT EXTRAS
+		// AUTO ADD CMNT CODE_POINT EXTRAS
+		// above MENTION "LHS" 
+		// above MENTION "{ ... }" /* TUPLO */ "{ LHS MID RHS }"
+			
+		on_MENTION_MK_AVAR_in_CACHE
+		on_MENTION_MK_AVAR_in_SESS_and_in_CACHE
+		on_MENTION_MK_AVAR_in_SCOPE
+
+			SCOPE requires VAR_NAME be C_ident and a TYPE_NAME_with_t
+			_t_OPTIONAL but resolve it with PHRASE 
+			by requesting a rescan of feature_found
+			by requesting a rescan of sub_expr_found
+			by requesting a rescan of PHRASE P0_P2 each XPOS
+
+				P0 and P2 bounce into P0P2 within SESS stack
+
+	GROW_SPACE
+
+		STREAM builds tables
+		GROW TABLE += ITEM
+		GROW_i3_idx // script sets i8 early // option i1_i2_i3_grow
+
+		LIMIT_256_BIT "{ i64 A_B_C_D[4] }" // LOHI and B2B2 // BYTE[32]
+		LIMIT_256_Byte "{ BYTE [ 255 ] }" // SP1_asif_ARGV
+		LIMIT_128_ITEM
+		LIMIT_256_ITEM
+		LIMIT_32K_ITEM // first 128 are still there for short opcode
+		LIMIT_64K_ITEM // support u16 as well as u15 // OPTION OFF
+		LIMIT_8M_ITEM // support u24 as well as u23 //
+		LIMIT_16M_ITEM // support u24 as well as u23 //
+		LIMIT_2G_ITEM
+		LIMIT_4G_ITEM
+		LIMIT_128_T // 48 K M G T x 256
+		LIMIT_256_T // 48 K M G T x 256
+
+	3 half pages
+
+		P0 MINUS PLUS HIGH P2
+		P0 MINUS PLUS P2 HIGH 
+		MINUS PLUS HIGH
+		      MINUS    PLUS      HIGH
+	i8	[-128 MINUS [0 PLUS [ 128 HIGH 
+		[-128 MINUS [0 PLUS [ 128 HIGH [ 256 P2_is_NEXT
+	u8   L=M=0 [M1]     [0 PLUS [ 128 HIGH [ 256 P2_is_NEXT
+	     L=M=-128	   Z=0      N=128      R=256
+	     L=M=-128	   Z=0      N=R=128 
+
+	     	ALLOC uses L_R M_N L_M_z_N_R and FROM_WHERE_INFO in SESS
+		ALLOC GROW using buffer2 but in MMAP 
+		ADDR BASE + OFFS // MOVE entire segments around at will
+		// BASE from OUTSIDE //
+		// OFFS to API as BASE within ZONE OFFS_BASE_one
+		// ADDR = BASE + OFFS
+		// OFFS = OFFS + OFFS
+		// OFFS = STEP
+		// STEP = offs_of_ARRAY_slot_IDX
+		// STEP = offs_of_FIELD_in_STRUCT
+		// STEP = offs_for_API_SAYS_FIELD_in_STRUCT
+		// need to track the PERMIT to point PTR anywhere // USES DATA
+		// DATA offers CT_RT tables of STEP // SESS moves ACCESS_CSR
+		// SESS CSR DATA carries PERMIT // find in LIST // CT_RT ENQ
+		// CT_RT enq asks "how_const_is_that_RET_VAL"
+		// CT_RT has done that and generated ACCESS code to TABLES 
+		// CT_RT knows RET_VAL depends on INPUT_LIST
+		// CT_RT GEN does NOTIFY on CHANGE admin in MINI_WORLD
+		// CT_RT is running some hallucination SAMPLE_DATA DEMO_CALL
+		// CT_RT tracks and deduces how CACHE can EMIT OMIT options
+	
+	ARRAY[L..R] // where L is MINUS so CALC_EA needs CALC_EA_STEP_one
+	ARRAY[u7] // for i8_PLUS
+	ARRAY[u8] // for i8_MINUS_did_CALC_and_pick_u8_PLUS // poss i9 loop
+
+		allow calc_u8 to return u7_PLUS // cant tell its all u8
+		allow calc_u8 to return u8_PLUS // full use of L_M_x_N_R api
+		allow calc_u8 to return i8_MINUS // LAZY eval can return MINUS
+		allow calc_u8 to return i16_MINUS // LAZY eval can return i64_MINUS
+		
+
+
+	BENCH 128   256 B // OMIT_EMIT B // OPTION FADE
+	BENCH  32K   64K
+	BENCH   8M   16M
+	BENCH   2G    4G
+	BENCH  128T 256T
+	
+		CONTINUE    SIGNED
+		RESUME of UNSIGNED
+
+## USING ABOVE TABLES and GROW_idx i3_idx
+
+	PRE_CALL UDEF SCRIPT
+
+		record all EXPRS used
+		compile them into SAFE_to_CALL // doesn't attempt anything
+		compile them into LIVE_to_CALL // access risk via safe api
+		compile them into UDEF_to_CALL // only run in SANDPIT mode
+	
+	JIT can be TOKENISE (because all this code is avail)
+
+		GEN_PARSE goes to ASCII SCRIPTS
+		GEN_PARSE goes to CODE_TREE
+
+		CACHE got XPOS == CODE_POINT_FFF1 // save for SAMPLE codes
+
+			in i16 model RESERVE M256 // early grow to i32 model
+
+		an ALIAS used a lot within each FUNC as LOCAL_SCOPE
+
+			SAMPLE_DATA uses same IDX as VAR_NAME
+			SAMPLE data reserves in advance or entire BLOCK AVAIL
+
+	AVAIL ALLOC - pre reserve 0xFFF0
+
+		GEN_PARSE goes to DATA_TREE
+
+			TEMP_HEAP_one .pre_grow_idx_to_i16
+			TEMP_HEAP_one .pre_reserve_IDX 0xFFF0 - 0xFFFF
+			TEMP_HEAP_one .set_IDX_P0 to CALLERS_AVAR N
+			TEMP_HEAP_one .USES "( idx = N ++ }" // see LIBR IDX
+			IDX knows all about "( idx = N ++ }" // see LIBR IDX
+
+	
+
+

@@ -13,6 +13,12 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+git://git.yoctoproject.org/poky
+https://github.com/castle-engine/castle-engine/
+https://github.com/Embarcadero/P4D-Data-Sciences
+https://github.com/Embarcadero/Dev-Cpp
+https://github.com/Embarcadero/DelphiVCL4Python
+https://github.com/Embarcadero/DelphiFMX4Python
 https://github.com/eranif/codelite
 https://github.com/uxebu/embedjs
 https://github.com/uxebu/bonsai

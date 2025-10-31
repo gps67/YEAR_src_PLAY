@@ -1,0 +1,37 @@
+
+	1	 8	char
+	2	16	short
+	4	32	word
+	8	64	long
+
+	4	f32	float
+	8	f64	double
+
+	10	f80	long double
+
+
+	---------------------------------------------	-1
+	0				0..0	  1	0
+	M1 0				0..1	  2	1
+	M2 M1 0 1			0..3	  4	2
+	M64 M63 ... M1 0 1 ... 63	0..127	128	7
+	M128 M127 ... M1 0 1 ... 127	0..255	256	8
+
+	MIN_u8	MAX_u8
+	MIN_i8	MAX_i8
+
+	MIN_u16	MAX_u16
+	MIN_i16	MAX_i16
+
+	TEST MINUS_ZERO_PLUS
+
+		is a comparisson with ZERO
+
+		ZERO can be just another PLUS ITEM
+		ZERO can be a special NULL not-an-item
+
+		MIN_MAX can be just another MINUS
+		MIN_MAX can be a special unused M_ZAP
+
+			but that does require a second TEST
+			although we will have "{ TEST M <= idx }"

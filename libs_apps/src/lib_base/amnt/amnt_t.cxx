@@ -49,7 +49,7 @@
 	}
 
 	//!	set( pounds )
-	void amnt_t::set( flt80 dbl )
+	void amnt_t::set( double dbl )
 	{
 		set_pounds( dbl );
 	}
@@ -70,7 +70,7 @@
 		pence = p;
 	}
 
-	void amnt_t::set_pence( flt80 p )
+	void amnt_t::set_pence( double p )
 	{
 #ifdef WIN32
 		pence = i32( p );
@@ -79,23 +79,12 @@
 #endif
 	}
 
-	void amnt_t::set_pence( double p )
-	{
-		set_pence( (flt80) p );
-	}
-
-
 	void amnt_t::set_pounds( int p )
 	{
 		pence = p * 100;
 	}
 
 	void amnt_t::set_pounds( double p )
-	{
-		set_pence( p * 100.0 );
-	}
-
-	void amnt_t::set_pounds( flt80 p )
 	{
 		set_pence( p * 100.0 );
 	}
@@ -361,7 +350,7 @@
 		{
 			return FALSE_dgb_fail( "Different Currencies" );
 		}
-		flt80 dbl = pence * val.pence;
+		double dbl = pence * val.pence;
 		dbl /= 100.0;
 		set_pence( dbl );
 		return true; // curr matched
@@ -373,7 +362,7 @@
 		{
 			return FALSE_dgb_fail( "Different Currencies" );
 		}
-		flt80 dbl = (100.0 * pence) / val.pence; // non zero !
+		double dbl = (100.0 * pence) / val.pence; // non zero !
 		set_pence( dbl );
 		return true; // curr matched
 	}

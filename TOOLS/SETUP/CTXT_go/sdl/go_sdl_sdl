@@ -1,10 +1,12 @@
 
 . ../go__fns
 
-fn_FAIL 22 unresolved
+# fn_FAIL 22 unresolved
 
 fn_grp_url sdl \
-	https://github.com/libsdl-org/SDL/releases/download/release-3.2.16/SDL3-3.2.16.tar.gz
+	https://github.com/libsdl-org/SDL/archive/refs/tags/preview-3.3.2.tar.gz
+#	https://github.com/libsdl-org/SDL/releases/download/release-3.3.2/SDL3-3.3.2.tar.gz
+#	https://github.com/libsdl-org/SDL/releases/download/release-3.2.16/SDL3-3.2.16.tar.gz
 #	https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2.tar.gz
 
 # fn_no_VPATH

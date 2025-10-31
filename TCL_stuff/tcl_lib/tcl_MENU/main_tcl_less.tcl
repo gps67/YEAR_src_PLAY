@@ -48,7 +48,13 @@ namespace eval ::tcl_less {
 	proc setup_stdin_to_text_out {} {
 		# not fantastic with CR to BOLN to overwrite
 		fconfigure stdin -blocking 0 ;# -encoding binary
-		fileevent stdin readable {
+		chan configure stdin -blocking 0 
+		chan configure stdin -translation binary
+		# binary means CR appears in data
+		# binary means badly formed UTF8 - eg random bytes are vis
+
+		chan event stdin readable {
+		# fileevent stdin readable { ;# SCRIPT # on fileevent readable }
  # error reading "stdin": invalid or incomplete multibyte or wide character
  #    while executing
  # "gets stdin line"
@@ -56,26 +62,59 @@ namespace eval ::tcl_less {
  # even updating its menu when mouse over
  # but running not in pipe was OK manually ??
 
+ 	#	if {[catch { SCRIPT } ret_var_name opts_var_name]} {
+	#	  # SCRIPT_FAILED # catch can return 0 TCL_OK 1 TCL_ERROR ...
+	#	  # ret_var_name set to MESSAGE
+	#	  # opts_var_name #
+	#	  #  -level 0 # RTFM
+	#	  #  -code 0 # RTFM ? a SCRIPT command
+	#	} # else { WORKED_FINE }
+	# ifok	# # ret_var now contains SCRIPTS return VALUE
+	# fail	# # ret_var now contains ERROR_MESSAGE
+
+	# 0	TCL_OK CATCH returns ZERO no problems no catch done
+	# 1	TCL_ERROR
+	# 2	TCL_RETURN
+	# 3	TCL_BREAK
+	# 4	TCL_CONTINUE
+
+	# 5	TCL_OK
+	# 6	TCL_OK
+	# 7	TCL_OK
+
 		 if {[catch {
-			if {[gets stdin line] >= 0} {
+			if {[chan gets stdin line] >= 0} {
 				text_out_ln - $line
-				text_out_limit_lines - 2500
+				text_out_limit_lines - 9500
 			} else {
+				text_out_ln - "gets failed"
 				# RTFM says an incomplete line returns -1
 		#		text_out_ln - "gets returned -1"
 		# above printed twice per line # 2 of 3 #
-				if {[ eof stdin ]} {
-					fileevent stdin readable {}
+				if {[ chan eof stdin ]} {
+					# cancel own fileevent subscription
+					# fileevent stdin readable {}
+					chan event stdin readable {}
 					close stdin 
 					text_out_ln - {## EOF TODO WAIT LESS ##}
 				}
 			}
 		 } retvar evars]} {
-			puts stderr "# FAIL # TCL_LESS # $retvar $evars"
-			text_out_ln - "# FAIL # TCL_LESS # $retvar $evars"
-					fileevent stdin readable {}
-					close stdin 
-					text_out_ln - {## EOF TODO WAIT LESS ##}
+		 	# catch returned non zero not TCL_OK 
+			puts stderr "# FAIL # TCL_LESS # $retvar # $evars"
+			text_out_ln - "# INFO # chan tell [chan tell stdin]"
+
+			set E_CODE [dict get $evars -errorcode ]
+			try {
+			}
+
+			text_out_ln - "E_CODE $E_CODE"
+			# fileevent stdin readable {}
+			if {[ chan eof stdin ]} {
+				text_out_ln - {## EOF=Y TODO WAIT LESS ##}
+				chan event stdin readable {}
+				close stdin 
+			}
 		}
 		#	update idletasks
 		}

@@ -22,6 +22,8 @@
 	If your base changes, you need two sets of accounts.
 	There might be way of merging two lines from two currencies,
 	but that will use a FIXED convertion rate.
+
+	SO i64 pence
 */
 
 /*!
@@ -53,7 +55,8 @@ struct curr_t : public GRP_lib_base
 struct amnt_t : public GRP_lib_base
 {
 	curr_t	curr;
-	i32	pence;
+//	i32	pence; // 21 million though 
+	i64	pence; // 4G * 21 million pounds (counting in pence)
 
 	/*!
 		constructor - default zero
@@ -90,7 +93,7 @@ struct amnt_t : public GRP_lib_base
 	amnt_t( str0 s );
 
 	//!	set( pounds )
-	void set( flt80 dbl );
+	void set( double dbl_pounds );
 
 	/*!
 		assign from string value 1.23
@@ -99,7 +102,7 @@ struct amnt_t : public GRP_lib_base
 
 	void set_pence( int p );
 
-	void set_pence( flt80 p );
+//	void set_pence( flt80 p );
 
 	void set_pence( double p );
 
@@ -108,7 +111,7 @@ struct amnt_t : public GRP_lib_base
 
 	void set_pounds( double p );
 
-	void set_pounds( flt80 p );
+//	void set_pounds( flt80 p );
 
 	double get_pounds_double() const;
 

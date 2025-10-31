@@ -67,7 +67,104 @@ YMM
 
 AVX
 	Q1 2011 intel
-	later AMB Bulldozer
+	later AMD Bulldozer, and Jaguar Puma
+
+YMMX
+	generic FPU SIMD Module YMMX
+	simplifications required to switch when YMM is not available
+	ancient XMM does not always have its derived YMM, even though we do
+
+AVX-512
+	32x 512 - also 32x YMM etc
+
+OPTION	YMMX = XMM
+
+	PAIR_i64_i64[N4=16] // MMX_N4 = MMX_N16 // 4BIT_TUPLO
+
+DIALEXT BITFIELD_TUPLO can be WORD can be ITEM in NBIT see SPEC_of_same_index
+DIALECT SPEC_of_same_IDX // KNOW LIST = ARRAY[IDX] of SPEC
+DIALECT LIST is the wrong word for VECT or ARGV or OBJV or N_STEP
+
+	XMM has 16 registers
+
+	XMM[ idx_XMM ] is i128
+
+		KEEP this a SINGLE amoungst PEERS
+		ALSO a MINI_WORLD SCOPE TREE 
+		USAGE i64_i64 
+		 USAGE copy from XMM[register_idx] 
+
+THINK_OF is a bit like MENTION
+
+	AUTO KEEP ALLOC idx = N ++ // N == "N_%s" 
+
+	u4_idx register_idx = SPEC_EXPR EA_of_AVAR 
+		AVAR is a FPU_WORD_in_MMX_module // REQUIRE_XMM_SHIMS+
+		
+	REQUIRE MMX	or SHIM on other CPU
+	REQUIRE XMM	or SHIM on other CPU
+
+	PROVIDE -ditto-list-
+	GEN foreach -ditto-list- {
+		// STYLE last of ARGV is this BRACED SCRIPT
+	} // could still add more here // think of as being mid stream
+	// ARCHIVE has already accumulated ROM and STO and UDEF
+	// MATCH SCRIPT found MID_ARGV // bool was_at_EOLN() { end_of_ARGV() }
+
+	/*
+		you are expected to know BASIC C++ and let AI BENCH EXPLAIN
+		Our NON_AI implementation, offers various ways, PICKS, as_API
+		PICKS makes the difference TEMPLATE+ARGS+SESS
+
+		The jump into the void is allowing PROVIDE to work
+
+			CACHE can model a reasonable REMOTE
+
+				particularly when OWN_CODE_INVOKED_BOTH_ENDS
+
+			CACHE_PREDICTS_REMOTE
+
+				CT_RT helps by running CACHE_of_REMOTE_CODE
+				also using NOT_YET_KNOWN as UNSET NULL
+				other NULLS trigger a function_call() and ret_OK
+
+			If we are lucky we can go the entire conversation
+			without actually sending XMIT of ENK_ACK
+			it is all PRE_LOAD or RUN_NOW to KNOWN and MEASURED
+
+				needs ZONE_HEAP_ZONE
+
+					an attempt at SAFE container for UDEF
+
+					we actually allow UDEF to do block
+					but only so we can both use the same 
+					C++ MMAP code
+					C may be an option
+					// C_from_CXX //
+					// CLANG_from_CXX // llvm 
+					// GCC_from_CXX // 
+					// GCC_inline_ASM // 
+					// TP7
+					// CLANG
+
+				uses LIBR_ZONE_HEAP_ITEM
+
+					LIBR uses a ROM area and a STO area
+					LIBR uses a SESS api via CXX
+				needs STO += VAR_POOL in ZONE_HEAP_ZONE
+
+		The jump into the void is allowing REQUIRE to work
+
+			we dont do this yet
+			we PROVIDE actual simple BITFIELD_TECH
+			GET_BITFIELD CPU_WORD << DROP_RIGHT 
+			GET_BITFIELD CPU_WORD >> DROP_RIGHT + DROP_LEFT
+			// ABOVE // SIGNED SHIFT // C uses ((i64)CPU_WORD)>> 
+
+
+		
+
+	*/
 
 
 MINUS_ZERO_PLUS

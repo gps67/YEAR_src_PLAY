@@ -7,17 +7,17 @@
 
 /*!
 	reads CSV lines from a zlib file (can be uncompressed), 
-	and sends them to (virtual) got_line_1() which has
+	and sends them to (virtual) got_1_line() which has
 	public partially-writable access to support structures -
 
 	The (single) input line has been split into fields. The
 	text is held in the zfile_line_in input line buffer, and
 	may be overwritten. Each field already has a NUL byte
 	and text within them can be overwritten or truncated,
-	but not expanded, and will often be recycled for each got_line_1()
+	but not expanded, and will often be recycled for each got_1_line()
 
 	Theres an adjustment to be made to the source, but THIS accepts
-	packets of CTXT=self CTXT.got_line_1()
+	packets of CTXT=self CTXT.got_1_line()
 
 	The
 */
@@ -43,7 +43,7 @@ class io_csv_in : public GRP_lib_base
  virtual
 	void got_comment();
  virtual
-	bool got_line_1();
+	bool got_1_line();
 };
 
 #endif

@@ -1,0 +1,33 @@
+NAME_LIST.txt
+
+	T2_t T2 = get_T2_from_PANEL_MANAGER( left_panel )
+	T2_t T2 =     T2_from_PANEL_MANAGER( panel_one )
+
+		_one
+		_two
+		_idx[idx_N] // C adds loads to the OBJ_ITEM ARRAY
+		_%s // add to VAR_POOL // VAR_POOL_one // panel_dgn_stack
+
+		debugger ready to roll - gdb not FPC_builtin
+
+	OPTION drop get_ 
+
+		less crowded
+		uses _from_
+
+		nb when T2 is named and named the get_ is pointless to excess
+		nb when T2 is hidden the get_ is best almost necessary
+
+	OPTION roll RET_VAR into ARGS
+
+	bool OK = get_T2_from_PANEL_MANAGER( T2_t & T2, left_panel )
+
+		T2 was already CTOR ?
+		T2 was already NULL !
+
+		 means waiting for ALLOC
+		 if a reference is to be kept, tie it with GROUP_KNOW_REFS
+
+		 	GROUP does not handle ref_incr ref_decr ref_zero( ARGS )
+			GROUP knows about T2 is AVAR and T2_t // BOTH //
+

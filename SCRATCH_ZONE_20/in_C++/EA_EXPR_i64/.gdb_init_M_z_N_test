@@ -1,0 +1,4 @@
+set breakpoint pending on
+b main_bool
+# option # r A R G S # AUTO ARGV from line
+r

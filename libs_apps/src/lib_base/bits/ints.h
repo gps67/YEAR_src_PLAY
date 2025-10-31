@@ -63,7 +63,9 @@ typedef int delme;
 
 	BUG: avoid two inline parameters with g++ though !!
 */
+#if 1
 	typedef long double flt80;
+#endif
 
 #if 0
 	TOKEN SLIGHT_of_HAND

@@ -1,15 +1,11 @@
 set breakpoint pending on
-# b main
+b main
+r
 b dyn_array_index_error
 b PDF_GEN::pdf_base::begin_page_WH
 b run_pdf_vat_track
 b run_reports
 b ACCTS::data_set::file_save
-b data_set::file_load
-# above did not needs ACCTS:: namespace prefix
-# below has multiple proto match
-# b io_csv_in::load_file
-b io_csv_in::load_line
 b rep_html::opens_titles
 b rep_html::opens
 # b col_spec_str2_key::get_str2_for_csv
@@ -29,6 +25,5 @@ b rep_html::opens
 # r  --load-save-quit ../samples/0203.csv
 # r ../samples/rpt1.csv
 # r --load-saveAs-quit /tmp/2025_2026_BH6_edit.csv /tmp/2025_2026_BH6_edit_norm.csv
-# b get_obj
-# b table::find_row_add_fake
-r
+b get_obj
+B table::find_row_add_fake

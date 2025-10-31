@@ -26,7 +26,7 @@ per_cent_t()
 */
 void	per_cent_t::times( amnt_t & val ) {
 	// LURK rounding error
-	flt80 dbl = val.pence;
+	double dbl = val.pence;
 	dbl = dbl * rate;
 	val.set( dbl );
 }
@@ -87,17 +87,17 @@ IS_DIFF_t per_cent_t::cmp( per_cent_t * val2 )
 */
 void per_cent_t::calc_abc_from_A( amnt_t A, amnt_t & b, amnt_t & c )
 {
-	flt80 V17 = rate;
-	flt80 V100 = 100;
-	flt80 V117 = V100 + V17;
-	flt80 V_100_from_117 = V100/V117;
-	flt80  V_17_from_117 = V17/V117;
+	double V17 = rate;
+	double V100 = 100;
+	double V117 = V100 + V17;
+	double V_100_from_117 = V100/V117;
+	double  V_17_from_117 = V17/V117;
 
 	b.curr = A.curr;
 	c.curr = A.curr;
-	flt80 A_117 = A.pence;
-	flt80 B_100 = V_100_from_117 * A_117;
-	flt80 C_17  =  V_17_from_117 * A_117;
+	double A_117 = A.pence;
+	double B_100 = V_100_from_117 * A_117;
+	double C_17  =  V_17_from_117 * A_117;
 	b.set_pence( B_100 );
 	c.set_pence( C_17 );
 }
@@ -111,17 +111,17 @@ void per_cent_t::calc_abc_from_A( amnt_t A, amnt_t & b, amnt_t & c )
 */
 void per_cent_t::calc_abc_from_B( amnt_t & a, amnt_t B, amnt_t & c )
 {
-	flt80 V17 = rate;
-	flt80 V100 = 100;
-	flt80 V117 = V100 + V17;
-	flt80 V_117_from_100 = V117/V100;
-	flt80  V_17_from_100 = V17/V100;
+	double V17 = rate;
+	double V100 = 100;
+	double V117 = V100 + V17;
+	double V_117_from_100 = V117/V100;
+	double  V_17_from_100 = V17/V100;
 
 	a.curr = B.curr;
 	c.curr = B.curr;
-	flt80 B_100 = B.pence;
-	flt80 A_117 = V_117_from_100 * B_100;
-	flt80 C_17  =  V_17_from_100 * B_100;
+	double B_100 = B.pence;
+	double A_117 = V_117_from_100 * B_100;
+	double C_17  =  V_17_from_100 * B_100;
 	a.set( A_117 );
 	c.set( C_17 );
 }
@@ -135,17 +135,17 @@ void per_cent_t::calc_abc_from_B( amnt_t & a, amnt_t B, amnt_t & c )
 */
 void per_cent_t::calc_abc_from_C( amnt_t & a, amnt_t & b, amnt_t C )
 {
-	flt80 V17 = rate;
-	flt80 V100 = 100;
-	flt80 V117 = V100 + V17;
-	flt80 V_100_from_17 = V100/V17;
-	flt80 V_117_from_17 = V117/V17;
+	double V17 = rate;
+	double V100 = 100;
+	double V117 = V100 + V17;
+	double V_100_from_17 = V100/V17;
+	double V_117_from_17 = V117/V17;
 
 	a.curr = C.curr;
 	b.curr = C.curr;
-	flt80 C_17  = C.pence;
-	flt80 B_100 = V_100_from_17 * C_17;
-	flt80 A_117 = V_117_from_17 * C_17;
+	double C_17  = C.pence;
+	double B_100 = V_100_from_17 * C_17;
+	double A_117 = V_117_from_17 * C_17;
 	a.set( A_117 );
 	b.set( B_100 );
 }

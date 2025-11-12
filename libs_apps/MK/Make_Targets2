@@ -191,7 +191,8 @@ endif
 
 $(DEPS) deps: 
 	@make $(RUN_INCL_PATH)
-	$(CXX) -MM $(INCLS) $(OPTIM) $(DEFS) $S/*/*/*xx  > $(DEPS)
+	touch $(DEPS)
+##	$(CXX) -MM $(INCLS) $(OPTIM) $(DEFS) $S/*/*/*xx  > $(DEPS)
 	
 
 $(PROG1_EXE): $(DEPS) $(makes) $M/Makefile

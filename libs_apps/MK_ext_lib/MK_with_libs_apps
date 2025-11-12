@@ -43,6 +43,7 @@ ifeq (1,1)
 
 	PKG_CONFIG += pkg-config
 	PKG_CONFIG += --define-variable=TGT=$(TGT)
+	PKG_CONFIG += --define-variable=UNAME=$(UNAME)
 
 	LINKS += $(RPATHS)
 	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`
@@ -50,7 +51,7 @@ ifeq (1,1)
 
 	# build varies on each box # LINK2 dir
 	# hostname of this BOX
-	BOX=$(shell uname -n)
+	export UNAME=$(shell uname -n)
 
 	# libs_apps/include/*.h # all of them
 	DIR_LIBS_APPS_INCL = $(DIR_libs_apps)/include
@@ -58,7 +59,7 @@ ifeq (1,1)
 	# LINK2 is the only one used
 	# LINK will confuse things
 	DIR_LIBS_APPS_LINK = $(DIR_libs_apps)/lib
-	DIR_LIBS_APPS_LINK2 = $(DIR_libs_apps)/build_$(TGT)_$(BOX)
+	DIR_LIBS_APPS_LINK2 = $(DIR_libs_apps)/build_$(TGT)_$(UNAME)
 
 	# build up like pkg_config LIST += uses_NAME 
 	# LIST_ gets converted SP to COLON # PKG_CONFIG_PATH

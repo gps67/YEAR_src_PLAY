@@ -1,0 +1,12 @@
+. ../go__fns
+URL=https://archive.mozilla.org/pub/opus/opus-tools-0.2.tar.gz
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+CON_OPTS="" # use ./config
+
+fn_configure_pfx $CON_OPTS
+fn_make 
+fn_make install
+
+## see also opus

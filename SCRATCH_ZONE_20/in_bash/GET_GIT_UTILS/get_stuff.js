@@ -13,6 +13,11 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://gitlab.gnome.org/GNOME/gnome-builder.git
+https://gitlab.xiph.org/xiph/opus.git
+https://gitlab.xiph.org/xiph/opus-tools.git
+https://gitlab.xiph.org/xiph/opusfile.git
+https://gitlab.xiph.org/xiph/libopusenc.git
 git://git.yoctoproject.org/poky
 https://github.com/castle-engine/castle-engine/
 https://github.com/Embarcadero/P4D-Data-Sciences

@@ -29,7 +29,10 @@ table * table_list::find_add_hidden( str2 * name )
 
 table * table_list::find_add( str2 * name )
 {
-	INFO("tbl_name '%s'", (STR0) name);
+	if(!name) WARN("NULL tbl_name name"); 
+	INFO("tbl_name '%s'", (STR0) *name);
+//	INFO("tbl_name '%s' from*name", (STR0) *name);
+//	INFO("tbl_name '%s' from name->str", (STR0) name->str);
 	table * tbl = tbl_map.lookup( name );
 	if( tbl) return tbl;
 	tbl = new table( name, dset );

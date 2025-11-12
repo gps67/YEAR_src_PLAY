@@ -34,18 +34,24 @@
 	. fns_MK_var	# sets vars ABS_OVER ABS_TOP TGT ABS_OBJDIR
 	. fns_USES	# generic package checkers 
 
+	# build dir could be outside tree or have uname on it
+	# ADJUST make per ABOX # ln-s build_TGT_ABOX -> build_TGT 
+	# SWICTH ABOX uses DEFAULT in TGT code format
+	# SCRIPT AVAR on_EVENT
+	#
+	fn_MK_var_TGT
+	fn_MK_var_ABOX
 
 	fn_MK_var_ABS_OVER
 	fn_MK_var_ABS_TOP
-
-	fn_MK_var_TGT
 	fn_MK_var_ABS_OBJDIR
-	fn_MK_var_ABOX
 
 	# check tha VARS are set 
 	fn_MK_check_vars
 
+	# LOAD CODE that does
 	. ./fns_MK_USES
+
 	fn_MK_check_vars
 	[ ! "${ABS_OBJDIR}"/. ] || fn_MK_mkdir_ABS_OBJDIR
 	dir_must_exist $ABS_OBJDIR

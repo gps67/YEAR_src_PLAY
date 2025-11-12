@@ -1,0 +1,16 @@
+P0P2_each_CSV_VAL.txt
+
+mpg.txt
+
+IN	load CSV 	mpg.txt
+	call STEPS
+OUT	save CSV 	mpg_table.txt
+
+mpg_table.txt
+	call steps = saves CSV via REPORT
+		REPORT += some calculated columns
+
+	THIS IS THE SECOND CORE_TABLE # mpg.txt was the first
+	USER did not type in any computed numbers, just from receipts
+	errors += lost_row # unrecorded payments # unnoticed milage
+	errors += typo in amnt

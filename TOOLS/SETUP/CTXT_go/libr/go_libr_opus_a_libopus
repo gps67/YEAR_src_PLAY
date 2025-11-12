@@ -1,0 +1,21 @@
+. ../go__fns
+URL=https://downloads.xiph.org/releases/opus/opusfile-0.12.tar.gz
+URL=https://downloads.xiph.org/releases/opus/opus-1.5.2.tar.gz
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+
+fn_configure_pfx 
+fn_make 
+fn_make install
+
+## see also opusfile
+exit
+
+GIT:
+
+https://gitlab.xiph.org/xiph/opus.git
+https://gitlab.xiph.org/xiph/opus-tools.git
+https://gitlab.xiph.org/xiph/opusfile.git
+https://gitlab.xiph.org/xiph/libopusenc.git
+

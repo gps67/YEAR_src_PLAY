@@ -194,6 +194,7 @@ fn_setup_environ()
 	# compile with gcc13 # or ln -s gcc13/ $tools_2000/gcc
 	gcc_old=gcc_old ;# manually create symb link
 	gcc_new=gcc_new ;# manually create symb link
+	export gcc10=gcc15
 
 	PATH_TOOL=${PATH_TOOL:-${tools_2000_go}/PATH_TOOL}
 	var_pfx PATH ${tools_2000_go}

@@ -82,8 +82,9 @@
 
 # on twin UNIX - different compilers! # UNUSED?
 
-	UNAME=$(shell uname -n)
-	UNAME_m=$(shell uname -m) # x86_64
+	UNAME=$(shell uname -n)#
+	UNAME_m=$(shell uname -m)# x86_64
+	ABOX=$(UNAME)# the # prevents SP attaching to ABOX #
 
 # ObjectType multi-build environments (on same machine) # UNUSED?
 
@@ -106,33 +107,16 @@
 # include /home/gps/YEAR/src/libs_apps/MK/Makefile_SITE_ABS_OVER
 # include ../MK/Makefile_SITE_ABS_OVER
 
-ifeq (1,0)
-	# makefile should ingnore this line because already det as ENV var
-	ABS_OVER=/home/gps/YEAR/src/PLAY/libs_apps/
-
-	# TODO check when set
-	# ABS_OVER=/media/X3/2011/src/
-
-	# the directory name of this project is fixed - SYMB LINK
-	#
-	#	libs_apps
-	#
-	ABS_TOP=$(ABS_OVER)/libs_apps
-
-
-	# You must run this from the $ABS_TOP/_run/ (level) directory 
-	#
-	# from $(ABS_OVER)/libs_apps/libs_apps_obj_$(TGT)
-	REL_TOP=..
-	REL_OVER=../..
-
-	OBJ_dirname=libs_apps_obj_$(TGT)_$(UNAME) # or build_...
-endif
-
 	#
 	# use TGT in pkg-config files
 	#
-	PKG_CONFIG=pkg-config --define-variable=TGT=$(TGT)
+#	PKG_CONFIG=pkg-config --define-variable=TGT=$(TGT) --define-variable=ABOX=$(ABOX)
+	PKG_CONFIG=pkg-config
+	PKG_CONFIG += --define-variable=TGT=$(TGT)
+	PKG_CONFIG += --define-variable=ABOX=$(ABOX) # used in m
+	# 
+	#
+	OBJ_dirname=build_$(TGT)_$(ABOX)# or with_PYTHON
 
 	#
 	# these two pairs are the same
@@ -146,10 +130,10 @@ endif
 	PKG_CONFIG_LIST += /home/gps/G/prefix/lib/pkgconfig
 	# freetype2.pc
 	PKG_CONFIG_LIST += .
-	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)/$(UNAME)
+	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)/$(ABOX)
 	PKG_CONFIG_LIST += ../pkgconfig/$(TGT)
 	PKG_CONFIG_LIST += ../pkgconfig
-	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)/$(UNAME)
+	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)/$(ABOX)
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig/$(TGT)
 	PKG_CONFIG_LIST += $(ABS_TOP)/pkgconfig
 	PKG_CONFIG_LIST += $(HOME)/G/prefix/lib/pkgconfig
@@ -417,7 +401,7 @@ else
 	## YOU MUST USE THE SAME PLACE $(O) in libs_apps/_run/mk
 	##
 
-	DEPS=$O/.depps#			#
+	DEPS=$(O)/.depps#			#
 
 # switching this OFF
 # moving to pkg-config method

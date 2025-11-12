@@ -1,0 +1,130 @@
+GEN_ASM_CPU/
+GEN_ASM_CPU_2.txt
+
+	OPTION FOCUS on YMMM 
+	OPTION FOCUS on FLOAT_64_10 // 10 16 32 128 256 N_f64
+
+		MMU_F64[ 256 ] // already using i16_IDX
+
+		 KNOW i16_IDX < 256
+		 DECODE_i8_IDX // u7_carried_in_i8
+		 DECODE_i16_IDX // u8 carried in i16
+		 DECODE_i32_IDX // u31 carried in i32
+		 DECODE_i64_IDX // u63 carried in i64
+
+		MMU_F64[ N ] // TEMPLATE BITFIELD_IDX
+
+		 DECODE_IDX // _1248 // when used as IDX
+		 SWITCH_BITFIELD
+
+		  CT_RT can provide B2B0_of_BITFIELD
+		  CT_RT tracks CODE_USED_ALLOC_BITFIELDS
+		  CT_RT notices MATCH B2B0_
+
+		  	DETECT B2B0("0800") MATCH("BYTE_A")
+		  	DETECT B2B0("1608") MATCH("BYTE_B")
+		  	DETECT B2B0("1600") MATCH("PAIR_i16") // AUTO_MATCH u15
+		  	DETECT B2B0("3200") MATCH("FOUR_ABCD_LOHI")
+		  	DETECT B2B0("6432") MATCH("FOUR_EFGH_LOHI")
+		  	DETECT B2B0("6400") MATCH("EIGHT_LOHI") // +TAG_xAA
+
+		  	DETECT B2B0("1600") MATCH("PAIR_i16") // AUTO_MATCH i15
+		  	DETECT B2B0("3216") MATCH("i16_PAYLOAD")
+		  	DETECT B2B0("4832") MATCH("4832")
+		  	DETECT B2B0("6448") MATCH("6448")
+
+		  	DETECT B2B0("6448") MATCH("6448")
+
+			expand iterate over all options
+			allow duplications because B2B0 is builtin
+			i8[8]
+			i16[4]
+			i32[2]
+			i64[1]
+			i64 _i64 = EXPR // OPTION VALUE "UNSET"
+			// usage pretend IDX_VAL goes thru CT_RT as STR_VAL
+			// STR_VAL "UNSET" comes from TRUSTED code
+			// MATCH NULL // 
+			// DECODE B2B0 // always decimal %02d%02d
+			// DECODE B2B0 // option hex_i16 decimal %02X%02X
+			// BITFIELD_B2B0 // itself a BITFIELD
+
+			// BITFIELD_256 uses_B2B0_256
+			// BITFIELD_128 uses_B2B0_128
+			// BITFIELD_64 uses_B2B0_64
+			// BITFIELD_32 uses_B2B0_32
+
+			// DECODE double step
+
+				B2B0_of_i64_in_i256
+
+				This is also a CRYPT BLOCK SIZE i256 32 bytes
+
+			i256 union i256_union
+
+			// MODE LOHI gets added to all C_funcs simple unique
+			// is_LOHI() { return MEM_is_LOHI; }
+			// is_HILO() { return MEM_is_HILO; }
+			// is_HILO() { return ! MEM_is_LOHI; } // ! == "NOT" 
+			// PSG_TREE node for EB_used_in_IF 
+			// PSG_TREE node for EB_used_in_GET
+			// IF has AVAR in SCRIPT // in PSG // in USAGE
+			// GET has AVAR in SCRIPT // ... // in DECL
+
+			// MATERIAL i64 A_B_C_D // now word_vars not chars
+			// MATERIAL works well in PKT and CRYPT_256 _32
+			// CRYPT_258_BYTES // u11 _2048_BITS
+			// 2 forces _ forces DECL CLAIM DECL _%s // LIMITS USE
+
+			i256 {
+				array[4] of i64	// a COMMON DESIGN ELEMENT
+			}
+
+			i256 {
+
+		// AVOID	array[0] is CONST of ANY // no PICK DATA
+		// AVOID	array[1] of 256 // ALIAS ITEM_00 ITEM i256
+		// AVOID	array[2] of 128 // ALIAS PAIR LHS_LO RHS_HI
+				array[4] of i64 // LOHI is local normal
+				array[8] of i32 // FOUR[u3]
+				array[16] of i16 // PAIR[u4]
+				array[32] of i8 // BYTE[u5]
+			}
+
+
+		CT_RT BYTE_SWAP_HILO
+
+			We are using LOHI because i64 resolves to i8 BYTE_A
+
+			The rest of the world uses NETWORK_BYTE_ORDER _HILO
+ _HILO
+  appears as _%s with USAGE_one // builtin idx u7
+  usage_two _1248_HILO 
+
+
+
+			_i64 // [0] // KNOW is IDX_of_THIS
+
+	
+	TAG_xAA
+
+		MERGE LHS -x- RHS into _FF
+
+			actually local [i2] picks BASE_i64 + _i2
+			 i2 is TYPE_NAME
+			_i2 is VAR_NAME
+			_i2 is VAR and its VAL // when i2 is TYPE_NAME
+
+			sparse enum simply iterates over all used
+			sparse enum can slowly accumulate ALLOC in CT_RT SESS
+
+
+
+		
+
+
+
+
+
+
+

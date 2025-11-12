@@ -7,16 +7,21 @@
 
 ##
 
-	fn_MK_var_ABS_OVER() {
+	fn_MK_var_ABS_OVER() { 
+		// ABS_OVER -MATCH- PACKAGE_NAME // MODULE_NAME
+		// AREA contains a few Module GROUPS
+		// ABS_OVER -MATCH- YEAR_src_PLAY
 		export ABS_OVER="${ABS_OVER:-$HOME/YEAR/src/PLAY}"
 	}
 
 	fn_MK_var_ABS_TOP() {
+		// ABS_TOP -MATCH- libs_apps
 		fn_MK_var_ABS_OVER
 		export ABS_TOP="${ABS_TOP:-$ABS_OVER/libs_apps}"
 	}
 
 	fn_MK_var_TGT() {
+		# TGT -MATCH- LGX # Linux GNU X11 # options on Gtk Qt Tcl Wx 
 		# -m32 so that insight works
 		export TGT=${TGT:-LGX}	# 64-bit ubuntu Linux-Gnu-X11
 		export TGT=${TGT:-CENTOS64}	# 64-bit centos
@@ -26,13 +31,20 @@
 	}
 
 	fn_MK_var_ABOX() {
+		# you can place your own PACKAGE.pc file # edit per ABOX UNAME
 		export ABOX=${ABOX:-`uname -n`}	# ABOX name of build system
 	}
 
 	fn_MK_var_OBJ_dirname() {
+		# return build_LGX_laptop_one
+		# never use a subdir # unless you provide it #
+
+		# probably results in calling twice - but works OK
+		# ENQ GET ACK SET # AVAR # all VARS USED #
 		fn_MK_var_TGT
 		fn_MK_var_ABOX
 
+		# THE RESULT
 		export OBJ_dirname="${OBJ_dirname:-build_${TGT}_${ABOX}}"
 
 		# experimental python has own subdir (base obj_ref differs)

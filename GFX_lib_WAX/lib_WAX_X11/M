@@ -1,3 +1,4 @@
 cd obj
+export UNAME=$(uname -n)
 make -f ../MK/Makefile "${@:-all}" 
 # make "${@:-test2}" 

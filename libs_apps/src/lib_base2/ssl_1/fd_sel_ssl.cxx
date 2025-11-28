@@ -160,9 +160,10 @@ fd_sel_ssl::fd_sel_ssl( bool _I_am_client)
 #endif
 	// ethernet TCP MSS 1500
 	// 1500 - 20 (MAC) - 5 (TLS_HDR) = 1475
-	// multiple of 64 = 1472 (512 bit XXX = 64 bytes) 23*64
-	// multiple of 32 = 1472 (256 bit SHA = 32 bytes) 46*32
-	// multiple of 32 = 1440 (256 bit SHA = 32 bytes) 45*32
+	// BYTES 1473  1474  1475 // 6 7 8 9 10 // next is 1481 // 1501
+	// multiple of 64 = 1472 (512 bit XXX = 64 bytes) 23*64 // 23 * 8 * i64
+	// multiple of 32 = 1472 (256 bit SHA = 32 bytes) 46*32 // 46 * 4 * i64
+	// multiple of 32 = 1440 (256 bit SHA = 32 bytes) 45*32 // 45 * 4 * i64  
 	// -1 (padding always used) = 1471 (but padding not 1 , now 2 4 or 8 )
 	// -1 (padding always used) = 1449
 	// multiple of 2 = 1470 (padding=2)
@@ -695,7 +696,8 @@ bool fd_sel_ssl::set_write_chunk_size_from_mtu( int size )
 		return FAIL( "mtu size %d too small", size );
 	}
 	// what daftness is this ?? 
-	int factor_64 = 64; // must be >=4
+	int factor_64 = 64; // 512 bit // must be >=4 bytes
+	    factor_64 = 32; // 256 bit //
 	int n_5_tls = 5;
 	int n_20_mac = 20;
 	int n_4_pad = 4; // padding >0 and also aligns to word size

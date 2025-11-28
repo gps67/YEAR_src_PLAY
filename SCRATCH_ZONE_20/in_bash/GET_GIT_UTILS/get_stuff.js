@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/ubunatic/gjs-pipe
 https://gitlab.gnome.org/GNOME/gnome-builder.git
 https://gitlab.xiph.org/xiph/opus.git
 https://gitlab.xiph.org/xiph/opus-tools.git

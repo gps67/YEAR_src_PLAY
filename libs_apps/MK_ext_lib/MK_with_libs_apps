@@ -41,9 +41,12 @@ ifeq (1,1)
 	TGT=WIN32
 	TGT=LGX
 
+	ABOX=$(shell uname -n)#
+
+
 	PKG_CONFIG += pkg-config
 	PKG_CONFIG += --define-variable=TGT=$(TGT)
-	PKG_CONFIG += --define-variable=UNAME=$(UNAME)
+	PKG_CONFIG += --define-variable=ABOX=$(ABOX)
 
 	LINKS += $(RPATHS)
 	INCLS += `$(PKG_CONFIG) $(PKGS) --cflags`

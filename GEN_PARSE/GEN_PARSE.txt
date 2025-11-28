@@ -1,0 +1,89 @@
+GEN_PARSE/
+GEN_PARSE
+.txt
+
+	PSG with BASE for CXX C ASM JAVA SCRIPT TCL LISP PYTHON 
+	PSG with TREE for CXX_SCRIPT and ARGV_SCRIPT
+	GEN from TREE
+	PSG for gawk // TODO // perl // shell // Q2_LEXER //
+
+	Build a GEN_LIBR for a specific LANG and DIALECT
+	c_ident_99 // not definitely NOT C99 but local_97 simpler subset
+	c_ident_99 // c_ident_97 is local_97 _cset _font _LEX_EXPR
+
+	LEX_EXPR
+
+		a1_a2_star
+	
+	LEX_EXPR
+
+		list_of_sublex
+		 SUBLEX[N] of EIGHT_BYTE EACH:
+		  EIGHT_BYTE sublex = SUBLEX[idx] // idx == ARGV_XPOS_IDX
+
+		  // process LEX left to right here // ARGV ARGV_XPOS_IDX
+		  // notice vague so "{ idx_t = idx = EXPR "} //
+		  // CT_RT notices MENTION "idx_t" "idx" "EXPR" // WEIGHTED
+		  // located // layers // relay // RPC_REPLAY
+
+		  JOIN "_" // sublex JOINER sublex // ... 
+	
+	LEX_EXPR
+	CSV_EXPR
+
+		field is multi-word
+		NEED OPTION trim_field // rhs_only lhs_rhs_both lhs_only
+
+		trim LEADING is common because we are PARSING left to right
+		trim LEADING done // FSM_POS from PSG_gen_FSM_STEP
+
+		NEED OPTION Q2 simple
+
+			retain nested commas as ","
+			reword nested commas as ", "
+			reword nested commas as ";"
+			repad commas as ",  " // SP SP means RE_TUPLO "{SP + }"
+			// "{ SP ; SP_STAR }" //
+
+		VIEW // GEN //
+			// "{ SP ; SP_STAR }" //
+
+		VIEW // GEN //
+			// "{ SP_PLUS }" // "{ SP SP STAR }" one or more SP
+			// "{ SP SP_STAR }" // "{ SP STAR }" zero or more SP
+	
+	GEN is constructed from SCRIPT which builds DATA which is SCRIPT_TREE
+
+		we are giving code the self writing ability
+		it can do all sorts upto LIBR_CALL outside the box
+		it can do all sorts upto SYSCALL outside the box
+
+		ASM is an AUTO_LIBR that provides LIBR for SPEC
+		SPEC is what GEN uses to DECL ASM_API_FOR_SPEC
+		CACHE uses ASM_API to implement AVAR // KNOW_PERMIT == ROM
+		API provides inline_C_functions // clag gcc tcc TP7_TODO
+		API provides inline_PAS_functions // _PAS_ // TP7
+		API provides inline_TP7_functions // _PAS_ // TP7
+		GEN provides above from SPEC // make Module // BUILD += GEN
+	
+	HEURISTIC_SWEEP
+
+		sweep over a natural language
+		sense or nonsense
+		find MENTION of SCRIPT_LEX
+		find USED SCRIPT_LEX from LEXICON of Module
+		find AVAR
+		find AVAR_t
+		find FUNC
+		find AVAL
+		find VALUE
+		find USED_in_PHRASE
+
+		MATCH C_IDENT_99 in SCRIPT ARGV sublex
+		MATCH a2_star in SCRIPT ARGV sublex
+		MATCH SUBLEX_C_IDENT_99 eg list_of_sublex "of"
+
+		
+
+		
+

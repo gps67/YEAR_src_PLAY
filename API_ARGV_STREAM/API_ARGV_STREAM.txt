@@ -1,0 +1,103 @@
+API_ARGV_STREAM/
+API_ARGV_STREAM.txt
+
+	We can transmit MINI_HEAPS over API using ARGV using nbytes etc
+
+	Some constrained STREAM FILTERS need a STREAM of ARGV STEPS
+	In particular a LINE of ARGV STEPS _and_CMNT _at_XPOS_Code_POINT_of_CMNT
+
+	CT_RT runs as far as it can, before transmitting anything
+	OPTION SEND_META_FIRST_and_EARLY
+
+	NESTED_use_of_ZONE_HEAP_ITEM_INDEX _with_USEFUL_DECL_TABLES
+
+	ie we allocated our own 300K PACKET via 16K_SSL_PACKET // 8+7
+	// TRAFFIC uses 8K_BLOCK so that other traffic can use the quota
+	// TRAFFIC is me // 8K half packets and immediate bandwidth for more
+	// AES_256 is 32bytes BYTE[u5]  // 8K is u13 // 256 lines of 256 bits
+	// 64KBIT // [u8][u8] .BITS // [u8][u5] .BYTES // 256 rows of 32 bytes
+	// PRE_FETCH QUEUE of 200K of DATA_LOAD //
+	// PRE_FETCH entire FILE and META into CACHE
+
+	FILE is 300K
+	FILE is 150K compressed
+	FILE is 20 * 8K frame
+
+	META += some frame admin PACKET_WRAP
+
+	NESTED_use_of_ZONE_HEAP_ITEM_INDEX {
+		
+		zone = nbytes + META
+		META += NULL_MEANS_AAARRRGGGHHH
+		META += NAME_of_DECL_SPEC _of_NBYTES_PAYLOAD
+
+		zone is aligned 16 BYTES
+		if not we really must skip back into ALIGNMENT
+		eg some BYTES then EDGE then 16_BYTES_ZONE EDGE ZONE
+
+		zone is aligned 32 BYTES
+		this is only for relative addressing
+		zone may be i64 aligned x1 ie
+		zone is aligned 8 BYTES // and 32_BYTE_align is like MMAP meh
+
+		zone meh is that item can cross page boundary
+		particularly when STREAM intends to take it all into 4K MMAP
+		zone_page_8K // aligned 4K (BYTES)
+
+	}
+
+	SHARED_use_of_MUX_STREAM {
+		MUX'd STREAM
+		eg 8K FILE + 8K FILL // OPTION STUFF with NOISE // DONT //
+		so 8K FILE + 200 bytes INFO_about_8K_PAGE + 16_bytes_OPCODES
+	}
+
+	PACKET_FRAME {
+		DECODE_i64
+		NBYTES _padded_to_i64
+	}
+	PACKET_FRAME {
+		DECODE_i64
+		NBYTES _padded_to_i64
+		DECODE_i64
+		NBYTES _padded_to_i64
+		/*
+			First STEP tells N = N_STEPS_of_NBYTES
+			First STEP tells N = N_BYTES_of_NBYTES / nbytes_of_STEP
+			array[ N ] of STEP // EIGHT_t 
+			nbytes = N_STEP * nbytes_of_STEP
+
+			First STEP also tells of second step within step
+
+			Last step reaches P2 of FRAME // of_LINE // of_ZONE
+		*/
+		DECODE_i64 // end frame for when first fragment said PARSE_LIST
+		eg NULL means LIST_END
+		eg LIST_END means LIST_END x END_FRAME
+		// x is * is . //
+
+		PACKET_FRAME first_frame specified MUX_CHANNEL
+		MUX_CHANNEL can be this channnel, kind of ANON, but EA_EXPR
+		MUX_SUB_CHANNEL += SUB_CHANNEL_for_self_contained_ARGV_LINES
+		ie sender sprayed various data types all over MODULE via API
+		ie sender stream PAGES of 4K as they filled
+		ie sender stream TREES of 256 LEAVES 
+		ie sender stream TREES of 16 LEAVES 
+		ie sender overhead is writing a packet
+
+		ie sender stream PAGES of 8K as they filled
+		ie sender stream PAGES of 64K as they filled
+
+			sent as 8 x 8K + CTRL
+			3 pages of 64 K
+			3 x 8 x 8K
+
+		ie sender stream PAGES of 64K as they filled
+
+			MMAP_HEAP already does half of this
+			All objects in 64K x 3 is rec_counted into packet
+			but only 1 because it is ROOT_of_TREE
+			MNT_ROOT can by B=NBYTES_SPEC
+	}
+
+

@@ -1,0 +1,96 @@
+GENERIC PATTERN
+ SHAPE_one evolves to SHAPE_two
+ CALLER knows but SHAPE_one does not know it has been wrapped
+ WRAPPED may also mean replaced
+
+ 	eg SHAPE_one varchar(4) means 4 bytes
+ 	eg SHAPE_one varchar(4) += UTF8 means 4 chars which MIGHT exceed 4 bytes
+
+	hope is it still fits in i32
+	but when it doesn't we have options
+	SHAPE_one might use CTRL_ASCII to bounce the STR4 away
+	SHAPE_two can be found, but we want to optimise NOT looking for it
+	KNOW CTRL_ASCII suggest char4 is not OK // A_B_C_NUL // because UTF8
+
+	ask SHAPE_one to hold "we have taken over because UTF8"
+
+		it uses CTRL_ASCII NUL 
+		it is ready to agree
+		it is ready to intervene when it thinks it is being used
+		(when WRAP_utf8 should be used)
+
+		see what postgres and mysql do
+		point is a better SQL API CSET RULE
+
+	KNOW requires caller to track and know	
+
+		We have a flag3 YES_NO_UNSET KNOW_HAVE_NEED_MEH
+
+			bool_ish // the ish will get misread for TRUE
+
+			-1 M1
+			0 FALSE
+			1 TRUE
+			2 UNSET
+			3 WAITING_for_REPLY
+			4 UDEF
+			5 ...
+			6 MORE
+
+
+			ENUM IMPORT SEGMENT [16[32
+
+			16 TCL_OK
+			17 TCL_CONTINUE
+			18 TCL_CONTINUE
+			19 TCL_CONTINUE
+			20 TCL_CONTINUE
+			21 TCL_CONTINUE
+
+				idea is to import a SEGMENT of ENUM
+				idea is to share one_huge_enum above 256
+				idea is to share i256_MINUS enum ie 64
+
+				idea is to ALLOC place of enum in SPACE
+				idea is to REALLOC and have ITEM_ZERO_idx IDX_0
+				idea P0P2 IDX_0 IDX_2 B2B0 B2B0_B0
+				
+				idea CT_RT offers available EXPR to API
+				each has a CODE_TWIG guess cost dta spec PLUS
+
+			CT_RT is the compiler that gets the message from CT_RT
+
+				this is a MINI_WORLD to get your head around
+
+
+			OK
+			FAIL
+			ERROR
+			BREAK
+			CONTINUE
+			RETURN
+			THROWING
+			EXCEPTION
+
+			ON ZERO
+			ON MINUS
+			ON PLUS
+
+				ALIAS ON_ZERO = ON_PLUS = EXPR
+
+					That is a way of leaving a sentence 
+					with a question
+					we know it is a question
+					because EXPR always is
+					as well as the definitive EXPR
+
+					CT_RT sees as CODE_TWIG
+					LANG sees as VAR_NAME // and assignment
+
+
+			MEH does introduce a SPEC for meh andn instance
+			CT_RT tracks it, even though it is in tended to be
+			NULL_MEANS_DONE_return_OK // or that STEP just did
+
+
+

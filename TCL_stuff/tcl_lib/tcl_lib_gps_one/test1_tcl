@@ -2,6 +2,7 @@
 
 # you must have $HOME/tcl_lib_gps_one/*
 # that is the module dir mentioned in $tools_2000/tcl/... 
+# which is why it must be tclsh9.0 to look in /tools/.../tcl/...
 
 proc show_var { varname } {
 	upvar $varname var

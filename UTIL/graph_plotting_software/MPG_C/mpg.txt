@@ -68,3 +68,5 @@ YEAR_MM_DD, miles, litres, cost, note
 2025-10-07, 33072,  16.68, 22.33, Y Full Morissons FLEX BH
 2025-11-04, 33284,  21.95, 29.39, Y Full Morissons FLEX BH
 2025-11-10, 33440,  15.49, 20.43, Y Full Tesco FLEX BH
+2025-11-15, 33608,  16.22, 21.39, Y Full Tesco FLEX BH
+2025-11-24, 33R783  17.77, 23.62, Y Full Tesco FLEX BH

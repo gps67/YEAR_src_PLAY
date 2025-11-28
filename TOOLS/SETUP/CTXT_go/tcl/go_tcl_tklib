@@ -1,5 +1,6 @@
 . ../go__fns
 tklib_0_8=tklib-0.8
+tklib_0_8=tklib-0.9
 if false
 then
  # url=http://prdownloads.sourceforge.net/tcl/tk9.0b2-src.tar.gz

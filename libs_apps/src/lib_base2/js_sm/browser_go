@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# PIOMAS at psc.apl.uw.edu is done by idiots
+# they change the filename every year, when there is no actual need
+# after DEC last years file is issued in the following year
+# rather than be efficient and get it out, before it appears lost
+# they wait an unusual amount of time (23'd instead of 7'th - and nothing)
+# clever peole are often quite simple
+# look here manually
+URL=http://psc.apl.uw.edu/research/projects/arctic-sea-ice-volume-anomaly/data
+URL=https://gjs-docs.gnome.org/glib20/glib.bytes
+
+set -x
+google-chrome --new-window  "${1:-$URL}"

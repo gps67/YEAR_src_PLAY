@@ -1,0 +1,45 @@
+//
+// THIS IS CSV.y_RULES START
+//
+ /*
+
+ */
+
+// top: HEADERS
+
+// expr_ident : LEX_WS expr_ident { $$ = $2; }
+// expr_ident : expr_ident LEX_WS { $$ = $1; }
+// expr_ident : LEX_IDENTIFIER { $$ = EXPRS:: E0( (STR0) yylval.lex_buff ); }
+
+// expr : expr_ident { $$ = $1; }
+
+// expr : expr PUNCT_CARET expr { $$ = E_power_E( $1, $3 ); }
+// expr : expr PUNCT_STAR  expr { $$ = E_times_E( $1, $3 ); }
+// expr : expr PUNCT_PLUS  expr { $$ = E_plus_E( $1, $3 ); }
+// expr :      PUNCT_MINUS expr { $$ = E1( $1, $2 ); }   
+// expr :      PUNCT_L_PAR expr PUNCT_PAR_R{ $$ = E_paren( $2 ) ; }
+// //	...: '-'  expr      %prec  '*'
+
+expr :      PUNCT_PLUS expr PUNCT_PLUS{ $$ = E_paren( $2 ) ; }
+
+lines
+: %empty {}
+| lines expr LEX_EOLN { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+// // | lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+
+ // // lines: lines EXPR_line { EXPR * E = $2; $$ = E->EXPR_branch_result(); }
+
+// //
+// // save PSG_line as RETVAL // all wrong
+// // PASS back "TOKEN_line" or something
+// // USE a global PARAMETER save it
+// //
+
+// EXPR_line : expr LEX_EOLN { $$ = $1; INFO("EOLN"); }
+// EXPR_line : expr LEX_EOLN { EXPR * E = $1; $$ = E->EXPR_branch_result(); }
+
+top: lines
+
+//
+// THIS IS CSV.y_RULES END
+//

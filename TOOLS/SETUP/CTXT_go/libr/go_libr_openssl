@@ -4,6 +4,7 @@
 # URL=https://www.openssl.org/source/openssl-3.3.1.tar.gz
 # URL=https://www.openssl.org/source/openssl-3.4.1.tar.gz
 URL=https://www.openssl.org/source/openssl-3.5.0.tar.gz
+URL=https://www.openssl.org/source/openssl-3.6.0.tar.gz
 # above FAILED #
 URL=https://github.com/openssl/openssl/releases/download/openssl-3.5.3/openssl-3.5.3.tar.gz
 # WORKED

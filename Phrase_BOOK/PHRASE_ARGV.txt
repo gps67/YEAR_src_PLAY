@@ -1,10 +1,52 @@
 PHRASE_ARGV.txt
 PARSE_ARGV
 
+	CMNT += TEXT at XPOS as P0P2_SCRIPT
+
+	PSG_TREE is actually SCRIPT_TREE
+	TREE_SCRIPT is type of SCRIPT_TREE
+	TREE_SCRIPT is inst os SCRIPT_TREE as ALIAS or as ORIG // PROVIDE
+
+
 	eg a safe_box client wants to run exec something 
 	firstly LEXER builds an ARGV CSET and BACKSLASH_SHELL_PARSING_LEX
 	secondly PUNCT might find multi-part-words
 	secondly "//" or even "#" of "#.*" or perhaps "|" ... Q2 Q1 Q_back 
+	--CT_RT_EDGE_LINE_
+	thirdly lookup("%s") 
+	fourthly decide and act # PICK VAR_POOL for PREFS # PREFS += OPTS
+
+	 nb secondly already had lookup(SPELLING) before CT_RT edge
+	 so secondly TOKENISING = lookup(SPELLING) before CT_RT edge
+	 LANG has OPTION TOKEN_SPELLING
+	 LANG has OPTION TOKEN_SHARED
+	 LANG has OPTION TOKEN_UNIQUE
+	 LANG has OPTION TOKEN_UNIQUE_REPEATING // ie _SHARED_at_xpos //
+	 LANG has OPTION TOKEN_MENTION // _USED _HERE = XPOS
+	 VAR_NAME unused upto 2025
+	 TODO_IMPORT_LIBR_of_well_known_VAR_POOL_via_API
+
+	 USAGE CT_RT builds var_pool from PSG_TREE keep info from GEN_PARSE
+	 GEN_PARSE does the PSG
+	 This helps us use PSG patterns that reuse LIBR via ARGS
+	 PARSE_TREE = SCRIPT_TREE // copied into CACHE at TIME as KEPT
+	 KEPT += CACHE_adds TWIGS and STEM
+	 STEM is a ROOT_STEM // often TREE not TREE_ROOT // BRANCH
+	 TWIG = BRACH += SCRIPT_DECL_XPOS 
+
+	 	multi bounced noun
+		LIST SUBLEX reads right to left // SOMETIMES
+		CMNT reads at CT and if needed again at RT // or NULL_STR
+	
+
+
+
+
+	 so it had its own lookup("%s") used to recognised MENTION and REPEATS
+	 ALSO find_all %s as MENTION_at_XPOS = USAGE_XPOS = USED_XPOS = XPOS
+	 "{ MENTION = XPOS } // swith LEX TYPE and CT_RT TIME and SCRIPT XPOS"
+	// nb we require CMNT to have no effect as often no-longer available
+	// nb export CMNT = NULL or stored TEXT 
 
 	generic -abc --long_name --with_arg ARG 
 

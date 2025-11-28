@@ -40,10 +40,16 @@ extern "C" int getppid();
 */
 #define filename_prng_seed "keys/prng_seed.dat"
 
-// RUMOUR: pad data to 32 bytes, add 20 HMAC, add 5 SSL-hdr
+// RUMOUR; prefix PKT with 25 bytes
+// add 20 bytes HMAC
+// add  5 bytes SSL-hdr
+// end  4 bytes pad4 align 4 // >0 bytes
+// +++ 15 BYTES +++ LIMIT UDEF HEADER limit 47 bytes
+// 
+// RUMOUR: pad data to 32 bytes, i256 as AES GRAIN BLOCK KEY_256_BIT
 // 32 * 48 = 1536, +25 > 1548
 // 32 * 47 = 1504, +25 1529, +19==1548
-// 32 * 46 = 1472, +25 1497, +51==1548
+// 32 * 46 = 1472, +25 1497, +51==1548 # PICK # have 51 bytes to play with
 // 32 * 32 = 1024
 
 // RUMOUR: mobiles have IP MTU 1500 making 1472 the payload

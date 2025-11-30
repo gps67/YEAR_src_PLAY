@@ -13,6 +13,18 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/preactjs/wmr
+https://github.com/preactjs/preact
+https://github.com/preactjs/signals
+https://github.com/preactjs/create-preact
+https://github.com/preactjs/preset-vite
+https://github.com/preactjs/preact-devtools
+https://github.com/preactjs/awesome-preact
+
+https://github.com/preactjs/preact-custom-element
+https://github.com/preactjs/preact-www
+https://github.com/preactjs/prefresh
+
 https://github.com/ubunatic/gjs-pipe
 https://gitlab.gnome.org/GNOME/gnome-builder.git
 https://gitlab.xiph.org/xiph/opus.git

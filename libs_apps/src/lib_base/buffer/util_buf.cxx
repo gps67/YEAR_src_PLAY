@@ -113,7 +113,7 @@ bool blk_read_entire_file(
 	int t = f->read( mem_in.gap_addr(),file_size_31 );
 	if(file_size_31 != t ) {
 		INFO("expected %d got %d", file_size_31 , t );
-		return FAIL(filename);
+		return FAIL("%s",filename);
 		return FAIL_FAILED();
 	}
 	f->close();
@@ -140,7 +140,7 @@ bool blk_write_to_file_mask( blk1 & mem_out, const char * filename, mode_t mask 
 		mem_out.buff,
 		mem_out.nbytes_used
 	)) {
-		return FAIL(filename);
+		return FAIL("%s",filename);
 	}
 	f->fsync();
 	f->close();

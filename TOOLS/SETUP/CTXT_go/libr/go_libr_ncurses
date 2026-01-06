@@ -9,9 +9,11 @@ exit
 fi
 
 URL=https://ftp.gnu.org/gnu/ncurses/ncurses-6.4.tar.gz
+URL=https://ftp.gnu.org/gnu/ncurses/ncurses-6.5.tar.gz
 fn_grp_url libr $URL
 fn_unpack
 fn_with_grp libr
-fn_configure_pfx
+fn_configure_pfx --with-shared
 fn_make 
+fn_make -k
 fn_make install

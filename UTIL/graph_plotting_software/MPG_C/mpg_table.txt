@@ -68,5 +68,8 @@
  2025-11-04  33072 212  33284  13.9 p_mile  1.34 £_litre  6.09 £_gallon  43.9 mpg   6.4 lp100  Y Full Morissons FLEX BH
  2025-11-10  33284 156  33440  13.1 p_mile  1.32 £_litre  6.00 £_gallon  45.8 mpg   6.2 lp100  Y Full Tesco FLEX BH
  2025-11-15  33440 168  33608  12.7 p_mile  1.32 £_litre  6.00 £_gallon  47.1 mpg   6.0 lp100  Y Full Tesco FLEX BH
-# SHOW2 2025-11-24,     33,  0.00,  0.00, 
- # SKIPPING # d_miles < 1 # 
+ 2025-11-24  33608 175  33783  13.5 p_mile  1.33 £_litre  6.04 £_gallon  44.8 mpg   6.3 lp100  Y Full Tesco FLEX BH
+ 2025-12-05  33783 211  33994  14.7 p_mile  1.43 £_litre  6.50 £_gallon  44.2 mpg   6.4 lp100  Y Full Tesco FLEX BH 5 not 10
+ 2025-12-12  33994 246  34240  13.2 p_mile  1.33 £_litre  6.04 £_gallon  45.8 mpg   6.2 lp100  Y Full Tesco FLEX BH 10
+ 2025-12-24  34240 280  34520  12.6 p_mile  1.31 £_litre  5.95 £_gallon  47.2 mpg   6.0 lp100  Y Full Tesco FLEX BH 10
+ 2026-01-02  34520 177  34697  14.0 p_mile  1.31 £_litre  5.95 £_gallon  42.6 mpg   6.6 lp100  Y Full Tesco FLEX BH 10

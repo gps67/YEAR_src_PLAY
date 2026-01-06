@@ -1,0 +1,106 @@
+
+IN OUT	CONSISTENT TERMS when IN or OUT is used
+
+	INPUT		goods in raw materials
+	OUTPUT		goods out manufactured product
+
+	INCOME		money for goods out
+	OUTGOINGS	money for raw materials
+
+	GOODS and MONEY are opposites in a transaction exchange
+
+		--> GOODS -->		some exchange
+		<-- MONEY <--		momentarily of equal value
+	
+	Thats why INCOME == OUTPUT
+	Thats why INPUT == OUTGOING costs
+	These use opposites for IN-OUT
+
+	being consistent with the IN-OUT terms helps
+	Clarifying which is the 2 IN's it is - goods or money
+
+	HMRC profit and loss tax, are used to money paid for good
+	HMRC customs and excise, are used to warehouses and factories
+
+		That is why VAT reports are all about INPUTS and OUTPUTS
+	
+ CATEGORY is everything
+
+ 	The tree of CATEGORIES has entire branches all IN all OUT
+
+	When an XFER can be seen as two adjacent ACCOUNT_CORES
+
+	PAYMENT from RIGHT to LEFT
+
+		ACCT_2		ACCT1		# flip names too ?
+		FUND_one	FLAT_one
+		FUND_one	FLAT_two
+
+	PAYMENT from LEFT to RIGHT 
+
+		ACCT_1		ACCT2
+		FLAT_one	FUND_one	
+		FLAT_two	FUND_one
+
+	CAT_1234 == FLAT is owing maintenance to FUND == FUND_one
+	CAT_1231 == FLAT is paying for bill-so-far to FUND == FUND_one
+	CAT_1231 == FLAT is paying maintenance to FUND == FUND_one
+
+	DOUBLE ACCOUNTING is recording each line twice,
+	once in the cash book
+	once in the topic book
+	COMBINED_DOUBLE uses CAT to convey TOPIC and then does the cash book
+	IF you see CAT as AUTO_WRITING the second entry, it kind of is
+
+	We use that, to only have one line per ACTION
+	You would only have to prove that every line is correctly doubled
+	We still do but it is built into the software, and tests OK
+	usually
+
+ DOUBLE ACCOUNTS
+
+ 	This is NOT double accounting
+	(That is done by CAT see above)
+
+	It is two sets of accounts,
+	one on behalf of the customer
+	oen on behalf of the company // the accounts primary
+
+	OK many customers (8) so that many in the second set
+
+	LHS_ACCT is outside the company = a customers account
+	RHS_ACCT is inside the company = a company account
+
+	choice of LHS --pays--> RHS is INCOME 
+	refund of LHS <-refund- RHS is INCOME but NEGATED
+
+		it should use the same CAT as the original overpayment
+		and use a negated amount
+
+	When a payment is made from LHS to RHS
+	it is an outgoing from the LHS_CUSTOME
+	it is an income into the RHS_COMPANY
+
+	As such it looks like an XFER between 2 internal accounts
+	(eg from current to savings)
+
+	but we are doing the customers work and helping them pay their bills
+
+PLUS amounts
+
+	Normally, from a single PRIMARY (the company),
+	a PLUS number is good for the company,
+	a MINUS number is bad for the company
+
+	This blinks when you notice that it is not yet paid.
+	Lets say a subscription becomes due at the fifth day of the month
+
+	LHS --OWES--> RHS	transfer from EXTERNAL_ACCOUNT to INTERNAL account
+	LHS --OWES--> RHS	transfer from EXTERNAL_ACCOUNT to INTERNAL account
+
+	The LHS account has become MINUS to the CUSTOME
+	The customer has to pay in AMOUNT to make it ZERO
+
+	When that happens the MONEY PAID is paid to LHS_CUST and RHS_BANK_two
+	
+

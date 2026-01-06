@@ -158,11 +158,11 @@ bool Key_file::load_from_buf( blk1 & buf )
 	bool ok =
 	g_key_file_load_from_data( kf, (STR0) buf.buff, buf.nbytes_used, flags, grrr() );
 	if(ok) {
-		if(file_one) INFO(file_one);
+		if(file_one) INFO("%s",(STR0) file_one);
 		return true;
 	}
 	FAIL("g_key_file_load_from_data()");
-	if(file_one) WARN(file_one);
+	if(file_one) WARN("%s",(STR0) file_one);
 	return g_rrr.only_print_gerror();
 }
 
@@ -174,12 +174,12 @@ bool Key_file::load_from_file( const char * filename, bool error_if_absent )
 	file_one = filename;
 	bool ok = g_key_file_load_from_file( kf, filename, flags, grrr() );
 	if(ok) {
-		INFO(filename);
+		INFO("%s",filename);
 		return true;
 	}
 	if( error_if_absent ) {
 		FAIL("g_key_file_load_from_file()");
-		INFO(filename);
+		INFO("%s",filename);
 		return g_rrr.only_print_gerror();
 	} else {
 		INFO("filename=%s, error_if_absent=%d", filename, error_if_absent );
@@ -196,7 +196,7 @@ bool Key_file::load_from_file( const char * filename, bool error_if_absent )
 */
 bool Key_file::save_into_buf( blk1 & buf )
 {
-	if(file_one) INFO(file_one);
+	if(file_one) INFO("%s",(STR0) file_one);
 	gsize len = 0;
 	char * newstr = g_key_file_to_data( kf, & len, grrr() );
 	if( ! newstr ) {
@@ -227,17 +227,17 @@ bool Key_file::save_into_file( const char * filename )
 	text.set( newstr );
 	free( newstr );
 
-	STEP( filename );
+	STEP( "%s", filename );
 
 	FILE * f = fopen( filename, "wb" );
 	if(!f) {
-		FAIL( filename );
+		FAIL( "%s", filename );
 		return false;
 	}
 
 	gsize len2 = fwrite( newstr, 1, len, f );
 	if( len2 != len ) {
-		FAIL( filename );
+		FAIL( "%s", filename );
 		fclose( f );
 		return false;
 	}

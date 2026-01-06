@@ -13,6 +13,11 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/j-p-higgins/SoundThread
+https://github.com/ComposersDesktop/CDP8
+https://github.com/cs01/gdbgui/
+https://github.com/GNOME/gnome-shell
+https://github.com/TinyCC/tinycc
 https://github.com/preactjs/wmr
 https://github.com/preactjs/preact
 https://github.com/preactjs/signals

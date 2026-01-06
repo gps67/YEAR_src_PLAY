@@ -8,14 +8,14 @@
 ##
 
 	fn_MK_var_ABS_OVER() { 
-		// ABS_OVER -MATCH- PACKAGE_NAME // MODULE_NAME
-		// AREA contains a few Module GROUPS
-		// ABS_OVER -MATCH- YEAR_src_PLAY
+		# // ABS_OVER -MATCH- PACKAGE_NAME // MODULE_NAME
+		# // AREA contains a few Module GROUPS
+		# // ABS_OVER -MATCH- YEAR_src_PLAY
 		export ABS_OVER="${ABS_OVER:-$HOME/YEAR/src/PLAY}"
 	}
 
 	fn_MK_var_ABS_TOP() {
-		// ABS_TOP -MATCH- libs_apps
+		# // ABS_TOP -MATCH- libs_apps
 		fn_MK_var_ABS_OVER
 		export ABS_TOP="${ABS_TOP:-$ABS_OVER/libs_apps}"
 	}

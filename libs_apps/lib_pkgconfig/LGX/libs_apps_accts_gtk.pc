@@ -1,8 +1,9 @@
 
-prefix=/home/gps/YEAR/src/PLAY/libs_apps
-exec_prefix=${prefix}
-libdir=${exec_prefix}/libs_apps_obj_${TGT}
-includedir=${prefix}/include
+# UNUSED
+# prefix=/home/gps/YEAR/src/PLAY/libs_apps
+# exec_prefix=${prefix}
+# libdir=${exec_prefix}/libs_apps_obj_${TGT}_${ABOX}
+# includedir=${prefix}/include
 
 Name: libs_apps_base2_gtk
 Description: libs_apps - gtk is a pig when compiling each dependency, dont, do

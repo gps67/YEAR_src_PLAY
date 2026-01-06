@@ -34,6 +34,9 @@
 	include $(DIR_libs_apps)/MK_ext_lib/MK_SUFFIXES
 	include $(DIR_libs_apps)/MK_ext_lib/MK_LISTS_
 
+	# this is all off a bit
+	OPTIM += -fPIC -fPIE
+
 ifeq (1,1)
 
 	# genre of architecture # ARM64 u48_u16_lohi TCL_PAIR SPEC DATA

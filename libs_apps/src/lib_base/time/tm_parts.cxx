@@ -700,7 +700,7 @@ bool tm_parts::check_tm_year() // WARN when 1900 offset is seen
 		return true;
 	}
 	if( yyyy < 120 ) { // most likely error
-		return FAIL("yyyy == %d # 1999 not 99 (5d)", yyyy, yyyy+1900 );
+		return FAIL("yyyy == %d # 1999 not 99 (%d)", yyyy, yyyy+1900 );
 	}
 	if( yyyy < 1582 ) { // when gregorian came into being
 		return FAIL("yyyy == %d # 1900 off (%d)", yyyy, yyyy+1900 );

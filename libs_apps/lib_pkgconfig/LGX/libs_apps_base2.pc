@@ -30,8 +30,8 @@ Version: 0.1.2
 Requires: \
 	libs_apps_mysqlclient \
 	libs_apps_base1 \
+	freetype2 \
 	_into_base2 \
-	freetype2
 
 # Requires: _into_base2 libs_apps_base1
 

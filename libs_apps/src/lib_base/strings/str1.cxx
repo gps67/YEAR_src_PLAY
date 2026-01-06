@@ -5,12 +5,13 @@
 
 // #include "dbg.h"
 
+#define REF_IS_NULL(R) (((long) & R) == 0L )
 
 //! clone a string
 void str1::set( const str0 & s ) {
 	if( str ) free( (void *) str );
 	str = NULL;
-	if( NULL == & s ) {
+	if( REF_IS_NULL( s )) {
 		FAIL("NULL str0");
 		return;
 	}

@@ -64,8 +64,8 @@ Date,Open,High,Low,Close,Volume
 		D_hi = D_curr;
 	}
 
-	if(! D_lo < D_curr ) D_lo = D_curr;
-	if(! D_hi > D_curr ) D_hi = D_curr;
+	if(!( D_lo < D_curr )) D_lo = D_curr;
+	if(!( D_hi > D_curr )) D_hi = D_curr;
 
 	got_row();
 

@@ -557,7 +557,6 @@ bool fd_sel_ssl::ssl_read_some()
 		 WARN("FD %d %s SSL_read() returned %d of %d - !! EXACTLY FULL ALERT!!",
 			fd_get(),
 			debug_get_obj_name(),
-			loop_count,
 			i,
 			len
 		 );

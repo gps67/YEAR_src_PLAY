@@ -4,7 +4,7 @@
 # COMMENT THESE OUT ?
 # prefix=/home/gps/YEAR/src/PLAY/libs_apps
 # exec_prefix=${prefix}
-# libdir=${exec_prefix}/libs_apps_obj_${TGT}
+# libdir=${exec_prefix}/libs_apps_obj_${TGT}_${ABOX}
 # includedir=${prefix}/include
 
 Name: libs_apps_base1

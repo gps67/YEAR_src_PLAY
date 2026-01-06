@@ -309,7 +309,7 @@ endif
 	# dwarf-4 (new default) needs gdb7.4 which insoght doesnt have
 	OPTIM +=-g
 # gcc	OPTIM +=-gstabs
-	# OPTIM +=-O2
+	OPTIM +=-O2
 	# OPTIM +=-O3 # inline makes gdb crazy
 	# OPTIM += -pg # profiling code
 	# OPTIM +=-shared
@@ -429,7 +429,8 @@ else
 	# http://ccache.samba.org/ftp/ccache/
 	## CXX = ccache g++ #			#
 	# CXX = g++ #			#
-	CXX = say_do g++  -g -fPIC #			# WRONG but CURRENT
+	# CXX = say_do g++  -g -fPIC #			# WRONG but CURRENT
+	CXX = say_do g++  -g -fPIC # WRONG but CURRENT
 	# CXX = say_do g++ #			#
 #	CXX = RUN4 g++ #			#
 #	CXX = RUN4 I icpc -g -debug all #			#

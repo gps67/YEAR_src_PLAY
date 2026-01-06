@@ -29,11 +29,16 @@
 		set_pathname( "/tmp/MyApp.fifo" );
 	}
 
-
 	//! set the FIFO from a string which can NOT contain a NUL
 	bool sock_addr_UNIX::set_pathname( str0 pathname )
 	{
-		if( pathname.str_len() > 108 ) return false;
+		if( pathname.str_len() > 108 ) {
+			FAIL("len %d str %s",
+				pathanme.str_len(),
+				(STR0) pathname
+			);
+			return false;
+		}
 		strncpy( sa.sun_path, (STR0)pathname, 108 );
 		return true;
 	}

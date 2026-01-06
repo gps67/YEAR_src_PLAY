@@ -1,0 +1,162 @@
+BENCH_PANEL_lex_in_action.txt
+
+	BENCH_PANEL
+	lex_in_action
+
+	BENCH_PANEL
+	STREAM_SEGMENTS
+	 MID_LOAD
+	 PKT_PARSE
+
+	
+	VIEW CSET STREAM complete LINE buffer in // ENTIRE_FILE_nul_P0P2
+
+	 on_NUL() {
+
+	 	call_EOF_was_char_before	// found_
+	 	call_EOF_mid_stream_nul()	// found_
+		lock_auto_incr_P2_detect_GET_SET // _USE += EA_near_P2
+		
+		OPTION call_END_LEX //
+	 }
+
+	 We have POLICY that helps us, incl LOCAL_CACHE_REMOTE
+	 We dont track where the last EOLN is, be chunk at 1K bounds
+	 We do track where each EOLN is
+	 We do search from EOT backwards for last EOLN
+	 In normal TEXT file, that is immediately the last char
+	 If completely absent return P2 == P0 == BUFFER_P0 ; N_USED == 0
+	
+	BENCH VIEW is a stream of TOKEN with a known EOLN at end
+	MID_LINE_SEGMENT_BREAKS_AT_PACKET_LINE
+	POLICY says expect to make good progress
+	EXPECT to keep first_half_of_nect_line
+	POLICY buffer is lots of lines
+	EXPECT REMOTE to run as much as it can, LOAD PARSE FILTER
+	EXPECT PAUSE at BOLN of half complete line
+
+		that works by allowing the machine to run
+		until it runs out of lines
+
+		the current detection is check for trailing EOLN HALF_LHS EDGE
+		EDGE is the 1K sliced buffers of 1K even mis compression
+		EDGE is the 200K block transfer loaded incrementally
+		EDGE is the 200K block transfer loaded BATCH from incrementally
+
+			Incrementally means early holdings
+			can be decrypted
+			can be decompmressed
+			upto EDGE stream_blocking_for_nect_PKT_IN_SEQ
+
+		PUMP PKT_in is 1K exact with 32 also // split_pair
+		PKT_pair
+
+			PKT is the 1K packet
+			TAG is the 32 bytes 
+
+	POLICY collects buffers until RUNS_STEP asks for them
+
+		PRE_WORK has prepared the result mostly
+		ASK_MORE asks for lines, it knows about PAUSE mid indent
+		This also adds issues with EOLN handling
+
+			GENUINE TEXT FILE
+			indented TEXT LINES
+			CSET utf8
+			EOLN_NUL guarantees LF 
+			EOLN_NUL guarantees LF NUL - we do this
+			EOLN_NUL guarantees LF P0P2 *P2 == LF
+			EOLN_NUL guarantees LF P0P2 *P2 == LF // ASIF // not
+			EOLN_NUL guarantees LF ABSENT_NUL_BINARY_PACKING
+
+	PARSE knows it will hit the HUNGRY wall or SEGMENT_JOIN_EDGE
+	PARSE hopes RESUME will be good, can be E_INTR, timedout
+	PARSE know to PAUSE at EOLN mid stream
+	PARSE requires STREAM_FLOW to only pass complete lines of TEXT
+	PARSE requires STREAM_FLOW TEXT_lines // with NEXT_LINE_LHS peekable
+	PARSE does not peek CLASS does not provide it
+	FEED_into_FLEX
+	FEED_from_FLEX
+	FEED_TEXT_LINE_CHUNK // slow proper line parse // fast tail_LF
+
+		// beware of \ LF or some Q1 or Q2 or LANG_DEPENDENT
+		// BEWARE LF can appear in a BLOCK or BINARY WORD
+	
+	LOCAL_sender intentionally completes FILE with LF and often NUL
+	LOCAL_sender intentionally complete TREE to REPL DEPTH ONE
+	POLICY encourages early decompress buffers as they arrive 1K chunk
+	ARRIVAL QUEUE for DECRYPT DECOMPRESS PARSE_to_EOLN
+
+		this allows the PKT_in handler to place the data for later
+		if the header arrives before the 1K
+		we know where to decrypt the block
+		we know where to decrypt and decompress the block
+	
+	INDENTED_TEXT is not REPL
+
+		FLEX loves PARSE_upto_EOLN
+		FEED_API has a TOKEN for EDGE_FAST_SWITCH
+		FEED_API has a TOKEN for EDGE_SLOW_PAUSE
+
+		so when FLEX reaches EOLN but is hungry MID_LEX
+		we use the POLICY that we gave it as much as we had
+		we use the POLICY that we gave it upto EOLN -- NOT MID LEX --
+		we could use POLICY P0P2 not EOLN nor NUL
+		we ALWAYS have NUL but might be many lines from now
+		and that might be an EDGE buffer JOIN // JOIN or WAIT 
+
+		POLICY forces NL to be there 
+		POLICY forces NUL to be after NL maybe long after 
+		POLICY enables NUL to be after NL maybe long after 
+
+		WANT P0P2 with NL in BUFFER to be FIXED LOCK ACCESS
+
+		TODO P2 is actually OFFS_2 
+		RELOCATE uses CLICK RESTART RELOAD BASE_ZERO // all of them
+		invalidate_cache_fetch_updated_value
+	
+	REPL_LINE
+
+		can be multi-line PARSER can exit with FAIL INCOMPLETE PHRASE
+		KNOW this from FEED EDGE 
+
+	TREE_BUILD
+
+		know TWIG is complete (BISON)
+		accumulate COMPLETE TWIG before GRAFT
+		accumulate COMPLETE LIST of TWIG  with CSR
+		YACC_TREE_BUILD adds to list before LIST_END known
+		YACC_TREE_BUILD REWORK_NODE_to_END_LIST
+	
+		ABILITY to SUSPEND TREE_BUILDING_STACK
+		PAUSE waiting for DATA
+		INPUT STREAM INPUT DATA
+	
+	THREAD SUSPEND LEX
+
+		most of what we are doing, can wait for complete files
+		eg fetch function TEXT from SQL PARSE all TEXT to TREE
+	
+	
+	PLAN to PAUSE then RESUME
+
+		ensure TECH can PAUSE
+		eg decompress keeps 20 bytes is a moving CSR paused 
+		eg decrypt uses block size 32 bytes - can PAUSE mid that
+
+		nb decrypt can hold massive 1M search tree frozen during PAUSE
+		
+		RESUME 
+
+
+		so when FLEX reaches EOLN but is hungry MID_LINE_LIST
+
+		
+
+ challenge the petro dollar - get regime changed
+ challenge the petro dollar - get regime changed
+ challenge the petro dollar - until pushback happens
+
+
+
+

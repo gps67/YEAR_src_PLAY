@@ -185,7 +185,7 @@ bool CA_task:: VALS_set_HERE_part1_subject()
 
 bool CA_task:: set_CN( STR0 CN ) {
                 VALS->subject.CN = CN;
-                INFO("VALS->subject.CN = %s", VALS->subject.CN );
+                INFO("VALS->subject.CN = %s", (STR0) VALS->subject.CN );
 		return true;
 }
 

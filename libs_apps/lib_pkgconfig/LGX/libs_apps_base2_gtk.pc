@@ -1,7 +1,7 @@
 
 prefix=/home/gps/YEAR/src/PLAY/libs_apps
 exec_prefix=${prefix}
-libdir=${exec_prefix}/libs_apps_obj_${TGT}
+libdir=${exec_prefix}/libs_apps_obj_${TGT}_${ABOX}
 includedir=${prefix}/include
 
 Name: libs_apps_base2_gtk
@@ -10,6 +10,7 @@ Version: 0.1.2
 
 Requires: \
 	libs_apps_base2 \
+	freetype2 \
 	libs_apps_gtk \
 
 Libs: -lbase2_gtk

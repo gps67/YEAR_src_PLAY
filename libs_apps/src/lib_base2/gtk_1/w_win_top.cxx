@@ -15,7 +15,7 @@ void w_win_top::event_destroyed() // virtual call-back
 	// only called by gtk destructor, w already useless
 	w_set_NULL();
 	buffer1 tn;
-	STEP(type_name(tn));
+	STEP("%s",type_name(tn));
 	STEP("remove this win from app wait-for list");
 	debug_track_pointer();
 	remove_all();

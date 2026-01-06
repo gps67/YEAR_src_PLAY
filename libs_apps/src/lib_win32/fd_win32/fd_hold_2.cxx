@@ -223,7 +223,7 @@ static inline int get_IPPROTO_ICMP()
 		 default: ; break;
 		}
 
-		e_print( "# ERROR # fcntl(%d,%s,0x%xl) %m \n", fd, CMD, arg );
+		e_print( "# ERROR # fcntl(%d,%s,0x%lx) %m \n", fd, CMD, arg );
 		return false;
 #endif
 	}

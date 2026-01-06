@@ -39,6 +39,12 @@ set ZONE_NAME Mon_EVE
 set ZONE_NAME RSAC_WITS
 set ZONE_NAME Babara_Bangura
 set ZONE_NAME BH6_Christchurch
+set ZONE_NAME YOKOS_Residentials
+
+# except this is TCL not BASH
+# invoke TK ?
+# . fns_EDIT
+# fn_EDIT_var ZONE_NAME
 
 
 

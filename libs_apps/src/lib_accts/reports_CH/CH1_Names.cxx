@@ -152,9 +152,9 @@ bool ACCTS:: mk_CH_name( buffer1 & buf, int year2, CH_Name_Tag tag )
 
 	// omit malloc check - unlikely when its my own strings
 	buf.clear();
-	buf.print( dir );
-	buf.print( name );
-	buf.print( ext );
+	buf.print( "%s", dir );
+	buf.print( "%s", name );
+	buf.print( "%s", ext );
 
 	return PASS("year2 %d tag %d name %s", year2, (int) tag, (STR0) buf );
   }

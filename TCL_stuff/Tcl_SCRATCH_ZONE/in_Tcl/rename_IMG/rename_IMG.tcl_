@@ -10,12 +10,7 @@
 
 # BUG # .ext #
 
-puts "##########-bugs-###########"
-puts "# ASTR and lose MP4 to JP #"
-puts "# ASTR and lose MP4 to JP #"
-puts "# ASTR and lose MP4 to JP #"
-puts "###########################"
-
+puts "ASTR and lose MP4 to JP"
 # fn_ask_do exit
 
 set dir_default "/currently/unused/"
@@ -45,26 +40,8 @@ set ZONE_NAME RSAC_WITS
 set ZONE_NAME Babara_Bangura
 set ZONE_NAME BH6_Christchurch
 set ZONE_NAME YOKOS_Residentials
-set ZONE_NAME ACOUSTIC_COUCH
+set ZONE_NAME Ella_one
 set ZONE_NAME BH6_XMAS
-set ZONE_NAME Ella_eve
-set ZONE_NAME PIER
-set ZONE_NAME BH6_walk
-set ZONE_NAME RSAC
-set ZONE_NAME BH6_pages
-set ZONE_NAME BH6_Sherboune
-set ZONE_NAME BH6_Yeovil_Hip_Recovery
-set ZONE_NAME COUCH
-set ZONE_NAME Ella_One_CAM_2
-set ZONE_NAME BH6_a
-set ZONE_NAME Ella_One_CAM_1
-set ZONE_NAME BH_Albany
-set ZONE_NAME BH6_Captains_Club
-set ZONE_NAME Fredas
-set ZONE_NAME BH6
-
-# rework for when in dir called YEAR_MM_DD_STR
-
 
 # except this is TCL not BASH
 # invoke TK ?
@@ -276,7 +253,6 @@ proc rename_IMG_dir {dir} {
 	set re_MSXY {([MSXY][MSXY])}
 	set re_VID_IMG {([VIDIMG][VIDIMG][VIDIMG])[-_]}
 	set IMG_ {IMG[-_]}
-	
 
 
 	
@@ -317,9 +293,6 @@ proc rename_IMG_dir {dir} {
 	
 	append re_myrec \
 		myrec $re_D13 $re_ASTR_dot_ext
-	
-	append re_SAM_1000 \
-		SAM_ $DDDD $re_ASTR_dot_ext
 
 # myrec1663179554257.mp3
 #      1234567890123.mp3
@@ -368,23 +341,12 @@ proc rename_IMG_dir {dir} {
 	  set ss 00
 	  set f1 "$dir/$f"
 	  # INIT M1 1999-12-31 23:59.00 ASTR ext
-	  foreach {YEAR MM DD hh mm ss NNNN ASTR ext} { 1999 12 31 23 59 00 1000 "" JPG } {}
+	  foreach {YEAR MM DD hh mm ss ASTR ext} { 1999 12 31 23 59 00 aztr JPG } {}
 	  # this is where ext gets a dummy value # not overwritten #
 
 	  if {! [file isfile $f1]} {
 	  	puts "# NOT # $f1"
 		continue
-
-	 # delete after debug
-	  } elseif {1==0} {
-
-	  	puts "RE: $re_SAM_1000"
-		puts "F: $f"
-
-	  if [regexp $re_SAM_1000 $f all NNNN ASTR ext] {
-	   puts "MATCH"
-	  }
-	 # delete after debug
 
 	  } elseif [regexp $re_zero $f all YEAR MM DD hh mm ss ASTR ext] {
 	 #	macro_know_date_came_from_filename ;# DONE in LOOP init
@@ -453,12 +415,6 @@ proc rename_IMG_dir {dir} {
 	  } elseif [regexp $re_NEWNAME $f all YEAR MM DD hh mm ] {
 		puts "# ALREADY # $f"
 		# continue
-
-	  } elseif [regexp $re_SAM_1000 $f all NNNN ASTR ext] {
-		macro_know_date_from_stat_file $f1
-		macro_calc_name_one
-		macro_offer_rename
-		continue
 
 
 	  } else {

@@ -1,0 +1,38 @@
+
+	Parse SCRIPT get TREE 
+
+	SCROLL streams L_to_R_TEXT
+	SCROLL streams ARGV of WORDS each with XPOS P0P2 nbytes
+
+		P0 = XPOS 		// CALC P0P2
+		P2 = P0 + nbytes	// PICK XPOS nbytes // as axioms 
+
+		OPTION SWITCH // CALC XPOS nbytes from P0P2
+		OPTION SWITCH // CALC XPOS nbytes from P0P2_P0_nbytes
+	
+	DECODE_i64_LOHI i8_i8_i16_ii32
+
+		// i64_HILO architectures will need to BYTE_SWAP
+		// i64_BITS i32_i16_i8_i8 //^\\ A_B_AB_CD_EFGH
+	
+	LOCAL_SCOPE_ENCODING
+
+		FILE == FILE_one // INPUT side of module
+		FILE == FILE_LIST_one[ u3 ] 
+		 0 : { SCRIPT_FILE_one }
+		 1 : { LIBR_FILE_77 }
+		 2 : { SCRIPT_FILE_44 }
+		 3 : { TREE_FILE_FD } // NAMED_PIPE FIFO in VFS
+		 4 : { NULL }
+		 5 : { NULL }
+		 6 : { NULL }
+		 7 : { NULL }
+
+		 LOAD DATA
+		 LOAD CODE
+
+		 FILL TABLES
+		 PREP AOT_JIT
+		 PREP AOT_JIT_monitors
+	
+	LEX

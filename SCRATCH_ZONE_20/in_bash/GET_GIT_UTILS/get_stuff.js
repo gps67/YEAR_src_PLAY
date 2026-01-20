@@ -13,6 +13,8 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/ipxe/ipxe.git
+https://github.com/ArtifexSoftware/mupdf.js
 https://github.com/j-p-higgins/SoundThread
 https://github.com/ComposersDesktop/CDP8
 https://github.com/cs01/gdbgui/

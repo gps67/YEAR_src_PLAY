@@ -2,9 +2,18 @@
 URL=https://download.qemu.org/qemu-8.2.2.tar.xz
 URL=https://download.qemu.org/qemu-9.1.0-rc2.tar.xz
 URL=https://download.qemu.org/qemu-10.0.2.tar.xz
-URL=https://download.qemu.org/qemu-10.2.0.tar.xz
+URL=https://github.com/libvirt/libvirt
+# https://github.com/libvirt/libvirt
+URL=https://download.libvirt.org/libvirt-11.10.0.tar.xz
+
 fn_grp_url emu $URL
 fn_unpack
+exit
+
+# NOT a configure project
+https://libvirt.org/compiling.html
+says meson
+
 fn_configure_pfx
 fn_make -j 14 
 fn_make install

@@ -1,0 +1,11 @@
+. ../go__fns
+
+URL=https://ftp.osuosl.org/pub/xiph/releases/flac/flac-1.5.0.tar.xz
+
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+fn_configure_pfx 
+fn_make 
+fn_make -k
+fn_make install

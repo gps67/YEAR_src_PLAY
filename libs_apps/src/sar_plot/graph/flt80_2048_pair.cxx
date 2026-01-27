@@ -49,13 +49,13 @@ void flt80_2048_pair::init_1 ( time_t t_lo, time_t t_hi, int _n )
 	This workd for a single data-val, also for an already accumulated
 	multi-count.
 */
-void flt80_2048_pair::merge_point( flt80 xval, flt80 yval, flt80 cnt )
+void flt80_2048_pair::merge_point_a( flt80 xval, flt80 yval, flt80 cnt )
 {
 	int xidx = idx_of_xval( xval );
 
-	// out of range gets converted to  -1
+	// out of range got converted to  -1
 	if( xidx < 0 ) {
-		e_print("merge_point(%6.3f,%6.3f) xidx<0\n",
+		e_print("merge_point_a(%6.3f,%6.3f) xidx<0\n",
 			(float) xval, (float) yval 
 		);
 		return;
@@ -103,7 +103,10 @@ bool flt80_2048_pair::merge_floats(
 	for( int i=i1; i<i2; i++ )
 	{
 		time_t tx = t0 + (dt*i);
-		merge_point( tx, flts[i] );
+		flt80 xval = tx;
+		flt80 yval = flts[i];
+		flt80 cnt  = 1.0;	// count = factor
+		merge_point_a( xval, yval, cnt );
 	}
 
 	return TRUE;

@@ -1,0 +1,18 @@
+. ../go__fns
+GRP=js_node
+URL=https://nodejs.org/dist/v25.4.0/node-v25.4.0.tar.gz
+fn_grp_url ${GRP} $URL // fn_one_two $1 $2 
+# fn_no_VPATH
+fn_unpack
+fn_with_grp ${GRP} // does fn_grp_url call this too ?
+fn_with_grp libr // add libr // node uses ssl 
+fn_configure_pfx \
+--debug \
+--debug-node \
+--gdb \
+--shared-openssl \
+--shared \
+
+fn_make 
+fn_make install
+

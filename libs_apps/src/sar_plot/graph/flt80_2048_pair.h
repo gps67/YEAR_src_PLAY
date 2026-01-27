@@ -13,7 +13,7 @@ typedef long double flt80;
 	over the specified range
 
 	The dset_api base allows it to receive data with merge_floats().
-	Each merge_point() drops a value onto a slot, which accumulates
+	Each merge_point_a() drops a value onto a slot, which accumulates
 	the val, and increments the count.
 
 	The x-axis is usually time, but could have any stretch, and
@@ -87,7 +87,7 @@ struct flt80_2048_pair : public dset_api
 		return v;
 	}
 
-	void merge_point( flt80 xval, flt80 yval, flt80 cnt = 1.0 );
+	void merge_point_a( flt80 xval, flt80 yval, flt80 cnt = 1.0 );
 
  virtual // dset_api
 	bool merge_floats(

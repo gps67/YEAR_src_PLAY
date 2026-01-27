@@ -4,7 +4,19 @@
 #include "dgb.h"
 #include "buffer2.h"
 
-u8 table_flip_4[16] = {
+/*
+	gcc is giving me ASM .base64 not recognised
+	maybe binutils as is old?
+	hence the #if 0 everywhere and align and ...
+
+	simple as gcc15 needs "as" --version more recent
+*/
+
+// i64 _dummy_align_1;
+
+// u8 table_flip_4[16] = {
+static u8 table_flip_4[16] = {
+#if 1
 	0x00,	// 0 0000 -> 0000 = 0
 	0x08,	// 1 0001 -> 1000 = 8
 	0x04,	// 2 0010 -> 0100 = 4
@@ -21,15 +33,19 @@ u8 table_flip_4[16] = {
 	0x0B,	// D 1101 -> 1011 = B
 	0x07,	// E 1110 -> 0111 = 7
 	0x0F	// F 1111 -> 1111 = F
+#endif
 };
+// i64 _dummy_align_2;
 
 u8 reverse_bits_in_byte( u8 byte_in ){
+#if 1
 
 	u8 lo_in =  byte_in & 0x0F;
 	u8 hi_in = (byte_in >> 4) & 0x0F;
 	u8 hi_out = table_flip_4[ lo_in ] << 4;
 	u8 lo_out = table_flip_4[ hi_in ];
 	u8 byte_out = hi_out + lo_out;
+#endif
 	return byte_out;
 }
 
@@ -37,10 +53,11 @@ u8 reverse_bits_in_byte( u8 byte_in ){
 bool print_4_binary( int b )
 {
 	char buff[5];
-	for( int i = 0; i<3; i++ ) {
+	for( int i = 0; i<4; i++ ) {
 		char c = '0';
 		if(b & 1 ) c = '1';
-		buff[i] = c;
+		buff[3-i] = c;
+		b >>= 1;
 	}
 	buff[4] = 0;
 	return false;

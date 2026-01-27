@@ -20,6 +20,8 @@
 
 // #include "str0.h"
 
+#include "dgb.h" // FAIL
+
 	//! constructor - use a debugging pathname?
 	sock_addr_UNIX::sock_addr_UNIX()
 	: sock_addr_base( (sockaddr*)&sa, sizeof(sa))
@@ -34,7 +36,7 @@
 	{
 		if( pathname.str_len() > 108 ) {
 			FAIL("len %d str %s",
-				pathanme.str_len(),
+				pathname.str_len(),
 				(STR0) pathname
 			);
 			return false;

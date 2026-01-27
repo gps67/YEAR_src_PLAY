@@ -1,0 +1,119 @@
+API_ARGV_SCRIPT.txt
+
+ 	VAR_POOL += CT_RT // HINT SCOPE "alias=%s" // HINT SCOPE "%" //
+
+ 	VAR_POOL += AVAR // HINT SCOPE "alias" in // HINT ALIAS "alias"
+
+		DIALECT "alias" retains Q2 but as an ATTR that we KNOW 
+		Q2 will PROVIDE PICK_KNOW KNOW = KNOW_Q2_USED_and_OUTSIDE_TEXT
+		Q2 TEXT_in_Q2_MODE Q2 // Q2_mode _one _two _byname _omit
+		_omit is a request to VIEW as OMIT
+		_emit is a request to VIEW as EMIT ...
+		_omit can be a BOOL or a PICK "{ _omit _emit }" // _OMIT _EMIT
+		_OMIT binds to _omit // OVERLAY //
+	
+	SCRIPT is not trusted
+	BUILTIN selects its own ACCESS and enforces with systematic CALL
+	CT_RT listenins in on that call, and uses it as a data source, stack
+
+	MINI_MACHINE
+	NEST_TEXT
+	TEXT_NEST
+	STACK
+
+		eg in HTML every <ELEMENT> starts a new STACK for this ZONE
+		eg in HTML every <ELEMENT> can look for its PEERS and USAGE
+		nb can look via ASK API // ENQ_ACK
+
+		need python await RTFM
+		need decorators RTFM
+		keep BENCH decorators LIST around FUNC in MODULE
+		DIAG += decorator DRAW XYWH FGBG DATA
+		DATA += i64_ALIGNED_i64 S_T_R_0 // then padding to ALIGN 
+		ZERO += TRACK all realloc STR0 within buffer upto ALIGN
+		WORD >= 0 1 2 3 4 5 6 7 // absurd use of OPERATORS >= <= // +-
+		PLUS_MINUS // PUNCT_PLUS_MINUS // operator_PLUS_MINUS // USED .
+
+		
+		FILL += S T R I N G 0 0 // 0 means NUL BYTE
+		FILL += S T R I N G 7 0 // "STRING7" NUL // Q2 not stored //
+
+		FILL +=               7 
+		FILL +=             6 7 
+		FILL +=           5 6 7 
+		FILL +=         4 5 6 7 
+		FILL +=       3 4 5 6 7 
+		FILL +=     2 3 4 5 6 7 
+		FILL +=   1 2 3 4 5 6 7 
+		FILL += 0 1 2 3 4 5 6 7 // NUL then align with 7 NUL // GAP_PAGE
+
+			GAP_PAGE does have NUL as every BYTE
+			GAP_PAGE does not have NUL as it's first BYTE // ROLE
+			NUL_FILL has a NUL to end STR0 then pad to ALIGN NUL x7
+			NUL_INIT no need to place 7 NUL's only first
+
+	
+	INIT_ZERO
+
+		INIT_ZERO is a required habit for some LIBR
+		PROVIDE INIT_ZERO KEEP_ZERO attempt to optimise FILL NULL
+		KNOW blk1 pads with NUL from P1P2 P0P2 is where data has been
+		SPLAT NUL over P0P1 P1P2 not P2_EOT_P2
+
+		shrink buffer knows to reduce tail
+		alloc tracking can do this soon
+		REQUIRE VERY_SOON - ie all CODE must do that uninterrupted
+		PROVIDE on_EXIT - ie done before RETURN // STACK NEST_TEXT
+	
+	CSET WRAP
+
+		MERGE FILTER on FILTER
+		MERGE FILTER with CSET
+
+		 GEN_PARSE uses PARSE_CSET
+
+		 	PARSE knows CSET from CT_RT which says USE_A_VAR PICK
+
+
+
+	// ARRAY operator // lookup[ TOKEN ] get EIGHT_ASIS // in original MMAP
+	// MMAP COPY is CODE_PICK we provide the MMAP FILE and page from DECODE
+	// SIMPLE model is MMAP_RO // intent matches code logic CTOR CALC READ
+	// SIMPLE model is MMAP_RW // file is open_rw MMAP is _RW SAVE GROW AUTO
+	// SIMPLE model has MMAP FILE CTRL STAT //
+	// SIMPLE model has SECURE_SANDPIT in the form of CTRL_for_TASK
+	// PROVIDE model // CTRL_for_TASK = TASK.get() //
+	// Task.get() returned a CT_RT tracer // AVAL in a TRAY with OPCODES
+	// AVAR receives a TOKEN that says "WAKE_to_READ" // so wake up
+	// AVAR keeps a CACHE of TOKEN as SELF = lookup TOKEN // AUTO NEW
+	// EACH call gets TOKEN which we COPY into CACHE.TOKEN = TOKEN
+	// EACH call gets TOKEN and CT_RT knowledge whic includes TOKEN.CACHE
+	// unfortunately C does not allocate a client_data_WORD before STR0
+	// we can and use EA_EXPR // DECODE_i64( EA_EXPR )
+	// we can and use EA_EXPR // DECODE_i64( OP_DATA )
+	// we can and use EA_EXPR // DECODE_i64( OP_CODE )
+	// AUTO NEW is how CTOR is called first time, AVAR used after that
+	// KEPT VAL is how CTOR builds an object that persists, stays alive
+	// ARGV_SCRIPT += INFIX_PUNCT_DETECT // RET_VAR_TYPE operator-[](IDX)
+
+	MINI_MACHINE_STACK
+ 	VAR_POOL + AVAR // HINT SCOPE "alias" in MINI_MACHINE_STACK
+
+API_ARGV_SCRIPT.txt
+
+	ARGV_SCRIPT
+	 CXX_SCRIPT
+
+	 node_js
+	 js_node
+
+	 We run C_BISON offline 
+	 We run WASM_C_BISON online 
+	 IO is entire file in one N_BYTES
+	 IO is chain blocks each SEQ N_BYTES LOCN_EDGE_INFO
+
+
+ API_FILTER
+ API_FILTER_ARGV_SCRIPT
+
+ 	VAR_POOL + AVAR // HINT SCOPE "alias" in MINI_MACHINE_STACK

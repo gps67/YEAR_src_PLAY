@@ -10,3 +10,70 @@
 
 # $(@D) - dir part of $@
 # $(@F) - file part of $@
+
+-----------
+
+BASH
+
+	$1 .. $9
+	$0 func_name_or_prog_name
+	$? RET_VAL errno from previous func call or prog run
+	"$@" -- that is a special magic that expands to "$1" "$2" // add your $0
+
+	${AVAR:-default}	returns AVAR or default // "" or NULL or UNSET
+	${AVAR:=default}	returns AVAR or assigns default // "" or NULL or UNSET
+	${AVAR:?word}	CHECK AVAR is better than empty // EXIT_ERROR 
+
+	${AVAR:+word}	SWITCH
+
+		if AVAR is empty it stays empty
+		if AVAR has value use expand word
+
+	${AVAR:offset}
+	${AVAR:offset:length}
+
+		offset of start of TEXT
+		length limit of TEXT to copy
+
+		offset < 0 // end + offset // ie MINUS non_zero // P0 of copy
+		length < 0 // end + offset // ie MINUS non_zero // P2 of copy
+
+		nb -123 needs space else :- 123
+	
+	${@:offset:length}
+	${*:offset:length}
+
+		returns an ARGV P0P2 were positions in LIST from "$@"
+		on_MINUS see as P2 + val_minus // -1 means last in list
+		// maybe only offset not length
+
+		
+
+	${AN_ASSOCIATIVE_ARRAY:offset:length}
+
+		ERROR undefined behaviour
+
+ ARRAY indexed
+ ARRAY associative
+
+
+ 	declare -a ARRAY_N_of_WORD
+ 	declare -A AN_ASSOCIATIVE_ARRAY /
+ 	ARRAY_N_of_WORD[99]="$Value"
+ 	AN_ASSOCIATIVE_ARRAY["$ATTR_NAME"]="$ATTR_VALUE"
+
+	
+ 	AN_ASSOCIATIVE_ARRAY=( $K1 $V1 $K2 $V2 ) # ERROR if $KEY is empty
+
+	+= WORKS
+
+ BASH ? portable ?
+
+ 	text="ONE_TWO_THREE"
+	readarray -d "_" -t WORDS <<< "$text"
+	n=${#WORDS[*]}
+	for (( i=0; i<$n; i++ ))
+	do
+		echo "WORDS[$i] ${WORDS[i]} # NB no $ in $i
+	done
+	

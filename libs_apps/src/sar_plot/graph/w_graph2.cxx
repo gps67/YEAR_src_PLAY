@@ -136,7 +136,7 @@ if(0)		if( data2.count[i] < 0.75 ) continue;
 		flt80 yval = data2.val[ i ];
 		flt80 cnt  = data2.count[ i ];
 
-		data3.merge_point( xval, yval, cnt );
+		data3.merge_point_a( xval, yval, cnt );
 	}
 	// data3.first_avg();
 }

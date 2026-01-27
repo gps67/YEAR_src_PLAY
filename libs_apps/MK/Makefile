@@ -421,6 +421,9 @@ else
 ####	LX11 += -L/tools/..../X11R6/lib -lX11 -lXmu
 	LX11 += -lXmu
 
+#	SAVE_TEMPS += -save-temps -dumpbase GEN_ # NO all that 1 name
+# OK	SAVE_TEMPS += -save-temps -dumpdir GEN_ # NO all that 1 name
+
  # THIS IS NOW SET IN Makefile_X_LGX_intel
 
 	# ccache is a 'transparent' wrap on gcc/g++ that makes its go
@@ -430,7 +433,8 @@ else
 	## CXX = ccache g++ #			#
 	# CXX = g++ #			#
 	# CXX = say_do g++  -g -fPIC #			# WRONG but CURRENT
-	CXX = say_do g++  -g -fPIC # WRONG but CURRENT
+	CXX = say_do g++ -g -fPIC $(SAVE_TEMPS) # CURRENT
+#	CXX = say_do /tools/x86_64/gcc15/bin/g++  -g -fPIC # WRONG but CURRENT
 	# CXX = say_do g++ #			#
 #	CXX = RUN4 g++ #			#
 #	CXX = RUN4 I icpc -g -debug all #			#

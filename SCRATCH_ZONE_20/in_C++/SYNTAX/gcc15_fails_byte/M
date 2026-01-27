@@ -1,0 +1,7 @@
+. fns_VARS
+var_pfx PATH /tools/x86_64/ccs/bin	# fixes it with new as
+var_pfx PATH /tools/x86_64/gcc15/bin
+
+type g++
+type as
+make "$@" 2>&1

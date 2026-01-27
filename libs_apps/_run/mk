@@ -7,7 +7,6 @@
 # remember Makefile uses $(VARNAME) shell uses ${VARNAME}
 
 	# clear
-
 	# in a script that finds where we are
 	# the boot strap is a bit lame
 	# $HOME/YEAR/src/libs_apps/run_		<== WE ARE HERE
@@ -26,6 +25,7 @@
 	. fns_DIRS
 	. fns_FAIL
 	. fns_VARS	# needs PATH_TOOL compiled and on path
+
 
 #	var_add PATH `pwd`
 
@@ -153,6 +153,12 @@ fi
 	jobs=8
 	jobs=1	# default is simplest
 	jobs=14
+
+	UNAME_M=`uname -m`
+	var_pfx PATH /tools/${UNAME_M}/gcc15/bin # pick gcc15
+	var_pfx PATH /tools/${UNAME_M}/ccs/bin # gcc15 needs new as
+	type gcc
+	type as
 
 #	remove JOBS frm calling scripts and ignore it here #
 #	jobs=${JOBS:-$jobs}

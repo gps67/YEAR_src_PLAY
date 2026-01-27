@@ -511,6 +511,12 @@ relink: clean_lib clean_exe $(RUN_INCL_PATH)
 clean_rpt:
 	$(RM_rf)  $(OBJS_accts_rpt) accts.o
 
+clean_GCC:
+	# remove all GCC TEMP FILES
+	$(RM_rf)  GEN_*
+
+#	$(RM_rf)  *.s *.i *.ii GEN_*
+
 clean_lib:
 	# causes re-link of .a
 	$(RM_rf)  $(LIST_LIB_A) 
@@ -561,7 +567,7 @@ clean_lib_37:
 
 clean_lib_all: clean_lib_11 clean_lib_23 clean_lib_21 clean_lib_33 clean_lib_34 clean_lib_35 clean_lib_36 clean_lib_37
 
-clean_exe: clean_lib 
+clean_exe: clean_lib  clean_GCC
 	# causes re-link of .a and .exe
 	$(RM_rf)  $(PROG1_EXE)
 	$(RM_rf)  $(PROG2_EXE)
@@ -575,7 +581,7 @@ clean_exe: clean_lib
 	$(RM_rf)  $(PROG0_EXE)
 	$(RM_rf)  tv_vol_
 
-clean_o:
+clean_o: clean_GCC
 	$(RM_rf)  $(PROG1).o $(PROG1_EXE)
 	$(RM_rf)  $(PROG2).o $(PROG2_EXE)
 	$(RM_rf)  $(PROG3).o $(PROG3_EXE)
@@ -587,7 +593,7 @@ clean_o:
 	$(RM_rf)  $(PROG9).o $(PROG9_EXE)
 	$(RM_rf)  $(PROG0).o $(PROG0_EXE)
 
-clean0: clean_lib clean_exe clean_o clean_lib_all
+clean0: clean_lib clean_exe clean_o clean_lib_all clean_GCC
 	$(RM_rf) $(OBJS)
 	@# $(RM_rf)  $(DEPS)
 	$(RM_rf)  fa fa1 fb out1 out1.gz without_pdf.o

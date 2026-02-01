@@ -8,7 +8,9 @@ echo "needs X 32 bit"
 . ../go__fns
 
 fn_grp_url emu \
-	https://dl.winehq.org/wine/source/9.x/wine-9.15.tar.xz
+	https://dl.winehq.org/wine/source/11.x/wine-11.1.tar.xz
+	
+# https://dl.winehq.org/wine/source/9.x/wine-9.15.tar.xz
 
 # fn_no_VPATH
 fn_unpack

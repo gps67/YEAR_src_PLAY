@@ -1,0 +1,28 @@
+TCL_prep_audacity_projname_tree/
+TCL_prep_audacity_projname_tree.txt
+
+	Creating an audacity project is tricky because it is sqlite
+	This uses old V2 text which audacity automatically upgrades to V3
+	That requires the presence of the subdir where V2 data would be
+
+	The tree of projects, uses a ROOT dir to be tidy /tmp/A_DIR
+	/tmp means all your work gets deleted on reboot - so beware
+	A_DIR is simply to be tidy
+
+	L1 = ARTIST one subdir each
+	H2 = ALBUM one subdir each
+	T3 = PROJECT and TRACK 
+
+	You might want PROJECT == ALBUM
+	You might want different AUTO_NUMBER
+
+	You also might want different rate="44100.0"
+
+LIBR_one
+
+	uses an initial draft of GEN 
+	which converts "SP" to " "
+	which breaks template text into words from tcl
+
+	Needs a bit of work, but interesting
+

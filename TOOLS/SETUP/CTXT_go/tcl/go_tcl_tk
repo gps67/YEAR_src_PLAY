@@ -4,6 +4,7 @@ tk_vern=tk9.0b3
 tk_vern=tk9.0
 tk_vern=tk9.0.0
 tk_vern=tk9.1a0
+tk_vern=tk9.0.3
 url=http://prdownloads.sourceforge.net/tcl/${tk_vern}-src.tar.gz
 fn_grp_url tcl $url
 fn_fetch

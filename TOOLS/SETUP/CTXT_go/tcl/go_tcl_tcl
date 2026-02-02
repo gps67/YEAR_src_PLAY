@@ -3,7 +3,8 @@
 tcl_vern=tcl9.0b3
 tcl_vern=tcl9.0.0
 tcl_vern=tcl9.0.1
-tcl_vern=tcl9.1a0
+tcl_vern=tcl9.1a0 # still 2026
+tcl_vern=tcl9.0.3 # into 2026
 url=http://prdownloads.sourceforge.net/tcl/${tcl_vern}-src.tar.gz
 # http://prdownloads.sourceforge.net/tcl/tcl9.0.0-src.tar.gz
 # http://prdownloads.sourceforge.net/tcl/tcl900-src.zip

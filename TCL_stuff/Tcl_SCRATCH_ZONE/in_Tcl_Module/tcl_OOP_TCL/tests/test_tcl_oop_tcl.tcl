@@ -74,8 +74,8 @@ proc fn3 {} {
 	# todo LOAD from PATH search, or TRAX("purpose")
 	# todo LOAD from PATH search, or TRAX("TCL_CXX_MODULE tcl_oop_tcl")
 	# search PATH for %s.so file(s) { .so .db .rc .sess }
-	puts "# KNOW # load ../obj/tcl_oop_tcl.so optical"
-	load ../obj/tcl_oop_tcl.so optical
+	puts "# KNOW # load ../obj/tcl_oop_tcl.so Optical changed to CAP1"
+	load ../obj/tcl_oop_tcl.so Optical
 #	load tcl_oop_tcl.so optical
 
 if 0 {

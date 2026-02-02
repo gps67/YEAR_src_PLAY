@@ -3,6 +3,7 @@
 # where is tclsh rooted and where are its include files
 
 	Tcl_prefix=/tools/x86_64/tcl
+	tclsh=tclsh9
 
 	CXX = g++
 	OPTIM += -g
@@ -96,10 +97,13 @@
 #	VPATH+=$S$(foreach sub,$(VPATH_LIST),:$S/$(sub))
 
 # WELL THIS WONT WORK - it is Tcl Module
-# NEED dgb_invoke # NEED FLAG # FAST STOP # FAST_KNOW_MOVE #
-# NEED gdb=/tools/x86_64/ccs/bin/gdb
-#	db=/tools/x86_64/ccs/bin/gdb
-	db=gdb
+# NEED	dgb_invoke # NEED FLAG # FAST STOP # FAST_KNOW_MOVE #
+# NEED	gdb=/tools/x86_64/ccs/bin/gdb
+#	gdb=/tools/x86_64/ccs/bin/gdb
+	gdb=gdb
+
+Default: test
+default: module
 
 gdb_test1: $(EXEC1)
 	INGDB=1 $(gdb) -tui --command ../.gdb_init_$(PROG1) --args ./$(EXEC1)
@@ -108,18 +112,14 @@ gdb_test1: $(EXEC1)
 
 .SUFFIXES: .o .cxx .so .exec .h
 
-Default: test
-
-default: module
-
 module: $(Module).so
 
 dgb: $(Module).so
-	tclsh ../tests/test_$(Module).tcl 2>&1 
+	$(tclsh) ../tests/test_$(Module).tcl 2>&1 
 
 test: $(Module).so
 	nm $(Module).so | grep Init
-	tclsh ../tests/test_$(Module).tcl 2>&1 | tee fa 
+	$(tclsh) ../tests/test_$(Module).tcl 2>&1 | tee fa 
 	@echo '---'
 
 # all of the .o depend on all of the .h

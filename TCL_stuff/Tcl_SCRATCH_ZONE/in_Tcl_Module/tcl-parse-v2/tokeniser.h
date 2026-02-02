@@ -26,6 +26,8 @@ Tcl_ObjCmdProc tokeniser_new;
 }
 //Tcl_ObjCmdProc tokeniser_call;
 
+#define CONST const
+
 struct tokeniser
 {
 	Tcl_Interp *interp;	// retval

@@ -1,0 +1,18 @@
+
+	I accidentally did not install 9.0.3, (9.0.0)
+	so I just did, and it gave some errors
+	Cap1 of module for a start
+	also ubuntu 24.04.3 LTS is still 8.6
+
+	TODO try with 9.1a0
+
+	ALSO tcltls is badly wrap packaged
+	tgz is called tcltls-2.0-src 
+	dir is called tcltls-20260121024900-5d3e3c3bf8  
+
+	OOP is core dumping (maybe it was)
+
+	TODO rework Cap1
+	TODO rework Tcl_StaticLibrary
+	TODO /tools/CTXT/tcl/bin/tclsh9 -> tclsh9.1 
+

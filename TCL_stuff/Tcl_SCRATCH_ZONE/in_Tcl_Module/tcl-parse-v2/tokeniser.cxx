@@ -612,7 +612,7 @@ int tokeniser::parse_braces( Tcl_Obj * str )
 
 void tokeniser::set_script( Tcl_Obj * str)
 {
-	int len=0;
+	Tcl_Size len=0;
 	char * s = Tcl_GetStringFromObj( str, &len);
 	set_script( s, len );
 }

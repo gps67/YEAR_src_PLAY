@@ -1,5 +1,6 @@
 . ../go__fns
 url=https://core.tcl-lang.org/tcltls/uv/tcltls-1.7.22.tar.gz
+url=https://core.tcl-lang.org/tcltls/uv/tcltls-2.0-src.tar.gz
 fn_grp_url tcl $url
 fn_unpack
 fn_with_tk

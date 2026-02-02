@@ -82,6 +82,7 @@ int tokeniser_init_restricted( Tcl_Interp * interp_client )
 	ClientData cmd_obj = (ClientData) (long long) mod; // cast from 32 to 64
 	// C is stupid, sizoeof(word) is 64 not 32 bit
 	// for structs larger than 2G
+	printf("sizeof int %ld sizeof Tcl_Size %ld \n", sizeof(int), sizeof(Tcl_Size) );
 	printf("sizeof int %ld sizeof ClientData %ld \n", sizeof(int), sizeof(ClientData) );
 	Tcl_ObjCmdProc * cmd_fn = tokeniser_new;
 	Tcl_CmdDeleteProc * cmd_del = NULL;

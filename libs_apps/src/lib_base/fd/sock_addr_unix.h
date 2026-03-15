@@ -95,7 +95,7 @@ class sock_addr_UNIX : public sock_addr_base
 	bool set_pathname( str0 pathname );
 
 
-	//! get the pathname as a CPU byte order int
+	//! get the pathname as a STR0
 	str0 get_pathname();
 
 };

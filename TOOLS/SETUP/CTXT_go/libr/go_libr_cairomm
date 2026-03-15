@@ -1,0 +1,13 @@
+. ../go__fns
+
+URL=https://cairographics.org/releases/cairomm-1.19.0.tar.xz
+
+fn_grp_url libr $URL
+fn_unpack
+fn_with_grp libr
+fn_FAIL 99 TODO build using meson ninja
+exit
+fn_configure_pfx 
+fn_make 
+fn_make -k
+fn_make install

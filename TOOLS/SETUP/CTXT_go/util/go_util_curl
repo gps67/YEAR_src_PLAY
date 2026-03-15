@@ -1,0 +1,11 @@
+. ../go__fns
+echo sudo apt install libpsl-dev
+fn_grp_url util https://curl.se/download/curl-8.19.0.tar.bz2
+fn_unpack
+fn_with_grp $gcc10
+fn_with_grp util
+# fn_with_grp2_LD_RUN_PATH libr # find openssl # done by fn_with_grp
+fn_with_grp libr
+fn_configure_pfx --with-openssl
+fn_make 
+fn_make install

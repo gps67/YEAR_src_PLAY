@@ -13,6 +13,12 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/christianhaitian/arkos/
+https://github.com/christianhaitian/dArkOS/
+https://github.com/TinyCC/tinycc
+https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
+https://github.com/ginjo/haserl-framework.git
+https://git.openldap.org/openldap/openldap
 https://github.com/extension-js/extension.js
 https://github.com/extension-js/extension.js.org
 https://github.com/extension-js/create
@@ -23,7 +29,6 @@ https://github.com/j-p-higgins/SoundThread
 https://github.com/ComposersDesktop/CDP8
 https://github.com/cs01/gdbgui/
 https://github.com/GNOME/gnome-shell
-https://github.com/TinyCC/tinycc
 https://github.com/preactjs/wmr
 https://github.com/preactjs/preact
 https://github.com/preactjs/signals
@@ -245,7 +250,6 @@ https://gitlab.freedesktop.org/freetype/freetype
 https://github.com/NativeScript/NativeScript.git
 git://sourceware.org/git/elfutils.git
 https://github.com/antirez/linenoise
-https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
 https://github.com/danchitnis/webgl-plot-examples
 https://github.com/MrRio/jsPDF
 https://github.com/danchitnis/webgl-plot

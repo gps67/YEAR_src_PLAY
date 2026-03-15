@@ -1,0 +1,18 @@
+2026-03-07 Mar Sat 00:59 TREE_POS.txt
+
+	We are at TREE_POS = CSR_one = CSR
+	We are at TWIG_CSR += LOCN += CSR_MODE += PICK_csr_idx_in_LIST
+	LIST = PICK_LIST // AUTO connect wtih SUBLEX in line above LIST PICK csr
+
+	TWIG is actually on TREE at TREE_POS = TWIG_POS = GRAFT = XPOS = DECL
+	UP_TREE is only BRANCH with own LOCN_dot_dot
+	IN_TWIG is LIST_of_LOCN // SUBDIR //
+	IN_TWIG is LIST_of_TWIG // LOCN SUBDIR //
+	IN_TWIG is LIST_of_LEAF // LEAF FILE // OPTION LEAF_SUBDIR with TEMPLATE
+	IN_TWIG is LIST_of_CTRL // files symb links dirs and NAME_ONLY # mangle
+
+	TWIG is LOCN for ITEM with ITEMS // VFS name file symb link locn .. .
+	TWIG is PHRASE
+	TWIG is ...
+	TWIG is ...
+

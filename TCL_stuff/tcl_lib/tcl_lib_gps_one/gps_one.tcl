@@ -23,12 +23,31 @@
 #	package require gps_one 0.4-
 #
 
-# pkg_mkIndex notices the effect of this line
+# pkg_mkIndex notices the effect of package provide PKG_NAME PKG_VERN
+# DECL MACRO PKG_VERN = "0.5"
+# do the package actions
+# declare any funcs vars
+# notify pkg_mkIndex
+#
+# 	package provide  PKG_NAME PKG_VERN
 
 	package provide gps_one 0.5
 
-# then we do the package actions
+# do the package actions
 # declare any funcs vars
+
+	# MORE CODE HERE
+
+# "gps_one" is my default global ENV for Tcl scripts
+# each module will bring its own package, running inside gps_one
+# gps_two could be a custom preparation zone for this box, this task, gps_two
+# gps_two is to be renamed TCL_IMPORT_PACKAGE_TASK_NAME # SITE_NAME # %s_%s
+# ABBR %s_%s %s two # ABBR %s_%s SITE item_namer_one # SITE = "%s" two = "two" # 
+# BENCH item_namer_one SITE # SITE = "SITE"
+# any_dir_name under tcl/lib
+# /tools/x86_64/tcl/lib/tcl_lib_gps_one/
+# pkg_mkIndex notices the effect of package provide %s 0.5 # DECL HERE %s #
+# %s # PKG_NAME # gps_one #
 
 # in our case we use this as a centralised place 
 # where the dirs that we use will be found

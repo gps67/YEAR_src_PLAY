@@ -1,0 +1,42 @@
+
+. ../go__fns
+
+  fn_grp_url R https://cran.ma.imperial.ac.uk/src/base/R-4/R-4.5.2.tar.gz
+# fn_no_VPATH
+fn_unpack
+
+fn_with_tk
+fn_with_grp tcl		# TKINTER
+fn_with_grp libr	# ncurses # but not used in 3.12 ?
+fn_with_grp util
+fn_with_grp_all
+fn_with_grp_LD_RUN_PATH tcl
+fn_with_grp_LD_RUN_PATH libr
+fn_with_grp_LD_RUN_PATH util
+fn_with_X11
+
+fn_reconfigure
+fn_configure_prefix \
+--with-cxx-main=g++ \
+${enable_optimisations} \
+${enable_pydebug} \
+
+
+
+fn_make -i
+fn_make install
+fn_make pdf
+fn_make info
+fn_make install-pdf
+fn_make install-info
+# fn_make -i install
+
+#
+# R36 += nodejs
+# R36 += R R_toolkits
+# VM build darkos
+# VM build ARM64 does build of VM_ROM BOOT_ROOT_UDEF
+# VM build ARM64 can have 12 cores # slow qemu fast x12
+# VM 1GB memory is not a desktop, can be a light web server
+# VM S39 machine could have BT -or- WiFi -or-eth0 
+

@@ -1,7 +1,7 @@
 # bash functions
 
 #	. /home/gps/.profile # .bashrc # sudo removes PATH
-#	rerun_as_root() "%@"
+#	rerun_as_root() "$@"
 #	is_root()
 #	say_do()	"$@"
 
@@ -31,6 +31,28 @@ rerun_as_root()
 		# this time it returns immediately
 		# fist caller then does this exit
 		exit
+		# exit happened inside CALL rerun_as_root "$@"
+		# STACK UNWIND ONE # exit this SCRIPT # TASK STARTED #
+		# EDGE #
+		# OUTSIDE :-)
+		# TASK STARTED # as an independent THREAD # using QUOTA GRAIN
+		# OK was started BY this script, no problems with WAIT_for_PID
+		# stat PID # VFS /proc/PID_12345/ #
+		# VFS accepts a repeat of /proc/%d/ pid # ADJUST %d 
+
+		# PARENT_PID calls "$@" # A unique SHELL spelling of ARGV
+		# THREAD_PID calls EXEC "$@" # NEW THREAD EXEC ARGV # NO RETURNS #
+		# THREAD_PID used FD $FD 
+		# OPEN ... # CALL "$@" # NEW THREAD EXEC ARGV # NO RETURNS #
+		# CHILD_PID # all these CTOR pathways += NEW_THREAD_grain
+		# GRAIN_in_BATCH # MULTI_CPU can get 1 grain each
+		# QUOTA # provide 16 CPU for 10 seconds
+		# RATE # GRAIN # 
+		# exit # called above near edge # release PID thread
+		# QUOTA borrow OPEN_NEW TEST CLOSE_OLD USE_NEW # new PID thread
+		# QUOTA got an extra THREAD_PID
+		# CODE uses it to OPEN the next before closing the previous
+		# CODE connects THREAD_PID # running ARGV in SESS
 	fi
 }
 

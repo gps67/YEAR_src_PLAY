@@ -61,7 +61,9 @@ set ZONE_NAME Ella_One_CAM_1
 set ZONE_NAME BH_Albany
 set ZONE_NAME BH6_Captains_Club
 set ZONE_NAME Fredas
-set ZONE_NAME BH6
+set ZONE_NAME LPA
+set ZONE_NAME trib
+set ZONE_NAME Dja
 
 # rework for when in dir called YEAR_MM_DD_STR
 

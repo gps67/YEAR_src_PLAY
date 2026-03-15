@@ -76,3 +76,9 @@ YEAR_MM_DD, miles, litres, cost, note
 2026-01-02, 34697,  18.88, 24.71, Y Full Tesco FLEX BH 10
 2026-01-08, 34858,  18.25, 23.71, Y Full Tesco FLEX BH 10
 2026-01-17, 35123,  24.75, 32.09, Y Full Tesco FLEX RG
+2026-02-02, 35331,  22.02, 28.16, Y Full Morrissons
+2026-02-07, 35498,  17.13, 21.91, Y Full Morrissons
+2026-02-24, 35776,  29.68, 38.26, Y Full Tescos
+2026-03-02, 36105,  32.27, 42.24, Y Full Morrisons
+2026-03-12, 36301,  21.11, 28.90, Y Full Morrisons
+2026-03-13, 36388,   9.95, 13.72, Y Full Tesco BH

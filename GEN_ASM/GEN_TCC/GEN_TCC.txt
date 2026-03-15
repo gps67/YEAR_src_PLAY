@@ -1,0 +1,5 @@
+GEN_TCC/GEN_TCC.txt
+
+	We are listing well known phrases 
+
+	that work on gcc clang and tcc

@@ -75,3 +75,9 @@
  2026-01-02  34520 177  34697  14.0 p_mile  1.31 £_litre  5.95 £_gallon  42.6 mpg   6.6 lp100  Y Full Tesco FLEX BH 10
  2026-01-08  34697 161  34858  14.7 p_mile  1.30 £_litre  5.91 £_gallon  40.1 mpg   7.0 lp100  Y Full Tesco FLEX BH 10
  2026-01-17  34858 265  35123  12.1 p_mile  1.30 £_litre  5.89 £_gallon  48.7 mpg   5.8 lp100  Y Full Tesco FLEX RG
+ 2026-02-02  35123 208  35331  13.5 p_mile  1.28 £_litre  5.81 £_gallon  42.9 mpg   6.6 lp100  Y Full Morrissons
+ 2026-02-07  35331 167  35498  13.1 p_mile  1.28 £_litre  5.81 £_gallon  44.3 mpg   6.4 lp100  Y Full Morrissons
+ 2026-02-24  35498 278  35776  13.8 p_mile  1.29 £_litre  5.86 £_gallon  42.6 mpg   6.6 lp100  Y Full Tescos
+ 2026-03-02  35776 329  36105  12.8 p_mile  1.31 £_litre  5.95 £_gallon  46.3 mpg   6.1 lp100  Y Full Morrisons
+ 2026-03-12  36105 196  36301  14.7 p_mile  1.37 £_litre  6.22 £_gallon  42.2 mpg   6.7 lp100  Y Full Morrisons
+ 2026-03-13  36301  87  36388  15.8 p_mile  1.38 £_litre  6.27 £_gallon  39.7 mpg   7.1 lp100  Y Full Tesco BH

@@ -1,0 +1,180 @@
+Annual milage
+
+Mileage Check: You declared 16000 miles/year. MOT records suggest 7091 miles/year average.
+
+Annual milage
+
+	measured at refuel receipt and milage
+	DAILY MILES POUNDS recomputed on measured costed over previous N_DAYS daily
+	DAILY POUNDS
+	DAILY LITRES per day
+
+	FUNDAMENTAL ACCUMULATING GRAPH # STEPS TAKEN accumulates recorded weekly #
+
+	 MILES
+	 POUNDS
+	 LITRES 
+	
+	FUNDAMENTAL TOTAL -vs- RATE
+
+	 STYLE of GRAPH
+	 STYLE of INTERP 
+	 apply weight to specific extra blobs on top of background levels
+	 apply weight of regularity with scattered numbers # cluster blobs #
+	 blob event - is a specific road trip - may be unique or weekly - 
+	 distinct == unique
+
+	 CALC RATE 
+	 	FUEL PURCHASE 
+			DATE
+			LITRES	
+			POUNDS
+		+=	MILAGE // handwritten on receipt
+	
+	REAL LIFE
+
+		forgot to write MILAGE, used number from 4 days later
+		forgot to keep receipt, used POUNDS and common rate at DATE
+		half topup # didnt fill to top, just put in £10
+		near line # pump click off moment varies by pump and each time
+
+		sigma gives help picking the ADJUST within ADJUST by NOT_FULL
+		ADJUST from NOT_FULL to WHEN_FULL # ADJUST changes all LITRES POUNDS DATE 
+		NB and they also ADJUST self to ESTIAMTED NOT_FULL at LITRES by ADJUST_LITRES
+		ESTIMATE GAP = NOT_FULL by GAP // estimate from sigma //
+		PLOT GAP over SPAN of DATA to gague trust in its sigma //
+
+		We do not seek to change DATE LITRES POUNDS MILAGE
+		We aim to GUESS GAP = explains LITRES_two = ADJUSTED LITRES_one
+		We aim to CALC COST = stable price POUNDS_per_LITRE
+		We aim to CALC COST = unstable price POUNDS_per_LITRE PRICE_JUMP
+
+			we know that when the tank is only half filled
+			the true MILAGE was somewhere back down the road
+			we have passed that, (the full when LITRES_one added - POINT = MILAGE)
+
+			--- etc --- RTFM expand this out MILAGE_ZERO MILAGE_one MILAGE_two
+			--- etc --- RENAME _one _two
+	
+	 TOTAL_RATE
+
+	 	reading left to right
+		we start with the TOTAL miles at DATE 
+
+		 DATE_one
+		 MILES_one
+		 LITRES_one
+		 POUNDS_one
+
+		 DATE_two
+		 MILES_two
+		 LITRES_two
+		 POUNDS_two
+
+		 // DIALECT // FIELD_of_STRUCT_instname // ATRUCT = ANON
+
+		PREV_HERE_NEXT
+
+		 RECEIPT_PREV	// .DATE .MILES .LITRES .POUNDS // SUBLEX to TOKEN SPELLING
+		 RECEIPT_HERE	// TOKENISED_SPELLING // can still need to be resolved to TOKEN
+		 RECEIPT_NEXT	// SEARCH keeps find MATCH on first item of list
+
+		 .DATE // MATCH . DATE // PUNCT likes to cuddle TEXT // PUNCT SUBLEX_MERGE IDENT // C_IDENT
+
+		 // FLEXIBLE // NAME -> IDENT -> C_IDENT // APPLY CHOICE of PICK VFS_IDENT C_IDENT DIALECT_IDENT //
+		 // FLEXIBLE // C_IDENT_97 = C_IDENT_PLUS // ALLOW any UTF8 latin1 gylph in a2 += LIST_2 // not PUNCT
+		 // FLEXIBLE // C_IDENT_PLUS // ALLOW any UTF8 SOME_LANG_FONT gylph in a2 += LIST_2 // LETTERS_WORDS_SUBLEX_PUNCT_not_PUNCT
+		 // ALLOW "." as a2 not punct
+		 // ALLOW "_" as a2 not punct
+		 // ALLOW "-" as a2 not punct // SENSITIVE // USAGE YEAR-MM-DD // USAGE REXP_of_YEAR_MM_DD // USAGE PSG_SUBLEX_of_
+		 // LEX uses PSG // because it makes sense // to avoid confusion, use distince NAME in sharable VAR_POOL NAME_POOL # like ENUM
+
+	ADJUST_RATE
+
+		still accumulative, but with a missing DATA_POINT replaced with FAKE DATA - each documented - eg CALC from POUNDS DATE CARD
+
+		adjust for missing reading
+
+		adjust for NOT_FULL_GAP // esitamted aside - fun  // OPTION switch OFF
+
+		precalc for daily - along flat lines between points
+		precalc for daily - along curves between points
+
+		adjust for MANAULLY MOVE POINT to MID_FIT // OPTION AUTO CALC MANUALLY APPROVE
+	
+		adjust for precalc daily along CURVE += BENCH_edits_vals_used_in_CURVE
+		adjust for BENCH using CURVE between points - 
+
+		report distance wetween _LHS and _RHS
+
+		BENCH uses some early ADJUSTS and always uses them
+		BENCH then EDITS CURVES over POINTS
+		BANCH shows SIGMA between CURVE and STRAIGHT # 
+		BENCH then adds BLOBS from DIARY # TYPICAL NUMBERS from JOURNEY_35 on DATE_LIST
+		BENCH then gets list of ABSENT_BLOBS that it offers as explains
+		BENCH can guess in background noise
+	
+	MILAGE per YEAR
+
+		EVENT ERA
+		adds 240 miles each monday for {list} += {[T0[t2} += ADDITION FACTOR APPROX BLOB SIZE
+
+		ACCUMULATIVE MILES per TIME
+		CALCULATED MILES per TIME // per weekly refill // per fortnightly checkup //
+
+		AVERAGES per WEEK
+		AVERAGES per 28 DAYS 
+		AVERAGES per 90 DAYS
+		AVERAGES per 365 DAYS 
+		AVERAGES per 7 DAYS 
+		AVERAGES per 1 DAY 
+
+		These can be different Y_AXIS marking for same GRAPH
+
+	MILAGE per YEAR
+
+		Use one 8 months span to calculate MILES per 365
+	
+	KEEP P0P2
+
+		Y = MX + C 
+		Y = (dy/dx) X + C
+		M = (dy/dx) 
+
+		A handful of BASIC CONCEPTS - a bit like AXIOMS as DIAG
+
+			SLOPE as RATE
+			SLOPE as STEP_DY_DX
+
+			Yi = M Xi + C
+
+			M = (Y2-Y1) / (X2-X1)
+
+			C = Yi - ( M Xi )
+	
+	DIAG TOOK BENCH
+
+		SWEEP LINE_P2 along dots of graph // pick dots line // 
+		SWEEP LINE_P1 along dots of graph // pick dots line // 
+		PICK dots line // BENCH_NAME_47 //
+	
+	TOOL DIAG PLOT ACCUMULATIVE
+
+		PLOT is part of a DIAG
+		DIAG is part of a PLOT
+
+		SLOPE is rotatable M angle ///// -turn- ||||| -turn- \\\\\
+
+		leave a measurement on screen whilst more BENCH with TOOL
+
+
+ DUAL PORT WEB <--> R_BENCH 
+ DUAL PORT WEB <--> X_BENCH
+
+ 	Put JAVA_SCRIPT_inside R_BENCH ??
+
+	every mouse move on BENCH goes to NODE to BROWSER
+
+	Move NODE to GW over LAN or over WAN
+
+	

@@ -46,7 +46,7 @@
 	}
 
 
-	//! get the pathname as a CPU byte order int
+	//! get the pathname as a STR0
 	str0 sock_addr_UNIX::get_pathname()
 	{
 		return sa.sun_path;

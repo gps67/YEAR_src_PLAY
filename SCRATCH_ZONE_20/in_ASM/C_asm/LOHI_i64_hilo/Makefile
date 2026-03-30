@@ -13,11 +13,6 @@ clean:
 	rm $N.o $N.s $N.exec
 
 
-default: test1
-
-clean:
-	rm $N.o $N.s $N.exec
-
 test1: $N.exec
 	./$N.exec ; perror $?
 

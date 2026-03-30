@@ -1,0 +1,81 @@
+TEMPLATE_SESSION.txt
+
+	TEMPLATE is a SAMPLE or several SAMPLES at various times
+	SESSION is a UDEF_SCRIPT running a SESSION  with QUOTA
+	QUOTA += CLICKER RSA_DECODE_i1024 // MULTI_WORD i64[4] ALIAS i256
+
+	i256 does not exist (not on 32 bit CPU ) _i32_at_
+
+	i64	i32_i32
+	i64	i32_i32
+	i128	// actually FPU is worth HALF_WORD access to SIMD_WORD
+	i256	// SIMD i128[2] // also fits AES_256 CPU_SIMD_WORD_HALF_HALF and all of _1248
+
+	_1248	// ARRAY_WIDE_of_WORD // IDX = WIDE // you PROVIDE what IDX uses // RTFM API IDX and ITEM_t from IDX
+	_1248	// VM must implement each of _1248 // LIBR PROVIDE _1248_API
+	_1248	// INTEL AMD_64 has CPU OPCODE for ARRAY[ IDX=register ] of EIGHT_t and NEARBY
+	_1248	// NEARBY AMD_64_does_i32_sign_extend_from_LOOKUP // remains UNRESOLVED answered by SECOND NEARBY STRAND
+	_1248	// STRAND is picked from FIBRES of WORLD of IDX and ARRAY of EIGHT of _1248
+	_1248	// CPU uses i64 as a natural STEP = i64_WORD // i256 has i64_WORD[4] // CMD ARG TWO THREE // ALIAS OK!
+	i1248	// DATA DECODE_i64_as_i8_i8_OPCODE_i16_PAYLOAD i32_PAYLOAD // CT_RT can PICK which GEN_CPU_ASM_CMD
+	_1248_GROW // MINI_MACHINE uses i8 most of the time // is_MINUS is_ZERO is_PLUS // N requires double so i9_N
+
+	CODE can then use i9_N // LIBR_PROVIDES_LIBR
+	CODE can then use i9_N // AI_PROVIDES_LIBR
+	CODE can then use i9_N // i8_idx IDX_one // u8_idx IDX_two u31_int += _idx int_idx i32_idx i64_idx i8_idx :w
+
+	is_MINUS
+	is_ZERO
+	is_PLUS
+
+		is_PLUS VALUE = BITFIELD_VALUE = WORD_VALUE
+		is_MINUS VALUE = BITFIELD_VALUE = WORD_VALUE # RETVAL = LOOKUP ARG // ARG = VALUE = BITFIELD_VALE
+		is_ZERO VALUE => is_PLUS
+
+		so this permits GROW to extract VALUE from BITFIELD B2B0 or BYTE_FIELD_B2B0 // 
+
+ SAMPLE_PHRASE
+
+ 	from_ARGV_TEXT XPOS_to_XPOS PARSE_LEX at XPOS P0P2 P0_and_then_parse_P2
+ 	from_ARGV_TEXT XPOS_to_XPOS TREE is DATA from PSG CXX_SCRIPT
+ 	from_ARGV_TEXT XPOS_to_XPOS TREE is DATA from PSG ARGV_SCRIPT
+
+		ARGV is an over-simplification
+		ARGV is a FILTER that crystalises STEP into ARGV i64_WORD
+		ARGV is a STREAM from BATCH SEGMENT
+
+		ARGV of STEP
+		ARGV of ITEM	DECODE_i64( i64_IDX ) IDX = i64_IDX_EXPR_or_ITEM
+
+		MINI_MACHINE creates ARRAY[uns]
+		MINI_MACHINE creates PAGE += ARRAY[uns] of i64 // named ATOM of SCALE // ALIAS _i64
+		MINI_MACHINE_CPU _1248 "{ PICK i8 i16 i32 i64 }"
+		MINI_MACHINE_CPU _1248 "{ PICK u8 u16 u32 u64 }" // PAGE goes to the EDGE
+		MINI_MACHINE_CPU _1248 "{ PICK i64 i64_in_i256 i128 i256 i512 i1024 i2048 MULTI_WORD_1248 }" // PAGE goes to the EDGE
+
+		BITFIELD = BYTE_FIELD BYTE_A // HOVVERS over the WORD that contains it
+		BITFIELD = BYTE_FIELD BYTE_B // HOVVERS over the WORD that contains it
+		i16_PAYLOAD = _i32_WORD >> 16; // SIGNED
+		i32_PAYLOAD = PICK FROM_MEM_WORD FROM_CPU_WORD i32_MEM_WORD // CPU does this for free // even unaligned
+
+		if( PTR & 1 ) // not aligned to 2 bytes in i16 // WORD as i16[4] // WELL KNOWN AXIOM NAME // SAMPLE
+		if( PTR & 3 ) // not aligned to 4 bytes in i32 // i16[4] // i32[2] // if_is_ALIGNED ALIGNED_i32
+
+		RULE MOST CPU provide i32 as a working MODEL MINI_MACHINE arrays pointers counters N_needs_1_bit_more
+		RULE 1_idx_more causes 1_bit_more
+		RULE 1_bit_caused by 1_idx_more
+		// 1_idx is a UNIT STEP where u8_IDX needs u9_N // or trick with ZERO
+
+		u7 returns self
+		i8_MINUS looks up RET_VAL = DECODE_i8_MINUS( i8_IDX ) // _i8_IDX // OMIT _%s EMIT %s // NOTE TRANSPARENT
+	
+	NOTE	TRANSPARENT
+
+		BOUNCE A calls C
+		BOUNCE A         calls NULL	// KNOW to PROVIDE it from SELF as "C" // get that from SESS //
+		BOUNCE A         calls C	// OPTIMISE OMIT // OMIT calls B // NUDGE to OMIT calling 
+		BOUNCE A calls B calls C	// BOUNCE
+		if( PTR & 7 ) // not aligned to 8 bytes in i64
+
+
+

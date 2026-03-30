@@ -89,28 +89,34 @@ bool buffer1::putc_into_utf8_slower( int ch )
 
 	// BUG // this function demands parent sign extends ch to -ve
 	// the signed parameter does that
-	if(ch<=0)
+	if(ch<=0)	// MINUS glyph is unusual
 	{
 		if(!ch) return putc_NUL_into_utf8();
-		// somehow unicode got sign extended
+		// somehow unicode byte got sign extended
 		if( ch >= -128 ) {
 			WARN("i8 0x%02X got into i32", ch );
+			// clip ch to an uns byte
 			return putc_into_utf8_slower( ch & 0xFF );
 		}
 		
+		// negative char below 128 is not guessable as BYTE gone wrong
+		// just fail
 		FAIL("ERROR ch is -ve %d", ch );
 		return false;
 	}
 	if( ch < 0x80 )
 	{
 		// ASCII (not iso646) presumed
+		// TODO // if iso646_ish { ch = ch_from_iso646(ch) ; }
+		// ALSO // if ch < 0x80 put_byte(ch) else put_char( ch ) 
+		// we are not doing iso646, first convert that to Latin1_BYTE_8859
 		return put_byte( ch );
 	}
 	if( ch < 0x100 ) // within the BYTE range
 	{
 		// ch = UNICODE_from_8859_high
 		// no detect of double encode
-
+		// goto next line
 	}
 	if( ch < 0x800 ) // 110. .... + 10.. .... = 11 bits
 	{ // 6x1 + 5 == 11
@@ -200,6 +206,18 @@ bool	buffer1::put_nn_bytes_8859_to_utf8( unsigned n, const uchar * _bytes )
 /*!
 	true - convertion is required
 	false - its already utf8
+
+	this presumes 8859_Latin
+	this ignores 8859_Cyrillic
+
+	TODO add some var that says the output = internal buffer is CSET_one
+	TODO add some var that says the input = default mode used is CSET_two
+
+	so each caller CTOR sets a default current mode expecting CSET to arrive as 
+	so move to UTF8 entirely, and rely on "Q2 C source" to be in UTF8 mode
+	so live in 8859 mostly and know Latin1 - convert LATER
+
+	also need to convert FMT and args to UTF8, getting a bit of a slow-down
 */
 bool buffer1::vprint( bool conv_8859_to_utf8, const char * fmt, va_list args )
 {
@@ -287,8 +305,17 @@ man sprintf:
 			return false;
 		}
 	}
-	if( t >= maxlen )
+	if( t >= maxlen ) // >= // == another byte would be needed for the NUL, truncated by that byte // chars or bytes ?
 	{
+/*	RTFM man vsnprintf
+       The functions snprintf() and vsnprintf() do not write more than size bytes (including the terminating null  byte
+       ('\0')).   If the output was truncated due to this limit, then the return value is the number of characters
+       excluding the terminating null byte) which would have been written to the final string if enough  space  had  been
+       available.   Thus,  a  return  value of size or more means that the output was truncated.  (See also below under
+       NOTES.)
+
+       If an output error is encountered, a negative value is returned.
+*/
 // gdb_invoke(true);
 		if(! get_space( t+10 ) ) return false;
 		maxlen = space_avail();
@@ -306,12 +333,12 @@ man sprintf:
 
 
 
-bool buffer1:: trim_leading_blanks()
+bool buffer1:: trim_leading_blanks() // return TRUE if any blanks were there
 {
 //	gdb_invoke();
 	if(!nbytes_used) return false; // not found
-	p0p2 zone( buff, nbytes_used );
-	zone.trim_leading_blanks();
+	p0p2 zone( buff, nbytes_used ); // P0P2 over buff
+	zone.trim_leading_blanks(); // P0P2 does the work but VOID
 	if(zone.p0 == buff) return false; // not found
 	del_copy_down( zone.p0 );
 	return true; // found

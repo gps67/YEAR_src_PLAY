@@ -185,19 +185,26 @@ const char * str_file_type( File_Type file_type )
 		as indeed it is, UNIX sets errno and so on
 	*/
 	bool file_stat::stat( const char * filename ) {
-		save_filename(filename);
 		bool FAIL_if_absent = true;
-		return stat_FAIL_if_absent( filename, FAIL_if_absent );
+		return stat_test_FAIL_if_absent( filename, FAIL_if_absent );
 	}
 
 	/*!
 		return true - stat done without error
-
-		return with file_type == is_absent
+		return true with file_type == is_absent
 	*/
 	bool file_stat::stat_OK_if_absent( const char * filename ) {
 		bool FAIL_if_absent = false;
-		return stat_FAIL_if_absent( filename, FAIL_if_absent );
+		return stat_test_FAIL_if_absent( filename, FAIL_if_absent );
+	}
+
+	/*!
+		return true - stat done without error 
+		return false with file_type == is_absent
+	*/
+	bool file_stat::stat_FAIL_if_absent( const char * filename ) {
+		bool FAIL_if_absent = true;
+		return stat_test_FAIL_if_absent( filename, FAIL_if_absent );
 	}
 
 	/*!
@@ -207,9 +214,14 @@ const char * str_file_type( File_Type file_type )
 	}
 
 	/*!
+		stat(2) fails when a file is absent
+		we use the OPTION_FLAG FAIL_if_absent to refine that
+		TODO clear error if absent and that was expected or allowed
 	*/
-	bool file_stat::stat_FAIL_if_absent( const char * filename, bool FAIL_if_absent )
+	bool file_stat::stat_test_FAIL_if_absent( const char * filename, bool FAIL_if_absent )
 	{
+		save_filename(filename); // always do this
+
 		file_type = is_error;
 		linked_file_type = is_absent; // is_unset
 		readlink_val.clear();
@@ -220,6 +232,7 @@ const char * str_file_type( File_Type file_type )
 		{
 			// WIN32 - may need editing
 			if( errno == ENOENT ) {
+				// is_absent is certain
 				file_type = is_absent;
 				if( FAIL_if_absent ) {
 					return FAIL("ENOENT %s", filename);
@@ -227,37 +240,41 @@ const char * str_file_type( File_Type file_type )
 					err_int_t errr;
 					errr zap_OS_error();
 					return true;
-					return false;
 				}
 			}
 			return FAIL("%s", filename);
 		}
-#else
+#else // UNIX
 		// call lstat - which is stat without following links
 		if(-1==lstat( filename, &st ))
 		{
 			if( errno == ENOENT ) {
-				file_type = is_absent;
+				file_type = is_absent; // a fake file type
 				if( FAIL_if_absent ) {
 					return FAIL("ENOENT %s", filename);
 					// false matches -1 from syscall
 				} else {
+					// clear error, return true
 					err_int_t err_int;
 					err_int.zap_OS_error();
 					return true;
-					return false;
 				}
 			}
-			return FAIL("%s", filename);
+			// any other FAIL is a FAIL 
+			return FAIL("lstat %s", filename);
 		}
-#endif
-		file_type = get_file_type( st );
+#endif // OS TYPES
 
+		file_type = get_file_type( st );
+		linked_file_type = file_type; // for when not linked
 		if( file_type == is_link )
 		{
+			// we process readlink, and call stat which follows
 			if(!readlink_to_buf( filename, readlink_val ))
 				return FAIL_FAILED();
 
+			// TRACER // when are we following links
+			// symb links are not that common, added logging
 			if(1)	
 			 INFO("called readlink_to_buf() %s -> %s", filename, (STR0)readlink_val );
 
@@ -267,20 +284,34 @@ const char * str_file_type( File_Type file_type )
 			*/
 			if(-1==::stat( filename, &linked_st ))
 			{
+				if( FAIL_if_absent ) { // or any other error
+					return FAIL(
+						"is_absent along symb_link %s",
+						filename
+					);
+				}
+
+				// else clear error, warn (mildly unusual), PASS
+
 				linked_file_type = is_absent;
 				err_int_t errr;
 				errr.zap_OS_error();
-				WARN("symb_link to absebt file");
+				WARN("symb_link to absent file");
+				// fall through return true
 			} else {
+				// stat worked
 				linked_file_type = get_file_type( linked_st );;
 			}
 		} else {
+			// filename was not a link, set var anyway
 			linked_file_type = file_type;
 		}
 		return true;
 	}
 
 	/*!
+		LIBR brings ENUM File_Type_ = is_file ...
+		LIBR adds is_absent is_other
 	*/
 	// STATIC 
 	File_Type file_stat::get_file_type( const struct stat & s )
@@ -304,6 +335,9 @@ const char * str_file_type( File_Type file_type )
 	// src => dst
 	// ln -s something_that_probably_already_exists new_thing
 	// ln -s dst src
+	/*!
+		WRAP over man 2 symlink(dst,src) 
+	*/
 	bool file_stat:: symlink( const char * dst, const char * src )
 	{
 		if( ::symlink( dst, src ) == 0 ) {

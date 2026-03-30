@@ -106,7 +106,7 @@ struct buffer1 : public blk1 {
 	}
 
 	/*!
-		inline putc from 8859 to utf8
+		inline putc LF
 	*/
 	bool	put_LF()
 	{
@@ -126,6 +126,7 @@ struct buffer1 : public blk1 {
 
 	/* this should be non-inline */
 	// http://www.cl.cam.ac.uk/~mgk25/unicode.html
+	//
 	bool	putc_into_utf8_slower( int ch );
 
 	/*

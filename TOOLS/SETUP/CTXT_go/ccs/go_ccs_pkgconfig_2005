@@ -1,0 +1,6 @@
+. go__fns
+fn_grp_url ccs https://pkgconfig.freedesktop.org/releases/pkgconfig-0.18.tar.gz
+fn_unpack
+fn_configure_pfx
+fn_make -i
+fn_make -i install

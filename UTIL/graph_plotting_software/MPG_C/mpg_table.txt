@@ -81,3 +81,17 @@
  2026-03-02  35776 329  36105  12.8 p_mile  1.31 £_litre  5.95 £_gallon  46.3 mpg   6.1 lp100  Y Full Morrisons
  2026-03-12  36105 196  36301  14.7 p_mile  1.37 £_litre  6.22 £_gallon  42.2 mpg   6.7 lp100  Y Full Morrisons
  2026-03-13  36301  87  36388  15.8 p_mile  1.38 £_litre  6.27 £_gallon  39.7 mpg   7.1 lp100  Y Full Tesco BH
+ 2026-03-18  36388 153  36541  15.1 p_mile  1.39 £_litre  6.32 £_gallon  41.9 mpg   6.7 lp100  Y Full Morrissons
+ # SKIPPING # COMMENT ## # FOUR_PLUS # 640x480 also 720x720 via crop_stretch # four keys each PLUS counter of clicker
+##
+ # SKIPPING # COMMENT ## # FOUR_PLUS # ABCD COUNTER[FOUR_KEYS_4] by_name("{ A B C D }") // gravitate towards GENERIC PHRASE // ALIAS PHRASE MATCH
+##
+ # SKIPPING # COMMENT ## # ALIAS # SHARES_LIST_of_ATTR idx_of_("A") = ITEM.idx where ITEM = A_of_A_B_C_D
+##
+ # SKIPPING # COMMENT ## # A_of_A_B_C_D # 
+##
+ # SKIPPING # COMMENT ## # [0] of [4] # REMEMBER "{ [ 0 ... [ N }" # The "{ ... }" wrapper is a stylised FGBG_FONT_ARGV_VARS
+##
+ # SKIPPING # COMMENT ## # VARS # VARS_in_PHRASE # SAMPLE PHRASE becomes TEMPLATE_PHRASE
+##
+ 2026-03-26  36541 120  36661  16.0 p_mile  1.44 £_litre  6.54 £_gallon  40.8 mpg   6.9 lp100  Y Full Tesco BH

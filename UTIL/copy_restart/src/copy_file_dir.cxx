@@ -150,6 +150,7 @@ struct sender_t {
 			WARN("CODE error forgot to stat or ZERO size file");
 			// check mtime
 			// return FAIL("CODE error forgot ot stat");
+			// proceed with zero size files, S.E.P.
 		}
 
 		// 31 BIT warning
@@ -199,7 +200,7 @@ struct sender_t {
 bool dir_over_must_exist( const char * dir_over )
 {
 	file_stat dir_over_stat; // temp to this { block }
-	if( !dir_over_stat.stat_expect_is_dir( dir_over )) {
+	if( !dir_over_stat.stat_expect_is_dir( dir_over )) { // follows 1 link
 		return FAIL_FAILED();
 	}
 	return true;
@@ -207,25 +208,27 @@ bool dir_over_must_exist( const char * dir_over )
 
 
 bool sender_t::copy_src_name_dst_try(
-	const char * src_over_,
+	const char * src_over_,		// /tmp/abc/def/filename.ext
 	const char * src_name_ext_,
-	const char * dst_over_
+	const char * dst_over_		// /nfs/box2/home/u1/abc/def/filename.ext
  ) {
 	re_init();
 
+	// .tmp_$1.cpy // this is the LOCKED magic file
 	sender_names_t names;
 	names.re_init (
-		src_over_,
-		src_name_ext_,
-		dst_over_
+		src_over_,		// src_dir
+		src_name_ext_,		// filename.ext // NO DIRS
+		dst_over_		// dst_dir
 	);
 
-	// dst_over must exist as a dir 
-	 if( !dir_over_must_exist( names.dst_over )) 
+	// dst_over  must exist as a dir // or SYMB_to_ADIR ?
+	if( !dir_over_must_exist( names.dst_over )) 
 		return FAIL_FAILED();
 
-	// do not copy residual files from own naming system
-	// maybe other files from other systems too
+	// SKIP files named .tmp.* and .*.cpy 
+	// must skip own tmp file
+	// could also skip others
 	if( skip_file_named( names.src_name_ext )) {
 		INFO("SKIPPING OWN %s", (STR0) names.src_name_ext );
 		return true;
@@ -344,15 +347,23 @@ bool sender_t::copy_src_name_dst_try(
 		/*
 			 in case of flock, simply go on to next file
 			 but errm FAIL causes FAIL or retry ?
+
+			 TODO move opt_lock outside to avoid asking for lock
 		*/
 
 		/* flock */
 		if(!fd_dst.flock_EX()) { // obtain EXCL lock on WR file
 			sleep( 3 );
 			if( opt_lock ) { // default true
+				WARN("flock_EX failed - skip as if done %s",
+					(STR0) names.dst_name_tmp 
+				);
 				return true; // so it does not retry
 				return FAIL_FAILED();
 			} else {
+				WARN("flock_EX failed - continue as if OK %s",
+					(STR0) names.dst_name_tmp 
+				);
 				WARN("continuing without flock(file)");
 			}
 		}

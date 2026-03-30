@@ -82,3 +82,11 @@ YEAR_MM_DD, miles, litres, cost, note
 2026-03-02, 36105,  32.27, 42.24, Y Full Morrisons
 2026-03-12, 36301,  21.11, 28.90, Y Full Morrisons
 2026-03-13, 36388,   9.95, 13.72, Y Full Tesco BH
+2026-03-18, 36541,  16.60, 23.06, Y Full Morrissons
+# FOUR_PLUS # 640x480 also 720x720 via crop_stretch # four keys each PLUS counter of clicker
+# FOUR_PLUS # ABCD COUNTER[FOUR_KEYS_4] by_name("{ A B C D }") // gravitate towards GENERIC PHRASE // ALIAS PHRASE MATCH
+# ALIAS # SHARES_LIST_of_ATTR idx_of_("A") = ITEM.idx where ITEM = A_of_A_B_C_D
+# A_of_A_B_C_D # 
+# [0] of [4] # REMEMBER "{ [ 0 ... [ N }" # The "{ ... }" wrapper is a stylised FGBG_FONT_ARGV_VARS
+# VARS # VARS_in_PHRASE # SAMPLE PHRASE becomes TEMPLATE_PHRASE
+2026-03-26, 36661,  13.38, 19.25, Y Full (?Tesco BH?)

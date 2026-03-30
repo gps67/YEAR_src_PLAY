@@ -334,12 +334,13 @@ static inline int get_IPPROTO_ICMP()
 
 
 	/*!
-		verb_noun // ATTR FEATURE SUBNAME_EXPR_PHRASE_as_IDENT_TAIL
-		 get close_on_exec
 
-		noun_verb // OPTION OOP ITEM.verb() // DIALECT_item_step //
-		item_step
-		step_item // ALIAS //
+		UNIX - close fd on exec (default is keep open)
+
+		CHOICES - I prefer NOUN_VERB as it matches CLASS_ACTION
+
+		 verb_noun // get close_on_exec
+		 noun verb // close_on_exec get
 	*/
 	bool fd_hold_1::get_close_on_exec( bool & closes )
 	{
@@ -355,6 +356,9 @@ static inline int get_IPPROTO_ICMP()
 	}
 
 	/*!
+		UNIX - close fd on exec (default is keep open)
+
+		ERRM: get other flags before changing this bit ?
 	*/
 	bool fd_hold_1::set_close_on_exec( bool closes )
 	{

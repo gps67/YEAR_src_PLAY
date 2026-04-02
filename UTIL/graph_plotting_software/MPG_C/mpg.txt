@@ -90,3 +90,5 @@ YEAR_MM_DD, miles, litres, cost, note
 # [0] of [4] # REMEMBER "{ [ 0 ... [ N }" # The "{ ... }" wrapper is a stylised FGBG_FONT_ARGV_VARS
 # VARS # VARS_in_PHRASE # SAMPLE PHRASE becomes TEMPLATE_PHRASE
 2026-03-26, 36661,  13.38, 19.25, Y Full (?Tesco BH?)
+2026-03-31, 36842,  18.51, 28.49, Y Full Tesco BH?
+2026-04-01, 36926,   7.78, 11.61, Y Full Morissons did 60

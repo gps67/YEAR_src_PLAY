@@ -13,6 +13,14 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/nodejs/node
+https://github.com/tinycthread/tinycthread
+https://tinycthread.github.io
+https://gitlab.xiph.org/xiph/opus.git
+https://github.com/google/jsir
+https://github.com/AltraMayor/f3
+https://github.com/tinycc/tinycc
+https://github.com/pkivolowitz/asm_book
 https://github.com/christianhaitian/arkos/
 https://github.com/christianhaitian/dArkOS/
 https://github.com/TinyCC/tinycc
@@ -180,7 +188,6 @@ https://github.com/timusus/Shuttle/
 https://github.com/timusus/Shuttle2
 https://github.com/naman14/TimberX
 
-https://github.com/nodejs/node
 https://github.com/libevent/libevent
 https://github.com/Tonejs/Tone.js
 https://github.com/Tonejs/ui
@@ -328,7 +335,6 @@ https://github.com/adafruit/Adafruit-GFX-Library
 https://github.com/adamrenklint/bap
 https://github.com/aguinet/dragonffi
 https://github.com/alsa-project/alsa-utils
-https://github.com/AltraMayor/f3
 https://github.com/amber-smalltalk/amber
 https://github.com/amber-smalltalk/amber-documentation
 https://github.com/amber-smalltalk/amber-examples

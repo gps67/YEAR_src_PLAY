@@ -1,0 +1,52 @@
+
+ We always use UNS_IDX_ITEM _in_PAGE of 256 _in_PAGE_of_N[ uns_IDX_N ]
+ We always use INT_IDX_EXPR is_PLUS means use direct, is_MINUS means lookup
+
+ In this way a small i4 can pick 8 items directly 8 that expand to i64_IDX
+
+ 	_i64 = i64_RET_VAL = lookup_i8( _i4 )	// UDEF FN
+
+		i64_RET_VAL lives between worlds, caller called
+		i64_RET_VAL == RET_VAL // invibes i64-ness to RET_VAL
+
+ In this way a small i8 can pick 128 items directly M128 that expand to i64_IDX
+
+ 	_i64 = i64_RET_VAL = lookup_i8( _i8 )
+
+		RET_VAL lives between worlds, caller called
+		i64_RET_VAL == RET_VAL // PROVIDE RET_VAR // CLAIM_A
+
+ INT and bitfield is extremely easy to fall into UNS and bitfield
+
+	we need a watertight handling of INT and UNS
+
+	we expand i8 to i16 to i32 to i64 // i8_to_i32
+
+	Whenever PLUS might look minus the index increases
+
+	 u7_in_i8, becomes
+	 u8_in_i9, needing i16 out of BITFIELD
+
+	 It is IDX that needs this,
+	 it is N that needs this 1 earlier
+	 it is P2 that needs this 1 earlier
+
+ FSN clutch of LOCN
+
+ 	use goto_l1 goto_l2 goto_l3
+	use logic layer that results in goto FSM_LOCN
+	the template provides the list of labers at the various points
+	the code still needs to be debugged, but one done it holds
+
+	retro detect
+	 r2 = r1 >> 16
+	 if_Z goto word_fits OK
+	 if_M1_needs_extra_asm_line goto word_fits_but is MINUS
+
+
+	
+ 
+
+ 
+	
+ 

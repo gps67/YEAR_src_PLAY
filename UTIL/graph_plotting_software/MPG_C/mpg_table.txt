@@ -97,3 +97,5 @@
  2026-03-26  36541 120  36661  16.0 p_mile  1.44 £_litre  6.54 £_gallon  40.8 mpg   6.9 lp100  Y Full (?Tesco BH?)
  2026-03-31  36661 181  36842  15.7 p_mile  1.54 £_litre  7.00 £_gallon  44.5 mpg   6.4 lp100  Y Full Tesco BH?
  2026-04-01  36842  84  36926  13.8 p_mile  1.49 £_litre  6.78 £_gallon  49.1 mpg   5.8 lp100  Y Full Morissons did 60
+ 2026-04-13  36926 151  37077  20.2 p_mile  1.55 £_litre  7.04 £_gallon  34.9 mpg   8.1 lp100  Y Full Tesco BH
+ 2026-04-21  37077 180  37257  15.9 p_mile  1.55 £_litre  7.04 £_gallon  44.3 mpg   6.4 lp100  Y Full Tesco BH

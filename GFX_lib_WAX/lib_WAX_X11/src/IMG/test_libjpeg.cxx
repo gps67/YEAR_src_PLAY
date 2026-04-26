@@ -25,7 +25,7 @@
 #include "TJ_loader.h"
 #include "TJ_saver.h"
 
-#define filename_jpeg_in "/home/gps/YEAR/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
+#define filename_jpeg_in "/home/gps/G_PHOTOS/Photos_2022/Photos_Graham_2022/2022-07-0X_Readipop/2022-07-08_Readipop/2021-01-01_Fri_2222_32_Readipop.jpg"
 
 #define filename_jpeg_out "/tmp/IMG_OUT.jpg"
 

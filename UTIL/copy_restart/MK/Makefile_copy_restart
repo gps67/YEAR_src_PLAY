@@ -70,6 +70,7 @@
 	PROG_HDRS += $(PROG1).h
 
 default: exe
+	./$(PROG_EXE) $(ARGS)
 	# default done 
 
 dgb: $(PROG_EXE)

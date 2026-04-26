@@ -2,6 +2,8 @@
 
 URL=https://cairographics.org/releases/rcairo-1.18.4.tar.gz # ruby cairo
 URL=https://cairographics.org/releases/cairo-1.18.4.tar.xz
+# NOT YET # URL=https://cairographics.org/releases/cairo-1.19.0.tar.xz
+
 
 fn_grp_url libr $URL
 fn_unpack

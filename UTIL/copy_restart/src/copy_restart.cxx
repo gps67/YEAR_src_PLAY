@@ -160,10 +160,13 @@ bool bool_main( int argc, char ** argv ) {
 	"THE_DVD_DISC_1.iso";
 	const char * dst_dirname = "/nfs/NAS_ln_s/NAS3_b2_DVDS/iso";
 
-	src_name = "~/YEAR/RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
+	src_name = "~/G_RIPS/eg_rip_CD_here/audio/mp3_V4/angelique_kidjo";
 	dst_dirname = "/tmp";
 
-	while( argv[1][0] == '-' ) {
+	while( argv[1] && (argv[1][0] == '-' )) {
+
+		// bad argv handling
+		// eat leading -args
 
 		str0 str_move = "-move";
 		if( argv[1] == str_move )
@@ -177,6 +180,8 @@ bool bool_main( int argc, char ** argv ) {
 		if( argv[1] == str_no_lock )
 		{
 			opt_lock = false;
+			argv ++;
+			argc --;
 		}
 
 	}
@@ -184,6 +189,7 @@ bool bool_main( int argc, char ** argv ) {
 
 	if( argc != 3 ) {
 		errno = 22;
+	# warning someone called clear() when errno is to be kept
 		FAIL("USAGE %s src dst_dirname # argc %d", get_prog_alias(), argc );
 		WARN("test defaulting src and dst_dirname");
 //		return false;

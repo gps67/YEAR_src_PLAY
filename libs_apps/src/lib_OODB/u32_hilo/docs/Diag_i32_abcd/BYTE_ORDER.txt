@@ -1,0 +1,117 @@
+BYTE_ORDER.txt
+
+	I prefer LO HI 
+	because it matches an ironic HI_LO
+	especially with BYTE_A BYTE_B // B8_B0 B16_B8 -as- B16_B0 of B64_B0
+
+	CPU_SUPPORT
+
+		Almost ALL CPU's have multiple word size. data handlers
+		 signed i64 i32 i16 i8 // as BUILTIN
+		 signed i48 i48_via_API
+		 signed bitfield( 64, 16 ) {
+
+		 	i48_PAYLOAD = i64_WORD >> 16
+
+			ASM signed_shift_right_ASR_16
+			#if IN_C
+
+		 	i48_PAYLOAD = i64_WORD >> 16
+
+			#elif IN_ASM
+
+			i64 i64_WORD_0 = "REG_3F  // FADE_0 // 64 registers
+			i64 i64_WORD_0 = "REG_63  // -when-read-as-decimal- //
+
+				MATCH is like a MENTION 
+				STREAM said "i64_WORD_0"
+				GEN_PARSE_
+			#end
+
+
+			array[ 256 ] of register
+			array[ 256 ] of names_of_register
+			array[ 256 ] of expr_of_names_of_register
+
+				as part of CORE_CLASS_CONTRACT
+				i8 agrees to offer MODE_u8 behaviour
+				i8 agrees to offer MODE_u8 default
+				i8 agrees to offer MODE_u8_in_i32 default
+				i8 agrees to offer MODE_u8_in_i16 option
+				i8 agrees to offer MODE_u8_in_i64 option
+				i8 agrees to offer MODE_u8_in_i48 crazy_option
+				i8 agrees to offer MODE_u8_in_page_on_scroll
+				// scroll means array of pages and a SCROLL
+				// scroll is what mupdf does to sideways pages
+				// pages of array of EIGHT_t i64_LOHI
+
+			array[ 256 ] of i64 // via EIGHT_t EIGHT_i32_i32
+
+				MK_AVAR u8_idx = u8_from_i8 i8_idx
+
+
+					this is problem SIGN CAST
+					when cracker impersonates with PERMIT
+					we allow because it is our code,
+					we allow because ... TODO
+
+				array[ i32 ] of array[ 256 ] of i64_lohi
+
+					so our page_of_
+					
+						item[u8] ;
+
+					could be a page of many
+					in a stream or STO or ROM
+
+					UNSURE EXACTLY WHY
+					u8_idx works 
+					i9_idx works to hold u8_idx
+
+					 tight fit with flag i9_MINUS u8_PLUS
+
+					 We have our own SIGN_MODE = 
+
+					 	MODE_BYTE_RESIGNED // UNION
+						MODE_u8 // i32_VAL = get_u8()
+						MODE_i8 // i32_VAL = get_i8()
+
+					SCRIPT has OOP system as lookup lists
+
+						CT_RT works with BENCH
+						SCRIPT get TOKEN.MATCH TOKEN_API
+						GEN code to declare MATCH "..."
+
+				array[ 256 ] of array[ 256 ] of i64_lohi
+
+					use in situ i32_MEM_WORD 
+
+						typedef i32 i32_MEM_WORD_t;
+
+
+
+
+				THIS is a RHYME where i64_from_i48 i48_from_i64
+				THIS is a MATCH where i64_from_i48 i48_from_i64
+				THIS is NEAR i16_i48 i48_i16 //
+				// PICK i48 = i64 >> 16 //
+				// NEAR i48 = ( i64 << 16 ) >> 16 // CLEAR_HIGH
+
+		INCOMPAT DIALECT where SPEC and INST use same %s
+		INCOMPAT DIALECT where SPEC and INST use %s_t %s = %s SPEC INST EXPR
+
+		CT_RT builds a moment where AUTO will OFFER and PICK IDENT
+
+		 THEME
+		 	ITEM_t * ITEM = EXPR // ARGS // VAR_POOL_one VAR_POOL_two
+			VAR_POOL = VAR_POOL_one // of _two reserved
+
+			EXPR 
+
+
+		i32_i32_LOHI is what we use for most CPU's
+
+			SWAPB is the ASM opcode that flips a register [0[32
+			SWAPB is the ASM opcode that flips a register [0[4
+			SWAPB is the ASM opcode that flips a register [0[1
+			SWAPB PICKS CPU_WORD _1248 

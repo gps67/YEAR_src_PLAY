@@ -26,6 +26,7 @@
 	LIST_CPLUS_INCLUDE_PATH += $S/src/PSG_Tree/$(G4)
 	LIST_CPLUS_INCLUDE_PATH += $S/src/lib_YY_parse
 	LIST_CPLUS_INCLUDE_PATH += $S/STO/
+	LIST_CPLUS_INCLUDE_PATH += $S/src/STO_HEAP_ITEM
 
 	DEFS = 
 
@@ -37,6 +38,7 @@
 	VPATH +=$S/src/PSG_Tree/$(G3)
 	VPATH +=$S/src/PSG_Tree/$(G4)
 	VPATH +=$S/src/STO
+	VPATH +=$S/src/STO_HEAP_ITEM
 	VPATH +=$S/src/lib_YY_parse
 
  #	libs_apps

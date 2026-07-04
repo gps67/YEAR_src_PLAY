@@ -1,0 +1,46 @@
+2026-04-30 Apr Thu 01:01 # 14 #  FILTER_DEV.txt
+
+	API offers a REMOTE DEVICE via API
+	API follows API_LOCAL_REMOTE _and_CACHE
+	# _and_CACHE becomes a NEAR_HERE SCOPE = file and friends
+	# _and_CACHE becomes FILTER_over_API # API_is_FILTER_to_API
+
+	DISK FILES # are LOCAL and REMOTE and CACHED
+	 edited by BENCH
+	 PARSE_GEN "../%s/%s" // trail / wanted but proper dialect says no
+	 ../PEER_DIR/
+	 ../LIBR_%s/
+	 ../LIBR_1248/ // _1248 because of cident a2 not a1
+
+	 fd = open( filename, flags, mode_if_creat )
+
+	  API prepares a bunch of PEER vars including mode_if_creat and KNOW %s
+	  they get planted as function arg // REQUIRE AVAR from SCOPE
+	   SCOPE += SESS_PEER_VAR_POOL // well known AVAR
+	   SESS_PEER is connected over time over CT_RT // AOT //
+	   In this case AVAR("mode_if_creat")
+	   DECL int mode = mode_if_creat // API is in ARGS as "mode_%"
+	   // _%s uses a predictive replacement for "_%s" "%s=_%s"
+	   // ie the _ is inside the %s but DRAW looks nicer if we lie
+	   // ie we merge the _%s with the _%s // BOTH show same "_"
+	   DECL int flags = O_RDONLY O_WRONLY O_RDWR // 00 is do-not-call
+	   DECL mode_777
+	   DECL_mode_SUID_SGID_SVTX
+
+	The sticky bit (S_ISVTX) on a directory
+	means that a file in  that  directory can be renamed or deleted only
+
+		by the owner of the file,
+		by the owner of the directory, and
+		by a privileged process.
+
+		this is because of renaming symb links and hacks
+
+	  USAGE open 
+	  VARIES with USAGE
+	  eg open .ini file read in all text close parse RET_VAL TREE
+	  eg open .ini_ file O_RDWR | O_CREAT | O_TRUNC
+
+
+
+

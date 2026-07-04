@@ -9,8 +9,10 @@ namespace WAX {
 
  struct u32_RGBA_t {
  	// a 32 bit pixel value - used by libpng - used by ximage
-	//
+	// mupdf uses RGBA // additive more light
+	// mupdf uses CMYK // subtractive less light more ink
  	// byte order in C { R G B A } works OK with libpng
+	// magically byte packed - struct is a single word LOHI
  	u8 R;
  	u8 G;
  	u8 B;

@@ -1,0 +1,85 @@
+lib_HEAP/
+lib_HEAP.txt
+
+	This was a sketch left in libs app
+	WE do FILE_ZONE_LIBR_MMAP_HEAP_ITEM // also FILE ZONE LOCN ATTR EA_STEP
+
+	it uses ARRAY[u8 ] of i64
+	it uses ARRAY[u16] of i64
+	it uses ARRAY[u32] of i64
+	it uses ARRAY[u64] of i64
+
+	Each FILE is an outer HEAP in a FILE
+	PEER FILE has .c .h .o .a .exe .txt as OPTIONS
+
+	FILE {
+	 FILE_HEADER_incl_MAGIC_BYTES_or_TEXT
+	  i32_FADE3232 // i32_from_HEX32 // HEX32 is HEX where CPU_32 is common
+	  i32_EXPR_TO_MOUNT // i8_i8_OPCODE  i4_i12_HEAP_ITEM
+	} {
+	FILE_BODY 
+
+	}
+	COMMENT {
+	
+
+	  	MINI_AREA += HEAP_from_i4(_i4)
+		MINI_AREA += HEAP_ITEM from i4_i12
+		i4_i12_from_i16_lohi_mem
+
+		_from_i32_i32_lohi FIXED_OFFS_ _ZERO or _FOUR
+
+			then remember that lohi is a choice that comes with ...
+
+			presume first half is the one,
+			if there is only the first half
+
+		i64_WORD = both_halfs_of_i32_i32 // lohi
+
+			// so if you imagine i48 in i32_i32
+			// you have to use an ASM DIALECT REG_PAIR_as_i64
+			// you have to use an ASM DIALECT REG_SIMD_as_i64
+
+		i64_WORD = both_halfs_of_i32_i32 // lohi // LOADER GETTER
+		i32_WORD = first_half_of_i32_i32 // expect grow not relocate
+		i16_WORD = first_half_of_i32_WORD // expect shortedn bitfield
+		 i8_WORD = first_half_of_i16_WORD // expect shortened bitfield
+
+		 u8_WORD = i9_WORD // u8 fits in i9 // forget limits // avg2 //
+
+		STO includes ARRAY[ N ] at P0 of i8_BYTE_within_wider_word
+		STO includes ARRAY[ N ] at P0 of i16_lohi
+		STO includes ARRAY[ N ] at P0 of i32_lohi
+		STO includes ARRAY[ N ] at P0 of i64_lohi
+
+		GROW provides i9_idx as i9_in_i16_idx // CT_RT i9_in_i16 
+		BITFIELD provides BYTE_FIELD_EXPR i8_from_i3( i3_idx )
+		SAMPLE SCRIPT repeated as its own TEMPLATE + ARGS + NAMES_USED
+		BENCH expands ALL options but later in a SPARSE LOOKUP
+		DENSE works by simply gathering all into a few pages
+		BATCH_STEP // SAMPLE provides own DATA and guessable MATCH
+		BENCH works hard to get unique names for things
+		FADE works hard to reduce _0 and reduce _i48_lohi_AABB_CCDD_EEFF
+		OPTION _i48_lohi_AABB_CCDD_EEFF // TOP BITS ZERO or SIGN
+		OPTION      _i48_lohi_CCDD_EEFF_GGHH // BOTTOM_BITS_SHIFTED_OUT
+		OPTION PICK i48_VALUE = i64_WORD >> 16 
+		OPTION PICK i32_VALUE = i64_WORD >> 32 // or MEM_WORD_32[EA+4=
+		OPTION PICK i32_VALUE = i64_WORD_from_i32 // BITFIELD_SIGN_EXTEND
+
+		i16_WORD = working_register_for_i8 and EXPR in MINI_MACHINE
+		go direct to memory,
+		so that cache can repeat, and CT_RT_ avoid
+	}
+
+ FILE
+ MMAP of entire FILE or alloc gap where it isn't for CALCS
+ ZONE N_BYTES ( N, P0 ) // N_bytes
+
+ FILE is currently with i8
+ FILE is currently with i16
+ FILE is currently with i16_as_IDX__u8_u8 // LOHI
+
+
+
+
+

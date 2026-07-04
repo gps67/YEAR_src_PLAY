@@ -1,0 +1,10 @@
+JS_BENCH_node.txt
+
+	LOCN = DAILY_DESK_PANEL
+
+	FEATURE = ls -lf
+
+	GEN HTML for lynx
+	GEN HTML for CSS_JS_API
+
+

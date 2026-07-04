@@ -1,6 +1,6 @@
 . ../go__fns
-fn_grp_pkg gtk \
-	glib-2.78.0 # .tar.xz
+# fn_grp_pkg gtk \
+fn_grp_url gtk	https://download.gnome.org/sources/glib/2.88/glib-2.88.1.tar.xz
 export CFLAGS="-g -O2"
 fn_unpack
 

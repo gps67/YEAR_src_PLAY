@@ -1,0 +1,144 @@
+2026_Changes.txt
+
+	spidermonkey is a puzzle tree
+
+	rework needed for API_SM JS_CLASS_api _PROVIDE _REQUIRE
+	kludging it to link 
+
+	adding rpath
+	$HOME/prefix/SM/
+	to lib 
+	to rpath
+	to bin
+	to RTFM // MANPATH
+
+	NAMESPACE
+	 SITE
+	  LIBR
+
+	  	class_one : public class_base {
+		// almost everything is a STRUCT
+		// ARRAY HEAP_1248 iidx_1248 ITEM_EA_EXPR
+		}
+	
+-----
+1248
+	u8_idx // _in_i9
+	u16_idx // is i17
+	u32_idx // 
+
+ OPTION GROW STEP when ( FULL - tide_mark ) nbits.incr()
+
+ 	incr() is a non trivial STEP
+ 	incr() is a trivial i8++ DETECT OVERFLOW
+ 	incr() is a trivial i16++ DETECT OVERFLOW
+ 	incr() is a trivial i32++ DETECT OVERFLOW
+ 	incr() is a trivial i64++ DETECT OVERFLOW
+
+	incr_return_newval() // new_N = ++ N 
+	incr_return_oldval() // old_N_is_new_idx = N ++ 
+	increment_then_return_new_val() // P2 = ++ N // idx is P2-1 // SP1
+	increment_then_return_old_val() // ALLOC // idx = N ++ //
+	strict SP1 gets "P2-1" as an "ANYSTR"
+	strict SP1 PARSES "LEX" as "STEPS { p2 - 1 }" // LISP style tags
+	strict BRACES PARSES "STEPS { p2 - 1 }" // LABEL ARGV _sub_segment
+	// SPLICE sub_segment L H S  M I D  R H S //
+	// SPLICE segment L H S  { M I D }  R H S // LIST as ITEM
+	build TREE gets all tags used in deduction and parsing of TWIG
+	build TREE uses XPOS of DECL as REPEATED_SPELLING_of_TOKEN
+	CT_RT still builds the tree, but half remains in MMAP complete
+	CT_RT does a lot of work with SPELLING and TOKEN and ANYSTR
+	CT_RT accumulates links to logic found
+	CT_RT CACHE_LOADS a bunch of training data
+
+	ALLOC idx_t idx = N ++ ; // .incr_return_here() 
+
+	MINI_MACHINE STEP PARSER // REPL_LIKE //
+	STEP { starts a LIST
+	STEP M
+	STEP I
+	STEP D
+	STEP } ends that list
+
+		{ and } manipulate the STACK STACKING TREE BUILD
+		graft new TWIG
+
+			graft in situ BEFORE complete
+			regraft AFTER COMPLETE // on } repack ITEM
+
+		graft_point is a CSR in a STACK of TREE work
+		ALLOC creates LOCN and ITEM
+		ALLOC creates TWIG and LEAF // berry // flower // bud //
+
+		spin_py drives a stack building machine
+		 { <TAG>
+		 // MODES apply during ZONE // RTFM combinations
+		 } </TAG>
+
+		 OLD_VERSION was more functional, returned a complete tree
+		 NEW_VERSION grafts items into the TREE 
+		 NEW_VERSION has MID_WAY_IN_STREAM EDGE
+		 NEW_VERSION returns fragmented RET_TREE
+		 caller asks NEW_VERSION to shrink_wrap entire BRANCH
+
+		 we also use shrink_wrap_twig to local heap
+		 ie nested SCOPE gets own local HEAP
+		 eg each OBJ can have own VAR_POOL with sub_addr_idx
+		 nb WIDER HEAP does not care, as long as WORD is at IDX
+		 it is happy to see a renumber _ed BRANCH as RET_TREE
+	
+	B
+		 NEW_VERSION returns fragmented RET_TREE
+
+	BUILD_TREE
+
+	 INITIAL_MODE is outside a SCRIPT
+	 DEFAULT_MODE is within a SCRIPT, maybe BOLN, LINES of CODE
+	 INDENTED TEXT is builtin to TEXT, without requiring TREE
+	 INDENTED TEXT is builtin to TREE TEXT, with requiring TREE
+	 OPTION parse TEXT to get TREE
+	 OPTION retain idx as if allocated to that spelling
+	 OPTION renumber events are magically OK
+	 ACTIVE 
+	 ARCHIVE
+
+	 SOME_START_EDGE
+	  MODE is DTP_SCROLL
+	  STEP is a LINE
+	  PARSE LINE for INDENTED TEXT // SCRIPT mode // .mup
+
+	  MODE is DTP_SCROLL
+	  TEXT is list of lines
+	  LINE is indented ARGV
+	  LINES is MULTI_LINE_SCRIPT_INDENTED_TEXT
+	  PARSER records the PICK of Layout 
+	  know was all_on_one_line 
+
+	  MODE is INDENTED_TEXT
+
+
+-----
+1248
+What does the 1248 angel number mean?
+AI Overview
+Angel number 1248 is a message of encouragement to trust in your abilities, embrace positive changes, and maintain a positive mindset to manifest your dreams. It suggests your thoughts can reshape your life, urging you to focus on aspirations while remaining mindful of how your actions affect others. ￼
+￼
+Pinterest
+ +1
+Key Interpretations of 1248:
+Manifestation through Positivity: 1248 indicates that your intentions, beliefs, and actions directly shape your reality.
+Trust and Encouragement: It acts as a prompt to trust the journey and believe in your skills.
+Actionable Mindfulness: This number encourages considering the impact of your actions on others.
+Symbolism: In some contexts, 1248 is considered a "lucky" number, representing a positive sequence for progress. ￼
+￼
+Pinterest
+ +2
+Components of 1248:
+1: Represents new beginnings, motivation, and creating your own reality.
+2: Signifies balance, harmony, and partnerships.
+4: Relates to hard work, stability, and building solid foundations.
+8: Symbolizes abundance, inner wisdom, and financial success. ￼
+1248 serves as a reminder that your,1,2,4,8, or 1248-driven, efforts are leading you toward a more fulfilling life. ￼
+￼
+Pinterest
+

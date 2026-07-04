@@ -1,0 +1,125 @@
+QUAD_TILE.txt
+
+	i256 QUAD_TILE_zero
+	ALIAS QUAD_TILE == QUAD_TILE_zero
+
+
+	 OPTIMISER
+
+	 	==
+		can be something that we know
+		eg LEX_STEP has a SPELLING and a TOKENISED_SPELLING and P0P2
+		so PHRASE { ... LEX_STEP ... } // GEN_PARSE_TREE PSG Phrase
+
+		LHS = RHS
+		by default this is a COPY POINTER obeying API_ref_count
+
+		ABI_ref_count is the unlikely name when GC is used
+
+		 HEAP is array[ idx_ITEM ] of i64_EA_EXPR
+		 GROW idx_ITEM u7 u8 u15 u16 u31 u32 u63 u64
+		 DECL idx_EXPR i8 i16 i32 i64
+		 DECL idx_EXPR i8 i7 i6 i5  i4 i3 i2 i1
+		 DECL idx_EXPR i4 i8 i12 i24 i32 i48 i64
+
+		 LIMIT i32 a_few_thousand // 
+		 LIMIT i24 a_few_million // 8 MB // u23_idx is LIMIT
+		 LIMIT i24 a_few_thousand // 
+
+		 GROW can be rehearsed from design stage on
+		 LIMIT i8_i24
+		 GROW can then STEPUP 
+		 If necessary STEP_UP to a PAIR of i256 // u1
+
+		 u0 i64 %s
+		 u1 i64 %s[2] // PAIR // often HALF of QUAD
+		 u2 i64 %s[4] // QUADA // re-align i256 [ idx ]
+
+		 u0 i256 %s
+		 u1 i256 %s[2] // PAIR
+		 u2 i256 %s[4] // QUAD
+
+
+	TILE i256 = "{ i64[u2] idx_A_B_C_D };" // PICK 1 of four u2_idx
+	TILE i256 = "{ i64 A B C D }; // DIALECT SKIP REPEAT COMMA //
+	TILE i256 = "{ i64[4] ABCD }" // ABCD[idx_A]
+	TILE i64 = "{ i16 ABCD[4] }" // OPTION proper C syntax // vs ARGV_SCRIPT
+
+	QUAD pattern
+
+		decode_i64( i64 i8_i8_i16_i32 )
+		decode_i64( i64 i8_i8_i16_i8_i24 )
+		decode_i64( i64 i16_i16_i16_16 )
+		decode_i64( i64 i16_i16_i32 )
+		decode_i64( i64 i16_i16_i8_i24 )
+		decode_i64( i64 i16_i16_STOP ) // STOP = SKIP so init_NULL
+	
+		decode_i256(ARGS) { 	// ARGS is a reserved word, avail
+			i64 A;
+			i64 B;
+			i64 C;
+			i64 D;
+		}
+	union
+		decode_i256(ARGS) { 	// ARGS is a reserved word, avail
+			i64 A64;
+			i64 B64;
+			i64 C64;
+			i64 D64;
+		}
+		// that AUTO adds A16 B16 C16 D16 to the i16 world
+
+	WORD_HALF  i32
+	WORD_PAIR  i64
+	WORD_QUAD i128
+
+	WORD_HALF  i64
+	WORD_PAIR i128
+	WORD_QUAD i256
+
+	TILE_WORD  i256	// obviously not on i32 embedded with NEON_FPU SIMD
+	TILE_PAIR  i512 // array[ i1_idx ] of i256_TILE
+	TILE_QUAD i1024 // array[ i2_idx ] of i256_TILE
+	TILE_AREA i1024 // array[ i5_idx ] of i256_TILE // 32_bytes * 32 = 1K
+	// PKT area i256_TILE // MUX_KEY // KEY_one // KEY_two // KEY_idx
+	// PKT area one is 32 lots of i256_TILE
+	o
+	RANGE of array [idx_TILE ] of u1 = fetch 1 bit  idx0 
+	RANGE of array [idx_TILE ] of u2 = fetch 2 bits idx0 idx1 
+	RANGE of array [idx_TILE ] of u3 = fetch 3 bits idx0 idx1 idx2 
+	RANGE of array [idx_TILE ] of u8 of u16 of u32 of u64 # CT_RT does
+	// avoid idx_i64 because decode_i64 breaks it down to pages of i16
+	// so code uses [u32_idx] // limit of CPU_32 // i32_too
+	// IPV4 PKT 1500 byte payload 1472 + 28 // FPU align 64 is plenty
+	// PKT area one is 46 lots of i256_TILE in 1472 BYTES in 1500_PKT
+	// i32 * PKT_PAYLOAD // align_4_align_i32 expected by IP4
+	// i256_TILE * TILE // CXX fades -> as . // or ,,,
+	// i256_TILE_FOUR // LIBR_QUAD
+	// i256_TILE_AREA // LIBR_TILE_AREA
+
+ https://github.com/bdwgc/bdwgc
+
+ 	 Boehm-Demers-Weiser conservative C/C++ Garbage Collector 
+
+		 bdwgc
+		 bdw-gc
+		 boehm-gc
+		 libgc
+
+ libs apps
+
+ 	FSCK SWEEP GC	
+	sweep though HEAP  = ARRAY[ idx_ITEM ] of i64_EA_EXPR // i32_i32 
+	keep bitmap[idx_ITEM] init_0 means("bool_refcount_is_above_zero") // 1
+	keep bitmap[idx_ITEM] init_0 means("bool_used") // "{ 0 1 }" // -1 //
+
+	sweep inside each item. using its PROVIDE += FN for GC
+
+	sweep finds VAR_POOL uses AVAR and AVALUE
+	but is AVAR used or not?
+
+	our GC sweep can do a renumber via CLONE NEW_STATE
+	VAR_POOL sorts and compresses its own LAYOUT look up tables
+
+	EXPORT VAR_POOL adds a ref to each inside, so that needs extra GC
+

@@ -1,0 +1,26 @@
+
+function call_dd() {
+        dd \
+         status=progress \
+         if=/dev/zero \
+         of=SPEED_TEST_1G \
+         iflag=count_bytes \
+         count=1G \
+	#
+	sync
+
+	# 10 kB/s # excessive sync is wrong
+	# oflag=dsync \
+	#
+	# dd says 200 MB/s
+	
+}
+
+	cd /tmp		# where SD card is # test
+        T1=$SECONDS
+        call_dd
+        T2=$SECONDS
+        DT=$(( T2 - T1 ))
+	echo "T1 $T1"
+	echo "T2 $T2"
+	echo "DT $DT"

@@ -13,6 +13,15 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/bdwgc/bdwgc
+https://github.com/bdwgc/libatomic_ops
+https://github.com/bdwgc/bdwgc-d
+https://github.com/selvan/ffmpeg_tutorial
+https://github.com/selvan/calc-engine
+https://github.com/selvan/wordprocessor-engine
+https://git.ffmpeg.org/ffmpeg.git
+https://github.com/iefbr14/sdf/
+https://www.npmjs.com/package/parse-diff
 https://github.com/nodejs/node
 https://github.com/tinycthread/tinycthread
 https://tinycthread.github.io

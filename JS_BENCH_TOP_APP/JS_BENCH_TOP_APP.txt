@@ -1,0 +1,71 @@
+JS_BENCH_TOP_APP/
+JS_BENCH_TOP_APP.txt
+
+	/usr/bin/env -S nodejs RTFM "$@" RTFM see nearby 
+
+	SESS is a USER_with_LOGIN_and_SESS
+
+		SUB_SESS is in CTOR before SESS is properly established
+		after CTOR is CTOR_CONFIG or CTOR_PRELOAD or CTOR_LOAD_FILE
+		at some point LOGIN is sucessful or not and SESS can be CTOR'd
+
+		until then hold in a per FD ATTR # fd_login # and SOCKET and
+		# attached to OBJ.ATTR
+
+		SESS holds SESS.fd 
+		SESS usess SESS_api = SESS.api = "SESS.api" // +GAPS+
+		SESS holds USER_ID // logged in not request but confirmed as id
+		SESS is AVAR and uses 100 FIELDS in scripts and 100 EXPRS
+	
+	BENCH provides LIBR BITFIELD _1248 and EA_EXPR_t _BASED_on_CORE_SPEC_t
+
+		BITFIELD particularly DECODE_i64
+		BITFIELD particularly DECODE_i32_i32
+		BITFIELD i8_i8_i16_i32
+		BITFIELD i8_i8_i4_i12_i32
+		BITFIELD i8_i8_i4_i12_i8_i8_i16 # AUTO PAGE of LARGE ARRAY
+
+		 i8_i8 OPCODE with const i8_LIBR as bitfield 
+		  single idx_BYTE_A 
+		  DECODE CLAIMS BYTE_B as DATA_BYTE // because BYTE_B :-)
+
+		 i4_i12_HEAP_ITEM i5_HEAP i13_ITEM // resolve SIGN keep 1bit
+		 i8_i24_LOHI is derived from i32 holding BITFIELD32 // i5
+		--- i64 --- i32_i32 ---
+
+		 i8 looked_up_i5[ i5_idx ] 
+
+		 	PICK 32 items from pool of i8_idx
+		 	PICK 32 items as i8_idx i16_idx i32_idx i48_idx i64_EA
+
+			REQUIRE i48 LIMIT promised back in the day
+
+		DECODE_i4_i12 
+
+		  i4_HEAP	// HIGH_BITS
+		 i12_ITEM	// UNIT_BITS
+
+		 class LINE_of_i4_HEAP {
+		 	// idx = idx_AVAR = i5_idx_AVAR //
+			// for simple_C_ASM
+			// array[ 32 ] of i32_i32
+			// STORE 16
+			// STO [M8 [0 [P8 [P16 // needs i5 // in i8 in i32
+
+		 	i64_t AVAR_HEAP[i5_idx_AVAR] // AVAL = AVAR_HEAP[ idx ]
+		 }
+
+		 class HEAP_of_i12_ITEM {
+		 }
+
+
+	BENCH provides LIBR with i8_idx // PLUS_is_IDX MINUS_is_LOOKUP_IDX
+
+		DECL P255 = P256 - 1 ; // COPY MINI_WORLD alloc own use idx
+		GROW [M128 [0 [P128  [P256 // i9_idx // i16_idx //
+		GROW i32_around_i16
+		RESOLVE is i16 or u16 then keep that value in i17
+
+		SWEEP over PAGE of ITEM_in_i64 // DECODE_i64 
+
+		SEMANTIC 

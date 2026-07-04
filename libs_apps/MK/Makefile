@@ -455,7 +455,8 @@ endif
 ##	RPATHS += -Wl,--rpath=$(ABS_O) 
 ##	RPATHS += -Wl,--rpath=$(prefix_one)/lib 
 	RPATHS += -Wl,--rpath=$(ABS_TOP)/lib 
-	RPATHS += -Wl,--rpath=/tools/x86_64/libr/lib
+	RPATHS += -Wl,--rpath=/home/gps/prefix/SM/lib
+	RPATHS += -Wl,--rpath=/tools/x86_64/libr/lib/
 	RPATHS += -Wl,--rpath=. 
 # this works with icpc
 	# RPATHS += -Wl,--rpath=/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64

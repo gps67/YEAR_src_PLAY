@@ -117,7 +117,7 @@ get_dvd_name()
 	if [ -d "$dvd_name" ]
 	then
 		echo "cant load DVD because it would clash with $dvd_name"
-		ask_do FAIL 1 "dir clash $dvd_name"
+		# ask_do FAIL 1 "dir clash $dvd_name"
 	fi
 }
 
@@ -201,6 +201,10 @@ fi
 
 	# dvd_name_2 # is dir where vobcopy left the tree of files
 	# this is flawed because | tee is the retcode
+	# and that produced a zero size .iso.tmp
+	#
+	# A FareWell to Arms # bad IFO file # mkisofs refused!!! # ok without
+	#
 	set -x
 	if mkisofs			\
 	  	-dvd-video		\
@@ -209,11 +213,13 @@ fi
 	  	2>&1			\
 	  	| tee $IMG_LOG
 	then
+		sync
 		# rename iso_tmp # move dir/ to DIR_DEL/dvd_name_2/
 		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep
 		mv "$dvd_name_2" "$DIR_DEL" # DVD files = iso_done_del
 		sync
 	else
+		sync
 		# leave .iso as .iso_tmp # delete or repair manually
 		WARN $? "tee failed or maybe mkisofs failed"
 		mv "$IMG_MID" "$IMG_ISO" # ISO file = iso/ keep

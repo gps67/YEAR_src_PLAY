@@ -352,6 +352,10 @@ bool sender_t::copy_src_name_dst_try(
 		*/
 
 		/* flock */
+		// INFO("asking for flock_EX");
+		// # PASS # bool fd_hold_1::flock_EX() # FLOCK EX
+		//
+
 		if(!fd_dst.flock_EX()) { // obtain EXCL lock on WR file
 			sleep( 3 );
 			if( opt_lock ) { // default true

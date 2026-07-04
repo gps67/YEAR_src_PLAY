@@ -1,0 +1,32 @@
+lib_base2/
+lib_base2.txt
+
+	draw_pdf/    glib_1/  gtk_1b/	 js_1_a/    lib_base2.txt    ssl_1/
+	draw_spout/  glib_2/  gtk_2/	 js_sm/     PSG_CSET_MATCH/  ssl_CA1/
+	draw_x11/    gtk_1/   gtk_text/  js_win32/  qemu/	     ssl_pw/
+
+	SPOUT += SPOUT pixmap
+	WAX/
+	FZ_mupdf
+	TJ_turbo_jpeg
+	lib_png_one
+	WAX png_one // as_drawable_pixmap_sort_of_fb
+
+	 most pixmaps agree but are not exact matches
+	 WAX_pixmap is WAX X11_pixmap // X11 mupdf png_one SPOUT_pixmap
+
+	png and jpeg have to be under WAX or SPOUT for used on desktop
+	png and jpeg could be independent of X11 load edit save
+
+	lib_base1 is the core LANG core OS core OBJECT and HEAP_ITEM and fd
+	lib_base2 is LIBR libssl libpng lib_X11 
+	lib_base3 is APPS PANELS MINI_MACHINES MECHANISMS
+
+	lib_base bits buffer gdb fd hash obj time strings STR0 utf8
+	lib_base/unix/ ../win32/ ..
+
+	lib_base2/ssl_CA1
+	lib_base3/CA_LOCAL	BENCH_PANEL APPLET GROUP
+
+	polkit
+

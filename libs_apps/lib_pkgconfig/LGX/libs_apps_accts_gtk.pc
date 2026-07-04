@@ -5,7 +5,7 @@
 # libdir=${exec_prefix}/...
 # includedir=${prefix}/include
 
-Name: libs_apps_base2_gtk
+Name: libs_apps_accts_gtk
 Description: libs_apps - gtk is a pig when compiling each dependency, dont, do
 Version: 0.1.2
 

@@ -197,7 +197,13 @@ default2_test: P $(EXE_2)
 
 exe: $(EXE_1) $(EXE_2)
 
+
+var_list: P
+
 P:
+	# P is supposed to be show_vars
+
+dummy_:
 	#
 	@var_list VPATH
 	@var_list PKG_CONFIG_PATH

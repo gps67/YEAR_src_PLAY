@@ -1,0 +1,19 @@
+. ../go__fns
+
+URL=https://casper.mupdf.com/downloads/archive/mupdf-1.27.2-source.tar.lz
+# NOT YET # URL=https://cairographics.org/releases/cairo-1.19.0.tar.xz
+
+fn_grp_url libr $URL
+
+if false
+then
+	fn_unpack
+	fn_with_grp libr
+	# fn_configure_pfx 
+	# Makefile exists uses $(prefix)
+	# exit
+fi
+fn_no_VPATH
+fn_make apps libs
+fn_make -kapps libs
+fn_make install

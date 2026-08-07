@@ -1,0 +1,22 @@
+TASK_STEP/
+TASK_STEP.txt
+
+	thread processes QUEUE TREE by looping over one queue every 20%
+	thread volunteers SCHED to delay 4 seconds get 5 seconds CPU
+	CTRL thread queues up stuff and configures the API and sets going
+	STEP thread takes a TASK from some QUEUE as its CURR_STEP_ROUTE
+
+	pthread_create()
+	initialize a thread and assign it a function to execute 
+
+	pthread_join()
+	force one thread to wait for another to complete 
+
+	pthread_exit()
+	end a thread. ￼
+￼
+
+	gcc -pthread my_program.c -o my_program
+o
+	pthread_mutex_t - shared resources
+	pthread_cond_t - 

@@ -13,6 +13,7 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/apparmor/apparmor
 https://github.com/bdwgc/bdwgc
 https://github.com/bdwgc/libatomic_ops
 https://github.com/bdwgc/bdwgc-d

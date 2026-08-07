@@ -67,8 +67,8 @@ set ZONE_NAME Dja
 set ZONE_NAME 56_Nightingale
 set ZONE_NAME Elizabeth_House
 set ZONE_NAME receipt_X
-set ZONE_NAME BH6
 set ZONE_NAME Beatroots
+set ZONE_NAME BH6
 
 # rework for when in dir called YEAR_MM_DD_STR
 

@@ -1,7 +1,7 @@
 JS_BENCH_TOP_APP/
 JS_BENCH_TOP_APP.txt
 
-	/usr/bin/env -S nodejs RTFM "$@" RTFM see nearby 
+	#!/usr/bin/env -S nodejs RTFM "$@" RTFM see nearby 
 
 	SESS is a USER_with_LOGIN_and_SESS
 
@@ -17,13 +17,128 @@ JS_BENCH_TOP_APP.txt
 		SESS holds USER_ID // logged in not request but confirmed as id
 		SESS is AVAR and uses 100 FIELDS in scripts and 100 EXPRS
 	
+	BENCH provides LIBR
+	LIBR provides BITFIELD _1248 and EA_EXPR_t _BASED_on_CORE_SPEC_t
 	BENCH provides LIBR BITFIELD _1248 and EA_EXPR_t _BASED_on_CORE_SPEC_t
 
 		BITFIELD particularly DECODE_i64
 		BITFIELD particularly DECODE_i32_i32
-		BITFIELD i8_i8_i16_i32
-		BITFIELD i8_i8_i4_i12_i32
+		BITFIELD particularly DECODE_i64_i64_i64_i64 // MEM_i64
+		PICK OPTION GEN opcode on MEM_i64_lohi
+		PICK OPTION GEN opcode on CPU_i64 // was loaded from lohi ABCD
+		CPU_WORD.BITFIELD.BYTE_B_u8 // ALIAS CPU_WORD.BYTE_B_u8
+		FADE WORD .BITFIELD. // drop lex but gain wrap .BITFIELD_API.
+		DIALECT LHS.%s.RHS BITFIELD // DROP ABSORB to BASE_CLASS_via_API
+		DIALECT LHS.RHS BITFIELD // DROP .%s. AUTO_JOIN . // subfield
+		ATTR is SUB_THIS
+		HERE is THIS_as_HERE
+		THIS is CT_RT ITEM or TOKEN or EA IDX OFFS EXPR
+		THIS is CPU_WORD_REG_%s this_reg_name 
+	
+	pascal - a name is AVAR but can immediately be RET_VAL_from_FUNC(ARGS)
+
+		We choose to stick to some gcc gxx subset clang 
+		We choose to invoke WASM to run some BINARY_SCRIPT
+		You can be different, most use C++ or Rust 
+		GEN_TCC
+			TCC can call LIBR.so SEGMENT_one LIBR_API_C_TCC
+			LIBR.so can be prepared by Rust or by gxx ELF LOAD API
+
+		GEN_CLANG
+			HOPE gcc and clang accepting argv for gcc
+			TODO RTFM clang # need pitchfork build
+			GEN build DIALECT_CLANG // MODULE_FEATURE 
+			GEN build DIALECT_TCC // MODULE_FEATURE 
+			GEN build DIALECT_GXX // MODULE_FEATURE 
+			API REQUIRE ,,,
+			API PROVIDE ,,,
+			API %s
+			API %s REQUIRE ...
+			API %s PROVIDE ...
+
+		GEN_VTABLE_one _uses_DECODE_i64 in MMAP mounted at DECODE_i64
+
+		BITFIELD i8_i8_i48 // i64_is_a_burden_in_CPU_32
+		BITFIELD i8_i8_i16_i32 // OPCODE i16_ITEM_i32_EXPR
+		BITFIELD i8_i8_i4_i12_i32 // ITEM is itself u4_PAGE_u12_ITEM
 		BITFIELD i8_i8_i4_i12_i8_i8_i16 # AUTO PAGE of LARGE ARRAY
+
+		ITEM_1 = HEAP[_u4].ITEM[_u12]
+		EXPR = i8_i8_i4_i12_i24_i8 // BITFIELDS
+		EXPR = i24_i8_i16_B_A
+
+		// HALF WORD
+
+		_i4	B2B0 32 28
+		_i12	B2B0 28 16	// LOSS of OCTAL 09 08 A // 2 dd only
+		_i8	OPCODE.BYTE_A_i8 // B2B0_1608 _SIGNED
+		_i8	OPCODE.BYTE_B_u8 // B2B0_0800 _UNSIGNED because BYTE_A
+
+		# 
+
+		// HIGH HALF 
+
+		_i24 
+		_i8
+
+		// HIGH HALF 
+
+		_i16
+		_i16
+
+		SPEC_TREE
+
+		_i16_t { API
+
+			REQUIRE _i16.get_from_CPU_WORD
+			REQUIRE _i16.get_from_MEM_WORD
+
+			PROVIDE get_i4_from_any_of_the_following ONE_EACH
+			SIMPLE each uses parameter _u4 or _i4
+			CT_RT MATCH GETTER to FIELD_NAME("_i4")
+			B2B0 does the rest along with CT_RT inline sometimes
+
+			 B2B0 16 12 _INT _i4	CPU_WORD <<= N64 - 4 ; >>= N64-4
+				GEN
+					CPU_WORD <<= N64 - 4 ;
+					CPU_WORD >>= N64 - 4 ;
+
+					DECL N64 nbits_in_CPU_WORD can be 32
+					DETECT 4 > N64 // OVERFLOW as CT_RT act
+					GROW N32 to N64
+
+			--SPLIT_WORLD--
+				CT_RT explores a bit 
+				CT_RT builds tables
+				CT_RT grows FILE MMAP HEAP
+				NEST_MMAP OPTION FILE is merged to ROM or STO
+				ie ZONE behaves like a FILE 
+				so ZONE is an AREA in shared MMAP FILE
+				so ZONE may move # to move ZONE ... EDGE_SYNC 
+			--SPLIT_WORLD--
+
+			PROVIDE DECODE_i12_i4 {
+			 B2B0 12 00 _INT _i12	CPU_WORD >> 4 _SIGNED
+			 B2B0 16 12 _INT _i4	CPU_WORD <<= N64 - 4 ; >>= N64-4
+			}
+
+			PROVIDE DECODE_i12_u4 {
+			 B2B0 12 00 _INT _i12	CPU_WORD >> 4 _SIGNED
+			 B2B0 16 12 _INT _u4	CPU_WORD &= 0x0F # BECOMES UNS IDX
+			}
+
+			PROVIDE DECODE_i4_i12 {
+			 B2B0 16 12 _INT _i4	TEMPLATE for BITFIELDS
+			 B2B0 12 00 _INT _i12	DETECT top_of_word BITFIELD
+			 // programmers says sign_extend_(_i12, 12 ) // AUTO -1
+			 // GEN does that as ASL_20 ; ASR_20 ; FLAGS_like_MATH
+			 // IE is_ZERO is_MINUS is_ZERO_or_PLUS
+			 // MATH CARRY_BORROW 
+			 // MATH OVERTHROW // OPTION switch is NAN or f32 f64
+			 // MATH OVERSLOW // 
+			}
+
+		}
 
 		 i8_i8 OPCODE with const i8_LIBR as bitfield 
 		  single idx_BYTE_A 
@@ -69,3 +184,12 @@ JS_BENCH_TOP_APP.txt
 		SWEEP over PAGE of ITEM_in_i64 // DECODE_i64 
 
 		SEMANTIC 
+	
+	ZONE is AREA in MMAP
+
+		ZONE.MMAP_PAGE_ZERO // PTR in MMAP
+
+		ZONE.MMAP_PAGE_ZERO_NEXT // EA_EXPR_i64
+
+
+				so ZONE may move # to move ZONE ... EDGE_SYNC 

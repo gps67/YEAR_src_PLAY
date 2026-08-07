@@ -1,0 +1,128 @@
+lib_HEAP_i8i8_i16_i16_i16.txt
+
+	lib_HEAP
+
+		this is part of MMAP HEAP ITEM SPEC CODE SCAN
+
+		8 heaps of 4096 items
+
+		item = i64_WORD_found_in_ARRAY_at_u16_idx
+
+		mini_machine has 16 pages of 4096 items
+
+		API provides IDX
+
+		claim_ptr get_PTR_at_IDX(ARY,IDX) // check IDX < N
+		claim_ptr_multi( get_PTR_at_IDX(ARY,IDX) // check IDX < N <4
+
+			first logic claim is N > 1
+			extra logic claim is N <= 4 // i16[4] //
+	
+	LIBR PHRASE ALIAS
+
+		u3_PICK_t is very common 
+		u3_from_i16_BITFIELD
+
+			REQUIRE SIGN EXTEND i16
+				this means writing 0||1 outside of BITFIELD
+				this expects outside ABOVE
+				know already sorted when BELOW
+
+			REQUIRE PLUS EXTEND i16
+
+				this means writing 0 outside of BITFIELD
+				OPTION BLEOW as well ## and not shift down ?
+
+			CT_RT tracks STEP by STEP at XPOS
+
+				test data repeats coverage
+				test data exceeds coverage
+				test data does not define coverage // DOES //
+
+				GEN C code that does the FAST_MATCH
+
+			XPOS comes from lib_dgb TREE_TWIG_ITEM_LINE_XPOS
+
+				XPOS uses parsed_multi_byte_UTF8 CPOS in LINE
+				XPOS uses to_be_parsed_multi_byte_UTF8 BPOS in LINE
+				BPOS is bytes OFFS from BOLN usually u7_128
+	
+	DEVICE
+
+		u7_from_i12 // RULE line limit 4096 then SPLIT LINE_CHUNK_4K
+		u12_from_i12 // i4_i12 
+
+	IDX lower fill first
+
+		u8_u8_u16_u32
+		u8_u8
+		u16_u32
+		u16_u16_u16
+		u8_u24
+		u4_u12
+
+		HEAP u3_isx_HEAP # 0 1 2 3 4 5 7 # 8 9 10 11 12 13 14 15 # M8 #
+		ITEM u12_idx_ITEM 
+
+		HEAP can far exceed 4096 but the first u12_IDX are HERE[IDX]
+
+			i12 is what comes from DECODE_i64
+			i12_MINUS is M2048 to M1 // no ZERO on MINUS side
+			u11_plus
+			u11_minus_clip_plus
+
+		IDX from this STEP is IDX_from_CALC_1234(ARGS)
+
+			ARGS can be empty, call can be inline, sometimes,
+
+	
+	STEP VAL_NEW = STEP_FILTER( VAL_OLD )
+
+		VAL_OLD = i4_idx _with_HIGH_clip_MINUS
+		NEW_VAL = u4_idx REQUIRE within 16x4096
+		OLD_VAL = i4_idx PROVIDE within  8x2048
+		NEW_VAL = DECODE_i64( PICK[_u4], PICK[_u12] )i4_idx PROVIDE within  8x2048
+	
+	DECODE_i4_u12
+	DECODE_u4_u12
+
+
+ u16 is the simplest form -RECAST- FLAG a dangerous action prefer SUBSET SIGN
+ i16 is the simplest form
+ u15 is the subset simplest case of simplest form u0 u1 u2 u3 u4 u5 u6 u7 u15
+
+ RISK accidentally promoting i12 to i16 # must clip high SIGN ONES
+	_i8i8_i16_i16_i16 {
+
+		_i8i8
+		_i16
+		_i16
+		_i16
+	
+	}
+
+	i64_i64_i64_i64 { // AES_256 //
+		i64_WORD = STEP_OPODE_i8_i8 ARGS _one _two _M1 # _zero
+		i64_WORD
+		i64_WORD
+		i64_WORD
+	}
+
+	OPTION ZERO_MEANS_PLUS // usually a plain [idx]
+	OPTION PLUS_MEANS_ASIS // int idx // ITEM = ARRAY_one[idx_one]
+	OPTION MINUS_MEANS_CALC // u3_idx // u3_from_i64 STEP_OPCODE
+
+	u3_bitfield EA_WORD B2 B0 TABLES_PICK
+
+	i4_i12 HEAP ITEM {
+
+		u3_idx_HEAP // directly held 8 // can be i48
+		u12_idx_ITEM // OPTION OFFS = VAL * _1248 of its world
+		# suggest align MALLOC i64 align_EIGHT align_8
+		# suggest quart or pair # _one _two # _3 _4 _0 _7 _u3
+		# 8 heaps of 4096 items #
+
+
+
+		
+	}

@@ -83,19 +83,13 @@ YEAR_MM_DD, miles, litres, cost, note
 2026-03-12, 36301,  21.11, 28.90, Y Full Morrisons
 2026-03-13, 36388,   9.95, 13.72, Y Full Tesco BH
 2026-03-18, 36541,  16.60, 23.06, Y Full Morrissons
-# FOUR_PLUS # 640x480 also 720x720 via crop_stretch # four keys each PLUS counter of clicker
-# FOUR_PLUS # ABCD COUNTER[FOUR_KEYS_4] by_name("{ A B C D }") // gravitate towards GENERIC PHRASE // ALIAS PHRASE MATCH
-# ALIAS # SHARES_LIST_of_ATTR idx_of_("A") = ITEM.idx where ITEM = A_of_A_B_C_D
-# A_of_A_B_C_D # 
-# [0] of [4] # REMEMBER "{ [ 0 ... [ N }" # The "{ ... }" wrapper is a stylised FGBG_FONT_ARGV_VARS
-# VARS # VARS_in_PHRASE # SAMPLE PHRASE becomes TEMPLATE_PHRASE
 2026-03-26, 36661,  13.38, 19.25, Y Full (?Tesco BH?)
 2026-03-31, 36842,  18.51, 28.49, Y Full Tesco BH?
 2026-04-01, 36926,   7.78, 11.61, Y Full Morissons did 60
 2026-04-13, 37077,  19.69, 30.50, Y Full Tesco BH
 2026-04-21, 37257,  18.47, 28.61, Y Full Tesco BH
 2026-04-25, 37359,  10.58, 16.39, Y Full Morissons
-2026-04-28, 37459,  11.08, 14.97, N Full Tesco BH - ABSENT fake milage
+2026-04-28, 37456,  11.08, 14.97, Y Full Tesco BH - 
 2026-05-05, 37659,  20.58, 33.00, N Full Tesco BH - ABSENT 134p/l or 136
 2026-05-12, 37891,  24.67, 39.25, Y Full Tesco BH - 
 2026-05-21, 38108,  21.90, 33.50, y Full Tesco BH - 
@@ -107,3 +101,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2026-06-19, 39114,   9.78, 14.76, Y Full Tesco BHs
 2026-06-23, 39202,   9.21, 13.81, Y Full Tesco RG9
 2026-06-30, 39494,  29.94, 44.88, Y Full Tesco BH8
+2026-07-09, 39693,  21.83, 32.50, Y Full Tesco BH8
+2026-07-12, 40044,  32.79, 48.82, Y Full Tesco RG1
+2026-07-25, 40272,  24.00, 37.42, Y Full Morrissons
+2026-08-03, 40477,  23.96, 36.87, Y Full Tesco

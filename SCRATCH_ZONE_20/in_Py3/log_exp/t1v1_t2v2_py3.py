@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # exp and log # log natural # e not 10 #
 from math import exp, log
@@ -22,6 +22,13 @@ v2 = 2.09 * million # meme claims house price
 
 t1 = 1976.0
 v1 = 58 * 1000.0
+
+
+# fire truck 2.5 million, was 1 million 9 years ago
+t2 = 2009
+t1 = 2000
+v2 = 2.5
+v1 = 1.0
 
 # here is how you compute the n'th root of ratio
 

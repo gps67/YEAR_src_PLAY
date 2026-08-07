@@ -100,7 +100,7 @@
  2026-04-13  36926 151  37077  20.2 p_mile  1.55 £_litre  7.04 £_gallon  34.9 mpg   8.1 lp100  Y Full Tesco BH
  2026-04-21  37077 180  37257  15.9 p_mile  1.55 £_litre  7.04 £_gallon  44.3 mpg   6.4 lp100  Y Full Tesco BH
  2026-04-25  37257 102  37359  16.1 p_mile  1.55 £_litre  7.04 £_gallon  43.8 mpg   6.4 lp100  Y Full Morissons
- 2026-04-28  37359 100  37459  15.0 p_mile  1.35 £_litre  6.14 £_gallon  41.0 mpg   6.9 lp100  N Full Tesco BH - ABSENT 
+ 2026-04-28  37359 100  37459  15.0 p_mile  1.35 £_litre  6.14 £_gallon  41.0 mpg   6.9 lp100  N Full Tesco BH - ABSENT fake milage
  2026-05-05  37459 200  37659  16.5 p_mile  1.60 £_litre  7.29 £_gallon  44.2 mpg   6.4 lp100  N Full Tesco BH - ABSENT 134p/l or 136
  2026-05-12  37659 232  37891  16.9 p_mile  1.59 £_litre  7.23 £_gallon  42.8 mpg   6.6 lp100  Y Full Tesco BH - 
  2026-05-21  37891 217  38108  15.4 p_mile  1.53 £_litre  6.95 £_gallon  45.0 mpg   6.3 lp100  y Full Tesco BH - 
@@ -112,3 +112,7 @@
  2026-06-19  39007 107  39114  13.8 p_mile  1.51 £_litre  6.86 £_gallon  49.7 mpg   5.7 lp100  Y Full Tesco BHs
  2026-06-23  39114  88  39202  15.7 p_mile  1.50 £_litre  6.82 £_gallon  43.4 mpg   6.5 lp100  Y Full Tesco RG9
  2026-06-30  39202 292  39494  15.4 p_mile  1.50 £_litre  6.81 £_gallon  44.3 mpg   6.4 lp100  Y Full Tesco BH8
+ 2026-07-09  39494 199  39693  16.3 p_mile  1.49 £_litre  6.77 £_gallon  41.4 mpg   6.8 lp100  Y Full Tesco BH8
+ 2026-07-12  39693 351  40044  13.9 p_mile  1.49 £_litre  6.77 £_gallon  48.7 mpg   5.8 lp100  Y Full Tesco RG1
+ 2026-07-25  40044 228  40272  16.4 p_mile  1.56 £_litre  7.09 £_gallon  43.2 mpg   6.5 lp100  Y Full Morrissons
+ 2026-08-03  40272 205  40477  18.0 p_mile  1.54 £_litre  7.00 £_gallon  38.9 mpg   7.3 lp100  Y Full Tesco

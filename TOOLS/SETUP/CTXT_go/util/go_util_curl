@@ -1,6 +1,7 @@
 . ../go__fns
 echo sudo apt install libpsl-dev
 fn_grp_url util https://curl.se/download/curl-8.19.0.tar.bz2
+fn_grp_url util https://curl.se/download/curl-8.21.0.tar.bz2
 fn_unpack
 fn_with_grp $gcc10
 fn_with_grp util

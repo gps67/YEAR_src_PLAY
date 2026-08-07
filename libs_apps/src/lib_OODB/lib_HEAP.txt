@@ -1,13 +1,107 @@
 lib_HEAP/
 lib_HEAP.txt
 
+	USES Q2.Parse_Q2_TREE_Q2 // mostly a LIST but can be anything
+	USES GEN_PARSE _TWIG_of_HEAP_ITEM  { SCRIPT } { // SCRIPT_two _one _two
+		# NOTE TRAILING INDENT BRACE # and how that is drawn in ASCII
+		# NOTE ASCII becomes UTF8_multi_byte # STREAM folds it back in
+		# LIST of STEP #
+		# STEP ARGV_i idx_one
+		# LANG RENAME idx_one idx_%s NAME_one // _as_STR0_aligned_8
+		# TREE GEN VIEW_one as u8_idx # BYTE_B BYTE_A_u8 #
+		# AUTO NAME # BYTE_A_u8 _A _B _u8 _i8 _ALIAS_ _u8 = (u8)_i8 ;
+		# AUTO_LINK # PREFETCH _u8 = u8_from_i8(_i8) # no ";" # FADE
+		# FADE_MODE # SPEC f32 _t AVAR # AVAR can be KNOW const #
+		# 0 < 1.0 # u24 # 1/16M # PICK SIGN i4_PICK = _one
+		# idx_0 # MATCH # XPOS of this new spark's CTOR and EVAL
+		# idx_1 # LHS
+		# idx_2 # MID
+		# idx_3 # RHS
+
+			i8_BYTE_A
+			i8_BYTE_B
+			i16_LHS
+			i16_MID
+			i16_RHS
+	}
+
+			i8_BYTE_A
+			i8_BYTE_B
+			i16_one // OBJ _one
+			i16_two // OBJ _two
+			i16_three // but often given to wrapping API as FIELD
+
+			YOUR_LIBR PROVIDE i16_idx = i16_three # DATA in MMAP
+
+			i64_OPCODE_i16_i16_i16
+
+				This OPCODE exactly fits an i64 with i16_idx[3]
+
+				i8_BYTE_A // B2B0 8 0
+				i8_BYTE_B // B2B0 16 8
+				i16_AB // B2B0 16 0 // _idx_zero
+				i16_CD // B2B0 32 16 // _one
+				i16_EF // B2B0 48 32 // _two
+				i16_GH // B2B0 64 48 // _M1 // look at UDEF SIDE
+
+				GH is a SINGLE SHIFT
+				AB is a single SIGN_EXTEND 
+				// comverts BITFIELD to entire CPU_WORD // MODE
+
+	}
+
+		OPTION UDEF calc of IDX - safe or risk
+		trusting protocol we allow calc_of_IDX from remote code FAIL
+		trusting protocol we allow calc_of_IDX from LOCAL  code PASS
+		trusting protocol we MUX TREE of TEXT 
+		trusting protocol we cautiously use remote code to guess MATCH
+		 if remote says NULL, no harm done
+		 if remote says TREE, we have a PICK_LIST SPEC_USED
+	
+	SPEC must be more or less universal and currently loaded
+
+		\\ processing
+		%04X processing
+		%s_%s processing
+		$9 processing
+		${EXPR} processing
+
+		nb that is more then Q2 knew about
+		we merge the tags to a shared time, ie TOKEN = SPELLING
+		we do my parsing of what Q2 is for in this DIALECT
+		I guess that will be standard plus, so have some % GEN_PARSE
+
 	This was a sketch left in libs app
 	WE do FILE_ZONE_LIBR_MMAP_HEAP_ITEM // also FILE ZONE LOCN ATTR EA_STEP
 
 	it uses ARRAY[u8 ] of i64
 	it uses ARRAY[u16] of i64
 	it uses ARRAY[u32] of i64
-	it uses ARRAY[u64] of i64
+	it uses ARRAY[u64] of i64_LOHI # i48_LIMIT # u48 = i48 # STEP #
+
+	FLAT STEP is a STEP that is as thin as a door mat
+	ie it has been minimised to do nothing 
+	ie it contains N_bytes N==0
+	FLAT STEP u48 = i48 // assignment is a cast // _u48 = (u48) _i48 //
+	CT_RT likes to reports MATCH and ACTION, that was PRE_STAMP at XPOS
+	CSR = XPOS // goto the TWIG_ROOT then TWIG_HOME // MNT cached_find VFS
+
+		CSR interprets that as a
+		 JUMP CSR to XPOS
+		 SLIDE CSR to XPOS # SLIDE can be stubborn about its own path
+		 STEP CSR to XPOS leaves XPOS1 and arrives at XPOS2
+
+		 	CALL_on_LEAVE_CSR_XPOS XPOS1 {
+			# foreach field AVAR set it NULL and let it do DTOR
+			# HERE we are leaving XPOS1 and detatch anything
+			# HERE CACHE steps in flags END_SCOPE or NULLS_OUT
+			}
+		 	CALL_on_ARRIVE_CSR_XPOS XPOS2 {
+			}
+	
+	SPEC = PSG
+	-option_name "%s" // -ATTR_%s "%s" // ATTR_NAME STR_VAL_for_ATTR
+	CT_RT applies field_name as "ATTR_%s" 
 
 	Each FILE is an outer HEAP in a FILE
 	PEER FILE has .c .h .o .a .exe .txt as OPTIONS

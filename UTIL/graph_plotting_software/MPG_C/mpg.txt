@@ -105,3 +105,7 @@ YEAR_MM_DD, miles, litres, cost, note
 2026-07-12, 40044,  32.79, 48.82, Y Full Tesco RG1
 2026-07-25, 40272,  24.00, 37.42, Y Full Morrissons
 2026-08-03, 40477,  23.96, 36.87, Y Full Tesco
+2026-08-14, 40723,  30.95, 48.87, Y Full Tesco
+2026-08-23, 40931,  20.27, 30.02, Y Full Tesco
+2026-09-03, 41104,  20.33, 31.12, Y Full Tesco Reading
+2026-09-07, 41442,  29.94, 49.37, Y Full Morrissons

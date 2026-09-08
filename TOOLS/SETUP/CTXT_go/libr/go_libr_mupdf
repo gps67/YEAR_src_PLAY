@@ -2,6 +2,7 @@
 
 URL=https://casper.mupdf.com/downloads/archive/mupdf-1.27.2-source.tar.lz
 URL=https://casper.mupdf.com/downloads/archive/mupdf-1.28.0-source.tar.lz
+URL=https://casper.mupdf.com/downloads/archive/mupdf-1.28.2-source.tar.lz
 # NOT YET # URL=https://cairographics.org/releases/cairo-1.19.0.tar.xz
 
 fn_grp_url libr $URL

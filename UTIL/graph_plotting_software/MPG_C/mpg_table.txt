@@ -82,26 +82,14 @@
  2026-03-12  36105 196  36301  14.7 p_mile  1.37 £_litre  6.22 £_gallon  42.2 mpg   6.7 lp100  Y Full Morrisons
  2026-03-13  36301  87  36388  15.8 p_mile  1.38 £_litre  6.27 £_gallon  39.7 mpg   7.1 lp100  Y Full Tesco BH
  2026-03-18  36388 153  36541  15.1 p_mile  1.39 £_litre  6.32 £_gallon  41.9 mpg   6.7 lp100  Y Full Morrissons
- # SKIPPING # COMMENT ## # FOUR_PLUS # 640x480 also 720x720 via crop_stretch # four keys each PLUS counter of clicker
-##
- # SKIPPING # COMMENT ## # FOUR_PLUS # ABCD COUNTER[FOUR_KEYS_4] by_name("{ A B C D }") // gravitate towards GENERIC PHRASE // ALIAS PHRASE MATCH
-##
- # SKIPPING # COMMENT ## # ALIAS # SHARES_LIST_of_ATTR idx_of_("A") = ITEM.idx where ITEM = A_of_A_B_C_D
-##
- # SKIPPING # COMMENT ## # A_of_A_B_C_D # 
-##
- # SKIPPING # COMMENT ## # [0] of [4] # REMEMBER "{ [ 0 ... [ N }" # The "{ ... }" wrapper is a stylised FGBG_FONT_ARGV_VARS
-##
- # SKIPPING # COMMENT ## # VARS # VARS_in_PHRASE # SAMPLE PHRASE becomes TEMPLATE_PHRASE
-##
  2026-03-26  36541 120  36661  16.0 p_mile  1.44 £_litre  6.54 £_gallon  40.8 mpg   6.9 lp100  Y Full (?Tesco BH?)
  2026-03-31  36661 181  36842  15.7 p_mile  1.54 £_litre  7.00 £_gallon  44.5 mpg   6.4 lp100  Y Full Tesco BH?
  2026-04-01  36842  84  36926  13.8 p_mile  1.49 £_litre  6.78 £_gallon  49.1 mpg   5.8 lp100  Y Full Morissons did 60
  2026-04-13  36926 151  37077  20.2 p_mile  1.55 £_litre  7.04 £_gallon  34.9 mpg   8.1 lp100  Y Full Tesco BH
  2026-04-21  37077 180  37257  15.9 p_mile  1.55 £_litre  7.04 £_gallon  44.3 mpg   6.4 lp100  Y Full Tesco BH
  2026-04-25  37257 102  37359  16.1 p_mile  1.55 £_litre  7.04 £_gallon  43.8 mpg   6.4 lp100  Y Full Morissons
- 2026-04-28  37359 100  37459  15.0 p_mile  1.35 £_litre  6.14 £_gallon  41.0 mpg   6.9 lp100  N Full Tesco BH - ABSENT fake milage
- 2026-05-05  37459 200  37659  16.5 p_mile  1.60 £_litre  7.29 £_gallon  44.2 mpg   6.4 lp100  N Full Tesco BH - ABSENT 134p/l or 136
+ 2026-04-28  37359  97  37456  15.4 p_mile  1.35 £_litre  6.14 £_gallon  39.8 mpg   7.1 lp100  Y Full Tesco BH - 
+ 2026-05-05  37456 203  37659  16.3 p_mile  1.60 £_litre  7.29 £_gallon  44.8 mpg   6.3 lp100  N Full Tesco BH - ABSENT 134p/l or 136
  2026-05-12  37659 232  37891  16.9 p_mile  1.59 £_litre  7.23 £_gallon  42.8 mpg   6.6 lp100  Y Full Tesco BH - 
  2026-05-21  37891 217  38108  15.4 p_mile  1.53 £_litre  6.95 £_gallon  45.0 mpg   6.3 lp100  y Full Tesco BH - 
  2026-05-28  38108 331  38439  14.3 p_mile  1.53 £_litre  6.95 £_gallon  48.6 mpg   5.8 lp100  Y Full Tesco BH - 
@@ -116,3 +104,7 @@
  2026-07-12  39693 351  40044  13.9 p_mile  1.49 £_litre  6.77 £_gallon  48.7 mpg   5.8 lp100  Y Full Tesco RG1
  2026-07-25  40044 228  40272  16.4 p_mile  1.56 £_litre  7.09 £_gallon  43.2 mpg   6.5 lp100  Y Full Morrissons
  2026-08-03  40272 205  40477  18.0 p_mile  1.54 £_litre  7.00 £_gallon  38.9 mpg   7.3 lp100  Y Full Tesco
+ 2026-08-14  40477 246  40723  19.9 p_mile  1.58 £_litre  7.18 £_gallon  36.1 mpg   7.8 lp100  Y Full Tesco
+ 2026-08-23  40723 208  40931  14.4 p_mile  1.48 £_litre  6.73 £_gallon  46.6 mpg   6.1 lp100  Y Full Tesco
+ 2026-09-03  40931 173  41104  18.0 p_mile  1.53 £_litre  6.96 £_gallon  38.7 mpg   7.3 lp100  Y Full Tesco Reading
+ 2026-09-07  41104 338  41442  14.6 p_mile  1.65 £_litre  7.50 £_gallon  51.3 mpg   5.5 lp100  Y Full Morrissons

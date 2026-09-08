@@ -13,6 +13,8 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/godotengine/godot
+https://github.com/go-gitea/gitea
 https://github.com/apparmor/apparmor
 https://github.com/bdwgc/bdwgc
 https://github.com/bdwgc/libatomic_ops
@@ -33,7 +35,7 @@ https://github.com/tinycc/tinycc
 https://github.com/pkivolowitz/asm_book
 https://github.com/christianhaitian/arkos/
 https://github.com/christianhaitian/dArkOS/
-https://github.com/TinyCC/tinycc
+#https://github.com/TinyCC/tinycc
 https://github.com/mozilla-spidermonkey/spidermonkey-embedding-examples
 https://github.com/ginjo/haserl-framework.git
 https://git.openldap.org/openldap/openldap
@@ -318,7 +320,7 @@ https://github.com/libguestfs/supermin
 https://github.com/libguestfs/nbdkit
 https://github.com/libguestfs/libnbd
 https://github.com/libguestfs/hivex
-https://repo.or.cz/tinycc.git
+#https://repo.or.cz/tinycc.git
 https://github.com/vectorclass/version2
 https://github.com/vectorclass/manual
 https://github.com/vectorclass/testbench

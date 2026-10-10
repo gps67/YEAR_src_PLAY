@@ -1,3 +1,4 @@
+#! /usr/bin/env tclsh
 #! /usr/bin/env tclsh9.0
 
 proc make_png_from_txt { file_png file_txt } {

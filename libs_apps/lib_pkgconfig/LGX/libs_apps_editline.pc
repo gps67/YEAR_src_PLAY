@@ -8,7 +8,8 @@ Version: 0.1.2
 Requires: 
 
 XXOBJDIR=.
-OBJDIR=/tools/x86_64/libr/lib/
+xOBJDIR=/tools/x86_64/libr/lib/
+OBJDIR=/usr/lib/x86_64-linux-gnu/
 X=-l/usr/lib/libeditline.so
 
 

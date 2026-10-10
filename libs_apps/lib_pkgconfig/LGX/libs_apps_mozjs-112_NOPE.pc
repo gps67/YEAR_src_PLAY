@@ -1,0 +1,33 @@
+# spidermonkey 
+# need some work
+# /home/gps/G/prefix/lib/pkgconfig
+# /home/gps/G/mozjs/lib/pkgconfig
+# mozjs.pc
+
+Name: libs_apps_mozjs-112
+Description: libs_apps uses JavaScript from mozilla
+Version: 0.2.112
+
+libdir=/mnt/sda2/x79_A2/G/prefix_/SM/lib/mozjs-112
+SM_dir=/mnt/sda2/x79_A2/G/prefix_/SM/
+libdir=/mnt/sda2/x79_A2/G/prefix_/SM/include/mozjs-112
+
+# well known MACRO for LD via gcc # adds the elf items rpath
+# best apply to .exec to find it's LIBR_so
+rpath_libdir=-Wl,--rpath=${libdir}
+
+# Requires: mozjs-67
+# Requires: mozjs-78
+# Requires: mozjs-93
+# Requires: mozjs-106
+Requires: mozjs-112
+# Requires: 
+
+# yes this is included
+# Cflags: -DMOZ_JS_93
+Cflags: -DMOZ_JS_XX
+# Cflags:
+Libs: ${rpath_libdir}
+
+
+

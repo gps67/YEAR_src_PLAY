@@ -386,6 +386,7 @@ $(PROG9_EXE): $(PROG9).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21) $(DLL36)
 	-cp -p $@ /home/gps/bin2/$@_
 	-cp -p $@ /home/gps/bin2/
 
+# $(PROG8_EXE): $(PROG8).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21)
 $(PROG0_EXE): $(PROG0).o $(DLL35) $(DLL34) $(DLL33) $(DLL11) $(DLL21) $(DLL37) 
 	#
 	# $@
@@ -496,10 +497,12 @@ $(DLL35): $(OBJS_lib35)
 # -lbase_implib.a
 #
 $(DLL36): $(OBJS_lib36)
+	# DLL36
 	$(LINK_SO_FROM) $(OBJS_lib36) $(LINKLIB36) $(LINKS) $(LINK_SO_TAIL) # SAR_PLOT_POST
 
 #
 $(DLL37): $(OBJS_lib37)
+	# DLL37
 	$(LINK_SO_FROM) $(OBJS_lib37) $(LINKLIB37) $(LINKS) $(LINK_SO_TAIL) # SAR_PLOT_POST
 
 endif

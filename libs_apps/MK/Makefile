@@ -126,7 +126,7 @@
 	# openssl 3.0 #
 	PKG_CONFIG_LIST += /tools/VPN/lib/pkgconfig
 	PKG_CONFIG_LIST += /tools/x86_64/dtp/lib/pkgconfig
-	PKG_CONFIG_LIST += /tools/x86_64/libr/lib/pkgconfig
+#	PKG_CONFIG_LIST += /tools/x86_64/libr/lib/pkgconfig
 	PKG_CONFIG_LIST += /home/gps/G/prefix/lib/pkgconfig
 	# freetype2.pc
 	PKG_CONFIG_LIST += .

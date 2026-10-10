@@ -1,7 +1,9 @@
 # spidermonkey 
 # need some work
-# /home/gps/G/prefix/lib/pkgconfig
-# /home/gps/G/mozjs/lib/pkgconfig
+# /home/gps/G/prefix/SM-112/lib/pkgconfig # move the switch to here # SM-112 #
+# /home/gps/G/prefix/SM/lib/pkgconfig # above is a SYMB link so fixed system
+# /home/gps/G/prefix/lib/pkgconfig # forest of symb_links VFS # union prefix_XXX
+# /home/gps/G/mozjs/lib/pkgconfig # "G/mozjs" "G/prefix/SM"
 # mozjs.pc
 
 Name: libs_apps_mozjs
@@ -15,9 +17,20 @@ Version: 0.2.112
 Requires: mozjs-112
 # Requires: 
 
+#	# Requires: mozjs-112
+#	# that is the default customised prefix
+#	# TODO update it to 2026 # or not it is a broken LIBR
+#	# TODO so add rpath_one HERE and not THERE # keep default asis
+#	# rpath_libdir=-Wl,--rpath=${libdir}
+
+prefix_one=/home/gps/G/prefix/SM_one
+rpath_one=${prefix_one}/lib
+add_rpath_one=-Wl,--rpath=${rpath_one}
+
+
 # yes this is included
 # Cflags: -DMOZ_JS_93
 Cflags: -DMOZ_JS_XX
 # Cflags:
-Libs:
+Libs: ${add_rpath_one}
 

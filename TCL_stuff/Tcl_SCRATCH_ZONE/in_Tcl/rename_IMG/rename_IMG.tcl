@@ -50,7 +50,6 @@ set ZONE_NAME BH6_XMAS
 set ZONE_NAME Ella_eve
 set ZONE_NAME PIER
 set ZONE_NAME BH6_walk
-set ZONE_NAME RSAC
 set ZONE_NAME BH6_pages
 set ZONE_NAME BH6_Sherboune
 set ZONE_NAME BH6_Yeovil_Hip_Recovery
@@ -68,14 +67,22 @@ set ZONE_NAME 56_Nightingale
 set ZONE_NAME Elizabeth_House
 set ZONE_NAME receipt_X
 set ZONE_NAME Beatroots
+set ZONE_NAME RG2
 set ZONE_NAME BH6
+set ZONE_NAME Dennis
+set ZONE_NAME Garage_Door
+set ZONE_NAME MMS_Santander
+set ZONE_NAME PETROL
+set ZONE_NAME receipt
+set ZONE_NAME RSAC
+set ZONE_NAME Skye
 
 # rework for when in dir called YEAR_MM_DD_STR
 
 
 # except this is TCL not BASH
 # invoke TK ?
-# . fns_EDIT
+#  . fns_EDIT
 # fn_EDIT_var ZONE_NAME
 
 

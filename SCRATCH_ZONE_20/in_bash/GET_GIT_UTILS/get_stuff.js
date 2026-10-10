@@ -13,6 +13,9 @@ type GET_GIT
 # git://anongit.freedesktop.org/git/xorg/lib/libXaw3d
 
 L1="
+https://github.com/musescore/MuseScore
+https://github.com/edgcpp/compiler
+https://github.com/yt-dlp/yt-dlp
 https://github.com/godotengine/godot
 https://github.com/go-gitea/gitea
 https://github.com/apparmor/apparmor

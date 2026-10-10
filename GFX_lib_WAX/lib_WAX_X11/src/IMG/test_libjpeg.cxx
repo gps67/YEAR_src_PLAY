@@ -389,6 +389,8 @@ bool bool_main(int argc, char **argv)
 				return FAIL_FAILED();
 	}
 
+	fmt_system("m '%s'", in_filename);
+	fmt_system("m '%s'", out_filename);
 	// fmt_system("m '%s'", filename_jpeg_out);
 	return PASS("OK");
  } 
@@ -398,7 +400,7 @@ bool bool_main(int argc, char **argv)
 	const char * argv_2[] = {
 		"test2_libjpeg.elf",
 
-		filename_1,
+		filename_jpeg_in,
 		filename_jpeg_out,
 		"-subsamp", "444",
 		"-q", "100",

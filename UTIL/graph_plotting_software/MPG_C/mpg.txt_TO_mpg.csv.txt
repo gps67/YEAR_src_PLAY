@@ -1,0 +1,84 @@
+mpg.txt_TO_mpg.csv.txt
+
+	mpg.txt
+	_TO_
+	mpg.csv
+
+		normalise CSV save as .csv_
+		apply .csv_ as .csv in VFS // places a cached FETCH
+
+		future the TABLE_csv might be an MMAP HEAP ITEM
+
+		FILE_INFO = expected fields, their meanings
+		FILE_DATA = TEXT_FILE TEXT_LINE detect trailing spaces comma
+		MATCH_COMMA ","   ", "   " , " ALIAS SP1 MATCH_GAP_note_SP1o
+
+		FILTER over entire FILE loaded as CSV TREE of LINE of CSV
+		FILTER normalise with reasonable gap_align table as CSV
+		
+		FILTER first line is Field_names
+		FILTER merge in extra SPEC from SPEC
+		FILTER SCRIPT has DECL_TABLE_SPEC that should match DATA_IN
+OPTION		FieldNames from line1
+OPTION		FieldNames from SPEC
+
+			ALIAS TABLE_LABEL "mpg" SUB_SEL VERN(YEAR_MM_DD_then)
+
+				the schema changes occasionally
+				YEAR_MM_DD_then
+				C style decl, STRUCT, ARRAY, GETTER,
+				GETTER_API_CSV_TEXT
+				GETTER_API_HEAP_ITEM ITEM_is_BRANCH _is_TREE
+
+			CHECK with commented out line1
+
+			BLOCK of LINES that follow CSV_SPEC FieldNames
+
+			INDENTED_TEXT
+			 INDENT = "SP { EOLN INDENT_MORE %s LINE EOLN %s } EOLN"
+
+			 ARRAY[N_lines] of LINE
+
+			A_LINE {
+				ARRAY[N_fields] of FIELD
+			}
+			// NOTE B_LINE C_LINE D_LINE all possible)
+			// OFTEN identical but distinct ID_idx
+			// OFTEN different same USAGE where A_LINE can go
+
+			A_FIELD {
+			.str = "field_value" // "%s"
+			// TODO // FMT //
+			}
+		
+			A_LINE {
+			 
+			 ROW_STRUCT TABLE_1_row_type {
+			 	field_name 
+			 }
+			}
+
+	
+	MMAP HEAP ITEM # MODE LOHI
+
+		VALUE = CSV_VALUE
+		VALUE_double
+		VALUE_float
+		VALUE_i64
+		VALUE_i32
+		VALUE_i16
+		VALUE_i8
+		VALUE_Q2_STR_Q2 # "ANYSTR" # no LEX_EDGE guarantee of SUB_LEX
+		VALUE_STR # "STR0" # trim for VIEW as per SPEC
+	
+		VALUE_as_STR // OPTION MULTI_LINE OBJ
+	
+		VALUE_in_TEXT as_P0P2 where VALUE was parsed from
+		VALUE_TYPE is often known (above) often unknown (guess_multi)
+		MULTI enables VALUE to break step to PARSE_VALUE_TYPE_one
+		MULTI enables VALUE to break step to PARSE_VALUE_TYPE_two
+	
+		CSV_VALUE 
+		 
+
+

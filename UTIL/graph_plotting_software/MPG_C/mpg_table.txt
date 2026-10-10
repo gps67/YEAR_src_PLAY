@@ -1,4 +1,4 @@
- # FILENAME # mpg.txt # # SKIPPING # FIRST DATA LINE ## 2023-06-03, 18028,  32.38, 49.64, Y? Full Morrisons - to Salisbury
+ # FILENAME # mpg.csv # # SKIPPING # FIRST DATA LINE ## 2023-06-03, 18028,  32.38, 49.64, Y? Full Morrisons - to Salisbury
  2023-06-04  18028 231  18259  14.3 p_mile  1.49 £_litre  6.76 £_gallon  47.3 mpg   6.0 lp100  Y? Full Morrisons - from Salisbury
  2023-07-02  18259 263  18522  16.7 p_mile  1.41 £_litre  6.40 £_gallon  38.3 mpg   7.4 lp100  Y? Full Morrisons - from Salisbury
  2023-07-31  18522 181  18703  17.3 p_mile  1.35 £_litre  6.13 £_gallon  35.5 mpg   8.0 lp100  Y? Full Sainsbury 
@@ -108,3 +108,7 @@
  2026-08-23  40723 208  40931  14.4 p_mile  1.48 £_litre  6.73 £_gallon  46.6 mpg   6.1 lp100  Y Full Tesco
  2026-09-03  40931 173  41104  18.0 p_mile  1.53 £_litre  6.96 £_gallon  38.7 mpg   7.3 lp100  Y Full Tesco Reading
  2026-09-07  41104 338  41442  14.6 p_mile  1.65 £_litre  7.50 £_gallon  51.3 mpg   5.5 lp100  Y Full Morrissons
+ 2026-09-16  41442 255  41697  17.1 p_mile  1.66 £_litre  7.54 £_gallon  44.0 mpg   6.4 lp100  Y Full Tesco BH8
+ 2026-09-22  41697 104  41801  18.8 p_mile  1.73 £_litre  7.86 £_gallon  41.7 mpg   6.8 lp100  Y Full 
+ 2026-09-24  41801  82  41883  17.7 p_mile  1.68 £_litre  7.63 £_gallon  43.1 mpg   6.6 lp100  Y Full Tesco 
+ 2026-09-28  41883 135  42018  17.3 p_mile  1.74 £_litre  7.90 £_gallon  45.7 mpg   6.2 lp100  Y Full ASDA

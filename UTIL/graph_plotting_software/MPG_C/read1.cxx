@@ -1,4 +1,12 @@
-#define FILE_IN "mpg.txt"
+/*
+	FILE_IN_DEFAULT = "mpg.txt"
+
+	LIBR layout 
+	LIBR PROVIDE what we also PROVIDE here
+	HERE is parse the car milage CSV and print TABLE no csv
+	HERE is libs_apps libs = LIBR apps = HERE = "mpg" MIME=".csv"
+*/
+#define FILE_IN "mpg.csv"
 
 #define BUFF_SIZE 1024
 
